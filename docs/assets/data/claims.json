@@ -1729,7 +1729,7 @@
     "type": "invariant"
   },
   "INV-021": {
-    "assembly_state": "remaining",
+    "assembly_state": "awaiting_substrate",
     "assembly_status": "queued",
     "awaiting": "SD-026",
     "emergent_from": [
@@ -1742,7 +1742,8 @@
     "status": "candidate",
     "subject": "meta.commit_boundary_irreversibility",
     "title": "Responsibility-bearing durable updates occur only at typed commit boundaries.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "LEG 0 (inherited, unmet on BOTH components): (i) INV-012 Leg 0 -- E3\ndifferentiated-candidate selection, unmet per MECH-439 exhausted. (ii)\nARC-003 Leg B -- commit as a real hysteresis-bearing event, independently\nBLOCKED since 2026-07-21 on the identical ARC-107/MECH-448/449 release\ncondition. Until both clear, \"responsibility-bearing update\" has no\nreferent and \"commit boundary\" names no confirmed event distinct from\nmere scoring.\n\nLEG 1 (testable NOW, commitment-free, mirrors ARC-003 Leg A): does every\ndurable, lasting-effect write pathway pass through an ARC-003 commit\nbefore it persists, or does REE have a write channel producing durable\nconsequence WITHOUT ever passing through commit? Candidate exceptions to\ncheck: residue-geometry sampling-bias updates (ARC-007, reflexive), any\noffline/sleep-phase write (SD-033 family), uncommitted exploratory\nevaluation leaving a lasting trace.\nCONFIRMING: no counter-example found across current write pathways.\nFALSIFYING: a durable, consequence-bearing update found outside any\nARC-003 commit boundary -- falsifies the exclusivity structure regardless\nof Leg 0.\n\nLEG 2 (conjunctive, full claim): CONFIRMED only if Leg 0 clears AND Leg 1\nconfirms. If Leg 1 confirms while Leg 0 remains unmet, record the\nnarrower finding (\"exactly one durable-write locus exists, but nothing\nyet gives it responsibility-bearing status\") rather than treating the\nfull ethical claim as confirmed.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 11. ARC-003's Leg A/Leg B split and INV-012's Leg 0 correction, both\nfrom this and a prior session, converge on the same ARC-107 release\ncondition via two independent dependency paths -- worth noting as\nreinforcing evidence the block is structural.)\n"
   },
   "INV-022": {
     "assembly_state": "remaining",
@@ -2367,7 +2368,8 @@
     "status": "candidate",
     "subject": "learning.developmental_plasticity_crystallization_necessity",
     "title": "Plasticity crystallization necessity: any model-building agent whose internal scoring is dominated by a high-variance predictive pathway will converge to monostrategy under Hebbian-equivalent learning unless a time-bounded plasticity asymmetry allows competing diversity circuits to establish competitive weight before winner-take-all dynamics close off the option space; without this crystallization window, behavioral diversity is permanently suppressed regardless of diversity-signal magnitude.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "STATUS -- READ THIS FIRST: NO V3 RETEST IS CURRENTLY SANCTIONED. Nine\nconsecutive V3 attempts all reclassified non_contributory (harness-level\nconfounds or confounded negative controls). User STOPPED the cascade\n2026-06-13; GOV-CEIL-1 (2026-07-09) reaffirmed keep-park; V4-deferred,\ngated on PLW-1 (decision-to-build), still BLOCKED as of 2026-08-07. This\nis a design record for a FUTURE V4 test, not a solicitation to queue one\nnow.\n\nNON-DEGENERACY PRECONDITION (unmet -- all four needed at once, no prior\nattempt achieved more than one or two): (1) a genuinely trained policy\nunder real WTA pressure, (2) crystallization applied to heads that have\nalready differentiated, (3) a negative control not confounded by\nalways-on diversity floors, (4) sustained post-crystallization\ndestabilising pressure.\n\nCONFIRMING: D2 (control-arm collapse) >= +0.10 AND D1 (crystallized-vs-\ncontrol preservation) sign-consistent >= +0.10 across >=2/3 seeds.\n\nFALSIFYING: D2 >= +0.10 (test is non-vacuous, control genuinely\ncollapses) BUT D1 does not clear the floor or is sign-inconsistent -- the\npre-registered substrate-ceiling fork already named in the 610-series\nrouting notes.\n\n(MECH-439, registered 2026-06-18, shares EXQ-571's evidentiary root but\nasks a different question -- per-decision selection-authority, not\nlearning-time plasticity. A future V4 test should check ARC-107's status\nfirst, as a side-effect resolution there may change what needs\ncontrolling for -- but MECH-439 resolving is not a precondition for\nINV-074's own test.\n\nDigested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 11.)\n"
   },
   "INV-075": {
     "assembly_state": "remaining",
@@ -7980,12 +7982,13 @@
     "type": "design_decision"
   },
   "SD-032": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "cingulate.integration_substrate",
     "title": "Cingulate integration substrate: a network-level module with AIC, dACC/aMCC, pMCC, pACC, and PCC analog subdivisions bound by a salience-network coordinator. Primary output: operating-mode variable plus behavioural-adjustment-magnitude signal.",
-    "type": "design_decision"
+    "type": "design_decision",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: (a) SD-032b built and exercised as an isolable\nmodule -- MET (dacc.py, salience_coordinator.py both exist, separately\ngateable). (b) Committed-action diversity must exist at all -- NOT MET:\nV3-EXQ-654g found action_class_entropy=0.0 across ALL arms, the identical\nMECH-439 conversion-ceiling confound. Until (b) clears, neither branch of\nthe dissociation is answerable -- there is no behavioural variance for\neither branch to explain. Retest gated on the in-flight MECH-439/ARC-108/\nGAP-A front; do not re-open here.\n\nCONFIRMING (network-level framing correct): SD-032b alone (coordinator\noff) fails to produce coherent mode switching on salient events while the\nsame task WITH the coordinator shows the switch occurring.\n\nFALSIFYING (network-level framing is over-specification): SD-032b alone\nreproduces both expected behavioural changes (z_harm_a varying trajectory\nselection; chronic-pain-like plasticity shift) with coherent mode-\nappropriate behaviour even without the coordinator engaged.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 11. SD-032a is independently confirmed stable, which raises the bar\nfor the falsifying branch but does not settle it -- no ablation has\nactually isolated SD-032b without the coordinator.)\n"
   },
   "SD-032a": {
     "assembly_state": "mature",
@@ -8156,12 +8159,13 @@
     "what_would_answer": "NON-DEGENERACY PRECONDITION (partially unmet as of 2026-08-03, root cause identified, not hypothetical): use_sd039_anchor_payload defaults OFF and must be explicitly enabled; a genuine behavioral test additionally needs at least one deferred consumer (MECH-292 ghost-goal bank and/or MECH-293 waking ghost-goal probes) wired to actually USE the payload for downstream decisions. Both are already satisfied today (MECH-292/293 are landed and wired). A THIRD, MEASURED precondition currently blocks the query/retrieval half specifically: the retrieval cue must carry goal-context identity across distinct goal-epochs. As of the 2026-08-03 V3-EXQ-889 dry run this does NOT hold -- z_goal is a single global EMA attractor whose cue-centered max pairwise cosine saturates near ceiling (0.99752 vs a pre-registered 0.99 non-degeneracy bar) and monotonically worsens with re-exposure, so four deliberately-distinct goal-epoch cues collapse onto the same top-1 anchor (n_distinct_top1_anchors=1.0). A valid test design must also run within a single continuous agent stream across the invalidation-to- retrieval window: AnchorSet.reset() clears the entire dual-trace pool at every agent.reset() episode boundary.\nCONFIRMING signature, by level: - Unit level (ALREADY MET, V3-EXQ-494 UC5, 2026-04-27): mean goal-match\n  on Phase A (goal-inactive) anchors = 0.0 vs Phase B (goal-active)\n  anchors = 0.998, 3/3 replicates above the pre-registered 0.3 threshold.\n- Consumer-ranking level (PARTIALLY MET, V3-EXQ-868, 2026-08-02): a\n  goal-relevant inactive anchor outranks a goal-irrelevant, matched-\n  staleness inactive anchor in >=4/7 seeds.\n- Retrieval/query level (STILL OPEN, blocked on the precondition above):\n  once goal-identity is met, a post-failure retrieval cue correctly\n  surfaces the anchor on the formerly-valid-but-now-blocked path as its\n  top-1 hit at an above-chance rate, while unrelated stale anchors are\n  not surfaced.\n- Full behavioral/task level (NEVER COMPLETED, V3-EXQ-495 SIGTERM'd\n  2026-04-28, not since requeued): PLANNED-arm benefit_post_block exceeds\n  HABIT-arm benefit_post_block by >=0.30 in >=4/7 seeds in the detour\n  paradigm, without a harm regression or standard-episode degradation.\n\nFALSIFYING signature: with the goal-identity precondition met and a continuous-stream design, a downstream consumer built on this payload shows NO behavioral advantage over ignoring the payload entirely -- e.g. cued retrieval performs at or near chance even once cues are demonstrably goal-distinct; PLANNED-arm is statistically indistinguishable from HABIT/ABLATED. The payload would then exist and dissociate goal-active/ inactive state at the unit level, without translating into any measurable recovery advantage.\n"
   },
   "SD-040": {
-    "assembly_state": "deferred_future",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "hippocampal.type_encoder_anchor_input_projection",
     "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
-    "type": "design_decision"
+    "type": "design_decision",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION (unmet): requires BOTH the type-encoder substrate (learned projection writing a type-key into AnchorSet entries, plus MECH-296's prototype-readout to consume it) AND a multi-instance-per- type environment. Neither exists -- zero type_encoder/type_key/ prototype_readout hits in ree_core; Anchor carries only (scale, segment_id, stream_mixture) key, z_world, and SD-039's goal_payload. MECH-296 is itself candidate/v4/unbuilt. V3's gridworld has discrete entity types with no instance-variability by design -- a test-bed limitation, not just missing code.\nCONFIRMING: in a multi-instance environment, type-keyed AnchorSet queries retrieve ALL instances of a type while location-keyed queries retrieve only the specific instance.\nFALSIFYING: with the precondition met, type-keyed queries fail to generalize across same-type instances, or perform no differently than location-keyed queries.\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 11.)\n"
   },
   "SD-041": {
     "assembly_state": "deferred_future",
@@ -8306,7 +8310,12 @@
     "status": "candidate",
     "subject": "defensive_action.instrumental_avoidance_acquisition",
     "title": "Instrumental-avoidance acquisition: REE's defensive system needs an instrumental-ACQUISITION side, not only the defensive-REACTION side. SD-035 (amygdala BLA/CeA salience) + MECH-279 (PAG freeze gate) give REE the Pavlovian reaction (Tovote 2016: response EXECUTION, not learning); what is missing is the step from reaction to learned avoidance. Moscarello & LeDoux 2013: active avoidance learning is the RESOLUTION of a Pavlovian-instrumental conflict -- the freezing reaction and the instrumental avoidance action are mutually exclusive, and learning to avoid REQUIRES the infralimbic PFC to SUPPRESS central-amygdala-driven freezing (ilPFC lesion -> more freezing, less avoidance; CeA lesion -> opposite). A freeze-and-salience substrate with no reaction-suppression / instrumental-acquisition layer is the ilPFC-lesion animal: it freezes instead of learning to avoid -- the V3-EXQ-603g G_H 0/3 signature. SD-058 adds the architecture (an instrumental-avoidance action pathway + an ilPFC-analog freeze-suppression gate gated by learned avoidance-efficacy, staged under a protective scaffold); MECH-357 is the gate mechanism.",
-    "type": "design_decision"
+    "type": "design_decision",
+    "what_would_answer": {
+      "actual_result_to_date": "V3-EXQ-603h ALREADY RAN 2026-06-07/08: FAIL, non_contributory. Non-vacuity preconditions met (freeze/gate both confirmed working) but G_H_INTACT 0/3, tied with LESION. See the corrected evidence_quality_note above for full detail. SD-058/MECH-357 themselves unweakened, still candidate/v3_pending pending a retest with the SD-059/MECH-358 bridge wired in (not yet queued).\n",
+      "confirms": "A retest of V3-EXQ-603h's design with SD-059/MECH-358's escape-affordance bridge wired in reports readiness_met=true (non-vacuity: freeze on lesion, gate engages+suppresses on intact) AND G_H_INTACT >= 2/3 AND G_H_INTACT_frac > G_H_LESION_frac.\n",
+      "falsifies": "Readiness is met but G_H_INTACT stays below 2/3 or fails to beat G_H_LESION -- the suppression mechanism fires without the predicted survival benefit, even with the escape-affordance gap closed.\n"
+    }
   },
   "SD-059": {
     "assembly_state": "gated_v3",

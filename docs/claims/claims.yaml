@@ -6179,6 +6179,39 @@
     - Q-015
     - ARC-003
     - SD-026
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    LEG 0 (inherited, unmet on BOTH components): (i) INV-012 Leg 0 -- E3
+    differentiated-candidate selection, unmet per MECH-439 exhausted. (ii)
+    ARC-003 Leg B -- commit as a real hysteresis-bearing event, independently
+    BLOCKED since 2026-07-21 on the identical ARC-107/MECH-448/449 release
+    condition. Until both clear, "responsibility-bearing update" has no
+    referent and "commit boundary" names no confirmed event distinct from
+    mere scoring.
+
+    LEG 1 (testable NOW, commitment-free, mirrors ARC-003 Leg A): does every
+    durable, lasting-effect write pathway pass through an ARC-003 commit
+    before it persists, or does REE have a write channel producing durable
+    consequence WITHOUT ever passing through commit? Candidate exceptions to
+    check: residue-geometry sampling-bias updates (ARC-007, reflexive), any
+    offline/sleep-phase write (SD-033 family), uncommitted exploratory
+    evaluation leaving a lasting trace.
+    CONFIRMING: no counter-example found across current write pathways.
+    FALSIFYING: a durable, consequence-bearing update found outside any
+    ARC-003 commit boundary -- falsifies the exclusivity structure regardless
+    of Leg 0.
+
+    LEG 2 (conjunctive, full claim): CONFIRMED only if Leg 0 clears AND Leg 1
+    confirms. If Leg 1 confirms while Leg 0 remains unmet, record the
+    narrower finding ("exactly one durable-write locus exists, but nothing
+    yet gives it responsibility-bearing status") rather than treating the
+    full ethical claim as confirmed.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 11. ARC-003's Leg A/Leg B split and INV-012's Leg 0 correction, both
+    from this and a prior session, converge on the same ARC-107 release
+    condition via two independent dependency paths -- worth noting as
+    reinforcing evidence the block is structural.)
   location: docs/invariants.md#inv-021
   source:
     - docs/invariants.md
@@ -31204,6 +31237,30 @@
     - MECH-091         # salient-event phase reset (specific AIC->dACC mechanism)
     - MECH-094         # hypothesis tag / write gate (generalised by MECH-261)
     - MECH-220         # cingulate-insula harm hub (weakened by EXQ-395; replaced by this cluster)
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: (a) SD-032b built and exercised as an isolable
+    module -- MET (dacc.py, salience_coordinator.py both exist, separately
+    gateable). (b) Committed-action diversity must exist at all -- NOT MET:
+    V3-EXQ-654g found action_class_entropy=0.0 across ALL arms, the identical
+    MECH-439 conversion-ceiling confound. Until (b) clears, neither branch of
+    the dissociation is answerable -- there is no behavioural variance for
+    either branch to explain. Retest gated on the in-flight MECH-439/ARC-108/
+    GAP-A front; do not re-open here.
+
+    CONFIRMING (network-level framing correct): SD-032b alone (coordinator
+    off) fails to produce coherent mode switching on salient events while the
+    same task WITH the coordinator shows the switch occurring.
+
+    FALSIFYING (network-level framing is over-specification): SD-032b alone
+    reproduces both expected behavioural changes (z_harm_a varying trajectory
+    selection; chronic-pain-like plasticity shift) with coherent mode-
+    appropriate behaviour even without the coordinator engaged.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 11. SD-032a is independently confirmed stable, which raises the bar
+    for the falsifying branch but does not settle it -- no ablation has
+    actually isolated SD-032b without the coordinator.)
   functional_restatement: >
     ree-v3 currently produces z_harm_a but has no coordinated substrate
     for integrating it with cognitive control, urgency interrupt, effort
@@ -39254,6 +39311,28 @@
   depends_on:
     - MECH-269   # AnchorSet substrate being extended with new input projection
     - SD-039     # anchor payload schema that this projection populates a new field of
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (unmet): requires BOTH the type-encoder
+    substrate (learned projection writing a type-key into AnchorSet entries,
+    plus MECH-296's prototype-readout to consume it) AND a multi-instance-per-
+    type environment. Neither exists -- zero type_encoder/type_key/
+    prototype_readout hits in ree_core; Anchor carries only (scale,
+    segment_id, stream_mixture) key, z_world, and SD-039's goal_payload.
+    MECH-296 is itself candidate/v4/unbuilt. V3's gridworld has discrete
+    entity types with no instance-variability by design -- a test-bed
+    limitation, not just missing code.
+
+    CONFIRMING: in a multi-instance environment, type-keyed AnchorSet queries
+    retrieve ALL instances of a type while location-keyed queries retrieve
+    only the specific instance.
+
+    FALSIFYING: with the precondition met, type-keyed queries fail to
+    generalize across same-type instances, or perform no differently than
+    location-keyed queries.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 11.)
   functional_restatement: >
     Concept cells in MTL hold instance-invariant abstract identity codes
     (Quiroga 2005). Statistical-regularity learning happens via the
@@ -52590,6 +52669,39 @@
     - ARC-065    # diversity stack -- the circuit that must crystallize
     - MECH-120   # sleep SWY downscaling -- the consolidation mechanism
     - MECH-165   # replay diversity -- required for crystallized distribution to be maintained
+  what_would_answer: |
+    STATUS -- READ THIS FIRST: NO V3 RETEST IS CURRENTLY SANCTIONED. Nine
+    consecutive V3 attempts all reclassified non_contributory (harness-level
+    confounds or confounded negative controls). User STOPPED the cascade
+    2026-06-13; GOV-CEIL-1 (2026-07-09) reaffirmed keep-park; V4-deferred,
+    gated on PLW-1 (decision-to-build), still BLOCKED as of 2026-08-07. This
+    is a design record for a FUTURE V4 test, not a solicitation to queue one
+    now.
+
+    NON-DEGENERACY PRECONDITION (unmet -- all four needed at once, no prior
+    attempt achieved more than one or two): (1) a genuinely trained policy
+    under real WTA pressure, (2) crystallization applied to heads that have
+    already differentiated, (3) a negative control not confounded by
+    always-on diversity floors, (4) sustained post-crystallization
+    destabilising pressure.
+
+    CONFIRMING: D2 (control-arm collapse) >= +0.10 AND D1 (crystallized-vs-
+    control preservation) sign-consistent >= +0.10 across >=2/3 seeds.
+
+    FALSIFYING: D2 >= +0.10 (test is non-vacuous, control genuinely
+    collapses) BUT D1 does not clear the floor or is sign-inconsistent -- the
+    pre-registered substrate-ceiling fork already named in the 610-series
+    routing notes.
+
+    (MECH-439, registered 2026-06-18, shares EXQ-571's evidentiary root but
+    asks a different question -- per-decision selection-authority, not
+    learning-time plasticity. A future V4 test should check ARC-107's status
+    first, as a side-effect resolution there may change what needs
+    controlling for -- but MECH-439 resolving is not a precondition for
+    INV-074's own test.
+
+    Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 11.)
   lit_conf: 0.82
   literature_anchors:
     - "Fagiolini & Hensch (2000) Nature 404:183 -- GAD65-KO mice never open CP spontaneously;
@@ -55794,13 +55906,48 @@
     scaffold fed no harm stream to sense() (z_harm_a None across the curriculum ->
     MECH-279/SD-035/the gate all inert); fixed via scaffold_feed_harm_stream.
   evidence_quality_note: >
-    Validation EXQ V3-EXQ-603h queued (diagnostic, claim_ids=[]): literal Moscarello &
-    LeDoux ilPFC-lesion vs intact (both arms MECH-279 PAG + fed harm; only the ilPFC
-    gate differs). Acceptance G_H_INTACT >= 2/3 AND INTACT > LESION; non-vacuity
-    preconditions (PAG freezes on lesion; gate engages+suppresses on intact). PASS
-    unblocks ARC-060 / MECH-320 / ARC-068 / SD-054-readiness retests. Not promotable
-    until the EXQ PASSes (v3_pending). Design doc:
+    CORRECTED 2026-08-07 (thought-digestion wave 11, session cool-torvalds-a82359):
+    this note previously said "V3-EXQ-603h queued" -- stale. V3-EXQ-603h ALREADY RAN
+    2026-06-07/08 (manifest
+    v3_exq_603h_instrumental_avoidance_stageh_validation_20260607T211923Z_v3,
+    ree-cloud-3): outcome FAIL, evidence_direction non_contributory, primary_pass
+    false. Non-vacuity preconditions BOTH met (pag_freeze_lesion_frac=1.0,
+    gate_engaged_intact_frac=1.0, gate_freeze_suppressed_intact_frac=1.0 -- a real,
+    non-vacuous avoidance verdict, not a substrate-not-ready requeue) -- but the
+    primary survival criterion failed: g_h_intact_frac=0.0 (0/3), tied with
+    g_h_lesion_frac=0.0 (0/3), interpretation label avoidance_gate_insufficient.
+    Per-seed detail: the gate engages and accrues avoidance_efficacy (one INTACT
+    seed reached 0.633) but this is decoupled from survival outcome. Confirmed
+    failure autopsy (evidence/planning/failure_autopsy_V3-EXQ-603h_2026-06-08.json)
+    attributes this to a discovered gap: avoidance_efficacy penalises the
+    no-op/freeze class but binds no directed escape affordance, so un-freezing does
+    not translate into directed avoidance action. This spawned SD-059/MECH-358
+    (relief/safety escape-affordance bridge) -- NOT a supersession of SD-058, which
+    remains unweakened -- and SD-059/MECH-358 have since PASSED
+    (V3-EXQ-603q, 2026-06-17, supports; reconfirmed by regression check V3-EXQ-866b,
+    2026-08-03). Already marked reviewed in review_tracker.json, not sitting in
+    pending_review.md. NEXT STEP (surfaced for governance/queue-experiment, not
+    decided here): a retest of SD-058's own Stage-H harness with the SD-059/MECH-358
+    bridge wired in is now unblocked but has not been queued -- this is what
+    ARC-060/MECH-320/ARC-068/SD-054's shared pending_retest_after_substrate flag is
+    still waiting on. Design doc:
     docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+  what_would_answer:
+    confirms: >
+      A retest of V3-EXQ-603h's design with SD-059/MECH-358's escape-affordance
+      bridge wired in reports readiness_met=true (non-vacuity: freeze on lesion,
+      gate engages+suppresses on intact) AND G_H_INTACT >= 2/3 AND
+      G_H_INTACT_frac > G_H_LESION_frac.
+    falsifies: >
+      Readiness is met but G_H_INTACT stays below 2/3 or fails to beat G_H_LESION --
+      the suppression mechanism fires without the predicted survival benefit, even
+      with the escape-affordance gap closed.
+    actual_result_to_date: >
+      V3-EXQ-603h ALREADY RAN 2026-06-07/08: FAIL, non_contributory. Non-vacuity
+      preconditions met (freeze/gate both confirmed working) but G_H_INTACT 0/3, tied
+      with LESION. See the corrected evidence_quality_note above for full detail.
+      SD-058/MECH-357 themselves unweakened, still candidate/v3_pending pending a
+      retest with the SD-059/MECH-358 bridge wired in (not yet queued).
   location: docs/architecture/sd_058_instrumental_avoidance_acquisition.md
 
 - id: MECH-357
