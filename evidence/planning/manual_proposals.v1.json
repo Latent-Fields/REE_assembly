@@ -2087,6 +2087,54 @@
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07) while drafting ARC-006's what_would_answer. No new substrate build required -- reuses ree_core/entities/object_file_buffer.py and the V3-EXQ-658 harness with a config change (remove the artificial max_tokens headroom). Next step is /queue-experiment, not further digestion.",
       "backlog_id": "EVB-0582"
+    },
+    {
+      "proposal_id": "EXP-0581",
+      "claim_id": "INV-050",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "seed_policy": "matched_shared_seeds",
+      "min_shared_seeds": 3,
+      "require_pre_registered_thresholds": true,
+      "objective": "Independent replication of INV-050's core third-drive coupling (sws_power and replay_rate tracking measured MEL). The claim's own DVs have passed 2/3 seeds in three consecutive autopsy-confirmed runs (V3-EXQ-845, V3-EXQ-861, V3-EXQ-861a) with zero FAILs, but all three share the IDENTICAL environment (CausalGridWorldV2 / SD-MEL-PRODUCER world_rule_shift knob) and the IDENTICAL 3 seeds (42, 123, 456) -- per the project's own V3-EXQ-718a lesson (DV-monotone-in-measured-MEL is near-tautological on a functional consumer), this is one configuration confirmed three times, not three independent confirmations. This proposal closes that gap.",
+      "design": "Vary at least one of: (a) seeds genuinely uninvolved in 845/861/861a (not a superset), (b) a held-out environment/world-model instance distinct from the CausalGridWorldV2 instance SD-MEL-PRODUCER was built and validated against, or (c) an explicit MEL-consumer-absent control arm within the same run, isolating whether sws_power/replay_rate track measured MEL because of the third-drive coupling INV-050 asserts, or merely because the consumer mechanically guarantees the correlation once MEL is nonzero.",
+      "acceptance_checks": [
+        "Non-degeneracy: the run must actually satisfy the non-degeneracy precondition (new seeds and/or held-out environment and/or consumer-absent control) -- a same-environment/same-seed rerun does not count.",
+        "CONFIRMING: sws_power and replay_rate track measured MEL monotonically (non-decreasing across MEL-sorted arms) on >=2/3 seeds each, with ON-HIGH > OFF-HIGH in control arms, AND the correlation survives a consumer-absent or MEL-injection-decoupled check.",
+        "FALSIFYING: either DV fails to track measured MEL monotonically under the non-degeneracy-satisfying design, or the correlation is shown to hold only via the consumer's own mechanically-guaranteed arithmetic.",
+        "Report claim_ids_tested=['INV-050'] and evidence_direction.",
+        "Separately from acceptance: this run's outcome should be folded into the /governance promotion-review flag already raised for INV-050 (3x repeated-PASS pattern on a non-independent configuration) -- see the claim's own what_would_answer and evidence_quality_note in claims.yaml."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-07",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting INV-050's what_would_answer. Design mirrors the non-degeneracy precondition documented in the claim's own what_would_answer text. Next step is /queue-experiment.",
+      "backlog_id": "EVB-0583"
+    },
+    {
+      "proposal_id": "EXP-0582",
+      "claim_id": "ARC-044",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "seed_policy": "matched_shared_seeds",
+      "min_shared_seeds": 3,
+      "require_pre_registered_thresholds": true,
+      "objective": "First-ever test of ARC-044's claim that context-dependent neuromodulatory gain (ARC-016 temporal precision, MECH-152 contextual terrain weight) is a single unifying mechanism rather than two independent gain knobs. Scoped to the MECH-152 x ARC-016 pair only -- both are confirmed live in the substrate (ARC-016 stable, gate_green, V3-EXQ-818; MECH-152 harm pathway PASS r=0.70, V3-EXQ-194/194a). The claim's broader 4-facet title also names MECH-026/MECH-093, but MECH-161 (MECH-026's specific mechanism) reads as unbuilt in the substrate (\"could be implemented as\") -- explicitly out of scope for this run.",
+      "design": "2x2 factorial: context (hazard-gradient vs resource-proximate, driving MECH-152's w_harm via cue_context) crossed with temporal state (stable vs volatile, read via ARC-016's running_variance / volatility_estimate). Matched seeds; reuse EXQ-194/194a's harm-pathway env setup for the context axis and V3-EXQ-818's precision-sweep setup for the temporal axis (both recent, known-good substrate configurations).",
+      "acceptance_checks": [
+        "G0 non-degeneracy: running_variance must show meaningful separation between stable/volatile arms; w_harm must show meaningful separation between hazard/resource-proximate arms. Either arm failing this self-routes non_contributory, not a verdict.",
+        "CONFIRMING: statistically significant multiplicative interaction term on the combined harm-evaluation precision/variability readout, exceeding what either main effect alone predicts.",
+        "Gain-control discriminator: high-w_harm x low-variance arm shows REDUCED harm-evaluation variance (not just a shifted mean) -- separates genuine shared precision-gain machinery from coincidental magnitude co-scaling (Kanashiro et al. 2017).",
+        "FALSIFYING: interaction term is additive or null despite both non-degeneracy preconditions holding.",
+        "Report claim_ids_tested=['ARC-044'] and evidence_direction. Explicitly flag in the manifest that this run does not adjudicate the MECH-026/MECH-093 facets of ARC-044's title."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-07",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting ARC-044's what_would_answer. No prior ARC-044-tagged experiment or proposal existed. Next step is /queue-experiment.",
+      "backlog_id": "EVB-0584"
     }
   ]
 }
