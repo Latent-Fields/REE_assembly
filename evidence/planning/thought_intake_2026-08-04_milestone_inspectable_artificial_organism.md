@@ -76,7 +76,11 @@ This is flagged for the user's decision rather than applied, per the standing ru
 
 ## 8. Next steps (not done in this pass)
 
-1. **User decision needed:** whether to attach this milestone text to `GOV-V3FREEZE-1` (as candidate flagship-demonstration / developmental-milestones content) — see Section 6.
+1. ~~User decision needed: whether to attach this milestone text to `GOV-V3FREEZE-1`~~ — **RESOLVED 2026-08-07, see Section 9.**
 2. If attached, the seven criteria will each need the audit-shaped PASS/FAIL treatment `GOV-V3FREEZE-1` already requires of the closure package (named path, independent reproducibility, non-degeneracy guard) before they can gate anything.
 3. Cross-reference `docs/CURRENT_FRONT.md` / `docs/closure_dashboard.md` progress tracking against whichever of the seven criteria end up formalised, so the live front can eventually report distance-to-milestone rather than only percentage-of-plan-nodes.
 4. No literature pull needed — this is a project-target statement, not an empirical hypothesis.
+
+## 9. Resolution (2026-08-07, user decision)
+
+**Decision: do NOT attach this milestone text to `GOV-V3FREEZE-1`.** It stays a standalone reference document (this intake + the raw thought file). `GOV-V3FREEZE-1` is unchanged and its "which result serves as the flagship demonstration" question remains genuinely deferred to package-build time, per its own original design (Section 6 above) — this milestone statement is not adopted as that answer, nor as content for the closure package's "developmental milestones" axis. No claims.yaml edit follows from this intake. The open questions in Section 7 (partial vs. all-or-nothing criteria satisfaction; whether the date is a real target) are therefore moot for now — they would only need resolving if this text is revisited for attachment later.
