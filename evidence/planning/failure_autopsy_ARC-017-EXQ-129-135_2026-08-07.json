@@ -1,0 +1,126 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-07T17:14:43Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_129_arc017_stream_tag_pair_20260329T031933Z_v3",
+      "queue_id": "V3-EXQ-129",
+      "claim_ids": ["ARC-017"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear, strongly supported (HCP n=470 connectome dissociation + vestibular anatomy review, already on file)",
+        "prerequisites": "missing_at_run_time_now_present",
+        "implementation": "defective (docstring claims typed routing to a z_harm encoder; harm_obs is silently discarded, no z_harm encoder exists in the script)",
+        "environment": "adequate",
+        "measurement": "under_instrumented (harm_eval_head trained on detached z_world; no arm has harm-relevant training pressure)",
+        "integration": "n/a",
+        "scale": "open secondary question, deferred to redesign"
+      },
+      "biological_reference": {
+        "closest_mechanism": "typed nociceptive vs exteroceptive sensory stream separation (mammalian anatomy); connectome-dissociated visual/vestibular pathways",
+        "dependencies": ["INV-008", "ARC-004", "ARC-005", "ARC-003"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports the mechanism; the March 2026 proxy simply never implemented it",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-07 failure-autopsy, V3-EXQ-129 + V3-EXQ-135, confirmed failure_autopsy_ARC-017-EXQ-129-135_2026-08-07]: Both 2026-03-29 FAILs reclassified non_contributory / measurement_test_design_defect -- neither is evidence against ARC-017. Root cause, verified against driver source: (1) both experiments train harm_eval_head on a .detach()ed z_world, so no arm of either experiment ever gave the world encoder training pressure to represent harm -- the ~0.015 floor-failure is the expected size of a purely incidental signal, not evidence about either manipulation, and is NOT a training-duration/warmup problem (more episodes would not fix a training-objective gap). (2) V3-EXQ-129's TYPED_TAGS_ON arm never implements typed routing despite its docstring's claim -- harm_obs is read from the environment and silently discarded, with no z_harm encoder anywhere in the script; this alone explains the wrong-direction C2 result (ABLATED > ON). The two intact arms across both experiments are bit-identical (confirmed to 15 significant figures), confirming both experiments share one deterministic underlying measurement rather than being independent results. Substrate now exists (since March) to correctly test the stream-typing facet -- SplitEncoder.lateral_head (MECH-099) + harm_eval_z_harm() (SD-010), validated by ~40 other experiments, never applied to ARC-017 (claim_evidence.v1.json confirms these two March FAILs remain the claim's only experimental entries). Biology is strongly supportive and already on file (lit_confidence=0.789: HCP n=470 connectome dissociation + vestibular anatomy review) -- no lit gap. Reality-coherence (EXQ-135) still lacks a genuine provenance-tracking substrate; the noise-injection proxy remains the practical test available. Routed: V3-EXQ-129 -> new EXQ number using the existing MECH-099/SD-010 pathway (no substrate build needed, just correct wiring); V3-EXQ-135 -> same-facet retest (135a) with the shared measurement defect fixed. For INV-012's sake (which the digestion note that spawned this autopsy flagged as a concern, since ARC-017's reality-coherence lane is architecturally relevant to responsibility/commitment gating): neither FAIL constitutes genuine negative evidence against ARC-017's reality-coherence lane -- both are non-contributory test-design artifacts, so INV-012 is not resting on a weakening result here, stale or otherwise. Stays provisional; v3_pending not applicable (was not set).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No new substrate build required. SplitEncoder.lateral_head (MECH-099) and harm_eval_z_harm() (SD-010) already exist and are validated by ~40 other experiments; the gap was never having applied them to ARC-017's own redesign.",
+        "unblocks_claims": ["ARC-017"],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A floor-failing intact arm is not always the SD-070 zero-gradient pattern; here the encoder trains throughout but no arm's objective ever targets the property being measured -- a structurally distinct defect from V3-EXQ-728/875/882's frozen-encoder pattern despite superficially similar symptoms.",
+        "A docstring claiming a mechanism is implemented is not evidence that it is -- reading driver source directly, not just the manifest/summary, was necessary to catch the silently-dropped harm_obs channel.",
+        "Substrate built for one claim (MECH-099/SD-010, validated by ~40 experiments) can silently leave a sibling claim whose own hypothesis it directly instantiates (ARC-017) un-retested indefinitely, with no standing mechanism to flag the staleness.",
+        "Bit-identical results across two differently-named experiments (confirmed to 15 significant figures) is itself a diagnostic signal proving a shared underlying measurement, not a coincidence to explain away."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_135_arc017_reality_coherence_pair_20260329T032442Z_v3",
+      "queue_id": "V3-EXQ-135",
+      "claim_ids": ["ARC-017"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear for the general architecture; no dedicated lit for the reality-coherence mechanism specifically, not the binding constraint",
+        "prerequisites": "missing (no hippocampal-trace provenance-tracking substrate exists in ree_core today)",
+        "implementation": "matches its own limited design intent -- the noise-injection proxy does what it claims, it is just a weak proxy",
+        "environment": "adequate",
+        "measurement": "under_instrumented (identical detached-gradient defect, inherited from the same measurement scaffold as V3-EXQ-129)",
+        "integration": "n/a",
+        "scale": "open secondary question, deferred to redesign"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reality monitoring (Johnson & Raye) / hippocampal source memory -- distinguishing genuinely perceived from internally-generated content",
+        "dependencies": ["INV-008", "INV-012", "ARC-015"],
+        "is_formal_import": false,
+        "divergence": "substrate for the specific mechanism (provenance tagging from hippocampal trace structure) has not been built; the noise-injection proxy is a partial approximation, acknowledged in the original manifest itself",
+        "lit_status": "absent (no dedicated targeted_review for the reality-coherence facet specifically; not recommended as a new /lit-pull commission here -- the immediate defect is measurement, not lit gap)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "See V3-EXQ-129 target's recommended_evidence_quality_note above -- both FAILs share one combined note (cluster disposition, single evidence_quality_note write recommended for ARC-017).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Genuine hippocampal-trace-based provenance tracking is a larger, separate architectural question not recommended as a prerequisite here -- the corrected noise-injection proxy (shared defect fixed) is a legitimate interim test per user-confirmed routing.",
+        "unblocks_claims": ["ARC-017"],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Shares V3-EXQ-129's detached-gradient measurement defect exactly (bit-identical intact-arm result, confirmed to 15 significant figures) -- the two experiments are not independent replications of a common floor, they compute the same thing.",
+        "Absence of a genuine provenance-tracking substrate is a real, still-open gap distinct from V3-EXQ-129's situation (where the needed substrate now exists) -- worth keeping the two facets' routing decisions separate rather than treating ARC-017 as a single undifferentiated retest."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "one shared structural measurement defect (detached-gradient harm probe, present identically in both drivers, confirmed via bit-identical intact-arm results) plus one experiment-specific implementation gap (V3-EXQ-129's typed-routing arm never routes the channel it claims to route)",
+    "is_independent_bugs": false,
+    "structural_property": "both experiments were built with a hand-rolled training/measurement scaffold that predates the shared substrate (SplitEncoder.lateral_head / harm_eval_z_harm) later built for other claims; neither intact arm was ever a fair test of harm-representation quality regardless of which manipulation was applied",
+    "readings": ["measurement_test_design_defect", "substrate_since_matured_never_reapplied"]
+  }
+}
