@@ -6762,6 +6762,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0592",
+      "blocked_by": [
+        "MECH-217"
+      ],
+      "blocked_note": "SD-092 is a design_decision claim whose only falsifier (claims.yaml SD-092.what_would_answer) is a NECESSITY comparison: does flat single-level z_goal + MECH-217 within-level spread already reproduce the Bandura & Schunk (1981) subgoal-maintenance lift (-> SD-092 weakened), or is the distinct parent/child split needed (-> SD-092 supported)? That flat comparator is not buildable now: (1) GoalState.credit_subgoal_attainment writes ONLY _z_goal_parent, gated on use_hierarchical_goal_credit -- there is NO online single-level subgoal-credit path to serve as the flat arm; (2) MECH-217 (temporal_wanting_propagation) is an OFFLINE REM reverse-replay mechanism (spread_reverse_replay_wanting) whose functional-effect leg is UNCONFIRMED (only mechanism-readiness leg 1 passed, V3-EXQ-842), so it cannot yet stand in as 'within-level credit reproduces the lift'; (3) parent_goal_norm() is hierarchical-only, so a flat-vs-hierarchical run on that DV is DV-symmetry-vacuous by construction (V3-EXQ-604c class). SD-092 uncertainty HAS already been materially reduced by its dependencies: V3-EXQ-883 (MECH-427) PASS/supports (up-level credit channel functions, maintenance direction) and V3-EXQ-884 (MECH-428) FAIL/weakens (bottom-up formation fails). Route: confirm MECH-217's functional-effect leg OR /implement-substrate an online single-level subgoal-credit comparator, then the design-decision necessity experiment becomes meaningful. Forcing a run now would either duplicate V3-EXQ-883 or be DV-symmetry-vacuous. Dispositioned by metaworker-chip-proposal-exp-0381 (chip-proposal-exp-0381) 2026-08-07T22:34:15Z.",
       "claim_id": "SD-092",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -6784,7 +6788,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_sd_092",
       "target_repo": "ree-v3",
       "why_now": [
