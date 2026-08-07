@@ -18707,6 +18707,97 @@
     - INV-044
     - MECH-166
     - SD-017
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    INV-046 claims a SPECIFIC FAILURE ORDERING under progressive
+    consolidation degradation -- contextual-attribution precision fails
+    BEFORE episodic storage/recall does (the Phase 4 -> Phase 2-3 -> Phase
+    1-2 -> Phase 0 cascade described in the notes) -- not merely that
+    reduced consolidation is harmful, and not merely that the three
+    consolidation PHASES fail in a given order among themselves (that
+    narrower cross-phase question is SD-073, itself still unsupported
+    pending SD-072). INV-046 needs a genuinely GRADED
+    consolidation-reduction manipulation crossed with TWO SEPARABLE
+    outcome metrics measured at each degradation level:
+
+      (a) ATTRIBUTION-PRECISION metric: contextual slot differentiation/
+          discrimination quality -- e.g. slot_cosine_sim / slot_separation
+          among ContextMemory slots (the instrument used since the
+          SD-017/EXQ-436 family), or a context-discrimination accuracy
+          readout.
+
+      (b) STORAGE/RECALL metric: whether the agent can retrieve or
+          recognise a specific past event AT ALL, independent of whether
+          it is attributed to the correct context -- e.g. a cued-recall /
+          event-recognition accuracy readout against injected known
+          content (following the SD-068/SD-071 injected-content
+          precedent, which sidesteps the "sleep cannot consolidate an
+          unencoded representation" starvation ceiling from
+          failure_autopsy_V3-EXQ-538a). THIS METRIC DOES NOT YET EXIST in
+          the codebase and must be built -- grepped 2026-08-07, no
+          recall_accuracy / episodic_recall / retrieval_accuracy
+          instrument found anywhere in experiments/_lib or ree_core.
+
+    DESIGN: progressively reduce consolidation cycle count/depth/duration
+    (or, reusing SD-068's existing graded RMS-scaled Gaussian
+    diffuse-damage knob in
+    ree-v3/experiments/_lib/consolidation_lesion_harness.py as an
+    alternative graded-degradation lever) across >=4 staged levels,
+    matched for total experience/compute, and score (a) and (b) at each
+    level.
+
+    CONFIRMED if attribution-precision (a) shows measurable, statistically
+    reliable degradation at a LOWER degradation level than storage/recall
+    (b) does -- a genuine phase-order dissociation, attribution failing
+    first.
+
+    FALSIFIED if storage/recall (b) degrades first or simultaneously with
+    attribution (a), or if the two metrics degrade at statistically
+    indistinguishable rates across the degradation ramp -- this
+    specifically undercuts INV-046's "not primarily a storage failure"
+    reframing, even if reduced consolidation is shown to be harmful
+    overall (which would instead support the weaker ARC-011/INV-010-style
+    claim, not INV-046's specific reordering).
+
+    NON-DEGENERACY PRECONDITIONS (compounding on ARC-011's, which this
+    claim inherits since it shares the same substrate):
+      (i) Full sleep flag stack and a horizon/stressor sufficient for
+          degradation to manifest in EITHER metric at all -- ARC-011's
+          two closest attempts (EXQ-430, V3-EXQ-691) both found no
+          differential effect at the tested horizon, read as
+          substrate-gated/inconclusive, not falsifying.
+      (ii) The degradation manipulation must be genuinely GRADED (>=4
+          distinct levels), not binary sleep-ON/sleep-OFF -- a binary
+          design cannot distinguish a phase-order claim from a simple
+          presence/absence effect.
+      (iii) The two outcome metrics (a) and (b) must be SEPARABLE and not
+          collapse onto the same underlying signal -- the recall
+          instrument should be validated independently (e.g. via an
+          injected-content positive control showing it responds to gross
+          storage failure even when attribution structure is held intact)
+          before it is trusted as the (b) arm.
+      (iv) SD-017's own most recent direct substrate test (V3-EXQ-436c,
+          2026-08-03, confirmed) found slot_cosine_sim COLLAPSING toward
+          1.0 under SWS_THEN_REM -- homogenization, the opposite of the
+          differentiation SD-017/INV-046 predict -- flagged
+          pending_retest_after_substrate on SD-017/ARC-045/MECH-166
+          pending an untested ContextMemory.write_gate collapse
+          hypothesis. A run of this experiment against the CURRENT
+          substrate risks confounding "attribution degrades first" with
+          "attribution never differentiates at all" -- re-check this
+          precondition (re-run SD-017's own diagnostic, or wait for the
+          write-gate fix) before queuing.
+
+    REUSABLE INFRASTRUCTURE: the graded per-phase diffuse-damage knob
+    (ree-v3/experiments/_lib/consolidation_lesion_harness.py, SD-068) and
+    its validated content-contingent nrem+sws readouts (SD-071) are
+    directly reusable for the manipulation and for metric (a)'s
+    injected-content scoring precedent; SD-073 (staging order among the
+    three PHASES) is a structurally similar but DISTINCT claim -- it
+    ranks SWS/NREM/REM fidelity against each other, not attribution
+    against storage -- and remains itself unsupported pending SD-072 (REM
+    leg unbuilt), so it cannot be borrowed as evidence for INV-046 even
+    once SD-072 lands.
   notes: >
     Registered 2026-04-05. The conventional framing of dementia as memory
     storage failure mislocates the primary lesion. The offline consolidation
@@ -19298,6 +19389,53 @@
     - MECH-120
     - MECH-121
     - MECH-123
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    Precondition (non-vacuity gate -- required before any run is
+    interpretable, per V3-EXQ-670's own diagnosed failure): the 4-arm
+    design (ARM_A_NORMAL_SLEEP SWS+REM / ARM_B_REM_SUPPRESSED
+    ~antidepressants / ARM_C_SWS_SUPPRESSED ~benzodiazepines /
+    ARM_D_NO_SLEEP) is already confirmed faithful to INV-048
+    (failure_autopsy_batch9_2026-06-12) -- only the readout was broken.
+    V3-EXQ-670 FAILed degenerate because run_sleep_cycle runs the SWS +
+    REM passes but never trains e3.harm_eval_head: harm_discrimination
+    was byte-identical across all 4 arms for every seed, so the verdict
+    could not respond to the sleep manipulation at all. A retest
+    (V3-EXQ-670a, never run as of this digestion pass) only presses this
+    claim if it first trains the harm-valuation pathway (the
+    scaffold_train_harm_pathway / V3-EXQ-603k pattern) AND clears a
+    non-vacuity gate: the 4 arms must produce genuinely DISTINCT
+    harm_discrimination (and/or slot_differentiation) values before the
+    verdict is read. Any run that reproduces arm-invariant
+    harm_discrimination is degenerate/non_contributory again, exactly as
+    V3-EXQ-670 was.
+
+    Given a non-degenerate run: CONFIRMING if attribution-pipeline
+    degradation (harm_discrimination and/or slot_differentiation loss
+    relative to ARM_A_NORMAL_SLEEP) is proportional to WHICH PHASE(S) are
+    disrupted and is cause-agnostic -- i.e. a pharmacological-suppression
+    arm (ARM_B/REM or ARM_C/SWS) degrades by a comparable amount to a
+    behavioral-equivalent same-phase, same-duration deprivation, so the
+    pipeline tracks phase fidelity only. FALSIFYING if a
+    pharmacological-suppression arm and a phase-and-duration-MATCHED
+    behavioral-suppression arm produce a materially different
+    degradation pattern -- meaning the pipeline discriminates on CAUSE of
+    disruption, not just phase fidelity, contradicting the
+    mechanism-agnostic claim.
+
+    Epistemic caveat: even a clean, non-degenerate PASS inside REE
+    supports INV-048 only CONDITIONAL on REE's sleep/consolidation model
+    being a sufficiently faithful model of human sleep architecture (per
+    this claim's 2026-04-17 reclassification from claim_type: invariant
+    to derived_prediction, prediction_domain: clinical_pharmacology -- a
+    domain-modelling assumption, not an architectural invariant). The
+    REE-internal experimental result and the clinical/epidemiological
+    evidence line cited in notes (benzodiazepine/anticholinergic-dementia
+    associations -- Billioti de Gage et al. 2014 BMJ; Coupland et al.
+    2019 JAMA Internal Medicine) are linked but NOT identical: the
+    epidemiological association is human-population evidence and does
+    not move this claim's REE exp_conf -- only a non-degenerate substrate
+    run does.
   evidence_quality_note: >
     [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
     V3-EXQ-670 (pharmacological sleep-disruption equivalence, the first INV-048
@@ -23505,6 +23643,67 @@
     correct curriculum order for building a competent E3.
   registered: "2026-04-07"
   depends_on: [INV-055, INV-056, ARC-001, ARC-002, ARC-003, ARC-019, MECH-212, MECH-213]
+  epistemic_category: substrate_coherence
+  what_would_answer: |
+    INV-064's own falsifiable content is the E1->E2->E3 maturational
+    ORDERING-NECESSITY claim itself (unchanged by the 2026-07-12
+    decomposition), not a fresh single experiment against the umbrella.
+    Do NOT queue a new direct probe against INV-064 -- the re-derive
+    brake already refuses a same-observable 740b, and any direct test
+    would duplicate what its children already carry. The umbrella's
+    status is read off the AGGREGATE verdict of its two registered
+    children, each an independently falsifiable stream-specific bound:
+    INV-088 (E3 goal/world-evaluator quality bounded by z_world/E1
+    differentiation) and INV-089 (E3 harm-evaluator quality bounded by
+    z_harm/HarmEncoder differentiation -- itself narrowed 2026-07-16 to
+    the ceiling reading, with the companion growth-coupling/driver
+    reading split out to a grandchild, INV-090).
+
+    CONFIRMS (umbrella): both INV-088 and INV-089/INV-090 individually
+    reach a clean confirming verdict for their own stream-specific bound
+    -- i.e. E1/E2 differentiation demonstrably gates E3 evaluator quality
+    on both the world/goal stream and the harm stream, per each child's
+    own decision criteria. That jointly confirms the general E1->E2->E3
+    information-bottleneck mechanism this umbrella asserts, with no test
+    run at the umbrella level.
+
+    PROMPTS FURTHER REVISION/SPLIT (umbrella, distinct from a mere
+    bound-quantification miss): if a child's falsifier undercuts the
+    ORDERING-NECESSITY FRAMING itself rather than just its bound's
+    magnitude -- e.g. a child's evaluator trains productively BEFORE its
+    input stream differentiates, or a child's degeneracy is traced to a
+    mechanism outside the E1/E2->E3 information-bottleneck story
+    entirely. This has already happened once on the world leg:
+    V3-EXQ-108b traced INV-088's evaluator degeneracy to an E1
+    single-step-training/multi-step-rollout-at-eval mismatch, NOT to
+    z_world's own differentiation capacity
+    (epistemic_category=competence_implementation_gap, not
+    substrate_ceiling) -- a competence-implementation confound, not yet a
+    framing falsification, but the kind of finding this clause exists to
+    catch if it recurs or sharpens.
+
+    FALSIFIED (umbrella, partial or full): a clean, met-precondition
+    falsification of EITHER child's bound (evaluator quality demonstrably
+    independent of, or inversely related to, its input stream's
+    differentiation) that survives re-derive-brake scrutiny refutes that
+    stream's leg of the E1/E2->E3 bottleneck. Whether that falsifies the
+    ordering-necessity claim as a whole or only narrows it to the
+    surviving stream is a /claim-synthesis judgment at that point.
+
+    CURRENT STATE (2026-08-07): neither child has reached a clean confirm
+    or falsify. INV-088 is candidate, coupling leg real-but-weak (744a)
+    then confounded with a competence-implementation-gap finding (108b),
+    pending_retest_after_substrate on an unbuilt E1
+    rollout-consistency-training substrate (routed to
+    /implement-substrate). INV-089 is provisional on 743's positive
+    control alone, its own bound-coupling test still pending a valid
+    met-precondition run, and its driver reading has been carved off
+    entirely to INV-090 (candidate/substrate_conditional, blocked on an
+    unbuilt binding-regime maturation curriculum). So the umbrella
+    correctly stays candidate/pending_substrate_reconfirmation -- unmoved
+    by any of this, since none of it is a verdict AT the umbrella level.
+    Neither child needs its own digestion pass -- both already carry
+    detailed, current, actively-maintained falsification conditions.
   session_c_resolution: >
     Session C batch 2026-04-17: classified emergent on
     [ARC-001, ARC-002, ARC-003, ARC-019]. The title explicitly names E1/E2/E3
@@ -24777,6 +24976,79 @@
     offline wanting-spread readiness verified against the just-landed substrate above.
   registered: "2026-04-08"
   depends_on: [MECH-165, SD-014, INV-065]
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    MECH-217 is CONJUNCTIVE across two dissociable sub-claims (mirrors the
+    MECH-216/SD-015 pattern used elsewhere this session), and only one is
+    answered.
+
+    LEG 1 -- MECHANISM READINESS (does the offline reverse-replay spread
+    fire and produce a non-vacuous, non-degenerate wanting gradient) is
+    CONFIRMED, PASS. V3-EXQ-842 (2026-07-30, 3 seeds x 2 arms) measured,
+    against the pre-registered thresholds: load-bearing C1 (on_near_wanting
+    exceeds off_near_wanting by >=1.5x): PASS -- mean_on_near_wanting=17.05
+    vs mean_off_near_wanting=1.00 (~17x margin); non-load-bearing C0 (OFF
+    arm writes zero spread steps): PASS; C2 (near wanting exceeds far
+    wanting, decay with distance): PASS -- mean_on_near=17.05 vs
+    mean_on_far=4.24; C3 (control position below near-path wanting): PASS
+    -- mean_on_control=0.46. Do not re-test this leg.
+
+    LEG 2 -- BEHAVIOURAL CONSEQUENCE (does the resulting path-specific
+    wanting gradient actually CAUSE navigable multi-step goal-directed
+    behaviour -- this claim's own description: "the agent can navigate
+    toward any previously-traversed waypoint... within CEM horizon") is
+    UNTESTED, and is the reason this claim stays candidate rather than
+    promoting. V3-EXQ-842's own "notes" field reads "Not a behavioural
+    navigation-lift claim," and it substitutes a SCRIPTED greedy walk for
+    the agent's own navigation/CEM policy -- the diagnostic reads the
+    residue field, it does not exercise action selection against it. No
+    other experiment, queue entry, or backlog item tests this leg.
+    substrate_queue.json's MECH-217 entry states this was deliberate:
+    what_is_NOT_owed reads "Not a behavioural navigation/commitment layer
+    -- the validation is a measurement-only residue readout," closing
+    "Any residual MECH-217 work is a governance/promotion question in
+    claims.yaml -- not a substrate build and not a re-run." So LEG 2 is
+    not blocked by any known substrate ceiling -- the write path exists
+    and LEG 1 confirms it is non-degenerate -- it has simply never been
+    designed or queued.
+
+    FALSIFIER DESIGN for LEG 2 (not yet run): starting from a position
+    NEVER directly associated with the resource itself, does the agent's
+    own action-selection/CEM policy navigate toward a previously-traversed
+    waypoint (within CEM horizon) that lies along a prior resource-approach
+    path, at a rate exceeding a no-spread
+    (use_offline_wanting_spread=False) control? CONFIRMS if approach-rate
+    / benefit-ratio toward such waypoints exceeds the OFF control by a
+    margin clearing cross-seed SD, using the agent's real navigation
+    policy (not V3-EXQ-842's scripted greedy walk). FALSIFIES if the
+    wanting gradient is present and non-degenerate but produces no
+    measurable navigational preference over the OFF control -- the
+    residue write exists but is behaviourally inert, mirroring the
+    SD-037/483d-483e "wired but inert at the consumer" pattern.
+
+    ISOLATING MECH-217 FROM MECH-216 in a joint test: both write to the
+    same VALENCE_WANTING landscape. A joint behavioural run must ablate
+    MECH-216 (schema_wanting_enabled=False) while holding MECH-217 ON, so
+    any observed navigational pull is attributable to the path-specific
+    signature rather than MECH-216's feature/schema-specific one.
+
+    NON-DEGENERACY / CONFOUND WARNING for any future LEG-2 run:
+    offline_wanting_spread_gain defaults to 0.1 -- a fraction of terminus
+    wanting per write, by design. V3-EXQ-842 shows this gain is NOT
+    vacuous in the readiness diagnostic (17x margin, cumulative over ~206-
+    228 rem_wanting_spread_n_steps per ON-arm seed), but that magnitude
+    was measured as a residue-field readout, not against competing
+    wanting sources or action-selection noise in a full behavioural loop.
+    A LEG-2 probe with too few cycles could show no navigational
+    preference for reasons of insufficient accumulated magnitude rather
+    than mechanism failure -- the same shape of confound as
+    ARC-071/V3-EXQ-871's flag-scoping error. Any LEG-2 design should
+    report cumulative rem_wanting_spread_n_steps / cycle count alongside
+    the behavioural DV so a null result can be distinguished from an
+    under-accumulated one.
+
+    CURRENCY (2026-08-07): no behavioural/navigation test for MECH-217
+    has been queued or run since V3-EXQ-842 (2026-07-30).
 
 - id: MECH-218
   title: interoceptive_predictive_wanting
@@ -38431,6 +38703,67 @@
     - SD-012     # homeostatic drive: per-axis extension required, cascades into goal-conditioning pathway
     - SD-015     # z_resource encoder: the upstream substrate this enables
     - SD-005     # self/world latent split: z_world routing must hold under multiple resource identities
+  what_would_answer: |
+    The 4-arm substrate gradient sweep already specified in
+    functional_restatement (ARM_0 OFF-single-resource / ARM_1 2-type
+    homeostatic / ARM_2 3-type-with-novelty (default) / ARM_3 5-type
+    overshoot), scored on all four pre-registered criteria in the SAME
+    run: (1) goal_resource_r identity-discrimination margin, target
+    ARM_2 - ARM_0 >= 0.4; (2) wanting != liking trajectory fraction,
+    target near-zero ARM_0/ARM_1, >= 0.6 ARM_2; (3) one-way ANOVA of
+    per-axis homeostatic drive on z_goal cluster ID, significant in
+    ARM_2 only; (4) encoder identity-recovery accuracy, at-chance ARM_0,
+    > 0.6 ARM_2, falls back ARM_3. PASS validates SD-049 and unblocks the
+    INV-034/SD-015-gated cohort. Flat failure across all arms
+    specifically on criterion 2 routes MECH-229 (not SD-049 itself) from
+    V3-tractable to substrate_conditional with a V4-1 multi-agent-ecology
+    dependency, per the pre-registered Woo/Spelke off-ramp already
+    exercised in V3-EXQ-514o.
+
+    NON-DEGENERACY PRECONDITIONS (must clear before any of the four
+    criteria are adjudicated -- all three have independently blocked
+    this lineage before):
+    (a) Foraging-competence/contact gate must clear -- the ~0.2%
+        consumption-failure signature recurring across V3-EXQ-514l,
+        V3-EXQ-693, and V3-EXQ-538a ("the waking pass never encoded
+        consumption-identity so sleep had nothing to consolidate") is a
+        missing-dependency signature, not a falsification, and must not
+        recur.
+    (b) The wanting/liking scoring harness must be non-vacuous on the
+        same cross-target-inequality statistic used elsewhere in this
+        lineage -- V3-EXQ-693's own R3 hard-zero precondition: liking
+        target and L2-bind type read from the authoritative
+        info['sd049_consumed_type_tag_this_tick'] at the consumption
+        tick, not a post-clear obs_dict read.
+    (c) Per-seed guard_pass robustness must be checked and reported, not
+        just the arm-level aggregate -- V3-EXQ-793a found a joint
+        curriculum+density-preserving-spawn config clearing the
+        arm-level D3 gate while only 3/6 seeds individually passed
+        guard.
+
+    CROSS-REFERENCE RESOLUTION (514o): V3-EXQ-514o (2026-06-15, PASS)
+    does NOT close any part of this falsifier and is correctly excluded
+    from this claim's evidence trail -- not a governance tagging gap.
+    Its manifest carries claim_ids=["MECH-229"] ONLY (explicit
+    claim_tag_note). It is a single-arm run (SD-049-on + SD-057
+    object-bound layer only, an ARM_2-analog) that never ran the
+    ARM_0/ARM_1/ARM_3 comparison arms this claim's design requires, and
+    of the four named criteria here reports numbers for only two
+    (goal_resource_r, WL dissociation fraction), neither against the
+    required baseline delta; the per-axis drive ANOVA and encoder
+    identity-recovery criteria do not appear in it at all. It is
+    informative context (shows the underlying substrate can produce
+    strong goal_resource_r/WL numbers in a related condition) but
+    non-dispositive here.
+
+    The actual 4-arm design (matching this claim's arm labels and the
+    ANOVA gate exactly) has already been attempted twice under this
+    claim's own tag -- V3-EXQ-693 and V3-EXQ-693a -- both
+    FAIL/non_contributory on non_vacuity_unmet before any of the four
+    criteria were reached. A future "693b" (named as the needed next
+    step in V3-EXQ-793a's routing, not yet queued as of 2026-08-07) is
+    the vehicle that should finally clear all three preconditions above
+    and reach actual adjudication.
   functional_restatement: >
     CausalGridWorldV3's resource model treats all resources as
     interchangeable units of a single appetitive class -- every
