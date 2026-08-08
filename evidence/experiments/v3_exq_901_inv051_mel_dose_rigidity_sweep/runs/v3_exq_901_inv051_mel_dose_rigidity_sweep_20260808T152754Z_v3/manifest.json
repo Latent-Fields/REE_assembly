@@ -1,0 +1,222 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_901_inv051_mel_dose_rigidity_sweep",
+  "run_id": "v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-08T15:27:54Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-051"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "combination_rule": "C1 (load-bearing) is CONJUNCTIVE: clears_low (>=SEED_PASS_FRAC seeds with delta_low > margin_low) AND clears_high (>=SEED_PASS_FRAC seeds with delta_high > margin_high). Neither side alone suffices -- a single elevated extreme is a partial/mixed finding (mel_dose_rigidity_partial_ushape), not a confirmed U-shape.",
+    "preconditions": [
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the 5 ON arms, on >= 2/3 seeds (R1).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "mel_dose_sweep_gradient_present_this_config",
+        "description": "measured mean_mel is non-degenerately graded (max >= min*(1+MIN_MEL_SPREAD)) across the 5 ON arms, on >= 2/3 seeds -- without this, dose is not actually varying (R2).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sleep_opportunity_uniform_across_dose",
+        "description": "every ON arm/seed fired exactly meas_cycles sleep cycles AND mel_duration_factor never fell below FACTOR_MIN -- the content-not-opportunity control for INV-051's falsifying condition (c): rules out 'less sleep happened' as the explanation for any low-MEL rigidity reading, since sleep opportunity is structurally identical across every dose arm (R3).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "rigidity_fresh_selection_sample_adequate",
+        "description": "every ON arm/seed's rigidity_index rests on >= MIN_FRESH_SELECTIONS_PER_CELL fresh e3_tick selections (not held/latched repeats) -- the sample-size-integrity floor added after the hold-weighted-E3-readout validator finding (this session): the primary tally is gated on ticks['e3_tick'] to avoid an E3-cadence confound, which shrinks the effective n per cell and needs its own floor (R4).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": false,
+      "C1_rigidity_spread_nonzero": false,
+      "C2_off_control_present": true
+    },
+    "margin_low": 0.05,
+    "margin_high": 0.05,
+    "clears_low_frac": 0.0,
+    "clears_high_frac": 0.0,
+    "monotone_frac": 0.0,
+    "per_seed_ushape": {
+      "42": {
+        "arm_order_by_measured_mel": [
+          "ARM_0_MONOTONY_ON",
+          "ARM_1_LOW_ON",
+          "ARM_3_HIGH_ON",
+          "ARM_4_OVERLOAD_ON",
+          "ARM_2_OPTIMAL_ON"
+        ],
+        "mel_by_measured_order": [
+          1.5147778335746607e-05,
+          1.9943181448391535e-05,
+          2.9556985196333856e-05,
+          3.002014805851469e-05,
+          3.466796939250035e-05
+        ],
+        "rigidity_by_measured_order": [
+          0.63592716825133,
+          0.6708750334726915,
+          0.790923430482259,
+          0.5632519121471286,
+          0.6260036084138563
+        ],
+        "rigidity_low": 0.63592716825133,
+        "rigidity_mid": 0.790923430482259,
+        "rigidity_high": 0.6260036084138563,
+        "delta_low": -0.154996262230929,
+        "delta_high": -0.16491982206840272,
+        "monotone": false,
+        "non_decreasing": false,
+        "non_increasing": false
+      },
+      "123": {
+        "arm_order_by_measured_mel": [
+          "ARM_0_MONOTONY_ON",
+          "ARM_2_OPTIMAL_ON",
+          "ARM_4_OVERLOAD_ON",
+          "ARM_1_LOW_ON",
+          "ARM_3_HIGH_ON"
+        ],
+        "mel_by_measured_order": [
+          2.254491610912849e-05,
+          2.5808391036776396e-05,
+          2.5953760245826162e-05,
+          2.85620692003273e-05,
+          3.515499050780477e-05
+        ],
+        "rigidity_by_measured_order": [
+          0.6164861253971392,
+          0.6890824929174288,
+          0.31739380551401475,
+          0.40619027069696534,
+          1.0
+        ],
+        "rigidity_low": 0.6164861253971392,
+        "rigidity_mid": 0.31739380551401475,
+        "rigidity_high": 1.0,
+        "delta_low": 0.29909231988312446,
+        "delta_high": 0.6826061944859853,
+        "monotone": false,
+        "non_decreasing": false,
+        "non_increasing": false
+      },
+      "456": {
+        "arm_order_by_measured_mel": [
+          "ARM_1_LOW_ON",
+          "ARM_0_MONOTONY_ON",
+          "ARM_2_OPTIMAL_ON",
+          "ARM_3_HIGH_ON",
+          "ARM_4_OVERLOAD_ON"
+        ],
+        "mel_by_measured_order": [
+          2.536487749445444e-05,
+          2.5948139462566698e-05,
+          2.9174269269774435e-05,
+          4.1323827162322e-05,
+          4.6228168930453676e-05
+        ],
+        "rigidity_by_measured_order": [
+          0.5927262749079598,
+          0.3723897321230011,
+          0.5731667737599343,
+          0.3769626360542173,
+          0.5707052108217884
+        ],
+        "rigidity_low": 0.5927262749079598,
+        "rigidity_mid": 0.5731667737599343,
+        "rigidity_high": 0.5707052108217884,
+        "delta_low": 0.019559501148025515,
+        "delta_high": -0.0024615629381459225,
+        "monotone": false,
+        "non_decreasing": false,
+        "non_increasing": false
+      }
+    },
+    "c2_by_seed": {
+      "42": {
+        "rigidity_on": 0.5632519121471286,
+        "rigidity_off": 0.6780328032247529,
+        "consumer_reduces_rigidity": true
+      },
+      "123": {
+        "rigidity_on": 0.31739380551401475,
+        "rigidity_off": 0.5693234419266069,
+        "consumer_reduces_rigidity": true
+      },
+      "456": {
+        "rigidity_on": 0.5707052108217884,
+        "rigidity_off": 0.5965993159133549,
+        "consumer_reduces_rigidity": true
+      }
+    },
+    "c2_frac_consumer_reduces_rigidity": 1.0
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "95d86b441c082c0813583df3a77d22a7a4a3d943c440bdf03e8ade3e02723554",
+  "substrate_commit": {
+    "commit": "4ab7dce04b91e619c3ba62a8c64a1c21f0fa24f7",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 48576,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 18,
+    "goal_state_present": true
+  }
+}
