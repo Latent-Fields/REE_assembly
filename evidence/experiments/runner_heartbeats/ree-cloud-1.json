@@ -1,48 +1,38 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-07T21:56:26Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-887a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-887",
-      "result": "FAIL",
-      "completed_at": "2026-08-04T02:25:48.036445+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-873a",
-      "result": "PASS",
-      "completed_at": "2026-08-04T06:23:10.296689+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-882a",
-      "result": "FAIL",
-      "completed_at": "2026-08-05T11:02:28.560006+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-890",
-      "result": "PASS",
-      "completed_at": "2026-08-06T04:19:29.578959+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-891",
-      "result": "PASS",
-      "completed_at": "2026-08-07T18:56:58.965433+00:00"
-    }
+  "last_tick_utc": "2026-08-08T00:23:31Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-892",
+  "current_exq_started_utc": "2026-08-07T22:02:30.342557+00:00",
+  "current_title": "MECH-322 replay-origin corroboration survival under realistic conditions",
+  "current_claim_id": "MECH-322",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 202 / ARM_DEADLINE_15",
+    "runs_done": 1,
+    "runs_total": 24,
+    "episodes_done": 30,
+    "episodes_total": 120,
+    "overall_pct": 5.2
+  },
+  "seconds_elapsed": 8461,
+  "seconds_remaining": 109061,
+  "recent_lines": [
+    "Seed 101 Condition ARM_DEADLINE_15",
+    "[train] chunk ARM_DEADLINE_15 seed=101 ep 30/120 replay_formed=1 corrob=0",
+    "[train] chunk ARM_DEADLINE_15 seed=101 ep 60/120 replay_formed=1 corrob=0",
+    "[train] chunk ARM_DEADLINE_15 seed=101 ep 90/120 replay_formed=1 corrob=0",
+    "[train] chunk ARM_DEADLINE_15 seed=101 ep 120/120 replay_formed=1 corrob=0",
+    "verdict: PASS",
+    "Seed 202 Condition ARM_DEADLINE_15",
+    "[train] chunk ARM_DEADLINE_15 seed=202 ep 30/120 replay_formed=1 corrob=0"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r4845 7af2238 2026-08-07 (running r4842 d8a94bd)",
+  "runner_version": "r4846 475ca62 2026-08-07 (running r4842 d8a94bd)",
   "gpu": {
     "available": false
   },
