@@ -1502,3 +1502,6 @@ One line per hourly tick. ASCII only.
 2026-08-08T05:23:15Z no eligible item (skipped 247): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-009:skill /governance not allowed
 2026-08-08T06:24:08Z workset committed (regen -- 244 items, 27 ready, 0 in flight)
 2026-08-08T06:23:49Z no eligible item (skipped 244): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-004:skill /governance not allowed
+2026-08-08T07:24:23Z skip: paused (.igw_routine_pause present)
+2026-08-08T08:24:25Z skip: paused (.igw_routine_pause present)
+2026-08-08T09:13:58Z auto-defer IGW-20260807-208 hash=3633e36807dc for 48h (complete)
