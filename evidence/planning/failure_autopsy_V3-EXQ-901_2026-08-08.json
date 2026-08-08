@@ -1,0 +1,54 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T16:39:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3",
+      "queue_id": "V3-EXQ-901",
+      "claim_ids": ["INV-051"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (untested)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (mechanism) / partial (instrumentation)",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled, working",
+        "scale": "likely insufficient probe budget"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Tononi & Cirelli 2006 Synaptic Homeostasis Hypothesis (understim pole); Harvey 2002 cognitive model of insomnia (overload pole)",
+        "dependencies": ["SD-017", "INV-049", "INV-050", "MECH-181"],
+        "is_formal_import": false,
+        "divergence": "none -- FAIL is instrumentation sample-size shortfall, orthogonal to biological mechanism",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-901 FAIL is non-contributory to INV-051. Readiness precondition R4 (rigidity_fresh_selection_sample_adequate -- >=15 fresh e3_tick selections per ON-arm/seed) failed on 0/3 seeds; several cells rest on as few as 1-5 fresh selections, so the primary rigidity DV cannot be trusted and C1 was never meaningfully scored. R1-R3 (world-model convergence, MEL-dose gradient, sleep-opportunity uniformity) all cleared at 100%, so this is a probe-budget/measurement-design shortfall in the driver, not a substrate limitation. This manifest also carries pending_review.md's 'Dead z_goal stream' flag (writer_calls=0, active_frac=0.0) -- confirmed, by autopsy read of the driver source (DEAD_Z_GOAL_STREAM_EXEMPT), to be an intentional, arm-symmetric, criteria-independent inertness (rigidity_index is read from select_action's live probe-battery output, never gated on z_goal/GoalState), not a writer-call omission bug. It does not affect this adjudication and should be marked reviewed/exempt rather than left open. INV-051 remains candidate/substrate_conditional, still untested for its core U-shape prediction. Route: /queue-experiment same-question redesign (V3-EXQ-901a) with a materially enlarged or redesigned probe-sampling budget sufficient to clear R4 on >=2/3 seeds.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "R4 sample-size floor worked exactly as designed -- caught an under-powered readout before a spurious C1 result could be reported",
+        "MEL = Model Error Load, not melatonin -- naming mix-up risk noted",
+        "Deliberately-inert z_goal stream (DEAD_Z_GOAL_STREAM_EXEMPT) is a legitimate design pattern distinct from the V3-EXQ-626/830 writer-omission defect",
+        "Probe-budget sizing against a fresh-selection floor is nontrivial; shortfall unevenly distributed across seeds/arms (2%-16% of ticks), so a flat episode-count increase may not be the most efficient fix"
+      ],
+      "routing": "queue-experiment"
+    }
+  ]
+}

@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-08T11:53:42Z",
+  "generated_at": "2026-08-08T16:43:34Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 146,
-      "built_modules": 119,
-      "fraction_built": 0.8151,
+      "total_modules": 147,
+      "built_modules": 121,
+      "fraction_built": 0.8231,
       "state_counts": {
-        "proposed": 27,
-        "implemented": 84,
+        "proposed": 26,
+        "implemented": 86,
         "implemented_pending_validation": 20,
         "validated": 15
       },
-      "build_proof_gap": 104,
-      "build_proof_gap_note": "119 modules built, 104 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 106,
+      "build_proof_gap_note": "121 modules built, 106 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,14 +31,14 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 55,
+      "total_surviving": 54,
       "total_initial": 95,
       "total_initial_at_registration": 76,
       "total_fanout_added": 19,
-      "total_resolved_out": 37,
+      "total_resolved_out": 38,
       "total_confirmed": 20,
-      "reduction_pct_vs_current": 38.9,
-      "net_narrowing_pct": 27.6,
+      "reduction_pct_vs_current": 40.0,
+      "net_narrowing_pct": 28.9,
       "convergence_classes": {
         "static": 13,
         "narrowing": 12,
@@ -47,7 +47,7 @@
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "55 alive against 76 originally enumerated, and against 95 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "54 alive against 76 originally enumerated, and against 95 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 30
     },
     "decide": {
@@ -61,103 +61,103 @@
       "date": "2026-07-11",
       "surviving": 94,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-13",
       "surviving": 92,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-15",
       "surviving": 88,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-16",
       "surviving": 87,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-17",
       "surviving": 84,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-18",
       "surviving": 78,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-19",
       "surviving": 74,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-20",
       "surviving": 73,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-24",
       "surviving": 72,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-27",
       "surviving": 70,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-29",
       "surviving": 69,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-07-31",
       "surviving": 68,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-08-01",
       "surviving": 66,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-08-02",
       "surviving": 60,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-08-04",
       "surviving": 59,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-08-06",
       "surviving": 58,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     },
     {
       "date": "2026-08-08",
-      "surviving": 55,
+      "surviving": 54,
       "closure_pct": 76.9,
-      "build_pct": 81.5
+      "build_pct": 82.3
     }
   ],
   "questions": [
@@ -252,12 +252,13 @@
         }
       ],
       "fanout_growth_note": "SUPERSEDED 2026-08-08 (competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose). Prior note (07-26, stale): \"competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root.\" Current state: the campaign's discrimination job is COMPLETE. All four original axes (capacity/drive-schedule/reward-coupling/credit-horizon) eliminated (portfolios 1-2); retention DECIDED 2026-07-25 (value estimator + update constraint, PROCESS family); both claim-synthesis children spawned from this campaign are RETIRED on their own falsifiers -- MECH-475 2026-07-29 (V3-EXQ-837: informative baseline made the destructive inversion 3.4x WORSE, not better), MECH-476 2026-08-01 (V3-EXQ-836a/836d/836e: retention invariant to dose/novelty/interval on all three redesigned arms). H-bc-prior child 3 (apparent z_world non-install) VOIDED 2026-08-07 as a frozen-random-projection instrument artifact. The one remaining alive leg, H-consummation-binding, was reopened 2026-08-07 as an OBSERVATION-BOTTLENECK artifact (both arms tied at the absolute floor, install at 14% of ceiling vs 44% elsewhere), not a live discrimination -- see decision.observation_bottleneck. GROWTH RESTRICTION (see top-level growth_restriction field): no further GOV-FANOUT-1 discrimination portfolio should be opened on this qid. A claim in this lineage (MECH-457/459/460/475/476) whose first autopsy would otherwise grow this qid by theme-matching should register its OWN qid by default -- see growth_restriction for the full rule and the incident (portfolios 4-5) that motivates it.",
-      "net_narrowing_ratio": 0.7143,
-      "bits_removed_vs_registration": 1.81,
+      "net_narrowing_ratio": 0.8571,
+      "bits_removed_vs_registration": 2.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
+          "constitution",
           "instrumentation",
           "process",
           "representation",
@@ -470,13 +471,13 @@
           }
         ]
       },
-      "surviving": 2,
-      "alive": 1,
-      "resolved_out": 15,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 16,
       "confirmed": 4,
-      "reduction_numerator": 15,
-      "reduction_ratio": 0.75,
-      "bits_removed": 3.32,
+      "reduction_numerator": 16,
+      "reduction_ratio": 0.8,
+      "bits_removed": 4.32,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -718,13 +719,13 @@
           "label": "appetitive approach is not bound to a consummatory act",
           "desc": "Approach drive gated to EXTINGUISH on resource contact and hand off to a consummatory act, vs V3-EXQ-781's non-extinguishing terminal drive. Tests whether 781's drive-side null was itself an artefact of a missing consummatory act. DV: post-installation competence TRAJECTORY. Reference build: NON-REGRESSED 128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32 (NOT the 769-falsified 256/5x). Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy ceiling 48.05, greedy_oracle 57.2, random_walk 0.933.",
           "axis": "intrinsic-architecture",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-821"
+            "V3-EXQ-821b"
           ],
-          "basis": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar). REVERSED 2026-08-07 (competence_floor_instrument_audit_2026-08-07.md section 3d/5(v); user-confirmed): downgraded eliminated -> alive. Both arms tied at the absolute floor (0.000 forage, 0.000 goal_reach_rate, survival 17.8/15.0 -- below random_walk's 34.0, not just below the anchors), with install landing at only 14% of ceiling versus 44% elsewhere in this campaign and no trajectory peak re-clearing the install floor on any seed. A tie at the floor between treatment and control is not a discrimination -- it is an observation bottleneck (the arm cannot express competence at all, so it cannot show whether extinguish-and-hand-off binding matters). met_elimination_bar reset to false; the leg is reopened as unresolved pending a re-run on an environment where the install clears a usable floor.",
+          "basis": "V3-EXQ-821b (failure_autopsy_V3-EXQ-821b_2026-08-08), CALIBRATED re-run on a validated instrument (BC install dose 300->1200; post_bc_foraging_competence worst-seed 20.95 >= USABLE_INSTALL_FLOOR 10.0 on both arms, clearing the observation bottleneck that invalidated V3-EXQ-821's original 14%-install read). Both the extinguishing treatment and the non-extinguishing control eroded installed competence to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15 required); neither arm's trajectory peak re-cleared the install floor. Anchors floor-achievable (local_view_greedy 34.17, greedy_oracle 42.8), criteria non-degenerate. H-consummation-binding ELIMINATED: the extinguish-and-hand-off binding is NOT the retention mechanism, re-confirming the pre-instrument-fix 821 reading now on a valid instrument. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar). Both arms replicate V3-EXQ-781's independent 'approach-earned/forage-suppressed' signature (mean recent approach reward 0.72-0.88) regardless of extinction -- the total (not partial, cf. V3-EXQ-788/792a's ~0.51-0.53) erosion is attributable to the fixed approach-drive reward coefficient (untested as an axis here, held identical across both arms), not to an unaddressed confound in this leg. This closes the competence_floor retention sub-question on all 4 originally-named mechanisms (2 process-family confirmed, 2 constitution-family -- auxiliary-decay and this one -- eliminated). Any follow-on question about approach-drive reward magnitude is OUT OF SCOPE for this qid per its growth_restriction (see below) and needs its own qid.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-zworld-trained-instrument",
@@ -3278,6 +3279,21 @@
   ],
   "momentum": [
     {
+      "run": "V3-EXQ-821b",
+      "all_runs": [
+        "V3-EXQ-821b"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-821b (failure_autopsy_V3-EXQ-821b_2026-08-08), CALIBRATED re-run on a validated instrument (BC install dose 300->1200; post_bc_foraging_competence worst-seed 20.95 >= USABLE_INSTALL_FLOOR 10.0 on both arms, clearing the observation bottleneck that invalidated V3-EXQ-821's original 14%-install read). Both the extinguishing treatment and the non-extinguishing control eroded installed competence to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15 required); neither arm's trajectory peak re-cleared the install floor. Anchors floor-achievable (local_view_greedy 34.17, greedy_oracle 42.8), criteria non-degenerate. H-consummation-binding ELIMINATED: the extinguish-and-hand-off binding is NOT the retention mechanism, re-confirming the pre-instrument-fix 821 reading now on a valid instrument. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar). Both arms replicate V3-EXQ-781's independent 'approach-earned/forage-suppressed' signature (mean recent approach reward 0.72-0.88) regardless of extinction -- the total (not partial, cf. V3-EXQ-788/792a's ~0.51-0.53) erosion is attributable to the fixed approach-drive reward coefficient (untested as an axis here, held identical across both arms), not to an unaddressed confound in this leg. This closes the competence_floor retention sub-question on all 4 originally-named mechanisms (2 process-family confirmed, 2 constitution-family -- auxiliary-decay and this one -- eliminated). Any follow-on question about approach-drive reward magnitude is OUT OF SCOPE for this qid per its growth_restriction (see below) and needs its own qid.",
+      "resolved_utc": "2026-08-08T16:17:18Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
       "run": "V3-EXQ-892",
       "all_runs": [
         "V3-EXQ-892"
@@ -3622,21 +3638,6 @@
       ],
       "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
       "resolved_utc": "2026-07-26T12:32:16Z",
-      "evidence_direction": "non_contributory"
-    },
-    {
-      "run": "V3-EXQ-821",
-      "all_runs": [
-        "V3-EXQ-821"
-      ],
-      "momentum_class": "hypothesis_narrowed",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar). REVERSED 2026-08-07 (competence_floor_instrument_audit_2026-08-07.md section 3d/5(v); user-confirmed): downgraded eliminated -> alive. Both arms tied at the absolute floor (0.000 forage, 0.000 goal_reach_rate, survival 17.8/15.0 -- below random_walk's 34.0, not just below the anchors), with install landing at only 14% of ceiling versus 44% elsewhere in this campaign and no trajectory peak re-clearing the install floor on any seed. A tie at the floor between treatment and control is not a discrimination -- it is an observation bottleneck (the arm cannot express competence at all, so it cannot show whether extinguish-and-hand-off binding matters). met_elimination_bar reset to false; the leg is reopened as unresolved pending a re-run on an environment where the install clears a usable floor.",
-      "resolved_utc": "2026-07-25T22:22:52Z",
       "evidence_direction": "non_contributory"
     },
     {
