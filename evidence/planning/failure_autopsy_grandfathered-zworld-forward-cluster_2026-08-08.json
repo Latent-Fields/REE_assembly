@@ -1,0 +1,361 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-08T17:10:36Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_247_sd011_sd012_integration_20260406T080943Z_v3",
+   "claim_ids": [
+    "SD-011",
+    "SD-012",
+    "ARC-033",
+    "ARC-030"
+   ],
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "not_reached"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dual-stream nociception (SD-011) + drive-scaled incentive-salience (SD-012)",
+    "dependencies": [
+     "SD-010"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- precondition failure (z_goal never seeded), mechanism never exercised",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Run 2 (04-07) reclassified to match run 1 (04-06) -- identical z_goal-dead defect, same magnitude. Both are post-split integration tests of SD-011/SD-012 already-validated substrate, not motivating evidence. Retest already happened under GAP-1/GAP-2/GAP-7 successors (V3-EXQ-514o etc.), cited in ARC-030's current evidence_quality_note.",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "reclassification-consistency gap: sibling run of identical defect left unreconciled for 4 months"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3",
+   "claim_ids": [
+    "SD-011",
+    "SD-012",
+    "ARC-033",
+    "ARC-030"
+   ],
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "not_reached"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dual-stream nociception (SD-011) + drive-scaled incentive-salience (SD-012)",
+    "dependencies": [
+     "SD-010"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- precondition failure (z_goal never seeded), mechanism never exercised",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Run 2 (04-07) reclassified to match run 1 (04-06) -- identical z_goal-dead defect, same magnitude. Both are post-split integration tests of SD-011/SD-012 already-validated substrate, not motivating evidence. Retest already happened under GAP-1/GAP-2/GAP-7 successors (V3-EXQ-514o etc.), cited in ARC-030's current evidence_quality_note.",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "reclassification-consistency gap: sibling run of identical defect left unreconciled for 4 months"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_260_sd020_harm_surprise_pe_20260408T231126Z_v3",
+   "claim_ids": [
+    "SD-020",
+    "SD-011"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "complete",
+    "environment": "adequate",
+    "measurement": "under-instrumented",
+    "integration": "coupled",
+    "scale": "insufficient"
+   },
+   "biological_reference": {
+    "closest_mechanism": "anterior/posterior insula PE dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "none",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_direction_per_claim": {
+    "SD-020": "weakens",
+    "SD-011": "supports"
+   },
+   "recommended_evidence_quality_note": "C1 fails (n_steps underpowered), C2 (stream decorrelation, SD-011) genuinely passes. Superseded in substance by the later, better-designed EXQ-324b on the SD-022 limb-damage substrate (SD-020 promoted stable 2026-04-22).",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "already superseded by a better-designed successor"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_261_sd021_descending_pain_mod_20260408T231136Z_v3",
+   "claim_ids": [
+    "SD-021",
+    "SD-011"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "stub",
+    "environment": "adequate",
+    "measurement": "misleading",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "PAG descending pain modulation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "none",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "SD-021": "non_contributory",
+    "SD-011": "non_contributory"
+   },
+   "recommended_evidence_quality_note": "Manifest already self-documents (non_degenerate:false, degeneracy_reason): NO_DESCENDING/WITH_DESCENDING bit-identical because E3Selector.post_action_update() clears the commitment-gate handle the driver reads, so the gate never fires. The 'SD-011 supports' tag is an unconditional hardcode at driver line 289, not a measured outcome -- recommend striking it.",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "driver already self-documents its own wiring bug in unusual detail",
+    "hardcoded claim tag found and flagged for striking"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_262_mech220_harm_hub_20260408T231100Z_v3",
+   "claim_ids": [
+    "MECH-220",
+    "SD-011"
+   ],
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "complete_for_hub",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "cingulate-insula convergence hub (Chen 2023)",
+    "dependencies": [
+     "ARC-033"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- E2HarmSForward landed the day after this run",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "precondition_unmet",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "MECH-220": "non_contributory",
+    "SD-011": "supports"
+   },
+   "recommended_evidence_quality_note": "fwd_r2 < -0.89 in every condition including NO_HUB; E2HarmSForward (the ARC-033 prerequisite) was implemented 2026-04-09, literally the day after this run. Already how claims.yaml treats it via the sibling EXQ-395 note.",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "precisely-dated missing-dependency finding, gap closed within 24h"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260520T063323Z_v3",
+   "claim_ids": [
+    "ARC-033",
+    "ARC-058"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "stub_for_discriminating_mechanism",
+    "environment": "too_sparse",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "not_the_bottleneck"
+   },
+   "biological_reference": {
+    "closest_mechanism": "modality-general aversive prediction error (Horing & Buchel 2022)",
+    "dependencies": [
+     "ARC-033"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- shared-trunk architecture never actually shared, driver never builds E2_harm_s",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Manifest self-labels substrate_ceiling; driver-level investigation OVERTURNS this (V3-EXQ-642-shaped self-route mislabel). C3 (cross-arm discrimination) is structurally UNREACHABLE by any budget: the driver never constructs E2HarmSForward on either arm, so 'ON_SHARED' vs 'ON_INDEPENDENT' differ only in whether one trunk submodule is externally-vs-internally constructed -- functionally equivalent. C1 (harm-event balance) fails separately: a trained avoidant policy generates near-zero hazard contact in the post-convergence P2 eval window. One of 2 genuinely distinct executions.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "experiments/v3_exq_595_arc033_vs_arc058_post_diversity_three_arm.py",
+     "ree_core/agent.py"
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "self-labeled substrate_ceiling was wrong -- real cause is a structurally-unreachable discrimination criterion (driver never wires the second stream)",
+    "One of 2 genuinely distinct executions."
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260520T215456Z_v3",
+   "claim_ids": [
+    "ARC-033",
+    "ARC-058"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "stub_for_discriminating_mechanism",
+    "environment": "too_sparse",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "not_the_bottleneck"
+   },
+   "biological_reference": {
+    "closest_mechanism": "modality-general aversive prediction error (Horing & Buchel 2022)",
+    "dependencies": [
+     "ARC-033"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- shared-trunk architecture never actually shared, driver never builds E2_harm_s",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Manifest self-labels substrate_ceiling; driver-level investigation OVERTURNS this (V3-EXQ-642-shaped self-route mislabel). C3 (cross-arm discrimination) is structurally UNREACHABLE by any budget: the driver never constructs E2HarmSForward on either arm, so 'ON_SHARED' vs 'ON_INDEPENDENT' differ only in whether one trunk submodule is externally-vs-internally constructed -- functionally equivalent. C1 (harm-event balance) fails separately: a trained avoidant policy generates near-zero hazard contact in the post-convergence P2 eval window. One of 2 genuinely distinct executions.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "experiments/v3_exq_595_arc033_vs_arc058_post_diversity_three_arm.py",
+     "ree_core/agent.py"
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "self-labeled substrate_ceiling was wrong -- real cause is a structurally-unreachable discrimination criterion (driver never wires the second stream)",
+    "One of 2 genuinely distinct executions."
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_595_arc033_vs_arc058_post_diversity_three_arm_20260521T074713Z_v3",
+   "claim_ids": [
+    "ARC-033",
+    "ARC-058"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "stub_for_discriminating_mechanism",
+    "environment": "too_sparse",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "not_the_bottleneck"
+   },
+   "biological_reference": {
+    "closest_mechanism": "modality-general aversive prediction error (Horing & Buchel 2022)",
+    "dependencies": [
+     "ARC-033"
+    ],
+    "is_formal_import": false,
+    "divergence": "none -- shared-trunk architecture never actually shared, driver never builds E2_harm_s",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Manifest self-labels substrate_ceiling; driver-level investigation OVERTURNS this (V3-EXQ-642-shaped self-route mislabel). C3 (cross-arm discrimination) is structurally UNREACHABLE by any budget: the driver never constructs E2HarmSForward on either arm, so 'ON_SHARED' vs 'ON_INDEPENDENT' differ only in whether one trunk submodule is externally-vs-internally constructed -- functionally equivalent. C1 (harm-event balance) fails separately: a trained avoidant policy generates near-zero hazard contact in the post-convergence P2 eval window. DUPLICATE MANIFEST: byte-identical to the 20260520T215456Z run in every per_seed_results/pass_criteria_summary field -- a coordinator auto-sync conflict-recovery re-apply, not a third independent execution. Flag to governance/review_tracker so it is not double-counted as an extra data point. Same diagnosis as the 2 genuine executions applies.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "severity": "corrupting",
+    "substrate_paths": [
+     "experiments/v3_exq_595_arc033_vs_arc058_post_diversity_three_arm.py",
+     "ree_core/agent.py"
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "self-labeled substrate_ceiling was wrong -- real cause is a structurally-unreachable discrimination criterion (driver never wires the second stream)",
+    "DUPLICATE MANIFEST: byte-identical to the 20260520T215456Z run in every per_seed_results/pass_criteria_summary field -- a coordinator auto-sync conflict-recovery re-apply, not a third independent execution. Flag to governance/review_tracker so it is not double-counted as an extra data point. Same diagnosis as the 2 genuine executions applies."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "NOT one cluster -- three independent groups sharing ancestry (2026-03-24 dual-nociceptive-streams design doc) but structurally different failure shapes: Group A (247 x2) a precondition failure (z_goal dead, now resolved by later GAP substrate); Group B (260/261/262) three distinct same-day probes, each independently disposed; Group C (595 x2 distinct + 1 duplicate) a mislabeled substrate_ceiling that is actually a corrupting driver-level wiring defect.",
+  "is_independent_bugs": true,
+  "structural_property": "No shared structural cause across the three groups -- reported separately per the skill's guidance against forcing a false cluster narrative.",
+  "readings": [
+   "three_independent_findings"
+  ]
+ }
+}
