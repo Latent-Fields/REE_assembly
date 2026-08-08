@@ -1931,6 +1931,57 @@ def _write_index_if_material(path: Path, text: str) -> bool:
     return True
 
 
+# The JSON artifacts carry the same run stamp under these keys. Only whole-run
+# stamps belong here -- a per-item timestamp (`timestamp_utc` on a decision
+# entry, `assigned_at`) is CONTENT and must stay comparable.
+_JSON_RUN_STAMP_KEYS = {"generated_at_utc", "generated_at"}
+
+
+def _strip_json_run_stamps(obj):
+    """`obj` with every _JSON_RUN_STAMP_KEYS key removed, recursively."""
+    if isinstance(obj, dict):
+        return {k: _strip_json_run_stamps(v) for k, v in obj.items()
+                if k not in _JSON_RUN_STAMP_KEYS}
+    if isinstance(obj, list):
+        return [_strip_json_run_stamps(v) for v in obj]
+    return obj
+
+
+def _write_json_if_material(path: Path, text: str) -> bool:
+    """JSON counterpart of `_write_index_if_material` -- same rationale.
+
+    Applied only to the artifacts MEASURED to churn on the stamp alone
+    (2026-08-08, ree-cloud-5): `decision_state.v1.json` and
+    `arm_fingerprint_index.json`. That is not a cosmetic pair --
+    `evidence/decisions/decision_state.v1.json` is the exact path
+    ree_git_sync_repair.sh named in its 2026-08-08T06:14:13Z refusal
+    ("REE_assembly NEEDS_HUMAN ... uncommitted non-telemetry change:
+    evidence/decisions/decision_state.v1.json"), so this one file was on its own
+    enough to keep the auto-repair permanently disarmed.
+
+    Everything else the builder writes under `evidence/planning/` was measured
+    to carry REAL content changes alongside its stamp, so gating those would buy
+    nothing and only add a way to suppress a genuine write.
+
+    Compared as PARSED JSON, not as text: the writer re-serialises with
+    `sort_keys=True`, so a textual compare would be at the mercy of dict
+    ordering. Fails OPEN in both directions -- an unreadable or unparseable
+    side falls through to writing, because a regen must never be suppressed by
+    a comparison this function could not actually make.
+    """
+    try:
+        existing = path.read_text(encoding="utf-8")
+        old_obj = json.loads(existing)
+        new_obj = json.loads(text)
+    except (OSError, ValueError):
+        path.write_text(text, encoding="utf-8")
+        return True
+    if _strip_json_run_stamps(old_obj) == _strip_json_run_stamps(new_obj):
+        return False
+    path.write_text(text, encoding="utf-8")
+    return True
+
+
 def _write_experiment_index(
     experiment_dir: Path,
     experiment_type: str,
@@ -3534,9 +3585,9 @@ def _write_decision_state(
         }
 
     decisions_dir.mkdir(parents=True, exist_ok=True)
-    (decisions_dir / "decision_state.v1.json").write_text(
+    _write_json_if_material(
+        decisions_dir / "decision_state.v1.json",
         json.dumps(state, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
 
 
@@ -6838,9 +6889,9 @@ def _write_arm_fingerprint_index(base_dir: Path, generated_at: str) -> dict[str,
         "reverse_index": {k: sorted(v) for k, v in sorted(reverse_index.items())},
         "pending_reuse_revalidation": pending,
     }
-    (base_dir / "arm_fingerprint_index.json").write_text(
+    _write_json_if_material(
+        base_dir / "arm_fingerprint_index.json",
         json.dumps(index, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
     return index
 

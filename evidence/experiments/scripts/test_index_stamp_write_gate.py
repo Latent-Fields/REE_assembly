@@ -21,11 +21,19 @@ sites sit deep inside functions with large fixture requirements. It earned its
 keep immediately: it caught the planning-root INDEX.md writer, which the first
 pass of this change missed.
 
+The JSON half (`_write_json_if_material`) covers the two artifacts MEASURED to
+churn on the stamp alone. One of them, evidence/decisions/decision_state.v1.json,
+is the exact path ree_git_sync_repair.sh named in its 2026-08-08T06:14:13Z
+NEEDS_HUMAN refusal -- that single file was enough to keep auto-repair disarmed.
+Its tests also pin what must NOT be stripped: a per-item `timestamp_utc` is
+content, and stripping it would let a real governance change be skipped.
+
 Time-independent (no clock reads); real files in a tempdir.
 
 Run directly:  python test_index_stamp_write_gate.py
 Or via pytest:  pytest test_index_stamp_write_gate.py
 """
+import json
 import os
 import re
 import sys
@@ -163,6 +171,94 @@ def test_all_index_writers_route_through_the_gate():
         "the stamp-only write gate is only effective if ALL of them use it"
     )
     assert src.count("_write_index_if_material(") >= 5  # 1 def + 4 call sites
+
+
+# --- the JSON gate ------------------------------------------------------
+
+
+def _state(stamp, items=("a", "b")):
+    return json.dumps({"generated_at_utc": stamp, "items": list(items),
+                       "schema_version": "decision_state/v1"},
+                      indent=2, sort_keys=True) + "\n"
+
+
+def test_json_stamp_only_difference_is_not_written():
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "decision_state.v1.json"
+        original = _state("2026-08-07T22:56:39.828281Z")
+        p.write_text(original, encoding="utf-8")
+        assert b._write_json_if_material(p, _state("2026-08-07T23:57:27.393114Z")) is False
+        assert p.read_text(encoding="utf-8") == original
+
+
+def test_json_material_change_is_written():
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "decision_state.v1.json"
+        p.write_text(_state("2026-08-07T22:56:39.828281Z"), encoding="utf-8")
+        new = _state("2026-08-07T23:57:27.393114Z", items=("a", "b", "c"))
+        assert b._write_json_if_material(p, new) is True
+        assert p.read_text(encoding="utf-8") == new
+
+
+def test_json_compare_survives_key_reordering():
+    """Parsed compare, not textual -- key order must not force a write."""
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "x.json"
+        p.write_text('{"generated_at_utc": "A", "z": 1, "a": 2}\n', encoding="utf-8")
+        assert b._write_json_if_material(p, '{"a": 2, "z": 1, "generated_at_utc": "B"}\n') is False
+
+
+def test_json_unparseable_existing_falls_open_to_writing():
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "x.json"
+        p.write_text("{ this is not json", encoding="utf-8")
+        new = _state("2026-08-08T09:13:47Z")
+        assert b._write_json_if_material(p, new) is True
+        assert p.read_text(encoding="utf-8") == new
+
+
+def test_json_absent_file_is_written():
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "x.json"
+        assert b._write_json_if_material(p, _state("2026-08-08T09:13:47Z")) is True
+
+
+def test_per_item_timestamps_are_content_not_stamps():
+    """A decision entry's own timestamp_utc must NOT be stripped -- stripping
+    it would let a real governance change be skipped as immaterial."""
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "x.json"
+        p.write_text(json.dumps({"generated_at_utc": "A",
+                                 "d": {"timestamp_utc": "2026-01-01T00:00:00Z"}}) + "\n",
+                     encoding="utf-8")
+        new = json.dumps({"generated_at_utc": "B",
+                          "d": {"timestamp_utc": "2026-06-06T00:00:00Z"}}) + "\n"
+        assert b._write_json_if_material(p, new) is True
+
+
+def test_json_stamp_keys_are_only_whole_run_stamps():
+    assert b._JSON_RUN_STAMP_KEYS == {"generated_at_utc", "generated_at"}
+    assert "timestamp_utc" not in b._JSON_RUN_STAMP_KEYS
+    assert "assigned_at" not in b._JSON_RUN_STAMP_KEYS
+
+
+def test_the_two_measured_json_artifacts_route_through_the_gate():
+    """decision_state.v1.json is the path ree_git_sync_repair.sh named in its
+    2026-08-08T06:14:13Z NEEDS_HUMAN refusal -- it must stay gated."""
+    src = Path(b.__file__).read_text(encoding="utf-8")
+    for name in ("decision_state.v1.json", "arm_fingerprint_index.json"):
+        assert not re.search(re.escape(name) + r'"\s*\)\s*\.write_text', src), name
+        assert name in src
+
+
+def test_planning_json_artifacts_are_deliberately_not_json_gated():
+    """They were measured to carry real content changes beside their stamp, so
+    gating them buys nothing and only adds a way to suppress a real write."""
+    src = Path(b.__file__).read_text(encoding="utf-8")
+    for line in src.splitlines():
+        if "_write_json_if_material(" in line and (
+                "evidence_backlog" in line or "architecture_gap_register" in line):
+            raise AssertionError("planning artifact should not be stamp-gated")
 
 
 def test_pending_review_is_deliberately_not_gated():
