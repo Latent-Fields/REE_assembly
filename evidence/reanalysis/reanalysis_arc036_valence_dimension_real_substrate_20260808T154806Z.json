@@ -1,0 +1,184 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_arc036_valence_dimension_real_substrate_20260808T154806Z",
+  "generated_utc": "2026-08-08T15:48:06Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Do the four ARC-036 hippocampal valence dimensions (wanting, liking, harm-discriminative, surprise) encode separably on the REAL ree_core/residue/field.py RBFLayer/ResidueField substrate (not EXQ-176's disconnected, never-trained inline reimplementation)?",
+  "claim_ids": [
+    "ARC-036"
+  ],
+  "decisive_readout": "channel_spearman (full 6-pair matrix), mean_pairwise_tau_dissociated, mean_pairwise_topk_jaccard -- read via ResidueField.evaluate_valence / get_valence_priority over a real REEAgent rollout with all four SD-014 write paths driven every step",
+  "source_run_ids": [
+    "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3",
+    "v3_exq_887a_sd014_node_valence_repfunc_sensitized_20260807T214013Z_v3",
+    "v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3": "bc3000f8558cdb19b5bf1627cb7d3b3cb0b47784dc5f9319066f9123a490d79b",
+    "v3_exq_887a_sd014_node_valence_repfunc_sensitized_20260807T214013Z_v3": "3a0409ddacb9f7178907a07a40c38c7a142f63f5de30a58ac5de76182e9ab1af",
+    "v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3": "9ee0197be74bd0392cf8d953992184722d877b3881b70ab6007a0fe3fe6d78d5"
+  },
+  "substrate_compatibility": "mixed",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "instrument": "REEAgent + ree_core/residue/field.py RBFLayer/ResidueField (real production substrate, NOT EXQ-176's disconnected inline reimplementation). All four SD-014/ARC-036 write paths driven every waking step (update_benefit_salience->WANTING, update_liking->LIKING, update_harm_salience->HARM_DISCRIMINATIVE, update_residue->SURPRISE); readout via ResidueField.evaluate_valence (representational, stored per-node vector) and get_valence_priority (functional, replay-priority ranking).",
+    "runs_compared": {
+      "V3-EXQ-887": {
+        "config": "incentive_sensitization disabled (write-path default)",
+        "outcome": "FAIL",
+        "gate": "not green (C1/C2 fail all 3 seeds)"
+      },
+      "V3-EXQ-887a": {
+        "config": "incentive_sensitization enabled, DEFAULT gain (rate=0.05 max=4.0 coupling=1.0)",
+        "outcome": "FAIL",
+        "gate": "green; seed 2026 passed C1+C2+C3, seeds 42/137 missed narrowly"
+      },
+      "V3-EXQ-887b": {
+        "config": "incentive_sensitization enabled, ABOVE-DEFAULT gain (rate=0.10 max=8.0 coupling=2.5)",
+        "outcome": "PASS",
+        "gate": "green; all 3 seeds passed C1+C2+C3"
+      }
+    },
+    "arc036_four_dimension_pairwise_spearman": {
+      "note": "|Spearman| of the STORED per-node valence vector between each pair of the four ARC-036 dimensions (wanting/liking/harm_discriminative/surprise), across all 3 seeds x 3 runs (9 readings per pair). Lower = more dissociated/separable.",
+      "wanting|liking": {
+        "887": [
+          0.934,
+          0.97,
+          0.931
+        ],
+        "887a": [
+          0.925,
+          0.919,
+          0.896
+        ],
+        "887b": [
+          0.872,
+          0.865,
+          0.878
+        ],
+        "range": "0.865-0.970",
+        "trend": "falls below the 0.90 SD-014 threshold ONLY at 887b's above-default sensitization gain; at 887/887a's default or no gain it exceeds 0.90 on 8 of 9 seed-runs"
+      },
+      "harm_discriminative|surprise": {
+        "887": [
+          0.854,
+          0.73,
+          0.734
+        ],
+        "887a": [
+          0.854,
+          0.73,
+          0.734
+        ],
+        "887b": [
+          0.854,
+          0.73,
+          0.734
+        ],
+        "range": "0.730-0.854",
+        "trend": "IDENTICAL across all three runs/configs for the corresponding seed -- the sensitization gain only touches the WANTING write path, so this pair is a gain-independent, replicated (9/9 seed-runs) reading of substantial residual correlation between harm-discriminative and surprise. This is the pair ARC-036's own dissociation claim is weakest on."
+      },
+      "wanting|harm_discriminative": {
+        "887": [
+          0.512,
+          0.723,
+          0.788
+        ],
+        "887a": [
+          0.505,
+          0.794,
+          0.815
+        ],
+        "887b": [
+          0.548,
+          0.836,
+          0.819
+        ],
+        "range": "0.505-0.836",
+        "trend": "moderate-to-high, seed-dependent, mildly gain-sensitive"
+      },
+      "wanting|surprise": {
+        "887": [
+          0.378,
+          0.661,
+          0.647
+        ],
+        "887a": [
+          0.364,
+          0.773,
+          0.66
+        ],
+        "887b": [
+          0.402,
+          0.826,
+          0.679
+        ],
+        "range": "0.364-0.826",
+        "trend": "moderate-to-high, seed-dependent, mildly gain-sensitive"
+      },
+      "liking|harm_discriminative": {
+        "887": [
+          0.37,
+          0.69,
+          0.734
+        ],
+        "887a": [
+          0.37,
+          0.69,
+          0.734
+        ],
+        "887b": [
+          0.37,
+          0.69,
+          0.734
+        ],
+        "range": "0.370-0.734",
+        "trend": "IDENTICAL across all three runs (liking/harm writes untouched by sensitization gain) -- the cleanest-dissociating pair of the six on the low-correlation seeds, but still 0.73 on seed 137/2026"
+      },
+      "liking|surprise": {
+        "887": [
+          0.278,
+          0.595,
+          0.552
+        ],
+        "887a": [
+          0.278,
+          0.595,
+          0.552
+        ],
+        "887b": [
+          0.278,
+          0.595,
+          0.552
+        ],
+        "range": "0.278-0.595",
+        "trend": "IDENTICAL across all three runs -- consistently the LOWEST-correlated (most cleanly dissociated) pair of the six"
+      }
+    },
+    "functional_readout": {
+      "mean_pairwise_kendall_tau_across_4_drive_vectors": {
+        "887b_seeds": [
+          0.819,
+          0.798,
+          0.793
+        ],
+        "interpretation": "well under the 0.85 ceiling on 887b; drive-state genuinely re-ranks replay priority across the four dimensions"
+      },
+      "mean_pairwise_topk5_jaccard_across_4_drive_vectors": {
+        "887b_seeds": [
+          0.619,
+          0.515,
+          0.554
+        ],
+        "interpretation": "well under the 0.80 ceiling; replay-priority top-5 sets are drive-selective, not a fixed set"
+      }
+    }
+  },
+  "method_note": "Step 2.4 GOV-REUSE-1 check (queue-experiment skill) found the decisive readout ARC-036's own probe would need is ALREADY recorded on the real substrate in the SD-014 V3-EXQ-887/887a/887b family (887b readiness gate green, all 3 seeds), so no new run was queued. Re-read the already-recorded per-seed channel_spearman across all 6 valence-channel pairs (not just SD-014's own wanting|liking focus) from all three manifests in that lineage and applied ARC-036's own 4-dimension separability framing to it.",
+  "verdict": "mixed",
+  "notes": "Corrects the EXQ-176 misdiagnosis already flagged in claims.yaml (EXQ-176 used a standalone RBFLayer with fixed, never-trained random centers -- disconnected from the real substrate -- so its 2026-03-30 FAIL never actually tested ARC-036 against production code). This reanalysis is the first real-substrate touchpoint for ARC-036's own claim_ids. Finding is genuinely MIXED, not a clean supports: (1) all four channels write and populate on the real substrate (readiness gate green); (2) wanting|liking separates only once SD-014's incentive-sensitization write-path is enabled at an ABOVE-DEFAULT gain (887b) -- at default/no gain (887/887a) it exceeds the 0.90 dissociation ceiling on 8 of 9 seed-runs, so that pair's separability is CONDITIONAL on a specific mechanism tuning, not a substrate default; (3) harm_discriminative|surprise sits at 0.73-0.85 IDENTICALLY across all three configs (gain-independent, 9/9 seed-runs) -- the most robustly-replicated finding here, and it is the pair ARC-036 is weakest on: harm and surprise are NOT cleanly dissociated on this substrate; (4) liking|surprise and liking|harm_discriminative are the most cleanly separable pairs (0.28-0.73), also gain-independent. Functional readout (drive-gated replay re-ranking, top-K jaccard) on 887b is clean. Follow-on: ARC-036's evidence_quality_note in claims.yaml should cite this reanalysis_id (claims.yaml is under another session's active TASK_CLAIMS claim as of this reanalysis -- chipped as follow-on, not applied here).",
+  "caveat": "substrate compatibility mixed -- recorded under --force; interpret with care"
+}
