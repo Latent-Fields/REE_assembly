@@ -1,0 +1,115 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_904_arc070_decomposition_trigger_selectivity",
+  "run_id": "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T20:11:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-070"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc070_decomposition_operation_confirmed",
+    "manipulation_checks": {
+      "vs_trigger_fires_when_region_vs_below_threshold": true,
+      "vs_trigger_silent_when_region_vs_above_threshold": true,
+      "note": "decomp_n_vs_trigger == (region_vs < threshold) is a tautology under an injected region_vs; recorded as a manipulation check, carries no claim weight (DV-symmetry discipline, failure_autopsy_V3-EXQ-604c)."
+    },
+    "preconditions": [
+      {
+        "name": "highvs_boundary_path_engaged",
+        "description": "The one non-forced load-bearing measurement: the real MECH-288 detector must fire on genuine rollout latents in ARM_ON_HIGHVS. Below floor means the measurement is STARVED (rollout too short), not that ARC-070 is falsified.",
+        "measured": 180.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "total decomp_n_boundary_fires across ARM_ON_HIGHVS cells; probe on this config gave 16 fires in 8 episodes",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_BOUNDARY_LIVE_real_mech288_drives_decomp",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_DECOMP_FIRES_vs_trigger_drives_decomp",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_GRAIN_decompose_yields_finer_tiles",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_DEPTHCAP_at_cap_marked_unreliable",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_OFF_structural_zero",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_BOUNDARY_LIVE": true,
+      "C_DECOMP_FIRES": true,
+      "C_GRAIN": true,
+      "C_DEPTHCAP": true,
+      "C_OFF": true
+    },
+    "scope_note": "Confirms ARC-070's OPERATION half (given a trigger, the proposer re-segments into finer primitives, selectively). Does NOT confirm that the trigger fires under NATURAL prediction failure in the live env -- that is env-blocked by V_s saturation (816/830) and is the separate behavioural MECH-321 line."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5e58c919da62d7bc172343fe4289bec5052ba20b71b8def5ed17f0c3a85da8f3",
+  "substrate_commit": {
+    "commit": "f04692d268da53f8fd6f7a25f936f81d03abd9cc",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 1,
+    "goal_state_present": false
+  }
+}
