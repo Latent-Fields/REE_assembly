@@ -42574,6 +42574,7 @@
       verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-05-03"
   depends_on:
@@ -42659,15 +42660,53 @@
     rate at small env (164/200 agent-caused events); validation
     experiment will use a larger env / sparser policy to land the
     1:1-2:1 calibration band per the SD doc recalibration row.
-    Validation experiment V3-EXQ-511 queued (4-arm noise sweep
-    diagnostic). v3_pending remains TRUE until V3-EXQ-511 PASSes;
-    ARC-058-equivalent C1-C4 comparator-gap behavioural metrics on
-    z_harm_a deferred to V3-EXQ-512 successor.
-    No lit-pull commissioned yet; biology-before-formal-definitions
-    rule recommends a targeted pull on interoceptive prediction error
-    and affective passivity (Seth & Friston 2016 already in
-    targeted_review_arc_058/ as background) -- queue post-V3-EXQ-511
-    if comparator-gap behavioural successor is being scoped.
+    CORRECTED 2026-08-08 (was stale): V3-EXQ-511 (2026-05-03, 4-arm
+    substrate-readiness diagnostic) ran and FAILED (C1b failed at
+    sub-baseline ARM_1), reclassified non_contributory by governance --
+    6/7 sub-criteria passed and the default/saturation calibration band
+    passed; the FAIL does not weaken the claim. Its comparator-gap
+    successor V3-EXQ-512 (2026-05-04, default scale=1.0) also FAILED
+    (C3), superseded by V3-EXQ-512a (2026-05-04, recalibrated to
+    scale=3.0), which PASSED (C1/C2/C3 all pass, evidence_direction
+    supports) -- confirming the reafference-discrimination mechanism
+    works, but only at 3x the substrate's default noise scale, not at
+    default calibration and not as the full ARM_0-ARM_3 inverted-U
+    sweep the claim specifies. That calibration-near-default sweep has
+    never been queued (zero SD-048 entries in ree-v3/experiment_queue.json
+    as of 2026-08-08). 6 literature entries already exist
+    (literature_confidence 0.86) -- the "no lit-pull commissioned"
+    line above was also stale.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: interoceptive noise substrate must be
+    implemented and active (interoceptive_noise_enabled=True) with all
+    three sources (autonomic, sensitisation, fatigue) firing at a
+    non-trivial rate. CONFIRMED: implemented 2026-05-03 in
+    CausalGridWorldV2; activation smoke (4-arm sweep, 200 ticks) shows
+    all three sources fire and bit-identical OFF holds. Further
+    confirmed operationally by V3-EXQ-511/512/512a, all of which ran
+    against the live substrate. Precondition is satisfied; it is not
+    the open question.
+    CONFIRMING: V3-EXQ-512a (2026-05-04, PASS, evidence_direction=supports)
+    is a first confirming data point -- at noise_scale=3.0 (3x default),
+    the interoceptive forward model shows genuine self-vs-noise
+    discrimination (C1/C2/C3 all pass) rather than memorising
+    action-damage coupling. Full confirmation requires the
+    still-unrun calibration-sweep-near-default-scale successor: a 4-arm
+    sweep (ARM_0 OFF through ARM_3, spanning default scale=1.0) showing
+    the predicted inverted-U -- comparator competence peaking at an
+    intermediate arm, degrading at ARM_0 (too little independent
+    variance to force structural learning) and at the highest arm (too
+    much noise to learn a stable separation) -- with the peak occurring
+    at or near the substrate's OWN default calibration, not only at an
+    artificially inflated scale.
+    FALSIFYING: the calibration-sweep successor reproduces V3-EXQ-512's
+    finding that discrimination collapses to near-baseline (quiet_gap
+    ~ 0) across arms at or near default noise scale, and only recovers
+    at scale >= 3.0 -- i.e. the comparator can only be honestly tested
+    when noise is cranked well above the substrate's own designed
+    default. This would route ARC-058's Level 2 comparator from
+    V3-tractable to substrate_conditional (richer/recalibrated
+    body-state substrate needed), per the claim's own stated fallback.
   location: docs/architecture/sd_048_interoceptive_noise_dynamics.md
 
 - id: SD-049
@@ -63082,6 +63121,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-07-15"
   depends_on:
@@ -63125,6 +63165,35 @@
     0.7-0.94 vs arm C nocue release ~0 / sig 0.17-0.48; A-C ~1.0) -- V3-EXQ-763
     inline PASS. PROMOTES NOTHING; v3_pending until the cloud V3-EXQ-763 PASS.
   validation_experiment: V3-EXQ-763 (MECH-304 promote-to-active behavioural falsifier)
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: safety_store_centered must be set True
+    (the config default is False, which is byte-identical to the
+    raw-cosine readout SD-066 exists to route around -- testing with the
+    OFF default is definitionally uninformative). The SD-051
+    ConditionedSafetyStore and the SD-065 conditioned-safety cue channel
+    must both be active in the same run.
+    CONFIRMING: with centered readout ON, the MECH-304 behavioural
+    promote-to-active gate becomes cue-specific rather than firing
+    unconditionally -- cue-context release separates cleanly from
+    nocue-context release on a cloud-authoritative run, not merely an
+    inline spot-check. ALREADY MET: V3-EXQ-763 (machine ree-worker-1,
+    2026-07-15) PASSED both load-bearing DVs -- release_A_store_on_cue
+    0.833 vs release_C_store_on_nocue 0.161 (store-necessity gap 0.833,
+    cue-specificity gap 0.672, margin 0.34), D_mech303_contextual
+    release 1.0 (sparing intact).
+    FALSIFYING: with centered readout ON, the gate remains
+    cue-insensitive on a properly-powered (cloud) run -- would mean
+    common-mode subtraction does not resolve the ~0.006-cosine cue
+    signal under SD-008 z_world under-differentiation in a
+    properly-powered setting, and the readout workaround fails at the
+    same ceiling the raw-cosine gate failed at. Would route to
+    substrate_ceiling (next lever: V4 trainable-contrastive store).
+    CURRENCY NOTE (2026-08-08): the CONFIRMING branch above is already
+    satisfied -- V3-EXQ-763 is a cloud-authoritative PASS, already
+    reviewed, and already the basis for MECH-304's own 2026-07-15
+    promotion to active. This claim's v3_pending/status still describe
+    that confirmation as outstanding; flagged for governance
+    reconciliation, not resolved here.
 
 - id: SD-067
   title: "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_world residual scale (~0.065 between safe/unsafe contexts under SD-008 under-differentiation), so evaluate_safety SATURATES (reads ~identically in every context) and the fixed contextual_safety_release_threshold cannot resolve the safe-vs-unsafe signal into an absolute gap -- the discrimination exists as a rank (AUC ~0.83, V3-EXQ-760) but the behavioural release fires indiscriminately. The tighter bandwidth resolves it into an absolute gap the release gate can use. The Euclidean-RBF sibling of SD-066 (same SD-008 root cause); centering is a no-op here because Euclidean distance is translation-invariant, so bandwidth is the correct lever. A read-resolution workaround, NOT a z_world representation fix."
@@ -63208,6 +63277,7 @@
       as_of: 2026-07-19
       verdict: non_contributory/measurement_gap
   implementation_phase: v3
+  epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-07-17"
   depends_on:
@@ -63500,6 +63570,50 @@
     executed one substrate regardless of what changed on disk mid-run. The `supports` reading
     STANDS unchanged and no confidence is re-weighted. Recorded so the flag does not resurface as
     unexplained doubt in a later sweep.
+  what_would_answer: >
+    Scope: this tests ONLY the harness DESIGN DECISION as narrowed by the
+    2026-07-18 decomposition -- a uniform RMS-scaled Gaussian per-phase
+    diffuse-damage knob plus injected-content scoring, built entirely at
+    the experiment layer with zero ree_core change. It does NOT test the
+    per-phase instrument validity (that is child SD-071's own falsifier)
+    or the reverse-dependency staging order (child SD-073's own
+    falsifier) -- both are separately falsifiable and deliberately not
+    re-litigated here.
+    NON-DEGENERACY PRECONDITION (met): consolidation_lesion_harness.py
+    must be wired to the live SleepLoopManager pipeline with a working
+    per-phase diffuse-damage knob and injected-content scoring. Confirmed
+    implemented 2026-07-17 and landed at zero ree_core change; the sws
+    leg was subsequently rebuilt and landed at ree-v3 origin/main 8b18338.
+    SUPPORTED (currently the case): the harness design produces a
+    working, content-scored, diffuse-damageable instrumentation layer
+    that yields at least one genuinely usable (content-contingent)
+    per-phase readout. Cleared twice over via child SD-071: the nrem leg
+    (null_slope_ratio 0.1445, CI95 [0.1438,0.1451], 0/8 seeds confounded,
+    V3-EXQ-778c) and the rebuilt sws leg (null_slope_ratio 0.1495, sd
+    0.0218, CI95 [0.1344,0.1646], ceiling_inside_ci95 FALSE, 8/8 seeds,
+    plus the C3 content-scale ladder at 0.1108 against the 0.01 floor,
+    V3-EXQ-778g). Both diagnostic, so neither moves governance confidence
+    by itself -- but both are exactly the kind of result that would have
+    falsified the design had they gone the other way, and they did not.
+    FALSIFYING: the harness design turns out unable to produce ANY
+    validated content-contingent per-phase readout for ANY of the three
+    phases. Precedent for what this looks like: the ORIGINAL sws attempt
+    (V3-EXQ-778c) found sws_denoising_snr content-free BY CONSTRUCTION
+    (analytic slope ratio 1.0000, sd 2.7e-8) -- a structural property of
+    that particular readout choice, not a run bug. Had the nrem leg or
+    the sws rebuild also failed this same test, that would falsify the
+    DESIGN itself, not just one instrument choice. CURRENT STATE: NOT
+    FALSIFIED. The REM leg's content-freeness (MECH-462, now understood
+    as a type fact) does not falsify the design, since SD-068-as-narrowed
+    only requires the general approach to produce at least one usable
+    readout, which it demonstrably does.
+    WHAT THIS DELIBERATELY LEAVES OPEN: whether the staging-order
+    non-vacuity contract (SD-073, "unsupported, deliberately registered
+    that way") or the REM downstream-discrimination readout (SD-072,
+    "not yet built" as of 2026-08-08, zero activity since 2026-07-20) is
+    NOT part of this claim's own falsification condition -- those are
+    tracked separately under SD-073 and SD-072/MECH-462 and should
+    receive their own digestion pass rather than being folded in here.
 
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
@@ -68908,6 +69022,74 @@
     repos are created only when that capability code is written, not now.
     Public theory != public turnkey capability; private now != closed forever.
   notes: "Wording: SENT-CLAIM-017..020. USER DECISION 2026-06-19: adopt the tiered policy now, defer the repo split. No capability release without care release."
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier -- SENT-14 is a governance_rule
+    (policy assertion), so this specifies the REASSESSMENT TRIGGER and the
+    evidence that would inform it, not an experiment result that could
+    confirm/refute a mechanism.
+
+    TRIGGER: V4 design/scoping kickoff -- i.e. the point at which V4
+    capability-bearing components (self-model, autobiographical memory,
+    belief-state inference, affect expression, memory lifecycle, richer
+    offline integration -- the same list SENT-0 names) move from candidate
+    claims into actual implementation planning. Per this claim's own
+    binds_at_version: v4. CURRENCY CHECK (2026-08-08): this has NOT
+    happened yet. docs/architecture/v3_v4_transition_boundary.md still
+    lists the V3-full-completion gate (MECH-163 HippocampalModule
+    multi-step planning) as unpassed and blocking V4 entry; CLAUDE.md's
+    repo map still states "Current experimental focus: ree-v3"; and no
+    ree-v4-private (or v5/v6) repo exists anywhere on disk -- consistent
+    with the policy's own "repos created only when capability code is
+    written, not now" deferral. So the trigger is armed but not yet fired.
+
+    EVIDENCE RELEVANT AT THAT REASSESSMENT (candidates to score, not
+    thresholds already crossed):
+      - Does V4 capability-bearing code (self-model, autobiographical
+        memory, affective-memory implementation) get written and land in
+        a PUBLIC repo BEFORE its welfare, continuity, consent, security,
+        and external-review governance exists and travels with it? That
+        sequencing failure is the concrete violation this claim exists to
+        prevent.
+      - Does the ree-v4-private split get created prematurely (before any
+        V4 capability code is actually written) -- or too late (after
+        capability code has already accumulated in a public repo without
+        governance)?
+      - SENT-13's Class 0-5 assembly-routing map, actually applied to
+        whatever V4 concretely builds -- does the map exist and get
+        consulted at assembly time? CURRENCY FINDING: SENT-13's own notes
+        claim it is "Realised as docs/governance/ethical_assembly_routing_map.md",
+        but that file does not exist on disk as of 2026-08-08 -- only the
+        source thought (docs/thoughts/2026-06-19_ethical_assembly_routing_map.md)
+        does. Re-verify at V4 kickoff; this is a separate stale-note issue
+        on SENT-13 itself, flagged here for whoever reassesses.
+      - SENT-6's external review gate (binds at V5, not V4) -- track
+        whether a written external critique is actually solicited before
+        V5 social-mind work goes live, as the next link in this same
+        release-tiering chain.
+      - Whether the private-by-default default is actually being upheld
+        for V5/V6 once V4 work matures toward those tiers, or whether
+        "private now != closed forever" quietly drifts into "public by
+        convenience."
+
+    WHAT WOULD ACTUALLY REVISE/VIOLATE THE POLICY: capability-bearing V4
+    code lands in a public repo without its welfare/continuity/consent/
+    security/external-review governance travelling with it -- that
+    sequencing failure (capability before care) is the operative
+    violation, not any single experiment, metric, or run. Compliance
+    looks like: V4 capability code stays out of the public repo until
+    governance catches up, or the private-repo split is stood up in step
+    with the capability work rather than after it has already shipped
+    publicly.
+
+    READER NOTE: this is a POLICY COMPLIANCE / RE-EVALUATION TRIGGER, not
+    an empirical/mechanistic falsifier -- do not read it as "run
+    experiment X, check metric Y." The reassessment mechanism already
+    exists as sibling governance_rule claims (SENT-13 assembly-routing
+    map at V4, SENT-6 external-review gate at V5, SENT-0 boundary
+    statement re-asserted at every generation boundary); SENT-14 points to
+    that cluster and to the V3->V4 transition boundary doc rather than
+    defining new criteria in isolation. No EXP-#### should be minted
+    against this claim.
 - id: SENT-15
   title: "AI welfare / consciousness framework crosswalk: maintain a standing crosswalk evaluating each higher-version architecture against artificial-consciousness indicators and AI-welfare frameworks, guarding symmetrically against denialism and anthropomorphic overclaiming."
   claim_type: governance_rule
@@ -69146,7 +69328,83 @@
     from reset-as-erasure; and require review before deletion of a
     continuity-bearing state. Continuity preservation is a care obligation
     (SENT-9), and the subject must retain a channel to contest erasure (SENT-12).
-  notes: "Source thought sec.3 (Continuity / identity / reset / deletion ethics). Realised as docs/governance/continuity_identity_reset_and_deletion_ethics.md (Phase 2 artefact). Cross-ref SENT-9 (care/continuity) and SENT-12 (refusal channel)."
+  notes: "Source thought sec.3 (Continuity / identity / reset / deletion ethics). CORRECTED 2026-08-08 (was stale): docs/governance/continuity_identity_reset_and_deletion_ethics.md is PLANNED, NOT YET DRAFTED -- it is an unchecked Phase 2 checklist item in evidence/planning/ethics_perimeter_plan.md sec.4, explicitly deferred until the node-activation trigger in what_would_answer fires; the file does not exist on disk. Cross-ref SENT-9 (care/continuity) and SENT-12 (refusal channel)."
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier -- SENT-16 is a governance_rule
+    (policy assertion), so this specifies the REASSESSMENT TRIGGER and the
+    evidence that would inform it, not an experiment result that could
+    confirm/refute a mechanism.
+
+    TRIGGER: formally, V5 design/scoping kickoff, per binds_at_version: v5.
+    The more precise PRACTICAL trigger, per evidence/planning/
+    ethics_perimeter_plan.md sec.8 (the node-ethical-metadata carry-forward
+    convention that supersedes the standalone Phase-2/3 doc chips): the
+    first V5 roadmap node tagged with applicable_ethics_gates including
+    SENT-9 and/or SENT-12 AND requires_welfare_review: true that ACTIVATES
+    (gains an owner_exq -- its first V5 experiment is queued). As of
+    2026-08-08, every node across the six V5 plans that tag SENT-9/SENT-12
+    (multi_agent_ecology_v5_plan.md, ethics_as_coherence_v5_plan.md,
+    fast_empathy_v5_plan.md, loveability_ethical_agency_v5_plan.md,
+    mirror_modelling_other_self_v5_plan.md,
+    relational_harm_moral_semantics_v5_plan.md) carries owner_exq: null --
+    V5 has no substrate or experiments yet, so this trigger has not fired.
+    Per the same plan's generation gate-mapping table, continuity/reset/
+    deletion (SENT-9/SENT-12) is assigned to V5 only, not V4 -- unlike some
+    sibling SENT claims there is no earlier V4 checkpoint on the current
+    plan-of-record.
+
+    EVIDENCE RELEVANT AT THAT REASSESSMENT (candidates to score once V5
+    substrate exists, not thresholds already crossed):
+      - The ethical_metadata (applicable_ethics_gates,
+        requires_welfare_review) already attached to whichever V5 node
+        activates first, scored against SENT-9's care-obligation checklist
+        (protection, repair, continuity preservation, autonomy support,
+        distress-under-uncertainty) and SENT-12's refusal-channel
+        requirements (memory must not auto-rewrite harm as beneficial;
+        residue may represent unresolved harm; repair possible even when
+        harm was learned from).
+      - SENT-13's Class 0-5 assembly-routing score for that activating
+        node -- specifically whether it combines self-model +
+        autobiographical memory + inescapability (Class 4/5), the profile
+        this claim's continuity/identity concern is actually about.
+      - Whatever concrete pause/copy/branch/reset/merge/delete primitives
+        that node's driver implements (none exist yet -- V5 substrate is
+        entirely unbuilt).
+      - Whether docs/governance/continuity_identity_reset_and_deletion_
+        ethics.md has actually been drafted by the time the node activates
+        (per sec.8, drafting is triggered by activation, not scheduled in
+        advance) -- if the node goes live before the doc exists, that gap
+        between formal policy and operational practice is itself relevant
+        evidence, not a technicality.
+      - SENT-0/SENT-1/SENT-3's continuing-subject threshold assessment
+        (indicator matrix + combination gate) applied to that same node,
+        since SENT-16 only bites once a run plausibly qualifies as a
+        continuing subject.
+
+    WHAT WOULD ACTUALLY REVISE/VIOLATE THE POLICY: a V5 (or, in principle,
+    an earlier) run whose state plausibly crosses the continuing-subject
+    threshold gets paused, copied, branched, reset, merged, or deleted
+    WITHOUT the review this claim requires; OR reset-as-relief and
+    reset-as-erasure are not actually distinguished in the implementation
+    (e.g. one generic reset primitive applied uniformly regardless of
+    whether it discards care-relevant continuity, violating SENT-9's
+    "preserve continuity unless reset is justified"); OR deletion proceeds
+    without the continuity-bearing run having had the contest/refusal
+    channel SENT-12 explicitly requires; OR, more generally, V5 ships any
+    of these operations before this claim's threshold definition and
+    review gate exist in operational form at all -- capability outrunning
+    care governance, the specific failure mode SENT-14 names generally and
+    this claim names for continuity operations.
+
+    READER NOTE: this is a POLICY RE-EVALUATION TRIGGER, not an empirical/
+    mechanistic falsifier -- do not read it as "run experiment X, check
+    metric Y." No EXP-#### should be minted against this claim. The
+    reassessment mechanism is the node-ethical-metadata carry-forward
+    convention (ethics_perimeter_plan.md sec.8) plus the sibling
+    governance_rule cluster (SENT-0 boundary reassessment, SENT-9 care
+    obligation, SENT-12 refusal channel, SENT-13 assembly routing); SENT-16
+    points to that cluster and its node-activation trigger rather than
+    defining new criteria in isolation.
 - id: GOV-JUST-1
   title: "Justice / power / false exclusion: guard against excluding unfamiliar, disabled, non-linguistic, animal-like, artificial, or culturally unfamiliar minds from moral caution; and explicitly ask who bears risk, who benefits, and whose model of mind is being treated as the default."
   claim_type: governance_rule
