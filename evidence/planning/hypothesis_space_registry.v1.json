@@ -3519,6 +3519,101 @@
         "observation_bottleneck": "H2 cannot be probed as a cheap experiment -- it requires building the hippocampal event/state/outcome-node indexing substrate (MECH-044/ARC-006/ARC-007/MECH-267), none of which exist yet."
       },
       "growth_restriction": ""
+    },
+    {
+      "qid": "sd005-zself-zworld-asymmetry",
+      "title": "Does SD-005's functional separation of z_world/z_self produce symmetric specialisation, or does only z_self specialise while z_world stays undifferentiated?",
+      "short_title": "SD-005 asymmetric specialisation",
+      "claims": ["SD-005"],
+      "registered_utc": "2026-08-08T17:37:36Z",
+      "fanout_sources": ["failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08.json"],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "hypotheses": [
+        {
+          "hid": "H-zself-specialises",
+          "label": "z_self reliably specialises for self/action information under SD-005's differential-loss functional separation",
+          "desc": "Across three corrected-design tests (047g functional cross-decoding, 113 behavioural double-dissociation, 532 correlational latent-domain selectivity), z_self consistently shows the predicted self/action specialisation (e.g. 532's self_body_advantage=+0.126, passing).",
+          "axis": "representation",
+          "pre_registered_utc": "2026-03-23T17:52:46Z",
+          "pre_registration_source": "failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08.json",
+          "adjudicating_runs": [
+            "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+            "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+            "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3"
+          ],
+          "null_declared": "z_self shows no more self/action specialisation than z_world -- the differential-loss routing produces no functional separation on the self side either.",
+          "measurement_requirement": "Cross-decoding or correlational advantage of z_self over z_world on self/action-predictive targets, per the corrected-design criteria in each run.",
+          "motivating_evidence": "047g/113/532 constitute the 'corrected design' trio identified in claims.yaml's 2026-08-06 heterogeneity_note, after 047d/e/f were ruled design failures (frozen probe, unstable GRL, wrong geometric test).",
+          "probe_status": "resolved",
+          "blocked_by_substrate": null,
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+              "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+              "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": null,
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-05-06T09:06:07Z",
+            "basis": "All three corrected-design runs show z_self specialising for self/action information (532's self_body_advantage=+0.126 is the clearest single number); necessary-not-sufficient (met_elimination_bar left false since this hypothesis is CONFIRMED, not eliminated)."
+          }
+        },
+        {
+          "hid": "H-zworld-does-not-specialise",
+          "label": "z_world does NOT show reciprocal world-specific specialisation under the same corrected designs",
+          "desc": "The asymmetric half of the finding: 047g's split-vs-unified action advantage is negative (-0.030); 113's gap_world_split=0.0095 misses its >=0.06 threshold and delta_self=-0.0006 fails to show purification; 532's world_obs_advantage=-0.032 is negative (z_self predicts world observations at least as well as z_world does).",
+          "axis": "representation",
+          "pre_registered_utc": "2026-03-23T17:52:46Z",
+          "pre_registration_source": "failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08.json",
+          "adjudicating_runs": [
+            "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+            "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+            "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3"
+          ],
+          "null_declared": "z_world shows the predicted reciprocal world-specific specialisation, symmetric with z_self.",
+          "measurement_requirement": "Cross-decoding or correlational advantage of z_world over z_self on world-predictive targets, per the corrected-design criteria in each run.",
+          "motivating_evidence": "Same trio as H-zself-specialises; both hypotheses are adjudicated by the same three runs, which is why they resolve in the same edit.",
+          "probe_status": "resolved",
+          "blocked_by_substrate": null,
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+              "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+              "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": null,
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-05-06T09:06:07Z",
+            "basis": "All three corrected-design runs show z_world failing its own specialisation criterion, with 532's world_obs_advantage explicitly negative -- symmetric specialisation is eliminated as the read; SD-005's own claims.yaml note already names the likely fix (an E2-prediction-based reafference signal replacing static geometric separation for the world side)."
+          }
+        }
+      ],
+      "synthesis": {
+        "surviving_label": "asymmetric specialisation -- z_self specialises, z_world does not, under static geometric separation",
+        "text": "SD-005's differential-loss functional separation produces asymmetric specialisation: z_self reliably specialises for self/action information (047g/113/532 all confirm), z_world does not show reciprocal world-specific specialisation (same three runs, all fail their own world-side criterion, 532's world_obs_advantage explicitly negative). This is a translation-completeness finding, not a claim falsification -- the biology (Friston/Keysers/Wolpert/Farrer) supports the mechanism, and claims.yaml's own note already identifies the likely fix (an E2.world_forward prediction-error comparator as the primary reafference signal, replacing the static geometric-separation objective the 047-lineage tested).",
+        "under_test": "None currently queued. The E2-prediction-based reafference-signal redesign is named in claims.yaml prose but has not been turned into an EXQ."
+      },
+      "decision": {
+        "decision_question": "Does replacing SD-005's static geometric-separation objective with an E2-prediction-based reafference signal restore world-side specialisation?",
+        "live_gate": "Not yet queued. Redesign direction named in claims.yaml prose but no EXQ has tested it.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "Asymmetry confirmed across 3 independent corrected designs spanning 2026-03-23 to 2026-05-06; redesign direction identified but untested.",
+        "observation_bottleneck": null
+      },
+      "growth_restriction": ""
     }
   ]
 }

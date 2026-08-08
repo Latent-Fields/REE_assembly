@@ -1,0 +1,762 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-08T17:37:36Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [
+  "v3_exq_331_arc030_approach_avoidance_balance_dry_20260410T160253Z_v3",
+  "v3_exq_138a_arc030_go_nogo_pair_20260403T043647Z_v3"
+ ],
+ "targets": [
+  {
+   "run_id": "v3_exq_086_arc030_go_nogo_symmetry_20260323T180254Z_v3",
+   "claim_ids": [
+    "ARC-030"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. warmup=150 too short per author's own retrospective",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "warmup=150 too short per author's own retrospective"
+   ],
+   "routing": "governance-note-only",
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08 (V3-EXQ-247)"
+    ],
+    "refused_requeue": true,
+    "route_to": "already_chipped_by_governance",
+    "upstream_substrate": "GAP-1/GAP-2/GAP-7 (already landed 2026-05-11..06-15); retest gated by chip-20260808-arc030-mech307-readiness"
+   }
+  },
+  {
+   "run_id": "v3_exq_138a_arc030_go_nogo_pair_20260403T090427Z_v3",
+   "claim_ids": [
+    "ARC-030"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. canonical config (warmup=400/eval=50); claims.yaml note wrongly states criteria_met=2/5, actual 1/5 for the excluded sibling run",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "canonical config (warmup=400/eval=50); claims.yaml note wrongly states criteria_met=2/5, actual 1/5 for the excluded sibling run"
+   ],
+   "routing": "governance-note-only",
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08 (V3-EXQ-247)"
+    ],
+    "refused_requeue": true,
+    "route_to": "already_chipped_by_governance",
+    "upstream_substrate": "GAP-1/GAP-2/GAP-7 (already landed 2026-05-11..06-15); retest gated by chip-20260808-arc030-mech307-readiness"
+   }
+  },
+  {
+   "run_id": "v3_exq_180a_arc030_benefit_eval_phased_20260401T232738Z_v3",
+   "claim_ids": [
+    "ARC-030"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. representation present (C1 pass), readout fails and is actively counterproductive (C3 ratio 0.37)",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "representation present (C1 pass), readout fails and is actively counterproductive (C3 ratio 0.37)"
+   ],
+   "routing": "governance-note-only",
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08 (V3-EXQ-247)"
+    ],
+    "refused_requeue": true,
+    "route_to": "already_chipped_by_governance",
+    "upstream_substrate": "GAP-1/GAP-2/GAP-7 (already landed 2026-05-11..06-15); retest gated by chip-20260808-arc030-mech307-readiness"
+   }
+  },
+  {
+   "run_id": "v3_exq_331_arc030_approach_avoidance_balance_20260411T085354Z_v3",
+   "claim_ids": [
+    "ARC-030"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. already governance-annotated: goal seeding not functional, does not weaken ARC-030",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "already governance-annotated: goal seeding not functional, does not weaken ARC-030"
+   ],
+   "routing": "governance-note-only",
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08 (V3-EXQ-247)"
+    ],
+    "refused_requeue": true,
+    "route_to": "already_chipped_by_governance",
+    "upstream_substrate": "GAP-1/GAP-2/GAP-7 (already landed 2026-05-11..06-15); retest gated by chip-20260808-arc030-mech307-readiness"
+   }
+  },
+  {
+   "run_id": "v3_exq_433_sd029_eventcond_comparator_20260419T013523Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. monostrategy/event-imbalance, C0/C4 gate",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "monostrategy/event-imbalance, C0/C4 gate"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_433a_sd029_eventcond_comparator_scripted_20260419T161931Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same, scripted-eval decoupling didn't fix it",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same, scripted-eval decoupling didn't fix it"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_433b_sd029_extended_interventional_20260420T155256Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same, extended training didn't fix it",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same, extended training didn't fix it"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_433d_sd029_eventcond_comparator_20260427T012142Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same, 0 agent-caused trials in 4/4 seeds",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same, 0 agent-caused trials in 4/4 seeds"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_433e_sd029_eventcond_comparator_reef_20260505T072754Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. reef substrate partially effective",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "reef substrate partially effective"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_433f_sd029_eventcond_comparator_reef_20260507T213949Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. reef insufficient at 8x8 scale",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "reef insufficient at 8x8 scale"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_523_sd029_reef_comparator_20260505T180800Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. tests the superseded SD-003 two-pass cf_gap formula, not the SD-029 single-pass spec",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "tests the superseded SD-003 two-pass cf_gap formula, not the SD-029 single-pass spec"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_535_sd029_p1_target_fix_20260506T214852Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. RECOMMEND CORRECTING from mixed to non_contributory -- same two-pass cf_gap defect as 523/535a, currently uncorrected",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "RECOMMEND CORRECTING from mixed to non_contributory -- same two-pass cf_gap defect as 523/535a, currently uncorrected"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. already self-corrected in own note -- cleanest example of catching a wrong-layer test",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "already self-corrected in own note -- cleanest example of catching a wrong-layer test"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537_sd029_single_pass_residual_20260508T122953Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537_sd029_single_pass_residual_20260508T135430Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537_sd029_single_pass_residual_20260508T135638Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "ALIGN all 3 same-day runs to this disposition -- only 1 of 3 currently marked superseded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537b_sd029_decoupled_curricula_20260508T180253Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "superseded",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. curriculum-decoupling didn't move C1",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "curriculum-decoupling didn't move C1"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537c_sd029_capacity_lift_20260508T205935Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "superseded",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. capacity lift didn't move C1 -- rules out width",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "capacity lift didn't move C1 -- rules out width"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_537d_sd029_no_interventional_20260508T214809Z_v3",
+   "claim_ids": [
+    "SD-029",
+    "MECH-256"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "D1/D2 competitive evaluation (ARC-030) or single-pass efference-copy comparator (SD-029/MECH-256)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. terminal read of Phase 2; no-interventional didn't move C1 either. RECONCILIATION: V3-EXQ-878 (2026-08-03, confirmed, outside this batch) shows the same comparator mechanism passing cleanly via a differently-operationalized test once event-balance achieved on a later substrate -- sidesteps, does not directly solve, the r2~0.65 forward-fit puzzle.",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "terminal read of Phase 2; no-interventional didn't move C1 either. RECONCILIATION: V3-EXQ-878 (2026-08-03, confirmed, outside this batch) shows the same comparator mechanism passing cleanly via a differently-operationalized test once event-balance achieved on a later substrate -- sidesteps, does not directly solve, the r2~0.65 forward-fit puzzle."
+   ],
+   "routing": "governance-demotion",
+   "routing_note": "Not a demotion -- route to /governance to reconcile V3-EXQ-878's already-confirmed finding into SD-029/MECH-256's stale v3_pending/evidence_quality_note. Do NOT recommend a fresh SD-029-specific experiment."
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "ARC-030: one structural property (goal-seeding dependency gap, GAP-1/2/7, now fixed, retest already chipped by governance). SD-029/MECH-256: two-phase story -- Phase 1 monostrategy/event-imbalance ceiling, Phase 2 (post-reef-fix) a distinct, unexplained forward-model-fit ceiling ruled out against capacity/curriculum/training-regime, sidestepped (not solved) by a later, already-confirmed differently-designed test (V3-EXQ-878).",
+  "is_independent_bugs": false,
+  "structural_property": "Both threads share the MECH-439 F-dominance monostrategy root at different points -- ARC-030's Go-channel signal generation and SD-029's event-conditional sampling are both blocked by the same 'policy is monomodal' shape, cross-referenced with the 21-run ARC-062 GAP-B cluster from a prior round.",
+  "readings": [
+   "arc030_already_chipped",
+   "sd029_reconciliation_not_requeue"
+  ]
+ }
+}

@@ -1,0 +1,754 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-08T17:37:36Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [
+  "v3_exq_326_wanting_gradient_nav_fix_dry_20260410T154537Z_v3",
+  "v3_exq_326_wanting_gradient_nav_fix_dry_20260410T155010Z_v3",
+  "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101558Z_v3",
+  "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101736Z_v3",
+  "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101952Z_v3",
+  "v3_exq_326a_wanting_gradient_nav_fix_dry_20260413T074905Z_v3",
+  "v3_exq_327_mech163_goal_conditioned_nav_dry_20260410T155627Z_v3"
+ ],
+ "targets": [
+  {
+   "run_id": "v3_exq_056_sd010_harm_stream_baseline_20260320T062233Z_v3",
+   "claim_ids": [
+    "SD-010",
+    "ARC-027"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "competence_implementation_gap",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. HarmEncoder saturated/constant input; fixed by EXQ-058b direct MSE supervision",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "HarmEncoder saturated/constant input; fixed by EXQ-058b direct MSE supervision"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_056_sd010_harm_stream_baseline_20260320T155338Z_v3",
+   "claim_ids": [
+    "SD-010",
+    "ARC-027"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "competence_implementation_gap",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same, second real run",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same, second real run"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_111_sd007_discriminative_pair_c1fail_20260328T161718Z_v3",
+   "claim_ids": [
+    "SD-007"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "precondition_unmet",
+   "recommended_evidence_direction": "not_applicable",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. CONFIRMED NOT A CRASH -- self-classified predictor-quality precondition gate, R2_test<0.10",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "CONFIRMED NOT A CRASH -- self-classified predictor-quality precondition gate, R2_test<0.10"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_118_sd007_reafference_multiseed_c1fail_20260328T212454Z_v3",
+   "claim_ids": [
+    "SD-007"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "precondition_unmet",
+   "recommended_evidence_direction": "not_applicable",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same, confirmed not a crash",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same, confirmed not a crash"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260410T154537Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency with siblings",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency with siblings"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260410T155010Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency with siblings",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency with siblings"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101558Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- already correctly excluded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- already correctly excluded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101736Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- already correctly excluded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- already correctly excluded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326_wanting_gradient_nav_fix_dry_20260412T101952Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- already correctly excluded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- already correctly excluded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_326a_wanting_gradient_nav_fix_dry_20260413T074905Z_v3",
+   "claim_ids": [
+    "SD-015",
+    "MECH-216",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- already correctly excluded",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- already correctly excluded"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_327_mech163_goal_conditioned_nav_dry_20260410T155627Z_v3",
+   "claim_ids": [
+    "MECH-163",
+    "SD-015"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "DRY RUN confirmed by content -- RECLASSIFY from does_not_support to non_contributory for consistency"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_327_mech163_goal_conditioned_nav_20260414T054812Z_v3",
+   "claim_ids": [
+    "SD-015"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "missing",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "competence_implementation_gap",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. goal conditioning had zero behavioral effect, mechanism inert",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "goal conditioning had zero behavioral effect, mechanism inert"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3",
+   "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. FRESH FINDING: origin point of the row1b/GAP-2 lineage. Neighborhood identity-discrimination probe (C2b) fails 0.483<0.6 while C0/C1/C2a/C2c/C2d/C3a/C3b all PASS -- encoder/classifier/drive plumbing correct, only the identity probe underpowered.",
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-049-PHASE-2",
+    "severity": "degrading",
+    "substrate_paths": [
+     "experiments/v3_exq_514b_sd049_phase_2_behavioural_validation.py"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_514b_sd049_phase_2_behavioural_validation_20260505T005802Z_v3",
+     "experiment_type": "v3_exq_514b_sd049_phase_2_behavioural_validation",
+     "metric": "C2b neighborhood-probe accuracy 0.483 vs 0.6 floor -- insufficient foraging competence to power the identity probe",
+     "target": "neighborhood probe accuracy >= 0.6 once foraging-competence substrate lifts consumption-sample counts",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "FRESH FINDING: origin point of the row1b/GAP-2 lineage. Neighborhood identity-discrimination probe (C2b) fails 0.483<0.6 while C0/C1/C2a/C2c/C2d/C3a/C3b all PASS -- encoder/classifier/drive plumbing correct, only the identity probe underpowered."
+   ],
+   "routing": "implement-substrate"
+  },
+  {
+   "run_id": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T043247Z_v3",
+   "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. formalizes existing bare governance-walk reclassification",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "formalizes existing bare governance-walk reclassification"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_514f_sd049_phase_2_reef_behavioural_validation_20260508T122507Z_v3",
+   "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3",
+   "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230",
+    "MECH-307"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. adds a formal target citing failure_autopsy_V3-EXQ-514l's existing narrative coverage",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "adds a formal target citing failure_autopsy_V3-EXQ-514l's existing narrative coverage"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_514k_sd049_phase3_mech229_wanting_liking_identity_20260601T115307Z_v3",
+   "claim_ids": [
+    "SD-049",
+    "SD-015",
+    "MECH-229",
+    "MECH-230"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. already adjudicated via failure_autopsy_V3-EXQ-626_2026-06-01, no new work",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "already adjudicated via failure_autopsy_V3-EXQ-626_2026-06-01, no new work"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_328b_mech112_zgoal_structured_latent_20260413T082606Z_v3",
+   "claim_ids": [
+    "MECH-230",
+    "SD-012"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. threshold-calibration gap, benefit_threshold=0.6 doesn't fully suppress ablated-condition seeding",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "threshold-calibration gap, benefit_threshold=0.6 doesn't fully suppress ablated-condition seeding"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_531_sd015_resource_encoder_ablation_20260506T094124Z_v3",
+   "claim_ids": [
+    "SD-015"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dopaminergic incentive-salience wanting/liking dissociation",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "superseded",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. outlier vs bracketing EXQ-085l/514o evidence; narrower test config",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "outlier vs bracketing EXQ-085l/514o evidence; narrower test config"
+   ],
+   "routing": "governance-note-only"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "Six threads. A/B/C/D/F already resolved or self-diagnosed. Thread E (SD-049 row1b/GAP-2 lineage) is the fresh finding -- V3-EXQ-514b is the previously-uncovered origin point of a signature (encoder/classifier/drive correct, neighborhood identity-probe underpowered) that recurs through 514f/j/k/538a, all converging on insufficient foraging-competence to power the identity probes.",
+  "is_independent_bugs": true,
+  "structural_property": "Thread E is one structural property (foraging-competence ceiling); other threads are independent, mostly already-resolved findings.",
+  "readings": [
+   "mostly_closed_one_fresh_origin_point"
+  ]
+ }
+}

@@ -1,0 +1,689 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-08T17:37:36Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [
+  "v3_exq_330a_sd013_contrastive_counterfactual_frac05_dry_20260412T102042Z_v3"
+ ],
+ "targets": [
+  {
+   "run_id": "v3_exq_011_mech095_tpj_proxy_20260317T204144Z_v3",
+   "claim_ids": [
+    "MECH-095",
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. RANDOM policy caveat",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "RANDOM policy caveat"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_013_sd005_strict_20260317T225109Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "precondition_unmet",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. RANDOM policy trap -- V3-EXQ-642-shaped, body_selectivity_margin backwards",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "RANDOM policy trap -- V3-EXQ-642-shaped, body_selectivity_margin backwards"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047_unified_vs_split_latent_20260319T213410Z_v3",
+   "claim_ids": [
+    "SD-005",
+    "MECH-069"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. 4/5 criteria, only calibration fails",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "4/5 criteria, only calibration fails"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047b_sd005_sd010_joint_20260321T191558Z_v3",
+   "claim_ids": [
+    "SD-005",
+    "MECH-069"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. split does NOT improve world-forward R2 over unified even post-SD-010 fix -- contradicts original 047's own prediction",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "split does NOT improve world-forward R2 over unified even post-SD-010 fix -- contradicts original 047's own prediction"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047e_sd005_adversarial_separation_20260323T101100Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. design failure: unstable adversarial GRL race",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "design failure: unstable adversarial GRL race"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047f_sd005_orth_split_pair_20260323T122748Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. design failure: geometric orthogonality is the wrong test",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "design failure: geometric orthogonality is the wrong test"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047f_sd005_orth_split_pair_20260323T124338Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047g_sd005_functional_separation_20260323T185711Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. corrected design; z_self specializes, z_world does not",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "corrected design; z_self specializes, z_world does not"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047i_tpj_routing_poc_20260324T012720Z_v3",
+   "claim_ids": [
+    "MECH-095",
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. folded into MECH-095's already-fired brake chain",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "folded into MECH-095's already-fired brake chain"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_047j_tpj_routing_ce_20260324T202313Z_v3",
+   "claim_ids": [
+    "MECH-095",
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "substrate_ceiling",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. same",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "same"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_090_adversarial_split_drift_20260323T184302Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "supports",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. reading tension flagged: null R2 consistent with either 'clean by construction' or 'carries little reliably'",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "reading tension flagged: null R2 consistent with either 'clean by construction' or 'carries little reliably'"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_113_sd005_double_dissociation_20260328T162148Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. corrected design; z_self specializes, z_world does not; retire_ree_claim per script",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "corrected design; z_self specializes, z_world does not; retire_ree_claim per script"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3",
+   "claim_ids": [
+    "SD-005"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. corrected design; world_obs_advantage negative",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "corrected design; world_obs_advantage negative"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_045_mech102_ethical_ttype_20260319T201636Z_v3",
+   "claim_ids": [
+    "MECH-102",
+    "ARC-024"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "n/a",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. already absorbed into MECH-102's substrate_conditional aggregate note",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "already absorbed into MECH-102's substrate_conditional aggregate note"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_095b_harm_fwd_slow_learning_20260327T174220Z_v3",
+   "claim_ids": [
+    "ARC-033",
+    "SD-011"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. harm_obs_s variance near-zero at single-step; fixed via harm-delta target (166e), drove ARC-033 stable promotion",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "harm_obs_s variance near-zero at single-step; fixed via harm-delta target (166e), drove ARC-033 stable promotion"
+   ],
+   "routing": "governance-note-only"
+  },
+  {
+   "run_id": "v3_exq_107_arc024_gradient_vs_flat_structure_20260328T161503Z_v3",
+   "claim_ids": [
+    "ARC-024"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. FRESH FINDING: pre-contact gradient FAILs 25x below threshold; AUC discriminability passes",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "severity": "degrading",
+    "substrate_paths": [
+     "experiments/v3_exq_107_arc024_gradient_vs_flat_structure.py",
+     "experiments/v3_exq_117_arc024_harm_benefit_gradient_pair.py",
+     "ree_core/environments/causal_grid_world.py"
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "FRESH FINDING: pre-contact gradient FAILs 25x below threshold; AUC discriminability passes"
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_117_arc024_harm_benefit_gradient_pair_20260328T212450Z_v3",
+   "claim_ids": [
+    "ARC-024"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "inadequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. FRESH FINDING: harm gradient fails; n_benefit_approach=0 both seeds -- benefit arm untestable, environment-labeling gap",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "severity": "degrading",
+    "substrate_paths": [
+     "experiments/v3_exq_107_arc024_gradient_vs_flat_structure.py",
+     "experiments/v3_exq_117_arc024_harm_benefit_gradient_pair.py",
+     "ree_core/environments/causal_grid_world.py"
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "FRESH FINDING: harm gradient fails; n_benefit_approach=0 both seeds -- benefit arm untestable, environment-labeling gap"
+   ],
+   "routing": "queue-experiment"
+  },
+  {
+   "run_id": "v3_exq_330a_sd013_contrastive_counterfactual_frac05_20260414T234223Z_v3",
+   "claim_ids": [
+    "SD-013",
+    "ARC-033"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "adequate_or_gap",
+    "integration": "isolated",
+    "scale": "unknown"
+   },
+   "biological_reference": {
+    "closest_mechanism": "efference-copy/TPJ agency attribution (SD-005 thread) or threat-imminence/predatory-imminence proximity gradient (ARC-024/033 thread)",
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "see companion .md",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_gap",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "Backfilled 2026-08-08. threshold calibration issue, already resolved by contemporaneous EXQ-353",
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "threshold calibration issue, already resolved by contemporaneous EXQ-353"
+   ],
+   "routing": "governance-note-only"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "Two independent threads. SD-005: corrected trio (047g/113/532) shows z_self specializes for self/action information, z_world does not reciprocally specialize -- already diagnosed in claims.yaml prose, formalized + Step 9b registered here. ARC-024/ARC-033: 095b/330a already resolved downstream via measurement-target fixes (harm-delta, normalized threshold); 107/117 are genuinely fresh findings -- ARC-024's pre-contact gradient prediction fails at the latent-geometry level, and 117 surfaces a real environment-labeling gap (benefit-approach events never fire).",
+  "is_independent_bugs": true,
+  "structural_property": "No shared structural cause across the two threads -- reported separately.",
+  "readings": [
+   "sd005_asymmetric_specialization",
+   "arc024_fresh_gradient_gap"
+  ]
+ }
+}
