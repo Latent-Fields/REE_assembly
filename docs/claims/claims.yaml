@@ -2208,6 +2208,7 @@
   subject: control_plane.astrocyte_regulatory_stack
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -2216,6 +2217,42 @@
     - ARC-005
     - INV-008
     - ARC-004
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: A `RegulatoryField`-class module implementing
+    the slow field R(x,t) described in implementation_hooks.md must exist in
+    ree_core and be wired LIVE into the precision-application path (LatentStack /
+    SharedDepthEncoder) -- not merely declared or dead code, mirroring the
+    non-degeneracy bar INV-008 already applies to its own precision audit. Per
+    the doc's own interface spec, that means at minimum: an update(dt,
+    monoamine_signals, activity, metabolic_state) method invoked at a cadence
+    N >> 1 relative to the per-step E2/E1 update, and a get_precision_multipliers
+    (depth_k) query path that E2/E1 actually consume in place of (or in addition
+    to) the current direct per-channel nn.Parameter logits INV-008 confirmed as
+    the live mechanism. Confirmed absent as of 2026-08-08 (grep -ri astrocyte
+    ree_core/ -r: 0 hits). The test must also isolate genuine field dynamics
+    from a trivial pass-through: a module recomputing alpha_multipliers as an
+    instantaneous 1:1 function of the current monoamine signal (no lag, no
+    memory) would satisfy "a RegulatoryField exists" while exhibiting none of
+    the mediation MECH-001 actually asserts.
+
+    CONFIRMING: (1) alpha_k(x,t) measurably LAGS step-changes in a monoamine-like
+    broadcast signal by a timescale tau_R on the order of the doc's
+    seconds-to-minutes design, rather than reacting within one step; (2)
+    alpha_k(x,t) shows spatial/positional heterogeneity AT FIXED DEPTH k under
+    matched monoamine input, going beyond the depth-channel differentiation
+    INV-008 already established; (3) sleep-phase annealing of R(x,t) measurably
+    improves precision recalibration relative to a synaptic-weights-only
+    recalibration control; (4) E3 trajectory selection measurably penalizes
+    trajectories requiring a rapid regulatory shift.
+
+    FALSIFYING (VIOLATED BY): (1) a field-mediation layer is implemented and
+    exercised live, but alpha_k(x,t) tracks monoamine-like input with negligible
+    lag; (2) the implemented field shows no spatial heterogeneity beyond the
+    existing per-depth-channel differentiation; (3) sleep annealing of R(x,t)
+    produces no measurable improvement over weights-only recalibration; (4) a
+    channel-ablation test on the field module shows ablating it entirely leaves
+    alpha_k(x,t) unchanged -- meaning the framing, even once built, is a
+    redundant re-description of the existing per-channel parameterization.
   location: docs/architecture/astrocyte_regulatory_stack.md#mech-001
   source:
     - docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md
@@ -2875,6 +2912,7 @@
   subject: attention.fragmentation
   polarity: asserts
   status: provisional
+  epistemic_category: derivational
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -2882,6 +2920,53 @@
   depends_on:
     - INV-009
     - ARC-005
+  what_would_answer: >
+    Answered by architectural audit of the live attention/precision-related
+    control channels -- a STRUCTURAL question (are these axes implemented as
+    genuinely separate, non-substitutable channels writing to distinct
+    registers?) -- not by a trained behavioral experiment. Distinct from ARC-005
+    (does each channel have empirical CAUSAL AUTHORITY over a measured outcome)
+    and from INV-009 (is attention-allocation continuous vs symbolic). MECH-007
+    can be structurally CONFIRMED while ARC-005 reads mixed on channel potency
+    -- the two are compatible, not in tension.
+
+    NON-DEGENERACY PRECONDITION: the audit must find each named axis (precision
+    / commitment-pressure / exclusivity) backed by its OWN live, actually-
+    exercised computation with its OWN state and write target(s) -- not merely
+    a distinctly-named label over a shared value. All three axes must be
+    checked for cross-writes into each other's state.
+
+    CONFIRMED CURRENT STATE (2026-08-08 digestion pass): all three axes are
+    live and mutually non-overlapping. (1) PRECISION: ree_core/latent/stack.py
+    LatentState.precision, 5 independently-parameterized per-channel
+    nn.Parameter gains, plus a structurally distinct current_precision scalar
+    in e3_selector.py/dacc.py. (2) COMMITMENT PRESSURE:
+    ree_core/policy/natural_commit_urgency.py + regulators/phasic_surprise_
+    burst.py -- grep-verified no reference to tonic_5ht/current_precision/
+    precision_logit. (3) EXCLUSIVITY/COLLAPSE: ree_core/neuromodulation/
+    serotonin.py's tonic_5ht, writing only to GoalConfig.z_goal_seeding_gain
+    and valence_wanting_floor. No write path found from any one axis into
+    another's state.
+
+    FALSIFYING: any live code path where one axis's module reads or writes
+    another axis's underlying state variable directly -- the "separate axis"
+    naming would be cosmetic and the underlying number shared or derived from
+    another axis with no independent computation. Also falsifying: a future
+    control-plane channel that collapses two of the three functions into one
+    shared parameter.
+
+    CONFIRMING: current state per the audit above.
+
+    Note: ARC-005's own channel-ablation test found only 1 of 4 tested channels
+    (MODEPRIOR) shows strong causal authority over action occupancy; 5-HT and
+    PHASIC show weak/scattered effects, attributed to an undertrained dACC
+    adapter, not architectural non-fragmentation. Do not conflate a weak causal
+    effect with a shared register.
+
+    GOVERNANCE FLAG (2026-08-08 digestion pass, not resolved here): this audit
+    is CONFIRMING and both dependencies (INV-009, ARC-005) are already active
+    -- flagged for /governance promotion review (provisional -> active); NOT
+    promoted during this digestion pass.
   location: docs/architecture/why_attention_must_be_fragmented.md#mech-007
   source:
     - docs/processed/legacy_tree/architecture/why_attention_must_be_fragmented.md
@@ -3212,12 +3297,41 @@
   subject: control_plane.mode_shaping
   polarity: asserts
   status: provisional
+  epistemic_category: standard
   live_status:
     reading: provisional
     as_of: 2026-07-11
     needs_review: false
   depends_on:
     - ARC-005
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: (a) at least two of SalienceCoordinator's four
+    operating_mode components must be non-degenerate across the test window; (b)
+    the manipulated control-plane channel(s) must be swept through a genuinely
+    continuous range and verified to actually move the channel's internal
+    state; (c) at least one mode_switch_trigger event (discrete argmax flip)
+    must occur during the sweep.
+
+    CONFIRMING: sweeping a control-plane channel continuously produces a
+    MONOTONIC, graded redistribution of the operating_mode probability vector
+    across the simplex -- probability mass visibly migrates toward the
+    eventually-dominant mode over several ticks BEFORE the discrete argmax
+    flip, correlating with the channel's continuous value, not just a step at
+    threshold-crossing. Consistent, adjacent evidence already exists: ARC-005's
+    V3-EXQ-846/848-series showed MODEPRIOR channel authority_mean=1.0 and
+    monotonic occupancy-vs-setting relationships; this claim's test extends
+    that to the TRANSITION SHAPE specifically.
+
+    FALSIFYING (VIOLATED BY): the operating_mode vector exhibits discontinuous,
+    threshold-only jumps with NO detectable graded precursor as a channel is
+    swept continuously -- mode occupancy sits flat until a hard boundary is
+    crossed, then snaps. Would indicate the substrate functionally implements a
+    discrete chooser regardless of its soft-vector surface representation, and
+    would falsify the claim -- MECH-019 would need revision toward the legacy
+    MECH-008/020 semi-discrete-modes framing it is meant to have superseded.
+
+    Provenance note: MECH-020 is legacy, explicitly superseded by MECH-019/039.
+    MECH-039 depends on MECH-019.
   location: docs/architecture/control_plane.md#mech-019
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
@@ -4144,10 +4258,50 @@
   subject: default_mode.reflective_ethics
   polarity: asserts
   status: provisional
+  epistemic_category: standard
   live_status:
     reading: provisional
     as_of: 2026-07-11
     needs_review: false
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: This test is only informative if all four hold
+    (V3-EXQ-065/080/201 all failed this precondition; V3-EXQ-876/671b on
+    2026-08-02 confirm the substrate CAN now clear it on the identical
+    mechanism): (1) both regimes non-degenerate per seed (uncommitted_step_count
+    >= 20 AND committed_step_count >= 20), obtained by reading E3's live
+    SelectionResult.committed (never the stale _committed_candidates cache or
+    torn-down _committed_trajectory), calling agent.update_residue() every eval
+    tick, and feeding BreathOscillator.sweep_threshold_reduction directly into
+    the same agent.e3.select() call. (2) z_goal substrate genuinely active for
+    the episode. (3) E3 harm/benefit evaluation non-degenerate (harm_pred_std
+    >= 0.02). (4) Hippocampal replay-trajectory generation active and
+    observable during the uncommitted window.
+
+    CAUTION: the sibling MECH-025/MECH-025b cluster used this identical fixed
+    instrumentation and both FAILed on downstream sign/operationalization
+    grounds, not substrate grounds -- MECH-029's redesign should reason from
+    its own generation/evaluation reframe below, not copy MECH-025's DV by
+    analogy.
+
+    CONFIRMING: during genuine uncommitted-mode windows, when the hippocampal
+    module generates multiple candidate replay trajectories, E3's harm/benefit
+    evaluation shows measurably GREATER differentiation across those candidates
+    than during committed/doing-mode windows.
+
+    FALSIFYING (VIOLATED BY): E3's harm/benefit differentiation is equal or
+    SMALLER during uncommitted windows (mirrors the confirmed MECH-025 sibling
+    finding -- opposite the naively predicted direction); or no measurable
+    relationship between uncommitted-window occupancy and evaluative
+    differentiation (mirrors the MECH-025b sibling null); or hippocampal
+    trajectory generation is itself degenerate during uncommitted windows.
+
+    CURRENCY UPDATE (2026-08-08 digestion pass): the note below's "REVISIT
+    AFTER z_goal SUBSTRATE IS ACTIVE" condition is now satisfied -- z_goal is
+    confirmed live and extensively wired (MECH-117 graduated to stable); the
+    commit-threshold deadlock was fixed 2026-04-02 (299e540) and independently
+    reconfirmed non-degenerate in production on 2026-08-02 (V3-EXQ-876/671b,
+    same mechanism family). Recategorized from the note's implied
+    substrate-blocked reading to standard/testable-now accordingly.
   evidence_quality_note: |
     EXQ-065 FAIL (2026-03-23): passive observation -- agent stayed locked in
     committed mode throughout eval (uncommitted_step_count=0). No uncommitted
@@ -4312,6 +4466,7 @@
   subject: social.other_selflike_high_recall_bias
   polarity: asserts
   status: provisional
+  epistemic_category: substrate_conditional
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -4319,6 +4474,26 @@
   depends_on:
     - MECH-031
     - ARC-010
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires (1) a working OTHER_SELFLIKE
+    classifier with a genuine, quantifiable decision boundary, and (2) a stream
+    of ambiguous, near-boundary stimuli. Confirmed absent as of 2026-08-08: grep
+    of ree_core/ for "OTHER_SELFLIKE"/"self_like"/"selflike" returns zero
+    matches anywhere in ree-v3 -- MECH-031 (the base tagging mechanism this
+    claim qualifies) has no implementation, and its own prerequisite ARC-010
+    (social cognition/mirror modelling) is confirmed unimplemented and gated to
+    implementation_phase v5.
+
+    CONFIRMING: on a held-out set of ambiguous/borderline stimuli, the
+    classifier's false-positive rate on ambiguous non-self-like stimuli is
+    measurably higher than its false-negative rate on ambiguous self-like
+    stimuli, AND this asymmetry is traceable to an explicit, inspectable
+    threshold/weighting choice.
+
+    FALSIFYING (VIOLATED BY): the classifier's decision threshold is symmetric
+    or unbiased; OR the threshold is biased the OTHER way, favoring precision;
+    OR there is no tunable decision boundary at all; OR the claimed bias exists
+    only as an unenforced code comment/design note with no measurable effect.
   location: docs/architecture/social.md#mech-032
   source:
     - docs/architecture/social.md
