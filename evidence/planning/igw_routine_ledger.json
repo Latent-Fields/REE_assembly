@@ -2661,7 +2661,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-224-literature-proposal-for-mech-141 && claude --resume fabdfb04-731c-463b-b3f2-01294d821971",
       "task_claim_session_id": "igw-auto-igw-224-literature-proposal-for-mech-141-20260808T162923Z",
       "assigned_at": "2026-08-08T16:28:55Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-08T16:43:04Z",
+      "completion_summary": "lit-pull MECH-141: 4 entries (Zhang&Iwaki 2019 DCM anchor, Chen 2020 Neuron, Jahfari 2011, Aron&Poldrack 2006) under targeted_review_connectome_mech_141; REE_assembly 12497640e0; fills missing_literature_evidence, evidence[] was empty",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -3623,6 +3627,20 @@
       "decision": "DONE",
       "note": "Duplicate re-staging of already-fully-resolved work. Original IGW-200 was diagnosed (chip-20260808-igw200-scaffolded-curriculum-hazard-rebalance): NO substrate change warranted -- z_goal survives all hazard stages, C6 decay is a driver-measurement washout (V3-EXQ-866a bypasses run_p2's contact-gated peak), not a substrate defect. User-confirmed via real AskUserQuestion on chip-20260808-scaffolded-c6-misdiagnosis-routing (option A). Routed and BOTH downstream chips now done: C6 -> chip-20260808-v3exq866c-c6-run-p2-fix (V3-EXQ-866c landed ree-v3 154894fd04), G0 -> chip-20260808-g0-foraging-competence-autopsy (autopsy landed REE_assembly 1594771036, reclassified competence_implementation_gap, no new build). substrate_queue.json entry status already correctly reflects this; assignment e86b7bcfb1ac already released 2026-08-08T14:40:30Z. Dispositioning so the generator stops re-staging it (2nd occurrence as IGW-202 after original IGW-200).",
       "noted_at": "2026-08-08T16:34:53Z"
+    },
+    {
+      "stable_hash": "a99dd0407f59",
+      "igw_id_at_disposition": "IGW-20260808-224",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-141"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-141",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-08T16:43:08Z",
+      "re_eligible_after": "2026-08-10T16:43:08Z"
     }
   ]
 }
