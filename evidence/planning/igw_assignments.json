@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-08T01:31:21Z",
+  "generated_at": "2026-08-08T02:41:55Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6340,6 +6340,72 @@
       "released_reason": "work_landed_or_item_gone",
       "released_event_for": "asn-20260808T004709Z-133da2eb-spawned_task",
       "note": "routed to chip chip-20260808-igw-240-mech074c-confirm by metaworker-dispatch cycle 1426 (ree-cloud-5)",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-074c (lit 0.75, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-074c"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260808T024155Z-d55354d0-other-metaworker-dispatch",
+      "stable_hash": "d55354d0869f",
+      "igw_id_at_assign": "IGW-20260808-237",
+      "agent": "other",
+      "agent_label": "metaworker-dispatch",
+      "source": "cli",
+      "assigned_at": "2026-08-08T02:41:55Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "ALREADY AUTHORED, do not re-author. MECH-074d confirmer is ree-v3/experiments/v3_exq_894_mech074d_bla_remap_attribution_selectivity.py (V3-EXQ-894), smoke-passed and landed; it was erased from the queue by the phase3 DB-authoritative snapshot writer because no coordinator POST /queue/add was made. Remaining work is queue ingress only, tracked by TASK_CHIPS chip-20260808-exq894-895-queue-erasure (gated to a box with REE_assembly/coordinator.env). Assigned by metaworker-dispatch cycle 1449 (ree-cloud-5) to stop igw_routine_tick auto-spawning a duplicate /queue-experiment worker.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-074d (lit 0.81, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-074d"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260808T024155Z-aafe9a1e-other-metaworker-dispatch",
+      "stable_hash": "aafe9a1e69e6",
+      "igw_id_at_assign": "IGW-20260808-239",
+      "agent": "other",
+      "agent_label": "metaworker-dispatch",
+      "source": "cli",
+      "assigned_at": "2026-08-08T02:41:55Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "ALREADY DONE. MECH-232 confirmer V3-EXQ-893 RAN: manifest REE_assembly/evidence/experiments/v3_exq_893_mech232_da_representational_expansion_confirmer_20260808T002050Z_v3.json (2026-08-08T00:20:50Z). The workset item is stale (exp ~0 predates the run/index). Assigned by metaworker-dispatch cycle 1449 (ree-cloud-5) to stop igw_routine_tick auto-spawning a duplicate /queue-experiment worker.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-232 (lit 0.78, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-232"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260808T024155Z-133da2eb-other-metaworker-dispatch",
+      "stable_hash": "133da2eb256a",
+      "igw_id_at_assign": "IGW-20260808-241",
+      "agent": "other",
+      "agent_label": "metaworker-dispatch",
+      "source": "cli",
+      "assigned_at": "2026-08-08T02:41:55Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "ALREADY AUTHORED, do not re-author. MECH-074c confirmer is ree-v3/experiments/v3_exq_895_mech074c_cea_fast_prime_dynamics.py (V3-EXQ-895), smoke-passed and landed; erased from the queue by the phase3 snapshot writer for the same no-POST-/queue/add reason. Remaining work is queue ingress only, tracked by TASK_CHIPS chip-20260808-exq894-895-queue-erasure. Assigned by metaworker-dispatch cycle 1449 (ree-cloud-5) to stop igw_routine_tick auto-spawning a duplicate /queue-experiment worker.",
       "item_snapshot": {
         "skill": "/queue-experiment",
         "title": "Confirm evidence: MECH-074c (lit 0.75, exp ~0)",
