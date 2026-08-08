@@ -1942,6 +1942,119 @@ def test_write_claim_evidence_matrix_still_includes_pass_class_unlinked_run():
     assert unlinked["readiness_probe"]["status"] == "PASS"
 
 
+# --- non-standard status rendered as PASS in INDEX.md (2026-08-08) ---------
+#
+# Sibling defect to the ERROR-as-PASS block above, one status class further out.
+# _evaluate_runs branches on FAIL and on ERROR/UNKNOWN, so every OTHER manifest
+# status string lands in its terminal `else` and becomes final_status="PASS".
+# The INDEX.md tables printed final_status directly, so a run whose manifest
+# says PARTIAL_NO_CANCEL / INCONCLUSIVE / MIXED / SUPERSEDED rendered as a clean
+# pass. Confirmed 2026-08-08 on
+# v3_exq_162_mech137_commit_token_structure_9e3b4eaa_v3 (PARTIAL_NO_CANCEL shown
+# as PASS); 34 of the corpus's 37 non-standard-status runs were affected.
+#
+# The fix is display-only: _display_status() falls back to the manifest's own
+# status string when final_status is a fallthrough "PASS". final_status itself is
+# deliberately NOT widened -- it feeds scoring / evidence-direction inference /
+# claim_evidence.v1.json, where reclassifying those runs is a governance change.
+# The tests below pin both halves: the string is shown, AND final_status stays
+# "PASS" so nothing downstream moves.
+
+def test_display_status_shows_partial_status_not_pass():
+    run = _run_record(manifest_status="PARTIAL_NO_CANCEL")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "PASS", "final_status semantics must be unchanged"
+    assert b._display_status(run) == "PARTIAL_NO_CANCEL"
+
+
+def test_display_status_shows_other_non_standard_statuses():
+    for status in ("INCONCLUSIVE", "INCONCLUSIVE_UNDERTRAINED", "MIXED",
+                   "SUPERSEDED", "DIAGNOSTIC_COMPLETE", "N/A",
+                   "PARTIAL_COLLAPSE_ADEQUATE"):
+        run = _run_record(manifest_status=status)
+        b._evaluate_runs([run], {})
+        assert b._display_status(run) == status, status
+
+
+def test_display_status_leaves_standard_statuses_exactly_as_before():
+    """Negative control: PASS/ERROR/UNKNOWN render unchanged, FAIL stays bold."""
+    for status, expected in (("PASS", "PASS"), ("ERROR", "ERROR"),
+                             ("UNKNOWN", "UNKNOWN"), ("FAIL", "**FAIL**")):
+        run = _run_record(manifest_status=status)
+        b._evaluate_runs([run], {})
+        assert b._display_status(run) == expected, status
+
+
+def test_display_status_derived_fail_wins_over_non_standard_manifest_status():
+    """A stop-criteria hit still renders **FAIL** even when the manifest carries
+    a non-standard status -- the derived verdict is not discarded in favour of
+    the raw string."""
+    run = _run_record(manifest_status="INCONCLUSIVE")
+    run.metrics = {"some_metric": 10.0}
+    b._evaluate_runs([run], {"fail_if": [{"metric": "some_metric", "op": ">",
+                                          "threshold": 5.0}]})
+    assert run.final_status == "FAIL"
+    assert b._display_status(run) == "**FAIL**"
+
+
+def _index_status_cell(index_md, key, col):
+    """The status cell of the INDEX.md row matching `key`.
+
+    `col` is 1-based over the table's own columns -- the per-experiment table is
+    `| run_id | timestamp | status | ...` (col 3) and the top-level one is
+    `| experiment_type | latest status | ...` (col 2).
+    """
+    for line in index_md.splitlines():
+        if line.startswith("|") and key in line:
+            cells = [c.strip() for c in line.split("|")]
+            return cells[col] if len(cells) > col else None
+    return None
+
+
+def test_experiment_index_table_renders_partial_status_end_to_end():
+    """End-to-end through the real INDEX.md writer, not just the helper."""
+    with tempfile.TemporaryDirectory() as td:
+        exp_dir = Path(td) / "v3_exq_000_partial"
+        run_dir = exp_dir / "runs" / "run_partial_v3"
+        run_dir.mkdir(parents=True)
+        for name in ("manifest.json", "metrics.json", "summary.md"):
+            (run_dir / name).write_text("{}", encoding="utf-8")
+
+        run = b.RunRecord(
+            experiment_type="v3_exq_000_partial",
+            run_id="run_partial_v3",
+            timestamp_raw="2026-08-08T10:00:00Z",
+            timestamp=datetime(2026, 8, 8, 10, 0, 0, tzinfo=timezone.utc),
+            manifest_path=run_dir / "manifest.json",
+            metrics_path=run_dir / "metrics.json",
+            summary_path=run_dir / "summary.md",
+            manifest_status="PARTIAL_NO_CANCEL",
+        )
+        b._evaluate_runs([run], {})
+        b._write_experiment_index(exp_dir, "v3_exq_000_partial", [run], [],
+                                  "2026-08-08T10:00:00Z")
+
+        text = (exp_dir / "INDEX.md").read_text(encoding="utf-8")
+
+    cell = _index_status_cell(text, "run_partial_v3", 3)
+    assert cell == "PARTIAL_NO_CANCEL", f"INDEX.md status cell was {cell!r}"
+    assert "PASS" not in text, "the collapsed PASS must not appear anywhere"
+
+
+def test_top_level_index_latest_status_renders_partial_status():
+    with tempfile.TemporaryDirectory() as td:
+        run = _run_record(run_id="run_partial_v3",
+                          manifest_status="PARTIAL_NO_CANCEL",
+                          experiment_type="v3_exq_000_partial")
+        b._evaluate_runs([run], {})
+        b._write_top_level_index(Path(td), {"v3_exq_000_partial": [run]}, {},
+                                 0, 0, 0, 0, "2026-08-08T10:00:00Z")
+        text = (Path(td) / "INDEX.md").read_text(encoding="utf-8")
+
+    cell = _index_status_cell(text, "v3_exq_000_partial", 2)
+    assert cell == "PARTIAL_NO_CANCEL", f"top-level status cell was {cell!r}"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

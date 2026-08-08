@@ -1982,6 +1982,43 @@ def _write_json_if_material(path: Path, text: str) -> bool:
     return True
 
 
+# Statuses _evaluate_runs actually branches on. Anything else a manifest carries
+# in `status` (PARTIAL_*, INCONCLUSIVE, INCONCLUSIVE_UNDERTRAINED, MIXED,
+# SUPERSEDED, DIAGNOSTIC_COMPLETE, N/A, ...) falls through that function's
+# terminal `else` and becomes final_status="PASS".
+_DERIVED_STATUSES = ("PASS", "FAIL", "ERROR", "UNKNOWN")
+
+
+def _display_status(run: "RunRecord") -> str:
+    """Status cell for the INDEX.md tables -- DISPLAY ONLY.
+
+    `final_status` is the pipeline's derived VERDICT and is deliberately coarse:
+    _evaluate_runs collapses every status string it does not branch on into
+    "PASS" (its terminal `else`). For a rendered table that silently loses
+    information -- a run whose manifest says PARTIAL_NO_CANCEL, INCONCLUSIVE or
+    MIXED reads as a clean pass. Confirmed 2026-08-08 on
+    v3_exq_162_mech137_commit_token_structure (manifest PARTIAL_NO_CANCEL,
+    INDEX.md row "PASS"); 34 of the corpus's 37 non-standard-status runs were
+    rendering as PASS. Same defect family as the 2026-08-02 ERROR-as-PASS fix in
+    _evaluate_runs, one status class further out.
+
+    So: render the derived verdict whenever one was genuinely derived (FAIL from
+    stop-criteria / adapter contract / manifest, or ERROR/UNKNOWN propagated
+    through), and otherwise fall back to the manifest's own status string rather
+    than the "PASS" it was collapsed into.
+
+    This deliberately does NOT touch `final_status` itself. That field feeds
+    scoring, evidence-direction inference and claim_evidence.v1.json, where
+    widening it would reclassify those 34 runs' evidence direction -- a
+    governance change, not a display fix.
+    """
+    if run.final_status == "FAIL":
+        return f"**{run.final_status}**"
+    if run.final_status == "PASS" and run.manifest_status not in _DERIVED_STATUSES:
+        return run.manifest_status or run.final_status
+    return run.final_status
+
+
 def _write_experiment_index(
     experiment_dir: Path,
     experiment_type: str,
@@ -2011,7 +2048,7 @@ def _write_experiment_index(
         )
 
         for run in reversed(runs):
-            status = f"**{run.final_status}**" if run.final_status == "FAIL" else run.final_status
+            status = _display_status(run)
             key_values = []
             delta_values = []
             for metric in key_metrics:
@@ -2090,10 +2127,10 @@ def _write_top_level_index(
         total = len(runs)
         fails = sum(1 for r in runs if r.final_status == "FAIL")
         latest = runs[-1] if runs else None
-        latest_status = latest.final_status if latest else "n/a"
-        latest_status_rendered = (
-            f"**{latest_status}**" if latest_status == "FAIL" else latest_status
-        )
+        # Same display-only rule as the per-experiment table -- see
+        # _display_status. `fails` above still counts final_status == "FAIL",
+        # which is the derived verdict and is unchanged.
+        latest_status_rendered = _display_status(latest) if latest else "n/a"
         latest_run = f"`{latest.run_id}`" if latest else "-"
         links = f"[`INDEX`](./{exp_type}/INDEX.md) / [`profile`](./{exp_type}/experiment.md)"
         lines.append(
