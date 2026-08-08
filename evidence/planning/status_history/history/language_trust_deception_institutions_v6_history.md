@@ -6,25 +6,25 @@ Source plan: `evidence/planning/language_trust_deception_institutions_v6_plan.md
 
 ## `language_trust_deception_institutions_v6:LTI-1`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 
 ## `language_trust_deception_institutions_v6:LTI-2`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 
 ## `language_trust_deception_institutions_v6:LTI-3`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 
 ## `language_trust_deception_institutions_v6:LTI-4`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 
 ## `language_trust_deception_institutions_v6:LTI-5`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 
 ## `language_trust_deception_institutions_v6:LTI-6`
 
-_(no joined events)_
+- `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
 

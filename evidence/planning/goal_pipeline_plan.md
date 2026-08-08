@@ -37,9 +37,9 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -55,9 +55,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -86,9 +86,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -104,9 +104,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -128,9 +128,9 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -146,9 +146,9 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -165,9 +165,9 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-08-08"
-        from: "failure_autopsy_V3-EXQ-887a_2026-08-08"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment (same-claim retest, 887b, stronger sensitization gain)"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "unchanged_as_recorded/standard"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:

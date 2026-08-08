@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -29,10 +29,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -46,10 +46,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -63,10 +63,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -80,10 +80,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -97,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -114,10 +114,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -131,10 +131,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-03"
-        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:

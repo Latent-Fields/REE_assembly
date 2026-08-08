@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -31,10 +31,10 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -78,10 +78,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -97,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -117,10 +117,10 @@ closure_plan:
       status: deferred
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -134,10 +134,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -151,10 +151,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -169,10 +169,10 @@ closure_plan:
       status: partial
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -200,10 +200,10 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -219,10 +219,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -237,10 +237,10 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -254,10 +254,10 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -275,10 +275,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:

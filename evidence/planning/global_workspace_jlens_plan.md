@@ -14,13 +14,12 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-05-31"
-        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "non_contributory/measurement_gap"
+        next: "routing=governance-note-only"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -36,13 +35,12 @@ closure_plan:
       status: open
       severity: high
       live:
-        as_of: "2026-05-31"
-        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "non_contributory/measurement_gap"
+        next: "routing=governance-note-only"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -58,13 +56,12 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-05-31"
-        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "non_contributory/measurement_gap"
+        next: "routing=governance-note-only"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -79,13 +76,12 @@ closure_plan:
       status: open
       severity: low
       live:
-        as_of: "2026-05-31"
-        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-08"
+        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+        verdict: "non_contributory/measurement_gap"
+        next: "routing=governance-note-only"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
