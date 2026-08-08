@@ -71,6 +71,21 @@ known_anatomy_prefixes:
   - residue
   - latent_stack
   - L_space
+  - memory
+  - selection
+  - f_dominance_conversion_ceiling
+  - incentive
+  - plasticity
+  - prefrontal
+  - neuromod
+  - defensive_action
+  - escape
+  - cognitive_control
+  - arbitration
+  - latent
+  - consolidation
+  - phasic
+  - cognifold
 
 # Prefixes that are intentionally NOT mapped to brain regions
 # (cross-cutting infrastructure, governance, philosophy, etc.).
@@ -183,6 +198,24 @@ non_anatomy_prefixes:
   - curiosity
   - wanting
   - attribution
+  - reasoning
+  - inference
+  - continuity
+  - compulsion
+  - registry
+  - existence
+  - expression
+  - social_guardrails
+  - comparative_cognition
+  - observability
+  - meta_agent
+  - ree
+  - probe
+  - transfer
+  - safety
+  - research
+  - goal_pipeline
+  - confidence
 
 regions:
   - id: hippocampus
@@ -193,6 +226,7 @@ regions:
       - hippocampal
       - hippocampal_module
       - hippocampal_proposer
+      - memory
     svg_path_ids:
       - region_hippocampus
     ree_core_paths:
@@ -208,6 +242,7 @@ regions:
     scope: in_scope
     subject_prefixes:
       - amygdala
+      - incentive
     svg_path_ids:
       - region_amygdala
     ree_core_paths:
@@ -222,6 +257,7 @@ regions:
     subject_prefixes:
       - pfc
       - vmPFC
+      - prefrontal
     svg_path_ids:
       - region_pfc
     ree_core_paths:
@@ -255,6 +291,7 @@ regions:
     subject_prefixes:
       - basal_ganglia
       - bg
+      - selection
     svg_path_ids:
       - region_basal_ganglia
     ree_core_paths: []
@@ -288,6 +325,7 @@ regions:
     subject_prefixes:
       - sleep
       - sleep_phase
+      - consolidation
     svg_path_ids:
       - region_sleep
     ree_core_paths:
@@ -316,6 +354,8 @@ regions:
     subject_prefixes:
       - pag
       - lh_pag
+      - defensive_action
+      - escape
     svg_path_ids:
       - region_pag
     ree_core_paths:
@@ -335,6 +375,9 @@ regions:
       - orexin
       - gabaergic
       - neuromodulation
+      - neuromod
+      - plasticity
+      - phasic
     svg_path_ids:
       - region_neuromodulation
     ree_core_paths:
@@ -511,6 +554,8 @@ engineering_nodes:
       - e3
       - E3
       - e1_e3
+      - f_dominance_conversion_ceiling
+      - arbitration
     svg_path_ids:
       - node_e3
     ree_core_paths:
@@ -532,6 +577,7 @@ engineering_nodes:
       - hypothesis_tag
       - broadcast
       - theta_gamma
+      - cognitive_control
     svg_path_ids:
       - node_control_plane
     ree_core_paths:
@@ -549,6 +595,7 @@ engineering_nodes:
       - latent_stack
       - L_space
       - residue
+      - latent
     svg_path_ids:
       - node_latent_stack
     ree_core_paths:
@@ -574,12 +621,13 @@ engineering_nodes:
     scope: engineering
     subject_prefixes:
       - architecture
+      - cognifold
     svg_path_ids:
       - node_architecture
     ree_core_paths: []
     primary_docs:
       - docs/architecture/hippocampal_systems.md
-    notes: Theta-frontal-hippocampal coupling and similar cross-region claims.
+    notes: Theta-frontal-hippocampal coupling and similar cross-region claims; cognifold as the single cross-region interacting state-space (ARC-084/ARC-089).
 
 pathways:
   - id: predictive_stack
