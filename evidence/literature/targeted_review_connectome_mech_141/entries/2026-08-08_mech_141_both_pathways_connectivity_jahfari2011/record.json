@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_141",
+  "entry_id": "2026-08-08_mech_141_both_pathways_connectivity_jahfari2011",
+  "timestamp_utc": "2026-08-08T16:32:45Z",
+  "claim_ids_tested": ["MECH-141"],
+  "source": {
+    "title": "Effective connectivity reveals important roles for both the hyperdirect (fronto-subthalamic) and the indirect (fronto-striatal-pallidal) fronto-basal ganglia pathways during response inhibition",
+    "authors": ["Sara Jahfari", "Lourens Waldorp", "Wery P. M. van den Wildenberg", "H. Steven Scholte", "K. Richard Ridderinkhof", "Birte U. Forstmann"],
+    "year": 2011,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5253-10.2011",
+    "url": "https://doi.org/10.1523/JNEUROSCI.5253-10.2011"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly supports the non-collapsibility half of MECH-141: a single model containing BOTH the hyperdirect (fronto-subthalamic) and indirect (fronto-striatal) pathways best explained brain activation on stop trials, and combined connection strength was highest on successfully inhibited trials -- i.e. successful inhibition needs both pathways engaged, not one. Fast vs slow inhibitors dissociated on which fronto-caudate connection dominated. Held at 0.74 because the paper frames the second route as the INDIRECT (fronto-striatal-pallidal) pathway rather than a seconds-scale PROACTIVE one; the 'both are needed' and 'fast/slow dissociation' evidence maps well, but the specific proactive-vs-reactive timescale labels are the anchor paper's, not this one's.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The complementary pathway here is the classic INDIRECT (fronto-striatal-pallidal) route, characterised within reactive stopping, not an explicitly anticipatory seconds-scale proactive route; the mapping to MECH-141's 'slow proactive' pathway is therefore by analogy (both are the longer, caudate-routed pathway) rather than a direct measurement of proactive control.",
+    "All connectivity is measured on stop-signal trials within a single reactive task; a model where one pathway sufficed on some trials would not obviously be excluded by the group-level 'both pathways' winning model."
+  ],
+  "tags": ["mech-141", "hyperdirect-pathway", "indirect-pathway", "response-inhibition", "effective-connectivity", "caudate", "dual-pathway"],
+  "mapping": {
+    "source_claim_statement": "During response inhibition, a right-lateralized model containing BOTH the hyperdirect (rIFG/preSMA->STN) and indirect (cortex->caudate) fronto-basal-ganglia pathways best explains stop-trial activation, with combined connection strength highest on successful stops; fast inhibitors show stronger rIFG->caudate connectivity, slow inhibitors stronger preSMA->caudate.",
+    "ree_translation": "Supports MECH-141's requirement that arbitration include BOTH a fast fronto-subthalamic route and a longer caudate-routed route -- and that they act together rather than being substitutable -- which is the substance of 'cannot be collapsed into a single arbitration signal'. The fast/slow-inhibitor dissociation on caudate connectivity is evidence that the longer pathway carries distinct control regimes.",
+    "mapping_caveat": "The longer pathway here is the anatomical INDIRECT pathway characterised during reactive stopping, not an explicitly proactive/anticipatory seconds-scale process. Its identification with MECH-141's proactive pathway rests on both being the longer, caudate-involving route (as the Zhang & Iwaki anchor makes explicit), so this entry evidences 'two jointly-required pathways' more strongly than it evidences the specific proactive-timescale label.",
+    "source_context": "Human fMRI, Simon interference task with occasional stop signals, 20 healthy adults; effective connectivity via a quantified model-comparison method (Ancestral Graph / structural-equation style)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high: J Neurosci, careful effective-connectivity method, behaviourally-linked individual differences. Mapping fidelity moderate-good: strong on 'both pathways jointly required' and the fast/slow dissociation, weaker on the proactive-timescale identification. Transfer risk moderate: healthy human data on a well-validated inhibition task."
+  }
+}

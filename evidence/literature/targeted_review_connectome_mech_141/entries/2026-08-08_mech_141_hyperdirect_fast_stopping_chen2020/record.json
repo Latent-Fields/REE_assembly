@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_141",
+  "entry_id": "2026-08-08_mech_141_hyperdirect_fast_stopping_chen2020",
+  "timestamp_utc": "2026-08-08T16:32:45Z",
+  "claim_ids_tested": ["MECH-141"],
+  "source": {
+    "title": "Prefrontal-Subthalamic Hyperdirect Pathway Modulates Movement Inhibition in Humans",
+    "authors": ["Witney Chen", "Coralie de Hemptinne", "Andrew M. Miller", "Michael Leibbrand", "Simon J. Little", "Daniel A. Lim", "Paul S. Larson", "Philip A. Starr"],
+    "year": 2020,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2020.02.012",
+    "url": "https://doi.org/10.1016/j.neuron.2020.02.012"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Provides the direct temporal evidence the DCM anchor cannot: intracranial field-potential recordings from IFG and STN in 21 humans show short-latency (monosynaptic-indicative) IFG->ventral-STN connectivity, and during stopping the cortical stopping-related potential PRECEDES STN activity, with IFG-STN synchronization predicting stop-signal reaction time. This nails the 'fast reactive milliseconds-scale hyperdirect' half of MECH-141 with real latencies rather than inferred ones. Held at 0.80 (not higher) because it characterises only the fast reactive pathway -- it does not itself test the slow proactive pathway or the non-collapsibility of the two, so it corroborates one half of the dual-timescale claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study characterises only the reactive/hyperdirect route; it offers no measurement of a slow proactive prefrontal-caudate pathway, so it cannot by itself establish that the two timescales are segregated -- it establishes only that the fast one exists and is genuinely fast.",
+    "Recordings are from Parkinson's disease patients undergoing DBS surgery; disease-related basal-ganglia pathology is a transfer confound for a claim about the healthy arbitration architecture."
+  ],
+  "tags": ["mech-141", "hyperdirect-pathway", "subthalamic-nucleus", "reactive-inhibition", "stop-signal", "electrophysiology", "millisecond-timescale"],
+  "mapping": {
+    "source_claim_statement": "A monosynaptic prefrontal (IFG)-to-ventral-STN hyperdirect pathway exists in humans; during rapid action stopping, IFG stopping-related potentials precede STN activity and their synchronization predicts stop-signal reaction time, so this pathway mediates rapid stopping.",
+    "ree_translation": "Direct latency evidence for MECH-141's fast reactive pathway: a short, monosynaptic cortico-subthalamic route capable of interrupting an already-initiated action on a millisecond timescale, corresponding to the post-commitment cancel-window interrupt (MECH-138) at its fastest.",
+    "mapping_caveat": "Evidence bears only on the fast reactive half of the dual-timescale claim; it says nothing about the slow proactive pathway or about whether the two can be collapsed. Recordings are from clinical (Parkinson's, DBS) populations, so the timing is measured in a diseased basal ganglia.",
+    "source_context": "Human intracranial electrophysiology (ECoG over IFG + STN field potentials) in 21 patients during DBS surgery; stop-signal task; subthalamic stimulation to probe monosynaptic connectivity."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Neuron, rare simultaneous human IFG+STN intracranial recordings, causal stimulation probe, N=21, direct latency measurement. Mapping fidelity moderate because it covers only one of the two pathways MECH-141 requires. Transfer risk elevated by the Parkinson's/DBS clinical population (basal-ganglia pathology) and by the animal-of-necessity nature of intracranial human data (surgical candidates only)."
+  }
+}

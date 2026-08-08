@@ -1,0 +1,19 @@
+# Jahfari et al. (2011) — successful inhibition needs *both* the hyperdirect and the caudate-routed pathway, together
+
+*According to PubMed.* Source: Jahfari S, Waldorp L, van den Wildenberg WPM, Scholte HS, Ridderinkhof KR, Forstmann BU. "Effective connectivity reveals important roles for both the hyperdirect (fronto-subthalamic) and the indirect (fronto-striatal-pallidal) fronto-basal ganglia pathways during response inhibition." *J Neurosci* 31(18):6891-9, 2011. [DOI](https://doi.org/10.1523/JNEUROSCI.5253-10.2011) · PMID 21543619 · PMC6632844.
+
+## What the paper did
+
+MECH-141's strongest claim is not that two pathways *exist* but that they *cannot be collapsed* into a single arbitration signal — both must be present. This paper is the closest direct evidence for that half. Twenty healthy adults performed a Simon interference task with occasional stop signals under fMRI. The authors applied a quantitative effective-connectivity method to compare models of how the fronto-basal-ganglia circuit implements stopping: a hyperdirect-only model (rIFG/preSMA→STN), an indirect-only model (cortex→caudate), and a combined model.
+
+## Key findings relevant to MECH-141
+
+The combined model — containing **both** the hyperdirect and the indirect pathway — best explained the pattern of brain activation on stop trials. More tellingly, the overall connection strength of that combined model was **highest on successfully inhibited trials**: when stopping actually succeeded, both pathways were maximally engaged together. This is the empirical shape of non-collapsibility — inhibition is not carried by one route with the other as a spare; the successful cases are the ones where both are strongly recruited. The study then found an individual-differences dissociation on the longer, caudate-routed pathway: fast inhibitors showed increased rIFG→caudate connectivity, whereas slow inhibitors showed increased preSMA→caudate connectivity, and the two fronto-caudate connections were negatively correlated across subjects. So the longer pathway is not a single undifferentiated channel — it carries distinct control regimes tied to how a person actually inhibits.
+
+## How this maps to REE
+
+For REE this is the "both are needed" evidence that Zhang & Iwaki's dissociation and Chen's fast-pathway timing do not by themselves supply. MECH-141 asserts that collapsing the two pathways into one signal *loses the fast-interrupt capability*; the mirror-image empirical fact here is that successful inhibition maximally recruits both pathways at once. The fast/slow-inhibitor dissociation on the caudate connections further supports treating the longer (proactive, in the anchor's language) pathway as carrying a genuinely separate, tunable control regime — consistent with REE placing pre-commit eligibility biasing on that route while the hyperdirect route handles the post-commitment abort.
+
+## Limitations and caveats
+
+The honest gap is terminological but real: Jahfari et al. characterise the second route as the classic *indirect* (fronto-striatal-pallidal) pathway, studied entirely within a *reactive* stop-signal context. They do not manipulate proactive/anticipatory demand, so identifying their indirect pathway with MECH-141's *seconds-scale proactive* pathway is an inference — licensed by the fact that both are the longer, caudate-involving route that Zhang & Iwaki explicitly tie to proactive control, but an inference nonetheless. This entry therefore evidences "two jointly-required pathways" and "the longer pathway carries distinct regimes" more strongly than it evidences the specific proactive-timescale label. A second, weaker caveat: the "both pathways" result is a group-level winning model, so it does not strictly exclude that on some individual trials one pathway sufficed. These are why I set confidence at 0.74 — solid method and a directly on-point "both are needed" result, discounted for the proactive-label transfer.

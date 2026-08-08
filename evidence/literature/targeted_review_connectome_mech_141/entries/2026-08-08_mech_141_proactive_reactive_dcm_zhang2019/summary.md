@@ -1,0 +1,19 @@
+# Zhang & Iwaki (2019) — proactive vs reactive inhibition dissociate onto long vs short fronto-basal-ganglia pathways
+
+*According to PubMed.* Source: Zhang F, Iwaki S. "Common Neural Network for Different Functions: An Investigation of Proactive and Reactive Inhibition." *Front Behav Neurosci* 13:124, 2019. [DOI](https://doi.org/10.3389/fnbeh.2019.00124) · PMID 31231199 · PMC6568210.
+
+## What the paper did
+
+This is the paper MECH-141 was originally registered from, and re-reading it against the claim confirms it is the right anchor. Participants performed a stop-signal task under fMRI. The authors first ran whole-brain contrasts, finding that the inferior frontal gyrus (IFG), supplementary motor area (SMA), subthalamic nucleus (STN), and primary motor cortex (M1) were engaged by *both* proactive and reactive inhibition. They then did the interesting part: they built 70 dynamic causal models (DCMs) over the IFG–SMA–STN–M1 network and, separately, 13 DCMs over a DLPFC–caudate–IFG–SMA circuit, and used Bayesian model selection to ask *which effective connections were modulated by which kind of inhibition*.
+
+## Key findings relevant to MECH-141
+
+Two results carry the claim. First, connectivity from the IFG to the SMA was modulated by both proactive and reactive inhibition — this is the shared core. Second, and decisively, the caudate→IFG connection was modulated **only** in the proactive condition and **not** in the reactive condition. The authors summarise this as a "longer" pathway (DLPFC→caudate→IFG→SMA→STN→M1) doing the proactive, anticipatory work and a "shorter" pathway (IFG→SMA→STN→M1) doing the reactive work — which they explicitly frame as causal evidence for the roles of the *indirect* and *hyperdirect* pathways respectively. That is a near-literal statement of MECH-141's two-pathway architecture: a slow, planning-driven proactive route through the caudate, and a fast reactive route that bypasses the striatum via the hyperdirect connection to the STN.
+
+## How this maps to REE
+
+In REE terms the DLPFC→caudate→IFG proactive route maps onto E3 pre-commit eligibility assessment: gate bias is pre-set from prior planning before any action is committed, exactly the anticipatory function the caudate-modulated pathway serves here. The short hyperdirect route maps onto the fast post-commitment interrupt at the cancel-window (MECH-138) but operating at a shorter timescale — the ability to abort an *already-committed* eligibility rather than to bias one that has not yet been selected. The claim's core assertion — that these cannot be collapsed into a single arbitration signal — is supported because the two functions are carried by *distinct effective connections* recruited under distinct conditions, not by a single graded signal.
+
+## Limitations and caveats
+
+The honest boundary is in the paper's own title: it is a *common* network. The dissociation Zhang & Iwaki demonstrate is between which connections are *modulated*, over a largely shared set of nodes (IFG, SMA, STN, M1 are in both pathways). So the paper strongly supports "two dissociable pathways" and "different timescales," but supports "cannot be collapsed" specifically at the level of modulatory connectivity and function — not at the level of fully segregated anatomy. A REE substrate that shared compute for the common core while preserving a distinct proactive front-end would still be consistent with this evidence. Two further caveats: the seconds-vs-milliseconds timescale separation is *inferred* from pathway length and task timing, not measured as conduction latency (DCM reports connection strengths, not delays); and the sample and journal are modest. These are why I set confidence at 0.78 rather than higher — the mapping fidelity is excellent, but the strongest form of the claim (irreducible timescale segregation) leans on convergent evidence from the electrophysiological papers in this same pull rather than on this DCM study alone.

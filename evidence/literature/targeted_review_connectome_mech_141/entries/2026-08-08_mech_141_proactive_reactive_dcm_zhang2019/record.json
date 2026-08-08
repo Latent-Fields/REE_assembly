@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_141",
+  "entry_id": "2026-08-08_mech_141_proactive_reactive_dcm_zhang2019",
+  "timestamp_utc": "2026-08-08T16:32:45Z",
+  "claim_ids_tested": ["MECH-141"],
+  "source": {
+    "title": "Common Neural Network for Different Functions: An Investigation of Proactive and Reactive Inhibition",
+    "authors": ["Fan Zhang", "Sunao Iwaki"],
+    "year": 2019,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2019.00124",
+    "url": "https://doi.org/10.3389/fnbeh.2019.00124"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct anchor for the claim: whole-brain fMRI plus Bayesian model selection over 70+13 DCMs isolates a 'longer' DLPFC->caudate->IFG->SMA->STN->M1 pathway whose caudate->IFG link is modulated ONLY under proactive inhibition, versus a 'shorter' IFG->SMA->STN->M1 hyperdirect pathway carrying reactive inhibition. This is exactly the two-pathway dissociation MECH-141 asserts. Confidence held below 0.85 because the paper's own framing is a COMMON network (shared IFG-SMA-STN-M1 core), so it evidences dissociation at the modulatory-connectivity level rather than fully segregated anatomy, and DCM is a model-comparison inference, not a direct latency measurement of the two timescales.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The two pathways share the IFG-SMA-STN-M1 core; the dissociation is in which effective connections are modulated, not in fully non-overlapping anatomy. A substrate that collapsed the shared core while preserving the distinct front-end modulation would still satisfy this paper's evidence, so the paper does not on its own falsify a partially-collapsed arbitration signal.",
+    "Timescale segregation (seconds vs milliseconds) is inferred from the pathway lengths and task structure, not measured directly here; DCM reports connection strengths, not conduction latencies."
+  ],
+  "tags": ["mech-141", "proactive-inhibition", "reactive-inhibition", "hyperdirect-pathway", "caudate", "dcm", "tri-loop-arbitration"],
+  "mapping": {
+    "source_claim_statement": "Proactive and reactive inhibition are subserved by fronto-basal-ganglia pathways of different length within a common network: a longer DLPFC-caudate-IFG-SMA-STN-M1 pathway (caudate->IFG modulated only under proactive inhibition) and a shorter IFG-SMA-STN-M1 hyperdirect pathway for reactive inhibition, providing causal evidence for indirect vs hyperdirect roles.",
+    "ree_translation": "The slow proactive pathway (DLPFC->caudate->IFG) maps onto E3 pre-commit eligibility assessment that pre-sets gate bias from prior planning; the fast hyperdirect (IFG->SMA->STN) pathway maps onto a rapid post-commitment interrupt at the cancel-window (MECH-138) but at a shorter timescale. MECH-141 requires both to be present and NOT collapsible into a single arbitration signal.",
+    "mapping_caveat": "The paper demonstrates two dissociable MODULATORY pathways within a shared node set, not two anatomically segregated circuits. It therefore supports 'two dissociable pathways' strongly and 'cannot be collapsed' only at the connectivity/timescale level; a REE substrate could in principle share compute for the common core. The timescale separation itself is inferred, not directly timed.",
+    "source_context": "Human fMRI, stop-signal task, healthy adults; effective connectivity via Dynamic Causal Modeling with Bayesian model selection."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality moderate: peer-reviewed fMRI+DCM but a specialist journal with a modest sample and model-based (not latency-based) inference. Mapping fidelity high -- the paper's own proactive/reactive x long/short pathway structure is a near-literal instantiation of MECH-141. Transfer risk moderate: human data (good), but task-to-REE-arbitration transfer requires accepting the E3-eligibility mapping."
+  }
+}

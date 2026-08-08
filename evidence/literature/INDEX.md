@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-08T08:54:07.911995Z`
+Generated: `2026-08-08T16:37:59.384805Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -103,6 +103,7 @@ Generated: `2026-08-08T08:54:07.911995Z`
 | `targeted_review_connectome_mech_122` | [`2026-04-24_mech_122_thalamic_suppression_sensory_gating_yang2018`](targeted_review_connectome_mech_122/entries/2026-04-24_mech_122_thalamic_suppression_sensory_gating_yang2018/record.json) | 3 | [`summary`](targeted_review_connectome_mech_122/entries/2026-04-24_mech_122_thalamic_suppression_sensory_gating_yang2018/summary.md) |
 | `targeted_review_connectome_mech_128` | [`2026-04-04_mech_128_pfc_wm_goal_hippocampal_prediction_koene2003`](targeted_review_connectome_mech_128/entries/2026-04-04_mech_128_pfc_wm_goal_hippocampal_prediction_koene2003/record.json) | 5 | [`summary`](targeted_review_connectome_mech_128/entries/2026-04-04_mech_128_pfc_wm_goal_hippocampal_prediction_koene2003/summary.md) |
 | `targeted_review_connectome_mech_140` | [`2026-07-02_mech_140_vip_som_contextual_modulation_keller2020`](targeted_review_connectome_mech_140/entries/2026-07-02_mech_140_vip_som_contextual_modulation_keller2020/record.json) | 2 | [`summary`](targeted_review_connectome_mech_140/entries/2026-07-02_mech_140_vip_som_contextual_modulation_keller2020/summary.md) |
+| `targeted_review_connectome_mech_141` | [`2026-08-08_mech_141_stn_stop_signal_aron2006`](targeted_review_connectome_mech_141/entries/2026-08-08_mech_141_stn_stop_signal_aron2006/record.json) | 4 | [`summary`](targeted_review_connectome_mech_141/entries/2026-08-08_mech_141_stn_stop_signal_aron2006/summary.md) |
 | `targeted_review_connectome_mech_150` | [`2026-04-02_mech_150_coordinated_reinstatement_staresina2019`](targeted_review_connectome_mech_150/entries/2026-04-02_mech_150_coordinated_reinstatement_staresina2019/record.json) | 2 | [`summary`](targeted_review_connectome_mech_150/entries/2026-04-02_mech_150_coordinated_reinstatement_staresina2019/summary.md) |
 | `targeted_review_connectome_mech_152` | [`2026-04-02_mech_152_gain_control_inhibitory_circuits_2017`](targeted_review_connectome_mech_152/entries/2026-04-02_mech_152_gain_control_inhibitory_circuits_2017/record.json) | 2 | [`summary`](targeted_review_connectome_mech_152/entries/2026-04-02_mech_152_gain_control_inhibitory_circuits_2017/summary.md) |
 | `targeted_review_connectome_mech_153` | [`2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016`](targeted_review_connectome_mech_153/entries/2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016/record.json) | 7 | [`summary`](targeted_review_connectome_mech_153/entries/2026-04-05_mech_153_slow_stabilization_hippocampal_context_law2016/summary.md) |

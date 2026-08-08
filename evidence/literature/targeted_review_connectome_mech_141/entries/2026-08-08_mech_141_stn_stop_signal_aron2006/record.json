@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_141",
+  "entry_id": "2026-08-08_mech_141_stn_stop_signal_aron2006",
+  "timestamp_utc": "2026-08-08T16:32:45Z",
+  "claim_ids_tested": ["MECH-141"],
+  "source": {
+    "title": "Cortical and subcortical contributions to Stop signal response inhibition: role of the subthalamic nucleus",
+    "authors": ["Adam R. Aron", "Russell A. Poldrack"],
+    "year": 2006,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4682-05.2006",
+    "url": "https://doi.org/10.1523/JNEUROSCI.4682-05.2006"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical foundation for the reactive/STN half: right IFC and STN are specifically activated by stopping (not going), and stopping-related activation is greater for FAST inhibitors than slow ones in both regions, with IFC and STN activity correlated -- convergent, independent support that the fast reactive route runs through the STN and that its engagement tracks stopping speed. Lower confidence (0.62) because it is a 2006 activation/correlation study that only hypothesises the hyperdirect projection (its closing sentence calls for future work to establish a direct IFC-STN pathway), speaks only to the reactive half, and says nothing about proactive control or non-collapsibility.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper itself does not demonstrate the hyperdirect pathway -- it explicitly leaves establishing a direct IFC->STN projection to future research; it shows co-activation and correlation, not connectivity.",
+    "It addresses only reactive stopping; it provides no evidence for a separate proactive pathway or for the two operating at segregated, non-collapsible timescales, so it cannot on its own distinguish MECH-141 from a single-pathway account."
+  ],
+  "tags": ["mech-141", "subthalamic-nucleus", "reactive-inhibition", "stop-signal", "inferior-frontal-cortex", "canonical-foundation"],
+  "mapping": {
+    "source_claim_statement": "In a stop-signal fMRI task, right inferior frontal cortex (IFC) and the subthalamic nucleus (STN) are activated by stopping; stopping-related activation is greater in fast than slow inhibitors in both regions and is correlated across subjects, suggesting the STN suppresses thalamocortical output to block response execution -- possibly via a hyperdirect IFC-STN projection (left for future work).",
+    "ree_translation": "Independent, canonical corroboration of MECH-141's fast reactive pathway: the STN is the subcortical node that halts an initiated action, and the degree of IFC/STN engagement tracks how fast the stop is -- consistent with a fast interrupt route whose recruitment sets abort latency.",
+    "mapping_caveat": "This is co-activation and individual-difference correlation, not a demonstrated pathway or a latency measurement, and it covers only the reactive half. Its role in the pull is convergent foundational support for the fast route, superseded on the connectivity/timing specifics by Chen 2020 and Jahfari 2011.",
+    "source_context": "Human fMRI (two experiments, incl. high-resolution structural/functional confirmation of STN-vicinity activation), stop-signal task, healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high (J Neurosci, foundational, heavily replicated). Mapping fidelity modest: co-activation/correlation only, reactive half only, hyperdirect projection hypothesised not shown. Transfer risk low-moderate (healthy human fMRI). Included as the independent canonical anchor for the fast route; the newer papers in this pull carry the connectivity and timing specifics."
+  }
+}
