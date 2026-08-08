@@ -11122,7 +11122,9 @@
     heartbeat rate. Predicted: sustained high harm salience → more reactive policy;
     routine conditions → increased policy stability.
     Scope clarification: MECH-093 governs E3 heartbeat frequency (arousal-modulated
-    thalamic pacemaking) — it does NOT govern the respiratory plan-sweep clock (MECH-112).
+    thalamic pacemaking) — it does NOT govern the respiratory plan-sweep clock (MECH-108;
+    corrected 2026-08-08 thought-digestion currency check -- this note previously
+    misnamed it MECH-112, which is an unrelated claim, drive.goal_state_attractor).
     Heartbeat = arousal-level gating of E3 refresh rate; respiratory rhythm = periodic
     sweep of pre-commit hippocampal rollouts and DMN simulations for trajectory
     abandonment. These are distinct clocks at distinct timescales operating on distinct
@@ -11723,10 +11725,31 @@
     marked superseded. Claim untestable until V3 multimodal input is implemented.
     EXQ-134 FAIL (2026-03-29): somatosensory fusion pair -- same substrate issue; also
     superseded. Claim requires genuine multi-modality input streams.
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-017
     - ARC-004
   location: docs/architecture/sensory_stream_tags.md#mech-103
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: "genuine" multi-modal exteroceptive input requires a
+    second modality sourced independently of the visual/spatial world_state pathway --
+    not a synthetic channel re-derived from the same underlying grid state (as EXQ-128's
+    "auditory" tone and EXQ-134's "somatosensory" contact signal both were, both computed
+    from hazard_field/resource_field/harm_signal). Re-verified 2026-08-08:
+    ree_core/environment/causal_grid_world.py still exposes exactly one true exteroceptive
+    channel (world_state, vision/spatial), no independent auditory/somatosensory channel
+    exists. Until V3's environment exposes such a channel, this claim is untestable, not
+    merely under-tested -- confirmed twice (EXQ-128, EXQ-134).
+
+    CONFIRMING: once genuine multi-modal input exists, E1's shared world latent (z_S/
+    z_world) shows measurably more accurate/robust representations with both modalities
+    present than either alone at matched training budget, and degrades gracefully rather
+    than catastrophically when one modality is ablated at test time (precision-weighted
+    evidence combination signature).
+
+    FALSIFYING: multi-modal input produces no measurable improvement over vision-only
+    baselines at matched budget, or any observed "fusion" is fully explained by naive
+    channel concatenation with no precision-weighting/complementary-structure signature.
   source:
     - docs/thoughts/2026-03-19_sensory_stream_e3_decomposition.md
   notes: >
@@ -11836,12 +11859,51 @@
     implemented as a completion signal from HippocampalModule to BetaGate mediated
     by a dopamine-analog variable modulating the commit threshold. The biological
     mechanism (subiculum→NAc→VP→VTA) is the reference.
+  epistemic_category: standard
   depends_on:
     - MECH-057b
     - MECH-090
     - ARC-023
     - ARC-021
   location: docs/architecture/control_plane_heartbeat.md#mech-105
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the three required changes from this claim's own notes
+    ARE implemented (confirmed 2026-08-08 by source inspection) -- this is NOT the
+    "cannot be tested experimentally" state the notes previously described (see
+    CORRECTION below). (1) HippocampalModule.compute_completion_signal()
+    [ree_core/hippocampal/module.py] emits a dopamine-analog completion signal
+    (sigmoid over min residue cost across proposed trajectories). (2)
+    BetaGate.receive_hippocampal_completion() [ree_core/heartbeat/beta_gate.py]
+    receives it and calls gate.release() when beta is elevated and the signal crosses
+    _completion_release_threshold. (3) The two are wired at ree_core/agent.py under an
+    explicit "ARC-028 / MECH-105" comment, gated on config.heartbeat.beta_gate_bistable
+    (True in the MECH-090/SD-034 experiment family) and beta_gate.is_elevated. A run is
+    non-degenerate only if beta_gate_bistable=True, beta_gate.is_elevated is reached at
+    least once, and completion_signal takes a non-degenerate range of values -- and,
+    per ARC-028's own audit, only if the effect of this pathway is isolated from
+    BetaGate's other independent release pathways (MECH-091 urgency-interrupt, V_s
+    anchor invalidation, SD-034 closure operator).
+
+    CONFIRMING: a controlled ablation (matched seeds/config; ON arm with the pathway
+    live at its configured threshold vs. OFF arm with it suppressed) while holding
+    every other BetaGate release pathway at identical trigger conditions across both
+    arms, shows release timing/rate measurably and reproducibly contingent on
+    compute_completion_signal(): releases attributable to this pathway specifically
+    occur at non-trivial rate, and ablating the dopamine-analog coupling variable
+    measurably shifts release latency or total release count relative to the intact
+    ON arm.
+
+    FALSIFYING: release timing/rate are statistically indistinguishable between arms
+    once other pathways are accounted for -- every release attributed to this pathway
+    would have fired anyway via another pathway, or completion_signal never crosses
+    threshold under realistic trajectory-quality distributions. In that case the two
+    gates remain functionally decoupled in practice despite the code-level wiring
+    existing, and the dopaminergic-loop mechanism is architecturally present but
+    functionally redundant/non-necessary.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): check whether MECH-290 (named
+    alongside MECH-105 in ARC-028's own drift note as sharing this same stale-notes
+    pattern) needs the equivalent correction.
   source:
     - docs/architecture/control_plane_heartbeat.md
   literature_evidence: |
@@ -11861,15 +11923,27 @@
   notes: >
     This claim resolves the architectural orphan problem: MECH-057b and MECH-090
     are separately claimed but lack an explicit coupling mechanism. The subiculum→
-    NAc→VP→VTA loop is the missing link. In the V3 implementation, HippocampalModule
-    must emit a completion signal received by BetaGate or E3Selector to trigger gate
-    release. This coupling is currently absent and is a prerequisite for MECH-057b
-    completion events to actually trigger MECH-090 gate release. Required changes:
-    (1) HippocampalModule.generate_trajectories() emits completion signal on
-    trajectory goal-reach or planned-length completion; (2) BetaGate or E3Selector
-    receives this signal and calls gate.release(); (3) coupling is mediated by a
-    dopamine-analog variable (see MECH-106). Without ARC-028 wiring, this claim
-    cannot be tested experimentally.
+    NAc→VP→VTA loop is the missing link. Original design: (1) HippocampalModule.
+    generate_trajectories() emits completion signal on trajectory goal-reach or
+    planned-length completion; (2) BetaGate or E3Selector receives this signal and
+    calls gate.release(); (3) coupling is mediated by a dopamine-analog variable
+    (see MECH-106).
+
+    CORRECTION (2026-08-08, thought-digestion currency check): the paragraph above
+    previously read "This coupling is currently absent... Without ARC-028 wiring,
+    this claim cannot be tested experimentally." That is stale. Confirmed by direct
+    source inspection of ree-v3 current HEAD: all three required changes ARE
+    implemented -- HippocampalModule.compute_completion_signal()
+    [ree_core/hippocampal/module.py:2582] emits the dopamine-analog completion
+    signal; BetaGate.receive_hippocampal_completion()
+    [ree_core/heartbeat/beta_gate.py:282] receives it and calls release() when beta
+    is elevated and the signal crosses threshold; the two are wired at
+    ree_core/agent.py under an explicit "ARC-028 / MECH-105" comment, gated on
+    config.heartbeat.beta_gate_bistable. This drift was independently flagged first
+    by ARC-028's own 2026-08-07 what_would_answer, which named MECH-105 (and
+    MECH-290) as carrying the same stale description. Original text preserved above
+    for history; see this claim's what_would_answer for the current, testable
+    formulation.
 
 - id: MECH-106
   title: "Commitment threshold is asymmetrically modulated by outcome valence: positive outcomes lower it, negative outcomes raise it."
@@ -13264,6 +13338,7 @@
     deliberate top-down intervention in the planning cycle is possible. In an ANN
     substrate, implemented as a configurable sweep-clock parameter operating at ~0.2 Hz
     relative simulation time, orthogonal to the E3 heartbeat parameter.
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-023
     - MECH-107
@@ -13271,6 +13346,42 @@
     - MECH-093
     - MECH-104
   location: docs/architecture/control_plane_heartbeat.md#mech-108
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: BreathOscillator (ree-v3/ree_core/heartbeat/clock.py,
+    MultiRateClock) is built and controllable via breath_period/sweep_amplitude/
+    sweep_duration, already exercised (V3-EXQ-199/876, MECH-025 lineage) as a
+    SINGLE-PHASE periodic commit-threshold reducer -- sweep_active forces the
+    uncommitted regime for the last sweep_duration steps of each cycle. What is NOT
+    built, required by THIS claim specifically (beyond narrower sibling MECH-107): (a)
+    any inhalation-scan vs exhalation-execute PHASE distinction -- the clock models one
+    binary sweep/inter-sweep state, not two asymmetric phases; (b) any object-level
+    sweep of pre-commit hippocampal rollouts and DMN simulations -- sweep_active only
+    rescales a scalar commit_threshold, never rollout generation or DMN-simulation
+    triggering; (c) a second, independent computational channel (valence bias)
+    alongside the decision-boundary/threshold channel, needed to distinguish Braendholt
+    2025's "two independent channels" from "one scalar." Until at least (a) is built,
+    the claim's defining dual-phase prediction cannot be tested even in principle.
+
+    CONFIRMING: once a genuine two-phase plan-sweep is wired against actual rollout/DMN-
+    simulation objects: (1) rollout/DMN-simulation initiation shows measurable
+    periodicity phase-locked to the ~0.2 Hz breath cycle, AND (2) the two phases produce
+    distinguishable behavior (more rollouts during inhalation-scan, more commitment/
+    abandonment during exhalation-execute), reproducing Braendholt 2025's two-
+    independent-channel result.
+
+    FALSIFYING: rollout/DMN-simulation timing shows no reliable phase-lock to the breath
+    cycle once implemented, or the phases produce no distinguishable scan-vs-execute
+    asymmetry -- breath phase modulates only a generic threshold (as the CURRENT
+    single-phase BreathOscillator already does), collapsing the "third clock, two-
+    channel oscillator" framing into a relabeling of MECH-107's simpler mechanism. Also
+    falsified if any confirmed effect is fully attributable to an existing modulator
+    already acting on the same commit_threshold (SD-011 urgency/z_harm_a, SD-093
+    progress-velocity) rather than the breath-cycle signal itself.
+
+    Deliberately diverges in category from sibling MECH-107 (standard): MECH-107
+    asserts only the narrower exhale/execute half and routes around the missing
+    substrate with a coarse proxy test; MECH-108's broader dual-phase/two-channel
+    content has no available proxy.
   source:
     - docs/architecture/control_plane_heartbeat.md
   notes: >
@@ -13749,12 +13860,43 @@
     as_of: 2026-07-11
     needs_review: false
   implementation_phase: v3
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-016
     - MECH-113
     - INV-033
     - SD-005
   location: docs/architecture/approach_avoidance_symmetry.md#mech-114
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: d_eff must be structurally READ by
+    E3TrajectorySelector.select()'s commit decision, not merely computed elsewhere. As
+    of 2026-08-08 UNMET: ree_core/agent.py:compute_z_self_d_eff() is called only from
+    experiment scripts (measurement-only); the live commit rule in
+    ree_core/predictors/e3_selector.py is exclusively "committed = running_variance <
+    commit_threshold" (and its harm/commit-variance variants) -- no d_eff reference
+    anywhere in that file. The threshold formula this claim proposes
+    (d_eff_threshold = d_eff_baseline * 1.5) is also unvalidated: MECH-113's own
+    EXQ-075/075d run measured a raw D_eff baseline of ~23.85 -- an order of magnitude
+    different from the "~1.5x target" scale the calibration note assumed -- and its
+    perturbation moved D_eff by only ~0.03% (ratio 0.9997), failing to demonstrate D_eff
+    is even a sensitive signal to injected self-model incoherence under this design.
+
+    CONFIRMING: once d_eff is wired into E3TrajectorySelector.select() as a second,
+    independent AND-condition alongside running_variance, an experiment that dissociates
+    self-model coherence from world-model confidence (raises D_eff / lowers self-
+    coherence via a perturbation demonstrably stronger than EXQ-075's, while holding
+    running_variance in-range) shows: (a) the combined gate measurably suppresses
+    commitments the running_variance-only gate would have allowed during high-D_eff
+    episodes, and (b) commitments made under the variance-only ablation during those
+    same episodes are measurably more erroneous/lower-quality than commitments made
+    when D_eff is in-range -- i.e. D_eff carries information running_variance does not.
+
+    FALSIFYING: either (a) no perturbation protocol can produce a genuine running_
+    variance/D_eff dissociation (replicating EXQ-075/075d's and MECH-113's own EXQ-142
+    x2 FAIL pattern at the gating level), or (b) a dissociation is produced but commit-
+    quality is statistically indistinguishable between the D_eff-gated and variance-only
+    conditions -- running_variance alone already explains whatever protective effect
+    exists, and D_eff is a redundant rather than independent signal.
   source:
     - evidence/planning/thought_intake_2026-03-23_epistemic_self_monitoring.md
   notes: >
@@ -13778,6 +13920,20 @@
     D_eff gate reduce false commitment under self-model perturbation?).
     pending_design: threshold value and how to expose d_eff to E3 commit logic (currently
     computed in REEAgent but not passed to E3TrajectorySelector.select()). Registered 2026-03-23.
+
+    CORRECTION (2026-08-08, thought-digestion currency check): the EXQ-075/076
+    references above are stale. EXQ-075 (-> V3-EXQ-075d) actually ran tagged to
+    MECH-113, not MECH-114 -- result FAIL 2/4 criteria, and its Gaussian-noise
+    perturbation (sigma=2.0) moved D_eff by only ~0.03% (baseline 23.85 -> 23.84),
+    failing to establish D_eff as a sensitive signal to self-model degradation, not
+    merely providing a calibration baseline as this note implies. EXQ-076's ID was
+    burned for an unrelated experiment family (MECH-116/ARC-032 E1 goal conditioning,
+    V3-EXQ-076 through 076f, all FAIL) -- the D_eff-commit-gating follow-on this note
+    names was never queued or run under any ID. The E3Selector wiring
+    (pending_design above) also remains undone as of this date -- confirmed by direct
+    grep of ree_core/predictors/e3_selector.py, zero d_eff references. Original text
+    preserved above for history; see this claim's what_would_answer for the current
+    formulation.
 
 - id: MECH-115
   title: "Hypothesis tag (MECH-094) reliability degrades with z_self dispersion; high D_eff blurs the simulation/real-action boundary at the self-model level."
@@ -19525,9 +19681,64 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: standard
   depends_on:
     - ARC-001
   location: docs/architecture/e1.md#mech-154
+  what_would_answer: >
+    SCOPED NARROWLY, per this claim's own "may contain false correlations" caveat --
+    covers ONLY the pattern-separation / pattern-completion / content-addressed-
+    retrieval portion of the title, grounded in the standard computational-
+    neuroscience sense (Marr 1971; O'Reilly & McClelland 1994): separation = mapping
+    similar inputs toward more distinct/orthogonal representations; completion =
+    recovering a fuller representation from a partial/related cue.
+
+    EXPLICITLY EXCLUDED, pending governance rewrite -- no falsifier should be drafted
+    for "indexing," "traversal," "ordering," "cross-domain mapping," or "pointer-like
+    attention addressing" as used in the title and in e1.md 2b. These terms originate
+    from a ChatGPT-assisted source thought (2026-04-01_Parietal_systems_thought.md)
+    that self-flags possible false correlations, and on inspection: (a) "traversal"/
+    "ordering" are NOT implemented in E1 (ree_core/predictors/e1_deep.py) at all --
+    the sequential/ordered trajectory-search machinery in the current V3 substrate
+    lives in a STRUCTURALLY SEPARATE module (ree_core/hippocampal/module.py,
+    HippocampalModule, CEM search), directly contradicting the claim's own "not a
+    separate module" framing for this component; (b) "cross-domain mapping" and
+    "pointer-like attention addressing" have no operational definition anywhere in
+    the source thought, the processed architecture doc, or the codebase.
+
+    NON-DEGENERACY PRECONDITION (scoped portion only): E1's ContextMemory
+    (ree_core/predictors/e1_deep.py) must show slot differentiation under its
+    diversification_loss (mean off-diagonal cosine similarity measurably below the
+    collapsed/uniform baseline ~0.99+ documented in SD-016/EXQ-477/EXQ-436c) and
+    content-dependent (non-uniform) softmax attention weights in read() -- both
+    pathologies (slot collapse; uniform-attention entropy ~ln(16)) are already
+    confirmed live failure modes of this exact module, so the claim is not vacuously
+    true of "any E1 configuration."
+
+    CONFIRMING: an agent whose ContextMemory slots differentiate under training
+    (diversification_loss driving measurable orthogonality) shows improved retrieval-
+    from-partial-cue accuracy (completion) AND reduced interference between
+    dissimilar stored contexts (separation) relative to a slot-collapsed or ablated-
+    diversification-loss control, on a task requiring recall of one of several
+    previously-written contexts from a degraded/partial query.
+
+    FALSIFYING: slot differentiation shows no relationship to completion/separation
+    task performance, or a slot-collapsed configuration performs equivalently to a
+    differentiated one -- the associative-manifold framing adds no explanatory or
+    functional value over treating ContextMemory as an undifferentiated cache.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): the title needs a rewrite/split,
+    not just a falsifier bolted on -- the "traversal/ordering... not a separate
+    module" language is in genuine tension with how V3 is organized. The source
+    thought's own unresolved check ("verify against hippocampus.path_memory") was
+    never done before promotion. Siblings MECH-155 (depends_on: [MECH-154], already
+    carries a governance decision record: hold_candidate_resolve_conflict/applied,
+    2026-04-03 -- suggesting this tension was partially recognized once already) and
+    MECH-156 (also depends_on: [MECH-154], restates the same traversal/ordering
+    language independently with its own separate ChatGPT flag in e1.md 2d) share the
+    identical provenance problem and should be reviewed together with this claim,
+    not independently -- fixing MECH-154's title alone would leave the conflation
+    propagated downstream through both dependents.
   source:
     - docs/thoughts/2026-04-01_Parietal_systems_thought.md
   notes: >
