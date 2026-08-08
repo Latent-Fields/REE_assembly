@@ -147,9 +147,9 @@
       "summary": "Three claims cite code by line number and all the citations have drifted, verified 2026-08-08 against ree-v3 HEAD: SD-087 title and SD-020 default_off_scope_note both say \"config.py:2306\" for harm_surprise_pe_enabled (actual: ree_core/utils/config.py:2656 -- wrong path AND +350 lines), SD-087 non_degeneracy_precondition says agent.py:8636-8642 for the PE branch (actual: ree_core/agent.py:9787, function compute_harm_accum_loss at :9743, +~1150 lines), and SD-086 cites e3_selector.py:1038 and :2766 for the two z_harm_a norm reads (actual: :1182 and :3128). The same stale config.py:2306 string is also hardcoded in a comment at ree-v3/experiments/_lib/baselines/affective_fishtank.py:251. This lineage should cite SYMBOL names, not line ranges -- the agent.py citation drifted a further ~190 lines in the five days since a 2026-08-03 reanalysis re-cited it.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:37:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-08T08:31:02Z",
+      "resolution_note": "2026-08-08 governance: fixed all four drifted citations -- SD-087 title and SD-020 default_off_scope_note now cite ree_core/utils/config.py:2656 (was :2306); SD-087 non_degeneracy_precondition now cites ree_core/agent.py:9787 (compute_harm_accum_loss, defined :9743) (was agent.py:8636-8642); SD-086 title now cites ree_core/predictors/e3_selector.py:1182 and :3128 (was :1038 and :2766). The ree-v3/experiments/_lib/baselines/affective_fishtank.py:251 comment citation was NOT fixed here -- that repo's local checkout is dirty and 30 commits behind origin/main with another session's uncommitted WIP, out of scope for a safe edit this cycle; flagged as follow-on."
     },
     {
       "flag_id": "GFLAG-0011",
