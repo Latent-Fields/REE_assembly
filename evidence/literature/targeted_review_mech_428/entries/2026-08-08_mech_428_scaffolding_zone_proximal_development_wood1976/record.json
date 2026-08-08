@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_428",
+  "entry_id": "2026-08-08_mech_428_scaffolding_zone_proximal_development_wood1976",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-428"
+  ],
+  "source": {
+    "title": "The role of tutoring in problem solving",
+    "authors": [
+      "D. Wood",
+      "J. S. Bruner",
+      "G. Ross"
+    ],
+    "year": 1976,
+    "venue": "Journal of Child Psychology and Psychiatry 17(2):89-100",
+    "doi": "10.1111/j.1469-7610.1976.tb00381.x",
+    "url": "https://doi.org/10.1111/j.1469-7610.1976.tb00381.x"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "The canonical source for scaffolding and the developmental anchor MECH-428's own notes flagged as the next lit-pull, so it fills a named gap in the claim's grounding. Confidence is deliberately modest: it is a 1976 observational study of tutor-child interaction whose abstract is not retrievable through PubMed, its evidential standards predate modern developmental methodology, and -- most importantly -- the scaffold it documents is EXTERNALLY PROVIDED, which is the sibling mechanism (scaffolded_sd054_onboarding) rather than MECH-428's internal complement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A task beyond the learner's current unaided capacity yields no productive engagement at all until it is decomposed -- the developmental counterpart of a superordinate goal that cannot be seeded because its terminal benefit is never contacted.",
+    "The decomposition in this paper is performed by a TUTOR, not by the learner; the study documents scaffolded acquisition and does not show a learner generating its own subgoal structure.",
+    "Effectiveness of tutoring varied systematically with the child's age and developmental level, indicating the subgoal grading must match current competence -- a mis-graded scaffold is not merely less helpful but can fail to engage the learner.",
+    "Non-retrievable abstract and 1976-era observational methodology mean effect sizes, sample and analysis cannot be independently verified from the record obtained here."
+  ],
+  "tags": [
+    "mech-428",
+    "scaffolding",
+    "zone_of_proximal_development",
+    "developmental_psychology",
+    "subgoal",
+    "goal_formation"
+  ],
+  "mapping": {
+    "source_claim_statement": "In adult-child tutorial interaction, the tutor controls those elements of a problem-solving task that are initially beyond the learner's capacity, allowing the child to concentrate on and complete only the elements within their competence; over the course of tutoring this support is progressively withdrawn as the child comes to perform the whole task unaided.",
+    "ree_translation": "This is the origin of the 'scaffolding' construct and the empirical anchor for Vygotsky's zone of proximal development, which MECH-428's notes explicitly flagged as wanted to strengthen the FORMATION framing. Two things in it map. First, decomposition into currently-attainable components is what makes an otherwise-unreachable superordinate task performable at all -- the developmental statement of MECH-428's antecedent. Second, and more directly relevant to the claim's formation direction, the scaffold FADES: support is withdrawn and the child ends up performing the whole task unaided, which is the internalisation MECH-428 needs -- competence at the superordinate level ending up resident in the learner, having been assembled through repeated success at the subordinate level. It complements Bandura & Schunk (1981) in targeted_review_proxy_progress_goal_maintenance, which supplies the motivational half (proximal subgoals CREATED intrinsic interest in initially-uninterested learners) where this supplies the structural half.",
+    "mapping_caveat": "The scaffold here is supplied by an external tutor. That makes this paper, read literally, evidence for the scaffolded_sd054_onboarding substrate -- the developmental nursery / feeding curriculum that seeds z_goal EXTERNALLY -- and NOT for MECH-428, which is explicitly the INTERNAL complement in which the agent's own subgoal structure substitutes for direct superordinate seeding. The bridge is the fading result: if the superordinate competence survives withdrawal of the scaffold, then subgoal-level success was sufficient to constitute it, and the tutor's role was to guarantee subgoal attainability rather than to supply the parent goal. That bridge is an inference, not something the paper tests, and it should be labelled as such in any governance use. Secondary caveats: human preschool children to an artificial agent is a large transfer, the study is observational rather than controlled, and its full text was not obtained -- this entry rests on the title, MeSH indexing, and the construct's canonical status rather than on verified reported statistics, so no quantitative result from it should be cited.",
+    "source_context": "Preschool children (approximately 3-5 years) in tutor-assisted problem solving; observational developmental psychology, 1976; MeSH indexing covers child development, problem solving, motor skills, teaching and social reinforcement."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "All three components are modest and the aggregate is held near the 0.5 boundary on purpose. This entry earns its place by filling the developmental-scaffolding gap the claim's own notes named, not by evidential weight; it should anchor framing and should not be load-bearing in a promotion decision."
+  }
+}

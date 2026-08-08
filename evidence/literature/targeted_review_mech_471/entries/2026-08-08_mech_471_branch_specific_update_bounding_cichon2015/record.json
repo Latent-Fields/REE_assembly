@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_471",
+  "entry_id": "2026-08-08_mech_471_branch_specific_update_bounding_cichon2015",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-471"
+  ],
+  "source": {
+    "title": "Branch-specific dendritic Ca(2+) spikes cause persistent synaptic plasticity",
+    "authors": [
+      "Joseph Cichon",
+      "Wen-Biao Gan"
+    ],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14251",
+    "url": "https://doi.org/10.1038/nature14251"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Nature-tier in vivo two-photon imaging with a CAUSAL manipulation that removes the bounding mechanism and produces exactly the failure MECH-471 predicts: prior motor competence is disrupted by learning a second task. Discounted for mapping -- the two tasks are both forelimb motor tasks in the same cortical region, so 'unrelated' here is weaker than MECH-471's 'unrelated previously-acquired competences', and the bounding is biophysical (dendritic compartmentalisation) with no direct REE analogue.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When somatostatin-expressing interneurons are inactivated, different motor tasks stop being routed to different apical tuft branches and instead frequently induce Ca2+ spikes on the SAME branches -- i.e. the scope bound on the competence update is removed.",
+    "On those shared branches, spines potentiated during one task are DEPOTENTIATED when active seconds before Ca2+ spikes induced by another task: a later update silently overwrites the substrate of an earlier competence.",
+    "The overwrite is behaviourally consequential, not merely synaptic -- increased neuronal activity and the performance improvement after learning one task are disrupted when another task is learned.",
+    "The protective mechanism is inhibitory and therefore FAILABLE: competence isolation is not a static property of the substrate but an actively maintained gate that can be switched off."
+  ],
+  "tags": [
+    "mech-471",
+    "catastrophic_interference",
+    "bounded_update",
+    "competence_learning",
+    "dendritic_compartmentalisation",
+    "motor_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Different motor learning tasks induce dendritic Ca2+ spikes on different apical tuft branches of individual layer V motor cortex pyramidal neurons; this branch-specific segregation causes long-lasting potentiation of co-active spines, and when the segregation is abolished by inactivating SST interneurons, learning a second task depotentiates the first task's spines and disrupts the first task's learned performance gain.",
+    "ree_translation": "This is the biological instantiation of MECH-471's core assertion. The brain does NOT permit a behavioural-competence update to write wherever gradient pressure points; it enforces a scope bound (which dendritic branch may be written) as a precondition for storing a new competence without destroying an existing one. The SST-inactivation condition is a live, causal instance of MECH-471's proposed LOCAL-UPDATE INTERFERENCE TEST run in reverse -- remove the bound, and previously acquired competence degrades measurably. In MECH-471's polarity that is a FAIL, i.e. the outcome that MOTIVATES building the discipline. It also satisfies the claim's own NON-DEGENERACY GUARD: the interfered-with competence was demonstrably acquired (a measured performance improvement existed before the second task was learned), so this is not interference measured against a competence the animal never had.",
+    "mapping_caveat": "Three boundaries. (1) The two tasks are both forelimb motor tasks encoded in the same cortical region -- adjacent, not 'unrelated' in MECH-471's sense; the paper therefore evidences interference at CLOSER competence distance than the claim's falsifier specifies, which if anything makes it a weaker test of the general case. (2) The bounding mechanism is biophysical compartmentalisation of a dendritic tree, which has no structural counterpart in REE's competence substrate (action objects, learned affordances, goal-conditioned policies); the transfer is at the level of DESIGN PRINCIPLE -- update scope must be bounded -- not implementation. (3) The paper speaks only to BOUNDING. It says nothing about provenance records or rollback, the other two properties MECH-471 registers, so it cannot be read as support for the claim's full triple.",
+    "source_context": "Mouse (male and female) motor cortex, layer V pyramidal neurons; in vivo two-photon Ca2+ imaging of apical tuft dendrites and spines during two distinct forelimb motor learning tasks; causal test via inactivation of somatostatin-expressing interneurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-471 is an architectural/discipline claim rather than an empirical one about mice. Source quality is high (Nature, causal manipulation, in vivo) but this is single-lab work and the behavioural disruption is the least-replicated part of the result."
+  }
+}

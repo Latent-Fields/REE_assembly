@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_471",
+  "entry_id": "2026-08-08_mech_471_labelled_selective_erasure_hayashitakagi2015",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-471"
+  ],
+  "source": {
+    "title": "Labelling and optical erasure of synaptic memory traces in the motor cortex",
+    "authors": [
+      "Akiko Hayashi-Takagi",
+      "Sho Yagishita",
+      "Mayumi Nakamura",
+      "Fukutoshi Shirai",
+      "Yi I Wu",
+      "Amanda L Loshbaugh",
+      "Brian Kuhlman",
+      "Klaus M Hahn",
+      "Haruo Kasai"
+    ],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature15257",
+    "url": "https://doi.org/10.1038/nature15257"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong Nature-tier causal work that is unusually well-shaped for this claim -- it demonstrates all three MECH-471 properties (a provenance-like label over which synapses a given competence episode wrote, a rollback operation, and demonstrated specificity of that rollback) in one preparation. Discounted substantially because the labelling and the erasure are EXPERIMENTER-IMPOSED tooling, not endogenous mechanisms the organism runs; the paper shows the substrate ADMITS provenance-and-rollback, not that biology implements it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A newly acquired motor skill depends on a task-specific dense synaptic ensemble -- so a competence is not diffusely stored, and an update that reaches that ensemble can destroy it wholesale.",
+    "Optical shrinkage of the potentiated spines DISRUPTED the acquired motor learning, establishing that the competence is causally carried by an identifiable, addressable subset of the substrate rather than being merely correlated with it.",
+    "The disruption is SPECIFIC: the identical manipulation applied to spines evoked by a distinct motor task in the same cortical region did NOT affect the first learning. Absent that specificity, any rollback operation would itself be a catastrophic-interference event.",
+    "Synaptic remodelling was confined to a small subset of neurons, i.e. a single learning episode's write is naturally narrow -- which is the property an ungated competence-update rule would forfeit."
+  ],
+  "tags": [
+    "mech-471",
+    "rollback",
+    "provenance",
+    "competence_learning",
+    "synaptic_ensemble",
+    "motor_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "A photoactivatable optoprobe (AS-PaRac1) selectively labels recently potentiated dendritic spines and permits their selective shrinkage; a motor learning task induces substantial synaptic remodelling in a small subset of motor cortex neurons, optically shrinking those potentiated spines disrupts the acquired motor learning, and the same manipulation applied to spines potentiated by a different motor task in the same region leaves the first learning intact.",
+    "ree_translation": "MECH-471 asks for behavioural-competence updates to be PROVENANCED (a record of which experience produced which change) and ROLLBACK-CAPABLE (that change can be undone without collateral damage). This paper is the closest biological demonstration that both are coherent operations over a competence substrate rather than category errors. The AS-PaRac1 label is a literal provenance tag -- it marks the synapses a specific recent learning episode wrote. The optical shrinkage is a literal rollback of that episode. And the negative control (erasing task B's spines does not touch task A's competence) is precisely the boundedness property that makes rollback safe. Together with MECH-392's consolidation-side rollback, this is the argument that the competence path is not exempt on principled grounds -- the asymmetry MECH-471 names is a gap in what has been REGISTERED, not a reflection of what the substrate can support.",
+    "mapping_caveat": "The decisive limitation, and it is not small: the labelling and the erasure are both EXOGENOUS interventions by the experimenter using an engineered probe and light. Nothing here shows that the brain maintains its own provenance record over competence writes, or that it can roll one back endogenously. Read strictly, the paper licenses 'a competence update leaves a spatially addressable, tagged trace that CAN be selectively reverted' -- an affordance argument -- and NOT 'biological competence learning is provenanced and rollback-capable'. For REE the affordance reading is the useful one, since REE would be BUILDING the discipline rather than discovering it; but a governance reading that treats this as evidence the property exists in nature would be overclaiming. Secondary caveat: rotarod and a second forelimb task are narrow, highly proceduralised competences, whereas REE's 'skill' is explicitly distributed across action objects, affordances, predictive models, trajectories, policies, rule-state and residue -- the addressability that makes optical erasure clean may not survive that distribution.",
+    "source_context": "Male mice, motor cortex; in vivo two-photon imaging plus photoactivation of AS-PaRac1; rotarod motor learning task and a second, distinct motor task used as the specificity control."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "mapping_fidelity is the binding constraint and is deliberately held below 0.7 by the exogenous-tooling caveat. Had the paper shown an endogenous labelling-and-reversion process it would sit near 0.85."
+  }
+}

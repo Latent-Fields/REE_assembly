@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_471",
+  "entry_id": "2026-08-08_mech_471_catastrophic_forgetting_importance_gate_kirkpatrick2017",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-471"
+  ],
+  "source": {
+    "title": "Overcoming catastrophic forgetting in neural networks",
+    "authors": [
+      "James Kirkpatrick",
+      "Razvan Pascanu",
+      "Neil Rabinowitz",
+      "Joel Veness",
+      "Guillaume Desjardins",
+      "Andrei A. Rusu",
+      "Kieran Milan",
+      "John Quan",
+      "Tiago Ramalho",
+      "Agnieszka Grabska-Barwinska",
+      "Demis Hassabis",
+      "Claudia Clopath",
+      "Dharshan Kumaran",
+      "Raia Hadsell"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS) 114:3521-3526",
+    "doi": "10.1073/pnas.1611835114",
+    "url": "https://doi.org/10.1073/pnas.1611835114"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, heavily replicated demonstration in ARTIFICIAL learners -- the correct machine class for REE -- that an ungated competence update destroys unrelated prior competence, and that a per-parameter importance gate largely prevents it. Held below 0.8 by two things: the method's quadratic-penalty derivation was formally critiqued in a PNAS comment, and EWC delivers only ONE of MECH-471's three registered properties.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sequential training on a new task degrades performance on previously learned, unrelated tasks to near-chance in ordinary gradient-trained networks -- the paper's baseline condition IS the failure MECH-471's falsifier is designed to detect.",
+    "Catastrophic forgetting had been 'widely thought to be an inevitable feature of connectionist models', i.e. the default assumption was that no discipline was available -- an assumption this paper falsifies but which explains why competence-path discipline goes unregistered by default.",
+    "The remedy is explicitly a GATE: learning is selectively slowed on the weights important for prior tasks. Without such a gate, a single successful update propagates across the whole parameter set -- MECH-471's named failure mode, stated in machine terms.",
+    "EWC provides bounding WITHOUT provenance or rollback: the Fisher-weighted penalty records only that a parameter matters, not which experience made it matter, and offers no operation to revert a specific update. A system can therefore satisfy the bounding property and still fail the other two.",
+    "The formulation's quadratic-penalty derivation was subsequently challenged in a PNAS comment (Huszar, 10.1073/pnas.1717042115) arguing the multiple-penalty scheme is not the correct Bayesian recursion -- the discipline is real but this particular instantiation is not settled."
+  ],
+  "tags": [
+    "mech-471",
+    "catastrophic_forgetting",
+    "continual_learning",
+    "bounded_update",
+    "elastic_weight_consolidation",
+    "competence_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neural networks trained sequentially catastrophically forget earlier tasks; selectively slowing learning on weights important to previous tasks (elastic weight consolidation, using a Fisher-information estimate of per-parameter importance) allows a single network to retain expertise on tasks not experienced for a long time, demonstrated on permuted-MNIST classification and on sequentially learned Atari 2600 games.",
+    "ree_translation": "This is MECH-471's premise stated for the machine class REE actually belongs to. The claim asserts that policy / affordance / action-object learning currently has 'no gate against a single successful rollout propagating widely'; catastrophic forgetting is the name for what happens when exactly that gate is absent, and the Atari result is the closest published analogue to REE's own setting -- a goal-conditioned agent acquiring behavioural competences sequentially in interactive environments, losing earlier ones. EWC is then an existence proof that the bounding half of MECH-471's discipline is buildable and cheap, which supports the claim's own self-assessment of 'complicated (buildable)' rather than probe-gated.",
+    "mapping_caveat": "Two disanalogies that matter for how far this can be leaned on. (1) EWC requires EXPLICIT TASK BOUNDARIES -- it consolidates at the moment a task is declared finished, and its importance estimate is computed per task. REE has no such boundary: competence accrues continuously within and across episodes, so an REE implementation cannot simply port the algorithm and would need a boundary-free importance signal. (2) EWC addresses BOUNDING ONLY. It is deliberately amnesic about which experiences produced which weight change, and it has no revert operation, so it supplies no evidence for the provenance or rollback properties. Citing this entry as support for the full MECH-471 triple would be a category error; it supports one leg. Third, smaller: the Fisher-based penalty was formally contested post-publication, so the specific mechanism should be treated as one instantiation of the principle, not the settled solution.",
+    "source_context": "Artificial neural networks (supervised classification and deep RL); permuted-MNIST task sequences and sequential Atari 2600 game learning; no biological data, though the method is explicitly motivated by synaptic consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Transfer risk is the LOWEST of the three MECH-471 entries because there is no cross-species transfer at all -- this is the same machine class as REE. mapping_fidelity carries the discount instead, for the task-boundary requirement and the one-of-three-properties coverage."
+  }
+}

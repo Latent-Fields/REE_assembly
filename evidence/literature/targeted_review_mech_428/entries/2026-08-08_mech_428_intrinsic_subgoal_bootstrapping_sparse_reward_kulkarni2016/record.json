@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_428",
+  "entry_id": "2026-08-08_mech_428_intrinsic_subgoal_bootstrapping_sparse_reward_kulkarni2016",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-428"
+  ],
+  "source": {
+    "title": "Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation",
+    "authors": [
+      "Tejas D. Kulkarni",
+      "Karthik R. Narasimhan",
+      "Ardavan Saeedi",
+      "Joshua B. Tenenbaum"
+    ],
+    "year": 2016,
+    "venue": "Advances in Neural Information Processing Systems 29 (NeurIPS 2016)",
+    "doi": "10.48550/arXiv.1604.06057",
+    "url": "https://arxiv.org/abs/1604.06057"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Directly matches the regime MECH-428 names -- a terminal benefit so sparsely reached that a flat agent scores zero -- and shows that attainable subgoals with their own intrinsic progress signal produce learning where direct pursuit produces none. Discounted because the subgoals are hand-specified from an object detector rather than discovered, and because the superordinate value function is architecturally PRE-PROVIDED rather than formed bottom-up, which is precisely the step MECH-428 claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Flat DQN scores zero on Montezuma's Revenge -- with terminal reward this sparse, direct top-down pursuit of the superordinate goal yields no learning signal at all, which is the seeding-failure regime MECH-428 is written for.",
+    "The paper's own stated diagnosis of the failure is INSUFFICIENT EXPLORATION resulting in an agent unable to learn robust value functions -- i.e. the goal representation never gets the contact it needs to become well-formed.",
+    "The subgoal set is supplied externally (entities from a custom object detector), so the demonstration is that ATTAINABLE SUBGOALS RESCUE learning, not that an agent can generate its own subgoal structure -- a limitation later hierarchical-RL work has repeatedly had to confront.",
+    "The meta-controller's value function over intrinsic goals exists from initialisation; nothing here shows a superordinate goal being CREATED by repeated subgoal attainment where it did not previously exist."
+  ],
+  "tags": [
+    "mech-428",
+    "hierarchical_rl",
+    "intrinsic_motivation",
+    "subgoal",
+    "sparse_reward",
+    "goal_seeding"
+  ],
+  "mapping": {
+    "source_claim_statement": "In environments with very sparse, delayed feedback, a two-level hierarchy (h-DQN) in which a meta-controller learns a policy over intrinsic goals and a controller learns atomic actions to satisfy the current goal, with an internal critic rewarding goal attainment, learns where flat deep RL does not -- demonstrated on a stochastic decision process and on Montezuma's Revenge, where flat DQN scores zero.",
+    "ree_translation": "MECH-428 claims that when a superordinate goal cannot be seeded directly -- because the terminal benefit is rarely or never reached -- reliably-attainable subgoals plus their proxy/progress feedback can bootstrap it. Montezuma's Revenge is the cleanest published instance of the antecedent: the terminal benefit is effectively never reached, and the flat agent's score of zero is the computational counterpart of REE's z_goal_norm < 0.1 'in every iteration' across EXQ-085f/g, EXQ-233 and EXQ-536a/b. The internal critic that rewards subgoal attainment is the functional analogue of the proxy/progress feedback MECH-428 relies on, and the meta-controller learning a policy OVER goals is the analogue of a structured z_goal attractor (MECH-112/MECH-230) becoming trainable. What the paper establishes is that the subgoal layer converts an unlearnable problem into a learnable one under exactly the sparsity condition REE faces.",
+    "mapping_caveat": "The crux disanalogy, and it goes to the heart of what MECH-428 uniquely claims. h-DQN's meta-controller -- the structure that would correspond to the superordinate goal -- is ARCHITECTURALLY PRESENT FROM INITIALISATION. Subgoal attainment makes it trainable; it does not bring it into existence. MECH-428 asserts the stronger, formation-direction thing: that cross-level credit from subgoal attainment can CREATE the parent goal where direct seeding failed to produce one. This paper supports the weaker 'subgoals rescue an otherwise-unlearnable superordinate goal' and is silent on the stronger 'subgoals constitute the superordinate goal'. Second caveat: the subgoals are hand-specified via a bespoke object detector, so the result presupposes someone already knows the useful decomposition -- for REE that is closer to the EXTERNAL scaffolding of scaffolded_sd054_onboarding than to MECH-428's internal complement. Third: the absolute Montezuma scores are modest and subsequent literature found hierarchical-RL gains of this vintage fragile and hard to generalise beyond the tuned domain.",
+    "source_context": "Deep reinforcement learning agents; a synthetic stochastic decision process and the ATARI 2600 game Montezuma's Revenge; no biological or human data."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Source quality discounted from the venue's face value because the headline result proved fragile in follow-up work. mapping_fidelity carries the architecturally-pre-provided-parent caveat, which is the single most important boundary on this entry."
+  }
+}

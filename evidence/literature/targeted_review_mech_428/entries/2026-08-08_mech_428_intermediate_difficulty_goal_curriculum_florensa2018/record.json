@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_428",
+  "entry_id": "2026-08-08_mech_428_intermediate_difficulty_goal_curriculum_florensa2018",
+  "timestamp_utc": "2026-08-08T06:05:29Z",
+  "claim_ids_tested": [
+    "MECH-428"
+  ],
+  "source": {
+    "title": "Automatic Goal Generation for Reinforcement Learning Agents",
+    "authors": [
+      "Carlos Florensa",
+      "David Held",
+      "Xinyang Geng",
+      "Pieter Abbeel"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the 35th International Conference on Machine Learning (ICML), PMLR 80:1515-1528",
+    "doi": "10.48550/arXiv.1705.06366",
+    "url": "https://proceedings.mlr.press/v80/florensa18a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "A clean computational demonstration that goals held at the agent's current level of attainability expand the set of achievable goals bottom-up under sparse reward, with no prior knowledge of the environment -- the zone-of-proximal-development principle made mechanical. Held down because the goal SPACE is given a priori and the architecture is flat goal-conditioned RL with no superordinate goal at all, so it evidences the reachability-expansion half of MECH-428 and not the parent-formation half.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An agent trained with ordinary RL is capable of achieving only the single task specified by its reward function -- the failure mode that makes direct superordinate seeding brittle when that one goal is rarely contacted.",
+    "Goals that are too hard yield no learning signal and goals that are too easy yield no learning pressure; the generator must be adversarially held at INTERMEDIATE difficulty, meaning the bootstrapping window is narrow and must be actively tracked as competence changes.",
+    "The method presupposes a parametrized goal space (subsets of the state space) supplied by the designer -- it discovers WHICH goals are currently attainable, not what the space of goals is.",
+    "There is no goal hierarchy: nothing in the architecture corresponds to a superordinate goal that subgoal attainment could seed, so the mechanism cannot in principle exhibit MECH-428's formation-direction effect."
+  ],
+  "tags": [
+    "mech-428",
+    "automatic_curriculum",
+    "goal_generation",
+    "zone_of_proximal_development",
+    "sparse_reward",
+    "goal_seeding"
+  ],
+  "mapping": {
+    "source_claim_statement": "A generator network, trained adversarially, proposes goals specified as reaching parametrized subsets of the state space and keeps them always at the appropriate level of difficulty for the current agent, thereby producing an automatic curriculum; using this, an agent efficiently and automatically learns to perform a wide set of tasks without prior knowledge of its environment, even when only sparse rewards are available.",
+    "ree_translation": "MECH-428's mechanism depends on subgoals being RELIABLY ATTAINABLE -- attainability is what generates the repeated attainment and cross-level credit that does the seeding work. This paper is the sharpest computational statement of what 'reliably attainable' has to mean in practice: not fixed, but tracked, held at the moving boundary of what the agent can currently do. That is a mechanised zone of proximal development, and it converts the Vygotskian framing the claim's notes ask for into something implementable. It also demonstrates the outcome MECH-428 needs as a precondition -- that under sparse reward, an appropriately-graded goal curriculum expands what the agent can reach, starting from an agent that can reach almost nothing.",
+    "mapping_caveat": "This entry evidences a PRECONDITION of MECH-428, not the claim itself, and should not be scored as though it were the latter. There is no goal hierarchy in GoalGAN: it is flat goal-conditioned RL with a curriculum, and no structure in it plays the role of the superordinate goal that MECH-428 says gets bootstrapped. So it cannot, even in principle, exhibit the formation-direction effect the claim asserts -- it shows reachability expanding, which is nearer to MECH-216/217 (populating the wanting landscape for reachability) than to MECH-428 proper. Second caveat: the parametrized goal space is designer-supplied, so 'without requiring any prior knowledge of its environment' is narrower than it sounds -- the agent discovers which goals are currently attainable within a space it did not construct. Third: the environments are continuous-control navigation and manipulation tasks with well-behaved, densely-connected state spaces, where an intermediate-difficulty goal reliably exists; REE's goal-seeding failures occur in settings where it is not established that any such intermediate rung is available.",
+    "source_context": "Continuous-control reinforcement learning agents (navigation and object-manipulation style tasks) under sparse reward; simulation only, no biological or human data."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity is the dominant discount and is set below 0.6 deliberately: the entry is honest evidence for a precondition and would be misleading if read as support for the parent-formation claim. Source quality is solid (ICML 2018, well-replicated idea, spawned a substantial automatic-curriculum literature)."
+  }
+}
