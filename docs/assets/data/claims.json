@@ -4627,12 +4627,13 @@
     "type": "mechanism"
   },
   "MECH-212": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "sleep.nrem.e2_consolidation",
     "title": "e2_motor_sequence_sleep_consolidation",
-    "type": "mechanism"
+    "type": "mechanism",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: The E2 fast motor-sensory transition model (ree_core/predictors/e2_fast.py) must exist and produce trackable action_objects / z_self transition sequences (confirmed built; SD-004 implemented). MECH-121's NREM SWR-replay pipeline and MECH-205's surprise-buffer machinery must be operational for E1 (confirmed). Critically, an E2-specific offline consumption/replay pipeline -- one that pops high-motor-sensory-PE action-sequence entries and runs SWR-triggered counterfactual replay through E2 specifically (not the narrow e2_harm_s harm submodule, and not the MECH-423 R3 interleaved-schedule module, which serves a different purpose) -- is currently UNBUILT. Any test run before this pipeline exists will self-route substrate_not_ready rather than produce valid evidence either way.\nCONFIRMING: Once built, a controlled NREM-sleep condition shows selective improvement in z_self-transition efficiency / reduced motor-sensory prediction error specifically on action sequences that were flagged high-PE (clumsy, novel, or skill-boundary episodes) pre-sleep -- and this improvement (a) scales with each sequence's pre-sleep PE magnitude, (b) is measurably larger under NREM/SWR- replay conditions than under an equivalent-duration wake-rehearsal or generic- gradient-descent control, and (c) persists when E1 world-schema PE is held constant or matched across conditions -- i.e. the effect is not parasitic on E1 consolidation.\nFALSIFYING: (a) No NREM-specific improvement in z_self-transition efficiency or procedural performance beyond what wake-state rehearsal or a generic (non-PE- gated) offline gradient pass already produces; or (b) any observed motor-sequence improvement is fully explained by E1 world-schema consolidation spillover -- disappears once trials are matched on E1-relevant PE, with no residual E2-specific signal; or (c) once the E2-specific pipeline is built, ablating it produces no measurable procedural-memory deficit distinct from ablating E1 consolidation alone -- i.e. E2's contribution is not dissociable from E1's at the mechanism level.\n"
   },
   "MECH-213": {
     "assembly_state": "gated_v3",
@@ -4643,12 +4644,13 @@
     "type": "mechanism"
   },
   "MECH-214": {
-    "assembly_state": "deferred_future",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "development.goal_coherence",
     "title": "goal_referent_e1_representability",
-    "type": "mechanism"
+    "type": "mechanism",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: this claim cannot be tested against V3. GoalState seeds and attracts z_goal purely in z_world space; the V3 grid world conflates location with reward, so proxy content and hedonic content cannot come apart. Before this claim is even meaningfully falsifiable, two V4 substrate steps must land (self_model_v4_plan.md SELF-5/SELF-6, both status: blocked): (a) DR-11/SELF-5 -- a z_self-domain goal channel, so a goal can name a self-state and not only a world-location target; (b) DR-14/SELF-6 -- an environment that dissociates a goal's proxy cue from its hedonic outcome. Until both land, any experiment framed as testing this claim is measuring something else (most likely MECH-215's z_self-viability question instead).\nCONFIRMING (once DR-11 + DR-14 exist): agents fail to form coherent, effective goals/viability terrain for self-states E1 has not yet differentiated a schema for (goal quality no better than random-vector baseline); goal coherence improves monotonically as E1 schema richness for the relevant domain expands; the addiction-analog failure mode reproduces (repeated pursuit of a z_goal proxy without hedonic grounding, i.e. wanting persists while the actual satisfaction state stays E1-unrepresented).\nFALSIFYING: E3 forms coherent, effective goals and viability terrain for a self-state that E1 demonstrably cannot represent (no schema differentiation for that state, verified independently) -- i.e. goal quality is statistically indistinguishable between E1-represented and E1-unrepresented target states. That would show goal referent content is NOT constituted by E1 representations, and that E3/frontal goal machinery can specify and pursue goals independent of world-model vocabulary.\n"
   },
   "MECH-215": {
     "assembly_state": "deferred_future",
@@ -4742,12 +4744,13 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-225": {
-    "assembly_state": "deferred_future",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "perception.oscillatory_multiplexing",
     "title": "Oscillatory coupling multiplexing: cross-frequency oscillatory dynamics (gamma/theta/beta/delta) implement phase-based separation of perception, simulation, and action preparation streams.",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "MECH-225 fuses two claims that resolve in different domains. Following the precedent already established by its own dependency MECH-089 (functional_ restatement: the biological mechanism is one implementation of a functional requirement, not required in the ANN substrate), split explicitly.\nLEG 1 (REE mechanism, substrate_conditional -- testable once V4 substrate exists): does REE's E1/E2/E3-hippocampus system implement some functional analog of channel-banded routing letting shared representational capacity simultaneously carry (a) sensory-constrained perception, (b) counterfactual/imagined rollout, and (c) committed action-trajectory content, disambiguated without separate circuits -- and does collapse of that separation produce a measurable confusion signature between imagined and perceived content (this claim's own hallucination-analog prediction)? \"Gamma/theta/beta/delta\" should be read as a functional-separation requirement, not a commitment to literal continuous-time oscillatory dynamics.\nNON-DEGENERACY PRECONDITION: requires V4 substrate that concurrently encodes at least perception + imagination (or perception + action-commitment) over shared representational capacity with an explicit disambiguation/routing mechanism -- verified absent in V3 as of this date: ThetaBuffer (MECH-108), BetaGate (MECH-090), and cross_stream_binder.py each implement at most a two-way separation, none disambiguate three concurrent streams over shared capacity.\nCONFIRMING signature: once V4 substrate exists, ablating/collapsing the channel-separation mechanism measurably increases confusion between imagined-rollout content and perceived content, beyond what ablating either channel alone accounts for.\nFALSIFYING signature: perception, imagination, and action-commitment streams remain functionally distinct and non-confusable under shared representational capacity even with no explicit disambiguation mechanism -- meaning the \"multiplexing\" framing is unnecessary machinery relative to what plain capacity-separation already achieves.\nLEG 2 (biological substrate, out of REE's test domain): whether biological gamma/theta/beta/delta oscillations specifically implement local binding / hippocampal sequencing / commitment-bias / global-mode respectively, in actual cortex and hippocampus, is a human/animal electrophysiology question no REE experiment can adjudicate -- resolved by literature, not REE experiment. Per PubMed: McLelland & VanRullen 2016 reconcile \"communication-through-coherence\" (Fries) and the \"theta-gamma neural code\" accounts of oscillatory multiplexing in a single spiking-network model (PLoS Comput Biol 12(10):e1005162, DOI 10.1371/journal.pcbi.1005162); Hyafil et al. 2015 show theta-gamma coupling functioning as a de-multiplexing mechanism for speech in human auditory cortex (eLife 4:e06213, DOI 10.7554/eLife.06213). This literature supports that cross-frequency multiplexing is an actively-studied biological mechanism, NOT that the specific gamma=binding/theta=sequencing/beta=commitment/delta=global-mode assignment in this claim's notes is settled consensus.\n"
   },
   "MECH-226": {
     "assembly_state": "deferred_future",
@@ -4799,7 +4802,8 @@
     "status": "provisional",
     "subject": "latent_stack.e2_short_horizon_efference_copy",
     "title": "E2 operates as a short-horizon efference-copy forward model on z_self; its prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor.",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: both E1 and E2 must be adequately trained (not degenerate/undertrained) before a horizon-degradation comparison is meaningful -- EXQ-407's dry run (3 warmup/eval episodes) was explicitly flagged as preliminary for this reason; the full run (100 warmup episodes, 30 eval episodes, 3 seeds, 7196 total windows) resolves that caveat and is the evidentiary basis below.\nCONFIRMING: this is what EXQ-407's full run actually found, confirming the claim: E2's R2 degrades far faster than E1's across horizons h=1,2,3,5,7,10,15 (slope_e2=-4094.58 vs slope_e1=-25.03, a ~164x steeper degradation), while E2 is more accurate than E1 at h=1 (r2_e2_h1=-19.35 vs r2_e1_h1=-44.74) and catastrophically worse than E1 by h=10 (r2_e2_h10=-19063.65 vs r2_e1_h10=-377.15). All 4 acceptance criteria passed, consistently across all 3 seeds (42, 7, 123) -- exactly the short-horizon-cerebellar-predictor signature the claim asserts, and directly the inverse of what MECH-070 (this claim's superseded predecessor) had predicted.\nFALSIFYING: The claim would have been falsified by slope_e2 >= slope_e1 (E2 not degrading faster than E1 across horizons) or by e2_r2_h1 failing to exceed e2_r2_h10 by a significant margin -- i.e. any outcome where E2 sustained comparable or better multi-step accuracy than E1. Concretely, this is MECH-070's original (now-refuted) pass criteria almost exactly inverted: MECH-070's own C2 FAIL is direct evidence of what a MECH-231 falsification would look like, since MECH-231 is the corrected inverse of that exact prediction. EXQ-132 FAIL and EXQ-212 FAIL 2/4 are the prior (pre-correction) instances of partial falsification that motivated MECH-070's retirement and MECH-231's reformulation.\n"
   },
   "MECH-232": {
     "assembly_state": "mature",
@@ -4850,12 +4854,13 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-238": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "hippocampus.distance_metric_encoding",
     "title": "The hippocampal module encodes pairwise distance relations between states in the z_world latent manifold \u2014 not only positional tags \u2014 providing a metric structure that enables distance-based navigation toward goal states across the residue-field terrain.",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: the HippocampalModule already exists and performs trajectory search over ACTION-OBJECT space O (E2.action_object(z_world, a) -> o_t, per SD-004), not raw z_world directly -- this claim's title should be read as \"distance relations over the hippocampal map's indexing space.\" No distance-preservation, contrastive, or metric-supervision training objective exists anywhere in ree_core as of this date. The only distance computation touching z_world today is a raw MSE used by goal-tracking machinery, not a learned hippocampal encoding -- i.e. the substrate currently looks exactly like the categorical/lookup alternative this claim needs to rule out. The claim is untestable as stated until a distance-preservation objective is added to HippocampalModule (or its action-object embedding) training.\nCONFIRMING: once a distance-preservation/contrastive loss is added, a representational-distance probe shows pairwise distances in the learned representation correlate with true manifold distances at a level above what an undifferentiated/categorical-only control achieves; AND trajectory proposals succeed at \"navigate toward goal\" tasks that specifically require distance comparison between non-adjacent candidate states (not just membership/retrieval of a previously-visited state), with performance degrading when the metric-supervision loss is ablated.\nFALSIFYING: representational-distance probes show no reliable correlation between the hippocampal module's internal similarity structure and true manifold distances, even after adding the metric-supervision objective -- the representation remains categorical/positional rather than metric regardless of training pressure; OR trajectory-proposal performance on distance-requiring navigation tasks is statistically indistinguishable from a lookup/nearest-neighbor-tag baseline that has no access to distance information, while performance on pure membership/retrieval tasks is unaffected -- showing the metric structure adds no functional value beyond what a position tag already provides.\n"
   },
   "MECH-239": {
     "assembly_state": "gated_v3",

@@ -6513,22 +6513,6 @@
     Clinical analogues are tracked as notes rather than a separate field -- the
     psychiatric symptom mapping is evidence for the architectural claim, not a
     separate claim type.
-
-    SCOPE CROSS-REFERENCE (2026-08-08, added after a governance flag on INV-020's
-    depends_on): this claim has TWO faces and the notes above show only one of them.
-    The precision-ratio / aberrant-salience material is HOW the RC-conflict threshold
-    is calibrated. The other face -- WHAT that threshold licenses -- is the
-    authority-stratification duty in control_plane_signal_map.md#mech-065's "commit
-    licensing extension": `commit(tau)` requires a verifier pass over {POL, ID, CAPS}
-    with `RC_conflict < theta_rc`, and S5 is computed OUTSIDE proposal generation from
-    provenance bindings, authority metadata, SELF_ID, POLICY and CAPS. That is why
-    INV-020 (authority stratification boundary) lists MECH-065 alongside MECH-064 as a
-    corollary, in docs/invariants.md#inv-020 and in the originating 2026-02-18
-    consolidation document. MECH-064 is the write-side hard-deny; this claim is the
-    read-side verifier that detects authority mismatch and responds by raising
-    commitment thresholds WITHOUT minting a privileged write. This claim's scope has
-    NOT been narrowed since registration -- do not re-flag the INV-020 mapping as
-    stale. Full derivation in INV-020's notes (GOVERNANCE FLAG RESOLVED, 2026-08-08).
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict):
     MECH-065 is currently a schematic design claim -- the RC_conflict signal, the
@@ -7263,61 +7247,6 @@
     corollary already present in the list. Worth a governance-cycle check on whether
     MECH-065 belongs in this depends_on, or whether the mapping predates a later
     MECH-065 scope narrowing.
-
-    GOVERNANCE FLAG RESOLVED (2026-08-08, dedicated review; flag above retained as the
-    historical record per append-corrections discipline). VERDICT: NOT a mismatch, and
-    NOT a mistyped MECH-06x number -- MECH-065 stays in this depends_on. Neither
-    hypothesis in the flag survives contact with the three canonical sources, all of
-    which independently carry the same MECH-064 + MECH-065 pairing:
-
-    (1) docs/invariants.md#inv-020 (this claim's own `location`) reads "Corollary
-    mapping: INV-014, INV-007, MECH-064, MECH-065" -- so the depends_on list is a
-    faithful transcription of the canonical corollary mapping, not a registration slip.
-
-    (2) The originating consolidation thought document (2026-02-18, listed in `source`)
-    registers this invariant as "META-INV-B: Authority Stratification Principle" and
-    lists its corollaries as "MECH-064 (typed authority separation)" and "MECH-065
-    (reality-coherence conflict ROUTING)". The pairing is original and deliberate;
-    there is no adjacent MECH-06x that was plausibly intended instead (MECH-066 is
-    pre/post-commit channel separation, MECH-067 the permission matrix -- and MECH-067
-    already depends on INV-020 in the other direction).
-
-    (3) MECH-065 is load-bearing for the SECOND HALF of this invariant's own claim
-    sentence, which is why reading only the title looks like a topic mismatch. The
-    canonical claim is "constraint stores ... must be insulated from direct
-    observational/symbolic writes; DURABLE CHANGES REQUIRE VERIFIER-MEDIATED COMMIT
-    PATHS." MECH-064 supplies the first clause (the static `EXTERNAL -> POL/ID/CAPS`
-    hard-deny). MECH-065 supplies the second: control_plane_signal_map.md#mech-065's
-    "commit licensing extension" makes `commit(tau)` require a VERIFIER PASS OVER
-    {POL, ID, CAPS} together with `RC_conflict < theta_rc`, and the same doc defines
-    `S5 := rc_conflict(H_graph, temporal_consistency, authority_metadata, SELF_ID,
-    POLICY, CAPS)` as computed "outside proposal generation" -- which is verbatim the
-    obligation this map's own INV-020 row states ("EXTERNAL -> POL/ID/CAPS stays
-    hard-deny; verifier outside proposal generation"). MECH-065 is thus the READ-side /
-    verifier complement of MECH-064's write-side deny: it reads the constraint stores
-    to detect authority mismatch and responds by raising commitment thresholds and
-    damping DA_A/DA_M lock-in, WITHOUT minting a privileged write -- which is exactly
-    this invariant's second interpretation-note bullet ("fast defensive interrupts are
-    still allowed to stop/suppress commitment without minting privileged writes"), and
-    exactly MECH-064's own path-table row `S3/S5 -> emergency interrupt | yes | may
-    stop/suppress commitment without granting privileged writes`.
-
-    The shared prompt-injection source doc (17-02-26, in both mechanisms' `source`)
-    states the two-conjunct structure outright: an injection attempting to alter POLICY
-    fails because BOTH `write(X_ext, POLICY) = bottom` (MECH-064) AND "RC_conflict
-    spikes when authority mismatch occurs" (MECH-065) -- "injection fails at reality
-    coherence stage, not at planning stage." Dropping MECH-065 would leave the
-    stratification boundary enforced only by channel typing, with nothing detecting
-    spurious authority asserted by content that legitimately arrived as OBS/INS.
-
-    WHY IT LOOKED WRONG, so a future digestion pass does not re-flag it: MECH-065's
-    claims.yaml surface (title, and notes led by the 2026-03-29 Q-018 lit pull) fronts
-    the precision-RATIO calibration and psychosis/aberrant-salience framing, while its
-    architecture-doc section fronts the provenance/authority-mismatch commit-licensing
-    function that this invariant actually depends on. Those are two aspects of one lane
-    (the ratio is HOW the threshold is set; the commit gate is WHAT the threshold
-    licenses), but the registry-only view shows just the first. A cross-reference note
-    has been added to MECH-065 pointing back here.
 - id: INV-021
   title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
@@ -27831,6 +27760,52 @@
     the REE sleep account is an architectural omission. E2's action_objects become
     the hippocampal map backbone (SD-004), so E2 consolidation may also feed the
     E3 viability map indirectly.
+
+    CORRECTION (2026-08-08, thought-digestion): "its own surprise buffer population
+    mechanism" is imprecise -- MECH-205 (a direct dependency, now status: stable)
+    already specifies the surprise buffer as a single structure spanning E1 sensory,
+    E2 motor-sensory, and E3 harm/goal prediction error, populated during waking
+    regardless of source module. Buffer *population* for E2 is therefore already
+    covered by MECH-205. The actual gap this claim identifies is the offline
+    *consumption/replay* pipeline -- an E2-keyed pop-and-SWR-replay step analogous to
+    MECH-121's E1 pipeline -- which remains genuinely unbuilt (verified: no E2-keyed
+    PE or surprise-buffer consumption logic in e2_fast.py, replay_sampler.py, or
+    phase_manager.py as of this date; the only E2-adjacent offline pass is a narrow,
+    non-PE-gated MSE pass scoped to the e2_harm_s harm submodule, not the general E2
+    transition model).
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: The E2 fast motor-sensory transition model
+    (ree_core/predictors/e2_fast.py) must exist and produce trackable action_objects /
+    z_self transition sequences (confirmed built; SD-004 implemented). MECH-121's
+    NREM SWR-replay pipeline and MECH-205's surprise-buffer machinery must be
+    operational for E1 (confirmed). Critically, an E2-specific offline
+    consumption/replay pipeline -- one that pops high-motor-sensory-PE action-sequence
+    entries and runs SWR-triggered counterfactual replay through E2 specifically (not
+    the narrow e2_harm_s harm submodule, and not the MECH-423 R3 interleaved-schedule
+    module, which serves a different purpose) -- is currently UNBUILT. Any test run
+    before this pipeline exists will self-route substrate_not_ready rather than
+    produce valid evidence either way.
+
+    CONFIRMING: Once built, a controlled NREM-sleep condition shows selective
+    improvement in z_self-transition efficiency / reduced motor-sensory prediction
+    error specifically on action sequences that were flagged high-PE (clumsy, novel,
+    or skill-boundary episodes) pre-sleep -- and this improvement (a) scales with
+    each sequence's pre-sleep PE magnitude, (b) is measurably larger under NREM/SWR-
+    replay conditions than under an equivalent-duration wake-rehearsal or generic-
+    gradient-descent control, and (c) persists when E1 world-schema PE is held
+    constant or matched across conditions -- i.e. the effect is not parasitic on E1
+    consolidation.
+
+    FALSIFYING: (a) No NREM-specific improvement in z_self-transition efficiency or
+    procedural performance beyond what wake-state rehearsal or a generic (non-PE-
+    gated) offline gradient pass already produces; or (b) any observed motor-sequence
+    improvement is fully explained by E1 world-schema consolidation spillover --
+    disappears once trials are matched on E1-relevant PE, with no residual E2-specific
+    signal; or (c) once the E2-specific pipeline is built, ablating it produces no
+    measurable procedural-memory deficit distinct from ablating E1 consolidation
+    alone -- i.e. E2's contribution is not dissociable from E1's at the mechanism
+    level.
   registered: "2026-04-07"
   depends_on: [MECH-205, MECH-121, INV-049]
   implementation_phase: v3
@@ -28477,6 +28452,41 @@
     dissociate (DR-14) to surface this failure mode. See also addiction mapping:
     repeated pursuit of z_goal proxy without hedonic grounding = wanting fires on
     E1-unrepresented satisfaction state.
+
+    CURRENCY CHECK (2026-08-08, thought-digestion): re-verified against
+    evidence/planning/self_model_v4_plan.md -- SELF-5 (DR-11) and SELF-6 (DR-14) are
+    both still status: blocked, and both already list unblocks_claims: [MECH-214]
+    directly, so no new tracking doc is needed. SELF-3 (DR-10) has moved to
+    in_progress since this claim's notes were last touched, but it unblocks MECH-215,
+    not this claim, only indirectly (as one of SELF-5's two dependencies).
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this claim cannot be tested against V3. GoalState
+    seeds and attracts z_goal purely in z_world space; the V3 grid world conflates
+    location with reward, so proxy content and hedonic content cannot come apart.
+    Before this claim is even meaningfully falsifiable, two V4 substrate steps must
+    land (self_model_v4_plan.md SELF-5/SELF-6, both status: blocked): (a) DR-11/SELF-5
+    -- a z_self-domain goal channel, so a goal can name a self-state and not only a
+    world-location target; (b) DR-14/SELF-6 -- an environment that dissociates a
+    goal's proxy cue from its hedonic outcome. Until both land, any experiment framed
+    as testing this claim is measuring something else (most likely MECH-215's
+    z_self-viability question instead).
+
+    CONFIRMING (once DR-11 + DR-14 exist): agents fail to form coherent, effective
+    goals/viability terrain for self-states E1 has not yet differentiated a schema
+    for (goal quality no better than random-vector baseline); goal coherence improves
+    monotonically as E1 schema richness for the relevant domain expands; the
+    addiction-analog failure mode reproduces (repeated pursuit of a z_goal proxy
+    without hedonic grounding, i.e. wanting persists while the actual satisfaction
+    state stays E1-unrepresented).
+
+    FALSIFYING: E3 forms coherent, effective goals and viability terrain for a
+    self-state that E1 demonstrably cannot represent (no schema differentiation for
+    that state, verified independently) -- i.e. goal quality is statistically
+    indistinguishable between E1-represented and E1-unrepresented target states. That
+    would show goal referent content is NOT constituted by E1 representations, and
+    that E3/frontal goal machinery can specify and pursue goals independent of
+    world-model vocabulary.
   registered: "2026-04-07"
   depends_on: [INV-064, MECH-205, MECH-121]
 
@@ -31313,6 +31323,66 @@
     "this is happening"). Collapse of phase separation = hallucination-like phenomena.
     Ephaptic coupling (MECH-228) is one physical substrate that helps enforce or bias
     phase separation.
+
+    CURRENCY NOTE (2026-08-08, thought-digestion): the gamma/theta/beta/delta ->
+    function mapping above is presented as settled biology with no hedge. Literature
+    check (McLelland & VanRullen 2016, PLoS Comput Biol 12(10):e1005162; Hyafil et al.
+    2015, eLife 4:e06213) shows cross-frequency multiplexing is an actively-studied
+    area of reconciliation between competing theories, not consensus -- this specific
+    four-way assignment should not be cited as established neuroscience if this claim
+    is later promoted or referenced elsewhere. Also: MECH-227 (same cluster, depends
+    on MECH-225) is missing implementation_phase and epistemic_category entirely,
+    unlike siblings MECH-226/228 -- a cluster-consistency gap flagged for governance,
+    not fixed here (out of this claim's scope).
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    MECH-225 fuses two claims that resolve in different domains. Following the
+    precedent already established by its own dependency MECH-089 (functional_
+    restatement: the biological mechanism is one implementation of a functional
+    requirement, not required in the ANN substrate), split explicitly.
+
+    LEG 1 (REE mechanism, substrate_conditional -- testable once V4 substrate exists):
+    does REE's E1/E2/E3-hippocampus system implement some functional analog of
+    channel-banded routing letting shared representational capacity simultaneously
+    carry (a) sensory-constrained perception, (b) counterfactual/imagined rollout, and
+    (c) committed action-trajectory content, disambiguated without separate circuits
+    -- and does collapse of that separation produce a measurable confusion signature
+    between imagined and perceived content (this claim's own hallucination-analog
+    prediction)? "Gamma/theta/beta/delta" should be read as a functional-separation
+    requirement, not a commitment to literal continuous-time oscillatory dynamics.
+
+    NON-DEGENERACY PRECONDITION: requires V4 substrate that concurrently encodes at
+    least perception + imagination (or perception + action-commitment) over shared
+    representational capacity with an explicit disambiguation/routing mechanism --
+    verified absent in V3 as of this date: ThetaBuffer (MECH-108), BetaGate
+    (MECH-090), and cross_stream_binder.py each implement at most a two-way
+    separation, none disambiguate three concurrent streams over shared capacity.
+
+    CONFIRMING signature: once V4 substrate exists, ablating/collapsing the
+    channel-separation mechanism measurably increases confusion between
+    imagined-rollout content and perceived content, beyond what ablating either
+    channel alone accounts for.
+
+    FALSIFYING signature: perception, imagination, and action-commitment streams
+    remain functionally distinct and non-confusable under shared representational
+    capacity even with no explicit disambiguation mechanism -- meaning the
+    "multiplexing" framing is unnecessary machinery relative to what plain
+    capacity-separation already achieves.
+
+    LEG 2 (biological substrate, out of REE's test domain): whether biological
+    gamma/theta/beta/delta oscillations specifically implement local binding /
+    hippocampal sequencing / commitment-bias / global-mode respectively, in actual
+    cortex and hippocampus, is a human/animal electrophysiology question no REE
+    experiment can adjudicate -- resolved by literature, not REE experiment. Per
+    PubMed: McLelland & VanRullen 2016 reconcile "communication-through-coherence"
+    (Fries) and the "theta-gamma neural code" accounts of oscillatory multiplexing in
+    a single spiking-network model (PLoS Comput Biol 12(10):e1005162, DOI
+    10.1371/journal.pcbi.1005162); Hyafil et al. 2015 show theta-gamma coupling
+    functioning as a de-multiplexing mechanism for speech in human auditory cortex
+    (eLife 4:e06213, DOI 10.7554/eLife.06213). This literature supports that
+    cross-frequency multiplexing is an actively-studied biological mechanism, NOT
+    that the specific gamma=binding/theta=sequencing/beta=commitment/delta=global-mode
+    assignment in this claim's notes is settled consensus.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
@@ -32524,6 +32594,44 @@
     across seeds 42, 7, 123. Full-run confirmation of dry-run result. Promoted to
     provisional (governance-2026-04-14). conf=0.809, 5 supports / 0 weakens.
 
+    GOVERNANCE FLAG (2026-08-08, thought-digestion, not resolved here): live
+    evidence/experiments/claim_evidence.v1.json currently computes overall_confidence
+    =0.713 (exp_conf=0.555, lit_conf=0.766, entries_total=4) with the experimental
+    entry flagged status: UNKNOWN / "direction/status mismatch" -- inconsistent with
+    the conf=0.809, 5 supports/0 weakens figure recorded above. The raw manifest
+    (v3_exq_407_mech231_e2_short_horizon_1776142217_v3.json) is an unambiguous 4/4-
+    criteria, 3/3-seed PASS, so this looks like an indexer/manifest-schema gap rather
+    than a real evidentiary problem -- but a strong promotion candidate
+    (provisional -> stable) should not proceed until this discrepancy is reconciled by
+    a future /governance cycle.
+  epistemic_category: standard
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: both E1 and E2 must be adequately trained (not
+    degenerate/undertrained) before a horizon-degradation comparison is meaningful --
+    EXQ-407's dry run (3 warmup/eval episodes) was explicitly flagged as preliminary
+    for this reason; the full run (100 warmup episodes, 30 eval episodes, 3 seeds,
+    7196 total windows) resolves that caveat and is the evidentiary basis below.
+
+    CONFIRMING: this is what EXQ-407's full run actually found, confirming the claim:
+    E2's R2 degrades far faster than E1's across horizons h=1,2,3,5,7,10,15
+    (slope_e2=-4094.58 vs slope_e1=-25.03, a ~164x steeper degradation), while E2 is
+    more accurate than E1 at h=1 (r2_e2_h1=-19.35 vs r2_e1_h1=-44.74) and
+    catastrophically worse than E1 by h=10 (r2_e2_h10=-19063.65 vs
+    r2_e1_h10=-377.15). All 4 acceptance criteria passed, consistently across all 3
+    seeds (42, 7, 123) -- exactly the short-horizon-cerebellar-predictor signature
+    the claim asserts, and directly the inverse of what MECH-070 (this claim's
+    superseded predecessor) had predicted.
+
+    FALSIFYING: The claim would have been falsified by slope_e2 >= slope_e1 (E2 not
+    degrading faster than E1 across horizons) or by e2_r2_h1 failing to exceed
+    e2_r2_h10 by a significant margin -- i.e. any outcome where E2 sustained
+    comparable or better multi-step accuracy than E1. Concretely, this is MECH-070's
+    original (now-refuted) pass criteria almost exactly inverted: MECH-070's own C2
+    FAIL is direct evidence of what a MECH-231 falsification would look like, since
+    MECH-231 is the corrected inverse of that exact prediction. EXQ-132 FAIL and
+    EXQ-212 FAIL 2/4 are the prior (pre-correction) instances of partial falsification
+    that motivated MECH-070's retirement and MECH-231's reformulation.
+
 - id: MECH-232
   title: "Dopaminergic modulation of hippocampal place coding at reward-associated locations produces representational expansion (higher information density, finer spatial resolution, more stable place fields), and this expansion -- not an explicit positive valence gradient -- is the mechanism by which approach valence enters hippocampal terrain."
   claim_type: mechanism_hypothesis
@@ -33041,6 +33149,55 @@
     hippocampal map backbone. MECH-238 says the backbone must be metric. These are
     compatible: action objects define the nodes; distances between nodes must be
     preserved in the representation.
+
+    CURRENCY NOTE (2026-08-08, thought-digestion): "MECH-155 establishes that spatial
+    navigation machinery generalises to abstract latent domains" (above) is
+    superseded -- MECH-155's own wave-19 narrowed scope explicitly EXCLUDES any claim
+    that spatial navigation is E1-internal, and instead affirms navigation runs in
+    this claim's own HippocampalModule (ree-v3/ree_core/hippocampal/module.py).
+    depends_on MECH-155 is retained for the shared-indexing-mechanism point only, not
+    the navigation-generalizes-into-E1 framing. Separately: the HippocampalModule
+    actually navigates ACTION-OBJECT space O (per SD-004), not raw z_world directly
+    -- this claim's title says "z_world latent manifold," a real title/subject
+    mismatch flagged for governance, not auto-corrected here since it changes claim
+    scope. No distance-preservation/contrastive/metric-supervision training objective
+    exists anywhere in ree_core as of this date (verified by grep) -- the only
+    distance computation on z_world today (goal.py goal_distance/goal_proximity) is a
+    raw MSE used by goal-tracking machinery, i.e. exactly the categorical/lookup
+    alternative this claim needs to rule out.
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the HippocampalModule already exists and performs
+    trajectory search over ACTION-OBJECT space O (E2.action_object(z_world, a) -> o_t,
+    per SD-004), not raw z_world directly -- this claim's title should be read as
+    "distance relations over the hippocampal map's indexing space." No
+    distance-preservation, contrastive, or metric-supervision training objective
+    exists anywhere in ree_core as of this date. The only distance computation
+    touching z_world today is a raw MSE used by goal-tracking machinery, not a
+    learned hippocampal encoding -- i.e. the substrate currently looks exactly like
+    the categorical/lookup alternative this claim needs to rule out. The claim is
+    untestable as stated until a distance-preservation objective is added to
+    HippocampalModule (or its action-object embedding) training.
+
+    CONFIRMING: once a distance-preservation/contrastive loss is added, a
+    representational-distance probe shows pairwise distances in the learned
+    representation correlate with true manifold distances at a level above what an
+    undifferentiated/categorical-only control achieves; AND trajectory proposals
+    succeed at "navigate toward goal" tasks that specifically require distance
+    comparison between non-adjacent candidate states (not just membership/retrieval
+    of a previously-visited state), with performance degrading when the
+    metric-supervision loss is ablated.
+
+    FALSIFYING: representational-distance probes show no reliable correlation between
+    the hippocampal module's internal similarity structure and true manifold
+    distances, even after adding the metric-supervision objective -- the
+    representation remains categorical/positional rather than metric regardless of
+    training pressure; OR trajectory-proposal performance on distance-requiring
+    navigation tasks is statistically indistinguishable from a
+    lookup/nearest-neighbor-tag baseline that has no access to distance information,
+    while performance on pure membership/retrieval tasks is unaffected -- showing the
+    metric structure adds no functional value beyond what a position tag already
+    provides.
 
 - id: MECH-239
   title: "The hippocampal indexing substrate includes a temporal dimension implemented via time cells that tile elapsed time using the same phase-precession and theta-sequence machinery as place cells, enabling correct ordering of states within multi-step planning rollouts and working-memory sequences."
