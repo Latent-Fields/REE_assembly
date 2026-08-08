@@ -38582,12 +38582,13 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: standard
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
     - MECH-269  # probe channel as proposer-side hypothesis generator
     - MECH-275  # sleep aggregation is the consumer of this mechanism's output
-    - SD-003    # stage-1 closure (self-attribution)
+    - SD-003    # STALE (2026-08-08 digestion pass): SD-003 is status:superseded (by MECH-256/SD-029, 2026-04-18, three days before this claim was registered). The built substrate (scientist_attribution_buffer.py) already composes MECH-256's single-pass comparators, not SD-003's two-pass counterfactual pipeline. Retained for history; treat MECH-256/SD-029 as the operative dependency.
     - MECH-277  # stage-1 specialisation
     - MECH-278  # stage-2 specialisation
   functional_restatement: >
@@ -38615,6 +38616,58 @@
     (secondary): replacing counterfactual-backed attribution with
     pure correlation at the waking-phase output should produce
     noise-fit in subsequent sleep-phase aggregation.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the mechanism is built
+    (ree-v3/ree_core/attribution/scientist_attribution_buffer.py,
+    landed 2026-06-23) but gated behind use_scientist_attribution
+    (default False -> bit-identical OFF), so a genuine test requires
+    the flag ON. Two further preconditions must ALSO hold simultaneously,
+    per V3-EXQ-703's confirmed failure-autopsy (2026-06-23): (1) the P0
+    E2WorldForward comparator (SD-031 "place" / ARC-033 "self") must
+    actually converge -- held-out world_forward_r2 >= 0.20 on >= 2/3
+    seeds, gated per-seed, not run-level; V3-EXQ-703 trained only 1/3
+    seeds (R2 -0.688 / -0.057 / +0.581) because the P0 objective was not
+    reconstruction-primary and the budget was insufficient. (2) cf_margin
+    must be calibrated WITHIN the trained comparator's achievable
+    cf_contrast distribution (measured ~0.12-0.20 in the one converged
+    seed), not above it -- V3-EXQ-703's cf_margin=0.30 sat above the
+    entire distribution, so mech276_n_counterfactual_backed=0 on every
+    seed even on the one seed whose P0 converged. Without both, the
+    only_counterfactual_backed lever cannot produce a single backed
+    record and the test collapses into a vacuous all-correlational
+    feedstock -- not a substrate reading either way. Chip already spawned
+    (chip-20260808-v3exq703a-mech276-readiness-requeue) to queue the
+    corrected re-run per the autopsy's own recommendation.
+
+    CONFIRMING: on a run where both preconditions clear (V3-EXQ-703a:
+    reconstruction-MSE-primary P0 loss, per-seed R2 gate, cf_margin ~0.15),
+    the load-bearing criterion posterior_discrimination_cf_vs_correlational
+    holds non-degenerately: the CF-backed arm and a correlational-control
+    arm produce measurably different MECH-275 aggregator posteriors
+    (posterior_delta >= 1e-3 floor per seed). This would replicate, on an
+    unconfounded run, exactly what V3-EXQ-703 already observed on its one
+    converged seed (posterior_deltas [0.0112, 0.0076, 0.0053], all seeds
+    discriminating) despite that run's precondition failures. Secondary
+    confirming signal (MECH-269 ablation, per the claim's own primary
+    falsifier): suppressing the MECH-269 probe channel so the agent only
+    visits anchor-eligible states should starve the buffer of
+    hypothesis-tagged actions and measurably stall cross-episode schema
+    revision at the MECH-275 aggregator.
+
+    FALSIFYING: on the SAME unconfounded run, posterior_discrimination_cf_vs_correlational
+    COLLAPSES -- posterior_deltas fall below the 1e-3 floor, or the
+    CF-backed and correlational-control arms become statistically
+    indistinguishable at the MECH-275 aggregator. Per the V3-EXQ-703
+    autopsy's own routing, this specific outcome (not the 703 FAIL itself,
+    which was precondition-confounded and therefore uninformative either
+    way) is the genuine MECH-275-aggregator-insensitivity ceiling, and
+    routes to substrate enrichment rather than a further re-queue.
+    Falsifying (secondary): replacing counterfactual-backed attribution
+    with pure correlational tagging at the waking-phase output and finding
+    the sleep-phase aggregator cannot be distinguished from the CF-backed
+    condition (noise-fit) would independently falsify the
+    "counterfactual-backed attribution is structurally necessary"
+    component of the claim.
   notes: >
     Design origin: user-led discussion 2026-04-21. The scientist-
     agent framing came from the observation that MECH-273's sleep
@@ -38673,6 +38726,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
@@ -38707,6 +38761,52 @@
     actively tested in V3; the assumption is encoded in the
     substrate. SD-003 experiments should note this as an
     architectural shortcut.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: V3 currently hand-wires the action
+    space -- action_dim is a fixed config field (ree_core/utils/config.py,
+    ree_core/predictors/e2_*.py: action_dim: int = 4), read but never
+    discovered or expanded by any training process. The "Phase 0
+    (babbling)" stage in experiments/infant_curriculum.py is NOT this
+    mechanism: it only varies novelty_bonus_weight, residue_scale_factor,
+    and offline_integration_frequency (exploration incentives), never
+    action_dim or any action-space structure. No motor-babbling /
+    action-space-discovery code exists anywhere in ree_core/ or
+    experiments/ (confirmed by direct search, 2026-08-08). Zero
+    experiments have been queued or run against this claim specifically.
+    This precondition will not clear within V3 as currently scoped. It
+    requires either a V4 substrate that genuinely discovers its action
+    space, or a purpose-built V3 developmental sub-experiment that
+    replaces the fixed action_dim config with an online discovery
+    process -- neither exists today and neither is on the V3 roadmap.
+
+    CONFIRMING (per the claim's own falsifier, given the precondition
+    clears): curtail an agent's motor-experimentation phase and compare
+    against a matched agent given a full discovery phase. Confirming
+    signature: the curtailed-discovery agent shows degenerate
+    self-attribution -- its counterfactual-action comparison draws a_cf
+    from an uninformed/arbitrary distribution rather than one shaped by
+    observed self-produced sensory covariation, and self-attribution
+    stability measurably suffers relative to the full-discovery arm.
+
+    FALSIFYING: self-attribution quality is statistically
+    indistinguishable between curtailed and full discovery -- the
+    counterfactual action space is well-formed regardless of whether it
+    was discovered or specified, undercutting the claimed necessity of
+    a distinct motor-babbling stage.
+
+    MEASUREMENT NOTE: the self-attribution mechanism to instrument
+    against is whatever V3 substrate is live at test time, not the
+    literal SD-003 two-pass counterfactual formula named in this claim's
+    functional_restatement -- SD-003 was superseded 2026-04-18 (three
+    days before this claim was registered) by MECH-256 (single-pass
+    forward-model comparator) with SD-029 as the concrete z_harm_s
+    instantiation. This claim's functional_restatement and depends_on
+    still reference SD-003 directly -- same staleness ARC-059
+    independently flagged for itself over the same SD-003 reference.
+
+    Evidence status (2026-08-08): no V3 experiment has queued or run
+    either prediction, and none can be constructed as a non-degenerate
+    test until the precondition above clears.
   notes: >
     Design origin: user-led discussion 2026-04-21. User noted that
     "sense of self would need to develop presumably before objects
@@ -41468,6 +41568,65 @@
     [2026-05-31 evening governance: V3-EXQ-618 reclassified non_contributory]: V3-EXQ-618 SD-049 Phase 3 consumer-cascade validation PASSed all four substrate-readiness acceptance criteria (C1 per_axis_drive evolves min_peak=0.027; C2 no crashes; C3 AIC reads per_axis mean_l1=5.92; C4 MECH-295 axis routes mean_l1=0.169) but is experiment_purpose= diagnostic and does not test MECH-295's behavioural-necessity hypothesis directly. Per the established pattern for substrate- readiness diagnostics in this claim (cf. EXQ-519b 2026-05-30 governance), reclassified non_contributory for both tagged claims. Load-bearing behavioural validation is owed to V3-EXQ-619 (reserved; replicates V3-EXQ-514g structure on Phase 3 substrate; unblocks goal_pipeline:GAP-2 cluster). MECH-295 stays candidate / v3_pending=true.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (primary, narrowed-modulatory reading): the
+    E3 score_bias argmin-change probe is only interpretable if
+    mech295_bias_range_mean > 0 -- the per-candidate MECH-295 score_bias
+    must actually vary across candidates before "argmin never flips" can be
+    read as evidence about MECH-295's causal weight, rather than as a probe
+    that never had anything to flip. NOT MET as of this pass: V3-EXQ-490k
+    (2026-06-04) ran to completion (mech295_fired_ticks=145 across 3 seeds)
+    but argmin_flip_ticks=0 BY CONSTRUCTION (bias uniform across the
+    candidate pool), traced to a substrate ceiling owned by
+    scaffolded_sd054_onboarding (collapsed candidate z_world / weak z_goal,
+    goal_norm_peak=0.193), NOT by MECH-295 itself. Re-checked 2026-08-08:
+    scaffolded_sd054_onboarding's ecological readiness legs (G1-G3) flipped
+    ready=true 2026-06-11 and its harm-pathway leg amend landed+validated
+    2026-06-16, but a materially later and more direct measurement of the
+    SAME z_goal-under-curriculum-load symptom (V3-EXQ-866a, 2026-08-03)
+    shows z_goal_norm_mean still decays from a Stage-0 peak ~0.5 to a
+    P2-window mean of 0.12 -- below the 0.4 floor -- spawning a fresh,
+    still-unimplemented substrate_queue entry
+    (scaffolded-curriculum-hazard-rebalance, status=pending_implementation,
+    added 2026-08-08). The precondition therefore remains UNMET; do not
+    queue V3-EXQ-490L until that entry (or a successor addressing the same
+    symptom) lands and clears.
+
+    CONFIRMING (primary, narrowed-modulatory reading, once the precondition
+    above is met): re-run the V3-EXQ-490k composition -- E3 score_bias
+    argmin-change probe as the primary metric; action-class divergence on
+    the first commit tick between bridge-on/bridge-off arms as a
+    behavioural sanity check; non-MECH-295 VALENCE_WANTING writers off in
+    both arms as a sensitivity-analysis ablation -- on the enriched
+    substrate with a pre-registered mech295_bias_range_mean > 0 guard.
+    CONFIRMS the modulatory-sufficiency reading if the per-candidate
+    MECH-295 score_bias measurably changes the committed argmin (a
+    pre-registered argmin_flip_ticks fraction) on >=2/3 seeds once
+    bias_range is non-degenerate.
+
+    FALSIFYING (primary, narrowed-modulatory reading): with
+    mech295_bias_range_mean > 0 confirmed non-degenerate, argmin_flip_ticks
+    stays at or near 0 -- i.e. MECH-295's score_bias exists and varies
+    across candidates but is never large enough, relative to the other
+    additively-composed channels (MECH-216, MECH-290, MECH-307,
+    tonic_5ht), to change which candidate wins. This would falsify even
+    the narrowed modulatory-sufficiency reading without reopening the
+    already-terminally-falsified necessity reading (V3-EXQ-490j); the
+    appropriate response would be a further narrowing to a
+    "contributes-but-never-decisive" reading, not a fresh necessity
+    retest.
+
+    SECONDARY (strong-reading falsifier, no substrate-readiness
+    precondition currently tracked -- never built or queued, available
+    only should a future decision seek to REINSTATE a strong-necessity
+    reading): pharmacologically-inspired block of the hedonic-hotspot
+    mu-opioid analog in the V3 substrate WHILE drive is elevated. Confirming:
+    approach_commit collapses (mirroring the severed-bridge signature).
+    Falsifying: approach_commit recovers via the parallel pathways
+    (MECH-216/290/307/tonic_5ht), exactly as V3-EXQ-490j already showed for
+    the severed-wiring condition -- confirms the narrowed modulatory
+    reading is the operative ceiling and no strong-necessity reinstatement
+    is warranted.
   title: "The drive -> liking-stream -> approach-cue gain pathway is one of several drive->approach pathways in the REE substrate. It biases approach action scoring via a liking-specific per-candidate score_bias contribution, but is NOT the sole or necessary pathway by which drive amplification reaches approach action selection (narrowed 2026-05-31 from necessity to modulation per V3-EXQ-490j autopsy; original necessity title preserved in functional_restatement history). Parallel architecturally first-class drive->approach pathways operate in the same substrate: MECH-216 schema-readout wanting, MECH-290 backward credit sweep, MECH-307 anticipatory liking, and serotonin tonic_5ht benefit_salience."
   claim_type: mechanism_hypothesis
   subject: drive_to_approach.liking_stream_bridge
@@ -55807,6 +55966,96 @@
   registered_utc: "2026-05-17"
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): the test_bed_enrichment destabilising-pressure env was built but is NOT the operative blocker -- crystallization-necessity cannot be exercised until ARC-062/MECH-333 produce a functionally-DIFFERENTIATED GatedPolicy at the Phase-3 boundary (same GAP-B diversity-generation front as MECH-309, in flight as 654g). Also fix the recurring harness no-op (assert policy trained + ewc_penalty in loss + true-negative ARM_0: entropy_bonus=0/noise-floor-off/E3-diversity-off) burned across 610c-f/655 before any retest."
+  what_would_answer: |
+    STATUS -- READ THIS FIRST (currency check, 2026-08-08 thought-digestion): the
+    prerequisite named in this claim's own 2026-06-19 ceiling_routing_note
+    ("ARC-062/MECH-333 produce a functionally-DIFFERENTIATED GatedPolicy at the
+    Phase-3 boundary... in flight as 654g") has NOT landed. 654g ran 2026-06-19
+    and returned non_contributory (branch b): a fully matured, differentiated
+    rule-apprehension channel reached the E3 accumulator with genuine authority
+    but failed to convert to committed-action diversity (paired committed-class
+    entropy lift 0/3 seeds clearing 0.05 nats) -- this is the shared MECH-439
+    F-dominance conversion ceiling, NOT the differentiated GatedPolicy MECH-334
+    needs. The blocker has DEEPENED since: 21 GAP-B behavioural-falsifier
+    autopsies (654g/h/i/j, 485h/485m, 714, 719a, 851, 859, 863) through
+    2026-08-02 show the identical C1-holds/C2-fails signature every time,
+    and MECH-439 itself was demoted 2026-07-09 (GOV-CEIL-1) to a contested
+    candidate after 10 non-discriminative hits, with the active front moved to
+    the still-incomplete ARC-107 basal-ganglia constitution (MECH-448/449 built
+    and validated; ARC-108 dopamine-afferent and MECH-450 recurrent-settling
+    still missing). No V3 retest of MECH-334 is currently non-vacuous.
+
+    NON-DEGENERACY PRECONDITION -- two independent layers, BOTH required:
+
+    (1) HARNESS-LEVEL (established by 543f-l / 610a-e / 655, ~10 non_contributory
+    hits, all either a harness no-op or a confounded control -- never a
+    falsification): (a) the gated policy must be GENUINELY TRAINED under real
+    WTA pressure before crystallize() fires (610c/610d froze never-trained
+    heads); (b) ewc_penalty() must actually be summed into the OPTIMIZED LOSS
+    when closure is on (610c/610d: never entered the loss; 610e: fixed, 0.268
+    present); (c) ARM_0 must be a TRUE negative control -- entropy_bonus=0,
+    MECH-313 noise floor OFF, MECH-341/E3 diversity OFF (610e's control was
+    confounded by all three always-on in BOTH arms, so D2 never collapsed --
+    non-discriminative by construction, not a falsification); (d) sustained
+    post-crystallization destabilising pressure must exercise the closed
+    system (already built and validated 2026-06-01, IGW-20260601-023:
+    multi_source_dynamics_enabled, interoceptive_noise_enabled, accelerated
+    env_drift -- no further test-bed work owed). These four are now
+    STRUCTURALLY ENFORCED, not just documented: ree-v3/experiments/_metrics.py
+    (commit 10dee76, 2026-06-19) provides shared, smoke-tested guards
+    (assert_policy_trained, assert_ewc_penalty_live, assert_ewc_term_in_loss,
+    assert_true_negative_arm0, assert_d2_control_collapsed) raising a distinct
+    HarnessGuardError (19/19 tests). A future retest MUST call these guards
+    rather than re-deriving ad hoc checks -- 610c's three prescribed fixes were
+    silently dropped in the 610d redesign once already.
+
+    (2) SUBSTRATE-LEVEL (the actual current blocker; NOT yet met -- see STATUS
+    above): a functionally-differentiated GatedPolicy at the Phase-3 boundary,
+    meaning genuine committed-action-CLASS diversity (C2 clears >=0.05 nats on
+    >=2/3 seeds per ARC-062's own pre-registered discriminator), not merely a
+    modulatory/rule-bias signal reaching the E3 accumulator. This sits behind
+    the still-unresolved MECH-439/ARC-107 committed-action-diversity conversion
+    ceiling.
+
+    CONFIRMING signature: once BOTH preconditions clear -- a crystallized arm
+    (MECH-333 open-phase gating + MECH-334 closure, applied to heads that have
+    ACTUALLY differentiated) PRESERVES the established diversity distribution
+    (D1: crystallized-vs-control entropy delta sign-consistent, >=0.10 floor,
+    on >=2/3 seeds) under sustained post-Phase-3 destabilising pressure, WHILE
+    the true-negative control arm shows entropy COLLAPSE (D2 delta >= +0.10 on
+    >=2/3 seeds) under the identical pressure -- the three-brake active-locking
+    signature.
+
+    FALSIFYING signature: with both preconditions met and D2 confirming the
+    test is non-vacuous, the crystallized arm shows the SAME entropy collapse
+    as the control (D1 does not clear the 0.10 floor, or is sign-inconsistent,
+    on >=2/3 seeds) -- once a differentiated policy actually exists, EWC
+    write-protect buys nothing over ordinary continued training. This would
+    falsify the "active locking, not passive reduction" PNN/Lynx1/NgR1 framing
+    specifically, and would motivate revisiting the single-EWC-lock
+    implementation (the redundant three-brake architecture was deliberately
+    deferred) as the point of failure before abandoning the framing.
+
+    SEPARATE, NOT RESOLVED HERE: which of the three biological locks
+    (PNN-physical, Lynx1-cholinergic, NgR1-myelination) is load-bearing is not
+    addressed by this design -- the current landing collapses all three to one
+    EWC analogue. A CONFIRMING result supports write-protect-in-general, not
+    the specific multi-lock architecture.
+
+    GOVERNANCE FLAG (2026-08-08 digestion pass, not resolved here): sibling
+    claim INV-074 (same 543/610/655 evidentiary lineage) had its
+    pending_retest_after_substrate explicitly flipped to false on 2026-06-19,
+    with an explicit note that the entire V3 610-cascade was terminated by
+    user decision 2026-06-13 -- "no re-queue, no substrate_queue entry",
+    future test V4-scoped only, gated on PLW-1. MECH-334 (and MECH-333) never
+    received the equivalent correction and still frame a V3 retest as pending
+    on the ARC-062/MECH-333 GAP-B front -- a front that has since deepened
+    (21 autopsies, MECH-439 demoted) rather than resolved. This divergent
+    routing may be intentional (MECH-334 targets the specific closure
+    mechanism, testable once differentiation exists, vs. INV-074's
+    necessity-in-general question that was abandoned on V3) -- but worth a
+    governance sanity-check on whether MECH-334/MECH-333 should also get a
+    V3-cascade-stopped correction.
   depends_on:
     - MECH-333   # open phase (must precede closure)
     - INV-074    # the invariant motivating this mechanism
@@ -58762,11 +59011,73 @@
     contracts + 4 C13 + 2 C14 scaffold contracts. Pure-arithmetic regulator -- no
     trained parameters, no phased training. MECH-094: no-op under simulation_mode.
   evidence_quality_note: >
-    Validation V3-EXQ-603h (diagnostic, claim_ids=[]). Probe confirms the full chain
-    engages once the harm stream is fed: PAG freezes on lesion, the gate suppresses
-    (n_freeze_suppressed>0) + learns (efficacy 0 -> ~0.6) on intact. Not promotable
-    until the EXQ PASSes (v3_pending). Design doc:
-    docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+    CORRECTED 2026-08-08 (thought-digestion currency pass, mirroring the correction
+    already applied to sibling SD-058's entry in wave 11, 2026-08-07): the text below
+    previously implied V3-EXQ-603h merely "confirmed the chain engages" -- it did that,
+    but it ALSO ran the actual pre-registered survival test and FAILED it. Full manifest:
+    v3_exq_603h_instrumental_avoidance_stageh_validation_20260607T211923Z_v3.json.
+    claim_ids=[] (diagnostic, correctly non-promotable), outcome=FAIL,
+    evidence_direction=non_contributory. Non-degeneracy preconditions BOTH met (a
+    genuinely non-vacuous test): pag_freeze_lesion_frac=1.0, gate_engaged_intact_frac=1.0,
+    gate_freeze_suppressed_intact_frac=1.0 -- the mechanism genuinely engages, one INTACT
+    seed reached avoidance_efficacy=0.633. But the PRIMARY SURVIVAL CRITERION FAILED:
+    g_h_intact_frac=0.0 (0/3), tied with g_h_lesion_frac=0.0 (0/3). Interpretation label:
+    avoidance_gate_insufficient -- "the scalar avoidance-efficacy trace is decoupled from
+    survival... because the gate only penalises the no-op class and binds no directed
+    escape affordance."
+    Two independent confounds were found; one is now resolved, one resolved at the
+    diagnostic level only: (1) escape-affordance bridge -- spawned SD-059/MECH-358 (not a
+    supersession), which have since PASSED (V3-EXQ-603q, 2026-06-17, reconfirmed by
+    V3-EXQ-866b regression check 2026-08-03). (2) harm-pathway never trained
+    (E3.harm_eval_head near-constant ~0.523, noise not signal) -- a fix
+    (scaffold_train_harm_pathway) was implemented and V3-EXQ-603k PASSED at the
+    survival-leg diagnostic level (2026-06-09, claim_ids=[], on_nav_survives_2of3=true).
+    NEITHER FIX HAS YET BEEN COMBINED into a claim-tagged rerun of 603h's own design.
+    Confirmed via git log -S "MECH-357" (both repos) and a direct search of
+    ree-v3/experiment_queue.json: zero hits, no experiment currently tags MECH-357. The
+    scaffolded_sd054_onboarding composite substrate_queue node still reads
+    status=implemented_pending_validation, ready=false (current as of 2026-08-07). The
+    owed retest is specifically the FULL combined curriculum gate (G1 foraging + G2
+    survival + G3 ecological in ONE run, harm-pathway-training ON, escape-affordance
+    bridge wired in) -- not yet queued. A separate ScaffoldedSD054OnboardingScheduler bug
+    (_train_episode never calls agent.update_z_goal, so z_goal stays zero-init) may also
+    block the G1 leg and needs resolving first. Chip spawned to queue this retest.
+    Net: MECH-357's mechanism-engagement is solidly confirmed; its behavioural (survival)
+    prediction is neither confirmed nor falsified under fair conditions -- tested once,
+    under conditions since shown doubly confounded, and failed under those confounds.
+    Design doc: docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: freeze must commit on LESION arm and the gate must
+    engage+suppress on INTACT arm. ALREADY MET ONCE, cleanly: V3-EXQ-603h reported
+    pag_freeze_lesion_frac=1.0, gate_engaged_intact_frac=1.0,
+    gate_freeze_suppressed_intact_frac=1.0.
+
+    ACTUAL RESULT TO DATE: V3-EXQ-603h ran the design and FAILED at the survival
+    criterion specifically -- mechanism genuinely engages (one seed reached
+    avoidance_efficacy=0.633) but G_H_INTACT=0/3, tied with G_H_LESION=0/3
+    (avoidance_gate_insufficient). The confirmed autopsy attributes this to two
+    independent gaps, not a mechanism defect: (1) escape-affordance bridge -- NOW
+    RESOLVED (SD-059/MECH-358 PASSED, V3-EXQ-603q, reconfirmed 866b); (2) harm-pathway
+    never trained -- resolved at the survival-leg diagnostic level (V3-EXQ-603k PASS).
+    Neither fix has been combined into a claim-tagged rerun. No experiment currently in
+    the queue tags MECH-357. Chip spawned
+    (chip-20260808-mech357-combined-retest) to queue the combined G1+G2+G3 rerun.
+
+    CONFIRMING: a claim-tagged rerun with BOTH fixes wired in reports G_H_INTACT >=
+    2/3 AND strictly greater than G_H_LESION, with suppression onset tracking the
+    LEARNED avoidance_efficacy trace rather than instantaneous threat arousal (the
+    SD-037/MECH-281 confound this claim's distinctness depends on ruling out).
+
+    FALSIFYING: the same rerun reports readiness_met=true (mechanism confirmed
+    engaging, as in 603h) but G_H_INTACT still fails to clear 2/3 or fails to beat
+    G_H_LESION even with BOTH known confounds closed (bridge wired, harm pathway
+    trained) -- i.e. un-freezing plus a directed-escape credit table still does not
+    translate into survival. That would mean the freeze-suppression mechanism itself,
+    not just its two known upstream gaps, is insufficient, and a third gap would need
+    diagnosing rather than assuming the mechanism is sound. Independently falsifying:
+    suppression onset tracking instantaneous z_harm_a/threat-scale spikes rather than
+    the learned avoidance_efficacy trace -- that collapses the SD-037/MECH-281
+    distinction this claim rests its architectural distinctness on.
   location: docs/architecture/sd_058_instrumental_avoidance_acquisition.md
 
 - id: SD-059
