@@ -1528,3 +1528,9 @@ One line per hourly tick. ASCII only.
 2026-08-08T16:34:54Z disposition IGW-20260808-202 hash=e86b7bcfb1ac decision=DONE: Duplicate re-staging of already-fully-resolved work. Original IGW-200 was diagno
 2026-08-08T16:35:03Z no eligible item (skipped 233): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-204:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
 2026-08-08T16:43:08Z auto-defer IGW-20260808-224 hash=a99dd0407f59 for 48h (complete)
+2026-08-08T16:43:37Z complete IGW-20260808-224 spawned->completed outcome=NO_OP: lit-pull MECH-141: 4 entries (Zhang&Iwaki 2019 DCM anchor, Chen 2020 Neuron, Jah
+2026-08-08T17:30:47Z GC removed worktree igw-224-literature-proposal-for-mech-141 (removed; branch deleted)
+2026-08-08T17:30:45Z GC sweep removed 1 orphan worktree(s), kept 10
+2026-08-08T17:31:09Z workset committed (regen -- 232 items, 22 ready, 0 in flight)
+2026-08-08T17:31:09Z reconcile-release hash=a99dd0407f59 (IGW-20260808-224 -> completed)
+2026-08-08T17:30:45Z no eligible item (skipped 232): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-203:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
