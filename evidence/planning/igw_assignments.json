@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-08T10:25:22Z",
+  "generated_at": "2026-08-08T14:41:00Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6569,6 +6569,31 @@
         "priority": 55,
         "claim_ids": [
           "MECH-074c"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260808T144030Z-e86b7bcf-spawned_task",
+      "stable_hash": "e86b7bcfb1ac",
+      "igw_id_at_assign": "IGW-20260808-200",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-08T14:40:30Z",
+      "released_at": "2026-08-08T14:40:30Z",
+      "released_by": "release-igw200-e86b7bcfb1ac",
+      "released_reason": "Underlying IGW-200 work (chip-20260808-igw200-scaffolded-curriculum-hazard-rebalance) landed done -- diagnosis complete, no substrate change built (z_goal survives all hazard stages; C6 decay is a driver-measurement washout not a substrate defect). Decision chip chip-20260808-igw200-authorized-chip-missing withdrawn on the same basis, user-confirmed 2026-08-08.",
+      "released_event_for": "asn-20260808T091937Z-e86b7bcf-spawned_task",
+      "note": "routed to chip chip-20260808-igw200-scaffolded-curriculum-hazard-rebalance (user-authorized via real AskUserQuestion, 2026-08-08 metaworker-dispatch decision lane)",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: scaffolded-curriculum-hazard-rebalance",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "Q-021",
+          "INV-034",
+          "ARC-030"
         ]
       }
     }
