@@ -175,9 +175,9 @@
       "summary": "SD-033e's implementation_note (and MECH-264, which inherits it) states the V3-narrow frontopolar de-commit lever's all-ON validation is 'gated on V3-EXQ-724', reading as pending. But V3-EXQ-724 already ran 2026-07-09 (v3_exq_724_competence_localization_diagnostic) with outcome=FAIL, evidence_direction=non_contributory, claim_ids=[] -- a competence-localization diagnostic that returned competence_deficit_diffuse, not a frontopolar validation. So the all-ON de-commit contrast is currently degenerate (blocked on the MECH-457 competence floor, still open per 687a/819a/748a), NOT pending execution of 724. Nothing is mis-scored (non_contributory), but the gating language in both claims should be refreshed to reflect that 724 executed and did not lift the gate; a dedicated de-commit validation experiment is still owed once the competence floor clears.",
       "raised_by_session": "thoughtdigestion-trial2-headless-2026-08-08",
       "raised_at": "2026-08-08T06:28:25Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-08-08T06:30:09Z",
+      "resolution_note": "Accidental duplicate of GFLAG-0011 -- the raise call retried 3x on push rejection (dirty shared checkout mid-governance-regen) and wrote three identical stale_note entries. GFLAG-0011 is the canonical one; this entry carries no additional content."
     },
     {
       "flag_id": "GFLAG-0013",
