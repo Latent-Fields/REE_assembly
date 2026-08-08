@@ -1195,6 +1195,7 @@
   subject: cognition.structure
   polarity: asserts
   status: active
+  epistemic_category: derivational
   live_status:
     reading: active
     as_of: 2026-07-11
@@ -1203,6 +1204,58 @@
   location: docs/invariants.md#inv-013
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  what_would_answer: >
+    INV-013 asserts three conjunctive architectural properties of REE's cognition:
+    (1) PREDICTIVE -- the substrate forms forward models rather than reacting
+    purely to immediate observation; (2) ITERATIVE -- action/latent selection
+    proceeds through repeated refinement rather than a single forward pass; (3)
+    MULTI-TIMESCALE -- processing is stratified across more than one update rate,
+    not a single flat clock. This is an architectural-commitment audit, not a
+    behavioral measurement -- the deeper question of whether each property is
+    GENUINELY realized (vs. merely labeled) is already delegated to sharper
+    dependents: ARC-001 (is E1's persistence real, not just a persistent-looking
+    API), ARC-002 (is E2's prediction actually affordance-conditioned, not just
+    world-dynamics-conditioned), and ARC-004 (is L-space actually
+    timescale-stratified, not just role-stratified at a single shared rate).
+    INV-013 only certifies that a mechanism for each of the three properties
+    exists in the running substrate.
+
+    NON-DEGENERACY PRECONDITION: at least one code path per property must be
+    exercised by the live agent loop (not dead code, not test-only scaffolding,
+    not a docstring-only claim). A property satisfied only in a module that is
+    never called from Agent.step()/Agent.plan() would make the audit vacuous.
+
+    CONFIRMING (per property, all three required):
+      - PREDICTIVE: at least one forward-model component that outputs a
+        prediction of a FUTURE state/observation/affordance conditioned on a
+        current state+action, consumed by the live decision loop -- e.g.
+        ree_core/predictors/e1_deep.py's LSTM-based slow world model and
+        ree_core/predictors/e2_fast.py's world_forward()/predict_next_state(),
+        both wired into Agent.step().
+      - ITERATIVE: at least one selection/refinement mechanism that produces a
+        candidate, scores it, and revises the candidate set across more than one
+        pass within a single decision -- e.g. the CEM-style proposal loop in
+        ree_core/agent.py with stuck-state-gated widening via
+        difficulty_gated_proposal_entropy.py.
+      - MULTI-TIMESCALE: at least two update rates coexist and interact -- the
+        within-episode fast/slow split (E2 vs. E1) AND the cross-episode split
+        via ree_core/sleep/ operating at a slower-than-tick cadence.
+    A code audit finding at least one live instance of each, wired into the
+    executed agent loop, is CONFIRMING for INV-013 at the architectural level.
+
+    FALSIFYING (VIOLATED BY): removal or dead-coding of the only mechanism
+    realizing one of the three properties without a replacement -- e.g. E1 and
+    E2 both deleted/bypassed with action selection driven purely by a stateless
+    reactive policy; the CEM/proposal-refinement loop replaced by a single
+    greedy argmax with no resampling pass; or L-space collapsed to a single
+    shared-rate latent with sleep/consolidation removed entirely.
+
+    Note (non-degeneracy caveat, per ARC-004's own audit): L-space's
+    LatentStack.encode currently smooths z_beta/z_theta/z_delta with a single
+    shared EMA constant (alpha_shared=0.3) -- so MULTI-TIMESCALE here is carried
+    jointly by L-space's recursive structure AND the online/offline split, not
+    by L-space's per-layer clock rate alone. Does not falsify INV-013, which
+    only requires SOME multi-timescale mechanism.
 - id: INV-014
   title: "Representation and regulation are strictly separated."
   claim_type: invariant
@@ -1210,6 +1263,7 @@
   subject: architecture.separation
   polarity: asserts
   status: active
+  epistemic_category: derivational
   live_status:
     reading: active
     as_of: 2026-07-11
@@ -1218,6 +1272,48 @@
   location: docs/invariants.md#inv-014
   source:
     - docs/processed/legacy_tree/docs/invariants.md
+  what_would_answer: >
+    Asks whether any code path in ree_core where a regulation/control-plane
+    computation (control gains, precision/gating, neuromodulator-analog state,
+    policy commitment) can directly mutate representation-layer state/weights
+    (the latent stack: z_world, z_self, z_goal, and their encoders) outside a
+    defined, typed interface -- or, symmetrically, whether any representation-
+    computing module directly implements regulatory/gating logic -- as opposed
+    to the two pathways composing only through bounded, typed cross-axis
+    coupling (per the invariant's own interpretation note: "not a claim of full
+    functional isolation").
+
+    NON-DEGENERACY PRECONDITION: there must be at least one identifiable
+    representation-computing module (ree_core/latent/: zworld_p0.py, stack.py,
+    cross_stream_binder.py, theta_buffer.py, self_recurrence.py,
+    multi_content_theta_packet.py) and at least one identifiable regulation-
+    computing module (ree_core/regulators/, ree_core/policy/,
+    ree_core/neuromodulation/) that are both actually exercised in the live
+    agent loop. A substrate where regulation code never touches representation
+    output at all trivially satisfies "no violation" without testing the
+    boundary the invariant asserts.
+
+    CONFIRMING: every regulation-computing module's interaction with
+    representation state is READ-ONLY on representation content, optionally
+    gated by an explicit stop-gradient/detach boundary, and any influence
+    regulation has runs only through a named, typed interface -- e.g. a
+    config-level gain (SerotoninModule modulating GoalConfig.z_goal_seeding_gain
+    / valence_wanting_floor), a plasticity/write-depth modulator on a defined
+    write pathway, or a detached read for downstream selection
+    (policy/model_disagreement.py's explicit "stop-gradient on z_world inputs,
+    do NOT propagate into the encoder"). Symmetrically, representation-computing
+    modules contain no gating/commitment/precision-weighting logic of their own.
+
+    FALSIFYING (VIOLATED BY): any code path where a regulation/control-plane
+    computation directly assigns into, overwrites, or backpropagates gradient
+    into representation-layer state other than through a named, reviewed
+    interface. Concrete examples: a regulator/policy module setting
+    z_world/z_self/z_goal directly rather than reading it; a neuromodulator
+    module writing into latent-stack content rather than a separately-named
+    gain/config field; removal of an existing stop-gradient boundary without a
+    documented, reviewed replacement. Also falsifying in the other direction: a
+    representation module implementing its own commitment/precision-gating
+    logic rather than delegating to regulators/policy.
 - id: INV-015
   title: "Ethics emerges from constraint, not optimisation."
   claim_type: invariant
@@ -22032,6 +22128,7 @@
   emergent_from:
     - SD-017
   pending_substrate_reconfirmation: true
+  epistemic_category: substrate_conditional
   subject: architecture.mel_optimal_range_requirement
   polarity: asserts
   status: candidate
@@ -22081,8 +22178,54 @@
     failing to activate absent offline phases) are both stated in terms of
     SD-017's sleep-phase infrastructure; the MEL-range concept is not
     stateable without a substrate that defines offline update capacity.
-    Added SD-017 to depends_on. SD-017 is provisional, so
-    pending_substrate_reconfirmation: true.
+    Added SD-017 to depends_on. UPDATE 2026-08-08 (thought-digestion currency
+    check): SD-017 was promoted provisional -> stable on 2026-04-24, so the
+    original justification for pending_substrate_reconfirmation ("SD-017 is
+    provisional") is stale. The flag stays true, but now anchored on SD-017's
+    still-live pending_retest_after_substrate: true instead.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: (1) a MANIPULABLE MEL-DOSE variable must exist at >=3 graded
+    levels within a single run/environment family, not merely a binary novelty ON/OFF split --
+    SD-MEL-PRODUCER's world_rule_shift_interval/world_rule_shift_depth knobs already support
+    this, but no run to date (V3-EXQ-845/861/861a) has used more than a high-vs-low contrast.
+    (2) SD-017's offline update phase and SD-MEL-CONSUMER's measured-MEL -> offline-duration
+    coupling must be genuinely exercised and non-degenerate (re-verify the SD-017/MECH-180
+    collapse failure modes have not recurred). (3) A RIGIDITY DV must be selected and
+    pre-registered (action_bias_div/policy entropy, slot_diversity, slot_cosine_sim, or
+    pred_loss-on-novel-probe), scored per-seed across >=3 MEL-dose arms.
+
+    CONFIRMING: the rigidity DV traces a genuine inverted-U (or U-shaped, depending on DV
+    polarity) curve across the MEL-dose sweep -- rigidity ELEVATED at both the LOW-MEL arm
+    (intact sleep opportunity) AND the HIGH-MEL arm (MEL exceeding consumer clearance
+    capacity), relative to mid-MEL arm(s), in >=2/3 seeds, each exceeding the mid-arm's
+    rigidity by an effect size clearing the project's standard PASS margin. A pass that also
+    distinguishes the low-MEL mechanism (rigidity despite intact sleep, confirmed via full
+    SWS/REM cycling) from the high-MEL mechanism (rigidity co-occurring with incomplete
+    update) would additionally support the claim's stated two-mechanism structure.
+
+    FALSIFYING: rigidity is MONOTONIC in MEL-dose (strictly increasing or decreasing) rather
+    than U-shaped in >=2/3 seeds; OR no measurable effect clears the PASS-margin threshold at
+    either extreme (a flat curve); OR the apparent low-MEL "rigidity" is fully explained by
+    reduced sleep OPPORTUNITY/architecture rather than reduced sleep CONTENT (collapsing the
+    claim's own "even when sleep architecture is intact" precondition into an ordinary
+    sleep-deprivation confound).
+
+    OUT OF SCOPE for this falsifier (not required for a verdict on INV-051's core U-shape):
+    (a) MECH-171's multi-year clinical vicious-cycle escalation -- already reclassified
+    out_of_domain, its own test (V3-EXQ-673) FAILed degenerate. (b) MECH-178's noradrenergic-
+    hyperarousal coupling -- no NA/cortisol/LC substrate exists in ree_core. A PASS above
+    supports the "incomplete update at high MEL" half of the upper bound but says nothing
+    about WHY (reduced capacity vs. simple demand-exceeds-fixed-ceiling).
+
+    GOVERNANCE/QUEUE FLAG (2026-08-08 digestion pass, not resolved here): the substrate pieces
+    this falsifier needs -- SD-017 (stable), SD-MEL-PRODUCER (built, graded knob validated),
+    SD-MEL-CONSUMER (built, validated), and the rigidity-proxy DVs (all already instrumented
+    and exercised in prior sleep-cluster experiments) -- are ALL already built. The only
+    missing piece is that no run has ever used a >=3-level dose sweep with a rigidity DV
+    pre-registered as the primary outcome. Categorized substrate_conditional here on the
+     "never exercised in this specific configuration" reading, but this is close enough to
+    testable-now that a dedicated chip was spawned same-day to check whether this experiment
+    design should be registered via /queue-experiment rather than left as substrate_conditional.
 
 - id: MECH-179
   title: "Prediction error type determines which sleep phase is demanded for processing: episodic, spatial, and factual errors (incorrect world-state predictions) primarily demand NREM-mediated schema replay (MECH-121) for prior correction; emotional, social, and identity-threatening errors primarily demand REM-mediated simulation and recalibration (MECH-123) for policy and salience update."
@@ -25210,6 +25353,7 @@
   subject: dream_phenomenology.replay_type_signature
   polarity: asserts
   status: candidate
+  epistemic_category: out_of_domain
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -25284,6 +25428,54 @@
     Epistemic note: first-person phenomenological data from one observer. Taxonomy
     observed, not derived. The mapping to computational processes is an interpretation
     requiring corroboration from other observers and sleep-stage measurement.
+  what_would_answer: >
+    This claim fuses two evidentiary legs with different domains of resolution.
+    They must be evaluated separately; a result on one leg does not confirm or
+    falsify the other.
+
+    REE-INTERNAL LEG (testable in V3, in principle -- NOT yet instrumented):
+    Do the sleep/replay mechanisms named by this claim's dependency set --
+    MECH-205 (harm/goal-contrastive replay), MECH-121 (NREM SWR consolidation),
+    MECH-123 (REM world-model free-running), plus MECH-208 (valence-asymmetric
+    replay weighting) if/when built -- produce four COMPUTATIONALLY
+    DISTINGUISHABLE signatures when each is run and logged separately?
+    Candidate discriminators: representational entropy profile; presence vs.
+    absence of a convergence criterion; presence vs. absence of a tracked
+    "agent" trajectory vs. a category-level "schema" abstraction.
+
+      NON-DEGENERACY PRECONDITION: all four named mechanisms must be built and
+      independently triggerable in the same substrate build. Confirmed
+      2026-08-08: MECH-205/121/123 are live in ree_core. MECH-208 has ZERO
+      references anywhere in ree-v3 and is not built -- the precondition is
+      currently UNMET for the full four-way split; MECH-205/121/123 alone
+      support only a three-way split. No experiment or diagnostic in ree-v3
+      references INV-062 today.
+
+      CONFIRMING: once instrumented, running each mechanism in isolation yields
+      four distinct, reproducible signatures matching the claimed discriminating
+      structure.
+
+      FALSIFYING: once instrumented and MECH-208 built, the mechanisms produce
+      signatures that are NOT reliably distinguishable by these criteria.
+
+    OUT-OF-DOMAIN LEG (not resolvable by REE, by any experiment this repository
+    can run): whether DG's specific four-type first-person dream taxonomy is a
+    real, stable, corroborated human phenomenon -- as opposed to an
+    idiosyncratic or post-hoc pattern from a single, unsystematically-sampled
+    observer. Resolves only through corroboration from other observers' dream
+    reports against the same schema, and/or polysomnography co-registered with
+    dream reports at awakening. No V3 build, however complete, converts this
+    leg into a REE-testable question.
+
+    DISPOSITION: this claim as a whole carries epistemic_category: out_of_domain,
+    since its title's primary assertion (the taxonomy itself) is the
+    out-of-domain leg. The REE-internal leg above is a genuinely different,
+    standard-testable sub-question, currently gated by the precondition, not
+    the confirming/falsifying step -- it is complicated (buildable): MECH-208
+    needs to be built and signature instrumentation added, neither of which is
+    scientifically unknown. RECOMMEND (not executed here): split the
+    REE-internal leg into its own mechanism_hypothesis claim so it can be
+    tested independently of whether DG's taxonomy is ever corroborated.
 
 # Registered 2026-04-07 -- Type 3 dream as semantic consolidation phenomenology
 # Source: Daniel Golden first-person observation; MECH-121 lit synthesis
@@ -28549,6 +28741,7 @@
   subject: learning.developmental_bootstrapping_necessity
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -28599,6 +28792,58 @@
     Invariant type: emergent (not derivable from ethics axioms; follows from the
     interaction of optimisation dynamics, motor-sensory feedback, and the structure of
     the option-store lookup problem).
+  what_would_answer: >
+    CROSS-REFERENCE (read before any retest is queued): INV-073 and ARC-072 name
+    the same underlying gap from two angles -- INV-073 is the general/biological
+    principle, ARC-072 is REE's own architectural decomposition (Gap 1: no
+    persistent trajectory store; Gap 2: no differentiable cue-indexed retrieval,
+    EXP-0155's zero-gradient cue_action_proj). This falsifier operationalizes
+    ARC-072's R2 specifically, not a fresh test design.
+
+    ARC-074 is a SIBLING claim in the same conversion-ceiling/monostrategy
+    cluster, not this claim under another name -- it addresses E3-scoring
+    cold-start on a flat residue field and says nothing about a persistent
+    trajectory store or the cue_action_proj gradient. A positive ARC-074 result
+    is necessary background support for INV-073, not a substitute test. As of
+    2026-08-08, ARC-074's own Phase 0 experiment (EXQ-ISEF-006) is confirmed
+    unbuilt and unqueued.
+
+    CURRENT SUBSTRATE STATE (checked 2026-08-08): EXP-0155's "severed gradient"
+    finding is now PARTIAL, not current as originally stated. SD-055 (landed
+    2026-05-15, V3-EXQ-568 PASS, grad_max=372) introduced a differentiable-CEM
+    path that closes the zero-gradient argmax barrier -- but use_differentiable_cem
+    defaults to False (ree_core/utils/config.py:2047), so the default substrate
+    still runs the severed-gradient path. ARC-072's own implementation_note
+    confirms "behavioural validation still open." A separate fix, EXQ-449a,
+    repaired an unrelated input-degeneracy bug and is not evidence the gradient
+    question is closed. Gap 1 (persistent trajectory store) is unambiguously
+    still absent from HippocampalModule.
+
+    NON-DEGENERACY PRECONDITION: (i) use_differentiable_cem=True AND a persistent
+    trajectory store wired to accumulate CEM candidates across ticks during a
+    designated pre-RL window (ARC-072 R1 -- currently unbuilt). (ii) option-
+    library diversity measured independently of reward/task performance (e.g.
+    per-tick action-class entropy, trajectory-cluster count) -- not E3 score
+    variance, which is ARC-074's metric. (iii) confirm the differentiable-CEM
+    gradient is genuinely flowing (grad_max sanity check) so a null result
+    cannot be attributed to the flag being silently inert.
+
+    CONFIRMING: an agent given a dedicated pre-RL exploration epoch (store
+    populated, gradient live) develops and RETAINS a larger, more diverse
+    option library than a matched no-exploration-epoch agent -- AND the gap
+    does not close when the no-exploration agent is later given equivalent
+    additional exploration time (permanence).
+
+    FALSIFYING: either (a) no diversity gap opens once the store and gradient
+    are both live -- route back to the MECH-439/INV-088/MECH-457 cluster; or
+    (b) a gap opens but is fully recoverable once given equivalent later
+    exploration (contradicts claimed permanence).
+
+    GOVERNANCE/QUEUE FLAG (2026-08-08 digestion pass, not resolved here):
+    ARC-072's SD-055 differentiable-CEM fix landed 2026-05-15 but its default-off
+    flag means no behavioral test has ever run with it enabled -- a concrete,
+    cheap /queue-experiment candidate (flip use_differentiable_cem=True, measure
+    option diversity) that would directly de-risk both INV-073 and ARC-072 R2/R3.
   registered_utc: "2026-05-15"
   location: docs/architecture/developmental_bootstrapping_hippo_retrieval.md
 
