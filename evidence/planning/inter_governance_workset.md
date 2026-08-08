@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-08T00:20:37Z`
+Generated: `2026-08-08T01:21:13Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -13,6 +13,8 @@ UI: http://localhost:8000/workset
 - By generation: clinical 11, meta 4, process 6, v3 84, v4 77, v5 38, v6 25
 - Pending review: **1**
 - Queue pending (unclaimed): **1**
+
+- Live EXQs: V3-EXQ-892
 
 ## Work packages
 
@@ -5382,22 +5384,20 @@ Instructions:
 
 </details>
 
-### IGW-20260808-239 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
+### IGW-20260808-239 -- Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0547 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0547 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
+- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.78, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260808-239
-Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
+Title: Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 Lane: experiment | Skill: /queue-experiment
-Status: blocked
-Claims: SD-055
-Blocked by: experiment_proposals.v1.json EXP-0547 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0547 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Status: ready
+Claims: MECH-232
+Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.78, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5407,20 +5407,22 @@ Instructions:
 
 </details>
 
-### IGW-20260808-240 -- Confirm evidence: MECH-074c (lit 0.75, exp ~0)
+### IGW-20260808-240 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
-- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.75, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
+- **Blocked by:** experiment_proposals.v1.json EXP-0547 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0547 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260808-240
-Title: Confirm evidence: MECH-074c (lit 0.75, exp ~0)
+Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-074c
-Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.75, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+Status: blocked
+Claims: SD-055
+Blocked by: experiment_proposals.v1.json EXP-0547 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0547 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
