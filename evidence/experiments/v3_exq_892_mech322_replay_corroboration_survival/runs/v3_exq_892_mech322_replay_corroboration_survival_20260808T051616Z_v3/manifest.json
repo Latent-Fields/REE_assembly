@@ -1,0 +1,487 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_892_mech322_replay_corroboration_survival",
+  "run_id": "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T05:16:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-322"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "replay_corroboration_survives_under_realistic_conditions",
+    "preconditions": [
+      {
+        "name": "ARM_DEADLINE_15::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_DEADLINE_15",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+        "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_15::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_DEADLINE_15",
+        "kind": "readiness",
+        "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+        "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_15::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_DEADLINE_15",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_15::replay_high_value_candidate_seed_fraction",
+        "precondition": "replay_high_value_candidate_seed_fraction",
+        "arm": "ARM_DEADLINE_15",
+        "kind": "readiness",
+        "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+        "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.4,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_75::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_DEADLINE_75",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+        "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_75::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_DEADLINE_75",
+        "kind": "readiness",
+        "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+        "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_75::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_DEADLINE_75",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_75::replay_high_value_candidate_seed_fraction",
+        "precondition": "replay_high_value_candidate_seed_fraction",
+        "arm": "ARM_DEADLINE_75",
+        "kind": "readiness",
+        "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+        "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.4,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_200::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_DEADLINE_200",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+        "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_200::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_DEADLINE_200",
+        "kind": "readiness",
+        "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+        "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_200::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_DEADLINE_200",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_DEADLINE_200::replay_high_value_candidate_seed_fraction",
+        "precondition": "replay_high_value_candidate_seed_fraction",
+        "arm": "ARM_DEADLINE_200",
+        "kind": "readiness",
+        "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+        "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.4,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_mint_fires_under_valid_conditions",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_minted_chunk_fate_trackable",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_mint_fires_under_valid_conditions": true,
+      "C2_minted_chunk_fate_trackable": true
+    },
+    "per_arm_gate": {
+      "green_arms": [
+        "ARM_DEADLINE_15",
+        "ARM_DEADLINE_75",
+        "ARM_DEADLINE_200"
+      ],
+      "red_arms": [],
+      "structurally_vacuous_arms": [],
+      "vacuity_reason_by_arm": {},
+      "all_green": true,
+      "any_green": true,
+      "failed_preconditions_by_arm": {},
+      "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+      "green": [
+        {
+          "arm": "ARM_DEADLINE_15",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_DEADLINE_15::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_DEADLINE_15",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+              "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_15::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_DEADLINE_15",
+              "kind": "readiness",
+              "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+              "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_15::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_DEADLINE_15",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_15::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_DEADLINE_15",
+              "kind": "readiness",
+              "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+              "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.875,
+              "threshold": 0.4,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        },
+        {
+          "arm": "ARM_DEADLINE_75",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_DEADLINE_75::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_DEADLINE_75",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+              "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_75::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_DEADLINE_75",
+              "kind": "readiness",
+              "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+              "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_75::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_DEADLINE_75",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_75::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_DEADLINE_75",
+              "kind": "readiness",
+              "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+              "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.875,
+              "threshold": 0.4,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        },
+        {
+          "arm": "ARM_DEADLINE_200",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_DEADLINE_200::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_DEADLINE_200",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (the source of the replay-mint candidate) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a/873a.",
+              "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_200::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_DEADLINE_200",
+              "kind": "readiness",
+              "description": "Same buffer-reachability precondition as V3-EXQ-810a/873a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+              "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_200::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_DEADLINE_200",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a/873a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_DEADLINE_200::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_DEADLINE_200",
+              "kind": "readiness",
+              "description": "MECH-322 condition (a)'s readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt the mint whose fate this run observes); the deterministic per-seed mint is C1, scored over cleared seeds only. Same validated gate as V3-EXQ-873a.",
+              "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.875,
+              "threshold": 0.4,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        }
+      ],
+      "red": []
+    },
+    "gate_offending_cells": {
+      "ARM_DEADLINE_15": {
+        "episode_outcome_spread_supra_floor": "ARM_DEADLINE_15/seed202",
+        "chunk_buffer_supports_size_range": "ARM_DEADLINE_15/seed303",
+        "salient_harm_events_fire": "ARM_DEADLINE_15/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_DEADLINE_15/seed303"
+      },
+      "ARM_DEADLINE_75": {
+        "episode_outcome_spread_supra_floor": "ARM_DEADLINE_75/seed202",
+        "chunk_buffer_supports_size_range": "ARM_DEADLINE_75/seed303",
+        "salient_harm_events_fire": "ARM_DEADLINE_75/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_DEADLINE_75/seed303"
+      },
+      "ARM_DEADLINE_200": {
+        "episode_outcome_spread_supra_floor": "ARM_DEADLINE_200/seed202",
+        "chunk_buffer_supports_size_range": "ARM_DEADLINE_200/seed303",
+        "salient_harm_events_fire": "ARM_DEADLINE_200/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_DEADLINE_200/seed303"
+      }
+    },
+    "survival_readout": {
+      "any_corroboration_observed": true,
+      "realistic_deadline_n": 75,
+      "realistic_survival_rate": 0.5714285714285714,
+      "corroboration_rate_by_arm": {
+        "ARM_DEADLINE_15": 0.42857142857142855,
+        "ARM_DEADLINE_75": 0.7142857142857143,
+        "ARM_DEADLINE_200": 0.8571428571428571
+      },
+      "survival_rate_by_arm": {
+        "ARM_DEADLINE_15": 0.0,
+        "ARM_DEADLINE_75": 0.5714285714285714,
+        "ARM_DEADLINE_200": 0.8571428571428571
+      },
+      "exposure_recurrence_counts_n200": [
+        0,
+        1,
+        2,
+        4,
+        6,
+        9,
+        11
+      ]
+    },
+    "both_directions": "DESCRIPTIVE (diagnostic, excluded from confidence scoring). A positive reading (corroboration observed + survival under the realistic N=75 deadline) demonstrates the replay chunk's full lifecycle -- mint -> corroborate -> survive -- and STRENGTHENS the MECH-322 carve-out characterisation. A null reading (no minted chunk corroborated before its deadline in any arm) is EQUALLY valid and does NOT weaken MECH-322: it shows the accelerated-dissolution safety valve firing exactly as designed, and localises the survival corner to the trailing-match recurrence condition. Neither direction is a claim failure; the run measures WHICH corner of the exposure space permits survival.",
+    "combination_rule": "overall PASS = PRIMARY arm (ARM_DEADLINE_75) gate green (readiness: >= 0.40 of seeds produced a qualifying candidate) AND C1 (>= 1.00 of CLEARED seeds minted replay_origin) AND C2 (every minted chunk's fate is trackable and its audit counters consistent). PASS means the survival question was successfully MEASURED; the ANSWER (survives / does-not-survive) is in survival_readout and interpretation.label, both directions valid."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ccbbe79d6c9c55382f563db9ac3d22a44a41aa410e691f7e8fd9fd8a10bcd8d7",
+  "substrate_commit": {
+    "commit": "ca5fd4cff407e58fb28937b6272806d7d421ffdb",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 201288,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}

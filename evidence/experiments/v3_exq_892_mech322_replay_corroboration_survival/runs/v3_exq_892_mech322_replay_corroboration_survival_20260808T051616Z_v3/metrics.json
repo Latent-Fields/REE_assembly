@@ -1,0 +1,85 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "c1_pass": true,
+    "c2_pass": true,
+    "gate_c1_arm_green": true,
+    "gate_any_arm_green": true,
+    "gate_green_by_arm": {
+      "ARM_DEADLINE_15": true,
+      "ARM_DEADLINE_75": true,
+      "ARM_DEADLINE_200": true
+    },
+    "primary_arm": "ARM_DEADLINE_75",
+    "n_seeds": 8,
+    "arm_deadline_n": {
+      "ARM_DEADLINE_15": 15,
+      "ARM_DEADLINE_75": 75,
+      "ARM_DEADLINE_200": 200
+    },
+    "sleep_checkpoint_episode": 20,
+    "post_checkpoint_waking_episodes": 100,
+    "readiness_seed_fraction_by_arm": {
+      "ARM_DEADLINE_15": 0.875,
+      "ARM_DEADLINE_75": 0.875,
+      "ARM_DEADLINE_200": 0.875
+    },
+    "n_cleared_seeds_by_arm": {
+      "ARM_DEADLINE_15": 7,
+      "ARM_DEADLINE_75": 7,
+      "ARM_DEADLINE_200": 7
+    },
+    "readiness_seed_fraction_floor": 0.4,
+    "c1_cleared_seed_count": 7,
+    "c1_minted_cleared_count": 7,
+    "c1_mint_fraction": 1.0,
+    "c1_mint_fraction_floor": 1.0,
+    "n_minted_by_arm": {
+      "ARM_DEADLINE_15": 7,
+      "ARM_DEADLINE_75": 7,
+      "ARM_DEADLINE_200": 7
+    },
+    "any_corroboration_observed": true,
+    "corroboration_rate_by_arm": {
+      "ARM_DEADLINE_15": 0.42857142857142855,
+      "ARM_DEADLINE_75": 0.7142857142857143,
+      "ARM_DEADLINE_200": 0.8571428571428571
+    },
+    "survival_rate_by_arm": {
+      "ARM_DEADLINE_15": 0.0,
+      "ARM_DEADLINE_75": 0.5714285714285714,
+      "ARM_DEADLINE_200": 0.8571428571428571
+    },
+    "realistic_survival_rate": 0.5714285714285714,
+    "deadline_dissolution_count_by_arm": {
+      "ARM_DEADLINE_15": 4,
+      "ARM_DEADLINE_75": 2,
+      "ARM_DEADLINE_200": 0
+    },
+    "crystallised_count_by_arm": {
+      "ARM_DEADLINE_15": 0,
+      "ARM_DEADLINE_75": 4,
+      "ARM_DEADLINE_200": 4
+    },
+    "exposure_recurrence_counts_n200": [
+      0,
+      1,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "first_corroboration_offsets_n200": [
+      1,
+      5,
+      5,
+      36,
+      36,
+      88
+    ],
+    "replay_formed_total": 21,
+    "replay_origin_total": 21,
+    "replay_deadline_dissolutions_total": 9
+  }
+}
