@@ -19832,11 +19832,60 @@
       from: "decision:MECH-155@2026-04-03T22:00:00Z"
       as_of: 2026-04-03
       verdict: hold_candidate_resolve_conflict/applied
+  epistemic_category: standard
   depends_on:
     - MECH-154
     - ARC-001
     - ARC-007
   location: docs/architecture/e1.md#mech-155
+  what_would_answer: >
+    SCOPED NARROWLY, per this claim's shared "ChatGPT-assisted, may contain false
+    correlations" provenance (source: docs/thoughts/2026-04-01_Parietal_systems_thought.md,
+    same as sibling MECH-154) -- covers ONLY the claim that a shared representational/
+    indexing mechanism (content-addressed, similarity-based retrieval structurally
+    analogous to E1's ContextMemory pattern-separation/completion machinery, per
+    MECH-154's confirmed falsifier) is reused across memory search and E1-internal
+    associative retrieval, where both genuinely operate over E1's own representational
+    space.
+
+    EXPLICITLY EXCLUDED, pending the same governance rewrite MECH-154 already flagged:
+    any claim that spatial navigation, planning rollout, or working-memory ordering are
+    implemented "within E1" as opposed to in the structurally separate HippocampalModule
+    (ree-v3/ree_core/hippocampal/module.py, CEM search) that actually performs
+    sequential/structured trajectory search in the current V3 substrate -- this claim's
+    title in fact SHARPENS MECH-154's tension by explicitly naming "planning rollout
+    (E3 trajectory selection)" as E1-internal. No falsifier should be drafted for
+    "concept traversal" or "working memory ordering" -- neither has an operational
+    referent in the source thought, the processed architecture doc, or the codebase (no
+    WorkingMemory module exists). The weaker, potentially-salvageable reading -- "E3's
+    trajectory selection CONSUMES E1's indexing geometry as an input" (module
+    interaction, not module identity) -- is left open for a future claim, not
+    adjudicated here.
+
+    CONFIRMING: a representational-similarity or shared-parameter probe shows that the
+    mechanism differentiating E1's ContextMemory slots (diversification_loss-driven
+    orthogonality) also predicts retrieval accuracy on a non-spatial memory-search task
+    using the same slot structure, at above-chance transfer relative to an
+    ablated/undifferentiated control.
+
+    FALSIFYING: memory-search performance is unrelated to ContextMemory slot
+    differentiation, or requires separately-trained, non-shared machinery -- "general
+    associative indexing" adds no explanatory value beyond treating memory search and
+    pattern completion as coincidentally similar but mechanistically independent.
+
+    CURRENCY NOTE (2026-08-08): this claim's own 2026-04-03 governance decision
+    (hold_candidate_resolve_conflict) is about EXPERIMENTAL-EVIDENCE conflict
+    (conflict_ratio 0.667 across 2 runs, since dropped to 0.333 via V3-EXQ-207/365) --
+    a separate, already-partially-addressed track from the conceptual E1-vs-
+    HippocampalModule tension named above. Do not conflate the two in a future review.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): reconfirms and extends MECH-154's
+    flag. MECH-155's "within E1" framing for spatial navigation and planning rollout
+    inherits the same tension MECH-154 hit, sharpened rather than avoided, and its
+    dependency on ARC-007 (hippocampal path-memory, hold_pending_v3_substrate) is
+    independent corroborating evidence -- MECH-155 depends on the very claim about the
+    module its own title bypasses. MECH-154, MECH-155, MECH-156 should be reviewed
+    jointly, not patched independently.
   source:
     - docs/thoughts/2026-04-01_Parietal_systems_thought.md
   notes: >
@@ -22737,11 +22786,65 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - INV-048
     - MECH-120
     - MECH-121
     - SD-017
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (shared with parent claim INV-048, applies to the
+    REE-architecture leg): before any REE-substrate run is interpretable, e3.harm_eval_head
+    must be trained (V3-EXQ-670's own diagnosed failure -- the harm-valuation pathway was
+    byte-identical across all 4 arms because it was never trained). V3-EXQ-670a has never
+    been run as of this digestion pass.
+
+    LEG A -- REE-ARCHITECTURE (substrate_conditional; testable in principle, but the
+    specific mechanism this claim asserts is not yet representable by the existing
+    substrate knob). Current state: sws_enabled/sws_consolidation_steps/sws_schema_weight
+    (ree_core/utils/config.py) provide only a BINARY on/off SWS toggle and a
+    duration/weight lever. The one existing pharmacological-analog test (V3-EXQ-670,
+    ARM_C_SWS_SUPPRESSED) sets sws_enabled=False -- full ablation, equivalent to complete
+    SWS deprivation. This tests INV-048's coarse claim but CANNOT test this claim's
+    specific two-pathway mechanism: (1) graded slow-oscillation DEPTH reduction (distinct
+    from full ablation) and (2) SWS CONTINUITY fragmentation (distinct from duration
+    reduction) -- nor the Z-drug/classical-benzo dissociation (partial spindle/MECH-122
+    preservation under depth-only suppression vs full suppression under both). A GABAergic
+    decay regulator does exist (SD-036, GABAergicDecayRegulator), but it perturbs
+    waking-state cross-stream z_harm decay (the PHARM-004 catatonia mechanism), not the
+    sleep-phase machinery -- not reusable for this claim.
+
+    CONFIRMING (once the substrate gap above is closed): degradation in MECH-120
+    homeostatic reset quality and MECH-121 schema-replay completeness that scales with
+    depth reduction and fragmentation severity, is dissociable from full-ablation
+    degradation, and (for the Z-drug arm) leaves MECH-122 spindle-coordination metrics
+    relatively less impaired than the classical-benzodiazepine arm.
+
+    FALSIFYING: graded depth/continuity perturbation producing no dose-response
+    relationship to MECH-120/121 metrics; or no dissociation between the Z-drug and
+    classical-benzodiazepine analogs on MECH-122 spindle metrics despite a depth/
+    continuity difference.
+
+    LEG B -- HUMAN-CLINICAL (out-of-domain to REE's own substrate; answerable now via
+    existing polysomnography and neuropsychological literature, independent of REE
+    substrate status): this claim's own prediction -- long-term BZD/Z-drug users show
+    reduced SWS%, slower context-discrimination/new-schema learning, with relatively
+    preserved remote episodic retrieval (the Phase 1/2-selective signature). CONFIRMING:
+    PSG studies showing reduced SWS%/slow-oscillation power in chronic users, paired with
+    neuropsychological batteries showing selective new-context-learning impairment.
+    FALSIFYING: no SWS-architecture difference vs matched non-users, or a dissociation
+    running the opposite direction.
+
+    NOTE (evidence-quality caveat): this claim's existing literature support includes
+    Billioti de Gage et al. 2014 (BZD-dementia association), whose causal-direction
+    interpretation has been substantially challenged by subsequent better-confounded
+    designs (e.g. Gray et al. 2016) addressing reverse causation/protopathic bias
+    (prodromal dementia -> earlier insomnia/anxiety -> BZD prescription). Read this leg's
+    literature confidence with that caveat rather than the Billioti de Gage point estimate.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): V3-EXQ-670a retest (INV-048's own
+    blocker, gating Leg A) still not queued as of this digestion. No graded SWS-depth/
+    continuity substrate knob exists -- an /implement-substrate gap, not chipped here.
   notes: >
     Registered 2026-04-05. GABA-A positive allosteric modulators (classical
     benzodiazepines: diazepam, lorazepam, temazepam, nitrazepam; and Z-drugs:
@@ -26693,6 +26796,59 @@
     denser hazard layout or an exploration-forced rollout phase, not the agent's own competent
     policy). NOT weakened (claim never fairly tested); NOT cleared. PROMOTES/DEMOTES NOTHING;
     MECH-203 stays candidate.
+
+    CORRECTION (2026-08-08, thought-digestion currency check): the "route: /queue-experiment
+    (843b) forcing harm exposure" fix above has since been tried and independently falsified
+    twice more, for two further reasons. A draft V3-EXQ-843b was built per this note's exact
+    prescription (forced-exploration uniform-random pool-building + denser hazards) and
+    empirically disproven in smoke/probes before formal queuing: (1) forced exposure produces
+    harm EVENTS but n_harm_states stays 0 because the driver never wires
+    use_harm_stream=True / valence_harm_enabled=True / obs_dict['harm_obs'] -- the harm-valence
+    write path was never wired at all, contrary to this note's assumption; (2) wiring that
+    stream instead produces the MIRROR degeneracy, because the HarmEncoder is untrained (no P0
+    warmup) and writes non-discriminative harm valence on every step, again collapsing to a
+    degenerate (near-all-harm) pool. On 2026-08-03T23:44Z the backing proposal (EVB-0157) was
+    formally flipped from executed to status: deferred_substrate_not_ready, with an explicit
+    release_condition: a MECH-203 confirming DV becomes constructible once the harm/benefit
+    valence write path is wired AND read off a TRAINED substrate (use_harm_stream=True +
+    obs_dict['harm_obs'] + valence_harm_enabled=True, plus a P0 encoder warmup, plus
+    contact-localized not per-step valence tagging with guaranteed benefit AND harm contact).
+    Until then any forced-exposure lettered iteration reproduces the same invalid measurement --
+    do NOT re-attempt the "just force more harm exposure" fix as literally stated above. See
+    this claim's what_would_answer for the current non-degeneracy precondition.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the waking rollout must produce a genuinely discriminative
+    benefit/harm valence pool (n_harm_states > 0 AND n_benefit_states > 0, non-trivially) via a
+    design that does NOT rely on the agent's own competent policy routing around hazards. As of
+    the 2026-08-03 measurement-defect finding, this precondition is NARROWER than "force more
+    harm exposure" -- three independent test designs failed for three independent reasons
+    (env.step() return-order bug; zero harm exposure from a competent policy; harm-valence write
+    path never wired / then, once wired, non-discriminative because the HarmEncoder is
+    untrained). Per proposal EVB-0157's current release_condition, admissibility additionally
+    requires: (a) use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() +
+    valence_harm_enabled=True (the harm-valence write path actually exercised, not just harm
+    contact events), (b) a P0 encoder warmup so the HarmEncoder is trained before the
+    measurement rollout, and (c) contact-localized (not per-step) valence tagging with
+    guaranteed benefit AND harm contact. Until all three are satisfied, no test is valid --
+    demonstrated 4 consecutive times.
+
+    CONFIRMING: once admissible, benefit-salient experiences (high benefit_exposure, weak
+    z_goal -- "missed opportunities") tagged during high tonic 5-HT show preferential SWS
+    replay (measurable via HippocampalModule's valence-weighted start selection,
+    _select_valence_weighted_start) relative to matched experiences during low tonic 5-HT,
+    complementing (not substituting for) the already-established harm-salience tagging by the
+    residue field (MECH-099).
+
+    FALSIFYING: once admissible, benefit-salient experience replay shows no differential
+    relationship to tonic 5-HT level -- the SWS replay-selection machinery (SerotoninModule
+    drive_state, ResidueField valence, HippocampalModule _select_valence_weighted_start), though
+    correctly wired per the 2026-08-01 autopsy, does not functionally gate replay selection on
+    the 5-HT signal the way the mechanism claims.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): no substrate_queue.json entry exists for
+    EVB-0157's release_condition (harm-stream wiring + P0 encoder warmup + contact-localized
+    valence tagging), despite being named twice now (2026-08-01 autopsy, 2026-08-03 proposal
+    flip). Chip spawned to register it.
   depends_on:
     - MECH-186
     - MECH-121
@@ -27315,12 +27471,69 @@
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: INV-062
+  epistemic_category: out_of_domain
   depends_on:
     - MECH-121
     - MECH-092
     - INV-062
     - INV-049
   location: docs/architecture/sleep/offline_phases.md#mech-209
+  what_would_answer: >
+    This claim fuses THREE evidentiary legs of different domains of resolution, following
+    the precedent recorded on its own parent, INV-062. A result on one leg does not
+    confirm or falsify another.
+
+    REE-MECHANISM LEG (deferred -- do not duplicate MECH-121's own falsifier): this
+    claim's computational content (rapid hippocampal SWR sequential replay of concept
+    instances, compressed to sub-conscious timescale, delivered to E1 for schema
+    abstraction) IS MECH-121's mechanism. This claim adds no independently testable
+    REE-substrate content on top of it -- its test is MECH-121's own NON-DEGENERACY
+    PRECONDITION / CONFIRMING / FALSIFYING block (substrate_conditional, held pending the
+    unbuilt ARC-065 rule-creator substrate + balanced harm/goal replay scheduling).
+    MECH-092's triggering half is confirmed (V3-EXQ-761 PASS) but its consolidation-
+    benefit half (the half this claim actually needs) remains gated on SD-006 / a
+    working viability map. Score this leg as MECH-121's, not re-litigated here.
+
+    PHENOMENOLOGICAL-MAPPING LEG (mixed -- narrow buildable sub-question + irreducible
+    residue): NARROW SUB-QUESTION (in principle buildable, currently unbuilt): does REE
+    have any internal state whose behaviour during a replay/consolidation event would
+    look like what this claim predicts for "self-dissolution" -- a measurable drop or
+    discontinuity in self-model coherence (z_self/D_eff, already used elsewhere for
+    depersonalization/dissociation claims) specifically during MECH-121-style replay,
+    versus stability during ordinary online operation? NOT currently instrumented:
+    MECH-121's own depends_on has no self-model linkage, and no architecture doc tracks
+    an episodic who/when/where context tag on replayed traces that could be observed
+    being stripped. Building this requires MECH-121's own substrate unblocked AND new
+    z_self/D_eff wiring into the replay pipeline -- neither exists today. CONFIRMING (if
+    built): z_self/D_eff shows a measurable coherence drop specifically during
+    MECH-121-triggered replay windows, tracking with the volume of episodic content being
+    abstracted. FALSIFYING (if built): coherence is statistically unchanged across
+    replay vs. ordinary operation. IRREDUCIBLE RESIDUE (out of domain, permanently): even
+    a confirmed computational signature would only show REE's self-model measure BEHAVES
+    analogously to a self-dissolution reading -- it would not establish that this
+    computational event IS what "self-dissolution" subjectively feels like from the
+    inside. No REE build converts this residue into a testable REE question.
+
+    HUMAN-CLINICAL LEG (out of domain -- independently testable, but not on REE): this
+    claim's own clinical prediction -- anxious patients (elevated MECH-208 harm-
+    weighting) show predominantly Type 1/2 dreams and reduced/absent Type 3 -- resolves
+    only through prospective dream-diary studies against this taxonomy, not through any
+    REE experiment. MECH-208, the mechanism this prediction leans on, is CONFIRMED
+    UNBUILT in ree-v3 as of 2026-08-08 -- so even the REE-side precondition for
+    eventually cross-referencing this prediction against a matching REE signature does
+    not yet exist.
+
+    DISPOSITION: epistemic_category is out_of_domain for the same reason as parent
+    INV-062 -- the title's primary assertion is an identity claim between a specific
+    phenomenology and a specific computational mechanism, which is the phenomenological-
+    mapping leg's irreducible residue above, not the REE-mechanism leg (MECH-121's,
+    deferred) or the human-clinical leg (dream-diary literature, not REE).
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): this claim's claim_type
+    (mechanism_hypothesis) could arguably be reclassified to derived_prediction to match
+    parent INV-062's own reclassification (phenomenological-identity claims are
+    domain-modelling assumptions, not architectural invariants/mechanisms) -- surfaced
+    for governance judgment, not applied here.
   source:
     - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
     - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
@@ -27387,6 +27600,7 @@
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: MECH-213
+  epistemic_category: substrate_conditional
   depends_on:
     - MECH-123
     - MECH-094
@@ -27394,6 +27608,59 @@
     - INV-049
     - INV-062
   location: docs/architecture/sleep/offline_phases.md#mech-210
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (REE-architecture leg): a genuine joint "REM mode" --
+    E1's LSTM running forward generatively (predict_long_horizon, prediction_horizon=20,
+    ree_core/predictors/e1_deep.py) from an internally-generated starting point with NO
+    live sensory correction, WHILE ARC-016's commit gate is suppressed (commitment_threshold
+    driven low/negative) AND monoaminergic precision is reduced live during the rollout
+    (not only as a post-sleep one-shot adjustment) -- does not currently exist as an
+    assembled, invocable mode in ree_core/. predict_long_horizon is never called from
+    ree_core/sleep/; the existing REM_ANALOG phase scaffolding (agent.py
+    enter_rem_mode/run_rem_attribution_pass, ree_core/sleep/routing_gate.py) does
+    hippocampal REPLAY of stored past trajectories, not E1-generative free-running of
+    novel content -- it implements the Type 1/2/3 mechanism family (MECH-121/205/208/209),
+    not Type 4. Before any confirming/falsifying test is meaningful, a driver must be
+    built that: (a) seeds E1 from an internally-generated, not externally-observed,
+    state; (b) runs predict_long_horizon with commitment_threshold overridden so no
+    commit fires; (c) applies precision reduction concurrently with the rollout, not
+    only afterward; (d) confirms sensory input genuinely does not reach E1 during the
+    window.
+
+    CONFIRMING: once built, E1's free-running rollouts show (i) narrative coherence --
+    later predicted states measurably constrained by earlier ones, above an
+    i.i.d.-shuffle-matched baseline; (ii) novelty-within-learned-prior-support --
+    rollouts fall outside the specific stored-episode distribution while staying
+    low-error against a held-out plausibility model; (iii) an interestingness/surprise
+    proxy that tracks independently-measured world-model calibration quality (MECH-123's
+    own dependency) -- well-calibrated priors produce a measurably different rollout
+    signature than deliberately miscalibrated ones.
+
+    FALSIFYING: rollouts under the jointly-induced conditions are indistinguishable from
+    i.i.d. noise regardless of prior calibration quality; OR the interestingness/surprise
+    signature shows no relationship to independently-measured world-model calibration;
+    OR narrative coherence is present even without the commit-gate/precision
+    manipulations, meaning the REM-specific framing adds nothing beyond ordinary
+    free-running rollout mechanics.
+
+    HUMAN-CLINICAL LEG (separate, non-REE-blocking): (1) REM-suppressing-antidepressant
+    prediction -- SSRIs/SNRIs (and other REM-suppressing agents, per MECH-178's NA-tone
+    pathway) reduce/delay REM on PSG; this claim predicts selective loss of Type 4
+    (detailed-story) dreams under chronic use, with Types 1-3 relatively spared --
+    testable via dream-diary studies contrasting REM-suppressing vs REM-sparing agents.
+    (2) Dementia-progression prediction -- progressive Type-4 degradation preceding its
+    disappearance, tracked via longitudinal dream diaries in early-stage dementia. Both
+    answerable from clinical/psychiatric literature and cohort studies, independent of
+    REE substrate status.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): this claim's direct mechanistic
+    parent MECH-123 was set to substrate_conditional/v3_pending: true on 2026-08-06
+    ("mirroring sibling MECH-121") -- this claim is a downstream specialization and its
+    own precondition is unmet a fortiori; consider adding v3_pending: true to match. The
+    REM_ANALOG phase-name collision (see NON-DEGENERACY PRECONDITION above) could mislead
+    a future reader into thinking this claim is substrate-supported because a
+    similarly-named phase exists -- worth a short cross-reference note in
+    docs/architecture/sleep/offline_phases.md.
   source:
     - docs/thoughts/2026-04-07_dream_phenomenology_replay_types.md
     - evidence/planning/thought_intake_2026-04-07_dream_phenomenology_replay_types.md
