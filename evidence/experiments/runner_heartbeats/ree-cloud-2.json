@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-08T19:19:55Z",
+  "last_tick_utc": "2026-08-08T20:15:29Z",
   "state": "running",
   "current_exq": "V3-EXQ-899",
   "current_exq_started_utc": "2026-08-08T16:17:20.764363+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / FULL_M307_OFF",
-    "runs_done": 4,
+    "run_label": "Seed 44 / FULL_M307_ON",
+    "runs_done": 6,
     "runs_total": 9,
     "episodes_done": 30,
     "episodes_total": 250,
-    "overall_pct": 45.8
+    "overall_pct": 68.0
   },
-  "seconds_elapsed": 10955,
-  "seconds_remaining": 15922,
+  "seconds_elapsed": 14289,
+  "seconds_remaining": 9396,
   "recent_lines": [
     "[V3-EXQ-899] ARC-030 / MECH-307 G0-readiness diagnostic (scaffolded_sd054_onboarding, MECH-307 A/B)",
     "Seed 42 Condition FULL_M307_ON",
@@ -53,7 +53,20 @@
     "verdict: PASS",
     "Seed 43 Condition FULL_M307_OFF",
     "[train] seed=43 FULL_M307_OFF ep 20/250 phase=stage0",
-    "[train] seed=43 FULL_M307_OFF ep 30/250 phase=stage0b"
+    "[train] seed=43 FULL_M307_OFF ep 30/250 phase=stage0b",
+    "[train] seed=43 FULL_M307_OFF ep 130/250 phase=p0",
+    "[train] seed=43 FULL_M307_OFF ep 170/250 phase=stage_h",
+    "[train] seed=43 FULL_M307_OFF ep 220/250 phase=p1",
+    "[train] seed=43 FULL_M307_OFF ep 250/250 phase=p2",
+    "[eval] FULL_M307_OFF seed=43 resource_rate=0.0029 harm_rate=0.0259 entropy=-0.0000 survival=0.7333 zgoal_norm=0.1197",
+    "verdict: PASS",
+    "Seed 43 Condition RANDOM",
+    "[train] seed=43 RANDOM ep 30/30 phase=p2",
+    "[eval] RANDOM seed=43 resource_rate=0.0222 harm_rate=0.9051 entropy=1.6069 survival=0.0000",
+    "verdict: PASS",
+    "Seed 44 Condition FULL_M307_ON",
+    "[train] seed=44 FULL_M307_ON ep 20/250 phase=stage0",
+    "[train] seed=44 FULL_M307_ON ep 30/250 phase=stage0b"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

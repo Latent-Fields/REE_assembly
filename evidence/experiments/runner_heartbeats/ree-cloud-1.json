@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-08T19:19:54Z",
+  "last_tick_utc": "2026-08-08T20:15:28Z",
   "state": "running",
   "current_exq": "V3-EXQ-603r",
   "current_exq_started_utc": "2026-08-08T17:12:10.142001+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-357",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_LESION_pag_no_gate_combined_fix",
-    "runs_done": 2,
+    "run_label": "Seed 42 / ARM_INTACT_pag_gate_combined_fix",
+    "runs_done": 3,
     "runs_total": 6,
     "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 34.8
+    "overall_pct": 51.4
   },
-  "seconds_elapsed": 7664,
-  "seconds_remaining": 14078,
+  "seconds_elapsed": 10998,
+  "seconds_remaining": 10482,
   "recent_lines": [
     "[v3_exq_603r_instrumental_avoidance_combined_fix_retest] starting (dry_run=False)",
     "Seed 42 Condition ARM_LESION_pag_no_gate_combined_fix",
@@ -35,7 +35,14 @@
     "[train] p2 ARM_LESION_pag_no_gate_combined_fix seed=43 ep 235/235 contact_rate=0.2528",
     "verdict: PASS seed=43 arm=ARM_LESION_pag_no_gate_combined_fix g_h=True g0=True g1=True g2=True eff_final=0.0000",
     "Seed 44 Condition ARM_LESION_pag_no_gate_combined_fix",
-    "[train] stage0 ARM_LESION_pag_no_gate_combined_fix seed=44 ep 20/235 z_goal_peak=0.3687"
+    "[train] stage0 ARM_LESION_pag_no_gate_combined_fix seed=44 ep 20/235 z_goal_peak=0.3687",
+    "[train] p0 ARM_LESION_pag_no_gate_combined_fix seed=44 ep 130/235 mean_len=196.1 rv=0.00003",
+    "[train] hazard_avoidance ARM_LESION_pag_no_gate_combined_fix seed=44 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=191 eff=0.0000 n_credit=0 n_freeze_suppr=0",
+    "[train] p1 ARM_LESION_pag_no_gate_combined_fix seed=44 ep 220/235 median_last=200.0 survival_gate=pass",
+    "[train] p2 ARM_LESION_pag_no_gate_combined_fix seed=44 ep 235/235 contact_rate=0.2042",
+    "verdict: PASS seed=44 arm=ARM_LESION_pag_no_gate_combined_fix g_h=True g0=False g1=True g2=True eff_final=0.0000",
+    "Seed 42 Condition ARM_INTACT_pag_gate_combined_fix",
+    "[train] stage0 ARM_INTACT_pag_gate_combined_fix seed=42 ep 20/235 z_goal_peak=0.4906"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
