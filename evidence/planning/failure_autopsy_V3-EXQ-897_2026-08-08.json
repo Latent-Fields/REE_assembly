@@ -1,0 +1,93 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T10:21:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3",
+      "queue_id": "V3-EXQ-897",
+      "claim_ids": ["SD-009"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "sd009_event_ce_effect_inconclusive",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact_with_scope_precision",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate_with_caveat",
+        "measurement": "adequate_improved",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ventral-stream category selectivity requiring categorical top-down training signal beyond pure predictive coding (Murray et al. 2004, TICS 8:56-61)",
+        "dependencies": ["SD-005", "SD-070"],
+        "is_formal_import": true,
+        "divergence": "SD-070's own grounding heads (hazard/resource-presence classifiers) already supply categorical top-down supervision to both arms, so the cited biological principle may already be satisfied independent of the additional event-CE head under test",
+        "lit_status": "partial_untracked",
+        "lit_status_note": "Murray et al. 2004 cited in MECH-100 claims.yaml prose; never entered into claim_evidence.v1.json as a tracked targeted_review_sd_009 entry -- SD-009's literature_confidence (0.724) rests only on 2 lit:computational_model entries (ADAT/Kim2022, CURL/Laskin2020)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "unknown",
+      "recommended_evidence_quality_note": "V3-EXQ-897 FAIL/unknown (2026-08-08): well-controlled ablation (2 arms x 3 seeds) of an additional event-type CE head layered on the SD-070 anti-collapse recipe (held constant in both arms). Positive control and encoder-trained preconditions both met. Primary DV (held-out frozen-probe decodability margin, not selectivity_margin) clears the floor in BOTH arms (mean ON 0.065, all seeds' OFF >= ON: deltas -0.025/-0.010/-0.005). Resolves the 2026-07-18 \"channel-mismatch\" open question (evidence/planning/sd009_event_contrastive_channel_mismatch_2026-07-18.md): z_world IS genuinely decodable for event-type once the SD-070 collapse is fixed, refuting the strongest \"channel uninformative\" reading -- but the additional event-CE head's marginal contribution over SD-070's other grounding heads is not detected (3/3 seeds sign-consistent null-to-negative, within single-seed noise). No status change; this is the first genuine experimental-evidence entry SD-009 has received under the current indexer (genuine_exp_count was 0). Adjacent: MECH-100's existing supports evidence (EXQ-020/022/176/177) was gathered under the pre-SD-070 collapsing P0 -- recommend governance separately consider a candidate-stale flag there per the 2026-07-18 doc's option (B).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "adjacent_recommendations": [
+        {
+          "target": "MECH-100",
+          "recommendation": "candidate_stale_flag",
+          "rationale": "genuine_exp_count=4 supports (EXQ-020/022/176/177) were gathered on the pre-SD-070 P0 that SD-070's own claims.yaml entry documents as collapsing z_world to participation_ratio ~1.06; V3-EXQ-897's clean decodability re-measurement under the fixed substrate is the occasion to revisit, per the 2026-07-18 doc's own option (B). MECH-100 not tagged by this run -- adjudication is governance's to make, not this autopsy's.",
+          "user_confirmed": true
+        },
+        {
+          "target": "SD-009 literature evidence",
+          "recommendation": "register_citation",
+          "rationale": "Murray et al. 2004 (TICS 8:56-61) cited in MECH-100 claims.yaml prose as biological grounding for categorical top-down supervision, never entered into claim_evidence.v1.json as a tracked targeted_review_sd_009 literature entry. Recommend governance register directly (citation already identified) rather than commissioning a full /lit-pull.",
+          "user_confirmed": true
+        },
+        {
+          "target": "sd009_event_contrastive_channel_mismatch_2026-07-18.md",
+          "recommendation": "mark_resolved",
+          "rationale": "V3-EXQ-897 supplies the decodability re-measurement this planning doc's option (B) requested; recommend governance mark it resolved/adjudicated, citing this autopsy.",
+          "user_confirmed": true
+        }
+      ],
+      "learning_extracted": [
+        "Resolves 2026-07-18 open governance question: z_world genuinely decodable for event-type once SD-070 collapse is fixed, refuting the strongest 'channel uninformative' reading from the pre-SD-070 informal probe",
+        "Soft, sign-consistent (3/3 seeds) but statistically imprecise signal against the specific 'requires a dedicated event-CE head' formulation, given SD-070's other grounding heads are already present",
+        "Adjacent evidence-quality concern: MECH-100's stable status rests on evidence gathered under a P0 SD-070 now documents as collapsing z_world",
+        "Evidence-tracking gap: a biological citation (Murray et al. 2004) doing real rhetorical work in claims.yaml prose was never registered as tracked literature evidence for SD-009"
+      ],
+      "routing": "governance-note-only",
+      "routing_note": "No implement-substrate, full lit-pull, queue-experiment, or diagnose-errors routing warranted. Governance applies the evidence_quality_note above (no status change), marks the 2026-07-18 planning doc resolved, separately considers MECH-100's evidence currency, and registers the Murray et al. citation. Reported per /failure-autopsy's CLAUDE.md Session Land Protocol exception -- not chipped."
+    }
+  ],
+  "cluster_pattern": null,
+  "re_derive_brake": {
+    "checked": true,
+    "fired": false,
+    "prior_substrate_ceiling_autopsies_for_claim": [],
+    "note": "First-ever SD-009-tagged confirmed autopsy (granularity_debt_cluster.py SD-009 -> 0 tagging targets). Brake does not apply."
+  },
+  "granularity_debt_trigger": {
+    "checked": true,
+    "fires": false,
+    "note": "granularity_debt_cluster.py SD-009 and MECH-100 both report 0 tagging targets -- no recurrence cluster to assess."
+  },
+  "hypothesis_space_ledger": {
+    "step_9b_applicable": false,
+    "note": "No existing question node names SD-009 or MECH-100 in hypothesis_space_registry.v1.json; this is not a GOV-FANOUT-1 discrimination portfolio (no fanout_recommendation). Skipped cleanly per the skill's own carve-out for a lone non-fan-out result that discriminates nothing and opens no rival set."
+  },
+  "recommendation_agreement_ledger": {
+    "logged": true,
+    "entries": 3,
+    "all_recommended_options_accepted": true,
+    "path": "RECOMMENDATION_LOG.jsonl"
+  }
+}
