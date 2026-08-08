@@ -244,6 +244,19 @@
       "status": "superseded",
       "resolved_at": "2026-08-08T09:21:47Z",
       "resolution_note": "Duplicate of GFLAG-0015 (identical MECH-321 evidence_discrepancy, same raised_at 2026-08-08T09:21:06Z). Created by governance_flag.py's own retry loop in session metaworker-chip-20260808-mech321-repose-measurement-design: the --push failed because the shared REE_assembly checkout had unstaged changes (pull --rebase refused), ree_commit.py reported exit 1, and the wrapper retried the RAISE twice more even though each attempt had in fact committed. Superseded, not deleted, so the retry-loop behaviour stays visible. Read GFLAG-0015."
+    },
+    {
+      "flag_id": "GFLAG-0018",
+      "claim_ids": [
+        "MECH-203"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-203's what_would_answer clauses (a)/(b)/(c) and its 2026-08-08 evidence_quality_note CORRECTION -- both restating proposal EVB-0157's release_condition -- appear PARTLY STALE: sub-requirement (c) contact-localized valence tagging was already BUILT and contract-pinned by ree-v3 adfd8c01 (2026-08-02T12:26Z, SerotoninModule.harm_salience + REEAgent.update_harm_salience, pinned by tests/contracts/test_mech203_harm_salience_writepath.py C1-C5), which landed ~35h BEFORE the 2026-08-03T23:44Z proposal flip that wrote the release_condition. Because that route writes VALENCE_HARM_DISCRIMINATIVE from the env scalar harm_exposure (body_obs[10]) and never touches the HarmEncoder, sub-requirements (a) harm-stream wiring and (b) P0 encoder warmup may be UNNECESSARY on it rather than owed -- so 'no test is valid until all three are satisfied' may overstate the gate; needs adjudication before anyone builds (a)/(b). Registered (not acted on) as substrate_queue entry mech203-valence-pool-admissibility (REE_assembly f1a21209fc), classified probe_gated: what is owed first is a cheap admissibility probe, not construction.",
+      "raised_by_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
+      "raised_at": "2026-08-08T16:01:37Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
