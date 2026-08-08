@@ -8733,6 +8733,7 @@
       as_of: 2026-08-03
       verdict: non_contributory/substrate_ceiling
   epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   what_would_answer: |
     Scoped to Pathway A (drive absence, the ARC-030 route) only; Pathway B
     (self-incoherence-gated commit suppression via MECH-113/114) is a separate,
@@ -8778,6 +8779,17 @@
     reconfirms this claim genuinely orphaned (no design owner, not parked, not self-handled). Flagged
     for /failure-autopsy to produce the substrate-regression diagnostic prescribed by 866a's own
     autopsy (re-run 603q fresh, commit-verified) rather than routing here inline from a verdict alone.
+
+    [2026-08-08 governance, CORRECTION]: the 2026-08-07 flag above is STALE -- the substrate-regression
+    diagnostic it asks for already ran and passed: V3-EXQ-866b (2026-08-03T19:24Z, PASS, confirmed
+    failure_autopsy_V3-EXQ-866b_2026-08-07.json) confirms base_survival_reproduces_603q_reference --
+    no substrate regression. This closes the "is 603q's substrate drifted" question 866a's autopsy
+    opened. The real, still-open gap is curriculum/harness, not substrate: z_goal decays from a
+    healthy Stage-0 peak (~0.5) to a P2 mean of 0.12, below the 0.4 C6 floor, despite the substrate
+    being confirmed sound -- the intervening hazard-only curriculum stages appear to starve goal
+    maintenance before the P2 measurement window. Substrate_queue stub
+    scaffolded-curriculum-hazard-rebalance minted this cycle (unblocks Q-021, INV-034, and shares
+    ARC-030's G0 gate); pending_retest_after_substrate stays true pending that curriculum fix.
   depends_on:
     - ARC-030
     - MECH-111
@@ -11092,6 +11104,14 @@
     to /implement-substrate (chip-20260807-mech307-fromdims-wiring) to fix the from_dims wiring
     gap first. pending_retest_after_substrate STAYS true; genuinely still blocked, now on a sharper,
     correctly-identified blocker (from_dims reachability, not claims.yaml implementation status).
+
+    [2026-08-08 governance]: chip-20260807-mech307-fromdims-wiring is DONE (landed ree-v3
+    d63f13b7+2c682a91, REE_assembly 6e5c3dea0c; contract test_mech307_from_dims_wiring.py, 19
+    tests). MECH-307 is now genuinely reachable via from_dims. Next step is still NOT the full
+    COMBINED-vs-NOGO_ONLY retest -- a readiness step first: re-run the 603q/866b scaffolded
+    configuration with MECH-307 genuinely ON and confirm the G0 non-degeneracy precondition still
+    clears (866a already failed G0 on a smaller deviation, so this is not a formality). Chipped
+    (chip-20260808-arc030-mech307-readiness). pending_retest_after_substrate stays true.
   depends_on:
     - ARC-021
     - MECH-069
@@ -13338,6 +13358,7 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   live_status:
     reading: candidate
     as_of: 2026-08-03
@@ -13461,6 +13482,13 @@
     reconfirms this claim genuinely orphaned. Flagged for /failure-autopsy to produce the
     substrate-regression diagnostic prescribed by 866a's own autopsy (re-run 603q fresh,
     commit-verified) -- same routing as sibling Q-021.
+
+    [2026-08-08 governance, CORRECTION, same routing as sibling Q-021]: the 2026-08-07 flag above is
+    STALE -- V3-EXQ-866b already ran and PASSed (confirmed failure_autopsy_V3-EXQ-866b_2026-08-07.json),
+    resolving the substrate-regression question this claim's own what_would_answer already documents
+    above: no substrate regression, the gap is curriculum/harness (z_goal decays to a P2 mean of 0.12
+    against the 0.4 C6 floor). Substrate_queue stub scaffolded-curriculum-hazard-rebalance minted this
+    cycle. pending_retest_after_substrate set true.
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
   claim_type: invariant
@@ -48882,6 +48910,20 @@
     confirmed]: found forward-PE heterogeneous while region-V_s stayed flat (spearman 0.083) -- fairly strong
     direct support for H-vs-proxy-saturation (region-V_s saturates near 1.0 in a trained encoder, decoupled from
     forward-PE). Left alive (not yet eliminated) pending the env-axis ladder; bears_on only, no claim weight.
+
+    [2026-08-08 governance, backfill -- note was stale since 2026-07-26]: the campaign continued past 816c.
+    V3-EXQ-830 (2026-07-29, confirmed failure_autopsy_V3-EXQ-830_2026-07-29) found the deeper issue:
+    E3Selector.post_action_update unconditionally destroys _committed_trajectory every tick before ARC-070's
+    R4 mid-execution hook (which needs cross-tick persistence) can ever fire -- a genuine structural gap, not
+    a re-probeable measurement question. Routed /implement-substrate for a persistent commit handle.
+    V3-EXQ-839 (2026-07-30, confirmed failure_autopsy_V3-EXQ-839_2026-07-30) confirmed the fix makes R4
+    genuinely reachable (415 evaluations ON, 0 OFF) and routed a real evidence successor, closing the
+    reachability question this claim's R4 verdict above was blocked on. GOV-DIAG-1's fan-out-recurrence
+    audit flagged the 816b/816c/816d/830/839 chain as circling on 2026-08-08 -- but by that date the chain
+    had already been through the RE-POSE (persistent commit handle, structural fix) / REFUSE (no blind
+    re-queue) / BUILD (SD-084 substrate) pattern the audit exists to force; the flag was stale, not a fresh
+    circling. See MECH-321's own implementation_note for the harm-valence-wiring and matched-seed-pool
+    follow-on (V3-EXQ-844/867/867a/867b) this reachability fix then made possible to test.
   title: "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'"
   claim_type: architectural_commitment
   subject: policy.decomposition_on_prediction_failure
