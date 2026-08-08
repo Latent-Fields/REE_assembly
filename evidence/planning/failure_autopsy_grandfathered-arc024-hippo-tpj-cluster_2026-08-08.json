@@ -1,0 +1,515 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T19:22:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_042_hippocampal_terrain_training_20260319T070243Z_v3",
+      "claim_ids": [
+        "SD-004",
+        "ARC-007",
+        "MECH-089"
+      ],
+      "failed_criterion": "measurement",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear (hippocampal CEM proposal literature exists)",
+        "prerequisites": "present (EXQ-041 PASS is the stated prerequisite, met)",
+        "implementation": "complete/verified -- source read confirms terrain_optimizer.zero_grad()/backward()/step() correctly wired, gradient flows through terrain_prior's own weights (not a missing-training-loop defect)",
+        "environment": "adequate (CausalGridWorldV2) but n_approach_eval=5 (<<30 needed), world_forward_r2=0.0",
+        "measurement": "under-instrumented/degenerate -- C4 (n_approach_eval>=30) and C5 (world_forward R2>0.05) both fail hard",
+        "integration": "isolated",
+        "scale": "insufficient (terrain_loss 311.27->311.27, 0% reduction over training)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal CEM trajectory proposal guided by a learned terrain_prior",
+        "dependencies": [
+          "EXQ-041 (PASS, met)"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a -- training loop verified correctly wired by direct source read",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Source-verified (ree-v3/experiments/v3_exq_042_hippocampal_terrain_training.py:191-207): terrain_prior BC training loop is correctly wired (real zero_grad/backward/step, gradient flows through terrain_prior's own weights per the driver's own comment) -- NOT the sense()-only missing-training-loop defect confirmed elsewhere in this backlog (V3-EXQ-032-family). terrain_loss stays flat at 311.27 across the full run (0% reduction) while C4/C5 data-sufficiency gates both fail hard (n_approach_eval=5 vs floor 30; world_forward_r2=0.0). This is a genuine under-training/insufficient-signal finding, not a wiring bug -- was never folded into SD-004/ARC-007/MECH-089's evidence_quality_note (confirmed absent by full-text search). 070048Z is a same-day near-duplicate rerun (~2min apart, same seed) whose only divergent field (hippo_mean_residue NaN->0.0) is a metric-computation artifact between two immediate invocations, not an independent replicate -- treat as one experimental event, 070243Z canonical.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "insufficient-signal finding, not a substrate gap; a redesign (larger training budget or a stronger BC target) is the appropriate next step, not a substrate build"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "terrain_prior BC training loop is structurally sound; the 0% loss reduction is a genuine training-budget/signal-strength finding, first formal diagnosis of this run despite being on disk since 2026-03-19"
+      ],
+      "routing": "queue-experiment",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_066_mech089_theta_batching_20260323T_v3",
+      "claim_ids": [
+        "MECH-089"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (static-k operationalization)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (static-k)",
+        "environment": "adequate but exposes fine-grained state changes every step, defeating averaging",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate representation, insufficient design axis (static k)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "theta-gamma cross-frequency batching (Canolty & Knight 2010, Lisman & Jensen 2013, Tort 2009, Axmacher 2010)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "formal fixed-k static batching diverges from adaptive/context-dependent biological packaging (Gupta 2010/2012, Karlsson & Frank 2009, Bellmund 2018)",
+        "lit_status": "present, plus a skeptical CFC-artifact critique (Scheffer-Teixeira 2016)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration only -- MECH-089's own claims.yaml evidence_quality_note already narrates this run in full detail and explicitly states: uniform static-k theta batching (k=1,2,4) is CONFIRMED HARMFUL; a run using only static-k configurations cannot reopen this question. No re-diagnosis owed; this target formalizes the existing narrative into the artifact record.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Claim-level re-derive-brake language already in force for static-k configurations, predating and outside the formal re_derive_brake JSON mechanism -- do not recommend a fresh static-k re-queue."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-089 = 0 confirmed substrate_ceiling hits; claim's own 'do not re-litigate' language already refuses a fresh static-k re-queue independent of the formal brake."
+      }
+    },
+    {
+      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T195503Z_v3",
+      "claim_ids": [
+        "MECH-089"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (static-k), reinforcing 066",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (static-k)",
+        "environment": "adequate but exposes fine-grained state changes every step",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "theta-gamma cross-frequency batching, k=2 narrowing of 066's k=4",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "same as 066",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration only, matching 066's disposition and claims.yaml's 'do not re-litigate' framing. The two timestamps are genuinely distinct runs (not naming duplicates): 195503Z is a thin 1-seed pilot at min_contacts=10 (fails its own C4 data-quality gate; AUC_ON=0.64>AUC_ABLATED=0.36 on noise); 220939Z is the well-powered 2-seed full run (min_contacts=171-192, passes C4) where the sign reverses -- AUC_ON=0.41<AUC_ABLATED=0.75. This is a textbook small-N-noise-manufactures-illusory-signal case; the 220939Z reading is the decisive, well-powered negative and is what claims.yaml's static-k narrative already reflects. The 195503Z pilot should NOT be counted as an independent replicate or allowed to reverse the well-powered sibling's sign.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Small-N pilot (195503Z, 1 seed) showed an illusory positive that reversed under power (220939Z, 2 seeds) -- textbook caution against treating a thin pilot as a genuine replicate."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-089 = 0 confirmed substrate_ceiling hits; claim's own 'do not re-litigate' language already refuses a fresh static-k re-queue independent of the formal brake."
+      }
+    },
+    {
+      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T220939Z_v3",
+      "claim_ids": [
+        "MECH-089"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (static-k), reinforcing 066",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (static-k)",
+        "environment": "adequate but exposes fine-grained state changes every step",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "theta-gamma cross-frequency batching, k=2 narrowing of 066's k=4",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "same as 066",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration only, matching 066's disposition and claims.yaml's 'do not re-litigate' framing. The two timestamps are genuinely distinct runs (not naming duplicates): 195503Z is a thin 1-seed pilot at min_contacts=10 (fails its own C4 data-quality gate; AUC_ON=0.64>AUC_ABLATED=0.36 on noise); 220939Z is the well-powered 2-seed full run (min_contacts=171-192, passes C4) where the sign reverses -- AUC_ON=0.41<AUC_ABLATED=0.75. This is a textbook small-N-noise-manufactures-illusory-signal case; the 220939Z reading is the decisive, well-powered negative and is what claims.yaml's static-k narrative already reflects. The 195503Z pilot should NOT be counted as an independent replicate or allowed to reverse the well-powered sibling's sign.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Small-N pilot (195503Z, 1 seed) showed an illusory positive that reversed under power (220939Z, 2 seeds) -- textbook caution against treating a thin pilot as a genuine replicate."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-089 = 0 confirmed substrate_ceiling hits; claim's own 'do not re-litigate' language already refuses a fresh static-k re-queue independent of the formal brake."
+      }
+    },
+    {
+      "run_id": "v3_exq_052_sd006_multirate_validation_20260320T042636Z_v3",
+      "claim_ids": [
+        "SD-006"
+      ],
+      "failed_criterion": "measurement",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (measurement bug, not mechanism)",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "complete, was a bug (now fixed)",
+        "environment": "adequate",
+        "measurement": "was the bug; now fixed by EXQ-052b",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- diagnostic bug, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Backfill registration only. SD-006's own claims.yaml note already fully explains this FAIL as a diagnostic bug (wrong buffer attribute name checked, AttributeError silently caught), resolved by EXQ-052b PASS. The two batch-form ids for this run_id (prefix vs suffix directory naming) are the same physical manifest -- confirmed only one file exists on disk. No open question remains.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Naming-convention duplicate confirmed physically: only one manifest file exists for both id strings."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_089_mech095_tpj_validation_v3",
+      "claim_ids": [
+        "MECH-095"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear (Frith 2000 schizophrenia-passivity analog cited in-script)",
+        "prerequisites": "present",
+        "implementation": "complete comparator, thin single-agent substrate (pre-SD-047)",
+        "environment": "too sparse/thin (pre-SD-047 CausalGridWorldV2)",
+        "measurement": "adequate (n=42, C4 passes); false_attribution_rate=1.0 is a strong, clean signal",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "TPJ agency-attribution comparator",
+        "dependencies": [
+          "multi_agent_ecology_v5:MAE-3"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present (targeted_review_connectome_mech_095, targeted_review_reafference_streams)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration only. MECH-095's own claims.yaml note (2026-05-02 SUBSTRATE-CEILING FLAG paragraph) already explicitly names this run by family among '7 successor attempts after the EXQ-047k PASS' -- consistent with, and reinforcing, the already-diagnosed thin single-agent substrate read. No fresh diagnosis; explicitly refuse a new single-agent re-queue (re-derive brake already fired via V3-EXQ-741).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "V3-EXQ-741_2026-07-12 (valid ceiling hit)",
+          "failure_autopsy_grandfathered-*_2026-08-08 round-3 stamping of 047i/047j"
+        ],
+        "refused_requeue": true,
+        "route_to": "multi_agent_ecology_v5:MAE-3",
+        "governance_flag": "Mechanically-computed count is 3 (741, 047i, 047j); claims.yaml's own last-touched note (2026-07-11/12, predates today's round-3 stamping) still states n_ceiling_hits=1. Staleness gap does not change the routing conclusion (claim's own re-derive-brake language already refuses a 4th single-agent SD-047 letter) but should be corrected."
+      }
+    },
+    {
+      "run_id": "v3_exq_098b_mech099_agency_attribution_20260326T155605Z_v3",
+      "claim_ids": [
+        "MECH-095",
+        "MECH-099"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear (Haak & Beckmann 2018 three-stream)",
+        "prerequisites": "present",
+        "implementation": "complete lateral head",
+        "environment": "too sparse/thin (pre-SD-047)",
+        "measurement": "adequate in full run (attr_auc reaches 0.99, near-ceiling)",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reafference three-stream / lateral agency-attribution head",
+        "dependencies": [
+          "multi_agent_ecology_v5:MAE-3"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration, same family as 089/121(B) -- explicitly named in MECH-095's 2026-05-02 note ('098b x2'). The companion 155304Z timestamp is a thin 1-seed pilot (warmup=5eps/eval=3eps, attr_auc=0.5000=chance) -- excluded from evidentiary weight per the skill's small-N caution, not counted as an independent replicate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "V3-EXQ-741_2026-07-12 (valid ceiling hit)",
+          "failure_autopsy_grandfathered-*_2026-08-08 round-3 stamping of 047i/047j"
+        ],
+        "refused_requeue": true,
+        "route_to": "multi_agent_ecology_v5:MAE-3",
+        "governance_flag": "Mechanically-computed count is 3 (741, 047i, 047j); claims.yaml's own last-touched note (2026-07-11/12, predates today's round-3 stamping) still states n_ceiling_hits=1. Staleness gap does not change the routing conclusion (claim's own re-derive-brake language already refuses a 4th single-agent SD-047 letter) but should be corrected."
+      }
+    },
+    {
+      "run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T220939Z_v3",
+      "claim_ids": [
+        "MECH-095"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, reverses a noisy pilot's apparent positive",
+        "biological_reference": "clear (Blakemore efference-copy)",
+        "prerequisites": "present",
+        "implementation": "complete AgencyComparator",
+        "environment": "too sparse/thin (pre-SD-047)",
+        "measurement": "adequate in full run (min_contacts=171-192)",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "efference-copy agency comparator",
+        "dependencies": [
+          "multi_agent_ecology_v5:MAE-3"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Backfill registration, same family as 089/098b(B) -- explicitly named in MECH-095's 2026-05-02 note ('121 x2'). Companion 195503Z timestamp is a thin 1-seed pilot at min_contacts=10 (fails own C4; sign reverses under power) -- excluded from evidentiary weight, not counted as independent replicate. Note this run_id/timestamp is shared textually with the Thread-2 122 pair naming above by coincidence of batch numbering only; the underlying manifests are distinct experiments (theta-batching vs agency-attribution) confirmed via claim_ids and script name.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "121-A's sign reversal under power (noisy 1-seed AUC_ON>AUC_ABLATED flipping to AUC_ON<AUC_ABLATED at 2 seeds/171+ contacts) is a clean textbook illustration of why thin pilots must be excluded from evidentiary weight."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "V3-EXQ-741_2026-07-12 (valid ceiling hit)",
+          "failure_autopsy_grandfathered-*_2026-08-08 round-3 stamping of 047i/047j"
+        ],
+        "refused_requeue": true,
+        "route_to": "multi_agent_ecology_v5:MAE-3",
+        "governance_flag": "Mechanically-computed count is 3 (741, 047i, 047j); claims.yaml's own last-touched note (2026-07-11/12, predates today's round-3 stamping) still states n_ceiling_hits=1. Staleness gap does not change the routing conclusion (claim's own re-derive-brake language already refuses a 4th single-agent SD-047 letter) but should be corrected."
+      }
+    },
+    {
+      "run_id": "v3_exq_098b_mech099_agency_attribution_20260326T155304Z_v3",
+      "claim_ids": [
+        "MECH-095",
+        "MECH-099"
+      ],
+      "failed_criterion": "not_applicable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- thin pilot",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "n/a",
+        "measurement": "degenerate (warmup=5eps, eval=3eps, 1 seed, attr_auc=0.5000=chance)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Not a dry-run by the manifest's dry_run flag, but functionally a shakedown pilot: 1 seed, minimal warmup/eval, attr_auc at exactly chance (0.5000). Recommend excluding from evidentiary weight entirely (do not let it contribute to population statistics or the family's already-correct weakens read).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_121_mech095_agency_attribution_pair_20260328T195503Z_v3",
+      "claim_ids": [
+        "MECH-095"
+      ],
+      "failed_criterion": "not_applicable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- thin pilot, sign reverses under power",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "n/a",
+        "measurement": "degenerate (1 seed, min_contacts=10, fails own C4 gate)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "1-seed pilot failing its own C4 data-quality gate (min_contacts=10 vs the well-powered sibling's 171-192); AUC_ON=0.64>AUC_ABLATED=0.36 on noise, reversing to AUC_ON=0.41<AUC_ABLATED=0.75 at 2 seeds. Exclude from evidentiary weight; do not let it reverse the well-powered sibling's sign.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_510_sd047_mech095_live_env_comparator_gap_v3",
+      "claim_ids": [
+        "MECH-095",
+        "SD-047"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "mixed (MECH-095) / weakens (SD-047)",
+        "biological_reference": "clear (shared with SD-005's reafference-streams grounding)",
+        "prerequisites": "present (SD-047 implemented)",
+        "implementation": "complete 4-arm sweep; source-verified DISTINCT from the 047l/047m saturation-bug partition scheme",
+        "environment": "SD-047-enriched multi-source dynamics",
+        "measurement": "adequate -- C4 passes in all 4 arms, non-degenerate",
+        "integration": "isolated",
+        "scale": "adequate (n_seeds=3)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "efference-copy agency comparator under live multi-source environmental dynamics",
+        "dependencies": [
+          "SD-047"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present (targeted_review_connectome_mech_095, targeted_review_mech_099, targeted_review_reafference_streams)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Source-verified (ree-v3/experiments/v3_exq_510_sd047_mech095_live_env_comparator_gap.py:25-55, 220-245): this driver uses a distinct, carefully-partitioned 4-way causal-tagging scheme (agent_caused / env_caused / agent_collateral / env_correlated, keyed on transition_type + action==stay + multi_source_n_env_events, with an explicit code comment noting ARM_0 OFF still produces legacy env_drift events specifically so the comparator has env-side samples to learn from) -- this is NOT the additive 'is_world = WORLD_CAUSED or env_events>0' fold that saturated V3-EXQ-047l's eval probe and V3-EXQ-047m's training label. All 4 arms pass C4 (non-degenerate), so this run's C1/C2/C3 FAILs across all 4 arms are a VALID additional data point, not a repeat of the measurement-degeneracy class. SD-047's own claims.yaml note is stale (still reads 'Validation pending: V3-EXQ-509 -> V3-EXQ-510 ... pending' though this run completed 2026-05-04) -- recommend correcting the stale note and folding this run's mixed(MECH-095)/weakens(SD-047) reading into both claims' evidence base, reinforcing the already-confirmed MECH-095 substrate_ceiling read via V3-EXQ-741.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "reinforces the already-tracked multi_agent_ecology_v5:MAE-3 ceiling path; no new substrate build owed"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A driver that superficially resembles a known saturation-bug family (047l/047m) must be checked against the actual partition logic, not assumed guilty by association -- 510's causal-tagging scheme is meaningfully different and produces a valid result."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "V3-EXQ-741_2026-07-12 (valid ceiling hit)",
+          "failure_autopsy_grandfathered-*_2026-08-08 round-3 stamping of 047i/047j"
+        ],
+        "refused_requeue": true,
+        "route_to": "multi_agent_ecology_v5:MAE-3",
+        "governance_flag": "Mechanically-computed count is 3 (741, 047i, 047j); claims.yaml's own last-touched note (2026-07-11/12, predates today's round-3 stamping) still states n_ceiling_hits=1. Staleness gap does not change the routing conclusion (claim's own re-derive-brake language already refuses a 4th single-agent SD-047 letter) but should be corrected."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Thread 1 (ARC-024/MECH-071, 4 runs): fully covered elsewhere, zero new work. Thread 2 (MECH-089 hippocampal/theta, 6 unique runs): 066/122x2/052 are backfill-only (claims.yaml already narrates the correct read); 042 is the batch's one genuinely fresh finding, a source-verified-sound BC training loop that simply hasn't converged (measurement_gap, not a wiring bug). Thread 3 (MECH-095/MECH-099 TPJ agency-attribution, 7 unique runs): 089/098b(B)/121(B) are backfill of an already-correct 2026-05-02 substrate-ceiling diagnosis; 098b(A)/121(A) are thin pilots to exclude; 510 is a genuinely new, VALID data point (source-verified to not share the 047l/047m saturation bug) reinforcing the same ceiling read.",
+    "is_independent_bugs": false,
+    "structural_property": "Threads 2 and 3 both bottleneck on substrate immaturity at the time these runs were made (pre-SD-047 thin single-agent environment for Thread 3; insufficient training signal for Thread 2's 042), not claim falsification -- consistent with the broader cross-batch pattern this round of era-specific substrate gaps masquerading as independent weakenings.",
+    "readings": [
+      "thread1_fully_covered",
+      "thread2_042_fresh_measurement_gap",
+      "thread3_510_fresh_valid_ceiling_reinforcement"
+    ]
+  },
+  "cross_reference_note": "Thread 1 (033, 039, 045): cite failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08 and failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08 respectively (045 confirmed as the same physical run as v3_exq_045_mech102_ethical_ttype_20260319T201636Z_v3 under alternate naming). 011 (MECH-095 predecessor, pre-dates EXQ-047k): cite failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08."
+}

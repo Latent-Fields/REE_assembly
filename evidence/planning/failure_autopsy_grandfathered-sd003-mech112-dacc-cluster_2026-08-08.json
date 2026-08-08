@@ -1,0 +1,116 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T19:22:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [
+    "v3_exq_238_mech112_20260404T185519Z_v3",
+    "v3_exq_328_mech112_zgoal_structured_latent_dry_20260410T155804Z_v3",
+    "v3_exq_328a_mech112_zgoal_structured_latent_20260412T102503Z_v3",
+    "v3_exq_328a_mech112_zgoal_structured_latent_20260412T111655Z_v3"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_257_sd018_resource_prox_validation_20260406T171952Z_v3",
+      "claim_ids": [
+        "SD-018",
+        "ARC-030",
+        "MECH-112"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (MECH-112 tag orphaned by 2026-04-13 atomic split into MECH-229/MECH-230, predates split by ~1 week)",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "insufficient (2/3 seeds never reach non-degenerate z_goal)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge/Robinson incentive-salience resource-proximity encoding",
+        "dependencies": [
+          "SD-012"
+        ],
+        "is_formal_import": false,
+        "divergence": "z_goal_norm ~1e-10 in 2/3 seeds (SD-012 homeostatic-drive substrate absent) blocks resource-proximity head training",
+        "lit_status": "present (targeted_review_sd_032a and adjacent trees)"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Sole run in its family, no prior autopsy artifact. Manifest already carries an informal 2026-04-09 governance note reaching the same read: z_goal_norm~1e-10 in seeds 1+2 (SD-012 absent) blocks resource-proximity head training; SD-018=weakens maintained since implementation was directly tested even though behavior could not be demonstrated. The SD-012 substrate gap is already owned elsewhere in the queue (same gap driving the whole MECH-229/230 family) -- no new substrate_queue entry needed, this run is folded into the existing gap's evidence base.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "SD-012 gap already tracked via MECH-229/230 family entries"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-112 tag on this run is orphaned by the 2026-04-13 atomic claim split (MECH-229 behavioral wanting/liking + MECH-230 z_goal latent structure); the tag was correct at run time, not an error.",
+        "Same z_goal-zero substrate gap (SD-012 absent) that blocks the MECH-229/230 family also blocks SD-018's resource-proximity discrimination -- one shared precondition, not independent evidence."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_527_mech112_identity_goal_reef_20260506T082915Z_v3",
+      "claim_ids": [
+        "MECH-112"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (stale claim tag)",
+        "biological_reference": "clear",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "n/a",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "incentive-salience identity-goal encoding (Berridge/Robinson)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Twin of the already-covered v3_exq_527_..._080028Z_v3 (which the wanting-liking cluster autopsy called 'the cleanest never-touched specimen': stale MECH-112 tag, claim deprecated 2026-04-13, metrics.json empty, never referenced in claims.yaml). Same status/evidence_direction/per-claim breakdown. Recommend identical disposition.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Same stale-tag/never-referenced signature as its already-covered same-day sibling -- confirms this is a paired emission, not independent evidence."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "SD-003 (10 batch ids): 100% naming-convention duplicates of already-confirmed suffix-form targets in the sd003-cluster autopsy -- zero new evidence. dACC/SD-032b/MECH-258/MECH-260 (9 batch ids): 100% duplicates (including the explicitly-named '445h duplicate run') of the already-confirmed V3-EXQ-445h_2026-06-19 cluster autopsy -- zero new evidence, but a peripheral MECH-258 co-tag miscount was found in a LATER file (f-dominance-conversion-cluster_2026-06-20) that blanket-applied substrate_ceiling across three co-tagged claims without a per-claim map, incorrectly including MECH-258 (whose C1 forward-model fit was never floor-locked). MECH-112 (9 batch ids): 4 are exact dry-run duplicates already excluded elsewhere; 3 are content-identical near-duplicates of already-covered siblings; 1 (527) is a new-but-pattern-matched stale-tag twin; 1 (257, SD-018/ARC-030/MECH-112 co-tagged) is the batch's sole genuinely new target, gated on the same SD-012 z_goal seeding gap that blocks the whole MECH-229/230 family.",
+    "is_independent_bugs": false,
+    "structural_property": "The batch's dominant signal is REPOSITORY STRUCTURE, not new science: the dual prefix-timestamp (claim_probe_<claim>/runs/) vs suffix-timestamp (<experiment_type>/runs/) directory-naming convention means ~89% of this batch's 28 nominal run_ids are re-citations of runs already formally autopsied under the other naming form.",
+    "readings": [
+      "sd003_fully_duplicate_no_action",
+      "dacc_fully_duplicate_cite_445h_flag_258_miscount",
+      "mech112_one_genuine_gap_257_shared_sd012_precondition"
+    ]
+  },
+  "cross_reference_note": "SD-003 (10 runs): all cite failure_autopsy_grandfathered-sd003-cluster_2026-08-08 (verified byte-for-byte matching timestamp_utc/claim_ids_tested/status against that file's suffix-form targets; one cosmetic evidence_direction_per_claim sync-gap noted between the two on-disk copies of the first pair, flagged for governance hygiene, not a re-diagnosis). dACC (9 runs): all cite failure_autopsy_V3-EXQ-445h_2026-06-19 (a pre-existing standalone cluster autopsy predating this round's grandfathered files -- found only via full-corpus grep, not the round-3 file set alone). MECH-112 dry-run quad (238, 328_dry, 328a x2): all self-declare dry/smoke in evidence_direction_note text (schema-side dry_run boolean absent, pre-2026-07 manifest gap) -- content-verified manually per Step 2a. MECH-112 near-duplicates (074f x2, 235): content-identical evidence_direction_note to already-covered siblings in the same experiment family -- same disposition (non_contributory, ran without serotonergic substrate MECH-186/187/188 absent for 074f pair; substrate_ceiling for 235's family)."
+}

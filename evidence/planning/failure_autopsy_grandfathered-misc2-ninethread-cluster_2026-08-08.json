@@ -1,0 +1,1315 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T19:22:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_004_arc021_incommensurability_20260316T232412Z_v3",
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (underpowered, not the decisive test)",
+        "biological_reference": "clear for ARC-021 (targeted_review_connectome_arc_021); ABSENT for MECH-069",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- C1 (SEPARATE calibration_gap=0.0001, needed >0.05) fails while comparative C2/C3 pass",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "three-loop (E1/E2/E3) separate-optimizer architecture vs distinct cortical-circuit gradient isolation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "claim's own note is explicit: the load-bearing test (isolating channel separation as the causal factor) has never been run",
+        "lit_status": "present for ARC-021, absent for MECH-069"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Genuinely new, no autopsy target exists, though already directly indexed as evidence in ARC-021's claims.yaml note (2026-08-06 auto-tagging, scored mixed conf 0.5). 5/6 criteria met; C1 (the absolute/negative-control criterion) fails at near-zero calibration_gap. This is a preliminary/weak-power probe, not the decisive merged-channel ablation ARC-021 needs per its own note.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-069 has zero targeted biology review despite being co-tagged on this run -- genuine /lit-pull gap."
+      ],
+      "routing": "queue-experiment",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_054_mech072_world_delta_gating_20260320T180545Z_v3",
+      "claim_ids": [
+        "MECH-072"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unaffected (superseded)",
+        "biological_reference": "not_reassessed",
+        "prerequisites": "n/a",
+        "implementation": "pre-SD-005-split defect (world_delta_agent~world_delta_env, no z_self/z_world discriminator)",
+        "environment": "n/a",
+        "measurement": "adequate",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "world-delta gating pre SD-005 split",
+        "dependencies": [
+          "SD-005"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "[on-disk copy: prefix-dir naming form] metrics.json byte-identical (excl. run_id/timestamp, prefix-dir on-disk copy) to the already-covered v3_exq_054_..._082932Z_v3 target (failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json). Same computation re-emitted ~9.5h later same day. MECH-072's claim note already explicitly cites this exact defect and the claim has since moved through EXQ-213 PASS and a further EXQ-877 FAIL (confirmed autopsy, 2026-08-03) refining the same discriminator-gate question. Extend the existing governance-note-only disposition; no fresh diagnosis.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_054_mech072_world_delta_gating_20260320T180545Z_v3",
+      "claim_ids": [
+        "MECH-072"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unaffected (superseded)",
+        "biological_reference": "not_reassessed",
+        "prerequisites": "n/a",
+        "implementation": "pre-SD-005-split defect (world_delta_agent~world_delta_env, no z_self/z_world discriminator)",
+        "environment": "n/a",
+        "measurement": "adequate",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "world-delta gating pre SD-005 split",
+        "dependencies": [
+          "SD-005"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "metrics.json byte-identical (excl. run_id/timestamp, suffix-dir on-disk copy) to the already-covered v3_exq_054_..._082932Z_v3 target (failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json). Same computation re-emitted ~9.5h later same day. MECH-072's claim note already explicitly cites this exact defect and the claim has since moved through EXQ-213 PASS and a further EXQ-877 FAIL (confirmed autopsy, 2026-08-03) refining the same discriminator-gate question. Extend the existing governance-note-only disposition; no fresh diagnosis.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_065_mech029_default_mode_probe_20260323T023328Z_v3",
+      "claim_ids": [
+        "MECH-029"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (not yet fairly tested)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (commitment-gate release mechanism never lets the agent enter the divergent/uncommitted state)",
+        "implementation": "present",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "default-mode network / uncommitted-state variance",
+        "dependencies": [
+          "commitment-gate release mechanism"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "unknown (scoring_excluded)",
+      "recommended_evidence_quality_note": "Clean convergent 3/3 pattern: n_uncommitted_steps=0 (both seeds). The ARC-016 commitment threshold never lets the agent enter the divergent/uncommitted-mode window the claim predicts higher variance in. Claim's own note already states this precisely: the claim requires a substrate capable of generating uncommitted-mode windows, which the architecture at this vintage could not produce -- all three experiments are substrate-limited and non-informative, already evidence_direction=unknown(scoring_excluded).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_080_mech029_breathoscillator_commit_windows_20260323T131055Z_v3",
+      "claim_ids": [
+        "MECH-029"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (not yet fairly tested)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (commitment-gate release mechanism never lets the agent enter the divergent/uncommitted state)",
+        "implementation": "present",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "default-mode network / uncommitted-state variance",
+        "dependencies": [
+          "commitment-gate release mechanism"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "unknown (scoring_excluded)",
+      "recommended_evidence_quality_note": "Clean convergent 3/3 pattern: n_uncommitted_steps=0; superseded by 201 same-day-family. The ARC-016 commitment threshold never lets the agent enter the divergent/uncommitted-mode window the claim predicts higher variance in. Claim's own note already states this precisely: the claim requires a substrate capable of generating uncommitted-mode windows, which the architecture at this vintage could not produce -- all three experiments are substrate-limited and non-informative, already evidence_direction=unknown(scoring_excluded).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_201_mech029_dmn_probe_breath_20260402T224206Z_v3",
+      "claim_ids": [
+        "MECH-029"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (not yet fairly tested)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (commitment-gate release mechanism never lets the agent enter the divergent/uncommitted state)",
+        "implementation": "present",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "default-mode network / uncommitted-state variance",
+        "dependencies": [
+          "commitment-gate release mechanism"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "unknown (scoring_excluded)",
+      "recommended_evidence_quality_note": "Clean convergent 3/3 pattern: n_uncommitted_steps=0 (both seeds); supersedes: V3-EXQ-080 explicit. The ARC-016 commitment threshold never lets the agent enter the divergent/uncommitted-mode window the claim predicts higher variance in. Claim's own note already states this precisely: the claim requires a substrate capable of generating uncommitted-mode windows, which the architecture at this vintage could not produce -- all three experiments are substrate-limited and non-informative, already evidence_direction=unknown(scoring_excluded).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_075d_mech113_self_maintenance_20260328T155739Z_v3",
+      "claim_ids": [
+        "MECH-113"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (but likely a stub, not a fair test)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub -- ablation flag has zero functional effect on the substrate",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic self-maintenance",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "SELF_MAINT_ON and SELF_MAINT_ABLATED produce numerically identical D_eff trajectories (1.00x both conditions) -- the ablation flag appears to have zero functional effect on the substrate, reading as an implementation stub rather than a genuine test of the homeostatic-maintenance claim. This is the strongest structural pattern in the batch (3/3 runs, consistent signature). 075d (chronologically first, same signature) is not yet folded into the claim note, which currently cites only the two 142 runs. No existing substrate_queue.json entry for MECH-113.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "note": "wire the ablation flag to actually disable the self-maintenance mechanism -- distinct from the era-specific seeding-density gap affecting Threads 3/7/8/9, this is an implementation-completeness gap specific to MECH-113's ablation wiring"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "This is a genuinely distinct implementation gap from the cross-thread seeding-density confound -- do not fold it into the shared substrate note; the ablation-flag-inert defect is claim-specific."
+      ],
+      "routing": "implement-substrate",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_142_mech113_self_maint_pair_20260328T221909Z_v3",
+      "claim_ids": [
+        "MECH-113"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (but likely a stub, not a fair test)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub -- ablation flag has zero functional effect on the substrate",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic self-maintenance",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "SELF_MAINT_ON and SELF_MAINT_ABLATED produce numerically identical D_eff trajectories (0.997x both conditions) -- the ablation flag appears to have zero functional effect on the substrate, reading as an implementation stub rather than a genuine test of the homeostatic-maintenance claim. This is the strongest structural pattern in the batch (3/3 runs, consistent signature). 075d (chronologically first, same signature) is not yet folded into the claim note, which currently cites only the two 142 runs. No existing substrate_queue.json entry for MECH-113.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "note": "wire the ablation flag to actually disable the self-maintenance mechanism -- distinct from the era-specific seeding-density gap affecting Threads 3/7/8/9, this is an implementation-completeness gap specific to MECH-113's ablation wiring"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "This is a genuinely distinct implementation gap from the cross-thread seeding-density confound -- do not fold it into the shared substrate note; the ablation-flag-inert defect is claim-specific."
+      ],
+      "routing": "implement-substrate",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_142_mech113_self_maint_pair_20260329T052020Z_v3",
+      "claim_ids": [
+        "MECH-113"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (but likely a stub, not a fair test)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub -- ablation flag has zero functional effect on the substrate",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic self-maintenance",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "SELF_MAINT_ON and SELF_MAINT_ABLATED produce numerically identical D_eff trajectories (~1.00x both conditions) -- the ablation flag appears to have zero functional effect on the substrate, reading as an implementation stub rather than a genuine test of the homeostatic-maintenance claim. This is the strongest structural pattern in the batch (3/3 runs, consistent signature). 075d (chronologically first, same signature) is not yet folded into the claim note, which currently cites only the two 142 runs. No existing substrate_queue.json entry for MECH-113.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "note": "wire the ablation flag to actually disable the self-maintenance mechanism -- distinct from the era-specific seeding-density gap affecting Threads 3/7/8/9, this is an implementation-completeness gap specific to MECH-113's ablation wiring"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "This is a genuinely distinct implementation gap from the cross-thread seeding-density confound -- do not fold it into the shared substrate note; the ablation-flag-inert defect is claim-specific."
+      ],
+      "routing": "implement-substrate",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_097_mech093_heartbeat_rate_20260326T214212Z_v3",
+      "claim_ids": [
+        "MECH-093"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (real effect exists, wrong metric)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "misleading -- C1 rate-modulation-gap metric fails in the wrong direction (-0.74 vs required >=2.0) while behavioral C2/C3 PASS cleanly",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "heartbeat-rate channel modulation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "C1 gate criterion mis-targets a real downstream effect the behavioral criteria (C2/C3) do capture cleanly. MECH-093's claim has since accumulated strong PASS evidence (EXQ-396b, EXQ-505) isolating the same channel cleanly -- this run is scientifically superseded even though never formally tagged as such.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_104_e1_parallel_rollout_20260328T095419Z_v3",
+      "claim_ids": [
+        "MECH-135"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unaffected (pre-diagnostic)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "n/a (empty pack metrics)",
+        "environment": "n/a",
+        "measurement": "empty/uninformative",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Empty pack metrics, pre-diagnostic early-same-day attempt (~3h before the later-same-day sibling family (123736Z group), already covered as measurement_test_design_defect/superseded in failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json). Same disposition almost certainly applies; extend rather than re-diagnose.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_105_rollout_horizon_sweep_20260328T095425Z_v3",
+      "claim_ids": [
+        "MECH-135"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unaffected (pre-diagnostic)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "n/a (empty pack metrics)",
+        "environment": "n/a",
+        "measurement": "empty/uninformative",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Empty pack metrics, pre-diagnostic early-same-day attempt (~3h before the later-same-day sibling family (123736Z group), already covered as measurement_test_design_defect/superseded in failure_autopsy_grandfathered-superseded-batch1_2026-08-08.json). Same disposition almost certainly applies; extend rather than re-diagnose.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_147_mech128_e1_goal_conditioning_pair_20260329T130313Z_v3",
+      "claim_ids": [
+        "MECH-128",
+        "Q-002"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but confounded with sparse goal-seeding",
+        "biological_reference": "clear (predictive-coding framing carries some formal-import risk)",
+        "prerequisites": "present but stale caveat -- claim note cites 'SD-005 not yet implemented' as blocker; SD-005 status is now implemented",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "likely insufficient (sparse goal/benefit seeding density, era-specific)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal-conditioned selective reduction of E1 prediction error",
+        "dependencies": [
+          "SD-005 (now implemented)"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Clean, well-powered, triple-replicated null across three independent runs and multiple seeds each: interaction metric ~=0 (range -1e-05 to -0.0). Interaction metric (does goal-conditioning selectively reduce goal-relevant E1 prediction error) is essentially zero throughout. Claim note's blocker citation (SD-005 not yet implemented) is now stale -- worth flagging whether this has been retested since SD-005 landed, separate from the sparse-seeding confound this run shares with Threads 3/8/9.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "queue-experiment",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_147a_mech128_e1_goal_conditioning_pair_1775184659_v3",
+      "claim_ids": [
+        "MECH-128",
+        "Q-002"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but confounded with sparse goal-seeding",
+        "biological_reference": "clear (predictive-coding framing carries some formal-import risk)",
+        "prerequisites": "present but stale caveat -- claim note cites 'SD-005 not yet implemented' as blocker; SD-005 status is now implemented",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "likely insufficient (sparse goal/benefit seeding density, era-specific)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal-conditioned selective reduction of E1 prediction error",
+        "dependencies": [
+          "SD-005 (now implemented)"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Clean, well-powered, triple-replicated null across three independent runs and multiple seeds each: C1 FAIL near-zero across 3 seeds (PARTIAL, already stamped mixed). Interaction metric (does goal-conditioning selectively reduce goal-relevant E1 prediction error) is essentially zero throughout. Claim note's blocker citation (SD-005 not yet implemented) is now stale -- worth flagging whether this has been retested since SD-005 landed, separate from the sparse-seeding confound this run shares with Threads 3/8/9.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "queue-experiment",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_229_mech128_e1_goal_conditioning_pair_1775299023_v3",
+      "claim_ids": [
+        "MECH-128",
+        "Q-002"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but confounded with sparse goal-seeding",
+        "biological_reference": "clear (predictive-coding framing carries some formal-import risk)",
+        "prerequisites": "present but stale caveat -- claim note cites 'SD-005 not yet implemented' as blocker; SD-005 status is now implemented",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "likely insufficient (sparse goal/benefit seeding density, era-specific)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal-conditioned selective reduction of E1 prediction error",
+        "dependencies": [
+          "SD-005 (now implemented)"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "Clean, well-powered, triple-replicated null across three independent runs and multiple seeds each: 0/3 seeds, mean 3.5e-6 vs 5e-3 threshold (already stamped does_not_support). Interaction metric (does goal-conditioning selectively reduce goal-relevant E1 prediction error) is essentially zero throughout. Claim note's blocker citation (SD-005 not yet implemented) is now stale -- worth flagging whether this has been retested since SD-005 landed, separate from the sparse-seeding confound this run shares with Threads 3/8/9.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "queue-experiment",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_192a_mech075_novelty_loop_20260403T043914Z_v3",
+      "claim_ids": [
+        "MECH-075"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (anatomical mis-target, not falsified)",
+        "biological_reference": "clear, with an anatomical mis-target noted (dorsal HPC gain is LC-mediated, not VTA-mediated)",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty-gated hippocampal gain modulation",
+        "dependencies": [
+          "z_goal/benefit seeding density"
+        ],
+        "is_formal_import": false,
+        "divergence": "already noted in claims.yaml as an LC-vs-VTA targeting confound, not falsification",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Claim note already covers exactly this run: 'Consistent null result across two independent runs... not falsified -- the novelty signal magnitude is the bottleneck,' with a biology-grounded reframe already in the note.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-075/163 not part of a lit-pull gap, unlike MECH-069"
+      }
+    },
+    {
+      "run_id": "v3_exq_192a_mech075_novelty_loop_20260403T102555Z_v3",
+      "claim_ids": [
+        "MECH-075"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (anatomical mis-target)",
+        "biological_reference": "clear, same anatomical note",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty-gated hippocampal gain modulation",
+        "dependencies": [
+          "z_goal/benefit seeding density"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Second of two consistent-null runs already covered by claims.yaml's note (see companion @043914Z entry).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_230_mech075_novelty_loop_diagnostic_20260404T033537Z_v3",
+      "claim_ids": [
+        "MECH-075"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (100x below floor, non-evidential)",
+        "biological_reference": "clear -- LC-VTA loop structurally disconnected from hippocampal gain modulation",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confirms sub-floor (novelty signal ~100x below C1 threshold)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-VTA loop -> hippocampal gain",
+        "dependencies": [
+          "z_goal/benefit seeding density"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "summary.md header explicitly reads 'Purpose: diagnostic' even though the manifest's structured experiment_purpose field says 'evidence' -- per skill Key Rules, treated as diagnostic-purpose regardless of the field mismatch, both PASS/FAIL requiring the four-layer treatment. Full note already present: substrate_limitation, novelty signal ~100x below C1 threshold, LC-VTA loop structurally disconnected from hippocampal gain modulation, non-evidential.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "experiment_purpose field/summary-header mismatch (structured field says 'evidence', prose header says 'diagnostic') -- data-quality note for governance, worth a corpus-wide check for other instances."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_230_mech075_novelty_loop_diagnostic_20260404T162303Z_v3",
+      "claim_ids": [
+        "MECH-075"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (same signature, note not yet backfilled)",
+        "biological_reference": "clear, same anatomical note",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate (same seeds/numbers as sibling)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-VTA loop -> hippocampal gain",
+        "dependencies": [
+          "z_goal/benefit seeding density"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Same experiment_purpose field/header mismatch as its @033537Z sibling. Bare evidence_direction='diagnostic' with no note on the manifest -- backfill the note from the @033537Z sibling (same seeds, near-identical numbers).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_237a_mech163_dual_system_discrimination_1775405287_v3",
+      "claim_ids": [
+        "MECH-163"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (precondition unmet, distinct from tracked arc071 cluster)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (goal_norm_long=0.011, below threshold)",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "habit-vs-planned dual-system discrimination",
+        "dependencies": [
+          "z_goal/benefit seeding density"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Note already present: 'Substrate limitation: goal_norm_long=0.011 below threshold. Habit/planned discrimination untestable without sufficient z_goal seeding.' This is a distinct finding from MECH-163's already-tracked arc071 commit-latch cluster -- genuinely new addition to that claim's evidence base, not a duplicate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_253_mech188_zgoal_injection_1775479111_v3",
+      "claim_ids": [
+        "MECH-188"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (injection wiring not yet functional)",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-012/SD-018), now implemented",
+        "implementation": "defective (injection mechanism non-functional)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "z_goal persistence injection",
+        "dependencies": [
+          "SD-012",
+          "SD-018"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Manifest note says 'Injection mechanism non-functional... Superseded by EXQ-253c' -- but EXQ-253c PHANTOM: no manifest exists on disk anywhere, not in the current queue, and git log shows only 'claim: V3-EXQ-253c -> EWIN-PC' with no result commit. EWIN-PC is a confirmed-dormant Windows runner box. This 'superseded' claim is unverified and should be corrected, not propagated. Claim note independently confirms the substrate story: without baseline z_goal seeding (SD-012 not resolved at the time), injection could not demonstrate persistence of an absent goal -- SD-012+SD-018 are now implemented, opening a legitimate re-test path.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Phantom-supersession trap: a 'superseded by EXQ-253c' note referencing a run claimed by a dormant box and never completed. Flag for governance correction rather than waving through -- do not treat a superseded_by citation as verified without checking the cited run actually completed."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_253_mech188_zgoal_injection_1775494225_v3",
+      "claim_ids": [
+        "MECH-188"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (injection wiring not yet functional)",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-012/SD-018), now implemented",
+        "implementation": "defective (injection mechanism non-functional)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "z_goal persistence injection",
+        "dependencies": [
+          "SD-012",
+          "SD-018"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Manifest note says 'Injection mechanism non-functional... Superseded by EXQ-253c' -- but EXQ-253c PHANTOM: no manifest exists on disk anywhere, not in the current queue, and git log shows only 'claim: V3-EXQ-253c -> EWIN-PC' with no result commit. EWIN-PC is a confirmed-dormant Windows runner box. This 'superseded' claim is unverified and should be corrected, not propagated. Claim note independently confirms the substrate story: without baseline z_goal seeding (SD-012 not resolved at the time), injection could not demonstrate persistence of an absent goal -- SD-012+SD-018 are now implemented, opening a legitimate re-test path.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Phantom-supersession trap: a 'superseded by EXQ-253c' note referencing a run claimed by a dormant box and never completed. Flag for governance correction rather than waving through -- do not treat a superseded_by citation as verified without checking the cited run actually completed."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_253_mech188_zgoal_injection_1775556946_v3",
+      "claim_ids": [
+        "MECH-188"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (likely same injection-wiring defect, unconfirmed)",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-012/SD-018), now implemented",
+        "implementation": "likely defective (unconfirmed)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "z_goal persistence injection",
+        "dependencies": [
+          "SD-012",
+          "SD-018"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "Third timestamp, no note on manifest yet. Likely shares the same injection-wiring defect as its two siblings above; recommend the same disposition pending a brief confirming read.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_278_inv054_bistable_recovery_1775764609_v3",
+      "claim_ids": [
+        "INV-054"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (lineage root, superseded)",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-032a+MECH-259), now landed",
+        "implementation": "partial (graded-only recovery, no discrete primitive at this vintage)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "discrete operating-mode bistability",
+        "dependencies": [
+          "SD-032a",
+          "MECH-259"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "Lineage root: established depression state successfully (z_goal_norm=0.0) but graded, not discontinuous, recovery in 3/3 seeds -- 'ree-v3 substrate produces graded recovery by construction; has no bistable/discrete-mode primitive.' Superseded by 435 (both timestamps); missing substrate (SD-032a+MECH-259) has since landed.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_288_q034_monostrategy_lock_1775783647_v3",
+      "claim_ids": [
+        "Q-034"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (lineage root, superseded)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (MECH-269 V_s landing)",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "monostrategy lock-in / balanced exploration",
+        "dependencies": [
+          "MECH-269"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "Lineage root (a still-earlier root, 248, exists outside this batch). Superseded by 451 (both timestamps) -> 526. Root substrate gap already tracked: substrate_queue.json entry MECH-269, but 288 is not yet named in its failure_record cluster list.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_435_inv054_bistable_recovery_1776556189_v3",
+      "claim_ids": [
+        "INV-054"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but supersedes-chain shows substrate maturing",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-032a+MECH-259), now landed; blocker narrows to SD-032b",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate (3/3 seeds graded recovery)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "discrete operating-mode bistability",
+        "dependencies": [
+          "SD-032b"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Supersedes v3_exq_278. 3/3 seeds show graded (not discrete) recovery, matching 278's finding. Claim note shows substrate progress since: SD-032a+MECH-259 v3_pending lift confirmed (V3-EXQ-446/455 substrate PASSes). Discrete operating_mode primitive now exists; retest can proceed once SD-032b dACC implementation lands -- so action=amend, narrow blocker note to SD-032b specifically.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_435_inv054_bistable_recovery_1776660122_v3",
+      "claim_ids": [
+        "INV-054"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but supersedes-chain shows substrate maturing",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (SD-032a+MECH-259), now landed; blocker narrows to SD-032b",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate (3/3 seeds graded recovery)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "discrete operating-mode bistability",
+        "dependencies": [
+          "SD-032b"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Supersedes v3_exq_278. 3/3 seeds show graded (not discrete) recovery, matching 278's finding. Claim note shows substrate progress since: SD-032a+MECH-259 v3_pending lift confirmed (V3-EXQ-446/455 substrate PASSes). Discrete operating_mode primitive now exists; retest can proceed once SD-032b dACC implementation lands -- so action=amend, narrow blocker note to SD-032b specifically.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_451_q034_monostrategy_lock_1776700328_v3",
+      "claim_ids": [
+        "Q-034"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (monostrategy lock, substrate-gated)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (MECH-269 V_s landing)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (goal_reach_rate=0.0, action_entropy_bits=0.0 across every grid cell)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "monostrategy lock-in / balanced exploration",
+        "dependencies": [
+          "MECH-269"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Supersedes v3_exq_288. Flat/pack drift found: the pack manifest.json still shows a stale 'weakens' while the flat sibling JSON has the corrected 'non_contributory' with full reasoning -- same pattern already documented for run 108 elsewhere in this batch, not a new defect class, just another instance. Already reclassified non_contributory at governance walks (2026-04-22, 2026-05-07). Root substrate gap tracked via MECH-269; this run not yet named in its failure_record cluster list.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_451_q034_monostrategy_lock_1776977181_v3",
+      "claim_ids": [
+        "Q-034"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (monostrategy lock, substrate-gated)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (MECH-269 V_s landing)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (goal_reach_rate=0.0, action_entropy_bits=0.0 across every grid cell)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "monostrategy lock-in / balanced exploration",
+        "dependencies": [
+          "MECH-269"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Supersedes v3_exq_288. Consistent 15/15 monostrategy lock-in across grid cells, both seeds. Already reclassified non_contributory at governance walks (2026-04-22, 2026-05-07). Root substrate gap tracked via MECH-269; this run not yet named in its failure_record cluster list.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_526_q034_monostrategy_lock_20260506T082834Z_v3",
+      "claim_ids": [
+        "Q-034"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, confirms 451's read",
+        "biological_reference": "clear",
+        "prerequisites": "missing (MECH-269 V_s landing)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (15/15 monostrategy lock-in both seeds)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "monostrategy lock-in",
+        "dependencies": [
+          "MECH-269"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Supersedes v3_exq_451, confirms the same monostrategy lock-in. Root substrate gap tracked via MECH-269; recommend amending MECH-269's failure_record to add both 288 and 526's run_ids (451 already likely named).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "note": "Per Step 8 (2026-08-08, user-confirmed recommended option): folds into ONE shared substrate-queue note 'era_specific_zgoal_benefit_seeding_density_gap_pre_sd012_sd018_mech269' cross-referencing MECH-029, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034, rather than four independent per-claim entries -- these five claims bottleneck on one shared era-specific deficiency (absent/sparse z_goal or benefit seeding density, pre-dating SD-012/SD-018/MECH-269 landings), several components of which have since landed. Do NOT record five independent 'weakens' for what may be one shared cause."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Nine threads across ARC-021/MECH-069, MECH-072, MECH-029, MECH-113, MECH-093/MECH-135, MECH-098/SD-007, MECH-128/Q-002, MECH-075/MECH-163, and MECH-188/INV-054/Q-034. The batch's central finding (Step 8 user-confirmed) is that four of these threads (MECH-029, MECH-128/Q-002, MECH-075/163, MECH-188/INV-054/Q-034) bottleneck on ONE shared era-specific substrate deficiency -- absent/sparse z_goal or benefit seeding density in the March-early-April 2026 experiment vintage, pre-dating SD-012/SD-018/MECH-269 landings -- rather than being five independent weakenings. MECH-113 is a genuinely distinct implementation-completeness gap (ablation flag inert), not part of the shared deficiency.",
+    "is_independent_bugs": false,
+    "structural_property": "The cross-thread seeding-density bottleneck is exactly the illusory-conflict-resolution trap the skill warns against: five claims independently accumulating 'weakens' evidence for what is plausibly one shared, partially-since-resolved substrate immaturity.",
+    "readings": [
+      "shared_seeding_gap_across_4_of_9_threads",
+      "mech113_distinct_ablation_wiring_gap",
+      "phantom_supersession_mech188",
+      "flat_pack_drift_recurs_again"
+    ]
+  },
+  "cross_reference_note": "054 (082932Z): cite failure_autopsy_grandfathered-superseded-batch1_2026-08-08. 108: effectively covered via failure_autopsy_V3-EXQ-108a_2026-08-02 cross_reference_note naming this exact run as 'the original V3-EXQ-108 real full-production FAIL' it replicates -- NOT a PASS as initially suspected. 110x2, 111, 118: cite failure_autopsy_grandfathered-betagate-reafference-cluster_2026-08-08 and failure_autopsy_grandfathered-goalseeding-cluster_2026-08-08 respectively (110's covered sibling is '1 of 3 byte-identical emissions', these are the other two). 396a (all 3 timestamps): cite failure_autopsy_V3-EXQ-032-family_2026-07-26, which lists all 3 timestamps by name."
+}
