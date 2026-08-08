@@ -1,61 +1,30 @@
-# INV-051 MEL dose-sweep falsifier — actionability determination
+# INV-051 MEL dose-sweep — deferred to V3-EXQ-901; independent design caveat
 
-**Status: AWAITING USER / GOVERNANCE REVIEW. Nothing in this file has been written to claims.yaml, experiment_queue.json, manual_proposals.v1.json, or experiment_proposals.v1.json. No experiment was queued.**
+**Status: FYI for governance / the eventual V3-EXQ-901 autopsy. Not a queue action.**
 
-- **Chip:** `chip-20260808-inv051-mel-dose-sweep` (headless metaworker)
-- **Generated:** 2026-08-08T12:46Z
-- **Trigger:** A 2026-08-08 `/thought-digestion` pass drafted a `what_would_answer` falsifier for **INV-051** (the MEL "Goldilocks" optimal-range invariant) requiring a **>=3-level graded MEL-dose sweep** with a pre-registered rigidity DV tracing an **inverted-U**, and flagged (in the claim notes) that it was "close enough to testable-now that a dedicated chip was spawned same-day to check whether this experiment design should be registered via `/queue-experiment`."
-- **This chip's finding, in one line:** **NOT queued — the inverted-U falsifier as drafted is not cleanly buildable on the current substrate.** The producer/consumer pieces are built and validated, but the substrate implements *homeostatic compensation* (more MEL → more sleep), which is the **opposite** of the *overload/decompensation* the inverted-U's upper bound requires. The upper limb of the U has **no substrate instantiation**. Running the falsifier as drafted would very likely yield a **vacuous/misleading FALSIFICATION**.
+- **Chip:** `chip-20260808-inv051-mel-dose-sweep`.
+- **Generated:** 2026-08-08T12:46Z; **corrected 2026-08-08T13:0xZ** after discovering the chip was double-dispatched.
+- **Outcome: DEFERRED, not queued.** This chip was dispatched to two sessions at once. Sibling session **`mel-dose-sweep-inv-051-6b93d7`** (same chip_ref) won the race and already did the full `/queue-experiment` work: it queued **V3-EXQ-901** (`ree-v3` origin/main `751bb5ef40…`) — a 6-arm `world_rule_shift` MEL-dose ladder (under-stimulation → mid → **overload**, plus a matched **consumer-OFF control**) with a pre-registered rigidity DV (E3 post-training policy entropy on a fixed novel probe) — smoke-passed, `validate_experiments --strict` clean, and minted proposal **EXP-0587/EVB-0596** (`manual_proposals.v1.json`, `claim_id: INV-051`). See its WORKSPACE_STATE entry (2026-08-08T12:46:54Z). **This (duplicate) session did NOT re-queue anything** — per the concurrency-arbitration rule (earliest claimant wins; 6b93d7's claim opened first, in this session's own start-of-session git log).
 
----
+## Correction to this note's original conclusion
 
-## 1. What the digestion pass got right
+The first draft of this file concluded the falsifier was **"not queueable"** because the inverted-U's **upper (overload) limb has no substrate** — reasoning that the consumer models homeostatic compensation (`factor = clamp(1 + gain·(mel/ref − 1), 0.5, 3.0)`; more MEL → more sleep) and that ecological HIGH reaches only duration factor **~1.27**, so the clamp never binds and "MEL exceeding clearance capacity" is unreachable. **That conclusion was wrong, and is retracted.** The ~1.27 figure came from the *averaged* factor in the differently-purposed MECH-180 runs (V3-EXQ-845/861/861a), not from a direct probe. 6b93d7 ran the one-tick readiness probe this note did not: with `world_rule_shift depth=3, interval=10`, `mel_duration_factor` **reaches FACTOR_MAX = 3.0** — the saturation the overload arm leans on IS empirically reachable, and depth grades the re-permutation rate (19/20 vs 13/20 distinct action-maps at depth 3 vs 2). So the experiment is buildable and was correctly queued.
 
-All of these are confirmed accurate:
+## Residual independent caveat (genuinely useful; weigh at V3-EXQ-901's autopsy, do not treat as a blocker)
 
-- **SD-017** — stable (promoted provisional→stable 2026-04-24).
-- **SD-MEL-PRODUCER graded knob** — built and **validated**. V3-EXQ-798a (run `...20260729T125858Z_v3`) is a clean **PASS** (`producer_validated_graded_learnable`), autopsy-confirmed (`failure_autopsy_V3-EXQ-798a_2026-07-30`, status confirmed): C1 grading 2/3 (monotone NONE<LOW<MED<HIGH), C2 above-reference 2/3, C3 sustained non-convergence 3/3, C4 learnability PASS. The old 2026-07-08 "ecological producer link broken / re-park" gate on INV-050 was formally **superseded 2026-08-01** (INV-050 `epistemic_category` graduated `substrate_ceiling → standard`).
-  - *(Note the `evidence/experiments/` tree also carries a later `...20260730T010651Z_v3` 798a manifest that is a FAIL/`non_contributory`. The autopsy-confirmed canonical result is the 07-29 PASS; do not read the 07-30 artifact as the producer verdict.)*
-- **SD-MEL-CONSUMER** — built and validated (`ree_core/sleep/mel_consumer.py`; C3 injection positive control in V3-EXQ-718a proved graded MEL → exact-monotone graded offline duration `[9,13,18,24,30,38]`).
-- **Rigidity-proxy DVs** — `action_bias_div`, `slot_diversity`, `slot_cosine_sim`, `pred_loss`-on-novel-probe are all already instrumented and exercised in prior sleep-cluster experiments.
-- **The gap is real:** no run to date (V3-EXQ-845/861/861a) has used more than a binary high-vs-low MEL contrast, and all three share the identical CausalGridWorldV2 instance and identical seeds (42/123/456). Per `claim_evidence.v1.json`, INV-051 has `genuine_exp_count: 0`.
+One design risk survives the correction and is worth pre-registering as an interpretation note, because it is exactly the kind of thing the eventual autopsy should check:
 
-## 2. The decisive thing the digestion pass missed — the upper bound has no substrate
+- **Reaching `factor_max` is the consumer's *maximal compensation*, not decompensation.** In this substrate more MEL buys *more* offline processing (up to 3×), which tends to *complete* update, not leave it incomplete. For the overload arm to raise rigidity via INV-051's stated mechanism ("incomplete update accumulates"), the depth-3 re-permutation rate must exceed what even the 3×-saturated offline duration can clear — i.e. genuine demand-over-capacity, not merely a saturated factor. Whether that holds is the empirical question V3-EXQ-901 answers; it is **not** settled by the factor hitting the clamp.
+- **Also note the operative signal is MEAN per-step MEL** (the consumer reads mean e3 PE over the wake period, EMA α=0.1), so a momentary force-cycle factor of 3.0 in the readiness probe is not the same as a *sustained* above-clamp mean over a full run. Check the run's sustained per-arm mean MEL and per-arm factor, not just peaks.
+- **The genuine decompensation mechanism INV-051 names — sleep capacity *falling* as MEL rises (hyperarousal; high NA/cortisol, MECH-178) — has no substrate** (no NA/arousal plane in `ree_core`; MECH-178 substrate-blocked). V3-EXQ-901's overload arm therefore tests the "demand exceeds a *fixed* offline ceiling" reading, not the "capacity actively collapses" reading. A PASS supports the fixed-ceiling half; it says nothing about the hyperarousal half. V3-EXQ-901's consumer-OFF control is the right lever to check the effect is MEL-driven rather than a construction artifact.
 
-INV-051 asserts an **inverted-U**: rigidity elevated at **both** extremes.
+**Interpretation guidance for the autopsy:** if the overload arm shows rigidity **monotone-descending** across the ladder (rather than rising at the top), read it as *"the substrate could not instantiate genuine over-capacity overload"* (the risk above), **not** automatically as an INV-051 falsification — the two are distinguishable via the sustained per-arm mean MEL vs the 3× offline clearance and the consumer-OFF control.
 
-- **Lower bound** — under-stimulation (extreme monotony): learning drive under-activated → model rigidity *even when sleep architecture is intact*.
-- **Upper bound** — overload (acute trauma/crisis): MEL exceeds overnight update capacity → incomplete update accumulates; *and* "MEL is rising while sleep capacity is falling" (hyperarousal, MECH-178), a **compounding deficit / decompensation**.
+## Corroborating state (unchanged)
 
-The just-drafted falsifier's **CONFIRMING** clause therefore requires an arm where rigidity is elevated because of **"MEL exceeding consumer clearance capacity."** The substrate cannot produce that arm:
-
-- **The consumer models compensation, not overload.** `mel_consumer.py`:
-  `factor = clamp(1 + mel_gain*(mel/ref - 1), factor_min=0.5, factor_max=3.0)`.
-  Higher MEL buys **proportionally more** offline duration (more SWS/REM writes) up to a **3.0×** cap. In this substrate, more MEL → *more* processing capacity, which *completes* update better. This is the exact **opposite** of the upper-bound mechanism ("sleep capacity falling as MEL rises").
-- **Ecological MEL never even binds the clamp.** The producer's learnable HIGH arm yields duration factor **~1.27** (INV-050 notes: NONE 0.885 / LOW 0.822 / MED 1.263 / HIGH 1.266) — less than half of `factor_max=3.0`. There is large unused offline headroom at ecological HIGH, so update is always well-matched by (unclamped) capacity. No overload is reachable ecologically. (Pushing the producer harder only adds *noise*-level MEL, which the 798a validation explicitly controls out as unlearnable.)
-- **The one route to the clamp is injection, which is tautological.** An injected-MEL sweep can drive the factor to 3.0 (C3 reached 2.5 at injected MEL 2.5), but (a) INV-050's own documented lesson (`failure_autopsy_V3-EXQ-718a_2026-07-08`, re-derive brake **FIRED**) is that an injected/consumer sweep "would only re-demonstrate the clamp min/max by construction (tautology of `factor_min`/`factor_max`), NOT empirical evidence for the ecological invariant"; and (b) hitting `factor_max` gives the **longest** offline duration — maximal processing — not incomplete update, so it does not even instantiate overload in the required direction.
-- **The genuine upper-bound mechanism is substrate-absent.** Overload/decompensation requires sleep capacity to **fall** as MEL rises — the MECH-178 noradrenergic/cortisol/LC hyperarousal coupling. `ree_core` has **no** NA/arousal control plane (MECH-178 substrate-blocked). The falsifier's own "OUT OF SCOPE" note concedes MECH-178 is absent but assumes a "simple demand-exceeds-fixed-ceiling" overload can substitute — **it cannot**, because the substrate has no fixed processing ceiling distinct from the (compensatory) duration factor, and the ecological producer cannot approach even that duration clamp.
-
-## 3. Why queuing it as-drafted would be actively misleading
-
-The falsifier can access only the **descending limb** of the U (under-stimulation → optimal: NONE/LOW/MED/HIGH, rigidity expected to *decrease* as MEL rises toward optimal). It cannot instantiate the ascending (overload) limb. A run over the accessible range would therefore show **monotone-decreasing rigidity** — which the drafted falsifier explicitly labels **FALSIFYING** ("rigidity is MONOTONIC in MEL-dose ... rather than U-shaped"). That would be a **false falsification**: the upper limb was never instantiated, not empirically absent. This is precisely the vacuous-FAIL / surface-a-construction-as-a-finding anti-pattern the codebase repeatedly warns against (cf. `reference_claim_synthesis_measurement_entanglement_is_debt`; the same brake that FIRED on the INV-050 718a re-grade).
-
-Debt vocabulary: this is **`mystery (known data)`** — the probe that would have been `complex (probe-gated)` (does the producer make a graded gradient?) has **already been run** (798a PASS). What remains is a **reframe**, not a build.
-
-## 4. Corroborating state
-
-- Existing gated proposal for this claim: **`EXP-0376`** in `experiment_proposals.v1.json`, `status: blocked_substrate`. Its release_condition names two gates: (i) a NEW non-converging graded-MEL environment (NOT a CausalGridWorldV2 re-grade), and (ii) the MECH-178 arousal plane. Gate (i)'s *producer* half is now partially satisfied (798a validated the graded knob), but **gate (ii) — the arousal plane that instantiates the upper bound — remains unmet**, and that is the load-bearing gate for the inverted-U.
-- INV-050 sibling governance (**GFLAG-0002**, user-confirmed HOLD 2026-08-07): even the *monotone* ecological coupling is held at `candidate` because 845/861/861a are **pseudo-replication** (one config × one seed set). Any future INV-051 run must additionally satisfy the independence requirement: **new seeds (not 42/123/456), and/or a held-out environment, and/or a consumer-absent control arm.**
-
-## 5. Recommended disposition (for a `/governance` or `/thought-digestion` session — NOT chipped further, per this chip's brief)
-
-Pick one:
-
-- **(A) Keep INV-051 `substrate_conditional`, pending the upper-bound mechanism.** The full inverted-U falsifier is not buildable until a substrate exists in which offline update capacity **falls** (or fails to keep pace) as MEL rises — i.e. the MECH-178 arousal/decompensation plane, or an explicit fixed offline-processing ceiling the ecological producer can exceed. Neither is a simple build. This is the conservative, evidence-consistent option and matches `EXP-0376`'s standing `blocked_substrate`.
-- **(B) Reframe INV-051's falsifier to a lower-bound-only test** (rigidity elevated at under-stimulation vs optimal, *with full SWS/REM cycling confirmed* to isolate it from ordinary sleep-deprivation/under-training), with a PASS/FAIL that does **not** require the inaccessible upper limb, and using genuinely independent seeds/environment per GFLAG-0002. This IS buildable now — but it tests only half the claim, is close to "less input → less learning" unless the intact-sleep dissociation is carefully instrumented, and rescoping a `candidate`/`substrate_conditional` invariant's falsifier is a governance decision, so it was **not** unilaterally queued here.
-
-Either way, the falsifier's premise line in `claims.yaml` (`SD-MEL-PRODUCER (built, graded knob validated)`) is accurate for the *producer knob* but should be annotated that the **consumer clamp is not ecologically saturable and models compensation, not overload** — that is the operative limit, and it is what makes the drafted inverted-U falsifier substrate-conditional rather than testable-now.
+- INV-050 sibling governance **GFLAG-0002** (user-confirmed HOLD 2026-08-07): promotion re-gated on genuinely independent evidence (new seeds and/or held-out environment and/or consumer-absent control) because 845/861/861a are pseudo-replication (one config × seeds 42/123/456). V3-EXQ-901's consumer-OFF control partly addresses this; confirm its seed set is not merely a superset of 42/123/456.
+- Prior gated proposal `EXP-0376` (`experiment_proposals.v1.json`, `blocked_substrate`) predates the 2026-08-01 producer validation and is now superseded by EXP-0587/V3-EXQ-901.
 
 ---
 
-*Author: headless metaworker session `metaworker-chip-20260808-inv051-mel-dose-sweep`. Committed under its own TASK_CLAIMS entry.*
+*Author: headless metaworker session `metaworker-chip-20260808-inv051-mel-dose-sweep` (the duplicate; deferred to 6b93d7). Committed under its own TASK_CLAIMS entry.*
