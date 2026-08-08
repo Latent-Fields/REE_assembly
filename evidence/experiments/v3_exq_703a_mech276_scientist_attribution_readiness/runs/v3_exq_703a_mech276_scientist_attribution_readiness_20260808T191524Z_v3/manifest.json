@@ -1,0 +1,84 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_703a_mech276_scientist_attribution_readiness",
+  "run_id": "v3_exq_703a_mech276_scientist_attribution_readiness_20260808T191524Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T19:15:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech276_feedstock_readiness_confirmed",
+    "preconditions": [
+      {
+        "name": "world_forward_r2_trained_per_seed",
+        "direction": "lower",
+        "description": "held-out world_forward R2 >= floor on >= need seeds (per-seed positive-control readiness); measured = the need-th largest per-seed R2 so the recompute matches the >=need-seeds gate",
+        "measured": 0.5569432218715533,
+        "threshold": 0.2,
+        "control": "P0-trained E2WorldForward (reconstruction-primary, W_CONTRAST_AUX=0.1) on real action-conditional env transitions",
+        "met": true
+      },
+      {
+        "name": "cf_margin_straddles_on_ready_seeds",
+        "direction": "lower",
+        "description": "count of seeds that are BOTH R1-trained AND straddle cf_margin (mech276_n_counterfactual_backed>0 AND n_correlational_skipped>0); the R2 straddle is interpreted only on R1-passing seeds (701a discipline)",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "control": "cf_margin=0.15 recalibrated within the trained-comparator cf_contrast distribution",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "discrimination_feedstock_differs": true,
+      "discrimination_aggregator_updated": true
+    },
+    "criteria": [
+      {
+        "name": "posterior_discrimination_cf_vs_correlational",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "425c17ad70999ee2a577e523105ea4830c081b244431ef7b5495af35da46484c",
+  "substrate_commit": {
+    "commit": "b3310e04c88763c51c8adad322c7a59e3f005857",
+    "dirty": false,
+    "branch": "main"
+  }
+}
