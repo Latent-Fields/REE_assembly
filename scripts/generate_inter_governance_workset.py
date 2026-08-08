@@ -674,15 +674,53 @@ def _load_queue() -> list[dict]:
     unparseable blob. A generator that dies because a sibling repo moved would be
     a worse failure than the staleness it is fixing.
     """
+    return _load_queue_detailed()["items"]
+
+
+def _load_queue_detailed() -> dict:
+    """`_load_queue()` plus the provenance counts the summary block reports.
+
+    ONE merge policy, ONE place. build_workset used to re-implement the
+    read-and-merge inline so it could report `worktree_items` / `committed_items`
+    / `merged_items`, which meant `_load_queue` was dead code from its point of
+    view -- so the FM11b guard landed in `_load_queue` and changed NOTHING in the
+    generated workset. That is the same second-reader drift FM9 fixed in the
+    confirmer lane; it is worth the extra function to not have it here twice.
+
+    Keys: `items` (merged), `worktree`, `committed` (None when unreadable),
+    `ghosts_dropped` (FM11b), `behind_by` (committed entries the worktree lacked).
+    """
     worktree = _queue_from_worktree()
     committed = _queue_from_git()
     if committed is None:
-        return worktree
+        return {
+            "items": worktree,
+            "worktree": worktree,
+            "committed": None,
+            "ghosts_dropped": 0,
+            "behind_by": 0,
+        }
     # FM11b: a BEHIND checkout's extra entries are removed-since ghosts, not
     # local additions -- see _drop_completed_worktree_ghosts.
-    return _merge_queue_snapshots(
-        _drop_completed_worktree_ghosts(worktree, committed), committed
-    )
+    kept = _drop_completed_worktree_ghosts(worktree, committed)
+    worktree_ids = {
+        str(it.get("queue_id")) for it in worktree
+        if isinstance(it, dict) and it.get("queue_id")
+    }
+    committed_ids = {
+        str(it.get("queue_id")) for it in committed
+        if isinstance(it, dict) and it.get("queue_id")
+    }
+    return {
+        "items": _merge_queue_snapshots(kept, committed),
+        "worktree": worktree,
+        "committed": committed,
+        "ghosts_dropped": len(worktree) - len(kept),
+        # Count what the worktree was MISSING, not (merged - worktree): once
+        # ghosts are dropped the latter can go negative on a badly stale
+        # checkout and clamp to a reassuring 0.
+        "behind_by": len(committed_ids - worktree_ids),
+    }
 
 
 def _running_exqs() -> dict[str, str]:
@@ -2294,12 +2332,10 @@ def build_workset() -> dict:
     # queue actually came from -- a silently-stale sibling checkout (FM8) is
     # otherwise invisible in the generated artifact, which is the only thing the
     # metaworker dispatcher ever reads.
-    queue_worktree = _queue_from_worktree()
-    queue_committed = _queue_from_git()
-    queue_items = (
-        queue_worktree if queue_committed is None
-        else _merge_queue_snapshots(queue_worktree, queue_committed)
-    )
+    queue_load = _load_queue_detailed()
+    queue_worktree = queue_load["worktree"]
+    queue_committed = queue_load["committed"]
+    queue_items = queue_load["items"]
     gap_nodes = _plan_gap_items()
     gaps_by_id = {g["gap_id"]: g for g in gap_nodes}
 
@@ -2862,10 +2898,11 @@ def build_workset() -> dict:
             # How many queue entries the working-tree checkout was missing. A
             # non-zero value means ree-v3 is behind and every suppression
             # predicate would have been reasoning about a short queue (FM8).
-            "worktree_behind_by": (
-                0 if queue_committed is None
-                else max(0, len(queue_items) - len(queue_worktree))
-            ),
+            "worktree_behind_by": queue_load["behind_by"],
+            # FM11b: worktree-only entries discarded because their experiment
+            # has already run. A non-zero value means the checkout is behind and
+            # was resurrecting completed experiments as pending work.
+            "worktree_ghosts_dropped": queue_load["ghosts_dropped"],
         },
         "live_exqs": sorted(live.keys()),
         "auto_absorbed_retests": auto_absorbed_retests,
