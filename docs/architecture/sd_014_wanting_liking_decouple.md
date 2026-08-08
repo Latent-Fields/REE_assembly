@@ -1,3 +1,9 @@
+---
+status: candidate
+status_asof: 2026-08-08
+status_claim: SD-014
+---
+
 # SD-014: hippocampus.valence_vector_node_recording -- wanting/liking write-path decouple
 
 **Claim ID:** SD-014

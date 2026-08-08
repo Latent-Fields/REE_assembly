@@ -3,8 +3,8 @@ title: "ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 1
-status: provisional
-status_asof: 2026-07-10
+status: stable
+status_asof: 2026-08-08
 status_claim: ARC-033
 ---
 

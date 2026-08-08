@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-08-04T01:22:05Z
+Generated: 2026-08-08T01:16:53Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 97
+Docs resolved to a claim: 98
 
 ## Frontmatter drift -- HARD (0)
 
