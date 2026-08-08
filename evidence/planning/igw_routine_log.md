@@ -1525,3 +1525,5 @@ One line per hourly tick. ASCII only.
 2026-08-08T16:29:11Z workset committed (regen -- 233 items, 23 ready, 0 in flight)
 2026-08-08T16:28:55Z SPAWN IGW-20260808-224 skill=/lit-pull prio=40 uuid=fabdfb04-731c-463b-b3f2-01294d821971 pid=84312 worktree=igw-224-literature-proposal-for-mech-141
 2026-08-08T16:34:53Z workset committed (regen -- 233 items, 23 ready, 0 in flight)
+2026-08-08T16:34:54Z disposition IGW-20260808-202 hash=e86b7bcfb1ac decision=DONE: Duplicate re-staging of already-fully-resolved work. Original IGW-200 was diagno
+2026-08-08T16:35:03Z no eligible item (skipped 233): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-204:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
