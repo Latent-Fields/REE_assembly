@@ -2607,6 +2607,9 @@
     - ARC-005
     - ARC-013
     - ARC-011
+    - ARC-012    # added 2026-08-08 thought-digestion: doc's own Related Claims section
+                 # already lists ARC-012, and Sections 5/8 (legacy M(zeta)/lambda term)
+                 # are directly about ARC-012's "no explicit ethical cost term" content
   location: docs/REE_MIN_SPEC.md#impl-003
   source:
     - docs/processed/legacy_tree/docs/REE_MIN_SPEC.md
@@ -6853,6 +6856,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: derivational
   depends_on:
     - INV-011
     - INV-004
@@ -6862,6 +6866,41 @@
   source:
     - docs/invariants.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+  what_would_answer: >
+    This is a UNIVERSAL/DERIVATIONAL meta-invariant -- the primary claim is a
+    substrate-neutral information-flow-architecture proof obligation, not an
+    REE-specific empirical hypothesis. Two legs, answered by different methods.
+
+    LEG 1 -- DERIVATIONAL: does the generalization from INV-011 ("imagination without
+    belief update") to "any channel that both explores and writes durably" hold? Proof
+    pattern: unrestricted exploration implies the explored branch's provisional state
+    must remain revocable; an irreversible durable write is by definition non-revocable;
+    a channel permitting both simultaneously can commit content that was never validated
+    against real consequence. CONFIRMING: any channel meeting (explores + can durably
+    write) either gates on an explicit tag (as INV-011's audited hypothesis_tag gate
+    does) or is provably unable to reach a write consumer at all (vacuous satisfaction).
+    FALSIFYING (of the UNIVERSAL framing, not necessarily REE's instance): a plausible
+    alternative architecture where a channel does both simultaneously without this
+    failure mode -- e.g. one where "durable write" is made cheaply/fully revocable, so
+    "irreversible" no longer applies. Such a counterexample would downgrade INV-019 from
+    invariant_type universal to a design-decision specific to non-transactional
+    substrates (which REE is), not merely fail to move claim status.
+
+    LEG 2 -- SUBSTRATE-EMPIRICAL (ARC-014, checkable now): NON-DEGENERACY PRECONDITION --
+    requires a live case where simulated/imagined content (hypothesis_tag=True) is
+    generated AND a real durable-write-capable consumer is reachable from it; auditing an
+    unexercised gate is vacuous. CONFIRMING: every write-capable consumer reachable from
+    simulated content checks the tag and refuses to write when set (audited: E1/simulate()
+    pathway, V3-EXQ-499/633/880 PASS), OR the pathway's output does not yet reach any
+    write-capable consumer at all (DMN/_do_replay() pathway, vacuous pass pending
+    V3-EXQ-543c -- re-check once wired). FALSIFYING: simulated content reaches and durably
+    alters real-experience state through an ungoverned path (tag silently ignored,
+    defaulted away, or bypassed outside the one audited exception, MECH-322's sleep-only
+    ARC-071 chunking), or that exception fires outside its stated preconditions.
+
+    Passing LEG 1 without LEG 2 leaves the claim proved-but-unverified-in-REE; passing
+    LEG 2 without LEG 1 leaves it verified-in-REE-but-not-shown-universal. Both required
+    for the claim as currently stated.
   notes: >
     Resolved universal in Session C batch 2026-04-17. Rationale: direct consequence of
     INV-011 (imagination without belief update) extended to any channel that both
@@ -6870,6 +6909,11 @@
     flow-architecture invariant that holds for any agent combining simulation with
     memory. ARC-014 (Default Mode) is the REE-specific implementation locus but does
     not underwrite the subject.
+
+    GOVERNANCE FLAG (2026-08-08 thought-digestion, not resolved here): this claim's
+    as_of (2026-07-11) is now stale relative to its own logical parent INV-011's most
+    recent re-confirmation (2026-08-07, live code trace + 3 supporting PASS experiments)
+    -- worth a governance promotion pass considering INV-019 alongside/following INV-011.
 - id: INV-020
   title: "Constraint stores are authority-stratified from direct observational/symbolic writes."
   claim_type: invariant
@@ -6881,6 +6925,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: derivational
   depends_on:
     - INV-014
     - INV-007
@@ -6891,6 +6936,40 @@
     - docs/invariants.md
     - docs/architecture/control_plane_signal_map.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
+  what_would_answer: >
+    Same two-leg structure as sibling meta-invariant INV-019 (same 2026-04-17
+    registration batch).
+
+    LEG 1 -- DERIVATIONAL: adversarial-construction proof for "any architecture with
+    multiple write channels requires typed authority separation." Assume no
+    stratification, exhibit a construction where observational/symbolic content reaches
+    the constraint store's write path on the same channel as legitimate authority-bearing
+    writes, and show this is either (i) actually vulnerable to unauthorized capture, or
+    (ii) accidentally safe only because some other unacknowledged typing already exists
+    (stratification was present all along, just unlabeled). FALSIFYING (of the UNIVERSAL
+    framing): an architecture with both a capture-capable content channel and an
+    authority-bearing store that stays safe/uncaptured under adversarial exteroceptive
+    input with NO typed separation anywhere in its write path -- stratification turns out
+    unnecessary rather than merely satisfied cheaply. No such construction is known; this
+    leg is answerable by continued search in the architecture/adversarial-ML literature,
+    not by REE experimentation.
+
+    LEG 2 -- SUBSTRATE-EMPIRICAL (ARC-020, offline-consolidation pipeline): NON-DEGENERACY
+    PRECONDITION -- requires a live, reachable typed commit-boundary mechanism gating
+    writes FROM offline/sleep consolidation TO privileged authority-store equivalents
+    (POL/ID/CAPS per docs/architecture/sleep.md#arc-020). CURRENT STATE (2026-08-08,
+    re-confirming ARC-020's own finding): precondition FAILS -- exhaustive grep of
+    ree_core/ for write_locus/permission_matrix/commit_token/commit_boundary returns zero
+    hits. No privileged-authority-store concept and no typed commit-boundary/verifier-
+    mediation machinery exists in the live V3 substrate; MECH-067 (the mechanism this
+    would route through) is provisional on V1 substrate only, never retested in V3. This
+    leg is currently a substrate-conditional wait state, not an open experimental
+    question -- do not force a test while the precondition is unmet.
+
+    Do not read INV-020's derivational categorization as "ARC-020 is done" -- the
+    universal claim and its REE-specific implementation locus are genuinely decoupled per
+    this claim's own notes; that decoupling is why INV-020 can carry derivational while
+    ARC-020 carries substrate_conditional.
   notes: >
     Resolved universal in Session C batch 2026-04-17. Rationale: the principle --
     any architecture with multiple write channels requires typed authority
@@ -6899,6 +6978,15 @@
     neutral category terms, not REE-specific machinery. ARC-020 is the REE-specific
     implementation of this principle in the offline-consolidation pipeline but does
     not underwrite the subject.
+
+    GOVERNANCE FLAG (2026-08-08 thought-digestion, not resolved here): possible
+    depends_on mismatch -- MECH-065 (RC-conflict lane precision modulation) is listed
+    here, but its content is about a different mechanism than authority-stratified
+    writes; MECH-064 (typed authority/control-store separation blocking direct
+    exteroceptive writes into policy/identity stores) looks like the actually on-point
+    corollary already present in the list. Worth a governance-cycle check on whether
+    MECH-065 belongs in this depends_on, or whether the mapping predates a later
+    MECH-065 scope narrowing.
 - id: INV-021
   title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
@@ -65161,6 +65249,31 @@
     - INV-074    # plasticity-closure invariant
     - MECH-333   # critical-period open-phase core
   location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this test is only meaningful once TWO conditions both
+    hold. (1) A V4 plasticity-gain substrate exists (plasticity_neuromodulation_v4 plan,
+    PLW-3/PLW-4, both blocked; PLW-1 decision-to-build gate un-cleared). DO NOT build in
+    V3. (2) The content-signal-only control arm must be genuinely exercisable, not a
+    strawman -- MECH-313/104/203/SD-037 must be live and wired. As of 2026-08-08: MECH-104
+    is active/PASS; MECH-313 is contested-candidate (demoted 2026-07-09, sub-threshold N=1
+    signal only); MECH-203 has never had a valid behavioural test (3 consecutive invalid
+    runs, most recently V3-EXQ-843); SD-037 is substrate_ceiling (wired but consumer
+    thresholds not cleared, downstream effect inert). A fair control-arm run may need to
+    accept these as the honest content-only baseline as instantiated, or wait for
+    MECH-313/203/SD-037 to clear their own ceilings first.
+
+    CONFIRMING: matched representation-update outcomes (targeted plasticity selectivity;
+    retention-vs-acquisition tradeoff) are NOT achievable by gating on content signals
+    alone -- a separate plasticity-gain channel produces a discriminable improvement,
+    consistent with Bear & Singer 1986's conjunctive ACh x NE gating result.
+
+    FALSIFYING: matched outcomes ARE achievable by gating on content signals alone,
+    without any separate plasticity-gain channel -- falsifies the separate-channel
+    commitment; ARC-093 would need demotion or reframing as redundant with the ARC-075 /
+    content-signal machinery it currently depends_on but is kept distinct from.
+
+    Falsifier dated 2026-06-17 (targeted_review_plasticity_neuromodulation_v4, Bear &
+    Singer 1986 grounding).
   functional_restatement: >
     The ARC-level commitment that plasticity (gain) is a separately-gated process from
     activity (content). Likely an EXTENSION of ARC-075 (infant-curriculum
@@ -74670,6 +74783,45 @@
     - INV-077
     - GOV-PROC-1
     - GOV-ANALOGY-1
+  what_would_answer: >
+    TRIGGER: reassess the next time either (a) a standing rule/workflow/skill change is
+    proposed following a single motivating incident (the pattern this claim already
+    documents: the chip-scope rule's four-revision history), or (b) someone proposes
+    building tooling/harness support for held-out rule validation rather than the
+    manual-discipline version recommended here. Also reassess opportunistically at the
+    next ~3-5 rule-editing incidents even absent a formal proposal, since the claim
+    currently has zero pilot data.
+
+    EVIDENCE RELEVANT AT THAT REASSESSMENT: (1) when a candidate rule change is checked
+    by hand against >=3 HISTORICAL cases OUTSIDE the motivating incident -- per the
+    claim's own non-degeneracy guard, only cases where old and new rule actually give
+    DIFFERENT answers count -- does that check catch an over-broad rule before it ships,
+    or pass cleanly every time (adding cost without information)? (2) does the "manual
+    discipline, not tooling" framing survive contact with an actual editing session, or
+    get skipped under time pressure? (3) is the SELF-REFERENCE HAZARD respected -- when
+    piloted, is the thought-intake workflow (this claim's own source) correctly excluded
+    from any held-out evidence set?
+
+    WHAT WOULD ACTUALLY REVISE: the underlying observation (single-incident rules
+    over-generalise, evidenced by the chip-scope rule's four revisions with a same-day
+    user correction on the third) is independently documented and would stand regardless.
+    What this claim adds -- that a >=3-case held-out check is a worthwhile PRACTICE -- is
+    undercut if EITHER: (a) the discipline is tried and never once catches a rule that
+    later needed correction (inert ceremony), or (b) it is never tried because per-edit
+    cost is judged too high (the claim's own "honest counterweight" dominates in
+    practice). Either argues for demoting the PRACTICE recommendation toward
+    rejected/superseded, without touching the more basic over-generalisation observation.
+
+    READER NOTE: governance_rule / process claim about how the Assembly edits its OWN
+    rules, not an empirical mechanism about REE cognition -- no EXP-#### should be minted
+    against it. Do not conflate with MECH-472 (held-out context distinguishes skill
+    acquisition from memorisation), which is REE-INTERNAL; per GOV-ANALOGY-1 the
+    resemblance is an ANALOGY, never evidence. As of 2026-08-08, no pilot of the manual
+    discipline has been run anywhere in the codebase (checked .claude/skills/,
+    .agents/skills/, CLAUDE.md, WORKSPACE_STATE.md) -- the closest existing analog is the
+    retrospective "Scope history" logging pattern (CLAUDE.md chip-scope section, mirrored
+    in session-land/SKILL.md), which records a rule's revision history AFTER the fact
+    rather than testing a proposed change against held-out cases BEFORE it ships.
   notes: >
     THE SHARPEST GENUINELY-NEW OBSERVATION IN THE INTAKE, and it has a MEASURABLE,
     ALREADY-VISIBLE COST: rules written from a single incident have repeatedly
