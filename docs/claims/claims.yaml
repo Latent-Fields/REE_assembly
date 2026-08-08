@@ -25377,10 +25377,56 @@
     integrity -- is the same at every level. The three-level signal architecture (Bekoff 1995:
     L1 open/close, L2 continuous background, L3 ambiguity-repair) is present in canid play regardless
     of play type complexity.
-    (c) V3 IMPLEMENTATION: The persistent play_frame_tag in LatentState already implements L2.
-    L1 = frame_open/frame_close events. L3 = ambiguity repair (threshold-triggered).
+    (c) V3 IMPLEMENTATION (CORRECTED 2026-08-08 -- see what_would_answer finding 3):
+    play_frame_tag is NOT yet implemented in LatentState -- this was inaccurate as
+    originally written. L1 (frame_open/frame_close) and L2 (persistent background
+    tag) remain unbuilt; L3 (ambiguity repair) likewise. The literature-derived
+    reading in (a)/(b) is unaffected, but a future reader should not assume L1/L2
+    are already available when scoping Q-048/Q-049 experiment design.
     Sub-questions Q-048 through Q-051 operationalise the content-complexity dimension:
     what content does the monitoring signal need to track at each play stage?
+  epistemic_category: derivational
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this resolution is non-degenerate only if the
+    cited studies measure ONLINE mid-interaction detection (infants responding
+    DURING a contingency perturbation), not merely post-hoc rated interaction
+    quality at episode boundaries. If Tronick 1978 / Murray and Trevarthen 1985 /
+    Fantasia 2014 turn out on closer read to only support boundary-level
+    judgments, the "continuous monitoring is primitive, not invented at any play
+    type" reading is unsupported and the resolution is vacuous.
+    CONFIRMING (established by the 2026-05-16 resolution): (a) Tronick 1978
+    (still-face), Murray and Trevarthen 1985 (double-video), and Fantasia 2014
+    (structural-alteration detection) jointly show infants as young as 2-4
+    months detect and respond to mid-interaction contingency violations online,
+    not only at episode boundaries -- continuous background monitoring (L2) is
+    developmentally primitive and present before sensorimotor play begins, not
+    escalated into at any later play type. (b) Bekoff 1995's three-level canid
+    play signal architecture (L1 open/close, L2 continuous background, L3
+    ambiguity-repair) is stable across play-type complexity; what escalates
+    across sensorimotor -> pretend -> games-with-rules -> cooperative play is
+    monitored CONTENT (Schmidt 2015 dual-level rule/strategy; Leslie 1987
+    decoupling), not the L1/L2/L3 architecture itself. Sub-questions Q-048
+    through Q-051 were registered (as_of 2026-07-11, still open) to operationalise
+    that content-complexity dimension per play type.
+    WHAT WOULD REOPEN THIS RESOLUTION (this documents an ALREADY-RESOLVED claim
+    -- no forward experiment is queued against it):
+    1. A closer read of Tronick / Murray and Trevarthen / Fantasia showing the
+    infant responses are actually post-hoc (rated only at recovery, not measured
+    as in-perturbation detection latency) would undermine the "continuous
+    monitoring is primitive" reading and reopen the original question.
+    2. If Q-048 (sensorimotor/constructive L2-vs-L2+L3 ablation) or Q-049
+    (pretend-play co-tag continuity) were run and found that L2 background
+    monitoring alone is NOT sufficient even for the simplest play content, that
+    would weaken the "architecture is constant, only content escalates" reading.
+    3. CURRENCY FINDING (verified 2026-08-08): resolution_note part (c) --
+    "the persistent play_frame_tag in LatentState already implements L2" -- was
+    inaccurate. Direct grep of ree-v3/ree_core/ (including latent/stack.py,
+    where LatentState is defined) found ZERO occurrences of play_frame_tag,
+    frame_open, frame_close, or ambiguity_threshold anywhere in the substrate.
+    This matches ARC-049's own what_would_answer, which independently confirms
+    the same zero-occurrence finding as an unmet substrate precondition
+    blocking ARC-049 itself. Corrected in resolution_note above; does not
+    reopen the literature-derived theoretical reading in (a)/(b).
 
 - id: INV-060
   title: "Play dominates the child developmental phase; the type of play progresses as subsystem competence develops, systematically training architectural components in dependency order."
@@ -28349,7 +28395,49 @@
     multiplier is aic.harm_s_gain, a function of operating_mode AND drive_level
     (not just beta_gate). This resolves the EXQ-325a FAIL
     (DESCENDING==CONTROL bit-identical) by making the descending branch a
-    genuinely different function of state. Retest: V3-EXQ-325b queued.
+    genuinely different function of state. Retest: V3-EXQ-325b ran 2026-04-18
+    to 2026-04-19 (EWIN-PC requeue, E2 world-forward training addon), result
+    FAIL -- s_ratio_D=1.0000 s_ratio_C=1.0000 bit-identical across all 3
+    seeds, reclassified non_contributory 2026-04-22 (see evidence_quality_note).
+    A further targeted attempt, V3-EXQ-325f (2026-05-05, reef/monostrategy
+    fix), also FAILED bit-identically. Both routes are exhausted; see
+    what_would_answer for the current blocking picture.
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: MECH-269 V_s landing (alternative operating
+    modes producing measurable behavioural divergence between drive regimes)
+    must occur before DESCENDING vs CONTROL can differ at all -- otherwise any
+    result is uninformative. Demonstrated 3x on this exact claim (V3-EXQ-325a
+    commitment-substrate-absent FAIL, 325b bit-identical DESCENDING==CONTROL
+    FAIL, 325d/325f non_contributory under the same monostrategy lock). The
+    adjacent MECH-295 goal_pipeline:GAP-4 Tier-1 retest cohort (V3-EXQ-490g/h/
+    i/j/k) ran this same precondition to its own conclusion in a parallel
+    pathway: GAP-4 CLOSED 2026-06-09 without landing V_s-driven behavioural
+    divergence. As of 2026-08-07, MECH-269's per_region_vs remains
+    instantaneous-only (no temporal-integration form), and a 2026-06-19 note
+    on the sibling SD-032b claim records MECH-269 as "wired_but_inert...
+    superseded as the operative diversity blocker by the MECH-439 F-dominance
+    conversion ceiling (~88-89% of E3 variance)." This precondition is
+    therefore not merely pending -- it has been actively tested via at least
+    two independent routes (direct reef/monostrategy fix, and the GAP-4
+    cascade route) and neither broke the degeneracy. A fresh substrate
+    approach to MECH-269, or resolution of the MECH-439 ceiling, is required
+    before this precondition can be considered live again.
+    CONFIRMING: once MECH-269 V_s landing produces genuine behavioural
+    divergence between drive regimes (independently verifiable, e.g. via a
+    non-SD-021 diagnostic showing action-class or trajectory divergence
+    across depleted/well-resourced conditions), a DESCENDING-arm run shows
+    z_harm_s PE precision measurably reduced specifically during committed
+    trajectories through expected harm (elevated beta_gate via MECH-090),
+    while z_harm_a PE precision remains unattenuated -- a clean selective
+    dissociation matching the S1/ACC double-dissociation logic of Hofbauer
+    2001, already cited in this claim's literature base.
+    FALSIFYING: after MECH-269 V_s landing is confirmed live (behavioural
+    divergence demonstrably present elsewhere in the same run, ruling out the
+    "nothing can differ yet" explanation), DESCENDING and CONTROL remain
+    statistically indistinguishable on z_harm_s_ratio -- OR z_harm_a is ALSO
+    precision-attenuated in the DESCENDING arm, violating the claimed
+    selective (harm_s-only) attenuation design.
 
 - id: SD-022
   title: "Directional limb damage: body extension for genuine z_harm_s / z_harm_a causal independence"
@@ -33828,9 +33916,44 @@
     only V3 substrate that makes the dependence structural. Subsumes SD-021:
     EXQ-325a FAIL (DESCENDING == CONTROL bit-identical) resolves because the
     descending branch is now a genuinely different function of state.
-    Validation experiment: V3-EXQ-325b queued (supersedes V3-EXQ-325a).
-    v3_pending remains true until V3-EXQ-325b PASSes. See ree-v3/CLAUDE.md
-    SD-032c entry for full data flow and config documentation.
+    Validation experiment: V3-EXQ-325b ran 2026-04-18 to 2026-04-19, result
+    FAIL (bit-identical DESCENDING==CONTROL, 3 seeds) -- see SD-021's
+    evidence_quality_note for the full trace. v3_pending remains true;
+    blocked on MECH-269 V_s landing (see what_would_answer). See
+    ree-v3/CLAUDE.md SD-032c entry for full data flow and config
+    documentation.
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION, shared with sibling claim SD-021: MECH-269
+    V_s landing must occur first. AIC-analog (ree_core/cingulate/aic_analog.py)
+    is implemented and structurally drive-dependent -- both aic_salience and
+    harm_s_gain are computed as functions of drive_level via the
+    aic_drive_protect_weight knob (+1/0/-1 regimes) -- but the agent is
+    monostrategy-locked until MECH-269 lands alternative operating modes.
+    Without that, there is no behavioural channel through which a structural
+    drive-dependence could show up as a measurable difference in agent
+    behaviour; the test is vacuous, not merely underpowered. V3-EXQ-325d
+    (2026-04-20) confirmed this reclassification to non_contributory under
+    the same substrate gap. Re-verified 2026-08-08: MECH-269 is still
+    status=candidate, v3_pending=true -- not landed. aic_analog.py unchanged
+    materially since 2026-04-22 (last touch to aic_drive_protect_weight or
+    harm_s_gain was the original 2026-04-19 IMPLEMENTED commit; a 2026-05-31
+    commit touched only consumer-side per_axis_drive wiring).
+    CONFIRMING: once MECH-269 unblocks alternative operating modes: for
+    matched z_harm_a input, a depleted agent (low drive_level / high
+    fatigue) and a well-resourced agent produce measurably different
+    aic_salience values, such that the MECH-259 switch threshold is crossed
+    (network-switch trigger fires to SD-032a) in one regime and not the
+    other, or fires at reliably different latency/magnitude.
+    FALSIFYING: once MECH-269 has landed and alternative operating modes are
+    confirmed to produce genuine behavioural divergence elsewhere in the
+    agent (ruling out "the substrate still doesn't support divergence" as
+    the explanation), depleted and well-resourced agents nonetheless show
+    statistically indistinguishable network-switch-trigger behaviour for
+    matched z_harm_a. This would mean SD-032c's salience/threshold gating
+    design fails to translate structural drive-dependence into behavioural
+    effect -- the gating computation, threshold placement, or its coupling
+    to SD-012's drive signal would be wrong, not merely untested.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: SD-032d
   title: "PCC-analog (attention partition / metastability): module coordinating transitions between external-task and internal (replay / planning / consolidation) modes; contributes a mode-stability parameter to the salience-network coordinator (SD-032a)."
@@ -33978,7 +34101,40 @@
           for future claim wiring.
     Config: REEConfig.use_pacc_analog (default False). Backward
     compatible. Non-trainable arithmetic; phased training not applicable.
-    Validation: V3-EXQ-448 queued (4-arm ablation).
+    Validation: V3-EXQ-448 ran 2026-04-19 (diagnostic, 10/10 pass criteria),
+    outcome PASS, evidence_direction supports (SD-032e, MECH-094). Confirmed
+    sustained z_harm_a drives monotone drive_bias accumulation to cap (c2/c5),
+    reversible relaxation on quiescence (c6), and correct write-gate
+    suppression when closed (c3/c4).
+  epistemic_category: standard
+  what_would_answer: >
+    ALREADY CONFIRMED (V3-EXQ-448, 2026-04-19, diagnostic PASS, supports;
+    reinforced by V3-EXQ-453 write-gate landing PASS, 2026-04-20).
+    NON-DEGENERACY PRECONDITION: use_pacc_analog must be enabled (default
+    False) and SalienceCoordinator.write_gate("autonomic") must actually be
+    open (MECH-261 mode-conditioned) for z_harm_a to reach drive_level at
+    all -- with the gate closed or the flag off, pacc.effective_drive(base)
+    reduces to a no-op (confirmed by V3-EXQ-448 c3/c10) and no signature is
+    testable, so absence of drift under those conditions would not falsify
+    the claim.
+    CONFIRMING: with the gate open, sustained z_harm_a exposure produces
+    measurable, monotone drift in drive_level via pacc.effective_drive(base)
+    (V3-EXQ-448 c2: bias 0.045 -> 0.5 across a sustained-load window, held at
+    cap under 5000 high-load ticks per c5, and reversible toward 0 on
+    quiescence per c6), and this drift subsequently modulates SD-032c's
+    salience threshold, producing the chronic-pain-like sensitization
+    pathway (Baliki 2012) -- already observed per the stable-promotion
+    evidence base (5 supports/0 weakens/4 mixed across 5 exp + 4 lit
+    entries, including V3-EXQ-448 and V3-EXQ-453).
+    FALSIFYING: (i) with the write_gate open and use_pacc_analog enabled,
+    sustained z_harm_a exposure produces no measurable drive_level drift
+    (bias stays ~0 despite load) -- would indicate the write path is
+    disconnected or the EMA accumulator is not actually receiving z_harm_a;
+    or (ii) drift occurs and accumulates as expected, but never propagates
+    to modulate SD-032c's salience threshold -- would sever the claimed
+    write-back -> salience-gate link and invalidate the chronic-sensitization
+    behavioural prediction even though the drive_level mechanism itself is
+    intact.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-258
   title: "z_harm_a enters action selection as a precision-weighted prediction error (harm_surprise_PE, SD-020) against an internal pain forward model (E2_harm_a), not as a raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b (dACC-analog)."
@@ -62368,6 +62524,34 @@
     -- review for merge (generalises MECH-094's audit flags; kept distinct and wired
     via depends_on). substrate_conditional on a V4 memory-lifecycle store not yet
     built. DO NOT build in V3.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: a V4 memory-lifecycle store implementing the
+    planned 6-state model (retained/indexed/summarised/consolidated/contested/
+    retired -- memory_lifecycle_v4_plan.md MEM-5) must exist and must be the
+    thing consolidation transforms actually write through -- i.e. every
+    consolidation operator (MECH-068 selectivity, MECH-124 schema/abstraction,
+    MECH-273 sleep-half aggregation) must populate a transformation_history
+    field on its output as a normal part of running, not as instrumentation
+    bolted on for a single probe. As of 2026-08-08 the store does not exist in
+    V3; the operators this claim generalises over are individually more
+    V3-mature than at this claim's 2026-06-10 registration (MECH-068 candidate
+    w/ V3-EXQ-835 support, MECH-273 v3_pending cleared 2026-06-23), but none of
+    them supplies the store itself. DO NOT build in V3.
+    CONFIRMING: once the store exists, (1) every consolidated summary carries
+    a populated transformation_history (source episode pointers + transforms
+    applied); (2) a summary that conflicts with its source episodes is marked
+    with a contradiction_flag and treated as flagged/degraded downstream, not
+    silently authoritative; (3) retiring a schema leaves the source episodes
+    it was built from unmutated and independently retrievable (per INV-080).
+    FALSIFYING: (1) the store is built but transformation_history is absent,
+    unpopulated, or not actually consulted by anything downstream (a
+    decorative field); (2) a summary that measurably conflicts with its
+    source is nonetheless treated as equally authoritative in action
+    selection or retrieval as an unflagged one; (3) retiring a schema
+    deletes, mutates, or makes unreachable the source episodes it
+    summarised, violating INV-080. A test of the consolidation operators run
+    WITHOUT the 6-state store in place counts as neither confirming nor
+    falsifying (non-degeneracy precondition unmet).
 
 - id: MECH-393
   title: "Retrieval-scope vs action-authority split: retrieval for reflection is distinct from retrieval that confers action authority; a consolidated abstraction lacking source-episode grounding may inform reflection but not unilaterally drive committed action."
