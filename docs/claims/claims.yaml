@@ -19970,6 +19970,60 @@
       as_of: 2026-04-10
       verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v3
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    Extracted from EXQ-244/EXQ-244a's own already-established operationalization
+    (forward-only vs balanced [forward+reverse+random] replay contrast on
+    action-distribution entropy retention across a phase1-exploration ->
+    phase2-no-exploration transition), corrected for the two gaps EXQ-244a's own
+    manifest identified rather than inventing a new design.
+
+    NON-DEGENERACY PRECONDITION: the run must show (1) reverse_replayed > 0 in
+    at least one BALANCED_REPLAY seed (EXQ-244a showed reverse_replayed=0 in
+    ALL seeds of ALL conditions despite exploration_buffer_size=50 -- the
+    reverse-replay path itself was never invoked/logged as firing, which is a
+    prerequisite defect to diagnose and fix before this claim can be tested at
+    all); (2) FORWARD_REPLAY must differ from NO_REPLAY in at least one seed
+    (EXQ-244a found them byte-for-byte identical, meaning even the plain
+    forward-replay comparison never exercised replay); (3) the exploration
+    buffer must be populated by a genuine exploration/alternative-strategy
+    source (epsilon-greedy warmup or curiosity-driven, per the 2026-04-07
+    GOVERNANCE finding that replay cannot diversify behavior without
+    exploration-generated source material) rather than the dominant policy
+    trajectory alone; (4) the offline/consolidation phase must be a real SWS
+    cycle in the production replay path (agent.act_with_split_obs ->
+    _do_replay -> hippocampal.diverse_replay), not a short in-episode proxy.
+
+    CONFIRMING: balanced (forward+reverse+random) replay produces
+    significantly higher post-consolidation behavioral/action-distribution
+    entropy retention than forward-only replay, in a design where (a) reverse
+    replay is confirmed to have actually fired via reverse_replayed > 0, (b)
+    the exploration buffer was populated by genuine alternative-strategy
+    source material (not just the dominant trajectory), and (c) the effect
+    reproduces across a majority of seeds (>=3/5) with an effect size that
+    exceeds floating-point noise (EXQ-244a's own "1/5 seeds real, 3/5 seeds
+    winning by ~1e-13" is the explicit negative example to exceed).
+
+    FALSIFYING (VIOLATED BY): balanced replay with confirmed-firing reverse
+    mode and genuine exploration source material still fails to increase
+    behavioral diversity relative to forward-only replay (i.e., the
+    diversity-scheduling mechanism itself, not just the test harness, is
+    inert) -- this would be a genuine weakens, distinct from EXQ-244's
+    original FAIL (proxy substrate, no exploration source) and from
+    EXQ-244a's diagnostic-quality PASS (reverse replay never actually fired).
+    Also VIOLATED BY: MECH-092's downstream consolidation-benefit test
+    continuing to be gated on unbuilt SD-006 phase-2 async execution such
+    that no real-SWS-phase (non-proxy) test of MECH-165 is possible at all --
+    that would confirm this claim's epistemic_category should stay
+    substrate_conditional rather than convert to standard/testable-now.
+
+    IMPLEMENTATION-DEFECT FLAG (2026-08-08 digestion pass, not resolved
+    here): replay_diversity_enabled defaults False (config.py:2594); even the
+    one config-enabled run (EXQ-244a) never actually invoked the reverse-
+    replay path. Chip spawned to diagnose why diverse_replay(mode="auto")'s
+    reverse mode never fires despite being enabled and the exploration buffer
+    being populated -- a straight re-run of the same design would likely
+    reproduce the same degenerate zero-invocation result without this fix.
   depends_on:
     - MECH-120
     - MECH-121
@@ -24372,10 +24426,67 @@
   subject: social.signal_legibility
   polarity: asserts
   status: candidate
+  epistemic_category: standard
   live_status:
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  what_would_answer: |
+    MECH-191 is CONJUNCTIVE -- "causally produced" and "cross-architecturally legible" are
+    separate assertions with OPPOSITE readiness. Split on testability, mirroring ARC-003's
+    Leg A/Leg B pattern.
+
+    LEG A -- CAUSAL PRODUCTION (testable now, single-agent, RECEIVER-FREE).
+    Testable today for 4 of the 7 catalogued signals, whose internal-state correlate already
+    exists in ree_core: whine (z_goal-active-without-satisfaction, ree_core/goal.py
+    GoalState), huff (E3 trajectory-discard fired at breath cadence, MECH-107/108's
+    BreathOscillator sweep logic, ree_core/heartbeat/clock.py -- genuinely implemented, not a
+    stub), yelp (z_harm_a threshold-crossing, ree_core/amygdala/bla.py + cea.py), tail-wag
+    (z_beta positive-valence threshold-crossing, ree_core/agent.py). The other 3 catalog
+    entries are each blocked on DIFFERENT missing substrate and are NOT answered by a Leg A
+    pass on the other four: facial-expression needs OTHER_SELFLIKE model activation (confirmed
+    absent from ree_core, same grep as MECH-183 below); play-bow needs a mode-manager/play-mode
+    substrate (confirmed absent -- no PlayMode/mode_manager class anywhere in ree_core);
+    licks/petting-received is MECH-193's two-agent reward-coupling territory and is not
+    single-agent by construction.
+    NON-DEGENERACY: the internal-state channel and the candidate signal-analog event must
+    both show non-degenerate variance (state activates and stays quiescent across the run;
+    signal-analog event fires and fails to fire across the run) -- a state pinned always-on
+    or an event that never/always fires tests nothing.
+    CONFIRMING: for each of the four substrate-present signals, the internal-state activation
+    predicts its own signal-analog event with high specificity against the OTHER three states
+    and against a quiescent baseline -- a decoder trained only on the other internal-state
+    channels cannot recover which event fired above chance, AND ablating the state variable
+    itself (not merely a correlated channel) collapses the corresponding event. This is causal,
+    state-specific production at the level the current substrate can express it -- internal
+    telemetry standing in for physical externalization, the same substitution MECH-107 already
+    uses for "exhale."
+    FALSIFYING: any of the four channels shows low specificity (e.g. z_harm_a
+    threshold-crossings occur at similar rates during z_goal-unmet or E3-discard episodes as
+    during genuine harm episodes), OR ablating the state variable does not suppress its
+    correlated event -- undermines "causal externalization" even before any receiver exists.
+
+    LEG B -- CROSS-ARCHITECTURE LEGIBILITY (BLOCKED; not queueable as of 2026-08-08).
+    Requires (i) an actual externalization/broadcast channel carrying the internal state
+    outward -- confirmed absent: zero scent/broadcast/social-signal-output implementation
+    anywhere under ree_core/ (re-confirmed 2026-08-08, same finding as MECH-041's grep); the
+    only specification is ARC-047's seven scent fields, itself candidate, confidence 0.0,
+    implementation_phase v5, unbuilt; and (ii) a receiving agent with its own
+    other-model/attribution-stream/OTHER_SELFLIKE substrate to do the "any observer with a
+    corresponding internal state can map it" decoding -- confirmed absent, identical to
+    MECH-183's 2026-06-11 feasibility assessment, independently re-confirmed 2026-08-08.
+    CONFIRMING (once substrate exists): a receiving agent -- ideally of a different
+    architecture/training lineage than the emitter -- correctly attributes the emitter's
+    functional state above chance from the broadcast signal alone, AND this decoding accuracy
+    drops toward chance when the receiver's own homologous internal-state machinery is
+    ablated/absent.
+    FALSIFYING: even once the broadcast + other-model substrate exists, receiver decoding
+    accuracy is statistically indistinguishable from chance, OR indistinguishable between a
+    receiver WITH and WITHOUT the corresponding internal-state machinery -- either falsifies
+    "legible via a corresponding internal state, not learned convention."
+    RELEASE CONDITION: identical substrate to MECH-183/MECH-041 -- ARC-047 (scent/broadcast
+    channel) plus ARC-010/MECH-031/MECH-032 (other-agent modelling) landing. No separate build
+    is implied by MECH-191 beyond what MECH-183/MECH-041 already require.
   depends_on:
     - MECH-182
     - MECH-183
@@ -25030,6 +25141,74 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: play mode is UNIMPLEMENTED in V3 (confirmed
+    2026-08 by direct search of ree_core: zero occurrences of play_mode,
+    z_goal_synthetic, LP_weighted, play_frame_tag, frame_open, or
+    frame_close anywhere in the substrate; git history for ree-v3
+    contains zero commits ever touching "play_mode"). This claim is
+    gated on all three of its dependencies, none of which is built:
+    MECH-194 (synthetic signal substitution during play -- itself
+    unimplemented, per its own what_would_answer), MECH-196 (episode-
+    close recalibration -- registered, no what_would_answer, no
+    substrate, no experiments), and SD-012 (provisional, but only on
+    its REAL-signal seeding sub-claim C1 -- drive-scaled z_goal seeding
+    in ordinary, non-play episodes; C1's PASS does not build or exercise
+    any part of play mode's SYNTHETIC seeding path, and SD-012's own
+    navigation-outcome sub-claim C2 remains open). No experiment has
+    ever queued or run against this claim (checked claim_evidence.v1.json,
+    experiment_queue.json, and git log -S "MECH-195" -- registration and
+    lit-pull housekeeping only).
+
+    IMPLEMENTATION-MAPPING CAVEAT: the claim's prose ("goal magnitude
+    calibration," "harm threshold calibration") does not correspond to
+    an existing scalar variable in the current E3/goal architecture --
+    ree_core/goal.py's GoalState.goal_proximity() scores trajectories by
+    MSE-distance to a z_goal POSITION vector, not by a magnitude scalar.
+    Once play mode is built, the "magnitude calibration" this claim
+    describes will need to be identified concretely -- most likely as
+    (a) the drive-scaled threshold/intensity controlling z_goal SEEDING
+    (SD-012 territory) and/or (b) z_harm's escalation threshold (per
+    MECH-194's Panksepp-style raised-threshold reading) -- rather than
+    assumed to be a property of z_goal's vector geometry itself.
+
+    NON-DEGENERACY PRECONDITION: requires (i) play episodes and matched
+    real (non-play) episodes sharing a common downstream real-task
+    evaluation, so that transfer of POLICY STRUCTURE and non-transfer of
+    MAGNITUDE can be measured as two independent, dissociable outcomes
+    rather than one degenerate one; and (ii) the episode-close
+    recalibration event (MECH-196) actually firing and being observable
+    as a real override.
+
+    CONFIRMING signature (both legs required together): (a) TRANSFER: E3
+    trajectory-selection weights and E2 forward-model weights trained
+    during play episodes measurably improve real-episode task performance
+    on goal-pursuit-structure dimensions relative to an agent with no
+    play exposure; (b) NON-TRANSFER / RE-ANCHORING: post-play real-episode
+    z_goal seeding intensity and z_harm escalation threshold track REAL
+    homeostatic drive and harm signals at play-close, not the synthetic
+    values the agent operated under during play.
+
+    FALSIFYING (VIOLATED BY): (i) NO TRANSFER -- play-trained weights show
+    no measurable real-episode advantage; (ii) CALIBRATION LEAKAGE --
+    post-play calibration retains play-episode synthetic values instead of
+    being overridden by real signals (exactly the "contaminating" failure
+    mode the dissociation exists to prevent); (iii) INSEPARABILITY --
+    structure and magnitude prove coupled in a single parameter such that
+    they cannot be isolated at all.
+
+    DISPOSITION NOTE: considered and declined a MECH-158-style
+    derivational/substrate_conditional fusion split (2026-08-08 digestion
+    pass). The Schmidhuber 2010 "derivative signals cannot be rescaled
+    into absolute magnitude by any coefficient" argument in this claim's
+    notes is dimensional analysis close to definitionally true, with
+    little independent content to stress-test on its own terms -- the same
+    vacuity risk MECH-158's Leg A explicitly guards against. The
+    substantive open question (whether REE's actual mechanics, once built,
+    keep structure and magnitude separable in a load-bearing way) is
+    itself substrate-dependent, not resolvable from definitions alone.
+    Single-leg substrate_conditional is kept as the more accurate
+    disposition.
   depends_on:
     - MECH-194
     - MECH-196
@@ -37753,6 +37932,62 @@
     content reaching E1-consolidation or SD-033a-viability consumers
     under healthy operation; forcing tag erosion should re-create
     that overlap and produce the fictional-affordance pattern.
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this claim presupposes the MECH-271 V3 routing
+    substrate exists as live, wired machinery -- confirmed as of 2026-08-08 to NOT
+    be the case. The routing-table form specified in
+    docs/architecture/mech_271_routing_v3_substrate_plan.md (RoutingTable module,
+    ReplayEvent.replay_kind/routing_weights extension, the destination dispatcher
+    in REEAgent.consume_replay, the mech271_tag_loss_count audit hook, and the
+    use_mech271_routing master flag) is UNIMPLEMENTED -- zero hits for
+    use_mech271_routing / mech271_tag_loss_count / e1_consolidation /
+    lateral_pfc_viability_map / bla_affective_tagging / nac_curiosity_scaffolding
+    anywhere under ree_core/, and no ree_core/hippocampal/replay_routing.py exists.
+    The plan's own stated release condition -- landing after the implement-
+    mech269b lock on ree_core/hippocampal/module.py clears -- has itself not
+    resolved: MECH-269b remains candidate/v3_pending as of 2026-07-11, with only
+    a diagnostic-probe PASS (V3-EXQ-601, scoring_excluded) and its non-diagnostic
+    behavioural-sufficiency retest (Q-040b) still outstanding. The claim's own
+    proposed validation experiment, V3-EXQ-492, has never been queued.
+
+    CONFIRMING (primary, once substrate lands -- V3-EXQ-492 or successor, 4-arm
+    {A0_off, A1_routing_only, A2_forced_leak, A3_high_leak} per the design doc):
+    (C1) master-flag-ON with clean substrate (force_tag_loss_rate=0.0) reduces
+    consolidation writes sourced from probe replays by >=70% relative to the OFF
+    baseline; (C2) the audit counter (mech271_tag_loss_count) tracks the
+    deliberate leak-injection rate within +/-10% across ablation levels; (C3)
+    full forced tag loss (rate=1.0) reproduces a confabulation behavioural
+    signature -- >=2x increase in E1-prediction-divergence on held-out probe
+    content relative to the clean-substrate arm; (C4) the OFF arm is
+    bit-identical to the pre-flag baseline (within 1e-9 on all run metrics).
+
+    CONFIRMING (secondary): BLA engagement (SD-035 substrate, V3-EXQ-473/474)
+    should correlate with probe replay and not with anchored replay once routing
+    is wired -- consistent with the strong literature cluster already registered
+    (lit_conf=0.881) but not yet linked to a REE V3 run.
+
+    FALSIFYING: (F1) with the master flag ON and a clean substrate, probe-replay
+    content continues to reach consolidation destinations at rates
+    indistinguishable from the OFF baseline (C1 fails) -- would falsify the
+    routing-differentiation framing and support the original MECH-094 source-side
+    boolean-gate framing instead. (F2) the audit counter does not track the
+    injection rate (C2 fails) -- instrumentation failure, not evidence against the
+    mechanism per se. (F3) forced full tag loss produces no measurable increase in
+    E1-prediction-divergence on probe content (C3 fails) -- would falsify the
+    specific clinical claim that routing-side tag loss produces an auditable
+    confabulatory-planning signature, even if C1/C2 pass.
+
+    GOVERNANCE FLAG (2026-08-08 digestion pass, not resolved here): two
+    IGW auto-gating sessions cite conflicting blockers for this claim. One names
+    the MECH-269b lock (matches this claim's own depends_on). The other (EXP-0269,
+    gated 2026-08-02) names MECH-270 field-coherence readout, which is NOT in
+    MECH-271's own depends_on and is explicitly V4-deferred per this claim's own
+    design doc ("V3 approximates this with a discrete routing table... no
+    ephaptic substrate... V4 adds the continuous phase-channel coordinate per
+    MECH-228"). Looks like a conflation of the V3 minimum-viable form with the V4
+    full realization. Net effect on testability is the same either way, but the
+    two documented gating rationales disagree and should be reconciled.
 
     Falsifiable (secondary): the BLA analog landing under SD-035 is
     the natural probe-destination consumer. V3-EXQ-474 (BLA encoding
@@ -38243,6 +38478,51 @@
     correlational (non-counterfactual-backed) inputs should produce
     noise-fit rather than schema revision, distinguishing it from
     naive cross-episode averaging.
+  what_would_answer:
+    non_degeneracy_precondition: >
+      The MECH-276 waking-phase counterfactual-backed attribution feedstock must be
+      demonstrably operative before any MECH-275 aggregation test is interpretable:
+      (i) the comparator's world_forward (P0) predictor must be trained to a genuine
+      predictive R2 (>=0.2 on >=2/3 seeds); and (ii) the counterfactual-margin
+      threshold (cf_margin) must sit within the trained comparator's achievable
+      cf_contrast distribution. STATUS (2026-08-08): NOT YET MET. V3-EXQ-703
+      (2026-06-23) ran this exact readiness diagnostic and FAILed both
+      preconditions -- world_forward_r2 measured -0.055 (mean; per-seed
+      -0.688/-0.057/+0.581, only 1/3 seeds converged) against a 0.20 floor, and
+      cf_margin (fixed at 0.30) sat above the achievable ~0.12-0.20 cf_contrast
+      band so 0/3 seeds straddled. Self-route was substrate_not_ready_requeue
+      (correctly adjudicated by a confirmed failure-autopsy as a P0-training
+      confound, NOT a substrate-ceiling reading -- the load-bearing
+      posterior-discrimination criterion itself PASSED non-degenerately on all 3
+      seeds, positively ruling out "feedstock genuinely absent"). The
+      autopsy-recommended re-queue (new letter, e.g. V3-EXQ-703a: reconstruction-
+      primary P0 training + raised budget + per-seed R2 gate + cf_margin
+      recalibrated to ~0.15) has NOT been queued or run as of this check, ~6 weeks
+      after being recommended, and no chip currently tracks it. Chip spawned.
+    confirming: >
+      A V3-EXQ-703-successor run that clears BOTH readiness preconditions AND
+      whose load-bearing posterior-discrimination criterion still passes
+      non-degenerately on the now-trained comparator would confirm MECH-276
+      feedstock readiness. That result unblocks (does not itself promote) the
+      separate MECH-275 sleep-aggregation promotion run and re-adds MECH-275 to
+      sleep_substrate:GAP-3b's unblocks_claims. The promotion run itself would
+      then need to show: ablating the sleep-phase aggregation step leaves
+      waking-phase attribution intact but degrades cross-episode stability for a
+      MECH-275 specialisation; and/or that feeding the aggregator correlational
+      (non-counterfactual-backed) MECH-276 records produces measurable noise-fit
+      rather than schema revision.
+    falsifying: >
+      (1) If a readiness-diagnostic successor clears both preconditions on a
+      genuinely trained P0 comparator but the load-bearing posterior-discrimination
+      criterion then COLLAPSES -- this is explicitly flagged in the confirmed
+      V3-EXQ-703 autopsy as the one reading NOT reachable from the current
+      confounded run, and would constitute a genuine MECH-275-aggregator-
+      insensitivity substrate ceiling, routing to substrate enrichment rather
+      than re-queue. (2) Ablating the sleep-phase aggregation step failing to
+      degrade cross-episode stability once the mechanism is genuinely tested.
+      (3) Feeding correlational input producing schema revision indistinguishable
+      from counterfactual-backed input, collapsing MECH-275's central
+      input-structure claim into naive averaging.
   notes: >
     Design origin: user-led discussion 2026-04-21. The naive
     generalisation of MECH-273 (sleep aggregates many attributions,
