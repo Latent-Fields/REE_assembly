@@ -33,3 +33,7 @@ mobile_help.local.html
 # SHP-1 shadow status-head projector output (status_history_plane:SHP-1).
 # Regenerable, read-only projection (scripts/project_status_head.py); never canonical.
 scratch/
+
+# igw_routine_tick.py pause sentinel -- local flag, never committed (matches
+# IGW's own critical-loop writer, which only ever .write_text()s it).
+evidence/planning/.igw_routine_pause
