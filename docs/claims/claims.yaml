@@ -4078,6 +4078,43 @@
     - docs/architecture/sleep.md
     - docs/architecture/agency_responsibility_flow.md
     - docs/invariants.md
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this claim requires a live, reachable typed
+    commit-boundary mechanism gating writes FROM offline/sleep consolidation
+    TO privileged authority stores (POL/ID/CAPS per
+    docs/architecture/sleep.md#arc-020) -- i.e. MECH-067's "machine-checkable
+    phase/store/actor permission matrix" (or equivalent) must actually be
+    wired into the V3 sleep pipeline, with an offline code path CAPABLE of
+    attempting an authority-store write and being intercepted/typed-routed
+    rather than merely never attempting one by construction. THIS
+    PRECONDITION CURRENTLY FAILS: exhaustive grep of ree-v3/ree_core/ for
+    write_locus, permission_matrix, POL/CAPS/ID authority-store analogs,
+    commit_token, and commit_boundary returns zero hits. The sleep pipeline
+    has phase/mode routing (SWS/REM gates, sleep-onset permits) but no
+    privileged-authority-store concept and no typed commit-boundary/
+    verifier-mediation machinery. MECH-067, the claim this would be
+    implemented through, is provisional on V1 substrate only (ree-v1-minimal
+    EXQ-005/EVB-0043, 2026-02-27) and has never been retested in V3. Do not
+    force a genuine_exp test while this precondition is unmet -- any attempt
+    would be vacuous (no reachable write path to authority stores exists for
+    offline consolidation to violate OR respect).
+    CONFIRMING (once the precondition is met): an experiment in which
+    offline/sleep consolidation generates a candidate authority-affecting
+    change (a commitment-token mint, an external-action dispatch, or a
+    direct write to a POL/ID/CAPS-equivalent store) is rejected or re-routed
+    through the typed commit-boundary/verifier path rather than landing
+    directly -- distinguishable from an ordinary representational/residue/
+    precision write (which should succeed unimpeded, per the sleep.md "MAY
+    update" list).
+    FALSIFYING: (a) offline/sleep consolidation can mutate a privileged
+    authority-store equivalent directly, with no type check, no verifier
+    mediation, and no distinguishable code path from an ordinary
+    representational write; or (b) a boundary exists but does not
+    discriminate by TYPE (any offline-originated write reaches the store
+    regardless of whether it is representational or authority-affecting);
+    or (c) the only enforcement is a naming/comment-level convention with
+    no machine-checked gate.
 - id: MECH-025
   title: "Action mode prioritizes short-horizon, high-precision control via context-dependent precision modulation."
   claim_type: mechanism_hypothesis
@@ -13790,6 +13827,7 @@
       as_of: 2026-03-29
       verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v3
+  epistemic_category: substrate_conditional
   depends_on:
     - MECH-089
     - MECH-116
@@ -13831,6 +13869,38 @@
     < 0.05 threshold). Theta pathway has never been testable. Conflict ratio is undefined,
     not resolved. Any promotion signal would be illusory. Status: pending_retest_after_substrate
     (gate: EXQ-247 must produce z_goal_norm >= 0.05).
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: z_goal_norm must clear >= 0.05 (the EXQ-247
+    gate) for goal-context maintenance to be meaningfully present at all --
+    otherwise there is no signal to test theta-bypass against, per the
+    2026-04-06 governance finding (goal_norm=0.031 on EXQ-228a, 0.0 on
+    EXQ-247, both below threshold). As of 2026-08-08, EXQ-247 itself has
+    never been re-run since its 2026-04-07 FAIL and the gate has never
+    cleared on that experiment. Separately, a newer substrate (scaffolded_
+    sd054_onboarding curriculum, V3-EXQ-603n PASS 2026-06-10) has since
+    demonstrated z_goal_norm well above 0.05 in unrelated experiments (e.g.
+    V3-EXQ-632, V3-EXQ-866/866a) -- so the precondition mechanism is
+    plausibly satisfiable now, but no ARC-032-tagged experiment has been run
+    on that substrate to confirm it, and EXQ-247 has not been re-issued
+    against it. A genuine theta-bypass ablation condition (E1 output -> E3
+    direct, bypassing MECH-089 ThetaBuffer -- as designed in V3-EXQ-228a:
+    THETA_ACTIVE vs THETA_ZEROED trained-from-scratch agents) must be run
+    WITH the precondition met, not just joint E1/MECH-116 goal-conditioning
+    tests (all EXQ-076/EXQ-247/EXQ-228/EXQ-228a series tested only joint
+    conditioning or failed precondition).
+    CONFIRMING: with z_goal_norm precondition met (>= 0.05), the
+    theta-bypass (THETA_ZEROED) condition shows measurably degraded goal
+    maintenance versus the theta-packaged (THETA_ACTIVE) condition: shorter
+    z_goal persistence, noisier goal-proximity scores in E3's trajectory
+    scoring, and a behavioral lift (resource_rate/harm_rate differential)
+    statistically distinguishable from zero across seeds.
+    FALSIFYING: with the precondition met, theta-bypass and theta-packaged
+    conditions show statistically indistinguishable goal maintenance
+    quality (lift ~ 0, no separation across seeds). This would mean the
+    theta channel is not actually the primary -- or even a necessary --
+    pathway for goal-context communication, undermining both ARC-032 itself
+    and its stated corollary that MECH-116 does not need a separate
+    communication channel.
 
 - id: ARC-033
   title: "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream."
@@ -15310,6 +15380,7 @@
     reverse-dependency trace mis-flag it as a "V3-era claim depending on a V5-held claim"
     (2026-07-01 PM /governance). Now routes with the V5 held cohort (siblings ARC-096/097/098).
   v3_pending: true
+  epistemic_category: substrate_conditional
   depends_on:
     - INV-001
     - INV-015
@@ -15336,6 +15407,40 @@
     potential game), and diagnostic (transfer entropy / perturbation) test types.
     Does not contradict INV-001 (no explicit ethics module) -- this is a test scope claim,
     not an architectural claim about where ethics lives. Registered 2026-03-24.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: a multi-agent ecology substrate (n>=2 REE
+    agents interacting causally, with the feedback topology G the claim's
+    own formalization requires) must exist and be exercisable, AND MECH-127
+    (counterfactual empathic activation) and MECH-129 (relational
+    harm-to-agency representation) must both be implemented and active.
+    None of this exists in V3. Per multi_agent_ecology_v5_plan.md (MAE-1),
+    the substrate itself is status:blocked with owner_exq:null across every
+    node in all six V5 social-tier plan docs -- design-only, no env code,
+    no REEAgent factoring -- gated on MECH-163 (V3-pending) plus V4
+    object-permanence and self-model-stability prerequisites. MECH-127 is
+    independently design-only (no built substrate, no EXQ/run IDs, gated
+    on MIRROR-1/2 and MECH-163). MECH-129 is held v5 pending the same
+    substrate. Until the substrate and both dependency mechanisms exist,
+    ARC-034 cannot be tested, confirmed, or falsified -- there is no n=k
+    trajectory distribution to test against n=1 probes.
+    CONFIRMING: once the substrate exists, a designed nth-order ethics test
+    (per the claim's own three-part test design -- counterfactual probes,
+    multi-agent stress tests, cascade mapping) finds cases where
+    local-pairwise (n=1) ethical assessment diverges from the nth-order
+    (n=k) emergent assessment. The canonical case is the claim's own
+    motivating example: direct-pathway analysis of a depleted agent
+    predicts reduced helping, but nth-order analysis (accounting for
+    MECH-127's counterfactual empathic activation) predicts and observes
+    increased helping instead.
+    FALSIFYING: nth-order ethics tests systematically agree with local
+    pairwise probes across a range of designed scenarios -- emergent
+    collective ethical properties are always predictable from pairwise
+    (n=1) interactions alone, with no cases of the divergence the claim's
+    motivating example illustrates. If cascade mapping and attractor-theory/
+    Lyapunov/transfer-entropy analysis never surface an emergent state that
+    pairwise assessment would have missed or mis-scored, the extra
+    test-scope machinery is unnecessary overhead rather than a genuine
+    requirement, and this claim is false.
 
 - id: ARC-035
   title: "vmPFC is the substrate that converts stored affective, normative, and residue content -- prior outcome history, social and identity constraints, learned value associations, and safety memories -- into active components of the navigable state used by E3 during trajectory evaluation."
@@ -15462,6 +15567,7 @@
       as_of: 2026-03-29
       verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-007
     - SD-011
@@ -15536,6 +15642,58 @@
     by random initialization alone). Not a falsification of ARC-036 multi-dimensional valence
     map hypothesis; probe infrastructure must be fixed before claim can be tested. ARC-036
     v3_pending hold stands.
+
+    CORRECTION (flagged 2026-08-08, verify before treating as settled): the "RBF centers need
+    training signal" diagnosis above appears to overclaim. ree-v3/experiments/
+    v3_exq_176_arc036_valence_dimension_probe.py defines its OWN inline RBFLayer with fixed
+    random centers that are never updated (no add_residue-style placement, no gradient reaches
+    centers) -- that disconnected throwaway reimplementation is the likely cause of the flat
+    variance, not the production substrate. ree_core/residue/field.py's real RBFLayer has placed
+    centers at true event locations via add_residue() since the initial V3 substrate build
+    (predates this run) and has since matured further (SD-024 add_residue_cluster, MECH-232 now
+    stable, reconfirmed via V3-EXQ-893/900 on 2026-08-08). So the actual gap is likely "ARC-036's
+    own probe was never run against the real substrate," not "the production RBF substrate is
+    broken." Not yet reconciled with the original finding above -- flagged for governance/
+    hygiene, not resolved here.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: ARC-036's own dissociation probe (EXQ-176)
+    has never actually exercised the production substrate -- its RBFLayer
+    was a standalone, never-trained reimplementation (fixed random centers,
+    no add_residue-style placement), distinct from ree_core/residue/
+    field.py's real RBFLayer, which has placed centers at true event
+    locations since the initial V3 substrate build and has since gained
+    DA-modulated multi-center allocation (SD-024/MECH-232, now stable and
+    reconfirmed 2026-08-08 via V3-EXQ-893/900). A corrected probe, run
+    against the real ResidueField/get_valence_priority path (the instrument
+    SD-014's V3-EXQ-887 series already validates), is the non-degeneracy
+    floor -- until then, EXQ-176-style results are uninformative about
+    ARC-036 regardless of outcome. NOTE: SD-014's own instrument, which
+    tests wanting/liking dissociation on the real substrate, PASSED as of
+    V3-EXQ-887b (2026-08-08) -- so a real, favorable, non-degenerate
+    touchpoint on two of the four dimensions now exists, just not filed
+    under ARC-036's own claim_ids.
+    CONFIRMING: once ARC-036's own probe is rerun on real substrate (or the
+    SD-014 instrument is extended to cover all four dimensions in one map),
+    the hippocampal terrain shows measurably SEPARABLE responses across
+    wanting, liking, harm-discriminative, and surprise -- e.g. wanting
+    (drive-scaled benefit_exposure) and liking (raw benefit at outcome
+    receipt) are non-collinear and independently recoverable per node (as
+    SD-014's V3-EXQ-887b already shows for that pair), harm-discriminative
+    tracks SD-011's z_harm_s/z_harm_a as the causal-attributive special
+    case ARC-007 already specifies, and surprise-driven replay
+    prioritisation (MECH-030/MECH-124) responds to RPE independent of the
+    other three.
+    FALSIFYING: once rerun on real substrate, the four proposed dimensions
+    collapse onto fewer independent signals -- e.g. wanting and liking
+    remain collinear (as V3-EXQ-887's original FAIL found, before the
+    decouple fix), or surprise-driven replay is indistinguishable from
+    harm-driven replay, or the harm/benefit terrain fields fail to
+    spatially differentiate even with real event-driven center placement
+    (which would indicate a genuine, not merely probe-artifactual,
+    substrate limit). Any of these would mean the terrain map does not
+    encode separable valence dimensions as claimed, undermining the
+    generalisation from ARC-007's harm-causal special case to the broader
+    four-dimension architecture.
 
 - id: Q-023
   title: "Can a multiagent REE system with other-cost-aversion primitives be formally shown to converge to ethical attractors via potential game theory, Lyapunov stability, or stochastic stability methods?"
@@ -16976,6 +17134,7 @@
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: MECH-261
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-038
     - ARC-018
@@ -17016,6 +17175,47 @@
     the claim. Hold at candidate (V4 scope maintained). Evidence_direction=diagnostic
     (not to be weighted against ARC-039 as standard weakening evidence).
   evidence: []
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the full hippocampal-entorhinal grid
+    circuit must exist before this claim is testable -- a separate
+    entorhinal grid module, an offline (sleep-equivalent) processing phase
+    distinct from waking micro-quiescence, and a read-back mechanism that
+    seeds waking hippocampal sequences from the grid representation. None
+    of this exists in V3 regardless of the machine-readable
+    implementation_phase tag above (see PHASE-TAG NOTE below); the claim's
+    own notes describe it as V4-scope. The one V3 proxy attempted so far
+    (ResidueField.integrate() every 20 episodes) was shown NOT to be a
+    valid substitute -- EXQ-214 (2026-04-03) found it actively DEGRADES
+    residue-hazard correlation (mean_delta_accuracy=-0.283) rather than
+    consolidating it, so a negative result on that proxy cannot be read as
+    evidence against this claim, and no other V3-buildable proxy is known.
+    CONFIRMING: once the V4 hippocampal-entorhinal circuit exists,
+    viability-map durability over long training runs (e.g. residue-hazard
+    correlation measured across extended episodes) is measurably better
+    with the offline entorhinal-loop consolidation active than with it
+    disabled, AND the grid-coded representation demonstrably generalises
+    across environment layouts (coordinate-invariance) in a way the
+    episodic hippocampal representation alone does not.
+    FALSIFYING: once the V4 circuit exists, offline consolidation via the
+    entorhinal loop shows no durability benefit over an episodic-only
+    baseline, or the grid representation fails to generalise across
+    environments -- meaning the specific mechanism (a hippocampal-
+    entorhinal loop engaging only during offline/immobility periods) is
+    not what durable map storage actually needs, even if some other
+    consolidation approach eventually is.
+    PHASE-TAG NOTE (flagged 2026-08-08, not resolved here): implementation_
+    phase: v3 above is not a data-entry error -- it is a mechanical
+    reclassification applied by scripts/check_claim_phase_consistency.py,
+    triggered by MECH-261's own depends_on: ARC-039 edge (commented "offline
+    consolidation target"). That edge looks mistyped as a build
+    prerequisite: MECH-261 reached status:stable in V3 (V3-EXQ-446/455/453)
+    while ARC-039's entorhinal circuit never existed, i.e. MECH-261 did not
+    actually need ARC-039 built first -- it reads more like a forward
+    reference to a future write target than a true dependency. ARC-039 also
+    never had phase_locked: true set, which would have routed this to the
+    checker's CONFLICT path (human adjudication) instead of a silent
+    RECLASSIFY. Flagged for whoever owns that checker/validator logic;
+    not fixed in this pass.
 
 # ============================================================
 # New claims registered 2026-03-29 from Q-cluster lit pulls
