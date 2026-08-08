@@ -134,3 +134,35 @@ Open design branch points that genuinely need judgment (this is `complex (probe-
   then re-run `build_experiment_indexes.py` to propagate. (Index status persistence keys off
   `backlog_id` in `experiment_proposals.v1.json`.)
 - A `kind: decision` chip has been recorded to surface the redesign-vehicle ratification.
+
+## 7. RATIFIED 2026-08-08 (real AskUserQuestion, chip-20260808-mech141-retest-vehicle-decision)
+
+**Status: RATIFIED -- this section is authoritative over the "Open design branch points" in
+section 4 and the "Governance action" bullet in section 5.**
+
+- **Vehicle: refined synthetic toy model, not real E3-substrate integration.** User's own
+  instruction: use the real E3 integration if MECH-062 (E3 eligibility) + MECH-138 (cancel-window)
+  are substrate-ready, otherwise build the toy model and record the real integration as a gated
+  follow-on. Checked `ree_core/` (metaworker-dispatch interactive cycle, 2026-08-08T17:2xZ):
+  neither `MECH-062` nor `MECH-138` is tagged anywhere in `ree_core/` -- neither is built. So the
+  toy-model vehicle applies now; **the real E3-substrate integration is a gated follow-on**, not
+  abandoned -- re-evaluate once MECH-062 and/or MECH-138 land in `ree_core/`.
+- **Sequencing: gate on MECH-457's own validation landing first** (the recommended option in the
+  AskUserQuestion; user accepted it). No build -- toy-model or otherwise -- starts until MECH-457's
+  4-arm ON/OFF validation (frozen-vs-cotrain x plain-vs-SF) lands and is reviewed.
+- **Net effect on section 5's disposition:** `EXP-0489 -> blocked_substrate` stands, `blocked_by`
+  becomes `["MECH-457"]` (unchanged -- MECH-457 was always the binding gate; MECH-062/MECH-138
+  readiness only decided *which* vehicle to build once unblocked, not an additional blocker).
+  `blocked_note` should be amended to state the vehicle decision explicitly so a future session
+  doesn't have to re-derive it from this doc: append *"Retest vehicle ratified 2026-08-08:
+  refined synthetic toy model (MECH-062/MECH-138 not substrate-built at ratification time); real
+  E3 integration is a gated follow-on pending those two landing. Gate: MECH-457 ON/OFF validation
+  must land + be reviewed before any build starts."*
+- **Follow-on to register (not yet actionable -- MECH-457 hasn't landed):** once MECH-457 validates,
+  chip a fresh-numbered `/queue-experiment` build for the toy-model vehicle. Separately, once
+  MECH-062 and/or MECH-138 land in `ree_core/`, this doc's vehicle decision should be revisited --
+  the real E3-substrate integration becomes buildable and may be the better vehicle at that point.
+- Applied by metaworker-dispatch (interactive, Mac) after the `failure-autopsy-9e8737-r2-pause` /
+  `-r3-pause` claims that deferred sections 5/6's flip cleared. See
+  `chip-20260808-mech141-retest-vehicle-decision`'s resolution note for the raw AskUserQuestion
+  record.
