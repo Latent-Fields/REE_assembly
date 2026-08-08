@@ -1,0 +1,95 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_899_arc030_mech307_g0_readiness",
+  "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-08T21:48:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readiness_fail_curriculum_gate_blocks_retest",
+    "preconditions": [
+      {
+        "name": "curriculum_reached_p2",
+        "description": "FULL_M307_ON completed the curriculum through the P2 measurement window (total_steps > 0) on >= 2/3 seeds",
+        "kind": "readiness",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "control": "FULL_M307_ON trained cells; total_steps>0 means P2 measurement ran",
+        "met": true
+      },
+      {
+        "name": "p2_window_admits_contact",
+        "description": "RANDOM resource_visit_rate > 0.005 on >= 2/3 seeds -- the SAME statistic G0 routes on, on the positive control (a random policy on the P2 target env). Guards the 866a P2_HFA_GUARD=-1.0 dead-window degeneracy.",
+        "kind": "readiness",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "control": "RANDOM policy on the P2 env; a live window must let random forage above the floor",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "G0_ON_resource_visit_rate_clears_random": true
+    },
+    "criteria": [
+      {
+        "name": "G0_ON_resource_visit_rate_clears_random",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "text": "READINESS FAIL (informative, NOT a claim verdict): with MECH-307 genuinely ON, the FULL arm still does not clear the RANDOM baseline by >= 0.05 on >= 2/3 seeds (G0_ON), on a live/discriminating P2 window. MECH-307 reachability alone does not restore the G0 gate -- consistent with the still-open curriculum gap (z_goal starved before P2). Route to the substrate_queue stub `scaffolded-curriculum-hazard-rebalance` FIRST, then re-run this readiness gate; do NOT force through to the discriminative retest. mech307_perturbs_baseline=FALSE: the OFF arm also fails G0, so this is the pre-existing curriculum gap (866a reproduced), not a MECH-307 regression."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f2f11bb032a949172eb9647c7a05f1dc4d2c4e5bb604c3f7fff3bc5b4a3ee791",
+  "substrate_commit": {
+    "commit": "da85559c2b6455bcea46fb8a303620d0f17ba615",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 201003,
+    "ticks_active": 200997,
+    "writer_calls": 32371,
+    "active_frac": 0.9999701496992582,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
