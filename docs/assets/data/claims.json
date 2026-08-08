@@ -4728,7 +4728,7 @@
   "MECH-232": {
     "assembly_state": "mature",
     "epistemic_stance": "shown",
-    "status": "provisional",
+    "status": "stable",
     "subject": "hippocampus.da_representational_expansion",
     "title": "Dopaminergic modulation of hippocampal place coding at reward-associated locations produces representational expansion (higher information density, finer spatial resolution, more stable place fields), and this expansion -- not an explicit positive valence gradient -- is the mechanism by which approach valence enters hippocampal terrain.",
     "type": "mechanism_hypothesis"
@@ -8680,7 +8680,7 @@
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "harm_stream.affective_readout_is_calibrated_scalar_not_norm",
-    "title": "z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (e3_selector.py:1038 lambda_ethical, :2766 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.",
+    "title": "z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (ree_core/predictors/e3_selector.py:1182 lambda_ethical, :3128 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.",
     "type": "design_decision"
   },
   "SD-087": {
@@ -8688,7 +8688,7 @@
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "harm_stream.sd020_stable_reading_is_flag_on_scoped",
-    "title": "SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (config.py:2306), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.",
+    "title": "SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (ree_core/utils/config.py:2656), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.",
     "type": "design_decision"
   },
   "SD-088": {

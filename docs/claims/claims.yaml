@@ -8315,9 +8315,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3
-      as_of: 2026-04-21
-      verdict: supports/PASS
+      from: v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3
+      as_of: 2026-08-08
+      verdict: supports/PASS -- partial confirmation, legs 1-2 of 3 only (see evidence_quality_note)
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
@@ -8367,6 +8367,21 @@
     until substrate lands. Urgency interrupt at ree-v3/ree_core/agent.py:869-886
     is a SEPARATE path and stays inline this pass; migration into fast_prime
     is a deliberate second pass once MECH-074c is validated.
+
+    [/governance 2026-08-08, V3-EXQ-895, first experimental touchpoint]: PASS/supports, but
+    self-declared PARTIAL by the driver's own evidence_scope_note -- gates only legs 1 (onset
+    latency) and 2 (decay under cortical non-confirmation, plus overridability) of the claim's
+    3-leg falsifier; leg 3 (selectivity vs arousing-but-neutral input) is explicitly out of scope
+    as not designable as a CeA-module manipulation, and the fast:slow ratio functional_restatement
+    is separately out of scope pending SD-032c AIC comparator wiring. Design explicitly guards
+    against the known V3-EXQ-785 whole-run-AND defect (a non-gating probe accidentally vacating
+    gated legs) by keeping its selectivity probe non-gating and separately self-routed. Non-outcome
+    skim clean, no undisclosed defect. Note: MECH-074d (sibling split-child of MECH-074) got its
+    own first genuine touchpoint this same cycle in the opposite direction (weakens, V3-EXQ-894) --
+    read as two independent split-children legitimately diverging, not a family-level
+    inconsistency; the 2026-04-21 split was on separate, non-overlapping mechanisms
+    (fast subcortical priming vs attribution-gated remap) and nothing here calls that split
+    into question.
 - id: MECH-074d
   title: "BLA analogue emits a remap_signal on harm-PE spike when predictor-attribution flags specific latent codes — partial (~one-third) remap, NOT wholesale replacement."
   claim_type: mechanism_hypothesis
@@ -8378,9 +8393,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_474_sd035_bla_encoding_remap_20260421T195558Z_v3
-      as_of: 2026-04-21
-      verdict: supports/PASS
+      from: "v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3#failure_autopsy_V3-EXQ-894_2026-08-08"
+      as_of: 2026-08-08
+      verdict: FAIL/weakens -- attribution-gate half fails 2/3 seeds; substrate built and functioning, not an implementation-absence FAIL
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
@@ -8430,6 +8445,23 @@
     mandating attribution gating). v3_pending until substrate lands and EXQ-B
     completes. Attribution head is currently non-trainable threshold-based;
     learnable head is a deliberate second pass.
+
+    [/governance 2026-08-08, V3-EXQ-894, confirmed failure_autopsy_V3-EXQ-894_2026-08-08, first
+    genuine experimental evidence for this claim]: readiness gate green (18/18 preconditions),
+    substrate wiring pre-verified by probe, non-degenerate, matched-baseline design. Substrate is
+    built and functioning -- candidates compute, remap gate fires under the confirmed-necessary
+    use_e2_harm_a=True flag, writes land; NOT an implementation-absence FAIL. The attribution-gate
+    half of the claim (C1 attribution_selectivity, C2 context_differentiated_addressing -- the Moita
+    2004 dissociation) fails on 2/3 seeds under this green, well-instrumented gate -- a genuine
+    weakens as measured. The partiality half (not-wholesale-replacement) holds on 2/3 seeds.
+    Fire-fraction and attribution-selectivity are inversely correlated across the three seeds -- a
+    concrete testable hypothesis that the SD-035 default PE-sigma threshold is too permissive for
+    this environment's PE distribution, rather than the attribution mechanism being architecturally
+    absent (the driver's own pre-registered pilot probe anticipated the C4 sparsity-ceiling miss
+    before the full run). Automated queue recommends demote_to_candidate (conflict_ratio 0.667);
+    HELD at provisional pending V3-EXQ-894a (recalibrated PE-sigma threshold, routed
+    /queue-experiment) rather than applied immediately -- one more data point on the recalibrated
+    threshold may resolve the 2/3-seed split before a demotion decision.
 - id: MECH-075
   title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
@@ -15594,9 +15626,9 @@
     as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
-      as_of: 2026-08-05
-      verdict: FAIL/weakens -- eliminated (H-wanting-liking-separable-drive-gated), non-degenerate, root-caused
+      from: "v3_exq_887a_sd014_node_valence_repfunc_sensitized_20260807T214013Z_v3#failure_autopsy_V3-EXQ-887a_2026-08-08"
+      as_of: 2026-08-08
+      verdict: FAIL/weakens -- genuine partial improvement over 887, not a repeat collapse; seed 2026 clears both load-bearing criteria
   implementation_phase: v3
   pending_retest_after_substrate: true
   implementation_note: >
@@ -15644,6 +15676,17 @@
     EXP-0098/EVB-0132 behavioral design in the notes below, which V3-EXQ-887 has superseded as the
     operative falsifier. Remove this note once the substrate fix lands and a fresh
     what_would_answer can be drafted against the corrected implementation.
+
+    [/governance 2026-08-08, V3-EXQ-887a, confirmed failure_autopsy_V3-EXQ-887a_2026-08-08]: retest
+    of 887's autopsy-recommended incentive-sensitization decouple fix (ree-v3 d8a94bd), byte-identical
+    instrument. Readiness gate green, instrument-verified, non-degenerate. weakens, but a genuine
+    partial improvement, not a repeat of 887's uniform collapse: seed 2026 clears both load-bearing
+    criteria (tau<=0.85, |Spearman|<=0.90); other seeds narrow the miss (0.896-0.925) from 887's wider
+    uniform miss (0.93-0.97). SD-014's second consecutive genuine (non-artifactual) experimental
+    touchpoint. Fire-fraction/exposure analysis suggests the clearing seed is drive-level-gated, not
+    exposure-count-gated -- arguing for a stronger sensitization gain magnitude over more episodes as
+    the next step. Routed /queue-experiment V3-EXQ-887b (stronger sensitization gain). Stays candidate;
+    pending_retest_after_substrate stays true pending 887b.
   depends_on:
     - ARC-036
     - SD-011
@@ -26976,7 +27019,7 @@
   claim_type: design_decision
   subject: harm_stream.affective_surprise_pe
   default_off_scope_note: 'SD-020''s stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on
-    configuration. harm_surprise_pe_enabled defaults to False (config.py:2306), so default-trained
+    configuration. harm_surprise_pe_enabled defaults to False (ree_core/utils/config.py:2656), so default-trained
     agents train z_harm_a against the EMA accumulated-harm target this claim argues against. See
     SD-087 (2026-06-10 z_harm_a saturation intake, candidate 2) for the two-arm OFF-vs-ON falsifier;
     consider a standing default_off audit across other claims.'
@@ -29875,15 +29918,15 @@
   claim_type: mechanism_hypothesis
   subject: hippocampus.da_representational_expansion
   polarity: asserts
-  status: provisional
+  status: stable
   live_status:
-    reading: provisional
-    as_of: 2026-07-16
+    reading: stable
+    as_of: 2026-08-08
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-766a_2026-07-16
-      as_of: 2026-07-16
-      verdict: supports/verified
+      from: v3_exq_893_mech232_da_representational_expansion_confirmer_20260808T002050Z_v3
+      as_of: 2026-08-08
+      verdict: supports/PASS -- second independent confirmer, same crux discriminator
   registered: "2026-04-14"
   depends_on:
     - ARC-007
@@ -29903,6 +29946,14 @@
     gate; the Mac 766 run reproduces but is not gate-authoritative. Diagnostic (experiment_purpose
     excluded from confidence scoring) -- the promotion is the gate-clearing action, not a
     confidence increment.
+
+    [/governance 2026-08-08, V3-EXQ-893, promoted provisional -> stable]: second independent
+    confirmer, differently-framed driver, same crux discriminator (density-follower approaches
+    reward at 0.958 while value-follower falls to chance with weights zeroed). 6/7 criteria pass;
+    L1c_stability_improved fails but is explicitly marked load_bearing:false in the driver and the
+    overall gate (l1a and l2a and l2b and l2c) correctly excludes it -- not a hidden-weighting
+    defect, confirmed by source read (non-outcome skim clean). Two independent, differently-framed
+    PASSes on the same crux discriminator meets the bar for promotion.
   notes: >
     Derived from literature review of VTA-hippocampal dopaminergic pathway (2026-04-14).
     Key evidence: Retailleau & Morris 2018 showed local D1 blockade prevents place cell
@@ -34125,7 +34176,15 @@
     MECH-265 relative-importance is structurally V4-blocked (single-resource env, no
     K>=2 goals). Motivated by failure_autopsy_MECH-445-cluster-715a-717_2026-07-07 (the
     arming residual needs a DISTINCT de-commit-release lever). Record: ree-v3/CLAUDE.md
-    "SD-033e (V3-narrow)"; validation isolated-GAP-A only (all-ON gated on V3-EXQ-724).
+    "SD-033e (V3-narrow)"; validation isolated-GAP-A only. [CORRECTED 2026-08-08 governance,
+    GFLAG-0011]: previously read "all-ON gated on V3-EXQ-724" as if pending execution -- V3-EXQ-724
+    already ran 2026-07-09 (failure_autopsy_V3-EXQ-724_2026-07-09, FAIL, evidence_direction
+    non_contributory, claim_ids=[]) as a competence-localization diagnostic returning
+    competence_deficit_diffuse, not a frontopolar all-ON validation. The all-ON de-commit contrast
+    is currently degenerate for a different reason: it is blocked on the MECH-457 competence floor,
+    still open per V3-EXQ-687a/819a/748a (non-resolving as of 2026-07-30/31). A dedicated de-commit
+    validation experiment is still owed once that floor clears -- 724 does not need to be
+    re-run or awaited.
   v3_v4_boundary:
     # commitment_closure:GAP-9, 2026-06-09 -- decision: formally DEFER the substrate.
     # implementation_phase stays v4 (NOT pulled to v3): SD-033e's only reverse-
@@ -38300,9 +38359,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_599a_mech286_sleep_onset_gate_validation_20260521T131727Z_v3
-      as_of: 2026-05-21
-      verdict: supports/PASS
+      from: v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3
+      as_of: 2026-08-08
+      verdict: supports/PASS -- 5/5 criteria clean AND, first genuine substrate touchpoint
   implementation_phase: v3
   implementation_note: "IMPLEMENTED 2026-05-21: ree_core/sleep/sleep_onset_gate.py + SleepLoopManager._run_cycle gate (override < mech286_theta_sleep_permit, max MECH-284 staleness > mech286_theta_sleep_recruit, z_harm_a tonic < mech286_threat_tonic_threshold). REEConfig.use_mech286_sleep_onset_gate default False. Validation V3-EXQ-599 queued. Evidence still pending."
   claim_level: mechanistic
@@ -38388,6 +38447,12 @@
     is the diagnostic dissociation from MECH-281's cataplexy phenotype:
     same upstream lesion (orexin loss), different downstream targets
     (sleep-state gate vs motor-coupling gate).
+
+    [/governance 2026-08-08, V3-EXQ-891, first genuine substrate touchpoint]: PASS/supports, all 5
+    criteria clean AND-combined in the driver (no OR-trap), non-outcome skim clean. Architecture note:
+    promotion is gated regardless of this result -- MECH-286 depends on SD-037 and MECH-281, both
+    still v3_pending=true (unbuilt), so this is real supporting evidence but cannot itself move the
+    claim past candidate. Stays candidate.
   pharmacological_predictions:
     - PHARM-001  # DORA-class direct substrate intervention for saturated MECH-286
     - PHARM-002  # modafinil / sodium oxybate target this axis under absent MECH-286 (narcolepsy)
@@ -50714,9 +50779,9 @@
     as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: "v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3#failure_autopsy_V3-EXQ-873a_2026-08-07"
-      as_of: 2026-08-07
-      verdict: "supports -- first genuine experimental evidence for this claim"
+      from: "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3#failure_autopsy_V3-EXQ-892_2026-08-08"
+      as_of: 2026-08-08
+      verdict: "supports (diagnostic) -- 3rd consecutive non-negative touchpoint; closes 873a's open corroboration-survival question"
   implementation_phase: v3
   v3_pending: true
   registered_utc: "2026-05-11"
@@ -50909,6 +50974,22 @@
     corroboration" as a distinct open question. Routed to a new low-priority /queue-experiment
     entry for that question (not a lettered 873b -- 873a's own question is answered). No status
     change (v3_pending stays true; single-run supports does not alone clear the gate).
+
+    [/governance 2026-08-08, V3-EXQ-892, confirmed failure_autopsy_V3-EXQ-892_2026-08-08, diagnostic
+    PASS, routed through /failure-autopsy per this cycle's broadened diagnostic-gate rule]: answers
+    the exact open question 873a's autopsy deferred. 57.1% of replay-origin-tagged chunks survived
+    to real corroboration under the realistic substrate-default deadline (N=75); 85.7% corroborated
+    at least once given unlimited exposure window (N=200). 873a's earlier 0%-survival finding is now
+    explained as an artifact of an artificially short deadline, confirmed by a clean negative control
+    in this same run -- corroboration timing spans nearly the full post-checkpoint window (offsets 1
+    to 88 of 100 episodes), so a short deadline specifically excludes late-corroborating chunks that
+    are part of the true recurrence distribution. Autopsy routing: none (descriptive closure, not a
+    build/gate trigger); companion_fix backfilled 873a's own missed Step 9b hypothesis-space update
+    (H-mech322-andgate-fires-and-fails-closed -> confirmed, already applied to
+    hypothesis_space_registry.v1.json by the autopsy session). This is MECH-322's 3rd consecutive
+    non-negative experimental touchpoint (873 mixed -> 873a supports -> 892 supports). Per 873a's own
+    note, a single supports does not alone clear a v3_pending gate, and 3 non-negative touchpoints is
+    not read as equivalent to a build-clearing result -- v3_pending stays true, no status change.
   notes: >
     The carve-out is the smallest possible relaxation of
     MECH-094 strict gating that closes the R6 realism gap. The
@@ -72678,7 +72759,7 @@
     writes); phased training N/A (no encoder head, no new parameters).
 
 - id: SD-086
-  title: z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (e3_selector.py:1038 lambda_ethical, :2766 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.
+  title: z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (ree_core/predictors/e3_selector.py:1182 lambda_ethical, :3128 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.
   claim_type: design_decision
   subject: harm_stream.affective_readout_is_calibrated_scalar_not_norm
   polarity: asserts
@@ -72711,7 +72792,7 @@
   scope_note: 'Curriculum-scope condition (intake candidate 5): every source number is from a ~50-episode raw warmup with scaffold_train_harm_pathway off and no scaffolded_sd054_onboarding. Conclusions are scoped to raw-warmup agents unless re-run on the curriculum-trained configuration. See project_stageh_harm_pathway_training / 603i/603k harm-pathway co-training.'
   notes: Reaped from the 2026-06-10 z_harm_a saturation-decoupling intake (candidate 1), written 2026-07-21 by session confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Internal experimental observation from the V3-EXQ-664 affective fishtank showcase; the embodied visualisation surfaced the saturation before the scalar metrics (feedback_whimsy_visualization). No claim in the registry asserts a READOUT FORM for z_harm_a; SD-011/SD-019/SD-019b/MECH-219 constrain what the latent must encode, none constrains how it is read. Readout swap is a substrate change and should not be built until SD-087 and Q-086 report (complex, probe-gated).
 - id: SD-087
-  title: SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (config.py:2306), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.
+  title: SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (ree_core/utils/config.py:2656), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.
   claim_type: design_decision
   subject: harm_stream.sd020_stable_reading_is_flag_on_scoped
   polarity: asserts
@@ -72738,7 +72819,7 @@
   - docs/thoughts/2026-06-10_z_harm_a_saturation_decoupling.md
   - evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md
   falsifier: 'Re-run the 664 affective fingerprint as a two-arm experiment, harm_surprise_pe_enabled OFF vs ON, everything else matched. PASS (claim upheld) = the saturation-and-inversion signature is present in OFF and materially reduced in ON: OFF shows within-episode CoV below a pre-registered floor AND inverted mode-ordering (shelter > avoid > freeze) while ON shows neither. FAIL = the signature survives the flag flip, relocating the defect to the encoder or environment (hands the question to Q-086).'
-  non_degeneracy_precondition: The OFF arm must reproduce the original 664 signature before the ON arm means anything, and the two arms must differ on the training loss they actually optimise (assert the PE branch at agent.py:8636-8642 is entered). An ON arm that silently falls through to the EMA target tests nothing and self-routes substrate_not_ready.
+  non_degeneracy_precondition: The OFF arm must reproduce the original 664 signature before the ON arm means anything, and the two arms must differ on the training loss they actually optimise (assert the PE branch at ree_core/agent.py:9787, inside compute_harm_accum_loss defined at :9743, is entered). An ON arm that silently falls through to the EMA target tests nothing and self-routes substrate_not_ready.
   scope_note: Same raw-warmup curriculum-scope condition as SD-086 (intake candidate 5).
   notes: 'Reaped from the 2026-06-10 intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. This is a claim-status-vs-default drift finding of the same shape as reference_reeconfig_from_dims_silent_kwargs (a knob that exists but is not reached). SD-020 carries a default_off_scope_note pointing here. Highest-information first move: the one-flag two-arm run separating ''SD-020 was right and is simply not on'' from ''the pathology survives the fix''. Consider a standing default_off annotation audit across other claims (intake next-step 4).'
   evidence_quality_note: >
@@ -72754,6 +72835,18 @@
     evidence_direction change (weakens, scoped to the causal-flag-flip hypothesis, stands). Routed
     /queue-experiment for a train-from-scratch-with-flag-ON test of the 664 affective fingerprint --
     the decisive remaining test to close this disjunction either way.
+
+    [2026-08-08 governance, GFLAG-0006 correction]: the routed train-from-scratch-with-flag-ON test
+    above was NOT actually outstanding -- V3-EXQ-856's own ARM_ON already set harm_surprise_pe_enabled
+    at agent construction, before warmup (make_agent_and_env then warmup_train), so it already tested
+    flag-from-the-start; the 664 signature survived anyway (evidence/reanalysis/
+    reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z.json, confirmed 2026-08-03).
+    Option (a) is CLOSED, not open. The joint SD-087/Q-086 disjunction (training-target choice,
+    environmental harshness, flag-from-start) has now had all three axes tested with none explaining
+    the signature away; the residual reading is an as-yet-unidentified encoder/representation defect
+    (calibration_pathology_representational). No further /queue-experiment is owed on this specific
+    disjunction. Status stays candidate; SD-020's stable-vs-flag-on-scoping question (this claim's own
+    literal assertion) is unaffected and separately flagged for review (GFLAG-0005).
 - id: Q-086
   title: 'Environment-confound control: is the z_harm_a saturation ecological or representational? Re-measure the affective fingerprint on a gentler environment (lower num_hazards, lower hazard_food_attraction) to separate faithful chronic-suffering integration from a calibration/representation pathology.'
   claim_type: open_question
@@ -72799,6 +72892,14 @@
     the one hypothesis neither has tested is SD-087's option (a) -- setting the flag from the START
     of training. Routed jointly with SD-087 to a train-from-scratch-with-flag-ON /queue-experiment.
     No status/epistemic_category change.
+
+    [2026-08-08 governance, GFLAG-0006 correction, mirrors the same-day SD-087 note]: the routed
+    train-from-scratch-with-flag-ON test was already answered by V3-EXQ-856's own ARM_ON (flag set
+    at construction, before warmup) -- see evidence/reanalysis/
+    reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z.json. All three axes (training-
+    target, environmental harshness, flag-from-start) are now tested with none explaining the 664
+    signature away; residual reading is calibration_pathology_representational (encoder/representation
+    defect). No further /queue-experiment is owed on this disjunction. Status stays candidate.
 - id: Q-087
   title: 'What event counts as V3 closure for the purpose of the version-transition artefact gate (GOV-V3FREEZE-1) and the construction-opacity repayment boundary (GOV-OPACITY-1)? Candidate options: strict green board, governance acceptance, or an additional reproducibility check.'
   claim_type: open_question
