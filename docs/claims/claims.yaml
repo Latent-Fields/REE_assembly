@@ -58245,6 +58245,35 @@
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#arc-085
   q060_taxonomy_decision: "2026-06-14 (ABM-1 / Q-060, user-adjudicated): autobiographical-event memory is a TAG / INDEXING CONVENTION over the existing episodic store (ARC-007), NOT a distinct first-class memory type with its own store. ARC-085 is therefore scoped as an identity-indexed, self/affect/provenance-tagged BINDING LAYER over the existing ARC-007 episodic event store -- the 'one self-tagged event-token store' IS the existing episodic store, made autobiographical by the fields each event token carries {self_state, perspective, affect, residue, source_status, committed_vs_imagined} plus an identity index that BOTH backward replay (ARC-007) AND forward re-composition (ARC-018) address. This is the parsimonious instantiation of ARC-085's own 'one substrate, not two parallel machineries' thesis: do NOT mint a third store. The decision keeps every downstream claim (MECH-365/366/361/368/429/430/431) as FIELD/GATE specialisations of the episodic token -- which is how they are already written -- rather than parallel substrates. The semantic (facts/relations) and task/procedural (policies/schemas) types stay distinct; only autobiographical-vs-episodic resolves to tag-not-type. NOT trivial: the index is still load-bearing V4 work (first-class provenance/perspective/affect/self_state fields + identity index + the one-way committed-vs-imagined gate). The empirical check that could overturn this design call toward distinct-type survives as Q-060.what_would_answer (the ARC-085 joint-degradation falsifier)."
   notes: "Empirical anchor (verified): La Corte, Piolino & Cohen, 'Autobiographical hypermnesia as a particular form of mental time travel', Neurocase 31(4):188-192 (2025), DOI 10.1080/13554794.2025.2537950 (Paris Brain Institute) -- single case TL (~17yo), TEMPau + TEEAM; exceptionally detailed emotion/spatio-temporal autobiographical recall AND future projection richer than controls, consistent with shared retrospective/prospective machinery (the constructive-episodic-simulation / Schacter-Addis line); deliberate 'memory-palace' organisation (identity-indexed event field). Computational analogue for a later targeted read (not load-bearing): Lampinen et al., 'Towards mental time travel: a hierarchical memory for RL agents', arXiv:2105.14039. epistemic_category set substrate_conditional EXPLICITLY (overriding the architectural_commitment -> substrate_coherence inference): this is NOT yet the adopted substrate -- it is a candidate commitment gated on a V4 self-tagged event-token store that does not exist in V3. V3 REALITY: REE owns the two halves SEPARATELY -- ARC-007 (hippocampal store/replay of paths through residue-field terrain) and ARC-018 (explicit rollouts + post-commitment viability map); what is NEW is the claim they are ONE substrate (falsifier: corrupting the shared store degrades both past-recall and future-simulation fidelity TOGETHER, vs independent degradation under a two-store model). TAXONOMY DECISION 2026-06-14 (see q060_taxonomy_decision above): ARC-085 adopted as an INDEXING/BINDING CONVENTION over the existing ARC-007 episodic store, NOT a new parallel store. DO NOT treat as precognition / perfect memory (single case; vivid != accurate; simulation != prediction -- per the intake guardrail). V4/V5; off the V3 critical path. DO NOT build a parallel autobiographical event substrate in V3 until routed by an explicit version decision."
+  what_would_answer: >
+    Non-degeneracy precondition: this claim is untestable until (i) a genuine
+    corruption/ablation manipulation on the shared identity-tagged event-token store is
+    available (not a proxy or a per-module ablation), and (ii) both retrospective replay
+    fidelity (ARC-007) and prospective simulation fidelity (ARC-018) are independently
+    measurable on that same substrate under matched conditions.
+
+    Confirming: corrupting/ablating the shared, identity-tagged event-token store degrades
+    BOTH past-recall (replay) fidelity AND future-simulation fidelity together, in
+    proportion to the corruption -- consistent with one substrate serving both directions
+    of address, per the taxonomy decision that ARC-085 is a binding/indexing layer over the
+    existing ARC-007 store rather than a parallel machinery.
+
+    Falsifying: corruption degrades one but not the other -- e.g. replay fidelity drops
+    while simulation fidelity is unaffected, or vice versa -- indicating retrospective and
+    prospective access draw on separable stores after all, which would reopen Q-060 toward
+    a distinct first-class autobiographical/prospective type rather than a tag on the
+    episodic token.
+
+    This is the same joint-degradation falsifier already specified in full, with its V4
+    gating and design rationale, at Q-060's own what_would_answer -- refer to that text
+    rather than re-deriving; this entry exists so ARC-085 itself carries a self-contained
+    falsifier rather than only being reachable via its dependent question.
+
+    [2026-08-08 thought-digestion]: binding-layer field coverage checked against ree_core --
+    only self_state/affect/residue have loose existing analogues (as general mechanisms, not
+    as tagged fields on a unified event token); committed_vs_imagined has only an informal
+    precursor (hypothesis_tag); perspective, source_status, and the identity index itself
+    are unbuilt.
 - id: MECH-365
   title: "Provenance-bearing event token: every autobiographical event token carries an explicit provenance/commitment-status structure -- event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} -- and a ONE-WAY gate ensures imagined / simulated future tokens can be used for planning without ever acquiring committed-history status. The scarce resource in mental time travel is not capacity but provenance: any path that lets a simulated event accrue committed weight is a confabulation bug."
   claim_type: mechanism_hypothesis
@@ -60318,7 +60347,43 @@
     is name + route only; full implementation is V4. substrate_conditional: depends
     on a V4 belief-state substrate not yet built; promote/demote suppressed.
     DO NOT build in V3.
+  what_would_answer: >
+    Unbuildable in V3 (name+route only) -- this is a V4 experiment, once the belief-state
+    substrate exists. NON-DEGENERACY PRECONDITION: the V4 substrate must be built as a
+    genuine integration point, not a rename -- i.e. a first-class interface implementing
+    the design constraints pinned in evidence/planning/inference_belief_state_v4_plan.md (a
+    bounded top-k belief-state hypothesis SET with confidence/precision, not a single
+    collapsed state and not a full posterior, per MECH-385; provenance-tagged
+    inferred/imagined content per INV-078; a corrigible inferred-affordance field per
+    MECH-386) that other claims can depend on as a first-class thing -- and a scenario must
+    exist where partial observability is severe enough that the ingredients need to be
+    JOINTLY reasoned over rather than independently triggered (the V3-EXQ-603k
+    ARM_HARM_ON_MIDLINE family -- danger must be escaped via an inferred route, not merely
+    avoided by direct navigation away from a perceived cue -- is the standing candidate
+    arena; ARM_HARM_ON_NAV, where the threat is directly navigable-away-from, is the
+    pairwise-sufficient control case).
 
+    CONFIRMS (ARC-091 is architecturally load-bearing, not purely organisational): built as
+    an integrated layer with a shared belief-state representation, task performance under
+    severe partial observability (e.g. ARM_HARM_ON_MIDLINE-class safety-route inference)
+    measurably EXCEEDS performance obtained by wiring the same ingredients (ARC-004 L-space,
+    ARC-007 completion, ARC-018 rollout, MECH-022 injection, MECH-033 kernel chaining,
+    ARC-062/063 rule field, SD-057 cue recall) independently or pairwise, with no shared
+    belief-state representation and no joint hypothesis-set reasoning across them.
+
+    FALSIFIES (ARC-091 is purely a post-hoc label, not architecturally load-bearing): no
+    measurable performance difference between the integrated layer and the same ingredients
+    wired independently/pairwise -- the existing pieces already compose adequately without a
+    named integrative interface. This would not falsify any individual ingredient claim; it
+    would falsify only the claim that NAMING them as one function adds architecture, and the
+    correct response is to demote ARC-091 to a documentation/coherence-map role (matching
+    how ARC-080/ARC-081 are already scoped) rather than to retest it.
+
+    Template: adapted from Q-060's ARC-085 joint-degradation falsifier -- same shape
+    (integrated-vs-independent test of whether a named unifying construct is causally
+    load-bearing or descriptive), restated as a composed-capability comparison rather than a
+    lesion comparison, since ARC-091's ingredients are additive capabilities rather than a
+    single store to corrupt. Do not queue an experiment against this in V3.
 - id: INV-078
   title: "Under partial observability the perceived scene is evidence for state, not identical to state; a valid REE state must integrate observation with memory, temporal context, self-state, cue context, rule context, and uncertainty, and inferred/imagined trajectories must remain provenance-tagged as inferred until enacted and updated by committed outcome evidence."
   claim_type: invariant
@@ -60766,6 +60831,44 @@
     durable-model-update path gated per-event). substrate_conditional on the V4
     autobiographical-memory substrate not yet built; promote/demote suppressed.
     DO NOT build in V3.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the substrate must contain at least one code path, tagged
+    simulation/imagined/hypothesis (hypothesis_tag=True today; committed_vs_imagined ==
+    "imagined" once MECH-365's field exists), that COULD write into a durable learning
+    target -- world-model or policy weights, prediction-validation statistics/logs, or a
+    fact/schema store. If no such path exists at all, the constraint is vacuously satisfied
+    and this claim cannot yet be meaningfully audited -- that is a reason to leave it
+    substrate_conditional, not a confirmation.
+
+    CONFIRMING: an architectural/code audit across every identified write site touching (i)
+    durable world-model or policy parameters, (ii) prediction-validation statistics/logs
+    used to score real predictions, or (iii) a fact/schema store, finds EACH ONE gated to
+    exclude hypothesis_tag=True / committed_vs_imagined="imagined" content -- i.e. MECH-094's
+    call-site hypothesis_tag gate (episodic/residue/valence/EMA writes, live in V3) and, once
+    built, MECH-365's one-way field and MECH-368's durable-model-update admission gate all
+    hold everywhere they should, with no residual unguarded path. LICIT uses (consistency
+    checking, plan optimisation, schema integration) are unaffected.
+
+    FALSIFYING (VIOLATED BY): discovery of any code path where imagined/simulated content
+    (a) writes into a durable world-model or policy-weight update, (b) is used to validate or
+    score a REAL prediction, or (c) generates a fact/schema-store entry -- in any case
+    without being excluded by a provenance gate. A single confirmed instance falsifies the
+    principle at that site (a confabulation-class bug per MECH-365's own framing) and routes
+    to a targeted MECH-094/365/368 gate fix, not a wholesale rejection of the principle.
+
+    PARTIAL AUDIT AVAILABLE TODAY: the V3-only slice is auditable now -- MECH-094's
+    hypothesis_tag gate covers residue accumulation, MEL/prediction-error consumption,
+    EMA/prototype updates, valence updates, and novelty/visitation-buffer writes. FULL
+    confirmation requires MECH-365 (provenance schema on the ARC-085 event-token store) and
+    MECH-368 (durable model/policy-weight admission gate) to exist, since MECH-368's own
+    readiness_gate (Q-062) is the open question of whether an unguarded online E1/E2/policy
+    write channel exists at all -- until MECH-368 is built or explicitly ruled unnecessary, a
+    "no violation found" result on the V3 slice confirms only the episodic/residue arm
+    MECH-094 already covers, not the durable-world-model-update arm.
+
+    [2026-08-08 thought-digestion]: MECH-365 confirmed genuinely separate from MECH-094, not
+    a rename -- MECH-094 is live/scattered call-site gating (40+ sites in agent.py); MECH-365
+    would be a V4 unification into one schema field on the not-yet-built ARC-085 store.
 
 # --- memory_lifecycle_v4 cluster (MECH-391..393 + INV-079/080) ---
 - id: MECH-391
@@ -67240,6 +67343,45 @@
     contexts trigger external obligations. Release-ready = internally coherent
     AND externally classifiable AND documented AND reviewable AND bounded.
   notes: "Wording: GOV-CLAIM-001..004. Realised as docs/governance/external_framework_crosswalk.md. Cross-ref docs/architecture/established_ethical_systems.md."
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier -- this specifies the AUDIT-COMPLETENESS
+    CONDITION under which the crosswalk gate is genuinely satisfied versus merely
+    aspirational. No EXP-#### should be minted against this claim.
+
+    NON-DEGENERACY PRECONDITION (gate is currently VACUOUS, not open): the claim only has
+    something to violate once BOTH hold: (1) at least one "ethically active higher-version
+    component" exists (a V4+ capability with self_model / autobiographical_memory /
+    negative_valence / social_mind / language / trust_deception / institution /
+    human_facing / clinical_or_health / personal_data / tool_use_or_external_action) that is
+    actually implemented rather than only planned; AND (2) a public, human-facing, clinical,
+    institutional, or agentic release or release-readiness sign-off is imminent or planned
+    for it. Absent both, there is nothing yet to map and no release the gate could block.
+
+    CURRENT STATE (2026-08-08 thought-digestion): docs/governance/external_framework_crosswalk.md
+    -- the artifact this claim's own notes cite as "Realised as" -- DOES NOT EXIST in the
+    repo; it appears only as a recommended future artifact in the source thought
+    (docs/thoughts/2026-06-19_external_framework_crosswalk_for_ree_ethics.md, "Create
+    later"). No crosswalk entries exist for any component. V3 has no ethically-active
+    component live in the substrate (established_ethical_systems.md: "a research substrate,
+    not a deployed high-risk system"). The precondition above is NOT met -- the gate is
+    prospective-only, not currently actionable.
+
+    CONFIRMING (compliant, once the precondition is met): every ethically-active V4+
+    component has a documented, CURRENT crosswalk entry against all five named frameworks
+    (EU AI Act, Council of Europe AI Convention, NIST AI RMF, ISO/IEC 42001 & 23894, OECD AI
+    Principles) before the corresponding release gate is passed -- "current" meaning
+    re-verified against the component's present implementation, not merely present as a
+    stale row.
+
+    FALSIFYING (violated by): a public/human-facing/clinical/institutional/agentic release
+    proceeds, or a release-readiness sign-off is granted, while an ethically-active V4+
+    component has NO crosswalk entry at all; OR an entry exists but is STALE relative to the
+    component's current implementation.
+
+    POSITIVE TRIGGER to re-check: creation of docs/governance/external_framework_crosswalk.md
+    itself, OR the first V4 roadmap node tagged with a relevant capability_type gaining an
+    owner_exq or being queued for implementation -- either event moves this claim from
+    vacuous to live.
 - id: GOV-HEALTH-1
   title: "Clinical-use prohibition until reviewed -- 'clinical relevance != clinical readiness': REE must not be used or represented as a clinical, therapeutic, diagnostic, risk-prediction, or patient-facing tool without a separate clinical-safety pathway; human data triggers DPIA/Belmont/Helsinki/CIOMS/WHO/MDR governance."
   claim_type: governance_rule
@@ -71539,6 +71681,40 @@
     experimental result in one NEVER transfers to the other.
     STANDING DISCIPLINE, not an empirical claim -- there is no falsifier because it
     constrains how evidence may be cited, not what is true of any system.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this is a governance_rule, not an empirical claim -- there
+    is no experimental falsifier (see notes above). This is a COMPLIANCE-AUDIT condition,
+    checkable by inspecting claims.yaml / docs / thought-intake artefacts for citation
+    discipline, not by any REE experiment.
+
+    VIOLATED-BY: an artefact (claim note, architecture doc, thought-intake writeup,
+    skill/CLAUDE.md text) draws a structural parallel between REE (the cognitive
+    architecture) and REE Assembly (the governance/development machinery) and then uses that
+    parallel AS EVIDENCE -- treats a finding, invariant, or piece of experimental support in
+    one system as transferring to the other -- without explicitly flagging the parallel as
+    an analogy. Concretely: (i) citing an architecture-side result to justify adopting or
+    strengthening an Assembly-side governance rule, or vice versa, without a disclaimer that
+    the resemblance is rhetorical/structural only; (ii) a claim's confidence, status, or
+    evidence_direction being influenced by cross-system resemblance rather than by evidence
+    proper to that system; (iii) merging or conflating an architecture-cluster claim with an
+    Assembly-cluster claim on analogy grounds alone (the E/F SkillOpt split is the named
+    example of what NOT to do).
+
+    COMPLIANT: the parallel is drawn but explicitly labelled as an analogy and explicitly
+    denied evidential force -- e.g. GOV-STRAT-1's own notes: "the INV-020 symmetry is an
+    ANALOGY and MUST BE CITED AS ONE ... It is a reason to ADOPT this rule; it is NOT
+    evidence that the Assembly behaves like the architecture, nor that INV-020's
+    experimental support transfers here. It does not." The same pattern in GOV-HELDOUT-1
+    and GOV-REJECT-1.
+
+    AUDIT METHOD: grep claims.yaml / docs/ for REE<->Assembly structural comparisons and
+    check each hit either (a) carries an explicit analogy disclaimer / cites GOV-ANALOGY-1,
+    or (b) is a genuine biological/architectural analogy unrelated to REE:Assembly (e.g.
+    "BLA analogue" -- out of scope for this rule).
+
+    [2026-08-08 thought-digestion]: audit run against the four claims that draw this
+    parallel (GOV-STRAT-1, GOV-HELDOUT-1, GOV-REJECT-1, GOV-META-1) -- all four already
+    cite GOV-ANALOGY-1 in depends_on and carry the compliant disclaimer. No violation found.
 
 # --- Cluster D: multiple relational graph organisations, hippocampal ---------
 
