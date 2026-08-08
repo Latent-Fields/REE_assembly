@@ -6513,6 +6513,22 @@
     Clinical analogues are tracked as notes rather than a separate field -- the
     psychiatric symptom mapping is evidence for the architectural claim, not a
     separate claim type.
+
+    SCOPE CROSS-REFERENCE (2026-08-08, added after a governance flag on INV-020's
+    depends_on): this claim has TWO faces and the notes above show only one of them.
+    The precision-ratio / aberrant-salience material is HOW the RC-conflict threshold
+    is calibrated. The other face -- WHAT that threshold licenses -- is the
+    authority-stratification duty in control_plane_signal_map.md#mech-065's "commit
+    licensing extension": `commit(tau)` requires a verifier pass over {POL, ID, CAPS}
+    with `RC_conflict < theta_rc`, and S5 is computed OUTSIDE proposal generation from
+    provenance bindings, authority metadata, SELF_ID, POLICY and CAPS. That is why
+    INV-020 (authority stratification boundary) lists MECH-065 alongside MECH-064 as a
+    corollary, in docs/invariants.md#inv-020 and in the originating 2026-02-18
+    consolidation document. MECH-064 is the write-side hard-deny; this claim is the
+    read-side verifier that detects authority mismatch and responds by raising
+    commitment thresholds WITHOUT minting a privileged write. This claim's scope has
+    NOT been narrowed since registration -- do not re-flag the INV-020 mapping as
+    stale. Full derivation in INV-020's notes (GOVERNANCE FLAG RESOLVED, 2026-08-08).
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict):
     MECH-065 is currently a schematic design claim -- the RC_conflict signal, the
@@ -7247,6 +7263,61 @@
     corollary already present in the list. Worth a governance-cycle check on whether
     MECH-065 belongs in this depends_on, or whether the mapping predates a later
     MECH-065 scope narrowing.
+
+    GOVERNANCE FLAG RESOLVED (2026-08-08, dedicated review; flag above retained as the
+    historical record per append-corrections discipline). VERDICT: NOT a mismatch, and
+    NOT a mistyped MECH-06x number -- MECH-065 stays in this depends_on. Neither
+    hypothesis in the flag survives contact with the three canonical sources, all of
+    which independently carry the same MECH-064 + MECH-065 pairing:
+
+    (1) docs/invariants.md#inv-020 (this claim's own `location`) reads "Corollary
+    mapping: INV-014, INV-007, MECH-064, MECH-065" -- so the depends_on list is a
+    faithful transcription of the canonical corollary mapping, not a registration slip.
+
+    (2) The originating consolidation thought document (2026-02-18, listed in `source`)
+    registers this invariant as "META-INV-B: Authority Stratification Principle" and
+    lists its corollaries as "MECH-064 (typed authority separation)" and "MECH-065
+    (reality-coherence conflict ROUTING)". The pairing is original and deliberate;
+    there is no adjacent MECH-06x that was plausibly intended instead (MECH-066 is
+    pre/post-commit channel separation, MECH-067 the permission matrix -- and MECH-067
+    already depends on INV-020 in the other direction).
+
+    (3) MECH-065 is load-bearing for the SECOND HALF of this invariant's own claim
+    sentence, which is why reading only the title looks like a topic mismatch. The
+    canonical claim is "constraint stores ... must be insulated from direct
+    observational/symbolic writes; DURABLE CHANGES REQUIRE VERIFIER-MEDIATED COMMIT
+    PATHS." MECH-064 supplies the first clause (the static `EXTERNAL -> POL/ID/CAPS`
+    hard-deny). MECH-065 supplies the second: control_plane_signal_map.md#mech-065's
+    "commit licensing extension" makes `commit(tau)` require a VERIFIER PASS OVER
+    {POL, ID, CAPS} together with `RC_conflict < theta_rc`, and the same doc defines
+    `S5 := rc_conflict(H_graph, temporal_consistency, authority_metadata, SELF_ID,
+    POLICY, CAPS)` as computed "outside proposal generation" -- which is verbatim the
+    obligation this map's own INV-020 row states ("EXTERNAL -> POL/ID/CAPS stays
+    hard-deny; verifier outside proposal generation"). MECH-065 is thus the READ-side /
+    verifier complement of MECH-064's write-side deny: it reads the constraint stores
+    to detect authority mismatch and responds by raising commitment thresholds and
+    damping DA_A/DA_M lock-in, WITHOUT minting a privileged write -- which is exactly
+    this invariant's second interpretation-note bullet ("fast defensive interrupts are
+    still allowed to stop/suppress commitment without minting privileged writes"), and
+    exactly MECH-064's own path-table row `S3/S5 -> emergency interrupt | yes | may
+    stop/suppress commitment without granting privileged writes`.
+
+    The shared prompt-injection source doc (17-02-26, in both mechanisms' `source`)
+    states the two-conjunct structure outright: an injection attempting to alter POLICY
+    fails because BOTH `write(X_ext, POLICY) = bottom` (MECH-064) AND "RC_conflict
+    spikes when authority mismatch occurs" (MECH-065) -- "injection fails at reality
+    coherence stage, not at planning stage." Dropping MECH-065 would leave the
+    stratification boundary enforced only by channel typing, with nothing detecting
+    spurious authority asserted by content that legitimately arrived as OBS/INS.
+
+    WHY IT LOOKED WRONG, so a future digestion pass does not re-flag it: MECH-065's
+    claims.yaml surface (title, and notes led by the 2026-03-29 Q-018 lit pull) fronts
+    the precision-RATIO calibration and psychosis/aberrant-salience framing, while its
+    architecture-doc section fronts the provenance/authority-mismatch commit-licensing
+    function that this invariant actually depends on. Those are two aspects of one lane
+    (the ratio is HOW the threshold is set; the commit gate is WHAT the threshold
+    licenses), but the registry-only view shows just the first. A cross-reference note
+    has been added to MECH-065 pointing back here.
 - id: INV-021
   title: "Responsibility-bearing durable updates occur only at typed commit boundaries."
   claim_type: invariant
