@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_640_scaffold_cue_postcue_action_gradient_diagnostic
 
-Generated: `2026-08-08T08:05:47.032177Z`
+Generated: `2026-08-08T08:54:07.911995Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

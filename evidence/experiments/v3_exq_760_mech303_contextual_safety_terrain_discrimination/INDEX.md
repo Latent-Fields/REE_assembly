@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_760_mech303_contextual_safety_terrain_discrimination
 
-Generated: `2026-08-08T08:05:47.032177Z`
+Generated: `2026-08-08T08:54:07.911995Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

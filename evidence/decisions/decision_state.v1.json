@@ -459,6 +459,15 @@
       "selected_option": "Keep held under the V5 architectural commitment (correct path).",
       "timestamp_utc": "2026-07-01T01:23:09.896220Z"
     },
+    "INV-087": {
+      "actor": "governance",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Standard hold, conflict_ratio 0.667, no new information this cycle",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-08-08T08:30:41.615663Z"
+    },
     "INV-088": {
       "actor": "governance-86e36f (user-approved)",
       "decision_needed": "Conflict resolution before promotion",
@@ -684,6 +693,24 @@
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107823Z"
     },
+    "MECH-074b": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.470619Z"
+    },
+    "MECH-074d": {
+      "actor": "governance",
+      "decision_needed": "Demotion review: provisional -> candidate (conflict_ratio 0.667)",
+      "decision_status": "discussing",
+      "rationale": "Reinforced by fresh V3-EXQ-894 weakens FAIL this cycle, but holding at provisional pending V3-EXQ-894a (recalibrated PE-sigma threshold) rather than demoting immediately",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "Hold and run conflict-resolution suite first (more data, temporary ambiguity)",
+      "timestamp_utc": "2026-08-08T08:30:41.576714Z"
+    },
     "MECH-075": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -900,6 +927,15 @@
       "selected_option": "Acknowledge all holds",
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
+    "MECH-123": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.506831Z"
+    },
     "MECH-124": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -1072,13 +1108,13 @@
       "timestamp_utc": "2026-04-25T15:42:09.107828Z"
     },
     "MECH-232": {
-      "actor": "governance (mech232-766a-cloud-regate)",
-      "decision_needed": "Promote MECH-232 candidate->provisional on the SD-024 cloud-authoritative gate (V3-EXQ-766a cloud PASS)",
+      "actor": "governance",
+      "decision_needed": "Second independent confirmer received (SD-024 diagnostic 766a + V3-EXQ-893)",
       "decision_status": "applied",
-      "rationale": "Cloud diagnostic V3-EXQ-766a (ree-cloud-2, linux-x86_64-py3.10) PASS/supports, adjudication=verified; all 4 load-bearing criteria pass; readiness met; non_degenerate. Satisfies SD-024 cloud-authoritative gate.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "promote candidate->provisional",
-      "timestamp_utc": "2026-07-16T15:38:50.500709Z"
+      "rationale": "Two independent, differently-framed PASSes on the same crux discriminator (density-follower approach without value gradient)",
+      "recommendation": "promote_to_stable",
+      "selected_option": "Promote to stable",
+      "timestamp_utc": "2026-08-08T08:30:41.536666Z"
     },
     "MECH-256": {
       "actor": "governance-2026-04-25T15:15",
@@ -1521,6 +1557,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-07-26T15:35:34.442933Z"
     },
+    "MECH-322": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.542831Z"
+    },
     "MECH-323": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -1691,6 +1736,15 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-07-16T18:07:07.583233Z"
+    },
+    "MECH-428": {
+      "actor": "governance",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Standard hold, conflict_ratio 0.5, no new information this cycle",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-08-08T08:30:41.657144Z"
     },
     "MECH-436": {
       "actor": "governance-20260617T2349Z",
@@ -1871,6 +1925,33 @@
       "recommendation": "clear_v3_pending",
       "selected_option": "v3_pending true->false, evaluate normally",
       "timestamp_utc": "2026-07-25T16:55:22.964934Z"
+    },
+    "MECH-480": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.578744Z"
+    },
+    "MECH-481": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.617458Z"
+    },
+    "MECH-487": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.655481Z"
     },
     "Q-006": {
       "actor": "user",
@@ -2178,6 +2259,33 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-07-30T19:42:18.081672Z"
     },
+    "Q-087": {
+      "actor": "governance",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Claim status is already resolved with a full decision recorded 2026-08-01 (session cool-sutherland-623d3f); the automated narrow_open_question recommendation is stale against that resolution, no further narrowing needed",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Already resolved 2026-08-01 (resolution: governance_acceptance)",
+      "timestamp_utc": "2026-08-08T08:30:41.696515Z"
+    },
+    "Q-089": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.691332Z"
+    },
+    "Q-090": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.734448Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -2457,6 +2565,33 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-07-26T15:35:35.165868Z"
     },
+    "SD-087": {
+      "actor": "governance",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Standard hold stands; stale citations (GFLAG-0010) and stale routing note (GFLAG-0006) corrected in claims.yaml this cycle; SD-020 stable-status question (GFLAG-0005) flagged for separate deeper review, not resolved here",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-08-08T08:30:41.735483Z"
+    },
+    "SD-091": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.770103Z"
+    },
+    "SD-092": {
+      "actor": "governance",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-08-08T08:30:48.805613Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -2476,7 +2611,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-08-08T08:05:47.032177Z",
+  "generated_at_utc": "2026-08-08T08:54:07.911995Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

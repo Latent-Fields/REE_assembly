@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_742m_mech457_bias_head_baseline_mint
 
-Generated: `2026-08-08T08:05:47.032177Z`
+Generated: `2026-08-08T08:54:07.911995Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

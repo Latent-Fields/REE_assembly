@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate
 
-Generated: `2026-08-08T08:05:47.032177Z`
+Generated: `2026-08-08T08:54:07.911995Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

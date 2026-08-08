@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_154_q014_jepa_invariance_blind_spot_pair
 
-Generated: `2026-08-08T08:05:47.032177Z`
+Generated: `2026-08-08T08:54:07.911995Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
