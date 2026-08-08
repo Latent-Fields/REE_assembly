@@ -59,6 +59,28 @@ very next regen. Fix: `_status_implementation_complete` /
 `_substrate_implementation_complete`, which suppress the IMPLEMENT lane only and
 leave retest-blocker semantics untouched. Regression test:
 scripts/test_generate_inter_governance_workset_substrate_staleness.py
+
+FM11 (2026-08-08): RETEST COVERAGE KEYED ON THE QUEUE IS TRANSIENT BY DESIGN.
+The FM8 fix above made `_queued_retest_coverage` see the whole queue, and that
+is correct -- but queue membership was the retest lane's ONLY notion of "this
+work is covered", and a completed run is REMOVED from the queue (both FAIL and
+ERROR, immediately). So coverage evaporates at exactly the moment the work is
+done, and the item flips back to `ready` for the auto-spawn routine to stage
+again. "Retest after substrate: ARC-045" was staged and GC-reaped unused three
+times on that mechanism (IGW-20260803-212 / -20260806-207 / -20260807-217) for
+a retest that ran on 2026-08-04. Fix: `_completed_retest_coverage`, which HOLDS
+(does not suppress) a retest whose claim already carries experimental evidence
+postdating the substrate landing. Regression test:
+scripts/test_generate_inter_governance_workset_completed_retest.py
+
+FM11b (2026-08-08, same investigation): FM8's union ALSO needed a guard. It
+keeps a worktree-only queue entry as "queued locally, not yet pushed" -- true
+of a checkout that is AHEAD, false of one that is BEHIND, where the extras are
+entries origin removed on completion. ree-v3 was 43 commits behind with 9 such
+ghosts, every one of them already run, so nine finished experiments were being
+counted as in-flight and were suppressing live IGW items (SD-014, MECH-322,
+MECH-472, MECH-074, plus ARC-045 intermittently). See
+`_drop_completed_worktree_ghosts`.
 """
 from __future__ import annotations
 
@@ -476,6 +498,110 @@ def _queue_from_git(ref: str = QUEUE_GIT_REF) -> list[dict] | None:
     return _queue_items_from_bytes(proc.stdout)
 
 
+_RUN_NAMES_CACHE: set[str] | None = None
+
+
+def _recorded_run_names() -> set[str]:
+    """Every run this repo has a record of: flat `<run_id>.json` manifests in
+    evidence/experiments/, plus `runs/<run_id>/` packs.
+
+    Directory listing only -- no file is opened and nothing is parsed, so the
+    whole thing costs ~4ms against ~830 manifests. Memoized anyway (one-shot
+    script). Deliberately NOT read from claim_evidence.v1.json's `entries`: a
+    run that tagged no claim has no row there but is still a completed run.
+    """
+    global _RUN_NAMES_CACHE
+    if _RUN_NAMES_CACHE is None:
+        names: set[str] = set()
+        try:
+            names |= {p.stem for p in EVIDENCE.glob("*.json")}
+        except Exception:
+            pass
+        runs_dir = EVIDENCE / "runs"
+        try:
+            if runs_dir.is_dir():
+                names |= {p.name for p in runs_dir.iterdir()}
+        except Exception:
+            pass
+        _RUN_NAMES_CACHE = names
+    return _RUN_NAMES_CACHE
+
+
+def _queue_id_has_recorded_run(queue_id: str) -> bool:
+    """True when a run for exactly this queue_id has already been recorded.
+
+    `V3-EXQ-436d` -> run_ids beginning `v3_exq_436d_` -- the naming convention
+    every V3 driver follows (`<queue_id lowercased, dashes to underscores>_
+    <slug>_<stamp>_v3`). The trailing underscore is what stops `V3-EXQ-43`
+    matching `v3_exq_436d_...`.
+    """
+    qid = str(queue_id or "").strip().lower()
+    if not qid:
+        return False
+    prefix = qid.replace("-", "_") + "_"
+    return any(name.startswith(prefix) for name in _recorded_run_names())
+
+
+def _drop_completed_worktree_ghosts(
+    worktree: list[dict],
+    committed: list[dict],
+    has_run=None,
+) -> list[dict]:
+    """Strip worktree-only queue entries whose experiment has ALREADY RUN.
+
+    FM11b (2026-08-08) -- the other half of the ARC-045 re-staging loop, and a
+    direct consequence of FM8's union. `_merge_queue_snapshots` keeps a
+    worktree-only entry on the premise that it is "an experiment queued locally
+    and not yet pushed". That premise holds only when the checkout is AHEAD. When
+    it is BEHIND -- and nothing pulls ree-v3, which is the whole reason FM8
+    exists -- its extra entries are the opposite: entries origin has since
+    REMOVED because the run completed (both FAIL and ERROR delete the entry
+    immediately; CLAUDE.md "Queue completion behaviour"). The union then
+    resurrects completed experiments as pending.
+
+    Measured on this checkout 2026-08-08: ree-v3 was 43 commits behind, its queue
+    held 9 entries against origin's 2, and ALL NINE extras had a completed run
+    manifest. Every downstream suppression predicate was therefore treating 9
+    finished experiments as in-flight work -- which is why "Retest after
+    substrate: ARC-045" oscillates rather than re-staging every single tick: it
+    is absorbed while the stale entry is present and snaps back to `ready` the
+    moment someone pulls ree-v3. Four other claims (SD-014, MECH-322, MECH-472,
+    MECH-074) were being falsely suppressed outright by the same ghosts.
+
+    The discriminator is sound in the direction that matters. A genuinely
+    locally-queued entry has a NEW queue_id and no run yet, so it survives; a
+    re-queue of failed work takes a new letter by policy (CLAUDE.md, "Never
+    silently re-run a failed experiment under the same EXQ ID"), so it too has no
+    matching run. The one shape this would misjudge -- the same queue_id
+    re-queued locally and not yet pushed after its first run -- is exactly what
+    that policy forbids. And the error direction is the safe one: dropping a
+    ghost UN-suppresses an IGW item, i.e. it surfaces work rather than hiding it.
+
+    Only ever applied when a committed snapshot exists (see `_load_queue`): with
+    no authority to compare against, every worktree entry is worktree-only and
+    filtering them would be a mute, not a fix.
+
+    `has_run` is injectable for testing; it defaults to the real filesystem probe.
+    """
+    if has_run is None:
+        has_run = _queue_id_has_recorded_run
+    committed_ids = {
+        str(it.get("queue_id"))
+        for it in committed
+        if isinstance(it, dict) and it.get("queue_id")
+    }
+    out: list[dict] = []
+    for item in worktree:
+        if not isinstance(item, dict):
+            out.append(item)
+            continue
+        qid = str(item.get("queue_id") or "")
+        if qid and qid not in committed_ids and has_run(qid):
+            continue
+        out.append(item)
+    return out
+
+
 def _merge_queue_snapshots(
     worktree: list[dict], committed: list[dict]
 ) -> list[dict]:
@@ -486,6 +612,10 @@ def _merge_queue_snapshots(
     working-tree entry with the same queue_id is at best equal and at worst a
     stale checkout of it. Worktree-only entries are still appended -- that is an
     experiment queued locally and not yet pushed, which must count as queued.
+
+    Deliberately still a PURE union: the "...and not yet pushed" premise is
+    policed by `_drop_completed_worktree_ghosts` (FM11b) before this is called,
+    so that the filesystem probe that premise needs stays out of the merge.
     """
     out: list[dict] = list(committed)
     seen = {
@@ -531,6 +661,14 @@ def _load_queue() -> list[dict]:
     For the question every caller actually asks -- "does an experiment for this
     claim already exist?" -- presence in EITHER is the honest answer.
 
+    FM11b (2026-08-08) -- THE UNION NEEDED A GUARD, and its absence was the
+    OTHER half of the ARC-045 re-staging loop. "Worktree-only means queued
+    locally and not yet pushed" is true of a checkout that is AHEAD and false of
+    one that is BEHIND, where the extras are entries origin REMOVED on
+    completion. This checkout was 43 commits behind with 9 such ghosts, all with
+    completed run manifests. `_drop_completed_worktree_ghosts` filters exactly
+    those, and only when a committed snapshot is available to compare against.
+
     Fails open to the old behaviour (worktree only) whenever the committed
     snapshot cannot be read: no ree-v3 checkout, no such ref, git missing or slow,
     unparseable blob. A generator that dies because a sibling repo moved would be
@@ -540,7 +678,11 @@ def _load_queue() -> list[dict]:
     committed = _queue_from_git()
     if committed is None:
         return worktree
-    return _merge_queue_snapshots(worktree, committed)
+    # FM11b: a BEHIND checkout's extra entries are removed-since ghosts, not
+    # local additions -- see _drop_completed_worktree_ghosts.
+    return _merge_queue_snapshots(
+        _drop_completed_worktree_ghosts(worktree, committed), committed
+    )
 
 
 def _running_exqs() -> dict[str, str]:
@@ -769,23 +911,46 @@ def _claim_v3_testable(cid: str,
 # twice. Both want only the `claims` map. Memoized here (one-shot script, so a
 # plain module-level cache is sufficient -- no mtime keying needed). Returns {}
 # on missing/unparseable/malformed, preserving both callers' prior behaviour.
-_CLAIM_EVIDENCE_CLAIMS_CACHE: dict | None = None
+_CLAIM_EVIDENCE_DOC_CACHE: dict | None = None
 
 
-def _claim_evidence_claims() -> dict:
-    """Parse claim_evidence.v1.json once per process; return its `claims` map."""
-    global _CLAIM_EVIDENCE_CLAIMS_CACHE
-    if _CLAIM_EVIDENCE_CLAIMS_CACHE is None:
+def _claim_evidence_doc() -> dict:
+    """Parse claim_evidence.v1.json once per process; return the whole document.
+
+    The `claims` map and the flat `entries` list both come from here, so the
+    ~4 MB file is read and parsed ONCE even though three callers want different
+    slices of it (FM11 added the third). Returns {} on missing / unparseable /
+    malformed, which every caller degrades to "no evidence known".
+    """
+    global _CLAIM_EVIDENCE_DOC_CACHE
+    if _CLAIM_EVIDENCE_DOC_CACHE is None:
         path = EVIDENCE / "claim_evidence.v1.json"
-        claims = None
+        data = None
         if path.exists():
             try:
                 data = json.loads(path.read_text(encoding="utf-8"))
-                claims = data.get("claims") if isinstance(data, dict) else None
             except Exception:
-                claims = None
-        _CLAIM_EVIDENCE_CLAIMS_CACHE = claims if isinstance(claims, dict) else {}
-    return _CLAIM_EVIDENCE_CLAIMS_CACHE
+                data = None
+        _CLAIM_EVIDENCE_DOC_CACHE = data if isinstance(data, dict) else {}
+    return _CLAIM_EVIDENCE_DOC_CACHE
+
+
+def _claim_evidence_claims() -> dict:
+    """The `claims` map of claim_evidence.v1.json (claim_id -> summary)."""
+    claims = _claim_evidence_doc().get("claims")
+    return claims if isinstance(claims, dict) else {}
+
+
+def _claim_evidence_entries() -> list:
+    """The flat `entries` list of claim_evidence.v1.json.
+
+    One row per (claim_id, run_id) pair -- so a manifest tagging three claims
+    contributes three rows, which is exactly the shape FM11's per-claim lookup
+    wants. Deliberately NOT the per-claim `recent_entries`, which is capped at
+    the 5 most recent and mixes literature in.
+    """
+    entries = _claim_evidence_doc().get("entries")
+    return entries if isinstance(entries, list) else []
 
 
 def _claims_with_experimental_evidence() -> set[str]:
@@ -858,6 +1023,160 @@ def _confirmer_queued_claims(queue_items: list[dict]) -> set[str]:
     `ConfirmerAndRetestLanesAgreeTest`.
     """
     return set(_queued_retest_coverage(queue_items))
+
+
+# --- FM11: retest coverage by COMPLETED evidence (2026-08-08) -----------------
+# `_queued_retest_coverage` above answers "is a retest PENDING?", and for that
+# question it is correct. The defect is that it was the retest lane's ONLY
+# coverage, and queue membership is TRANSIENT BY CONSTRUCTION: both FAIL and
+# ERROR remove the entry from ree-v3/experiment_queue.json the moment the run
+# finishes (CLAUDE.md, "Queue completion behaviour"). So that coverage holds
+# exactly while the experiment is pending and evaporates the instant it
+# completes -- at which point the IGW item snaps back to `ready` and the hourly
+# auto-spawn routine stages a worktree for work that has already been done.
+#
+# Confirmed incident: "Retest after substrate: ARC-045" (stable_hash
+# 7aac4893a7c6) was staged and GC-reaped unused three times -- IGW-20260803-212,
+# IGW-20260806-207, IGW-20260807-217 -- for a retest that was queued as
+# V3-EXQ-436d on 2026-08-03 (ree-v3 1df184c) and RAN on 2026-08-04
+# (v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3, FAIL,
+# claim_ids SD-017/ARC-045/MECH-166). The FM8 fix landed the same day and
+# absorbed the item CORRECTLY AT THE TIME -- 436d was then still pending. No fix
+# keyed on the queue could have survived the run completing.
+#
+# WHY THIS RENDERS `blocked` RATHER THAN SUPPRESSING, unlike queued coverage.
+# A queued retest disappears from the workset because it WILL complete and the
+# item legitimately returns. Completed-evidence coverage is the opposite: it
+# persists until new substrate lands, so suppressing on it would hide the claim
+# indefinitely -- including the fact that its `pending_retest_after_substrate`
+# flag may now be STALE and needs a governance disposition. `blocked` stops the
+# auto-spawn (igw_routine_tick stages `status == "ready"` only) while keeping the
+# item and its evidence pointer on /workset for a human to adjudicate. Same
+# treatment, for the same reason, as R5 (`held_not_testable`) and FM7
+# (`held_proposal_blocked`) below.
+#
+# Note the flag itself is NOT cleared here, and must not be: on ARC-045 the
+# retest genuinely is still owed (436d FAILed, and
+# failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07 confirmed the FAIL is
+# a metric confound rather than an interpretable null). Deciding what is owed
+# next is a /governance adjudication. The bug is the re-staging, not the flag.
+
+_RUN_ID_STAMP_RE = re.compile(r"(\d{8}T\d{6}Z)")
+
+
+def _parse_evidence_ts(value: object) -> datetime | None:
+    """Parse `2026-08-04T07:15:41Z`, or a `...20260804T071541Z...` run_id stamp.
+
+    Returns None for anything unparseable -- callers treat None as "cannot date
+    this", which always fails OPEN (no coverage), never as "epoch".
+    """
+    s = str(value or "").strip()
+    if not s:
+        return None
+    try:
+        return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError:
+        pass
+    m = _RUN_ID_STAMP_RE.search(s)
+    if m:
+        try:
+            return datetime.strptime(m.group(1), "%Y%m%dT%H%M%SZ").replace(
+                tzinfo=timezone.utc
+            )
+        except ValueError:
+            return None
+    return None
+
+
+def _substrate_landing_cutoff(
+    claim_id: str, substrate_by_id: dict[str, dict]
+) -> tuple[datetime | None, str]:
+    """Latest datable "this substrate existed by" instant across the entries that
+    unblock `claim_id`. Returns (cutoff, source_label); (None, "") when undatable.
+
+    Two signals, both read on every unblocking entry, latest wins:
+
+      * `implemented_utc` -- the explicit landing stamp. Populated on 75 of 145
+        substrate_queue entries (2026-08-08), so it cannot be the only source.
+      * the run stamps in `failure_record[].run_id` -- a validation experiment
+        that ran AGAINST this substrate. The substrate necessarily existed
+        before its own validation run, so this is an UPPER bound on the landing
+        instant, not a lower one. That is the safe direction: an upper bound
+        makes the cutoff LATER, which demands a later retest and therefore
+        UNDER-suppresses. A lower bound would do the opposite and could absorb
+        an item on pre-substrate evidence.
+
+    Undatable -> (None, "") -> no coverage -> the item keeps its current status.
+    A generator that muted an item because it could not read a date would be a
+    worse failure than the re-staging it is fixing.
+    """
+    best: datetime | None = None
+    label = ""
+    for entry in substrate_by_id.values():
+        if claim_id not in (entry.get("unblocks_claims") or []):
+            continue
+        sid = str(entry.get("sd_id") or "?")
+        candidates = [("implemented_utc", _parse_evidence_ts(entry.get("implemented_utc")))]
+        for rec in entry.get("failure_record") or []:
+            if isinstance(rec, dict):
+                candidates.append(
+                    ("failure_record", _parse_evidence_ts(rec.get("run_id")))
+                )
+        for field, when in candidates:
+            if when is not None and (best is None or when > best):
+                best, label = when, f"{sid}.{field}"
+    return best, label
+
+
+def _completed_retest_coverage(
+    claim_id: str, substrate_by_id: dict[str, dict]
+) -> dict | None:
+    """The newest experimental evidence entry for `claim_id` that POSTDATES the
+    substrate landing, or None.
+
+    Reads the derived index (`claim_evidence.v1.json` `entries`) rather than
+    re-globbing `evidence/experiments/*.json`: the index is regenerated by
+    `governance.sh` from those same manifests, already carries `claim_id` /
+    `source_type` / `timestamp_utc` per (claim, run) pair, and is one parse
+    instead of ~1500 file reads on an hourly tick. Uses the flat `entries` list,
+    NOT the per-claim `recent_entries`, which is capped at 5 and can be filled
+    by literature rows.
+
+    Counts any `source_type == "experimental"` entry, including one the indexer
+    later marked `scoring_excluded`. The question this answers is "has an
+    experiment against this claim RUN since the substrate landed?", which a
+    diagnostic probe or a non-contributory run answers yes to just as much as a
+    contributory one. Whether the result was any GOOD is exactly the judgement
+    being handed to /governance -- so the run_id, status and direction all go
+    into the blocker string rather than being pre-filtered away here.
+    """
+    cutoff, source = _substrate_landing_cutoff(claim_id, substrate_by_id)
+    if cutoff is None:
+        return None
+    best: dict | None = None
+    best_ts: datetime | None = None
+    for entry in _claim_evidence_entries():
+        if not isinstance(entry, dict):
+            continue
+        if str(entry.get("claim_id") or "") != claim_id:
+            continue
+        if str(entry.get("source_type") or "") != "experimental":
+            continue
+        when = _parse_evidence_ts(entry.get("timestamp_utc"))
+        if when is None or when <= cutoff:
+            continue
+        if best_ts is None or when > best_ts:
+            best, best_ts = entry, when
+    if best is None or best_ts is None:
+        return None
+    return {
+        "run_id": str(best.get("run_id") or "?"),
+        "timestamp_utc": str(best.get("timestamp_utc") or ""),
+        "status": str(best.get("status") or "?"),
+        "evidence_direction": str(best.get("evidence_direction") or "?"),
+        "cutoff_utc": cutoff.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "cutoff_source": source,
+    }
 
 
 _SUBSTRATE_RESOLVED_STATUSES = {
@@ -2172,6 +2491,10 @@ def build_workset() -> dict:
         cid: queued_coverage[cid] for cid in retest_all if cid in queued_coverage
     }
     retest = [cid for cid in retest_all if cid not in queued_coverage]
+    # FM11 accounting: claim_id -> the post-substrate run that held it (see the
+    # `held_evidence_covered` branch below). Reported in the summary so the
+    # suppression is auditable from the artifact rather than only from the code.
+    evidence_covered_retests: dict[str, str] = {}
     for cid in retest[:10]:
         blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
         # FM5: a substrate_ceiling retest is genuinely awaiting substrate
@@ -2234,9 +2557,46 @@ def build_workset() -> dict:
                     f"(backlog_id {proposal_block.get('backlog_id') or '?'}); see "
                     f"the proposal record for adjudication detail."
                 ]
+        # FM11: the retest may ALREADY HAVE RUN. `queued_coverage` above only
+        # sees a retest that is still PENDING, and a completed run is removed
+        # from the queue outright -- so without this the item snaps back to
+        # `ready` the moment its own retest finishes and the auto-spawn routine
+        # re-stages a worktree for it every tick. See the FM11 block above
+        # `_parse_evidence_ts` for the confirmed ARC-045 3x re-stage incident and
+        # for why this HOLDS the item rather than suppressing it.
+        #
+        # Last in the chain on purpose: reaching here means nothing else blocked
+        # the item, which for the retest lane is precisely the statement that
+        # every substrate entry unblocking this claim is already resolved (that
+        # is what `_retest_blockers` returning empty means). So the cutoff below
+        # is being computed against LANDED substrate, not a build in progress.
+        evidence_cover = None
+        if not blocker_strs:
+            evidence_cover = _completed_retest_coverage(cid, substrate_by_id)
+        held_evidence_covered = bool(evidence_cover)
+        if held_evidence_covered:
+            evidence_covered_retests[cid] = evidence_cover["run_id"]
+            blocker_strs = [
+                f"post-substrate evidence already exists: "
+                f"{evidence_cover['run_id']} "
+                f"[{evidence_cover['status']}/{evidence_cover['evidence_direction']}] "
+                f"ran {evidence_cover['timestamp_utc']}, after the substrate "
+                f"landing bound {evidence_cover['cutoff_utc']} "
+                f"({evidence_cover['cutoff_source']}). "
+                f"pending_retest_after_substrate is still true in claims.yaml -- "
+                f"/governance must adjudicate that run and either clear the flag "
+                f"or re-scope the retest."
+            ]
         status = "blocked" if blocker_strs else "ready"
         if status == "ready":
             why_now = "claims.yaml pending_retest_after_substrate=true."
+        elif held_evidence_covered:
+            why_now = (
+                f"The retest has ALREADY RUN ({evidence_cover['run_id']}) -- do "
+                f"not re-queue it. The claims.yaml flag is still set, so this is "
+                f"a /governance disposition (clear the flag, or re-scope the "
+                f"retest), not /queue-experiment work. (FM11.)"
+            )
         elif held_proposal_blocked:
             why_now = (
                 f"A prior investigation already adjudicated the backing "
@@ -2509,6 +2869,12 @@ def build_workset() -> dict:
         },
         "live_exqs": sorted(live.keys()),
         "auto_absorbed_retests": auto_absorbed_retests,
+        # FM11: retests HELD (rendered `blocked`, not suppressed) because a run
+        # postdating the substrate landing already exists. Distinct key from
+        # auto_absorbed_retests on purpose -- that one means "suppressed, a
+        # retest is pending"; this one means "still on the board, awaiting a
+        # governance disposition of a run that already happened".
+        "evidence_covered_retests": evidence_covered_retests,
         "by_version": {v: by_version[v] for v in sorted(by_version)},
     }
 
@@ -2570,6 +2936,14 @@ def write_markdown(data: dict) -> str:
         absorbed_str = ", ".join(f"{cid} -> {qid}" for cid, qid in sorted(absorbed.items()))
         lines.append(
             f"- Auto-absorbed retests (queued, suppressed from workset): {absorbed_str}"
+        )
+        lines.append("")
+    covered = data["summary"].get("evidence_covered_retests") or {}
+    if covered:
+        covered_str = ", ".join(f"{cid} -> {rid}" for cid, rid in sorted(covered.items()))
+        lines.append(
+            "- Evidence-covered retests (already ran post-substrate; held for a "
+            f"/governance disposition, NOT re-queued): {covered_str}"
         )
         lines.append("")
     lines.extend(["## Work packages", ""])
