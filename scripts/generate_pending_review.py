@@ -143,15 +143,43 @@ AUTOPSY_GLOB = "evidence/planning/failure_autopsy_*.json"
 
 
 def load_confirmed_autopsy_run_ids() -> set:
-    """Run_ids covered by at least one CONFIRMED failure_autopsy_*.json target.
+    """Run_ids ADJUDICATED by at least one CONFIRMED failure_autopsy_*.json.
 
-    Mirrors check_unapplied_autopsy_recommendations.load_confirmed()'s run-id
-    extraction (kept as a small standalone re-scan, not an import, so this
-    script has no dependency on that CLI tool's argv/exit-code surface).
-    Used by the diagnostic-autopsy-required gate below: coverage here means
-    "adjudicated at least once", not "adjudicated correctly" or "current" --
-    GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py) is the audit for
-    whether a *confirmed* recommendation was actually applied.
+    Two sources, unioned, because a confirmed artifact records adjudication in
+    two places (see .claude/skills/failure-autopsy/SKILL.md Step 2a + the Step 9
+    schema):
+
+      1. `targets[].run_id`   -- adjudicated AS EVIDENCE (a verdict was reached
+                                 about what the run shows).
+      2. `excluded_dry_run_ids` -- adjudicated as NON-EVIDENTIARY: a human (or an
+                                 autopsy session) inspected the run and concluded
+                                 it is a smoke/dry run with nothing to evaluate.
+
+    Both mean "a human has looked at this run", which is exactly the predicate
+    the autopsy-required gates below are asking about -- so both belong in this
+    set. Source 2 is NOT redundant with load_dry_run_run_ids(): that one reads
+    each manifest's own `dry_run` boolean off disk, and pre-2026-07 manifests
+    often lack the flag entirely (the skill tells autopsy sessions to fall back
+    to inspecting `evidence_direction_note` / `experiment_purpose` text). A run
+    determined dry by content inspection and faithfully recorded in
+    `excluded_dry_run_ids`, but whose manifest never got the flag written, was
+    previously invisible to BOTH sets and could never clear the reviewed-FAIL
+    blind-spot net no matter how many times it was re-adjudicated (7 such
+    run_ids as of 2026-08-08). Reading it here is the fix; the manifest-flag set
+    is deliberately left alone, since other buckets legitimately need "the
+    manifest says dry_run" rather than "someone decided it was dry".
+
+    Loosely mirrors check_unapplied_autopsy_recommendations.load_confirmed()'s
+    run-id extraction (kept as a small standalone re-scan, not an import, so
+    this script has no dependency on that CLI tool's argv/exit-code surface).
+    That sibling deliberately does NOT read `excluded_dry_run_ids` and does not
+    have this gap: it indexes `targets` in order to audit whether each target's
+    `per_claim_recommendation` was applied, and an excluded dry run has no
+    target dict and therefore no recommendation to apply.
+
+    Coverage here means "adjudicated at least once", not "adjudicated correctly"
+    or "current" -- GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py) is
+    the audit for whether a *confirmed* recommendation was actually applied.
     """
     ids: set[str] = set()
     if not EVIDENCE_DIR.parent.is_dir():
@@ -167,6 +195,9 @@ def load_confirmed_autopsy_run_ids() -> set:
             if not isinstance(target, dict):
                 continue
             rid = target.get("run_id")
+            if isinstance(rid, str) and rid:
+                ids.add(rid)
+        for rid in data.get("excluded_dry_run_ids", []) or []:
             if isinstance(rid, str) and rid:
                 ids.add(rid)
     return ids

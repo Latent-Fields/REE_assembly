@@ -309,6 +309,76 @@ class LoadConfirmedAutopsyRunIdsTests(unittest.TestCase):
             td.cleanup()
         self.assertNotIn("v3_exq_2_x_20260101T000000Z_v3", ids)
 
+    def test_confirmed_excluded_dry_run_id_is_indexed(self):
+        """excluded_dry_run_ids counts as adjudication (2026-08-08 gap fix).
+
+        A run determined dry by CONTENT inspection (pre-2026-07 manifests often
+        carry no `dry_run` boolean) and recorded in excluded_dry_run_ids was
+        previously invisible to both this set and load_dry_run_run_ids(), so it
+        could never clear the reviewed-FAIL blind-spot net.
+        """
+        td, root = self._with_planning({
+            "failure_autopsy_grandfathered-cluster_2026-08-08.json": {
+                "status": "confirmed",
+                "targets": [{"run_id": "v3_exq_3_x_20260101T000000Z_v3"}],
+                "excluded_dry_run_ids": [
+                    "v3_exq_4_dry_20260101T000000Z_v3",
+                ],
+            },
+        })
+        orig = self.mod.ROOT
+        self.mod.ROOT = root
+        try:
+            ids = self.mod.load_confirmed_autopsy_run_ids()
+        finally:
+            self.mod.ROOT = orig
+            td.cleanup()
+        self.assertIn("v3_exq_4_dry_20260101T000000Z_v3", ids)
+        # the target run_id collection must be unaffected
+        self.assertIn("v3_exq_3_x_20260101T000000Z_v3", ids)
+
+    def test_draft_excluded_dry_run_id_is_not_indexed(self):
+        """Negative control -- a draft's exclusion list is not adjudication."""
+        td, root = self._with_planning({
+            "failure_autopsy_V3-EXQ-5_2026-08-08.json": {
+                "status": "draft",
+                "targets": [],
+                "excluded_dry_run_ids": ["v3_exq_5_dry_20260101T000000Z_v3"],
+            },
+        })
+        orig = self.mod.ROOT
+        self.mod.ROOT = root
+        try:
+            ids = self.mod.load_confirmed_autopsy_run_ids()
+        finally:
+            self.mod.ROOT = orig
+            td.cleanup()
+        self.assertNotIn("v3_exq_5_dry_20260101T000000Z_v3", ids)
+
+    def test_excluded_dry_run_ids_absent_or_malformed_is_tolerated(self):
+        """The field is optional; non-string members are skipped, not fatal."""
+        td, root = self._with_planning({
+            "failure_autopsy_V3-EXQ-6_2026-08-08.json": {
+                "status": "confirmed",
+                "targets": [{"run_id": "v3_exq_6_x_20260101T000000Z_v3"}],
+            },
+            "failure_autopsy_V3-EXQ-7_2026-08-08.json": {
+                "status": "confirmed",
+                "targets": [],
+                "excluded_dry_run_ids": [None, "", 7,
+                                         "v3_exq_7_dry_20260101T000000Z_v3"],
+            },
+        })
+        orig = self.mod.ROOT
+        self.mod.ROOT = root
+        try:
+            ids = self.mod.load_confirmed_autopsy_run_ids()
+        finally:
+            self.mod.ROOT = orig
+            td.cleanup()
+        self.assertEqual(ids, {"v3_exq_6_x_20260101T000000Z_v3",
+                               "v3_exq_7_dry_20260101T000000Z_v3"})
+
 
 class DiagnosticAutopsyRequiredSectionTests(unittest.TestCase):
     """The blanket experiment_purpose=='diagnostic' gate (2026-08-07).
