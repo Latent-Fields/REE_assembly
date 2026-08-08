@@ -92,9 +92,9 @@
       "summary": "SD-087 and Q-086 both carry 2026-08-01/02/03 evidence_quality_note text stating that \"the flag needs to be set from the START of training\" is the one remaining untested hypothesis, and the 2026-08-03 governance entry routes /queue-experiment for a train-from-scratch-with-flag-ON run. That hypothesis is already answered: V3-EXQ-856 ARM_ON set harm_surprise_pe_enabled at agent construction BEFORE its warmup (make_agent_and_env then warmup_train), and the 664 signature survived anyway; REE_assembly/evidence/reanalysis/reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z.json records this and the paired chip resolved done with \"no experiment queued\". As written the notes will send a future session to spend compute on a closed question.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:36:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-08T08:31:00Z",
+      "resolution_note": "2026-08-08 governance: corrected the stale 'routed to train-from-scratch-with-flag-ON /queue-experiment' closing language in both SD-087 and Q-086's evidence_quality_note -- that test already ran (V3-EXQ-856 ARM_ON set the flag at construction, before warmup) and is answered per evidence/reanalysis/reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z.json. Option (a) is closed; no further experiment queued on this disjunction."
     },
     {
       "flag_id": "GFLAG-0007",
