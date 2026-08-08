@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-08T02:21:47Z`
+Generated: `2026-08-08T05:23:17Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,8 +9,8 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **246** (ready 26, in_flight 0, blocked 169)
-- By generation: clinical 11, meta 4, process 6, v3 85, v4 77, v5 38, v6 25
+- Items: **247** (ready 26, in_flight 0, blocked 169)
+- By generation: clinical 11, meta 4, process 6, v3 86, v4 77, v5 38, v6 25
 - Pending review: **1**
 - Queue pending (unclaimed): **0**
 
@@ -5407,7 +5407,30 @@ Instructions:
 
 </details>
 
-### IGW-20260808-240 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
+### IGW-20260808-240 -- Confirm evidence: MECH-322 (lit 0.76, exp ~0)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
+- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260808-240
+Title: Confirm evidence: MECH-322 (lit 0.76, exp ~0)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-322
+Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260808-241 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0547 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
@@ -5416,7 +5439,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-240
+REE inter-governance work item: IGW-20260808-241
 Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5432,15 +5455,15 @@ Instructions:
 
 </details>
 
-### IGW-20260808-241 -- Confirm evidence: MECH-074c (lit 0.75, exp ~0)
+### IGW-20260808-242 -- Confirm evidence: MECH-074c (lit 0.75, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.75, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-241
+REE inter-governance work item: IGW-20260808-242
 Title: Confirm evidence: MECH-074c (lit 0.75, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5455,7 +5478,7 @@ Instructions:
 
 </details>
 
-### IGW-20260808-242 -- Confirm evidence: MECH-186 (lit 0.74, exp ~0)
+### IGW-20260808-243 -- Confirm evidence: MECH-186 (lit 0.74, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0098 status=gated: the exact test this proposes (floor clamp on VALENCE_WANTING, i.e. 'valence_wanting_floor') has already run twice: v3_exq_251_mech186_valence_wanting_floor (runs ...1775504875_v3 and ...17
@@ -5464,7 +5487,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-242
+REE inter-governance work item: IGW-20260808-243
 Title: Confirm evidence: MECH-186 (lit 0.74, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5480,7 +5503,7 @@ Instructions:
 
 </details>
 
-### IGW-20260808-243 -- Confirm evidence: SD-009 (lit 0.72, exp ~0)
+### IGW-20260808-244 -- Confirm evidence: SD-009 (lit 0.72, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.72, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5488,7 +5511,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-243
+REE inter-governance work item: IGW-20260808-244
 Title: Confirm evidence: SD-009 (lit 0.72, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5503,7 +5526,7 @@ Instructions:
 
 </details>
 
-### IGW-20260808-244 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
+### IGW-20260808-245 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5511,7 +5534,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-244
+REE inter-governance work item: IGW-20260808-245
 Title: Confirm evidence: SD-024 (lit 0.70, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5526,7 +5549,7 @@ Instructions:
 
 </details>
 
-### IGW-20260808-245 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
+### IGW-20260808-246 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0554 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
@@ -5535,7 +5558,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-245
+REE inter-governance work item: IGW-20260808-246
 Title: Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5551,7 +5574,7 @@ Instructions:
 
 </details>
 
-### IGW-20260808-246 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
+### IGW-20260808-247 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0553 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
@@ -5560,7 +5583,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260808-246
+REE inter-governance work item: IGW-20260808-247
 Title: Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
