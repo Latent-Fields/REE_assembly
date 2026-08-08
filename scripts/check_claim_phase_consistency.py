@@ -181,6 +181,181 @@ def prerequisite_edges(claim: dict) -> list[tuple[str, str]]:
     return edges
 
 
+def reciprocal_prerequisite_cycles(claims: list[dict]) -> list[dict]:
+    """Find pairs (A, B) where A and B are prerequisites of EACH OTHER.
+
+    Under this module's own edge semantics a prerequisite edge means "the needer
+    cannot be built before the need". A 2-cycle therefore asserts an unsatisfiable
+    build order -- at least one of the two directions is mistyped. It is the one
+    defect in this graph that is provable from the schema alone, with no judgement
+    about the science.
+
+    It matters here specifically because a mistyped edge is INDISTINGUISHABLE from
+    a real one to `reclassification_candidates`, which will happily reclassify a
+    v4 claim to v3 on the strength of a reversed edge, and -- once applied -- the
+    reclassified claim drops out of the v4+ report entirely and is never re-examined.
+
+    Confirmed case (2026-08-08): MECH-261 (stable, v3) declared
+    `depends_on: ARC-039  # entorhinal grid loop (offline consolidation target)`
+    while ARC-039 declared `depends_on: MECH-261` with a comment describing the
+    edge as "symmetric" -- i.e. an ASSOCIATION deliberately recorded in a field
+    this checker reads as a DIRECTED PREREQUISITE. MECH-261 had reached
+    status:stable in V3 while ARC-039's entorhinal circuit was never built, which
+    is direct evidence it was never a prerequisite of MECH-261; the true edge is
+    the ARC-039 -> MECH-261 direction that was already recorded. The reversed
+    direction silently reclassified ARC-039 from its authored v4 scope to v3.
+
+    Each result is graded by whether the cycle is actually DRIVING a phase outcome:
+
+      load_bearing True  -- one side is a V3 build commitment and the other is a
+                           live v4+ claim (the cycle is producing a ROOT leak
+                           right now), OR one side carries
+                           `phase_provenance: derived` naming the other as its
+                           `phase_derived_from` (the cycle already drove an
+                           applied reclassification).
+      load_bearing False -- both sides sit at the same phase lane, so the mistyped
+                            direction changes no phase today. Still a latent
+                            defect (it becomes load-bearing the moment either
+                            side's phase moves), but not actionable now.
+
+    Returns a list of dicts sorted by (not load_bearing, a, b).
+    """
+    by_id = {c["id"]: c for c in claims if c.get("id")}
+    live = {
+        cid: c for cid, c in by_id.items() if c.get("status") not in DEAD_STATUSES
+    }
+    edges: dict[str, dict[str, str]] = {}
+    for cid, c in live.items():
+        edges[cid] = {dep: kind for dep, kind in prerequisite_edges(c)}
+
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for a, a_deps in edges.items():
+        for b, a_kind in a_deps.items():
+            if b not in edges or a not in edges[b]:
+                continue
+            key = tuple(sorted((a, b)))
+            if key in seen:
+                continue
+            seen.add(key)
+            lo, hi = key
+            lo_c, hi_c = by_id[lo], by_id[hi]
+
+            reasons: list[str] = []
+            for needer, need in ((lo_c, hi_c), (hi_c, lo_c)):
+                if is_v3_driver(needer):
+                    np_ = phase_num(need)
+                    if np_ is not None and np_ >= 4:
+                        reasons.append(
+                            f"{needer['id']} is a V3 build commitment and "
+                            f"{need['id']} is v{np_} -- this cycle is producing a ROOT leak"
+                        )
+                if (need.get("phase_provenance") == "derived") and (
+                    needer["id"] in _as_list(need.get("phase_derived_from"))
+                ):
+                    reasons.append(
+                        f"{need['id']} was already reclassified to "
+                        f"{need.get('implementation_phase')} with "
+                        f"phase_derived_from: {needer['id']} -- on this cycle's edge"
+                    )
+            out.append(
+                {
+                    "pair": [lo, hi],
+                    "load_bearing": bool(reasons),
+                    "reasons": reasons,
+                    "edge_kinds": {
+                        f"{lo}->{hi}": edges[lo][hi],
+                        f"{hi}->{lo}": edges[hi][lo],
+                    },
+                    "phases": {
+                        lo: lo_c.get("implementation_phase"),
+                        hi: hi_c.get("implementation_phase"),
+                    },
+                    "statuses": {lo: lo_c.get("status"), hi: hi_c.get("status")},
+                }
+            )
+    out.sort(key=lambda r: (not r["load_bearing"], r["pair"][0], r["pair"][1]))
+    return out
+
+
+def stale_derived_provenance(claims: list[dict]) -> list[dict]:
+    """Re-audit claims that ALREADY carry `phase_provenance: derived`.
+
+    Closes an idempotency hole in the design doc's section 3.6. Once a
+    reclassification is applied the claim sits at `implementation_phase: v3`, so
+    `reclassification_candidates` -- which only ever reports v4+ claims -- can no
+    longer see it. The derivation becomes permanent and unauditable: if the
+    dependency that justified it is later severed, retyped, or its driver
+    superseded, nothing notices and the claim keeps a phase it no longer earns.
+
+    This check re-derives the justification from the live graph and reports any
+    claim whose recorded provenance no longer holds:
+
+      missing_driver        -- `phase_derived_from` is absent, or names a claim
+                               that does not exist / is dead.
+      no_prerequisite_edge  -- the named driver exists but no longer declares a
+                               prerequisite edge to this claim.
+      driver_not_v3_driver  -- the edge exists but the driver is no longer a V3
+                               build commitment (see is_v3_driver), so it cannot
+                               force anything to V3.
+
+    Report-only, like everything else here: a stale derivation is a prompt to
+    re-adjudicate (restore the edge, or revert the phase), never an auto-edit.
+    """
+    by_id = {c["id"]: c for c in claims if c.get("id")}
+    out: list[dict] = []
+    for c in claims:
+        if not c.get("id") or c.get("phase_provenance") != "derived":
+            continue
+        if c.get("status") in DEAD_STATUSES:
+            continue
+        drivers = _as_list(c.get("phase_derived_from"))
+        if not drivers:
+            out.append(
+                {
+                    "id": c["id"],
+                    "implementation_phase": c.get("implementation_phase"),
+                    "phase_derived_from": [],
+                    "reason": "missing_driver",
+                    "detail": "phase_provenance: derived with no phase_derived_from",
+                }
+            )
+            continue
+        live_support: list[str] = []
+        details: list[str] = []
+        for drv in drivers:
+            d = by_id.get(drv)
+            if d is None or d.get("status") in DEAD_STATUSES:
+                details.append(f"{drv}: missing or dead")
+                continue
+            if c["id"] not in {dep for dep, _k in prerequisite_edges(d)}:
+                details.append(f"{drv}: no prerequisite edge to {c['id']}")
+                continue
+            if not is_v3_driver(d):
+                details.append(f"{drv}: no longer a V3 build commitment")
+                continue
+            live_support.append(drv)
+        if live_support:
+            continue
+        if all("missing or dead" in d for d in details):
+            reason = "missing_driver"
+        elif any("no prerequisite edge" in d for d in details):
+            reason = "no_prerequisite_edge"
+        else:
+            reason = "driver_not_v3_driver"
+        out.append(
+            {
+                "id": c["id"],
+                "implementation_phase": c.get("implementation_phase"),
+                "phase_derived_from": drivers,
+                "reason": reason,
+                "detail": "; ".join(details),
+            }
+        )
+    out.sort(key=lambda r: r["id"])
+    return out
+
+
 def reclassification_candidates(claims: list[dict]) -> dict:
     """Core analysis. Returns a structured report dict:
 
@@ -357,9 +532,13 @@ def reclassification_candidates(claims: list[dict]) -> dict:
     candidates = _finalize(candidates)
     informational = _finalize(informational)
 
+    cycles = reciprocal_prerequisite_cycles(claims)
+    stale_derived = stale_derived_provenance(claims)
+
     n_reclassify = sum(1 for r in candidates.values() if r["verdict"] == "RECLASSIFY")
     n_conflict = sum(1 for r in candidates.values() if r["verdict"] == "CONFLICT")
     n_root = sum(1 for r in candidates.values() if r["kind"] == "root")
+    n_cycles_lb = sum(1 for r in cycles if r["load_bearing"])
     stats = {
         "total_claims": len(claims),
         "v3_build_drivers": len(seeds[True]),
@@ -369,11 +548,16 @@ def reclassification_candidates(claims: list[dict]) -> dict:
         "conflict_candidates": n_conflict,
         "informational_candidates": len(informational),
         "dangling_dep_refs": len(dangling),
+        "reciprocal_cycles": len(cycles),
+        "reciprocal_cycles_load_bearing": n_cycles_lb,
+        "stale_derived_provenance": len(stale_derived),
     }
     return {
         "candidates": candidates,
         "informational": informational,
         "dangling_deps": sorted(set(dangling)),
+        "reciprocal_cycles": cycles,
+        "stale_derived_provenance": stale_derived,
         "stats": stats,
     }
 
@@ -401,12 +585,16 @@ def render_human(report: dict) -> str:
         f"Total CONFLICT:            {s['conflict_candidates']:>4}  (phase_locked v4+ needed by V3 -- human must resolve)",
         f"Informational (questions): {s['informational_candidates']:>4}  (v4+ under a V3 open-question seed; not a leak)",
         f"Dangling dep references:   {s['dangling_dep_refs']:>4}",
+        f"Reciprocal cycles:         {s['reciprocal_cycles']:>4}  ({s['reciprocal_cycles_load_bearing']} load-bearing -- a mistyped edge is driving a phase)",
+        f"Stale derived provenance:  {s['stale_derived_provenance']:>4}  (applied reclassification no longer justified by the graph)",
         "",
     ]
     roots = {k: v for k, v in report["candidates"].items() if v["kind"] == "root"}
     cascades = {k: v for k, v in report["candidates"].items() if v["kind"] == "cascade"}
     if not report["candidates"]:
         lines.append("No phase leaks: every V3 build commitment's prerequisites are V3-scope.")
+        lines.append("")
+        lines.extend(_render_integrity_sections(report))
         return "\n".join(lines)
 
     lines.append("--- ROOT leaks (act on these first) ---")
@@ -456,7 +644,86 @@ def render_human(report: dict) -> str:
         for d in report["dangling_deps"]:
             lines.append(f"  {d}")
         lines.append("")
+    lines.extend(_render_integrity_sections(report))
     return "\n".join(lines)
+
+
+def _render_integrity_sections(report: dict) -> list[str]:
+    """Graph-integrity findings: defects provable from the schema, not proposals.
+
+    Kept separate from the candidate sections above because these are a different
+    KIND of finding. A candidate says "the graph is consistent and implies this
+    claim should move phase"; these say "the graph contradicts itself, so a
+    candidate computed from it may be wrong". Read these first.
+    """
+    lines: list[str] = []
+    cycles = report.get("reciprocal_cycles") or []
+    load_bearing = [c for c in cycles if c["load_bearing"]]
+    latent = len(cycles) - len(load_bearing)
+
+    if load_bearing:
+        lines.append(
+            "--- Reciprocal prerequisite cycles, LOAD-BEARING (a mistyped edge is driving a phase) ---"
+        )
+        lines.append("")
+        for rec in load_bearing:
+            a, b = rec["pair"]
+            ka, kb = rec["edge_kinds"][f"{a}->{b}"], rec["edge_kinds"][f"{b}->{a}"]
+            lines.append(
+                f"* {a} <-> {b}   ({a} {rec['phases'][a]}/{rec['statuses'][a]}, "
+                f"{b} {rec['phases'][b]}/{rec['statuses'][b]})"
+            )
+            lines.append(f"    edges: {a} --{ka}--> {b}   AND   {b} --{kb}--> {a}")
+            for r in rec["reasons"]:
+                lines.append(f"    WHY IT MATTERS: {r}")
+            lines.append(
+                "    ACTION: a prerequisite edge means 'cannot be built before'. Both "
+                "directions cannot hold."
+            )
+            lines.append(
+                "            Decide which direction is real; retype or delete the other "
+                "(an association or a"
+            )
+            lines.append(
+                "            forward reference to a downstream consumer is NOT depends_on). "
+                "Then re-check any"
+            )
+            lines.append(
+                "            phase this cycle derived, and consider phase_locked: true on a "
+                "claim whose own"
+            )
+            lines.append(
+                "            notes assert an intrinsic later scope, so a future pull routes "
+                "to CONFLICT."
+            )
+            lines.append("")
+    if latent:
+        lines.append(
+            f"--- Reciprocal prerequisite cycles, latent: {latent} "
+            "(same defect, but both sides share a phase lane so nothing moves today) ---"
+        )
+        lines.append("  Run with --json for the full list.")
+        lines.append("")
+
+    stale = report.get("stale_derived_provenance") or []
+    if stale:
+        lines.append(
+            "--- Stale derived phase provenance (an APPLIED reclassification the graph no longer supports) ---"
+        )
+        for rec in stale:
+            lines.append(
+                f"* {rec['id']} (currently {rec['implementation_phase']}, "
+                f"phase_derived_from: {', '.join(rec['phase_derived_from']) or '<unset>'}) "
+                f"-> {rec['reason']}"
+            )
+            lines.append(f"    {rec['detail']}")
+            lines.append(
+                "    ACTION: restore the dependency that justified the phase, or revert the "
+                "phase and clear"
+            )
+            lines.append("            phase_provenance / phase_derived_from.")
+        lines.append("")
+    return lines
 
 
 def render_warn(report: dict) -> str:
@@ -479,6 +746,24 @@ def render_warn(report: dict) -> str:
         )
     if not out:
         out.append("OK: no claim phase leaks (v3->v4+ direct prerequisite) detected.")
+
+    # Graph-integrity WARNs. Only the LOAD-BEARING cycles are emitted -- the latent
+    # ones are a real defect but move no phase today, and a governance log that
+    # carries all of them every cycle is a banner people learn to skip.
+    for rec in report.get("reciprocal_cycles") or []:
+        if not rec["load_bearing"]:
+            continue
+        a, b = rec["pair"]
+        out.append(
+            f"WARN: reciprocal-prerequisite {a} <-> {b} -- both declare the other a "
+            f"prerequisite, which cannot both hold; {rec['reasons'][0]}"
+        )
+    for rec in report.get("stale_derived_provenance") or []:
+        out.append(
+            f"WARN: stale-derived-phase {rec['id']} ({rec['implementation_phase']}) "
+            f"phase_derived_from {', '.join(rec['phase_derived_from']) or '<unset>'} "
+            f"-- {rec['reason']}: {rec['detail']}"
+        )
     return "\n".join(out)
 
 
