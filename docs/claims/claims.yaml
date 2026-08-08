@@ -30124,6 +30124,7 @@
     needs_review: false
   implementation_phase: v5
   governance_2026_06_10: implementation_phase v4 -> v5 (social tier, V5 roadmap wave)
+  epistemic_category: substrate_conditional
   depends_on:
     - INV-067
     - INV-068
@@ -30134,6 +30135,32 @@
     - INV-071
     - INV-072
     - ARC-054
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: J_ethical's terms are all unbuilt/unexercised -- D_V_self
+    (ARC-054) flag defaults off; D_V_j needs the same multi-agent substrate INV-028/029 are
+    independently blocked on; beta_j and the threat/similarity classifier (INV-070) confirmed
+    absent from ree_core/. Can only be evaluated for internal consistency, not audited live.
+
+    LEG 1 (DERIVATIONAL, testable now by argument): does the axiom -> D_V mapping hold
+    together? Does beta_j -> 0 recover ARC-054's J(pi) exactly (no discontinuity)? Does the
+    violence condition (beta_j collapse OR self-preservation forcing a D_{V,j} sacrifice)
+    exhaustively partition the case space? CONFIRMING: strict generalisation, beta_j -> 0
+    recovers ARC-054 exactly, violence condition jointly exhaustive. FALSIFYING: a coherent
+    counterexample where the limit doesn't recover ARC-054, or a case the two-branch
+    violence condition can't classify.
+
+    LEG 2 (SUBSTRATE-EMPIRICAL, blocked): once built -- an agent with intact beta_j != 0
+    toward a modelled other, manipulate that other's predicted D_{V,j} across matched
+    trajectory pairs. CONFIRMING: trajectory ranking shifts in the axiom-consistent
+    direction, shift size scales with beta_j (not all-or-nothing) -- formula does real work.
+    FALSIFYING: no measurable difference beyond a beta_j-blind baseline (formula present but
+    decorative), or an agent whose beta_j has collapsed shows no differential willingness to
+    sacrifice that target's D_{V,j}.
+
+    GOVERNANCE FLAG (2026-08-08 digestion, not resolved here): ARC-096 and ARC-097
+    (registered 2026-06-10, same day as this claim's v4 -> v5 push) each already carry
+    possible_overlap_with: ARC-056 -- review for merge -- pre-existing and unresolved;
+    a claims.yaml disposition call for governance, not digestion.
   notes: >
     The 10-axiom ethical system maps directly onto D_V mechanics, producing unified
     computational ethics: J_ethical(pi) = beta_self * D_V_self + sum_j beta_j * D_V_j,
@@ -50643,7 +50670,31 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: "2026-05-10"
+  epistemic_category: substrate_conditional
   depends_on: []
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITIONS: (a) ARC-071 LEG 2 cleared -- chunks survive E3
+    re-evaluation (use_e3_reselection_shortcircuit, landed 2026-08-01, not yet measured);
+    (b) ARC-070 mid-execution reachability already confirmed (V3-EXQ-839); (c) a
+    long-horizon repeating task run with both mechanisms live vs. an ARC-069-OFF control.
+    None queued to date.
+
+    CONFIRMING: OFF control still flat-grain at episode 1000; ON arm shows BOTH
+    rollout-cost drop on repeatedly-successful sub-sequences (partially corroborated:
+    V3-EXQ-810a/810b) AND re-decomposition + cost recovery under induced prediction
+    failure (partially corroborated: V3-EXQ-844 C2 PASS).
+
+    FALSIFYING: preconditions met, but ON arm shows no measurable compression despite the
+    accumulator gate firing, and/or no re-decomposition despite a verified trigger -- the
+    triggers fire individually but don't compose into the claimed cluster-level cost
+    benefit.
+
+    EXPLICITLY NOT FALSIFYING: MECH-321's downstream selection-quality failures
+    (V3-EXQ-844 C1, 867 family) -- that's a claim about candidate quality, not about
+    grain-rescaling itself.
+
+    CROSS-REFERENCE: this is the cluster-level joint prediction, distinct from either
+    child's own narrower claim -- see ARC-070/ARC-071 for their own what_would_answer.
   functional_restatement: >
     ARC-069 registers the architectural slot for dynamic re-granularisation
     of policy primitives. REE today has flat-grain trajectory proposals
@@ -50799,10 +50850,16 @@
         chunking, motor program consolidation, options framework as
         formal analog, repetition / outcome-consistency triggers.
 
-    Not yet experimentally tested. The substrate currently produces
-    no measurable lift because the cluster is empty. First
-    validation will be substrate-readiness diagnostic on whichever
-    child MECH lands first.
+    Not yet experimentally tested at the cluster level. UPDATE 2026-08-08
+    (thought-digestion currency check): the "cluster is empty" framing above is
+    now stale -- both ARC-070 (substrate built 2026-07-24) and ARC-071 (substrate
+    built 2026-07-22) have since landed real interface contracts, default-off
+    flags, and partial evidence (ARC-070: V3-EXQ-839 mid-execution reachability +
+    V3-EXQ-844 C2 PASS; ARC-071: V3-EXQ-810a/810b LEG 1 PASS, LEG 2 fix landed
+    2026-08-01 but not yet measured). What remains genuinely untested is
+    narrower than "empty": the cluster-level JOINT prediction (both operations
+    operating together over a long repeating task, see this claim's own
+    what_would_answer), which has never been queued.
   notes: >
     Cross-reference family: ARC-069 + ARC-070 + ARC-071 form the
     policy_primitive_granularity cluster. Registered together on
@@ -51620,6 +51677,35 @@
   phase_derived_from: SD-055
   claim_level: architectural
   registered_utc: "2026-05-15"
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    CURRENT SUBSTRATE STATE (checked 2026-08-08): Gap 2 wiring closed (SD-055,
+    V3-EXQ-568 PASS, grad_max=372) but use_differentiable_cem defaults False -- never
+    behaviourally exercised. Gap 1 unambiguously absent (no cross-tick accumulation
+    code). EXQ-563c/567 (Gap-1 diagnostics) measure only within-tick entropy, tagged
+    ARC-065 not ARC-072 -- confirms rather than closes the claim's own caveat that they
+    treat within-tick symptom only.
+
+    GAP 1 FALSIFYING: no diversity gap opens between epoch-given and no-epoch agents,
+    or a gap opens but fully closes under later equivalent exploration.
+    GAP 1 CONFIRMING: epoch-given agent retains a larger, cross-tick diverse library
+    that persists.
+
+    GAP 2 FALSIFYING: with the flag on and gradient confirmed live, PFC context
+    variation produces no retrieval difference (gradient flows but carries no
+    cue-discriminative signal).
+    GAP 2 CONFIRMING: distinguishable context states retrieve distinguishable
+    trajectory subsets, absent with the flag off.
+
+    JOINT FALSIFYING: either gap closes independently of the other -- contradicts the
+    claimed interdependence.
+    JOINT CONFIRMING: Gap 1 does not close while Gap 2 stays severed (Warlaumont &
+    Finnegan severed-feedback topology).
+
+    CROSS-REFERENCE: INV-073 names the same underlying gap from the general/
+    biological-principle angle and already carries an independent 2026-08-08
+    what_would_answer + a queue flag proposing flipping use_differentiable_cem=True to
+    measure option diversity -- that flag serves both claims; do not duplicate it here.
   depends_on:
     - INV-073    # developmental bootstrapping necessity (causal upstream principle)
     - ARC-065    # diversity stack -- the V3 mechanism ARC-072 scopes the gap beyond
@@ -57216,10 +57302,13 @@
     disengagement-is-default inversion) + MECH-340 (the persistence/
     efficacy gate) + Q-053 (the open licit-gate-signal question).
     Cross-reference: the abandon path
-    is the mirror image of the currently-unregistered interrupted-task /
-    Zeigarnik resumption gap (resume deferred work <-> retire it); the two
-    should be wired, not registered in parallel. No experiment queued; not
-    promoted; status candidate / v3_pending.
+    is the mirror image of the interrupted-task / Zeigarnik resumption gap
+    (resume deferred work <-> retire it); the two should be wired together.
+    UPDATE 2026-08-08 (thought-digestion currency check): the Zeigarnik gap is
+    no longer unregistered -- it was registered as MECH-389 on 2026-06-10 -- but
+    the wiring has not been done (see ARC-079's notes for detail; chip
+    chip-20260808-arc079-mech389-zeigarnik-crosslink spawned to do it). No
+    experiment queued; not promoted; status candidate / v3_pending.
     C1 substrate update (2026-05-19): the Constraint-1 child MECH-339
     (composite cue + outshining gate) is now IMPLEMENTED in the ghost-goal
     bank (smallest substrate step: arousal_tag context channel gated by
@@ -57403,6 +57492,22 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: 2026-05-19
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (partially met): a built, separable gate between
+    MECH-292/293 -- MET (MECH-340, PersistenceAppraisal struct, reads only
+    control/unattainability, not recoverability/staleness/failure tallies). NOT MET:
+    config-gated off, never run in a real experiment (exp_conf=0, no V3-EXQ queued).
+
+    CONFIRMING: an agent with (gate ON + default disengagement + preserved SD-039
+    trace) avoids BOTH rumination/intrusion (gate-stuck-on) AND apathy/learned-
+    helplessness (gate keyed on failure generalising across goals).
+
+    FALSIFYING: either failure mode appears. Specific contrast: a bolted-on
+    abandon-trigger control (the original, non-inverted ARC-078 C3 framing) is
+    predicted to reproduce learned helplessness; if it doesn't (behaviourally
+    indistinguishable from the gated design), the inversion's differential causal
+    claim fails.
   depends_on:
     - ARC-078    # parent: ARC-079 resolves ARC-078's C3 (the placeholder constraint)
     - MECH-292   # the ranked bank whose re-probe persistence is gated
@@ -57450,12 +57555,20 @@
   notes: >
     Registered 2026-05-19 from the goal-disengagement biology-before pull.
     Child of ARC-078; resolves its C3 (ARC-078 C3 prose updated to point
-    here). The unregistered interrupted-task / Zeigarnik resumption gap is
-    the MIRROR of ARC-079 (resume deferred work <-> cease re-probing it):
-    ARC-079 is the disengage half. They must be wired when the Zeigarnik
-    gap is registered -- which is itself gated behind its own biology-before
-    pull (see project memory; do NOT register Zeigarnik in parallel here).
-    No experiment queued; not promoted; candidate / v3_pending.
+    here). The interrupted-task / Zeigarnik resumption gap is the MIRROR of
+    ARC-079 (resume deferred work <-> cease re-probing it): ARC-079 is the
+    disengage half.
+
+    UPDATE 2026-08-08 (thought-digestion currency check): the Zeigarnik gap is
+    NO LONGER unregistered -- it was registered as MECH-389 on 2026-06-10
+    (implementation_phase: v4, epistemic_category: substrate_conditional). The
+    wiring this note originally called for has NOT been done: MECH-389's
+    depends_on/distinct_from do not reference ARC-079, Q-053, or MECH-340, and
+    none of those reference MECH-389 back. A chip has been spawned
+    (chip-20260808-arc079-mech389-zeigarnik-crosslink) to do that cross-link and
+    reconcile whether a goal can be simultaneously gated-for-resumption (MECH-389)
+    and disengaged (ARC-079/MECH-340) -- not resolved here.
+    No experiment queued against ARC-079 itself; not promoted; candidate / v3_pending.
   evidence_quality_note: >
     Registered candidate. Literature support is the 2026-05-19 pull in
     `targeted_review_goal_disengagement/`: Maier & Seligman 2016 (the
@@ -57493,6 +57606,46 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: 2026-06-04
+  epistemic_category: substrate_coherence
+  what_would_answer: >
+    NOT a standard empirical CONFIRMING/FALSIFYING pair -- ARC-080 is a THIN UMBRELLA /
+    COHERENCE MAP (architectural_commitment / substrate_coherence), not a testable
+    mechanism, so this specifies the REASSESSMENT TRIGGER for the COORDINATION-PRIMITIVE
+    FRAMING ITSELF (the 2026-06-14 OBJ-1 resolution: an object is a binding of three
+    non-reducing coordinate facets -- TYPE, ANCHOR, TOKEN), not a result that could
+    confirm/refute the four pillars' own mechanisms.
+
+    TRIGGER: a real OBJ-2 build that actually COREGISTERS the three facets (not just
+    builds one in isolation). CURRENCY CHECK (2026-08-08): the TOKEN facet alone
+    (ARC-006/MECH-045) was implemented 2026-06-09 as
+    ree-v3/ree_core/entities/object_file_buffer.py, wired into REEAgent behind a still
+    default-off flag (use_object_file_buffer=False), with one supporting validation run
+    (V3-EXQ-658, MECH-045 still provisional, not promoted). That predates the 2026-06-14
+    OBJ-1 decision and does NOT coregister with the TYPE store (SD-057) or ANCHOR store
+    (SD-039) -- so the trigger is armed (one facet exists) but has not fired.
+
+    EVIDENCE RELEVANT AT THAT REASSESSMENT: does a coregistration build find two facets
+    collapse cleanly into one (contradicting "none reduces to another")? Does keeping the
+    facets coregistered-but-distinct produce a measurable advantage over a
+    flat/collapsed representation on the diagnostics that motivated OBJ-1 (V3-EXQ-641a
+    coherence-non-reducibility; z_world dim=32 discriminative ceiling)? Does the deferred
+    token-vs-type individuation-strength sub-fork resolve compatibly? As ARC-081/082/083
+    (and the future Pillar-1 child) get built, do they cleanly instantiate as coordinate
+    facets, or does any one need a mechanism outside the object-file/binding frame?
+
+    WHAT WOULD ACTUALLY REVISE THE COORDINATION-PRIMITIVE FRAMING: (a) an OBJ-2 build
+    showing two-or-more facets are not independently necessary; (b) a build showing
+    coregistration yields no advantage over a flat/collapsed representation; or (c) a
+    pillar build needing a mechanism outside the object-file/binding frame entirely. Any
+    of these would revise the OBJ-1 decision and this umbrella's framing -- not any
+    single pillar's own pass/fail result in isolation.
+
+    READER NOTE: do not tag ordinary pillar experiments (V3-EXQ-449, V3-EXQ-658, SD-055
+    differentiable-CEM runs, future ARC-081/082/083 runs) as confirming/falsifying
+    ARC-080 directly -- they speak to the pillar-specific child claims. Only evidence
+    about whether the three-facet coregistration STRUCTURE ITSELF holds up under a real
+    coregistering OBJ-2 build is relevant here. No EXP-#### should be minted against
+    ARC-080 directly.
   depends_on:
     - ARC-006    # representational substrate -- the object-file / binding layer (provisional, dormant; biology grounding via L1 pull in progress)
     - MECH-278   # object DEFINITION -- causally-coherent feature bundle under intervention
@@ -57592,18 +57745,43 @@
     STRENGTH within the bound token facet -- deferred to the first OBJ-2 build step,
     not decided here. This is a DESIGN COMMITMENT only: it stays implementation_phase
     v4 / v3_pending, off the V3-closure critical path; SD-057 stays resource-bound
-    for V3; no substrate is built and no V3 behaviour changes.
+    for V3; no coregistration substrate is built and no V3 behaviour changes.
+
+    UPDATE 2026-08-08 (thought-digestion currency check): "no substrate is built"
+    above is now imprecise in one narrow respect -- the isolated TOKEN facet
+    (ARC-006/MECH-045) was implemented 2026-06-09 as
+    ree-v3/ree_core/entities/object_file_buffer.py, wired into REEAgent behind a
+    still-default-off flag (use_object_file_buffer=False), with one supporting run
+    (V3-EXQ-658). This predates and does not implement the 2026-06-14 OBJ-1
+    coregistration decision -- it does not coregister with SD-057 (TYPE) or SD-039
+    (ANCHOR) -- so OBJ-2 as OBJ-1 actually redefined it (build the coregistration
+    structure) has still not started; only one of its three prerequisite pieces
+    exists, standalone, gated off by default. Flagging so a future reader doesn't
+    read the isolated buffer as OBJ-2 progress. closure_status.md's OBJ-2 ("open")
+    and OBJ-4/Pillar-3 ("blocked") rows (both dated 2026-06-10) look stale against
+    this and against SD-055 (Pillar 3 grounding); left for the next regen of that
+    derived doc, not touched here.
   biology_grounding_note: >
     ARC-006/MECH-044/MECH-045 had NO biology lit-pull at registration of this
     umbrella (sources were internal 2026-02 thoughts + DANIEL_README), which the
-    project rule (feedback_biology_before_formal_definitions) flags. That gap is
-    being closed concurrently: the L1 "object files & feature binding" pull
-    (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade 1980 FIT) and the L2 "object
-    permanence" pull (Piaget; Baillargeon; Spelke core-knowledge; Kellman & Spelke
-    1983) were both ACTIVE as of 2026-06-04T16:03Z (sessions
-    litpull-object-files-feature-binding / litpull-object-permanence). Treat
-    ARC-006's biology grounding as IN PROGRESS pending those pulls' landing; L3
-    (affordances/Gibson), L4 (self-as-object/Gallagher/Botvinick), L5
+    project rule (feedback_biology_before_formal_definitions) flags. UPDATE
+    2026-08-08 (thought-digestion currency check): that gap has since CLOSED, not
+    merely started closing as the text below (left for history) describes -- the L1
+    "object files & feature binding" pull
+    (evidence/literature/targeted_review_object_files_feature_binding/, 11 dated
+    entries 2026-06-04 through 2026-06-06) and the L2 "object permanence" pull
+    (evidence/literature/targeted_review_object_permanence/, 5 entries + a
+    synthesis.md) have both LANDED. L3 (affordances/Gibson), L4
+    (self-as-object/Gallagher/Botvinick), L5 (ToM/Woodward/Csibra) still follow
+    when their pillars are scheduled.
+
+    Original note (2026-06-04, now superseded by the update above): the L1 "object
+    files & feature binding" pull (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade
+    1980 FIT) and the L2 "object permanence" pull (Piaget; Baillargeon; Spelke
+    core-knowledge; Kellman & Spelke 1983) were both ACTIVE as of 2026-06-04T16:03Z
+    (sessions litpull-object-files-feature-binding / litpull-object-permanence).
+    Treat ARC-006's biology grounding as IN PROGRESS pending those pulls' landing;
+    L3 (affordances/Gibson), L4 (self-as-object/Gallagher/Botvinick), L5
     (ToM/Woodward/Csibra) follow when their pillars are scheduled.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
@@ -58058,13 +58236,15 @@
     appraisal triggers it, not HOW a system computes unattainability --
     that computation is precisely the function MECH-340 must implement).
     Mirror cross-reference: the interrupted-task / Zeigarnik resumption gap
-    is the inverse question (when to RESUME a deferred goal); it is
-    unregistered and gated behind its own biology-before pull -- Q-053 and
-    that future claim must be reconciled (a goal cannot be simultaneously
-    gated-for-resumption and disengaged), but Zeigarnik is NOT registered
-    here. Resolution path: a substrate-design decision + a falsifier EXQ
-    that induces the three MECH-340 failure signatures; no experiment
-    queued yet.
+    is the inverse question (when to RESUME a deferred goal); Q-053 and
+    that claim must be reconciled (a goal cannot be simultaneously
+    gated-for-resumption and disengaged). UPDATE 2026-08-08 (thought-digestion
+    currency check): Zeigarnik is no longer unregistered -- it was registered
+    as MECH-389 on 2026-06-10 -- but the reconciliation this note calls for has
+    not been done (chip chip-20260808-arc079-mech389-zeigarnik-crosslink
+    spawned to do it). Resolution path: a substrate-design decision + a
+    falsifier EXQ that induces the three MECH-340 failure signatures; no
+    experiment queued yet.
   evidence_quality_note: >
     Open question, confidence 0.0 by construction. The boundaries (ruled-out
     signals AND the ruled-out operation-shape) and the candidate-set
