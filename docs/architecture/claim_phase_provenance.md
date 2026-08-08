@@ -34,12 +34,28 @@ claim is expected to be built. It is **not a permission gate**. Two corollaries:
 
 2. **Phase does not leak upward through instantiation.** A `v4` claim whose only
    reverse-dependents are themselves `v4`, and which merely *instantiates* a `v3`
-   parent cluster, stays `v4`. The canonical case is **SD-033e** (frontopolar
-   parallel-goal-deliberation module): its reverse-dependents MECH-264 / MECH-265
-   are both `v4`; it `instantiates: SD-033` (a `v3` parent) but nothing `v3`
-   depends on it. It stays `v4`. Its V3 obligation -- registering existing
-   mechanisms under the subdivision -- is **graph-registration**, a *separate
-   axis* from implementation phase (commitment_closure_plan.md GAP-9).
+   parent cluster, stays `v4`. The canonical case as written in 2026-06-09 was
+   **SD-033e** (frontopolar parallel-goal-deliberation module): its
+   reverse-dependents MECH-264 / MECH-265 were both `v4`; it `instantiates: SD-033`
+   (a `v3` parent) but nothing `v3` depended on it, so it stayed `v4`. Its V3
+   obligation -- registering existing mechanisms under the subdivision -- is
+   **graph-registration**, a *separate axis* from implementation phase
+   (commitment_closure_plan.md GAP-9).
+
+   > **The SD-033e worked example has since drifted and no longer illustrates the
+   > principle (checked 2026-08-08).** SD-033e is now `v3` and MECH-264 is now
+   > `v3`; MECH-265 is still `v4` and is a live ROOT leak driven by SD-033e --
+   > i.e. the closed `v4` triangle the example rested on has opened, and the
+   > example now shows phase flowing in the direction it was written to rule out.
+   > Worse, the SD-033e -> MECH-265 edge that produces that leak is **reciprocal**
+   > (each declares the other a prerequisite; Section 3.8), so it is one of the
+   > edges that cannot be correct in both directions. The *principle* in this
+   > corollary is unchanged and the `instantiates` guard still works as specified
+   > -- it is only the illustration that is stale. Do not cite SD-033e as a
+   > worked example until that leak is adjudicated; the guard's live regression
+   > pin is `test_instantiates_target_does_not_close_a_cycle` in
+   > `scripts/test_check_claim_phase_consistency.py`, which encodes the shape
+   > rather than the claim ids.
 
 The defect is that nothing checks (1), and the GAP-9 case shows (2) is easy to
 conflate with a phase obligation. This document specifies a provenance schema to
@@ -209,6 +225,64 @@ report = reclassification_candidates(load_claims())
 leak_ids = set(report["candidates"])     # {claim_id: {verdict, kind, ...}}
 ```
 
+### 3.8 Graph-integrity checks (added 2026-08-08)
+
+Sections 3.1-3.6 all compute a **proposal**: "the graph is consistent, and it
+implies this claim should move phase." Two checks were added alongside them that
+compute something different -- "the graph **contradicts itself**, so a proposal
+derived from it may be wrong." They are provable from the schema alone and involve
+no scientific judgement. Read them before the candidate lists.
+
+#### 3.8.1 Reciprocal prerequisite cycles
+
+A prerequisite edge means *the needer cannot be built before the need* (3.2). So
+if `A depends_on B` **and** `B depends_on A`, the pair asserts an unsatisfiable
+build order and at least one direction is mistyped. This is the one defect in the
+graph that can be established with certainty.
+
+It matters because a mistyped edge is **indistinguishable from a real one** to
+3.4's ROOT detection: the checker will reclassify a `v4` claim to `v3` on the
+strength of a reversed edge, and once that is applied the claim sits at `v3` and
+drops out of the `v4+` report **permanently** -- so the error is not merely
+undetected, it is self-concealing.
+
+Findings are graded, because most reciprocal pairs move no phase today:
+
+| grade | condition | why |
+|-------|-----------|-----|
+| **load-bearing** | one side is a V3 build commitment and the other is live `v4+` (the cycle is producing a ROOT leak now), **or** one side carries `phase_provenance: derived` naming the other as `phase_derived_from` (the cycle already drove an applied reclassification) | actionable now |
+| latent | both sides share a phase lane | a real defect, but nothing moves until either side's phase does; **counted, not enumerated** |
+
+Only load-bearing findings reach `--warn`. That split is deliberate: 87 of the 92
+live pairs are latent, and a governance log carrying all of them every cycle is a
+banner people learn to skip -- the same reasoning `audit_vendored_copies.py` uses
+for its NOTE-vs-finding line.
+
+Scope is **2-cycles only**. Longer cycles are common in a densely cross-referenced
+registry, are frequently legitimate at the level of "these ideas are mutually
+constitutive," and would require judgement to triage. A 2-cycle needs none.
+
+#### 3.8.2 Stale derived provenance
+
+This closes an idempotency hole in 3.6. That section says a claim already at
+`implementation_phase: v3` with `phase_provenance: derived` "is simply a V3 claim
+and never re-flagged," and treats that as a stability property. It is also a
+**blind spot**: the derivation is never re-examined, so if the dependency that
+justified it is later severed or retyped, or its driver superseded, the claim
+silently keeps a phase it no longer earns.
+
+The check re-derives the justification from the live graph and reports any claim
+whose recorded provenance no longer holds -- `missing_driver`,
+`no_prerequisite_edge`, or `driver_not_v3_driver`. Report-only, like everything
+else here: a stale derivation is a prompt to re-adjudicate (restore the edge, or
+revert the phase), never an auto-edit.
+
+Both checks are additive to the importable API (new `reciprocal_cycles` and
+`stale_derived_provenance` report keys, new `stats` keys); the existing contract
+is untouched and `--strict` still keys on candidates only. Tests:
+`scripts/test_check_claim_phase_consistency.py` (26, time-independent, synthetic
+fixtures only, roughly half negative controls).
+
 ---
 
 ## 4. Integration
@@ -269,7 +343,88 @@ the two never drift.
 
 ---
 
-## 5. Live results (against `docs/claims/claims.yaml`, 2026-06-09)
+## 5a. Live results (2026-08-08) and the ARC-039 case
+
+`python scripts/check_claim_phase_consistency.py` over **994 claims / 368 V3
+build-commitment seeds**: **14 ROOT leaks, 4 CASCADE, 0 CONFLICT, 0 dangling**,
+plus the 3.8 checks: **92 reciprocal prerequisite cycles (5 load-bearing)** and
+**0 stale derived provenance**. The 2026-06-09 table in Section 5 below is
+retained as a historical record -- **do not read it as current**; none of its 12
+roots still appear, because all of them were reclassified to `v3` and a
+reclassified claim is by construction invisible to the `v4+` report.
+
+**That invisibility is the finding, not a footnote.** Fifteen claims now carry
+`phase_provenance: derived`. Every one of them is unreportable by the checker as
+it stood, so the question "was the edge that forced this phase ever correct?"
+could not be asked again after the fact. Section 3.8's two checks exist to make
+it askable.
+
+### The confirmed case: ARC-039 (2026-08-08)
+
+ARC-039 asserts that durable storage of the hippocampal viability map requires a
+hippocampal-entorhinal loop. Its own `notes` carry an explicit **"V4 scope
+justification"** naming three architectural requirements that do not exist in V3
+(a separate entorhinal grid module; offline sleep-equivalent processing phases
+distinct from waking micro-quiescence; a grid read-back mechanism), and its
+`evidence_quality_note` records "Hold at candidate (V4 scope maintained)". It
+nonetheless sits at `implementation_phase: v3`, `phase_provenance: derived`,
+`phase_derived_from: MECH-261`.
+
+That was not a data-entry error. It is this checker's Section 3.4 ROOT rule
+firing on a single line in MECH-261's dependency list:
+
+```yaml
+  - ARC-039          # entorhinal grid loop (offline consolidation target)
+```
+
+The edge is **mistyped**, and four independent lines of evidence say so:
+
+1. **The needer was built without the need.** MECH-261 reached `status: stable`
+   in V3 (validated by V3-EXQ-446/455/453) while ARC-039's entorhinal circuit
+   never existed and still does not. A prerequisite that was never built, for a
+   claim that reached `stable`, was not a prerequisite.
+2. **MECH-261's own implementation does not reference it.** Its
+   `implementation_note` enumerates the eight write-gate targets in the landed
+   `SalienceCoordinator` registry (`sd_033a`, `sd_033b`, `sd_033c`, `sd_033d`,
+   `hc_viability`, `sensory_buffer`, `autonomic`, `e3_policy`); ARC-039 is in
+   neither that list nor the `functional_restatement` write-target list.
+3. **The comment describes a consumer, not a prerequisite.** A write gate's
+   "target" is what the gate is applied *to* -- downstream of the gate. MECH-261
+   supplies the `offline_consolidation` mode weight that ARC-039's loop would be
+   gated by; the dependency runs the other way.
+4. **The correct direction is already recorded, on ARC-039**, and its comment
+   says so outright: `depends_on: MECH-261  # ... the offline_consolidation mode
+   vector is what licenses entorhinal-grid-loop engagement (symmetric with
+   MECH-261.depends_on on ARC-039 ...)`.
+
+Point 4 is the root cause in one word: **"symmetric."** An *association* was
+deliberately recorded in both directions, in a field this checker reads as a
+*directed prerequisite*. `depends_on` has no symmetric reading available to it --
+so the reverse edge became a phase pull, and ARC-039 lost its authored scope
+silently.
+
+Two secondary observations, both general rather than specific to ARC-039:
+
+- **`phase_locked` has never been used.** It is set on **0 of 994** claims, so
+  the CONFLICT path (3.5) has never once fired in the checker's lifetime. The
+  field is exactly the mechanism that would have routed ARC-039 to human
+  adjudication instead of a silent RECLASSIFY, and the text in ARC-039's `notes`
+  is precisely the intrinsic-scope assertion it was designed to record. A
+  documented escape hatch with zero adoption is not protecting anything.
+- **Reciprocal edges are not rare.** 92 pairs currently declare each other
+  prerequisites. Most are latent, but **5 are load-bearing**, and 4 of those 5
+  have *already* driven an applied reclassification (ARC-039/MECH-261,
+  MECH-122/MECH-121, MECH-209/INV-062, MECH-325/ARC-072); the fifth
+  (MECH-265/SD-033e) is producing a live ROOT leak. So this is a defect class
+  with several instances, not a one-off.
+
+The proposed `claims.yaml` disposition is staged for human review at
+`evidence/planning/arc039_phase_reclassification_staged_20260808.md` -- **not**
+applied here, per this document's Section 6 ("it proposes; governance disposes").
+
+---
+
+## 5. Live results (against `docs/claims/claims.yaml`, 2026-06-09 -- HISTORICAL)
 
 `python scripts/check_claim_phase_consistency.py` over 685 claims / 249 V3
 build-commitment seeds finds **12 ROOT leaks, 3 CASCADE candidates, 0 CONFLICTs**
