@@ -57696,10 +57696,15 @@
     Cross-reference: the abandon path
     is the mirror image of the interrupted-task / Zeigarnik resumption gap
     (resume deferred work <-> retire it); the two should be wired together.
-    UPDATE 2026-08-08 (thought-digestion currency check): the Zeigarnik gap is
-    no longer unregistered -- it was registered as MECH-389 on 2026-06-10 -- but
-    the wiring has not been done (see ARC-079's notes for detail; chip
-    chip-20260808-arc079-mech389-zeigarnik-crosslink spawned to do it). No
+    UPDATE 2026-08-08 (thought-digestion currency check, RESOLVED the same day by
+    chip chip-20260808-arc079-mech389-zeigarnik-crosslink): the Zeigarnik gap is
+    no longer unregistered -- it was registered as MECH-389 on 2026-06-10 -- and
+    the wiring is now done in both directions. Finding: the two halves are
+    compatible-but-distinct (different plane, trigger axis and lifecycle stage),
+    with one residual gate-authority tension recorded as Q-053 sub-question (c).
+    Canonical statement of the reconciliation: MECH-389's notes. Note this does
+    NOT reopen C3 -- C3 stays resolved by ARC-079/MECH-340/Q-053 as recorded
+    above; MECH-389 is the mirror half (resume), not a competing abandon path. No
     experiment queued; not promoted; status candidate / v3_pending.
     C1 substrate update (2026-05-19): the Constraint-1 child MECH-339
     (composite cue + outshining gate) is now IMPLEMENTED in the ghost-goal
@@ -57951,15 +57956,24 @@
     ARC-079 (resume deferred work <-> cease re-probing it): ARC-079 is the
     disengage half.
 
-    UPDATE 2026-08-08 (thought-digestion currency check): the Zeigarnik gap is
-    NO LONGER unregistered -- it was registered as MECH-389 on 2026-06-10
+    UPDATE 2026-08-08 (thought-digestion currency check, then RESOLVED the same
+    day by chip chip-20260808-arc079-mech389-zeigarnik-crosslink): the Zeigarnik
+    gap is NO LONGER unregistered -- it was registered as MECH-389 on 2026-06-10
     (implementation_phase: v4, epistemic_category: substrate_conditional). The
-    wiring this note originally called for has NOT been done: MECH-389's
-    depends_on/distinct_from do not reference ARC-079, Q-053, or MECH-340, and
-    none of those reference MECH-389 back. A chip has been spawned
-    (chip-20260808-arc079-mech389-zeigarnik-crosslink) to do that cross-link and
-    reconcile whether a goal can be simultaneously gated-for-resumption (MECH-389)
-    and disengaged (ARC-079/MECH-340) -- not resolved here.
+    wiring this note called for is now DONE: MECH-389.depends_on carries ARC-079
+    as a constraint, MECH-389.distinct_from carries MECH-340, and
+    Q-053.depends_on carries MECH-389.
+
+    Finding: MECH-389 and ARC-079/MECH-340 are COMPATIBLE-BUT-DISTINCT, not in
+    conflict -- different plane (V4 arbitrator goal SLOT vs V3 hippocampal bank
+    ENTRY), different trigger axis (agent capacity return vs goal-attainability
+    appraisal), different lifecycle stage (within-arc suspension under a live
+    MECH-061 commitment vs post-arc trace fate). ARC-079's inversion nonetheless
+    CONSTRAINS MECH-389: a capacity-keyed re-elevation that fires unconditionally
+    would be an ungated persistence op, and a Zeigarnik urgency term accumulating
+    with time-since-interruption is structurally the MECH-292 staleness signal
+    MECH-340/Q-053 already rule out. That residual gate-authority question is
+    recorded as Q-053 sub-question (c). Canonical statement: MECH-389's notes.
     No experiment queued against ARC-079 itself; not promoted; candidate / v3_pending.
   evidence_quality_note: >
     Registered candidate. Literature support is the 2026-05-19 pull in
@@ -58466,7 +58480,19 @@
     persistence-gate framing is the biology-faithful replacement for an
     'abandon trigger'; it is not implemented (SD-039 / MECH-292 / MECH-293
     substrate exists, the gate does not). Distinct from MECH-292 (ranking),
-    MECH-293 (the probe it gates), and MECH-339 (cue composition). The
+    MECH-293 (the probe it gates), and MECH-339 (cue composition). Also
+    distinct from MECH-389 (interrupted-task resumption / Zeigarnik, added
+    2026-08-08 by chip chip-20260808-arc079-mech389-zeigarnik-crosslink):
+    MECH-389 re-elevates a PARKED GOAL SLOT in the V4 SD-033e/MECH-265
+    arbitrator on AGENT-CAPACITY return, whereas MECH-340 gates a V3
+    hippocampal BANK ENTRY's re-probe eligibility on a GOAL-ATTAINABILITY
+    appraisal -- different store, different trigger axis, different lifecycle
+    stage, so they are compatible rather than contradictory. MECH-340's hard
+    negatives nonetheless BIND MECH-389: a Zeigarnik urgency term accumulating
+    with time-since-interruption is structurally the MECH-292 staleness signal
+    ruled out above, so it must not serve as the persistence gate. That residual
+    gate-authority question is Q-053 sub-question (c); canonical statement of
+    the reconciliation is in MECH-389's notes. The
     precise gate signal is deliberately left to Q-053 -- do not pre-commit.
     No experiment queued; not promoted; candidate / v3_pending.
   evidence_quality_note: >
@@ -58549,6 +58575,7 @@
     - ARC-079    # the inversion that frames the question
     - MECH-340   # the gate whose signal Q-053 asks for
     - MECH-292   # rank-decay is the candidate no-erase disengage path
+    - MECH-389   # the mirror (interrupted-task resumption) this Q must reconcile against -- sub-question (c), added 2026-08-08
   functional_restatement: >
     ARC-079 / MECH-340 establish THAT persistence is gated and disengagement
     is the default; they deliberately do not commit the gate signal. Q-053
@@ -58630,13 +58657,41 @@
     Mirror cross-reference: the interrupted-task / Zeigarnik resumption gap
     is the inverse question (when to RESUME a deferred goal); Q-053 and
     that claim must be reconciled (a goal cannot be simultaneously
-    gated-for-resumption and disengaged). UPDATE 2026-08-08 (thought-digestion
-    currency check): Zeigarnik is no longer unregistered -- it was registered
-    as MECH-389 on 2026-06-10 -- but the reconciliation this note calls for has
-    not been done (chip chip-20260808-arc079-mech389-zeigarnik-crosslink
-    spawned to do it). Resolution path: a substrate-design decision + a
-    falsifier EXQ that induces the three MECH-340 failure signatures; no
-    experiment queued yet.
+    gated-for-resumption and disengaged). RECONCILED 2026-08-08 (chip
+    chip-20260808-arc079-mech389-zeigarnik-crosslink): the Zeigarnik half is
+    MECH-389 (registered 2026-06-10), now wired via depends_on both ways. The
+    "cannot be simultaneously" premise above is NOT a state contradiction --
+    MECH-389 and ARC-079/MECH-340 are compatible-but-distinct on plane (V4
+    arbitrator goal SLOT vs V3 hippocampal bank ENTRY), trigger axis (agent
+    capacity return vs goal-attainability appraisal) and lifecycle stage
+    (within-arc suspension under a live MECH-061 commitment vs post-arc trace
+    fate). Canonical statement of the reconciliation: MECH-389's notes.
+
+    What survives is a GATE-AUTHORITY question, added here as SUB-QUESTION (c)
+    alongside (a) trace-erase and (b) dedicated-disengage-op: (c) Does MECH-389's
+    capacity-keyed re-elevation need to be SUBORDINATE to the MECH-340 persistence
+    gate, and is a Zeigarnik urgency signal a licit persistence signal at all?
+    Lean: SUBORDINATE, and the urgency signal is NOT licit as the gate itself. Two
+    reasons, both structural, neither experimental. First, an unconditional
+    re-elevation on capacity return is a persistence op that is not gated on
+    control/efficacy, which re-derives precisely the ungated-persistence design
+    ARC-079 inverts (for a goal parked long enough to have become unattainable).
+    Second, and sharper: a Zeigarnik urgency term that ACCUMULATES with
+    time-since-interruption is structurally the MECH-292 STALENESS signal already
+    RULED OUT above (Jasinska 2014 incubation sign-inversion) -- so it may set
+    re-entry ELIGIBILITY but must not act as the gate, and must not be a bare
+    time-since-interruption accumulator. A secondary unknown, not yet a lean: the
+    slot -> bank HAND-OFF is unspecified in both claims (when does a parked slot
+    cease to be a live commitment and become a bank entry?), which is what keeps
+    the lifecycle-stage separation an argument rather than a mechanism.
+
+    Sub-question (c) is folded in here rather than minted as a new Q-claim because
+    this note already asserted ownership of the reconciliation and (c) is a
+    sub-case of the licit-gate-signal question. Promote it to its own Q-claim if a
+    real V4 goal-deliberation build makes the hand-off concrete; do not mint one
+    speculatively. Resolution path unchanged: a substrate-design decision + a
+    falsifier EXQ that induces the three MECH-340 failure signatures; no experiment
+    queued yet, and the (c) leans are STRUCTURAL, not results -- exp_conf stays 0.0.
   evidence_quality_note: >
     Open question, confidence 0.0 by construction. The boundaries (ruled-out
     signals AND the ruled-out operation-shape) and the candidate-set
@@ -63148,8 +63203,10 @@
     - MECH-265   # goal arbitrator the parked slot re-enters
     - MECH-163   # goal maintenance
     - MECH-061   # commitment / action-arc beginning
+    - ARC-079    # CONSTRAINT (added 2026-08-08): persistence is the GATED operation, disengagement the ungated default -- MECH-389's capacity-keyed re-elevation is a persistence op and is bounded by this inversion. See the reconciliation note below.
   distinct_from:
     - MECH-320   # tonic-vigor / opportunity-cost: a target-free action-drive bias, NOT a parked-task return
+    - MECH-340   # persistence/efficacy gate: DIFFERENT PLANE (V3 hippocampal bank entry) and DIFFERENT trigger axis (goal-attainability appraisal, not agent capacity) -- see reconciliation note
   location: evidence/planning/goal_deliberation_v4_plan.md
   notes: >
     REE has the action-arc BEGINNING (commit MECH-061) and END (completion MECH-057a,
@@ -63162,6 +63219,63 @@
     distinct subject; cross-referenced via distinct_from rather than collapsed).
     substrate_conditional on a V4 goal-deliberation substrate not yet built.
     DO NOT build in V3.
+
+    RECONCILIATION with ARC-079 / MECH-340 / Q-053 (2026-08-08, chip
+    chip-20260808-arc079-mech389-zeigarnik-crosslink; THIS IS THE CANONICAL
+    STATEMENT -- ARC-078, ARC-079, MECH-340 and Q-053 point here). MECH-389 is the
+    Zeigarnik/resumption half whose registration ARC-078/ARC-079/Q-053 anticipated
+    from 2026-05-19 as "the mirror of the abandon path" but never wired, because at
+    the time it was unregistered; it was registered 2026-06-10 and the wiring is
+    made here. Q-053's premise -- "a goal cannot be simultaneously
+    gated-for-resumption (MECH-389) and disengaged (ARC-079/MECH-340)" -- is NOT a
+    state contradiction. The two are COMPATIBLE-BUT-DISTINCT on three axes:
+
+    (1) SUBSTRATE/PLANE. MECH-389 acts on a parked GOAL SLOT in the V4
+    goal-deliberation arbitrator (SD-046 / MECH-265 / SD-033e). ARC-079 / MECH-340
+    act on an unresolved-goal BANK ENTRY in the V3 hippocampal retrieval system
+    (MECH-292 rank / MECH-293 awake re-probe / SD-039 trace). Different stores with
+    different consumers: a parked slot is a LIVE SUSPENDED COMMITMENT; a bank entry
+    is a PRESERVED RETRIEVAL TRACE under no active commitment.
+
+    (2) TRIGGER AXIS. MECH-389 re-elevates on AGENT CAPACITY RETURN -- an exogenous
+    resource variable. MECH-340 gates on a GOAL-ATTAINABILITY appraisal
+    (control_efficacy / goal_unattainability). These are orthogonal quantities:
+    capacity can return while attainability stays zero, and a goal can be fully
+    attainable while capacity is absent.
+
+    (3) LIFECYCLE STAGE. MECH-389 spans interrupt->reorient->resume WITHIN an action
+    arc whose MECH-061 commitment SURVIVES the interruption. ARC-079 / MECH-340
+    govern the POST-ARC fate of a goal left unresolved and no longer under active
+    commitment. The normal ordering is sequential -- commit -> park -> (resume) |
+    (arc ends unresolved -> bank entry -> persistence gate) -- so a goal is not
+    ordinarily in both states at once.
+
+    RESIDUAL OPEN TENSION (real, load-bearing -- recorded as Q-053 sub-question (c),
+    NOT dismissed). The reconciliation question is not "which state is the goal in"
+    but GATE AUTHORITY, and it is genuinely unsettled in two places:
+
+    (i) If MECH-389's capacity-keyed re-elevation fires UNCONDITIONALLY on capacity
+    return, it is a persistence operation that is NOT gated on control/efficacy --
+    reintroducing exactly the ungated-persistence design ARC-079 inverts, for goals
+    parked long enough to have become unattainable. Sharper: a Zeigarnik urgency
+    term that ACCUMULATES with time-since-interruption is structurally the MECH-292
+    STALENESS signal that MECH-340 and Q-053 explicitly RULE OUT as a licit
+    persistence signal (Jasinska 2014 incubation sign-inversion). So MECH-389's
+    persistence/urgency signal may set re-entry ELIGIBILITY but must NOT itself act
+    as the persistence gate, and must not be a bare time-since-interruption
+    accumulator. This is a design constraint on MECH-389, not a defect in it.
+
+    (ii) The SLOT -> BANK HAND-OFF is unspecified in both claims: neither says WHEN a
+    parked MECH-389 slot stops being a live suspended commitment and becomes an
+    ARC-079/MECH-340 bank entry. Until that transition is specified, the "different
+    lifecycle stage" separation in (3) is an argument, not a mechanism.
+
+    Disposition: folded into Q-053 as sub-question (c) rather than minted as a new
+    Q-claim -- Q-053's own notes already assert ownership of this reconciliation,
+    and the question is a sub-case of "what is the licit persistence gate signal".
+    If a real V4 goal-deliberation build makes the slot<->bank hand-off concrete,
+    promote (c) to its own Q-claim THEN; do not mint one speculatively now. Nothing
+    here changes any status, confidence, or epistemic_category.
 
 # --- affect_expression_v4 cluster (MECH-390) ---
 - id: MECH-390
