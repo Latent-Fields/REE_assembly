@@ -313,6 +313,105 @@ class UnclassifiedReadyItemsTest(_TempSubstrateQueue):
         self.assertEqual(GEN._unclassified_ready_items(), [])
 
 
+class ProsePendingVetoTest(unittest.TestCase):
+    """FM4 (chip-20260808-igw202): the "pending" veto is HEAD-scoped, not a
+    whole-string substring test.
+
+    The scaffolded-curriculum-hazard-rebalance entry carried a ~1200-char
+    provenance status whose primary token is terminal but whose trailing
+    narrative contained "...stayed stale at pending_implementation only
+    because...". The old whole-string veto read that prose "pending" as a live
+    token and could never classify the entry resolved, so it re-staged as
+    "Substrate ready" every generation. The fix consults only the status HEAD.
+    """
+
+    # A genuine terminal status with the word "pending" only in trailing prose.
+    PROSE = (
+        "closed_no_substrate_change_warranted_2026-08-08. Adjudicated and "
+        "USER-CONFIRMED. Previously stayed stale at pending_implementation only "
+        "because the file was under another session's active claim at diagnosis "
+        "time."
+    )
+
+    def test_prose_pending_does_not_veto_a_terminal_status(self):
+        self.assertTrue(GEN._status_terminal(self.PROSE))
+        self.assertFalse(
+            GEN._status_pending_vetoed(self.PROSE),
+            "'pending' in trailing narrative must not veto",
+        )
+
+    def test_head_pending_token_still_vetoes_both_directions(self):
+        """Every genuine `*pending*` status keeps its head-token veto -- this is
+        the FM3 family, which `_status_implementation_complete` relies on still
+        vetoing here. Widening the veto to `"pending" not in s` would break it."""
+        for st in (
+            "implemented_pending_validation",
+            "pending_implementation",
+            "candidate_v3_pending",
+            "substrate_landed_pending_behavioural_validation",
+            "blocked_pending_discrimination",
+            "parked_pending_env_entropy_precondition",
+        ):
+            with self.subTest(status=st):
+                self.assertTrue(GEN._status_pending_vetoed(st))
+                self.assertFalse(GEN._status_resolved(st))
+                self.assertFalse(GEN._status_terminal(st))
+
+    def test_head_is_first_token_before_space_or_period(self):
+        self.assertEqual(
+            GEN._status_head("diagnosis_done_x_2026-08-08. Adjudicated by chip"),
+            "diagnosis_done_x_2026-08-08",
+        )
+        self.assertEqual(
+            GEN._status_head("implemented_pending_validation"),
+            "implemented_pending_validation",
+        )
+
+    def test_fm3_family_stays_build_complete_but_unresolved(self):
+        """Regression guard on the FM3 interaction: head-scoping the veto must
+        not flip `implemented_pending_validation` to fully-resolved (that is the
+        FM1 failure -- unblocking retests of unvalidated substrate)."""
+        entry = {"sd_id": "X", "status": "implemented_pending_validation", "ready": True}
+        self.assertFalse(GEN._substrate_resolved(dict(entry)))
+        self.assertTrue(GEN._substrate_implementation_complete(dict(entry)))
+
+
+class NoSubstrateChangeWarrantedTerminalTest(_TempSubstrateQueue):
+    """FM4: an adjudicated `no_substrate_change_warranted` disposition is
+    terminal for both questions -- nothing to implement, and not a retest blocker
+    (no build to wait on). It must not surface as "Substrate ready"."""
+
+    def test_disposition_is_resolved_and_not_ready(self):
+        self._write(
+            [
+                {
+                    "sd_id": "adjudicated-no-change",
+                    "status": "diagnosis_done_no_substrate_change_warranted_2026-08-08. prose with pending_implementation clause.",
+                    "ready": True,
+                    "depends_on_unresolved": [],
+                },
+                {"sd_id": "genuinely-unbuilt", "status": "pending_implementation", "ready": True},
+            ]
+        )
+        ready = self._ready_ids()
+        self.assertNotIn("adjudicated-no-change", ready)
+        self.assertIn("genuinely-unbuilt", ready, "the veto must not over-fire")
+        # Terminal for blocker purposes too.
+        entry = {
+            "sd_id": "adjudicated-no-change",
+            "status": "diagnosis_done_no_substrate_change_warranted_2026-08-08",
+            "ready": True,
+        }
+        self.assertTrue(GEN._substrate_resolved(entry))
+
+    def test_diagnosis_done_alone_is_not_terminal(self):
+        """Negative control: `diagnosis_done` WITHOUT the no-change token is NOT
+        terminal -- a diagnosis can conclude a change IS warranted. Only the
+        specific no_substrate_change_warranted phrase resolves."""
+        self.assertFalse(GEN._status_terminal("diagnosis_done_change_needed_2026"))
+        self.assertFalse(GEN._status_resolved("diagnosis_done_change_needed_2026"))
+
+
 class LiveSubstrateQueueTest(unittest.TestCase):
     """Against the real file on disk -- the incident items must be gone."""
 
@@ -327,6 +426,17 @@ class LiveSubstrateQueueTest(unittest.TestCase):
         ):
             with self.subTest(sd_id=sd):
                 self.assertNotIn(sd, ready)
+
+    def test_scaffolded_curriculum_rebalance_is_resolved(self):
+        """FM4 incident item: adjudicated no-substrate-change-warranted, must no
+        longer surface as an /implement-substrate task."""
+        by_id = GEN._substrate_by_id()
+        entry = by_id.get("scaffolded-curriculum-hazard-rebalance")
+        if entry is None:
+            self.skipTest("entry not present in live queue")
+        self.assertTrue(GEN._substrate_resolved(entry))
+        ready = {it.get("sd_id") for it in GEN._substrate_ready_items()}
+        self.assertNotIn("scaffolded-curriculum-hazard-rebalance", ready)
 
 
 if __name__ == "__main__":

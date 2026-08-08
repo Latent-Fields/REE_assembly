@@ -1228,9 +1228,69 @@ _SUBSTRATE_RESOLVED_PHASE_RE = re.compile(r"^phase_\d+_implemented$")
 # "substrate_landed_..._subsumed_by_scaffolded_sd054_603f") that the literal
 # resolved-set + phase regex above do NOT match, so the entry kept surfacing as
 # an "implement this substrate" task. When such a status contains one of these
-# tokens AND the entry is ready=True, treat it as resolved. Excludes any
-# "*pending*" status (wants a downstream validation step).
-_SUBSTRATE_TERMINAL_TOKENS = ("validated", "landed", "subsumed", "superseded", "closed")
+# tokens AND the entry is ready=True, treat it as resolved. The "*pending*"
+# qualifier is excluded via the HEAD-scoped veto (see _status_head / FM4 below),
+# not a substring test.
+#
+# `no_substrate_change_warranted` (FM4, 2026-08-08) is a genuinely-terminal
+# disposition with no build: a substrate change was requested, a diagnosis run
+# adjudicated it as NOT NEEDED, and the user confirmed. Such an entry has nothing
+# to implement and is no longer a retest blocker (there is no build to wait on),
+# so it is terminal for both questions _substrate_resolved answers. It is
+# incident-scoped vocabulary (the scaffolded-curriculum-hazard-rebalance entry),
+# added explicitly rather than as a general rule; it cannot false-positive on an
+# implementable status because the phrase itself asserts no change is happening,
+# and any non-terminal use ("pending_no_substrate_change_decision") carries
+# "pending" in its head token and is vetoed first.
+_SUBSTRATE_TERMINAL_TOKENS = (
+    "validated", "landed", "subsumed", "superseded", "closed",
+    "no_substrate_change_warranted",
+)
+
+
+# --- FM4: the "pending" veto was a whole-string SUBSTRING test (2026-08-08) ----
+# `_status_resolved` and `_status_terminal` both vetoed on "pending" appearing
+# ANYWHERE in the status. That is correct for a status TOKEN
+# (`implemented_pending_validation`, `pending_implementation`, `candidate_v3_
+# pending` -- all of which want a downstream step, all of which carry "pending"
+# in their head token), but WRONG for the word "pending" appearing in trailing
+# free-text PROSE that narrates a PAST state. The scaffolded-curriculum-hazard-
+# rebalance entry is exactly that: a ~1200-char provenance status whose primary
+# token is terminal but whose narrative contains the clause "...stayed stale at
+# pending_implementation only because the file was under another session's active
+# claim...". The substring veto could not tell narrative from a live token, so
+# the entry could never classify resolved and re-staged every generation as
+# "Substrate ready: scaffolded-curriculum-hazard-rebalance".
+#
+# Fix: scope the veto to the status HEAD -- the primary machine token, i.e.
+# everything before the first whitespace or period. Verified corpus-safe: across
+# all 147 substrate_queue entries this changes the veto for EXACTLY the one
+# offending entry and is byte-identical for every genuine `*pending*` status
+# (they all carry "pending" in the head). This is deliberately narrow: it is
+# scoped to the free-text-prose-status class, of which the corpus currently holds
+# exactly one instance, and is pinned by ProsePendingVetoTest below. Do NOT widen
+# it to a bare `"pending" not in s`, which would re-break the FM3 pending-
+# validation family (`_status_implementation_complete` relies on those still
+# vetoing here).
+_STATUS_HEAD_SPLIT_RE = re.compile(r"[\s.]")
+
+
+def _status_head(value: str) -> str:
+    """The primary machine token of a status: everything before the first
+    whitespace or period, lowercased/stripped. `implemented_pending_validation`
+    -> itself; `diagnosis_done_x_2026-08-08. Adjudicated by ...` ->
+    `diagnosis_done_x_2026-08-08`."""
+    s = (value or "").strip().lower()
+    return _STATUS_HEAD_SPLIT_RE.split(s, maxsplit=1)[0]
+
+
+def _status_pending_vetoed(value: str) -> bool:
+    """True if the status HEAD token names a pending/downstream-step state.
+
+    The FM4 replacement for the old `"pending" in s` whole-string test. Only the
+    head is consulted, so "pending" in trailing narrative prose does not veto,
+    while every genuine `*pending*` status token still does."""
+    return "pending" in _status_head(value)
 
 
 def _status_resolved(value: str) -> bool:
@@ -1239,10 +1299,11 @@ def _status_resolved(value: str) -> bool:
     Accepts the literal set above, the phase_N_implemented family, and any
     `implemented_*` suffix (e.g. `implemented_env_curriculum_amend`) -- but
     NOT `*_pending_*` (e.g. `substrate_landed_pending_validation`), which
-    explicitly want a downstream validation step.
+    explicitly want a downstream validation step. The pending exclusion is
+    HEAD-scoped (FM4), so "pending" in trailing prose does not veto.
     """
     s = (value or "").strip().lower()
-    if not s or "pending" in s:
+    if not s or _status_pending_vetoed(s):
         return False
     if s in _SUBSTRATE_RESOLVED_STATUSES:
         return True
@@ -1258,11 +1319,13 @@ def _status_terminal(value: str) -> bool:
 
     Used ONLY in combination with ready=True (see _substrate_resolved). This is
     the looser, token-substring cousin of _status_resolved that catches the rich
-    free-text statuses the literal set misses (FM2: MECH-341, MECH-090). Excludes
-    any "*pending*" status, which explicitly wants a downstream validation step.
+    free-text statuses the literal set misses (FM2: MECH-341, MECH-090; FM4:
+    the no_substrate_change_warranted disposition). Excludes any `*pending*`
+    status via the HEAD-scoped veto (FM4), so "pending" in trailing prose does
+    not veto.
     """
     s = (value or "").strip().lower()
-    if not s or "pending" in s:
+    if not s or _status_pending_vetoed(s):
         return False
     return any(tok in s for tok in _SUBSTRATE_TERMINAL_TOKENS)
 
