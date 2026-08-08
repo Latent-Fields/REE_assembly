@@ -2210,6 +2210,35 @@
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment.",
       "backlog_id": "EVB-0587",
       "executed_by": "v3_exq_210_mech156_theta_traversal_probe"
+    },
+    {
+      "proposal_id": "EXP-0587",
+      "claim_id": "INV-051",
+      "related_claims": [
+        "INV-050",
+        "INV-049",
+        "SD-017",
+        "MECH-181"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "multi_arm_ablation",
+      "seed_policy": "matched_shared_seeds",
+      "require_pre_registered_thresholds": true,
+      "objective": "Test INV-051's Goldilocks/optimal-range invariant: does a rigidity DV (fresh-selection-gated E3 policy entropy, plus slot_diversity/slot_cosine_sim diagnostics) trace a U-shape across a graded MEL-dose sweep -- elevated at BOTH the low-MEL (under-stimulation) and high-MEL (overload) extremes relative to mid-MEL arms -- using SD-MEL-PRODUCER's world_rule_shift_interval/depth knobs to drive real ecological MEL through the live SleepLoopManager/force_cycle path into SD-MEL-CONSUMER, exactly as INV-051's 2026-08-08 what_would_answer falsifier specifies.",
+      "design": "6-arm world_rule_shift ladder spanning under-stimulation (ARM_0_MONOTONY, interval=0, no shift) through mid-MEL through overload (interval=10, depth=3, beyond the depth=2 ceiling used by the MECH-180 845/861/861a lineage), plus a matched consumer-OFF control arm to distinguish reduced sleep OPPORTUNITY/architecture from reduced sleep CONTENT per the falsifier's FALSIFYING clause. Rigidity DV is E3 policy entropy gated on ticks[\"e3_tick\"] (fresh selections only -- a hold-weighted per-tick tally was found and fixed during code review, since agent.py returns the held action on non-e3_tick steps at the default cadence of 10), reported per-seed across all ON arms, plus slot_diversity/slot_cosine_sim as secondary rigidity diagnostics already instrumented in the MECH-180 lineage. MECH-178 noradrenergic-hyperarousal coupling is explicitly out of scope per the claim's own falsifier -- no NA/cortisol/LC substrate exists in ree_core and none is required for a verdict on the U-shape itself.",
+      "acceptance_checks": [
+        "Readiness: frozen-probe world-model convergence and non-degenerate measured-MEL gradient across arms (R1/R2), plus a minimum fresh-selection sample size per arm (R4, added to guard against the E3-cadence hold-weighting defect found in code review).",
+        "CONFIRMING: rigidity DV traces an inverted-U (or U-shaped, by DV polarity) across the MEL-dose sweep -- elevated at BOTH the low-MEL and high-MEL arms relative to mid-MEL arm(s), in >=2/3 seeds, each clearing the project's standard PASS effect-size margin.",
+        "FALSIFYING: rigidity monotonic in MEL-dose in >=2/3 seeds; OR no effect clears PASS margin at either extreme (flat curve); OR the low-MEL 'rigidity' reading is fully explained by the matched consumer-OFF control (reduced sleep OPPORTUNITY/architecture) rather than reduced sleep CONTENT."
+      ],
+      "status": "executed",
+      "added_utc": "2026-08-08",
+      "notes": "Minted alongside execution (chip chip-20260808-inv051-mel-dose-sweep, session mel-dose-sweep-inv-051-6b93d7), per the /queue-experiment skill's Step 7 retroactive-mint convention -- not a pre-registration-then-later-execution proposal. Supersedes-in-spirit the stale 2026-07-08 EXP-0376/EVB-0111 parked proposal for INV-051 (its release_condition required a non-converging graded-MEL environment that has since been built as SD-MEL-PRODUCER, and named the MECH-178 NA plane as a second release condition that INV-051's freshly-drafted 2026-08-08 what_would_answer explicitly puts out of scope) -- EXP-0376 itself was left untouched, reconciling it is separate governance work. No prior INV-051-specific experiment was ever queued or run (confirmed via git log -i --grep and a full read of the then-empty ree-v3/experiment_queue.json, 2026-08-08).",
+      "backlog_id": "EVB-0596",
+      "executed_by": "V3-EXQ-901",
+      "executed_queue_id": "V3-EXQ-901"
     }
   ]
 }
