@@ -11,10 +11,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -28,10 +28,10 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -57,10 +57,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -75,10 +75,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -95,10 +95,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -112,10 +112,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -130,10 +130,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -180,10 +180,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -199,10 +199,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:
@@ -217,10 +217,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-05"
-        from: "failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d"
-        verdict: "weakens/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-07"
+        from: "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=?"
         brake: "not_fired"
         needs_review: false
       join:

@@ -1,0 +1,20 @@
+# Experiment: v3_exq_894_mech074d_bla_remap_attribution_selectivity
+
+## What it tests
+
+- TODO: describe the invariant or mechanism this experiment validates.
+
+## Failure modes it detects
+
+- TODO: list concrete failure signatures this experiment is expected to surface.
+
+## Design implications
+
+<!-- AUTO-DESIGN-IMPLICATIONS:START -->
+Recent failure runs:
+- `v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3` at `2026-08-08T00:52:19Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
+<!-- AUTO-DESIGN-IMPLICATIONS:END -->

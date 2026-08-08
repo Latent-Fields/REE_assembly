@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-08T06:23:51Z`
+Generated: `2026-08-08T08:06:18Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,28 +9,30 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **244** (ready 27, in_flight 0, blocked 168)
+- Items: **244** (ready 26, in_flight 0, blocked 169)
 - By generation: clinical 11, meta 4, process 6, v3 83, v4 77, v5 38, v6 25
-- Pending review: **1**
+- Pending review: **6**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-892
 
+- Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-045 -> v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3
+
 ## Work packages
 
-### IGW-20260808-001 -- Complete governance review (1 pending)
+### IGW-20260808-001 -- Complete governance review (6 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 1 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 6 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260808-001
-Title: Complete governance review (1 pending)
+Title: Complete governance review (6 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 1 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 6 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -542,8 +544,9 @@ Instructions:
 
 ### IGW-20260808-218 -- Retest after substrate: ARC-045
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28 | **Generation:** v3
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
+- **Blocked by:** post-substrate evidence already exists: v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3 [FAIL/weakens] ran 2026-08-04T07:15:41Z, after the substrate landing bound 2026-08-02T22:16:21Z (MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.failure_record). pending_retest_after_substrate is still true in claims.yaml -- /governance must adjudicate that run and either clear the flag or re-scope the retest.
+- **Why now:** The retest has ALREADY RUN (v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3) -- do not re-queue it. The claims.yaml flag is still set, so this is a /governance disposition (clear the flag, or re-scope the retest), not /queue-experiment work. (FM11.)
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -551,9 +554,10 @@ Instructions:
 REE inter-governance work item: IGW-20260808-218
 Title: Retest after substrate: ARC-045
 Lane: experiment | Skill: /queue-experiment
-Status: ready
+Status: blocked
 Claims: ARC-045
-Why now: claims.yaml pending_retest_after_substrate=true.
+Blocked by: post-substrate evidence already exists: v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3 [FAIL/weakens] ran 2026-08-04T07:15:41Z, after the substrate landing bound 2026-08-02T22:16:21Z (MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.failure_record). pending_retest_after_substrate is still true in claims.yaml -- /governance must adjudicate that run and either clear the flag or re-scope the retest.
+Why now: The retest has ALREADY RUN (v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3) -- do not re-queue it. The claims.yaml flag is still set, so this is a /governance disposition (clear the flag, or re-scope the retest), not /queue-experiment work. (FM11.)
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.

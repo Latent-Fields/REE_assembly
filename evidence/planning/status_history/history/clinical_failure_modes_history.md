@@ -113,6 +113,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:CATATONIA-II`
 
@@ -223,6 +224,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:OCD-THREE-LAYER`
 
@@ -333,6 +335,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:PTSD-HYPERAROUSAL-INSOMNIA`
 
@@ -443,6 +446,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:DREAM-PHENOMENOLOGY`
 
@@ -553,6 +557,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:SEROTONERGIC-CROSS-STATE`
 
@@ -663,6 +668,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:FRAME-TAG`
 
@@ -773,6 +779,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:SELF-MODEL-DEGRADATION`
 
@@ -883,6 +890,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:NARCOLEPSY-CATAPLEXY`
 
@@ -993,6 +1001,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:PROPOSAL-ENTROPY`
 
@@ -1103,6 +1112,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 
 ## `clinical_failure_modes:PHARMACOLOGICAL-PREDICTIONS`
 
@@ -1213,4 +1223,5 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-01T06:25Z` [manifest] `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` -> [`evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json`](../../../../evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json) :: PASS manifest supports
 - `2026-08-01T10:37Z` [autopsy] `failure_autopsy_V3-EXQ-850_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-850_2026-08-01.json) :: autopsy inconclusive/measurement_test_design_defect routing=queue-experiment
 - `2026-08-01T21:02Z` [autopsy] `failure_autopsy_V3-EXQ-843_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-07T18:56Z` [manifest] `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` -> [`evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json`](../../../../evidence/experiments/v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3.json) :: PASS manifest supports
 

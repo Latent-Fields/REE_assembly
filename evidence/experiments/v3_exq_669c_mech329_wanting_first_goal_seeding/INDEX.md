@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_669c_mech329_wanting_first_goal_seeding
 
-Generated: `2026-08-07T22:56:39.828281Z`
+Generated: `2026-08-08T08:05:47.032177Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

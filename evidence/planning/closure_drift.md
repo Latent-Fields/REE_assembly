@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-08-07T18:49:14Z
+Generated: 2026-08-08T08:06:17Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -26,7 +26,7 @@ Non-terminal nodes (including ones Suppressed above) where newer evidence landed
 |------|------|--------|-----------|-------------------|-----|
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | _none_ | 2026-06-25 | failure_autopsy_V3-EXQ-871_2026-08-02.json (2026-08-02) reclassified MECH-090; failure_autopsy_V3-EXQ-869a_2026-08-03.json (2026-08-03) reclassified MECH-267; failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267; (+1 more) |
 | commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | in_progress | _none_ | 2026-07-24 | failure_autopsy_V3-EXQ-869a_2026-08-03.json (2026-08-03) reclassified MECH-267; failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267 |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | _none_ | 2026-08-02 | failure_autopsy_V3-EXQ-436c_2026-08-03.json (2026-08-03) reclassified ARC-045, MECH-166, SD-017 |
+| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | _none_ | 2026-08-02 | failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.json (2026-08-07) reclassified ARC-045, MECH-166, SD-017; failure_autopsy_V3-EXQ-436c_2026-08-03.json (2026-08-03) reclassified ARC-045, MECH-166, SD-017 |
 
 ## Assembly frontier -- resting, not drift (10)
 

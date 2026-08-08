@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_758_mech284_staleness_accumulator_monotonicity
 
-Generated: `2026-08-07T22:56:39.828281Z`
+Generated: `2026-08-08T08:05:47.032177Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

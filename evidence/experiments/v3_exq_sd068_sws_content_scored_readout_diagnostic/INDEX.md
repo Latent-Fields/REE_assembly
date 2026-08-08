@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_sd068_sws_content_scored_readout_diagnostic
 
-Generated: `2026-08-07T22:56:39.828281Z`
+Generated: `2026-08-08T08:05:47.032177Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

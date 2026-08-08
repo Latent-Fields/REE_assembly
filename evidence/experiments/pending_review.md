@@ -1,14 +1,24 @@
 # Pending Experiment Review
 
-Generated: `2026-08-07T21:32:42Z`  
+Generated: `2026-08-08T08:05:55Z`  
 Last review: `2026-08-07T20:54:17Z`  
-Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **6** item(s) -- 4 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_887a_sd014_node_valence_repfunc_sensitized_20260807T214013Z_v3` | 2026-08-07T21:40 | SD-014 | — |
+| `v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3` | 2026-08-08T00:52 | MECH-074d | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` | 2026-08-07T18:56 | MECH-286 |
+| `v3_exq_893_mech232_da_representational_expansion_confirmer_20260808T002050Z_v3` | 2026-08-08T00:20 | MECH-232 |
+| `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` | 2026-08-08T01:24 | MECH-074c |
+| `v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3` | 2026-08-08T05:16 | MECH-322 |
 
 ---
 
