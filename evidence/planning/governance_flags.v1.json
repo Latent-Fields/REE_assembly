@@ -164,6 +164,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0012",
+      "claim_ids": [
+        "SD-033e",
+        "MECH-264"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SD-033e's implementation_note (and MECH-264, which inherits it) states the V3-narrow frontopolar de-commit lever's all-ON validation is 'gated on V3-EXQ-724', reading as pending. But V3-EXQ-724 already ran 2026-07-09 (v3_exq_724_competence_localization_diagnostic) with outcome=FAIL, evidence_direction=non_contributory, claim_ids=[] -- a competence-localization diagnostic that returned competence_deficit_diffuse, not a frontopolar validation. So the all-ON de-commit contrast is currently degenerate (blocked on the MECH-457 competence floor, still open per 687a/819a/748a), NOT pending execution of 724. Nothing is mis-scored (non_contributory), but the gating language in both claims should be refreshed to reflect that 724 executed and did not lift the gate; a dedicated de-commit validation experiment is still owed once the competence floor clears.",
+      "raised_by_session": "thoughtdigestion-trial2-headless-2026-08-08",
+      "raised_at": "2026-08-08T06:28:25Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
