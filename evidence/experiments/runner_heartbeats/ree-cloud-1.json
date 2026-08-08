@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-08T11:02:00Z",
+  "last_tick_utc": "2026-08-08T11:17:06Z",
   "state": "running",
   "current_exq": "V3-EXQ-896",
   "current_exq_started_utc": "2026-08-08T09:53:05.093864+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-322",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 555 / ARM_STRICT_FLAG_OFF",
-    "runs_done": 4,
+    "run_label": "Seed 666 / ARM_STRICT_FLAG_OFF",
+    "runs_done": 5,
     "runs_total": 24,
-    "episodes_done": 90,
+    "episodes_done": 0,
     "episodes_total": 120,
-    "overall_pct": 19.8
+    "overall_pct": 20.8
   },
-  "seconds_elapsed": 4135,
-  "seconds_remaining": 11577,
+  "seconds_elapsed": 5041,
+  "seconds_remaining": 11426,
   "recent_lines": [
     "Seed 111 Condition ARM_STRICT_FLAG_OFF",
     "[train] chunk ARM_STRICT_FLAG_OFF seed=111 ep 30/120 replay_formed=0 corrob=0",
@@ -46,7 +46,10 @@
     "Seed 555 Condition ARM_STRICT_FLAG_OFF",
     "[train] chunk ARM_STRICT_FLAG_OFF seed=555 ep 30/120 replay_formed=0 corrob=0",
     "[train] chunk ARM_STRICT_FLAG_OFF seed=555 ep 60/120 replay_formed=0 corrob=0",
-    "[train] chunk ARM_STRICT_FLAG_OFF seed=555 ep 90/120 replay_formed=0 corrob=0"
+    "[train] chunk ARM_STRICT_FLAG_OFF seed=555 ep 90/120 replay_formed=0 corrob=0",
+    "[train] chunk ARM_STRICT_FLAG_OFF seed=555 ep 120/120 replay_formed=0 corrob=0",
+    "verdict: PASS",
+    "Seed 666 Condition ARM_STRICT_FLAG_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
