@@ -1,0 +1,41 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "gate_strict_arm_green": true,
+    "gate_replay_arm_green": true,
+    "gate_any_arm_green": true,
+    "gate_green_by_arm": {
+      "ARM_STRICT_FLAG_OFF": true,
+      "ARM_REPLAY_ON": true
+    },
+    "n_seeds": 12,
+    "sleep_checkpoint_episode": 20,
+    "post_checkpoint_waking_episodes": 100,
+    "replay_corroboration_episodes": 75,
+    "readiness_seed_fraction_by_arm": {
+      "ARM_STRICT_FLAG_OFF": 1.0,
+      "ARM_REPLAY_ON": 1.0
+    },
+    "n_cleared_seeds_by_arm": {
+      "ARM_STRICT_FLAG_OFF": 12,
+      "ARM_REPLAY_ON": 12
+    },
+    "readiness_seed_fraction_floor": 0.4,
+    "c1_strict_cleared_seed_count": 12,
+    "c1_strict_minted_count": 0,
+    "c1_strict_mint_fraction": 0.0,
+    "c1_strict_mint_fraction_ceiling": 0.0,
+    "c2_replay_cleared_seed_count": 12,
+    "c2_replay_minted_count": 12,
+    "c2_replay_mint_fraction": 1.0,
+    "c2_replay_mint_fraction_floor": 1.0,
+    "c3_n_minted": 12,
+    "c3_n_survived": 9,
+    "c3_survival_rate": 0.75,
+    "c3_survival_rate_floor": 0.3,
+    "c3_corroboration_rate": 1.0
+  }
+}
