@@ -3607,6 +3607,22 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-08T09:13:58Z",
       "re_eligible_after": "2026-08-10T09:13:58Z"
+    },
+    {
+      "stable_hash": "e86b7bcfb1ac",
+      "igw_id_at_disposition": "IGW-20260808-202",
+      "owner_exq": null,
+      "claim_ids": [
+        "Q-021",
+        "INV-034",
+        "ARC-030"
+      ],
+      "gap_ids": [],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: scaffolded-curriculum-hazard-rebalance",
+      "decision": "DONE",
+      "note": "Duplicate re-staging of already-fully-resolved work. Original IGW-200 was diagnosed (chip-20260808-igw200-scaffolded-curriculum-hazard-rebalance): NO substrate change warranted -- z_goal survives all hazard stages, C6 decay is a driver-measurement washout (V3-EXQ-866a bypasses run_p2's contact-gated peak), not a substrate defect. User-confirmed via real AskUserQuestion on chip-20260808-scaffolded-c6-misdiagnosis-routing (option A). Routed and BOTH downstream chips now done: C6 -> chip-20260808-v3exq866c-c6-run-p2-fix (V3-EXQ-866c landed ree-v3 154894fd04), G0 -> chip-20260808-g0-foraging-competence-autopsy (autopsy landed REE_assembly 1594771036, reclassified competence_implementation_gap, no new build). substrate_queue.json entry status already correctly reflects this; assignment e86b7bcfb1ac already released 2026-08-08T14:40:30Z. Dispositioning so the generator stops re-staging it (2nd occurrence as IGW-202 after original IGW-200).",
+      "noted_at": "2026-08-08T16:34:53Z"
     }
   ]
 }
