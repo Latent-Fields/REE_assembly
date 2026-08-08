@@ -67,6 +67,10 @@ OUTPUT = EVIDENCE_DIR / "pending_review.md"
 CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
 RECOMMENDATIONS_MD = EVIDENCE_DIR / "promotion_demotion_recommendations.md"
 SUBSTRATE_STATUS_SNAPSHOT = EVIDENCE_DIR / "substrate_status_snapshot.json"
+# Grandfather baseline for the reviewed-FAIL-without-autopsy net (2026-08-08).
+# Seeded ONCE with the pre-existing legacy debt so the net's first run is not a
+# full-corpus dump; see load_reviewed_fail_without_autopsy / main().
+FAIL_AUTOPSY_GRANDFATHER = EVIDENCE_DIR / "fail_autopsy_grandfather.json"
 
 # Adjudication flags that block a diagnostic self-route from driving a governance
 # action. Mirror of build_experiment_indexes.BLOCKING_ADJUDICATIONS (the canonical
@@ -166,6 +170,103 @@ def load_confirmed_autopsy_run_ids() -> set:
             if isinstance(rid, str) and rid:
                 ids.add(rid)
     return ids
+
+
+def load_reviewed_fail_without_autopsy(reviewed: set, dry_run_ids: set,
+                                       confirmed_autopsy_run_ids: set) -> list[dict]:
+    """Claim-tagged, non-diagnostic, terminal FAIL runs that ARE marked reviewed
+    but have NO confirmed /failure-autopsy target -- the reviewed-FAIL blind spot.
+
+    load_pending_entries() drops every run_id in reviewed_run_ids, so a
+    claim-tagged FAIL that was marked reviewed WITHOUT ever being autopsied
+    disappears from the FAIL section (1) and from every other net: the two
+    diagnostic-autopsy nets key on experiment_purpose == 'diagnostic' (this is
+    evidence-purpose), the unclaimed/ERROR scanners key on claim-less or
+    ERROR-class manifests, and load_pending_entries has already excluded it by
+    reviewed-status. It then sits unexamined indefinitely. Confirmed on
+    ARC-017's V3-EXQ-129/135 pair: run 2026-03-29, marked reviewed, first
+    adjudicated 2026-08-07 (~131 days) only because a /thought-digestion
+    deferral note named it by hand. This scanner is the reviewed-INDEPENDENT
+    net that closes the gap going forward; the pre-existing corpus of such runs
+    is grandfathered (see main() + the grandfather baseline) so the first run is
+    not a full-corpus dump.
+
+    Reads claim_evidence `entries` only -- unlinked_runs are claim-less by
+    definition and so out of scope for a "claim-tagged" net (those are covered
+    by load_unclaimed_manifests). Excludes:
+      - runs not in reviewed (still surfaced by the FAIL section),
+      - dry-run smokes,
+      - diagnostic-purpose runs (owned by the two diagnostic-autopsy nets),
+      - runs with >=1 confirmed autopsy target (already adjudicated).
+    """
+    if not CLAIM_EVIDENCE.exists():
+        return []
+    data = _load_claim_evidence()
+    by_run: dict[str, dict] = {}
+    for e in data.get("entries", []):
+        if e.get("source_type") != "experimental":
+            continue
+        if e.get("status") != "FAIL":
+            continue
+        rid = e.get("run_id")
+        if not rid or rid not in reviewed:
+            continue
+        if rid in dry_run_ids or rid in confirmed_autopsy_run_ids:
+            continue
+        if str(e.get("experiment_purpose", "evidence")) == "diagnostic":
+            continue
+        cid = e.get("claim_id")
+        if not (cid and str(cid).strip()):
+            continue
+        rec = by_run.setdefault(rid, {
+            "run_id": rid,
+            "timestamp_utc": e.get("timestamp_utc", "") or "",
+            "claims": [],
+        })
+        if cid not in rec["claims"]:
+            rec["claims"].append(cid)
+    return sorted(by_run.values(), key=lambda r: (r["timestamp_utc"], r["run_id"]))
+
+
+def load_fail_autopsy_grandfather() -> set | None:
+    """Return the grandfathered legacy run_id set, or None if not seeded yet."""
+    if not FAIL_AUTOPSY_GRANDFATHER.exists():
+        return None
+    try:
+        data = json.loads(FAIL_AUTOPSY_GRANDFATHER.read_text())
+    except Exception as ex:
+        print(f"[warn] could not read {FAIL_AUTOPSY_GRANDFATHER.name}: {ex} "
+              "-- treating as unseeded (first run)", file=sys.stderr)
+        return None
+    return set(data.get("grandfathered_run_ids", []))
+
+
+def seed_fail_autopsy_grandfather(run_ids: set) -> None:
+    """Seed the grandfather baseline with the pre-existing reviewed-FAIL debt.
+
+    Written ONCE, on the first run after this net was installed. Everything in
+    it is acknowledged legacy debt (reviewed-but-never-autopsied claim-tagged
+    FAILs that accumulated before the net existed) and is NOT flagged; every
+    reviewed FAIL that enters the blind-spot state AFTER seeding is absent from
+    this set and therefore flagged. Mirrors substrate_status_snapshot.json's
+    first-run seed-then-diff pattern.
+    """
+    payload = {
+        "seeded_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "note": ("Legacy reviewed-but-un-autopsied claim-tagged FAIL run_ids, "
+                 "grandfathered at net-install time so the reviewed-FAIL net's "
+                 "first run is not a full-corpus dump. These are NOT flagged in "
+                 "pending_review; a governance session working this debt down "
+                 "can /failure-autopsy any of them and it leaves the outstanding "
+                 "count automatically (coverage is recomputed from the confirmed "
+                 "autopsy corpus each run, this file is never edited to remove "
+                 "them). Do NOT add run_ids by hand -- a run that enters the "
+                 "reviewed-without-autopsy state after seeding is meant to be "
+                 "flagged, not grandfathered."),
+        "grandfathered_run_ids": sorted(run_ids),
+    }
+    FAIL_AUTOPSY_GRANDFATHER.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
 def _manifest_pass_fail(d: dict) -> str | None:
@@ -681,7 +782,10 @@ def flat_only_silent_drop_guard(indexed_run_ids: set) -> list[str]:
 def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                          unclaimed: list[dict],
                          error_manifests: list[dict],
-                         last_review_utc: str) -> None:
+                         last_review_utc: str,
+                         fail_needs_autopsy: list[dict] | None = None,
+                         grandfathered_outstanding: int = 0) -> None:
+    fail_needs_autopsy = fail_needs_autopsy or []
     passes = [r for r in runs if r["status"] == "PASS"]
     fails  = [r for r in runs if r["status"] != "PASS"]
     # Diagnostic adjudication gate: diagnostics/baselines whose self-route the
@@ -729,7 +833,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                   + [r for r in unclaimed if _z_goal_writer_defect(r)])
 
     total_pending = (len(runs) + len(runner_undiscussed) + len(unclaimed)
-                     + len(error_manifests))
+                     + len(error_manifests) + len(fail_needs_autopsy))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     lines = [
@@ -745,6 +849,10 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication"
         + (f"; {len(needs_diagnostic_autopsy)} diagnostic run(s) with no confirmed autopsy"
            if needs_diagnostic_autopsy else "")
+        + (f"; {len(fail_needs_autopsy)} reviewed FAIL(s) with no confirmed autopsy"
+           if fail_needs_autopsy else "")
+        + (f"; {grandfathered_outstanding} legacy reviewed-FAIL(s) grandfathered (awaiting autopsy)"
+           if grandfathered_outstanding else "")
         + (f"; {len(recorded)} run(s) with recorded (non-gating) preconditions"
            if recorded else "")
         + (f"; {len(zgoal_dead)} run(s) with a DEAD z_goal stream"
@@ -819,6 +927,39 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
             for r in needs_diagnostic_autopsy:
                 label = r.get("interpretation_label") or "—"
                 lines.append(f"| `{r['run_id']}` | {r['status']} | {label} |")
+            lines.append("")
+
+        if fail_needs_autopsy:
+            lines += ["## Reviewed FAIL with no confirmed autopsy (blind-spot net)", ""]
+            lines += [
+                "These are claim-tagged, non-diagnostic, terminal **FAIL** runs "
+                "that were marked reviewed in `review_tracker.json` but carry NO "
+                "confirmed `/failure-autopsy` target. Being marked reviewed does "
+                "NOT exempt a FAIL from autopsy. `load_pending_entries` drops "
+                "every reviewed run_id, so without this net a claim-tagged FAIL "
+                "can be marked reviewed with no diagnosis and vanish from every "
+                "other section -- the ARC-017 V3-EXQ-129/135 pair sat in exactly "
+                "this state for ~131 days (run 2026-03-29, first adjudicated "
+                "2026-08-07, caught only because a /thought-digestion deferral "
+                "note named it by hand). Run `/failure-autopsy` on each run "
+                "below (accepts the pair together); once a CONFIRMED autopsy "
+                "target exists the row clears automatically on the next generate. "
+                "Legacy runs already in this state when the net was installed are "
+                "grandfathered in `fail_autopsy_grandfather.json` and are NOT "
+                "listed here"
+                + (f" -- **{grandfathered_outstanding}** such legacy run(s) "
+                   "remain un-autopsied (acknowledged debt, not counted in the "
+                   "pending total; work them down via /failure-autopsy at "
+                   "governance's discretion)." if grandfathered_outstanding
+                   else "."),
+                "",
+                "| Run ID | Timestamp | Claims |",
+                "|--------|-----------|--------|",
+            ]
+            for r in fail_needs_autopsy:
+                claims = ", ".join(sorted(set(r["claims"])))
+                ts = r["timestamp_utc"][:16] if r["timestamp_utc"] else "?"
+                lines.append(f"| `{r['run_id']}` | {ts} | {claims} |")
             lines.append("")
 
         if recorded:
@@ -995,6 +1136,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "- ERROR manifests (crash-before-manifest / runner ERROR record): run `/diagnose-errors`, re-queue under a NEW letter, then add the manifest stem to `discussed_experiment_dirs`",
         "- Diagnostic self-route flagged (`precondition_unmet` / `vacuous_pass`): adjudicate via `/failure-autopsy` before the label drives a governance action; clearing the run for review does not clear the adjudication flag (the manifest's `interpretation` is the source of truth -- a re-queued successor supersedes it).",
         "- Diagnostic (`experiment_purpose: \"diagnostic\"`), no confirmed autopsy: ALL diagnostic PASS/FAIL results require a confirmed `/failure-autopsy` target before governance marks them reviewed -- not only ones the indexer flagged untrustworthy. Run `/failure-autopsy` (accepts a PASS target too), then mark reviewed once confirmed.",
+        "- Reviewed FAIL with no confirmed autopsy (blind-spot net): a claim-tagged, non-diagnostic FAIL that is already `reviewed` but was never autopsied. Run `/failure-autopsy` on it; the row clears automatically once a CONFIRMED autopsy target covers the run_id. Do NOT re-mark it reviewed to silence it (it is already reviewed -- that is the blind spot). Legacy such runs are grandfathered in `fail_autopsy_grandfather.json` and never listed; do not hand-edit that file.",
         "- Recorded (non-gating) preconditions: nothing to clear. The run is reviewed and closed by the normal PASS/FAIL route above; the recorded finding is an audit trail to read alongside the result, not a flag to adjudicate.",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
@@ -1222,8 +1364,28 @@ def main():
         e for e in load_error_manifests(reviewed, discussed, indexed_run_ids)
         if e["run_id"] not in pending_run_ids
     ]
+    # Reviewed-FAIL-without-autopsy blind-spot net (2026-08-08). Reviewed-
+    # independent, so it reads claim_evidence directly rather than `runs` (which
+    # excludes reviewed run_ids). The pre-existing corpus of such runs is
+    # grandfathered on first run so this does not dump the whole FAIL history.
+    confirmed_autopsy_run_ids = load_confirmed_autopsy_run_ids()
+    fail_candidates = load_reviewed_fail_without_autopsy(
+        reviewed, dry_run_ids, confirmed_autopsy_run_ids)
+    cand_ids = {r["run_id"] for r in fail_candidates}
+    grandfather = load_fail_autopsy_grandfather()
+    if grandfather is None:
+        seed_fail_autopsy_grandfather(cand_ids)
+        grandfather = set(cand_ids)
+        print(f"[seed] fail_autopsy_grandfather.json seeded with "
+              f"{len(cand_ids)} legacy reviewed-FAIL(s) (not flagged)",
+              file=sys.stderr)
+    fail_needs_autopsy = [r for r in fail_candidates
+                          if r["run_id"] not in grandfather]
+    grandfathered_outstanding = len(cand_ids & grandfather)
     write_pending_review(runs, runner_undiscussed, unclaimed,
-                         error_manifests, last_review_utc)
+                         error_manifests, last_review_utc,
+                         fail_needs_autopsy=fail_needs_autopsy,
+                         grandfathered_outstanding=grandfathered_outstanding)
     append_substrate_change_section()
 
 

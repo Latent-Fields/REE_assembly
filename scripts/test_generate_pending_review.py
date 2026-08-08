@@ -427,5 +427,229 @@ class DiagnosticAutopsyRequiredSectionTests(unittest.TestCase):
         self.assertIn("1 diagnostic run(s) with no confirmed autopsy", text)
 
 
+class LoadReviewedFailWithoutAutopsyTests(unittest.TestCase):
+    """The reviewed-FAIL-without-autopsy blind-spot net (2026-08-08).
+
+    The ARC-017 V3-EXQ-129/135 gap: a claim-tagged, evidence-purpose FAIL was
+    marked reviewed (which excludes it from load_pending_entries) but never
+    autopsied, so it vanished from every section for ~131 days. This scanner is
+    reviewed-INDEPENDENT: being reviewed no longer exempts a FAIL from needing
+    an autopsy.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _with_claim_evidence(self, entries, unlinked=()):
+        """Point the module at a temp claim_evidence.v1.json; reset its cache."""
+        td = tempfile.TemporaryDirectory()
+        path = Path(td.name) / "claim_evidence.v1.json"
+        path.write_text(json.dumps({"entries": entries,
+                                    "unlinked_runs": list(unlinked)}))
+        self.mod.CLAIM_EVIDENCE = path
+        self.mod._CLAIM_EVIDENCE_CACHE = None
+        return td
+
+    def _entry(self, run_id, claim_id="ARC-017", status="FAIL",
+               purpose="evidence", **kw):
+        e = {"run_id": run_id, "claim_id": claim_id, "status": status,
+             "source_type": "experimental", "experiment_purpose": purpose,
+             "timestamp_utc": "2026-03-29T03:19:33Z"}
+        e.update(kw)
+        return e
+
+    def _load(self, reviewed, dry=frozenset(), autopsy=frozenset()):
+        return self.mod.load_reviewed_fail_without_autopsy(
+            set(reviewed), set(dry), set(autopsy))
+
+    def test_arc017_shape_reviewed_fail_is_flagged(self):
+        """The exact blind-spot shape: reviewed, claim-tagged, evidence FAIL,
+        no confirmed autopsy -> surfaced."""
+        rid = "v3_exq_129_arc017_stream_tag_pair_20260329T031933Z_v3"
+        td = self._with_claim_evidence([self._entry(rid)])
+        try:
+            out = self._load(reviewed={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual([r["run_id"] for r in out], [rid])
+        self.assertEqual(out[0]["claims"], ["ARC-017"])
+
+    def test_confirmed_autopsy_excludes_it(self):
+        """Once ARC-017 has a confirmed autopsy target it must NOT re-flag."""
+        rid = "v3_exq_129_arc017_stream_tag_pair_20260329T031933Z_v3"
+        td = self._with_claim_evidence([self._entry(rid)])
+        try:
+            out = self._load(reviewed={rid}, autopsy={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_unreviewed_fail_is_not_this_nets_job(self):
+        """An un-reviewed FAIL is still surfaced by the FAIL section; this net
+        only owns the reviewed blind-spot state."""
+        rid = "v3_exq_x_20260101T000000Z_v3"
+        td = self._with_claim_evidence([self._entry(rid)])
+        try:
+            out = self._load(reviewed=set())
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_diagnostic_purpose_is_excluded(self):
+        """Diagnostic FAILs are owned by the two diagnostic-autopsy nets."""
+        rid = "v3_exq_diag_20260101T000000Z_v3"
+        td = self._with_claim_evidence(
+            [self._entry(rid, purpose="diagnostic")])
+        try:
+            out = self._load(reviewed={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_pass_is_excluded(self):
+        rid = "v3_exq_pass_20260101T000000Z_v3"
+        td = self._with_claim_evidence([self._entry(rid, status="PASS")])
+        try:
+            out = self._load(reviewed={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_dry_run_is_excluded(self):
+        rid = "v3_exq_dry_20260101T000000Z_v3"
+        td = self._with_claim_evidence([self._entry(rid)])
+        try:
+            out = self._load(reviewed={rid}, dry={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_claimless_entry_is_excluded(self):
+        """A blank claim_id is not claim-tagged (unlinked_runs owns those)."""
+        rid = "v3_exq_noclaim_20260101T000000Z_v3"
+        td = self._with_claim_evidence([self._entry(rid, claim_id="")])
+        try:
+            out = self._load(reviewed={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(out, [])
+
+    def test_multiple_claim_entries_collapse_to_one_run(self):
+        rid = "v3_exq_multi_20260101T000000Z_v3"
+        td = self._with_claim_evidence([
+            self._entry(rid, claim_id="ARC-017"),
+            self._entry(rid, claim_id="MECH-9"),
+        ])
+        try:
+            out = self._load(reviewed={rid})
+        finally:
+            td.cleanup()
+        self.assertEqual(len(out), 1)
+        self.assertEqual(sorted(out[0]["claims"]), ["ARC-017", "MECH-9"])
+
+
+class FailAutopsyGrandfatherTests(unittest.TestCase):
+    """First-run seeding must grandfather the legacy corpus, not dump it."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _tmp_grandfather(self):
+        td = tempfile.TemporaryDirectory()
+        self.mod.FAIL_AUTOPSY_GRANDFATHER = Path(td.name) / "gf.json"
+        return td
+
+    def test_unseeded_returns_none(self):
+        td = self._tmp_grandfather()
+        try:
+            self.assertIsNone(self.mod.load_fail_autopsy_grandfather())
+        finally:
+            td.cleanup()
+
+    def test_seed_then_load_roundtrips(self):
+        td = self._tmp_grandfather()
+        try:
+            self.mod.seed_fail_autopsy_grandfather({"b", "a", "c"})
+            self.assertTrue(self.mod.FAIL_AUTOPSY_GRANDFATHER.exists())
+            self.assertEqual(self.mod.load_fail_autopsy_grandfather(),
+                             {"a", "b", "c"})
+        finally:
+            td.cleanup()
+
+    def test_malformed_file_treated_as_unseeded(self):
+        td = self._tmp_grandfather()
+        try:
+            self.mod.FAIL_AUTOPSY_GRANDFATHER.write_text("{ not json")
+            self.assertIsNone(self.mod.load_fail_autopsy_grandfather())
+        finally:
+            td.cleanup()
+
+
+class ReviewedFailSectionRenderTests(unittest.TestCase):
+    """Rendering + the grandfather non-dump guarantee."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _render(self, fail_needs_autopsy, grandfathered_outstanding=0):
+        import io
+        from contextlib import redirect_stdout
+        written = {}
+
+        class _FakeOut:
+            def __init__(self, store):
+                self.store = store
+
+            def write_text(self, text):
+                self.store["text"] = text
+
+            def relative_to(self, _root):
+                return "evidence/experiments/pending_review.md"
+
+        orig = self.mod.OUTPUT
+        self.mod.OUTPUT = _FakeOut(written)
+        try:
+            with redirect_stdout(io.StringIO()):
+                self.mod.write_pending_review(
+                    [], [], [], [], "2026-08-08T00:00:00Z",
+                    fail_needs_autopsy=fail_needs_autopsy,
+                    grandfathered_outstanding=grandfathered_outstanding)
+        finally:
+            self.mod.OUTPUT = orig
+        return written.get("text", "")
+
+    def _fna(self, run_id):
+        return {"run_id": run_id, "timestamp_utc": "2026-03-29T03:19:33Z",
+                "claims": ["ARC-017"]}
+
+    def test_flagged_run_renders_section_and_counts(self):
+        rid = "v3_exq_129_arc017_stream_tag_pair_20260329T031933Z_v3"
+        text = self._render([self._fna(rid)])
+        self.assertIn("Reviewed FAIL with no confirmed autopsy", text)
+        self.assertIn(rid, text)
+        self.assertIn("1 reviewed FAIL(s) with no confirmed autopsy", text)
+        self.assertIn("Pending: **1** item(s)", text)
+
+    def test_grandfathered_only_does_not_dump_rows(self):
+        """First-run shape: 0 flagged, N grandfathered -> the section body does
+        NOT render a table, and the pending TOTAL excludes the legacy debt, but
+        the count is still visible in the summary header."""
+        text = self._render([], grandfathered_outstanding=541)
+        self.assertNotIn("| Run ID | Timestamp | Claims |",
+                         text.split("How to mark")[0]
+                             .split("Reviewed FAIL with no confirmed autopsy")[-1])
+        self.assertIn("541 legacy reviewed-FAIL(s) grandfathered", text)
+        self.assertIn("Pending: **0** item(s)", text)
+
+    def test_grandfathered_note_shown_alongside_flagged(self):
+        text = self._render([self._fna("v3_exq_new_20260808T000000Z_v3")],
+                            grandfathered_outstanding=540)
+        self.assertIn("540", text)
+        self.assertIn("remain un-autopsied", text)
+
+
 if __name__ == "__main__":
     unittest.main()
