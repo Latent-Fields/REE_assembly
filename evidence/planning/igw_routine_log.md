@@ -1505,3 +1505,5 @@ One line per hourly tick. ASCII only.
 2026-08-08T07:24:23Z skip: paused (.igw_routine_pause present)
 2026-08-08T08:24:25Z skip: paused (.igw_routine_pause present)
 2026-08-08T09:13:58Z auto-defer IGW-20260807-208 hash=3633e36807dc for 48h (complete)
+2026-08-08T09:13:59Z complete IGW-20260807-208 staged->completed outcome=DUPLICATE: already landed as ree-v3 d8a94bd / REE_assembly 33fb15c4c2 (SD-014 write-path de
+2026-08-08T09:14:06Z GC removed worktree igw-208-substrate-ready-sd014-decouple-w (removed; branch deleted)
