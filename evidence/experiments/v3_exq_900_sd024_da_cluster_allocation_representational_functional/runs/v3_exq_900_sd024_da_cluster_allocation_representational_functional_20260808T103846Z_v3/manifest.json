@@ -1,0 +1,135 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_900_sd024_da_cluster_allocation_representational_functional",
+  "run_id": "v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T10:38:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-024"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "da_cluster_allocation_representational_and_functional",
+    "preconditions": [
+      {
+        "name": "sweep_cluster_size_responds_to_da",
+        "kind": "readiness",
+        "description": "P0 sweep, real substrate call path: Spearman rho(da, cluster_size) over a well-separated DA_SWEEP -- the SAME statistic C1 routes on.",
+        "control": "DA_SWEEP=[0.0, 0.2, 0.4, 0.6, 0.8, 1.0] at well-separated synthetic locations",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sweep_density_responds_to_cluster_size",
+        "kind": "readiness",
+        "description": "P0 sweep, real substrate call path: Spearman rho(cluster_size, density) -- the SAME statistic C2 routes on.",
+        "control": "DA_SWEEP=[0.0, 0.2, 0.4, 0.6, 0.8, 1.0] at well-separated synthetic locations",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "pooled_live_expansion_events",
+        "kind": "readiness",
+        "description": "pooled across seeds; non-degeneracy floor for C1/C2 -- a live sample where every event allocated the same cluster size carries no rank information for a correlation to measure.",
+        "control": "pooled live benefit events with cluster_size >= 2",
+        "measured": 6.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "pooled_live_harm_events",
+        "kind": "readiness",
+        "description": "pooled across seeds; sample floor for C4.",
+        "control": "pooled live agent.update_residue() calls with harm_signal < 0",
+        "measured": 1403.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C4": true
+    },
+    "criteria": [
+      {
+        "name": "C1_da_vs_cluster_size",
+        "load_bearing": true,
+        "passed": true,
+        "measured_rho": 0.5327218266323452,
+        "threshold": 0.3
+      },
+      {
+        "name": "C2_cluster_size_vs_density",
+        "load_bearing": true,
+        "passed": true,
+        "measured_rho": 0.5165985903084443,
+        "threshold": 0.3
+      },
+      {
+        "name": "C4_harm_asymmetry",
+        "load_bearing": true,
+        "passed": true,
+        "n_harm_calls": 1403,
+        "n_add_residue_calls": 1403,
+        "n_add_cluster_calls": 0
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4e5cc80178c7630d65f15f94fe62aad7f3667ae29de32e3e23ea6ed834578ad7",
+  "substrate_commit": {
+    "commit": "cb951e02ae9c2a9082192f4241b0a8e3a3c54f96",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 57,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  }
+}
