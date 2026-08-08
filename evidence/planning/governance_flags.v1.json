@@ -67,6 +67,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0005",
+      "claim_ids": [
+        "SD-020",
+        "SD-087"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "SD-020 is status=stable, promoted on V3-EXQ-324b (its own live_status.evidence.from, verdict supports/PASS), but a source read of ree-v3/experiments/v3_exq_324b_sd020_harm_surprise_pe.py shows ZERO references to REEAgent, harm_surprise_pe_enabled or compute_harm_accum_loss -- 324b validated a standalone-encoder bench reimplementation (inline abs(mean_dmg - dmg_ema) against a fresh linear dmg_head, no ARC-016 precision weighting), never the shipped flag path; the only run that did drive the real flag, V3-EXQ-324 (3 REEAgent refs, 4 flag refs), FAILED at 1/5 seeds. Governance should decide whether stable survives a promoting run that never exercised the claim implementation, and should correct BOTH SD-020 default_off_scope_note and SD-087 title, which each assert the 324b reading is scoped to the flag-on configuration when 324b set no flag at all.",
+      "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
+      "raised_at": "2026-08-08T00:36:46Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
