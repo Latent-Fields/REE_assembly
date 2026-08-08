@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 3973580,
   "runner_started_at": "2026-08-08T05:18:29.669201+00:00",
-  "last_updated": "2026-08-08T09:51:01.450090+00:00",
+  "last_updated": "2026-08-08T17:09:54.997288+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-894a",
+      "backlog_id": "",
+      "claim_id": "MECH-074d",
+      "title": "MECH-074d BLA PE-remap attribution: PE-sigma recalibration SWEEP (retest of 894 over-firing)",
+      "description": "",
+      "estimated_minutes": 72.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3738,6 +3750,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 1502.8
+    },
+    {
+      "queue_id": "V3-EXQ-896",
+      "backlog_id": "",
+      "claim_id": "MECH-322",
+      "title": "MECH-322 sleep-replay carve-out: confirmatory evidence-purpose safety + survival confirmer",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "outcome: PASS | corroboration_rate=1.0 | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-896 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-896.json",
+      "started_at": "2026-08-08T09:53:05.093864+00:00",
+      "completed_at": "2026-08-08T17:09:54.995696+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 26209.9
     }
   ]
 }
