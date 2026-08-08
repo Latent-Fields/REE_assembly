@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T06:33:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3",
+      "queue_id": "V3-EXQ-894",
+      "claim_ids": ["MECH-074d"],
+      "failed_criterion": "discrimination (C1 attribution_selectivity, C2 context_differentiated_addressing; C3 passes 2/3 seeds; C4 fails all seeds)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- first fair test; substrate wiring pre-verified by probe; matched-baseline design engineered to avoid self-inflicted degeneracy",
+        "biological_reference": "clear -- Moita et al 2004 contextual-vs-auditory dissociation; claim's own falsifier stated at exactly this representation level",
+        "prerequisites": "present -- SD-035 BLAAnalog built and confirmed exercised (candidates, remap gate, write path all fire)",
+        "implementation": "complete but calibration in question -- mechanism computes and writes correctly (probe-verified, and seed 45's clean positive result); whether the default PE-sigma threshold (1.0) is well-calibrated for this env is open (normal-theory expectation ~0.16 fire rate vs measured 0.41-0.91)",
+        "environment": "adequate -- threat/neutral alternation, scheduled limb-damage injection all functioning per readiness gates",
+        "measurement": "adequate -- unusually careful matched-baseline repeated-measures design (restore-to-snapshot per episode specifically to prevent the remap destroying its own measurement substrate)",
+        "integration": "coupled correctly -- wiring pre-verified by targeted probe before the run",
+        "scale": "3 seeds, bimodal not uniform -- 2/3 near-chance, 1/3 clearly positive; a real qualitative split, not simple underpowering"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moita et al 2004 contextual-vs-auditory fear conditioning dissociation -- BLA-driven attribution gating selectively targeting context-predictive representations rather than broadcasting",
+        "dependencies": ["SD-035 BLAAnalog (satisfied)", "use_e2_harm_a prediction pathway (probe-confirmed load-bearing)"],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present (Nader/Schafe/LeDoux 2000 conf 0.80, Moita et al 2004 conf 0.78; part of targeted_review_connectome_mech_074)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-894 (2026-08-08, FAIL, mech074d_attribution_gate_vacuous_and_remap_wholesale): first genuine experimental evidence for MECH-074d. Readiness gate green (18/18 preconditions), substrate wiring pre-verified by probe, non-degenerate, matched-baseline design. Attribution-gate half (C1 attribution_selectivity, C2 context_differentiated_addressing -- the Moita 2004 dissociation) fails on 2/3 seeds; partiality half (C3) holds on 2/3. Confound flagged, not resolved: fire_fraction is inversely correlated with attribution signal across the 3 seeds (the one seed with real signal has the lowest fire fraction; the two near-chance seeds have the two highest), consistent with the SD-035 default PE-sigma threshold (1.0) over-firing and diluting a genuine signal rather than the attribution mechanism being architecturally absent. All three seeds also blow the C4 sparsity ceiling, which the driver's own pre-registered pilot probe already anticipated. Routed to /queue-experiment (894a) with a recalibrated sigma threshold to test the over-firing hypothesis directly before this FAIL is weighted as strong evidence against the attribution-gating mechanism.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "severity": "degrading",
+      "substrate_paths": ["ree_core/amygdala/bla.py"],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "MECH-074d's substrate is built and functioning -- candidates compute, remap gate fires under the confirmed-necessary use_e2_harm_a=True flag, writes land. Not an implementation-absence FAIL.",
+        "The attribution-gate half of the claim fails on 2/3 seeds under a green, well-instrumented, non-degenerate gate -- a genuine weakens as measured.",
+        "The partiality half (not-wholesale-replacement) holds on 2/3 seeds.",
+        "Fire-fraction / attribution-selectivity are inversely correlated across the three seeds, a concrete testable hypothesis for why the gate reads vacuous in 2/3 seeds without requiring the attribution mechanism to be architecturally absent.",
+        "The driver's own pre-registered pilot probe already anticipated the C4 sparsity-ceiling miss before the full run -- the SD-035 default sigma threshold may simply be too permissive for this environment's PE distribution."
+      ],
+      "routing": "queue-experiment (same-claim retest, 894a, recalibrated PE-sigma threshold to test the over-firing/dilution hypothesis)"
+    }
+  ],
+  "cluster_pattern": null
+}

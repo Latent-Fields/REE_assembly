@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T06:33:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3",
+      "queue_id": "V3-EXQ-892",
+      "claim_ids": ["MECH-322"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- genuinely informative both-directions-valid design; answers the exact question 873a's autopsy deferred",
+        "biological_reference": "clear -- deadline-dependent corroboration/pruning matches biological expectation for replay-tag stabilization requiring behavioural reinforcement",
+        "prerequisites": "present -- entire mechanism confirmed built and validated by 873a itself (7/8 seeds minted correctly)",
+        "implementation": "complete -- readiness (0.875 seed fraction), mint fraction (1.0), trackability (C2) all green across all three arms",
+        "environment": "adequate -- same env family as 873a/810a, validated",
+        "measurement": "adequate, unusually careful -- deadline isolated cleanly (same seed mints same sequence in every arm; only the post-mint counter differs); deadline-independent N=200 arm separately measures the true exposure/recurrence rate",
+        "integration": "coupled -- exercises the mint -> corroborate -> survive lifecycle through the real chunk library and episode-end hooks",
+        "scale": "8 seeds, 7 cleared readiness, non-degenerate spread across all readouts -- adequate for this fraction-based statistic"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal-striatal offline replay driving sleep-dependent procedural-memory consolidation; corroboration-by-re-execution as the biological analogue of behaviourally-reinforced trace stabilization",
+        "dependencies": ["MECH-323/324 chunk-formation substrate", "SD-017 sleep-phase gating", "MECH-322 AND-gate (confirmed by 873a)"],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present (Albouy 2013, Graybiel striatal-chunking, Thompson 2026 DLS procedural replay)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-892 (2026-08-08, diagnostic PASS, replay_corroboration_survives_under_realistic_conditions, confirmed autopsy): answers the post-mint-lifecycle question 873a's autopsy explicitly deferred. C1 (mint fraction 1.0/1.0) and C2 (fate trackable) are readiness/instrument gates, both green; the finding itself is descriptive and pre-declared both-directions-valid. Under the realistic default deadline (N=75), 57.1% (4/7) of minted replay-origin chunks survived via genuine emergent re-execution; under the deadline-independent N=200 arm, 85.7% (6/7) corroborated at least once; the accelerated N=15 arm cleanly replicated 873a's 0% survival finding as a negative control, confirming the accelerated-dissolution safety valve fires consistently rather than being an artifact of 873a's checkpoint timing. evidence_direction: supports.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "A replay-origin-tagged chunk CAN survive to real corroboration under realistic conditions: 57.1% did under the substrate default deadline (N=75), 85.7% corroborated at least once given unlimited exposure window (N=200).",
+        "873a's accelerated-regime 0% survival finding was a genuine artifact of an artificially short deadline, not evidence corroboration cannot happen in principle -- confirmed by a clean negative-control replication in this same run.",
+        "Corroboration timing is genuinely deadline-independent and spans nearly the full post-checkpoint window (offsets 1 to 88 of 100 episodes) -- a realistic deadline needs real headroom, since a short deadline specifically excludes late-corroborating chunks that are part of the true recurrence distribution.",
+        "This closes the open question 873a's autopsy explicitly deferred, with a clean, non-vacuous result in both possible directions."
+      ],
+      "routing": "none (confirming evidence; closes EVB-0489's open question)"
+    }
+  ],
+  "cluster_pattern": null,
+  "companion_fix": {
+    "description": "V3-EXQ-873a's own Step 9b hypothesis-space resolution never ran. Fixed here as part of this session's Step 9b, updating the EXISTING mech322_replay_carveout_and_gate_validity question's H-mech322-andgate-fires-and-fails-closed hypothesis (registered 2026-08-03 off 873's autopsy) using 873a's already-confirmed autopsy (failure_autopsy_V3-EXQ-873a_2026-08-07) as an additional resolving run. This is a resolution UPDATE on an already-pre-registered hypothesis, not new denominator growth -- pre_registered_utc (2026-08-02T21:33:19Z) stands unchanged and remains <= the new resolved_utc.",
+    "resolving_autopsy": "failure_autopsy_V3-EXQ-873a_2026-08-07.json",
+    "question_qid": "mech322_replay_carveout_and_gate_validity",
+    "hypothesis_hid": "H-mech322-andgate-fires-and-fails-closed",
+    "field_changes": {
+      "resolution.state": {"from": "alive", "to": "confirmed"},
+      "resolution.resolving_runs": {"from": ["V3-EXQ-873"], "to": ["V3-EXQ-873", "V3-EXQ-873a"]},
+      "resolution.evidence_direction": {"from": "mixed", "to": "supports"},
+      "resolution.epistemic_category": {"from": "measurement_test_design_defect", "to": "standard"},
+      "resolution.self_route_label": {"from": "substrate_not_ready_requeue", "to": "replay_carveout_fires_and_fails_closed"},
+      "resolution.control_passed": {"from": false, "to": true},
+      "resolution.non_degenerate": {"from": false, "to": true},
+      "resolution.resolved_utc": {"from": "2026-08-02T21:33:19Z", "to": "2026-08-04T06:23:09Z"},
+      "decision.decidable": {"from": false, "to": true}
+    }
+  }
+}

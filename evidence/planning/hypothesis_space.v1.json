@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-07T21:24:49Z",
+  "generated_at": "2026-08-08T06:39:52Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,131 +31,131 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 51,
-      "total_initial": 91,
-      "total_initial_at_registration": 72,
+      "total_surviving": 52,
+      "total_initial": 92,
+      "total_initial_at_registration": 73,
       "total_fanout_added": 19,
       "total_resolved_out": 37,
-      "total_confirmed": 18,
-      "reduction_pct_vs_current": 40.7,
-      "net_narrowing_pct": 29.2,
+      "total_confirmed": 20,
+      "reduction_pct_vs_current": 40.2,
+      "net_narrowing_pct": 28.8,
       "convergence_classes": {
         "narrowing": 12,
-        "static": 11,
+        "static": 12,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "51 alive against 72 originally enumerated, and against 91 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 28
+      "honest_pair_note": "52 alive against 73 originally enumerated, and against 92 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 29
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 12,
-      "open_questions": 28
+      "ready": 14,
+      "open_questions": 29
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 90,
+      "surviving": 91,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-13",
-      "surviving": 88,
+      "surviving": 89,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-15",
-      "surviving": 84,
+      "surviving": 85,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-16",
-      "surviving": 83,
+      "surviving": 84,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-17",
-      "surviving": 80,
+      "surviving": 81,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-18",
-      "surviving": 74,
+      "surviving": 75,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-19",
-      "surviving": 70,
+      "surviving": 71,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-20",
-      "surviving": 69,
+      "surviving": 70,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-24",
-      "surviving": 68,
+      "surviving": 69,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-27",
-      "surviving": 66,
+      "surviving": 67,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-29",
-      "surviving": 65,
+      "surviving": 66,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-31",
-      "surviving": 64,
+      "surviving": 65,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-01",
-      "surviving": 62,
+      "surviving": 63,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-02",
-      "surviving": 56,
+      "surviving": 57,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-04",
-      "surviving": 55,
+      "surviving": 56,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-06",
-      "surviving": 54,
+      "surviving": 55,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
-      "date": "2026-08-07",
-      "surviving": 51,
+      "date": "2026-08-08",
+      "surviving": 52,
       "closure_pct": 76.9,
       "build_pct": 82.1
     }
@@ -2768,18 +2768,18 @@
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "families_closed": [
           "instrumentation"
         ],
+        "families_touched": [],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
       "surviving": 1,
-      "alive": 1,
+      "alive": 0,
       "resolved_out": 0,
-      "confirmed": 0,
+      "confirmed": 1,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2790,20 +2790,21 @@
           "label": "the carve-out mints under valid (a+b+c) conditions and refuses under every invalid combination",
           "desc": "record_replay_sequence mints a replay_origin=True chunk when a real tracked high-value candidate exists during a genuine sleep phase, and refuses during wake, when the master switch is off, when no valid candidate exists, or when the value_tag is deliberately below threshold.",
           "axis": "measurement",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-873"
+            "V3-EXQ-873",
+            "V3-EXQ-873a"
           ],
-          "basis": "V3-EXQ-873 (9 cells, 3 arms x 3 seeds): the load-bearing criterion's own readiness gate failed on a worst-of-3-seed candidate-availability precondition (1/3 seeds), but in the 2/3 seeds where the precondition held, the carve-out minted correctly with replay_origin=True, and every fail-closed branch (wake-refusal, master-switch-off, low-value, no-candidate) passed cleanly across all 9 cells. Confirmed autopsy failure_autopsy_V3-EXQ-873_2026-08-03: test-design defect (an overly strict SEED_PASS_FRACTION=1.0 worst-of-N-seed gate conflating a stochastic precondition with a deterministic plumbing check), not a substrate ceiling. Routed to /queue-experiment V3-EXQ-873a with a decoupled, fraction-based readiness gate and 6-8 seeds.",
+          "basis": "V3-EXQ-873a (confirmed autopsy failure_autopsy_V3-EXQ-873a_2026-08-07): fixed 873's seed-veto instrument defect (decoupled stochastic readiness from deterministic mint-correctness, n=8 seeds). 7/8 seeds cleared readiness; all 7 minted correctly; all fail-closed checks (wake, low-value, master-switch-off) held across 8 seeds x 3 arms. AND-gate mechanics now validated: fires under all-valid conditions, refuses under every invalid combination. Ledger update was missed at 873a's own Step 9b (2026-08-07) -- backfilled here (2026-08-08, /failure-autopsy for V3-EXQ-892) as a resolution update on an already-pre-registered hypothesis, not new denominator growth.",
           "children": [],
           "met_elimination_bar": false
         }
       ],
       "decision": {
-        "readiness_state": "observation_bottleneck",
-        "evidence_decile": 2,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "Does MECH-322's AND-gate correctly implement all three ANDed conditions, or does it misbehave under some valid/invalid combination?",
-        "distance_phrase": "1 of 1 tested leg: 2/2 valid-precondition seeds gave a clean positive result; 1/3 correctly withheld per the gate's own design. Not yet decidable as a claim-level verdict because the readiness gate's own aggregation rule (not the mechanism) is what failed.",
+        "distance_phrase": "1 of 1 tested leg: CONFIRMED. 7/8 seeds cleared readiness under the corrected fraction-based gate; all 7 minted correctly; all fail-closed checks held across 8 seeds x 3 arms.",
         "live_gate": "A re-run with a decoupled, fraction-based readiness gate and more seeds (V3-EXQ-873a) is needed to give this a clean confirming or falsifying read -- the current run's own gate design cannot cleanly test it at N=3.",
         "observation_bottleneck": "Worst-of-3-seed readiness-precondition veto cannot distinguish a genuinely working AND-gate from a substrate ceiling when the precondition itself is naturally stochastic at small N."
       }
@@ -3136,9 +3137,81 @@
         "live_gate": "A /claim-synthesis pass examining the MECH-457<->MECH-471<->Q-089 relationship (not yet run). A purpose-built H-bias-head-ofc-interaction discriminator remains open but low-priority and not yet queued -- left open at the interactive gate rather than blocking claim-synthesis.",
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "mech322_replay_origin_corroboration_survival",
+      "title": "Does a replay-origin-tagged chunk minted by MECH-322's carve-out ever get corroborated by real waking execution before its dissolution deadline, under realistic conditions?",
+      "short_title": "MECH-322 replay-origin corroboration survival",
+      "claims": [
+        "MECH-322"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 0,
+      "confirmed": 1,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-replay-origin-chunk-corroborates-under-realistic-deadline",
+          "label": "a replay-origin-tagged chunk survives via real emergent re-execution before its dissolution deadline expires, under realistic (non-accelerated) conditions",
+          "desc": "Under the substrate-default corroboration deadline (N=75 waking episodes) with an early sleep checkpoint giving ~100 post-mint episodes, minted replay-origin chunks are re-executed by the agent's ordinary behaviour often enough that a majority survive to crystallisation, rather than uniformly dissolving as they did under 873a's artificially accelerated deadline (N=15, late checkpoint).",
+          "axis": "measurement",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-892"
+          ],
+          "basis": "Under the realistic default deadline (N=75), 57.1% (4/7) of minted replay-origin chunks survived via genuine emergent re-execution; under the deadline-independent N=200 arm, 85.7% (6/7) corroborated at least once; the accelerated N=15 arm cleanly replicated 873a's 0% survival finding as a negative control, confirming the accelerated-dissolution safety valve fires consistently rather than being an artifact of 873a's checkpoint timing.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Does a replay-origin chunk ever get corroborated by real execution before dissolution, and under what deadline/exposure conditions?",
+        "distance_phrase": "1 of 1 tested leg: CONFIRMED under the realistic default deadline (57.1% survival) and deadline-independent exposure (85.7% corroboration); the accelerated-regime null replicated cleanly as a negative control.",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-892",
+      "all_runs": [
+        "V3-EXQ-892"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "mech322_replay_origin_corroboration_survival",
+      "claims": [
+        "MECH-322"
+      ],
+      "moved": "Under the realistic default deadline (N=75), 57.1% (4/7) of minted replay-origin chunks survived via genuine emergent re-execution; under the deadline-independent N=200 arm, 85.7% (6/7) corroborated at least once; the accelerated N=15 arm cleanly replicated 873a's 0% survival finding as a negative control, confirming the accelerated-dissolution safety valve fires consistently rather than being an artifact of 873a's checkpoint timing.",
+      "resolved_utc": "2026-08-08T05:16:16Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-890",
       "all_runs": [
@@ -3185,6 +3258,21 @@
       "moved": "V3-EXQ-848b (70 cells, 10 units, 7-level ladder) breaks the 3-point Spearman-rho ceiling that made 848a inconclusive: n_distinct_rho_values_observed=10 (all distinct, vs 848a's discrete pile at rho=0.5), per-unit rho now spans -0.536 to 0.964. 4/10 units clear |rho|>=0.6 (2/10 additionally Mann-Kendall significant), up from 1/10 on 848a, but short of the 7/10 bar. The observation bottleneck named in the prior resolution (ladder resolution) is CLOSED. New bottleneck: the true effect is ~1e-3 log10-precision-units, ~180x smaller than cross-seed SD (~0.18) -- underpowered relative to noise, not a clean null (all_near_zero_null=false). failure_autopsy_2026-08-05_pending_review_batch (confirmed): accept mixed as the final reading for this design; route to /lit-pull (no ARC-005-specific literature review exists) rather than a further same-design lettered iteration.",
       "resolved_utc": "2026-08-04T06:47:58Z",
       "evidence_direction": "mixed"
+    },
+    {
+      "run": "V3-EXQ-873a",
+      "all_runs": [
+        "V3-EXQ-873",
+        "V3-EXQ-873a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "mech322_replay_carveout_and_gate_validity",
+      "claims": [
+        "MECH-322"
+      ],
+      "moved": "V3-EXQ-873a (confirmed autopsy failure_autopsy_V3-EXQ-873a_2026-08-07): fixed 873's seed-veto instrument defect (decoupled stochastic readiness from deterministic mint-correctness, n=8 seeds). 7/8 seeds cleared readiness; all 7 minted correctly; all fail-closed checks (wake, low-value, master-switch-off) held across 8 seeds x 3 arms. AND-gate mechanics now validated: fires under all-valid conditions, refuses under every invalid combination. Ledger update was missed at 873a's own Step 9b (2026-08-07) -- backfilled here (2026-08-08, /failure-autopsy for V3-EXQ-892) as a resolution update on an already-pre-registered hypothesis, not new denominator growth.",
+      "resolved_utc": "2026-08-04T06:23:09Z",
+      "evidence_direction": "supports"
     },
     {
       "run": "V3-EXQ-887",
@@ -3244,20 +3332,6 @@
       "moved": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test).",
       "resolved_utc": "2026-08-03T02:21:31Z",
       "evidence_direction": "non_contributory"
-    },
-    {
-      "run": "V3-EXQ-873",
-      "all_runs": [
-        "V3-EXQ-873"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "mech322_replay_carveout_and_gate_validity",
-      "claims": [
-        "MECH-322"
-      ],
-      "moved": "V3-EXQ-873 (9 cells, 3 arms x 3 seeds): the load-bearing criterion's own readiness gate failed on a worst-of-3-seed candidate-availability precondition (1/3 seeds), but in the 2/3 seeds where the precondition held, the carve-out minted correctly with replay_origin=True, and every fail-closed branch (wake-refusal, master-switch-off, low-value, no-candidate) passed cleanly across all 9 cells. Confirmed autopsy failure_autopsy_V3-EXQ-873_2026-08-03: test-design defect (an overly strict SEED_PASS_FRACTION=1.0 worst-of-N-seed gate conflating a stochastic precondition with a deterministic plumbing check), not a substrate ceiling. Routed to /queue-experiment V3-EXQ-873a with a decoupled, fraction-based readiness gate and 6-8 seeds.",
-      "resolved_utc": "2026-08-02T21:33:19Z",
-      "evidence_direction": "mixed"
     },
     {
       "run": "V3-EXQ-869a",
