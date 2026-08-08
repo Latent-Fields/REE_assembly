@@ -167,8 +167,18 @@ def build_runpack_docs(data: dict, experiment_type: str):
             ts_compact = _dt.utcfromtimestamp(int(ts_int)).strftime("%Y%m%dT%H%M%SZ")
     ts_iso = _parse_timestamp(ts_compact)
 
-    # Gather claim_ids -- flat JSON may have claim_ids (list) or claim (single string)
-    claim_ids = data.get("claim_ids") or []
+    # Gather claim_ids -- flat JSON may have claim_ids, claim_ids_tested (list),
+    # or claim (single string). `claim_ids_tested` is the field the V3 recording
+    # standard actually specifies (pack_writer.write_pack's own kwarg name), so a
+    # flat manifest using only that key previously converted with claim_ids_tested
+    # permanently empty -- confirmed on v3_exq_162_mech137_commit_token_structure
+    # (MECH-137/138/139), orphaning its evidence from claim_evidence.v1.json since
+    # the indexer reads only the pack copy. 27 packs across the tree carry this or
+    # the sibling metrics gap below (see chip-20260808-mech138-orphaned-evidence-
+    # indexer-stub); the skip-if-pack-exists guard in convert_flat_to_runpack /
+    # sync_daemon._materialize_runpacks means this fix only prevents new
+    # occurrences -- existing stubs need an explicit forced regeneration.
+    claim_ids = data.get("claim_ids") or data.get("claim_ids_tested") or []
     if not claim_ids and data.get("claim"):
         claim_ids = [data["claim"]]
 
@@ -295,13 +305,21 @@ def build_runpack_docs(data: dict, experiment_type: str):
     # Build metrics.json. 766-style diagnostic manifests store their scalar
     # readouts under `aggregates` (paired with `thresholds`) rather than a
     # top-level `metrics` dict, which left metrics.values={} on the scored pack.
-    # Fall back to `aggregates` when there is no top-level `metrics`, so the
-    # quantitative readouts survive into the runs/ pack.
+    # Fall back to `aggregates`, then `summary_metrics` (the field name several
+    # multi-arm V3 driver scripts actually use -- confirmed empty-values.json on
+    # v3_exq_162_mech137_commit_token_structure, whose flat manifest carries a
+    # populated `summary_metrics` block that neither prior fallback reads), so
+    # the quantitative readouts survive into the runs/ pack under any of the
+    # three spellings currently in use across the experiment corpus.
     raw_metrics = data.get("metrics")
     if not raw_metrics:
         agg = data.get("aggregates")
         if isinstance(agg, dict) and agg:
             raw_metrics = dict(agg)
+    if not raw_metrics:
+        summ = data.get("summary_metrics")
+        if isinstance(summ, dict) and summ:
+            raw_metrics = dict(summ)
     if not isinstance(raw_metrics, dict):
         raw_metrics = {}
     metrics_doc = {

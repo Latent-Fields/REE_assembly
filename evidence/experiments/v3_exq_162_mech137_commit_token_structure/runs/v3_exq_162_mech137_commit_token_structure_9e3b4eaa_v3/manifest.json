@@ -3,8 +3,8 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_162_mech137_commit_token_structure",
   "run_id": "v3_exq_162_mech137_commit_token_structure_9e3b4eaa_v3",
-  "status": "UNKNOWN",
-  "timestamp_utc": "",
+  "status": "PARTIAL_NO_CANCEL",
+  "timestamp_utc": "2026-03-29T20:38:20.941118+00:00",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -19,9 +19,15 @@
     "summary_path": "summary.md"
   },
   "stop_criteria_version": "stop_criteria/v1",
-  "claim_ids_tested": [],
+  "claim_ids_tested": [
+    "MECH-137",
+    "MECH-138",
+    "MECH-139"
+  ],
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
