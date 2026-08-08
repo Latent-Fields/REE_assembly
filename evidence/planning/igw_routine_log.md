@@ -1490,3 +1490,5 @@ One line per hourly tick. ASCII only.
 2026-08-07T22:18:51Z no eligible item (skipped 244): IGW-20260807-001:skill /governance not allowed; IGW-20260807-009:skill /governance not allowed; IGW-20260807-212:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
 2026-08-07T23:20:13Z workset committed (regen -- 245 items, 25 ready, 0 in flight)
 2026-08-07T23:19:57Z no eligible item (skipped 245): IGW-20260807-001:skill /governance not allowed; IGW-20260807-002:skill /governance not allowed; IGW-20260807-010:skill /governance not allowed
+2026-08-08T00:20:53Z workset committed (regen -- 245 items, 26 ready, 0 in flight)
+2026-08-08T00:20:34Z no eligible item (skipped 245): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-009:skill /governance not allowed
