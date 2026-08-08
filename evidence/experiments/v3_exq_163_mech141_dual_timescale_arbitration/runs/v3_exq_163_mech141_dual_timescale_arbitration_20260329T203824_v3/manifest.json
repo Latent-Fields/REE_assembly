@@ -3,8 +3,8 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_163_mech141_dual_timescale_arbitration",
   "run_id": "v3_exq_163_mech141_dual_timescale_arbitration_20260329T203824_v3",
-  "status": "UNKNOWN",
-  "timestamp_utc": "",
+  "status": "FAIL",
+  "timestamp_utc": "2026-03-29T20:46:37.198934+00:00",
   "source_repo": {
     "name": "ree-v3",
     "commit": "",
@@ -19,7 +19,10 @@
     "summary_path": "summary.md"
   },
   "stop_criteria_version": "stop_criteria/v1",
-  "claim_ids_tested": [],
+  "claim_ids_tested": [
+    "MECH-141",
+    "MECH-140"
+  ],
   "evidence_class": "simulation",
   "evidence_direction": "inconclusive",
   "producer_capabilities": {
@@ -36,5 +39,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "experiment_purpose": "evidence"
 }
