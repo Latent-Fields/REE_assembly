@@ -1,0 +1,121 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_897_sd009_event_ce_ablation_decodability",
+  "run_id": "v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-08T10:05:54Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-009"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd009_event_ce_effect_inconclusive",
+    "direction": "unknown",
+    "preconditions": [
+      {
+        "name": "positive_control_hazard_in_view_decodable",
+        "description": "hazard_in_view (scene_structure_targets['hazard_present'], a STATIC single-frame property of world_obs known decodable at ~0.96 balanced accuracy per the 2026-07-18 characterisation) must be recoverable by the SAME probe methodology as the primary event-type DV. If this fails, the probe pipeline itself is broken -- substrate_not_ready_requeue, never an SD-009 verdict.",
+        "control": "hazard_in_view target, min held-out margin across all cells (both arms)",
+        "measured": 0.3161197006702423,
+        "threshold": 0.3,
+        "met": true,
+        "load_bearing": true
+      },
+      {
+        "name": "encoder_actually_trained",
+        "description": "Every cell must show >=1 changed world-path tensor across P0 -- the manipulation did not take otherwise, and no SD-009 conclusion is licensed.",
+        "control": "world-path latent_stack tensors, min across all cells",
+        "measured": 5,
+        "threshold": 1,
+        "met": true,
+        "load_bearing": true
+      }
+    ],
+    "readiness_ok": true,
+    "criteria": [
+      {
+        "name": "event_ce_on_clears_floor_and_beats_off_majority_seeds",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "primary": true
+    },
+    "combination_rule": "supports iff readiness_ok AND >=2 of 3 seeds individually satisfy (on_margin >= 0.050 AND on_margin - off_margin >= 0.030); weakens iff readiness_ok AND mean(on_margin) <= 0.050; else unknown (readiness_ok but neither clean pattern holds); substrate_not_ready_requeue iff NOT readiness_ok. Majority + paired-delta rule, not a plain criteria AND.",
+    "per_seed": [
+      {
+        "seed": 42,
+        "on_margin": 0.06565657258033752,
+        "off_margin": 0.09090909361839294,
+        "delta": -0.02525252103805542,
+        "supports": false
+      },
+      {
+        "seed": 43,
+        "on_margin": 0.04797980189323425,
+        "off_margin": 0.058080822229385376,
+        "delta": -0.010101020336151123,
+        "supports": false
+      },
+      {
+        "seed": 45,
+        "on_margin": 0.08070176839828491,
+        "off_margin": 0.08596491813659668,
+        "delta": -0.005263149738311768,
+        "supports": false
+      }
+    ],
+    "supports_count": 0,
+    "n_seeds": 3,
+    "mean_on_margin": 0.06477938095728557,
+    "thresholds": {
+      "event_decodability_floor": 0.05,
+      "event_ce_delta_min": 0.03,
+      "hazard_positive_control_floor": 0.3,
+      "min_changed_world_tensors": 1,
+      "majority_seeds": 2
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ccbbe79d6c9c55382f563db9ac3d22a44a41aa410e691f7e8fd9fd8a10bcd8d7",
+  "substrate_commit": {
+    "commit": "3001981498e885eb94181cad93e64b6617df97ba",
+    "dirty": false,
+    "branch": "main"
+  }
+}
