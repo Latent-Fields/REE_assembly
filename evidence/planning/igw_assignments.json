@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-08T16:29:33Z",
+  "generated_at": "2026-08-08T16:49:54Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6613,6 +6613,28 @@
         "skill": "/lit-pull",
         "title": "Literature proposal for MECH-141",
         "lane": "lit",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-141"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260808T164954Z-c3dc0217-spawned_task",
+      "stable_hash": "c3dc0217edf0",
+      "igw_id_at_assign": "IGW-20260808-223",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-08T16:49:54Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "routed to chip chip-proposal-exp-0489 (proposal_routine_tick independently produced the same MECH-141 /queue-experiment work this cycle; metaworker-dispatch cycle observed the duplicate and assigned rather than double-dispatching)",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-141",
+        "lane": "experiment",
         "priority": 40,
         "claim_ids": [
           "MECH-141"
