@@ -1,0 +1,134 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_895_mech074c_cea_fast_prime_dynamics",
+  "run_id": "v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T01:24:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-074c"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech074c_fast_prime_dynamics_confirmed",
+    "preconditions": [
+      {
+        "name": "P1a_drive_crosses_threshold",
+        "kind": "readiness",
+        "description": "worst-cell (min) margin of the onset drive above fast_route_threshold; without a crossing there is no onset for C1 to time",
+        "control": "onset magnitude drawn from the pre-registered supra-threshold range [0.70, 2.20] vs threshold 0.50",
+        "measured": 0.21549209299163674,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "offending_cell": "seed45_trial8",
+        "met": true
+      },
+      {
+        "name": "P1b_quiet_stays_subthreshold",
+        "kind": "readiness",
+        "description": "worst-cell (max) quiet-phase drive; a quiet phase that re-fires would corrupt the C2/C3 decay measurement",
+        "control": "quiet magnitude drawn from the pre-registered sub-threshold range [0.05, 0.40]",
+        "measured": 0.39852293871002925,
+        "threshold": 0.5,
+        "comparator": "<",
+        "direction": "upper",
+        "offending_cell": "seed7_trial5",
+        "met": true
+      },
+      {
+        "name": "P2_fast_prime_peak_supra_floor",
+        "kind": "readiness",
+        "description": "worst-cell (min) peak fast_prime -- the SAME statistic C2 and C3 normalise by; a half-life and a retained fraction are both undefined on a zero pulse",
+        "control": "supra-threshold drive on an explicitly armed CeAAnalog (use_amygdala_analog + use_cea_analog both True)",
+        "measured": 0.1616191416978836,
+        "threshold": 0.05,
+        "direction": "lower",
+        "offending_cell": "seed45_trial8",
+        "met": true
+      },
+      {
+        "name": "P3_arms_receive_identical_drive",
+        "kind": "readiness",
+        "description": "worst-cell (max) abs difference between the two arms' low_freq_magnitude traces at matched (seed, trial); makes C4's separation attributable to cortical_confirmation alone",
+        "control": "both arms draw their drive from the same (seed, trial)-keyed Random in _trial_drive()",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "offending_cell": null,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "These preconditions cover the MODULE arms (ARM_CONF_ABSENT / ARM_CONF_PRESENT), which are every arm this run gates on -- no gated arm is scoped out. The SELECTIVITY_PROBE block is NON-GATING and carries no precondition here on purpose: the indexer reads this list flat and arm-blind, so a probe readiness entry would vacate the two clean gated legs at adjudication time (the V3-EXQ-785 whole-run-AND defect). The probe's own readiness self-route is at interpretation.selectivity_leg.",
+    "criteria_non_degenerate": {
+      "C1_onset_latency": true,
+      "C2_decay_tau": true,
+      "C3_decays_within_override_window": true,
+      "C4_overridable": true,
+      "C5_bounded": true
+    },
+    "selectivity_leg": {
+      "leg": "leg3_selectivity_does_not_fire_on_arousing_but_neutral",
+      "status": "substrate_not_ready_requeue",
+      "gated": false,
+      "why_not_gated": "Two independent reasons, both established before the run. (1) ARITHMETIC: CeAAnalog.tick() is a pure function of ||z_harm_a||_1/n, so a magnitude-matched non-harm drive fires IDENTICALLY by arithmetic and a mismatched one is decided by magnitude alone -- either way the delta is fixed before the run (the DV-symmetry artifact class, failure_autopsy_V3-EXQ-604c section 3). Selectivity is a property of the upstream AffectiveHarmEncoder, not of CeAAnalog. (2) MEASURED: in the embodied regime the fast route never fires at all, so there is no fast_prime signal on which any in-agent selectivity DV could be computed.",
+      "embodied_fire_count_total": 0,
+      "embodied_max_lf_harm": 0.21560536324977875,
+      "cea_fast_route_threshold": 0.5,
+      "mean_auroc_encoder_input_vs_hazard": 0.6743219256976125,
+      "mean_auroc_cea_gate_stat_vs_hazard": 0.6220658051612828,
+      "mean_auroc_generic_activation_vs_hazard": 0.5404922708478921,
+      "auroc_reference_floor": 0.6,
+      "recorded_for_successor": "A leg-3 confirmer needs (a) an AffectiveHarmEncoder trained far enough that ||z_harm_a||_1/n reaches fast_route_threshold in an embodied run, and (b) an arousing-but-neutral env condition that dissociates generic activation from harm-affective valence. The AUROC triple recorded here (encoder input / CeA gate statistic / generic activation, all against the same hazard-proximity label) is the readiness denominator for that successor, so it need not re-derive it."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5c48c7ad532b2053c6b2ef301030c9d36943d5fac17e546a7401bddeb7e967ec",
+  "substrate_commit": {
+    "commit": "eec62fa1acfe46a873e139847a710ef20ec4307a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 153,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 1,
+    "goal_state_present": false
+  }
+}
