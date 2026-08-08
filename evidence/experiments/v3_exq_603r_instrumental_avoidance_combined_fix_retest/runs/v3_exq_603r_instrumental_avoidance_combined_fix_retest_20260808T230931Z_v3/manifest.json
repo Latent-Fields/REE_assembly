@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603r_instrumental_avoidance_combined_fix_retest",
+  "run_id": "v3_exq_603r_instrumental_avoidance_combined_fix_retest_20260808T230931Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-08T23:09:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-357"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "avoidance_gate_insufficient_combined_fix",
+    "readiness_route": "avoidance_gate_insufficient_combined_fix",
+    "preconditions": [
+      {
+        "name": "pavlovian_freeze_reaction_present_on_lesion",
+        "kind": "readiness",
+        "description": "The MECH-279 PAG freeze must actually commit on the LESION arm (pag_n_commits > 0 on >= 2/3 LESION seeds) -- the Pavlovian reaction the ilPFC suppresses. Below-floor => no freeze to suppress => the lesion-vs-intact contrast is vacuous => substrate_not_ready_requeue.",
+        "control": "ARM_LESION: PAG on (theta_freeze tuned to z_harm_a_norm ~0.34), harm stream fed, BOTH combined fixes on -- the freeze reaction must still fire.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ilpfc_gate_engages_and_suppresses_freeze_on_intact",
+        "kind": "readiness",
+        "description": "On the INTACT arm the ilPFC gate must (a) register avoidance-efficacy updates under threat (n_credit+n_decay>0) AND (b) suppress the PAG freeze (n_freeze_suppressed>0) on >= 2/3 seeds -- the SAME mechanism the PRIMARY G_H lift routes on. Below-floor => the gate never engaged => substrate_not_ready_requeue, NOT an avoidance verdict.",
+        "control": "ARM_INTACT: gate on + protective-scaffold floor 0.8 + BOTH combined fixes.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_intact",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 INTACT seeds -- the goal-FORMATION positive control (shared from 603g/603h). Confirms the curriculum is intact under the gate.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "both_arms_reached_hazard_stage": true,
+      "pavlovian_freeze_present": true,
+      "gate_active_on_intact": true
+    },
+    "criteria": [
+      {
+        "name": "G_H_INTACT_clears_2of3",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G_H_INTACT_beats_LESION",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "920c163be80b801244e199c01be073f8e9c4a09322fd582fe89d3140ae0c0de1",
+  "substrate_commit": {
+    "commit": "a29f15a4d90775f2f5bedd61b99dc478bc0cdfdd",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 209542,
+    "ticks_active": 209536,
+    "writer_calls": 6924,
+    "active_frac": 0.9999713661223049,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
