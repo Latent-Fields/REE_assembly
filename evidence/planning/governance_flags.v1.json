@@ -108,6 +108,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0008",
+      "claim_ids": [
+        "SD-086"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SD-086 title asserts that E3 consumes ||z_harm_a|| \"as an approximately constant gain\" at two named read sites, but both sites are flag-gated and default OFF -- affective_harm_scale=0.0 (ree-v3/ree_core/utils/config.py:723) gates the lambda_eff amplification and urgency_weight=0.0 (:716) gates the commit-threshold urgency -- and neither flag is set in ANY run of the evidence base (V3-EXQ-664, 856, 857a). On its own evidence E3 does not consume z_harm_a through those paths at all, so SD-086 warrants a default_off_scope_note of exactly the shape SD-020 already carries, and any two-arm readout falsifier must assert consumer engagement or its downstream conjunct is vacuously unsatisfiable.",
+      "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
+      "raised_at": "2026-08-08T00:37:07Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
