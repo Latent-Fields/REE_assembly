@@ -1,0 +1,159 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T19:37:15Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_878a_mech332_commitment_calibration_20260808T193223Z_v3",
+      "claim_ids": [
+        "MECH-332",
+        "SD-021",
+        "SD-032c"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested -- prerequisite never met, not falsified)",
+        "biological_reference": "clear (De Preter & Heinricher 2024; SD-021 corpus, 8 lit entries, lit_conf 0.852)",
+        "prerequisites": "missing (E3 commitment gate never elevates, at any training budget)",
+        "implementation": "complete (mechanism)/partial (z_harm_s_ratio null-hardening now correctly implemented)",
+        "environment": "adequate",
+        "measurement": "under-instrumented for the deeper question (rv trend well-recorded, no direct probe of why the world model won't converge below 0.40)",
+        "integration": "coupled, working",
+        "scale": "insufficient at every tested budget -- pinned, not merely slow"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PAG/RVM descending analgesia gated by behavioral commitment",
+        "dependencies": [
+          "E3 commitment gate world-model convergence"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a -- biological grounding intact, gap is purely computational",
+        "lit_status": "present (targeted_review_sd_021, targeted_review_cingulate_integration_substrate)"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "18-cell budget sweep (3 schedules x 2 arms x 3 seeds): EVERY cell reports n_committed_steps=0, running_variance_mean_fresh pinned at EXACTLY 0.5 (=precision_init) in every cell, never moving toward the 0.40 commit_threshold even at 3x budget. This is the 4th independent experiment (EXQ-325, EXQ-321, EXQ-878, EXQ-878a) across ~4 months reconfirming the identical unrecovered blocker without ever being formally tagged substrate_ceiling. Step 8 flag (2026-08-08, confirmed): a same-mechanism 5th budget-based re-queue should be refused; the next move should target the gate/threshold mechanism directly (world-model convergence to rv<0.40, or the threshold value itself), not another schedule sweep. CROSS-CHECK FINDING (explicitly requested): this run COMPLICATES round-4's grandfathered-cluster finding that SD-032c is 'newly unblocked via ARC-065' -- claims.yaml's current what_would_answer for SD-032c (re-verified same day) names MECH-269 V_s landing as the operative precondition, not ARC-065, and ARC-065's fix (top-k shortlist routing of candidate diversity into committed-action bias) is logically distinct from both MECH-269 (V_s landing) and this run's blocker (whether commitment happens at all). Recommend governance reconcile all three documents (round-4 artifact, SD-032c's current what_would_answer, this run's finding) before anyone queues a retest on the strength of the ARC-065 finding alone.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "reconciliation, not a substrate build, is the immediate need -- three documents name three different blockers for the same claim family"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "4th independent experiment hitting the identical commitment-gate blocker without formal substrate_ceiling tagging -- in spirit this should be treated as brake territory even though the mechanical count is 0.",
+        "SD-032c's 'newly unblocked' status from round 4 needs reconciliation against claims.yaml's current text and this run's fresh finding before anyone acts on it."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free by design)",
+        "biological_reference": "clear (existing targeted_review_mech295_liking_approach_bridge)",
+        "prerequisites": "present (G0/G1/harm-pathway gates all met)",
+        "implementation": "partial -- one wiring bug fixed (candidate_summary_source), a second degeneracy newly exposed (liking_bias_range unconditionally 0.0 even where upstream proximity is nonzero)",
+        "environment": "adequate",
+        "measurement": "adequate -- new telemetry (per-tick proximity capture, selected-index readout) caught the residual defect precisely",
+        "integration": "isolated",
+        "scale": "inadequate -- even the best seed (43) misses the non-degeneracy floor by ~5x"
+      },
+      "biological_reference": {
+        "closest_mechanism": "liking->approach cue-bias bridge (MECH-295)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Harness-repair successor to V3-EXQ-812 (confirmed-autopsied, INVALID_HARNESS, proximity_range exactly 0.0 in every seed/arm). The documented fix (candidate_summary_source='e2_world_forward') source-verified applied and PARTIALLY worked: 2/3 seeds still show exact zero, seed 43 shows a small nonzero value still ~5x below the non-degeneracy floor and essentially identical between ON/OFF arms (not cue-driven). A SEPARATE, unconditional degeneracy newly exposed: mean_mech295_liking_bias_range_mean is exactly 0.0 in ALL 6 cells regardless of arm or whether upstream proximity showed any variance -- a second defect point at the downstream bias-computation stage. Self-route label INVALID_HARNESS is a PARTIAL MISLABEL carried over verbatim from the predecessor: the underlying signature materially changed (uniform-exact-zero -> mostly-exact-zero-with-one-sub-floor-nonzero-seed, plus a NEW downstream zero that survives even where upstream proximity is nonzero). Step 8 (2026-08-08, user-confirmed recommended option): hold for code-level inspection of mech295_liking_bridge.py's bias-computation function before any re-queue -- this lineage (490g->k->631->812->812a) has already cycled 'fix one bug, hit another' approximately 5 times. MECH-295 already carries epistemic_category=substrate_ceiling and appears in ~20 prior confirmed autopsy files, well past any brake threshold -- treat this claim-free diagnostic as brake-territory in spirit, same as this backlog's established convention for claim_ids=[] cases.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "code-level inspection owed before any substrate_queue action -- do not build against an unlocalized defect"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A self-route label carried over verbatim from a predecessor run can mislabel a materially-changed failure signature -- always re-derive the label from the current run's own data, not inherit the prior run's."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "~20 prior confirmed autopsy files for MECH-295"
+        ],
+        "refused_requeue": true,
+        "route_to": "code-level inspection of mech295_liking_bridge.py before any implement-substrate/queue-experiment action"
+      }
+    },
+    {
+      "run_id": "v3_exq_703a_mech276_scientist_attribution_readiness_20260808T191524Z_v3",
+      "claim_ids": [],
+      "failed_criterion": "not_applicable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free, correctly non-promoting readiness diagnostic)",
+        "biological_reference": "absent/formal-import for MECH-276 itself (Pearl-style counterfactual construct, no specific circuit named) -- readiness diagnostic doesn't need it",
+        "prerequisites": "present, now confirmed at real margin (R1)",
+        "implementation": "complete for the readiness apparatus",
+        "environment": "adequate",
+        "measurement": "adequate -- non-degeneracy explicitly checked, both flags true",
+        "integration": "isolated (feedstock only, not yet wired to a MECH-276 claim-verdict test)",
+        "scale": "seed 7 borderline-excluded (R1=0.188, just under 0.2 floor); 2/3-seed margins real but not generous"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a for MECH-276 itself -- formal-definition import (Pearl-style intervention-vs-correlation), grounded via SD-003 self-attribution dependency",
+        "dependencies": [
+          "MECH-269",
+          "MECH-275",
+          "SD-003",
+          "MECH-277",
+          "MECH-278"
+        ],
+        "is_formal_import": true,
+        "divergence": "no dedicated lit review exists for MECH-276 -- genuine /lit-pull gap, not urgent for this readiness diagnostic",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "verified",
+      "recommended_evidence_quality_note": "Applies the confirmed V3-EXQ-703 autopsy's exact re-queue spec (reconstruction-primary P0, per-seed R2 gate, cf_margin recalibrated 0.30->0.15). Outcome PASS, self-route mech276_feedstock_readiness_confirmed. Not vacuous: R1 clears with real margin on genuinely-converged seeds (need-th-largest R2=0.557, 2.8x floor), the CF/CORR arm split is behaviorally real, discrimination criterion substantive (posterior deltas 0.00203/0.00129, margins 2.0x/1.3x floor). One caveat worth flagging rather than disqualifying: R2 clears at EXACTLY the 2/3 minimum with seed 7 excluded entirely -- a single additional seed dropping below the R1 floor next time would flip this. claim_ids=[] deliberately -- 'PROMOTES NOTHING; does NOT promote MECH-275.' DIRECTLY LOAD-BEARING DOWNSTREAM CONSEQUENCE (confirmed via sleep_substrate_plan.md GAP-3b): V3-EXQ-702 (2026-06-23) deliberately dropped MECH-275 from its unblocks_claims because 'MECH-275 is gated on the UNBUILT MECH-276 counterfactual-backed-attribution feedstock... owed to a LATER run once MECH-276 is built.' This run's PASS is exactly that unlocking event -- the manifest's own notes field states this explicitly.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-269 is a shared chokepoint across at least two independent research threads (SD-021/SD-032c descending-pain-modulation, and MECH-276->MECH-275 scientist-attribution/sleep-aggregation) -- a lower bound, not exhaustive; worth flagging as an implement-substrate priority candidate independent of any single autopsy."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Three fresh 2026-08-08 items, none sharing a claim family directly, but two (878a, 812a) both extend already-brake-fired lineages (SD-032c/commitment-gate, MECH-295/liking-bridge) with a materially-changed failure signature rather than a repeat, and 703a is a genuine positive unlock event for a downstream claim (MECH-275). All three surfaced the same meta-pattern: a prior autopsy's self-route or disposition, inherited verbatim by a successor run, can mislabel what actually changed.",
+    "is_independent_bugs": true,
+    "structural_property": "Each of the three needed the SAME correction: read the CURRENT run's own data before trusting an inherited label/disposition from its predecessor -- 878a's SD-032c blocker citation was stale relative to claims.yaml's current text, 812a's INVALID_HARNESS label was a partial carryover masking a materially-different signature, 703a correctly did NOT inherit any promotion despite a clean PASS (claim_ids=[] discipline held).",
+    "readings": [
+      "878a_sd032c_reconciliation_needed",
+      "812a_code_inspection_held",
+      "703a_clean_unlock_mech269_chokepoint"
+    ]
+  },
+  "cross_reference_note": "Five other 2026-08-08 FAILs (897, 894a, 898, 901, 821b) were confirmed already autopsied by other parallel sessions earlier the same day -- not duplicated here."
+}

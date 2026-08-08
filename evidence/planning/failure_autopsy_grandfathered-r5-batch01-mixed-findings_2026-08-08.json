@@ -1,0 +1,1642 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T19:37:15Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_076d_mech116_arc032_e1_goal_conditioning_20260327T065549Z_v3",
+      "claim_ids": [
+        "MECH-116",
+        "ARC-032"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot-be-assessed (wrong DV measured)",
+        "biological_reference": "clear (Fuster & Alexander 1971 DLPFC delay-period firing, Hyman et al. 2010 theta sync)",
+        "prerequisites": "unmet (SD-012 z_goal seeding -- goal_norm collapses to ~0.001-0.003 in BOTH conditions regardless of E1 wiring)",
+        "implementation": "bug found+fixed across this lineage (076e->076f goal_dim), result unchanged post-fix",
+        "environment": "adequate",
+        "measurement": "degenerate -- wrong DV (z_goal_norm persistence, not E1 prediction error on goal-directed segments)",
+        "integration": "isolated",
+        "scale": "076d underpowered; 076e/f adequately scaled but degenerate on the wrong DV"
+      },
+      "biological_reference": {
+        "closest_mechanism": "DLPFC delay-period goal-conditioning of downstream prediction",
+        "dependencies": [
+          "SD-012 z_goal seeding reliability"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "1/4 criteria met, halflife_ratio=1.0, resource_rate_gap=0. Underpowered (2000-step budget). claims.yaml's what_would_answer field already specifies the corrected test design (E1 prediction error on goal vs neutral segments) and its precondition (reliable z_goal seeding) -- these run_ids never appeared in any prior autopsy artifact (confirmed distinct from round-4's already-covered 076d/e/f at DIFFERENT sibling timestamps).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "correct redesign is probe-gated on SD-012/z_goal-seeding reliability, a genuine prerequisite gap -- do not push blind into the queue"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_076e_mech116_arc032_e1_goal_conditioning_20260327T143027Z_v3",
+      "claim_ids": [
+        "MECH-116",
+        "ARC-032"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot-be-assessed (wrong DV measured)",
+        "biological_reference": "clear (Fuster & Alexander 1971 DLPFC delay-period firing, Hyman et al. 2010 theta sync)",
+        "prerequisites": "unmet (SD-012 z_goal seeding -- goal_norm collapses to ~0.001-0.003 in BOTH conditions regardless of E1 wiring)",
+        "implementation": "bug found+fixed across this lineage (076e->076f goal_dim), result unchanged post-fix",
+        "environment": "adequate",
+        "measurement": "degenerate -- wrong DV (z_goal_norm persistence, not E1 prediction error on goal-directed segments)",
+        "integration": "isolated",
+        "scale": "076d underpowered; 076e/f adequately scaled but degenerate on the wrong DV"
+      },
+      "biological_reference": {
+        "closest_mechanism": "DLPFC delay-period goal-conditioning of downstream prediction",
+        "dependencies": [
+          "SD-012 z_goal seeding reliability"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "0/3 criteria met. Bug: E1Config.goal_dim never set -> goal_input_proj=None in BOTH conditions -- E1 was goal-agnostic in both arms. claims.yaml's what_would_answer field already specifies the corrected test design (E1 prediction error on goal vs neutral segments) and its precondition (reliable z_goal seeding) -- these run_ids never appeared in any prior autopsy artifact (confirmed distinct from round-4's already-covered 076d/e/f at DIFFERENT sibling timestamps).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "correct redesign is probe-gated on SD-012/z_goal-seeding reliability, a genuine prerequisite gap -- do not push blind into the queue"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_076f_mech116_arc032_e1_goal_conditioning_20260404T022647Z_v3",
+      "claim_ids": [
+        "MECH-116",
+        "ARC-032"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot-be-assessed (wrong DV measured)",
+        "biological_reference": "clear (Fuster & Alexander 1971 DLPFC delay-period firing, Hyman et al. 2010 theta sync)",
+        "prerequisites": "unmet (SD-012 z_goal seeding -- goal_norm collapses to ~0.001-0.003 in BOTH conditions regardless of E1 wiring)",
+        "implementation": "bug found+fixed across this lineage (076e->076f goal_dim), result unchanged post-fix",
+        "environment": "adequate",
+        "measurement": "degenerate -- wrong DV (z_goal_norm persistence, not E1 prediction error on goal-directed segments)",
+        "integration": "isolated",
+        "scale": "076d underpowered; 076e/f adequately scaled but degenerate on the wrong DV"
+      },
+      "biological_reference": {
+        "closest_mechanism": "DLPFC delay-period goal-conditioning of downstream prediction",
+        "dependencies": [
+          "SD-012 z_goal seeding reliability"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "0/3 criteria met, bug fixed (goal_dim now set), result UNCHANGED (0.3806 vs 0.3793, 0.3% diff). User-adjudicated 2026-04-04: 'classified non_contributory (does not test the claim's stated mechanism)' -- the test measures z_goal_norm persistence directly, but MECH-116's actual claim is about E1 prediction error on goal-directed trajectory segments, a different, unmeasured quantity. claims.yaml's what_would_answer field already specifies the corrected test design (E1 prediction error on goal vs neutral segments) and its precondition (reliable z_goal seeding) -- these run_ids never appeared in any prior autopsy artifact (confirmed distinct from round-4's already-covered 076d/e/f at DIFFERENT sibling timestamps).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "correct redesign is probe-gated on SD-012/z_goal-seeding reliability, a genuine prerequisite gap -- do not push blind into the queue"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "20260308T123428_precision_regime_probe_v2",
+      "claim_ids": [
+        "ARC-016"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (V2 substrate limitation, resolved in V3)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial (V2, precision externally imposed, not E3-derived)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision-weighted commitment circuit",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Manifest self-carries evidence_direction='superseded' already (excluded from confidence/conflict ratio): 'V2 precursor: precision externally imposed (not E3-derived), commitment circuit not wired end-to-end; superseded by V3 relative-threshold circuit (018b). ARC-016 rescore 2026-07-25.' Backfill only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "20260316T081406_precision_regime_probe_v2",
+      "claim_ids": [
+        "ARC-016"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (V2 substrate limitation, resolved in V3)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial (V2, precision externally imposed, not E3-derived)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision-weighted commitment circuit",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Manifest self-carries evidence_direction='superseded' already (excluded from confidence/conflict ratio): 'V2 precursor: precision externally imposed (not E3-derived), commitment circuit not wired end-to-end; superseded by V3 relative-threshold circuit (018b). ARC-016 rescore 2026-07-25.' Backfill only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "20260315T165927_kernel_chaining_interface_v2",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (historically); now active/strongly supported",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "structural failure at V2 (E2 produces sensory transitions, not action-consequence objects)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "kernel chaining / action-consequence object formation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "claims.yaml fully explains this run: 'V2 experiment EXQ-022... run twice (2026-03-08, 2026-03-15), consistent result... Root cause: V2 E2 produces z_gamma sensory transitions, not action-consequence objects... Structural failure, not a tuning issue.' Claim now status=active, replicated 4x PASS in V3. The 2026-03-08 sibling run may be in a different round-5 batch or already closed -- worth a name-check by governance.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_133_mech091_phase_reset_pair_20260329T032233Z_v3",
+      "claim_ids": [
+        "MECH-091"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (mechanism absent, not failing)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (SD-006 phase-2 async multi-rate clock unbuilt)",
+        "implementation": "n/a -- no oscillatory clock phase to reset",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "oscillatory phase-reset",
+        "dependencies": [
+          "SD-006 phase-2"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claims.yaml already correctly explains: 'there is no oscillatory clock phase to reset -- the mechanism under test is absent, not failing.' This 2026-03-29 manifest already carries the matching non_contributory disposition. Backfill only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_133_mech091_phase_reset_pair_20260421T051642Z_v3",
+      "claim_ids": [
+        "MECH-091"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (mechanism absent, not failing)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (SD-006 phase-2 unbuilt)",
+        "implementation": "n/a",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "oscillatory phase-reset",
+        "dependencies": [
+          "SD-006 phase-2"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "MANIFEST/GOVERNANCE SYNC GAP (Step 8, 2026-08-08, user-confirmed recommended option: flag for correction): this manifest still shows evidence_direction='weakens' with NO note, but claims.yaml explicitly states 'EXQ-133 2026-04-21 rerun also reclassified non_contributory (governance 2026-04-22)... Manipulation fired (n_resets=5656) but no oscillatory clock to phase-reset.' The manifest was never updated to match the governance decision already on record -- recommend correcting evidence_direction from weakens to non_contributory to match.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Manifest/governance-decision sync gap: a reclassification made 2026-04-22 was never written back to the manifest's evidence_direction field -- a 'reviewed != manifest-corrected' gap."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_237a_mech163_dual_system_discrimination_1775428687_v3",
+      "claim_ids": [
+        "MECH-163"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "inert (pre-restatement, subsumed by claim's own restatement chain)",
+        "biological_reference": "clear (Balleine & O'Doherty 2010, Daw et al. 2005 dual-system framing)",
+        "prerequisites": "missing (goal_norm_long ~0.01, below 0.05 threshold)",
+        "implementation": "complete for the version tested",
+        "environment": "adequate",
+        "measurement": "degenerate (zero cross-condition variance on lift/interaction)",
+        "integration": "isolated",
+        "scale": "adequate episode count, signal saturated at zero"
+      },
+      "biological_reference": {
+        "closest_mechanism": "habit vs. planned dual-system reaction-rate discrimination",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already self-marks evidence_direction=non_contributory, decision='substrate_limitation', supersedes='V3-EXQ-237'. Classic negative-control-passes/discrimination-fails fingerprint: sim_habit_rr==sim_plan_rr, lift/interaction=0.0 both runs, c1_goal_norm_pass=False. MECH-163 has since been heavily restructured (2026-07-22 narrowed to leg 1, 2026-07-27 depth-limited restatement; leg 1 resolved by V3-EXQ-786b). These April runs are historical, pre-restatement, inert relative to current evidence chain -- explicitly note as subsumed by 786a/786b, no re-queue against MECH-163's current restated form.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_237a_mech163_dual_system_discrimination_1775505809_v3",
+      "claim_ids": [
+        "MECH-163"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "inert (pre-restatement, subsumed by claim's own restatement chain)",
+        "biological_reference": "clear (Balleine & O'Doherty 2010, Daw et al. 2005 dual-system framing)",
+        "prerequisites": "missing (goal_norm_long ~0.01, below 0.05 threshold)",
+        "implementation": "complete for the version tested",
+        "environment": "adequate",
+        "measurement": "degenerate (zero cross-condition variance on lift/interaction)",
+        "integration": "isolated",
+        "scale": "adequate episode count, signal saturated at zero"
+      },
+      "biological_reference": {
+        "closest_mechanism": "habit vs. planned dual-system reaction-rate discrimination",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already self-marks evidence_direction=non_contributory, decision='substrate_limitation', supersedes='V3-EXQ-237'. Classic negative-control-passes/discrimination-fails fingerprint: sim_habit_rr==sim_plan_rr, lift/interaction=0.0 both runs, c1_goal_norm_pass=False. MECH-163 has since been heavily restructured (2026-07-22 narrowed to leg 1, 2026-07-27 depth-limited restatement; leg 1 resolved by V3-EXQ-786b). These April runs are historical, pre-restatement, inert relative to current evidence chain -- explicitly note as subsumed by 786a/786b, no re-queue against MECH-163's current restated form.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_324_sd020_harm_surprise_pe_20260410T220218Z_v3",
+      "claim_ids": [
+        "SD-020",
+        "SD-011",
+        "Q-036"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but substrate-confounded, since resolved",
+        "biological_reference": "clear",
+        "prerequisites": "missing at time of run (SD-022 body-damage substrate not yet landed)",
+        "implementation": "complete for training-target-choice test (SD-011), incomplete for the dual-stream architecture claim itself",
+        "environment": "adequate but n=10-20 harm events per seed too few",
+        "measurement": "adequate but underpowered (EMA z_harm_a variance 0.0003-0.0007 too low to encode PE signal)",
+        "integration": "isolated",
+        "scale": "insufficient at this vintage"
+      },
+      "biological_reference": {
+        "closest_mechanism": "harm-surprise prediction-error dual-stream architecture",
+        "dependencies": [
+          "SD-022 body-damage substrate"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Already carries exhaustive evidence_direction_note (RECLASSIFIED 2026-04-11 governance): SD-020 mixed (1/5 seeds, too few harm events/too-low EMA variance); SD-011 non_contributory (tests training-target choice, not the architecture); Q-036 non_contributory (underpowered, question remains open). Follow-up already executed and closed the loop: SD-020's current status is 'stable', sourced from v3_exq_324b (2026-04-19, SD-022 substrate, higher harm-event count) -- exactly the corrected retest the note called for. Fully superseded precursor, no outstanding action.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_324_sd020_harm_surprise_pe_20260411T050533Z_v3",
+      "claim_ids": [
+        "SD-020",
+        "SD-011",
+        "Q-036"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, but substrate-confounded, since resolved",
+        "biological_reference": "clear",
+        "prerequisites": "missing at time of run",
+        "implementation": "same as sibling",
+        "environment": "same as sibling",
+        "measurement": "same as sibling",
+        "integration": "isolated",
+        "scale": "insufficient at this vintage"
+      },
+      "biological_reference": {
+        "closest_mechanism": "harm-surprise prediction-error dual-stream architecture",
+        "dependencies": [
+          "SD-022 body-damage substrate"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Same disposition as 220218Z sibling -- 'second run confirming same substrate confounds.' Fully superseded by v3_exq_324b PASS.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_068_mech047_mode_hysteresis_20260323T005235Z_v3",
+      "claim_ids": [
+        "MECH-047"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot be tested as designed",
+        "biological_reference": "not stated in claims.yaml (no lit anchor given)",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "degenerate -- eval-time convergence saturates both arms at commit_rate=1.0, so the hysteresis-decay signal can never appear",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- no biological anchor recorded for MECH-047 itself",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a -- lit-pull gap",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "GAP: MECH-047 has ZERO evidence_quality_note in claims.yaml despite status=provisional -- this is the only MECH-047-tagged experimental run found anywhere in the corpus. Manifest's own note is thorough: 'both H and C agents show commit_rate=1.0 in eval... Mode transition cannot be detected because the agent never escapes committed mode regardless of hazard level... Fix direction: use pre-convergence checkpoints or forced variance injection.' Step 8 (2026-08-08, user-confirmed recommended option): flag BOTH the missing evidence_quality_note AND whether the manifest's own specified fix was ever queued -- do not recommend /queue-experiment blind.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "buildable fix specified by the manifest itself, but do not queue until governance confirms it isn't already in flight"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A provisional claim with zero cited evidence in claims.yaml is unusual and itself worth a governance look, independent of this run's own disposition."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_126_mech104_surprise_gate_pair_20260328T203037Z_v3",
+      "claim_ids": [
+        "MECH-104"
+      ],
+      "failed_criterion": "not_applicable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot discriminate (gate never fired either arm)",
+        "biological_reference": "clear and independently well-supported elsewhere (Aston-Jones & Cohen 2005 LC-NE)",
+        "prerequisites": "present",
+        "implementation": "complete (same mechanism later confirmed PASS repeatedly)",
+        "environment": "adequate",
+        "measurement": "severely underpowered (10 total steps, 1-9 harm events, both seeds n_spikes=0/delta_var_unexpected=0.0)",
+        "integration": "isolated",
+        "scale": "far below the claim's own later-established non-degeneracy bar"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE surprise gate",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "STALE TAG (Step 8, 2026-08-08, user-confirmed recommended option): warmup=2eps/eval=2eps/10 total steps -- conspicuously thin, plausibly a pilot/smoke-scale run rather than a genuine evidentiary attempt (chronologically between the earlier single-seed EXQ-064 PASS and later properly-scaled EXQ-197/204/365 PASSes). MECH-104 is now status=active with an extensive, strongly-supported PASS chain (EXQ-049e, EXQ-064, EXQ-062b, EXQ-197 6/6, EXQ-204 4/4, EXQ-365) that never accounts for this stale tag. Currently recorded evidence_direction=weakens looks like unaddressed weakening evidence against an ACTIVE claim, which is misleading given the later PASS chain -- recommend correcting to non_contributory.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3",
+      "claim_ids": [
+        "Q-002"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (claim's own settled interpretation: coarse adequate)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (fine harm_rate=0.028 vs coarse 0.0003, 93x worse)",
+        "integration": "isolated",
+        "scale": "V3-scale, replicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "z_world latent spatial organization / RBF field resolution",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claims.yaml Q-002's note explicitly cites this pair (with a minor date imprecision, claims.yaml says 2026-03-30/two independent runs but this run is dated 2026-03-29 -- the 'x2 replicated' language still correctly refers to this pair, not blocking): 'z_world latent lacks spatial organization to support fine-grained RBF accumulation at V3 scale.' Formalizing the claim's own pre-existing conclusion, not initiating a new substrate_ceiling finding -- no re-queue implied.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_231_mech106_bg_hysteresis_20260404T033753Z_v3",
+      "claim_ids": [
+        "MECH-106"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (test-design flaw, since resolved)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete, manipulation never created differentiated valence history",
+        "environment": "adequate",
+        "measurement": "adequate (persist_ratio=reactive_ratio=1.000 all 3 seeds)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG commit-value hysteresis",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "claims.yaml exactly explains this run: 'EXQ-231 FAIL (2026-04-04): Superseded -- PERSISTENT and REACTIVE conditions produced identical commit values; experimental manipulation never created differentiated valence history. Design flaw, not claim failure.' Matches manifest exactly. Claim subsequently promoted to provisional via EXQ-231a PASS.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_549_arc066_tonic_vigor_discriminative_pair_20260511T190124Z_v3",
+      "claim_ids": [
+        "ARC-066",
+        "MECH-320"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot assess (signal never generated)",
+        "biological_reference": "clear, strongly grounded (Niv 2007, Salamone & Correa 2012, Beierholm 2013 -- lit-pull complete, net verdict supports)",
+        "prerequisites": "present",
+        "implementation": "gating architecture confirmed correct (C3 gate_product PASS)",
+        "environment": "adequate",
+        "measurement": "saturated/degenerate in both arms simultaneously via two different failure modes (seed 42: action_density=1.0 both arms, never chose noop; seed 43: action_density=0.0, early env termination at 210 ticks)",
+        "integration": "isolated",
+        "scale": "adequate episode count, inadequate signal generation"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic vigor / dopaminergic response-rate modulation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present, strongly supports"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Manifest already carries an exemplary correction note (reclassified 2026-05-13 from weakens to non_contributory): 'Gates were open (gate_product=1.0) but v_t stayed exactly 0.0 across all 120 windows... Rung-2 calibration failure (gate open, signal zero), not a substrate failure... Next step: forced-vigor probe (set tonic_vigor_floor>0 or force v_raw=1.0).' Step 8 (2026-08-08, user-confirmed recommended option): hold pending confirmation the recommended forced-vigor-probe follow-up was actually queued -- no evidence found of it in the corpus (only an earlier, different substrate-readiness check predates this run). Do not recommend /queue-experiment until confirmed not already in flight.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "manifest specifies the exact next design (forced tonic_vigor_floor>0 or v_raw=1.0); confirm not already queued before acting"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_669b_mech329_wanting_first_goal_seeding_20260613T123433Z_v3",
+      "claim_ids": [
+        "MECH-329",
+        "MECH-189"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (historically); ceiling since lifted and re-tested",
+        "biological_reference": "clear",
+        "prerequisites": "was missing (goal_pipeline:GAP-2 context-diversity ceiling), now resolved (SD-077 implemented 2026-07-21)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate -- raw-z_world cue cosine measured common-mode offset, not context",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "wanting-first goal seeding via anchor diversity",
+        "dependencies": [
+          "SD-077"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Same goal_pipeline:GAP-2 context-diversity ceiling that the dedicated V3-EXQ-669a autopsy already diagnosed: anchor_count saturated at 1 because the raw-z_world cue cosine measured the common-mode offset, not the context. SD-077 (IMPLEMENTED 2026-07-21) lifts this blocker; V3-EXQ-669c (2026-07-22) has ALREADY re-run past this ceiling -- confirmed on disk. Fully-closed historical precursor; note 669c's own outcome is separately trackable, not diagnosed here.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_172_arc018_rollout_viability_pair_20260330T070425Z_v3",
+      "claim_ids": [
+        "ARC-018"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (clean test)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (C3/C4 E2-quality/data-quality both TRUE)",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "rollout planning viability",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "claims.yaml: 'EXQ-172 FAIL 0/4 (2026-03-30): harm_advantage_mean=-0.190... rollout planning counterproductive at current fidelity. ARC-018 may be E2-quality-gated.' Clean genuine negative, already fully diagnosed; formalize only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_196_arc018_rollout_viability_pair_20260404T164611Z_v3",
+      "claim_ids": [
+        "ARC-018"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (arithmetic artifact, mechanism identified 2026-07-22)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (SD-004) at run time",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "rollout planning viability",
+        "dependencies": [
+          "SD-004"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Manifest note: harm_advantage=0.0, diagnostic of missing SD-004 substrate. claims.yaml adds a major 2026-07-22 mechanism-identification update: root cause is E3's argmax(...selected_action) collapsing to a single first-action class 100% of the time (pre-SP-CEM default), making the two arms execute identical action streams -- the exact 0.0 is arithmetic, not measurement. Blocker (SP-CEM main-path default, 2026-05-17) has since been removed.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_244_mech165_reverse_replay_diversity_20260405T132025Z_v3",
+      "claim_ids": [
+        "MECH-165"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (test-design defect, inconsistently reclassified)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (no genuine exploration source material)",
+        "implementation": "proxy substrate, reverse-replay path inert",
+        "environment": "adequate",
+        "measurement": "degenerate -- seed 42 shows byte-identical action_entropy across all 3 conditions",
+        "integration": "isolated",
+        "scale": "64 replay steps, insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reverse hippocampal replay for exploration diversity",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "One structural test-design defect (proxy substrate + inert reverse-replay path + no genuine exploration source) affects 3/3 timestamps in this family identically, but only 1/3 (the 132907Z sibling, already covered elsewhere) was ever formally reclassified non_contributory (2026-04-08 governance note: 'proxy substrate, 64 replay steps, absent exploration source material'). Recommend reclassifying THIS run to non_contributory for consistency with its already-reclassified sibling. An open implementation-defect chip is already spawned diagnosing why diverse_replay(mode='auto')'s reverse mode never fires -- do not duplicate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Internal inconsistency found: 1 of 3 identical-signature runs was reclassified, 2 were not -- a small consistency-pass worth a governance chip."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_244_mech165_reverse_replay_diversity_20260405T141709Z_v3",
+      "claim_ids": [
+        "MECH-165"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (test-design defect, inconsistently reclassified)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (no genuine exploration source material)",
+        "implementation": "proxy substrate, reverse-replay path inert",
+        "environment": "adequate",
+        "measurement": "degenerate -- seed 42 shows byte-identical action_entropy across all 3 conditions",
+        "integration": "isolated",
+        "scale": "64 replay steps, insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reverse hippocampal replay for exploration diversity",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "One structural test-design defect (proxy substrate + inert reverse-replay path + no genuine exploration source) affects 3/3 timestamps in this family identically, but only 1/3 (the 132907Z sibling, already covered elsewhere) was ever formally reclassified non_contributory (2026-04-08 governance note: 'proxy substrate, 64 replay steps, absent exploration source material'). Recommend reclassifying THIS run to non_contributory for consistency with its already-reclassified sibling. An open implementation-defect chip is already spawned diagnosing why diverse_replay(mode='auto')'s reverse mode never fires -- do not duplicate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Internal inconsistency found: 1 of 3 identical-signature runs was reclassified, 2 were not -- a small consistency-pass worth a governance chip."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_048_mech057b_completion_gate_20260319T222723Z_v3",
+      "claim_ids": [
+        "MECH-090"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (genuine implementation bug, since fixed)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "defective -- agent.select_action() bypassed, gate never exercised (fixed by EXQ-049e)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG beta propagation gate",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "Tagging correction (2026-03-22): directory/experiment_type names still say 'mech057b' but the manifest's structured claim_ids field is already corrected to MECH-090. Root cause per MECH-090's note: 'Same bug as EXQ-048/049 -- agent.select_action() bypassed, gate never exercised,' first link in a 6-run debug chain (048->049->049b->049c->049d->049e-PASS). IMPORTANT: MECH-057b's own claim entry correctly shows ZERO genuine experimental evidence (revalidation blocker as of 2026-04-25) -- do NOT credit these two runs toward MECH-057b in any synthesis; they belong to MECH-090.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_049_mech090_beta_gate_20260320T051926Z_v3",
+      "claim_ids": [
+        "MECH-090"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (genuine implementation bug, since fixed)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "defective -- agent.select_action() bypassed, gate never exercised (fixed by EXQ-049e)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG beta propagation gate",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "Same tagging-correction lineage. MECH-090's note: 'EXQ-049 FAIL (2026-03-20): Same bug as EXQ-048 -- agent.select_action() bypassed, gate never exercised.' Second link in the debug chain. IMPORTANT: MECH-057b's own claim entry correctly shows ZERO genuine experimental evidence (revalidation blocker as of 2026-04-25) -- do NOT credit these two runs toward MECH-057b in any synthesis; they belong to MECH-090.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_125_arc029_committed_mode_pair_20260329T010106Z_v3",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (substrate drift confound, since resolved)",
+        "biological_reference": "clear",
+        "prerequisites": "present at run time, but substrate drifted",
+        "implementation": "complete",
+        "environment": "harm rates dropped ~100x between baseline and this run due to SD-010/011/012 changes",
+        "measurement": "adequate but confounded by substrate drift",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG committed-mode gate",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "ARC-029's note fully traces this: re-run multiple times chasing apparent seed-dependence, until EXQ-227 diagnostic reproduction confirmed root cause = substrate drift (SD-010/011/012 changes reduced harm rates ~100x between the original EXQ-063 PASS baseline and these EXQ-125 runs), making any committed-gate signal undetectable at the original env parameters -- not a real architectural weakening. ARC-029 remains separately supported by V3-EXQ-063a PASS (2026-06-02).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_125_arc029_committed_mode_pair_20260403T201459Z_v3",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (substrate drift confound, since resolved)",
+        "biological_reference": "clear",
+        "prerequisites": "present at run time, but substrate drifted",
+        "implementation": "complete",
+        "environment": "harm rates dropped ~100x between baseline and this run due to SD-010/011/012 changes",
+        "measurement": "adequate but confounded by substrate drift",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG committed-mode gate",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "ARC-029's note fully traces this: re-run multiple times chasing apparent seed-dependence, until EXQ-227 diagnostic reproduction confirmed root cause = substrate drift (SD-010/011/012 changes reduced harm rates ~100x between the original EXQ-063 PASS baseline and these EXQ-125 runs), making any committed-gate signal undetectable at the original env parameters -- not a real architectural weakening. ARC-029 remains separately supported by V3-EXQ-063a PASS (2026-06-02).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_176_arc036_valence_dimension_probe_20260329T213701Z_v3",
+      "claim_ids": [
+        "ARC-036"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (probe implementation bug, corrected same-day-as-this-sweep)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "the PROBE SCRIPT defines its own disconnected, never-trained inline RBFLayer -- the real production RBFLayer (ree_core/residue/field.py) has been correctly wired since the initial V3 build",
+        "environment": "adequate",
+        "measurement": "was misleading due to the probe-implementation bug",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "residue-field valence dimensionality",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "'EXQ-176 FAIL 1/3 x2 replicated.' Original diagnosis (RBF centers need training signal) CORRECTED 2026-08-08 (same day as this sweep): the probe script's own disconnected inline RBFLayer was never trained; production code has been correctly wired all along. A same-day GOV-REUSE-1 reanalysis (reanalysis_arc036_valence_dimension_real_substrate_20260808T154806Z) re-read already-recorded SD-014 real-substrate data under ARC-036's framing without a new run: verdict MIXED (wanting|liking separates only above-default gain; harm_discriminative|surprise never separates regardless of gain). Claim status left at candidate pending full reconciliation -- this is a live open item for governance, not resolvable further by this autopsy round.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_176_arc036_valence_dimension_probe_20260330T070447Z_v3",
+      "claim_ids": [
+        "ARC-036"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (probe implementation bug, corrected same-day-as-this-sweep)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "the PROBE SCRIPT defines its own disconnected, never-trained inline RBFLayer -- the real production RBFLayer (ree_core/residue/field.py) has been correctly wired since the initial V3 build",
+        "environment": "adequate",
+        "measurement": "was misleading due to the probe-implementation bug",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "residue-field valence dimensionality",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "'EXQ-176 FAIL 1/3 x2 replicated.' Original diagnosis (RBF centers need training signal) CORRECTED 2026-08-08 (same day as this sweep): the probe script's own disconnected inline RBFLayer was never trained; production code has been correctly wired all along. A same-day GOV-REUSE-1 reanalysis (reanalysis_arc036_valence_dimension_real_substrate_20260808T154806Z) re-read already-recorded SD-014 real-substrate data under ARC-036's framing without a new run: verdict MIXED (wanting|liking separates only above-default gain; harm_discriminative|surprise never separates regardless of gain). Claim status left at candidate pending full reconciliation -- this is a live open item for governance, not resolvable further by this autopsy round.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_251_mech186_valence_wanting_floor_1775504875_v3",
+      "claim_ids": [
+        "MECH-186"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (V4-scope, not yet buildable in V3)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (no tonic 5-HT substrate wired to VALENCE_WANTING in V3)",
+        "implementation": "n/a at V3 scope",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic serotonergic modulation of wanting-floor",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already carries evidence_direction=non_contributory with governance notes (2026-04-08 reclassification from does_not_support): MECH-186 is V4-scope. Second run is an explicit replication with identical result. Internally consistent and already correctly adjudicated.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_251_mech186_valence_wanting_floor_1775549211_v3",
+      "claim_ids": [
+        "MECH-186"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (V4-scope, not yet buildable in V3)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (no tonic 5-HT substrate wired to VALENCE_WANTING in V3)",
+        "implementation": "n/a at V3 scope",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic serotonergic modulation of wanting-floor",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already carries evidence_direction=non_contributory with governance notes (2026-04-08 reclassification from does_not_support): MECH-186 is V4-scope. Second run is an explicit replication with identical result. Internally consistent and already correctly adjudicated.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_072b_q021_behavioral_flatness_20260328T135541Z_v3",
+      "claim_ids": [
+        "Q-021"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "cannot assess (non-degeneracy precondition failure)",
+        "biological_reference": "n/a",
+        "prerequisites": "unmet",
+        "implementation": "n/a -- read 0 on every arm, tested nothing",
+        "environment": "adequate",
+        "measurement": "degenerate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Non-degeneracy precondition failure -- 'read 0 on every arm, tested nothing.' Q-021's live_status already points to the successor autopsy V3-EXQ-866a (substrate_ceiling). RE-DERIVE BRAKE ACTIVE: Q-021 already has >=2 confirmed substrate_ceiling targets (this run's diagnostic ancestor + V3-EXQ-866 itself); already correctly routed to implement-substrate-style escalation via the scaffolded_sd054_onboarding curriculum. Do not recommend another same-claim re-queue.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "V3-EXQ-866a"
+        ],
+        "refused_requeue": true,
+        "route_to": "already escalated via scaffolded_sd054_onboarding curriculum"
+      }
+    },
+    {
+      "run_id": "v3_exq_136_mech092_quiescent_replay_pair_20260329T032531Z_v3",
+      "claim_ids": [
+        "MECH-092"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (precondition unmet at run time, since resolved)",
+        "biological_reference": "clear",
+        "prerequisites": "missing at run time (SD-006 async loop, viability map, hypothesis_tag all absent)",
+        "implementation": "n/a at run time",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "quiescent-state replay consolidation",
+        "dependencies": [
+          "SD-006 async loop"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already non_contributory (2026-04-09 reclassification): consolidation needs SD-006 async loop + viability map + hypothesis_tag, none present at run time. Superseded functionally by V3-EXQ-761 PASS (2026-07-15, triggering half confirmed).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3",
+      "claim_ids": [
+        "MECH-150",
+        "ARC-041"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (pre-experimental prerequisite finding)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (cosine_sim=0.9999, 0/3 seeds)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "context-memory differentiation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "Manifest correctly tags MECH-150/ARC-041 (not SD-016 despite the directory name): ContextMemory doesn't spontaneously differentiate cue content. Pre-experimental prerequisite finding, not a claim refutation, per MECH-150's own note. SD-016 itself is status=implemented with unrelated, much later supporting evidence.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_235_mech112_arc030_clean_goal_gate_1775399046_v3",
+      "claim_ids": [
+        "MECH-112",
+        "ARC-030"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (measurement bug)",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "n/a",
+        "measurement": "bug",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already non_contributory -- explicitly named in ARC-030's note as one of the removed-from-scoring FAILs ('EXQ-235, EXQ-086 measurement bug'), alongside a separate PASS supporting ARC-030's structural prediction.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_430_inv010_offline_integration_necessity_20260419T123934Z_v3",
+      "claim_ids": [
+        "INV-010"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (seed-variance anomaly)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate but seed-13 anomaly (4.7x variance vs 42/7)",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "offline SWS integration necessity",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already non_contributory (2026-04-19 governance): C1 failed 0/3 seeds with a seed-13 variance anomaly; SWS slots did differentiate (C3 3/3) but didn't translate to the harm outcome.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3",
+      "claim_ids": [
+        "ARC-046"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (substrate-uniform)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "InfantCurriculumScheduler stuck in Phase 0 across all seeds/arms",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "infant curriculum vs. flat-difficulty training",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already non_contributory with a full inline diagnosis: substrate-uniform FAIL, InfantCurriculumScheduler stuck in Phase 0 across all seeds/arms, epistemic_category=substrate_ceiling. NOT the same timestamp as the already-covered failure_autopsy_V3-EXQ-591_2026-05-27.json (which covers a different 20260526T184231Z run) -- genuinely uncovered by any artifact despite equivalent-quality inline note. RE-DERIVE BRAKE ACTIVE: ARC-046 already candidate/substrate_ceiling per its live_status pointer, with a long prior EXQ-591 family (591b-591e, all separately autopsied) already establishing substrate_ceiling >=2x over. Do not recommend re-queue; note-only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "591b",
+          "591c",
+          "591d",
+          "591e"
+        ],
+        "refused_requeue": true,
+        "route_to": "already escalated"
+      }
+    },
+    {
+      "run_id": "v3_exq_688a_mech044_hippocampal_relational_binding_20260619T145702Z_v3",
+      "claim_ids": [
+        "MECH-044"
+      ],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (precondition unmet)",
+        "biological_reference": "clear",
+        "prerequisites": "missing (z_world_relational_discriminative 0.1997 < threshold 1.0; 3 other preconditions met)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal relational binding",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "substrate_not_ready_requeue. Manifest explicitly declares supersedes: V3-EXQ-688 (the 3 predecessor runs of which ARE covered in failure_autopsy_V3-EXQ-688_2026-06-18.json). STALE POINTER FLAG: MECH-044's live_status.evidence.from still points at that stale PREDECESSOR artifact rather than at 688a -- worth flagging to governance as a low-priority hygiene item; the verdict itself (non_contributory) is unchanged between predecessor and successor.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Stale live_status.evidence.from pointer -- names the predecessor autopsy instead of the successor. Low priority."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_074f_mech112_117_wanting_liking_20260404T001929Z_v3",
+      "claim_ids": [
+        "MECH-112",
+        "MECH-117"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (pre-final-fix iteration)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub_to_partial, same as covered predecessor sibling",
+        "environment": "adequate",
+        "measurement": "seed=42 non-reproducibility between the two runs (harm_rate_wanting 0.305 vs 0.716, l1_directed_fraction 0.0 vs 0.96, C3/C4 flip)",
+        "integration": "isolated",
+        "scale": "adequate representation, insufficient planning"
+      },
+      "biological_reference": {
+        "closest_mechanism": "wanting/liking dissociation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "NOT duplicates of the already-covered sibling (...001631Z, older code variant, pre-'POST-relocation only' fix). Both carry the corrected fix text and revised C1 criterion but predate the same-day first-PASS ...002324Z (12 minutes later). Recommend evidence_direction=superseded. Minor unflagged measurement-layer finding: seed=42 not actually pinning outcome across two runs 3.5 minutes apart with byte-identical code -- worth a note but not blocking disposition.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Seed=42 non-reproducibility between two byte-identical-code runs 3.5 minutes apart is an unflagged harness methodology gap."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    },
+    {
+      "run_id": "v3_exq_074f_mech112_117_wanting_liking_20260404T002135Z_v3",
+      "claim_ids": [
+        "MECH-112",
+        "MECH-117"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (pre-final-fix iteration)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub_to_partial, same as covered predecessor sibling",
+        "environment": "adequate",
+        "measurement": "seed=42 non-reproducibility between the two runs (harm_rate_wanting 0.305 vs 0.716, l1_directed_fraction 0.0 vs 0.96, C3/C4 flip)",
+        "integration": "isolated",
+        "scale": "adequate representation, insufficient planning"
+      },
+      "biological_reference": {
+        "closest_mechanism": "wanting/liking dissociation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "NOT duplicates of the already-covered sibling (...001631Z, older code variant, pre-'POST-relocation only' fix). Both carry the corrected fix text and revised C1 criterion but predate the same-day first-PASS ...002324Z (12 minutes later). Recommend evidence_direction=superseded. Minor unflagged measurement-layer finding: seed=42 not actually pinning outcome across two runs 3.5 minutes apart with byte-identical code -- worth a note but not blocking disposition.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Seed=42 non-reproducibility between two byte-identical-code runs 3.5 minutes apart is an unflagged harness methodology gap."
+      ],
+      "routing": "governance-note-only",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Batch0-derived findings from round 5: MECH-116/ARC-032 (076d/e/f, a probe-gated SD-012/z_goal-seeding prerequisite gap), MECH-091 (a manifest/governance sync gap caught mid-sweep), MECH-163/SD-020/Q-002/MECH-106/MECH-329 (all historical-and-since-resolved formalizations), MECH-047/MECH-104/ARC-066-MECH-320 (three cases held for governance confirmation before any queue action), ARC-016/MECH-033 (V2-era test-design-defect formalizations). Extended with 21 additional batch1 findings: ARC-018/MECH-165/MECH-090-tagging-correction/ARC-029/ARC-036/MECH-186/Q-021(brake)/MECH-092/181b/235/INV-010/ARC-046(brake)/MECH-044(stale-pointer)/074f-pair.",
+    "is_independent_bugs": true,
+    "structural_property": "Unlike the legacy-provenance file, these are genuinely distinct claim-layer findings -- the shared theme is procedural (three cases where a manifest's own specified next step needs confirmation before queuing, one case of a governance decision that never propagated to its manifest) rather than a single substrate signature.",
+    "readings": [
+      "mech116_arc032_probe_gated",
+      "mech091_sync_gap_caught",
+      "three_hold_for_confirmation_cases"
+    ]
+  },
+  "cross_reference_note": "Naming-duplicate/already-covered items from batch0/1 not formally targeted here (cite only): SD-003 quartet (027/058x2/047), MECH-025-adjacent items already in round-4's doingmode file, and the standard prefix/suffix directory-naming duplicates already covered by prior rounds' sd003-cluster / arc024-arc033-sd005-cluster files."
+}
