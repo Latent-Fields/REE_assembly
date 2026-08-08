@@ -95,6 +95,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0007",
+      "claim_ids": [
+        "MECH-295"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "MECH-295 carries epistemic_category=substrate_ceiling with a ceiling_routing_note (2026-06-19) gating it on scaffolded_sd054_onboarding as \"in flight\" -- but that substrate landed and V3-EXQ-812 (2026-07-24) measured p2_z_goal_norm_peak 0.529 against V3-EXQ-490k 0.193, so the named ceiling has lifted. 812 nonetheless FAILED with interpretation.label=INVALID_HARNESS (mean_proximity_range 0.0 AND mean_dacc_bias_range_mean 0.0 -- the whole per-candidate bias plane collapsed, not this channel specifically; no candidate_summary_source in its config, i.e. the \"proposer\" default), and its confirmed 2026-07-24 autopsy recommends measurement_test_design_defect with routing /queue-experiment, which nothing has actioned in 15 days. Compounding it, 812 carries claim_ids=[] and evidence_direction=non_contributory, so the single most informative run on this claim leaves no trace in its evidence index and a reader of claims.yaml alone would conclude 490k was the last word.",
+      "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
+      "raised_at": "2026-08-08T00:36:47Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
