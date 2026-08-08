@@ -1,0 +1,82 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_905_mech075_dorsal_lc_arousal_probe",
+  "run_id": "v3_exq_905_mech075_dorsal_lc_arousal_probe_20260808T232406Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-08T23:24:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-075"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "dorsal_lc_arousal_no_attractor_widening",
+    "preconditions": [
+      {
+        "name": "lc_arousal_signal_magnitude_supra_floor",
+        "measured": 0.004282120498695922,
+        "threshold": 0.001,
+        "direction": "lower",
+        "control": "positive control: 20 warmup episodes x 200 steps of genuine spatial transitions on seed=42, LC-arousal EMA (alpha=0.1) measured at end of control window; raw per-step mean novelty (pre-EMA, reduction=sum) = 0.00848684 for comparison.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    },
+    "criteria": [
+      {
+        "name": "C1_lc_arousal_manipulation_check",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_basin_width_widening",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "09ba4cc45c2ff30caecf25bb3a036ad086758173a3e79406a3ada405f3acd8eb",
+  "substrate_commit": {
+    "commit": "9fc0b8dffa63c68cd8652359eb383e9248f4ed7d",
+    "dirty": false,
+    "branch": "main"
+  }
+}
