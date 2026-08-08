@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_887b_sd014_node_valence_repfunc_sensitized",
+  "run_id": "v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-08T09:51:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-014"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "node_valence_separable_and_drive_gated",
+    "preconditions": [
+      {
+        "name": "instrument_tau_can_move_on_positive_control",
+        "measured": 0.041666666666666664,
+        "threshold": 0.5,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "synthetic orthogonal-peak valence matrix (node i peaks in component i mod 4) read back through the REAL ResidueField.get_valence_priority; asserts the SAME statistic C1 routes on (mean pairwise Kendall tau)",
+        "n_control_nodes": 16,
+        "certifies": "the C1/C3 tau + ranking instrument only; says nothing about channel population",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "all_four_valence_channels_populated",
+        "measured": 26.0,
+        "threshold": 8.0,
+        "direction": "lower",
+        "control": "worst channel of the worst seed; this is the direct V3-EXQ-432 guard (n_surprise_writes=0 made that run vacuous). A tau computed over an empty channel measures absence, not drive-gating.",
+        "offending_cell": "seed=2026 channel=wanting",
+        "certifies": "channel population only; does not certify the tau instrument (see R4)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "n_nodes_with_valence",
+        "measured": 32.0,
+        "threshold": 8.0,
+        "direction": "lower",
+        "control": "worst seed; sample floor for the rank statistics",
+        "offending_cell": "seed=42",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "min_comparable_node_pairs_across_drive_pairs",
+        "measured": 481.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "control": "worst drive-pair of the worst seed; ties are excluded from tau, so this is the TRUE denominator rather than the node count",
+        "offending_cell": "seed=42 pair=d_wanting|d_harm",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "9ee0197be74bd0392cf8d953992184722d877b3881b70ab6007a0fe3fe6d78d5",
+  "substrate_commit": {
+    "commit": "b08cc1575ea3f28ecd51f937984733c3878c4aad",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 11883,
+    "ticks_active": 0,
+    "writer_calls": 11883,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
