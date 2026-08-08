@@ -97,7 +97,7 @@
       }
     },
     {
-      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T195503Z_v3",
+      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3",
       "claim_ids": [
         "MECH-089"
       ],
@@ -110,7 +110,7 @@
         "environment": "adequate but exposes fine-grained state changes every step",
         "measurement": "adequate",
         "integration": "isolated",
-        "scale": "adequate"
+        "scale": "adequate (32 harm steps)"
       },
       "biological_reference": {
         "closest_mechanism": "theta-gamma cross-frequency batching, k=2 narrowing of 066's k=4",
@@ -121,14 +121,14 @@
       },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "weakens",
-      "recommended_evidence_quality_note": "Backfill registration only, matching 066's disposition and claims.yaml's 'do not re-litigate' framing. The two timestamps are genuinely distinct runs (not naming duplicates): 195503Z is a thin 1-seed pilot at min_contacts=10 (fails its own C4 data-quality gate; AUC_ON=0.64>AUC_ABLATED=0.36 on noise); 220939Z is the well-powered 2-seed full run (min_contacts=171-192, passes C4) where the sign reverses -- AUC_ON=0.41<AUC_ABLATED=0.75. This is a textbook small-N-noise-manufactures-illusory-signal case; the 220939Z reading is the decisive, well-powered negative and is what claims.yaml's static-k narrative already reflects. The 195503Z pilot should NOT be counted as an independent replicate or allowed to reverse the well-powered sibling's sign.",
+      "recommended_evidence_quality_note": "CORRECTED 2026-08-08 (round-5 sweep): this target originally (as first published) carried the WRONG content -- AUC/min_contacts data belonging to v3_exq_121_mech095_agency_attribution_pair (MECH-095) was mislabeled under this MECH-089 theta-batching run_id, a content-swap error, not a citation typo. Corrected content: real run_id v3_exq_122_mech089_theta_integration_pair_20260328T200134Z_v3, theta_k=2, already independently digested in MECH-089's own claims.yaml evidence_quality_note: 'EXQ-122 FAIL (2026-03-28): theta_k=2... harm_auc_ON=0.489 vs harm_auc_ABLATED=0.625 (delta=-0.135)... C1/C2/C3 fail; C4/C5 pass (32 harm steps).' Backfill registration only, matching 066's disposition and claims.yaml's 'do not re-litigate' framing -- no fresh diagnosis needed.",
       "recommended_substrate_queue_entry": {
         "action": "none"
       },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
       "learning_extracted": [
-        "Small-N pilot (195503Z, 1 seed) showed an illusory positive that reversed under power (220939Z, 2 seeds) -- textbook caution against treating a thin pilot as a genuine replicate."
+        "Round-5 sweep caught and corrected a content-swap error in this file's original publication (EXQ-121/MECH-095 data mislabeled as EXQ-122/MECH-089) -- see amendment_note on the sibling target."
       ],
       "routing": "governance-note-only",
       "re_derive_brake": {
@@ -140,7 +140,7 @@
       }
     },
     {
-      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T220939Z_v3",
+      "run_id": "v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3",
       "claim_ids": [
         "MECH-089"
       ],
@@ -153,7 +153,7 @@
         "environment": "adequate but exposes fine-grained state changes every step",
         "measurement": "adequate",
         "integration": "isolated",
-        "scale": "adequate"
+        "scale": "adequate, well-powered (1094 harm steps)"
       },
       "biological_reference": {
         "closest_mechanism": "theta-gamma cross-frequency batching, k=2 narrowing of 066's k=4",
@@ -164,14 +164,14 @@
       },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "weakens",
-      "recommended_evidence_quality_note": "Backfill registration only, matching 066's disposition and claims.yaml's 'do not re-litigate' framing. The two timestamps are genuinely distinct runs (not naming duplicates): 195503Z is a thin 1-seed pilot at min_contacts=10 (fails its own C4 data-quality gate; AUC_ON=0.64>AUC_ABLATED=0.36 on noise); 220939Z is the well-powered 2-seed full run (min_contacts=171-192, passes C4) where the sign reverses -- AUC_ON=0.41<AUC_ABLATED=0.75. This is a textbook small-N-noise-manufactures-illusory-signal case; the 220939Z reading is the decisive, well-powered negative and is what claims.yaml's static-k narrative already reflects. The 195503Z pilot should NOT be counted as an independent replicate or allowed to reverse the well-powered sibling's sign.",
+      "recommended_evidence_quality_note": "CORRECTED 2026-08-08 (round-5 sweep): this target originally (as first published) carried the WRONG content -- AUC/min_contacts data belonging to v3_exq_121_mech095_agency_attribution_pair (MECH-095) was mislabeled under this MECH-089 theta-batching run_id, a content-swap error, not a citation typo. Corrected content: real run_id v3_exq_122_mech089_theta_integration_pair_20260328T221059Z_v3, theta_k=2, the genuinely fresh data point in this lineage -- a well-powered replicate (1094 harm steps vs the already-narrated sibling's 32) showing the SAME adverse direction never separately narrated anywhere: harm_auc_on=0.505, harm_auc_ablated=0.633 (delta=-0.128). Reinforces MECH-089's own claims.yaml language ('ALREADY-ESTABLISHED, do not re-litigate... uniform static-k theta batching... CONFIRMED HARMFUL') at much higher statistical power than the previously-cited 200134Z sibling -- does not reopen the question.",
       "recommended_substrate_queue_entry": {
         "action": "none"
       },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
       "learning_extracted": [
-        "Small-N pilot (195503Z, 1 seed) showed an illusory positive that reversed under power (220939Z, 2 seeds) -- textbook caution against treating a thin pilot as a genuine replicate."
+        "This well-powered replicate (1094 harm steps) was never separately folded into MECH-089's evidence base -- discovered during round-5's disciplined coverage-verification pass, which caught the original content-swap error in the process."
       ],
       "routing": "governance-note-only",
       "re_derive_brake": {
@@ -180,7 +180,8 @@
         "prior_substrate_ceiling_autopsies": [],
         "refused_requeue": false,
         "note": "MECH-089 = 0 confirmed substrate_ceiling hits; claim's own 'do not re-litigate' language already refuses a fresh static-k re-queue independent of the formal brake."
-      }
+      },
+      "amendment_note": "CORRECTION (round-5 sweep, 2026-08-08): this target and its 200134Z sibling replace two originally-published targets under run_ids v3_exq_122_mech089_theta_integration_pair_20260328T195503Z_v3 / _220939Z_v3, which were a CONTENT-SWAP ERROR -- both carried v3_exq_121_mech095_agency_attribution_pair (MECH-095) data mislabeled under MECH-089 theta-batching run_ids. The correct v3_exq_121 targets are unaffected and remain elsewhere in this file's targets[] array (unchanged). Root cause: the two claim families (MECH-089 theta-batching, MECH-095 agency-attribution) both minted 'pair' experiments on 2026-03-28 with overlapping timestamp ranges, and the original round-4 write-up conflated them despite its own text asserting they were 'confirmed distinct via claim_ids and script name' -- that assertion was not actually verified against the real run_ids on disk. Found by round-5's disciplined coverage-verification pass (batch4 research agent), which traced the real EXQ-122 run_ids via exact Unix-epoch-timestamp matching against the physical manifests."
     },
     {
       "run_id": "v3_exq_052_sd006_multirate_validation_20260320T042636Z_v3",
@@ -502,7 +503,7 @@
     }
   ],
   "cluster_pattern": {
-    "shape": "Thread 1 (ARC-024/MECH-071, 4 runs): fully covered elsewhere, zero new work. Thread 2 (MECH-089 hippocampal/theta, 6 unique runs): 066/122x2/052 are backfill-only (claims.yaml already narrates the correct read); 042 is the batch's one genuinely fresh finding, a source-verified-sound BC training loop that simply hasn't converged (measurement_gap, not a wiring bug). Thread 3 (MECH-095/MECH-099 TPJ agency-attribution, 7 unique runs): 089/098b(B)/121(B) are backfill of an already-correct 2026-05-02 substrate-ceiling diagnosis; 098b(A)/121(A) are thin pilots to exclude; 510 is a genuinely new, VALID data point (source-verified to not share the 047l/047m saturation bug) reinforcing the same ceiling read.",
+    "shape": "Thread 1 (ARC-024/MECH-071, 4 runs): fully covered elsewhere, zero new work. Thread 2 (MECH-089 hippocampal/theta, 6 unique runs): 066/122x2 (CORRECTED 2026-08-08, see amendment_note -- real run_ids 200134Z/221059Z, not the originally-published mislabeled 195503Z/220939Z)/052 are backfill-only (claims.yaml already narrates the correct read); 042 is the batch's one genuinely fresh finding, a source-verified-sound BC training loop that simply hasn't converged (measurement_gap, not a wiring bug). Thread 3 (MECH-095/MECH-099 TPJ agency-attribution, 7 unique runs): 089/098b(B)/121(B) are backfill of an already-correct 2026-05-02 substrate-ceiling diagnosis; 098b(A)/121(A) are thin pilots to exclude; 510 is a genuinely new, VALID data point (source-verified to not share the 047l/047m saturation bug) reinforcing the same ceiling read.",
     "is_independent_bugs": false,
     "structural_property": "Threads 2 and 3 both bottleneck on substrate immaturity at the time these runs were made (pre-SD-047 thin single-agent environment for Thread 3; insufficient training signal for Thread 2's 042), not claim falsification -- consistent with the broader cross-batch pattern this round of era-specific substrate gaps masquerading as independent weakenings.",
     "readings": [
