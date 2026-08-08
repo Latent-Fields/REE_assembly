@@ -520,6 +520,21 @@ echo "--- Step 3k: Substrate-path overlap audit (GOV-SUBPATH-1, warn-only) ---"
 # re-review; this only surfaces the candidates.
 "$PYTHON" scripts/check_substrate_path_overlap.py || true
 
+echo "--- Step 3l: Citation staleness scan (GFLAG-0010, warn-only) ---"
+# Confirmed incident: SD-087/SD-020/SD-086 cited config.py:2306,
+# agent.py:8636-8642, and e3_selector.py:1038/:2766 in claims.yaml -- all
+# drifted 190-1150 lines from the real locations, found only because a
+# session happened to manually diff cited line numbers against ree-v3 HEAD
+# during an unrelated review (GFLAG-0010, resolved 2026-08-08). Scans every
+# string in every claim for file.py:LINE citations and flags one whose line
+# number now exceeds the cited file's current length at HEAD, or whose file
+# is no longer tracked in any known repo. Content drift (in-bounds but now
+# pointing at the wrong thing) is out of scope by design -- this only checks
+# what is mechanically checkable without understanding the cited code.
+# Warn-only, always exits 0 unless --exit-nonzero -- a human decides whether
+# a flagged citation needs fixing; this only surfaces the candidates.
+"$PYTHON" scripts/check_citation_staleness.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
