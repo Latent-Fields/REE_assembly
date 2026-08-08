@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-08T08:54:40Z",
+  "generated_at": "2026-08-08T11:53:42Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,131 +31,131 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 52,
-      "total_initial": 92,
-      "total_initial_at_registration": 73,
+      "total_surviving": 55,
+      "total_initial": 95,
+      "total_initial_at_registration": 76,
       "total_fanout_added": 19,
       "total_resolved_out": 37,
       "total_confirmed": 20,
-      "reduction_pct_vs_current": 40.2,
-      "net_narrowing_pct": 28.8,
+      "reduction_pct_vs_current": 38.9,
+      "net_narrowing_pct": 27.6,
       "convergence_classes": {
+        "static": 13,
         "narrowing": 12,
-        "static": 12,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "52 alive against 73 originally enumerated, and against 92 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 29
+      "honest_pair_note": "55 alive against 76 originally enumerated, and against 95 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 30
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 14,
-      "open_questions": 29
+      "open_questions": 30
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 91,
+      "surviving": 94,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-13",
-      "surviving": 89,
+      "surviving": 92,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-15",
-      "surviving": 85,
+      "surviving": 88,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-16",
-      "surviving": 84,
+      "surviving": 87,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-17",
-      "surviving": 81,
+      "surviving": 84,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-18",
-      "surviving": 75,
+      "surviving": 78,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-19",
-      "surviving": 71,
+      "surviving": 74,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-20",
-      "surviving": 70,
+      "surviving": 73,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-24",
-      "surviving": 69,
+      "surviving": 72,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-27",
-      "surviving": 67,
+      "surviving": 70,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-29",
-      "surviving": 66,
+      "surviving": 69,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-31",
-      "surviving": 65,
+      "surviving": 68,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-08-01",
-      "surviving": 63,
+      "surviving": 66,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-08-02",
-      "surviving": 57,
+      "surviving": 60,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-08-04",
-      "surviving": 56,
+      "surviving": 59,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-08-06",
-      "surviving": 55,
+      "surviving": 58,
       "closure_pct": 76.9,
       "build_pct": 81.5
     },
     {
       "date": "2026-08-08",
-      "surviving": 52,
+      "surviving": 55,
       "closure_pct": 76.9,
       "build_pct": 81.5
     }
@@ -2924,7 +2924,7 @@
         "evidence_decile": 2,
         "decision_question": "Does harm-aware selection reduce task-level harm, given the matched-pair design cannot currently produce enough held comparisons to test it?",
         "distance_phrase": "4 of 4 tested legs (844/867/867a/867b) inconclusive for structurally different reasons each time; the design itself, not the sample size, is now the suspect.",
-        "live_gate": "A redesigned DV/matching strategy that does not depend on post-hoc divergence-tick matching is needed before this question is testable at adequate power -- not yet queued.",
+        "live_gate": "A redesigned DV/matching strategy that does not depend on post-hoc divergence-tick matching is needed before this question is testable at adequate power. DESIGNED 2026-08-08 (chip-20260808-mech321-repose-measurement-design), NOT YET QUEUED -- see evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md (status: awaiting user review). Proposed: unconditional whole-episode harm-rate DV over ALL measured seeds (no screen, no matched-pair tiering), n=40 seeds x 2 arms at the unchanged 12x60 schedule (~19h, ~1.9x V3-EXQ-867b's compute; SE ~0.023 vs 867b's realised 0.111 at n=4), plus a 4-seed A-A null control (OFF vs OFF, expected delta exactly 0.0) that discharges what_would_answer precondition (2) BY CONSTRUCTION rather than by verification. Next step is a /queue-experiment session; assign a NEW EXQ number (not an 867c letter) per that doc section 7. NOTE -- that doc also RE-DIAGNOSES this entry's own observation_bottleneck: 867b's screen-soundness violation is an instrumentation artifact (screen cells run without an RNG reset while measurement cells enter through arm_cell, so the two phases measure different agents and the prefix-monotonicity premise never applied), NOT evidence that the ON-arm manipulation perturbs decomposition -- the violation appears in the OFF arm, where the manipulation is inert, and at full schedule the matching held perfectly (0 on_only, 0 off_only). Raised to /governance as an evidence_discrepancy flag; observation_bottleneck and hypotheses[0].resolution.basis are left unedited for governance to adjudicate.",
         "observation_bottleneck": "Matched-pair screening assumes short-screen decomposition behaviour predicts full-schedule behaviour; 867b's own screen_soundness_check falsifies that assumption on 5/7 screen-matched seeds."
       }
     },
@@ -3194,6 +3194,85 @@
         "distance_phrase": "1 of 1 tested leg: CONFIRMED under the realistic default deadline (57.1% survival) and deadline-independent exposure (85.7% corroboration); the accelerated-regime null replicated cleanly as a negative control.",
         "live_gate": null,
         "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "sd016_retrieval_selectivity_mechanism",
+      "title": "Given a z_world encoder now confirmed to vary across contexts (SD-070 fix), which fix mechanism restores SD-016 retrieval selectivity -- an explicit context-conditioned training signal, a different representational unit, or a competitive selection algorithm?",
+      "short_title": "SD-016 retrieval-selectivity fix mechanism",
+      "claims": [
+        "SD-016"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-drive-context-divergence",
+          "label": "no context-conditioned training signal tested",
+          "desc": "No tested selection mechanism (q.k attention, feedforward tagger, or Path-1's diversification loss) has ever been given a training objective that specifically rewards context-CONDITIONED divergence (sel_context_divergence), as distinct from population-level slot diversity.",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not yet adjudicated -- pre-registered at fan-out time per failure_autopsy_V3-EXQ-898_2026-08-08.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-representation-hippocampal-indexing",
+          "label": "undifferentiated slots are the wrong retrieval unit",
+          "desc": "The 16 undifferentiated slots may be the wrong retrieval unit; selection may need semantically-structured targets (hippocampal event/state/outcome-node indexing per 418m's original proposal, MECH-044/ARC-006/ARC-007/MECH-267) rather than arbitrary slots. Longer-horizon: all four dependency claims are status=provisional, unbuilt as of this registration.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not yet adjudicated -- pre-registered at fan-out time per failure_autopsy_V3-EXQ-898_2026-08-08. Pending lit-pull commission before a build is committed.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-algorithm-competitive-gating",
+          "label": "soft end-to-end gate lacks competitive/sparsifying mechanism",
+          "desc": "The tagger is a soft, end-to-end differentiable gate with no competitive/sparsifying mechanism (no lateral inhibition, no k-winner-take-all). A hard/competitive selection mechanism (Gumbel-softmax with annealed temperature, or explicit top-k gating) might structurally force sparsification that gradient descent alone has not discovered.",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not yet adjudicated -- pre-registered at fan-out time per failure_autopsy_V3-EXQ-898_2026-08-08.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Which fix mechanism (context-conditioned training signal, representational redesign, or competitive selection algorithm) restores SD-016 retrieval selectivity now that the z_world encoder is confirmed to vary across contexts?",
+        "distance_phrase": "Freshly opened 2026-08-08. Prior autopsy on this substrate (418m, 2026-06-05) resolved the encoder-variance precondition (now satisfied); this question is the successor asking which selection-mechanism fix works.",
+        "live_gate": "All three hypotheses alive, none yet queued. H1/H3 are near-term probes on the existing substrate; H2 is gated on a lit-pull commission and on MECH-044/ARC-006/ARC-007/MECH-267 (all status=provisional, unbuilt).",
+        "observation_bottleneck": "H2 cannot be probed as a cheap experiment -- it requires building the hippocampal event/state/outcome-node indexing substrate (MECH-044/ARC-006/ARC-007/MECH-267), none of which exist yet."
       }
     }
   ],

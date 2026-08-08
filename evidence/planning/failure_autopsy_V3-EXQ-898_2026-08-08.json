@@ -1,0 +1,111 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T11:52:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3",
+      "queue_id": "V3-EXQ-898",
+      "claim_ids": [],
+      "claim_ids_note": "Manifest and target both empty per the V3-EXQ-418g/418m diagnostic-purpose precedent. This target's diagnosis bears on SD-016 by prose/routing, not by claim_ids tag -- see recurrence_tooling_note below. All routing text in this artifact refers to SD-016 explicitly.",
+      "failed_criterion": "discrimination",
+      "self_route_label": "sd016_lega_tagger_insufficient_under_trained_encoder",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "claim_alignment_note": "Weakened only for the selection-mechanism sub-question (leg A). SD-016's architectural assertion (a z_world-only cue-indexed query path should exist) is untouched -- status remains implemented.",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "prerequisites_note": "SD-070 encoder fix landed and validated on this apparatus (readiness preconditions cleared 2.7-4.0x above floor).",
+        "implementation": "partial",
+        "implementation_note": "Tagger exists structurally but has no training objective or architecture demanding context-conditioned divergence.",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "integration_note": "Leg A only; leg B (downstream E2/E3 exploitation) untested, separately gated.",
+        "scale": "likely_insufficient_untested_directly"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Hippocampal indexing / pattern separation (dentate gyrus sparse coding via lateral inhibition, CA3 competitive/autoassociative retrieval)",
+        "dependencies": [
+          "local competitive/inhibitory dynamics (no counterpart in current substrate)",
+          "context-conditioned differentiation training signal (never tested)"
+        ],
+        "is_formal_import": true,
+        "divergence": "Path-3 tagger is a plain feedforward network trained end-to-end via downstream task losses (terrain_loss, cue_action_loss), with no local competitive dynamics and no objective directly rewarding context-CONDITIONED divergence. Biological pattern separation is a structural circuit property, not downstream-task-loss-induced.",
+        "lit_status": "absent",
+        "lit_status_note": "targeted_review_sd_016's 3 entries (Bechara 1999, Dunn 2005, Lichtenberg 2017) address downstream valuation (leg B), not retrieval-selection/indexing mechanism (leg A, this run's question). targeted_review_hippocampal_subfield_architecture covers CLS/consolidation, not competitive pattern-separation for indexing."
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "Relocated, not repeated: 418m's substrate_ceiling reading was about the encoder (z_world not varying). This run's substrate_ceiling reading is about the selection-mechanism training signal (no tested mechanism has ever been given a context-conditioned divergence objective) -- 418m's own stated revisit condition (a) z_world separation demonstrated is now satisfied by this run.",
+      "recommended_evidence_direction": "diagnostic",
+      "recommended_evidence_quality_note": "V3-EXQ-898 FAIL (2026-08-08, diagnostic, autopsy-confirmed): SD-016 leg-A retest under the SD-070 encoder fix (world_dim=128, matching V3-EXQ-783's D128_TRAINED recipe). Readiness preconditions (world_encoder_weights_moved, z_world_spread_lift) cleared on all 3 seeds with wide margin (2.7-4.0x the floor) -- the encoder fix genuinely takes on this apparatus, resolving 418m's open ambiguity. C2 control passed cleanly (OFF reproduces ln(16)=2.772589 exactly, 3/3 seeds). C1/C1b (load-bearing) both FAILED cleanly on all 3 seeds (ON entropy 2.743-2.763 vs <2.5 needed; ON context-divergence 0.004-0.051 vs >0.1 needed). Per claims.yaml's own stated non-degeneracy bar, this FAIL now legitimately attributes to the selection mechanism, not to z_world non-variance -- a narrower and more actionable finding than 418m could support. epistemic_category remains substrate_ceiling, relocated from the encoder (418m's reading) to the selection-mechanism training signal: no tested mechanism (q.k attention, feedforward tagger, or Path-1's diversification loss) has ever been given a training objective that specifically rewards context-CONDITIONED divergence, as distinct from population-level slot diversity. Routed to a 3-hypothesis GOV-FANOUT-1 discrimination portfolio (drive / algorithm / representation axes) informed by a lit-pull commission on hippocampal pattern-separation/competitive-indexing mechanisms, per failure_autopsy_V3-EXQ-898_2026-08-08. pending_retest_after_substrate: true.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-016",
+        "title": "ContextMemory cue-indexed retrieval -- selection-mechanism training signal is the open gap (2026-08-08, encoder-separation precondition now satisfied)",
+        "implementation_hint": "Status change: parked_pending_env_entropy_precondition -> parked_pending_selection_mechanism_fix. blocked_on change: the environment/encoder precondition (z_world cross-context separation) is now SATISFIED (SD-070 recipe, confirmed on this run's own apparatus with wide margin -- z_world_spread_lift 2.7-4.0x the 1.3x floor). The remaining gap is that no tested selection mechanism (q.k attention 418d/e/i, feedforward tagger 418m/898) has ever been given a training signal that specifically rewards context-CONDITIONED divergence (sel_context_divergence), as distinct from population-level slot diversity (which Path 1's diversification loss did achieve at high weight). Recommend a GOV-FANOUT-1 discrimination portfolio across 3 axes before committing to one fix: H1 (drive) explicit context-divergence auxiliary loss; H2 (representation) hippocampal event/state-node indexing instead of undifferentiated slots -- but MECH-044/ARC-006/ARC-007/MECH-267 (the dependency claims) are all still status=provisional, unbuilt, so this is a longer-horizon leg pending a lit-pull; H3 (algorithm) hard/competitive selection (Gumbel-softmax or top-k) instead of soft end-to-end gating.",
+        "unblocks_claims": [
+          "MECH-150",
+          "MECH-151",
+          "MECH-152",
+          "ARC-041",
+          "INV-040",
+          "SD-017"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3",
+          "experiment_type": "v3_exq_898_sd016_lega_encoder_fix_retest",
+          "metric": "Readiness preconditions cleared on all 3 seeds (world_encoder_weights_moved=5.0 vs threshold 1.0; z_world_spread_lift 3.53-5.20 vs threshold 1.3, i.e. 2.7-4.0x margin). C2 control PASS 3/3 (OFF sel_entropy_mean 2.772587-2.772587 vs ln(16)=2.772589 -- exact saddle reproduction). C1 PRIMARY FAIL 0/3 (ON sel_entropy_mean 2.7428-2.7628 vs <2.5 threshold). C1b ANTI-DEGENERACY FAIL 0/3 (ON sel_context_divergence 0.0039-0.0513 vs >0.1 threshold). Encoder fix confirmed to genuinely take; selectivity still does not emerge.",
+          "target": "ON sel_entropy_mean < 2.5 AND ON sel_context_divergence > 0.1 on >=2/3 seeds, with OFF reproducing the ln(16) saddle -- under a confirmed-varying encoder (this precondition is now the distinguishing feature vs 418m)",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "fired_note": "Mechanical counter (granularity_debt_cluster.py / R1-R3 recipe) returns 0 hits for SD-016 because this target's claim_ids is [] (matching the 418g/418m diagnostic-purpose precedent, and matching the manifest itself). Treated AS a re-derive-brake case IN SPIRIT despite the mechanical non-fire: explicitly refusing to recommend a same-shape re-queue (e.g. a Path-4 tagger variant with no new training signal); routing instead through a lit-pull commission and a GOV-FANOUT-1 discrimination portfolio. This is a known, accepted characteristic of the diagnostic-purpose claim_ids=[] convention, flagged here for transparency, not changed unilaterally.",
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-418m_2026-06-05"
+        ],
+        "refused_requeue": true,
+        "route_to": "lit-pull + queue-experiment (GOV-FANOUT-1 portfolio)",
+        "upstream_substrate": "SD-016"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: no tested selection mechanism has ever been given a training objective that specifically rewards context-CONDITIONED divergence (as distinct from population-level slot diversity)",
+          "H2: the 16 undifferentiated slots are the wrong retrieval unit -- selection needs semantically-structured targets (hippocampal event/state/outcome-node indexing) rather than arbitrary slots",
+          "H3: the soft, end-to-end differentiable gate lacks a competitive/sparsifying mechanism that would structurally force non-uniform selection"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "drive", "sketch": "Add an auxiliary loss term directly maximising sel_context_divergence (or an equivalent context-contrastive objective) during P1, on top of the now-confirmed-varying SD-070-trained encoder."},
+          {"hypothesis": "H2", "axis": "representation", "sketch": "Hippocampal event/state/outcome-node indexing per 418m's original proposal (MECH-044/ARC-006/ARC-007/MECH-267) -- longer horizon, all four dependency claims still status=provisional/unbuilt; inform via the recommended lit-pull before committing to a build."},
+          {"hypothesis": "H3", "axis": "algorithm", "sketch": "Replace the soft feedforward gate with a hard/competitive selection mechanism (Gumbel-softmax with annealed temperature, or explicit top-k gating) that structurally forces sparsification."}
+        ],
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential re-pose. H2 is a longer-horizon leg pending the lit-pull commission and unbuilt dependency claims; H1/H3 are near-term probes on the existing substrate. User confirmed this routing at the Step 8 gate."
+      },
+      "learning_extracted": [
+        "SD-070 encoder fix, read back onto SD-016's own criteria for the first time (per claims.yaml's explicit request), genuinely restores cross-context z_world variance on this apparatus, confirmed on-apparatus not merely by reference to V3-EXQ-783's different apparatus.",
+        "Retrieval selectivity still does not emerge; the FAIL now cleanly attributes to the selection mechanism per claims.yaml's own stated non-degeneracy bar -- a narrower, more actionable finding than 418m could support.",
+        "Across three independently-designed selection mechanisms (q.k attention, feedforward tagger, diversification loss) and three training regimes, none has ever been given a training signal specifically rewarding context-CONDITIONED divergence -- a positive, actionable gap, not a dead end.",
+        "SD-016's substrate_queue.json entry is stale (last touched governance-cycle-20260606T0431Z, immediately after 418m); still describes the superseded 2026-04-28 env-entropy-precondition diagnosis.",
+        "No existing literature review grounds the specific biological mechanism (competitive/local pattern-separation dynamics) this autopsy recommends as the candidate fix direction -- a genuine lit-pull gap, not a refinement of existing SD-016 coverage (which addresses the downstream valuation side only)."
+      ],
+      "routing": "lit-pull"
+    }
+  ],
+  "cluster_pattern": null,
+  "growth_restriction_check": {
+    "applies": false,
+    "note": "No existing hypothesis_space_registry.v1.json question tags SD-016 (searched all 29 questions' claims arrays -- zero matches). This is a NEW question at Step 9b Mode A -- growth-restriction check does not apply to new-question registration."
+  }
+}
