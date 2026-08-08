@@ -1,0 +1,66 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T12:16:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_866a_inv034_q021_goal_maintenance_agency_onboarded_20260803T075813Z_v3",
+      "queue_id": "V3-EXQ-866a",
+      "claim_ids": ["INV-034", "Q-021"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- G0 non-degeneracy precondition unmet a third autopsy pass (866/866a/this deep-dive); claim mechanism still not fairly exercised, by design of the driver's own gate ordering",
+        "biological_reference": "clear on a second reference -- D1/D2 Go/NoGo (Bariselli 2018) + wanting/liking (Barch & Dowd 2010) remain the claim's own untested reference; the observed FAILURE PHENOTYPE matches the independently-grounded approach-before-avoidance ontogenetic-ordering literature (Debiec & Sullivan 2016 et al.) already load-bearing for the MECH-457 competence-floor cluster",
+        "prerequisites": "missing/immature, cross-claim -- same missing dependency the MECH-457 GOV-FANOUT-1 portfolio (H1 drive-schedule / H2 reward-coupling / H3 credit-horizon) is actively discriminating; not yet resolved anywhere in this codebase",
+        "implementation": "new finding -- policy_entropy approx 0 at P2 for both FULL and AVOIDANCE_ONLY (genuinely collapsed/near-deterministic, not a commitment-holding artifact), not previously flagged for this run despite being in the manifest since 2026-08-03",
+        "environment": "adequate -- P2 hazard-food-attraction guard (0.3) already calibrated against the class default's degenerate behaviour during 866a's own pre-queue verification",
+        "measurement": "partially uncertain -- this run's own numbers are commit-verified; the cross-run comparison anchoring the '~7x below 603q' framing rests on an unresolved methodological uncertainty (603q's own manifest names no stage called 'Stage-H') not previously surfaced",
+        "integration": "untested, in flight -- MECH-307 confirmed OFF for this run (from_dims wiring bug, fixed 2026-08-07 AFTER this run executed); V3-EXQ-899 tests the corrected wiring in-harness on this exact FULL config, queued 2026-08-08T10:15Z, not yet run",
+        "scale": "adequate on paper -- curriculum budgets match the cited reference, confirmed line-by-line in the 2026-08-03 autopsy, unchanged"
+      },
+      "biological_reference": {
+        "closest_mechanism": "D1 (Go/wanting) vs D2 (NoGo/avoidance) basal ganglia pathways evaluating shared proposals (Bariselli 2018); wanting/liking dissociation (Barch & Dowd 2010) -- claim's own reference, still not fairly exercised. SECONDARY reference matching the observed phenotype: ontogenetic approach-before-avoidance ordering -- altricial-mammal active-avoidance systems are quiescent early, appetitive approach bootstraps first (Debiec & Sullivan 2016 doi:10.1016/j.nlm.2016.10.015, Opendak 2025, Clements 2022, Brunelli 2007, Muller 2018)",
+        "dependencies": ["scaffolded_sd054_onboarding curriculum", "harm-pathway training (603k)", "z_goal maintenance mechanism", "MECH-457 competence-directed dependency (drive-schedule / reward-coupling / credit-horizon, currently under GOV-FANOUT-1 discrimination)"],
+        "is_formal_import": false,
+        "divergence": "not newly assessed -- G0 gates before the claim's own D1/D2 mechanism is fairly exercised. The secondary (phenotype-matching) reference is well-grounded biologically and directly explains 'survives but won't forage' -- treated as load-bearing for routing, not as a claim-layer divergence finding",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-08 /failure-autopsy, G0 deep-dive, supersedes-in-part the 2026-08-03 866a autopsy's G0 reading]: G0 non-degeneracy still fails (FULL resource_visit_rate 0.0033 vs RANDOM 0.0103, 0/3 seeds). The 2026-08-03 autopsy's substrate-regression routing has been TESTED AND CLOSED (V3-EXQ-866b confirmed 603q's own script reproduces its cited baseline -- no drift). This deep-dive finds 866a's own signature (P1 survival 200/200 full length; P2 policy_entropy collapsed to ~0 in BOTH FULL and AVOIDANCE_ONLY, forages below random) matches the ALREADY-ACTIVE MECH-457 competence-floor / approach-before-avoidance-ordering cluster (V3-EXQ-728 'survives but won't forage'; V3-EXQ-769 'avoidance learned without approach', re-derive brake fired there, GOV-FANOUT-1 H1/H2/H3 portfolio in flight) rather than a ceiling specific to this curriculum. Reclassified substrate_ceiling -> competence_implementation_gap (missing-dependency reframe, matches V3-EXQ-769's own precedent) specifically so the re-derive brake does NOT fire a premature standalone redesign mandate for INV-034/Q-021. Separately, MECH-307 was confirmed silently OFF for this run (from_dims wiring bug, fixed 2026-08-07 AFTER this run executed, d63f13b7); V3-EXQ-899 (queued 2026-08-08, not yet run) tests the corrected wiring in-harness on this exact FULL config. NOT evidence against INV-034/Q-021. pending_retest_after_substrate KEPT, gated on either V3-EXQ-899 or the MECH-457 H1/H2/H3 portfolio landing. NOTE: this claim's own most recent (2026-08-08) governance note attributing part of the gap to 'z_goal decays to a P2 mean of 0.12' is now stale -- a same-day separate diagnosis found this to be a measurement artifact in 866a's driver (unconditional update_z_goal vs the scheduler's contact-gated run_p2), not a real curriculum effect; correction owed at the next governance touch, not applied here (out of this autopsy's scope).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-866a_2026-08-03"],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "route_to": "await V3-EXQ-899 (in-harness MECH-307 diagnostic, already queued) + cross-reference to the MECH-457 GOV-FANOUT-1 portfolio (H1/H2/H3, already in flight) -- explicitly NOT a same-claim evidence re-queue and NOT a fresh standalone /implement-substrate build",
+        "upstream_substrate": "shared with MECH-457's competence-directed dependency (drive-schedule ordering / reward-coupling / credit-horizon), not yet identified by that portfolio's own discrimination"
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "G0's failure on 866a is very likely the same underlying competence-floor phenomenon already under active, brake-fired investigation as MECH-457 (approach-before-avoidance ontogenetic-ordering line: V3-EXQ-728/769), not a ceiling specific to scaffolded_sd054_onboarding. User-confirmed via AskUserQuestion.",
+        "Policy entropy collapses to approx 0 at P2, identically in FULL and AVOIDANCE_ONLY -- a real signature in this run's own manifest not previously surfaced by the 2026-08-03 autopsy, and it strengthens the MECH-457-cluster read (both arms converged on a near-deterministic action, consistent with an avoidance-dominant / non-exploratory basin).",
+        "The Stage-H-specific survival gate fails identically in both arms (ruling out the goal/wanting-pathway additions as its cause), but the cross-run '~7x below 603q' comparison anchoring both prior write-ups rests on a methodologically uncertain correspondence to 603q's own differently-named stages -- flagged as an open uncertainty, not resolved.",
+        "There is a genuinely new, not-yet-tried, already-queued angle specific to this harness (MECH-307 from_dims wiring fix, V3-EXQ-899) that must be allowed to resolve or fail to resolve before this is treated as a confirmed-hard ceiling.",
+        "Reframing substrate_ceiling -> competence_implementation_gap (matching V3-EXQ-769's own precedent) keeps both live paths (MECH-307/899 and the MECH-457 H1/H2/H3 portfolio) open instead of forcing a premature standalone build for INV-034/Q-021 specifically. User-confirmed.",
+        "claims.yaml's current (2026-08-08) governance note attributes part of the residual gap to a z_goal/C6 decay effect that a same-day separate diagnosis found to be a measurement artifact, not real -- correction owed at the next governance touch on this claim, not duplicated here."
+      ],
+      "routing": "governance-hold (await V3-EXQ-899 + cross-reference MECH-457; no new /queue-experiment or /implement-substrate action from this autopsy)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "same competence-floor phenotype (survives later stage, P2 policy collapses to near-zero entropy, forages below random) already characterized under MECH-457 as 'avoidance learned without approach' -- observed here on a DIFFERENT curriculum (scaffolded_sd054_onboarding) and DIFFERENT claim pair (INV-034/Q-021) than MECH-457's own harness (mech457_competence_bootstrap_explorer)",
+    "is_independent_bugs": false,
+    "structural_property": "the substrate appears to lack a competence-directed dependency for approach/foraging behaviour that is independent of which specific curriculum or claim-pair engages it -- consistent with a shared root cause (ontogenetic drive-schedule ordering, reward-coupling, or credit-horizon; MECH-457's own GOV-FANOUT-1 portfolio is discriminating which) rather than N unrelated per-curriculum defects",
+    "readings": ["shared_missing_dependency_with_mech457", "curriculum_specific_stage_h_measurement_uncertainty_unresolved"]
+  }
+}
