@@ -1,0 +1,202 @@
+<!-- DUAL_INSIGHTS_REPORT_VERSION: 2026-08-08.1 -->
+<title>REE Dual-System Insights</title>
+<style>
+  :root {
+    --bg:#eef1f4; --panel:#ffffff; --panel-2:#f6f8fa; --line:#d9dee4;
+    --ink:#18222b; --muted:#5f6f7d; --faint:#8b9aa6;
+    --accent:#0e8fa6;
+    --accent-soft:#0e8fa61a;
+    --confirmed:#2f8f63;
+    --alive:#c07d15;
+    --built:#3f6fb0;
+    --elim:#93a1ac;
+    --elim-bg:#93a1ac1f;
+    --shadow:0 1px 2px #1a26310f, 0 6px 20px #1a26310a;
+    --mono:ui-monospace,"SF Mono",'SFMono-Regular',Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1418; --panel:#141d23; --panel-2:#0f181d; --line:#26333c;
+      --ink:#e4ecf1; --muted:#8ea0ac; --faint:#5f7280;
+      --accent:#2bb6cc; --accent-soft:#2bb6cc1f;
+      --confirmed:#4cb884; --alive:#e0a63c; --built:#6c9be0; --elim:#63737f; --elim-bg:#63737f24;
+      --shadow:0 1px 2px #0006, 0 8px 26px #0004;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1418; --panel:#141d23; --panel-2:#0f181d; --line:#26333c;
+    --ink:#e4ecf1; --muted:#8ea0ac; --faint:#5f7280;
+    --accent:#2bb6cc; --accent-soft:#2bb6cc1f;
+    --confirmed:#4cb884; --alive:#e0a63c; --built:#6c9be0; --elim:#63737f; --elim-bg:#63737f24;
+    --shadow:0 1px 2px #0006, 0 8px 26px #0004;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef1f4; --panel:#ffffff; --panel-2:#f6f8fa; --line:#d9dee4;
+    --ink:#18222b; --muted:#5f6f7d; --faint:#8b9aa6;
+    --accent:#0e8fa6; --accent-soft:#0e8fa61a;
+    --confirmed:#2f8f63; --alive:#c07d15; --built:#3f6fb0; --elim:#93a1ac; --elim-bg:#93a1ac1f;
+    --shadow:0 1px 2px #1a26310f, 0 6px 20px #1a26310a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);}
+  .wrap{max-width:1160px;margin:0 auto;padding:28px 22px 60px;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .eyebrow.ree{color:var(--built);}
+  .eyebrow.assembly{color:var(--alive);}
+  h1{font-size:clamp(24px,3.4vw,34px);line-height:1.08;letter-spacing:-.02em;margin:.28em 0 .1em;text-wrap:balance;font-weight:680;}
+  .lede{color:var(--muted);max-width:64ch;font-size:15px;margin:0;}
+  .masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:30px;}
+  .stamp{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:right;line-height:1.7;white-space:nowrap;}
+  .stamp b{color:var(--muted);font-weight:600;}
+  .stamp a{color:var(--accent);text-decoration:none;}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:10px;}
+  @media(max-width:900px){.twocol{grid-template-columns:1fr}}
+  .side{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px 22px;}
+  .side-head{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+  .side-head .dot{width:10px;height:10px;border-radius:50%;}
+  .side-head.ree .dot{background:var(--built);}
+  .side-head.assembly .dot{background:var(--alive);}
+  .side h2{font-size:16px;margin:2px 0 4px;font-weight:680;letter-spacing:-.01em;}
+  .side-intro{color:var(--muted);font-size:12.5px;margin:0 0 16px;max-width:52ch;}
+
+  h3{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:18px 0 6px;}
+  h3:first-of-type{margin-top:0;}
+  p.body{font-size:13.5px;color:var(--ink);margin:0 0 4px;}
+  p.body b{color:var(--ink);}
+
+  .trend-list{list-style:none;margin:0;padding:0;}
+  .trend-list li{display:flex;align-items:baseline;gap:8px;padding:5px 0;font-size:13px;border-top:1px dashed var(--line);}
+  .trend-list li:first-child{border-top:none;}
+  .trend-list .tid{font-family:var(--mono);font-weight:600;min-width:66px;}
+  .trend-list .tpill{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;font-weight:600;white-space:nowrap;}
+  .tpill.gain{background:var(--confirmed)1c;color:var(--confirmed);}
+  .tpill.flat{background:var(--accent-soft);color:var(--accent);}
+  .tpill.neg{background:#b0464618;color:#c05a5a;}
+  .tpill.hold{background:var(--alive)1c;color:var(--alive);}
+  .trend-list .ttxt{color:var(--muted);}
+
+  .metric-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line);font-size:13px;}
+  .metric-row:first-of-type{border-top:none;}
+  .metric-row .mlabel{color:var(--muted);}
+  .metric-row .mval{font-family:var(--mono);font-weight:600;color:var(--ink);text-align:right;}
+
+  .callout{border-radius:10px;padding:16px 18px;margin-top:14px;font-size:13.5px;}
+  .callout.overlap{background:var(--accent-soft);border:1px solid color-mix(in srgb, var(--accent) 35%, var(--line));}
+  .callout.hard{background:var(--alive)14;border:1px solid color-mix(in srgb, var(--alive) 35%, var(--line));}
+  .callout.miss{background:var(--elim-bg);border:1px solid var(--line);}
+  .callout b.k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px;}
+  .callout.overlap b.k{color:var(--accent);}
+  .callout.hard b.k{color:var(--alive);}
+  .callout.miss b.k{color:var(--elim);}
+  .callout p{margin:0;color:var(--ink);}
+  .callout p+p{margin-top:8px;}
+
+  code{font-family:var(--mono);font-size:.92em;background:var(--panel-2);padding:1px 5px;border-radius:3px;}
+
+  section.overlap-sec{margin-top:30px;}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;}
+  .sec-head .n{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+  .sec-head h2{font-size:16px;letter-spacing:-.01em;margin:0;font-weight:680;white-space:nowrap;}
+  .sec-head .rule{flex:1;height:1px;background:var(--line);}
+
+  .foot{color:var(--faint);font-size:12px;font-family:var(--mono);text-align:center;margin-top:40px;line-height:1.9;border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--accent);text-decoration:none;}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">REE_assembly &middot; companion to Project Insights</div>
+      <h1>Dual-System Insights</h1>
+      <p class="lede">REE (the cognitive substrate under study) vs REE_assembly (the epistemically-governed system studying it) &mdash; the same signal, read two ways.</p>
+    </div>
+    <div class="stamp">
+      generated <b>2026-08-08T08:57:39Z</b><br>
+      fixed against <b>REE_assembly 2047b759a4</b><br>
+      companion: <a href="/insights-report">Project Insights &rarr;</a>
+    </div>
+  </header>
+
+  <div class="twocol">
+    <div class="side">
+      <div class="side-head ree"><span class="dot"></span><span class="eyebrow ree">REE-side</span></div>
+      <h2>Cognitive substrate</h2>
+      <p class="side-intro">Does a mechanism work, is a ceiling real, is a claim gaining or losing confidence &mdash; never process health.</p>
+
+      <h3>Competence-floor campaign (MECH-457 cluster)</h3>
+      <p class="body">Still <b>candidate / v3_pending</b> (as of 2026-07-24). Re-derive brake <b>has not fired</b> (0 confirmed <code>substrate_ceiling</code> verdicts). Decomposed 2026-07-22 into two narrower children while the umbrella is retained: <b>MECH-475</b> (uninformative value baseline) and <b>MECH-476</b> (acquisition/retention dissociation).</p>
+
+      <h3>Conversion-ceiling campaign (F-dominance cluster)</h3>
+      <p class="body">Largest failure-record count in <code>substrate_queue.json</code> (26). Its own text: arbitration-reweighting route <b>EXHAUSTED</b> (709/711/713, autopsied 2026-07-05); selection-face ceiling lifted via ARC-065/EXQ-569i, but every downstream behavioural retest since (654h, 485i, 625e, 460h, 460i) self-routed <code>substrate_not_ready_requeue</code>. Residual: <b>generalisation of the GAP-A lift has not been demonstrated</b> &mdash; not a missing build.</p>
+
+      <h3>High-iteration chains by confidence trend</h3>
+      <ul class="trend-list">
+        <li><span class="tid">EXQ-603</span><span class="tpill gain">gained</span><span class="ttxt">SD-059/MECH-358, terminal supports</span></li>
+        <li><span class="tid">EXQ-460</span><span class="tpill gain">gained</span><span class="ttxt">closure-commit-entry, terminal PASS</span></li>
+        <li><span class="tid">EXQ-514</span><span class="tpill gain">gained</span><span class="ttxt">MECH-436, terminal supports</span></li>
+        <li><span class="tid">EXQ-569</span><span class="tpill gain">gained</span><span class="ttxt">ARC-065, ceiling lifted</span></li>
+        <li><span class="tid">EXQ-485</span><span class="tpill flat">flat</span><span class="ttxt">SD-033b/MECH-263 OFC, campaign active</span></li>
+        <li><span class="tid">EXQ-543/654/689</span><span class="tpill flat">flat</span><span class="ttxt">F-dominance ceiling cluster</span></li>
+        <li><span class="tid">EXQ-445</span><span class="tpill neg">negative</span><span class="ttxt">SD-032b DACC, active dacc-cluster investigation</span></li>
+        <li><span class="tid">EXQ-418</span><span class="tpill hold">on hold</span><span class="ttxt">SD-016, documented precondition, not lost</span></li>
+      </ul>
+
+      <h3>Ready-and-unbuilt substrate</h3>
+      <p class="body"><b>~48 entries</b> (upper bound only &mdash; see data-quality note in Project Insights; the field is inconsistently populated).</p>
+    </div>
+
+    <div class="side">
+      <div class="side-head assembly"><span class="dot"></span><span class="eyebrow assembly">REE_assembly-side</span></div>
+      <h2>Governance throughput</h2>
+      <p class="side-intro">The apparatus's own throughput, independent of whether REE's cognition is any good.</p>
+
+      <h3>Autopsy turnaround</h3>
+      <div class="metric-row"><span class="mlabel">Median (15 sampled, 2026-08-02&ndash;08)</span><span class="mval">same&ndash;day / next&ndash;day</span></div>
+      <div class="metric-row"><span class="mlabel">Longest outstanding found this cycle</span><span class="mval">ARC-017 EXQ-129/135 &middot; 131 days</span></div>
+      <p class="body" style="margin-top:8px">Neither run ever surfaced in <code>pending_review.md</code> &mdash; both were non-diagnostic terminal states, so the queue's own liveness check never flagged them. A blind spot in the flagging logic, not a slow adjudicator.</p>
+
+      <h3>Decision backlog age</h3>
+      <div class="metric-row"><span class="mlabel">Open decisions</span><span class="mval">2</span></div>
+      <div class="metric-row"><span class="mlabel">MECH-074d</span><span class="mval">discussing &middot; touched today</span></div>
+      <div class="metric-row"><span class="mlabel">SD-033e</span><span class="mval">pending_user &middot; touched today</span></div>
+
+      <h3>Claim churn</h3>
+      <div class="metric-row"><span class="mlabel">TASK_CLAIMS.json (currently visible)</span><span class="mval">77</span></div>
+      <div class="metric-row"><span class="mlabel">done / active / stale&gt;6h</span><span class="mval">74 / 3 / 0</span></div>
+
+      <h3>Concurrency friction rate</h3>
+      <p class="body"><b>5 of 6</b> most-recent sessions (2026-08-07&ndash;08) show a friction signature (swept-content-surface &times;2, append-conflict &times;2, arbitration failure &times;1, allow-overlap &times;1). <b>All five are the mitigation machinery firing correctly</b> &mdash; content preserved, attribution resolved in every case &mdash; not incidents.</p>
+
+      <h3>Literature-pull cadence</h3>
+      <p class="body">4 new reviews landed today; 0 open priority-1 items; no coverage debt visible this window.</p>
+    </div>
+  </div>
+
+  <section class="overlap-sec">
+    <div class="sec-head"><span class="n">Where the two overlap</span><h2>Three named cases this cycle</h2><span class="rule"></span></div>
+
+    <div class="callout overlap">
+      <b class="k">MECH-074d &middot; the good kind of overlap</b>
+      <p>Carries <b>both</b> a live REE-side signal (today's V3-EXQ-894 found the attribution-gate mechanism fails on 2/3 seeds, bimodal not uniform, with an unresolved sigma-threshold confound) <b>and</b> an open REE_assembly-side decision (<code>demote_to_candidate</code>, discussing) sitting in front of the user right now. Fresh evidence arriving exactly where a decision is waiting for it &mdash; not stale process on top of settled science.</p>
+    </div>
+
+    <div class="callout hard">
+      <b class="k">f_dominance_conversion_ceiling &middot; hard science, and hard to read</b>
+      <p>Genuine hard problem on the REE side (real ceiling, route exhausted, generalisation undemonstrated) that is <i>also</i> hard to audit on the REE_assembly side: its entire 26-failure-record history is one long unstructured free-text <code>status</code> blob in <code>substrate_queue.json</code>, with no clean <code>ready</code> boolean. The science being hard and the tracking being hard to read are separate, and only the second is a quick governance-hygiene fix.</p>
+    </div>
+
+    <div class="callout miss">
+      <b class="k">ARC-017 (EXQ-129/135) &middot; the inverse case</b>
+      <p>A REE-side result that was never scientifically contested (both FAILs turned out to be measurement/test-design defects) but sat for 131 days purely because of a REE_assembly-side blind spot &mdash; no pending-review flag ever fires for a non-diagnostic terminal FAIL with no claim dispute. The claim was fine; the review-queue's flagging logic missed it.</p>
+    </div>
+  </section>
+
+  <div class="foot">
+    generated by <code>/dual-insights</code> &middot; REE_assembly on <code>origin/master</code> &middot; commit <code>2047b759a4</code><br>
+    companion: <a href="/insights-report">Project Insights &rarr;</a> &middot; source: <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/dual_insights_report.md">dual_insights_report.md</a>
+  </div>
+</div>

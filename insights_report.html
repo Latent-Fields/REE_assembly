@@ -1,0 +1,244 @@
+<!-- INSIGHTS_REPORT_VERSION: 2026-08-08.1 -->
+<title>REE Project Insights</title>
+<style>
+  :root {
+    --bg:#eef1f4; --panel:#ffffff; --panel-2:#f6f8fa; --line:#d9dee4;
+    --ink:#18222b; --muted:#5f6f7d; --faint:#8b9aa6;
+    --accent:#0e8fa6;            /* information / signal -- teal */
+    --accent-soft:#0e8fa61a;
+    --confirmed:#2f8f63;         /* resolved / healthy */
+    --alive:#c07d15;             /* open / needs attention */
+    --built:#3f6fb0;             /* structural / count */
+    --elim:#93a1ac;              /* neutral / closed-out */
+    --elim-bg:#93a1ac1f;
+    --shadow:0 1px 2px #1a26310f, 0 6px 20px #1a26310a;
+    --mono:ui-monospace,"SF Mono",'SFMono-Regular',Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1418; --panel:#141d23; --panel-2:#0f181d; --line:#26333c;
+      --ink:#e4ecf1; --muted:#8ea0ac; --faint:#5f7280;
+      --accent:#2bb6cc; --accent-soft:#2bb6cc1f;
+      --confirmed:#4cb884; --alive:#e0a63c; --built:#6c9be0; --elim:#63737f; --elim-bg:#63737f24;
+      --shadow:0 1px 2px #0006, 0 8px 26px #0004;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1418; --panel:#141d23; --panel-2:#0f181d; --line:#26333c;
+    --ink:#e4ecf1; --muted:#8ea0ac; --faint:#5f7280;
+    --accent:#2bb6cc; --accent-soft:#2bb6cc1f;
+    --confirmed:#4cb884; --alive:#e0a63c; --built:#6c9be0; --elim:#63737f; --elim-bg:#63737f24;
+    --shadow:0 1px 2px #0006, 0 8px 26px #0004;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef1f4; --panel:#ffffff; --panel-2:#f6f8fa; --line:#d9dee4;
+    --ink:#18222b; --muted:#5f6f7d; --faint:#8b9aa6;
+    --accent:#0e8fa6; --accent-soft:#0e8fa61a;
+    --confirmed:#2f8f63; --alive:#c07d15; --built:#3f6fb0; --elim:#93a1ac; --elim-bg:#93a1ac1f;
+    --shadow:0 1px 2px #1a26310f, 0 6px 20px #1a26310a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);}
+  .wrap{max-width:1160px;margin:0 auto;padding:28px 22px 60px;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  h1{font-size:clamp(24px,3.4vw,34px);line-height:1.08;letter-spacing:-.02em;margin:.28em 0 .1em;text-wrap:balance;font-weight:680;}
+  .lede{color:var(--muted);max-width:64ch;font-size:15px;margin:0;}
+  .masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:26px;}
+  .stamp{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:right;line-height:1.7;white-space:nowrap;}
+  .stamp b{color:var(--muted);font-weight:600;}
+  .stamp a{color:var(--accent);text-decoration:none;}
+
+  .needles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px;}
+  @media(max-width:820px){.needles{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.needles{grid-template-columns:1fr}}
+  .needle{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;box-shadow:var(--shadow);}
+  .needle .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .needle .big{font-family:var(--mono);font-size:28px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15;margin-top:4px;}
+  .needle .big.good{color:var(--confirmed)}
+  .needle .big.attn{color:var(--alive)}
+  .needle .big.info{color:var(--accent)}
+  .needle .big.count{color:var(--built)}
+  .needle .sub{font-size:12px;color:var(--muted);margin-top:7px;min-height:2.6em;}
+
+  section{margin-bottom:34px;}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;}
+  .sec-head .n{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+  .sec-head h2{font-size:16px;letter-spacing:-.01em;margin:0;font-weight:680;white-space:nowrap;}
+  .sec-head .rule{flex:1;height:1px;background:var(--line);}
+  .sec-note{color:var(--muted);font-size:13px;max-width:76ch;margin:0 0 16px;}
+  .sec-note.caveat{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 14px;color:var(--ink);}
+
+  .feed{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;}
+  .frow{display:grid;grid-template-columns:96px 1fr 130px;gap:14px;align-items:start;padding:12px 18px;}
+  @media(max-width:680px){.frow{grid-template-columns:1fr;row-gap:6px}}
+  .frow + .frow{border-top:1px solid var(--line);}
+  .frow .fid{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .frow .fwhat{font-size:13px;color:var(--ink);}
+  .frow .fwhat .fclaim{font-family:var(--mono);font-size:11px;color:var(--faint);display:block;margin-top:2px;}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap;justify-self:end;}
+  .pill.resolved{background:var(--confirmed)1c;color:var(--confirmed);}
+  .pill.active{background:var(--accent-soft);color:var(--accent);}
+  .pill.parked{background:var(--alive)1c;color:var(--alive);}
+  .pill.stalled{background:#b0464618;color:#c05a5a;}
+  .pill.attn{background:var(--alive)1c;color:var(--alive);}
+  .pill.neutral{background:var(--elim-bg);color:var(--elim);}
+
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow);}
+  .card .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px;}
+  .card .cid{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);}
+  .card .cn{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--built);}
+  .card .cnote{font-size:12.5px;color:var(--muted);margin-top:6px;}
+
+  .synth{margin:0 0 12px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:13.5px;}
+  .synth b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;}
+  .synth.attn{border-left-color:var(--alive);background:var(--alive)14;}
+  .synth.attn b{color:var(--alive);}
+  .synth.good{border-left-color:var(--confirmed);background:var(--confirmed)14;}
+  .synth.good b{color:var(--confirmed);}
+  .synth p{margin:0;color:var(--ink);}
+  .synth p + p{margin-top:8px;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  thead th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600;padding:10px 14px;background:var(--panel-2);border-bottom:1px solid var(--line);}
+  tbody td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:var(--panel-2);}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;}
+  td.id{font-family:var(--mono);font-weight:600;white-space:nowrap;}
+
+  ul.plain{list-style:none;margin:0;padding:0;max-width:78ch;}
+  ul.plain li{position:relative;padding-left:16px;margin-bottom:9px;font-size:13.5px;color:var(--ink);}
+  ul.plain li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:1px;background:var(--accent);}
+  ul.plain li b{color:var(--ink);}
+  code{font-family:var(--mono);font-size:.92em;background:var(--panel-2);padding:1px 5px;border-radius:3px;}
+
+  .foot{color:var(--faint);font-size:12px;font-family:var(--mono);text-align:center;margin-top:40px;line-height:1.9;border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--accent);text-decoration:none;}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">REE_assembly &middot; project health</div>
+      <h1>Project Insights</h1>
+      <p class="lede">Experiment iteration patterns, error recurrence, substrate bottlenecks, governance backlog, and literature coverage &mdash; generated by <code>/dual-insights</code>.</p>
+    </div>
+    <div class="stamp">
+      generated <b>2026-08-08T08:57:39Z</b><br>
+      fixed against <b>REE_assembly 2047b759a4</b><br>
+      companion: <a href="/dual-insights-report">Dual-System Insights &rarr;</a>
+    </div>
+  </header>
+
+  <div class="needles">
+    <div class="needle">
+      <div class="tag">Error rate (30d)</div>
+      <div class="big good">0.36%</div>
+      <div class="sub">281 classified runs &middot; upper bound 2.44% incl. 6 unclassified phantom completions</div>
+    </div>
+    <div class="needle">
+      <div class="tag">Stalled chains</div>
+      <div class="big good">0 / 58</div>
+      <div class="sub">10 largest high-iteration chains checked; 3 ambiguous ones passed the full liveness check</div>
+    </div>
+    <div class="needle">
+      <div class="tag">Open governance decisions</div>
+      <div class="big attn">2</div>
+      <div class="sub">MECH-074d (discussing) &middot; SD-033e (pending_user) &mdash; both touched by this morning's cycle</div>
+    </div>
+    <div class="needle">
+      <div class="tag">v3_pending claims</div>
+      <div class="big count">235</div>
+      <div class="sub">re-verified after today's 08:56Z governance index rebuild</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="n">Experiment health</span><h2>10 largest high-iteration chains &mdash; none stalled</h2><span class="rule"></span></div>
+    <p class="sec-note">58 chains hit 3+ lettered iterations in the last 30 days. Every one of the 10 largest (8+ letters) was traced to a terminal resolution, an explicit documented park, or an active, already-owned campaign.</p>
+    <div class="feed">
+      <div class="frow"><span class="fid">EXQ-603</span><span class="fwhat">18 iterations &middot; escape-affordance-bridge<span class="fclaim">SD-059, MECH-358</span></span><span class="pill resolved">resolved &middot; supports</span></div>
+      <div class="frow"><span class="fid">EXQ-460</span><span class="fwhat">15 iterations &middot; closure-commit-entry<span class="fclaim">SD-034, MECH-260/261</span></span><span class="pill resolved">resolved &middot; PASS</span></div>
+      <div class="frow"><span class="fid">EXQ-485</span><span class="fwhat">17 manifests / 14 letters &middot; OFC analog, active via EXQ-696<span class="fclaim">SD-033b, MECH-263</span></span><span class="pill active">active</span></div>
+      <div class="frow"><span class="fid">EXQ-543</span><span class="fwhat">19 manifests / 12 letters &middot; F-dominance ceiling cluster, active through EXQ-857a<span class="fclaim">ARC-062, MECH-309</span></span><span class="pill active">active</span></div>
+      <div class="frow"><span class="fid">EXQ-418</span><span class="fwhat">16 manifests / 11 letters &middot; z_world cross-context separation not yet satisfied<span class="fclaim">SD-016</span></span><span class="pill parked">parked &middot; precondition</span></div>
+      <div class="frow"><span class="fid">EXQ-514</span><span class="fwhat">11 iterations &middot; drive coupling, no longer pending<span class="fclaim">MECH-436, SD-049 Ph.2</span></span><span class="pill resolved">resolved &middot; supports</span></div>
+      <div class="frow"><span class="fid">EXQ-654</span><span class="fwhat">10 iterations &middot; F-dominance ceiling cluster member<span class="fclaim">ARC-062, MECH-309</span></span><span class="pill active">active</span></div>
+      <div class="frow"><span class="fid">EXQ-689</span><span class="fwhat">10 iterations &middot; F-dominance ceiling cluster member<span class="fclaim">MECH-448, MECH-449</span></span><span class="pill active">active</span></div>
+      <div class="frow"><span class="fid">EXQ-569</span><span class="fwhat">8 iterations &middot; top-k shortlist conversion, ceiling lifted<span class="fclaim">ARC-065</span></span><span class="pill resolved">resolved &middot; supports</span></div>
+      <div class="frow"><span class="fid">EXQ-445</span><span class="fwhat">11 manifests &middot; DACC, active via dacc-cluster-862a-870a autopsy<span class="fclaim">SD-032b</span></span><span class="pill active">active</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Substrate bottlenecks</span><h2>Top failure-record entries</h2><span class="rule"></span></div>
+    <p class="sec-note caveat"><b style="font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:4px">Data-quality note</b>substrate_queue.json's structured <code>implementation_status</code> field is unpopulated on 83 of 146 entries &mdash; including several whose free-text status already says "implemented"/"validated". Treat any "ready SD" count as an upper bound, not a build list.</p>
+    <div class="cards">
+      <div class="card"><div class="ch"><span class="cid">scaffolded_sd054_onboarding</span><span class="cn">28</span></div><div class="cnote">Implemented; readiness flipped true 2026-06-11.</div></div>
+      <div class="card"><div class="ch"><span class="cid">f_dominance_conversion_ceiling</span><span class="cn">26</span></div><div class="cnote">Largest in the file &mdash; <b>not a build gap</b>: arbitration-reweighting route exhausted (709/711/713), no new build owed. See Dual-System Insights.</div></div>
+      <div class="card"><div class="ch"><span class="cid">modulatory-bias-selection-authority</span><span class="cn">15</span></div><div class="cnote">Implemented, resolved via ARC-065 / EXQ-569i.</div></div>
+      <div class="card"><div class="ch"><span class="cid">ARC-062</span><span class="cn">11</span></div><div class="cnote">Implemented; active validation campaign (EXQ-543 lineage), not a build gap.</div></div>
+      <div class="card"><div class="ch"><span class="cid">MECH-256</span><span class="cn">10</span></div><div class="cnote">Blocked on MECH-269.</div></div>
+      <div class="card"><div class="ch"><span class="cid">v4_loop_segregation</span><span class="cn">10</span></div><div class="cnote">Implemented; text reads "V3_CLOSURE_REQUIRED&hellip; PROMOTES_NOTHING."</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Governance state</span><h2>Backlog is effectively caught up</h2><span class="rule"></span></div>
+    <table>
+      <thead><tr><th>Signal</th><th>Value</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="id">v3_pending claims</td><td class="num">235</td><td>re-verified after today's index rebuild</td></tr>
+        <tr><td class="id">Open promotion/demotion decisions</td><td class="num">2</td><td>MECH-074d (discussing), SD-033e (pending_user) &mdash; both fresh</td></tr>
+        <tr><td class="id">Evidence superseded (rework)</td><td class="num">76</td><td>manifests flagged <code>evidence_direction: superseded</code></td></tr>
+        <tr><td class="id">pending_review.md</td><td class="num">0</td><td>cleared by this morning's governance cycle</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Literature coverage</span><h2>No priority-1 gaps open</h2><span class="rule"></span></div>
+    <ul class="plain">
+      <li><b>0</b> of 3 literature-needed backlog items are priority <code>high</code>.</li>
+      <li>Open items: <b>MECH-467</b> (in_progress), <b>MECH-480</b> (in_progress), <b>Q-019</b> (covered).</li>
+      <li>4 new <code>targeted_review_*</code> directories landed today (2026-08-08): <code>mech_428</code>, <code>mech_471</code>, <code>q_091</code>, <code>q_090</code>.</li>
+      <li>Recently commissioned: ARC-005 and the E1 forward-model rollout-consistency review (2026-08-03/08-05).</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Human-intervention patterns</span><h2>Gates are passing smoothly</h2><span class="rule"></span></div>
+    <ul class="plain">
+      <li><b>/failure-autopsy</b> always pauses at a user-confirmation gate (Step 8) &mdash; every sampled autopsy this week was confirmed without revision.</li>
+      <li><b>/governance</b> requires Step 2/3 user decisions &mdash; today's cycle logged 16 <code>pending_user</code> decisions and closed all but 2 in the same session.</li>
+      <li><b>Low-friction, headless-safe:</b> <code>/lit-pull</code> and IGW-automated (<code>igw-auto-*</code>) sessions completed with no user gate in every sampled instance.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Recommendations</span><h2>Fixed against REE_assembly 2047b759a4</h2><span class="rule"></span></div>
+    <div class="synth attn">
+      <b>1 &middot; Resolve the two open governance decisions</b>
+      <p><code>MECH-074d</code> (demote_to_candidate, discussing) and <code>SD-033e</code> (hold_pending_v3_substrate, pending_user) are the entire current decision backlog, both touched by this morning's cycle &mdash; a live, small, well-scoped ask, not aged debt.</p>
+    </div>
+    <div class="synth">
+      <b>2 &middot; Backfill substrate_queue.json's implementation_status field</b>
+      <p>83 of 146 entries show <code>None</code> even though some of the highest-failure-record entries in that set are demonstrably already built &mdash; a future <code>/implement-substrate</code> prioritization pass trusting only the structured field would be misled. Data-hygiene finding, not a build recommendation.</p>
+    </div>
+    <div class="synth good">
+      <b>3 &middot; No literature-coverage action needed this cycle</b>
+      <p>0 open priority-1 items, 2 in-progress with active recent lit-pulls &mdash; the backlog looks caught up rather than gapped.</p>
+    </div>
+    <p class="sec-note">No experiment or substrate-build recommendation is made from the high-iteration chains this run &mdash; all 10 largest were traced to a terminal resolution, a documented park, or an active owned campaign; none passed the liveness check as genuinely stalled or unowned.</p>
+  </section>
+
+  <div class="foot">
+    generated by <code>/dual-insights</code> &middot; REE_assembly on <code>origin/master</code> &middot; commit <code>2047b759a4</code><br>
+    companion: <a href="/dual-insights-report">Dual-System Insights &rarr;</a> &middot; source: <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/insights_report.md">insights_report.md</a>
+  </div>
+</div>
