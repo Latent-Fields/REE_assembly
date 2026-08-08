@@ -5419,11 +5419,37 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-010
     - ARC-005
     - ARC-006
   location: docs/architecture/social.md#mech-051
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires (a) a multi-agent relational substrate with a
+    per-other-agent state variable R_{self,j} distinguishing specific detected agents j
+    -- this is the ARC-010 dependency, confirmed absent from ree_core/ (zero hits for
+    mirror_model, shadow_bundle, other_self, a 4th independent confirmation this
+    campaign) -- and (b) a mode-prior control plane that can be biased PER TARGET AGENT
+    rather than globally. ARC-005 exists and is active, but its mode_prior mechanism
+    today (ree_core/amygdala/cea.py) is a single generic threat/salience channel with no
+    per-agent addressing. Without (a), there is no object for "agent j" to attach a
+    relational distance to -- the claim collapses into "arousal/valence exists," already
+    covered by existing ARC-005/ARC-046 machinery. Zero hits anywhere in ree-v3/ for
+    relational_topology, relational_distance, pair_bond, oxytocin, or vasopressin.
+
+    CONFIRMING: once ARC-010 lands, a per-agent, bidirectional, dissociable effect --
+    affiliative signal toward a specific agent j lowers R_{self,j} and raises bonding-
+    mode prior/shared-reward weighting specifically for trajectories involving j, while
+    leaving R_{self,k} for other agents k unchanged; a boundary-threat signal from a
+    different agent m raises R_{self,m} and defensive-mode prior specifically toward m,
+    without generalizing to j.
+
+    FALSIFYING: bonding/defense behavior is fully explained by the existing generic
+    threat/salience mode_prior channel applied uniformly regardless of which agent
+    triggered it -- no per-agent relational-distance state does any work, and collapsing
+    all agents into a single scalar threat/affiliation signal reproduces the same
+    mode-prior shifts.
   source:
     - docs/thoughts/2026-02-11_oxytocin_vasopressin.md
 - id: MECH-052
@@ -5436,11 +5462,36 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-010
     - MECH-051
     - MECH-048
   location: docs/architecture/social.md#mech-052
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires ARC-010 (confirmed absent from ree_core/),
+    MECH-051 (oxytocin/vasopressin relational topology, supplying BondStrength_j and
+    relational distance R_{self,j} -- itself substrate_conditional, digested this same
+    wave), and MECH-048 (mu/kappa stability overlays, currently provisional) promoted --
+    plus an actual care-investment weight C_j implemented in the control plane
+    (w_j ~ C_j * (1 - R_{self,j})) and a testbed presenting a sustained caregiving-type
+    goal/relationship competing against short-term reward under delayed payoff, resource
+    scarcity, or asymmetric exchange. Zero hits anywhere in ree-v3/ for prolactin,
+    care_invest, care_weight, or persistence_gain -- pure documentation-stage mechanism.
+
+    CONFIRMING: an agent with the prolactin-analogue persistence term active (C_j decay
+    slowed per alpha_P * BondStrength_j - beta * Decay) continues investing resources/
+    attention in a caregiving-type relationship for LONGER, with greater resistance to
+    defecting toward a competing higher-immediate-reward option, than an otherwise-
+    matched agent with the persistence term ablated -- across delayed-reward, resource-
+    cost, and asymmetric-exchange conditions.
+
+    FALSIFYING: C_j decays at the same rate or faster in the prolactin-analogue-active
+    agent as in the ablated control under matched conditions. Also falsifying: activating
+    the persistence term produces indiscriminate stickiness -- uniformly high C_j
+    regardless of BondStrength_j -- rather than differential persistence keyed to
+    established bonds, contradicting the claimed division of labor (oxytocin creates
+    closeness, prolactin sustains care where closeness already exists).
   source:
     - docs/thoughts/2026-02-11_prolactin.md
     - docs/thoughts/2026-02-25_task_loop_extraction_and_latent_field_ethics.md
@@ -5536,12 +5587,78 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: standard
   depends_on:
     - ARC-005
     - MECH-048
     - MECH-054
     - MECH-035
   location: docs/architecture/control_plane.md#mech-055
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires each of the three named axes independently
+    computable and independently perturbable -- (a) hedonic-stability (mu/kappa
+    overlays), (b) VALENCE vector components with non-zero cross-candidate variance on
+    >=2 components simultaneously, (c) signed PE precision from a genuine forward-model-
+    based precision-weighted PE on BOTH harm and benefit sides. CONFIRMED CURRENT STATE
+    (2026-08-08): (a) PARTIALLY MET -- mu now reaches both mode-prior temperature and
+    threshold (SD-032d, 2026-07-21), V3-EXQ-799 confirmed non-degenerate internal
+    variance (1.105 nats between coupling states); downstream behavioural legibility gap
+    is separate and doesn't block a representational-level test. (b) representationally
+    real (VALENCE_COMPONENTS, ree_core/residue/field.py) but experimentally untested
+    (MECH-035 records no prior run as of 2026-08-06). (c) NOT MET per MECH-054's 2026-08-08
+    finding -- only the harm-side channel is real/precision-tracked; no benefit-side
+    analogue exists. Consequence: the full three-axis-with-harm/benefit-duality test
+    cannot yet run; a narrower two-axis-plus-harm-only test CAN run now and should
+    self-route substrate_not_ready if attempted as a verdict on the full claim before the
+    benefit-side channel lands.
+
+    COLLAPSE-RISK CHECK (new finding, 2026-08-08): before any distinctness test is
+    credited, it must rule out a specific risk -- REE carries TWO harm-related
+    representations downstream of the same z_harm_s/z_harm_a signal:
+    VALENCE_HARM_DISCRIMINATIVE (residue-field tag, axis 2) and the DACC-consumed harm
+    forward-model PE (axis 3). Nothing currently shows these carry independent variance
+    rather than being one collapsed harm scalar wearing two labels -- the same failure
+    class MECH-048 hit before its 2026-07-21 fix (an arithmetic identity mistaken for a
+    measurement). A test showing these merely live in different variables, without
+    showing independent variance under a manipulation that perturbs one without the
+    other, has not established distinctness.
+
+    CONFIRMING: under the two-axis-plus-harm-only test, manipulations targeting each axis
+    individually produce measurable, non-degenerate effects on that axis's own documented
+    downstream role WITHOUT matched lockstep effects on the other axes -- no single
+    upstream perturbation moves all measured axes in a fixed, predictable ratio.
+    Separately, VALENCE_HARM_DISCRIMINATIVE and the DACC harm-PE show measurably
+    different variance/timing signatures under a manipulation that decouples their
+    upstream sources, ruling out the collapsed-harm-scalar case above.
+
+    FALSIFYING: (i) any two axes move in a fixed, predictable ratio under manipulations
+    designed to perturb only one; (ii) VALENCE_HARM_DISCRIMINATIVE and the harm-side
+    forward-model PE are numerically redundant (correlation ~1) under a decoupling
+    manipulation; (iii) once built, the benefit-side signed-PE channel requires being
+    driven by or sharing state with VALENCE_WANTING/LIKING to train or stabilize,
+    mirroring MECH-054's own falsifier (c).
+
+    NAMING NOTE: REE's "hedonic tone" (mu/kappa) is NOT the standard affective-
+    neuroscience hedonic-tone/valence distinction -- it functions as a control-plane
+    stability/inertia regulator (softmax-temperature modulator), not a content-bearing
+    affect quale. The real hedonic-impact-like content (Berridge wanting/liking) lives
+    inside the VALENCE vector (axis 2), not axis 1.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): the MECH-043/054/002/055 precision-
+    channel taxonomy synthesis flagged in MECH-054's digestion is reinforced here --
+    MECH-035's VALENCE vector also carries harm-adjacent (HARM_DISCRIMINATIVE) and
+    benefit-adjacent (WANTING/LIKING) components that sit conceptually on top of the same
+    signals MECH-054/055 assign to "signed PE precision." A synthesis pass should map
+    MECH-002 -> MECH-043 -> MECH-054 -> MECH-035 -> MECH-055 explicitly and resolve
+    whether VALENCE_HARM_DISCRIMINATIVE is a redundant readout of the DACC harm signal or
+    a genuinely independent channel -- undocumented either way as of this pass.
+
+    CATEGORY JUDGMENT CALL: epistemic_category is set to standard for consistency with
+    sibling MECH-054's treatment of the same underlying substrate gap (see MECH-054's own
+    what_would_answer). A stricter reading -- since this claim's own wording requires the
+    harm/benefit duality inside axis 3, and that duality's benefit half is architecturally
+    absent -- could defensibly argue substrate_conditional instead; flagged for governance
+    to revisit if the stricter reading is preferred.
   source:
     - docs/architecture/control_plane.md
 # JEPA flags removed 2026-02-26 — residue trajectory placement is REE-native.
@@ -9312,12 +9429,60 @@
       from: "decision:MECH-075@2026-04-03T22:00:00Z"
       as_of: 2026-04-03
       verdict: hold_candidate_resolve_conflict/applied
+  epistemic_category: standard
   depends_on:
     - Q-019
     - ARC-021
     - MECH-043
     - MECH-073
   location: docs/architecture/valenced_hippocampal_map.md#mech-075
+  what_would_answer: >
+    DORSAL LEG (LC-mediated arousal gain on spatial/planning terrain): NON-DEGENERACY
+    PRECONDITION (both required, checked as a manipulation check BEFORE any behavioral
+    comparison) -- (a) SIGNAL MAGNITUDE: the novelty/arousal signal must clear the
+    empirically-established detection floor; three prior attempts (EXQ-192a x2, EXQ-230
+    x2) all measured 5e-5-1.2e-4, below the 1e-4/0.01 thresholds -- confirm the corrected
+    design produces a signal an order of magnitude above that before interpreting any
+    downstream metric. (b) ANATOMICAL TARGETING: the probe must instrument a genuinely
+    LC-sourced signal, NOT the generic E1-world-prediction-MSE -> CEM-noise-scaling
+    channel reused by all three prior attempts -- EXQ-230's own docstring names this
+    conflation ("LC-VTA novelty loop") without resolving it; no ree_core/ module
+    currently implements an LC-specific pathway distinct from the VTA/dopamine-labeled
+    channel. (c) TERRAIN: must be genuinely dorsal-HPC/spatial-planning, not generic
+    grid-exploration confoundable with undifferentiated curiosity/noise-floor machinery
+    (MECH-313, MECH-471).
+
+    CONFIRMING (dorsal): with (a)-(c) cleared, hippocampal attractor basin width/
+    trajectory diversity on dorsal terrain widens under high-LC-arousal vs low, >=2/3
+    seeds, exceeding a pre-registered effect-size floor.
+
+    FALSIFYING (dorsal): signal clears the detection floor and is confirmed LC-sourced
+    (precondition genuinely met) but produces no measurable widening of dorsal attractor
+    dynamics. This would be the first result actually falsifying the dorsal leg -- all
+    three prior FAILs failed on the precondition itself and are uninformative about the
+    mechanism.
+
+    VENTRAL LEG (VTA-mediated RPE/reinforcement gain on motivational/affective terrain):
+    UNTESTED. All three prior attempts instrumented dorsal-HPC terrain with a VTA/RPE-
+    shaped signal -- the wrong axis pairing -- never the ventral leg on its own terms.
+    NON-DEGENERACY PRECONDITION: a live-computed VTA-RPE signal must demonstrably reach
+    ventral-HPC-analog/motivational-valence terrain (MECH-073's valence-intrinsic map,
+    MECH-043's dopamine precision-weighting) above whatever detection floor that terrain
+    requires (likely different from the dorsal 1e-4 floor, not yet empirically
+    established).
+
+    CONFIRMING (ventral): attractor basin width on ventral/motivational terrain narrows
+    under high-VTA-RPE-reinforcement-gain vs low, >=2/3 seeds, exceeding a pre-registered
+    effect-size floor.
+
+    FALSIFYING (ventral): RPE signal clears its detection floor but produces no
+    measurable ventral attractor-width modulation.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): the corrected, axis-specific retest
+    EXQ-230's own docstring all but named has never been queued -- over four months since
+    the 2026-04-03 FAIL and 2026-04-02 anatomical correction. Two missing experiments, a
+    dorsal-leg probe (fixing signal magnitude + genuine LC instrumentation) and a
+    ventral-leg probe (never attempted), are chip candidates for /queue-experiment.
   source:
     - docs/architecture/valenced_hippocampal_map.md
   notes: >
@@ -9760,6 +9925,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-005
     - ARC-007
@@ -9767,6 +9933,45 @@
     - INV-019
     - INV-024
   location: docs/architecture/neuromodulatory_control_planes.md#mech-083
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires a continuous ACh-analogue plasticity-gain
+    parameter in ree_core, distinct from the binary hypothesis_tag gate, causally read at
+    hippocampal write time (ree_core/hippocampal/module.py, ree_core/residue/field.py)
+    and continuously modulating write/accumulation strength. Currently FAILS: ree_core
+    contains zero occurrences of "acetylcholine"; the only write gate at these sites is
+    the boolean hypothesis_tag (MECH-094). MECH-094's own notes name this exact gap and
+    point to a "candidate implementation" (MECH-249, continuous ACh/NE state variable)
+    that is itself unbuilt and status: candidate. Until a scalar ACh-gain channel exists
+    and is wired to write strength, no non-degenerate experiment can distinguish
+    "continuous gain" from "binary gate."
+
+    CONFIRMING: once built, sweeping the ACh-gain parameter across a continuous range
+    during otherwise-identical replay/rehearsal trajectories produces a monotonic dose-
+    response in map-update magnitude (residue accumulation, MECH-076 basin-steepness
+    change) -- not a step function -- and specifically that high-gain retrieval of a
+    stuck/looping rollout produces a measurably deeper attractor basin than low-gain
+    retrieval of the same rollout (the OCD-relevant failure mode this claim's own notes
+    predict).
+
+    FALSIFYING: (a) once built, the gain parameter's dose-response is effectively
+    bimodal/step-shaped (writes occur at ~full strength or ~zero with no graded
+    intermediate regime) -- falsifies the "continuous, not binary" component
+    specifically, even though durable-write/rehearsal separation (INV-019) may still
+    hold. (b) the binary hypothesis_tag gate is found sufficient to explain the
+    separation with no unexplained residual variance -- as INV-019's own wave-15 audit
+    already found for the E1/simulate() pathway (V3-EXQ-499/633/880 PASS via
+    hypothesis_tag alone) -- which would falsify this claim's requirement of a
+    CONTINUOUS ACh mechanism as architecturally necessary, without falsifying ACh's
+    biological plausibility or INV-019's coarser separation claim.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): MECH-083 and MECH-249 look like an
+    unmerged near-duplicate pair -- both propose "ACh as continuous hippocampal-write-
+    gain parameter, replacing a binary switch," registered a month apart (2026-03-15 vs
+    2026-04-16), never cross-referenced in claims.yaml, both still candidate with no
+    substrate. MECH-249 is the broader claim (adds NE, spans multiple action-modes);
+    MECH-083 is the narrower hippocampal-specific case tied to INV-019/INV-024. Worth a
+    governance pass to either cross-reference them or fold MECH-083 into MECH-249 as the
+    hippocampal-specific sub-case.
   source:
     - docs/architecture/neuromodulatory_control_planes.md
   notes: >
