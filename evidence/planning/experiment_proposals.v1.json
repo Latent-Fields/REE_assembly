@@ -3212,7 +3212,11 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
+      "executed_by": "V3-EXQ-897",
+      "executed_queue_id": "V3-EXQ-897",
+      "executed_run_id": "v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3",
+      "executed_note": "Objective already satisfied by a pre-existing run, NOT spawned by this proposal. V3-EXQ-897 (ran 2026-08-08T10:05Z) is exactly the discriminative support-vs-ablation pair EXP-0114 asks for: ARM_EVENT_CE_ON vs ARM_EVENT_CE_OFF, 3 matched shared seeds (42/43/45), pre-registered thresholds (frozen-probe decodability margin floor 0.05, ON-OFF delta 0.030, majority-2-of-3), validated positive control (hazard_in_view), encoder-trained precondition met, tags SD-009 -- satisfies every acceptance_check. Outcome FAIL / evidence_direction unknown (interpretation label sd009_event_ce_effect_inconclusive; 3/3 seeds OFF>=ON, sign-consistent weak-negative for the marginal event-CE head layered on SD-070, below the pre-registered weakens bar). Fully autopsied and user-confirmed 2026-08-08 (failure_autopsy_V3-EXQ-897_2026-08-08.md): disposition standard/unknown, no SD-009 status change; first genuine experimental-evidence entry SD-009 receives under the current indexer. The autopsy EXPLICITLY recommends NO /queue-experiment (or /implement-substrate, /diagnose-errors, /lit-pull-commission) routing. Re-queuing another discriminative pair would be redundant compute contradicting a ratified disposition (GOV-REUSE-1: the decisive readout is already recorded on the current substrate). Disposed (no new experiment queued) by session metaworker-chip-proposal-exp-0114 (chip-proposal-exp-0114), 2026-08-08.",
       "suggested_experiment_type": "claim_probe_sd_009",
       "target_repo": "ree-v3",
       "why_now": [
