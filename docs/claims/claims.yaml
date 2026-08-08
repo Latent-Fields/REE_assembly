@@ -2999,10 +2999,52 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-009
     - ARC-010
   location: docs/architecture/language/emergence_and_bootstrapping.md#mech-010
+  what_would_answer: >
+    Requires three layers of substrate, none of which exist in ree_core/ (2026-08-08).
+    Layer 1 (shared with ARC-009/ARC-010): a multi-agent environment with partial-
+    observability other-agent modelling -- ARC-047's SocialGridWorld is the designated
+    minimal substrate, itself candidate/confidence 0.0/v5-gated, unbuilt. Layer 2: the
+    play_mode substrate this claim's own doc routes language through (INV-058/MECH-194/
+    ARC-049) -- confirmed absent (the only "play_mode" string match in ree_core/ is a
+    false positive, "_diverse_replay_mode_counts"). Layer 3: the basic expression
+    catalog and proto-symbol accretion machinery specific to this claim (play pose,
+    head-tilt, mutual gaze, distress vocalisation, approach cue, vocal mimicry,
+    pointing, negation primitives) -- confirmed absent (zero hits for proto_symbol,
+    basic_expression, negation_primitive, symbol_ground).
+
+    CONFIRMING: once play_mode and a multi-agent substrate exist, an agent trained WITH
+    play_mode-gated bootstrap episodes (bilateral frame-opening via basic-expression
+    channels, conversational violations scored as synthetic z_harm) acquires
+    compositional, socially-grounded communication that generalizes across novel
+    referent combinations, with demonstrative (partner-model-dependent) rather than
+    fixed-token negation. Loss of play_mode availability should degrade this
+    communication while leaving other competencies intact.
+
+    FALSIFYING: (a) an agent given the multi-agent + symbolic-channel substrate WITHOUT
+    play_mode gating still acquires compositional, generalizing communication at
+    comparable rates -- language does not need the play-mode host; (b) an agent WITH
+    play_mode gating fails to bootstrap beyond fixed-token pattern-matching -- play_mode
+    necessary but not sufficient; (c) degrading play_mode leaves communication intact
+    while degrading unrelated play-dependent behaviors -- language is dissociable from
+    play_mode rather than routed through it, falsifying the central architectural claim
+    shared with MECH-308.
+
+    NON-DEGENERACY PRECONDITION: the multi-agent substrate must support genuinely
+    partial observability and >1 independently-optimizing agent (a scripted "partner"
+    cannot test this), and play_mode's synthetic z_goal/z_harm substitution must be
+    independently verified to route real gradient (MECH-194) before any result can be
+    attributed to the play-mode-hosting hypothesis rather than the underlying learning
+    substrate.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): companion claim MECH-308
+    (registered 2026-05-08) duplicates much of this play-mode-as-language-game framing
+    -- worth a governance merge-candidate review to decide which claim should carry it
+    going forward.
   source:
     - docs/processed/legacy_tree/architecture/language/emergence_and_bootstrapping.md
     - docs/thoughts/2026-02-09_language.md
@@ -3379,10 +3421,31 @@
     reading: provisional
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: standard
   depends_on:
     - ARC-007
     - ARC-005
   location: docs/architecture/hippocampal_systems.md#mech-022
+  what_would_answer: >
+    A well-powered successor to V3-EXQ-190 (2026-04-01, FAIL/inconclusive, evidence_direction
+    mixed, 3/5 criteria met -- C1 harm_gap and C2 residue_gap PASSed, C4 data-quality
+    FAILed at 0 harm contacts, underpowered), clearing the data-quality floor (>=10 harm
+    contacts per condition per seed, e.g. by increasing nav_bias or eval episodes as the
+    original manifest itself recommended) and testing whether E3 actually rates
+    hippocampally-injected proposals BETTER than random proposals (C3, the criterion that
+    failed) -- not just whether injection changes harm/residue outcomes (C1/C2, already
+    passed). A design that additionally varies control-plane state directly (rather than
+    a binary injection ON/OFF) would more directly test the "gated by control plane" half
+    of the claim, which the existing probe only proxies via presence/absence of injection.
+
+    CONFIRMING: HYPOTHESIS_INJECTION_ON produces lower harm rate and lower residue
+    accumulation than OFF (C1/C2), AND E3 assigns better (lower) trajectory scores to
+    hippocampally-injected candidates than random ones across all seeds (C3).
+
+    FALSIFYING: under a well-powered redesign, C3 continues to fail -- E3 does not treat
+    hippocampally-injected candidates as higher-value even when data quality is no longer
+    the confound -- weakening the operational claim that hippocampal injection improves
+    the E3 candidate pool, even if C1/C2's directional harm/residue signals hold.
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
 - id: MECH-023
@@ -4162,6 +4225,7 @@
     (4/5 seeds), opposite the predicted sign. Read as non_contributory/measurement_test_design_defect
     (re-operationalize the doing-mode causal-signal DV), not evidence against the claim. Routed to
     /queue-experiment. Stays candidate.
+  epistemic_category: standard
   depends_on:
     - ARC-016
     - ARC-005
@@ -4170,6 +4234,47 @@
     - INV-012
     - ARC-044
   location: docs/architecture/modes_of_cognition.md#mech-025
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: a fair test requires (a) the three instrument defects
+    fixed for V3-EXQ-876 to stay fixed (SelectionResult.committed read, not the stale
+    cache; agent.update_residue() called every eval tick so running_variance is live;
+    well-sampled committed AND uncommitted windows, non-degenerate per seed) AND (b) the
+    doing-mode-delta DV re-operationalized so a negative/null result can be trusted as
+    real rather than an artifact. V3-EXQ-876 (2026-08-02) cleared (a) cleanly but its DV
+    choice is now suspect on two grounds from the claim's own literature: Friston 2013
+    records precision as continuous, not a discrete mode switch, while the harm-
+    counterfactual-gap DV tests a discrete committed-vs-uncommitted split; and Thura &
+    Cisek 2014 predicts CONVERGENCE (narrowing) of premotor/M1 representations during
+    commitment -- the opposite sign from what the DV's C1 criterion assumed. A valid
+    re-operationalization must capture context-dependent precision modulation during
+    genuinely committed episodes without conflating it with a downstream harm-
+    differentiation proxy whose predicted sign the claim's own literature disputes --
+    either by testing the reversed sign directly, or by gating on precision itself
+    (precision_committed_mean vs precision_uncommitted_mean, already recorded in
+    V3-EXQ-876 and separating by 4-5 orders of magnitude in every seed, but never scored
+    as a criterion).
+
+    CONFIRMING: once re-operationalized, HIGH_CAUSAL/committed conditions show a
+    precision lift over LOW_CAUSAL/uncommitted conditions in the predicted direction,
+    exceeding a pre-registered margin (the claim's history sets 0.05 as the prior bar
+    from V2's slope criterion, though a direct precision-ratio criterion should set its
+    own bar given the much larger separation already observed).
+
+    FALSIFYING: even after a GENUINE re-operationalization (not a re-run of the same
+    DV), the result stays flat or wrong-signed under the same non-degenerate
+    preconditions -- this is now a REAL falsification, not a second measurement-defect
+    pass. MECH-025 has already used one "instrument defect, not evidence against"
+    exemption (V3-EXQ-876); a second wrong-sign or null result after the DV itself has
+    been changed to address the sign-mismatch critique should be read as real claim
+    pressure. Distinguish "still a DV problem" from "now genuinely falsified" by whether
+    the new DV's own positive-control gates (precision separation, or whichever direct
+    signal the redesign gates on) clear cleanly: if they clear and the predicted
+    relationship still fails, that is falsification; if the gates themselves fail to
+    clear, that is a substrate/instrument problem warranting a genuine third fix, not
+    accepting the null.
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): the 2026-08-03 autopsy's routing
+    to /queue-experiment for this redesign has not been queued or chipped 5 days later.
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-026
@@ -4199,6 +4304,7 @@
     steady precision) is an open question. Biology suggests the decrement is associated
     with attentional lapses that serve an information-gathering function (exploring vs
     exploiting attention allocation). ARC-044 may subsume this.
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-016
     - ARC-005
@@ -4206,6 +4312,43 @@
     - MECH-161
     - ARC-044
   location: docs/architecture/modes_of_cognition.md#mech-026
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: MECH-161's arousal regulator -- a controller that tunes
+    MECH-093's heartbeat-rate channel (z_beta -> e3_steps_per_tick) to a genuine
+    inverted-U optimum on the LC-NE curve, rather than treating sensitivity as a binary
+    high/low switch -- must be built and confirmed live before this claim is fairly
+    testable. Current state: UNBUILT, not merely untested (MECH-161's controller is
+    described only as something that "could be implemented as" a z_beta-gated
+    controller; no such controller exists in ree_core/). MECH-093's rate-modulation
+    channel itself is confirmed live (V3-EXQ-097b/396b/505 PASS). The two experiments
+    run against MECH-026 to date (V3-EXQ-067, superseded by V3-EXQ-202, FAIL/unknown
+    direction) tested a cruder proxy -- elevated E3 response near a fixed hazard-
+    density/proximity condition -- not a manipulated, regulator-tuned sensitivity level,
+    so they do not constitute a fair test of the claim as stated.
+
+    CONFIRMING: once MECH-161's regulator exists and converges to a stable non-maximal
+    optimum, agents run at that regulator-tuned sensitivity level show measurable
+    restraint (suppressed motor commitment / non-action) co-occurring with elevated
+    detection/precision signal, distinguishable from both passivity (low sensitivity, no
+    restraint-signal) and hypervigilance (sensitivity above the regulator's optimum,
+    where restraint breaks down into false-alarm-driven action, per MECH-027).
+
+    FALSIFYING: once built, the regulator either finds no stable non-maximal optimum
+    (sensitivity and restraint trade off linearly/monotonically), or the tuned regime
+    shows sensitivity and restraint are not actually coupled the way the claim predicts.
+
+    OPEN, NOT RESOLVED HERE: whether a fatigue/vigilance-decrement constraint is
+    informationally relevant (a feature of finite-resource systems worth modelling) or
+    merely a biological limitation REE can dispense with is a genuinely undecided
+    sub-question this claim's own note poses rather than answers. A future test of the
+    core restraint/sensitivity coupling need not wait on it, but the question should be
+    revisited once the regulator itself is built (ARC-044 may subsume it).
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): status: provisional /
+    overall_confidence 0.701 looks lit-heavy rather than substrate-backed
+    (literature_confidence 0.843 vs experimental_confidence 0.275, one FAIL run whose
+    direction is "unknown" and which did not test the mechanism as specified) -- worth a
+    governance look at whether the confidence figure is misleading.
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-027
@@ -66279,6 +66422,30 @@
     - MECH-413   # correction-without-annihilation (consumes the safe base)
     - MECH-414   # love-mediated repair (consumes the safe base)
   location: evidence/planning/loveability_ethical_agency_v5_plan.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires the V5 caregiver/social-learning substrate
+    (INV-043, MECH-158, ARC-024, ARC-047) AND the correction/repair mechanisms MECH-413
+    (correction-without-annihilation) and MECH-414 (love-mediated repair) to exist as
+    built, testable substrate. Confirmed absent (2026-08-08): zero hits anywhere in
+    ree-v3/ for caregiver, correction_without_annihilation, love_mediated_repair,
+    safe_base, loveability, or SocialGridWorld. Deliberately out of scope until V5 --
+    DO NOT build in V3.
+
+    CONFIRMING: agents with stable, personally-applicable internalised care (loveability
+    held as "this applies to me," not merely "care exists in the abstract") integrate
+    correction and post-error repair events without a self-erasure signature -- no
+    collapse of global self-valence, no policy collapse, no catastrophic self-model
+    revision -- that matched agents with absent or unstable/non-personalised loveability
+    DO show under the same correction/error events, holding across repeated episodes and
+    specific to self-referential collapse (MECH-413's "I erred" vs "I am unloveable"
+    separation), not general policy noise.
+
+    FALSIFYING: correction/error integration succeeds equally well regardless of whether
+    loveability is stable and personally-internalised -- some other substrate feature
+    (raw prediction-error tolerance, generic policy-regularisation, reward-shaping alone)
+    does the safe-base work, or no safe-base function is needed at all. Would falsify the
+    structural-prerequisite framing and support treating loveability as enrichment (its
+    pre-thought-intake status) rather than a prerequisite.
   notes: >
     Thought-intake elevates DEV-NEED-017 loveability from self-valence enrichment to a
     STRUCTURAL prerequisite: correction/social-learning/post-error repair integrate
