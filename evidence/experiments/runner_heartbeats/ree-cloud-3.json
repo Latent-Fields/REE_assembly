@@ -1,42 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-08T11:17:08Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-821a",
-  "current_exq_started_utc": "2026-08-08T11:16:48.271598+00:00",
-  "current_title": "MECH-457 H-consummation-binding calibrated re-run (fixes 821 degenerate 14%-of-ceiling install)",
-  "current_claim_id": "MECH-457",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / D3_hazard_free",
-    "runs_done": 5,
-    "runs_total": 15,
-    "episodes_done": 0,
-    "episodes_total": 3000,
-    "overall_pct": 33.3
-  },
-  "seconds_elapsed": 20,
-  "seconds_remaining": 36,
-  "recent_lines": [
-    "MECH-457 GOV-FANOUT-1 H-consummation-binding (821a CALIBRATED re-run) (5 arms x 1 rung [D3_hazard_free] x 3 seeds; rep=raw_view, consummatory=True, ON_budget=3000, install_dose=1200, usable_install_floor=10.0, probe_every=250, eval=20, steps=200; approach_coef=1.0; manipulation=approach_extinguishes_on_contact ONLY)",
-    "Seed 42 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=42 forage/ep=33.35)",
-    "Seed 43 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=43 forage/ep=34.6)",
-    "Seed 44 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=44 forage/ep=34.55)",
-    "Seed 42 Condition D3_hazard_free:greedy_oracle",
-    "verdict: PASS (arm=greedy_oracle seed=42 forage/ep=42.2)",
-    "Seed 43 Condition D3_hazard_free:greedy_oracle",
-    "verdict: PASS (arm=greedy_oracle seed=43 forage/ep=42.85)",
-    "Seed 44 Condition D3_hazard_free:greedy_oracle"
+  "last_tick_utc": "2026-08-08T11:23:33Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-896",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-864",
+      "result": "PASS",
+      "completed_at": "2026-08-01T20:03:59.367887+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "result": "PASS",
+      "completed_at": "2026-08-02T12:13:14.357552+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-866b",
+      "result": "PASS",
+      "completed_at": "2026-08-03T19:24:06.174504+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-888",
+      "result": "PASS",
+      "completed_at": "2026-08-04T07:52:57.551542+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-900",
+      "result": "PASS",
+      "completed_at": "2026-08-08T10:38:46.565176+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 7776,
-  "runner_version": "r4890 d1d2062 2026-08-08",
+  "runner_version": "r4893 0182596 2026-08-08 (running r4892 c0e0ce8)",
   "gpu": {
     "available": false
   },
