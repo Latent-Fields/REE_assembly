@@ -7785,12 +7785,35 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: derivational
   depends_on:
     - INV-029
     - INV-030
   location: docs/invariants.md#inv-032
   source:
     - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
+  what_would_answer: >
+    LEG 1 (DERIVATIONAL): care (INV-029) is orientation TOWARD flourishing -- a
+    directional term. An avoidance-only objective has quiescence as its global optimum
+    whenever action carries harm-risk. CONFIRMING: adding a genuinely independent
+    approach term (not a disguised omission-avoidance) breaks the degenerate optimum.
+    FALSIFYING (of the universal framing): a construction where "avoidance" is broadened
+    to include omission-harm, collapsing the two axes into one -- REE's own M(zeta) is
+    confirmed forward-looking harm-caused cost, not omission-cost, so the axes stay
+    genuinely independent here.
+
+    STRUCTURAL MINIMUM: confirmed met (2026-08-08) -- e3_selector.py::score_trajectory()
+    computes independently-parameterized approach terms (benefit_weight*B,
+    goal_weight*G) and an avoidance term (harm/cost M), retained unreduced (MECH-463).
+
+    BEHAVIORAL CLAIM (flatness under pure avoidance): do NOT re-derive here -- INV-034
+    (emergent_from ARC-030) is already the fully-operationalized REE-specific
+    sharpening, with its own G0-C6 criteria. Currently substrate_ceiling-blocked: G0
+    (FULL arm must forage above RANDOM baseline) failed on both harnesses tried
+    (V3-EXQ-866, V3-EXQ-866a); substrate regression was ruled out (V3-EXQ-866b PASS);
+    the open gap is curriculum/harness (z_goal decay across hazard-only intervening
+    curriculum stages), not a missing mechanism. Track resolution through INV-034/Q-021,
+    not by duplicating its ablation criteria on this claim.
   notes: >
     An architecture capable only of avoidance cannot care -- it can only refrain. Care
     (INV-029) requires orientation toward flourishing, not merely absence of harm. Both drives
@@ -25730,12 +25753,36 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - INV-055
     - INV-058
     - INV-041
     - ARC-049
   location: docs/architecture/developmental_curriculum.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: play-mode substrate confirmed entirely unbuilt
+    (re-verified 2026-08-08, zero hits for play_frame_tag/play_mode/synthetic_z_goal in
+    ree_core/). Two joined predictions: (a) DOMINANCE -- play is the dominant child-phase
+    behavioral mode, measurable once a curriculum scheduler exists; (b) TYPE PROGRESSION
+    -- sensorimotor -> constructive -> pretend -> games-with-rules -> cooperative, each
+    training the next stage's prerequisites. Leg (b) is the same testable content as
+    sibling claim MECH-197 -- cross-reference its ablation design rather than duplicating.
+
+    CONFIRMING: scheduler allocates majority child-phase budget to play absent override,
+    AND skipping an earlier play type produces measurable subsystem-competence deficits
+    in the next type. FALSIFYING: comparable/minority play allocation (dominance clause
+    fails) OR no deficit from skipping/reordering (dependency-order clause fails) --
+    record as demoting the surviving half rather than a binary pass/fail, given the
+    two-part title.
+
+    This claim was deliberately excluded from the 2026-06-07 batch reclassification of
+    the play cluster (invariant_type: emergent flagged for separate governance
+    treatment) and left for a dedicated pass -- this 2026-08-08 digestion is that pass.
+    `pending_substrate_reconfirmation: true` is kept (not cleared) per the INV-055
+    precedent: it tracks whether ARC-049's eventual implementation still matches what
+    this invariant describes, which is moot but not resolvable while the substrate
+    remains unbuilt.
   notes: "The infant phase (INV-055) produces valence map and behavioral repertoire but not goal-pursuit competence. The child phase acquires goal-pursuit competence primarily through play (INV-058). Play type progresses: sensorimotor -> constructive -> pretend -> games-with-rules -> cooperative (MECH-197). Each type requires competencies acquired by the previous type and trains specific subsystems. Sensorimotor play marks the transition out of infancy; peer-level cooperative play marks readiness for adult real-consequence operation. The progression is not optional -- skipping a stage leaves subsystem prerequisites unmet."
 
 - id: MECH-197
@@ -25892,6 +25939,40 @@
     - MECH-201
     - MECH-202
   location: docs/architecture/psychiatric_failure_modes.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: gated on TWO things -- MECH-198's own full precondition
+    (co-activatable hypothesis_tag + play_frame_tag, dose-varied pretend-play curriculum;
+    see MECH-198's own what_would_answer for that build list), AND a further requirement
+    specific to this claim's UNIFYING structure: the same undertrained agents must be
+    scoreable on multiple distinct failure signatures at once (both confusion directions
+    + multiple affected subsystems), not just one aggregate count. Only MECH-094 (agent-
+    internal hypothesis_tag) is built (confirmed 2026-08-08, load-bearing throughout
+    agent.py/amygdala/pfc/hippocampal/predictors); ARC-049 (play_frame_tag), MECH-197/198/
+    200/201/202, and INV-055 are all confirmed unbuilt. No dose-variable pretend-play
+    experiment exists anywhere in the codebase.
+
+    CONFIRMING: within one population of agents varying pretend-play dose (other
+    developmental exposure held constant), the SAME undertrained agents show BOTH
+    confusion directions and a subsystem-degradation pattern that predicts which
+    clinical-analog failure mode dominates for that agent (dissociation, not uniform
+    degradation), plus a dose-response gradient (intermediate dose -> intermediate
+    severity/breadth).
+
+    FALSIFYING: either the base MECH-198 mechanism doesn't hold (pretend-play dose has no
+    measurable effect), OR the resulting failure modes are STATISTICALLY INDEPENDENT
+    across agents (no above-chance co-occurrence) -- falsifies the UNIFIED-ETIOLOGY claim
+    specifically ("different failure signatures of the same mechanism") WITHOUT falsifying
+    any individual downstream mechanism (MECH-200/201/202) on its own, each of which could
+    still independently hold as correct for its own failure mode.
+
+    SCOPE NOTE (preserving this claim's existing domain-modelling carve-out): even a full
+    PASS on the confirming signature above establishes only that REE's own architecture
+    instantiates a common-substrate pattern for these failure signatures -- it does NOT by
+    itself establish that human derealization, delusion, PTSD flashbacks, anxiety, mania,
+    impulsivity, and commitment paralysis share this etiology. That further step requires
+    the domain-modelling assumption already flagged in this claim's notes (that REE's
+    frame-distinction architecture correctly models human developmental frame-distinction)
+    -- a separate, currently unverified premise this claim does not itself test.
   notes: "Reclassified from claim_type: invariant in Session C batch 2026-04-17. Rationale: this is a clinical psychiatric prediction about a shared substrate for human frame-confusion disorders; it holds only conditional on REE correctly modelling human developmental frame-distinction -- a domain-modelling assumption distinct from REE's architectural invariants (per Daniel's 2026-04-17 objection, audit registry INV-061). The REE architecture distinguishes real from synthetic/hypothetical frames via the hypothesis tag (MECH-094, agent-internal) and play frame tag (ARC-049, bilateral). Pretend play (MECH-198) is where these co-operate for the first time. When pretend play is absent or insufficient, the frame-distinction mechanism is undertrained. The resulting adult failure modes are not independent disorders but different failure signatures of the same mechanism, varying by (a) direction of confusion: real->synthetic (derealization cluster, MECH-200) vs synthetic->real (delusion cluster, MECH-201), and (b) affected subsystem: frame tag, commitment gate (MECH-202), or threat evaluation. This provides a unified developmental etiology for conditions that are clinically distinct but architecturally related."
 
 - id: MECH-200
@@ -29818,10 +29899,42 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - INV-028
     - INV-070
     - INV-029
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (two stacked gaps, currently unmet): (1) the multi-agent
+    similarity-inference substrate this whole ethics cluster depends on -- ARC-010 mirror
+    modelling / D_V_j / beta_j similarity weighting -- confirmed absent from ree_core/
+    (zero hits for mirror_model, shadow_bundle, other_self, ARC-010; see ARC-056's
+    2026-08-08 digestion); AND (2) a language or symbolic-communication channel between
+    REE agents, a further-downstream requirement specific to this claim, ALSO confirmed
+    absent -- no dialogue/utterance/message-passing mechanism exists between agents
+    anywhere in ree_core/ (the sole near-hit, cross_stream_binder.py's "communication-
+    through-coherence," describes intra-agent binding between an agent's own latent
+    streams, not inter-agent exchange).
+
+    CONFIRMING: once both exist, introducing a language/dialogue exchange between two REE
+    agents whose similarity-inference (beta_j) has degraded or collapsed measurably
+    RESTORES beta_j / re-establishes self-other equivalence, via the mechanisms this
+    claim's notes specify -- (a) revealing inner states, (b) negotiating threat, (c)
+    repairing misclassification, (d) restoring INV-028 belief, (e) expanding "sufficiently
+    like me" -- in a way a non-language interaction of matched duration and information
+    content does not produce to the same degree.
+
+    FALSIFYING: language exchange shows no differential repair effect on beta_j beyond
+    what an equivalent-duration, equivalent-information non-language interaction produces
+    -- restoration tracks generic interaction time or information exchanged, not the
+    specific linguistic channel this claim assigns the repair work to. This would falsify
+    language-as-similarity-repair-technology specifically, without necessarily falsifying
+    INV-028/070 (interaction of any kind could still repair similarity inference through
+    non-linguistic routes).
+
+    GOVERNANCE FLAG (2026-08-08, not resolved here): INV-072 (which depends on INV-071)
+    will very likely inherit this same category/reasoning when digested -- can reuse this
+    non-degeneracy framing rather than re-deriving.
   notes: >
     The 10th axiom in the extended ethical system (paired with INV-029 love as mechanism).
     Love is the motive/relation; language is the bridge/tool. They are operationally
@@ -56982,6 +57095,45 @@
     as_of: 2026-07-11
     needs_review: false
   registered_utc: "2026-05-17"
+  epistemic_category: derivational
+  what_would_answer: >
+    LEG 1 (DERIVATIONAL, primary): for any signal both self-extinguishing and
+    load-bearing, exactly two resolutions prevent decay -- LOCK or HANDOFF. Pathak 2017
+    ICM = failure instance (neither arm; curiosity signal decays to zero as F
+    consolidates, structure not preserved). Faini 2018 eLife = joint-necessity instance
+    (lock alone is reversible by brief deprivation; handoff via ongoing sensory drive is
+    ALSO required -- lock and handoff are not independently sufficient escape routes but
+    the claim's actual two-arm disjunction). Lyle/Rowland/Dabney 2022 Corollary 1 = formal
+    proof-fragment at the RL level (a sparse/non-stationary outcome target collapses the
+    feature representation to zero for every state, independent of learning rate, unless
+    anchored -- absent a soft lock, the structure provably decays).
+
+    FALSIFYING: a genuine THIRD resolution -- some mechanism that is neither a plasticity
+    lock nor a handoff -- that nonetheless prevents structure decay when a signal meeting
+    both antecedent conditions fades. Must be a structural novelty, not a relabeling.
+
+    NOT A COUNTEREXAMPLE (scope precision, already stated in this claim's own notes):
+    Burda 2019 RND does NOT falsify the invariant -- it makes the novelty signal
+    non-self-extinguishing (fixed random target, decoupled from F's success), escaping
+    the ANTECEDENT (design option (i): avoid self-extinguishing-ness altogether) rather
+    than finding a third way to satisfy the CONSEQUENT once the antecedent holds.
+
+    LEG 2 (SUBSTRATE-EMPIRICAL, secondary, currently NOT testable): via INV-074
+    specialization and MECH-333/334 LOCK-arm instances -- does a signal meeting both
+    antecedent conditions in REE's actual substrate show structure decay absent both
+    lock and handoff, and structure persistence once lock or handoff is engaged? NOT
+    currently active: INV-074's V3 necessity-test cascade (9 iterations, most recently
+    V3-EXQ-655) was terminated by USER DECISION 2026-06-13 as substrate_ceiling -- the
+    substrate cannot currently mount a clean lock-vs-no-lock comparison. MECH-333/334
+    inherit the same substrate_conditional/substrate_ceiling readings; V3 retest is
+    explicitly out of scope, V4-deferred, gated on PLW-1 (decision-to-build), currently
+    BLOCKED. The one substrate result bearing on this leg, V3-EXQ-543g (REE's attempted
+    HANDOFF), is reclassified non_contributory -- see the 2026-08-08 correction appended
+    to this claim's notes below; do not read the notes' "open design fork for 543h" as
+    current. CONFIRMING (leg 2, once testable): decay in a no-lock/no-handoff control arm
+    AND preservation in a lock-engaged or handoff-engaged arm, sign-consistent across
+    >=2/3 seeds. FALSIFYING (leg 2): structure persists in the no-lock/no-handoff control
+    at a rate indistinguishable from the lock/handoff arms.
   specializes_into:
     - INV-074    # the COMPETITIVE special case: decay mechanism = active dominant-pathway
                  # overwriting (Hebbian WTA / heterosynaptic depression); resolution = the
@@ -57079,6 +57231,15 @@
       operational consequence of INV-075 for the 543 lineage.
     - Q-052's F-error-dependence audit is the test of whether MECH-313/314/320 fall
       under INV-075's antecedent at all (option (i) vs (ii)/(iii)).
+
+    CORRECTION (2026-08-08, thought-digestion currency check): the paragraph above
+    describes "the open design fork for 543h" as if pending/future -- this is stale.
+    543h already ran, and the whole 543f/543g/543h cluster was reclassified
+    non_contributory by a confirmed 2026-05-18 failure autopsy (failure_autopsy_V3-EXQ-543h),
+    which also drives ARC-062's status. So 543h is resolved (non_contributory), not an
+    open question, as of this digestion pass. This does not change INV-075's own status
+    or category -- it only corrects what REE's own most concrete substrate test of the
+    claim's consequent currently shows. Original text preserved above for history.
   evidence_quality_note: >
     Registered 2026-05-17. Invariant established by logical exhaustion (user-confirmed:
     no counterexample of a self-extinguishing load-bearing signal that needs neither
