@@ -1,4 +1,4 @@
-# Experiment: v3_exq_155_q015_commit_boundary_minimal_contract_pair
+# Experiment: v3_exq_821a_mech457_consummation_binding
 
 ## What it tests
 
@@ -11,10 +11,5 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_155_q015_commit_boundary_minimal_contract_20260329T191541Z_v3` at `2026-03-29T19:15:41.552203+00:00` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

@@ -1,4 +1,4 @@
-# Experiment: v3_exq_155_q015_commit_boundary_minimal_contract_pair
+# Experiment: v3_exq_894a_mech074d_bla_remap_attribution_selectivity
 
 ## What it tests
 
@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_155_q015_commit_boundary_minimal_contract_20260329T191541Z_v3` at `2026-03-29T19:15:41.552203+00:00` signatures: none
+- `v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3` at `2026-08-08T10:11:57Z` signatures: none
 
 Recurring signatures:
 

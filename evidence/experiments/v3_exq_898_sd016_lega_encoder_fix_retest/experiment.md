@@ -1,4 +1,4 @@
-# Experiment: v3_exq_155_q015_commit_boundary_minimal_contract_pair
+# Experiment: v3_exq_898_sd016_lega_encoder_fix_retest
 
 ## What it tests
 
@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_155_q015_commit_boundary_minimal_contract_20260329T191541Z_v3` at `2026-03-29T19:15:41.552203+00:00` signatures: none
+- `v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3` at `2026-08-08T10:16:31Z` signatures: none
 
 Recurring signatures:
 

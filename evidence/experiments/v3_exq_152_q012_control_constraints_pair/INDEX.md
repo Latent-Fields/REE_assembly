@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_152_q012_control_constraints_pair
 
-Generated: `2026-08-08T08:54:07.911995Z`
+Generated: `2026-08-08T14:33:18.636769Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-08-08T08:54:07.911995Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_152_q012_control_constraints_20260329T132030Z_v3` | `2026-03-29T13:20:30Z` | UNKNOWN | - | - | - | - | [`summary`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/summary.md) / [`manifest`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/manifest.json) / [`metrics`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/metrics.json) |
+| `v3_exq_152_q012_control_constraints_20260329T132030Z_v3` | `2026-03-29T13:20:30.243734+00:00` | **FAIL** | ree_full_mean_harm_final=10.97833<br>ree_full_mean_contrast_final=0.085106<br>ree_full_mean_harm_variance=0.004333<br>predictive_only_mean_harm_final=10.97833<br>predictive_only_mean_contrast_final=0 | - | - | - | [`summary`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/summary.md) / [`manifest`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/manifest.json) / [`metrics`](runs/v3_exq_152_q012_control_constraints_20260329T132030Z_v3/metrics.json) |

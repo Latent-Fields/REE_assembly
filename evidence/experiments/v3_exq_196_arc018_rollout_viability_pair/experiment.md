@@ -13,6 +13,7 @@
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `v3_exq_196_arc018_rollout_viability_pair_20260404T164611Z_v3` at `2026-04-04T16:46:11.896259+00:00` signatures: none
+- `v3_exq_196_arc018_rollout_viability_pair_20260401T195627Z_v3` at `2026-04-01T19:56:27.246410+00:00` signatures: none
 
 Recurring signatures:
 
