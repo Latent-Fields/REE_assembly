@@ -350,10 +350,27 @@ Investigated against the substrate:
 
 This is substantial (a new ree_core pathway + likely a new MECH claim), not a knob change. It should be built via `/implement-substrate`, then its coupling validated -- which also subsumes the review's proposed **V3-EXQ-906d** (defensive-availability probe): 906d tested whether the *existing* suffering-driven freeze is appropriately selected; the real answer is that the *anticipatory* defensive chain does not exist yet and needs building first.
 
+### 11e. Post-orient action menu: fight / flight / freeze / fawn -- and recruit ≠ fawn (user, 2026-08-09T17:46Z; RECORD for later)
+
+After fright -> fast interrupt -> orient, humans sometimes branch into the familiar defensive set **fight / flight / freeze / fawn**. Step 5 above only named approach / withdraw / resume -- a solo-organism subset. The fuller post-identification menu, for when social substrate exists:
+
+| Branch | Function | REE mapping (provisional) |
+|--------|----------|---------------------------|
+| **Freeze (hold)** | buy time while unknown / still insufficiently identified | steps 2-4 (phasic freeze until epistemic sufficiency) |
+| **Flight** | withdraw from identified threat | dread -> withdraw (step 5) |
+| **Fight** | approach-as-defense / confront | not yet in the 11b chain; later defensive-approach under resolved threat |
+| **Fawn** | *appease the threat source* (submit, placate, stay attached to aggressor to reduce harm) | closer to loveability/repair failure modes (punishment-avoidance appeasement) than to calling for help; see loveability plans |
+| **Recruit / distress call** | *seek others* -- fast broadcast that something is wrong and allies/caregivers should come | **NOT fawn** |
+
+**Scream / cry / distress vocalization is usually recruit, not fawn.** Fawn targets the threat; recruit targets conspecifics. Ethology: infant distress cry, alarm call. Psychology: closer to attachment proximity-seeking / tend-and-befriend than to the "fawn" slot in the 4F list. REE already has a functional hypothesis in `docs/architecture/social.md` (affective expression as safety mechanism: extreme expression can **trigger assistance, e.g. distress calls**) -- not built, not anatomical.
+
+**Status:** record-only architectural note for later. The current fishtank has no "other," so recruit is gated on multi-agent / social partners. Do **not** fold recruit into the first `/implement-substrate` defensive-orienting increment (11d), and do **not** mis-label it as fawn when social defense is eventually designed. Keep **recruit** and **fawn** as distinct branches of the post-orient menu.
+
 ### 11c. Routing (proposed; skill-gated -- not executed here)
 - **Harvest (11a):** record the decoupling<->conversion/competence-ceiling convergence against the MECH-439 / competence-wall lineage via `/governance` (observational corroboration, not a scoring move); it does not touch the sleep block.
 - **Probe (11a):** optional `/queue-experiment` -- run the sleep-refinement DV on the fishtank substrate to settle repertoire-vs-conversion empirically.
 - **Build (11b):** `/implement-substrate` the surprise->freeze->reorient->epistemic-override->approach/withdraw defensive-orienting pathway (+ candidate MECH registration), which supersedes the 906d probe proposal.
+- **Later (11e):** when social partners exist, design post-orient **recruit / distress-call** as distinct from **fawn**; do not start that in the 11b increment.
 
 ### 11d. Build directive + status (user, 2026-08-09T17:40Z)
 **RECORD-ONLY this session -- the build is NOT started here; it is to be picked up in a dedicated `/implement-substrate` session.** User steer on ambition when it is: **build the FULL chain (surprise/novelty fright -> phasic freeze held until identified -> orienting reflex -> epistemic-sufficiency freeze-override -> valence-gated approach/withdraw / return to planned action) "as ambitiously as is possible given what we know" -- do NOT scope down to a minimal fright+withdraw increment, and do NOT treat orienting as optional.** Orienting is load-bearing: it is how freeze ends and planned action resumes. So the dedicated session should treat all five components of 11b as the first increment (with orienting as a first-class sub-build, not a deferred follow-on), register the candidate defensive-orienting MECH, and validate against the Section-4 coupling nulls (the pass criterion is that the built chain moves surprise-onset->freeze and post-identification dread->withdraw / excite->approach couplings off ~0 -- i.e. it converts unresolved novelty into arrest, then resolved valence into state-appropriate action and return to planned behaviour; the organism-level counterpart to lifting the MECH-439 conversion ceiling). The harvest (11a/11c) and the sleep-substrate probe remain available but are not blockers on the build.
