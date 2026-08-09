@@ -410,6 +410,20 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 # are the source of truth and the fix direction is the artifact -- do NOT widen
 # R3 or GOV-CEIL-1 to tolerate a missing field. Read-only; --strict for a
 # blocking CI gate.
+#
+# VALIDITY ARM (2026-08-09): the same scan now also reports a category that is
+# PRESENT but NOT IN the claims.yaml enum (imported from validate_claims.py,
+# never restated). Step 6 applies this field to claims.yaml VERBATIM, and
+# validate_claims.py --strict was the SOLE gate -- firing only after the value is
+# already in the registry, and only if --strict is actually run. Confirmed
+# 2026-08-08/09: INV-034, Q-021 and MECH-074d reached that write carrying
+# `competence_implementation_gap` and were caught only there (6be9e3b98f). The
+# 674-instance historical backlog is excluded by a HIT-SCOPED snapshot
+# (evidence/planning/epistemic_category_enum_backlog.v1.json) plus an in-band
+# `epistemic_category_metabolized` marker, both mirroring GOV-DRY-1: a NEW
+# out-of-enum value in a listed artifact still fires, and a new artifact is not
+# listed at all. Warn-only and deliberately NOT part of --strict (whose contract
+# is unchanged); --strict-validity is the opt-in gate.
 "$PYTHON" scripts/check_epistemic_category_completeness.py || true
 
 echo "--- Step 3h: Unapplied confirmed-autopsy recommendations (GOV-APPLY-1, warn-only) ---"
