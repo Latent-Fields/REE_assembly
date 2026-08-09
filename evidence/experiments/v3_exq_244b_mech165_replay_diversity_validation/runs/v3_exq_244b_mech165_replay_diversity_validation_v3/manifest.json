@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_244b_mech165_replay_diversity_validation",
+  "run_id": "v3_exq_244b_mech165_replay_diversity_validation_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-09T00:20:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-165"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "balanced_replay_improves_retention",
+    "preconditions": [
+      {
+        "name": "reverse_replay_fired_at_least_one_balanced_seed",
+        "description": "diverse_replay's reverse mode actually fired (agent.hippocampal._diverse_replay_mode_counts['reverse'] delta > 0) in >=1 BALANCED_REPLAY seed",
+        "measured": 23,
+        "threshold": 1,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "forward_replay_differs_from_no_replay",
+        "description": "FORWARD_REPLAY entropy_retention is not byte-identical to NO_REPLAY across all seeds",
+        "measured": 0.046216509400510586,
+        "threshold": 1e-12,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "exploration_buffer_populated_by_alt_strategy_source",
+        "description": "exploration_buffer_size > 0 in every BALANCED_REPLAY seed (epsilon-random actions only, not the dominant policy trajectory)",
+        "measured": 50,
+        "threshold": 1,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "production_replay_path_exercised",
+        "description": "agent._do_replay was reached on a real e3_quiescent tick (quiescent_fires > 0) in every FORWARD_REPLAY/BALANCED_REPLAY row",
+        "measured": 9,
+        "threshold": 1,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_reverse_replay_fired": true,
+      "C2_forward_differs_from_no_replay": true,
+      "C3_balanced_gt_forward_seed_majority": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7b784adca844f04c36bf33f850ab579bbaee79cb2f464d54202f2e36363792e4",
+  "substrate_commit": {
+    "commit": "beb0b4a847a4fceb87caa3e8bf254834446dbdcf",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 1,
+    "goal_state_present": false
+  }
+}
