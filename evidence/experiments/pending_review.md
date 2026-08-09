@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-09T05:34:33Z`  
+Generated: `2026-08-09T05:55:14Z`  
 Last review: `2026-08-09T05:32:14Z`  
-Pending: **10** item(s) -- 2 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy
+Pending: **10** item(s) -- 2 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -30,16 +30,6 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
 | `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live | **vacuous_pass** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | FAIL | readiness_fail_curriculum_gate_blocks_retest |
-| `v3_exq_244b_mech165_replay_diversity_validation_v3` | PASS | balanced_replay_improves_retention |
-| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live |
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

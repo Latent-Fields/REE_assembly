@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-08-09T05:25:55.041299Z`
+Generated: `2026-08-09T05:55:03.240386Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -325,7 +325,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-042
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.175, lit_conf=0.815, overall_confidence_legacy=0.559
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.175, lit_conf=0.814, overall_confidence_legacy=0.558
 - Recent entries:
   - `2026-04-02T14:30:00Z` `literature` `targeted_review_arc_042` direction=`supports` confidence=0.65
   - `2026-04-03T21:36:50Z` `experimental` `v3_exq_211_mech153_arc042_supervised_labeling` direction=`weakens` confidence=0.75
@@ -1544,7 +1544,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-329
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.287, lit_conf=0.784, overall_confidence_legacy=0.66
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.286, lit_conf=0.784, overall_confidence_legacy=0.66
 - Recent entries:
   - `2026-06-10T05:46:13Z` `literature` `targeted_review_mech_329` direction=`supports` confidence=0.6
   - `2026-06-10T05:46:13Z` `literature` `targeted_review_mech_329` direction=`mixed` confidence=0.55
@@ -2330,7 +2330,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-048
 - Conflict types: directional
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0.59, lit_conf=0.86, overall_confidence_legacy=0.752
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0.589, lit_conf=0.86, overall_confidence_legacy=0.752
 - Recent entries:
   - `2026-05-04T08:42:24Z` `literature` `targeted_review_sd_048` direction=`supports` confidence=0.85
   - `2026-05-04T08:42:24Z` `literature` `targeted_review_sd_048` direction=`supports` confidence=0.74

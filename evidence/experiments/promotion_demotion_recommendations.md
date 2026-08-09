@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-08-09T05:25:55.041299Z`
+Generated: `2026-08-09T05:55:03.240386Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -51,7 +51,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-074` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-074b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-074d` | `provisional` | Demotion review: provisional -> candidate | `demote_to_candidate` | `discussing` |
 | `MECH-075` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-095` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-098` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -147,7 +146,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-480` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-481` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-487` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `Q-021` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -926,25 +924,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `governance` at `2026-08-08T08:30:48.470619Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged
-
-### MECH-074d
-- Current status: `provisional`
-- Decision needed: Demotion review: provisional -> candidate
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.373, conflict_ratio=1, exp_entries=2, lit_entries=4; directions supports=2, weakens=2, mixed=2, unknown=0, conflict_ratio=1
-- Evidence quality note: >
-- Recommendation: `demote_to_candidate`
-- Options (pros/cons):
-  - Demote now (reduces false certainty, destabilizes current roadmap references)
-  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
-  - Split into subclaims (isolates conflict, increases registry complexity)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `discussing`
-- Last logged decision: `discussing` by `governance` at `2026-08-08T08:30:41.576714Z`
-- Last selected option: Hold and run conflict-resolution suite first (more data, temporary ambiguity)
-- Last rationale: Reinforced by fresh V3-EXQ-894 weakens FAIL this cycle, but holding at provisional pending V3-EXQ-894a (recalibrated PE-sigma threshold) rather than demoting immediately
 
 ### MECH-075
 - Current status: `candidate`
@@ -1970,7 +1949,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-329
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.287, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.286, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
@@ -2631,25 +2610,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `governance` at `2026-08-08T08:30:48.655481Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: Mechanical re-affirmation, no new information this cycle, v3_pending/implementation_phase gate unchanged
-
-### Q-021
-- Current status: `open`
-- Decision needed: Question narrowing review
-- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.28, conflict_ratio=0, exp_entries=1, lit_entries=3; directions supports=3, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: narrow_open_question (2026-03-29): two independent pathways to behavioral flatness already identified in notes. Pathway A (drive absence, ARC-030) tested by EXQ-072; Pathway B (self-incoherence-gated commit suppression, MECH-113/114) untested. Definitive test requires both pathways. No experimental evidence yet -- question narrowing applied to focus on discriminating between the two pathways.
-- Recommendation: `narrow_open_question`
-- Options (pros/cons):
-  - Narrow the question into testable sub-questions (higher tractability)
-  - Keep broad question (flexibility, weaker experiment planning)
-  - Convert one branch into candidate mechanism (progress, possible overcommitment)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `user` at `2026-03-29T21:15:46.773489Z`
-- Last selected option: Narrow the question into testable sub-questions (higher tractability)
-- Last rationale: Two independent pathways to behavioral flatness identified (Pathway A: drive absence, ARC-030; Pathway B: self-incoherence-gated commit suppression, MECH-113/114). Discriminative experiment design specified in evidence_quality_note.
 
 ### Q-022
 - Current status: `open`

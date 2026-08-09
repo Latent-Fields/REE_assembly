@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-08T20:44:26Z
+Generated: 2026-08-09T05:55:49Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -8,7 +8,7 @@ Warn-only by default -- run with `--strict` for a blocking gate.
 
 Claims in registry: 994
 
-## Reading drift -- HARD (113)
+## Reading drift -- HARD (114)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -33,8 +33,9 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | INV-028 | `active` | `active/substrate_conditional` | reading: stored='active' derived='active/substrate_conditional' |
 | INV-029 | `active` | `active/substrate_conditional` | reading: stored='active' derived='active/substrate_conditional' |
 | INV-033 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-074d | `provisional` | `provisional/substrate_conditional` | reading: stored='provisional' derived='provisional/substrate_conditional' |
 | Q-020 | `resolved` | `candidate` | reading: stored='resolved' derived='candidate' |
-| Q-021 | `open` | `open/substrate_ceiling` | reading: stored='open' derived='open/substrate_ceiling' |
+| Q-021 | `open` | `open/substrate_conditional` | reading: stored='open' derived='open/substrate_conditional' |
 | MECH-083 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-023 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-103 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
@@ -43,7 +44,7 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | MECH-108 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-114 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-032 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
-| INV-034 | `candidate` | `candidate/substrate_ceiling` | reading: stored='candidate' derived='candidate/substrate_ceiling' |
+| INV-034 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-037 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-038 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-123 | `candidate/substrate_conditional` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/substrate_conditional' derived='candidate/v3_pending/substrate_conditional' |
@@ -145,7 +146,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 |-------|-----------------|-----|
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (257)
+## Event-provenance drift -- SOFT (259)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -161,7 +162,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-004 | `_none_` | `v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3` |
 | Q-005 | `_none_` | `failure_autopsy_20260329-legacy-cluster_2026-08-08#V3-EXQ-150` |
 | ARC-014 | `v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3` | `v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3` |
-| MECH-022 | `_none_` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
+| MECH-022 | `_none_` | `failure_autopsy_V3-EXQ-190a_2026-08-09` |
 | Q-006 | `decision:Q-006@2026-02-25T16:51:50.794689Z` | `failure_autopsy_20260329-legacy-cluster_2026-08-08#V3-EXQ-151` |
 | Q-007 | `decision:Q-007@2026-03-16T18:20:19.361155Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
 | Q-008 | `_none_` | `failure_autopsy_grandfathered-r5-legacy-provenance-sweep_2026-08-08` |
@@ -204,14 +205,14 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-074a | `v3_exq_659_mech074a_bla_encoding_gain_replay_bias_20260609T200751Z_v3` | `v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3` |
 | MECH-074b | `_none_` | `decision:MECH-074b@2026-08-08T08:30:48.470619Z` |
 | MECH-074c | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` |
-| MECH-074d | `v3_exq_894_mech074d_bla_remap_attribution_selectivity_20260808T005219Z_v3#failure_autopsy_V3-EXQ-894_2026-08-08` | `failure_autopsy_V3-EXQ-894a_2026-08-08` |
-| MECH-075 | `decision:MECH-075@2026-04-03T22:00:00Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
+| MECH-074d | `failure_autopsy_V3-EXQ-894a_2026-08-08` | `failure_autopsy_V3-EXQ-894a_2026-08-08` |
+| MECH-075 | `decision:MECH-075@2026-04-03T22:00:00Z` | `failure_autopsy_mech075-vta-lc-cluster_2026-08-09#V3-EXQ-905` |
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
-| Q-021 | `failure_autopsy_V3-EXQ-866a_2026-08-03` | `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` |
+| Q-021 | `failure_autopsy_V3-EXQ-866c_2026-08-08` | `failure_autopsy_V3-EXQ-899_2026-08-09` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
 | ARC-023 | `_none_` | `decision:ARC-023@2026-03-16T18:20:19.361127Z` |
 | MECH-089 | `decision:MECH-089@2026-03-19T19:52:00Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
-| ... | | (+197 more) |
+| ... | | (+199 more) |
 
 ## Never reviewed (no `last_reviewed`) -- INFO (973 of 994)
 
