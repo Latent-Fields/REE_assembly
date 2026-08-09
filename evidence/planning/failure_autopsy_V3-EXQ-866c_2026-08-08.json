@@ -1,0 +1,77 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-08T20:53:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded_20260808T195345Z_v3",
+      "queue_id": "V3-EXQ-866c",
+      "claim_ids": ["INV-034", "Q-021"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "likely_insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "prospective/persistent approach motivation (wanting) sustaining goal pursuit independent of hedonic response (liking) -- schizophrenia avolition / anhedonic-depression dissociation",
+        "dependencies": ["ARC-030", "MECH-112", "MECH-116"],
+        "is_formal_import": false,
+        "divergence": "none -- biological reference unaffected by this run; the gate is a curriculum/foraging-competence implementation question, not a biology-fidelity question",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_per_claim": {
+        "INV-034": "competence_implementation_gap",
+        "Q-021": "competence_implementation_gap"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-034": "non_contributory",
+        "Q-021": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-08-08 governance, V3-EXQ-866c, confirmed failure_autopsy_V3-EXQ-866c_2026-08-08, supersedes V3-EXQ-866a]: G0 non-degeneracy gate FAILED again (foraging-competence), as already diagnosed by failure_autopsy_V3-EXQ-866a-G0_2026-08-08 -- non_contributory, precondition_unmet, not evidence against INV-034/Q-021. 866c's own contribution: the C6 z_goal mechanistic-check readout is CORRECTED (contact-gated run_p2 peak, FULL=0.461 clears the 0.4 floor) and CONFIRMED PASSING -- 866a's C6 FAIL (zgoal_norm_mean=0.148) was a decay-only measurement washout artifact, not a real mechanistic gap, exactly as the scaffolded-curriculum-hazard-rebalance diagnosis routed. epistemic_category corrected from the stale substrate_ceiling (866a's original, since superseded) to competence_implementation_gap (866a-G0's reading, now applied). Remaining blocker is G0 foraging-competence alone, shared with MECH-457's GOV-FANOUT-1 portfolio dependency; awaiting V3-EXQ-899. pending_retest_after_substrate stays true.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "severity": null,
+        "substrate_paths": null,
+        "failure_record_entry": null,
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": "failure_autopsy_V3-EXQ-866a_2026-08-03",
+        "refused_requeue": true,
+        "route_to": "already routed by failure_autopsy_V3-EXQ-866a-G0_2026-08-08: await V3-EXQ-899 (in-harness MECH-307 diagnostic) + cross-reference MECH-457's GOV-FANOUT-1 portfolio; this autopsy does not open a new routing",
+        "upstream_substrate": "shared with MECH-457's competence-directed dependency, not yet identified by that portfolio's own discrimination"
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "C6 measurement fix confirmed: contact-gated run_p2 peak (not decay-only P2 mean) is the correct z_goal mechanistic-check readout for this experiment family going forward.",
+        "G0 foraging-competence gap reconfirmed a third time (866, 866a, 866c) -- no new diagnostic content beyond failure_autopsy_V3-EXQ-866a-G0_2026-08-08; the gap is stable/reproducible under the corrected-C6 harness too.",
+        "claims.yaml epistemic_category on INV-034/Q-021 was stale (substrate_ceiling) for 6+ hours after failure_autopsy_V3-EXQ-866a-G0_2026-08-08 recommended competence_implementation_gap -- independently caught by this cycle's GOV-APPLY-1 scan (superseded live_status citation bucket)."
+      ],
+      "routing": "governance-note-only"
+    }
+  ],
+  "cluster_pattern": null
+}
