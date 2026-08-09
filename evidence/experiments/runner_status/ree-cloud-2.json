@@ -1,19 +1,74 @@
 {
   "schema_version": "v1",
   "runner_pid": 837,
-  "runner_started_at": "2026-08-08T01:20:43.784772+00:00",
-  "last_updated": "2026-08-08T01:24:22.587216+00:00",
+  "runner_started_at": "2026-08-08T15:34:01.172210+00:00",
+  "last_updated": "2026-08-09T00:20:22.878609+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-892",
-      "backlog_id": "EVB-0489",
+      "queue_id": "V3-EXQ-896",
+      "backlog_id": "",
       "claim_id": "MECH-322",
-      "title": "MECH-322 replay-origin corroboration survival under realistic conditions",
+      "title": "MECH-322 sleep-replay carve-out: confirmatory evidence-purpose safety + survival confirmer",
       "description": "",
       "estimated_minutes": 384.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-603r",
+      "backlog_id": "",
+      "claim_id": "MECH-357",
+      "title": "MECH-357 combined-fix (escape bridge + harm-pathway training) Stage-H survival retest",
+      "description": "",
+      "estimated_minutes": 188.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-703a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-276 scientist-attribution feedstock readiness re-queue (reconstruction-primary P0 + per-seed R2 gate + cf_margin 0.15; supersedes 703)",
+      "description": "",
+      "estimated_minutes": 2400.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-812a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-295 Layer-C cue-authority harness repair (candidate_summary_source=e2_world_forward), successor to V3-EXQ-812 (INVALID_HARNESS)",
+      "description": "",
+      "estimated_minutes": 100.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-866c",
+      "backlog_id": "",
+      "claim_id": "INV-034",
+      "title": "INV-034/Q-021 goal-maintenance-agency (onboarded): C6 z_goal measurement-harness fix (run_p2 contact-gated peak)",
+      "description": "",
+      "estimated_minutes": 300.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-902",
+      "backlog_id": "",
+      "claim_id": "SD-048",
+      "title": "SD-048 default-scale interoceptive-noise 4-arm calibration sweep",
+      "description": "",
+      "estimated_minutes": 224.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3330,6 +3385,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 218.3
+    },
+    {
+      "queue_id": "V3-EXQ-821b",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 H-consummation-binding calibrated re-run (crash-fix: anchor-reachability threshold was a raw floor, not a fraction)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL (arm=consumbind_extinct_on seed=44 forage/ep=0.0) | outcome: FAIL label=consummation_binding_eroded_under_both anchors_ready=True install_took_both=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-821b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-821b.json",
+      "started_at": "2026-08-08T15:34:01.183085+00:00",
+      "completed_at": "2026-08-08T16:17:18.940924+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_821b_mech457_consummation_binding_20260808T161718Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2597.8
+    },
+    {
+      "queue_id": "V3-EXQ-899",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-030/MECH-307 G0 readiness: re-run 866a scaffolded config with MECH-307 genuinely ON (A/B), confirm G0 before discriminative retest",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | Status: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-899 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-899.json",
+      "started_at": "2026-08-08T16:17:20.764363+00:00",
+      "completed_at": "2026-08-08T21:48:34.332280+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 19873.6
+    },
+    {
+      "queue_id": "V3-EXQ-244b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-165 replay diversity validation (corrected: production replay path, no theta-buffer clear)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Outcome: PASS | overall_outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-244b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-244b.json",
+      "started_at": "2026-08-08T21:48:36.275043+00:00",
+      "completed_at": "2026-08-09T00:20:22.877260+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_244b_mech165_replay_diversity_validation_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 9106.6
     }
   ]
 }
