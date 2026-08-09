@@ -374,3 +374,137 @@ After fright -> fast interrupt -> orient, humans sometimes branch into the famil
 
 ### 11d. Build directive + status (user, 2026-08-09T17:40Z)
 **RECORD-ONLY this session -- the build is NOT started here; it is to be picked up in a dedicated `/implement-substrate` session.** User steer on ambition when it is: **build the FULL chain (surprise/novelty fright -> phasic freeze held until identified -> orienting reflex -> epistemic-sufficiency freeze-override -> valence-gated approach/withdraw / return to planned action) "as ambitiously as is possible given what we know" -- do NOT scope down to a minimal fright+withdraw increment, and do NOT treat orienting as optional.** Orienting is load-bearing: it is how freeze ends and planned action resumes. So the dedicated session should treat all five components of 11b as the first increment (with orienting as a first-class sub-build, not a deferred follow-on), register the candidate defensive-orienting MECH, and validate against the Section-4 coupling nulls (the pass criterion is that the built chain moves surprise-onset->freeze and post-identification dread->withdraw / excite->approach couplings off ~0 -- i.e. it converts unresolved novelty into arrest, then resolved valence into state-appropriate action and return to planned behaviour; the organism-level counterpart to lifting the MECH-439 conversion ceiling). The harvest (11a/11c) and the sleep-substrate probe remain available but are not blockers on the build.
+
+---
+
+## 12. Continued data-mining of the raw 906b episode log (2026-08-09T17:55Z follow-on, user-directed)
+
+Deeper pass over the per-step episode log (`..._episode_log.json`, 3909 steps / 8 segments) using fields
+logged but not yet inspected in Sections 1-6: `is_committed`, `residue_surprise`, `residue_write_fired`,
+`beta_elevated`, `action_blocked`, `limb_damage_injected`, `external_hazard_injected`,
+`world_rule_shift_occurred`, `transition_type`, raw `action`. All findings below read data already
+collected by the 906b run -- no new experiment.
+
+### 12a. `is_committed` = 0/3909 -- a direct, already-logged corroboration of the non-committed reading, sharper than the 11a mode-diversity proxy
+
+`is_committed` (`e3_selector.get_commitment_state()`, consumed at `agent.py:11351`) reflects the CORE
+trajectory-latch commitment mechanism: `committed = running_variance < commit_threshold`
+(`e3_selector.py:15`, `3143`-`3149`), True whenever `_committed_trajectory` (or the closure-exclusive
+`_closure_committed_trajectory`) is non-None for that tick. This is read from the main `select(...)` path,
+not a niche or off-by-default lever, and it is **never True across all 3909 steps of this run**.
+
+This is a cheaper and more direct organism-level signal than 11a's mode-diversity harvest: `mode` is a
+post-hoc classifier over telemetry (`_classify_mode`), whereas `is_committed` is the substrate's own
+commitment flag, read from the exact mechanism the MECH-439/GAP-B lineage names (`committed_now` /
+`_committed_trajectory`). A clean 0/3909 on the all-ON fishtank is a second, independent corroboration of
+"diffuse, non-committed selection," obtained from data already collected.
+
+**Caveat, same as 11a:** single-seed, all-ON, `claim_ids=[]` -- observational, non-scoring. This pass also
+does not have `running_variance` / `commit_threshold` themselves in the per-step log, so it cannot
+distinguish "structurally far from the commit threshold" from "chronically just short of it" -- that needs
+a telemetry addition (13d) or a targeted probe, not a re-read of what's already logged.
+
+### 12b. `residue_surprise` (VALENCE_SURPRISE, unsigned) -- distribution, plus a real, small, INCIDENTAL startle-like coupling that already exists with no orienting mechanism built
+
+Full-run distribution (3909 steps): min 0.0, p50 0.0 (floor >50% of the time, same shape as `z_goal`),
+p90 0.040, p95 0.084, p99 0.233, max 0.478, mean 0.014. This gives a first empirical anchor for calibrating
+the "phasic spike" onset threshold the 11b design needs (11b step 1) instead of picking one blind.
+
+Using the p90 cutoff (>=0.040) as a naive spike proxy and testing the exact coupling 11b's build is meant
+to create -- **surprise-spike(t) -> behaviour-change(t+1), within-episode only (no cross-boundary lag)**:
+
+| | P(mode change @ t+1) | P(moved @ t+1) |
+|---|---|---|
+| surprise-spike @ t (n=391) | 15.4% | **44.3%** |
+| no spike @ t (n=3510) | 11.1% | 24.0% |
+
+Movement-onset is elevated ~1.85x following a surprise spike (44.3% vs 24.0%); mode-change ~1.4x (15.4% vs
+11.1%). **Novel-to-record: an incidental startle-like coupling already exists in the substrate without any
+purpose-built orienting mechanism** -- `residue_surprise` genuinely drives *something* downstream, but
+diffusely (not a clean binary freeze-then-resolve), which is exactly the gap the 11b design closes. This
+also gives 11b's validation step a concrete pre-registered baseline to beat: the built chain should push
+this well past 44%/15% toward a sharp, deterministic surprise->arrest->resolve->act signature, not merely
+reproduce the incidental correlation already present.
+
+`residue_write_fired` correlates r=0.54 with `residue_surprise` contemporaneously (mean surprise 0.054 when
+a write fires vs 0.0 when it doesn't; fire-rate 1005/3909 = 25.7%) -- confirms the write-gate is a
+surprise-triggered mechanism, a sanity check rather than a new finding.
+
+`residue_surprise` anti-correlates weakly with both `dread` (r=-0.12) and `excite` (r=-0.12)
+contemporaneously -- consistent with (not proof of) the 11b framing that unsigned surprise is highest
+*before* a stimulus is identified and falls as it resolves into signed valence. Worth re-testing once a
+future run emits `residue_surprise` alongside a per-step identification-confidence proxy, which does not
+currently exist in telemetry.
+
+### 12c. Rare-event and blocked-action bookkeeping (scope note, not a new finding)
+
+`transition_type` tally across 3909 steps: `benefit_approach` 1384, `none` 1934, `hazard_approach` 258,
+`action_blocked` 152, `reef_entry`/`reef_exit` 56/56, `resource` 11, `env_caused_hazard` 21,
+`world_rule_shift` 14, `external_hazard` 8, `limb_damage` 15. `beta_elevated` is True on 100% of steps
+(3909/3909) -- flagged for a future pass (chronically saturated by the all-ON config, or the expected tonic
+state? not investigated here). Stress-injection events (`limb_damage_injected` 28/3909 = 0.7%,
+`external_hazard_injected` 31/3909 = 0.8%, `world_rule_shift_occurred` 15/3909 = 0.4%) are rare but
+non-zero -- this eval config does exercise the rare-event/perturbation paths at least a little, not a null
+config. `action_blocked` fires on 3.9% of steps (152/3909), matching the `transition_type='action_blocked'`
+count exactly (consistency check, no discrepancy found).
+
+### 12d. The one sleep cycle that fired: `sws_slot_diversity`~0, zero replay draws -- a concrete, n=1 preview consistent with 11a's "expected null" prediction
+
+`ep7.sleep_cycle_detail` (the only sleep-firing episode in this run, before segment ep7 -- Section 5):
+`sws_n_writes=5.0`, but `replay_diversity_index=-1.0` -- the phase-manager's own sentinel for **zero SWS
+replay draws this cycle** (`phase_manager.py:517-530`: `-1.0` when `_n_draws==0`), despite 5 writes having
+occurred. `sws_slot_diversity=0.0021` (effectively zero). `post_sleep_z_goal_before` =
+`post_sleep_z_goal_after` = 1.81e-8 (both at floor; `post_sleep_z_goal_retention=1.0` only because both
+sides are ~0 -- nothing was there to retain, consistent with 3a's z_goal-at-floor finding).
+`rem_wanting_spread_n_steps=0.0`, `rem_n_reverse=0.0` -- REM's wanting-spread mechanism did nothing this
+cycle. `rem_n_rollouts=10.0` did run (`rem_mean_harm_terrain=25.2`, `rem_terrain_variance=93.2` -- REM
+terrain rollouts happened and varied); it is specifically the SWS replay-diversity and REM wanting-spread
+channels that read empty.
+
+**This is a concrete, already-collected preview consistent with 11a's "expected null" for track C** (does
+the sleep-refinement DV register a non-null waking->sleep difference on this substrate?): on this one
+firing, it does not -- writes happened but nothing was drawn/replayed, and the wanting channel had nothing
+to spread because it was already at floor going in. **Caveat: n=1** -- a single sleep cycle in a
+single-seed run is not a substitute for track C's proper probe (which should test across multiple
+firings/seeds and report `sws_slot_diversity` / `replay_diversity_index` as first-class metrics, which this
+ad-hoc read confirms are already computed and logged per-cycle, just not yet surfaced in a manifest summary
+-- another small telemetry candidate for 13d). Recorded as informative context for track C, not as
+resolving it.
+
+---
+
+## 13. Tracked follow-on tasks (recorded 2026-08-09T17:55Z, user-directed: "all of the above must be done")
+
+All four tracks below were reviewed with the user and confirmed as required -- recorded here as the single
+reference list rather than split across TASK_CLAIMS/chips prematurely. Each is scoped to its own dedicated
+skill session per repo convention; none is started or claimed by this data-mining session.
+
+**A. Build the defensive-orienting chain (`/implement-substrate`).** Full scope in Section 11b/11d:
+surprise-onset -> phasic freeze (held until epistemic sufficiency) -> orienting reflex (return path to
+planned action) -> freeze-override (identification-confidence sufficiency) -> valence-gated
+approach/withdraw/resume. Register candidate MECH. Validate against the Section 4 coupling nulls (target:
+post-build, the surprise->behaviour couplings measured in 12b should move well past their current near-zero
+/ diffuse-44% baselines toward a sharp, deterministic signature). 12b's p90/p95/p99 spike thresholds and the
+44.3%/15.4% incidental-coupling baseline are usable inputs for this build's design and its pre/post
+validation. Largest scope of the four; user-ratified "as ambitious as possible," orienting is load-bearing
+(not deferrable).
+
+**B. `/governance` harvest.** Record the Section 4 affect->behaviour decoupling as an independent,
+fresh-substrate corroboration of the MECH-439 F-dominance / 719a competence-wall lineage (11a) -- now
+strengthened by 12a's direct `is_committed`=0/3909 reading, a sharper instrument than the mode-diversity
+proxy alone. Non-scoring (`claim_ids=[]`, single-seed, all-ON) -- observational corroboration only, for
+governance to weigh.
+
+**C. `/queue-experiment` -- sleep-refinement DV on the fishtank substrate.** Tests whether the
+sleep-refinement DV (slot/mode diversity) registers a non-null waking->sleep difference on this
+repertoire-diverse-but-non-converting substrate, discriminating "sleep GAP-2 is blocked on repertoire" vs
+"blocked on conversion" (11a). Expected null given 12a/12b; 12d's n=1 ad-hoc read of this run's one firing
+(`sws_slot_diversity`~0, `replay_diversity_index`=-1.0 sentinel for zero draws) previews that expectation
+but does not resolve it -- a proper probe across multiple firings/seeds is still needed.
+
+**D. Telemetry/viz follow-on.** Surface `VALENCE_SURPRISE` (residue index 3, i.e. `residue_surprise`) and
+`VALENCE_LIKING` (index 1) in `_read_affect` / `fishtank_viz.html` -- liking bar already landed (Section
+10); surprise is not yet surfaced (3c, 11b step 1 note). Smallest scope; substantially de-risks A by making
+the freeze-trigger signal visually inspectable during the build. Also candidate: log `running_variance` /
+`commit_threshold` per-step (currently absent -- see 12a caveat) so a future pass can distinguish
+"structurally uncommitted" from "chronically near-threshold."
