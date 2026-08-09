@@ -471,6 +471,34 @@ ad-hoc read confirms are already computed and logged per-cycle, just not yet sur
 -- another small telemetry candidate for 13d). Recorded as informative context for track C, not as
 resolving it.
 
+### 12e. Directional environmental organisation -- movement direction is UNCORRELATED with the nearest resource/hazard even in the modes classified as steering toward/away from them (2026-08-09T18:06Z, answering the original brief's unaddressed "does behaviour become appropriately organised around environmental information?")
+
+The original review brief asked this explicitly and it was not directly tested in Sections 1-11: not "does the agent end up closer to a resource" (Section 2b: no) but **does the agent's per-step movement DIRECTION point toward/away from the nearest mapped resource/hazard**, using `hazards`/`resources` (the driver's `current_hazards`/`current_resources`, ground-truth positions, confirmed at `v3_exq_906b_full_stack_observational_fishtank.py:661-663`) against `pos(t+1)-pos(t)`, restricted to steps that actually moved:
+
+| mode (at step t) | tested alignment | n | mean cosine | frac aligned (cos>0) | frac opposed (cos<0) |
+|---|---|---|---|---|---|
+| `approach` | move-vector . vector-to-nearest-resource | 291 | **0.019** | 44.3% | 41.9% |
+| `avoid` | move-vector . vector-away-from-nearest-hazard | 64 | **-0.053** | 39.1% | 42.2% |
+| `neutral` (control) | move-vector . vector-to-nearest-resource | 43 | 0.180 | 44.2% | 18.6% |
+| `neutral` (control) | move-vector . vector-away-from-nearest-hazard | 42 | -0.308 | 14.3% | 52.4% |
+
+**Both classified modes are essentially uncorrelated with the nearest-entity direction they are named for** -- `approach` mean cosine 0.019 (chance is 0), `avoid` mean cosine -0.053 (chance is 0; the sign is even backwards from "away"). This directly answers the brief's question: **no, movement is not organised around the nearest discrete resource/hazard's position**, consistent with (and sharper than) Section 2b's distance-based finding -- `approach`/`avoid` as classified by `_classify_mode` track affect-channel thresholds (`z_harm_norm`, `world_change_norm`, `harm_signal`, `in_reef`), not literal navigation toward/away from a specific mapped entity. This is consistent with the ambient/reef-proximity-field explanation already established in 2b/3a: the diffuse field that drives behaviour has no privileged direction toward any one discrete resource, so "approach" in the classifier's sense need not point at anything in particular.
+
+**Counter-intuitive nuance, flagged rather than smoothed over:** the `neutral`-mode control shows STRONGER hazard-avoidance alignment (-0.308, 52.4% opposed) than `avoid` mode itself (-0.053, 42.2% opposed) -- ordinary unclassified movement happens to point away from the nearest hazard more reliably than movement during steps the classifier labels `avoid`. Caveat: small n (42 vs 64), single-seed -- this is suggestive, not decisive, but it is consistent with `avoid` mode often being a stationary defensive posture (elevated harm/shelter-adjacent telemetry) rather than active directional fleeing, which would explain why its own movement (on the minority of `avoid` steps that move at all) is no more oriented than chance.
+
+**Failure-location:** MIXED, same shape as 2b/4 -- not chargeable to REE alone. The classifier (MEASURES) names modes after a directional concept the underlying telemetry thresholds don't test; the diffuse benefit/hazard field (ENVIRONMENT) gives no discrete direction to organise around; and the substrate's own selection (MECHANISM, `is_committed`=0/3909 per 12a) is not steering toward any single latched target. This strengthens the case for track A (13-A): a defensive-orienting mechanism keyed to a specific identified stimulus (not a diffuse field) is exactly the kind of directed target the current substrate lacks.
+
+### 12f. Cross-episode trajectory diversity -- genuine, not a fixed home base (answering the original brief's "trajectory diversity" ask)
+
+Per-episode unique-cell counts (Section 1) show within-episode diversity; this checks the complementary question -- does the SAME region get revisited every episode, or does trajectory vary across episodes? Per-episode visited-cell sets, all 8 episodes:
+
+- Per-episode unique cells: 39, 28, 30, 30, 24, 23, 35, 18 (of 144).
+- Pairwise Jaccard overlap across all C(8,2)=28 episode pairs: mean **0.197**, range 0.000-0.516 -- episodes overlap only modestly on average, and some pairs share almost nothing.
+- Union of cells visited across all 8 episodes: **97/144 = 67.4%** of the grid -- far broader than any single episode's 12.5-27.1%.
+- Cells visited in literally every one of the 8 episodes (a fixed "home base" signature): **0**.
+
+**Genuine cross-episode trajectory diversity, not a repeated favourite corner.** Collectively the agent covers two-thirds of the grid over 8 episodes with no single cell common to all of them, even though each individual episode is spatially narrow (Section 1). Read together with 12e: the agent explores broadly and variably across episodes, but within any one episode/step its direction of travel is not organised around the nearest discrete resource/hazard -- diversity-in-aggregate coexists with the absence of local directional organisation.
+
 ---
 
 ## 13. Tracked follow-on tasks (recorded 2026-08-09T17:55Z, user-directed: "all of the above must be done")
@@ -486,7 +514,10 @@ approach/withdraw/resume. Register candidate MECH. Validate against the Section 
 post-build, the surprise->behaviour couplings measured in 12b should move well past their current near-zero
 / diffuse-44% baselines toward a sharp, deterministic signature). 12b's p90/p95/p99 spike thresholds and the
 44.3%/15.4% incidental-coupling baseline are usable inputs for this build's design and its pre/post
-validation. Largest scope of the four; user-ratified "as ambitious as possible," orienting is load-bearing
+validation. 12e adds direct corroboration: movement direction during `approach`/`avoid` mode is essentially
+uncorrelated with the nearest resource/hazard (mean cosine 0.019 / -0.053) -- there is currently no
+mechanism that latches onto and steers toward a specific identified stimulus, which is exactly the gap this
+build closes. Largest scope of the four; user-ratified "as ambitious as possible," orienting is load-bearing
 (not deferrable).
 
 **B. `/governance` harvest.** Record the Section 4 affect->behaviour decoupling as an independent,
