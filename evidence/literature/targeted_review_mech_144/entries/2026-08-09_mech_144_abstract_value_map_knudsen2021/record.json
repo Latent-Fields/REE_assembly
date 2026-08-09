@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_144",
+  "entry_id": "2026-08-09_mech_144_abstract_value_map_knudsen2021",
+  "timestamp_utc": "2026-08-09T07:47:51Z",
+  "claim_ids_tested": ["MECH-144"],
+  "source": {
+    "title": "Hippocampal neurons construct a map of an abstract value space",
+    "authors": [
+      "Knudsen EB",
+      "Wallis JD"
+    ],
+    "year": 2021,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2021.07.010",
+    "pmid": "34348112",
+    "pmcid": "PMC8459666"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "High-quality primate single-unit recording (Cell 2021) and MECH-144's second founding citation. It is the strongest existing demonstration that hippocampal cognitive maps extend to value geometry: value place fields share four diagnostic properties with spatial place cells, so value is map-structured rather than tagged. Confidence set at 0.70, BELOW the Q-020 sibling's 0.78, because MECH-144 is specifically a claim about the VENTRAL compartment and this recording is primate hippocampus without a dorsal/ventral localisation -- the compartment specificity that makes this evidence fit MECH-144 is exactly what the paper does not establish. NOTE ON DIRECTION: this record is 'supports' while the sibling Q-020 record on the same paper is 'weakens'. Both are correct -- the paper weakens Q-020's ARC-007 'hippocampus is value-free' framing precisely BY supporting MECH-144. See the direction-sign note in evidence/planning/literature_claim_tag_audit.md.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_144", "value_place_fields", "abstract_value_space", "cognitive_map", "primate_hippocampus", "reward_encoding", "single_unit", "retag_2026_08_09"],
+  "mapping": {
+    "source_claim_statement": "Primate hippocampal neurons exhibit 'value place fields' -- spatially tuned responses to positions in an abstract reward-value space defined by the relative value of three choice options. These fields share four properties with spatial place cells: consistency across experiences, multidimensional tuning, directional selectivity, and remapping in novel contexts. They generalize across contexts as experience accumulates.",
+    "ree_translation": "MECH-144 asserts that valence is intrinsic to hippocampal map geometry rather than externally applied. Knudsen & Wallis supply the constructive half of that claim: the hippocampus does not merely receive a value signal, it builds a map whose axes ARE value. The four-property parallelism with spatial place cells is what makes this a geometry claim rather than a coding claim -- value is represented in the same format as space. For REE this says the residue field R(x,t) can carry a value-structured prior as part of its own representational format, which is the form MECH-144 needs for the MECH-143/MECH-144 dorsal-ventral dissociation to work.",
+    "mapping_caveat": "Two gaps, and the compartment one is load-bearing for this particular tagging. (1) MECH-144 is stated as a VENTRAL CA1 claim; this is primate hippocampus recorded without a dorsal/ventral assignment, so the paper supports 'hippocampus builds value maps' more directly than it supports 'the ventral compartment does'. (2) The value space here is abstract relative reward magnitude in a choice task, not harm or anxiety geography -- whether value place fields would emerge for aversive residue is untested, and REE's residue field conflates harm, goal, and spatial salience. Both gaps are why confidence is set below the Q-020 sibling's.",
+    "source_context": "Primate (macaque) hippocampus; single-unit electrophysiology during abstract value-based decision task; cue values defined by relative reward magnitudes"
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.42,
+    "notes": "Source quality unchanged from the Q-020 sibling (0.93) -- same paper, clean primate electrophysiology. Mapping fidelity LOWERED to 0.60 (from 0.68) and transfer risk RAISED to 0.42 (from 0.38): MECH-144 names the ventral compartment specifically and this recording does not localise dorsoventrally, which is a tighter mismatch against MECH-144 than against the compartment-agnostic Q-020. Net overall confidence 0.70 vs the sibling's 0.78."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_144",
+  "entry_id": "2026-08-09_mech_144_valence_geography_jimenez2018",
+  "timestamp_utc": "2026-08-09T07:47:51Z",
+  "claim_ids_tested": ["MECH-144"],
+  "source": {
+    "title": "Anxiety Cells in a Hippocampal-Hypothalamic Circuit",
+    "authors": [
+      "Jimenez JC",
+      "Su K",
+      "Goldberg AR",
+      "Luna VM",
+      "Biane JS",
+      "Ordek G",
+      "Zhou P",
+      "Ong SK",
+      "Wright MA",
+      "Zweifel L",
+      "Paninski L",
+      "Hen R",
+      "Kheirbek MA"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.016",
+    "pmid": "29397273"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Calcium imaging plus causal optogenetics in freely moving mice, top-tier venue. MECH-144 asserts that ventral CA1 contains spatially organized valence encoding; this paper is that claim's founding citation and demonstrates it directly -- vCA1 'anxiety cells' fire in proportion to proximity to anxiogenic space, the tuning is stable across sessions, and it is causally required for avoidance. Confidence carried over from the Q-020 sibling entry (0.72) rather than raised: the mouse-anxiety-to-agent-harm transfer risk that capped that estimate applies identically here. NOTE ON DIRECTION: this record is 'supports' while the sibling Q-020 record on the same paper is 'weakens'. That is not an inconsistency -- the paper weakens Q-020's ARC-007 'hippocampus is value-free' framing precisely BY supporting MECH-144's ventral-valence-encoding claim. See the direction-sign note in evidence/planning/literature_claim_tag_audit.md.",
+  "summary_path": "summary.md",
+  "failure_signatures": [],
+  "tags": ["mech_144", "valence_encoding", "ventral_hippocampus", "anxiety_cells", "emotional_geography", "calcium_imaging", "optogenetics", "retag_2026_08_09"],
+  "mapping": {
+    "source_claim_statement": "A specialized population of ventral CA1 neurons ('anxiety cells') fires selectively in anxiogenic spatial zones; this activity is stable, spatially organized, and causally required for avoidance behavior. vCA1 projects directly to lateral hypothalamus to rapidly control anxiety, distinct from the BA pathway that handles fear memory.",
+    "ree_translation": "MECH-144 asserts that valence is intrinsic to hippocampal map geometry in the VENTRAL compartment specifically -- a spatially organized 'anxiety geography' rather than an externally applied tag. Jimenez et al. is the direct empirical instantiation: the anxiety cells tile space by aversiveness, so the affective sign is carried by the map's own geometry. This is what lets MECH-144 sit co-true beside MECH-143 (dorsal CA1 value-free): the dorsal/ventral dissociation is the mechanism by which ARC-007's no-new-value-computation constraint survives for the trajectory-proposal module while a ventral valence prior still shapes R(x,t).",
+    "mapping_caveat": "Localized to ventral CA1 in mouse; MECH-144 also cites primate abstract value maps (Knudsen & Wallis 2021), which is a different compartment and species -- neither paper alone covers MECH-144's full scope. The causal optogenetics establish that the anxiety-cell population is necessary for avoidance but do not pin down the representational geometry of the valence encoding (tiled gradient vs. thresholded tag). Transfer from open-field/EPM mouse anxiety to an agent's harm-residue navigation is a substantial abstraction step.",
+    "source_context": "Mouse vCA1; calcium imaging (GCaMP6f) and optogenetics (channelrhodopsin/halorhodopsin) in freely moving animals; open-field and elevated plus maze anxiety paradigms"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Mapping fidelity is slightly higher than the Q-020 sibling's 0.62 because MECH-144 is stated at the ventral-compartment level the paper actually measures, so the dorsal/ventral abstraction gap that penalised the Q-020 mapping does not apply. Transfer risk is unchanged at 0.42 (mouse anxiety, not agent harm-navigation), which is what holds overall confidence at the sibling's 0.72."
+  }
+}
