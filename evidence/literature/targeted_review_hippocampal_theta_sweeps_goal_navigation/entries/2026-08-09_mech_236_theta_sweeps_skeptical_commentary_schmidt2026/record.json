@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_theta_sweeps_goal_navigation",
+  "entry_id": "2026-08-09_mech_236_theta_sweeps_skeptical_commentary_schmidt2026",
+  "timestamp_utc": "2026-08-09T18:33:10Z",
+  "claim_ids_tested": ["MECH-236", "MECH-289"],
+  "source": {
+    "title": "Just how goal-directed are hippocampal theta sweeps, anyway?",
+    "authors": ["B. Schmidt", "C. M. Gagliardi", "A. D. Redish"],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02366-1",
+    "url": "https://www.nature.com/articles/s41593-026-02366-1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.35,
+  "confidence_rationale": "Deliberately sought out as the non-degeneracy / skeptical counterweight to the Yu et al. and Tang et al. entries in this directory (per this repo's standing lit-pull discipline, e.g. SD-097's own inclusion of Kinny & Georgeff 1991 as a skeptical baseline). Author credentials are strong (A.D. Redish is a senior, long-standing figure in hippocampal decision-making/vicarious-trial-and-error research) and the framing -- 'a simpler mechanism, fundamentally incompatible with those planning hypotheses' -- is a real, named alternative account, not a vague caveat. Confidence held LOW because the full text could not be accessed: nature.com redirects to an authentication wall (idp.nature.com) and no open-access mirror was found. This entry rests entirely on WebSearch-surfaced paraphrase, corroborated across two independent searches but never the primary text itself.",
+  "failure_signatures": [
+    "Full text inaccessible (Nature paywall; no PMC/bioRxiv mirror found for a commentary/News & Views piece, which typically are not deposited as preprints). The specific 'simpler mechanism' this commentary proposes as an alternative to planning-grounded interpretation was NOT identified in this pull -- only that one exists and is described as 'fundamentally incompatible' with the planning hypotheses MECH-236/MECH-289 lean on.",
+    "Cannot rule out that this commentary's skepticism is narrowly scoped to a specific claim in Yu et al./Tang et al. (e.g. a particular statistical inference) rather than a wholesale rejection of goal-directed theta-sweep interpretation in general -- without the full text this entry cannot distinguish 'the whole framing is contested' from 'one specific analytical step is contested.'"
+  ],
+  "tags": ["mech-236", "mech-289", "hippocampus", "theta_sweeps", "skeptical_baseline", "non_degeneracy"],
+  "mapping": {
+    "source_claim_statement": "Per WebSearch-surfaced paraphrase (full text not accessed): planning is thought to be grounded in hippocampal sequences, but recent studies have suggested a simpler mechanism -- described as fundamentally incompatible with those planning hypotheses -- may underlie these sequences. The Yu et al. and Tang et al. papers in the same issue are characterised as first steps toward resolving this controversy, not a resolution of it.",
+    "ree_translation": "This is the skeptical counterweight to the supports-direction entries in this directory. If the 'simpler mechanism' this commentary names turns out to explain theta-sweep goal-direction WITHOUT requiring anything like MECH-236's goal-conditioned trajectory generation or MECH-289's generative sweep, that would weaken (not falsify) the biological-precedent case for those claims' specific mechanistic framing -- though it would not touch REE's own architectural motivation for having SOME destination-privileging and generative-traversal mechanism, which does not depend on the biology being resolved either way.",
+    "mapping_caveat": "Included specifically as a non-degeneracy check on the other three entries in this directory, per this repo's lit-pull discipline -- NOT as a claim this commentary directly evidences a specific REE mechanism. The entry's own low confidence reflects that its content is known only at one remove (search-engine paraphrase of a paywalled commentary), which is a materially weaker evidentiary basis than the other three entries in this directory.",
+    "source_context": "Nature Neuroscience News & Views / commentary accompanying the Yu et al. and Tang et al. empirical papers in the same 2026 issue; not a primary data source."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.30,
+    "transfer_risk": 0.40,
+    "notes": "Source quality moderate: reputable venue and credentialed author (Redish), but a commentary/News & Views piece is inherently lower evidentiary weight than a primary empirical paper, and this entry could not verify beyond search-engine paraphrase. Mapping fidelity low because the specific competing mechanism was never identified, only its existence and stated incompatibility with planning-style interpretation."
+  }
+}

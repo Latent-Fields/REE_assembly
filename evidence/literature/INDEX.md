@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-09T08:48:14.173167Z`
+Generated: `2026-08-09T18:38:15.722780Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -197,6 +197,7 @@ Generated: `2026-08-09T08:48:14.173167Z`
 | `targeted_review_hippocampal_planning_mechanisms` | [`2026-06-13_mech_207_prediction_error_cholinergic_update_sinclair2021`](targeted_review_hippocampal_planning_mechanisms/entries/2026-06-13_mech_207_prediction_error_cholinergic_update_sinclair2021/record.json) | 9 | [`summary`](targeted_review_hippocampal_planning_mechanisms/entries/2026-06-13_mech_207_prediction_error_cholinergic_update_sinclair2021/summary.md) |
 | `targeted_review_hippocampal_remapping` | [`2026-04-02_mech_077_rate_global_remapping_leutgeb2005`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/record.json) | 2 | [`summary`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/summary.md) |
 | `targeted_review_hippocampal_subfield_architecture` | [`2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/record.json) | 4 | [`summary`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/summary.md) |
+| `targeted_review_hippocampal_theta_sweeps_goal_navigation` | [`2026-08-09_mech_289_theta_sweeps_swr_pfc_tang2026`](targeted_review_hippocampal_theta_sweeps_goal_navigation/entries/2026-08-09_mech_289_theta_sweeps_swr_pfc_tang2026/record.json) | 4 | [`summary`](targeted_review_hippocampal_theta_sweeps_goal_navigation/entries/2026-08-09_mech_289_theta_sweeps_swr_pfc_tang2026/summary.md) |
 | `targeted_review_hippocampal_valence_asymmetry` | [`2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/record.json) | 5 | [`summary`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/summary.md) |
 | `targeted_review_homeostatic_override` | [`2026-04-22_homeostatic_override_vmhdm_population_coding_cheung2025`](targeted_review_homeostatic_override/entries/2026-04-22_homeostatic_override_vmhdm_population_coding_cheung2025/record.json) | 13 | [`summary`](targeted_review_homeostatic_override/entries/2026-04-22_homeostatic_override_vmhdm_population_coding_cheung2025/summary.md) |
 | `targeted_review_hpc_type_prototype_substrate` | [`2026-04-28_type_prototype_temporal_community_schapiro2016`](targeted_review_hpc_type_prototype_substrate/entries/2026-04-28_type_prototype_temporal_community_schapiro2016/record.json) | 5 | [`summary`](targeted_review_hpc_type_prototype_substrate/entries/2026-04-28_type_prototype_temporal_community_schapiro2016/summary.md) |
