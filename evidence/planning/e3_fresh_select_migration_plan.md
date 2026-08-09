@@ -1,7 +1,7 @@
 # E3 fresh-select instrument — shared-helper migration (plan of record)
 
 **Opened:** 2026-07-20T12:37Z (session `peaceful-morse-5cf712`)
-**Status:** IN PROGRESS — 1 of 3 call sites migrated
+**Status:** IN PROGRESS — 1 of 3 call sites migrated (other 2 now UNBLOCKED — both have run; see §5, updated 2026-08-09)
 **Substrate:** `ree-v3` `experiments/_lib/fresh_select.py` (landed `acd48f9`, 2026-07-20)
 
 ## Why this doc exists
@@ -27,21 +27,25 @@ lint discharge is inert until a script imports the helper.
 
 ## 2. Outstanding — the two remaining call sites
 
-Both still carry their own inlined copy of the instrument **and** a blanket lint exemption. Both
-are still `status: pending` in `ree-v3/experiment_queue.json` as of 2026-07-20T12:32Z, which is
-why they were not migrated at land time: editing a queued script changes what is about to run.
+Both still carry their own inlined copy of the instrument **and** a blanket lint exemption. As of
+2026-08-09 both have **run** (see §5 for outcomes) and are no longer queue-blocked — neither is in
+the live queue. Migration has not started for either (exemption markers still present, confirmed
+below); they are simply unblocked and ready to pick up.
 
-| Script | Namespace | Queue id | Blocking condition |
+| Script | Namespace | Queue id | State (2026-08-09) |
 |---|---|---|---|
-| `experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py` | `exq699b` | V3-EXQ-699b (priority 28) | still `pending` |
-| `experiments/v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair.py` | `exq689i` | V3-EXQ-689i (priority 30) | still `pending` |
+| `experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py` | `exq699b` | V3-EXQ-699b (priority 28) | RAN 2x (both FAIL) — unblocked, not migrated |
+| `experiments/v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair.py` | `exq689i` | V3-EXQ-689i (priority 30) | RAN — unblocked, not migrated |
 
-Exemption markers present on `origin/main` in both (`E3_DIAGNOSTICS_STALENESS_EXEMPT`,
-`E3_HOLD_WEIGHTED_READOUT_EXEMPT`, both bound to a local `_FRESH_SELECT_EXEMPT_REASON`).
+Exemption markers still present on `origin/main` in both, reconfirmed 2026-08-09
+(`E3_DIAGNOSTICS_STALENESS_EXEMPT`, `E3_HOLD_WEIGHTED_READOUT_EXEMPT`, both bound to a local
+`_FRESH_SELECT_EXEMPT_REASON`; `validate_experiments.py --paths <script>` still reports `OK`, i.e.
+`0 exempt`, for both — neither imports the shared helper yet).
 
-**Unblocking condition:** each script leaves `pending` — i.e. it has run. Migrate per-script as
-each frees; do not wait for both. Expect this to take days: both sit behind 7 pending items and
-the fleet was committed ~147h on V3-EXQ-742a at the time of writing.
+**Unblocking condition — MET for both, 2026-08-09.** 699b ran twice
+(`2026-07-24T12:35:50Z`, `2026-07-24T20:59:40Z`) and 689i ran once (`2026-07-22T16:28:50Z`);
+neither is in the live queue. Migration may proceed for either script whenever a session picks it
+up — see §5 for run outcomes and whether either result changes the migration's priority.
 
 ## 3. How to do the migration
 
@@ -100,8 +104,9 @@ closing.
 | Call site | State | Evidence |
 |---|---|---|
 | 699c | **MIGRATED** | ree-v3 `acd48f9` |
-| 699b | **PENDING** — blocked, still queued | markers on `origin/main` |
-| 689i | **PENDING** — blocked, still queued | markers on `origin/main` |
+| 699b | **UNBLOCKED, not yet migrated** — ran 2x, both FAIL / `non_contributory` / `substrate_not_ready_requeue`; the composition question (`levers_compound`) was not reached either time — readiness precondition `gapa_consumed_summary_divergence_all_arms` unmet both runs | runs `v3_exq_699b_..._20260724T123550Z_v3`, `v3_exq_699b_..._20260724T205940Z_v3`; markers still present on `origin/main` |
+| 689i | **UNBLOCKED, not yet migrated** — ran once, self-routed FAIL (`substrate_not_ready_requeue`) but confirmed autopsy adjudicates "gate defect, science upheld": C_PRIMARY (the criterion that actually tests MECH-448) passed cleanly; the two failing gates were instrument-side (a first-use noise-control's power, and an ambiguous-direction readiness comparator). Recommended `evidence_direction: supports` for MECH-448, pending governance write-up (not applied here) | run `v3_exq_689i_..._20260722T162850Z_v3`; `failure_autopsy_V3-EXQ-689i_2026-07-24` (status: confirmed, user-adjudicated 2026-07-24); markers still present on `origin/main` |
 | `e3-exemption-backlog` lint counter | **NOT BUILT** — see §4 | — |
 
-Close this doc when §5 has no PENDING rows.
+Close this doc when §5 has no un-migrated call-site rows (currently 699b, 689i) and the lint
+counter row is resolved.
