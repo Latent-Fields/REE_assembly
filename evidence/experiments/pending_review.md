@@ -1,16 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-08-09T06:07:47Z`  
-Last review: `2026-08-09T06:06:51Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-08-09T06:37:22Z`  
+Last review: `2026-08-09T06:36:27Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## Needs diagnosis (ERROR manifests -> /diagnose-errors)
+## Unclaimed manifests (PASS/FAIL with no claim tags)
 
-These are durable ERROR-class result manifests on disk -- most commonly a runner-synthesized record for a crash-before-manifest (a script that exited non-zero before writing any manifest; incident V3-EXQ-654e). They are scoring-neutral (no claim tags) so they never weight claim confidence, but each is a real code crash that needs `/diagnose-errors` and a re-queue under a NEW letter. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs`.
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
 
-| Outcome | Manifest stem | Queue ID | Machine | Summary |
-|---------|---------------|----------|---------|---------|
-| ERROR | `v3_v3_exq_821a_runner_error_20260808T111711Z_v3` | V3-EXQ-821a | ree-cloud-3 | Non-zero exit code 1; no runner sentinel (stdout-derived 'FAIL' not trusted on c |
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| FAIL | `v3_exq_906a_full_stack_observational_fishtank_20260809T062526Z_v3` | v3_exq_906a_full_stack_observational_fishtank | ? | non_contributory |
 
 ---
 
