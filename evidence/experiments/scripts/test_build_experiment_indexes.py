@@ -2271,6 +2271,118 @@ def test_aggregate_exclusion_does_not_apply_to_a_non_pass():
     assert flag == "verified", flag
 
 
+# --- atomic-write drift guard --------------------------------------------
+#
+# build_experiment_indexes.py rewrites ~10 shared artifacts under
+# evidence/planning/ and evidence/experiments/ that are also read (and, for
+# experiment_proposals.v1.json, written) by other processes concurrently -- the
+# umbrella confirmer_verdict.py / igw_routine_tick.py, serve.py, and a second
+# overlapping regen. Path.write_text() truncates-then-writes in several syscalls
+# for a large payload, so a concurrent reader sees a torn file and two
+# overlapping writers leave a corrupt one. Every such write MUST go through the
+# module's _atomic_write_text() (temp file + os.replace).
+#
+# This is the REE_assembly-side sibling of the umbrella's
+# scripts/test_task_claim_atomic_write.py::AllClaimsWritersUseAtomicWriteTest,
+# which globs only the umbrella scripts/ dir and so structurally cannot see this
+# file (a different repo). Tracked as chip-20260809-atomic-write-build-indexes.
+
+import ast as _ast
+
+_BII_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "build_experiment_indexes.py")
+
+
+def _scan_non_atomic_writes(source_text):
+    """Return [(lineno, snippet)] for every non-atomic file-write CALL.
+
+    AST-based rather than a line regex on purpose: the source contains
+    `Path.write_text()` and `open(path, "w")` inside the _atomic_write_text
+    DOCSTRING, and a textual scan would false-positive on documentation. A
+    call-node scan sees only real calls, and `os.fdopen(fd, "w")` -- the helper's
+    own write -- is an Attribute call named `fdopen`, never matched.
+
+    Flags: any `.write_text(` attribute call, and any bare `open(<x>, "w"...)`
+    whose mode argument requests writing.
+    """
+    tree = _ast.parse(source_text)
+    lines = source_text.splitlines()
+    offenders = []
+    for node in _ast.walk(tree):
+        if not isinstance(node, _ast.Call):
+            continue
+        func = node.func
+        hit = False
+        if isinstance(func, _ast.Attribute) and func.attr == "write_text":
+            hit = True
+        elif isinstance(func, _ast.Name) and func.id == "open":
+            mode = None
+            if len(node.args) >= 2:
+                mode = node.args[1]
+            else:
+                for kw in node.keywords:
+                    if kw.arg == "mode":
+                        mode = kw.value
+            if isinstance(mode, _ast.Constant) and isinstance(mode.value, str) \
+                    and "w" in mode.value:
+                hit = True
+        if hit:
+            ln = node.lineno
+            snippet = lines[ln - 1].strip() if 0 < ln <= len(lines) else "?"
+            offenders.append((ln, snippet))
+    return sorted(offenders)
+
+
+def test_regen_writes_shared_artifacts_atomically():
+    """No production write site in build_experiment_indexes.py may be a bare
+    Path.write_text()/open(..,"w") -- all must route through _atomic_write_text().
+
+    A single re-introduced non-atomic write re-arms the concurrent-read tear /
+    two-writer corruption race for every reader of these shared registries."""
+    src = open(_BII_PATH, encoding="utf-8").read()
+    offenders = _scan_non_atomic_writes(src)
+    assert offenders == [], (
+        "build_experiment_indexes.py writes a shared coordination artifact "
+        "non-atomically -- route through _atomic_write_text():\n  "
+        + "\n  ".join("build_experiment_indexes.py:%d: %s" % (ln, s)
+                      for ln, s in offenders))
+
+
+def test_atomic_write_helper_is_real_and_uses_os_replace():
+    """The helper must actually rename, not be gutted to a plain write while
+    keeping the name (which would pass the scan above vacuously)."""
+    src = open(_BII_PATH, encoding="utf-8").read()
+    assert "def _atomic_write_text(" in src, "helper is gone"
+    # Isolate the helper's own body and confirm it renames via os.replace.
+    tree = _ast.parse(src)
+    fn = next((n for n in _ast.walk(tree)
+               if isinstance(n, _ast.FunctionDef) and n.name == "_atomic_write_text"),
+              None)
+    assert fn is not None, "cannot find _atomic_write_text def"
+    body = _ast.get_source_segment(src, fn) or ""
+    assert "os.replace(" in body, "_atomic_write_text no longer calls os.replace()"
+    assert "mkstemp(" in body, "_atomic_write_text no longer writes to a temp file"
+
+
+def test_the_write_scan_is_not_vacuous():
+    """Differential proof the detector detects: a known-bad snippet is flagged
+    and a known-good (helper-routed) one is not. Without this a scan that
+    silently matched nothing would pass forever."""
+    bad = ('def f(p, t):\n'
+           '    (p / "experiment_proposals.v1.json").write_text(t, encoding="utf-8")\n'
+           '    with open(p, "w") as fh:\n'
+           '        fh.write(t)\n')
+    hits = _scan_non_atomic_writes(bad)
+    assert len(hits) == 2, "detector missed a non-atomic write: %r" % (hits,)
+    good = ('def f(p, t):\n'
+            '    _atomic_write_text(p, t)\n'
+            '    x = p.read_text(encoding="utf-8")\n'
+            '    with os.fdopen(fd, "w") as fh:\n'  # the helper\'s own fd write
+            '        fh.write(t)\n')
+    assert _scan_non_atomic_writes(good) == [], \
+        "detector false-positives on helper-routed / read / fdopen code"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

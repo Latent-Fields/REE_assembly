@@ -29,14 +29,75 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import re
 import subprocess
 import sys
+import tempfile
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Replace `path` with `text` in one indivisible step (temp + os.replace).
+
+    WHY THIS EXISTS, and why it is NOT ceremony. `Path.write_text()` is
+    `open(path, "w").write(text)`: it TRUNCATES at open() and then writes the
+    payload in several write() syscalls once it is past the ~8 KiB stdio
+    buffer. This regen rewrites ~10 artifacts under evidence/planning/ and
+    evidence/experiments/ -- several of them well past that buffer
+    (experiment_proposals.v1.json is ~868 KB) -- and it does NOT run alone:
+
+      * experiment_proposals.v1.json is also written by the umbrella's
+        confirmer_verdict.py (on the hot path of the concurrent headless-chip
+        population, behind chip_ledger.py's confirmer gate) and by
+        igw_routine_tick.py's retire path (unattended, on a timer). governance.sh
+        holds only a DIRECTORY-SCOPE claim over evidence/, which is advisory
+        (a NOTE that fails open), not a hard mutex -- so a confirmer chip
+        resolving mid-regen is a concrete two-writer collision.
+      * two regens can themselves overlap: serve.py's `build_indexes` action,
+        governance.sh, proposal_routine_tick.py and ree_metaworker_heartbeat.py
+        can each launch this script.
+
+    A single non-atomic writer already tears every CONCURRENT READ during its
+    multi-syscall write (measured elsewhere: 1612/2212 reads unparseable); two
+    non-atomic writers of differing length additionally leave a CORRUPT FINAL
+    file (a valid prefix followed by the longer writer's tail). os.replace() is
+    atomic on POSIX and, because the temp file is created in the SAME directory,
+    a same-filesystem rename -- so every reader sees one writer's whole document
+    or another's, never a splice, and a loser of the rename race is discarded
+    whole.
+
+    This is the same primitive as the umbrella's
+    scripts/task_claim.atomic_write_text(); it is re-stated here rather than
+    imported because build_experiment_indexes.py lives in REE_assembly, a
+    separate repo, and CLAUDE.md explicitly rejects a cross-repo sys.path import
+    for shared code (it works on the Mac and silently falls back on the hub and
+    cloud workers). A ~15-line textbook idiom did not warrant the vendored-copy
+    machinery (a new module + audit_vendored_copies.py registration + an ongoing
+    byte-identity obligation) that a genuinely non-trivial shared module like
+    graceful_timeout.py needs. The drift guard is
+    test_build_experiment_indexes.py::test_regen_writes_shared_artifacts_atomically,
+    which fails if any bare .write_text()/open(..,"w") to these paths returns.
+    """
+    fd, tmp = tempfile.mkstemp(dir=str(path.parent), prefix=path.name + ".tmp.")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            fh.write(text)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        # Never leave a half-written .tmp.* beside the real file -- another
+        # session's `git status` reads it as untracked junk in a shared checkout.
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
 
 START_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:END -->"
@@ -1886,7 +1947,7 @@ def _ensure_experiment_template(experiment_dir: Path, experiment_type: str) -> P
 No generated implications yet.
 {END_MARKER}
 """
-    doc_path.write_text(template, encoding="utf-8")
+    _atomic_write_text(doc_path, template)
     return doc_path
 
 
@@ -1992,11 +2053,11 @@ def _write_index_if_material(path: Path, text: str) -> bool:
     try:
         existing = path.read_text(encoding="utf-8")
     except (OSError, ValueError):
-        path.write_text(text, encoding="utf-8")
+        _atomic_write_text(path, text)
         return True
     if _strip_generated_stamp(existing) == _strip_generated_stamp(text):
         return False
-    path.write_text(text, encoding="utf-8")
+    _atomic_write_text(path, text)
     return True
 
 
@@ -2043,11 +2104,11 @@ def _write_json_if_material(path: Path, text: str) -> bool:
         old_obj = json.loads(existing)
         new_obj = json.loads(text)
     except (OSError, ValueError):
-        path.write_text(text, encoding="utf-8")
+        _atomic_write_text(path, text)
         return True
     if _strip_json_run_stamps(old_obj) == _strip_json_run_stamps(new_obj):
         return False
-    path.write_text(text, encoding="utf-8")
+    _atomic_write_text(path, text)
     return True
 
 
@@ -2980,9 +3041,9 @@ def _write_claim_evidence_matrix(
         key=lambda e: (e["timestamp_utc"], e["source_type"], e["experiment_type"], e["run_id"])
     )
 
-    (base_dir / "claim_evidence.v1.json").write_text(
+    _atomic_write_text(
+        base_dir / "claim_evidence.v1.json",
         json.dumps(matrix, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
     return matrix
 
@@ -3006,7 +3067,7 @@ def _write_todos(base_dir: Path, todos_by_experiment: dict[str, list[str]], gene
                 lines.append(f"- {item}")
             lines.append("")
 
-    (base_dir / "TODOs.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
+    _atomic_write_text(base_dir / "TODOs.md", "\n".join(lines).rstrip() + "\n")
 
 
 def _strip_inline_yaml_comment(value: str) -> str:
@@ -4349,9 +4410,9 @@ def _write_promotion_demotion_recommendations(
     lines.append("")
     # ── end G4 ───────────────────────────────────────────────────────────────
 
-    (base_dir / "promotion_demotion_recommendations.md").write_text(
+    _atomic_write_text(
+        base_dir / "promotion_demotion_recommendations.md",
         "\n".join(lines).rstrip() + "\n",
-        encoding="utf-8",
     )
 
 
@@ -4582,9 +4643,9 @@ def _write_conflicts_report(
             lines.append("  - If disagreement persists, split claim scope into separable subclaims.")
             lines.append("")
 
-    (base_dir / "conflicts.md").write_text(
+    _atomic_write_text(
+        base_dir / "conflicts.md",
         "\n".join(lines).rstrip() + "\n",
-        encoding="utf-8",
     )
 
 
@@ -6367,8 +6428,9 @@ def _write_planning_outputs(
                     mp_copy["source"] = "manual"
                     proposals.append(mp_copy)
             if _manual_doc_changed:
-                manual_proposals_path.write_text(
-                    json.dumps(manual_doc, indent=2) + "\n", encoding="utf-8"
+                _atomic_write_text(
+                    manual_proposals_path,
+                    json.dumps(manual_doc, indent=2) + "\n",
                 )
         except Exception:
             pass  # malformed manual file -- skip silently
@@ -6453,8 +6515,9 @@ def _write_planning_outputs(
                         _mp[_k] = _v
                         _manual_changed = True
             if _manual_changed:
-                manual_proposals_path.write_text(
-                    json.dumps(_manual_doc, indent=2) + "\n", encoding="utf-8"
+                _atomic_write_text(
+                    manual_proposals_path,
+                    json.dumps(_manual_doc, indent=2) + "\n",
                 )
         except Exception:
             pass  # malformed manual file -- skip silently, same as the merge above
@@ -6564,21 +6627,21 @@ def _write_planning_outputs(
         "items": architecture_items,
     }
 
-    (planning_root / "evidence_backlog.v1.json").write_text(
+    _atomic_write_text(
+        planning_root / "evidence_backlog.v1.json",
         json.dumps(backlog_doc, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
-    (planning_root / "experiment_proposals.v1.json").write_text(
+    _atomic_write_text(
+        planning_root / "experiment_proposals.v1.json",
         json.dumps(proposals_doc, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
-    (planning_root / "experiment_proposals_index.v1.json").write_text(
+    _atomic_write_text(
+        planning_root / "experiment_proposals_index.v1.json",
         json.dumps(_index_doc, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
-    (planning_root / "architecture_gap_register.v1.json").write_text(
+    _atomic_write_text(
+        planning_root / "architecture_gap_register.v1.json",
         json.dumps(architecture_gap_doc, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
 
     arch_lines: list[str] = []
@@ -6699,9 +6762,9 @@ def _write_planning_outputs(
                     "  - atomic_split_recommended: yes; split into narrower subclaims before broad reruns."
                 )
 
-    (planning_root / "ARCHITECTURE_GAP_REGISTER.md").write_text(
+    _atomic_write_text(
+        planning_root / "ARCHITECTURE_GAP_REGISTER.md",
         "\n".join(arch_lines).rstrip() + "\n",
-        encoding="utf-8",
     )
 
     # Human-readable surface for the dormant_high_conflict no-deadline watchlist
@@ -6759,9 +6822,9 @@ def _write_planning_outputs(
                 )
                 + " |"
             )
-    (planning_root / "DORMANT_HIGH_CONFLICT_WATCHLIST.md").write_text(
+    _atomic_write_text(
+        planning_root / "DORMANT_HIGH_CONFLICT_WATCHLIST.md",
         "\n".join(dormant_lines).rstrip() + "\n",
-        encoding="utf-8",
     )
 
     index_lines: list[str] = []
@@ -7249,7 +7312,7 @@ def main() -> None:
         design_text, todos = _build_design_implications(runs, args.lookback_failures)
         profile_text = profile_path.read_text(encoding="utf-8")
         profile_text = _replace_between_markers(profile_text, design_text)
-        profile_path.write_text(profile_text, encoding="utf-8")
+        _atomic_write_text(profile_path, profile_text)
 
         if todos:
             todos_by_experiment[experiment_type] = todos
