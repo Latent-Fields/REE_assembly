@@ -52521,7 +52521,8 @@
     REEConfig.use_policy_decomposition; decomposition_vs_threshold 0.4 (matches this
     codebase's existing vs_gate_e1/e2_threshold convention), decomposition_depth_cap 3
     (mirrors ARC-071's chunk_max_depth default). 15 interface contracts in
-    ree-v3/tests/contracts/test_arc070_policy_decomposition.py. NO EXPERIMENTAL EVIDENCE YET
+    ree-v3/tests/contracts/test_arc070_policy_decomposition.py. NO EXPERIMENTAL EVIDENCE AT
+    BUILD TIME (see the 2026-08-09 mechanism-fires reconciliation block at the end of this note)
     -- v3_pending stays True; a substrate-readiness diagnostic (does decomposition fire and
     correctly withhold/replace a chunk candidate) is queued separately, and the full
     ARM_0/ARM_1/ARM_2 discriminative-pair design from MECH-321's functional_restatement is a
@@ -52566,6 +52567,30 @@
     re-queue) / BUILD (SD-084 substrate) pattern the audit exists to force; the flag was stale, not a fresh
     circling. See MECH-321's own implementation_note for the harm-valence-wiring and matched-seed-pool
     follow-on (V3-EXQ-844/867/867a/867b) this reachability fix then made possible to test.
+
+    [2026-08-09 governance reconciliation, mechanism-fires evidence line -- resolves the twice-deferred
+    2026-08-08 flags in what_would_answer below]: ARC-070's NARROW architectural claim is that the
+    decomposition operation FIRES and re-segments under a genuine trigger -- distinct from MECH-321's
+    separate, broader FUNCTIONAL claim that decomposition IMPROVES task outcomes (repeatedly FAILING:
+    V3-EXQ-844 C1, and the V3-EXQ-867/867a/867b family). Three experimental touchpoints now positively
+    bear on the narrow fires claim: (1) V3-EXQ-839 (confirmed failure_autopsy_V3-EXQ-839_2026-07-30) --
+    the R4 mid-execution hook is genuinely REACHABLE, 415 evaluations ON vs a structural 0 OFF, with a
+    bit-identical negative-control seed tier; (2) V3-EXQ-844 C2_FORWARD_PE_CORROBORATES (non-load-bearing
+    but PASSED; confirmed failure_autopsy_V3-EXQ-844_2026-08-01) -- aborting a stale macro measurably
+    lowers forward-PE afterward, i.e. the mechanism does informationally what it is architecturally built
+    to do (what_would_answer condition (a)); (3) V3-EXQ-904 (PASS, evidence_direction=supports,
+    claim_ids=[ARC-070], 2026-08-08) -- the trigger fires SELECTIVELY (decomposes when region_vs <
+    threshold AND when the real MECH-288 boundary detector fires on genuine rollout latents [C_BOUNDARY_LIVE,
+    the one load-bearing non-forced criterion: 180 real boundary fires drove 180 decompositions], silent
+    above threshold), yields finer tiles, respects the depth cap, and OFF is a structural zero. On the
+    strength of these the narrow mechanism-fires / OPERATION claim is now EVIDENCED (no longer "no
+    evidence"). TWO LEGS REMAIN SEPARATELY OPEN, which is why v3_pending STAYS True and nothing is promoted
+    here: (i) 904's own scope_note is explicit that it does NOT confirm the trigger fires under NATURAL
+    prediction failure in the live env -- that path is env-blocked by V_s saturation (V3-EXQ-816/830);
+    and (ii) MECH-321's task-benefit claim is separately unresolved and currently failing. v3_pending
+    gates those two legs, not the fires claim. This is an evidence-picture correction only; the claim
+    remains cleanly separated from MECH-321 (the what_would_answer EXPLICITLY-NOT-FALSIFYING clause already
+    drew the line), so no /claim-synthesis re-split was needed.
   title: "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'"
   claim_type: architectural_commitment
   subject: policy.decomposition_on_prediction_failure
@@ -52573,12 +52598,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-09
     needs_review: false
     evidence:
-      from: "decision:ARC-070@2026-05-16T19:08:31Z"
-      as_of: 2026-05-16
-      verdict: hold_pending_v3_substrate/applied
+      from: "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3"
+      as_of: 2026-08-08
+      verdict: "supports/standard -- narrow mechanism-fires / OPERATION claim evidenced (decomposition re-segments selectively; V3-EXQ-839 reachability + V3-EXQ-844 C2 forward-PE + V3-EXQ-904 selectivity). Reading stays candidate/v3_pending because the natural-prediction-failure trigger (env-blocked, V3-EXQ-816/830) and MECH-321's task-benefit leg remain separately open. See implementation_note 2026-08-09 reconciliation."
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -52875,6 +52900,14 @@
     drivers, which all declare one) -- did not affect THIS run's PASS (all 5 criteria passed),
     but misrepresents which criteria actually decide PASS/FAIL for future runs of this driver.
     Flagged for /failure-autopsy per user decision (not autopsied this cycle; see WORKSPACE_STATE).
+
+    [2026-08-09 reconciliation APPLIED]: the twice-deferred mechanism-fires evidence line (the 2026-08-08
+    thought-digestion flag and the V3-EXQ-904 restatement above) is now recorded in this claim's
+    implementation_note (2026-08-09 governance reconciliation block) and its live_status.evidence: the
+    narrow fires / OPERATION claim reads EVIDENCED across V3-EXQ-839/844-C2/904, while the
+    natural-prediction-failure trigger (env-blocked) and MECH-321's task-benefit leg stay separately open,
+    so v3_pending is UNCHANGED. Separately, the V3-EXQ-904 combination_rule / load_bearing manifest
+    discrepancy noted above remains routed to /failure-autopsy and is untouched by this evidence-line pass.
 
 - id: ARC-071
   implementation_note: >-
