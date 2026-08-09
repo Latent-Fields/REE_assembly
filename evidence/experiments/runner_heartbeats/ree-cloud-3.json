@@ -1,48 +1,37 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-09T08:24:34Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-228c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-863",
-      "result": "PASS",
-      "completed_at": "2026-08-02T12:13:14.357552+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-866b",
-      "result": "PASS",
-      "completed_at": "2026-08-03T19:24:06.174504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-888",
-      "result": "PASS",
-      "completed_at": "2026-08-04T07:52:57.551542+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-900",
-      "result": "PASS",
-      "completed_at": "2026-08-08T10:38:46.565176+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-904",
-      "result": "PASS",
-      "completed_at": "2026-08-08T20:11:50.967141+00:00"
-    }
+  "last_tick_utc": "2026-08-09T09:49:45Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-903a",
+  "current_exq_started_utc": "2026-08-09T09:45:37.669233+00:00",
+  "current_title": "MECH-075 ventral VTA-RPE probe -- instrumented re-run (903a): per-seed episode-length/termination recording + 5 seeds",
+  "current_claim_id": "MECH-075",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / TRAIN_ENCODER_WARMUP",
+    "runs_done": 0,
+    "runs_total": 5,
+    "episodes_done": 0,
+    "episodes_total": 150,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 248,
+  "seconds_remaining": 19800,
+  "recent_lines": [
+    "[V3-EXQ-903] MECH-075 Ventral VTA-RPE Probe (dry_run=False)",
+    "[EXQ-903] seed=42 train=150 posctrl=10 eval_per_cond=40 steps=200",
+    "Seed 42 Condition TRAIN_ENCODER_WARMUP",
+    "/home/ree/REE_Working/ree-v3/experiments/v3_exq_903a_mech075_ventral_vta_rpe_probe.py:530: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+    "obs_body = torch.tensor(obs_dict[\"body_state\"], dtype=torch.float32)",
+    "/home/ree/REE_Working/ree-v3/experiments/v3_exq_903a_mech075_ventral_vta_rpe_probe.py:531: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).",
+    "obs_world = torch.tensor(obs_dict[\"world_state\"], dtype=torch.float32)"
   ],
-  "runner_pid": 927,
-  "runner_version": "r4960 c4522ae 2026-08-09",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 924,
+  "runner_version": "r4968 7a2aee7 2026-08-09",
   "gpu": {
     "available": false
   },
