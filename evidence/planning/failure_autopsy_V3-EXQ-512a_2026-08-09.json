@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T07:41:14Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "re_adjudication_of": "PASS/supports (re-adjudication per chip-20260809-v3exq512a-reexamination, following failure_autopsy_V3-EXQ-902_2026-08-09's flag)",
+  "targets": [
+    {
+      "run_id": "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
+      "queue_id": "V3-EXQ-512a",
+      "claim_ids": ["SD-048"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "present",
+        "prerequisites": "present",
+        "implementation": "complete (substrate); defective (measurement, C3)",
+        "environment": "inadequate for C3 at this scale (identical mechanism to V3-EXQ-902 ARM_3)",
+        "measurement": "structurally flawed (C3 tautological); marginal (C1 thin, sign-inconsistent)",
+        "integration": "coupled but not implicated",
+        "scale": "not the locus of the problem"
+      },
+      "biological_reference": {
+        "closest_mechanism": "von Holst & Mittelstaedt reafference principle / corollary discharge, interoceptive-predictive-coding extension",
+        "dependencies": ["SD-011 (z_harm_a)", "SD-022 (agent-caused body-state variance)"],
+        "is_formal_import": false,
+        "divergence": "none identified -- SNR-detectability requirement (self/other discrimination only above a detectability floor) is consistent with biological signal-detection accounts",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-048": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-512a's standing supports verdict does not survive re-examination under the same lens as V3-EXQ-902. Verified directly against the manifest's per-seed data and the driver source: ARM_A (scale=3.0) has n_quiet_steps=0 in all 3 seeds, so residual_quiet=0.0 exactly (_safe_mean([])==0.0, no minimum-sample guard) and the C3/quiet_gap criterion (residual_body_noise - residual_quiet >= 0.005) reduces to residual_body_noise >= 0.005 verbatim -- not a comparison against any real undisturbed-tick data, the identical tautology V3-EXQ-902 found in its own ARM_3. C3 was one of two architecturally load-bearing criteria in the driver's own pre-registered PASS = C1 AND C2 AND C3 grid (C2 is only the ARM_B sanity check). The one criterion the defect does not touch, C1 (selectivity_gap, body-noise vs agent-caused), is too thin to independently sustain supports: mean effect 0.00097 (~1.5-2% of the ~0.05 residual magnitude), 2/3 seeds pass at exactly the minimum required fraction, and seed 43 (the seed with the most body-noise exposure, 270 steps) has the WRONG SIGN (-0.00067). Reclassified supports -> non_contributory (same read as 902's own reclassification, same underlying instrument defect): this run is neither clean evidence for nor against SD-048. epistemic_category held at standard; status: candidate, v3_pending: true unchanged. Consequence: SD-048 currently has no clean confirming experimental result -- V3-EXQ-512a was its only supports evidence, and V3-EXQ-902 was already reclassified weakens -> non_contributory for the same reason. The fix (a redesigned criterion with a minimum-group-size guard, restoring the architecture doc's own matched-amplitude comparison) was already routed to /queue-experiment by V3-EXQ-902's autopsy; no duplicate routing is added here.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "not applicable -- standard/measurement finding, not a substrate_ceiling reading"
+      },
+      "learning_extracted": [
+        "V3-EXQ-512a's ARM_A (scale=3.0) has n_quiet_steps=0 in all 3 seeds, verified directly against the manifest's per-seed results_arm_a_sd048_on array -- identical signature to V3-EXQ-902's ARM_3, confirming (not merely extending) that autopsy's finding.",
+        "The driver's own pre-registered interpretation grid requires C1 AND C3 together for a supports verdict; with C3 invalidated as a tautology, the grid's own conjunction is unsatisfied -- this is not a case where a secondary criterion can be dropped and a primary one still carries the result.",
+        "C1 alone (the criterion unaffected by the defect) is too thin to independently sustain supports: 2/3 seeds at the exact minimum required fraction, mean effect ~2% of residual magnitude, and a sign reversal on the seed with the most body-noise exposure (seed 43).",
+        "SD-048 now has no clean confirming experimental result: 511 was non_contributory (substrate-readiness only), 902 is non_contributory (reclassified), and 512a is non_contributory (this autopsy) -- all three attempts share one broken instrument.",
+        "No new /queue-experiment routing needed: V3-EXQ-902's autopsy already specified the fix (minimum-sample guard, restored matched-amplitude C2/C3 definition); that single redesigned experiment will retroactively answer what 512a's scale=3.0 arm should have shown."
+      ],
+      "routing": "governance-demotion-of-evidence-direction",
+      "routing_note": "Not a claim-level demotion (SD-048 status/epistemic_category unchanged) -- routing is the evidence_direction reclassification on this manifest, applied by /governance per the note above. No new experiment/substrate action from this autopsy; defers to V3-EXQ-902's already-routed /queue-experiment fix."
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_check": {
+    "ran": true,
+    "tool": "granularity_debt_cluster.py SD-048",
+    "targets_before_this_autopsy": 1,
+    "alignment_distribution_before": {"unclear": 1},
+    "fires": false,
+    "reason": "No target reads 'weakened'; both 902 and this target attribute their result to the same single instrument defect (C2/C3 quiet-bucket tautology), not to structurally different failure signatures. Measurement/implementation debt, not granularity debt."
+  },
+  "hypothesis_space_ledger_pending": {
+    "action": "not_applicable",
+    "reason": "No existing hypothesis-space qid names SD-048 (confirmed via grep of hypothesis_space_registry.v1.json); no fanout_recommendation emitted -- this is a re-adjudication of a single existing result, not a discrimination portfolio."
+  },
+  "process_note": {
+    "coordination_plane_pause_claim": "not_acquired",
+    "reason": "task_claim.py open on the coordination-plane pause resource set (claims.yaml, substrate_queue.json, experiment_proposals.v1.json, ree-v3/experiment_queue.json, TASK_CLAIMS.json, WORKSPACE_STATE.md, evidence/) hit exact-match arbitration contention on 3 files against concurrently active ordinary work claims (mech-322-evidence-confirm-bc9fbf, metaworker-chip-20260809-sd035-attribution-head, metaworker-chip-20260809-sd-e3-scorer-completion) -- none of which are pause locks themselves. Nothing was written for the pause claim (refused pre-commit). This autopsy's own writes (this artifact pair + WORKSPACE_STATE.md/TASK_CLAIMS.json) never touch claims.yaml/substrate_queue.json/experiment_queue.json, so the pause's protective purpose was not load-bearing here. Flagged for user visibility."
+  },
+  "follow_up_flagged": []
+}
