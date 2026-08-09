@@ -569,10 +569,105 @@ def test_real_cohort_merge_makes_flat_authoritative():
     assert seen >= 4, f"expected >=4 incident runs present, found {seen}"
 
 
-def test_real_legacy_150_series_not_flipped():
-    """Regression guard: the v3_exq_150-series has an ANNOTATED pack
-    (supersession note) and a STALE unannotated flat. The overlay must NOT
-    fire, so the pack's `superseded`/`inconclusive` exclusion is preserved."""
+# --- legacy annotated-pack shape: SYNTHETIC contract + thin real-data smoke --
+#
+# 2026-08-09 BIT-ROT FIX. This contract used to be asserted directly against the
+# live v3_exq_150/159 pairs, with `assert not b._is_annotated(flat)` as its data
+# PREMISE. Governance has since annotated the 150-series flat (it now carries a
+# `degeneracy_reason`), so that premise -- and only that premise -- went false and
+# the test failed while the behaviour it guards was, and is, correct.
+#
+# The defect was the coupling, not the assertion: a contract test whose meaning
+# silently changes when governance annotates a manifest cannot be trusted either
+# way round. Had the flat instead been annotated to AGREE with the pack, the test
+# would have kept PASSING while reaching `applied is False` through the
+# both-annotated branch rather than the legacy branch it exists to pin -- a
+# vacuous pass. So the contract is now built from synthetic fixtures in a tempdir
+# and driven END-TO-END through `_scan_runs` (the real file-reading path), with a
+# separate thin smoke over the real pairs asserting only what stays true as the
+# live data evolves.
+
+
+def _write_legacy_pair(base: Path, pack_extra: dict, flat_extra: dict) -> tuple[str, str]:
+    """Materialise one `<experiment_type>/runs/<run_id>/manifest.json` pack plus
+    its flat `<run_id>.json` sibling under `base`, in the on-disk shape
+    `_scan_runs` globs for. Returns (experiment_type, run_id)."""
+    run_id = "v3_exq_9150_legacy_annotated_pack_20260329T131504Z_v3"
+    experiment_type = "v3_exq_9150_legacy_annotated_pack"
+    run_dir = base / experiment_type / "runs" / run_id
+    run_dir.mkdir(parents=True)
+    pack = {"run_id": run_id, "timestamp_utc": "2026-03-29T13:15:04Z",
+            "status": "PASS", "claim_ids_tested": ["MECH-9150"],
+            "architecture_epoch": "ree_hybrid_guardrails_v1"}
+    pack.update(pack_extra)
+    (run_dir / "manifest.json").write_text(json.dumps(pack), encoding="utf-8")
+    (run_dir / "metrics.json").write_text("{}", encoding="utf-8")
+    (run_dir / "summary.md").write_text("synthetic\n", encoding="utf-8")
+    flat = {"run_id": run_id, "timestamp_utc": "2026-03-29T13:15:04Z", "status": "PASS"}
+    flat.update(flat_extra)
+    (base / f"{run_id}.json").write_text(json.dumps(flat), encoding="utf-8")
+    return experiment_type, run_id
+
+
+def _scan_one_direction(pack_extra: dict, flat_extra: dict) -> str:
+    """Run the real `_scan_runs` over a one-run synthetic tree and return the
+    `evidence_direction` the indexer actually scored."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        experiment_type, run_id = _write_legacy_pair(base, pack_extra, flat_extra)
+        by_experiment = b._scan_runs(base, {})
+        records = by_experiment.get(experiment_type, [])
+        assert len(records) == 1, f"expected 1 scanned run, got {len(records)}"
+        assert records[0].run_id == run_id
+        return records[0].evidence_direction
+
+
+def test_legacy_annotated_pack_not_flipped_end_to_end():
+    """The v3_exq_150-series SHAPE, synthetic: pack carries the supersession
+    note, flat is a stale unannotated earlier emission. Driven through the real
+    `_scan_runs` file-reading path, the scored direction must remain the pack's
+    `superseded` -- the exclusion that keeps a superseded run out of scoring."""
+    assert _scan_one_direction(
+        {"evidence_direction": "superseded",
+         "evidence_direction_note": "Sleep not implemented in V3. Superseded."},
+        {"evidence_direction": "mixed"},
+    ) == "superseded"
+
+
+def test_legacy_annotated_pack_survives_a_later_flat_annotation():
+    """The same pair AFTER governance annotates the flat copy too (the live
+    2026-08-09 state of the 150-series). Both copies are now annotated and they
+    disagree -> the pack is still retained. Pinned separately from the test above
+    because these are DIFFERENT branches of the annotation gate that happen to
+    share an outcome; conflating them is what made the old real-data test
+    vacuous."""
+    assert _scan_one_direction(
+        {"evidence_direction": "superseded",
+         "evidence_direction_note": "Sleep not implemented in V3. Superseded."},
+        {"evidence_direction": "mixed",
+         "degeneracy_reason": "All arms identical on the criterion-bearing metrics."},
+    ) == "superseded"
+
+
+def test_scan_does_read_the_flat_sibling():
+    """Differential control for the two tests above: with the annotations the
+    other way round (flat annotated, pack not) the scored direction DOES flip to
+    the flat's. Without this, `superseded` above could be produced by a scan path
+    that never opened the flat sibling at all, and both would pass vacuously."""
+    assert _scan_one_direction(
+        {"evidence_direction": "superseded"},
+        {"evidence_direction": "mixed",
+         "evidence_direction_note": "autopsy: correction lands on the flat copy"},
+    ) == "mixed"
+
+
+def test_real_legacy_150_series_pack_direction_survives_merge():
+    """Thin real-data smoke over the actual 150/159 pairs. Asserts only the
+    invariant that stays true as governance annotates these manifests: when the
+    PACK is annotated, the merge never overwrites its `evidence_direction`,
+    whatever the flat sibling's annotation state. Deliberately makes NO claim
+    about whether the flat is annotated -- that premise is what rotted, and it is
+    now pinned synthetically above instead."""
     import json
     from pathlib import Path
     base = Path(__file__).resolve().parents[1]
@@ -583,15 +678,16 @@ def test_real_legacy_150_series_not_flipped():
         packs = list(base.glob(f"**/runs/{rid}/manifest.json"))
         if not (flat_p.exists() and packs):
             continue
-        checked += 1
         flat = json.loads(flat_p.read_text(encoding="utf-8"))
         pack = json.loads(packs[0].read_text(encoding="utf-8"))
-        assert b._is_annotated(pack), rid          # pack has the note
-        assert not b._is_annotated(flat), rid       # flat is stale
+        if not b._is_annotated(pack):
+            continue  # no longer the annotated-pack shape; nothing to guard here
+        checked += 1
         merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
         assert applied is False, rid
         assert merged.get("evidence_direction") == pack.get("evidence_direction"), rid
-    assert checked >= 1, "expected at least one legacy 150-series pair present"
+        assert merged.get("evidence_direction") == "superseded", rid
+    assert checked >= 1, "expected at least one annotated-pack legacy pair present"
 
 
 def test_does_not_support_still_maps_to_weakens():
