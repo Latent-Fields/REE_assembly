@@ -1,48 +1,37 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-08-09T19:22:36Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-909",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-830",
-      "result": "PASS",
-      "completed_at": "2026-07-27T20:49:33.440086+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-832",
-      "result": "PASS",
-      "completed_at": "2026-07-27T21:45:50.756813+00:00"
-    }
+  "last_tick_utc": "2026-08-09T19:32:35Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-906c",
+  "current_exq_started_utc": "2026-08-09T19:28:20.708430+00:00",
+  "current_title": "Full-stack observational fishtank: appetitive-sequence + affect->behaviour coupling instrumentation (Section 9 item 1 of 906b review)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / full_stack_observational_showcase",
+    "runs_done": 0,
+    "runs_total": 1,
+    "episodes_done": 0,
+    "episodes_total": 220,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 255,
+  "seconds_remaining": 18000,
+  "recent_lines": [
+    "[V3-EXQ-906c] Full-Stack Observational Fishtank: Appetitive-Sequence + Coupling Instrumentation",
+    "Seeds: [0]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training (unchanged from 906b)",
+    "Train eps/seed: 220  Eval: 8 segments x up to 500 steps (same ecology as 906b, unchanged)",
+    "New: 3-channel manifest aggregation (residue_wanting/liking/surprise) + 6 affect->behaviour coupling metrics",
+    "Output: REE_assembly/evidence/experiments/v3_exq_906c_full_stack_observational_fishtank/",
+    "Seed 0 Condition full_stack_observational_showcase",
+    "[EXQ-906c] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON"
   ],
-  "runner_pid": 79672,
-  "runner_version": "r4991 98944e5 2026-08-09 (running bd90e8d 2026-08-09)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 43156,
+  "runner_version": "r4992 b09d1e2 2026-08-09",
   "gpu": {
     "available": false
   },
