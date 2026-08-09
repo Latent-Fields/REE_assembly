@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-09T13:05:30Z",
+  "last_tick_utc": "2026-08-09T13:30:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-903a",
   "current_exq_started_utc": "2026-08-09T09:45:37.669233+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "MECH-075",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 5 / TRAIN_ENCODER_WARMUP",
-    "runs_done": 15,
+    "run_label": "Seed 5 / VTA_RPE_GATED",
+    "runs_done": 18,
     "runs_total": 5,
     "episodes_done": 0,
     "episodes_total": 150,
-    "overall_pct": 300.0
+    "overall_pct": 360.0
   },
-  "seconds_elapsed": 11992,
+  "seconds_elapsed": 13514,
   "seconds_remaining": 0,
   "recent_lines": [
     "[V3-EXQ-903] MECH-075 Ventral VTA-RPE Probe (dry_run=False)",
@@ -73,7 +73,13 @@
     "[VTA_RPE_ABLATED] seed=123 mean|delta_t|=0.00166 basin_width=0.00001 n_dt=3339 n_basin=1345 mean_ep_len=83.5 term={'health_depleted': 37, 'step_budget_exhausted': 3}",
     "verdict: FAIL",
     "[EXQ-903] seed=5 train=150 posctrl=10 eval_per_cond=40 steps=200",
-    "Seed 5 Condition TRAIN_ENCODER_WARMUP"
+    "Seed 5 Condition TRAIN_ENCODER_WARMUP",
+    "[train] seed=5 ep 50/75",
+    "Seed 5 Condition TRAIN_HEAD_GROUNDING",
+    "[train] seed=5 ep 50/75",
+    "Seed 5 Condition POSITIVE_CONTROL",
+    "[POSITIVE_CONTROL] seed=5 mean|delta_t|=0.00838 grounding_corr=-0.0034 n_samples=121 mean_ep_len=12.1 term={'health_depleted': 10} P0a=F P0b=P",
+    "Seed 5 Condition VTA_RPE_GATED"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
