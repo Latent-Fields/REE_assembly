@@ -385,6 +385,19 @@ def _compute_adjudication(interpretation: Any, status: str,
                              2026-07-29.md Sec.2). Ambiguous (>=2 candidates) and
                              unmatched keys inherit nothing, so ambiguity resolves
                              toward FLAGGING and no existing adjudication moves.
+                             ONE NARROW EXCEPTION to that unmatched-key default:
+                             when criteria[] declares an AGGREGATE non-degeneracy
+                             criterion (name ending "_non_degenerate") tagged
+                             load_bearing:true that PASSED, unmatched keys are
+                             the informational excess that aggregate deliberately
+                             does not cover, and are excluded. Fixes the third
+                             join-mismatch sub-case, where -- unlike 783 and 830
+                             -- no criteria[] entry exists to be found at all,
+                             by design (V3-EXQ-906 reports 10 channels and gates
+                             on 4 via one aggregate; failure_autopsy_V3-EXQ-906_
+                             2026-08-09.md). Safe because a degenerate GATED
+                             subset makes the aggregate itself passed:false,
+                             which (3b) catches before this path runs.
       - "verified"        -- declared structure(s) present and all checks hold.
 
     The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
@@ -509,11 +522,67 @@ def _compute_adjudication(interpretation: Any, status: str,
             return by_name[candidates[0]]
         return None
 
+    # THIRD sub-case of the join-mismatch class (V3-EXQ-906, 2026-08-09). Both
+    # precedents above assume a criteria[] entry EXISTS to be found by a better
+    # name match -- 783 the exclusion was absent, 830 the join key mismatched.
+    # Here there is nothing to find: the driver reports a BROAD per-channel
+    # non-degeneracy telemetry block in criteria_non_degenerate{} but gates on a
+    # NARROW subset via ONE AGGREGATE criterion, so the excess keys have no
+    # corresponding criteria[] entry AT ALL, BY DESIGN. V3-EXQ-906 reports 10
+    # channels and gates on 4 of them via `core_channels_non_degenerate`; the
+    # unmatched channel_vigor:false / channel_z_block:false then trip a spurious
+    # vacuous_pass on a run whose load-bearing gate genuinely cleared. Same
+    # mechanism on both V3-EXQ-665 runs and V3-EXQ-664 (all 2026-06-10, none
+    # previously autopsied). See failure_autopsy_V3-EXQ-906_2026-08-09.md Sec.1.
+    #
+    # THE LICENCE IS AN EXPLICIT, LOAD-BEARING, CLEARED AGGREGATE -- not the mere
+    # absence of a match. A criteria[] entry whose NAME ends in "_non_degenerate"
+    # IS a non-degeneracy assertion in the same vocabulary as the crit{} keys (the
+    # same naming-convention device the "_branch" exclusion above already uses),
+    # so when the author declares one, tags it load_bearing:true, and it PASSED,
+    # they have said which non-degeneracy assertions gate this run: the aggregate.
+    # The unmatched remainder is then the informational excess the aggregate
+    # deliberately does not cover, and is excluded from the vacuity check.
+    #
+    # SAFETY -- this cannot suppress a real vacuity flag on the aggregate's own
+    # scope. Should the gated subset go degenerate, the aggregate itself carries
+    # passed:false, and the (3b) check above fires vacuous_pass BEFORE this path
+    # is reached. Requiring load_bearing:true AND passed:true is what makes the
+    # licence conditional rather than a blanket "unmatched => informational".
+    #
+    # NARROW BY MEASUREMENT, not by assertion. Over all 463 manifests under
+    # evidence/experiments as of 2026-08-09 this moves EXACTLY the four runs named
+    # above, all vacuous_pass -> verified. The blanket alternative ("criteria[] is
+    # present, so any unmatched key is informational") was measured first and
+    # rejected: it additionally cleared V3-EXQ-859/863 (mech448/449_ablation
+    # _discriminates both false against a lone `sample_adequate` criterion),
+    # V3-EXQ-767/768 (pref_*_varies_across_seeds:false -- absent seed variation IS
+    # degeneracy) and V3-EXQ-792a, none of which has been adjudicated and several
+    # of which look like genuine flags. Ambiguity still resolves toward FLAGGING.
+    _aggregate_cleared = False
+    if isinstance(_criteria, list):
+        for c in _criteria:
+            if (isinstance(c, dict)
+                    and isinstance(c.get("name"), str)
+                    and c["name"].endswith("_non_degenerate")
+                    and c.get("load_bearing") is True
+                    and c.get("passed") is True):
+                _aggregate_cleared = True
+                break
+
+    def _out_of_aggregate_scope(key: str) -> bool:
+        if not _aggregate_cleared:
+            return False
+        if key in by_name:
+            return False
+        return len([n for n in by_name if n.startswith(key + "_")]) != 1
+
     non_load_bearing = {k for k in (str(x) for x in crit.keys())
                         if _load_bearing_for(k) is False}
     degeneracy_assertions = [v for k, v in crit.items()
                              if not str(k).endswith("_branch")
-                             and str(k) not in non_load_bearing]
+                             and str(k) not in non_load_bearing
+                             and not _out_of_aggregate_scope(str(k))]
     if str(status).upper() == "PASS" and any(v is False for v in degeneracy_assertions):
         return label, "vacuous_pass"
     return label, "verified"

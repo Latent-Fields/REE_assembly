@@ -2055,6 +2055,126 @@ def test_top_level_index_latest_status_renders_partial_status():
     assert cell == "PARTIAL_NO_CANCEL", f"top-level status cell was {cell!r}"
 
 
+# ---------------------------------------------------------------------------
+# criteria_non_degenerate{} <-> criteria[] join, THIRD sub-case (V3-EXQ-906).
+#
+# A broad-report/narrow-gate driver reports every monitored channel's
+# non-degeneracy in criteria_non_degenerate{} but gates PASS on a SUBSET via one
+# AGGREGATE criterion, so the excess keys have no criteria[] entry at all -- by
+# design, not by the spelling slip of 783 or the direction reversal of 830. The
+# unmatched False values used to trip a spurious vacuous_pass.
+# Regression target: failure_autopsy_V3-EXQ-906_2026-08-09.md.
+# ---------------------------------------------------------------------------
+
+def _fishtank(core_passed=True, load_bearing=True, vigor=False):
+    """The real V3-EXQ-906 declaration shape, reduced to what the join reads."""
+    return {
+        "label": "full_stack_observational_showcase_live",
+        "preconditions": [{"name": "harm_pathway_trained", "kind": "readiness",
+                           "measured": 3794.0, "threshold": 1.0, "met": True}],
+        "criteria_non_degenerate": {
+            "channel_z_harm_a": True, "channel_drive": True,
+            "channel_z_goal": True, "channel_vigor": vigor,
+            "channel_z_block": False, "harm_pathway_trained": True,
+        },
+        "criteria": [
+            {"name": "core_channels_non_degenerate",
+             "load_bearing": load_bearing, "passed": core_passed},
+            {"name": "harm_pathway_trained", "load_bearing": True, "passed": True},
+        ],
+    }
+
+
+def test_unmatched_key_outside_a_cleared_aggregate_is_not_vacuous():
+    """THE FIX. channel_vigor/channel_z_block have zero criteria[] candidates,
+    but a load-bearing `core_channels_non_degenerate` aggregate cleared."""
+    _, flag = b._compute_adjudication(_fishtank(), "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_degenerate_gated_subset_still_flags_via_the_aggregate():
+    """SAFETY. If the AGGREGATE's own scope goes degenerate the author reports
+    passed:false on it, and (3b) fires before the legacy join is reached."""
+    _, flag = b._compute_adjudication(_fishtank(core_passed=False),
+                                      "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_aggregate_must_be_load_bearing_to_licence_the_exclusion():
+    """A non-load-bearing aggregate is not a gate declaration, so unmatched
+    keys keep the conservative resolve-toward-flagging default."""
+    _, flag = b._compute_adjudication(_fishtank(load_bearing=False),
+                                      "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_no_aggregate_means_unmatched_keys_still_flag():
+    """NEGATIVE CONTROL -- the V3-EXQ-859/863 shape: unmatched False keys and a
+    lone non-aggregate criterion. The blanket 'criteria[] present => unmatched
+    is informational' rule cleared these; this one must not."""
+    interp = {"label": "abl",
+              "criteria_non_degenerate": {"mech448_ablation_discriminates": False,
+                                          "mech449_ablation_discriminates": False},
+              "criteria": [{"name": "sample_adequate",
+                            "load_bearing": True, "passed": True}]}
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_matched_load_bearing_key_still_flags_even_beside_an_aggregate():
+    """The exclusion is scoped to UNMATCHED keys. A key that DOES join to a
+    load-bearing criterion is unaffected by a sibling aggregate."""
+    interp = _fishtank()
+    interp["criteria_non_degenerate"]["harm_pathway_trained"] = False
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_783_and_830_exclusions_are_unchanged_without_an_aggregate():
+    """The two prior fixes keep working: exact-name load_bearing:false (783)
+    and the prefix-tolerant short-key/long-name join (830)."""
+    i783 = {"label": "x",
+            "criteria_non_degenerate": {"C1_cr_crossing": True,
+                                        "C2_event_selectivity": False},
+            "criteria": [{"name": "C1_cr_crossing", "load_bearing": True,
+                          "passed": True},
+                         {"name": "C2_event_selectivity", "load_bearing": False,
+                          "passed": False}]}
+    assert b._compute_adjudication(i783, "PASS", "diagnostic")[1] == "verified"
+    i830 = {"label": "x",
+            "criteria_non_degenerate": {"C_DECIDABLE": True, "C_DISSOCIABLE": False},
+            "criteria": [{"name": "C_DECIDABLE_instrument_returned_a_reading",
+                          "load_bearing": True, "passed": True},
+                         {"name": "C_DISSOCIABLE_low_cofire_distinct_positions",
+                          "load_bearing": False, "passed": False}]}
+    assert b._compute_adjudication(i830, "PASS", "diagnostic")[1] == "verified"
+
+
+def test_aggregate_does_not_rescue_a_declaration_that_declares_nothing():
+    """An empty criteria_non_degenerate{} with no preconditions is still
+    `unverified` -- the exclusion filters the vacuity check, it does not
+    fabricate a declaration."""
+    interp = {"label": "x", "criteria_non_degenerate": {},
+              "criteria": [{"name": "core_channels_non_degenerate",
+                            "load_bearing": True, "passed": True}]}
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "unverified", flag
+
+
+def test_branch_selector_exclusion_survives_the_aggregate_path():
+    """NEGATIVE CONTROL for the 648a/649 class: a `_branch` selector False is
+    still excluded, with or without an aggregate in play."""
+    interp = _fishtank()
+    interp["criteria_non_degenerate"]["diffuse_branch"] = False
+    assert b._compute_adjudication(interp, "PASS", "diagnostic")[1] == "verified"
+
+
+def test_aggregate_exclusion_does_not_apply_to_a_non_pass():
+    """A FAIL was never vacuous_pass; the exclusion must not change that."""
+    _, flag = b._compute_adjudication(_fishtank(), "FAIL", "diagnostic")
+    assert flag == "verified", flag
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
