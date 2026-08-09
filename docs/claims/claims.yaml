@@ -26981,13 +26981,38 @@
     harm exposure" -- three independent test designs failed for three independent reasons
     (env.step() return-order bug; zero harm exposure from a competent policy; harm-valence write
     path never wired / then, once wired, non-discriminative because the HarmEncoder is
-    untrained). Per proposal EVB-0157's current release_condition, admissibility additionally
-    requires: (a) use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() +
+    untrained).
+
+    [2026-08-09 governance, GFLAG-0018 adjudication]: sub-requirements (a)/(b)/(c) below are NOT
+    three equal open builds -- (c) is already satisfied via a route that does not need (a)/(b).
+    ree-v3 adfd8c01 (2026-08-02T12:26Z) landed SerotoninModule.harm_salience() +
+    REEAgent.update_harm_salience() (ree_core/neuromodulation/serotonin.py:204,
+    ree_core/agent.py:10345), contract-pinned by
+    tests/contracts/test_mech203_harm_salience_writepath.py C1-C5: it writes
+    VALENCE_HARM_DISCRIMINATIVE from the env scalar harm_exposure (CausalGridWorldV2 /
+    body_obs[10]) via the SAME EMA'd-exposure convention benefit_exposure already uses -- NEVER
+    touching z_harm or the HarmEncoder -- bit-identical OFF when tonic_5ht_enabled=False (C4), no
+    new config flag (C5), and C3 pins that the calibrated EMA-scale write (not a naive raw-signal
+    write) avoids the swamping degeneracy. Because this route never reads z_harm, (a) harm-stream
+    wiring (use_harm_stream/obs_dict['harm_obs']/valence_harm_enabled) and (b) P0 HarmEncoder
+    warmup are UNNECESSARY on it -- they are prerequisites only for the alternative
+    HarmEncoder/z_harm-based route, which is not the route this write-path takes. ADJUDICATED:
+    (a)/(b) are declared unnecessary for a MECH-203 test via the harm_salience route; a
+    /queue-experiment redesign using SerotoninModule.harm_salience() for admissible
+    contact-localized valence tagging, combined with a non-degenerate exposure design (still
+    owed -- the competent-policy-routes-around-hazards problem is unrelated to this route
+    choice), can proceed without building (a)/(b). (a)/(b) remain owed only if a future test
+    deliberately chooses the HarmEncoder/z_harm route instead. Registered as substrate_queue
+    entry mech203-valence-pool-admissibility (currency_finding, 2026-08-08); this note is the
+    governance adjudication that entry was awaiting.
+
+    Per proposal EVB-0157's ORIGINAL release_condition (superseded above for the harm_salience
+    route): (a) use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() +
     valence_harm_enabled=True (the harm-valence write path actually exercised, not just harm
     contact events), (b) a P0 encoder warmup so the HarmEncoder is trained before the
     measurement rollout, and (c) contact-localized (not per-step) valence tagging with
-    guaranteed benefit AND harm contact. Until all three are satisfied, no test is valid --
-    demonstrated 4 consecutive times.
+    guaranteed benefit AND harm contact. On the harm_salience route, only (c) plus a
+    non-degenerate exposure design are owed; (a)/(b) apply only to the HarmEncoder/z_harm route.
 
     CONFIRMING: once admissible, benefit-salient experiences (high benefit_exposure, weak
     z_goal -- "missed opportunities") tagged during high tonic 5-HT show preferential SWS
@@ -29719,15 +29744,15 @@
     SD-087 (2026-06-10 z_harm_a saturation intake, candidate 2) for the two-arm OFF-vs-ON falsifier;
     consider a standing default_off audit across other claims.'
   polarity: asserts
-  status: stable
+  status: candidate
   live_status:
-    reading: stable
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-08-09
     needs_review: false
     evidence:
-      from: v3_exq_324b_sd020_harm_surprise_pe_20260419T045630Z_v3
-      as_of: 2026-04-19
-      verdict: supports/PASS
+      from: v3_exq_324_sd020_harm_surprise_pe_20260411T050533Z_v3
+      as_of: 2026-08-09
+      verdict: mixed/FAIL_1of5_governance_demotion
   claim_level: architectural
   depends_on: [SD-011, SD-019, ARC-016]
   functional_restatement: >
@@ -29759,6 +29784,30 @@
     to inconclusive. Hold at candidate until n_eval_steps >= 100 on SD-022 substrate.
     EXQ-324b PASS x2 (2026-04-18, supports): Two independent runs with EVAL_STEPS=400 and env.reset()-on-done fix (previous EXQ-324a exited too early for stable correlations). Same 3/5 seeds (43, 44, 45) pass in both runs with surprise_corr_pe in [0.44, 0.81]; C3 z_harm_a_norm > 0.01 in 5/5 seeds. Substrate: SD-022 (limb_damage_enabled=True, 8 hazards). Promoted to provisional on governance 2026-04-19.
     Promoted to stable on governance 2026-04-22: EXQ-324b cross-run reproducibility plus EXQ-321b MECH-090 bistable PASS confirm SD-020 is functioning as a load-bearing primitive of the affective harm stream. v3_pending lifted; no outstanding substrate gap.
+
+    [2026-08-09 governance, GFLAG-0005 adjudication, DEMOTED stable -> candidate]: the 2026-04-22
+    promotion is WITHDRAWN. Source-code audit of ree-v3/experiments/v3_exq_324b_sd020_harm_surprise_pe.py
+    (the promoting run) confirms ZERO references to REEAgent, harm_surprise_pe_enabled, or
+    compute_harm_accum_loss -- despite this claim's own implementation_note describing those as
+    exactly the code path SD-020 implements. V3-EXQ-324b validated a STANDALONE-ENCODER BENCH
+    REIMPLEMENTATION (an inline PE-vs-EMA comparison against a fresh linear dmg_head), never the
+    shipped flag path -- the "Substrate: SD-022" / "cross-run reproducibility" language above
+    describes a parallel bench harness, not agent.compute_harm_accum_loss() under
+    harm_surprise_pe_enabled=True. The only run that DID drive the real flag path is V3-EXQ-324
+    itself (3 REEAgent refs, 4 flag refs, confirmed) -- and it FAILED at 1/5 seeds (mixed
+    direction, the note's own original entry above), the promotion's own predecessor result.
+    live_status.evidence re-pointed to V3-EXQ-324 (the run that actually tested the shipped
+    implementation) rather than 324b. Status floored to candidate, NOT falsified -- the shipped
+    implementation has never been cleanly tested (1/5 seeds is underpowered/confounded per the
+    original 2026-04-11 note, not a clean FAIL), and the architectural mechanism itself may still
+    be sound; what is withdrawn is the CLAIM that it has been validated. A genuine test of the
+    real flag path (harm_surprise_pe_enabled=True driving agent.compute_harm_accum_loss(), not a
+    standalone bench script) is owed before any re-promotion. This claim's own
+    default_off_scope_note (above) already flagged the flag-on-vs-default scoping question and
+    cross-referenced SD-087; SD-087's own convergence on a calibration_pathology_representational
+    finding through V3-EXQ-856/857a is a separate, later investigation and is unaffected by this
+    demotion (see SD-087's own note, which already treats SD-020's stable-vs-flag-on scoping
+    question as separately open).
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -54438,6 +54487,30 @@
     queue a fifth same-design iteration off HAZARD_TUNED_SEED_POOL or a retuned trigger schedule
     alone -- the pool-exhaustion and screen-soundness findings apply to that whole design family, not
     just to 867b's specific parameters.
+
+    [2026-08-09 governance, GFLAG-0014/0015 correction]: the "screen_soundness_check... direct
+    evidence the ON-arm manipulation itself perturbs whether/when decomposition fires" reading
+    above (and in the digestion_note / what_would_answer preconditions) is WRONG -- 867b's own
+    manifest contradicts it. The violation appears in the OFF arm, where the manipulation is
+    provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell); OFF-arm
+    multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5
+    seeds, which is impossible for a monotone counter over a prefix extension; and at full
+    schedule the matching held PERFECTLY (on_only and off_only tiers both EMPTY). The actual
+    cause is an instrumentation defect: screen cells call _run_cell directly with no RNG reset,
+    while measurement cells enter through arm_cell (which calls reset_all_rng) -- so the two
+    phases measure DIFFERENT agents, and the prefix-monotonicity premise the screen-soundness
+    check assumed never applied. This does NOT change the ratified routing (redesign the DV
+    away from post-hoc divergence-tick matching remains correct -- pool-exhaustion alone already
+    forced that) -- only the RATIONALE for why the screen-then-match family is invalid changes,
+    from "the manipulation perturbs decomposition" to "the screen and measurement phases are
+    non-comparable agents due to an RNG-reset asymmetry". Full analysis:
+    evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md
+    sections 2 and 8. hypothesis_space_registry.v1.json's qid
+    mech321_harm_aware_selection_task_effect already carries the corrected text in its
+    `live_gate` field (added 2026-08-08) but `resolution.basis` / `observation_bottleneck` were
+    left unedited pending this governance adjudication -- syncing those two fields into the
+    frozen ledger is /failure-autopsy Step 9b's job (single producer), not governance's; chipped
+    separately rather than patched inline here.
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-322
@@ -77664,6 +77737,22 @@
   non_degeneracy_precondition: The z_harm_a LATENT must itself carry decodable cross-state information -- a linear decode of behavioural mode or harm-event status from z_harm_a must clear a floor with non-zero cross-seed variance. If the latent is uninformative the readout form is not the defect and the run self-routes substrate_not_ready.
   scope_note: 'Curriculum-scope condition (intake candidate 5): every source number is from a ~50-episode raw warmup with scaffold_train_harm_pathway off and no scaffolded_sd054_onboarding. Conclusions are scoped to raw-warmup agents unless re-run on the curriculum-trained configuration. See project_stageh_harm_pathway_training / 603i/603k harm-pathway co-training.'
   notes: Reaped from the 2026-06-10 z_harm_a saturation-decoupling intake (candidate 1), written 2026-07-21 by session confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Internal experimental observation from the V3-EXQ-664 affective fishtank showcase; the embodied visualisation surfaced the saturation before the scalar metrics (feedback_whimsy_visualization). No claim in the registry asserts a READOUT FORM for z_harm_a; SD-011/SD-019/SD-019b/MECH-219 constrain what the latent must encode, none constrains how it is read. Readout swap is a substrate change and should not be built until SD-087 and Q-086 report (complex, probe-gated).
+  default_off_scope_note: |
+    [2026-08-09 governance, GFLAG-0008 resolution]: the title's "E3 consumes it as an
+    approximately constant gain" claim is scoped to a NON-DEFAULT configuration. Both named read
+    sites are flag-gated and OFF by default: urgency_weight=0.0 (ree_core/utils/config.py:716,
+    gates the e3_selector.py:3128 commit-threshold urgency read) and affective_harm_scale=0.0
+    (ree_core/utils/config.py:723, gates the e3_selector.py:1182 lambda_eff amplification read;
+    "0.0 disables (default, backward compat)"). Neither flag is set non-zero in any run of this
+    claim's own evidence base (V3-EXQ-664, 856, 857a -- confirmed by grepping all three driver
+    scripts, zero occurrences of either term in any). On its own evidence, E3 does NOT consume
+    z_harm_a through these paths at all with default configuration; the claim is accurately read
+    as "if these flags are enabled, E3 consumes z_harm_a as an approximately constant gain",
+    not as a description of the shipped default behaviour. Same shape as SD-020's own
+    default_off_scope_note (see that claim). Any two-arm norm-vs-trained-head falsifier for this
+    claim must assert consumer engagement (urgency_weight>0 or affective_harm_scale>0) or its
+    downstream conjunct (falsifier requirement (b)) is vacuously unsatisfiable on default config.
+    No status change -- this note scopes the claim, it does not weaken or falsify it.
 - id: SD-087
   title: SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (ree_core/utils/config.py:2656), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.
   claim_type: design_decision
@@ -79011,6 +79100,16 @@
     reuse the interrupt threshold. This is architectural synthesis from a
     single session's reasoning pass, not yet independently verified against
     ree-v3 substrate state beyond the specific claims cited above.
+
+    [2026-08-09 governance, GFLAG-0009 resolution]: applying the what_would_answer drafted
+    2026-08-07 (evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md, staged
+    but never applied) verbatim -- no lit-pull discrepancy found for this claim (the currency
+    concern in GFLAG-0009 was scoped to Q-090's staged draft, not MECH-485's). Disposition:
+    substrate-blocked, epistemic_category stays substrate_conditional, no proposal minted (not
+    runnable). Separately noted (not acted on): the staging file's own "GOVERNANCE / SUBSTRATE
+    CALLOUT" flags that predicted_harm_delta (ree_core/pfc/e2_escape_affordance_linker.py) is
+    computed and never consumed anywhere in ree_core -- benign-by-design or worth a substrate
+    check, not adjudicated here.
   evidence: []
 
 - id: Q-090
@@ -79050,6 +79149,118 @@
     readings currently require substrate that does not exist (MECH-485's
     own unregistered leg-3 dependency), so this is not testable as
     written -- substrate_conditional pending that build.
+
+    [2026-08-09 governance, GFLAG-0009 resolution]: applying the what_would_answer drafted
+    2026-08-07 (evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md, staged
+    but never applied), CORRECTED with a fourth outcome the draft's own timing missed -- the
+    draft was staged 5h before this claim's targeted lit-pull landed
+    (evidence/literature/targeted_review_q_090/, 23:47Z), whose highest-confidence entry
+    (Mattar & Daw 2018, confidence 0.62) found retention/access priority is normatively the
+    PRODUCT of two factors (Gain x Need), not either alone -- "implementing retention as a low
+    cut-point on the leg-1 magnitude is not a thrifty approximation of this account; it is a
+    different rule that discards the need term entirely." This is a genuine fourth answer,
+    distinct from the draft's own "BOTH, AT DIFFERENT LEVELS" hedge (two-stage: magnitude gates
+    admission, goal_match gates persistence) -- Mattar & Daw's account is single-stage but
+    MULTIPLICATIVE, not additive-or-staged.
+  evidence_quality_note: |
+    [2026-08-09] targeted_review_q_090's highest-confidence entry (Mattar & Daw 2018,
+    conf=0.62, direction=mixed) grounds a fourth candidate answer not in the 2026-08-07 draft.
+    See what_would_answer's added MULTIPLICATIVE-JOINT outcome below.
+  what_would_answer: |
+    Answered by a 2x2 FACTORIAL over (predicted-harm magnitude) x (goal-match),
+    measuring which alternatives actually get retained. This is a question, not
+    an assertion, so BOTH readings have confirming signatures -- the failure
+    mode here is a vacuous test, not a wrong answer.
+
+    THE READINGS, and why they are dissociable (extracted from this claim's own
+    notes, the raw thought's Addendum 5, and this claim's targeted lit-pull):
+    -- SAME-SCALE: leg 3's admission is a second, lower cut-point on the same
+    predicted-harm magnitude scale the interrupt threshold sits on. Predicts
+    retained alternatives cluster just below the interrupt cut-point;
+    retention probability is monotone in magnitude; goal-match adds no
+    independent variance once magnitude is in the model.
+    -- INDEPENDENT-CRITERION: retention tracks goal-relevance instead, via the
+    MECH-292/293 cue system -- specifically SD-039's `goal_match`, the
+    cue-to-trace match score between a live z_goal/context cue and a stored
+    goal-snapshot payload. Predicts dissociation cases the same-scale reading
+    cannot produce: low-magnitude/high-goal-match alternatives RETAINED, and
+    high-magnitude/goal-irrelevant alternatives NOT retained.
+    -- MULTIPLICATIVE-JOINT (Mattar & Daw 2018, targeted_review_q_090, conf=0.62):
+    retention is normatively the PRODUCT of a Gain-like term (magnitude) and a
+    Need-like term (goal-relevance/context-match) -- neither factor alone, nor
+    a simple two-stage split, is the correct rule; a low value on EITHER factor
+    suppresses retention even when the other factor is high. Distinct from
+    both SAME-SCALE (which ignores goal-match entirely) and from BOTH-AT-
+    DIFFERENT-LEVELS below (which is staged, not multiplicative).
+
+    NON-DEGENERACY PRECONDITION, in two parts. The first is inherited; the
+    second is the one that actually decides whether this question is askable.
+    (1) INHERITED -- everything MECH-485's own what_would_answer requires
+    (Leg 0 cleared, magnitude consumed, confidence term exists, leg-1 pathways
+    wired, retention mechanism exists). Do NOT re-derive it here; see
+    MECH-485. As of 2026-08-07 all five are unmet, so this question is not
+    askable at all yet. Additionally SD-039's own retrieval/query level is
+    still measured-open (z_goal cue collapse across goal-epochs, V3-EXQ-889,
+    2026-08-03) -- if `goal_match` is not a live, discriminating quantity,
+    the independent-criterion and multiplicative-joint arms have no
+    measurable predictor and the test silently degenerates into "magnitude
+    explains everything", which LOOKS like a clean same-scale answer and is
+    not one.
+    (2) SPECIFIC AND DECISIVE -- MAGNITUDE AND GOAL-MATCH MUST BE
+    MEASURABLY DECORRELATED IN THE TEST DISTRIBUTION. If harmful alternatives
+    happen to also be goal-irrelevant in the environment used, the readings
+    make IDENTICAL or near-identical predictions and no outcome distinguishes
+    them, however clean the statistics look. The test therefore requires a probe
+    set deliberately populated in the OFF-DIAGONAL cells --
+    (low-magnitude, high-goal-match) and (high-magnitude, low-goal-match) --
+    with those two cells reported by count, not merely assumed present. A run
+    whose off-diagonal cells are empty or near-empty is VACUOUS and must be
+    reported as such rather than scored. This is the single most likely way
+    for this question to be answered wrongly-but-convincingly.
+
+    ANSWERED IN FAVOUR OF SAME-SCALE if: retention is well predicted by
+    magnitude alone; adding `goal_match` explains no significant additional
+    variance; the off-diagonal cells behave as magnitude alone predicts
+    (low-magnitude/high-goal-match NOT retained, high-magnitude/goal-
+    irrelevant RETAINED); and the fitted retention cut-point sits below the
+    interrupt cut-point on the same scale, the two moving together when that
+    scale is rescaled.
+
+    ANSWERED IN FAVOUR OF INDEPENDENT-CRITERION if: `goal_match` explains
+    retention variance over and above magnitude; the off-diagonal cells
+    dissociate in the direction the reading predicts (low-magnitude/high-goal-
+    match RETAINED, high-magnitude/goal-irrelevant NOT); and moving the
+    interrupt threshold shifts the interrupt boundary while leaving the
+    retention boundary where it was.
+
+    ANSWERED IN FAVOUR OF MULTIPLICATIVE-JOINT if: a Gain x Need interaction
+    term (magnitude x goal_match) fits retention significantly better than
+    either main effect alone AND better than a two-stage/additive model; the
+    off-diagonal cells show SUPPRESSED retention when EITHER factor is low
+    (not just when magnitude is low), unlike INDEPENDENT-CRITERION which
+    predicts high-magnitude/goal-irrelevant alternatives are simply NOT
+    retained via goal_match alone regardless of magnitude's own value.
+
+    ANSWERED "BOTH, AT DIFFERENT LEVELS" if magnitude predicts ADMISSION
+    (whether an alternative is retained at all) while `goal_match` predicts
+    PERSISTENCE (how long it survives, or whether it is consolidated rather
+    than decayed) -- a STAGED criterion, distinct from MULTIPLICATIVE-JOINT's
+    single-stage interaction. This is a real outcome the binary framing hides,
+    and it is named here so the test is not forced into a false dichotomy. It
+    would mean leg 3 has a two-stage criterion and Q-090's own framing needs
+    revising rather than answering.
+
+    THE QUESTION IS MALFORMED (report as such, do not force an answer) if:
+    none of the above predictors explain retention above chance once the
+    substrate exists -- retention is driven by something none of the readings
+    name, e.g. recency or capacity pressure, which is an informative finding
+    about leg 3 and a reframe of this question, not a null result. OR if the
+    off-diagonal cells cannot be populated in ANY available REE environment,
+    making precondition (2) structurally unachievable -- in which case the
+    admission criterion genuinely is a design stipulation after all, contrary
+    to the user's framing of it as empirically resolvable, and that reframe
+    should be recorded here explicitly rather than treated as a failure to
+    answer.
   evidence: []
 
 # --- language/theory-of-mind dissociation cluster (ARC-123 / INV-097 / MECH-486 / Q-091) ---
