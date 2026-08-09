@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_009",
+  "entry_id": "2026-08-09_sd_009_perirhinal_categorical_object_representation_murray2007",
+  "timestamp_utc": "2026-08-09T07:06:57Z",
+  "claim_ids_tested": ["SD-009"],
+  "source": {
+    "title": "Visual perception and memory: a new view of medial temporal lobe function in primates and rodents",
+    "authors": ["Murray, Elisabeth A.", "Bussey, Timothy J.", "Saksida, Lisa M."],
+    "year": 2007,
+    "venue": "Annual Review of Neuroscience 30:99-122",
+    "doi": "10.1146/annurev.neuro.29.051605.113046",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17417938/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "This is the paper the SD-009/MECH-100 prose has been leaning on for its biological grounding, registered here for the first time against SD-009 and with a VERIFIED citation (the prose cited a non-existent 'Murray et al. 2004, TICS 8:56-61'; the MECH-100 record.json that did exist carried the right authors/year/venue but a wrong title, a wrong DOI and a PMID pointing at an unrelated hepatology paper -- see metadata_correction in that record and evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md). On the substance: Murray, Bussey and Saksida argue that perirhinal cortex -- the apex of the ventral visual stream for object knowledge -- represents feature CONJUNCTIONS that support discrimination between objects sharing many features, and that this representational structure is shaped by discrimination demands rather than falling out of passive exposure to input statistics. That supports the general half of SD-009 (a world-state encoder needs a discriminative training pressure, not reconstruction alone) but NOT the specific half that SD-009 actually asserts -- that the pressure must be a DEDICATED event-type CE head. Confidence is set at 0.50, below the 0.62 the same paper carries against MECH-100, for two reasons that are specific to SD-009 rather than to the source: (1) SD-009 is a design decision naming one particular head, and this review speaks to the necessity of categorical discrimination pressure in general, which SD-070's own grounding heads already supply; (2) V3-EXQ-897 (2026-08-08) measured the marginal contribution of the dedicated event-CE head over SD-070's other grounding heads at null-to-negative on 3/3 seeds, so the literature and the experiment now bear on different granularities of the same claim and the literature should not be read as covering the gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's argument is that perirhinal representations are shaped by DISCRIMINATION DEMANDS in general, not by a dedicated category-classification head in particular. If any discriminative training pressure suffices -- which is what SD-070's hazard/resource-presence and distance-bucket grounding heads already supply -- then this paper supports SD-070's recipe and says nothing in favour of SD-009's additional event-CE head.",
+    "The biological mechanism is experience-dependent plasticity across development and long-run task training in intact animals; SD-009 is an auxiliary cross-entropy head trained inside a short P0 phase. Alignment is conceptual, not mechanistic.",
+    "Perirhinal cortex sits at the ventral-stream/MTL boundary and carries mnemonic as well as perceptual function. If the correct biological analog of z_world is earlier ventral stream (V4/posterior IT), the mapping is mislocated -- the same caveat the MECH-100 entry records.",
+    "If z_world's event-type decodability under SD-070 turns out to be inherited from the static scene-structure targets rather than from any event-level pressure at all, the object-discrimination framing of this review would be the wrong biological frame for SD-009 specifically."
+  ],
+  "tags": ["sd_009", "ventral_stream", "perirhinal_cortex", "categorical_supervision", "object_discrimination", "encoder", "citation_verified"],
+  "mapping": {
+    "source_claim_statement": "Perirhinal cortex represents complex conjunctions of object features and is required for visual discriminations with high feature ambiguity -- discriminations in which individual features appear in both rewarded and unrewarded stimuli, so that only a conjunctive representation separates the classes. Perirhinal lesions impair these discriminations in both primates and rodents while sparing feature-unambiguous ones, and hippocampal lesions do not; the perirhinal contribution is perceptual as well as mnemonic.",
+    "ree_translation": "z_world is REE's ventral-stream analog: a static single-frame encoding whose downstream consumer (E3 harm evaluation) needs it to separate world states that share most of their surface features and differ only in harm-relevance. The review's feature-ambiguity result is the biological form of exactly that requirement -- a representation that separates categories sharing most features does not arise from reconstruction pressure over input statistics, because reconstruction rewards all channels equally. Some discriminative training pressure has to be applied to the encoder. SD-009 proposes one such pressure (an event-type cross-entropy head); this paper grounds the NEED for a pressure, not the CHOICE of that particular one.",
+    "mapping_caveat": "This is a grounding for the antecedent of SD-009, not for its specific design commitment, and the distinction is now load-bearing rather than pedantic. Since SD-070 (2026-07-18) the substrate already applies class-balanced categorical CE over static scene-structure targets plus a VICReg anti-collapse penalty, so the 'no discriminative pressure at all' condition this review speaks against is no longer the counterfactual SD-009 is tested against. V3-EXQ-897 tested the residual question -- does a dedicated event-type head add anything on top -- and found null-to-negative on 3/3 seeds. Reading this entry as support for SD-009's current formulation would over-credit it; it is registered at 0.50 to make the paper's real reach explicit rather than to inflate SD-009's literature_confidence.",
+    "source_context": "Review of perirhinal-cortex and hippocampal lesion studies, single-unit recordings and computational modelling in rhesus monkeys, rats and humans. Annual Review of Neuroscience, 2007."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high -- Annual Review, canonical authors on ventral-stream/MTL object representation, well-replicated lesion literature. Mapping fidelity is the binding constraint and is set lower than the parallel MECH-100 entry (0.58) because SD-009 names a specific auxiliary head while the review supports only the general necessity of a discriminative signal, and because SD-070 has since supplied that general signal by another route. Transfer risk elevated: long-run experience-dependent plasticity in intact animals vs. a short auxiliary-CE P0 phase, and an approximate perirhinal-to-z_world anatomical correspondence."
+  }
+}
