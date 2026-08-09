@@ -80557,3 +80557,29 @@
     where old and new wording actually differ before shipping), formalizing this
     into Step 5/7 of the skill is a follow-on, not done in this intake session.
     Full novelty analysis: evidence/planning/thought_intake_2026-08-09_failure_autopsy_failure_location_buckets.md.
+
+    FORMALIZED 2026-08-09 (follow-on session): the failure-location summary
+    (Step 5) and the demotion-gate extension to claim-free organism-level reads
+    (Step 7) are now in `.claude/skills/failure-autopsy/SKILL.md` (mirrored to
+    `.agents/skills/failure-autopsy/SKILL.md`, identical), plus a `failure_location`
+    JSON field on the Step 9 target schema and a Key-rules summary bullet.
+    Held-out check run first, per CLAUDE.md discipline, against 4 historical
+    cases where old (implicit) and new (explicit-gate) wording could plausibly
+    differ: failure_autopsy_V3-EXQ-906a_894b_2026-08-09.md Target 1 (the direct
+    motivating claim-free case), failure_autopsy_V3-EXQ-725a_2026-07-10.md
+    (claim-free formal-import null, measurement partially under-instrumented on
+    3/6 seeds), and the two claim-tagged demotion recommendations
+    failure_autopsy_mech476-mech475-cluster_2026-07-29.md (MECH-475) and
+    failure_autopsy_V3-EXQ-836e_2026-08-01.md (MECH-476, whose own sibling runs
+    836/836c were correctly withheld from demotion pending a measurement-adequacy
+    fix -- 836e only demoted once Measurement read "now adequate"). In all 4, the
+    historical verdict already matched what the explicit gate would require --
+    no case flipped. Per the non-degeneracy guard, this means the check did not
+    surface a case that discriminates the two wordings; the skill text says so
+    explicitly rather than overstating the motivation ("closes a coverage gap,
+    not a correctness record") -- see SKILL.md Step 5 for the citation.
+    STATUS STAYS CANDIDATE: per the same discipline GOV-HELDOUT-1 applies to
+    itself, formalizing the rule and clearing a held-out check are not evidence
+    the rule works in live use -- promote only after the new failure_location
+    summary / Step 7 extension has actually been exercised in >=1 real (not
+    retrospectively-applied) autopsy, and record whether it changed anything.
