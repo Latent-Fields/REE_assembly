@@ -105,9 +105,9 @@
       "summary": "MECH-295 carries epistemic_category=substrate_ceiling with a ceiling_routing_note (2026-06-19) gating it on scaffolded_sd054_onboarding as \"in flight\" -- but that substrate landed and V3-EXQ-812 (2026-07-24) measured p2_z_goal_norm_peak 0.529 against V3-EXQ-490k 0.193, so the named ceiling has lifted. 812 nonetheless FAILED with interpretation.label=INVALID_HARNESS (mean_proximity_range 0.0 AND mean_dacc_bias_range_mean 0.0 -- the whole per-candidate bias plane collapsed, not this channel specifically; no candidate_summary_source in its config, i.e. the \"proposer\" default), and its confirmed 2026-07-24 autopsy recommends measurement_test_design_defect with routing /queue-experiment, which nothing has actioned in 15 days. Compounding it, 812 carries claim_ids=[] and evidence_direction=non_contributory, so the single most informative run on this claim leaves no trace in its evidence index and a reader of claims.yaml alone would conclude 490k was the last word.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:36:47Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:45:51Z",
+      "resolution_note": "Both premises in the original flag were stale: the ceiling-lifted claim's own cited fix-target (scaffolded-curriculum-hazard-rebalance) was found unwarranted and closed 2026-08-08; and 'nothing actioned in 15 days' was wrong -- V3-EXQ-812a (harness-repair successor to 812) had already run and been applied via a confirmed autopsy in the 2026-08-08 governance cycle, before this flag was even read. Applied the corrected picture to MECH-295's claims.yaml note (REE_assembly, this commit): 812a partially fixed the upstream proximity issue but exposed a NEW downstream bias-computation degeneracy (mean_mech295_liking_bias_range_mean=0.0 in all 6 cells unconditionally). Per 812a's own autopsy (already user-confirmed 2026-08-08): HOLD for code-level inspection of mech295_liking_bridge.py before any further re-queue -- this lineage has cycled 'fix one bug, hit another' ~5 times. No status change; epistemic_category stays substrate_ceiling."
     },
     {
       "flag_id": "GFLAG-0008",
