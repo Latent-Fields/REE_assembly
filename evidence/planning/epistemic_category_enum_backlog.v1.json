@@ -1,0 +1,699 @@
+{
+  "note": "GOV-CAT-1 validity-arm backlog snapshot. Hit-scoped exclusion keyed (artifact stem, normalized category value): a NEW out-of-enum value in a listed artifact still fires, and a new artifact is not listed at all. Regenerate ONLY with --write-baseline, and only when you have decided the current findings are historical -- regenerating absorbs everything accumulated since. Prefer the in-band `epistemic_category_metabolized` marker for a single adjudication.",
+  "n_instances": 674,
+  "n_artifacts": 208,
+  "n_distinct_values": 59,
+  "entries": {
+    "failure_autopsy_2026-07-28-sweep": [
+      "competence_implementation_gap",
+      "measurement_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_2026-08-05_pending_review_batch": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_20260329-legacy-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_604a-624a-630_2026-06-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11": [
+      "competence_implementation_gap",
+      "substrate_not_ready_requeue"
+    ],
+    "failure_autopsy_746c-756_2026-07-16": [
+      "competence_implementation_gap",
+      "measurement_regime_mismatch"
+    ],
+    "failure_autopsy_767-768-cluster_2026-07-16": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_816c-822_2026-07-26": [
+      "measurement_saturation",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_ARC-017-EXQ-129-135_2026-08-07": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_EXQ-539-540_MECH307_2026-05-17": [
+      "measurement_design_broken_criterion",
+      "measurement_design_broken_predicate",
+      "measurement_design_seed_truncation"
+    ],
+    "failure_autopsy_EXQ-541_MECH204_2026-05-17": [
+      "implementation_bug",
+      "measurement_gap_timescale"
+    ],
+    "failure_autopsy_EXQ-543f_2026-05-17": [
+      "implementation_gap"
+    ],
+    "failure_autopsy_EXQ-566-582_2026-05-17": [
+      "n/a",
+      "n/a (claim_ids=[])"
+    ],
+    "failure_autopsy_EXQ-575_2026-05-17": [
+      "measurement_artifact"
+    ],
+    "failure_autopsy_EXQ-577_2026-05-16": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16": [
+      "measurement_reframe"
+    ],
+    "failure_autopsy_MECH-063-777-779-cluster_2026-07-18": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_MECH-341-cluster_2026-05-29": [
+      "none_stays_non_contributory_per_diagnostic_purpose"
+    ],
+    "failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_MECH-457-fanout-751-750_2026-07-14": [
+      "competence_implementation_gap",
+      "substrate_starved_precondition_unmet"
+    ],
+    "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_MECH-457-fanout-755_2026-07-15": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-032-family_2026-07-26": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-047l_2026-07-11": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_V3-EXQ-047m_2026-07-11": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_V3-EXQ-059c-533_2026-07-26": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-108b_2026-08-03": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-190a_2026-08-09": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-228b_2026-08-09": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-436b_2026-08-02": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-436c_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-455a_2026-05-25": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-460e_2026-06-17": [
+      "substrate_not_ready_requeue_confirmed"
+    ],
+    "failure_autopsy_V3-EXQ-460g_2026-06-19": [
+      "non_contributory"
+    ],
+    "failure_autopsy_V3-EXQ-460m-460n_2026-06-23": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-466d_2026-06-24": [
+      "non_contributory",
+      "non_contributory_run_not_substrate_ceiling"
+    ],
+    "failure_autopsy_V3-EXQ-468f_2026-06-20": [
+      "no_change (self-route substrate_not_ready_requeue is correct; sd-034 provisional / mech-268 candidate / mech-090 active all stay non_contributory + pending_retest)"
+    ],
+    "failure_autopsy_V3-EXQ-475b_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-483c_2026-05-23": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-490g-cohort_2026-05-29": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-514m_2026-06-11": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-514p_2026-06-15": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-543i_2026-05-19": [
+      "non_contributory"
+    ],
+    "failure_autopsy_V3-EXQ-569g_2026-06-14": [
+      "non_contributory (substrate conversion ceiling -- same class as the 569f-661-654a cluster; not the v3-exq-642 precondition-unmet pattern, which was the prior autopsy's mis-label, and not /claim-synthesis granularity debt: arc-065 is one architectural commitment)"
+    ],
+    "failure_autopsy_V3-EXQ-588_2026-05-19": [
+      "non_contributory"
+    ],
+    "failure_autopsy_V3-EXQ-591b_2026-06-10": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-591c_2026-06-11": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-591d_2026-06-15": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-591e_2026-06-15": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-592d_2026-06-01": [
+      "non_contributory"
+    ],
+    "failure_autopsy_V3-EXQ-592e_2026-06-01": [
+      "does_not_support_state_authority"
+    ],
+    "failure_autopsy_V3-EXQ-597_2026-05-21": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-597b_2026-05-23": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-603_2026-05-23": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-603b_2026-05-25": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-603m_2026-06-10": [
+      "n/a (claim-free substrate-readiness diagnostic; substrate-queue note records a test-design/measurement gap, not substrate_ceiling -- the discrimination legs pass, the inverse of the ceiling fingerprint)"
+    ],
+    "failure_autopsy_V3-EXQ-603r_2026-08-09": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-608-611c_2026-06-06": [
+      "measurement_test_design_defect",
+      "vacuous_pass"
+    ],
+    "failure_autopsy_V3-EXQ-610c_2026-06-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-610d_2026-06-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-610e_2026-06-05": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-614c_2026-06-01": [
+      "instrumentation_defect"
+    ],
+    "failure_autopsy_V3-EXQ-621a_2026-06-06": [
+      "none (claimless-in-effect substrate-readiness diagnostic; already non_contributory; characterise as measurement/precondition-unmet test-design artifact; do not record substrate_ceiling)"
+    ],
+    "failure_autopsy_V3-EXQ-624b_2026-06-07": [
+      "environment_adequacy_defect"
+    ],
+    "failure_autopsy_V3-EXQ-629_2026-06-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-638_2026-06-04": [
+      "substrate_not_ready"
+    ],
+    "failure_autopsy_V3-EXQ-638a_2026-06-05": [
+      "n/a (claim_ids=[]); finding is measurement_gap + behavioural diagnostic, not substrate_ceiling, not falsification"
+    ],
+    "failure_autopsy_V3-EXQ-640_2026-06-05": [
+      "n/a (claim_ids=[]); finding is behavioural-diagnostic / integration-and-gain gap, not substrate_ceiling and not falsification"
+    ],
+    "failure_autopsy_V3-EXQ-641_2026-06-06": [
+      "measurement_test_design_gap (n/a for governance -- no claim; manifest evidence_direction already non_contributory and unchanged)"
+    ],
+    "failure_autopsy_V3-EXQ-642_2026-06-06": [
+      "none -- claimless diagnostic; characterise as a measurement / test-design gap, not substrate_ceiling. do not record substrate_ceiling on any claim from this run."
+    ],
+    "failure_autopsy_V3-EXQ-647_2026-06-06": [
+      "measurement_artifact"
+    ],
+    "failure_autopsy_V3-EXQ-648_2026-06-07": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-651_2026-06-07": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-657_2026-06-09": [
+      "n/a (claim-free diagnostic; mech-294 stays candidate/v3_pending, untouched)"
+    ],
+    "failure_autopsy_V3-EXQ-660a_2026-06-11": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-660b_2026-06-11": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-666a_2026-06-11": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-671a_2026-08-02": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-677_2026-06-14": [
+      "substrate_ceiling (autopsy) -- user disposition: v3_pending hold (coherent: enrichment is v3 substrate work)"
+    ],
+    "failure_autopsy_V3-EXQ-679_2026-06-14": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-684_2026-06-15": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_V3-EXQ-689d_2026-07-20": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-689i_2026-07-24": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-693_2026-06-20": [
+      "unchanged (non_contributory re-queue; not substrate_ceiling)"
+    ],
+    "failure_autopsy_V3-EXQ-699_2026-07-20": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-701_2026-06-23": [
+      "n/a (diagnostic; no claim status change)"
+    ],
+    "failure_autopsy_V3-EXQ-701a_2026-06-23": [
+      "n/a (diagnostic; no claim status change)"
+    ],
+    "failure_autopsy_V3-EXQ-701b_2026-06-29": [
+      "precondition_unmet (642-pattern, not substrate_ceiling)"
+    ],
+    "failure_autopsy_V3-EXQ-701c_2026-06-30": [
+      "measurement_calibration_not_substrate_ceiling"
+    ],
+    "failure_autopsy_V3-EXQ-703_2026-06-23": [
+      "n/a (diagnostic; no claim status change)"
+    ],
+    "failure_autopsy_V3-EXQ-704_2026-06-25": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-705_2026-06-25": [
+      "substrate_not_ready_requeue"
+    ],
+    "failure_autopsy_V3-EXQ-707b_2026-06-29": [
+      "substrate_conditional (preserved); diagnosis = missing-dependency (da-gated arbitration), narrow not demote"
+    ],
+    "failure_autopsy_V3-EXQ-707b_2026-07-20": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-708_2026-07-19": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-708a_2026-07-22": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-710_2026-07-20": [
+      "measurement_invalid"
+    ],
+    "failure_autopsy_V3-EXQ-718_2026-07-07": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-718a_2026-07-08": [
+      "measurement_gap (environment / test-bed producer gap; not substrate_ceiling at the consumer, not falsification). governance may leave inv-050 stored epistemic_category=substrate_ceiling untouched (conservative, as in the 718 cycle); the note carries the environment-producer-gap framing regardless."
+    ],
+    "failure_autopsy_V3-EXQ-723_2026-07-09": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-724_2026-07-09": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-725_2026-07-09": [
+      "untrained_substrate_artifact"
+    ],
+    "failure_autopsy_V3-EXQ-725a_2026-07-10": [
+      "genuine_fair_test_negative_coherence_specificity_unsupported (not substrate_ceiling -- substrate mature; not untrained_substrate_artifact -- binder converged)"
+    ],
+    "failure_autopsy_V3-EXQ-728_2026-07-20": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-732_2026-07-10": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-732a_2026-07-10": [
+      "test_design_ceiling"
+    ],
+    "failure_autopsy_V3-EXQ-737a_2026-07-20": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-740_2026-07-11": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_V3-EXQ-740a_2026-07-12": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_V3-EXQ-746b_2026-07-15": [
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_V3-EXQ-765_2026-07-16": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-766a_2026-07-16": [
+      "verified"
+    ],
+    "failure_autopsy_V3-EXQ-768a_2026-07-17": [
+      "verified"
+    ],
+    "failure_autopsy_V3-EXQ-769_2026-07-17": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-778a_2026-07-20": [
+      "instrument_repair_validated"
+    ],
+    "failure_autopsy_V3-EXQ-778c_2026-07-18": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-778g_2026-07-18": [
+      "instrument_repair_validated"
+    ],
+    "failure_autopsy_V3-EXQ-778h_2026-07-19": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-783_2026-07-18": [
+      "instrument_validated_cause_discriminated"
+    ],
+    "failure_autopsy_V3-EXQ-784_2026-07-19": [
+      "substrate_ready"
+    ],
+    "failure_autopsy_V3-EXQ-785_2026-07-19": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-786_2026-07-20": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-786a_2026-07-24_dv_degeneracy": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-790-run2_2026-07-24": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-790_2026-07-22": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-792_2026-07-22": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-793_2026-07-24": [
+      "measurement_gap"
+    ],
+    "failure_autopsy_V3-EXQ-794_2026-07-22": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-811_2026-07-24": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-822b-834_2026-07-29": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-824_2026-07-26": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-830_2026-07-29": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-841_2026-07-31": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-843_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-844_2026-08-01": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-845_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-847_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-850_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-851_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-853_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-857_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-857a_2026-08-02": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-858_2026-08-02": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-859_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-860_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-861a_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-862_2026-08-02": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-864_2026-08-01": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-866_2026-08-02": [
+      "substrate_not_ready_requeue"
+    ],
+    "failure_autopsy_V3-EXQ-866a-G0_2026-08-08": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-866c_2026-08-08": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-867_2026-08-02": [
+      "environment_adequacy_defect"
+    ],
+    "failure_autopsy_V3-EXQ-867a_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-869_2026-08-02": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-869a_2026-08-03": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-871_2026-08-02": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-871a_2026-08-03": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-873_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-874_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-875_2026-08-03": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-877_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_V3-EXQ-882_2026-08-03": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-882a_2026-08-05": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-884_2026-08-03": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-894a_2026-08-08": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-899_2026-08-09": [
+      "competence_implementation_gap"
+    ],
+    "failure_autopsy_V3-EXQ-901_2026-08-08": [
+      "precondition_unmet"
+    ],
+    "failure_autopsy_V3-EXQ-902_2026-08-09": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_backlog_2026-07-24": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_batch-793a-817-819_2026-07-26": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_batch-822a-826-817a-827_2026-07-26": [
+      "competence_implementation_gap",
+      "measurement_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_batch9_2026-06-12": [
+      "n/a (degenerate)",
+      "standard (parent unchanged); failure routed as granularity debt",
+      "substrate_ceiling (parent unchanged); failure routed as granularity debt",
+      "substrate_ceiling (selection-authority sub-type; readiness-gate miscalibration)",
+      "substrate_not_ready_requeue"
+    ],
+    "failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_dacc-cluster-862a-870a_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_fresh-20260808-batch_2026-08-08": [
+      "not_applicable_claim_free_diagnostic"
+    ],
+    "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07": [
+      "substrate_ready"
+    ],
+    "failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08": [
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "n/a",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08": [
+      "measurement_degeneracy",
+      "measurement_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-betagate-reafference-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-doingmode-arc032-arc038-cluster_2026-08-08": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-goalseeding-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "n/a",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-mech102-sd021-novelty-pain-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_degeneracy",
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-misc2-ninethread-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-mixed-mech-cluster_2026-08-08": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_degeneracy",
+      "measurement_test_design_defect",
+      "precondition_unmet",
+      "test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08": [
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-r5-legacy-provenance-sweep_2026-08-08": [
+      "measurement_degeneracy",
+      "measurement_test_design_defect",
+      "precondition_unmet",
+      "test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08": [
+      "competence_implementation_gap",
+      "measurement_degeneracy",
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "non_contributory",
+      "precondition_unmet",
+      "test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-sd003-mech112-dacc-cluster_2026-08-08": [
+      "measurement_gap",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-sleep-cluster_2026-08-08": [
+      "competence_implementation_gap",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_grandfathered-superseded-batch1_2026-08-08": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08": [
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "n/a",
+      "substrate"
+    ],
+    "failure_autopsy_grandfathered-zworld-forward-cluster_2026-08-08": [
+      "measurement_gap",
+      "measurement_test_design_defect",
+      "precondition_unmet"
+    ],
+    "failure_autopsy_mech025-cluster-876-671b_2026-08-03": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_mech075-vta-lc-cluster_2026-08-09": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_mech476-mech475-cluster_2026-07-29": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13": [
+      "competence_implementation_gap",
+      "measurement_degeneracy"
+    ],
+    "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27": [
+      "measurement_gap",
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_v3-exq-836b_2026-07-29": [
+      "measurement_test_design_defect"
+    ],
+    "failure_autopsy_v3-exq-838_2026-07-29": [
+      "measurement_test_design_defect"
+    ]
+  }
+}
