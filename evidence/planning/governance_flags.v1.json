@@ -310,32 +310,6 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
-    },
-    {
-      "flag_id": "GFLAG-0023",
-      "claim_ids": [
-        "MECH-480"
-      ],
-      "flag_type": "evidence_discrepancy",
-      "summary": "V3-EXQ-870 (MECH-480 dACC-analog execution-gain dissociation) crashed on 2026-08-02; its synthetic ERROR manifest v3_v3_exq_870_runner_error_20260802T105035Z_v3 is still evidence_direction 'non_contributory' although successor V3-EXQ-870a ran the same day and landed FAIL (v3_exq_870a_mech480_dacc_execution_gain_dissociation_20260802T135309Z_v3, supersedes v3_exq_870_...). The /diagnose-errors session recorded the follow-on only as WORKSPACE_STATE.md prose ('marking the synthetic ERROR manifest superseded is governance's job per the skill's responsibility boundary'), and a later cycle added the stem to discussed_experiment_dirs -- so the manifest no longer appears in pending_review.md and no surface will ever list it again. FOLLOW-ON OWED: set that ERROR manifest's evidence_direction to 'superseded' with a note naming V3-EXQ-870a, and rebuild the index. Scoring impact is nil (the record carries claim_ids: []), so this is an evidence-record accuracy fix, not a confidence change. Found 2026-08-09 during the held-out check for the /diagnose-errors Step 11a/11b fix (REE_Working 34367335), which makes this handoff mechanical going forward.",
-      "raised_by_session": "metaworker-chip-20260809-diagnose-errors-governance-handoff",
-      "raised_at": "2026-08-09T08:13:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
-    },
-    {
-      "flag_id": "GFLAG-0024",
-      "claim_ids": [
-        "MECH-480"
-      ],
-      "flag_type": "evidence_discrepancy",
-      "summary": "V3-EXQ-870 (MECH-480 dACC-analog execution-gain dissociation) crashed on 2026-08-02; its synthetic ERROR manifest v3_v3_exq_870_runner_error_20260802T105035Z_v3 is still evidence_direction 'non_contributory' although successor V3-EXQ-870a ran the same day and landed FAIL (v3_exq_870a_mech480_dacc_execution_gain_dissociation_20260802T135309Z_v3, supersedes v3_exq_870_...). The /diagnose-errors session recorded the follow-on only as WORKSPACE_STATE.md prose ('marking the synthetic ERROR manifest superseded is governance's job per the skill's responsibility boundary'), and a later cycle added the stem to discussed_experiment_dirs -- so the manifest no longer appears in pending_review.md and no surface will ever list it again. FOLLOW-ON OWED: set that ERROR manifest's evidence_direction to 'superseded' with a note naming V3-EXQ-870a, and rebuild the index. Scoring impact is nil (the record carries claim_ids: []), so this is an evidence-record accuracy fix, not a confidence change. Found 2026-08-09 during the held-out check for the /diagnose-errors Step 11a/11b fix (REE_Working 34367335), which makes this handoff mechanical going forward.",
-      "raised_by_session": "metaworker-chip-20260809-diagnose-errors-governance-handoff",
-      "raised_at": "2026-08-09T08:13:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
