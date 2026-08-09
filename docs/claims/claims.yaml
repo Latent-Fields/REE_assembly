@@ -33438,6 +33438,22 @@
     where harm is; the goal signal tells it where to go. Both are required for
     avoid-harm-while-navigating-to-goal behavior.
 
+    [2026-08-09 addendum, Stage 2 digestion of the 2026-08-08 "prospective navigation
+    through goal topology" thought]: Yu et al. 2026 (Nat Neurosci, DOI 10.1038/
+    s41593-026-02365-2) and Tang et al. 2026 (Nat Neurosci, DOI 10.1038/
+    s41593-026-02364-3) both report hippocampal theta sweeps forming vectors toward
+    remembered goal locations INDEPENDENT of the animal's current movement or head
+    direction, with stronger goal-modulation preceding correct navigational choices --
+    corroborating evidence (alongside the existing Ito et al. 2015 citation above)
+    that destination-privileging is read out as a relational signal rather than from
+    momentary position/heading. Located via web search during digestion, not a
+    formal /lit-pull; full entries not yet added to a targeted_review_ directory.
+    Grounds THIS claim's destination-privileging premise, not SD-098 (registered
+    same session) directly -- SD-098's own literature_evidence field notes
+    explicitly that neither paper speaks to node-type storage, the distinction
+    SD-098 actually makes. See evidence/planning/thought_intake_2026-08-08_
+    prospective_navigation_through_goal_topology.md for the full reconciliation.
+
 - id: MECH-237
   title: "The z_goal attractor must be globally reachable across the z_goal sub-space — accessible from arbitrary latent starting states — not merely locally stable at a narrow basin; a locally-only-stable attractor fails to seed goal-directed hippocampal navigation from states far from the goal, producing approach behavior only when already near the goal."
   claim_type: mechanism_hypothesis
@@ -42645,6 +42661,20 @@
     directly contradicts. MECH-092 functional_restatement updated 2026-04-24 to
     correct this. MECH-289 is the corrected mechanistic claim that replaces the
     implicit recency-weighted assumption.
+
+    [2026-08-09 addendum, Stage 2 digestion of the 2026-08-08 "prospective navigation
+    through goal topology" thought]: Yu et al. 2026 (Nat Neurosci, DOI 10.1038/
+    s41593-026-02365-2) and Tang et al. 2026 (Nat Neurosci, DOI 10.1038/
+    s41593-026-02364-3) report waking hippocampal theta sweeps (this claim's "online,
+    theta-analog" mode) forming goal-directed trajectory vectors; Tang et al.
+    specifically report these theta sequences are preferentially replayed during
+    sharp-wave ripples (this claim's SWR/offline mode), i.e. the same generative
+    substrate operating in both modes this claim already distinguishes. Corroborates
+    the existence and goal-directedness of the generative sweep this claim asserts;
+    does not speak to the anti-recency property specifically, which remains grounded
+    by Gupta et al. 2010 above. Located via web search during digestion, not a formal
+    /lit-pull. See evidence/planning/thought_intake_2026-08-08_prospective_navigation_
+    through_goal_topology.md for the full reconciliation.
 
 - id: MECH-290
   title: "At trajectory completion, HippocampalModule performs a backward temporal credit sweep that propagates the terminal outcome (goal contact or failure) retroactively through preceding states, consistent with the reverse replay observed at reward endpoints in awake rats (Foster & Wilson 2006)."
@@ -80282,7 +80312,109 @@
     form of typed multi-relation possibility storage as of registration -- MECH-292/
     293's ghost-goal bank and SD-092's parent/subgoal edge are each single-relation
     special cases, not a general typed-relation store).
+
+    [2026-08-09 addendum, Stage 2 digestion of the 2026-08-08 "prospective navigation
+    through goal topology" thought]: that thought's four-stage division of labour
+    (represent / privilege destination / prospectively generate paths / select) is
+    ALREADY this claim's intended pipeline, just not previously named as one --
+    SD-097 is the representation stage; MECH-236 (+ SD-046) is destination-
+    privileging; MECH-289/290/325/326/267/269 is prospective path generation;
+    MECH-125 is selection. No new claim was registered for this division of labour
+    (it would duplicate the above). The one genuinely novel remainder from that
+    thought -- that individual node goal/subgoal status is computed relationally
+    at read-time rather than stored as a node-type field, sharper than this claim's
+    own "hierarchy as a whole is a temporary projection" framing -- is registered
+    separately as SD-098 (depends_on this claim + MECH-236). See
+    evidence/planning/thought_intake_2026-08-08_prospective_navigation_through_goal_
+    topology.md Sections 2-6 for the full reconciliation.
   evidence: []
+
+- id: SD-098
+  title: "Goal-ness and subgoal-ness are relational properties computed at read-time from the conjunction of an agent's current state, its active commitments, its currently privileged destination, and the trajectory under consideration -- not a fixed, stored node-type attribute (`goal` / `subgoal` / `possibility`) on a represented state in the SD-097 possibility topology."
+  claim_type: substrate_design
+  subject: goal.relational_role_not_stored_node_type
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-09'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-08-09'
+  depends_on:
+    - SD-097    # the possibility topology this claim's node status is computed OVER
+    - MECH-236  # the z_goal destination-privileging signal this claim's "privileged destination" ingredient reads
+  location: evidence/planning/thought_intake_2026-08-08_prospective_navigation_through_goal_topology.md
+  source:
+    - evidence/planning/thought_intake_2026-08-08_prospective_navigation_through_goal_topology.md
+    - docs/thoughts/2026-08-08_prospective_navigation_through_goal_topology.md
+    - evidence/planning/thought_intake_2026-08-07_dynamic_goal_structure_relational_possibility_topology.md
+  literature_evidence: |
+    Prompting evidence (secondary): medicalxpress.com/news/2026-08-precise-neuronal-
+    mechanism-brain-future.html, reporting on two 2026 Nature Neuroscience papers --
+    Yu et al., "Hippocampal theta sweeps indicate goal direction during navigation"
+    (DOI 10.1038/s41593-026-02365-2; preprint biorxiv.org/content/10.1101/2025.08.21.671551)
+    and Tang et al., "Goal-directed hippocampal theta sweeps during memory-guided
+    navigation" (DOI 10.1038/s41593-026-02364-3; preprint biorxiv.org/content/10.1101/
+    2025.08.26.672489). Both found theta sweeps forming vectors toward remembered goal
+    locations, INDEPENDENT of the animal's current movement or head direction, with
+    stronger goal-modulation preceding correct choices. This is direct evidence that
+    "which state is currently the privileged destination" is read out relationally
+    (from a goal signal, not from the animal's momentary position/heading), consistent
+    with this claim's premise -- but neither paper speaks to node-type STORAGE at all;
+    they ground the destination-privileging half (MECH-236's `z_goal` channel), not the
+    relational-vs-stored distinction this claim makes about individual node status.
+    Located via WebFetch/WebSearch during Stage 2 digestion of the 2026-08-08 thought,
+    2026-08-09 -- NOT a formal /lit-pull; the intake's own Next Steps (Section 7) still
+    calls for one, and this claim's own confirming/falsifying test is architectural,
+    not resolved by this citation.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: any test must first confirm that a destination shift
+    actually occurs mid-episode (the agent's privileged destination genuinely changes,
+    not merely that a new state enters the topology) and that BOTH the relational and
+    the stored-node-type implementations are exercised under the same shift, live,
+    across multiple seeds -- a destination that never shifts cannot discriminate the
+    two implementations, since they agree trivially when nothing changes.
+
+    CONFIRMED if, when the agent's privileged destination shifts such that a
+    previously-subgoal state S now functions as the new goal (or vice versa), a
+    relationally-computed implementation (goal/subgoal status derived at read-time
+    from current state + active commitment + privileged destination + trajectory,
+    per SD-097's topology, MECH-236's z_goal channel, and E3's selection) correctly
+    re-classifies S without any explicit write to S's own stored attributes -- AND a
+    matched implementation that instead stores `goal`/`subgoal`/`possibility` as a
+    field directly on each topology node requires an explicit re-label write (or
+    produces a stale/incorrect classification of S) to achieve the same re-
+    classification, under the same shift.
+
+    FALSIFIED if the stored-node-type implementation reclassifies S correctly with no
+    additional write beyond the ordinary destination-shift update already required by
+    MECH-236 (e.g. because updating `z_goal` and re-deriving which node counts as the
+    destination is cheap enough that a stored per-node label can be kept trivially in
+    sync as a side effect) -- i.e. if the relational computation buys no behavioural or
+    implementation advantage the stored-field design does not already have.
+
+    This claim is substrate_conditional on SD-097 and MECH-236 (neither implemented as
+    of registration) -- it cannot be tested until the possibility topology and the
+    z_goal destination-privileging channel both exist in a live substrate.
+  notes: >
+    Registered 2026-08-09 during Stage 2 digestion of the 2026-08-08 "prospective
+    navigation through goal topology" thought (evidence/planning/thought_intake_2026-
+    08-08_prospective_navigation_through_goal_topology.md), itself a refinement of the
+    2026-08-07 thought registered as SD-097. The reconciliation in that intake's
+    Section 2 found the thought's four-stage division of labour (represent / privilege
+    destination / prospectively generate paths / select) ALREADY covered by SD-097 +
+    MECH-236 (+ SD-046) + MECH-289/290/325/326/267/269 + MECH-125 -- this claim
+    registers ONLY the narrow remainder that survived that reconciliation: SD-097's
+    title asserts the active hierarchy AS A WHOLE is a temporary executive projection,
+    but does not say individual node status is computed relationally rather than
+    stored. Deliberately does NOT restate SD-097's topology claim, MECH-236's
+    goal-conditioning claim, or any of the trajectory-generation/selection claims
+    already covering the "traversal" half of the 08-08 thought -- see the intake's
+    Section 5 ("What this reconciliation does NOT support registering") for the
+    claims explicitly considered and rejected as duplicative.
 
 - id: MECH-488
   title: "A selection-conflict signal (E3's per-candidate decision-gap, gap_norm) should feed the control plane as a distinct S6 class, driving K5 control-allocation escalation and K10 hard-veto threshold as a fast, conflict-triggered brake -- an STN-hyperdirect-style mechanism, complementary to (not a substitute for) the existing tonic Go/No-Go + lateral-inhibition selection machinery (MECH-449/MECH-450)."

@@ -1,4 +1,5 @@
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-08_prospective_navigation_through_goal_topology.md
 Related thought: docs/thoughts/2026-08-07_dynamic_goal_structure_relational_possibility_topology.md
 Related registered claim: SD-097
 Prompting evidence: https://medicalxpress.com/news/2026-08-precise-neuronal-mechanism-brain-future.html

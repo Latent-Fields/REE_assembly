@@ -1,5 +1,6 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-08-07_dynamic_goal_structure_relational_possibility_topology.md
+Registered claim: SD-097
 
 # Dynamic goal structure and relational possibility topology
 
