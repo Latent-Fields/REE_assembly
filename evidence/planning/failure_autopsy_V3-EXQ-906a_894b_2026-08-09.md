@@ -49,6 +49,13 @@ The driver's `EVAL_ENV_EXTRA_KWARGS` never touched `proximity_harm_scale`, `prox
 2. The layout should carry plenty of safe space, consistent with (1).
 3. Each segment's agent should **spawn on a safe cell**, not merely somewhere in a hazard-sparse layout -- an unsafe spawn risks damage before any action is taken, which is not a learning signal and would reintroduce an early-death floor independent of the radius fix.
 4. The overall layout density this driver family inherited from 906 (`num_hazards` etc.) may itself be too hazard-dense for this stage of substrate development. The redesign should provide **significant safe areas and safe traversable paths** from spawn to goals/resources -- a dynamic hazard's movement transiently occluding part of a path is fine (that's a real perturbation worth having), but a path being permanently blocked or absent is not.
+5. The fish should be able to **"smell" a hazard's direction before harm begins**, with enough of a gap between sensing and harm for the agent to actually learn to localize and avoid it.
+
+### Structural finding sharpening point 5 (code-confirmed)
+
+Verified against source: the agent's hazard-field **sensory** observation is a hardcoded 5x5 local patch centered on the agent (`causal_grid_world.py:3655-3656`, `range(-2,3)` -- radius **2 cells**), fed into `world_parts` as part of the actual observation the agent receives. The proximity-**harm**-onset radius (from `proximity_approach_threshold=0.15` against `hazard_field_decay=0.5`) is roughly **11 cells** for a single hazard source -- far larger than the sensory window.
+
+This is exactly backwards from the "smell before harm" structure the user is asking for: the agent currently takes unseeable ambient proximity damage across roughly cells 3-11 out (no signal at all in its 5x5 window that far away), and only gains any sensory signal once already deep inside a zone well past where harm has been accruing. **The fix is a relationship between two radii, not a single-knob shrink**: the sensing radius needs to exceed the harm-onset radius with a genuine gap between them (e.g. sensing effective out to ~3-4 cells via the existing window mechanism, harm onset tightened to ~1-2 cells) -- not just uniformly reducing `proximity_harm_scale` as point 1 above describes in isolation. Both should be specified together in the V3-EXQ-906b redesign.
 
 ### Secondary finding: unbounded residue-valence accumulator
 
