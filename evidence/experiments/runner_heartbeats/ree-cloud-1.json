@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-09T00:57:01Z",
+  "last_tick_utc": "2026-08-09T03:22:37Z",
   "state": "running",
   "current_exq": "V3-EXQ-876a",
   "current_exq_started_utc": "2026-08-08T23:09:33.312429+00:00",
@@ -10,14 +10,14 @@
   "current_description": "",
   "progress": {
     "run_label": "starting...",
-    "runs_done": 0,
+    "runs_done": 1,
     "runs_total": 5,
-    "episodes_done": 300,
+    "episodes_done": 200,
     "episodes_total": 500,
-    "overall_pct": 12.0
+    "overall_pct": 28.0
   },
-  "seconds_elapsed": 6448,
-  "seconds_remaining": 33712,
+  "seconds_elapsed": 15184,
+  "seconds_remaining": 37711,
   "recent_lines": [
     "============================================================",
     "Seed 11",
@@ -28,7 +28,22 @@
     "nav_bias=0.45  size=6  n_hazards=4",
     "[train] ep 100/500  harm=507  e3_ticks=1576",
     "[train] ep 200/500  harm=934  e3_ticks=3297",
-    "[train] ep 300/500  harm=1385  e3_ticks=5060"
+    "[train] ep 300/500  harm=1385  e3_ticks=5060",
+    "[train] ep 400/500  harm=1867  e3_ticks=6673",
+    "[train] ep 500/500  harm=2291  e3_ticks=8384",
+    "world_forward_r2: 0.9443",
+    "[V3-EXQ-876a] Eval -- probing action-doing mode convergence...",
+    "|causal_sig| committed=0.1790  uncommitted=0.3579  doing_mode_delta=-0.1789  n_committed=9817  n_uncommitted=183  sweep_steps=2000  precision_ratio=363256.62",
+    "V3-EXQ-876a seed=11 verdict: PASS  label=doing_mode_produces_convergent_causal_signature  (6/6)",
+    "============================================================",
+    "Seed 17",
+    "============================================================",
+    "[V3-EXQ-876a] MECH-025: Action-Doing Mode Convergence Redesign (seed=17)",
+    "warmup=500  eval=50  alpha_world=0.9",
+    "breath_period=50  sweep_amplitude=0.3  sweep_duration=10",
+    "nav_bias=0.45  size=6  n_hazards=4",
+    "[train] ep 100/500  harm=541  e3_ticks=1713",
+    "[train] ep 200/500  harm=1073  e3_ticks=3532"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
