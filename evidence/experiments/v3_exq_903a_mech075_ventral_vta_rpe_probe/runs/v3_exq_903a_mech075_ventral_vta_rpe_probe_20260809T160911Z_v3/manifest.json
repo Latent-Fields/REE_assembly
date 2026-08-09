@@ -1,0 +1,94 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_903a_mech075_ventral_vta_rpe_probe",
+  "run_id": "v3_exq_903a_mech075_ventral_vta_rpe_probe_20260809T160911Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-09T16:09:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-075"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "text": "P0 (readiness) or C1 (manipulation check) failed in a majority of seeds. This is an uninformative substrate-readiness result, not a claim verdict -- the ventral leg's own detection floor was not established prior to this, its first attempt.",
+    "preconditions": [
+      {
+        "name": "valuation_heads_grounded",
+        "description": "Pearson correlation between predicted valence (benefit_eval_head - harm_eval_head on live z_world) and the env's true (benefit_exposure - harm_exposure) on a positive-control episode clears the grounding floor -- asserts the grounding REEAgent.actor_critic_reward()'s own docstring requires before trusting benefit_eval/harm_eval. (Seed-majority gate used for the actual P0 verdict is reported separately under summary.n_p0a_pass.)",
+        "measured": 0.2402588041023323,
+        "threshold": 0.15,
+        "direction": "floor",
+        "control": "positive-control episode with genuine harm/benefit transitions",
+        "met": true
+      },
+      {
+        "name": "rpe_signal_detectable",
+        "description": "Mean |delta_t| over the positive-control episode clears the RPE detection floor (not pre-established for this signal; calibrated empirically, see the filed report for the observed distribution). (Seed-majority gate used for the actual P0 verdict is reported separately under summary.n_p0b_pass.)",
+        "measured": 0.00680020228761683,
+        "threshold": 0.001,
+        "direction": "floor",
+        "control": "positive-control episode with genuine harm/benefit transitions",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_manipulation_check": true,
+      "C2_ventral_basin_narrowing": true
+    },
+    "criteria": [
+      {
+        "name": "C1_manipulation_check",
+        "load_bearing": false,
+        "passed": true,
+        "detail": "4/5 seeds: mean|delta_t| in GATED >= 0.001"
+      },
+      {
+        "name": "C2_ventral_basin_narrowing",
+        "load_bearing": true,
+        "passed": false,
+        "detail": "1/5 seeds: GATED basin width narrower than ABLATED by >= 15%"
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7faea62af3493ff650c408c7c3bc369b50220f2cb04d0c649143f6ccbbe1d9da",
+  "substrate_commit": {
+    "commit": "284ac65c8e75bc311517ce9567158a0500bb0803",
+    "dirty": false,
+    "branch": "main"
+  }
+}
