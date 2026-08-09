@@ -1,0 +1,53 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_244b_mech165_replay_diversity_validation_v3",
+      "queue_id": "V3-EXQ-244b",
+      "claim_ids": ["MECH-165"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact, weakly strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present, not independently re-verified this run (MECH-120, MECH-092 used as scaffolding)",
+        "implementation": "complete (was: stub that never fired in 244a)",
+        "environment": "too sparse / too short to separate this effect size from seed noise",
+        "measurement": "under-powered; possible RNG-stream perturbation confound between replay-selection and policy-action sampling, not ruled out",
+        "integration": "coupled and functioning -- production call path demonstrably exercised end-to-end",
+        "scale": "5 seeds, no formal significance test -- adequate for a diagnostic, insufficient for a confirmatory claim"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward/reverse SWR replay for prospective/retrospective evaluation (Shin, Tang & Jadhav 2019, Neuron); reverse replay at trajectory completion (Foster & Wilson 2006, Nature); experience-biased sleep replay prioritization (Huelin Gorriz et al. 2023, Nat Commun)",
+        "dependencies": ["MECH-120 (SHY synaptic homeostasis)", "MECH-121 (offline replay content transfer)", "MECH-092 (quiescent-cycle replay scheduling)"],
+        "is_formal_import": false,
+        "divergence": "244b uses a fixed 50/30/20 forward/reverse/random mixture for the whole consolidation window; Shin 2019 shows the biological ratio is scheduled (reverse-dominant early, forward-dominant late), not a static blend -- likely understates the achievable effect size relative to a schedule-faithful implementation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "Non-degenerate PASS -- corrects 244a's silent no-op bug (theta_buffer wiped before consolidation; FORWARD byte-identical to NO_REPLAY). All 4 harness-integrity preconditions genuinely met: reverse replay fires (9-23/seed), FORWARD now measurably diverges from NO_REPLAY (up to 0.046, vs 244a's 1e-13), production call path exercised. However, the confirmed effect is small and only weakly seed-robust: BALANCED beats FORWARD by a mean of +0.0083 against a between-seed SD of 0.128 (Cohen's-d ~0.065), in 4/5 seeds with 3 of those 4 margins under 0.012 and the dissenting seed reversing by a comparable magnitude (binomial P(>=4/5 wins | H0 no effect) ~0.19, not significant at conventional thresholds; no formal significance test is computed in the driver). BALANCED does not clearly outperform NO_REPLAY (+0.0015 mean, wins only 2/5 seeds) -- the demonstrated effect is specifically 'balanced replay recovers most of the deficit forward-only replay introduces relative to doing nothing,' matching the claim's own BALANCED-vs-FORWARD operationalization, not a general 'replay improves retention' finding. Treat as real, directionally-correct, biologically-grounded support at modest statistical strength -- not yet the 'significantly higher' result the claim's CONFIRMING text describes. A confirmatory follow-up with more seeds, a formal significance test, and RNG-stream isolation between replay-selection sampling and policy-action sampling would strengthen this considerably.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {"fired": false},
+      "learning_extracted": [
+        "244a's driver bug (final-flush agent.reset() before the hand-rolled SWS loop) is now confirmed fixed by direct data comparison: NO_REPLAY/FORWARD_REPLAY were byte-identical to 17 sig figs in 244a, genuinely divergent (up to 0.046) in 244b",
+        "The 4 non-degeneracy preconditions this driver checks certify that the harness exercises the mechanism, not that the resulting effect is large or statistically robust -- these are separate bars and the manifest's single interpretation label conflates them",
+        "The claim's own pre-registered CONFIRMING criterion is BALANCED-vs-FORWARD only, not BALANCED-vs-NO_REPLAY; the run legitimately clears that letter, but FORWARD_REPLAY underperforming NO_REPLAY (-0.0068 mean) means the practically meaningful comparison (does any replay help vs none) is not established here",
+        "Possible uncontrolled confound: diverse_replay's mode selection and content sampling draw torch.multinomial from what appears to be a single shared global RNG stream, so conditions that call _do_replay a different number of times consume different amounts of that stream before Phase 2 -- not verified to be inert to Phase-2 action sampling",
+        "V3-EXQ-244a reached a self-labeled marginal/degenerate PASS and was directly superseded without ever passing through /failure-autopsy -- no failure_autopsy_*244a* artifact exists; this cluster is a clean illustration of the skill's trigger #2 (diagnostic PASS/FAIL both require autopsy)"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names MECH-165; no fanout_recommendation was emitted. Registration not minted in this pass."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_228b_arc032_theta_bypass_onboarded_20260809T030541Z_v3",
+      "queue_id": "V3-EXQ-228b",
+      "claim_ids": ["ARC-032"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened_with_measurement_caveat",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under_instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontal(mPFC)-hippocampal theta phase synchrony during goal-directed navigation (Benchenane 2010, Hyman 2010, Sigurdsson 2010 disruption model, Colgin 2016, Dragoi 2006 theta-sequence compression)",
+        "dependencies": ["MECH-089 (theta-cycle batching)", "MECH-116 (E1 goal working memory)"],
+        "is_formal_import": false,
+        "divergence": "ThetaBuffer.summary() is a flat unweighted mean over a fixed 10-step window (no phase/sequence-order information), and is only consumed at E3-tick rate (~11% of steps, MECH-089 EXQ-052b); this captures theta's rate-reduction functional role but not the phase-coded sequence-compression role the deeper literature attributes theta's navigational value to. Converges with MECH-089's own confirmed finding (EXQ-066, EXQ-122) that static-k theta averaging is harmful to fine-grained E3 discrimination.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "V3-EXQ-228b FAIL/does_not_support (2026-08-09): first genuine test of ARC-032 with the non-degeneracy precondition met (goal_norm 1.00 frac seeds, mean 0.469 -- cleared for the first time across the whole 076/228/247/228a/228b lineage). C1 (resource-collection lift) failed 0/3 seeds; lift_mean=-0.0021 (~0 in absolute terms, but consistently negative -- i.e. reversed from prediction -- across all 3 seeds, ZEROED collecting 1.6-2.7x ACTIVE's resource-visit rate). C2 (harm parity) passed cleanly. Patch confirmed non-inert (smoke + full-run harm_rate divergence). NOT treated as falsifying: (a) the E3-tick cache-gating this substrate already documents (MECH-089 EXQ-052b: e3_tick_ratio ~0.109) means ~89% of the measured episode steps reuse cached trajectory candidates unaffected by the ablation, diluting any theta-specific effect in a full-episode aggregate; (b) the driver measures only a downstream behavioral proxy, never the z_goal-persistence / goal-proximity-score-noise readouts ARC-032's own CONFIRMING criterion names. Converges with MECH-089's own already-confirmed finding that static/uniform theta-averaging measurably hurts (not helps) E3's fine-grained discrimination (EXQ-066, EXQ-122) -- consistent reading, not a novel anomaly. Routed to /queue-experiment for a tick-granularity, persistence/noise-metric redesign (V3-EXQ-228c), not to demotion. epistemic_category: measurement_test_design_defect.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false},
+      "learning_extracted": [
+        "228b is the first ARC-032-tagged run to clear the non-degeneracy precondition (goal_norm >= 0.05) -- confirms scaffolded_sd054_onboarding is a viable substrate for this claim family going forward.",
+        "Theta-patch confirmed genuinely wired into trajectory candidate generation (hippocampal.propose_trajectories) and confirmed non-inert at both smoke and full scale.",
+        "C1 (aggregate resource-visit-rate lift) shows no positive effect and a small but seed-consistent reversed-direction trend (ZEROED > ACTIVE, 1.6-2.7x relative).",
+        "generate_trajectories() only regenerates candidates from a fresh theta summary at E3-tick rate (~11% of steps); the remaining ~89% of steps reuse cached candidates unaffected by the ablation -- a structural dilution factor for any full-episode aggregate readout.",
+        "MECH-089's own EXQ-066/EXQ-122 findings (static theta-averaging confirmed harmful to E3 discrimination) independently converge with this null result -- the likely locus of the gap is the flat-mean implementation of 'theta packaging', not the frontal-hippocampal-synchrony hypothesis itself.",
+        "claims.yaml's ARC-032 CONFIRMING criterion names z_goal persistence and goal-proximity-score noise as decisive readouts; the driver measures neither directly."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names ARC-032; no fanout_recommendation was emitted. Registration not minted in this pass."
+  }
+}

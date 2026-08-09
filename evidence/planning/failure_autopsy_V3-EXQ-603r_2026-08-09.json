@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_603r_instrumental_avoidance_combined_fix_retest_20260808T230931Z_v3",
+      "queue_id": "V3-EXQ-603r",
+      "claim_ids": ["MECH-357"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "avoidance_gate_insufficient_combined_fix",
+      "self_route_is_verdict": false,
+      "self_route_dissent_note": "Self-route reads a clean weakens off the falsifying disjunct ('fails to beat LESION'), but the pre-registration's own stated expectation for ARM_LESION ('still expected to freeze under threat per 603h's own PAG-forces-override finding') was empirically wrong -- LESION reached survival ceiling (median 200/103/200 vs 603h's 27.5/16.5/19.0 under byte-identical hazard config). The harm-pathway-training fix, correctly applied to both arms for isolation, unexpectedly rescues LESION's passive survival, eliminating discriminative headroom.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "too_sparse_pressure_missing_conflict",
+        "measurement": "under_instrumented_no_headroom_check",
+        "integration": "coupled_but_confounded",
+        "scale": "not_implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moscarello & LeDoux 2013 active avoidance -- ilPFC suppression of CeA/PAG freezing resolving a Pavlovian-instrumental conflict",
+        "dependencies": ["SD-058", "MECH-279", "SD-011", "SD-035", "SD-059/MECH-358 escape-affordance bridge", "harm-pathway training"],
+        "is_formal_import": false,
+        "divergence": "REE Stage-H hazard field lacks the freeze-incompatible task demand (pursuit / escalation / freeze-cost) that gives the reference paradigm its Pavlovian-instrumental conflict; once harm signal is accurate, passive freeze/release alone is survival-adequate, so no gate contrast is measurable",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603r (claim-tagged MECH-357 combined-fix rerun of 603h's own lesion-vs-intact design, first claim-tagged test of MECH-357 in the 603 lineage) FAILED the discrimination criterion (G_H_INTACT_beats_LESION) while clearing the absolute criterion (G_H_INTACT_clears_2/3, all readiness preconditions met at 1.0). Both the harm-pathway-training fix (603k) and the escape-affordance-bridge fix (SD-059/MECH-358, 603j/603q) were applied identically to both arms to isolate the ilPFC gate as the sole variable, following 603h's own diagnosis. Unexpectedly, ARM_LESION (no gate at all) ALSO reached survival ceiling (median 200/103/200 vs 603h's 27.5/16.5/19.0 under byte-identical hazard config) -- the harm-pathway fix alone makes passive PAG freeze/release timing survival-adequate in this hazard field, eliminating the Pavlovian-instrumental conflict Moscarello & LeDoux's paradigm depends on for discriminative power. This is a third, newly-surfaced test-design confound (distinct from 603h's 'no directed escape' and 603p's 'harm landscape not discriminative,' both now resolved), not a mechanism failure: MECH-357's freeze-suppression still engages cleanly (readiness 1.0), though its own avoidance_efficacy eligibility-trace credit event remains essentially inert (n_credit ~1-2% of n_decay, unchanged from 603h). NOT demoting MECH-357; reclassified epistemic_category to measurement_test_design_defect (was filed weakens). Routed to /queue-experiment (603s), adding a freeze-incompatible pressure to Stage-H, with LESION-as-negative-control re-validated first.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "escape-affordance-bridge",
+        "note": "SD-059/MECH-358 and the harm-pathway fix are both functioning correctly per design; this run's confound is environmental (Stage-H hazard field lacks freeze-incompatible demand), not a substrate gap in the bridge. Flag only: the entry's ready_blocked_by note is stale (still describes 603l as in-flight; predates 603q PASS / 866b / this run) -- a governance housekeeping item, not a build owed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_basis": "R1-R3 recipe run over ALL confirmed failure_autopsy_*.json in REE_assembly/evidence/planning/ (not scoped to 603-prefixed files). Zero targets in the confirmed-autopsy corpus have ever tagged MECH-357 in claim_ids before this run -- 603r is the FIRST claim-tagged test of MECH-357 in the 18-letter 603 lineage. All prior letters (603h/603i/603m/603p claim-free; 603l/603q/866b tag SD-059/MECH-358; 603/603d/603e tag Q-045/MECH-313/MECH-260; 603g cluster tags ARC-060/MECH-320/ARC-068) were substrate-construction diagnostics on dependencies MECH-357 needed, not repeated tests of MECH-357 itself.",
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "Even under the recommended epistemic_category (measurement_test_design_defect, which per R3 would not count toward the brake regardless), classifying this as substrate_ceiling would still only be hit #1 for MECH-357. A same-question redesign (603s) is explicitly PERMITTED, not refused."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "New dependency discovered: Stage-H hazard field needs a freeze-incompatible pressure (pursuit/escalation/freeze-cost) to force the Pavlovian-instrumental conflict that gives active-avoidance paradigms their discriminative power over passive Pavlovian defense.",
+        "Existing gap re-confirmed unresolved: MECH-357's own avoidance_efficacy eligibility-trace credit event remains essentially inert (n_credit ~1-2% of n_decay), unchanged since 603h, now masked by two independently-functioning fixes.",
+        "Pre-registration's own causal reasoning about the LESION control was falsified in a way that reveals a third, previously-unnamed confound (harm-pathway training rescues passive freeze/release survival independent of any instrumental component)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names MECH-357; no fanout_recommendation was emitted. Registration not minted in this pass."
+  }
+}

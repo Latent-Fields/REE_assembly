@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3",
+      "queue_id": "V3-EXQ-906",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "is_false_positive_adjudication": true,
+      "false_positive_mechanism": "legacy criteria_non_degenerate{} <-> criteria[] join in build_experiment_indexes.py's diagnostic adjudication gate finds zero candidate criteria[] entries for channel_vigor/channel_z_block (driver reports 10 channels' non-degeneracy but gates PASS on only 4 core channels via one aggregate criteria[] entry, core_channels_non_degenerate); unmatched keys inherit no load_bearing exclusion and, per the documented conservative-by-design convention ('ambiguity resolves toward flagging'), any False among them trips vacuous_pass on an otherwise-real PASS. Distinct third sub-case of the join-mismatch class alongside the V3-EXQ-783 (name-spelling mismatch) and V3-EXQ-830 (short-key/long-name direction) precedents: here no corresponding criteria[] entry exists at all, by design.",
+      "recurrence": {
+        "same_mechanism_confirmed_on": [
+          "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3",
+          "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3"
+        ],
+        "note": "both carry adjudication: vacuous_pass under the identical mechanism; neither has been autopsied prior to this investigation (~2 months un-adjudicated)"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "not_applicable",
+        "biological_reference": "not_applicable",
+        "prerequisites": "not_applicable",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate_for_run; adjudication_tooling_under_instrumented",
+        "integration": "not_applicable",
+        "scale": "not_applicable"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not applicable -- no claim under test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "PASS is genuine and not vacuous: the run's load-bearing gate (core_channels_non_degenerate, scoped to z_harm_a/z_harm_un/drive/z_goal per CORE_CHANNELS) and harm_pathway_trained (3794 optimizer steps, 3794x threshold) both cleared on real signal. The indexer's vacuous_pass flag is a false positive: its legacy criteria_non_degenerate{} <-> criteria[] join has no matching criteria[] entry for channel_vigor/channel_z_block (this driver intentionally reports 10 channels' non-degeneracy but gates on only 4 via one aggregate criterion), so the unmatched False values are conservatively treated as ungated degenerate gate-clearers. Same mechanism confirmed on both V3-EXQ-665 runs (2026-06-10), neither previously autopsied. No claim is affected (claim_ids: []); no governance action required beyond clearing the flagged-diagnostic pending_review entry.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false},
+      "granularity_debt_trigger": {"fires": false, "reason": "no claim under test"},
+      "learning_extracted": [
+        "The vacuous_pass flag on this run is a confirmed indexer false positive, not a real degenerate-criterion problem",
+        "Root cause: a driver whose informational criteria_non_degenerate{} report is a strict superset of its criteria[] gate scope has no matching criteria[] entry for the excess channels, and the indexer's join conservatively flags unmatched keys",
+        "Two prior V3-EXQ-665 runs (2026-06-10) carry the identical false-positive flag and have sat un-autopsied for ~2 months -- now surfaced",
+        "Fix is complicated (buildable): either the driver emits explicit load_bearing:false criteria[] entries for non-gating reported channels, or the indexer excludes criteria_non_degenerate{} keys outside an aggregate criterion's declared scope"
+      ],
+      "routing": "no_claim_facing_action; recommend clearing this run's flagged-diagnostic pending_review entry as a known adjudication false positive; surface (do not build) the underlying indexer/driver join gap as out-of-scope maintenance; note the two un-autopsied V3-EXQ-665 instances of the same mechanism",
+      "severity": null,
+      "substrate_paths": [
+        "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py (legacy fallback join, diagnostic adjudication gate)",
+        "ree-v3/experiments/v3_exq_906_full_stack_observational_fishtank.py (criteria_non_degenerate/criteria construction)",
+        "ree-v3/experiments/v3_exq_665_curriculum_affective_fishtank_showcase.py (same pattern, precedes 906)"
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "not_applicable",
+    "reason": "No claim under test; not a hypothesis-space matter."
+  }
+}

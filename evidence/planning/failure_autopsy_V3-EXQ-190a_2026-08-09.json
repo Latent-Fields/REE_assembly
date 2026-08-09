@@ -1,0 +1,75 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered_20260809T002451Z_v3",
+      "queue_id": "V3-EXQ-190a",
+      "claim_ids": ["MECH-022"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "retire_ree_claim",
+      "self_route_is_verdict": false,
+      "self_route_dissent_note": "The manifest's own summary_markdown declares Decision: retire_ree_claim. This autopsy independently rejects that verdict: two of E3Selector.score_trajectory()'s four cost components (reality_scorer, harm_cost_fallback_scorer) are never trained anywhere in ree_core (exhaustive grep), contaminating both conditions with random-init noise, and this run newly extends the nav_bias forced-random override into the eval loop (absent in the predecessor V3-EXQ-190), diluting exactly the signal C1/C2 need. The claim was not tested fairly, so the demotion bar is not met.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened_with_competing_implementation_gap_explanation",
+        "biological_reference": "partial",
+        "prerequisites": "immature",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under_instrumented",
+        "integration": "partially_coupled",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Hippocampal SWR-mediated awake replay, propagated to PFC for prospective decision-making",
+        "dependencies": ["control-plane/behavioral-state gating of replay content", "PFC(E3)-side valuation of retrieved content"],
+        "is_formal_import": false,
+        "divergence": "Faithful translation for the generation/gating half; the specific mechanism C3 tests (downstream valuation of injected candidates) is explicitly unmapped by the cited literature",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-190a (2026-08-09): well-powered successor to V3-EXQ-190, criteria met 2/5 (C1/C2/C3 FAIL, C4/C5 PASS). NOT accepted as a demotion-grade FAIL despite the manifest's own self-declared Decision: retire_ree_claim. Two implementation/measurement issues undermine a fair test: (1) E3Selector.score_trajectory()'s fallback path carries two untrained scoring subnetworks (reality_scorer, harm_cost_fallback_scorer -- verified never touched by any loss in ree_core), contaminating both the C3 metric and, very likely, action selection itself in both conditions; (2) 190a newly extends the nav_bias forced-random-action override into the eval loop (absent in V3-EXQ-190), diluting the condition-dependent behavioral signal -- plausible cause of C1's collapse from clean PASS (190) to near-zero/negative including a sign flip on repeated seed 123. Existing targeted lit review (targeted_review_connectome_mech_022, 3 entries, 0.72-0.78 confidence, all supports) grounds the general hippocampal-replay-injection phenomenology but explicitly does not cover the downstream-valuation mechanism C3 tests. Convergent with ARC-007's 2026-07-25 leg-scoped demotion on the same E3-routed-selection seam -- treat as a shared substrate signal, not two independent falsifications. Reclassified competence_implementation_gap/non_contributory, pending_retest_after_substrate: true. Routed to /implement-substrate to complete E3's scoring heads before further evidence on this seam is adjudicated.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-E3-SCORER-COMPLETION",
+        "title": "Train (or bypass) E3Selector.score_trajectory's untrained fallback scorer heads",
+        "implementation_hint": "reality_scorer and harm_cost_fallback_scorer (ree_core/predictors/e3_selector.py:243,253) are used in compute_reality_cost/compute_harm_cost_fallback but never appear in any loss computation in ree_core -- verified by exhaustive grep. Either add a training signal for them, or default score_trajectory's fallback path to skip their contribution until trained, so experiments using the default (no harm_forward_model) scoring path aren't silently evaluated through random-init noise.",
+        "unblocks_claims": ["MECH-022", "ARC-007"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e3_selector.py::compute_reality_cost",
+          "ree_core/predictors/e3_selector.py::compute_harm_cost_fallback"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered_20260809T002451Z_v3",
+          "experiment_type": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered",
+          "metric": "C1/C2/C3 all FAIL on the default (no harm_forward_model) score_trajectory fallback path",
+          "target": "score_trajectory's fallback path should reflect only trained sub-components, or the untrained components should be explicitly trained",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "note": "No prior confirmed autopsy exists for MECH-022; this is hit #1 (and not a substrate_ceiling reading regardless)."},
+      "learning_extracted": [
+        "score_trajectory's fallback path (compute_reality_cost, compute_harm_cost_fallback) carries two nn.Sequential heads (reality_scorer, harm_cost_fallback_scorer) never touched by any loss anywhere in ree_core -- code-verified by exhaustive grep",
+        "nav_bias forced-random override was newly extended into the eval loop in 190a (absent in predecessor 190) -- a measurement-design change, not a pure power increase, and a plausible driver of C1's PASS-to-FAIL collapse including a sign flip on repeated seed 123",
+        "ARC-007 (a direct MECH-022 dependency) was independently demoted 2026-07-25 on the same E3-routed-selection substrate seam -- convergent signal across two claims, not two independent falsifications",
+        "Existing targeted lit review for MECH-022 (0.72-0.78 confidence, 3 supports entries) grounds the general phenomenology but explicitly disclaims coverage of the downstream-valuation mechanism C3 tests"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names MECH-022; no fanout_recommendation was emitted. Registration not minted in this pass."
+  }
+}

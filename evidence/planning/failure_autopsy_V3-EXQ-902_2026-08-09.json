@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3",
+      "queue_id": "V3-EXQ-902",
+      "claim_ids": ["SD-048"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "present",
+        "prerequisites": "present",
+        "implementation": "complete (substrate); defective (measurement)",
+        "environment": "inadequate for this criterion at this scale range",
+        "measurement": "under_instrumented / structurally flawed",
+        "integration": "coupled but not implicated",
+        "scale": "not the locus of the problem"
+      },
+      "biological_reference": {
+        "closest_mechanism": "von Holst & Mittelstaedt reafference principle / corollary discharge, interoceptive-predictive-coding extension",
+        "dependencies": ["SD-011 (z_harm_a)", "SD-022 (agent-caused body-state variance)"],
+        "is_formal_import": false,
+        "divergence": "none identified -- SNR-detectability finding is consistent with biological signal-detection accounts",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-048": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-902's own FAIL (ARM_2/default fails C2) should not be read as weakening SD-048, and its self-route ('validated, calibration off') should not be read as confirming it either. Both readings depend on a C2/quiet_gap statistic (residual_body_noise - residual_quiet) that has no minimum-sample guard on the quiet bucket; at scale >= ~3-4x (including this run's own ARM_3, and V3-EXQ-512a's ARM_A at scale=3.0, which is SD-048's current sole supports evidence) n_quiet_steps=0 in every seed, so the statistic collapses to residual_body_noise minus a zero placeholder rather than a real comparison. C1 (body-noise vs agent-caused, unaffected by this defect) shows a small but consistently positive gap across most cells, so this is not a flat-curve falsification either. Reclassified to measurement_test_design_defect; hold status: candidate/v3_pending: true unchanged pending a redesigned criterion that (a) guards minimum sample size and (b) restores the architecture doc's own matched-amplitude C2 definition rather than the quiet-baseline proxy substituted since V3-EXQ-511. V3-EXQ-512a's supports verdict should be reconsidered under the same lens rather than continuing to stand unqualified -- flagged for a follow-up autopsy or governance re-adjudication, not resolved in this pass.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": []},
+      "learning_extracted": [
+        "The C2/'quiet_gap' proxy (body_noise minus quiet-bucket mean, no minimum-n guard) used across the entire SD-048 evidence lineage (511/512/512a/902) collapses to a tautology (residual_body_noise minus a zero placeholder) whenever the quiet bucket is empty, which the noise generator's own trigger-frequency scaling makes structural at scale >= ~3x.",
+        "This artifact is not new to 902 -- V3-EXQ-512a's currently-standing 'supports' verdict for SD-048 rests on the identical n_quiet_steps=0 pattern in all 3 seeds and should be reconsidered.",
+        "check_degeneracy()'s cross-seed variance check does not catch sample-count degeneracy of an underlying event bucket a gap statistic divides against -- a generalizable tooling gap worth a companion minimum-group-size guard.",
+        "The implemented C2 is itself a drift from the architecture doc's own pre-registered C2 (body-noise vs matched-amplitude agent-caused), silently substituted for a quiet-baseline comparison since V3-EXQ-511 'for comparability' -- this changed what the criterion scientifically tests.",
+        "C1 (selectivity_gap, body-noise vs agent-caused, unaffected by the quiet-bucket defect) shows a small but consistently positive gap across most ON-arm cells, arguing against a flat-curve/no-signal falsification reading.",
+        "FLAGGED, NOT RESOLVED HERE: V3-EXQ-512a's standing supports verdict rests on the identical artifact and needs its own re-examination."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names SD-048; no fanout_recommendation was emitted. Registration not minted in this pass."
+  },
+  "follow_up_flagged": [
+    {
+      "run_id": "v3_exq_512a_sd048_comparator_gap_recalibrated_20260504T093916Z_v3",
+      "queue_id": "V3-EXQ-512a",
+      "reason": "Currently-standing SD-048 'supports' verdict rests on the identical n_quiet_steps=0 tautology found in V3-EXQ-902's ARM_2/ARM_3. Not re-adjudicated by this autopsy (out of the requested scope) -- flagged for a follow-up autopsy or governance re-adjudication."
+    }
+  ]
+}

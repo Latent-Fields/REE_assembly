@@ -1,0 +1,94 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_903_mech075_ventral_vta_rpe_probe_20260808T222748Z_v3",
+      "queue_id": "V3-EXQ-903",
+      "claim_ids": ["MECH-075"],
+      "failed_criterion": "precondition (readiness, seed-majority: P0a/P0b)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (VTA/RPE -> schema-convergence narrowing, Duszkiewicz 2018)",
+        "prerequisites": "immature (benefit/harm-head grounding not majority-established)",
+        "implementation": "partial (phased training correct in design, achieves grounding in only 1/3 seeds)",
+        "environment": "possible confound (seed 7 ~25x fewer eval samples, suggests near-immediate episode termination)",
+        "measurement": "under_instrumented (episode termination cause/length not recorded)",
+        "integration": "isolated",
+        "scale": "likely_insufficient (150 episodes split warmup/head-grounding)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "VTA dopaminergic RPE signaling to ventral HPC (schema/semantic consolidation)",
+        "dependencies": ["MECH-043", "MECH-073", "ARC-030 warmup"],
+        "is_formal_import": false,
+        "divergence": "none identified -- direction (narrowing) matches Duszkiewicz 2018 framing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-903 FAIL (2026-08-08): First attempt at MECH-075 ventral/VTA-RPE leg. Self-routed substrate_not_ready_requeue, confirmed correct on adjudication: P0 readiness passed in only 1/3 seeds (seed 7), with the other two showing negative grounding correlation (-0.04, -0.08). The top-level manifest preconditions[].met: true reflects a seed-mean statistic dominated by seed 7 and should not be read as readiness cleared -- the seed-majority gate (summary.n_p0a_pass=1) is authoritative and correctly failed. Seed 7's apparent pass coincides with ~25x fewer eval samples than the other seeds, consistent with near-immediate episode termination -- a plausible sampling confound, not confirmed training success. Uninformative about the ventral-leg claim; re-queue with per-seed episode-termination recording before trusting a future P0 read.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false},
+      "learning_extracted": [
+        "Seed-mean precondition statistics can obscure a majority-gate FAIL when one outlier seed dominates the mean -- always read summary.n_p0a_pass/n_p0b_pass, never the top-level preconditions[].met",
+        "Anomalously small per-seed sample counts (episode length) are a detectable, cheap-to-check confound for seed-heterogeneous readiness results"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_905_mech075_dorsal_lc_arousal_probe_20260808T232406Z_v3",
+      "queue_id": "V3-EXQ-905",
+      "claim_ids": ["MECH-075"],
+      "failed_criterion": "discrimination (C2, load-bearing)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (underpowered test, not a fair falsification)",
+        "biological_reference": "partial (anatomy clear; basin-width-as-CEM-spread is one inference step from Lemon 2006's LTP/LTD-threshold construct)",
+        "prerequisites": "present (MECH-267 hook is real, wired production machinery)",
+        "implementation": "complete but miscalibrated (LC_GAIN=2.0 inherited unchanged from the already-failed EXQ-192a design)",
+        "environment": "adequate",
+        "measurement": "adequate (basin-width metric reuses production methodology)",
+        "integration": "coupled, stable",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC noradrenergic/dopaminergic co-release to dorsal HPC, D1/D5-gated LTP/LTD threshold (Kempadoo 2016, Galvez-Marquez 2022, Lemon 2006)",
+        "dependencies": ["MECH-313 (tonic LC-NE floor, distinct)", "MECH-267 mode-conditioning"],
+        "is_formal_import": false,
+        "divergence": "construct gap: literature demonstrates plasticity-threshold gating (learning timescale); this probe measures proposal-time candidate spread (decision timescale) -- licensed by the claim's own pre-registered text but not directly literature-validated",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-905 FAIL (2026-08-08): First non-degenerate manipulation test of the MECH-075 dorsal/LC-arousal leg -- P0 and C1 (signal detectability + correct LC-anatomical targeting) both cleanly passed, correcting the signal-magnitude defect of all three prior attempts (EXQ-192a/209/230). However, C2 (basin-width widening) failed with near-zero, sign-inconsistent gaps (relative gap ~1e-6 against a 15% floor). Traced to substrate code (ree_core/hippocampal/module.py _compute_mode_noise_scale/propose_trajectories): the manipulation gain LC_GAIN=2.0 -- inherited unchanged from the already-failed EXQ-192a novelty_gain=2.0 -- produces only a ~0.4-0.6% CEM-proposal-noise increase at the observed (post-fix) arousal_ema magnitude (~0.002-0.003), an order of magnitude too small to plausibly produce a 15%-scale basin-width change. This reads as an underpowered manipulation (test-design gap), not a falsification of the mechanism: reclassified from the filed weakens to measurement_test_design_defect. Re-queue with LC_GAIN recalibrated against the observed EMA distribution (target mode_scale range ~1.1-1.3, by analogy with the sibling ventral script's explicit RPE_GAIN derivation) before this criterion can be considered fairly tested.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "severity": "degrading",
+        "substrate_paths": ["ree-v3/experiments/v3_exq_905_mech075_dorsal_lc_arousal_probe.py"]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false},
+      "learning_extracted": [
+        "A gain constant gating CEM proposal noise off a small-magnitude (O(1e-3)) EMA must be re-derived per probe against the observed signal distribution -- reusing a constant from a prior FAILed design silently underpowers the manipulation even after the detectability floor is independently fixed",
+        "criteria_non_degenerate flags on a near-zero, sign-varying gap distinguish 'not a hard bug' from 'effect size adequate' -- they do not certify the latter"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "one shared implementation pattern (MECH-267 mode_noise_scale CEM-noise gain hook) exercised with divergent calibration discipline, plus one seed-heterogeneous readiness failure",
+    "is_independent_bugs": false,
+    "structural_property": "gain constants gating CEM proposal noise off small-magnitude (O(1e-3-1e-2)) neuromodulatory EMA signals must be re-derived from the observed signal distribution per probe; reusing a gain constant from a prior FAILed design (LC_GAIN=2.0, inherited from EXQ-192a's novelty_gain=2.0) silently underpowers the manipulation even after the signal-detectability floor itself is fixed",
+    "readings": ["ventral_readiness_seed_heterogeneity_untested_construct", "dorsal_manipulation_underpowered_not_falsified"]
+  },
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No existing hypothesis-space qid names MECH-075; no fanout_recommendation was emitted (calibration-defect reclassification, not a GOV-FANOUT-1 discrimination portfolio). Registration not minted in this pass."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T05:43:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3",
+      "queue_id": "V3-EXQ-899",
+      "claim_ids": ["INV-034", "Q-021"],
+      "failed_criterion": "absolute",
+      "self_route_label": "readiness_fail_curriculum_gate_blocks_retest",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under_instrumented",
+        "integration": "isolated",
+        "scale": "likely_insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ontogenetic approach-before-avoidance ordering (Debiec & Sullivan 2016; Opendak 2025; Clements 2022; Brunelli 2007; Muller 2018); claim's own reference (D1/D2 Go/NoGo, Bariselli 2018; wanting/liking, Barch & Dowd 2010) still untested",
+        "dependencies": ["MECH-457 action-learning competence floor"],
+        "is_formal_import": false,
+        "divergence": "n/a - phenotype match, not a formal-definition import",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_per_claim": {
+        "INV-034": "competence_implementation_gap",
+        "Q-021": "competence_implementation_gap"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-034": "non_contributory",
+        "Q-021": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-08-09 failure-autopsy, V3-EXQ-899, readiness_check_of V3-EXQ-866a]: G0 non-degeneracy gate FAILED a fourth time (866/866a/866c/899), reconfirming the competence_implementation_gap already diagnosed by failure_autopsy_V3-EXQ-866a-G0_2026-08-08. 899's own contribution: MECH-307 (previously unreachable via from_dims, fixed 2026-08-07) is now confirmed genuinely wired and exercised, but its A/B (FULL_M307_ON vs FULL_M307_OFF, single-variable, same seeds/harness) shows near-zero effect on G0 (d_resource_visit_rate=0.0001, mech307_perturbs_baseline=False) -- MECH-307 reachability is RULED OUT as the fix for this gate. The remaining driver is the same shape already load-bearing for the MECH-457 competence-floor cluster (avoidance learned without approach; near-zero policy entropy; forages below random). That cluster's own discrimination qid (competence_floor) is CLOSED TO FURTHER FAN-OUT as of 2026-08-08 (all axis families resolved) -- a fifth confirmatory instance does not license a new portfolio leg there. No new /queue-experiment or /implement-substrate action from this run; awaiting mech457_competence_bootstrap_explorer (substrate_queue, blocked_pending_discrimination) OR a fresh, independently-registered hypothesis-space qid for the INV-034/Q-021/ARC-030 G0 line specifically. pending_retest_after_substrate stays true.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech457_competence_bootstrap_explorer",
+        "unblocks_claims": ["INV-034", "Q-021", "ARC-030"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3",
+          "experiment_type": "v3_exq_899_arc030_mech307_g0_readiness",
+          "metric": "G0_ON resource_visit_rate 0.0040 vs RANDOM 0.0116, 0/3 seeds clear the +0.05 margin; MECH-307 A/B d_resource_visit_rate=0.0001 (near-zero) with genuine from_dims wiring confirmed reachable",
+          "target": "MECH-307 reachability ruled out as the G0 fix; floor recurs identically on scaffolded_sd054_onboarding, cross-referencing the MECH-457 competence-floor cluster's own signature",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "Under R1-R3, current ceiling-hit count for INV-034/Q-021 is 0 (866a's original substrate_ceiling reading was superseded by 866a-G0's competence_implementation_gap). Stamping this target competence_implementation_gap keeps the count at 0."
+      },
+      "learning_extracted": [
+        "MECH-307 reachability (from_dims wiring fix, 2026-08-07) is RULED OUT as the G0 fix: single-variable A/B on the exact 866a config shows near-zero effect (d_resource_visit_rate=0.0001), with OFF also failing G0 (mech307_perturbs_baseline=False)",
+        "The 4th occurrence of the identical G0 failure shape (866/866a/866c/899) on this claim pair, matching the independent MECH-457 competence-floor cluster's own 'avoidance without approach' signature",
+        "MECH-307's near-zero measured effect is plausibly confounded by the floor itself: integration cannot be assessed until the floor clears",
+        "899's non-gating z_goal readout uses the STALE 866a-style decay-only P2 mean, not 866c's same-day corrected contact-gated peak - a recording gap for any future reuse of this harness, though it does not affect the load-bearing G0 (resource_visit_rate) result",
+        "The MECH-457 competence_floor hypothesis-space qid is CLOSED TO FURTHER FAN-OUT (2026-08-08) - a 5th confirmatory instance here should not be grown onto it; a new qid or governance-note-only cross-reference is the correct disposition"
+      ],
+      "routing": "governance-note-only"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "action": "deferred",
+    "reason": "No pre-registered hypothesis references this run or MECH-307; no qid lists claims [INV-034, Q-021, ARC-030]; the MECH-457 competence_floor qid is closed to further fan-out. Routing is governance-note-only, not a new discrimination campaign, so a new qid was not minted in this pass. A future session opening the INV-034/Q-021/ARC-030 G0 line as its own hypothesis-space question should register it explicitly."
+  }
+}
