@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-08-09.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-08-09.2 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -400,6 +400,9 @@
         <div class="barRow" id="rowGoal"><span class="afLbl">want</span>
           <div class="barOuter"><div class="barInner" id="afGoal" style="width:0%;background:#34d399"></div></div>
           <span class="afVal" id="afGoalV">—</span></div>
+        <div class="barRow" id="rowLiking"><span class="afLbl">liking</span>
+          <div class="barOuter"><div class="barInner" id="afLiking" style="width:0%;background:#f9a8d4"></div></div>
+          <span class="afVal" id="afLikingV">—</span></div>
         <div class="barRow" id="rowVigor"><span class="afLbl">vigor</span>
           <div class="barOuter"><div class="barInner" id="afVigor" style="width:0%;background:#60a5fa"></div></div>
           <span class="afVal" id="afVigorV">—</span></div>
@@ -1258,11 +1261,15 @@ function updateAffect(s, steps) {
   // Drive & arousal
   const vDrive = setBar('afDrive', 'afDriveV', 'rowDrive', pick(s, ['drive']),    1.0);
   const vGoal  = setBar('afGoal',  'afGoalV',  'rowGoal',  pick(s, ['z_goal']),   chMax(steps, ['z_goal'], 0.3));
+  // Liking (VALENCE_LIKING, hedonic-impact channel). Graceful: hidden when the log
+  // has no `liking` field (e.g. 906b and earlier, which predate the telemetry that
+  // surfaces it). Auto-scales to its own per-episode max so small variation is visible.
+  const vLike  = setBar('afLiking','afLikingV','rowLiking',pick(s, ['liking']),   chMax(steps, ['liking'], 0.3));
   const vVigor = setBar('afVigor', 'afVigorV', 'rowVigor', pick(s, ['vigor']),    chMax(steps, ['vigor'], 0.2));
   const vOver  = setBar('afOver',  'afOverV',  'rowOver',  pick(s, ['override']), 1.0);
   const vBlock = setBar('afBlock', 'afBlockV', 'rowBlock', pick(s, ['z_block']),  chMax(steps, ['z_block'], 0.2));
   document.getElementById('subDrive').style.display =
-    (vDrive || vGoal || vVigor || vOver || vBlock) ? 'block' : 'none';
+    (vDrive || vGoal || vLike || vVigor || vOver || vBlock) ? 'block' : 'none';
 
   // Valence: bipolar dread(-) / excite(+)
   const ex = pick(s, ['excite']);
@@ -1273,11 +1280,17 @@ function updateAffect(s, steps) {
     rowVal.style.display = 'none'; subVal.style.display = 'none';
   } else {
     rowVal.style.display = 'flex'; subVal.style.display = 'block';
-    const vMax = Math.max(chMax(steps, ['excite'], 1e-6), chMax(steps, ['dread'], 1e-6));
+    // Independent per-side maxima. A shared max let the excite side (mean ~14, max
+    // ~43 under the unbounded residue-valence accumulator, SD-RESIDUE-VALENCE-BOUND)
+    // crush the dread side (max ~2.8) to a sliver, hiding all dread variation. The
+    // two bars no longer share a magnitude scale — read each side's fill as variation
+    // relative to its own episode max, and the numeric net label for signed level.
+    const exMax = chMax(steps, ['excite'], 1e-6);
+    const drMax = chMax(steps, ['dread'], 1e-6);
     document.getElementById('afExcite').style.width =
-      (ex ? Math.min(1, ex / vMax) * 50 : 0).toFixed(0) + '%';
+      (ex ? Math.min(1, ex / exMax) * 50 : 0).toFixed(0) + '%';
     document.getElementById('afDread').style.width =
-      (dr ? Math.min(1, dr / vMax) * 50 : 0).toFixed(0) + '%';
+      (dr ? Math.min(1, dr / drMax) * 50 : 0).toFixed(0) + '%';
     const net = (ex || 0) - (dr || 0);
     document.getElementById('afValV').textContent = (net >= 0 ? '+' : '') + net.toFixed(3);
   }
