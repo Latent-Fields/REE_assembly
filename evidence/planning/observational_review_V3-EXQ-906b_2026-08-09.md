@@ -309,3 +309,47 @@ These are proposals; authoring goes through `/queue-experiment`. Follow-on chip 
   way to make its small but real variation visible.
 
 These are visualisation-only (REE_assembly); no experiment code or queue entry is touched here.
+
+---
+
+## 11. Follow-up (2026-08-09T17:34Z user steer): diversity harvest + the freeze/orienting gap
+
+Two user observations on the review above, each investigated against code/claims before acting.
+
+### 11a. "This trace shows plenty of diversity -- harvest any claims." Two DIFFERENT quantities are being conflated, and the harvest is a convergence, not an unblock.
+
+The word "diversity" names two unrelated things here, and the distinction is load-bearing:
+
+- **906b behavioural diversity = a MEASURE, observer-applied, non-converting.** The "6 modes" are not a substrate control state -- `mode` is produced by `_classify_mode(z_harm_norm, world_change_norm, harm_signal, in_reef, freeze, z_block_assert)` (v3_exq_664), a post-hoc classifier with fixed precedence `freeze>assert>shelter>avoid>approach>explore>neutral` over thresholded telemetry. So "mode diversity" largely re-expresses affect-channel + position variation through a bucketer. It is real *behavioural-repertoire/exploration* variety, but it is exactly the kind that Section 4 showed does **not** convert into committed, state-appropriate action.
+
+- **The sleep GAP-2 blocker's "diversity" = committed-class-entropy under a TRAINED policy.** `sleep_substrate:GAP-2` is `depends_on: arc_062_rule_apprehension:GAP-B`, whose closure gate is a **C2 committed-class-entropy lift** -- does a rule-creator's differentiated `rule_state` move *which action class the trained CEM/GatedPolicy commits to*. The whole 654->654j / 569i / 689a / MECH-448-449 lineage established the blocker is the **MECH-439 F-dominance conversion ceiling**: "the matured+active+differentiated rule_state reaches committed action but cannot move the F-dominated committed argmax." And `reconcile_2026_07_09` (failure_autopsy_V3-EXQ-719a) reframed it as a **behavioural-COMPETENCE / training-regime ceiling** ("first direct competence measurement of the integrated all-ON agent: forages 0.065/0.0/0.455 resources/ep, below the 1.0 floor on 0/3 seeds; diffuse state-blind commitment, NOT literal monomodal collapse").
+
+So the fishtank's mode diversity does **not** unblock sleep GAP-2: sleep-refinement needs *converting* diversity to refine, and the fishtank shows the *non-converting* kind. Increasing repertoire diversity further is not the lever.
+
+**But there IS a genuine harvest, and it is a convergence the review above missed:** the Section-4 temporal-decoupling finding is the **same phenomenon as the MECH-439 conversion ceiling / 719a competence-wall, observed at the organism level, in a fresh substrate (the all-ON fishtank) via a fresh instrument (affect->behaviour coupling).** Two independent corroborations, not restatements:
+- **Competence**: 719a measured the all-ON agent foraging 0.065/0.0/0.455 resources/ep (below the 1.0 floor); 906b independently reproduces exactly that shape (11 consummatory events / 3909 steps; food-seeking is diffuse-gradient sitting, not committed acquisition -- Section 2b).
+- **Conversion/decoupling**: 719a's "diffuse state-blind commitment" (internal state present, does not steer the committed argmax) is precisely 906b's "affect channels vary but do not predict subsequent action" (Section 4, all couplings ~0).
+
+This is worth recording as a **corroborating behavioural channel** for the MECH-439 F-dominance / competence-wall lineage (which already counts CRF/OFC/dACC/temperature channels) -- but 906b is single-seed, all-ON, `claim_ids=[]`, so it **cannot score** MECH-439/ARC-062/MECH-309; it is observational corroboration + a sharpening of where to push, for `/governance` to weigh, not a scoring move made here.
+
+**One `complex (probe-gated)` empirical discrimination the fishtank newly makes cheap** (nobody has run it -- the fishtank showcase is new): the two sleep-refinement experiments that returned bit-identical waking-vs-sleep metrics (V3-EXQ-418l / 436a) ran on the *collapsed monomodal trained-policy* substrate whose "waking phase produces no behavioural variation for sleep to refine" (GAP-2 `upstream_block_reason`). The **fishtank all-ON substrate does have visible waking behavioural variation.** So: *does the sleep-refinement DV (slot/mode diversity) register a non-null waking->sleep difference on the fishtank substrate?* Expected answer given the above is **no** (the variation is the non-converting kind), which would *confirm* the block is about conversion not repertoire -- but it is untested, and either result is informative. This is a candidate targeted probe, not an unblock claim.
+
+### 11b. "Give the fish a fright, freeze, reorient, then approach/withdraw." Correct, and the chain is essentially UNBUILT -- `complicated (buildable)`, and it is the substrate answer to Section 4's decoupling.
+
+Investigated against the substrate:
+- **Freeze is suffering-driven, not threat-anticipation-driven.** `pag/freeze_gate.py`: `freeze_commit = (z_harm_a * duration_above_threshold) > theta_freeze`, i.e. freeze fires on *accumulated harm/suffering* sustained over ticks -- it responds to harm being *experienced*, not to *noticing approaching danger*. (This is also why disabling it via `duration_input_threshold=1e9` in 906b was necessary -- Section 6.)
+- **There is no orienting / startle / reorienting mechanism at all.** A tree-wide grep for `orient|reorient|startle|fright` across `ree-v3/ree_core/` returns nothing (one incidental `broadcast_override.py` string). The approach/avoid/freeze "modes" are the post-hoc classifier of 11a, not a substrate detect->orient->decide chain.
+- **Consequence:** the fright->freeze->reorient->approach/withdraw chain the user describes is genuinely absent. Building it is exactly the mechanism that would create the coupling Section 4 found missing: dread does not anticipate harm (r=0.065) precisely because no anticipatory-threat -> defensive-response pathway is wired.
+
+**Proposed substrate design (for `/implement-substrate`; candidate new mechanism -- defensive orienting response):**
+1. **Anticipatory threat detection (the "fright").** The post-906b sensory window now sees harm-onset before contact (the engineered smell-before-harm gap: harm onset inside radius-2, `proximity_n_threshold=0.4`/`hazard_field_decay=2.5`). Wire a *phasic* startle signal from a sharp positive gradient in perceived proximity-to-hazard (`z_harm_s` sensory / hazard-field gradient in-window) -- the anticipatory signal that dread *should* carry.
+2. **Phasic freeze (orienting arrest).** A brief, threat-triggered freeze distinct from the chronic `z_harm_a` suffering-lock -- short-duration locomotor halt on the startle, not gated on accumulated suffering.
+3. **Reorienting.** An attentional/heading turn toward the detected threat (currently nonexistent). This is the "push more on implementation" the user names -- orienting is the missing bridge.
+4. **Action decision (approach vs withdraw).** Post-orient, select defensive withdraw vs appetitive approach from valence sign x threat proximity, bridging orienting into the existing approach/avoid behaviour.
+
+This is substantial (a new ree_core pathway + likely a new MECH claim), not a knob change. It should be built via `/implement-substrate`, then its coupling validated -- which also subsumes the review's proposed **V3-EXQ-906d** (defensive-availability probe): 906d tested whether the *existing* suffering-driven freeze is appropriately selected; the real answer is that the *anticipatory* defensive chain does not exist yet and needs building first.
+
+### 11c. Routing (proposed; skill-gated -- not executed here)
+- **Harvest (11a):** record the decoupling<->conversion/competence-ceiling convergence against the MECH-439 / competence-wall lineage via `/governance` (observational corroboration, not a scoring move); it does not touch the sleep block.
+- **Probe (11a):** optional `/queue-experiment` -- run the sleep-refinement DV on the fishtank substrate to settle repertoire-vs-conversion empirically.
+- **Build (11b):** `/implement-substrate` the fright->freeze->reorient->approach/withdraw defensive-orienting pathway (+ candidate MECH registration), which supersedes the 906d probe proposal.
