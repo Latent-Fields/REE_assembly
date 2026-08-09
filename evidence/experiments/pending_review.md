@@ -1,35 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-09T05:55:14Z`  
-Last review: `2026-08-09T05:32:14Z`  
-Pending: **10** item(s) -- 2 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | 2026-08-08T21:48 | (no claim tags) | — |
-| `v3_exq_903_mech075_ventral_vta_rpe_probe_20260808T222748Z_v3` | 2026-08-08T22:27 | MECH-075 | — |
-| `v3_exq_603r_instrumental_avoidance_combined_fix_retest_20260808T230931Z_v3` | 2026-08-08T23:09 | MECH-357 | — |
-| `v3_exq_905_mech075_dorsal_lc_arousal_probe_20260808T232406Z_v3` | 2026-08-08T23:24 | MECH-075 | — |
-| `v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3` | 2026-08-09T00:21 | SD-048 | — |
-| `v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered_20260809T002451Z_v3` | 2026-08-09T00:24 | MECH-022 | — |
-| `v3_exq_228b_arc032_theta_bypass_onboarded_20260809T030541Z_v3` | 2026-08-09T03:05 | ARC-032 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_244b_mech165_replay_diversity_validation_v3` | 2026-08-09T00:20 | MECH-165 |
-| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | 2026-08-09T00:38 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live | **vacuous_pass** |
+Generated: `2026-08-09T06:07:47Z`  
+Last review: `2026-08-09T06:06:51Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

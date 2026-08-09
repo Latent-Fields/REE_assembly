@@ -3419,13 +3419,38 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-08-09
     needs_review: false
-  epistemic_category: standard
+    evidence:
+      from: "failure_autopsy_V3-EXQ-190a_2026-08-09"
+      as_of: 2026-08-09
+      verdict: non_contributory/substrate_conditional
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-007
     - ARC-005
   location: docs/architecture/hippocampal_systems.md#mech-022
+  evidence_quality_note: |
+    [2026-08-09 governance, V3-EXQ-190a, confirmed failure_autopsy_V3-EXQ-190a_2026-08-09]: the
+    well-powered successor to V3-EXQ-190 that what_would_answer called for. Criteria met 2/5
+    (C1/C2/C3 FAIL, C4/C5 PASS). NOT accepted as the demotion-grade FAIL the manifest's own
+    self-route declared ("Decision: retire_ree_claim") -- two implementation/measurement issues
+    undermine a fair test: (1) E3Selector.score_trajectory()'s fallback path carries two
+    untrained scoring subnetworks (reality_scorer, harm_cost_fallback_scorer, code-verified never
+    touched by any loss in ree_core), contaminating C3 and plausibly action selection itself in
+    both conditions; (2) 190a newly extends the nav_bias forced-random-action override into the
+    eval loop (absent in predecessor 190), diluting the condition-dependent behavioral signal --
+    a plausible driver of C1's collapse from clean PASS (190) to near-zero/negative including a
+    sign flip on repeated seed 123. ARC-007 (a direct MECH-022 dependency) was independently
+    demoted 2026-07-25 on the same E3-routed-selection substrate seam -- a convergent signal, not
+    two independent falsifications. epistemic_category corrected standard -> substrate_conditional
+    (the autopsy's own "competence_implementation_gap" category is not a valid claims.yaml enum
+    value -- mapped to the closest valid category, same correction as the 2026-08-08 cycle's
+    INV-034/Q-021/MECH-074d; a corpus-wide audit is in progress, chip
+    chip-20260809-epistemic-category-vocab-audit). routing=implement-substrate: substrate_queue
+    entry SD-E3-SCORER-COMPLETION created this cycle (train or remove the two dead scorer heads).
+    Status NOT demoted -- the FAIL is attributable to an implementation gap and a measurement
+    change, not a falsified mechanism.
   what_would_answer: >
     A well-powered successor to V3-EXQ-190 (2026-04-01, FAIL/inconclusive, evidence_direction
     mixed, 3/5 criteria met -- C1 harm_gap and C2 residue_gap PASSed, C4 data-quality
@@ -9540,6 +9565,30 @@
     LC-mediated, not VTA-mediated. The FAIL is consistent with targeting the wrong
     catecholamine source for dorsal terrain. This is not a falsification of MECH-075
     core mechanism -- it is a mis-targeting of anatomical substrate. See anatomical_note.
+
+    [2026-08-09 governance, V3-EXQ-903+905, confirmed failure_autopsy_mech075-vta-lc-cluster_2026-08-09]:
+    V3-EXQ-903 (ventral/VTA-RPE leg, first attempt): self-routed substrate_not_ready_requeue,
+    CONFIRMED CORRECT on adjudication -- P0 readiness passed in only 1/3 seeds (seed 7), the
+    other two showing negative grounding correlation. The top-level manifest's
+    preconditions[].met:true reflects a seed-mean statistic dominated by seed 7 and should NOT
+    be read as readiness cleared; the seed-majority gate (n_p0a_pass=1) is authoritative and
+    correctly failed. Seed 7's apparent pass coincides with ~25x fewer eval samples, consistent
+    with near-immediate episode termination -- a plausible sampling confound, not confirmed
+    training success. inconclusive/standard. routing=queue-experiment: re-queue with per-seed
+    episode-termination recording before trusting a future P0 read.
+    V3-EXQ-905 (dorsal/LC-arousal leg): P0 and C1 (signal detectability + correct LC-anatomical
+    targeting) both cleanly PASSED -- correcting the signal-magnitude defect of all three prior
+    attempts (EXQ-192a above, 209, 230). But C2 (basin-width widening) FAILED with near-zero,
+    sign-inconsistent gaps (~1e-6 against a 15% floor). Traced to substrate code
+    (ree_core/hippocampal/module.py): the manipulation gain LC_GAIN=2.0, inherited unchanged
+    from the already-failed EXQ-192a novelty_gain=2.0, produces only a ~0.4-0.6% CEM-proposal-noise
+    increase at the observed post-fix arousal_ema magnitude (~0.002-0.003) -- an order of
+    magnitude too small to plausibly produce a 15%-scale basin-width change. non_contributory,
+    an underpowered-manipulation test-design gap, not a falsification. epistemic_category stays
+    standard for both legs (autopsy recommended "measurement_test_design_defect" for 905, not a
+    valid claims.yaml enum -- see chip-20260809-epistemic-category-vocab-audit). Status unchanged
+    (candidate) -- both legs remain untested at adequate power; a gain constant inherited from a
+    prior FAILed design must be re-derived against the observed signal distribution, not reused.
 - id: MECH-076
   title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
@@ -9827,6 +9876,17 @@
     (mech307_perturbs_baseline=False -- the OFF arm also fails G0) without yet identifying the real
     driver; not yet autopsied as of this cycle (deferred to a future /failure-autopsy given cycle scope).
     pending_retest_after_substrate stays true.
+
+    [2026-08-09 governance, V3-EXQ-899, confirmed failure_autopsy_V3-EXQ-899_2026-08-09]: now
+    autopsied (by a concurrent session). G0 FAILED a fourth time (866/866a/866c/899),
+    reconfirming -- no new content beyond -- the already-diagnosed competence_implementation_gap.
+    MECH-307 reachability formally RULED OUT as the G0 fix (single-variable A/B on the exact 866a
+    config, d_resource_visit_rate=0.0001). The remaining driver matches the MECH-457
+    competence-floor cluster's own "avoidance learned without approach" signature -- that
+    cluster's hypothesis-space qid (competence_floor) is CLOSED TO FURTHER FAN-OUT, so a 5th
+    confirmatory instance here is cross-referenced, not grown onto it. substrate_queue
+    mech457_competence_bootstrap_explorer amended with this run's failure_record. routing
+    remains governance-note-only; no new claims.yaml disposition beyond this cross-reference.
   depends_on:
     - ARC-030
     - MECH-111
@@ -14545,6 +14605,29 @@
     < 0.05 threshold). Theta pathway has never been testable. Conflict ratio is undefined,
     not resolved. Any promotion signal would be illusory. Status: pending_retest_after_substrate
     (gate: EXQ-247 must produce z_goal_norm >= 0.05).
+
+    [2026-08-09 governance, V3-EXQ-228b, confirmed failure_autopsy_V3-EXQ-228b_2026-08-09]: the
+    FIRST genuine test of ARC-032 with the non-degeneracy precondition met (goal_norm 1.00 frac
+    seeds, mean 0.469 -- cleared for the first time across the whole 076/228/247/228a/228b
+    lineage, on the scaffolded_sd054_onboarding curriculum this claim's own what_would_answer
+    anticipated). Theta-patch confirmed genuinely wired into trajectory candidate generation and
+    non-inert at both smoke and full scale. C1 (resource-collection lift) FAILED 0/3 seeds --
+    lift_mean=-0.0021, small but consistently NEGATIVE (reversed from prediction) across all 3
+    seeds. C2 (harm parity) passed cleanly. does_not_support, NOT treated as falsifying: (a) the
+    MECH-089/EXQ-052b E3-tick cache-gating means ~89% of measured episode steps reuse cached
+    trajectory candidates unaffected by the ablation, diluting any theta-specific effect in a
+    full-episode aggregate; (b) claims.yaml's own CONFIRMING criterion names z_goal persistence
+    and goal-proximity-score noise as the decisive readouts, and the driver measures neither
+    directly -- resource-collection lift is a downstream proxy, not the pre-registered DV.
+    MECH-089's own EXQ-066/EXQ-122 findings (static theta-averaging harmful to E3 discrimination)
+    independently converge with this null -- the likely locus is the flat-mean "packaging"
+    implementation, not the frontal-hippocampal-synchrony hypothesis itself. epistemic_category
+    stays substrate_conditional (autopsy recommended "measurement_test_design_defect", not a
+    valid claims.yaml enum value -- see chip-20260809-epistemic-category-vocab-audit; substrate_conditional
+    already in place is the closer fit and is left unchanged rather than force-mapped).
+    routing=queue-experiment: a redesigned readout scoring z_goal persistence / goal-proximity
+    noise directly, and/or measured only on E3-tick steps (not full-episode aggregate), is owed.
+    Status unchanged (candidate).
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: z_goal_norm must clear >= 0.05 (the EXQ-247
     gate) for goal-context maintenance to be meaningfully present at all --
@@ -14879,6 +14962,17 @@
     (mech307_perturbs_baseline=False -- the OFF arm also fails G0) without yet identifying the real
     driver; not yet autopsied as of this cycle (deferred to a future /failure-autopsy given cycle scope).
     pending_retest_after_substrate stays true.
+
+    [2026-08-09 governance, V3-EXQ-899, confirmed failure_autopsy_V3-EXQ-899_2026-08-09]: now
+    autopsied (by a concurrent session). G0 FAILED a fourth time (866/866a/866c/899),
+    reconfirming -- no new content beyond -- the already-diagnosed competence_implementation_gap.
+    MECH-307 reachability formally RULED OUT as the G0 fix (single-variable A/B on the exact 866a
+    config, d_resource_visit_rate=0.0001). The remaining driver matches the MECH-457
+    competence-floor cluster's own "avoidance learned without approach" signature -- that
+    cluster's hypothesis-space qid (competence_floor) is CLOSED TO FURTHER FAN-OUT, so a 5th
+    confirmatory instance here is cross-referenced, not grown onto it. substrate_queue
+    mech457_competence_bootstrap_explorer amended with this run's failure_record. routing
+    remains governance-note-only; no new claims.yaml disposition beyond this cross-reference.
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
   claim_type: invariant
@@ -21113,6 +21207,26 @@
     GOVERNANCE (2026-04-08): Manifests corrected, hold_candidate_resolve_conflict applied.
     Note: user confirmed V4 mechanisms being pulled into V3 scope -- MECH-165 substrate
     (reverse replay scheduler, exploration source material) should be planned for V3.
+
+    [2026-08-09 governance, V3-EXQ-244b, confirmed failure_autopsy_V3-EXQ-244b_2026-08-09,
+    supersedes V3-EXQ-244a]: non-degenerate PASS -- corrects 244a's silent no-op bug (theta_buffer
+    wiped before consolidation; FORWARD was byte-identical to NO_REPLAY, 1e-13). All 4
+    harness-integrity preconditions genuinely met this run: reverse replay fires (9-23/seed),
+    FORWARD now measurably diverges from NO_REPLAY (up to 0.046), production call path exercised
+    (agent.act_with_split_obs -> _do_replay -> hippocampal.diverse_replay). supports, but the
+    effect is small and only weakly seed-robust: BALANCED beats FORWARD by a mean of +0.0083
+    against a between-seed SD of 0.128 (Cohen's-d ~0.065), in 4/5 seeds with 3 of those 4 margins
+    under 0.012 and the dissenting seed reversing by a comparable magnitude (binomial
+    P(>=4/5 wins | H0) ~0.19, not significant at conventional thresholds -- no formal
+    significance test is computed in the driver). BALANCED does not clearly outperform NO_REPLAY
+    (+0.0015 mean, wins only 2/5 seeds) -- the claim's own pre-registered CONFIRMING criterion is
+    BALANCED-vs-FORWARD only, which the run legitimately clears, but the practically meaningful
+    "does any replay help vs none" comparison is not established here. epistemic_category stays
+    substrate_conditional. Status unchanged (candidate) -- weak-but-real supports, not a
+    promotion-grade result. Possible uncontrolled confound flagged by the autopsy: diverse_replay's
+    mode/content sampling may draw torch.multinomial from a shared global RNG stream, so conditions
+    calling _do_replay a different number of times could consume different stream amounts before
+    Phase 2 action sampling -- not verified inert, worth checking before citing this as decisive.
 
 - id: SD-016
   title: "E1 must expose a z_world-only ContextMemory query path that produces two downstream signals: an action-affordance bias for E2 (MECH-151) and a terrain precision weight for E3 harm/goal scoring (MECH-152); the existing bulk generate_prior() path is insufficient because it blends z_self and z_world and produces no cue-specific modulation."
@@ -44302,6 +44416,26 @@
     as of 2026-08-08). 6 literature entries already exist
     (literature_confidence 0.86) -- the "no lit-pull commissioned"
     line above was also stale.
+
+    [2026-08-09 governance, V3-EXQ-902, confirmed failure_autopsy_V3-EXQ-902_2026-08-09]: this is
+    the calibration-near-default sweep flagged above as never-queued. Result: FAIL at ARM_2/default
+    on C2. Neither reading (weakens nor confirms) is trustworthy: the C2/"quiet_gap" statistic
+    (residual_body_noise minus a quiet-bucket mean, NO minimum-sample guard) collapses to a
+    tautology at scale >= ~3-4x -- including this run's own ARM_3, AND V3-EXQ-512a's ARM_A at
+    scale=3.0, SD-048's CURRENT SOLE SUPPORTING EVIDENCE -- because n_quiet_steps=0 in every seed
+    at that scale, so the statistic becomes residual_body_noise minus a zero placeholder rather
+    than a real comparison. C1 (unaffected by this defect) shows a small but consistently
+    positive body-noise-vs-agent-caused gap across most cells, arguing against a flat-curve/no-
+    signal reading. Reclassified measurement_test_design_defect (not a valid claims.yaml enum --
+    epistemic_category left at standard, see chip-20260809-epistemic-category-vocab-audit).
+    **FLAGGED, NOT RESOLVED THIS CYCLE: V3-EXQ-512a's standing supports verdict rests on the
+    IDENTICAL n_quiet_steps=0 artifact and needs its own re-examination** -- SD-048's evidentiary
+    basis is currently resting on a statistic that may not have been measuring what it claims to
+    at the one scale where it "worked". Status unchanged (candidate/v3_pending) pending that
+    re-examination and a redesigned C2 criterion with a minimum-group-size guard. Also flagged:
+    the implemented C2 silently drifted from the architecture doc's own pre-registered comparator
+    (body-noise vs matched-amplitude agent-caused) to a quiet-baseline comparison since V3-EXQ-511
+    "for comparability" -- this changed what the criterion scientifically tests.
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: interoceptive noise substrate must be
     implemented and active (interoceptive_noise_enabled=True) with all
@@ -61155,6 +61289,28 @@
     prediction is neither confirmed nor falsified under fair conditions -- tested once,
     under conditions since shown doubly confounded, and failed under those confounds.
     Design doc: docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+
+    [2026-08-09 governance, V3-EXQ-603r, confirmed failure_autopsy_V3-EXQ-603r_2026-08-09]: the
+    combined-fix retest this note flagged as owed. Both fixes (harm-pathway training 603k,
+    escape-affordance bridge SD-059/MECH-358 603j/603q) applied identically to both arms to
+    isolate the ilPFC gate as the sole variable, following 603h's own diagnosis. Result:
+    FAILED the discrimination criterion (G_H_INTACT_beats_LESION) while clearing the absolute
+    criterion (G_H_INTACT_clears_2/3, all readiness preconditions met at 1.0). Unexpectedly,
+    ARM_LESION (no gate at all) ALSO reached survival ceiling (median 200/103/200 vs 603h's
+    27.5/16.5/19.0 under byte-identical hazard config) -- a THIRD, previously-unnamed confound:
+    the harm-pathway fix alone makes passive PAG freeze/release timing survival-adequate in this
+    hazard field, eliminating the Pavlovian-instrumental conflict the paradigm depends on for
+    discrimination. non_contributory. epistemic_category stays standard (autopsy recommended
+    "measurement_test_design_defect", not a valid claims.yaml enum -- see
+    chip-20260809-epistemic-category-vocab-audit). New dependency discovered: the Stage-H hazard
+    field needs a freeze-incompatible pressure (pursuit/escalation/freeze-cost) to force the
+    conflict this paradigm needs. Also reconfirmed still-unresolved: MECH-357's own
+    avoidance_efficacy eligibility-trace credit event remains essentially inert (n_credit ~1-2%
+    of n_decay), unchanged since 603h, now masked by the two independently-functioning fixes.
+    routing=queue-experiment (substrate_queue escape-affordance-bridge entry: no change, its own
+    scope is unaffected). MECH-357's mechanism-engagement claim is STILL neither confirmed nor
+    falsified -- tested twice now, under two different confound sets, both inconclusive by
+    design defect rather than by the mechanism itself. Status unchanged (candidate/v3_pending).
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: freeze must commit on LESION arm and the gate must
     engage+suppress on INTACT arm. ALREADY MET ONCE, cleanly: V3-EXQ-603h reported

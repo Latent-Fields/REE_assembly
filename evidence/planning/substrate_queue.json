@@ -70,7 +70,7 @@
     }
   },
   "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
-  "last_updated_utc": "2026-08-09T05:32:14Z",
+  "last_updated_utc": "2026-08-09T06:15:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5740,8 +5740,11 @@
         "MECH-229"
       ],
       "unblocks_claims": [
+        "ARC-030",
+        "INV-034",
+        "INV-088",
         "MECH-457",
-        "INV-088"
+        "Q-021"
       ],
       "failure_record": [
         {
@@ -5779,12 +5782,19 @@
           "experiment_type": "v3_exq_770_771_772_mech457_drive_reward_credit_discrimination",
           "metric": "D3 foraging_competence of every treatment arm ~0-1 (floor), both reps, all three axes; vs local_view_greedy 48-55 / oracle 57-61",
           "target": "13.05 lift-competence target (5.22 RND plateau + 7.83 margin) -- cleared by NO treatment arm"
+        },
+        {
+          "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3",
+          "experiment_type": "v3_exq_899_arc030_mech307_g0_readiness",
+          "metric": "G0_ON resource_visit_rate 0.0040 vs RANDOM 0.0116, 0/3 seeds clear the +0.05 margin; MECH-307 A/B d_resource_visit_rate=0.0001 (near-zero) with genuine from_dims wiring confirmed reachable",
+          "target": "MECH-307 reachability ruled out as the G0 fix; floor recurs identically on scaffolded_sd054_onboarding, cross-referencing the MECH-457 competence-floor cluster's own signature",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "V3-EXQ-770/771/772 GOV-FANOUT-1 portfolio RAN and all three FAILED (failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18): drive-schedule (770), reward-coupling (771), credit-horizon (772) all NOT-the-axis; readiness met on every leg; combined with 769 (capacity falsified) FOUR axes are now eliminated. The wall is the learned converter itself -- it cannot extract a competent policy from a sufficient observation, invariant to all config/env/credit/capacity levers. Re-derive brake FIRED (7th non_contributory autopsy): REFUSE any further config/env/credit/capacity amend. NEXT = GOV-FANOUT-1 discrimination portfolio (H-bc-prior competence-directed behavioral-prior/imitation seed vs H-approach-primitive innate non-extinguishing competence-directed approach drive), each with a declared null; the substrate amend is deferred until that discrimination names which competence-directed dependency to build (do NOT build blind).",
       "priority": 1,
       "added_session": "ree-ai-design-critique-773a00-governance",
-      "last_seen_session": "governance-86e36f",
+      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
       "implemented_utc": "2026-07-16T16:45:10Z",
       "implemented_by": "jovial-joliot-9f904b (/implement-substrate capacity-amend, routed from failure_autopsy_V3-EXQ-765)",
       "implemented_note": "ORIGINAL BUILD 2026-07-16 (unruffled-lichterman-65e45e, ree-v3 main 022a284): composed floor->competent bootstrap explorer in experiments/_lib/mech457_bootstrap_explorer.py -- RND success-independent drive + prioritized credit-replay converter + developmental intrinsic-coef/entropy anneal + increased budget on the first-class actor-critic, both z_world cotrain and raw 5x5. Retest V3-EXQ-765 RAN and FAILED (bootstrap_explorer_plateaus_capacity_gap_remains): drive half works on raw (+5.87) but the actor-critic plateaus at ~13% of the 48.05 ceiling and z_world cotrain is destructive (ON 0.35 < OFF 5.22). CAPACITY-SIDE AMEND 2026-07-16 (jovial-joliot-9f904b, /implement-substrate, routed from failure_autopsy_V3-EXQ-765): three JOINT capacity/reliability/integration knobs applied to the SAME build (not competing hypotheses) -- (a) ON actor_critic_hidden 128->256 + ON_BUDGET_MULTIPLIER 3->5 (capacity); (b) ON warm_start_fraction 0.2 + credit_replay_passes 3->6 / credit_topk 32->64 (reliability, cut the 15.9/3.05/0.5 seed variance); (c) ON cotrain_encoder False = z_world DETACHED, train policy on the frozen prediction-trained encoder (Stooke 2021, since cotrain corrupts z_world). All five new BootstrapExplorerConfig fields OFF-preserving no-op defaults -> OFF arms bit-identical to 765's (drift-guard ~5.22 z_world / ~0.6 raw). Threaded actor_critic_hidden/cotrain_encoder through make_rep -> RawViewRep/ZWorldRep -> fan.make_rawview_ac/make_zworld_agent -> x742._make_actor_critic_agent(hidden=); credit passes/topk + warm_then_anneal through train_a2c -> _prioritized_credit_replay. 5 new contracts (C7-C11); 11 bootstrap-explorer contracts pass, full contracts green (0 regressions). Retest V3-EXQ-769 (supersedes 765) queued + coordinator-ingested (diagnostic, OFF-vs-ON x {z_world,raw}, lift >=7.83 above the 5.22 plateau; cloud ree-cloud-2). RE-DERIVE BRAKE HELD-BUT-SANCTIONED (5th non_contributory MECH-457 autopsy; the brake refuses another single-axis probe, NOT this named-capacity post-build retest under a NEW EXQ number). MECH-457 stays candidate/v3_pending (pending_retest_after_substrate); INV-088 candidate/pending_substrate_reconfirmation until 769 scores.",
@@ -7016,6 +7026,36 @@
       "added_utc": "2026-08-08T15:58:59Z",
       "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
       "origin": "Registration-only chip chip-20260808-mech203-substrate-queue-registration (metaworker-dispatch, headless), acting on the GOVERNANCE FLAG raised in MECH-203's own what_would_answer block on 2026-08-08 ('no substrate_queue.json entry exists for EVB-0157's release_condition ... despite being named twice now (2026-08-01 autopsy, 2026-08-03 proposal flip). Chip spawned to register it.'). Context: claims.yaml MECH-203 (evidence_quality_note + its 2026-08-08 CORRECTION + what_would_answer) and evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.md. NO substrate was built or modified by this session -- registration and source-verification only."
+    },
+    {
+      "sd_id": "SD-E3-SCORER-COMPLETION",
+      "title": "E3Selector.score_trajectory() fallback path carries untrained scorer subnetworks (reality_scorer, harm_cost_fallback_scorer) -- train or remove",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-022"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered_20260809T002451Z_v3",
+          "experiment_type": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered",
+          "metric": "C1/C2/C3 FAIL (2/5 criteria met); E3Selector.score_trajectory() fallback path's reality_scorer and harm_cost_fallback_scorer subnetworks code-verified never touched by any loss anywhere in ree_core, contaminating C3 and plausibly action selection in both conditions",
+          "target": "either these two scorer heads are trained on a real loss signal, or the fallback path is removed/replaced so untrained subnetworks cannot silently influence trajectory scoring",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "ree_core E3Selector.score_trajectory() fallback path (compute_reality_cost, compute_harm_cost_fallback) instantiates two nn.Sequential heads that are never wired to any training loss. Either train them on an appropriate signal or remove the fallback path so it cannot contaminate trajectory scoring when the primary path is unavailable. Also relevant: V3-EXQ-190a newly extended the nav_bias forced-random-action override into the eval loop -- confirm whether that is intended before re-testing MECH-022.",
+      "priority": 2,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/predictors/e3_selector.py"
+      ],
+      "added_session": "v3-exq-812-harness-repair-1f9438",
+      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
+      "added_utc": "2026-08-09T06:15:00Z"
     }
   ],
   "schema_version": "substrate_queue/v2"
