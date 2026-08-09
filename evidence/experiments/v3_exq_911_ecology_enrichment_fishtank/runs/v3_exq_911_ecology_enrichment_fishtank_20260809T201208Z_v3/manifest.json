@@ -1,0 +1,182 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_911_ecology_enrichment_fishtank",
+  "run_id": "v3_exq_911_ecology_enrichment_fishtank_20260809T201208Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-09T20:12:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ecology_enrichment_confound_reduced",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained",
+        "description": "harm-pathway co-training ran >=1 optimizer step",
+        "measured": 3735.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecology_survivable",
+        "description": "same eval-ecology precondition as 906b/906c (hazard side unchanged): segments should run well past 906's ~14.9-step/segment early-death signature (>=4x floor)",
+        "measured": 500.0,
+        "threshold": 59.6,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "benefit_approach_sample_floor",
+        "description": "enough benefit_approach steps exist to make the confound-reduction comparison meaningful rather than noise -- a genuinely narrowed field should fire less often in absolute terms than 906b's grid-wide 1384/3909, so this floor guards against an uninterpretably small sample",
+        "measured": 68.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": true,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": true,
+      "channel_excite": true,
+      "channel_dread": true,
+      "harm_pathway_trained": true,
+      "freeze_not_permanently_locked": true,
+      "ecology_survivable": true,
+      "confound_reduced": true
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "ecology_survivable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "benefit_approach_confound_reduced",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_s",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_un",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_a",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_drive",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_goal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_vigor",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_override",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_block",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_excite",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_dread",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "Ecology-enrichment iteration of the 906 lineage (Section 9 item 3 of the 906b observational review, explicitly LOWER PRIORITY than tracks A/C/906c). Hazard side unchanged from 906b -- resource_field_decay/proximity_benefit_scale/resource_respawn_on_consume re-tuned so the diffuse proximity-benefit field becomes spatially honest (a genuine 'smell before benefit' radius, mirroring 906b's own hazard-field fix methodology) instead of grid-wide. PASS = harm-pathway trained AND core affect channels vary AND the ecology remains survivable AND the benefit_approach-step mean distance to the nearest resource has genuinely dropped (<=3.0 cells, vs 906b's ~6.0-6.2 baseline) on a non-degenerate sample. This run does NOT test or claim improved food-seeking COMPETENCE -- only that the environment-level confound Section 2b identified is reduced, so a future food-seeking metric on this ecology would measure navigation-to-resource rather than gradient-sitting. claim_ids=[]; does not weight governance."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "06df28bb7d6aee9f454ee38c97ef8749420d64fbc91d6b46c05ecc073d3620bd",
+  "substrate_commit": {
+    "commit": "c8b7ae25728b7d4b2b65cf5348ffb8e3b138f773",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 9849,
+    "ticks_active": 8786,
+    "writer_calls": 4883,
+    "active_frac": 0.8920702609401969,
+    "writer_defect": false,
+    "n_agents": 1,
+    "goal_state_present": true
+  }
+}
