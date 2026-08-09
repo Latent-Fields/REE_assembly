@@ -28,7 +28,11 @@
     },
     "severity": {
       "purpose": "Whether this entry's defect is dangerous to keep running NEW, unrelated experiments against while it is still open -- orthogonal to node_class (can we build the fix) and priority (how urgently should we build it). Design: evidence/planning/substrate_defect_gate_plan_2026-08-07.md.",
-      "allowed_values": ["corrupting", "degrading", "cosmetic"],
+      "allowed_values": [
+        "corrupting",
+        "degrading",
+        "cosmetic"
+      ],
       "value_note": "corrupting = produces evidence that looks valid but isn't (silent) -- forward: new experiments touching substrate_paths should be BLOCKED, not just warned (see /queue-experiment Step 2.5c). degrading = known limitation; weakens confidence but doesn't invalidate outright -- forward: WARN, don't block. cosmetic = no evidence impact (a lint gap, a naming issue, dead code) -- no gate.",
       "default_reading": "Most substrate_queue entries are ordinary missing-feature backlog with no evidence-corruption risk -- an UNMARKED entry is read as the implicit fourth bucket 'not-yet-run' (nothing has been tested against it yet, so there is nothing to gate on) and Step 2.5c takes no action on it. Only stamp severity when the entry names substrate that ALREADY-RUN or FUTURE experiments could silently corrupt.",
       "populated_by": "/failure-autopsy Step 7, at the same point recommended_substrate_queue_entry is filled (the autopsy has already diagnosed the defect, so classifying its danger is nearly free there). /governance Step 6a-iii/6a-iv persists it into substrate_queue.json unchanged -- governance does not re-derive severity from scratch.",
@@ -42,21 +46,31 @@
     },
     "status_phase": {
       "purpose": "Machine-checkable one-token phase for an entry, ALONGSIDE the free-text `status` narrative log -- status stays exactly as-is (it is a genuinely useful changelog, not noise) and is never replaced or truncated. Exists because `status` is already parsed by tooling via ad hoc regex/substring matching against a free-running snake_case narrative string (generate_inter_governance_workset.py _status_resolved/_status_terminal/_status_implementation_complete/_substrate_resolved; verify_governance_cycle.py's 'gated on' check; substrate_queue_writeback_drift.py's field_disagreement check) -- which is both unreadable to a human scanning many entries at once and fragile enough that `ready` already has to override it (a past status-string-only false positive is the documented reason `ready` is authoritative and status a secondary hint). status_phase gives both audiences a stable, greppable field without touching the narrative.",
-      "allowed_values": ["probe_gated", "build_owed", "validation_pending", "route_exhausted", "closed"],
+      "allowed_values": [
+        "probe_gated",
+        "build_owed",
+        "validation_pending",
+        "route_exhausted",
+        "closed"
+      ],
       "value_note": "probe_gated = the residual is a REE diagnostic/spike, not a build (mirrors node_class complex (probe-gated)). build_owed = a concrete buildable lever is named but not yet built (mirrors node_class complicated (buildable)). validation_pending = the needed build(s) are done (BUILT and/or PROMOTED) and what remains is an experiment run/result, not construction. route_exhausted = every currently-known lever on this route has been tried and refuted; forward motion needs a new route, not another letter on this one. closed = ready:true and no unresolved dependents.",
       "default_reading": "Absent on historical entries -- infer conservatively rather than assume: probe_gated if ready:false and node_class is complex (probe-gated) or unset; build_owed if ready:false and depends_on_unresolved names a lever not yet built; validation_pending if ready:false and every fallback_ladder/depends_on item is BUILT/VALIDATED with only run results outstanding; closed if ready:true.",
       "populated_by": "/governance Step 6a-iii/6a-iv, same population point as node_class/severity/substrate_paths -- set on every new/updated entry going forward. Historical entries populated opportunistically when a cycle next touches them, not backfilled in bulk (same posture as severity's backfill_note below)."
     },
     "failure_record[].resolved": {
       "purpose": "Per-item resolution state for one entry in a `failure_record` list, so a reader (or script) can tell which of a long failure_record history are still live open questions vs later superseded/addressed, without parsing the free-text `metric`/`target`/`addressed_by` prose on every item. The existing sub-fields (run_id, experiment_type, metric, target, and the informal addressed_by/adjudication/source_autopsy prose already present on some historical items) are unchanged -- this adds one more optional key per item.",
-      "allowed_values": ["open", "resolved", "superseded"],
+      "allowed_values": [
+        "open",
+        "resolved",
+        "superseded"
+      ],
       "value_note": "open = still the live characterisation of an unaddressed gap. resolved = a later build/lever directly closed this specific failure mode (name the resolving run_id/session in the item's own addressed_by text). superseded = a later, more specific experiment on the same question replaced this item's read without anything being 'fixed' -- e.g. an isolation run overturning an earlier marginal/confounded read.",
       "default_reading": "Absent means open -- do not read a missing field as resolved.",
       "populated_by": "/failure-autopsy Step 7, when the autopsy's own finding resolves or supersedes a specific prior failure_record item on the SAME entry (uncommon -- most autopsies add a new item rather than resolve an old one), and /governance Step 6a-iii, the more common path: a later build's validation run makes an earlier failure_record item's `target` moot. Not backfilled across historical entries in bulk; populate going forward and opportunistically when reading an old entry closely enough to judge each item confidently."
     }
   },
   "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
-  "last_updated_utc": "2026-08-08T15:58:59Z",
+  "last_updated_utc": "2026-08-09T05:32:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1406,7 +1420,7 @@
     },
     {
       "added_session": "governance-2026-04-25T15:15",
-      "blocked_on": "z_world cross-context separation precondition not yet satisfied in current CausalGridWorldV2 configs",
+      "blocked_on": "selection-mechanism training signal -- no tested mechanism (q.k attention, feedforward tagger, diversification loss) has ever been given a training signal specifically rewarding context-CONDITIONED divergence, as distinct from population-level slot diversity. The prior env-entropy precondition (z_world cross-context separation) is now SATISFIED (SD-070 recipe, confirmed on this apparatus, 2.7-4.0x margin).",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_016_frontal_cue_integration.md",
       "failure_record": [
@@ -1439,14 +1453,21 @@
           "experiment_type": "v3_exq_418m_sd016_cue_slot_tagger",
           "metric": "C2 OFF entropy = 2.772588 = ln(16) exactly (saddle reproduced 3/3); C1 ON entropy mean 2.7536 (min 2.7319 max 2.7657) vs threshold 2.5 (0/3); C1b ON context-divergence mean 0.0021 vs 0.1 (0/3); action_bias_div ON 0.0099 <= OFF 0.0117 (non-gating). Path 3 changed the selection mechanism (q.k -> feedforward MLP) but not the selection input (z_world), which 418f localised as near-constant (cosine 0.998)",
           "target": "ON sel_entropy_mean < 2.5 AND ON sel_context_divergence > 0.1 on >=2/3 seeds, with OFF reproducing the ln(16) saddle"
+        },
+        {
+          "run_id": "v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3",
+          "experiment_type": "v3_exq_898_sd016_lega_encoder_fix_retest",
+          "metric": "Readiness preconditions cleared on all 3 seeds (world_encoder_weights_moved=5.0 vs threshold 1.0; z_world_spread_lift 3.53-5.20 vs threshold 1.3, i.e. 2.7-4.0x margin). C2 control PASS 3/3 (OFF sel_entropy_mean 2.772587-2.772587 vs ln(16)=2.772589 -- exact saddle reproduction). C1 PRIMARY FAIL 0/3 (ON sel_entropy_mean 2.7428-2.7628 vs <2.5 threshold). C1b ANTI-DEGENERACY FAIL 0/3 (ON sel_context_divergence 0.0039-0.0513 vs >0.1 threshold). Encoder fix confirmed to genuinely take; selectivity still does not emerge.",
+          "target": "ON sel_entropy_mean < 2.5 AND ON sel_context_divergence > 0.1 on >=2/3 seeds, with OFF reproducing the ln(16) saddle -- under a confirmed-varying encoder (this precondition is now the distinguishing feature vs 418m)",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope.",
       "implementation_note_update": "SD-016 substrate (sd016_enabled, writepath_mode, diversification weight, sd016_temperature_learnable, compute_attention_entropy_loss) is fully wired and bit-identical to legacy with all flags OFF. EXQ-418d/418e/418f/418g establish that the substrate-side mechanism works as designed but the env does not generate cross-context z_world variation for the substrate to retrieve over (the user's diagnosis 2026-04-28: 'the world is too simple. not enough entropy in every single configuration to support as much information extraction'). Status changed from implemented_but_failing_validation -> parked_pending_env_entropy_precondition. SD-017 / MECH-150 / MECH-151 / MECH-152 / ARC-041 / INV-040 retests blocked on the env precondition rather than on SD-016 substrate quality. Validation experiment is now V3-EXQ-418h env-richness probe (NOT a substrate retest); SD-016 retest queue paused until env precondition is empirically satisfied.",
-      "implementation_status": "parked_pending_env_entropy_precondition",
+      "implementation_status": "parked_pending_selection_mechanism_fix",
       "implemented_session": "implement-sd016-path1-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "governance-cycle-20260606T0431Z",
+      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
       "metric_trajectory": {
         "direction": "context_dependent",
         "observations": [
@@ -1467,7 +1488,7 @@
       "priority": 5,
       "ready": false,
       "sd_id": "SD-016",
-      "status": "parked_pending_env_entropy_precondition",
+      "status": "parked_pending_selection_mechanism_fix",
       "title": "ContextMemory cue-indexed retrieval -- validation gated on env entropy precondition (2026-04-28)",
       "unblocks_claims": [
         "MECH-150",
@@ -1478,7 +1499,8 @@
         "SD-017"
       ],
       "validation_experiment": "V3-EXQ-418h",
-      "validation_precondition": "z_world cross-context cosine separation gate -- pairwise cos(z_world) within safe batch and within dangerous batch must be substantially HIGHER than cos across safe-vs-dangerous batch; absolute cross-context cosine < 0.95 in at least one env config (target: SD-023 landmarks ON). Falsifiable via V3-EXQ-418h."
+      "validation_precondition": "z_world cross-context cosine separation gate -- pairwise cos(z_world) within safe batch and within dangerous batch must be substantially HIGHER than cos across safe-vs-dangerous batch; absolute cross-context cosine < 0.95 in at least one env config (target: SD-023 landmarks ON). Falsifiable via V3-EXQ-418h.",
+      "status_note_addendum_20260808": "V3-EXQ-898 (2026-08-08, confirmed failure_autopsy_V3-EXQ-898_2026-08-08): SD-070 encoder fix genuinely restores cross-context z_world variance on this apparatus. Retrieval selectivity still does not emerge -- FAIL now cleanly attributes to the selection mechanism, not the encoder. Recommends a GOV-FANOUT-1 discrimination portfolio (H1 drive / H2 representation, dependency claims MECH-044/ARC-006/ARC-007/MECH-267 all still provisional-unbuilt so this is longer-horizon / H3 algorithm) before committing to one fix. Also flags a genuine lit-pull gap: no literature review grounds the specific biological mechanism (competitive/local pattern-separation dynamics) as the candidate fix direction."
     },
     {
       "added_session": "governance-2026-04-27T14:11",
@@ -1716,12 +1738,20 @@
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_035_amygdala_analog.md",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3",
+          "experiment_type": "v3_exq_894a_mech074d_bla_remap_attribution_selectivity",
+          "metric": "C1 attribution_mass_excess / C2 context_jaccard_gap never reach 2/3-seed pass at any of 4 swept PE-sigma thresholds; mass-excess and fire-fraction both fall monotonically with sigma (Spearman -1.0 both), refuting the over-firing/dilution alternative from V3-EXQ-894",
+          "target": "attribution_mass_excess > 0.05 AND context_jaccard_gap > 0.05 on >=2/3 seeds, at some operating point, under a trainable attribution head",
+          "resolved": "open"
+        }
+      ],
       "implementation_hint": "Two peer non-trainable arithmetic substrates mirroring biological BLA/CeA division. BLAAnalog (slow/content): MECH-074a inverted-U arousal-dependent encoding_gain on hippocampal write strength; MECH-074b content-selective per-trace retrieval_bias; MECH-074d Moita-2004 attribution-gated remap_signal. CeAAnalog (fast/scalar): MECH-046 mode_prior log-odds bias to SalienceCoordinator; MECH-074c fast_prime candidate-prior pulse with cortical_confirmation hold. Modules: ree_core/amygdala/{bla,cea}.py. Master flag use_amygdala_analog (default False). Promoted to provisional 2026-04-22, stable 2026-04-24.",
       "implementation_status": "implemented",
       "implemented_session": "implement-sd035-amygdala-2026-04-21",
       "implemented_utc": "2026-04-21T00:00:00Z",
-      "last_seen_session": "substrate-queue-completeness-2026-04-27T18:20",
+      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -1753,7 +1783,13 @@
         "MECH-074d",
         "Q-036"
       ],
-      "validation_experiment": "V3-EXQ-473 + V3-EXQ-474"
+      "validation_experiment": "V3-EXQ-473 + V3-EXQ-474",
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/amygdala/bla.py",
+        "ree_core/agent.py"
+      ],
+      "status_note_addendum_20260808": "V3-EXQ-894/894a (2 independent experiments) show BLAAnalog's attribution gate does not respond to PE-threshold recalibration -- next build owed is a trainable/learnable attribution head (see failure_record). Recommended by failure_autopsy_V3-EXQ-894a_2026-08-08."
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",

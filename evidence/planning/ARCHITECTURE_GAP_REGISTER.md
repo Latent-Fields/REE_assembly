@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-08-09T05:11:57.662238Z`
+Generated: `2026-08-09T05:25:55.041299Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -18,7 +18,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0009` | `SD-031` | `candidate` | 1 | 0.667 | 0.162 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0010` | `MECH-098` | `candidate` | 0.96 | 0 | 0.456 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0011` | `MECH-102` | `active` | 0.957 | 0.222 | 0.197 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0012` | `MECH-295` | `candidate` | 0.923 | 0.167 | 0.392 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0012` | `MECH-295` | `candidate` | 0.923 | 0.167 | 0.393 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0013` | `MECH-457` | `candidate` | 0.878 | 0.273 | 0.187 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0014` | `MECH-166` | `candidate` | 0.857 | 0 | 0.403 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0015` | `SD-005` | `implemented` | 0.846 | 0.333 | 0.3 | 0 | no | no | `mandatory_decision_checkpoint` |

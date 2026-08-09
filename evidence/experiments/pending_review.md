@@ -1,21 +1,13 @@
 # Pending Experiment Review
 
-Generated: `2026-08-09T05:12:04Z`  
-Last review: `2026-08-08T08:32:29Z`  
-Pending: **23** item(s) -- 7 PASS, 15 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy; 1 run(s) with a DEAD z_goal stream
+Generated: `2026-08-09T05:34:33Z`  
+Last review: `2026-08-09T05:32:14Z`  
+Pending: **10** item(s) -- 2 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3` | 2026-08-08T10:05 | SD-009 | — |
-| `v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3` | 2026-08-08T10:11 | MECH-074d | — |
-| `v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3` | 2026-08-08T10:16 | (no claim tags) | — |
-| `v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3` | 2026-08-08T15:27 | INV-051 | — |
-| `v3_exq_821b_mech457_consummation_binding_20260808T161718Z_v3` | 2026-08-08T16:17 | MECH-457 | — |
-| `v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3` | 2026-08-08T18:59 | (no claim tags) | — |
-| `v3_exq_878a_mech332_commitment_calibration_20260808T193223Z_v3` | 2026-08-08T19:32 | MECH-332, SD-021, SD-032c | — |
-| `v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded_20260808T195345Z_v3` | 2026-08-08T19:53 | INV-034, Q-021 | — |
 | `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | 2026-08-08T21:48 | (no claim tags) | — |
 | `v3_exq_903_mech075_ventral_vta_rpe_probe_20260808T222748Z_v3` | 2026-08-08T22:27 | MECH-075 | — |
 | `v3_exq_603r_instrumental_avoidance_combined_fix_retest_20260808T230931Z_v3` | 2026-08-08T23:09 | MECH-357 | — |
@@ -28,11 +20,6 @@ Pending: **23** item(s) -- 7 PASS, 15 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke),
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3` | 2026-08-08T09:51 | SD-014 |
-| `v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3` | 2026-08-08T10:38 | SD-024 |
-| `v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3` | 2026-08-08T17:09 | MECH-322 |
-| `v3_exq_703a_mech276_scientist_attribution_readiness_20260808T191524Z_v3` | 2026-08-08T19:15 | (no claim tags) |
-| `v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3` | 2026-08-08T20:11 | ARC-070 |
 | `v3_exq_244b_mech165_replay_diversity_validation_v3` | 2026-08-09T00:20 | MECH-165 |
 | `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | 2026-08-09T00:38 | (no claim tags) |
 
@@ -42,7 +29,6 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
-| `v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3` | FAIL | INVALID_HARNESS | **precondition_unmet** |
 | `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live | **vacuous_pass** |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
@@ -54,20 +40,6 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 | `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | FAIL | readiness_fail_curriculum_gate_blocks_retest |
 | `v3_exq_244b_mech165_replay_diversity_validation_v3` | PASS | balanced_replay_improves_retention |
 | `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live |
-
-## Dead z_goal stream (interpret before trusting a z_goal readout)
-
-**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
-
-Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
-
-**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
-
-**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
-
-| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
-|--------|--------|-------|--------------|-------------|-----------|
-| `v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3` | FAIL | 48576 | **0** | 0.000 | live |
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

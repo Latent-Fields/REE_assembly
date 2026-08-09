@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-08T08:32:29Z",
+  "last_review_utc": "2026-08-09T05:32:14Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1102,7 +1102,20 @@
     "v3_exq_891_mech286_sleep_onset_conjunction_signature",
     "v3_exq_893_mech232_da_representational_expansion_confirmer",
     "v3_exq_895_mech074c_cea_fast_prime_dynamics",
-    "v3_exq_892_mech322_replay_corroboration_survival"
+    "v3_exq_892_mech322_replay_corroboration_survival",
+    "v3_exq_897_sd009_event_ce_ablation_decodability",
+    "v3_exq_894a_mech074d_bla_remap_attribution_selectivity",
+    "v3_exq_901_inv051_mel_dose_rigidity_sweep",
+    "v3_exq_821b_mech457_consummation_binding",
+    "v3_exq_878a_mech332_commitment_calibration",
+    "v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded",
+    "v3_exq_887b_sd014_node_valence_repfunc_sensitized",
+    "v3_exq_900_sd024_da_cluster_allocation_representational_functional",
+    "v3_exq_896_mech322_replay_confirmatory_evidence",
+    "v3_exq_904_arc070_decomposition_trigger_selectivity",
+    "v3_exq_898_sd016_lega_encoder_fix_retest",
+    "v3_exq_812a_mech295_cue_authority_sd054",
+    "v3_exq_703a_mech276_scientist_attribution_readiness"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3859,7 +3872,20 @@
     "v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3",
     "v3_exq_893_mech232_da_representational_expansion_confirmer_20260808T002050Z_v3",
     "v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3",
-    "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3"
+    "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3",
+    "v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3",
+    "v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3",
+    "v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3",
+    "v3_exq_821b_mech457_consummation_binding_20260808T161718Z_v3",
+    "v3_exq_878a_mech332_commitment_calibration_20260808T193223Z_v3",
+    "v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded_20260808T195345Z_v3",
+    "v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3",
+    "v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3",
+    "v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3",
+    "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3",
+    "v3_exq_898_sd016_lega_encoder_fix_retest_20260808T101631Z_v3",
+    "v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3",
+    "v3_exq_703a_mech276_scientist_attribution_readiness_20260808T191524Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6027,6 +6053,23 @@
         "v3_exq_892_mech322_replay_corroboration_survival_20260808T051616Z_v3"
       ],
       "note": "Governance cycle 2026-08-08 (session heuristic-mccarthy-7498cc, worktree), begun after registering the new governance-pause claim mechanism (SKILL.md Step 0/0b/0c rewrite this session) and clearing a large shared-checkout HEAD/worktree skew reconciliation (52k-commit repo, bloom-filter commit-graph regenerated to make the skew-repair tractable) before the walk. 6 pending (2 FAIL, 4 PASS, 0 runner-only). Autopsy pre-flight: needs-autopsy set was 2 FAILs (887a, 894) + 1 diagnostic PASS (892) -- all three already had confirmed autopsies scoped to their exact run_ids, so 0 items needed autopsy work this cycle (route B degenerate case). Applied: V3-EXQ-887a (SD-014, weakens -- genuine partial improvement over 887, not a repeat collapse, seed 2026 clears both load-bearing criteria; 2nd genuine touchpoint; routed /queue-experiment 887b, stronger sensitization gain). V3-EXQ-894 (MECH-074d, weakens -- substrate built and functioning, attribution-gate half fails 2/3 seeds; automated queue recommended demote_to_candidate, user HELD at provisional pending V3-EXQ-894a recalibrated-threshold retest rather than demoting immediately). V3-EXQ-891 (MECH-286, supports -- first genuine substrate touchpoint, 5/5 criteria clean AND; promotion architecturally gated regardless, depends on SD-037+MECH-281 both still v3_pending). V3-EXQ-893 (MECH-232, supports -- second independent confirmer on the same crux discriminator alongside the SD-024 diagnostic 766a; PROMOTED provisional -> stable). V3-EXQ-895 (MECH-074c, supports -- first touchpoint, self-declared PARTIAL by the driver's own evidence_scope_note, legs 1-2 of 3 only; non-outcome skim clean, no undisclosed defect). V3-EXQ-892 (MECH-322, supports/diagnostic -- closes 873a's deferred replay-corroboration-survival question (57.1%/85.7% survival under realistic/unlimited deadlines); 3rd consecutive non-negative touchpoint; v3_pending stays true, autopsy's own companion_fix already backfilled 873a's missed hypothesis-space Step 9b update). MECH-074c/MECH-074d (sibling split-children of MECH-074) diverged in opposite directions this same cycle -- read as legitimate independent findings, not a family-level inconsistency (noted on both claims). Promotion/demotion agenda: 16 pending_user Decision Queue rows -- 6 substantive (MECH-074d held per above; MECH-232 promoted per above; INV-087 + MECH-428 standard hold_candidate_resolve_conflict applied; Q-087 found already resolved 2026-08-01, decision applied noting the automated narrow_open_question recommendation is stale against that; SD-087 standard hold applied, with GFLAG-0005's stable-status question on SD-020 explicitly flagged for separate deeper review rather than decided inline) + 10 mechanical hold_pending_v3_substrate re-affirmations (MECH-074b, MECH-123, MECH-322, MECH-480, MECH-481, MECH-487, Q-089, Q-090, SD-091, SD-092), all logged via record_decision.py. Governance flags: GFLAG-0006 (SD-087/Q-086 stale 'flag needs to be set from the START of training' routing -- already tested and answered by V3-EXQ-856's own ARM_ON per evidence/reanalysis/reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z.json, corrected on both claims) and GFLAG-0010 (drifted line-number citations on SD-087 title, SD-087 non_degeneracy_precondition, SD-020 default_off_scope_note, SD-086 title -- all fixed against verified ree-v3 origin/main HEAD; the ree-v3/experiments/_lib/baselines/affective_fishtank.py:251 comment citation NOT fixed here, out of scope given that repo's local checkout is dirty and 30 commits behind with another session's uncommitted WIP) and GFLAG-0011 (SD-033e/MECH-264 stale 'gated on V3-EXQ-724' gating language -- 724 already ran 2026-07-09 as an unrelated diagnostic, real gate is the still-open MECH-457 competence floor, corrected) all resolved this cycle. GFLAG-0004, GFLAG-0005, GFLAG-0007, GFLAG-0008, GFLAG-0009 remain open, not acted on this cycle. No runner-only (ERROR/UNKNOWN/smoke) items. governance-pause TASK_CLAIMS held open throughout (registered Step 0 with --allow-overlap under contention, per the newly-documented policy), not released until session-land."
+    },
+    {
+      "utc": "2026-08-09T05:32:14Z",
+      "session": "v3-exq-812-harness-repair-1f9438 (/governance cycle 2026-08-08/09, worktree)",
+      "reviewed": [
+        "v3_exq_897_sd009_event_ce_ablation_decodability_20260808T100554Z_v3",
+        "v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3",
+        "v3_exq_901_inv051_mel_dose_rigidity_sweep_20260808T152754Z_v3",
+        "v3_exq_821b_mech457_consummation_binding_20260808T161718Z_v3",
+        "v3_exq_878a_mech332_commitment_calibration_20260808T193223Z_v3",
+        "v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded_20260808T195345Z_v3",
+        "v3_exq_887b_sd014_node_valence_repfunc_sensitized_20260808T095101Z_v3",
+        "v3_exq_900_sd024_da_cluster_allocation_representational_functional_20260808T103846Z_v3",
+        "v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3",
+        "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3"
+      ],
+      "note": "Governance cycle spanning 2026-08-08T20:41Z-2026-08-09T05:32Z. Original snapshot: 14 pending (8 FAIL, 5 PASS, 1 ERROR); 9 more experiments landed mid-cycle (fleet runs continuously) and were, per user decision, deliberately left pending for a future cycle rather than expanding scope further (899/903/603r/905/902/190a/228b FAILs, 244b/906 PASSes) -- V3-EXQ-899 was checked specifically since it closes out this cycle's own 866c thread (rules out MECH-307 reachability as the G0 fix; does not identify the real driver). Step 1.5 autopsy pre-flight: 8 of 9 needs-autopsy items already had confirmed autopsies from earlier the same day; the 9th (v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded, INV-034/Q-021) was cleared inline (route A) -- failure_autopsy_V3-EXQ-866c_2026-08-08 confirmed a C6 measurement-methodology fix (contact-gated run_p2 peak vs decay-only P2 mean) and reconfirmed the G0 foraging-competence gate (3rd occurrence: 866/866a/866c), applying the overdue epistemic_category correction (substrate_ceiling -> substrate_conditional; the autopsy's own vocabulary used 'competence_implementation_gap', which is NOT a valid claims.yaml epistemic_category enum -- caught by validate_claims.py --strict, corrected to the closest valid value on INV-034/Q-021/MECH-074d; flagged as a corpus-wide audit candidate, not fixed corpus-wide this cycle). Applied 8 confirmed autopsies: V3-EXQ-897 (SD-009, unknown/standard; also demoted SD-009 provisional->candidate per the standing conflict_ratio=0.667 recommendation, unrelated to 897's own unknown-direction result). V3-EXQ-894a (MECH-074d, weakens/substrate_conditional -- refutes the over-firing/dilution hypothesis; substrate_queue SD-035 amended). V3-EXQ-898 (no claims, diagnostic, substrate_ceiling read as substrate_conditional-analogous at the substrate_queue level -- substrate_queue SD-016 amended, status parked_pending_env_entropy_precondition -> parked_pending_selection_mechanism_fix). V3-EXQ-901 (INV-051, non_contributory/precondition_unmet -- R4 sample-size floor caught an under-powered readout; also carries the pending_review.md dead z_goal stream flag, confirmed as the DEAD_Z_GOAL_STREAM_EXEMPT design pattern, not a defect). V3-EXQ-821b (MECH-457, non_contributory -- H-consummation-binding ELIMINATED in the hypothesis ledger by the autopsy's own Step 9b; MECH-457 itself neither supported nor weakened, stays candidate/v3_pending). V3-EXQ-812a (no claims, diagnostic, non_contributory/substrate_ceiling). V3-EXQ-878a (MECH-332/SD-021/SD-032c, non_contributory/substrate_conditional -- 4th independent experiment across ~4 months hitting the identical unrecovered commitment-gate blocker without formal ceiling-tagging; flagged for a future ceiling review per user decision, not force-tagged this cycle). V3-EXQ-703a (no claims, diagnostic PASS, verified). Non-outcome-findings skim (mandatory, all 4 claim-tagged evidence PASSes): 887b/900/896 clean, nothing found; V3-EXQ-904 (ARC-070) found a real manifest-schema defect -- outcome ANDs all 5 criteria but labels only 1 load_bearing, no combination_rule field (unlike sibling drivers) -- didn't affect this run's PASS, flagged for /failure-autopsy per user decision rather than silently accepted or force-autopsied inline. Promotion/demotion agenda: MECH-357 and SD-033e held at the standard hold_pending_v3_substrate (no real decision, mechanically recurring); SD-009 demoted per above. GOV-APPLY-1 (Step 3h) independently flagged INV-034/Q-021 as citing a superseded autopsy (866a superseded by 866a-G0) -- resolved by the same epistemic_category correction applied for 866c. Two mid-cycle derive-only regen commits (102 + 34 files) landed the pipeline's own output plus a mid-cycle pickup of the new experiment batch; one rebase conflict on TASK_CLAIMS.json (mechanical, non-conflicting content, resolved by merging both edits) when pushing a recommendation-outcome log entry to the shared REE_Working checkout."
     }
   ]
 }
