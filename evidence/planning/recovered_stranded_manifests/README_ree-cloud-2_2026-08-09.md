@@ -104,8 +104,11 @@ copy; cloud-2's untracked file is pre-review runner residue that the packing ste
 correctly superseded. Same shape as the CONTENT-DIFFERS-benign class in
 [`README_ree-cloud-2_2026-07-30.md`](README_ree-cloud-2_2026-07-30.md) -- origin holds
 strictly more (or equally informative, schema-projected) content. **Nothing landed for this
-one.** The untracked cloud-2 copy is cleared as part of the skew/untracked cleanup below,
-not treated as evidence to preserve.
+one.** The untracked cloud-2 copy was deliberately **left in place, not deleted** --
+"never drop on a judgement call" per CLAUDE.md remedy (a); it is non-evidence residue, not a
+loss risk, so there is no urgency to clear it, and `runner_git_health.py` will keep
+reporting it as a same-run_id-different-content finding on future probes until someone
+does. That is expected and low-cost noise, not a regression.
 
 ---
 
