@@ -1,0 +1,58 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T07:09:13Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3",
+      "queue_id": "V3-EXQ-904",
+      "claim_ids": ["ARC-070"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (pre-existing lit-pull, not implicated by this defect)",
+        "prerequisites": "present",
+        "implementation": "complete (substrate); incomplete (manifest schema documentation)",
+        "environment": "adequate",
+        "measurement": "under-instrumented (documentation gap: no combination_rule field)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Badre & D'Esposito 2009 rostro-caudal PFC hierarchy; Zacks 2007 event segmentation; Koechlin & Summerfield 2007 cascaded control",
+        "dependencies": ["MECH-288 event_segmenter", "MECH-269 V_s primitive"],
+        "is_formal_import": false,
+        "divergence": "none -- not implicated by this autopsy's finding",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "[2026-08-09 failure-autopsy, V3-EXQ-904 manifest-schema defect, confirmed]: the driver's undocumented AND-of-5-criteria outcome computation (only 1 of 5 marked load_bearing) did not affect this run's PASS (all 5 held). User-confirmed fix: document only -- add a combination_rule field on next reuse of this driver; no change to this run's recorded evidence. Closes the standing autopsy flag on this claim's evidence_quality_note.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "severity": "degrading",
+        "substrate_paths": ["experiments/v3_exq_904_arc070_decomposition_trigger_selectivity.py"]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "Driver ANDs all 5 criteria into outcome regardless of load_bearing metadata, with no combination_rule field documenting this -- unlike sibling drivers (v3_exq_868) which declare one explicitly.",
+        "This run's PASS is correct under either the AND-of-5 or load-bearing-only reading; the risk is only for future reuse of this driver.",
+        "User-confirmed fix direction: document only, no gating-behavior change."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "interactive_gate": {
+    "run_utc": "2026-08-09T07:11:00Z",
+    "question": "How should the V3-EXQ-904 combination_rule/load_bearing fix be scoped?",
+    "user_selected": "Document only (Recommended)"
+  }
+}

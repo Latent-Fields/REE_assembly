@@ -1,0 +1,99 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T07:09:13Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T155123Z_v3",
+      "queue_id": "V3-EXQ-665",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "complete (for what's gated)",
+        "environment": "adequate for stated purpose",
+        "measurement": "adequate for the run; adjudication tooling under-instrumented",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": null,
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a -- no claim under test",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Confirmed false-positive vacuous_pass, identical mechanism to failure_autopsy_V3-EXQ-906_2026-08-09. No claim affected (claim_ids: []).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "vacuous_pass false positive: indexer join has no criteria[] entry matching channel_vigor/channel_z_block/channel_excite/channel_dread, which this driver rolls into one aggregate core_channels_non_degenerate criterion by design.",
+        "Run's actual gates (core_channels_non_degenerate, harm_pathway_trained) are real and correctly computed."
+      ],
+      "routing": "no-action"
+    },
+    {
+      "run_id": "v3_exq_665_curriculum_affective_fishtank_showcase_20260610T233054Z_v3",
+      "queue_id": "V3-EXQ-665",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "complete (for what's gated)",
+        "environment": "adequate for stated purpose",
+        "measurement": "adequate for the run; adjudication tooling under-instrumented",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": null,
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a -- no claim under test",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Confirmed false-positive vacuous_pass, identical mechanism to failure_autopsy_V3-EXQ-906_2026-08-09. No claim affected (claim_ids: []).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "vacuous_pass false positive: indexer join has no criteria[] entry matching channel_z_block/channel_excite/channel_dread, which this driver rolls into one aggregate core_channels_non_degenerate criterion by design.",
+        "Run's actual gates (core_channels_non_degenerate, harm_pathway_trained) are real and correctly computed."
+      ],
+      "routing": "no-action"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "broad-report/narrow-gate driver declaration: criteria_non_degenerate{} reports more channels than criteria[] individually gates, with no per-excess-channel criteria[] entry",
+    "is_independent_bugs": false,
+    "structural_property": "one indexer join-heuristic limitation (shared with failure_autopsy_V3-EXQ-906_2026-08-09), not driver-specific and not a claim-layer issue",
+    "readings": ["tooling_false_positive"]
+  },
+  "interactive_gate": {
+    "run_utc": "2026-08-09T07:11:00Z",
+    "question": "Confirm V3-EXQ-665 cluster routing as known false positive, no action?",
+    "user_selected": "Confirm: known false positive, no action (Recommended)"
+  }
+}
