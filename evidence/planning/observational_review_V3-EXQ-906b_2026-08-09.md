@@ -532,6 +532,74 @@ defensive-orienting trigger to `residue_surprise` (index 3) rather than any `z_h
 11b step 1); this finding is corroborating evidence that channel choice was the right call, not a reason to
 revisit it.
 
+### 12h. Ground-truth injected-event response -- `residue_surprise` does NOT reliably fire on the paradigm cases it is meant to catch; the 12b threshold under-catches them. FLAG FOR TRACK A BEFORE BUILDING (2026-08-09T18:1xZ)
+
+12b calibrated a candidate surprise-spike threshold (p90=0.040) from the OVERALL step distribution. This
+checks it against the one thing that matters more than the overall distribution: does `residue_surprise`
+actually respond to the three kinds of ground-truth "sudden, unexpected, could-be-harmful" event the
+environment genuinely injects (`limb_damage_injected`, `external_hazard_injected`,
+`world_rule_shift_occurred`) -- exactly the paradigm cases 11b's design describes. Event-triggered
+averages (window t-1..t+4, within-episode):
+
+| event | n | `residue_surprise` @t+0 | vs global mean (0.0139) | mode-change rate @t+0/t+1 | vs global (0.115) |
+|---|---|---|---|---|---|
+| `limb_damage_injected` | 28 | 0.0054 | **below baseline** | 0.214 / 0.071 | ~1.9x / ~0.6x |
+| `external_hazard_injected` | 31 | 0.0239 | ~1.7x, but still **below the 0.040 p90 threshold** | 0.258 / 0.290 | ~2.2x / ~2.5x |
+| `world_rule_shift_occurred` | 15 | 0.0072 | below baseline | 0.000 / 0.077 | 0x / ~0.7x (delayed rise by t+3) |
+
+**`residue_surprise` does not spike on `limb_damage_injected` or `world_rule_shift_occurred` at all, and its
+average response to `external_hazard_injected` (0.024) sits BELOW the p90=0.040 threshold 12b proposed as a
+candidate spike cutoff.** A trigger built to fire on `residue_surprise > p90` would therefore likely MISS
+the majority of `external_hazard_injected` events and essentially all `limb_damage_injected` /
+`world_rule_shift_occurred` events -- exactly the events the defensive-orienting mechanism exists to catch.
+
+**This is not simply "nothing happens" -- other channels DO respond, just not the one 11b proposes to key
+off:**
+- `mode` changes at an elevated rate right at `limb_damage_injected` (21.4% vs 11.5% baseline, ~1.9x) and
+  for two steps around `external_hazard_injected` (25.8%/29.0% vs 11.5%, ~2.2-2.5x) -- a real behavioural
+  response exists, it is just not visible in `residue_surprise`.
+- `dread`/`excite` show modest, mostly-delayed rises for `external_hazard_injected` (+9%/+9% by t+1) and
+  `world_rule_shift_occurred` (+21%/+23% by t+1) -- i.e. valence does shift, on a slower timescale than a
+  single-step spike.
+- `z_harm_a` does not spike either (consistent with 12g: it is the chronic, non-phasic channel).
+
+**Reading, per the four-layer framework:** MEASURES/design-choice issue, not a REE failure -- the substrate
+clearly registers SOMETHING (mode-change, delayed dread/excite) around at least 2 of 3 injected event types,
+but the specific channel (`residue_surprise`) and threshold (statistical p90 of the overall distribution)
+proposed in 11b/12b as the trigger for the defensive-orienting chain would under-fire on the very events it
+is meant to catch. Small-n caveat throughout (15-31 events, single seed) -- this is a real risk signal, not
+a definitive refutation of the surprise-based design.
+
+**Action for track A (13-A), stated explicitly rather than left implicit:** before committing to
+`residue_surprise > p90(0.040)` as the trigger condition, the `/implement-substrate` session should
+re-derive the threshold (or reconsider the trigger channel/combination) against ground-truth injected events
+specifically, not only the overall step distribution -- e.g. lower the threshold, use a per-episode-relative
+spike (derivative against a rolling baseline, as 11b step 1 already specifies -- "positive derivative /
+novelty-onset detector", which this analysis did not implement; a same-step absolute-value spike test may be
+systematically less sensitive than the derivative-based onset detector the design actually calls for) or
+combine `residue_surprise` with the `mode`-change signal, which responds more reliably. This changes the
+build's calibration step, not its architecture -- steps 2-5 of 11b (freeze, orienting, override,
+action-decision) are unaffected.
+
+### 12i. Remaining channel profiling (brief; nothing else load-bearing found)
+
+- **`footprint_at_cell`** (per-cell visit counter, `causal_grid_world.py:2623`/`3151`): median 11, p90 33,
+  max 77 across 3909 steps -- cells that get visited get REVISITED many times, reinforcing the
+  diversity-in-place-not-space reading (Section 1, 12f): the agent doesn't merely stay in a small area, it
+  returns to the same handful of cells repeatedly.
+- **`override`** (orexin wake-stability channel, continuous 0-1, not boolean): cold-starts near 0 at the
+  very first step of the whole run (`ep0` step 0 = 0.031), rises to a ~0.69-0.76 plateau within episode 0,
+  and STAYS at that plateau for the remaining 7 episodes (each episode starts near where the previous one
+  ended) -- no visible decline toward a sleep-permissive low value before the one sleep cycle that fires
+  (`ep7` starts at 0.729, unremarkable relative to `ep1`-`ep6`). So whatever drives the single sleep onset
+  in this run, it is not a visible slow decline in `override` -- consistent with Section 5's finding that
+  `use_mech286_sleep_onset_gate` decides *whether* a cycle fires from state not captured by this channel
+  alone.
+- **`drive`, `z_self_norm`, `z_world_norm`, `z_block`**: all within sensible bounded ranges, nothing
+  anomalous (`drive` p50=0.327, `z_self_norm` p50=0.632, `z_world_norm` p50=1.350, `z_block` at floor
+  >50% of the time then rising to 0.80-0.94 in the top decile, consistent with gating the 738-step `assert`
+  mode in `_classify_mode`).
+
 ---
 
 ## 13. Tracked follow-on tasks (recorded 2026-08-09T17:55Z, user-directed: "all of the above must be done")
@@ -550,8 +618,14 @@ post-build, the surprise->behaviour couplings measured in 12b should move well p
 validation. 12e adds direct corroboration: movement direction during `approach`/`avoid` mode is essentially
 uncorrelated with the nearest resource/hazard (mean cosine 0.019 / -0.053) -- there is currently no
 mechanism that latches onto and steers toward a specific identified stimulus, which is exactly the gap this
-build closes. Largest scope of the four; user-ratified "as ambitious as possible," orienting is load-bearing
-(not deferrable).
+build closes. **CALIBRATION RISK, read 12h before setting the trigger threshold**: `residue_surprise` does
+not reliably spike on the ground-truth injected events (`limb_damage_injected`, `world_rule_shift_occurred`)
+and its average response to `external_hazard_injected` (0.024) sits below the p90=0.040 threshold 12b
+proposed -- a naive absolute-value-spike trigger at that threshold would likely under-fire on the paradigm
+cases. 11b step 1 already specifies a positive-derivative/novelty-onset detector rather than an absolute
+threshold; re-derive/validate the actual trigger condition against these ground-truth events specifically
+(12h), not only the overall distribution, before finalising it. Largest scope of the four; user-ratified "as
+ambitious as possible," orienting is load-bearing (not deferrable).
 
 **B. `/governance` harvest.** Record the Section 4 affect->behaviour decoupling as an independent,
 fresh-substrate corroboration of the MECH-439 F-dominance / 719a competence-wall lineage (11a) -- now
