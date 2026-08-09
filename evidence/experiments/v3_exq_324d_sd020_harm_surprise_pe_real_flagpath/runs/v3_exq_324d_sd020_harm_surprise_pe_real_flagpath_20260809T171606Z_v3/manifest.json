@@ -1,0 +1,106 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_324d_sd020_harm_surprise_pe_real_flagpath",
+  "run_id": "v3_exq_324d_sd020_harm_surprise_pe_real_flagpath_20260809T171606Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-09T17:16:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-020"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd020_real_flagpath_not_supported",
+    "seed_flags": {
+      "0": {
+        "C1_pref_higher": false,
+        "C2_abs_surprise_corr": false,
+        "C3_no_collapse": true
+      },
+      "1": {
+        "C1_pref_higher": false,
+        "C2_abs_surprise_corr": false,
+        "C3_no_collapse": true
+      },
+      "2": {
+        "C1_pref_higher": true,
+        "C2_abs_surprise_corr": false,
+        "C3_no_collapse": true
+      },
+      "3": {
+        "C1_pref_higher": true,
+        "C2_abs_surprise_corr": true,
+        "C3_no_collapse": true
+      },
+      "4": {
+        "C1_pref_higher": false,
+        "C2_abs_surprise_corr": false,
+        "C3_no_collapse": true
+      }
+    },
+    "criteria": [
+      {
+        "name": "C1_on_surprise_pref_gt_off",
+        "load_bearing": true
+      },
+      {
+        "name": "C2_on_surprise_corr_ge_floor",
+        "load_bearing": true
+      },
+      {
+        "name": "C3_no_collapse",
+        "load_bearing": true
+      }
+    ],
+    "note": "Real shipped flag path (agent.compute_harm_accum_loss under harm_surprise_pe_enabled) on the SD-022 limb_damage substrate. PASS = the flag shifts the harm_accum head toward encoding harm surprise (PE) over raw magnitude in >=3/5 seeds. Self-routes non_contributory when the flag path did not differentiate, the run is underpowered, the DV is unmeasurable, or the manipulation produced no representational change. Directly addresses Q-036 (is surprise necessary in addition to temporal integration)."
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "616f89099284ab4fda3231f4e0bc440c131e0ce73faf1ad3cde7030fa629ba5c",
+  "substrate_commit": {
+    "commit": "40e94bbf7bb3f05b5b5cf9f5deed4b82becc9b2b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 28176,
+    "ticks_active": 0,
+    "writer_calls": 28176,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 10,
+    "goal_state_present": true
+  }
+}
