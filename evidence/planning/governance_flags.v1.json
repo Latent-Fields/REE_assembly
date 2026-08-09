@@ -118,9 +118,9 @@
       "summary": "SD-086 title asserts that E3 consumes ||z_harm_a|| \"as an approximately constant gain\" at two named read sites, but both sites are flag-gated and default OFF -- affective_harm_scale=0.0 (ree-v3/ree_core/utils/config.py:723) gates the lambda_eff amplification and urgency_weight=0.0 (:716) gates the commit-threshold urgency -- and neither flag is set in ANY run of the evidence base (V3-EXQ-664, 856, 857a). On its own evidence E3 does not consume z_harm_a through those paths at all, so SD-086 warrants a default_off_scope_note of exactly the shape SD-020 already carries, and any two-arm readout falsifier must assert consumer engagement or its downstream conjunct is vacuously unsatisfiable.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:37:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:20:00Z",
+      "resolution_note": "Confirmed: urgency_weight=0.0 and affective_harm_scale=0.0 default-OFF (ree_core/utils/config.py:716/723), neither set in any of V3-EXQ-664/856/857a's driver scripts. Applied a default_off_scope_note to SD-086 (REE_assembly, this commit) matching SD-020's existing template. No status change."
     },
     {
       "flag_id": "GFLAG-0009",
