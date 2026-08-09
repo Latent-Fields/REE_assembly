@@ -202,9 +202,9 @@
       "summary": "The confirmed 2026-08-05 autopsy (V3-EXQ-867b section 2) records the screen-soundness violation as 'direct evidence the ON-arm manipulation itself perturbs whether/when decomposition fires', and that inference is carried verbatim into claims.yaml MECH-321 evidence_quality_note + what_would_answer and into hypothesis_space_registry observation_bottleneck + resolution.basis; 867b's own manifest contradicts it -- the violation appears in the OFF arm where the manipulation is provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell), OFF-arm multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5 seeds (impossible for a monotone counter over a prefix extension), and at full schedule the matching held perfectly (on_only and off_only tiers both EMPTY). Actual cause is an instrumentation defect: screen cells call _run_cell directly with no RNG reset while measurement cells enter through arm_cell (which calls reset_all_rng), so the two phases measure different agents and the prefix-monotonicity premise never applied. The ratified routing (redesign the DV) is UNAFFECTED and is now designed -- see evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8; only the recorded rationale needs correcting, which is a governance disposition not a chip's to make.",
       "raised_by_session": "metaworker-chip-20260808-mech321-repose-measurement-design",
       "raised_at": "2026-08-08T09:21:06Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:21:40Z",
+      "resolution_note": "Corrected the misattributed rationale in claims.yaml's MECH-321 evidence_quality_note (REE_assembly, this commit) -- the screen-soundness violation is an RNG-reset instrumentation defect (screen cells skip reset_all_rng, measurement cells don't), not evidence the ON-arm manipulation perturbs decomposition. Ratified routing (redesign the DV away from post-hoc divergence-tick matching) is UNCHANGED. hypothesis_space_registry.v1.json's resolution.basis/observation_bottleneck still need syncing from the already-correct live_gate field -- that is /failure-autopsy Step 9b's job (single producer of that ledger), not governance's; chipped separately (chip-20260809-mech321-registry-sync). Duplicate of GFLAG-0015, resolved together."
     },
     {
       "flag_id": "GFLAG-0015",
