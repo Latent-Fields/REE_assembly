@@ -1,0 +1,150 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-09T08:52:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+      "queue_id": "V3-EXQ-906a",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not applicable (claim-free diagnostic showcase)",
+        "biological_reference": "not applicable (claim-free; health/hazard mechanics are showcase legibility, not a biological mechanism under test)",
+        "prerequisites": "present",
+        "implementation": "partial -- the driver's own survivability fix (contamination_spread=0.0, hazard_harm=0.05) addressed 2 of 3 independent health-drain channels in causal_grid_world.py and left the third (proximity_harm_scale, default 0.05, unchanged) untouched",
+        "environment": "inadequate for showcase purposes -- hazard proximity radius far broader than a close-range warning zone (see root-cause detail below), too few safe cells for sustained legible behaviour",
+        "measurement": "under-instrumented -- elapsed_seconds/config/seeds missing from always-core; the driver's own promised _episode_log.json companion file was never written to disk",
+        "integration": "coupled, working -- harm-pathway training ran (3939 steps), z_goal activated, affective channels vary as designed",
+        "scale": "single seed by design (claim-free qualitative showcase, not a powered study)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not applicable -- claim-free showcase; the failure is a driver eval-env configuration gap, not a biological-translation question",
+        "dependencies": ["SD-017", "INV-049", "INV-050", "MECH-181"],
+        "is_formal_import": false,
+        "divergence": "none -- root cause is fully traced to source (causal_grid_world.py proximity-approach damage path), no biological ambiguity",
+        "lit_status": "not applicable"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-906a (claim_ids=[], does not weight governance) FAIL is non-contributory -- claim-free showcase diagnostic. Root-caused beyond the driver's own docstring: the survivability fix relaxed hazard_harm (direct contact, 0.5->0.05) and contamination_spread (0.5->0.0), but causal_grid_world.py has a THIRD independent health-drain path the driver never touched -- the proximity-approach branch (lines ~2445-2469: `elif self.use_proxy_fields and transition_type == \"none\"`) applies `agent_health -= proximity_harm_scale * hazard_field[x,y]` on any step the agent is merely near a hazard's field (no contact required), gated only by `proximity_approach_threshold` (default 0.15). With `hazard_field_decay` at its default 0.5, the field crosses that threshold at roughly 11 cells' distance from a hazard -- effectively grid-wide, not a close-range warning. All 8/8 eval segments in this run ended `health_depleted` (0/8 step_cap) despite only 1 external_hazard event and 0 limb_damage events, consistent with ambient proximity drain rather than discrete hazard contact -- confirmed by direct observation of the fishtank_viz (user: fish did not hit a hazard, health still drained fast). Recording gaps: elapsed_seconds/config/seeds absent from always-core (validate_recording.py), and the driver's own promised `_episode_log.json` companion was never written to disk despite the module docstring instructing a future reader to consult it -- flagged so the next iteration actually stamps recording core and confirms the episode-log write path fires.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-RESIDUE-VALENCE-BOUND",
+        "title": "ResidueField RBFLayer.update_valence(): clamp/decay the unbounded valence accumulator",
+        "implementation_hint": "`RBFLayer.update_valence()` in ree_core/residue/field.py is an unclamped `+=` with no decay, fired every step MECH-307 split-surprise crosses threshold. With only num_basis_functions=32 RBF centers, a genuinely long-lived agent revisiting the same handful of grid regions drives the same centers' valence_vecs unboundedly -- measured in V3-EXQ-906a at z_world_norm ~150-320 and excite/dread in the hundreds under sustained continuous exposure, vs ~0.5-0.7 at smoke scale. No scored claim currently exercises long-horizon continuity (this showcase is the first run to live long enough to expose it), so nothing is corrupted yet -- but any future long-horizon-continuity experiment (e.g. anything building on the CONTINUITY REDESIGN pattern this driver introduced) would inherit unbounded, uninterpretable affect channels. Add a decay term and/or a clamp to the accumulator before that happens.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "severity": "degrading",
+        "substrate_paths": ["ree_core/residue/field.py"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+          "experiment_type": "v3_exq_906a_full_stack_observational_fishtank",
+          "metric": "z_world_norm ~150-320 and excite/dread channels in the hundreds under sustained continuous multi-segment exposure (203 realized steps, 1 seed), vs ~0.5-0.7 at smoke scale -- RBFLayer.update_valence() accumulator has no decay/clamp",
+          "target": "bounded, interpretable valence magnitude under sustained exposure (decay term or explicit clamp)",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "Health-drain has THREE independent channels in causal_grid_world.py (direct hazard contact, contamination, proximity-approach) -- a survivability fix must address all three or the untouched one dominates",
+        "Direct user observation of fishtank_viz (fish died without contacting a hazard) was the signal that the fix was incomplete; the code trace then confirmed the exact mechanism and threshold",
+        "User design guidance for the redesign: proximity drain should be a small, genuinely CLOSE-range warning cue (not grid-wide via a slow-decaying field), and the layout should carry plenty of safe space -- both point at raising proximity_approach_threshold / steepening hazard_field_decay and reducing proximity_harm_scale further, in addition to the already-applied hazard_harm/contamination_spread relaxation",
+        "User design guidance, second point: each segment's agent spawn position should itself be on a safe cell (away from hazard-field influence), not merely somewhere in a hazard-sparse layout -- an unsafe spawn point risks damage before the agent has taken any action, which is not a learning signal and would re-introduce an early-death floor independent of the proximity-radius fix above",
+        "The driver's own promised _episode_log.json was never written to disk -- the 'future autopsy needs no re-run' claim in its closing note does not hold for this run; verify the write path fires before relying on it again",
+        "Sustained continuous exposure (this driver's own CONTINUITY REDESIGN) made a previously-invisible substrate limitation (unbounded residue valence accumulation) newly observable -- a genuine, independent finding worth tracking regardless of the showcase's own outcome"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+      "queue_id": "V3-EXQ-894b",
+      "claim_ids": ["MECH-074d"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete -- BLAAttributionHead exists, trains (914-1998 optimiser updates), is warm past its 200-step fallback threshold, and produces attribution vectors measurably different from the fixed rule (attr_mass_excess ~7x the fixed arm's)",
+        "environment": "adequate",
+        "measurement": "adequate -- extensive engagement checks all pass (trainable_heads_trained_past_warmup, baseline_store_matched_across_arms, attr_mass_excess_varies_across_head_arms, dv_varies_across_arms); one minor gap, entropy_weight's actual value is not recorded in config despite the module's own docstring calling it load-bearing",
+        "integration": "coupled but unstable across the specific criterion under test (C1 recovers, C2 does not)",
+        "scale": "adequate -- 3 seeds x 2 training budgets (914 vs 1998 updates), well-powered to rule out 'needs more training' as the explanation"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moita, Rosis, Zhou, LeDoux & Blair 2004 -- BLA-driven place-cell remapping is selective for CONTEXT-predictive representations, developing over training",
+        "dependencies": ["SD-011 (z_harm_a)", "ARC-033 (E2_harm_s)", "SD-035 (BLA substrate)"],
+        "is_formal_import": false,
+        "divergence": "none newly found -- the substrate's own module docstring (ree_core/amygdala/attribution_head.py design decision #3) already names this exact failure mode as a known risk of the entropy/MSE loss balance, not a biology mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-894b (2026-08-09, FAIL/weakens, mech074d_trainable_head_does_not_recover_attribution_gate): post-substrate retest of the confirmed 894a autopsy's implement-substrate routing (build a trainable BLA attribution head, SD-035). The head was genuinely built and trains (ARM_HEAD_TRAINED: 914 updates; ARM_HEAD_TRAINED_LONG: 1998 updates, both past the 200-step warm threshold). H1 (a learned attribution recovers C1+C2 where the fixed rule never did) is PARTIALLY supported: C1 attribution_selectivity recovers fully (0/3 -> 3/3 seeds, mean mass_excess 0.085 -> 0.575-0.635) but C2 context_differentiated_addressing -- the actual Moita 2004 dissociation this claim is about -- does NOT recover (stays 0/3 seeds in both trained arms; jaccard_gap delta vs the fixed rule is essentially flat to slightly negative, -0.006 short-trained / -0.025 long-trained). Doubling the training budget did not help (ruling out 'needs more experience' as the explanation) and if anything moved attention entropy higher (more diffuse), not lower. The module's own docstring (design decision #3) predicts this exact shape in advance: the entropy regularizer can buy C1 (peakedness) at C2's expense by converging onto a context-blind constant top-k when entropy_weight is too large relative to the variance-normalised MSE term -- 'Keep entropy_weight small; a large value buys C1 at C2's expense and reproduces seed 43' (894a's context-blind-deterministic signature). Diagnosis: trainability alone was NOT the missing ingredient (H0 confirmed on the narrow question); the specific loss-term balance is now the load-bearing open question, a tuning/calibration gap rather than an architecture-absence gap. MECH-074d stays provisional/pending_retest_after_substrate, not demoted -- three iterations (894/894a/894b) have progressively NARROWED the diagnosis (dilution confound refuted -> trainability-alone refuted -> loss-balance implicated), which is convergence, not the structurally-different-signatures pattern that would indicate the claim itself needs splitting.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-035",
+        "title": "BLAAttributionHead: retune entropy_weight/MSE balance so context-differentiation (C2) is not sacrificed to selectivity (C1)",
+        "implementation_hint": "ree_core/amygdala/attribution_head.py's own docstring (design decision #3) already names the lever: `loss = MSE(z_hat, z_harm_a)/Var_ema(z_harm_a) + entropy_weight * H_norm(a)`, and warns that entropy_weight too large relative to the MSE term buys peakedness (C1) at the cost of context-blind constant top-k selection (C2 null) -- exactly what V3-EXQ-894b measured (C1 3/3, C2 0/3, entropy INCREASING not decreasing with more training). Sweep entropy_weight downward (or otherwise strengthen the MSE term's relative weight, e.g. adjust target_var_ema_alpha) and re-test on the same C1-C4 instrument already validated by 894/894a/894b -- record the swept entropy_weight value in the manifest config this time (missing in 894b).",
+        "unblocks_claims": ["MECH-074d"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": ["ree_core/amygdala/attribution_head.py"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+          "experiment_type": "v3_exq_894b_mech074d_bla_trainable_attribution_head",
+          "metric": "C2 context_jaccard_gap stays at 0/3 seeds in both ARM_HEAD_TRAINED (914 updates) and ARM_HEAD_TRAINED_LONG (1998 updates); delta vs fixed rule -0.006 / -0.025 respectively -- training budget ruled out, loss-term balance implicated by the module's own docstring",
+          "target": "context_jaccard_gap > 0.05 on >=2/3 seeds under a trainable head with a retuned entropy_weight/MSE balance",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_894a_mech074d_bla_remap_attribution_selectivity_20260808T101157Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "The prior item's target ('attribution_mass_excess > 0.05 AND context_jaccard_gap > 0.05 on >=2/3 seeds ... under a trainable attribution head') asked only for a trainable head to exist and be tested; V3-EXQ-894b built and tested one and it did not clear the target, so the read is superseded by a narrower, more specific target (retuned entropy_weight/MSE balance) rather than resolved."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-035"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_targets": [
+          "failure_autopsy_V3-EXQ-894_2026-08-08 (run v3_exq_894_..., claim_alignment=intact, category=standard)",
+          "failure_autopsy_V3-EXQ-894a_2026-08-08 (run v3_exq_894a_..., claim_alignment=weakened, category=competence_implementation_gap)",
+          "this target V3-EXQ-894b (claim_alignment=weakened, category=standard)"
+        ],
+        "alignment_distribution": "intact=1, weakened=2",
+        "note": "Progressively CONVERGING diagnosis across three iterations (dilution confound refuted at 894a -> trainability-alone refuted at 894b, loss-balance implicated), not structurally-different failure signatures -- does not indicate the claim needs splitting."
+      },
+      "learning_extracted": [
+        "Trainable head build (SD-035 amend) was executed correctly and is not itself an implementation-completeness gap anymore -- head trains, is warm, differs measurably from the fixed rule",
+        "C1 (selectivity) and C2 (context-differentiation) DISSOCIATE under this objective: peakedness recovers fully, context-conditioning does not -- exactly the failure mode the module's own docstring names as a risk of the entropy/MSE tension",
+        "Doubling training budget (914 -> 1998 updates) did not help C2 and moved entropy the wrong direction -- rules out 'needs more experience' cleanly",
+        "engagement_checks are a strong positive instrumentation example here -- every check needed to rule out a vacuous/degenerate read passed cleanly",
+        "Minor recording gap: entropy_weight's swept/used value should be stamped into config on the next iteration given the module docstring calls it load-bearing"
+      ],
+      "routing": "implement-substrate"
+    }
+  ]
+}
