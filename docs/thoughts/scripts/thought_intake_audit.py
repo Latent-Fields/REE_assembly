@@ -29,7 +29,10 @@ This script checks BOTH stages against that ground truth:
 - Stage 2: for every structured intake's "Candidate claims"-shaped section,
   extract any claim-shaped ID and classify the file as all-registered,
   partially-registered, fully-orphaned, no-ids-named (prose-only candidates --
-  needs a human read), or no-candidate-section (nothing to check).
+  needs a human read), partially-unlabeled (some candidates in the section
+  carry no ID of their own even though the section as a whole resolves --
+  needs a human read; see `_split_candidate_items` docstring), or
+  no-candidate-section (nothing to check).
 
 Read-only against claims.yaml and both thought-intake trees; writes only its
 own report files (no claim required to run it -- see docs/thoughts/README.md).
@@ -93,7 +96,7 @@ def _build_claim_id_re(claim_ids: set[str]) -> re.Pattern[str]:
     return re.compile(rf"\b((?:{alternation})-{_ID_SHAPE_SUFFIX})\b")
 
 
-def _candidate_section(text: str) -> str | None:
+def _candidate_section(text: str) -> tuple[str, int] | None:
     match = CANDIDATE_HEADER_RE.search(text)
     if not match:
         return None
@@ -106,7 +109,99 @@ def _candidate_section(text: str) -> str | None:
     nxt = next_header_re.search(section[1:])
     if nxt:
         section = section[: nxt.start() + 1]
-    return section
+    return section, level
+
+
+def _split_candidate_items(section: str, level: int) -> list[str] | None:
+    """Split a candidate section into its individual candidate sub-items.
+
+    A "Candidate claims" section commonly lists MULTIPLE distinct candidates,
+    and the corpus uses two structuring conventions (surveyed across all 82
+    `thought_intake_*.md` files 2026-08-09):
+
+    1. Sub-headers one level deeper than the section header itself, each
+       naming its own claim, e.g. "## Candidate Claims" followed by
+       "### MECH-127: ..." / "### ARC-034: ...".
+    2. A flat top-level list (bulleted `- ` or numbered `1. `) where each
+       item is one candidate, e.g. "- **Candidate ARC** (dotted.label) --
+       description" or "- **Refine ARC-006** with ...". Nested/indented
+       bullets (nested detail under one candidate) are deliberately NOT
+       treated as separate items -- only markers at column 0 count.
+
+    Returns None when neither convention is detected (plain-paragraph
+    sections with no per-item structure), so the caller falls back to
+    treating the section as one undivided block -- unchanged from the
+    pre-2026-08-09 behaviour for that shape.
+    """
+    header_re = re.compile(r"(?m)^#{" + str(level + 1) + r"}(?!#)\s.*$")
+    header_matches = list(header_re.finditer(section))
+    if header_matches:
+        items = []
+        for i, m in enumerate(header_matches):
+            end = header_matches[i + 1].start() if i + 1 < len(header_matches) else len(section)
+            items.append(section[m.start() : end])
+        return items
+
+    item_re = re.compile(r"(?m)^(?:[-*+]\s+|\d+\.\s+)")
+    item_matches = list(item_re.finditer(section))
+    if item_matches:
+        items = []
+        for i, m in enumerate(item_matches):
+            end = item_matches[i + 1].start() if i + 1 < len(item_matches) else len(section)
+            items.append(section[m.start() : end])
+        return items
+
+    return None
+
+
+_LABEL_SPAN_RE = re.compile(r"\*\*(.+?)\*\*|`([^`]+)`", re.S)
+
+
+def _item_names_its_own_id(item: str, claim_id_re: re.Pattern[str]) -> bool:
+    """Does this candidate ITEM declare an ID for itself, as opposed to only
+    citing an already-registered claim somewhere in its body prose?
+
+    A single flat "does an ID token appear anywhere in this item" check is
+    not enough -- the corpus routinely writes a not-yet-registered candidate
+    that cites 1-8 EXISTING claims as context ("Cross-ref: ARC-009, ...",
+    "generalises INV-085 ...", "(likely amend MECH-261)"), and every one of
+    those citations is a real, registered ID. Confirmed 2026-08-09 on
+    thought_intake_2026-06-23_language_as_cooperation_interface.md (every
+    candidate cites a "Cross-ref:" list of unrelated pre-existing claims,
+    with none of the four candidates itself ever minted) and
+    thought_intake_2026-06-06_agent_memory_consolidation_faults.md (each
+    candidate's own label is a dotted-namespace string, e.g.
+    `memory.consolidation.raw_episode_preservation`, with the citation
+    "(likely amend MECH-261 / SD-024)" immediately after it) -- a whole-item
+    scan reads those citations as the item's own id and never flags the
+    section, which is the same masking failure this module exists to catch,
+    just distributed across every item instead of concentrated in one.
+
+    - Header-shaped items ("### MECH-127: ..."): the id counts only if it
+      appears on the HEADER LINE itself. A "Connects to:"/"Related:" list
+      further down in the item body does not count -- confirmed on
+      thought_intake_2026-04-07_phase_segregation_perception_imagination.md,
+      whose candidates are titled "### Candidate: <prose, no id>" and then
+      cite unrelated already-registered MECH-094/ARC-023/etc as "Connects
+      to:"; reading the whole body would misread those as the candidate's
+      own id.
+    - Bullet/numbered items ("- **ARC (label)** -- ..."): the id counts only
+      if it appears inside the item's FIRST bold (`**...**`) or backtick
+      (`` `...` ``) span -- the leading label. A citation later in the same
+      sentence ("*[overlaps ARC-009; fold in rather than duplicate]*",
+      "Cross-ref: ...") does not count. An item with no bold/backtick markup
+      at all falls back to a whole-item scan (nothing better to key on).
+    """
+    stripped = item.lstrip()
+    if stripped.startswith("#"):
+        header_line = stripped.splitlines()[0]
+        return bool(claim_id_re.search(header_line))
+
+    label_match = _LABEL_SPAN_RE.search(item)
+    if label_match is None:
+        return bool(claim_id_re.search(item))
+    label = label_match.group(1) if label_match.group(1) is not None else label_match.group(2)
+    return bool(claim_id_re.search(label))
 
 
 @dataclass
@@ -157,9 +252,10 @@ def _audit_stage1(
 def _classify_stage2(
     text: str, claim_ids: set[str], claim_id_re: re.Pattern[str]
 ) -> tuple[str, list[str], list[str]]:
-    section = _candidate_section(text)
-    if section is None:
+    result = _candidate_section(text)
+    if result is None:
         return "no_candidate_section", [], []
+    section, level = result
 
     ids_named = sorted(set(claim_id_re.findall(section)))
     explicit_not_registered = bool(NOT_REGISTERED_RE.search(section))
@@ -171,6 +267,20 @@ def _classify_stage2(
 
     missing = sorted(i for i in ids_named if i not in claim_ids)
     if not missing:
+        # Every ID token found ANYWHERE in the section resolves -- but a flat
+        # section-wide scan cannot tell "every candidate in this list has a
+        # registered ID" apart from "one candidate incidentally cites an
+        # unrelated registered ID while its siblings carry no ID at all".
+        # Confirmed 2026-08-07/09 (thought_intake_2026-04-16_language_lateralisation.md):
+        # three prose-only candidates, none with an ID of its own, but the
+        # THIRD one's aside ("overlaps ARC-009") was enough to make the whole
+        # section read as all_registered. Split into per-candidate items and
+        # check each independently before trusting the flat verdict.
+        items = _split_candidate_items(section, level)
+        if items is not None and any(
+            not _item_names_its_own_id(item, claim_id_re) for item in items
+        ):
+            return "partially_unlabeled", ids_named, []
         return "all_registered", ids_named, []
     if len(missing) == len(ids_named):
         return "fully_orphaned", ids_named, missing
@@ -202,7 +312,7 @@ def _write_json(
     generated_at: str,
 ) -> None:
     orphan_classes = {"fully_orphaned", "partially_registered", "not_registered_no_ids"}
-    needs_read_classes = {"no_ids_named"}
+    needs_read_classes = {"no_ids_named", "partially_unlabeled"}
     payload = {
         "schema_version": "thought_intake_audit/v1",
         "generated_at_utc": generated_at,
@@ -235,8 +345,9 @@ def _write_report(
     generated_at: str,
 ) -> None:
     orphan_classes = {"fully_orphaned", "partially_registered", "not_registered_no_ids"}
+    needs_read_classes = {"no_ids_named", "partially_unlabeled"}
     orphans = [r for r in stage2 if r.classification in orphan_classes]
-    needs_read = [r for r in stage2 if r.classification == "no_ids_named"]
+    needs_read = [r for r in stage2 if r.classification in needs_read_classes]
     all_registered = [r for r in stage2 if r.classification == "all_registered"]
     no_section = [r for r in stage2 if r.classification == "no_candidate_section"]
 
@@ -271,7 +382,7 @@ def _write_report(
     lines.append("|---|---|")
     lines.append(f"| total structured intakes | {len(stage2)} |")
     lines.append(f"| orphaned / explicitly unregistered | {len(orphans)} |")
-    lines.append(f"| candidate section present, no IDs named (needs a human read) | {len(needs_read)} |")
+    lines.append(f"| candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | {len(needs_read)} |")
     lines.append(f"| all named candidate IDs registered | {len(all_registered)} |")
     lines.append(f"| no candidate-claims section (nothing to check) | {len(no_section)} |")
     lines.append("")
@@ -294,7 +405,14 @@ def _write_report(
         lines.append("- _none_")
     else:
         for r in needs_read:
-            lines.append(f"- `{r.file}`")
+            if r.classification == "partially_unlabeled":
+                lines.append(
+                    f"- `{r.file}` -- section resolves via {r.ids_named}, but at least one "
+                    "sibling candidate in the same list carries no ID of its own (may be a "
+                    "genuine unregistered candidate, or already-settled prose -- check by hand)"
+                )
+            else:
+                lines.append(f"- `{r.file}`")
     lines.append("")
     lines.append(
         "Caveat: this audit only catches candidates that were given a claim-shaped ID (real or "
@@ -342,12 +460,13 @@ def main() -> None:
     _write_report(output_md, stage1, stage2, generated_at)
 
     orphan_classes = {"fully_orphaned", "partially_registered", "not_registered_no_ids"}
+    needs_read_classes = {"no_ids_named", "partially_unlabeled"}
     orphan_count = sum(1 for r in stage2 if r.classification in orphan_classes)
     print(
         "Thought intake audit: "
         + f"stage1_broken_links={len(stage1)}, stage2_total={len(stage2)}, "
         + f"stage2_orphaned={orphan_count}, "
-        + f"stage2_needs_read={sum(1 for r in stage2 if r.classification == 'no_ids_named')}"
+        + f"stage2_needs_read={sum(1 for r in stage2 if r.classification in needs_read_classes)}"
     )
 
     if args.check_clean and (stage1 or orphan_count):

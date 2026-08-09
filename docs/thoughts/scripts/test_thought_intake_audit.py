@@ -163,6 +163,194 @@ class ClassifyStage2Tests(unittest.TestCase):
         self.assertEqual(missing, [])
 
 
+class IncidentalIdMaskingTests(unittest.TestCase):
+    """Regression tests for the per-candidate-item split (chip
+    chip-20260809-intake-audit-incidental-id-masking).
+
+    Confirmed live 2026-08-07/09 on
+    thought_intake_2026-04-16_language_lateralisation.md: a "Candidate
+    claims" section can list SEVERAL distinct candidates as top-level bullet
+    or numbered items, some carrying no ID at all and some incidentally
+    citing an unrelated, already-registered ID in passing prose (e.g.
+    "overlaps ARC-009; fold in rather than duplicate"). The old flat,
+    whole-section regex scan found that one registered ID anywhere in the
+    section and called the whole file all_registered, silently masking the
+    unregistered siblings. `_split_candidate_items` fixes this by checking
+    each top-level candidate item independently.
+    """
+
+    def _classify(self, text, claim_ids):
+        pat = M._build_claim_id_re(claim_ids)
+        return M._classify_stage2(text, claim_ids, pat)
+
+    def test_mixed_registered_and_prose_only_candidates_not_all_registered(self):
+        """The exact language_lateralisation.md shape: three bullet
+        candidates, none with its own ID, one of them incidentally citing an
+        already-registered ARC-009 in an aside. Must NOT be all_registered."""
+        claim_ids = {"ARC-009"}
+        text = (
+            "## 3. Candidate claims\n\n"
+            "- **Candidate ARC** (language.routing_vs_affect_separation) -- dorsal "
+            "high-fidelity structured routing is architecturally distinct from the "
+            "affective-coupling system. *[integrates existing pieces]*\n"
+            "- **Candidate MECH** (affect.bilateral_right_biased_coupling) -- affective "
+            "coupling runs on bilateral temporal-limbic circuits. *[lit-pull first]*\n"
+            "- **Candidate HYP** (language.emerges_from_social_latent_compression) -- "
+            "language emerges where socially-derived latents are compressed. "
+            "*[overlaps ARC-009; fold in rather than duplicate]*\n\n"
+            "## 4. Affected existing claims / docs\n\n"
+            "- ARC-010, language architecture docs.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertNotEqual(classification, "all_registered")
+        self.assertEqual(classification, "partially_unlabeled")
+        self.assertEqual(ids_named, ["ARC-009"])
+        self.assertEqual(missing, [])
+
+    def test_every_item_carrying_its_own_id_stays_all_registered(self):
+        """Negative control: a section with MULTIPLE top-level bullet items
+        where every single one names its own registered ID must still
+        classify all_registered -- the fix must not turn per-item splitting
+        into a source of new false positives."""
+        claim_ids = {"ARC-034", "MECH-127", "Q-023"}
+        text = (
+            "## Candidate claims\n\n"
+            "- **ARC-034** -- ethics testing requires nth-order trajectory integration.\n"
+            "- **MECH-127** -- counterfactual other-cost-aversion as motivational surrogate.\n"
+            "- **Q-023** -- formal convergence characterization for ethical attractors.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "all_registered")
+        self.assertEqual(ids_named, ["ARC-034", "MECH-127", "Q-023"])
+        self.assertEqual(missing, [])
+
+    def test_every_item_carrying_its_own_id_via_subheaders_stays_all_registered(self):
+        """Negative control for the OTHER structuring convention (deeper
+        sub-headers, not bullets) -- same requirement as above."""
+        claim_ids = {"ARC-034", "MECH-127"}
+        text = (
+            "## Candidate Claims\n\n"
+            "### MECH-127: Counterfactual other-cost-aversion\n\n"
+            "Description here.\n\n"
+            "### ARC-034: Ethics testing scope\n\n"
+            "Description here, related: INV-001 (unregistered cross-ref, ignored since "
+            "this item already carries its own id).\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "all_registered")
+        self.assertEqual(ids_named, ["ARC-034", "MECH-127"])
+        self.assertEqual(missing, [])
+
+    def test_section_with_zero_id_tokens_at_all_stays_no_ids_named(self):
+        """Negative control: a section with NO claim-shaped ID anywhere
+        (the pre-existing no_ids_named path) must be unaffected by the
+        per-item split -- there is nothing to split against in the first
+        place since ids_named is empty before the split is even attempted."""
+        claim_ids = {"ARC-009"}
+        text = (
+            "## Candidate claims\n\n"
+            "- **Candidate ARC** (some.dotted.label) -- a prose-only candidate.\n"
+            "- **Candidate MECH** (another.dotted.label) -- another prose-only candidate.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "no_ids_named")
+        self.assertEqual(ids_named, [])
+        self.assertEqual(missing, [])
+
+    def test_partially_registered_unaffected_by_item_split(self):
+        """When some named IDs are already missing, the file is already
+        correctly flagged (partially_registered) -- the item-split override
+        only applies on the all_registered branch, so this must be
+        unchanged regardless of per-item structure.
+
+        claim_ids deliberately includes a registered MECH-001 (distinct from
+        the MECH-999 the section names) so the MECH prefix is recognized by
+        the extraction regex at all -- otherwise MECH-999 would never be
+        extracted in the first place and this test would exercise nothing.
+        """
+        claim_ids = {"ARC-009", "MECH-001"}
+        text = (
+            "## Candidate claims\n\n"
+            "- **ARC-009** -- already registered.\n"
+            "- **MECH-999** -- not registered anywhere.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "partially_registered")
+        self.assertEqual(ids_named, ["ARC-009", "MECH-999"])
+        self.assertEqual(missing, ["MECH-999"])
+
+    def test_cross_ref_only_items_still_flagged_even_when_every_item_cites_one(self):
+        """The harder case, confirmed 2026-08-09 on
+        thought_intake_2026-06-23_language_as_cooperation_interface.md: EVERY
+        item cites at least one already-registered id as a "Cross-ref:", so a
+        naive "does this item contain any id token" check finds one in every
+        item and never flags the section -- even though none of the three
+        candidates has actually been minted its own new id. The self-id
+        check must look only at each item's leading label, not its whole
+        body, to catch this."""
+        claim_ids = {"ARC-009", "MECH-192"}
+        text = (
+            "## Candidate claims\n\n"
+            "1. **Message selection minimises the receiver's residual uncertainty.** "
+            "*Candidate, architectural.* Some falsifier text. *Cross-ref:* ARC-009, MECH-192.\n"
+            "2. **Worldly reference is inherited through the world model.** "
+            "*Candidate, architectural.* Some falsifier text. *Cross-ref:* ARC-009.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "partially_unlabeled")
+        self.assertEqual(ids_named, ["ARC-009", "MECH-192"])
+        self.assertEqual(missing, [])
+
+    def test_own_id_inside_label_span_still_recognized(self):
+        """Negative control for the label-scoping refinement: an item whose
+        OWN id is genuinely inside its leading bold/backtick label (not just
+        cited later) must still count as labeled, even alongside a sibling
+        item that only cites cross-refs."""
+        claim_ids = {"MECH-364", "ARC-009"}
+        text = (
+            "## Candidate claims\n\n"
+            "- **MECH-364** (REGISTERED) -- discharges accumulated load.\n"
+            "- **A prose-only candidate with no id of its own.** *Cross-ref:* ARC-009.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "partially_unlabeled")
+        self.assertEqual(ids_named, ["ARC-009", "MECH-364"])
+
+    def test_dotted_namespace_label_with_amend_target_still_flagged(self):
+        """The agent_memory_consolidation_faults.md shape: the item's own
+        label is a backtick dotted-namespace string with no id, and the
+        registered id appears only in a parenthetical "likely amend X" aside
+        immediately after the label -- must still be flagged as un-ID'd."""
+        claim_ids = {"ARC-020", "MECH-094"}
+        text = (
+            "## Candidate claims\n\n"
+            "1. **`memory.consolidation.raw_episode_preservation`** (candidate invariant "
+            "or amend ARC-020/MECH-094): a consolidated abstraction must retain a pointer "
+            "to its source episodes.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "partially_unlabeled")
+        self.assertEqual(ids_named, ["ARC-020", "MECH-094"])
+
+    def test_no_item_structure_falls_back_to_flat_section_unchanged(self):
+        """A candidate section with no bullets, no numbered items, and no
+        deeper sub-headers (a single prose paragraph naming one registered
+        ID) has nothing for `_split_candidate_items` to split -- it must
+        fall back to the pre-fix flat-section verdict, not spuriously flag
+        partially_unlabeled just because "no items" trivially contains an
+        unlabeled reading."""
+        claim_ids = {"ARC-009"}
+        text = (
+            "## Candidate claims\n\n"
+            "A single prose paragraph discussing ARC-009 with no list "
+            "structure and no sub-headers at all.\n"
+        )
+        classification, ids_named, missing = self._classify(text, claim_ids)
+        self.assertEqual(classification, "all_registered")
+        self.assertEqual(ids_named, ["ARC-009"])
+        self.assertEqual(missing, [])
+
+
 class MainEndToEndTests(unittest.TestCase):
     """Full main() over tmp trees -- the worked example from the chip."""
 
@@ -206,7 +394,8 @@ class MainEndToEndTests(unittest.TestCase):
             report = out_md.read_text(encoding="utf-8")
             self.assertIn("all named candidate IDs registered | 1", report)
             self.assertIn(
-                "candidate section present, no IDs named (needs a human read) | 0",
+                "candidate section present, no IDs named or a sibling candidate "
+                "is un-ID'd (needs a human read) | 0",
                 report,
             )
             self.assertNotIn("thought_intake_2026-08-09_example.md", report.split(
