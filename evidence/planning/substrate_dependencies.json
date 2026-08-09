@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-07T21:49:13Z",
+  "last_updated_utc": "2026-08-09T08:30:42Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -749,6 +749,32 @@
       ],
       "candidate_stale": [],
       "candidate_stale_note": "DELIBERATELY NOT TRIAGED BY THIS LANDING SESSION -- reported, not applied. The candidate-stale set here is unusually large and unusually shaped: it is not 'the mechanism changed under prior evidence' but 'prior evidence recorded a config requesting MECH-307 and did not get it', so every behavioural run from any of the 84 drivers since 2026-05-11 measured MECH-307 OFF while its manifest config block says it was requested ON. That includes the scaffolded lineage ARC-030's Go/NoGo retest is built on (V3-EXQ-603q, V3-EXQ-866a, V3-EXQ-866b). Two reasons not to MARK any of it here: (1) de-weighting evidence is a governance action requiring user confirmation per /implement-substrate Step 8.5, and this session is headless with no user to confirm; (2) most of those runs are like-for-like comparisons measured with MECH-307 off at BOTH ends, which stay internally valid -- what is invalid is any claim ATTRIBUTING a result to MECH-307 being active. Routed to /governance to triage which of the 84 drivers' results carry a MECH-307 attribution. Note v3_exq_866b_603q_substrate_regression_check_...'s 'substrate reproduces 603q' finding stands unaffected (off at both ends), as does V3-EXQ-540g's readiness PASS (it sets the sub-flags directly and never used the master-flag-through-from_dims route)."
+    },
+    {
+      "substrate": "SD-E3-SCORER-COMPLETION",
+      "landed_utc": "2026-08-09T08:30:42Z",
+      "code_landed_utc": "2026-08-09T08:30:42Z",
+      "code_landed_commit": "ree-v3 193bbec",
+      "description": "E3TrajectorySelector.compute_reality_cost / compute_harm_cost_fallback: gated the two untrained nn.Sequential heads (reality_scorer, harm_cost_fallback_scorer) out of the default trajectory score. Verified by exhaustive grep that neither head is touched by any loss in ree_core; they injected random-init noise into every score on the live select()->score_trajectory path. New E3Config.e3_include_untrained_fallback_scorers (default False = fix). See failure_autopsy_V3-EXQ-190a_2026-08-09 and docs/architecture/sd_e3_scorer_completion.md.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "MECHANISM-CHANGING for any experiment scoring trajectories through the default E3 path (F is on EVERY path; the fallback M path is used when no harm_forward_model/harm_bridge is supplied). The de-contaminated scoring changes committed selection: A/B on the q081 live probe (seed 2, 150 steps) went from full 150-tick survival (6 boundary events) to a terminal at tick 97 (3 boundary events). Prior EXPERIMENTAL evidence on MECH-022 and ARC-007 gathered through this contaminated scoring path is candidate-stale.",
+      "dependent_claims": [
+        "MECH-022",
+        "ARC-007"
+      ],
+      "candidate_stale": [
+        {
+          "claim": "MECH-022",
+          "decision": "already_excluded",
+          "note": "V3-EXQ-190a is already non_contributory/pending_retest_after_substrate per failure_autopsy_V3-EXQ-190a_2026-08-09; V3-EXQ-190 is superseded by 190a. No additional live-weighting experimental evidence to MARK. The governance-gated retest (eval_episodes up, NO nav_bias in eval) is the revalidation."
+        },
+        {
+          "claim": "ARC-007",
+          "decision": "KEEP_flag_for_governance",
+          "note": "ARC-007's 2026-07-25 leg-scoped demotion (V3-EXQ-114a) exercised the same E3-routed selection seam and MAY be mechanistically stale under the de-contaminated scoring. Per Step 8.5 the MARK/REVALIDATE call is a governance action requiring user review, not a headless-worker apply -- surfaced here for the next /governance cycle, not applied."
+        }
+      ],
+      "candidate_stale_note": "Headless /implement-substrate landing: default KEEP. No MARK/REVALIDATE applied (Step 8.5 requires surfacing de-weighting to the user first). MECH-022 already excluded; ARC-007 flagged for governance review."
     }
   ]
 }

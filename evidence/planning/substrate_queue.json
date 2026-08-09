@@ -7038,8 +7038,8 @@
       "sd_id": "SD-E3-SCORER-COMPLETION",
       "title": "E3Selector.score_trajectory() fallback path carries untrained scorer subnetworks (reality_scorer, harm_cost_fallback_scorer) -- train or remove",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -7051,7 +7051,7 @@
           "experiment_type": "v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered",
           "metric": "C1/C2/C3 FAIL (2/5 criteria met); E3Selector.score_trajectory() fallback path's reality_scorer and harm_cost_fallback_scorer subnetworks code-verified never touched by any loss anywhere in ree_core, contaminating C3 and plausibly action selection in both conditions",
           "target": "either these two scorer heads are trained on a real loss signal, or the fallback path is removed/replaced so untrained subnetworks cannot silently influence trajectory scoring",
-          "resolved": "open"
+          "resolved": "implemented 2026-08-09T08:30:42Z (ree-v3 193bbec); pending governance-gated MECH-022 retest"
         }
       ],
       "implementation_hint": "ree_core E3Selector.score_trajectory() fallback path (compute_reality_cost, compute_harm_cost_fallback) instantiates two nn.Sequential heads that are never wired to any training loss. Either train them on an appropriate signal or remove the fallback path so it cannot contaminate trajectory scoring when the primary path is unavailable. Also relevant: V3-EXQ-190a newly extended the nav_bias forced-random-action override into the eval loop -- confirm whether that is intended before re-testing MECH-022.",
@@ -7062,7 +7062,12 @@
       ],
       "added_session": "v3-exq-812-harness-repair-1f9438",
       "last_seen_session": "v3-exq-812-harness-repair-1f9438",
-      "added_utc": "2026-08-09T06:15:00Z"
+      "added_utc": "2026-08-09T06:15:00Z",
+      "implemented_utc": "2026-08-09T08:30:42Z",
+      "implemented_session": "metaworker-chip-20260809-sd-e3-scorer-completion",
+      "implementation_status": "gated the two untrained scorer heads (reality_scorer, harm_cost_fallback_scorer) out of the E3 trajectory score by default",
+      "implementation_note_update": "IMPLEMENTED 2026-08-09T08:30:42Z (ree-v3 193bbec). Decision: REMOVE (gate out), not wire -- wiring would require inventing training labels for 'final-state viability' and a fallback-harm signal distinct from the already-trained harm_eval_head (unspecified architecture, out of scope). New E3Config.e3_include_untrained_fallback_scorers (default False = FIX, deliberately not a no-op): compute_reality_cost -> coherence(smoothness) only; compute_harm_cost_fallback -> trained harm_eval_head sum only. Heads stay instantiated (state_dict/checkpoint keys unchanged); only their contribution is gated (benefit_eval_head idiom). Contract: ree-v3 tests/contracts/test_e3_scorer_completion.py (5 tests, deterministic property; re-randomising the dead heads leaves the default score bit-identical, legacy-flag negative control). Design doc: docs/architecture/sd_e3_scorer_completion.md. Two pre-existing contracts legitimately shifted with the de-contaminated scoring and were repaired (test_modulatory_authority_survives_large_primary_scores opts into the legacy flag for its score-explosion setup; test_q081 live-probe navigation counts relaxed to the non-degeneracy invariants its own docstring names -- HEAD-vs-fix A/B confirmed the shift is the fix). NAV_BIAS FINDING (brief's second question): V3-EXQ-190a's eval loop DID newly add the nav_bias forced-random-action override (lines 402-406, self-labelled 'the deliberate C4 fix'); predecessor V3-EXQ-190's eval loop was pure select_action. It was INTENTIONAL by the 190a author but is a measurement confound -- forcing 40% random eval actions dilutes the condition-dependent signal C1/C2/C3 measure. Any MECH-022 retest MUST raise eval_episodes, NOT apply nav_bias in eval. ready=False: the MECH-022 full retest is governance-gated (pending_retest_after_substrate), not an auto-queueable build.",
+      "validation_experiment": "ree-v3 tests/contracts/test_e3_scorer_completion.py (deterministic contract, in lieu of a stochastic experiment); MECH-022 behavioural retest is governance-gated"
     }
   ],
   "schema_version": "substrate_queue/v2"
