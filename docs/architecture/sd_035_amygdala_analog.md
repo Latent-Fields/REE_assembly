@@ -245,10 +245,139 @@ Follow-up trigger: when Q-036 is promoted to a mechanism claim with a proposed p
 
 1. **Per-trace arousal_tag in HippocampalModule.** MECH-074b requires HippocampalModule to carry a per-trace `arousal_tag` field that BLAAnalog writes at encoding and reads at retrieval. This is a broader wiring change than a simple multiplier. If HippocampalModule does not currently carry such a field, adding it is a sub-task of Step 4.
 
-2. **Predictor-attribution head.** MECH-074d requires a predictor-identification step before emitting `remap_signal`. Initial pass approximates by picking codes whose contribution to the harm-PE exceeds a threshold; a learnable attribution head is a deliberate second pass.
+2. **Predictor-attribution head.** MECH-074d requires a predictor-identification step before emitting `remap_signal`. Initial pass approximates by picking codes whose contribution to the harm-PE exceeds a threshold; a learnable attribution head is a deliberate second pass. **The second pass was BUILT 2026-08-09** — see "Second pass: trainable attribution head" below. Item retained because the trainable head is off by default and the fixed rule is still what runs unless a config opts in.
 
 3. **Cortical-ceiling calibration.** CeA `fast_prime` magnitude ceiling must stay ≤ max AIC/dACC log-odds adjustment. Read the current AIC ceiling from `SalienceCoordinatorConfig` and set `mode_prior_log_odds_max` accordingly; do not guess.
 
 4. **SD-032b dACC FAIL.** `v3_exq_445` shows the affective PE path is currently underperforming. EXQ-A/B acceptance criteria must be calibrated against this — don't expect the mode-prior ablation to produce clean signals if upstream PE is broken. Flagged as a prerequisite risk, not a blocker.
 
 5. **Learnable fear-conditioning head.** The initial pass is non-trainable arithmetic. A learnable fear-conditioning head (threat-cue → `z_harm_a` amplification with experience) is explicitly a second pass.
+
+---
+
+## Second pass: trainable attribution head (MECH-074d, 2026-08-09)
+
+**Status:** IMPLEMENTED, off by default. `ree-v3/ree_core/amygdala/attribution_head.py`
+(`BLAAttributionHead`), selected by `REEConfig.bla_attribution_head`
+(`"contribution_threshold"` = the original fixed rule, DEFAULT; `"trainable"` = this head).
+
+### Why it was built
+
+MECH-074d's own registration text (2026-04-21) pre-announced this component as deferred:
+*"For the initial non-trainable pass this is approximated by selecting codes whose
+contribution to the harm-PE exceeds a threshold; a learnable attribution head is
+deferred."* Two independent experiments then closed off the competing reading:
+
+| Run | Outcome | What it established |
+|---|---|---|
+| V3-EXQ-894 | FAIL / weakens | C1 attribution-mass-excess and C2 context-jaccard-gap do not reach 2/3 seeds; flagged an over-firing / dilution confound. |
+| V3-EXQ-894a | FAIL / weakens | Swept `bla_remap_pe_sigma_threshold` over [1.0, 1.5, 2.0, 2.5] to test exactly that confound and **refuted** it: mass-excess falls monotonically with sigma (Spearman -1.0), tracking fire-fraction rather than diverging as dilution predicts. Per-seed outcome (one selective, one context-blind-deterministic, one null) stable at every threshold. |
+
+Diagnosis (`failure_autopsy_V3-EXQ-894a_2026-08-08`, confirmed):
+`competence_implementation_gap` — the gate mechanics work; the attribution computation
+is a fixed rule with no learned component that could differentiate genuinely
+context-predictive codes from incidentally-high-contribution ones. Moita 2004's
+dissociation *develops over training*, which is precisely the property a fixed rule
+cannot have.
+
+### What it computes
+
+```
+state  = cat(z_self, z_world)          [detached]
+memory = ContextMemory.memory          [detached, n_slots x slot_dim]
+
+q      = normalize(W_q state);  k_i = normalize(W_k memory_i)
+a      = softmax( q . k_i / tau )                       <- ATTRIBUTION
+read   = sum_i a_i memory_i
+z_hat  = W_p read
+loss   = MSE(z_hat, z_harm_a) / Var_ema(z_harm_a) + entropy_weight * H_norm(a)
+```
+
+`a` replaces the fixed proxy as BLAAnalog's `candidate_code_contributions`. Everything
+downstream — the PE-sigma gate, the Moita-2004 `remap_code_fraction` top-k, the
+ContextMemory write — is **unchanged**.
+
+### Design decisions that are load-bearing
+
+1. **The predictor sees only the attended read, never the raw state.** Feeding `state`
+   to the predictor is the standard attention-shortcut failure: harm becomes predictable
+   without the attention, so `a` carries no gradient signal and drifts back to
+   uninformative — reproducing the defect with a trainable veneer.
+2. **`W_p` is LINEAR**, so `z_hat = sum_i a_i (W_p m_i)`: the head is an
+   attribution-weighted mixture of *per-slot* harm predictions, and `a_i` is
+   interpretable as how much slot i's own prediction is trusted. An MLP predictor
+   destroys that reading.
+3. **`bias=False` throughout** — SD-016 Part A, measured on this very memory bank: a
+   default-init Linear bias dominates `W_k m_i` and collapses attention to uniform.
+4. **Cosine scoring, not scaled dot product.** ContextMemory inits slots at scale 0.01;
+   with a raw dot product the logits vanish and softmax returns *exactly* uniform
+   attention (measured 2026-08-09: max weight 0.0625 = 1/16, unmoved after 259 steps).
+   Not slow learning — the gradient into `W_q`/`W_k` is itself scaled by those tiny
+   activations.
+5. **Variance-normalised prediction loss.** `z_harm_a`'s magnitude is regime-dependent;
+   a raw MSE against a small target is ~100x smaller than the entropy term (measured
+   1.9e-4 vs 0.02), so the sparsity penalty silently became the objective.
+6. **MSE and entropy are in deliberate tension.** Entropy buys peakedness (C1); a
+   context-blind constant top-k satisfies C1 while scoring exactly 0.0 on C2 — which is
+   V3-EXQ-894a's seed-43 signature. Only the MSE term rules that out, because a fixed
+   slot set can predict only a constant. Keep `entropy_weight` small.
+7. **Detached inputs, own optimiser.** No gradient reaches E1, ContextMemory or the
+   latent stack, so enabling the head cannot perturb representation learning (the
+   joint-training head-collapse mode behind the standing P0/P1/P2 rule, EXQ-166b/c/d).
+   Training is additionally skipped in `eval()` so a frozen-head P2 measures frozen
+   weights.
+
+### Honest limits
+
+- **Associative, not causal.** `a_i` is identified only up to the equivalence class of
+  slot subsets supporting the same prediction. C1/C2 measure the weaker property (mass
+  concentration + context differentiation), which is what Moita 2004 operationalises. A
+  per-slot occlusion variant is the natural next pass if C1/C2 pass but the selectivity
+  does not transfer.
+- **A homogenised ContextMemory defeats any attribution rule, trainable or not.**
+  Measured 2026-08-09 during this build: under the legacy write path the slot bank
+  reaches off-diagonal cosine **1.0000** (slot norm 5.64 = ||0.5*ones(128)||, the
+  documented V3-EXQ-436c sigmoid-midpoint payload collapse) within ~24 episodes. Sixteen
+  identical slots cannot be differentiated by anything. Any validation of this head MUST
+  either restore a differentiated store per episode (what the V3-EXQ-894/894a harness
+  already does via `restore_base`) or run with
+  `contextmemory_gated_content_write=True`. This is a **precondition on the instrument**,
+  not a property of the head.
+- **Warmup is by construction the legacy rule.** Below `bla_attr_head_warmup_steps`
+  (default 200) `attribute()` returns `None` and the caller falls back to the fixed
+  proxy, so a randomly-initialised head never drives real ContextMemory writes.
+
+### Config surface
+
+| Param | Default | Purpose |
+|---|---|---|
+| `bla_attribution_head` | `"contribution_threshold"` | `"trainable"` selects this head |
+| `bla_attr_head_key_dim` | 16 | query/key width |
+| `bla_attr_head_lr` | 1e-3 | Adam lr (head's own optimiser) |
+| `bla_attr_head_weight_decay` | 0.0 | >0 switches to AdamW |
+| `bla_attr_head_temperature_init` | 0.5 | softmax sharpness (<1 sharpens) |
+| `bla_attr_head_learn_temperature` | True | adapt log-temperature |
+| `bla_attr_head_temperature_min` | 0.05 | stops a saturated zero-gradient argmax |
+| `bla_attr_head_entropy_weight` | 0.02 | sparsity pressure; see decision 6 |
+| `bla_attr_head_grad_clip` | 1.0 | gradient-norm clip |
+| `bla_attr_head_warmup_steps` | 200 | steps before the head's output is used |
+| `bla_attr_head_train` | True | False for a frozen-head phase |
+| `bla_attr_head_min_candidate_weight` | 0.0 | drop below-floor slots from the candidate set |
+| `target_var_ema_alpha` / `target_var_floor` | 0.02 / 1e-4 | loss-normalisation statistics (module config only) |
+
+With the default `bla_attribution_head`, none of this is constructed and behaviour is
+bit-identical to pre-2026-08-09.
+
+### Acceptance criteria (inherited from the failure record)
+
+Same instrument as V3-EXQ-894/894a, which the autopsy judged unusually careful and
+already proven informative:
+
+- **C1** `attribution_mass_excess > 0.05` on >= 2/3 seeds, and
+- **C2** `context_jaccard_gap > 0.05` on >= 2/3 seeds,
+
+at some operating point, with C3 (partial-not-wholesale) still holding. Those are the
+numbers the fixed rule never reached at any of four PE-sigma thresholds.
+
+**MECH-094:** not applicable — the head never trains or attributes on
+simulation/replay ticks; learned weights are waking-stream only.
