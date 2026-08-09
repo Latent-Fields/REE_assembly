@@ -78,9 +78,9 @@
       "summary": "SD-020 is status=stable, promoted on V3-EXQ-324b (its own live_status.evidence.from, verdict supports/PASS), but a source read of ree-v3/experiments/v3_exq_324b_sd020_harm_surprise_pe.py shows ZERO references to REEAgent, harm_surprise_pe_enabled or compute_harm_accum_loss -- 324b validated a standalone-encoder bench reimplementation (inline abs(mean_dmg - dmg_ema) against a fresh linear dmg_head, no ARC-016 precision weighting), never the shipped flag path; the only run that did drive the real flag, V3-EXQ-324 (3 REEAgent refs, 4 flag refs), FAILED at 1/5 seeds. Governance should decide whether stable survives a promoting run that never exercised the claim implementation, and should correct BOTH SD-020 default_off_scope_note and SD-087 title, which each assert the 324b reading is scoped to the flag-on configuration when 324b set no flag at all.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:36:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:24:07Z",
+      "resolution_note": "Confirmed via source-code audit: V3-EXQ-324b (the promoting run) has zero references to REEAgent/harm_surprise_pe_enabled/compute_harm_accum_loss -- a standalone bench reimplementation, never the shipped flag path. V3-EXQ-324 (the run that DID exercise the real implementation) FAILED 1/5 seeds. User-approved demotion applied: SD-020 stable -> candidate (REE_assembly, this commit), live_status re-pointed to V3-EXQ-324, full rationale in evidence_quality_note. NOT falsified -- the shipped implementation has never been cleanly tested; a genuine test is owed before re-promotion. SD-087's separate calibration_pathology_representational finding is unaffected."
     },
     {
       "flag_id": "GFLAG-0006",
