@@ -1,38 +1,48 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-09T08:03:47Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-906a",
-  "current_exq_started_utc": "2026-08-09T07:58:57.157506+00:00",
-  "current_title": "Full-stack observational Fishtank showcase, survivable ecology + continuous agent (fix of V3-EXQ-906)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 0 / full_stack_observational_showcase",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 30,
-    "episodes_total": 220,
-    "overall_pct": 13.6
-  },
-  "seconds_elapsed": 290,
-  "seconds_remaining": 6922,
-  "recent_lines": [
-    "[V3-EXQ-906a] Full-Stack Observational Fishtank Showcase (survivable, continuous)",
-    "Seeds: [0]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
-    "Train eps/seed: 220  Eval: 8 segments x up to 500 steps (one continuous agent, contamination_spread=0.0)",
-    "Output: REE_assembly/evidence/experiments/v3_exq_906a_full_stack_observational_fishtank/",
-    "Seed 0 Condition full_stack_observational_showcase",
-    "[EXQ-906a] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON",
-    "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4886",
-    "[train] stage0b seed=0 ep 30/220"
+  "last_tick_utc": "2026-08-09T08:12:35Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-894b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-878a",
+      "result": "FAIL",
+      "completed_at": "2026-08-08T19:32:23.778326+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-903",
+      "result": "FAIL",
+      "completed_at": "2026-08-08T22:27:48.861935+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-190a",
+      "result": "FAIL",
+      "completed_at": "2026-08-09T00:24:51.916486+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-906",
+      "result": "PASS",
+      "completed_at": "2026-08-09T00:38:58.152152+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-906a",
+      "result": "FAIL",
+      "completed_at": "2026-08-09T08:10:31.870779+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 836,
-  "runner_version": "r4956 3c90d8a 2026-08-09",
+  "runner_version": "r4957 3fe9bff 2026-08-09 (running r4956 3c90d8a)",
   "gpu": {
     "available": false
   },
