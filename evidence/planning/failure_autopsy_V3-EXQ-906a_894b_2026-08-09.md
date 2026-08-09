@@ -48,6 +48,7 @@ The driver's `EVAL_ENV_EXTRA_KWARGS` never touched `proximity_harm_scale`, `prox
 1. Proximity drain should be a genuinely **close-range** warning cue, not a broad ambient field -- narrow the radius (raise `proximity_approach_threshold` and/or steepen `hazard_field_decay`) and make the per-step drain itself smaller (`proximity_harm_scale` further reduced), on top of the already-applied `hazard_harm`/`contamination_spread` relaxation.
 2. The layout should carry plenty of safe space, consistent with (1).
 3. Each segment's agent should **spawn on a safe cell**, not merely somewhere in a hazard-sparse layout -- an unsafe spawn risks damage before any action is taken, which is not a learning signal and would reintroduce an early-death floor independent of the radius fix.
+4. The overall layout density this driver family inherited from 906 (`num_hazards` etc.) may itself be too hazard-dense for this stage of substrate development. The redesign should provide **significant safe areas and safe traversable paths** from spawn to goals/resources -- a dynamic hazard's movement transiently occluding part of a path is fine (that's a real perturbation worth having), but a path being permanently blocked or absent is not.
 
 ### Secondary finding: unbounded residue-valence accumulator
 
