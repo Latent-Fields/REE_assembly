@@ -149,16 +149,48 @@ offline (SWR) modes MECH-289 already distinguishes. A related commentary
 sweeps, anyway?") could not be read -- it sits behind Nature's authentication wall and was not
 pursued further given scope.
 
-**This is web research done during digestion, not a formal `/lit-pull`.** Neither citation was
-added to a `targeted_review_*/` directory with full entries the way SD-097's five-source lit-pull
-was. A dedicated `/lit-pull` remains a legitimate follow-on if deeper grounding (e.g. reading the
-skeptical commentary, or a systematic search rather than these two papers found opportunistically)
-is later wanted -- flagging per the standing "chip everything else" discipline rather than
-chipping unilaterally, since the user was present for this decision and may want to fold it into
-other pending goal-topology work rather than spin off a separate chip.
+**Follow-up, same session: formal `/lit-pull` completed 2026-08-09.** The user confirmed it was
+worth doing properly. New directory `targeted_review_hippocampal_theta_sweeps_goal_navigation/`,
+4 entries:
 
-Both raw thought files' Stage 1 headers were updated in this pass (Section 8 below covers the
-one process gap found along the way).
+1. **Pfeiffer & Foster 2013** (Nature, DOI 10.1038/nature12112) -- the canonical foundational
+   result (hippocampal place-cell sequences depict future paths to remembered goals), predating
+   and underlying both 2026 papers.
+2. **Yu et al. 2026** (Nat Neurosci, DOI 10.1038/s41593-026-02365-2) -- the primary source behind
+   the medicalxpress prompting evidence; full verbatim abstract obtained (Honeycomb maze
+   dissociation design). `confidence 0.72`.
+3. **Tang et al. 2026** (Nat Neurosci, DOI 10.1038/s41593-026-02364-3) -- full preprint text
+   accessed via a PMC mirror; links theta-sweep goal-direction to SWR replay and PFC coordination,
+   directly grounding MECH-289's dual-mode (online/offline) generative-substrate claim.
+   `confidence 0.75`.
+4. **Schmidt, Gagliardi & Redish 2026** (Nat Neurosci commentary, DOI 10.1038/s41593-026-02366-1)
+   -- deliberately sought out as the skeptical/non-degeneracy counterweight (per this repo's
+   discipline, cf. SD-097's own inclusion of Kinny & Georgeff 1991), framing the two empirical
+   papers as first steps toward resolving an active controversy rather than settled science.
+   Full text could not be reached (Nature auth wall, no preprint mirror for a commentary); rests
+   on search-engine paraphrase only. `confidence 0.35`, held deliberately low for that reason.
+
+All four entries deliberately exclude **SD-098** from `claim_ids_tested` -- none of this
+literature speaks to the node-type-storage question SD-098 actually asks; it grounds only the
+destination-privileging/generative-sweep premises (MECH-236/MECH-289) SD-098 depends on. Index
+rebuilt with `build_experiment_indexes.py --index-only`; `claim_evidence.v1.json` now shows
+`literature_confidence: 0.825` for both MECH-236 and MECH-289. `REE_assembly` `8e0357d28b`,
+pushed.
+
+**Process note on the regen:** the first, non-`--index-only` regen run touched 50 files -- an
+unrelated experiment-corpus regen backlog (new INDEX.md/experiment.md pages for several other
+sessions' already-landed experiments) that had nothing to do with this lit-pull. Per CLAUDE.md's
+"Narrow Edits Only" rule, reverted it and re-ran with `--index-only`, which is scoped to exactly
+`claim_evidence.v1.json` + `evidence/literature/INDEX.md`. One sub-mistake during the revert: a
+blanket `rm -rf` on the untracked-looking experiment-type directories actually deleted TRACKED
+`runs/*/{manifest,metrics,summary}` files that happened to live inside them (real committed
+evidence, not regen output) -- caught immediately via `git status` showing ` D` entries and
+restored with `git checkout HEAD -- <paths>` before anything was committed. No data was lost, but
+worth naming rather than quietly correcting: a blanket `rm -rf` on a directory is not a safe way
+to remove "just the untracked files" in it when the directory can also hold tracked content.
+
+Both raw thought files' Stage 1 headers were updated earlier in this session (Section 8 below
+covers the earlier claim-opening-order process gap).
 
 ## 8. Session note: resource contention, and a claim-opening process gap
 
