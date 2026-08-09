@@ -1,0 +1,136 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard",
+  "run_id": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-09T16:13:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-357"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "pressure_insufficient_lesion_ceiling_requeue",
+    "readiness_route": "pressure_insufficient_lesion_ceiling_requeue",
+    "route_note": "mobile-predator pressure did not reintroduce the conflict: the LESION negative control still cleared the survival gate (the 603r ceiling mode) -> re-calibrate mobility UP (raise env_drift_prob / num_hazards)",
+    "preconditions": [
+      {
+        "name": "pavlovian_freeze_reaction_present_on_lesion",
+        "kind": "readiness",
+        "description": "MECH-279 PAG freeze must commit on the LESION arm (pag_n_commits > 0 on >= 2/3 seeds) -- the Pavlovian reaction the ilPFC suppresses. Below-floor => no freeze to suppress => vacuous contrast => substrate_not_ready_requeue.",
+        "control": "ARM_LESION: PAG on, harm stream fed, both combined fixes on, mobile predators -- the freeze reaction must still fire.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ilpfc_gate_engages_and_suppresses_freeze_on_intact",
+        "kind": "readiness",
+        "description": "On the INTACT arm the ilPFC gate must register efficacy updates under threat (n_credit+n_decay>0) AND suppress the PAG freeze (n_freeze_suppressed>0) on >= 2/3 seeds. Below-floor => gate never engaged => substrate_not_ready_requeue.",
+        "control": "ARM_INTACT: gate on + protective-scaffold floor 0.8 + both fixes.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_intact",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 INTACT seeds -- the goal-FORMATION positive control.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "discriminative_headroom_below_lesion_fails_gate",
+        "kind": "readiness",
+        "description": "The mobile-predator pressure must make the LESION negative control FAIL the survival gate (G_H_LESION < 2/3) -- i.e. it reintroduced the Pavlovian-instrumental conflict that 603r's static field lacked. Measured = 1 - G_H_LESION_frac so the floor semantics match: below floor => LESION still ceilinged (the 603r mode) => pressure_insufficient_lesion_ceiling_requeue.",
+        "control": "ARM_LESION under mobile predators (interval=1, prob=0.6).",
+        "measured": 0.33333333333333337,
+        "threshold": 0.3333333343333334,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "survivability_exists_above_posctrl_clears_gate",
+        "kind": "readiness",
+        "description": "The pressure must not be impossible: a gated agent spawned in the reef refuge (best case) must clear the survival gate (G_H_POSCTRL >= 2/3). Below-floor => pressure too lethal for ANY policy (the 603h floor mode) => pressure_impossible_requeue, NOT a MECH-357 weakens.",
+        "control": "ARM_POSCTRL: gate on + reef spawn + both fixes, mobile predators.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "both_test_arms_reached_hazard_stage": true,
+      "pavlovian_freeze_present": true,
+      "gate_active_on_intact": true,
+      "discriminative_headroom_present": false
+    },
+    "criteria": [
+      {
+        "name": "G_H_INTACT_clears_2of3",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "G_H_INTACT_beats_LESION",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8ab857999d706d1ca0407bf58dccc78c95c49a4cee9e8db0f5607b29ffbf2c3a",
+  "substrate_commit": {
+    "commit": "8b289b945563fe30db7a35cb6c2c3fe0a4667ef4",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 305394,
+    "ticks_active": 305385,
+    "writer_calls": 11189,
+    "active_frac": 0.9999705298728855,
+    "writer_defect": false,
+    "n_agents": 9,
+    "goal_state_present": true
+  }
+}
