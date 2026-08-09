@@ -278,3 +278,61 @@ the legacy attention stuck at ~2.76. SECONDARY: `cue_context` per-channel std +
 safe-vs-dangerous `action_bias_div`. Implementation entry +
 contracts (`tests/contracts/test_sd016_cue_slot_tagger.py`) recorded in
 `ree-v3/CLAUDE.md`.
+
+## 8. H3: Hard/competitive selection operator (implemented 2026-08-09)
+
+**Why Path 3 alone was not enough.** **V3-EXQ-898**'s failure autopsy
+(2026-08-08) found that even the Path 3 soft tagger, correctly rewarded by
+`terrain_loss`, reproduced the exact uniform `ln(16)` attractor under its C2
+control -- the same saddle Path 3 was built to escape. This raises hypothesis
+**H3** (one leg of the **GOV-FANOUT-1** discrimination portfolio, alongside
+H1/drive and H2/representation): a soft, end-to-end differentiable softmax
+gate may not be able to **hold** a sparse, context-selective optimum even
+when correctly rewarded -- gradient descent relaxes it back toward the
+uniform attractor regardless of what the loss demands. H3 tests whether a
+structurally competitive selector, independent of the downstream loss,
+breaks the saddle where the soft gate could not.
+
+**Mechanism.** A selection-mode knob on Path 3's slot-**selection** scores
+only (the slot-content and downstream-projection paths remain untouched,
+same discipline as Path 3):
+
+```
+sd016_cue_slot_tagger_selection: "soft" | "gumbel" | "topk"
+  "soft"   -> softmax(slot_logits / temperature)              [Path 3, default]
+  "gumbel" -> straight-through Gumbel-softmax, annealed temperature
+  "topk"   -> straight-through top-k (k of num_slots)
+```
+
+Both `gumbel` and `topk` are straight-through estimators: the **forward**
+pass is structurally sparse (one-hot for gumbel, exactly k nonzero slots for
+topk) independent of what `terrain_loss` rewards; the **backward** pass
+flows through the soft relaxation, so the tagger remains trainable by the
+same gradient source as Path 3. `soft` is bit-identical to Path 3 by
+construction (the original softmax line is unmoved, just reached through the
+new mode dispatch's default branch).
+
+**Config (E1Config + REEConfig.from_dims; all no-op defaults):**
+
+| Param | Default | Purpose |
+|-------|---------|---------|
+| `sd016_cue_slot_tagger_selection` | `"soft"` | `"soft"` \| `"gumbel"` \| `"topk"` |
+| `sd016_cue_slot_tagger_topk_k` | `1` | topk: slots kept active |
+| `sd016_cue_slot_tagger_gumbel_tau_init` | `1.0` | gumbel: starting temperature |
+| `sd016_cue_slot_tagger_gumbel_tau_min` | `0.1` | gumbel: floor temperature |
+| `sd016_cue_slot_tagger_gumbel_anneal_steps` | `2000` | gumbel: linear anneal horizon (training-mode forward calls) |
+
+**Null declaration.** If `gumbel`/`topk` fail C1 (entropy `< 2.5`) / C1b
+(context-divergence `> 0.1`) with readiness met, hard selection alone does
+not break the saddle -- implicating the drive (H1) or the representation
+(H2), not the softness of the gate. A C1-pass/C1b-fail `topk` run (a fixed
+slot selected regardless of context) is the "constant-peaky" degeneracy C1b
+exists to catch.
+
+**Validation.** H3 leg of the GOV-FANOUT-1 portfolio (arms `A0_OFF` /
+`A1_tagger_soft` / `A2_tagger_gumbel` / `A3_tagger_topk`, inheriting the
+V3-EXQ-898 scaffold), to be queued via `/queue-experiment`. Implementation
+entry + contracts (`tests/contracts/test_sd016_h3_hard_selection.py`)
+recorded in `ree-v3/CLAUDE.md`. Full portfolio design:
+`REE_assembly/evidence/planning/sd016_selection_fanout_portfolio_scope_staged_20260809.md`
+(section 3, "Leg H3").
