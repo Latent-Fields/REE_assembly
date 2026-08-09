@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-08-09.2 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-08-09.3 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -400,6 +400,9 @@
         <div class="barRow" id="rowGoal"><span class="afLbl">want</span>
           <div class="barOuter"><div class="barInner" id="afGoal" style="width:0%;background:#34d399"></div></div>
           <span class="afVal" id="afGoalV">—</span></div>
+        <div class="barRow" id="rowResWant"><span class="afLbl">res.want</span>
+          <div class="barOuter"><div class="barInner" id="afResWant" style="width:0%;background:#6ee7b7"></div></div>
+          <span class="afVal" id="afResWantV">—</span></div>
         <div class="barRow" id="rowLiking"><span class="afLbl">liking</span>
           <div class="barOuter"><div class="barInner" id="afLiking" style="width:0%;background:#f9a8d4"></div></div>
           <span class="afVal" id="afLikingV">—</span></div>
@@ -412,6 +415,11 @@
         <div class="barRow" id="rowBlock"><span class="afLbl">assert</span>
           <div class="barOuter"><div class="barInner" id="afBlock" style="width:0%;background:#fb7185"></div></div>
           <span class="afVal" id="afBlockV">—</span></div>
+
+        <div class="afSub" id="subSurprise">Surprise (unsigned prediction error, pre-valence)</div>
+        <div class="barRow" id="rowSurprise"><span class="afLbl">surprise</span>
+          <div class="barOuter"><div class="barInner" id="afSurprise" style="width:0%;background:#facc15"></div></div>
+          <span class="afVal" id="afSurpriseV">—</span></div>
 
         <div class="afSub" id="subValence">Valence (dread &#8596; excite)</div>
         <div class="barRow" id="rowVal"><span class="afLbl">val</span>
@@ -1261,6 +1269,12 @@ function updateAffect(s, steps) {
   // Drive & arousal
   const vDrive = setBar('afDrive', 'afDriveV', 'rowDrive', pick(s, ['drive']),    1.0);
   const vGoal  = setBar('afGoal',  'afGoalV',  'rowGoal',  pick(s, ['z_goal']),   chMax(steps, ['z_goal'], 0.3));
+  // Residue wanting (VALENCE_WANTING, index 0) -- distinct from `want`/z_goal above,
+  // which is the frontal goal-attractor's own wanting signal (goal_state.goal_norm()).
+  // This is the hippocampal-map residue channel z_goal seeds indirectly but does not
+  // equal. Graceful: hidden when the log has no `residue_wanting` field.
+  const vResWant = setBar('afResWant', 'afResWantV', 'rowResWant', pick(s, ['residue_wanting']),
+                           chMax(steps, ['residue_wanting'], 0.3));
   // Liking (VALENCE_LIKING, hedonic-impact channel). Graceful: hidden when the log
   // has no `liking` field (e.g. 906b and earlier, which predate the telemetry that
   // surfaces it). Auto-scales to its own per-episode max so small variation is visible.
@@ -1269,7 +1283,15 @@ function updateAffect(s, steps) {
   const vOver  = setBar('afOver',  'afOverV',  'rowOver',  pick(s, ['override']), 1.0);
   const vBlock = setBar('afBlock', 'afBlockV', 'rowBlock', pick(s, ['z_block']),  chMax(steps, ['z_block'], 0.2));
   document.getElementById('subDrive').style.display =
-    (vDrive || vGoal || vLike || vVigor || vOver || vBlock) ? 'block' : 'none';
+    (vDrive || vGoal || vResWant || vLike || vVigor || vOver || vBlock) ? 'block' : 'none';
+
+  // Surprise (VALENCE_SURPRISE, unsigned prediction-error magnitude -- the
+  // pre-valence channel excite/dread are signed splits of). Graceful: hidden when
+  // the log has no `surprise` field (e.g. 906b and earlier, which predate the
+  // telemetry that surfaces it). Auto-scales to its own per-episode max.
+  const vSurprise = setBar('afSurprise', 'afSurpriseV', 'rowSurprise', pick(s, ['surprise']),
+                            chMax(steps, ['surprise'], 0.05));
+  document.getElementById('subSurprise').style.display = vSurprise ? 'block' : 'none';
 
   // Valence: bipolar dread(-) / excite(+)
   const ex = pick(s, ['excite']);
