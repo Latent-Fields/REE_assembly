@@ -1744,7 +1744,13 @@
           "experiment_type": "v3_exq_894a_mech074d_bla_remap_attribution_selectivity",
           "metric": "C1 attribution_mass_excess / C2 context_jaccard_gap never reach 2/3-seed pass at any of 4 swept PE-sigma thresholds; mass-excess and fire-fraction both fall monotonically with sigma (Spearman -1.0 both), refuting the over-firing/dilution alternative from V3-EXQ-894",
           "target": "attribution_mass_excess > 0.05 AND context_jaccard_gap > 0.05 on >=2/3 seeds, at some operating point, under a trainable attribution head",
-          "resolved": "open"
+          "resolved": "built_pending_retest",
+          "substrate_built_utc": "2026-08-09T07:45:00Z",
+          "substrate_commits": [
+            "ree-v3 25e04cf5f5",
+            "ree-v3 d2c8d6f2f0"
+          ],
+          "retest_queue_id": "V3-EXQ-894b"
         }
       ],
       "implementation_hint": "Two peer non-trainable arithmetic substrates mirroring biological BLA/CeA division. BLAAnalog (slow/content): MECH-074a inverted-U arousal-dependent encoding_gain on hippocampal write strength; MECH-074b content-selective per-trace retrieval_bias; MECH-074d Moita-2004 attribution-gated remap_signal. CeAAnalog (fast/scalar): MECH-046 mode_prior log-odds bias to SalienceCoordinator; MECH-074c fast_prime candidate-prior pulse with cortical_confirmation hold. Modules: ree_core/amygdala/{bla,cea}.py. Master flag use_amygdala_analog (default False). Promoted to provisional 2026-04-22, stable 2026-04-24.",
@@ -1789,7 +1795,8 @@
         "ree_core/amygdala/bla.py",
         "ree_core/agent.py"
       ],
-      "status_note_addendum_20260808": "V3-EXQ-894/894a (2 independent experiments) show BLAAnalog's attribution gate does not respond to PE-threshold recalibration -- next build owed is a trainable/learnable attribution head (see failure_record). Recommended by failure_autopsy_V3-EXQ-894a_2026-08-08."
+      "status_note_addendum_20260808": "V3-EXQ-894/894a (2 independent experiments) show BLAAnalog's attribution gate does not respond to PE-threshold recalibration -- next build owed is a trainable/learnable attribution head (see failure_record). Recommended by failure_autopsy_V3-EXQ-894a_2026-08-08.",
+      "status_note_addendum_20260809": "BUILT 2026-08-09: the trainable attribution head MECH-074d deferred is landed as ree_core/amygdala/attribution_head.BLAAttributionHead (ree-v3 25e04cf5f5 + d2c8d6f2f0), off by default via bla_attribution_head='contribution_threshold' so trunk is bit-identical. Validation V3-EXQ-894b queued (ree-v3 3470eb16b6 + cb3dafe3d9), same C1/C2 instrument as 894/894a, smoke PASS. failure_record entry moved open -> built_pending_retest; it is NOT resolved until governance reads 894b's result. Two measured constraints worth knowing before touching the head: cosine scoring is load-bearing (a raw dot product over ContextMemory's 0.01 slot init gives EXACTLY uniform attention), and the prediction loss must be normalised by the running target variance (raw MSE was ~100x below the entropy term). Instrument precondition: the legacy ContextMemory write path homogenises the slot bank to off-diagonal cosine 1.0000 within ~24 episodes, which defeats ANY attribution rule -- validation must restore a differentiated store per episode (894a's harness does) or set contextmemory_gated_content_write=True. STILL OWED: the MECH-074d implementation_note in claims.yaml was NOT written -- session mech-322/sd009-897-followon held the claims.yaml claim and the arbitration verdict was binding; see docs/architecture/sd_035_amygdala_analog.md 'Second pass: trainable attribution head' for the full record in the meantime."
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
