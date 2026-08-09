@@ -132,9 +132,9 @@
       "summary": "REE_assembly/evidence/planning/thought_digestion_staged_2026-08-07_mech485_q090.md is a tracked, committed file headed AWAITING USER REVIEW that instructs a reader to paste two what_would_answer blocks into claims.yaml. Its Q-090 block was staged at 2026-08-07T18:40Z, five hours BEFORE that claim own targeted lit-pull landed (evidence/literature/targeted_review_q_090, 23:47Z), whose highest-confidence entry (Mattar and Daw 2018) contradicts the two-horn framing the staged draft pre-registers. Neither Q-090 nor MECH-485 has what_would_answer in claims.yaml today, so the file is still live: it should be annotated or deleted before anyone applies a pre-lit-pull draft.",
       "raised_by_session": "thoughtdigestion-trial-5-headless-2026-08-07",
       "raised_at": "2026-08-08T00:37:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:26:06Z",
+      "resolution_note": "Applied both staged drafts to claims.yaml (REE_assembly, this commit). MECH-485's draft applied verbatim (no lit-pull discrepancy for that claim). Q-090's draft was CORRECTED before applying: added a fourth MULTIPLICATIVE-JOINT outcome grounded in Mattar & Daw 2018 (targeted_review_q_090, conf=0.62, Gain x Need product) which the 2026-08-07 draft predates and which is genuinely distinct from its existing three outcomes (same-scale / independent-criterion / staged both-at-different-levels). validate_claims.py --strict confirms 0 errors and the missing-what_would_answer warning count dropped by 2 as the staging file itself specified. Staged file deleted per its own instruction."
     },
     {
       "flag_id": "GFLAG-0010",
