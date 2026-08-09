@@ -152,6 +152,14 @@ untouched). Resulting movements:
 Q-020 is unchanged, which is the check that the split-record approach worked: its two `weakens`
 records were left exactly as they were.
 
+One large-looking-but-benign diff to expect in `architecture_gap_register.v1.json`: **MECH-144
+drops off the register entirely** (92 → 91 items) now that it has evidence, and 52 downstream
+`gap_id`s shift by one as a result. `AGR-####` is a rank position, not a stable identifier — the
+only reference to one outside the register already treats it that way
+(`recovered_stranded_manifests/README.md:135`, *"slides it from `AGR-0001` to `AGR-0011`"*), so
+nothing breaks. `evidence_backlog.v1.json` gains MECH-143 under `dormant_high_conflict`, which is
+the contested state described below.
+
 **MECH-143's `literature_confidence` went DOWN after adding a supporting paper.** That is correct
 behaviour, and the reason is a genuine trap for anyone reading these numbers:
 **`literature_confidence` measures consistency × quality, not favourability.** The legacy formula
