@@ -11714,7 +11714,11 @@
   live_status:
     reading: stable
     as_of: 2026-07-11
-    needs_review: false
+    needs_review: true
+    needs_review_reason: >
+      [2026-08-09] Evidence-currency + citation-integrity review flagged for the next
+      /governance cycle; see evidence_quality_note. Status deliberately LEFT AT stable --
+      a stable claim is not demoted outside a governance cycle.
     evidence:
       from: "decision:MECH-100@2026-03-19T19:52:00Z"
       as_of: 2026-03-19
@@ -11726,6 +11730,57 @@
     EXQ-023 PASS (2026-03-22): combined SD-008+SD-009, event_selectivity_margin=0.084.
     EXQ-176/177 PASS confirming contrastive auxiliary loss is required for z_world discrimination.
     No conflicting experimental evidence. Stable mechanism; z_world encoder design is locked.
+    [2026-08-09]: needs_review=true raised (evidence currency + citation integrity, no status
+    change) -- see evidence_quality_note.
+  evidence_quality_note: |
+    [2026-08-09, chip chip-20260809-sd009-897-followon, follow-on to the 2026-08-08 governance
+    cycle's review of V3-EXQ-897/SD-009]. REVIEW ONLY -- NO STATUS CHANGE APPLIED. Two findings,
+    both routed to /governance rather than acted on unilaterally.
+
+    (1) EVIDENCE CURRENCY. All four supporting experimental entries were run on 2026-03-18 and
+    2026-03-20 (20260318T083631Z/20260320T165149Z v3_exq_020_event_contrastive_v3;
+    20260318T180301Z/20260320T171130Z v3_exq_022_combined_contrastive_lstsq_v3) -- roughly four
+    months BEFORE SD-070 landed on 2026-07-18. SD-070's own entry documents the P0 those runs
+    were gathered under as COLLAPSING z_world to participation_ratio ~1.06 at world_dim=128
+    (untrained 9.21), and identifies the SD-009 event-contrastive target itself as one of the
+    three faults driving it: transition_type is a property of the TRANSITION (t-1 -> t) while
+    z_world is a static single-frame encoding, and an MLP-128 probe on raw world_obs with no
+    encoder in the path scores AT OR BELOW CHANCE for that label. So MECH-100's stable status
+    rests entirely on evidence measured under a training recipe the substrate has since replaced
+    for cause. V3-EXQ-897 (2026-08-08) is the first re-measurement under the fixed substrate and
+    reads the other way: held-out frozen-probe decodability clears the floor in BOTH arms with
+    OFF >= ON on 3/3 seeds (deltas -0.025/-0.010/-0.005) -- sign-consistent but statistically
+    imprecise, hence direction=unknown, not weakens. Note the same four runs also carry
+    outcome=FAIL with direction=supports in claim_evidence.v1.json (pass_runs=0, fail_runs=4,
+    one entry annotated "direction/status mismatch"), which is a second reason to look at them
+    directly rather than at the aggregate. Governance's call, not this chip's: whether stable
+    still holds, whether a candidate-stale flag is warranted per the 2026-07-18 channel-mismatch
+    doc's option (B), or whether a re-verification run under the SD-070 recipe is the right
+    discriminator. SD-009 (same underlying claim, design register) was already demoted
+    provisional -> candidate on 2026-08-08 and shares two of these four runs.
+
+    (2) CITATION INTEGRITY (corrected in this pass; substantive re-scoring is NOT). The notes
+    field cited "Murray et al. 2004, TICS 8:56-61" for the sentence "Predictive coding alone
+    does not produce object-discriminative ventral stream representations without categorical
+    top-down signals". That article does not exist -- verified 2026-08-09 against the complete
+    PubMed listing of Trends in Cognitive Sciences vol 8: issue 2 (Feb 2004) contains no paper
+    by any Murray, and pages 56-61 do not delimit one article in it (p.57 is a Toates letter,
+    pp.60-65 are Stevens & Hauser, and issue 3 starts at p.95). The tracked entry that existed
+    (targeted_review_connectome_mech_100/.../2026-03-29_mech_100_ventral_stream_categorical_murray2004)
+    named the right authors, year and venue but carried a wrong title, a wrong DOI (differing in
+    its final digits) and a URL whose PMID 17645520 is an unrelated liver-transplantation paper.
+    The real source is Murray EA, Bussey TJ, Saksida LM (2007), Annu Rev Neurosci 30:99-122,
+    PMID 17417938, DOI 10.1146/annurev.neuro.29.051605.113046 -- and it is the paper that
+    entry's own summary body describes, so its assessment stands. Bibliographic fields have been
+    corrected in place with the previous values preserved under metadata_correction. What is NOT
+    corrected here, and is the part governance should weigh: that 2007 review is now known to be
+    the ONLY source MECH-100's biological grounding has ever had, rather than a stand-in for a
+    stronger uncited one, and it supports the weaker proposition (perirhinal conjunctive
+    representations are shaped by discrimination DEMANDS rather than passive exposure) rather
+    than the predictive-coding-specific proposition the prose attributes to it. Its confidence
+    of 0.62 was assigned on the assumption that a stronger source sat behind it. Re-scoring a
+    stable claim's literature evidence is a governance disposition and is left open.
+    Full working: evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md
   implementation_phase: v3
   depends_on:
     - SD-005
@@ -11751,8 +11806,14 @@
     Biological grounding: the ventral stream (MECH-099 stream 2) is trained by
     object-recognition supervision in development — not just reconstruction.
     Predictive coding alone does not produce object-discriminative ventral
-    stream representations without categorical top-down signals (Murray et al.
-    2004, TICS 8:56–61). The event classifier is the minimal stand-in for
+    stream representations without categorical top-down signals (Murray,
+    Bussey & Saksida 2007, Annu Rev Neurosci 30:99–122 — citation corrected
+    2026-08-09; the previously cited "Murray et al. 2004, TICS 8:56–61" does
+    not exist, and the 2007 review supports the weaker proposition that
+    perirhinal conjunctive representations are shaped by discrimination
+    demands rather than by passive exposure, NOT the predictive-coding-
+    specific proposition stated in this sentence — see evidence_quality_note).
+    The event classifier is the minimal stand-in for
     such categorical supervision.
     Interaction with SD-008: the event contrastive loss will be ineffective
     if alpha_world=0.3, since the EMA smoothing dilutes the event contribution
@@ -13170,6 +13231,32 @@
     under a P0 SD-070 now documents as collapsing z_world -- worth a future review. A Murray et al. 2004
     biological citation doing real rhetorical work in this claim's prose was never registered as tracked
     literature evidence -- a lit-pull bookkeeping gap, not actioned this cycle.
+
+    [2026-08-09, chip chip-20260809-sd009-897-followon]: both adjacent items above ACTIONED, and the
+    bookkeeping gap turned out to be a citation-integrity defect rather than a filing one. The
+    "Murray et al. 2004, TICS 8:56-61" article DOES NOT EXIST (verified against the complete PubMed
+    listing of TICS vol 8: issue 2 has no Murray paper, pages 56-61 delimit no single article in it,
+    issue 3 starts at p.95). The source the prose was reaching for is Murray EA, Bussey TJ, Saksida LM
+    (2007), Annu Rev Neurosci 30:99-122, PMID 17417938 -- now registered against SD-009 for the first
+    time as targeted_review_sd_009/entries/2026-08-09_sd_009_perirhinal_categorical_object_representation_murray2007,
+    at confidence 0.50 / mapping_fidelity 0.45. Deliberately BELOW the 0.62 the same paper carries
+    against MECH-100: the review grounds the NECESSITY of some discriminative training pressure, which
+    SD-070's own grounding heads already supply, and is silent on SD-009's specific commitment to a
+    dedicated event-CE head -- exactly the granularity V3-EXQ-897 measured at null-to-negative on 3/3
+    seeds. Before this entry SD-009 had NO biological or neuroscientific literature at all; its
+    literature_confidence of 0.724 rested on two lit:computational_model entries (ADAT/Kim2022,
+    CURL/Laskin2020). NOTE FOR READERS OF THE NUMBER: the rebuilt index puts SD-009's
+    literature_confidence at 0.773 (up from 0.724) and overall_confidence at 0.66 (up from 0.59).
+    Do NOT read that rise as strengthened grounding. The posterior counts a third `supports` entry
+    and is not sensitive to the fact that the new entry is deliberately the weakest of the three
+    (0.50, mapping_fidelity 0.45) precisely BECAUSE it does not reach SD-009's specific
+    dedicated-event-CE-head formulation. The qualitative finding runs the other way from the
+    metric: the one biological citation this claim family leaned on was unverifiable, and the real
+    source supports only the general antecedent that SD-070 already satisfies. MECH-100 review:
+    needs_review=true raised there with a full
+    evidence_quality_note, NO status change (a stable claim is not demoted outside a governance cycle);
+    governance flag raised for both. Working:
+    evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
