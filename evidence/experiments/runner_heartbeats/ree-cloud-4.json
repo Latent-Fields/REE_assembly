@@ -1,40 +1,46 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-09T16:26:42Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-906b",
-  "current_exq_started_utc": "2026-08-09T16:15:35.833187+00:00",
-  "current_title": "Full-stack observational Fishtank showcase, proximity-radius fix + safe spawn (fix of V3-EXQ-906a)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 0 / full_stack_observational_showcase",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 1,
-    "episodes_total": 220,
-    "overall_pct": 0.5
-  },
-  "seconds_elapsed": 666,
-  "seconds_remaining": 20215,
-  "recent_lines": [
-    "[V3-EXQ-906b] Full-Stack Observational Fishtank Showcase (proximity-radius fix)",
-    "Seeds: [0]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
-    "Train eps/seed: 220  Eval: 8 segments x up to 500 steps (one continuous agent, proximity_approach_threshold=0.4, hazard_field_decay=2.5, safe spawn)",
-    "Output: REE_assembly/evidence/experiments/v3_exq_906b_full_stack_observational_fishtank/",
-    "Seed 0 Condition full_stack_observational_showcase",
-    "[EXQ-906b] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON",
-    "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4811",
-    "[train] stage0b seed=0 ep 30/220",
-    "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=3314",
-    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.3290 harm_steps=437",
-    "[train] p1 seed=0 ep 220/220 survival_gate=FAIL",
-    "[eval] seed=0 ep 1/8 steps=500 done_cause=step_limit spawn_attempts=1"
+  "last_tick_utc": "2026-08-09T16:30:37Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-324d",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-878a",
+      "result": "FAIL",
+      "completed_at": "2026-08-08T19:32:23.778326+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-903",
+      "result": "FAIL",
+      "completed_at": "2026-08-08T22:27:48.861935+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-190a",
+      "result": "FAIL",
+      "completed_at": "2026-08-09T00:24:51.916486+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-906",
+      "result": "PASS",
+      "completed_at": "2026-08-09T00:38:58.152152+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-906b",
+      "result": "PASS",
+      "completed_at": "2026-08-09T16:30:35.415117+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 22190,
   "runner_version": "r4984 8b289b9 2026-08-09",
   "gpu": {
