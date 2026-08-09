@@ -64,9 +64,9 @@
       "summary": "claims.yaml's pending_retest_after_substrate=true for ARC-045 is stale and drove IGW-20260807-216 to surface as ready /queue-experiment work, but the routed re-run already happened and was reviewed: V3-EXQ-436d (2026-08-04T07:15:41Z, review_tracker.json confirms reviewed=true) is ARC-045's latest tagged experimental run. Current claim_evidence.v1.json shows 3/3 genuine experimental runs weaken ARC-045 (experimental_confidence 0.417 vs literature_confidence 0.819, overall 0.618, evidence_quadrant plausible_unproven). Governance should clear the stale pending_retest_after_substrate flag and decide ARC-045's disposition given the 3/3 weakens experimental evidence, rather than a fresh /queue-experiment dispatch being run against a question already answered by 436d.",
       "raised_by_session": "interactive-metaworker-dispatcher-mac-20260807",
       "raised_at": "2026-08-07T22:00:23Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-09T06:19:21Z",
+      "resolution_note": "STALE PREMISE: pending_retest_after_substrate=true is NOT stale -- ARC-045's own 2026-08-07 evidence_quality_note explicitly keeps it true, deliberately re-scoped to a NEW successor (V3-EXQ-436e, occupied-slots-only DV repair), not to a re-run of 436d. V3-EXQ-436d is confirmed the latest tagged run (claim_evidence.v1.json), 3/3 genuine experimental runs weaken (exp_conf 0.414, matches the flag's cited figure closely). No claims.yaml change needed. If IGW-20260807-216 is still surfacing this as ready /queue-experiment work, the gap is in IGW's routing logic (reading the boolean without reading the re-scoping note), not in the claim's own state -- worth a separate look if it recurs, not chipped here."
     },
     {
       "flag_id": "GFLAG-0005",
