@@ -600,6 +600,47 @@ action-decision) are unaffected.
   >50% of the time then rising to 0.80-0.94 in the top decile, consistent with gating the 738-step `assert`
   mode in `_classify_mode`).
 
+### 12j. Pre-existing candidate claims in adjacent territory -- MECH-395/482/483, discovered at `/session-land` Phase 5a re-verification, distinct from track A but requiring explicit reconciliation (2026-08-09T18:4xZ)
+
+`claims.yaml` already carries a mature cluster of candidate claims registered 2026-08-05 (from a
+`docs/thoughts/2026-08-05_epistemic_deficit_and_orienting.md` thought intake) that were not surfaced by any
+earlier pass of this review, because the original grep in Sections 11b/13-A checked the `ree_core/` CODE
+tree (genuinely empty) and a narrow claims.yaml grep, not a full read of the surrounding claim cluster:
+
+- **MECH-482** (`epistemic_deficit`): a persistent, target-bound accumulator ("rises with unresolved
+  importance x uncertainty x expected_resolvability x persistence"), explicitly defined **in contrast to**
+  "raw novelty (MECH-314a)... **transient prediction error**... learning-progress (MECH-314c)". `status:
+  candidate`, `v3_pending: true`, **"DO NOT build in V3"** -- gated on GAP-A (`substrate_queue.json`,
+  priority 1, unclaimed: extending per-candidate uncertainty tracking to MECH-314b/314c, currently a global
+  scalar), which is not yet built.
+- **MECH-483** (`orient/survey`): "a third primitive behavioural regime (alongside approach and avoid)... a
+  temporary, diffuse reduction in commitment... driven by accumulated epistemic_deficit (MECH-482) rather
+  than a specific cue." Also `candidate`/`v3_pending`/**"DO NOT build in V3"**, same GAP-A gate.
+- **MECH-395** (`pre-approach orienting/surveying mode`): a cue-triggered, need-gated active-sensing state
+  entered when a cue/need IS present but directional confidence is too low -- narrower and different again
+  (resolves a specific vector for an already-identified cue, not a diffuse survey).
+
+**Track A's proposed mechanism is genuinely distinct, not a duplicate -- the two claims' own definitions
+draw the line.** MECH-482 is explicitly defined AGAINST "transient prediction error"; track A's trigger
+(11b step 1, corroborated 12b/12h) is a **phasic spike in `residue_surprise`** -- exactly a transient,
+per-step prediction-error-magnitude signal, the opposite end of the timescale from MECH-482's slow,
+persistent, target-bound accumulator. Track A's signal (`residue_surprise`, residue index 3) is *also
+already computed every step* (confirmed directly in the 906b episode log throughout this review) --
+it does **not** depend on GAP-A's not-yet-built target-bound uncertainty substrate, so the "DO NOT build in
+V3" gate on MECH-482/483 does not extend to it. This is the same phasic-vs-chronic distinction 12g already
+established empirically for the harm channel (`z_harm_norm` phasic vs `z_harm_a` chronic) -- now recognised
+as a general pattern in this substrate's telemetry, not a one-off.
+
+**But the naming space is now crowded (three "orienting"-adjacent mechanisms), and this needs explicit
+handling, not silent registration.** Risk: a cold `/implement-substrate` session registering a new
+"defensive orienting" MECH without reading this cluster could (a) pick a confusingly similar name/subject,
+(b) fail to cross-reference MECH-395/482/483 the way each of THEM cross-references the others (their own
+convention -- see their `depends_on` lists and "Distinct from MECH-XXX..." notes), or (c) worse, have its
+STOP-CHECK's `grep -iE "defensive.orient|orienting" claims.yaml` match these entries and incorrectly
+conclude "a MECH already registered, STOP" and abort on a false positive. **Chip A's prompt has been revised
+(v3) to name this cluster explicitly, explain why it is not a block, and require the new MECH to
+cross-reference MECH-395/482/483 by the existing convention rather than register in isolation.**
+
 ---
 
 ## 13. Tracked follow-on tasks (recorded 2026-08-09T17:55Z, user-directed: "all of the above must be done")
