@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-09T18:38:15.722780Z`
+Generated: `2026-08-09T20:16:19.666653Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -152,6 +152,7 @@ Generated: `2026-08-09T18:38:15.722780Z`
 | `targeted_review_connectome_mech_341` | [`2026-06-07_mech_341_lman_variability_injection_olveczky2011`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/summary.md) |
 | `targeted_review_connectome_mech_346` | [`2026-06-16_mech_346_value_of_identity_gottfried2011`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/summary.md) |
 | `targeted_review_connectome_mech_347` | [`2026-06-16_mech_347_incentive_salience_case_berridge2006`](targeted_review_connectome_mech_347/entries/2026-06-16_mech_347_incentive_salience_case_berridge2006/record.json) | 3 | [`summary`](targeted_review_connectome_mech_347/entries/2026-06-16_mech_347_incentive_salience_case_berridge2006/summary.md) |
+| `targeted_review_connectome_mech_357` | [`2026-08-09_mech_357_vmpfc_reuniens_learned_freeze_suppression_moscarello2020`](targeted_review_connectome_mech_357/entries/2026-08-09_mech_357_vmpfc_reuniens_learned_freeze_suppression_moscarello2020/record.json) | 3 | [`summary`](targeted_review_connectome_mech_357/entries/2026-08-09_mech_357_vmpfc_reuniens_learned_freeze_suppression_moscarello2020/summary.md) |
 | `targeted_review_connectome_mech_436` | [`2026-06-17_mech_436_wanting_never_liked_tindell2009`](targeted_review_connectome_mech_436/entries/2026-06-17_mech_436_wanting_never_liked_tindell2009/record.json) | 2 | [`summary`](targeted_review_connectome_mech_436/entries/2026-06-17_mech_436_wanting_never_liked_tindell2009/summary.md) |
 | `targeted_review_connectome_mech_439` | [`2026-06-20_arc_107_snr_permission_gate_hikosaka2000`](targeted_review_connectome_mech_439/entries/2026-06-20_arc_107_snr_permission_gate_hikosaka2000/record.json) | 12 | [`summary`](targeted_review_connectome_mech_439/entries/2026-06-20_arc_107_snr_permission_gate_hikosaka2000/summary.md) |
 | `targeted_review_connectome_mech_440` | [`2026-07-22_mech_440_variability_quenching_churchland2010`](targeted_review_connectome_mech_440/entries/2026-07-22_mech_440_variability_quenching_churchland2010/record.json) | 5 | [`summary`](targeted_review_connectome_mech_440/entries/2026-07-22_mech_440_variability_quenching_churchland2010/summary.md) |

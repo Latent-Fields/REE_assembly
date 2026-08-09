@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_357",
+  "entry_id": "2026-08-09_mech_357_pl_inhibitory_bla_avoidance_diehl2018",
+  "timestamp_utc": "2026-08-09T20:12:47Z",
+  "claim_ids_tested": ["MECH-357"],
+  "source": {
+    "title": "Active avoidance requires inhibitory signaling in the rodent prelimbic prefrontal cortex",
+    "authors": ["Maria M Diehl", "Christian Bravo-Rivera", "Jose Rodriguez-Romaguera", "Pablo A Pagan-Rivera", "Anthony Burgos-Robles", "Ciorana Roman-Ortiz", "Gregory J Quirk"],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.34657",
+    "url": "https://elifesciences.org/articles/34657"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Supports the general architectural principle MECH-357 depends on (an inhibitory prefrontal signal, not excitatory drive, gates avoidance) with a large, well-controlled rat dataset -- but the effect is localized to PRELIMBIC cortex, not infralimbic, which is the specific region MECH-357 names its analog after. Confidence held at moderate: strong internal evidence, weaker claim-specific mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rats with pharmacological inactivation spreading into infralimbic cortex were explicitly excluded from the dataset (n=3) rather than analyzed as a separate infralimbic condition -- this study cannot itself confirm or rule out an IL-specific effect distinct from the PL effect it reports.",
+    "Optogenetic silencing of PL glutamatergic (excitatory) neurons did NOT impair avoidance, only silencing tied to the inhibitory tone-responsive subpopulation and its artificial reactivation did -- so a naive 'more PL activity = more suppression' framing is wrong even within PL itself."
+  ],
+  "tags": ["mech_357", "prelimbic_cortex", "basolateral_amygdala", "inhibitory_signaling", "active_avoidance", "subregion_specificity"],
+  "mapping": {
+    "source_claim_statement": "In rats performing tone-signaled platform-mediated avoidance, muscimol inactivation of prelimbic cortex (PL) reduced avoidance (57% vs. 92% platform time during tones, p<0.001), while optogenetic silencing of PL glutamatergic neurons alone did not. Single-unit recordings found inhibitory (not excitatory) tone responses were far more common in avoidance-trained rats than naive controls (11% vs. 2%, p<0.001), and artificially driving rostral PL neurons to fire DURING the tone (counteracting their natural inhibitory dip) markedly impaired avoidance (27% vs. 87% controls, p<0.001). The authors conclude inhibitory tone responses in rostral PL -- via projections to basolateral amygdala (BLA) and ventral striatum -- signal that a threat is avoidable.",
+    "ree_translation": "Provides strong, causally-demonstrated support for the general shape of MECH-357's architecture: it is specifically the SUPPRESSION of prefrontal firing (not excitatory drive) that gates avoidance, and disrupting that suppression (by artificially reactivating the neurons) reproduces failure to avoid -- directly analogous to what MECH-357 predicts an ilPFC-lesion/gate-OFF condition should look like. But the region is prelimbic, not infralimbic. REE's SD-035/MECH-279/MECH-357 architecture, and the existing corpus entry for Moscarello & LeDoux (2013) already in this evidence base, specifically implicate infralimbic cortex (ilPFC) as the freeze-suppressing region, with prelimbic more often associated in the wider literature with PROMOTING rather than suppressing defensive responses. This paper's PL-centric finding does not contradict an IL-based gate existing in parallel, but it means 'the prefrontal cortex' cannot be treated as an undifferentiated freeze-suppression source: subregion matters, and this specific paper's causal mechanism is not the one MECH-357 names.",
+    "mapping_caveat": "Rats with pharmacological inactivation spreading into infralimbic cortex were deliberately excluded (n=3) rather than reported, so this study is silent on whether the same causal story holds specifically for IL -- it neither confirms nor rules out MECH-357's named region. The platform-mediated avoidance task differs structurally from REE's foraging-under-hazard survival leg (a spatial refuge choice rather than a directed escape action), and the paper explicitly proposes but does not directly test PL projections to BLA/ventral striatum as the causal route, which limits how far the 'inhibitory PFC signal gates avoidance via amygdala' generalization can be pushed.",
+    "source_context": "Male Sprague Dawley rats (n=155 across experiments); tone-signaled platform-mediated avoidance (30s tone co-terminating with 0.4mA footshock, 10 training days); pharmacological inactivation, optogenetic silencing/activation (ArchT/ChR2), and extracellular single-unit recording targeting rostral and caudal prelimbic cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "mapping_fidelity is the limiting factor -- the causal design and statistics are strong, but the paper's own subregion (PL) is explicitly distinguished from, and in parts of the wider literature contrasted with, the IL region MECH-357 models. Retained because subregion specificity is itself a live, checkable prediction of MECH-357 (an ilPFC, not generic-PFC, analog) and this paper is direct evidence about how sharply that distinction is drawn in the source biology."
+  }
+}
