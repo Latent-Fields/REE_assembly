@@ -1573,3 +1573,5 @@ One line per hourly tick. ASCII only.
 2026-08-09T19:40:29Z no eligible item (skipped 233): IGW-20260809-001:skill /governance not allowed; IGW-20260809-002:skill /governance not allowed; IGW-20260809-004:skill /governance not allowed
 2026-08-09T20:41:57Z workset committed (regen -- 237 items, 24 ready, 0 in flight)
 2026-08-09T20:41:08Z no eligible item (skipped 237): IGW-20260809-001:skill /governance not allowed; IGW-20260809-002:skill /governance not allowed; IGW-20260809-003:skill /governance not allowed
+2026-08-09T21:43:14Z workset committed (regen -- 237 items, 24 ready, 0 in flight)
+2026-08-09T21:42:59Z skip IGW-20260809-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
