@@ -1,0 +1,336 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_908_sd016_h3_hard_selection",
+  "run_id": "v3_exq_908_sd016_h3_hard_selection_20260809T131209Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-09T13:12:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd016_h3_hard_selection_breaks_saddle:A2_tagger_gumbel",
+    "preconditions": [
+      {
+        "name": "A0_OFF::seed42::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A0_OFF::seed42::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.038280232388587,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed42::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed42::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 5.198357338179145,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed42::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed42::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 5.198357338179145,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed42::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed42::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 5.198357338179145,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed42::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed42::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 5.198357338179145,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A0_OFF::seed43::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A0_OFF::seed43::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 3.678538640421624,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed43::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed43::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 3.534715658948495,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed43::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed43::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 3.534715658948495,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed43::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed43::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 3.534715658948495,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed43::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed43::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 3.534715658948495,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A0_OFF::seed44::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A0_OFF::seed44::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.3095556810012035,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed44::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A1_tagger_soft::seed44::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.084588242294036,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed44::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A2_tagger_gumbel::seed44::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.084588242294036,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed44::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3a_topk_k1::seed44::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.084588242294036,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed44::world_encoder_weights_moved",
+        "description": "world_encoder/world_precision_logit tensors changed across P0a -- the exact V3-EXQ-737a/728 wiring-failure signature (0 moved) this recipe exists to fix.",
+        "control": "world-path tensors, this cell",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "A3b_topk_k2::seed44::z_world_spread_lift",
+        "description": "z_world batch spread (mean per-dim std), trained/untrained ratio on the SAME apparatus -- the same kind of statistic (spread, not magnitude) the C1/C1b selection criteria depend on upstream. Positive control: V3-EXQ-783 measured this recipe raise contrast_ratio ~1.7-1.9x.",
+        "control": "same agent/env, before vs after P0a",
+        "measured": 4.084588242294036,
+        "threshold": 1.3,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C2_off_arm_on_saddle": true,
+      "A1_tagger_soft::C1_breaks_saddle": true,
+      "A1_tagger_soft::C1b_context_dependent": true,
+      "A2_tagger_gumbel::C1_breaks_saddle": false,
+      "A2_tagger_gumbel::C1b_context_dependent": true,
+      "A3a_topk_k1::C1_breaks_saddle": false,
+      "A3a_topk_k1::C1b_context_dependent": true,
+      "A3b_topk_k2::C1_breaks_saddle": false,
+      "A3b_topk_k2::C1b_context_dependent": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "741c79612572c07920c1d5fab05f54b00557d3f65b075979574f522a8639ace9",
+  "substrate_commit": {
+    "commit": "1d1bae8695848f62a2ddb9a512cdb7e6cc2f83e2",
+    "dirty": false,
+    "branch": "main"
+  }
+}
