@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-09T09:49:42Z",
+  "last_tick_utc": "2026-08-09T13:05:31Z",
   "state": "running",
   "current_exq": "V3-EXQ-876a",
   "current_exq_started_utc": "2026-08-08T23:09:33.312429+00:00",
@@ -10,14 +10,14 @@
   "current_description": "",
   "progress": {
     "run_label": "starting...",
-    "runs_done": 3,
+    "runs_done": 4,
     "runs_total": 5,
     "episodes_done": 400,
     "episodes_total": 500,
-    "overall_pct": 76.0
+    "overall_pct": 96.0
   },
-  "seconds_elapsed": 38409,
-  "seconds_remaining": 12570,
+  "seconds_elapsed": 50159,
+  "seconds_remaining": 2170,
   "recent_lines": [
     "============================================================",
     "Seed 11",
@@ -77,7 +77,23 @@
     "[train] ep 100/500  harm=621  e3_ticks=99",
     "[train] ep 200/500  harm=1255  e3_ticks=195",
     "[train] ep 300/500  harm=1875  e3_ticks=293",
-    "[train] ep 400/500  harm=2504  e3_ticks=403"
+    "[train] ep 400/500  harm=2504  e3_ticks=403",
+    "[train] ep 500/500  harm=3144  e3_ticks=517",
+    "world_forward_r2: 0.9844",
+    "[V3-EXQ-876a] Eval -- probing action-doing mode convergence...",
+    "|causal_sig| committed=0.0934  uncommitted=0.1398  doing_mode_delta=-0.0464  n_committed=1315  n_uncommitted=190  sweep_steps=108  precision_ratio=0.00",
+    "V3-EXQ-876a seed=53 verdict: PASS  label=doing_mode_produces_convergent_causal_signature  (6/6)",
+    "============================================================",
+    "Seed 71",
+    "============================================================",
+    "[V3-EXQ-876a] MECH-025: Action-Doing Mode Convergence Redesign (seed=71)",
+    "warmup=500  eval=50  alpha_world=0.9",
+    "breath_period=50  sweep_amplitude=0.3  sweep_duration=10",
+    "nav_bias=0.45  size=6  n_hazards=4",
+    "[train] ep 100/500  harm=822  e3_ticks=1397",
+    "[train] ep 200/500  harm=1589  e3_ticks=2761",
+    "[train] ep 300/500  harm=2308  e3_ticks=4186",
+    "[train] ep 400/500  harm=3004  e3_ticks=5751"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
