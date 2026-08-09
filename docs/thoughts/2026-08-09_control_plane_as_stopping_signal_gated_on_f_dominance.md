@@ -1,3 +1,9 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-09_control_plane_stopping_signal.md
+Claims: MECH-488
+
+---
+
 ## REE_assembly Thought
 
 ### Control Plane as a Stopping Signal: an STN-Hyperdirect Analogy, and Why It's Not Buildable Yet

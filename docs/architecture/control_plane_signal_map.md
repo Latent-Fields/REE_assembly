@@ -153,6 +153,42 @@ This note:
 
 ---
 
+### S6 -- Selection-conflict signal (candidate, unwired)
+**What it encodes**
+- how contested the last E3 selection was: the decision-gap between the top
+  candidate(s) at commit time (the quantity `_gap_scaled_commit_pick` already
+  computes internally as `gap_norm`, MECH-439's conflict-graded commit
+  temperature),
+- distinct from S3 (aversive/interruptive, harm-origin) and S5 (reality-coherence,
+  provenance/authority-origin) -- S6 is *selection-internal* contestedness, not an
+  external-mismatch or authority signal.
+
+**Primary role (proposed, not yet implemented)**
+- a fast, conflict-triggered escalation input to K5 (control allocation) and K10
+  (hard-veto threshold) -- functionally analogous to the STN hyperdirect pathway's
+  global "raise the threshold / pause" signal in dual-pathway basal ganglia models
+  (Frank 2006; Wiecki & Frank 2013), as distinct from S1-S5's existing roles which
+  are closer to the tonic-inhibition/selective-disinhibition action-selection
+  circuit (Mink 1996; Redgrave, Prescott & Gurney 1999).
+
+**Typical origin**
+- E3, at commit time (`_gap_scaled_commit_pick` in `e3_selector.py`) -- currently
+  computed and consumed **locally only**, to set sampling temperature. It is not
+  propagated out of E3 to the control plane at all.
+
+**Status**
+- **Candidate, not built.** See MECH-488. This is a genuine gap in the wiring map
+  above (K10 is fed only by S3/S4; no signal class currently represents
+  within-selection contestedness) -- not a rejected design, simply unclaimed until
+  the 2026-08-09 thought intake that proposed it. **DO NOT wire this now**: both
+  the sending signal (`gap_norm`) and the primary receiving mechanism (K10 / the
+  PAG freeze-gate, MECH-279/MECH-280) are independently confirmed degenerate under
+  the current MECH-439 F-dominance / candidate-pool-collapse regime -- see MECH-488
+  for the evidence. Wiring a dead signal into a gate that doesn't respond to it is
+  untestable by construction until MECH-439 clears.
+
+---
+
 ## Control knobs (meta-parameters)
 
 These are assumed to exist in REE’s control machinery, even if not yet formalised as explicit parameters.
@@ -189,6 +225,9 @@ Notes:
 - S1 is split into signed harm/benefit channels (S1b). Harm‑channel spikes can elevate S3 and K10 without collapsing
   valence into a single scalar.
 - S5 should use hysteresis/decay so transient ambiguity does not force chronic suppression.
+- S6 (selection-conflict, candidate, MECH-488) is not in this table: it is unwired. If built, it would feed K5
+  (escalate) and K10 (raise veto sensitivity) as a fast, conflict-triggered brake, analogous to STN's hyperdirect
+  pathway -- see the S6 section above for why it is not buildable until MECH-439 clears.
 
 ### S4 routing (arousal/readiness channels)
 
@@ -412,6 +451,77 @@ Suggested control law sketch:
 
 ---
 
+<a id="mech-488"></a>
+## Selection-Conflict Brake: an STN-Hyperdirect-Style S6 Signal (MECH-488)
+
+**Claim Type:** mechanism_hypothesis
+**Scope:** Candidate S6 signal class (selection-internal decision-gap) feeding
+K5/K10 as a fast, conflict-triggered global brake, distinct from the existing
+tonic-inhibition selection machinery
+**Depends On:** MECH-004, MECH-449, MECH-279, MECH-280, MECH-439
+**Status:** candidate
+**Claim ID:** MECH-488
+
+### Origin
+Surfaced 2026-08-09 from a structural parallel noticed between REE_assembly's own
+coordination plane (the meta-infrastructure managing concurrent sessions -- claim
+arbitration, governance/pause locks) and REE's cognitive control plane: the
+coordination plane's main job is often *stopping other work elsewhere* --
+default-permit until a conflict is detected, then a binary, network-wide stop.
+That is not the tonic-inhibition-with-selective-release shape of classic basal
+ganglia action selection (Mink 1996; Redgrave, Prescott & Gurney 1999) already
+built in MECH-449/MECH-450 -- it is the shape of the STN hyperdirect pathway's
+fast, conflict-triggered global brake (Aron & Poldrack 2006; Frank 2006, "Hold
+your horses"; Wiecki & Frank 2013 gives the clearest existing computational
+precedent for combining both mechanisms in one RL-style architecture, with STN as
+a modulator *over* the selection layer rather than a replacement for it).
+
+### What REE already has, and the specific missing wire
+Both circuit types already exist in `ree-v3/ree_core/`, unintegrated:
+- **Tonic selection-via-disinhibition**: `_go_nogo_eligibility_gate` +
+  `_lateral_settle` in `predictors/e3_selector.py` (MECH-449/MECH-450).
+- **Global brake**: `pag/freeze_gate.py` (MECH-279) -- sustained
+  `z_harm_a x duration` crossing `theta_freeze` commits the agent to a freeze
+  state. This document's own K10 ("hard veto threshold") already maps to it.
+
+Neither is fed by anything selection-internal. `e3_selector.py` already computes
+exactly the signal this claim needs -- `gap_norm` in `_gap_scaled_commit_pick`
+(MECH-439's conflict-graded commit temperature) -- but MECH-449's own design doc
+notes it is built as "no parallel module", deliberately siloed on
+`E3TrajectorySelector`: used once to set sampling temperature, then discarded. It
+does not feed MECH-449's own Go/No-Go gate, let alone K5 or K10.
+
+### Why this is not buildable yet (confirmed, not assumed)
+Checked whether the sending signal and the receiving mechanism were independent
+problems. They are coupled to the same root cause:
+
+- **Receiving end (K10/PAG) does not engage ecologically.** MECH-280's evidence
+  record: `pag_release_count_end = 0` across all 12 runs of V3-EXQ-483e;
+  `z_harm_a` never crosses `theta_freeze` in situ. SD-037's axis (a) recalibration
+  route is empirically closed (V3-EXQ-620: input distribution identically zero at
+  fishtank baseline, not merely below threshold); axis (b) (drive the same signal
+  harder via env curriculum) has been consolidated into the MECH-439 F-dominance /
+  candidate-pool-collapse conversion-ceiling cluster.
+- **Sending end (`gap_norm`) is also degenerate, for the documented same reason.**
+  V3-EXQ-689 (2026-06-19, MECH-439's own first falsifier) self-routed
+  `substrate_not_ready_requeue`: `gap_spread_seeds = 0` across all 3 seeds, the
+  F-gap "pinned in the near-tie bin". The confirmed autopsy
+  (`evidence/planning/failure_autopsy_V3-EXQ-689_2026-06-19.md`) states directly:
+  "This near-tie concentration is itself a manifestation of the F-dominance
+  MECH-439 asserts."
+
+So this is one design idea whose input signal and receiving mechanism are both
+currently dead for the same documented reason (MECH-439), not two independent
+gaps to sequence. Neither SD-037's axis (a)/(b) recalibration plans nor MECH-449's
+design doc ever considered wiring `gap_norm` into K10/K5 as a second, independent
+trigger.
+
+### DO NOT BUILD IN V3 UNTIL MECH-439 CLEARS
+This is a prediction to check once MECH-439 resolves, not a build to start now.
+See `what_would_answer` below for the non-degeneracy precondition.
+
+---
+
 ## Unfinished / underspecified: acetylcholine-like attention/gain axis
 
 REE currently risks letting **K2 (precision/gain)** do too much work. A distinct axis is required for **expected
@@ -535,6 +645,7 @@ Calibration hooks:
 - MECH-004
 - MECH-064
 - MECH-065
+- MECH-488
 - ARC-005
 - ARC-017
 - MECH-037

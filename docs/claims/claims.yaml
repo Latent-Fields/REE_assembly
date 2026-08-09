@@ -80283,3 +80283,86 @@
     293's ghost-goal bank and SD-092's parent/subgoal edge are each single-relation
     special cases, not a general typed-relation store).
   evidence: []
+
+- id: MECH-488
+  title: "A selection-conflict signal (E3's per-candidate decision-gap, gap_norm) should feed the control plane as a distinct S6 class, driving K5 control-allocation escalation and K10 hard-veto threshold as a fast, conflict-triggered brake -- an STN-hyperdirect-style mechanism, complementary to (not a substitute for) the existing tonic Go/No-Go + lateral-inhibition selection machinery (MECH-449/MECH-450)."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.selection_conflict_brake
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-09
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  depends_on:
+    - MECH-004
+    - MECH-449
+    - MECH-279
+    - MECH-280
+    - MECH-439
+  location: docs/architecture/control_plane_signal_map.md#mech-488
+  notes: |
+    Registered from thought intake evidence/planning/thought_intake_2026-08-09_control_plane_stopping_signal.md
+    (raw thought: docs/thoughts/2026-08-09_control_plane_as_stopping_signal_gated_on_f_dominance.md).
+    Literature anchor: tonic-inhibition/selective-disinhibition action selection (Mink 1996;
+    Redgrave, Prescott & Gurney 1999) is a DIFFERENT circuit from the STN hyperdirect
+    global-brake mechanism (Aron & Poldrack 2006; Frank 2006 "Hold your horses"; Wiecki &
+    Frank 2013 -- the clearest computational precedent for combining both in one RL-style
+    architecture, STN as a modulator over selection, not a replacement). REE already has
+    both circuit types built and unintegrated: MECH-449/MECH-450 (tonic Go/No-Go +
+    lateral-inhibition in e3_selector.py) and MECH-279 (PAG freeze-gate, this doc's K10).
+    Neither is fed by anything selection-internal. e3_selector.py's `_gap_scaled_commit_pick`
+    already computes the needed signal (`gap_norm`, MECH-439's conflict-graded commit
+    temperature) but MECH-449's own design doc notes it is deliberately siloed ("no
+    parallel module") -- used once for sampling temperature, then discarded; it feeds
+    neither MECH-449's own gate nor K5/K10.
+    DO NOT BUILD IN V3 YET: confirmed (not assumed) that both the sending signal and the
+    receiving mechanism are independently degenerate under the SAME MECH-439 F-dominance /
+    candidate-pool-collapse root cause. Receiving end: MECH-280's evidence record shows
+    pag_release_count_end=0 across all 12 runs of V3-EXQ-483e (z_harm_a never crosses
+    theta_freeze in situ); SD-037 axis (a) recalibration is empirically closed (V3-EXQ-620:
+    input distribution identically zero at baseline); axis (b) has been consolidated into
+    the MECH-439 cluster. Sending end: V3-EXQ-689 (MECH-439's own first falsifier)
+    self-routed substrate_not_ready_requeue with gap_spread_seeds=0 (F-gap pinned in the
+    near-tie bin); the confirmed autopsy (failure_autopsy_V3-EXQ-689_2026-06-19.md) states
+    directly this near-tie concentration "is itself a manifestation of the F-dominance
+    MECH-439 asserts." So this is one design idea whose input and receiving mechanism are
+    both dead for the same reason, not two independent gaps -- the right response is to
+    wait for MECH-439 to clear, not to attempt the wiring now. Checked (grep, 2026-08-09):
+    neither SD-037's axis (a)/(b) plans nor MECH-449's design doc ever considered wiring
+    gap_norm into K10/K5 as a second, independent trigger -- this is genuinely unclaimed,
+    not a rediscovery.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (hard gate -- do not attempt to build or test this
+    claim without it): MECH-439's F-dominance / candidate-pool-collapse conversion
+    ceiling must first clear (candidate diversity demonstrated to reach committed
+    action, per the standing MECH-439 falsifier ladder), such that BOTH of the
+    following hold on the cleared substrate: (a) gap_norm regains genuine
+    cross-seed spread (gap_spread_seeds >= 2, mirroring V3-EXQ-689's own
+    non-vacuity gate), and (b) the PAG freeze-gate shows non-zero engagement
+    under the same substrate (pag_release_count_end > 0 in >=2/3 seeds, mirroring
+    SD-037 axis Phase-3's acceptance gate). Do not queue an experiment against
+    this claim until both (a) and (b) are independently confirmed -- a run on a
+    substrate where either is still pinned at zero self-routes
+    substrate_not_ready_requeue, it is not a verdict on this claim.
+
+    Once both preconditions hold: build the S6 signal path (propagate gap_norm
+    out of _gap_scaled_commit_pick as a control-plane-visible quantity; wire it
+    as an additional, independent input alongside the existing z_harm_a-based
+    trigger into K10's freeze-commit condition and/or K5's control-allocation
+    escalation). Run a 2-arm comparison (gap_norm-informed brake vs. harm-only
+    brake, matched substrate, matched seeds).
+
+    CONFIRMING: the informed arm fires >=1 additional non-degenerate
+    freeze/escalation event per seed on >=2/3 seeds that is attributable to
+    selection conflict (high gap_norm at a tick where z_harm_a alone would not
+    have triggered), AND existing harm-triggered freeze behaviour is unchanged
+    (no regression on the harm-only trigger pathway).
+
+    FALSIFYING: the informed arm shows no additional discriminable events beyond
+    seed noise, OR wiring the signal delays/degrades harm-triggered freeze
+    commitment (the new input interferes with the existing, validated MECH-279
+    commit law).
+  evidence: []
