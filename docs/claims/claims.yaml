@@ -79057,6 +79057,161 @@
     IN-PROGRESS V3 assembly work, not a separate future generation. Still DO
     NOT build YET; v3_pending stays true.
 
+- id: SD-099
+  title: "Defensive-orienting response: a toggleable PAG-analog phasic gate (DefensiveOrientingGate) that arrests locomotion on a sudden, unidentified onset (positive-derivative detector over residue_surprise AND z_harm_s norm, distinct trigger channels from MECH-279's chronic z_harm_a), holds until an identification-confidence accumulator (driven by decay of the triggering channel's excess-over-baseline, not a fixed timer) reaches sufficiency, then releases into a valence-gated approach/withdraw/resume decision expressed as an E3Selector.select() score_bias toward/away from the trigger location. The Sokolov orienting-reflex shape, and the organism-level closure of the observational_review_V3-EXQ-906b Section 4 affect-behaviour temporal-decoupling finding."
+  claim_type: design_decision
+  subject: pag.defensive_orienting_response
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-09"
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-09"
+  depends_on:
+    - MECH-279   # PAG freeze-gate -- sibling, chronic/suffering trigger, disjoint from this SD, NOT modified
+    - MECH-205   # VALENCE_SURPRISE write path -- source of the residue_surprise trigger input
+    - SD-010     # z_harm_s (sensory-discriminative harm) -- the second trigger channel + decision-read channel
+    - SD-011     # harm-stream separation -- distinguishes z_harm_s (phasic, used here) from z_harm_a (chronic, MECH-279's channel)
+    - SD-014     # valence vector / ARC-036 -- decision-read channel context
+    - ARC-030    # benefit terrain -- MECH-117 -- the decision-read channel (evaluate_benefit vs z_harm)
+    - SD-037     # broadcast override regulator -- explicitly DISTINCT override channel, not reused
+    - SD-069     # phasic surprise burst -- sibling non-trainable phasic regulator pattern, different consumer
+  location: docs/architecture/sd_099_defensive_orienting_response.md
+  source:
+    - evidence/planning/observational_review_V3-EXQ-906b_2026-08-09.md
+  functional_restatement: >
+    observational_review_V3-EXQ-906b_2026-08-09.md Section 11b found NO orienting / startle /
+    reorienting mechanism anywhere in ree_core (tree-wide grep for
+    orient|reorient|startle|fright returned nothing). Section 12h then found the naive design
+    implied by 11b/12b -- fire on residue_surprise > p90(0.040) of the overall step distribution
+    -- under-fires on the ground-truth injected events it exists to catch: event-triggered
+    residue_surprise at limb_damage_injected (n=28) is 0.0054, BELOW the 0.0139 global baseline
+    (unreachable by ANY threshold on this channel alone); at external_hazard_injected (n=31) it is
+    0.0239, above baseline but still below the proposed 0.040 cutoff; at
+    world_rule_shift_occurred (n=15) it is 0.0072, below baseline with only a delayed dread/excite
+    rise by t+3. SD-099 resolves this with a two-channel onset detector
+    (residue_surprise for non-nociceptive world-surprise events, z_harm_s norm -- Section 12g's
+    clean-phasic channel, NOT the chronic z_harm_a MECH-279 reads -- for nociceptive events) rather
+    than a single absolute threshold on one channel, and implements all five components of the 11b
+    chain as first-class: trigger, phasic freeze, identification-confidence orienting reflex,
+    freeze-override, and valence-gated action decision.
+  what_would_answer: |
+    Pre-registered in the 906b review itself (Section 13-A): post-build, the built chain's trigger
+    should fire reliably on the ground-truth injected events (limb_damage_injected /
+    external_hazard_injected / world_rule_shift_occurred) that the pre-build baseline could not
+    reliably catch, and the surprise-onset->freeze / post-identification dread->withdraw /
+    excite->approach couplings should move well past the pre-build incidental baselines (12b:
+    P(moved@t+1|spike)=44.3% vs 24.0% unconditional; P(mode-change@t+1|spike)=15.4% vs 11.1%)
+    toward a sharp, deterministic signature -- not merely reproduce the incidental correlation
+    already present without any purpose-built mechanism.
+  implementation_note: >
+    IMPLEMENTED 2026-08-09 (session 906b-defensive-orienting-v3) via /implement-substrate.
+    ree_core/pag/defensive_orienting.py (DefensiveOrientingGate / DefensiveOrientingConfig /
+    DefensiveOrientingOutput) -- non-trainable, pure-scalar-arithmetic gate matching the
+    PAGFreezeGate (MECH-279) pattern; a SEPARATE gate composed via OR with pag_freeze_gate at the
+    agent.py select_action() action-constraint site, so MECH-279's own behaviour is unchanged
+    bit-for-bit. Config: REEConfig.use_defensive_orienting (default False -> gate not instantiated,
+    bit-identical off) + 11 tunables, all present at the dataclass field / from_dims() parameter /
+    from_dims() assignment three sites. Action decision (approach/withdraw/resume) resolved by the
+    AGENT (not the gate) by comparing residue_field.evaluate_benefit(z_world) against
+    z_harm.norm() at the current z_world -- deliberately not the MECH-307 split-surprise channels,
+    which are off by default and would leave the step inert in most configs -- expressed as a
+    per-candidate score_bias via E3Selector.select()'s existing directed-bias hook, composed
+    additively into dacc_score_bias via the same idiom every other agent-level bias contributor
+    already uses; degrades gracefully to inert when candidate world_states are not tracked
+    (SD-003 attribution not wired). A real bug was caught and fixed during the build via direct
+    module-level testing: the rolling onset baselines must be FROZEN while orienting is active
+    (mirrors PAGFreezeGate's own "duration counter only accumulates while inactive" pattern) --
+    without freezing, a sustained non-decaying threat's excess-over-baseline shrinks as the EMA
+    baseline chases it upward, silently "resolving" via baseline creep rather than genuine signal
+    decay, exactly the fixed-timer-in-disguise behaviour 11b step 2/4 rules out. Verified post-fix:
+    a decaying spike resolves in a handful of ticks; a sustained non-decaying elevation never
+    overrides across 200 ticks. Backward compatibility confirmed via a stashed-vs-unstashed A/B
+    on experiments/v3_exq_906b_full_stack_observational_fishtank.py --dry-run (identical
+    PASS/FAIL pattern with and without the change). Full integration smoke test (manual rollout,
+    scratchpad-only script, not committed) confirmed instantiation, trigger, override, and motor
+    arrest all fire without crashing, and the score_bias path degrades gracefully when
+    world_states are absent. MECH-094: simulation_mode=True updates no internal state (baselines,
+    confidence, counters all frozen), mirroring freeze_gate.py exactly. Not a learning module --
+    no nn.Module, no trainable parameters, phased training not applicable. Validation experiment:
+    see MECH-489 what_would_answer; queued via /queue-experiment.
+
+- id: MECH-489
+  title: "Defensive-orienting response: a phasic freeze-arrest -> orient/identify -> epistemic-sufficiency-override -> valence-gated approach/withdraw/resume behavioural chain triggered by a sudden, UNIDENTIFIED onset (positive-derivative spike in unsigned prediction-error surprise and/or sensory-discriminative harm), distinct from MECH-279 (chronic, accumulated-suffering freeze) and from MECH-482/MECH-483 (persistent target-bound epistemic_deficit accumulator and the diffuse orient/survey regime it drives -- the opposite end of the timescale from this PHASIC, transient trigger, which MECH-482 explicitly excludes by definition)."
+  claim_type: mechanism_hypothesis
+  subject: pag.defensive_orienting_response
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-09"
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: "2026-08-09"
+  instantiates: SD-099
+  depends_on:
+    - SD-099
+    - MECH-279   # PAG freeze-gate -- sibling, chronic/suffering trigger. DISTINCT: MECH-279 responds to harm being EXPERIENCED (accumulated z_harm_a); MECH-489 responds to something UNEXPECTED being NOTICED, before it is identified as harm at all.
+    - MECH-395   # pre-approach orienting/surveying -- cue-triggered, need-gated, resolves a vector for an ALREADY-IDENTIFIED cue. DISTINCT: MECH-489 fires on an UNIDENTIFIED stimulus; its own resolution is upstream of anything MECH-395-shaped, not the same mechanism.
+    - MECH-482   # epistemic_deficit accumulator -- persistent, target-bound, explicitly defined AGAINST transient prediction error. DISTINCT: MECH-489's trigger IS exactly the transient/phasic case MECH-482 excludes by definition, and MECH-489's input (residue_surprise) is already computed every step, independent of MECH-482's GAP-A gate -- not blocked by MECH-482's "DO NOT build in V3".
+    - MECH-483   # orient/survey -- diffuse regime driven by MECH-482's accumulator, no specific cue or location, chronic character. DISTINCT: MECH-489's orienting-arrest is CUE-LOCATED (captured trigger z_world) and phasic -- the opposite of MECH-483's diffuse/chronic character.
+    - MECH-205   # VALENCE_SURPRISE write path -- source of the residue_surprise trigger input
+  related_claims:
+    - SD-010
+    - SD-011
+    - SD-014
+    - ARC-030
+    - SD-037
+    - SD-069
+  location: docs/architecture/sd_099_defensive_orienting_response.md
+  source:
+    - evidence/planning/observational_review_V3-EXQ-906b_2026-08-09.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires the two onset channels (residue_surprise, z_harm_s norm)
+    to show non-zero variance in the evaluation run (a run where neither channel ever crosses its
+    onset delta self-routes substrate_not_ready / trigger_never_fired, not a verdict).
+    CONFIRMING signature: ablation ON vs OFF (same seeds, same ground-truth injected-event
+    schedule as observational_review_V3-EXQ-906b) shows (a) the trigger fires reliably on
+    limb_damage_injected / external_hazard_injected / world_rule_shift_occurred -- the specific
+    ground-truth event set Section 12h identified as the pre-build design's failure mode; (b) the
+    ON arm's surprise-onset->freeze and post-identification dread->withdraw / excite->approach
+    couplings move well past the pre-build incidental baselines (12b: P(moved@t+1|spike)=44.3% vs
+    24.0%; P(mode-change@t+1|spike)=15.4% vs 11.1%) toward a sharp, deterministic signature.
+    FALSIFYING signature: the trigger still under-fires on the ground-truth event set despite the
+    two-channel redesign (channel choice was still wrong, not just calibration); OR the ON arm's
+    behaviour-coupling numbers are statistically indistinguishable from the OFF arm's incidental
+    baseline (the mechanism adds a gate but not a genuine coupling); OR identification-confidence
+    resolves on a fixed schedule regardless of whether the triggering signal has genuinely decayed
+    (the freeze is a disguised timer, not epistemically driven -- the exact failure mode the
+    baseline-freeze fix during the build was designed to prevent, so this would indicate a
+    regression or an unforeseen second such bug).
+  notes: >
+    Built 2026-08-09 (session 906b-defensive-orienting-v3) via /implement-substrate, from
+    observational_review_V3-EXQ-906b_2026-08-09.md Sections 11b/11d (design, user-ratified "as
+    ambitious as possible" -- all five components first-class, orienting load-bearing not
+    deferrable), 12h (trigger-calibration risk -- resolved by the two-channel onset design, see
+    SD-099 functional_restatement), 12j (this cross-referencing requirement itself -- the review's
+    own session-land re-verification found MECH-395/482/483 already occupying adjacent territory
+    and required this claim to name and distinguish them explicitly rather than register in
+    isolation, precisely to avoid a future cold session's STOP-CHECK false-positiving on those
+    entries and aborting, or silently duplicating them).
+
+    NOT gated by MECH-482/483's "DO NOT build in V3" -- that gate is scoped to GAP-A (a
+    target-bound, per-candidate uncertainty substrate not yet built), which this claim's trigger
+    signal (residue_surprise, already computed every step) does not depend on. See SD-099 for the
+    full implementation note, trigger derivation, and the baseline-freeze bug found and fixed
+    during the build.
+
+    Post-orient action menu (fight/flight/freeze/fawn, recruit/distress-call) is explicitly
+    DEFERRED (906b review Section 11e) -- needs social/multi-agent substrate that does not exist
+    yet. This claim covers only the solo-organism subset: freeze, orient, and
+    approach/withdraw/resume.
+
 - id: SD-093
   title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."
   claim_type: design_decision
