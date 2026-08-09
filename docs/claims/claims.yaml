@@ -43537,6 +43537,34 @@
     queue V3-EXQ-490L until that entry (or a successor addressing the same
     symptom) lands and clears.
 
+    [2026-08-09 governance, GFLAG-0007 resolution, CORRECTION]: the "Re-checked 2026-08-08"
+    paragraph above is now STALE on two counts. First, the scaffolded-curriculum-hazard-rebalance
+    entry it names was itself found UNWARRANTED and closed the same day (see INV-034/Q-021's own
+    notes): the z_goal-decay symptom it targeted was a C6 measurement-methodology artifact
+    (decay-only P2 mean vs the correct contact-gated run_p2 peak), not a real curriculum/hazard
+    problem -- confirmed fixed by V3-EXQ-866c. Second, and more directly relevant to THIS claim:
+    V3-EXQ-812 (2026-07-24, confirmed-autopsied INVALID_HARNESS, proximity_range exactly 0.0 in
+    every seed/arm) already had its harness-repair successor V3-EXQ-812a run and applied
+    (confirmed failure_autopsy_fresh-20260808-batch_2026-08-08, 2026-08-08 governance cycle) --
+    GFLAG-0007's "nothing has actioned in 15 days" premise is therefore also stale. 812a's fix
+    (candidate_summary_source='e2_world_forward') PARTIALLY worked: 2/3 seeds still show exact
+    zero proximity_range, seed 43 shows a small nonzero value still ~5x below the non-degeneracy
+    floor and essentially identical between ON/OFF arms (not cue-driven). More importantly, 812a
+    exposed a SEPARATE, unconditional degeneracy: mean_mech295_liking_bias_range_mean is exactly
+    0.0 in ALL 6 cells regardless of arm or whether upstream proximity showed any variance -- a
+    second defect point at the downstream bias-computation stage, distinct from the upstream
+    collapsed-candidate-z_world explanation the 490k-era precondition above was written against.
+    This RECONFIRMS the mech295_bias_range_mean>0 precondition remains unmet, but for a
+    partially-different and more specific reason than previously documented. Per 812a's own
+    autopsy (user-confirmed Step 8 disposition, 2026-08-08): HOLD for code-level inspection of
+    mech295_liking_bridge.py's bias-computation function before any further re-queue -- the
+    490g->k->631->812->812a lineage has already cycled "fix one bug, hit another" approximately
+    5 times, and MECH-295 appears in ~20 prior confirmed autopsy files, well past any brake
+    threshold; treat this claim-free diagnostic as brake-territory in spirit even though the
+    mechanical claim-keyed count does not apply (claim_ids=[] on both 812 and 812a). Do NOT queue
+    V3-EXQ-490L (or any 812-lineage successor) until that code-level inspection has happened.
+    epistemic_category stays substrate_ceiling; status stays candidate; no promotion/demotion.
+
     CONFIRMING (primary, narrowed-modulatory reading, once the precondition
     above is met): re-run the V3-EXQ-490k composition -- E3 score_bias
     argmin-change probe as the primary metric; action-class divergence on

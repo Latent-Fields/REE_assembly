@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-09T06:37:22Z`  
+Generated: `2026-08-09T06:43:43Z`  
 Last review: `2026-08-09T06:36:27Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **2** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Unclaimed manifests (PASS/FAIL with no claim tags)
 
@@ -11,6 +11,7 @@ These manifests are on disk with PASS/FAIL but their run_id is absent from `clai
 | Result | Manifest stem | Experiment type | Queue ID | Direction |
 |--------|---------------|-----------------|----------|-----------|
 | FAIL | `v3_exq_906a_full_stack_observational_fishtank_20260809T062526Z_v3` | v3_exq_906a_full_stack_observational_fishtank | ? | non_contributory |
+| FAIL | `zzz_scratch_probe_hazard002_906a_20260809T064139Z_v3` | zzz_scratch_probe_hazard002_906a | ? | non_contributory |
 
 ---
 
