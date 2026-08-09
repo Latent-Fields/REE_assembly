@@ -80366,3 +80366,62 @@
     commitment (the new input interferes with the existing, validated MECH-279
     commit law).
   evidence: []
+- id: GOV-FAILLOC-1
+  title: 'Failure-autopsy failure-location triage: before an experimental observation (a scored-criterion FAIL, or an unscored organism-level observation in a claim-free diagnostic) is described as evidence that REE itself failed, it must be explicitly classified against four non-exclusive failure-location buckets -- REE FAILED / THE MECHANISM FAILED / THE MEASURES FAILED / THE ENVIRONMENT FAILED -- and a REE-failed verdict may be reached only once mechanism instantiation, measurement adequacy, and environmental opportunity have each been separately established (or explicitly could not be, in which case the verdict is MIXED/uncertain, not REE-failed).'
+  claim_type: governance_rule
+  subject: governance.epistemics.failure_location_triage
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-09'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-09'
+  source_thought: docs/thoughts/2026-08-09_failure_autopsy_failure_location_buckets.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-DIAG-1
+  - GOV-CEIL-1
+  related_claims:
+  - GOV-DIAG-1
+  - GOV-CEIL-1
+  - GOV-HELDOUT-1
+  source:
+  - docs/thoughts/2026-08-09_failure_autopsy_failure_location_buckets.md
+  - evidence/planning/thought_intake_2026-08-09_failure_autopsy_failure_location_buckets.md
+  - evidence/planning/failure_autopsy_V3-EXQ-906a_894b_2026-08-09.md
+  - evidence/planning/observational_review_V3-EXQ-906b_2026-08-09.md
+  functional_restatement: >
+    Process/governance rule extending the existing failure-autopsy demotion gate
+    (`.claude/skills/failure-autopsy/SKILL.md` Step 7: "tested fairly + biology
+    supports the mechanism + still fails -> demotion") from claim-layer demotion
+    to ANY organism-level "REE failed" read, including claim-free diagnostic
+    showcases (claim_ids: []) that the existing claim-alignment-framed four-layer
+    table does not cleanly reach. Motivated by the V3-EXQ-906a autopsy
+    (2026-08-09), where an organism-level competence read was initially at risk
+    of being charged to REE before a code-level environment defect (ambient
+    proximity-harm radius exceeding the agent's sensory radius -- harm effective
+    before actionable perceptual access to its cause) was found. NON-EXCLUSIVE:
+    a single observation may tick more than one bucket (MIXED), matching the
+    existing skill's "almost every FAIL is contributory" posture rather than
+    forcing a single cause.
+  notes: >
+    Registered from thought-intake processing, 2026-08-09. Two sessions
+    independently converged on the identical four-bucket vocabulary
+    (REE FAILED / MECHANISM FAILED / MEASURES FAILED / ENVIRONMENT FAILED) the
+    same day from the same motivating cluster: this thought (~08:00Z, prompted
+    by the V3-EXQ-906a autopsy) and
+    evidence/planning/observational_review_V3-EXQ-906b_2026-08-09.md Section 7 /
+    12e (~17:17Z-18:06Z, applied across 10+ organism-level observations,
+    concluding "No observation is cleanly and solely 'REE FAILED.'"), without
+    either session citing the other -- unusually strong practical corroboration
+    for an as-yet-unformalized methodology proposal. NOT YET APPLIED to the
+    failure-autopsy SKILL.md itself: per CLAUDE.md's held-out-check discipline
+    (a standing-rule change should be validated against >=3 historical cases
+    where old and new wording actually differ before shipping), formalizing this
+    into Step 5/7 of the skill is a follow-on, not done in this intake session.
+    Full novelty analysis: evidence/planning/thought_intake_2026-08-09_failure_autopsy_failure_location_buckets.md.

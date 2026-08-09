@@ -1,7 +1,9 @@
 # Thought: Failure autopsy needs explicit failure-location buckets
 
-**Date:** 2026-08-09  
-**Status:** thought intake / methodology proposal
+**Date:** 2026-08-09
+**Status:** processed
+**Intake:** evidence/planning/thought_intake_2026-08-09_failure_autopsy_failure_location_buckets.md
+**Registered:** GOV-FAILLOC-1 (candidate, governance_rule)
 
 Recent inspection of V3-EXQ-906 suggests that REE failure autopsy does not yet discriminate sharply enough between fundamentally different meanings of experimental failure.
 
