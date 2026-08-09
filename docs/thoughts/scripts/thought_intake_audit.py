@@ -48,16 +48,49 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from thought_sweep import _extract_processed_links, _extract_status  # noqa: E402
 
-CLAIM_ID_RE = re.compile(r"\b((?:ARC|MECH|INV|Q|SD)-[0-9]{2,4}[a-z]?)\b")
 CANDIDATE_HEADER_RE = re.compile(r"(?im)^(#{1,4})\s*.*candidate claims?.*$")
 NOT_REGISTERED_RE = re.compile(
     r"(?i)not\s+(?:yet\s+)?registered|for future (?:session|registration)|not\s+registered"
 )
 
 
+# Claim IDs are PREFIX-NUMBER (e.g. MECH-063, IMPL-001, SENT-0) for every
+# claim_type except governance_rule, whose IDs are PREFIX-WORD-NUMBER (e.g.
+# GOV-FAILLOC-1, GOV-HELDOUT-1) -- confirmed by scanning every `- id:` line in
+# claims.yaml (997/997 match this shape; 24/24 GOV ids need the middle word
+# segment, 0 non-GOV ids have one). The middle segment is optional so both
+# shapes share one pattern.
+_ID_SHAPE_SUFFIX = r"(?:[A-Za-z][A-Za-z0-9]*-)?[0-9]{1,4}[a-z]?"
+
+
 def _load_claim_ids(claims_yaml: Path) -> set[str]:
     text = claims_yaml.read_text(encoding="utf-8")
-    return set(re.findall(r"^- id:\s*([A-Za-z]+-[0-9]+[a-z]?)", text, re.M))
+    return set(re.findall(rf"^- id:\s*([A-Za-z]+-{_ID_SHAPE_SUFFIX})", text, re.M))
+
+
+def _build_claim_id_re(claim_ids: set[str]) -> re.Pattern[str]:
+    """Build the candidate-ID extraction regex from claims.yaml's OWN prefixes.
+
+    A hardcoded prefix list (e.g. ARC|MECH|INV|Q|SD) silently drifts as new
+    claim_type prefixes (GOV, IMPL, EXT, RA, SENT, ...) get registered --
+    confirmed 2026-08-09: GOV-FAILLOC-1 was correctly registered in
+    claims.yaml but the hardcoded regex never extracted it from a Stage 2
+    "Candidate claims" section, so a fully-registered file misclassified as
+    "no_ids_named" (needs a human read) instead of "all_registered". Deriving
+    the prefix set from the same claim_ids this function's caller already
+    loaded means a newly-introduced prefix is recognized the moment its first
+    claim lands in claims.yaml, with no code change required.
+
+    Sorted longest-first so no prefix can shadow a longer one sharing its
+    start (regex alternation takes the first alternative that matches).
+    """
+    prefixes = sorted({cid.split("-", 1)[0] for cid in claim_ids}, key=len, reverse=True)
+    if not prefixes:
+        # No claim IDs loaded (empty/malformed claims.yaml) -- match nothing
+        # rather than silently falling back to a stale hardcoded list.
+        return re.compile(r"(?!)")
+    alternation = "|".join(re.escape(p) for p in prefixes)
+    return re.compile(rf"\b((?:{alternation})-{_ID_SHAPE_SUFFIX})\b")
 
 
 def _candidate_section(text: str) -> str | None:
@@ -98,7 +131,9 @@ class Stage2Record:
         }
 
 
-def _audit_stage1(thoughts_root: Path, claim_ids: set[str]) -> list[Stage1Finding]:
+def _audit_stage1(
+    thoughts_root: Path, claim_ids: set[str], claim_id_re: re.Pattern[str]
+) -> list[Stage1Finding]:
     findings: list[Stage1Finding] = []
     excluded = {"README.md", "SWEEP_REPORT.md", "thought_sweep.v1.json"}
     for path in sorted(thoughts_root.glob("*.md")):
@@ -111,7 +146,7 @@ def _audit_stage1(thoughts_root: Path, claim_ids: set[str]) -> list[Stage1Findin
         links = _extract_processed_links(lines)
         broken: list[str] = []
         for link in links:
-            for cid in CLAIM_ID_RE.findall(link):
+            for cid in claim_id_re.findall(link):
                 if cid not in claim_ids:
                     broken.append(cid)
         if broken:
@@ -119,12 +154,14 @@ def _audit_stage1(thoughts_root: Path, claim_ids: set[str]) -> list[Stage1Findin
     return findings
 
 
-def _classify_stage2(text: str, claim_ids: set[str]) -> tuple[str, list[str], list[str]]:
+def _classify_stage2(
+    text: str, claim_ids: set[str], claim_id_re: re.Pattern[str]
+) -> tuple[str, list[str], list[str]]:
     section = _candidate_section(text)
     if section is None:
         return "no_candidate_section", [], []
 
-    ids_named = sorted(set(CLAIM_ID_RE.findall(section)))
+    ids_named = sorted(set(claim_id_re.findall(section)))
     explicit_not_registered = bool(NOT_REGISTERED_RE.search(section))
 
     if not ids_named:
@@ -140,11 +177,13 @@ def _classify_stage2(text: str, claim_ids: set[str]) -> tuple[str, list[str], li
     return "partially_registered", ids_named, missing
 
 
-def _audit_stage2(planning_root: Path, claim_ids: set[str]) -> list[Stage2Record]:
+def _audit_stage2(
+    planning_root: Path, claim_ids: set[str], claim_id_re: re.Pattern[str]
+) -> list[Stage2Record]:
     records: list[Stage2Record] = []
     for path in sorted(planning_root.glob("thought_intake_*.md")):
         text = path.read_text(encoding="utf-8", errors="replace")
-        classification, ids_named, missing = _classify_stage2(text, claim_ids)
+        classification, ids_named, missing = _classify_stage2(text, claim_ids, claim_id_re)
         records.append(
             Stage2Record(
                 file=path.name,
@@ -294,8 +333,9 @@ def main() -> None:
     output_md = args.output_md.resolve() if args.output_md else thoughts_root / "INTAKE_AUDIT_REPORT.md"
 
     claim_ids = _load_claim_ids(claims_yaml)
-    stage1 = _audit_stage1(thoughts_root, claim_ids)
-    stage2 = _audit_stage2(planning_root, claim_ids)
+    claim_id_re = _build_claim_id_re(claim_ids)
+    stage1 = _audit_stage1(thoughts_root, claim_ids, claim_id_re)
+    stage2 = _audit_stage2(planning_root, claim_ids, claim_id_re)
     generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     _write_json(output_json, stage1, stage2, generated_at)
