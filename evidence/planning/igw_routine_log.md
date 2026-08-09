@@ -1557,3 +1557,4 @@ One line per hourly tick. ASCII only.
 2026-08-09T09:35:04Z no eligible item (skipped 232): IGW-20260809-001:skill /governance not allowed; IGW-20260809-002:skill /governance not allowed; IGW-20260809-004:skill /governance not allowed
 2026-08-09T10:35:47Z workset committed (regen -- 232 items, 21 ready, 0 in flight)
 2026-08-09T10:35:31Z no eligible item (skipped 232): IGW-20260809-001:skill /governance not allowed; IGW-20260809-002:skill /governance not allowed; IGW-20260809-004:skill /governance not allowed
+2026-08-09T11:36:01Z no eligible item (skipped 232): IGW-20260809-001:skill /governance not allowed; IGW-20260809-002:skill /governance not allowed; IGW-20260809-004:skill /governance not allowed
