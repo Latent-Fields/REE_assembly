@@ -271,6 +271,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0020",
+      "claim_ids": [
+        "MECH-100"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "MECH-100 is status=stable, but all four of its supporting experimental runs are dated 2026-03-18/20 (v3_exq_020_event_contrastive x2, v3_exq_022_combined_contrastive_lstsq x2) -- roughly four months BEFORE SD-070 landed on 2026-07-18, and SD-070's own entry documents the P0 those runs were gathered under as collapsing z_world to participation_ratio ~1.06 at world_dim=128 (untrained 9.21), naming the SD-009 event-contrastive target itself as the first of three faults driving it (transition_type is a property of the transition while z_world is a static single-frame encoding; an MLP-128 probe on raw world_obs scores at or below chance for that label). V3-EXQ-897 (2026-08-08) is the first re-measurement under the fixed substrate and reads the other way: decodability above floor in BOTH arms with OFF >= ON on 3/3 seeds (deltas -0.025/-0.010/-0.005), sign-consistent but statistically imprecise, hence direction=unknown not weakens, and MECH-100 was not tagged by that run. Also note all four runs carry outcome=FAIL with direction=supports in claim_evidence.v1.json (pass_runs=0, fail_runs=4, one annotated 'direction/status mismatch'). needs_review=true and a full evidence_quality_note have been applied; NO status change was made, deliberately -- a stable claim is not demoted outside a governance cycle. Governance's call: leave stable with the caveat, apply a candidate-stale flag per the 2026-07-18 channel-mismatch doc's option (B), or queue a re-verification of the EXQ-020/022 design under the SD-070 recipe as the discriminator. Working: evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md",
+      "raised_by_session": "metaworker-chip-20260809-sd009-897-followon",
+      "raised_at": "2026-08-09T07:16:57Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
