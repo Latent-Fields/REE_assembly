@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "MECH-143"
+  ],
+  "source": {
+    "title": "Place field assembly distribution encodes preferred locations",
+    "authors": [
+      "Omar Mamad",
+      "Lars Stumpp",
+      "Harold M McNamara",
+      "Charu Ramakrishnan",
+      "Karl Deisseroth",
+      "Richard B Reilly",
+      "Marian Tsanov"
+    ],
+    "year": 2017,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.2002365"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "Strong source (PLoS Biology; tetrode recording combined with optogenetic VTA manipulation, so causal rather than merely correlational). Discounted on mapping_fidelity (0.55) because the manipulation is reward-driven PREFERENCE learning over locations, not value change at a fixed goal -- adjacent to MECH-143's design rather than identical to it. Net 0.60.",
+  "failure_signatures": [
+    "CA1 place fields cluster toward rewarded locations, and the degree of clustering correlates with the animal's behavioural navigation preference -- the dorsal map's geometry is not independent of experienced value.",
+    "The redistribution is causally driven by ventral tegmental dopaminergic activity, established by optogenetic manipulation, so this is a mechanism for writing value into the dorsal map rather than an incidental correlation.",
+    "The authors conclude explicitly that hippocampal neurons store concurrent context reward value, which is the direct negation of a value-free dorsal map."
+  ],
+  "tags": [
+    "mech-143",
+    "arc-007",
+    "dorsal_ca1",
+    "place_fields",
+    "reward",
+    "dopamine",
+    "vta",
+    "optogenetics"
+  ],
+  "mapping": {
+    "source_claim_statement": "The spatial distribution of CA1 place fields shifts toward rewarded locations in proportion to behavioural preference for those locations, and this experience-dependent redistribution is directed by VTA dopaminergic activity; hippocampal neurons therefore store context reward value alongside spatial structure.",
+    "ree_translation": "Direct pressure on MECH-143 and, through it, on ARC-007. If the dorsal map's field distribution is itself shaped by value, then the residue-field terrain R(x,t) that the trajectory proposal module reads is not a value-neutral substrate handed to it from elsewhere -- value has already been written into the geometry, by a dopaminergic teaching signal. That is compatible with ARC-007's letter (the proposer still computes no NEW value at plan time) but undermines its spirit, which treats the terrain as value-free and the proposer as a pure navigator over it.",
+    "mapping_caveat": "The manipulation is where reward IS, not what a fixed goal is WORTH -- so this does not directly contradict Duvelle et al.'s value-at-constant-location result, and the two can coexist. The distinction is easy to lose and is the main transfer risk here. Rodent CA1 tetrode data; no analogue of REE's planning module is tested, and the dopaminergic write mechanism has no implemented counterpart in the V3 substrate.",
+    "source_context": "Rats, tetrode recording in CA1 during reward-driven place-preference learning, with optogenetic control of VTA dopaminergic neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Causal optogenetics lifts source_quality; mapping_fidelity held at 0.55 because reward-LOCATION learning is not the value-at-fixed-location manipulation MECH-143 asserts."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_143",
+  "entry_id": "2026-08-09_mech_143_place_field_clustering_reward_mamad2017",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}

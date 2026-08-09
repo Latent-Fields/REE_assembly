@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "MECH-143"
+  ],
+  "source": {
+    "title": "Emotional shaping of spatial encoding along the dorsal ventral axis of the hippocampus",
+    "authors": [
+      "Azul Silva",
+      "Gabrielle Girardeau"
+    ],
+    "year": 2026,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2026.1888312"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "Recent, well-scoped mini-review by a group whose primary work is in this exact area, synthesising the dorsoventral literature MECH-143 and MECH-144 jointly partition. Source quality 0.70 -- a review, so secondary, and Frontiers rather than a top-tier venue. Mapping fidelity 0.60: it surveys the dorsal valence literature broadly rather than isolating the value-at-fixed-location manipulation MECH-143 actually asserts. Net 0.58. NOTE: the same source is assessed separately against MECH-144, where its direction is 'mixed' -- see the paired entry in targeted_review_connectome_mech_144.",
+  "failure_signatures": [
+    "The review's own summary position is that dorsal hippocampal place cells remap in response to aversive and rewarding stimuli and thereby embed valence-related information within a spatially anchored framework -- the direct contrary of a value-free dorsal map.",
+    "Aversive events such as footshock or predator odour induce dorsal remapping with NO physical change to the environment, so dorsal map stability cannot be attributed to environmental constancy.",
+    "Place fields concentrate around emotionally salient regions (both appetitive and aversive), described in the review as goal-directed remapping.",
+    "A subset of dorsal neurons is selectively activated at reward sites regardless of spatial position ('reward cells'), encoding positive valence independently of spatial context within the dorsal compartment itself."
+  ],
+  "tags": [
+    "mech-143",
+    "mech-144",
+    "arc-007",
+    "mech-073",
+    "dorsoventral_axis",
+    "dorsal_hippocampus",
+    "valence",
+    "remapping",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "The dorsal hippocampus maintains a high-precision spatial map that nonetheless incorporates the locations of positive and negative events; dorsal place cells remap in response to aversive and rewarding stimuli, embedding valence-related information within a spatially anchored framework, while the ventral hippocampus carries coarser spatial coding with far stronger emotional modulation.",
+    "ree_translation": "The dorsal half of REE's Q-020 Path A resolution does not hold in the strong form MECH-143 states it. The review's synthesis is that the dorsal compartment embeds valence in its map rather than excluding it, which means the dorsal/ventral split cannot be drawn as value-free/value-laden. The defensible version of the split is quantitative, not categorical: dorsal carries valence at high spatial precision and low weight, ventral at low spatial precision and high weight. ARC-007's no-new-value-computation constraint has to be re-derived on that gradient rather than inherited from a clean dissociation.",
+    "mapping_caveat": "A mini-review, so every finding cited here is second-hand and the primary sources have not been independently assessed in this entry -- weight it as synthesis, not as data. It also does not isolate the specific manipulation MECH-143 asserts (value varied at a constant goal location), so it does not directly refute Duvelle et al.; it refutes the broader generalisation REE drew FROM Duvelle et al. Rodent literature throughout, with the primate work MECH-144 leans on not covered.",
+    "source_context": "Mini-review synthesising rodent electrophysiology, calcium imaging and optogenetics on spatial and emotional coding across the hippocampal dorsoventral axis."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Secondary source, so source_quality is capped below the primary papers in this directory despite the review being recent and directly on-topic."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_143",
+  "entry_id": "2026-08-09_mech_143_dorsoventral_valence_coding_silva2026",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}

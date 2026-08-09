@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-143"
+  ],
+  "source": {
+    "title": "Reward-tethered place cells support flexible magnitude coding and remapping in the hippocampus",
+    "authors": [
+      "Nicola Masala",
+      "Margaret M Donahue",
+      "Brittney L Boublil",
+      "Gimarie Irizarry Martinez",
+      "Habiba Abouelatta",
+      "Kylee B Miller",
+      "Marta Sabariego",
+      "Laura A Ewell"
+    ],
+    "year": 2026,
+    "venue": "bioRxiv (preprint)",
+    "doi": "10.64898/2026.05.15.725501",
+    "url": "https://doi.org/10.64898/2026.05.15.725501"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Closest design match in the corpus to the manipulation MECH-143 actually asserts -- reward VALUE changed while goal LOCATION is held constant -- so mapping_fidelity is weighted heavily (0.85). Discounted for preprint status (not yet peer reviewed) rather than for method, which is strong (longitudinal calcium imaging of CA1 across a reward downshift). Net 0.62: high evidential relevance, provisional source standing.",
+  "failure_signatures": [
+    "A dedicated subpopulation of dorsal CA1 place cells -- 'reward-tethered place cells' -- binds spatial context to reward magnitude and remaps selectively when reward value is reduced at an unchanged location, so the blanket statement that dorsal CA1 place cells are insensitive to goal value is false at the subpopulation level.",
+    "CA1 population event rates are elevated at high-value locations and equalize when reward is downshifted, which is a value-dependent change in the dorsal representation with no accompanying change in the physical environment.",
+    "The value-driven remapping PRECEDES the behavioural adjustment to the downshift, so it cannot be dismissed as a downstream read-out of changed behaviour or changed occupancy."
+  ],
+  "tags": [
+    "mech-143",
+    "arc-007",
+    "dorsal_ca1",
+    "place_cells",
+    "reward_magnitude",
+    "remapping",
+    "preprint"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dorsal CA1 encodes reward magnitude through elevated event rates at high-value locations; a specialised 'reward-tethered' place-cell subpopulation binds spatial context to reward magnitude and remaps rapidly on reward reduction, while the broader spatial map remains intact.",
+    "ree_translation": "Splits MECH-143 into two separable assertions. The part REE actually needs for ARC-007 -- that the navigable terrain geometry over which the trajectory proposal module plans is NOT recomputed when goal value changes -- survives ('the broader spatial map remains intact'). The stronger part, that dorsal CA1 carries no value signal at all, does not: a tagged subpopulation does update. In REE terms this looks less like a value-free map and more like a stable R(x,t) terrain carrying a sparse, separable value annotation that can be rewritten without redrawing the terrain.",
+    "mapping_caveat": "A preprint, so the result has not survived peer review and should not on its own move MECH-143's status. It is also mouse dorsal CA1 under an appetitive downshift; MECH-143 is a claim about a proposal module in an artificial architecture, and the inference that 'map intact' equals 'no new value computation during planning' is REE's reading, not the authors'. The authors explicitly frame the remapping as updating an internal model, which is closer to value computation than ARC-007's constraint allows.",
+    "source_context": "Mice, freely behaving; longitudinal single-cell calcium imaging of hippocampal CA1 across an unexpected reward-magnitude reduction."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity dominates -- this is the decisive experimental design for MECH-143. source_quality capped at 0.60 solely for preprint status."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_143",
+  "entry_id": "2026-08-09_mech_143_reward_tethered_place_cells_masala2026",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}

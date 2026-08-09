@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "MECH-144"
+  ],
+  "source": {
+    "title": "Emotional shaping of spatial encoding along the dorsal ventral axis of the hippocampus",
+    "authors": [
+      "Azul Silva",
+      "Gabrielle Girardeau"
+    ],
+    "year": 2026,
+    "venue": "Frontiers in Systems Neuroscience",
+    "doi": "10.3389/fnsys.2026.1888312"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Directly on-topic recent synthesis of exactly the ventral valence literature MECH-144 cites. Mapping fidelity raised to 0.70 (higher than the paired MECH-143 entry) because the review addresses ventral valence coding head-on. Direction is 'mixed' rather than 'supports' on a specific structural point: the review reports that ventral anxiety cells show MINIMAL OVERLAP with classical place cells, which supports the claim's first half (ventral valence encoding exists) while cutting against its second half (valence intrinsic to MAP GEOMETRY rather than externally tagged). Net 0.62. Paired entry assessing the same source against MECH-143 is in targeted_review_connectome_mech_143, direction 'weakens'.",
+  "failure_signatures": [
+    "Ventral anxiety-related neurons show minimal overlap with classical place cells, and the review reads this as the ventral hippocampus generalising across anxiogenic situations INDEPENDENTLY of their specific locations -- which is valence carried by a separate population, not valence embedded in map geometry.",
+    "The review cites recent work showing ventral populations maintain stable representations of a stimulus even when its associated valence is REVERSED, explicitly described as challenging the valence-centric view of ventral coding in favour of identity-and-salience coding.",
+    "Ventral valence effects are substantially carried by projection-defined pathways (lateral hypothalamus, medial prefrontal cortex, nucleus accumbens shell, basolateral amygdala) rather than by intrinsic map structure, so the locus of valence may be the output routing rather than the map."
+  ],
+  "tags": [
+    "mech-144",
+    "mech-073",
+    "arc-007",
+    "ventral_hippocampus",
+    "ventral_ca1",
+    "anxiety_cells",
+    "valence",
+    "salience",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "The ventral hippocampus contains anxiety cells that fire consistently in anxiogenic locations and scale monotonically with environmental anxiety level; its place cells remap more than dorsal ones when contextual emotional valence changes; but anxiety cells overlap minimally with place cells, and recent work finds ventral populations coding stimulus identity and salience stably across valence reversal.",
+    "ree_translation": "Splits MECH-144 the way its paired entry splits MECH-143. The existence half -- ventral CA1 carries spatially organised valence signals usable as a prior over R(x,t) -- is well supported. The geometric half -- that valence is INTRINSIC to the map rather than externally tagged onto it -- is where the review pushes back, because the cells doing the valence work are largely not the cells doing the spatial work. For REE this matters concretely: an intrinsic-geometry reading licenses reading valence straight off R(x,t), whereas a separate-population reading requires a distinct valence channel that is bound to location only loosely.",
+    "mapping_caveat": "A mini-review, so secondary throughout, and rodent-only -- the primate abstract-value-map evidence MECH-144 leans on (Knudsen & Wallis) is outside its scope, so this entry cannot speak to that half of the claim at all. The salience-not-valence challenge it reports is itself second-hand from a single recent study and should not be treated as settled. 'Minimal overlap' is also a quantitative statement the review does not put a number on here.",
+    "source_context": "Mini-review synthesising rodent electrophysiology, calcium imaging and optogenetics on spatial and emotional coding across the hippocampal dorsoventral axis."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity higher than the paired MECH-143 entry because the ventral valence literature is this review's primary subject rather than its background."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_144",
+  "entry_id": "2026-08-09_mech_144_dorsoventral_valence_coding_silva2026",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}

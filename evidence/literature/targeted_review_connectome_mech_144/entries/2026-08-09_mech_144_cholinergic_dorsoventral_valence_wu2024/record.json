@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-144"
+  ],
+  "source": {
+    "title": "Distinct septo-hippocampal cholinergic projections separately mediate stress-induced emotional and cognitive deficits",
+    "authors": [
+      "Jian-Lin Wu",
+      "Zi-Ming Li",
+      "Hao Chen",
+      "Wen-Jun Chen",
+      "Neng-Yuan Hu",
+      "Shi-Yang Jin",
+      "Xiao-Wen Li",
+      "Yi-Hua Chen",
+      "Jian-Ming Yang",
+      "Tian-Ming Gao"
+    ],
+    "year": 2024,
+    "venue": "Science Advances",
+    "doi": "10.1126/sciadv.ado1508"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Strong primary source (Science Advances; converging anatomy, electrophysiology, transcriptomics and chemogenetics, with a pharmacological rescue). Confidence is nonetheless held below 0.5 because mapping_fidelity is genuinely poor (0.35): the paper demonstrates a dorsoventral valence dissociation in cholinergic INPUT and measures no spatial coding at all, so it cannot bear on whether valence is intrinsic to ventral map geometry. Included as corroboration of the dorsoventral functional split that MECH-143/MECH-144 jointly presuppose, not as evidence for MECH-144's geometric content.",
+  "failure_signatures": [
+    "The dorsoventral valence dissociation demonstrated here is carried by differential cholinergic INPUT to the two poles, not by any intrinsic property of hippocampal map geometry -- so this evidence is equally compatible with valence being externally tagged onto the ventral map, which is the reading MECH-144 rejects.",
+    "No spatial coding is measured anywhere in the study, so it cannot discriminate 'spatially organized valence encoding' from valence encoding that is merely located in a spatial structure."
+  ],
+  "tags": [
+    "mech-144",
+    "mech-073",
+    "ventral_hippocampus",
+    "dorsoventral_axis",
+    "acetylcholine",
+    "valence",
+    "stress",
+    "anxiety"
+  ],
+  "mapping": {
+    "source_claim_statement": "Two distinct basal forebrain cholinergic subpopulations project to dorsal versus ventral hippocampus with different input organisation, electrophysiology and transcriptomics, and different responses to positive and negative valence stimuli; the ventral-projecting population is critical for emotional modulation and the dorsal-projecting one for cognitive modulation, and chronic stress enhances the ventral while suppressing the dorsal projection.",
+    "ree_translation": "Independent corroboration -- from neuromodulatory input organisation rather than from hippocampal recording -- that the dorsoventral axis is functionally partitioned along a cognitive/emotional line, which is the shared presupposition of MECH-143 and MECH-144. It also shows the partition is dynamically reweightable rather than fixed: chronic stress shifts the balance toward the ventral/emotional pole and chemogenetic rebalancing reverses the behavioural phenotype. For REE that suggests any dorsal/ventral weighting over R(x,t) should be a state-dependent parameter rather than a constant.",
+    "mapping_caveat": "This is the weakest entry in either directory and is recorded as such. It measures cholinergic INPUT and no spatial coding whatsoever, so it cannot distinguish valence that is intrinsic to the ventral map from valence that is tagged onto it -- the exact distinction MECH-144 turns on. It supports the dorsoventral dissociation that frames the claim, not the claim's own content. Mouse chronic-stress model; the stress manipulation adds a further transfer step, since MECH-144 is not a claim about stressed animals.",
+    "source_context": "Mice; basal forebrain cholinergic projections to dorsal versus ventral hippocampus characterised by tracing, electrophysiology, transcriptomics and chemogenetics, under a chronic stress model."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.45,
+    "notes": "Deliberately low aggregate despite high source quality -- mapping_fidelity is weighted heavily here because MECH-144 is an architectural claim about where valence LIVES, which this design cannot address."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_144",
+  "entry_id": "2026-08-09_mech_144_cholinergic_dorsoventral_valence_wu2024",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}

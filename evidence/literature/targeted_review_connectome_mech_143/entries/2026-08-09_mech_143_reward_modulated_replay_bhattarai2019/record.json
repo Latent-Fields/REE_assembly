@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "MECH-143"
+  ],
+  "source": {
+    "title": "Distinct effects of reward and navigation history on hippocampal forward and reverse replays",
+    "authors": [
+      "Baburam Bhattarai",
+      "Jong Won Lee",
+      "Min Whan Jung"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1912533117"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Strong source (PNAS, rat tetrode recording, well-controlled dissociation of reward from navigation history). Mapping fidelity is the limiting term (0.50): the value signal is found in REPLAY CONTENT, a different variable from the place-field geometry MECH-143 asserts, so the paper neither confirms nor refutes the claim on its own terms -- it relocates where value lives. Net 0.52, deliberately below the 0.5-0.79 band's midpoint.",
+  "failure_signatures": [
+    "Reward selectively increases the fidelity of forward replays for high-value trajectories, so value information demonstrably enters dorsal hippocampal sequence content even where place-field geometry is unchanged.",
+    "The authors propose explicitly that hippocampal replay constructs a map of potential trajectories AND their associated values -- a 'value map' -- which is incompatible with reading the dorsal hippocampus as a wholly value-free structure.",
+    "MECH-143's no-new-value-computation constraint is therefore only defensible if stated at the level of place-field geometry; stated at the level of dorsal hippocampal output it is false."
+  ],
+  "tags": [
+    "mech-143",
+    "arc-007",
+    "replay",
+    "forward_replay",
+    "reverse_replay",
+    "reward",
+    "value_map"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reward enhances the rate of reverse replay and the fidelity of forward replay for trajectories heading toward rewarding locations, with preferential reactivation of upcoming over already-rewarded trajectories; the authors propose that forward and reverse replays jointly construct a map of potential navigation trajectories and their associated values.",
+    "ree_translation": "Cuts across MECH-143 rather than along it. The claim is about place-field geometry; this paper measures replay content. Both can be true: fields stable, replay value-weighted. For REE that is a substantive finding rather than a technicality, because ARC-007's trajectory PROPOSER is functionally much closer to forward replay than to the static place map -- so a value signal in forward replay lands on exactly the component ARC-007 wants to keep value-free. The claim as worded is not refuted; the architectural constraint it was registered to support is.",
+    "mapping_caveat": "The identification of ARC-007's proposal module with hippocampal forward replay is REE's architectural analogy, not an empirical result -- and it is the entire load-bearing step here. If that analogy is rejected, this paper says little about MECH-143 either way. Rat data, awake replay during a spatial sequence memory task; no aversive condition, so nothing here speaks to the negative half of the residue field.",
+    "source_context": "Rats trained on a spatial sequence memory task; tetrode recording of awake forward and reverse replay events, with reward and navigation history dissociated."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Deliberate split: excellent evidence about a variable adjacent to the one the claim names. transfer_risk raised to 0.40 because the proposer-equals-forward-replay identification is an unvalidated architectural analogy."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_143",
+  "entry_id": "2026-08-09_mech_143_reward_modulated_replay_bhattarai2019",
+  "timestamp_utc": "2026-08-09T06:05:15Z",
+  "summary_path": "summary.md"
+}
