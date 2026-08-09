@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-08T20:44:03Z`  
+Generated: `2026-08-09T05:12:04Z`  
 Last review: `2026-08-08T08:32:29Z`  
-Pending: **14** item(s) -- 5 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 7 legacy reviewed-FAIL(s) grandfathered (awaiting autopsy); 1 run(s) with a DEAD z_goal stream
+Pending: **23** item(s) -- 7 PASS, 15 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy; 1 run(s) with a DEAD z_goal stream
 
 ## FAIL (action required)
 
@@ -16,6 +16,13 @@ Pending: **14** item(s) -- 5 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3` | 2026-08-08T18:59 | (no claim tags) | — |
 | `v3_exq_878a_mech332_commitment_calibration_20260808T193223Z_v3` | 2026-08-08T19:32 | MECH-332, SD-021, SD-032c | — |
 | `v3_exq_866c_inv034_q021_goal_maintenance_agency_onboarded_20260808T195345Z_v3` | 2026-08-08T19:53 | INV-034, Q-021 | — |
+| `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | 2026-08-08T21:48 | (no claim tags) | — |
+| `v3_exq_903_mech075_ventral_vta_rpe_probe_20260808T222748Z_v3` | 2026-08-08T22:27 | MECH-075 | — |
+| `v3_exq_603r_instrumental_avoidance_combined_fix_retest_20260808T230931Z_v3` | 2026-08-08T23:09 | MECH-357 | — |
+| `v3_exq_905_mech075_dorsal_lc_arousal_probe_20260808T232406Z_v3` | 2026-08-08T23:24 | MECH-075 | — |
+| `v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3` | 2026-08-09T00:21 | SD-048 | — |
+| `v3_exq_190a_mech022_hypothesis_injection_probe_wellpowered_20260809T002451Z_v3` | 2026-08-09T00:24 | MECH-022 | — |
+| `v3_exq_228b_arc032_theta_bypass_onboarded_20260809T030541Z_v3` | 2026-08-09T03:05 | ARC-032 | — |
 
 ## PASS (verify & close)
 
@@ -26,6 +33,8 @@ Pending: **14** item(s) -- 5 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_896_mech322_replay_confirmatory_evidence_20260808T170954Z_v3` | 2026-08-08T17:09 | MECH-322 |
 | `v3_exq_703a_mech276_scientist_attribution_readiness_20260808T191524Z_v3` | 2026-08-08T19:15 | (no claim tags) |
 | `v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3` | 2026-08-08T20:11 | ARC-070 |
+| `v3_exq_244b_mech165_replay_diversity_validation_v3` | 2026-08-09T00:20 | MECH-165 |
+| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | 2026-08-09T00:38 | (no claim tags) |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -34,6 +43,17 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
 | `v3_exq_812a_mech295_cue_authority_sd054_20260808T185904Z_v3` | FAIL | INVALID_HARNESS | **precondition_unmet** |
+| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live | **vacuous_pass** |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_899_arc030_mech307_g0_readiness_20260808T214833Z_v3` | FAIL | readiness_fail_curriculum_gate_blocks_retest |
+| `v3_exq_244b_mech165_replay_diversity_validation_v3` | PASS | balanced_replay_improves_retention |
+| `v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3` | PASS | full_stack_observational_showcase_live |
 
 ## Dead z_goal stream (interpret before trusting a z_goal readout)
 

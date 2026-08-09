@@ -1540,3 +1540,11 @@ One line per hourly tick. ASCII only.
 2026-08-08T19:32:26Z no eligible item (skipped 230): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-203:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
 2026-08-08T20:33:19Z workset committed (regen -- 228 items, 19 ready, 0 in flight)
 2026-08-08T20:33:00Z no eligible item (skipped 228): IGW-20260808-001:skill /governance not allowed; IGW-20260808-002:skill /governance not allowed; IGW-20260808-203:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
+2026-08-08T21:33:41Z skip: paused (.igw_routine_pause present)
+2026-08-08T22:33:42Z skip: paused (.igw_routine_pause present)
+2026-08-08T23:33:42Z skip: paused (.igw_routine_pause present)
+2026-08-09T00:33:44Z skip: paused (.igw_routine_pause present)
+2026-08-09T01:33:44Z skip: paused (.igw_routine_pause present)
+2026-08-09T02:33:45Z skip: paused (.igw_routine_pause present)
+2026-08-09T03:33:46Z skip: paused (.igw_routine_pause present)
+2026-08-09T04:33:47Z skip: paused (.igw_routine_pause present)
