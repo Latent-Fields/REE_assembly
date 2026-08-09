@@ -1,0 +1,168 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_906a_full_stack_observational_fishtank",
+  "run_id": "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-09T08:10:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "full_stack_observational_showcase_degenerate",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained",
+        "description": "harm-pathway co-training ran >=1 optimizer step",
+        "measured": 3939.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecology_survivable",
+        "description": "contamination_spread=0.0 fix lets segments run well past 906's ~14.9-step/segment early-death signature (>=4x floor)",
+        "measured": 25.375,
+        "threshold": 59.6,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": true,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": false,
+      "channel_excite": true,
+      "channel_dread": true,
+      "harm_pathway_trained": true,
+      "freeze_not_permanently_locked": true,
+      "ecology_survivable": false
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "ecology_survivable",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_s",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_un",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_a",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_drive",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_goal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_vigor",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_override",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_block",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_excite",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_dread",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "Full-stack integrated telemetry showcase, lettered fix of V3-EXQ-906 (see module docstring). PASS = harm-pathway training ran AND the core affect channels vary AND the eval ecology is actually survivable (segments run well past 906's early-death signature) AND freeze did not permanently lock. Every module enabled stays candidate/v3_pending in claims.yaml regardless of this run's outcome -- claim_ids=[]; does not weight governance. See module docstring for exactly what changed vs 906 and why."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6f7b76767c2b13b19c433aa20b6ddc8c26c4de8c16ae7893cfb4ec774c566e8d",
+  "substrate_commit": {
+    "commit": "3fe9bff0be29cc5bbe4782d509ca081d253df210",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 6393,
+    "ticks_active": 6392,
+    "writer_calls": 1115,
+    "active_frac": 0.9998435789144376,
+    "writer_defect": false,
+    "n_agents": 1,
+    "goal_state_present": true
+  }
+}
