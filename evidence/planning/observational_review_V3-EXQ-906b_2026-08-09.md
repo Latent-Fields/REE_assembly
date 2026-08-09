@@ -499,6 +499,39 @@ Per-episode unique-cell counts (Section 1) show within-episode diversity; this c
 
 **Genuine cross-episode trajectory diversity, not a repeated favourite corner.** Collectively the agent covers two-thirds of the grid over 8 episodes with no single cell common to all of them, even though each individual episode is spatially narrow (Section 1). Read together with 12e: the agent explores broadly and variably across episodes, but within any one episode/step its direction of travel is not organised around the nearest discrete resource/hazard -- diversity-in-aggregate coexists with the absence of local directional organisation.
 
+### 12g. "Does harm respond and decay appropriately?" -- YES for the normalised channel, NO for the accumulated one, and the split explains Section 6's freeze finding (2026-08-09T18:1xZ, answering another unaddressed brief item)
+
+Event-triggered average (steps -2..+12 around every `harm_event=True` step, within-episode, 278 events) for
+the two distinct harm channels logged per step:
+
+| channel | t-2 | t+0 (event) | t+1 (peak) | t+6 | t+12 | shape |
+|---|---|---|---|---|---|---|
+| `z_harm_norm` / `z_harm_s` (identical distributions) | 0.2240 | 0.2297 | **0.2302 (peak)** | 0.2162 | 0.2072 | clean phasic rise-then-decay |
+| `z_harm_a` | 2.4599 | 2.4794 | 2.4863 | 2.5056 | 2.5406 (still rising) | flat/chronically elevated, no event-locked transient |
+
+**`z_harm_norm` (= `z_harm_s`, confirmed identical min/p10/p50/p90/max across the full 3909-step
+distribution -- likely the same signal under two field names) genuinely rises around a harm event, peaks
+1 step later, and decays smoothly over the next ~10+ steps back toward baseline -- a textbook appropriate
+phasic harm response.** This directly answers the original brief's "does harm respond and decay
+appropriately?" with **yes**, for this channel.
+
+**`z_harm_a` shows no such structure in the same window** -- it drifts slowly upward throughout (2.46 ->
+2.54) with no visible peak-and-decay tied to individual events, consistent with its full-run distribution
+being chronically mid-to-high (p10=0.44, p50=2.88, p90=4.17, mean=2.51) rather than resting near a floor
+between events. This is not a new defect -- **it corroborates, from independent data, the mechanism Section
+6 already inferred**: the 906b driver disables the freeze *duration* threshold specifically because "the
+all-ON agent's chronic z_harm_a would otherwise freeze-lock every step" (Section 6). The event-triggered
+curve shows directly why: `z_harm_a` does not return to a low resting level between harm events at this
+hazard density (45.6% of steps within Manhattan distance <=2 of a hazard, Section 2a), so it has no clean
+phasic profile to gate a duration-based freeze trigger on.
+
+**Consequence for 13-A:** freeze/vigor (Section 3b) both read from `z_harm_a`, the chronic/non-phasic
+channel, while `z_harm_norm` -- sitting right next to it in the same telemetry -- shows the clean phasic
+shape a trigger mechanism would actually want. The 11b design already avoids this by keying the new
+defensive-orienting trigger to `residue_surprise` (index 3) rather than any `z_harm_*` channel (Section
+11b step 1); this finding is corroborating evidence that channel choice was the right call, not a reason to
+revisit it.
+
 ---
 
 ## 13. Tracked follow-on tasks (recorded 2026-08-09T17:55Z, user-directed: "all of the above must be done")
