@@ -11424,6 +11424,16 @@
   adjudicated_at_utc: "2026-07-11T12:37:35Z"
   adjudication_outcome: demoted
   implementation_phase: v5
+  phase_locked: true  # intrinsic V5 scope, twice deliberately confirmed by governance:
+                      # 2026-07-12 (V3-EXQ-741, the 1st VALID substrate_ceiling hit --
+                      # "world-caused drift is not a structurally-distinct OTHER", retest
+                      # bound to multi_agent_ecology_v5:MAE-3) and 2026-08-10
+                      # (ceiling_decision: deferred, GOV-CEIL-1 audit: "Not genuinely
+                      # exhausted; already re-pointed to a specific not-yet-built
+                      # substrate"). MECH-098/MECH-221/SD-047's depends_on: MECH-095
+                      # edges (all thematic/reversed, not build prerequisites) were the
+                      # mechanical source of a v5->v3 pull; removed same session per chip
+                      # chip-20260810-phase-consistency-reconciliation.
   depends_on:
     - SD-005
     - MECH-069
@@ -11624,7 +11634,6 @@
   implementation_phase: v3
   depends_on:
     - SD-005
-    - MECH-095
     - MECH-096
   location: docs/thoughts/2026-03-17_three_stream_reafference.md
   source:
@@ -11696,6 +11705,12 @@
     quality (R2 well below 0.70) remains engineering bottleneck for full validation.
     EXQ-099a T223306Z FAIL not_applicable (2026-03-26): n_samples=167, gate=0.70, R2=-0.027.
     Phase 1 gate failure -- engineering bottleneck persists at stricter quality threshold.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-095 removed. MECH-095 (TPJ agency comparator, v5) is a sibling
+    mechanism from the same reafference-streams lit lineage ("See MECH-098 and MECH-099"
+    on MECH-095's own side), not a build prerequisite -- MECH-098 ran 8+ real experiments
+    (EXQ-016/021/022/023/069/082/099/099a) with zero functional use of MECH-095.
 - id: MECH-099
   title: "Visual streams use a three-pathway architecture (ventral/dorsal/frontal) for object, action, and executive routing."
   claim_type: mechanism_hypothesis
@@ -15754,12 +15769,21 @@
       as_of: 2026-08-03
       verdict: weakens/measurement_test_design_defect
   implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-121
+  phase_provenance: assigned  # 2026-08-10 correction (chip
+                              # chip-20260810-phase-consistency-reconciliation): was
+                              # derived/phase_derived_from: MECH-121, but that edge ran
+                              # backwards -- MECH-122 has been extensively built and
+                              # tested (EXQ-246 x2, V3-EXQ-861/861a, landed 2026-08-02
+                              # substrate) independent of MECH-121's own still-blocked
+                              # pipeline. depends_on: MECH-121 removed; MECH-122's
+                              # packaging function operates on E3/hippocampal replay
+                              # content broadly available via MECH-092 (already
+                              # V3/built, MECH-121's own "functional prerequisite" per
+                              # its notes), not MECH-121's full pipeline. The real
+                              # direction is MECH-121 -> MECH-122 (kept, see MECH-121).
   depends_on:
     - MECH-030
     - MECH-089
-    - MECH-121
     - SD-006
   location: docs/architecture/sleep/offline_phases.md#mech-122
   source:
@@ -18115,15 +18139,21 @@
       from: "decision:ARC-039@2026-04-03T22:00:00Z"
       as_of: 2026-04-03
       verdict: hold_candidate_resolve_conflict/applied
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-261
+  implementation_phase: v4
+  phase_provenance: assigned
+  phase_locked: true  # intrinsic V4 scope: entorhinal grid module + offline processing
+                      # phase + grid read-back, none of which exist in V3 (see notes
+                      # 'V4 scope justification'); EXQ-214 showed the only V3 proxy
+                      # attempted actively degrades. Any future V3 dependency on this
+                      # claim must route to CONFLICT for human adjudication, not a
+                      # silent RECLASSIFY. Set 2026-08-10 per evidence/planning/
+                      # arc039_phase_reclassification_staged_20260808.md.
   epistemic_category: substrate_conditional
   depends_on:
     - ARC-038
     - ARC-018
     - MECH-092
-    - MECH-261        # mode-conditioned write gating: the offline_consolidation mode vector is what licenses entorhinal-grid-loop engagement (symmetric with MECH-261.depends_on on ARC-039 as its offline consolidation target)
+    - MECH-261        # mode-conditioned write gating: the offline_consolidation mode vector is what licenses entorhinal-grid-loop engagement (this is a downstream-consumer relationship, not a symmetric build prerequisite -- see MECH-261.notes 2026-08-10 edge correction)
   notes: >
     Olafsdottir et al. (2017, Neuron) identify that entorhinal grid cells engage
     coherently with hippocampus only during offline/immobility consolidation, not
@@ -18200,6 +18230,11 @@
     checker's CONFLICT path (human adjudication) instead of a silent
     RECLASSIFY. Flagged for whoever owns that checker/validator logic;
     not fixed in this pass.
+
+    RESOLVED 2026-08-10 (chip chip-20260810-phase-consistency-reconciliation): fixed
+    exactly as diagnosed above -- MECH-261.depends_on: ARC-039 deleted,
+    implementation_phase reverted v3 -> v4, phase_locked: true set. See
+    evidence/planning/arc039_phase_reclassification_staged_20260808.md.
 
 # ============================================================
 # New claims registered 2026-03-29 from Q-cluster lit pulls
@@ -18846,6 +18881,11 @@
     as_of: 2026-07-11
     needs_review: false
   implementation_phase: v4
+  phase_locked: true  # intrinsic V4 scope: own notes "V4 scope: requires stable residue
+                      # field map from sustained V3 training and ARC-039 offline replay"
+                      # (ARC-039 confirmed v4/locked in this same reconciliation).
+                      # ARC-120's reference is evidentiary, not a prerequisite. Set
+                      # 2026-08-10 per chip chip-20260810-phase-consistency-reconciliation.
   depends_on:
     - ARC-038
     - ARC-039
@@ -27725,7 +27765,6 @@
   depends_on:
     - MECH-205
     - MECH-208
-    - MECH-209
     - MECH-210
     - INV-049
     - MECH-121
@@ -27838,6 +27877,13 @@
     REE-internal leg into its own mechanism_hypothesis claim so it can be
     tested independently of whether DG's taxonomy is ever corroborated.
 
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-209 removed -- reversed edge. MECH-209 itself calls INV-062 its
+    "parent" (own what_would_answer) and "adds no independently testable REE-substrate
+    content on top of" MECH-121; it is a specialization of INV-062's taxonomy, not a
+    prerequisite. INV-062's own REE-internal-leg falsifier names MECH-205/121/123/208,
+    never MECH-209.
+
 # Registered 2026-04-07 -- Type 3 dream as semantic consolidation phenomenology
 # Source: Daniel Golden first-person observation; MECH-121 lit synthesis
 - id: MECH-209
@@ -27851,8 +27897,12 @@
     as_of: 2026-07-11
     needs_review: false
   implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: INV-062
+  phase_provenance: assigned  # 2026-08-10 correction (chip
+                              # chip-20260810-phase-consistency-reconciliation): was
+                              # derived/phase_derived_from: INV-062, but that edge ran
+                              # backwards (see INV-062.what_would_answer correction).
+                              # MECH-209 stands as v3 on its own real dependencies
+                              # (MECH-121, MECH-092, INV-062, INV-049 -- all v3/built).
   epistemic_category: out_of_domain
   depends_on:
     - MECH-121
@@ -30672,7 +30722,6 @@
   depends_on:
     - SD-005
     - SD-007
-    - MECH-095
   notes: >
     SD-003 provides a query-time counterfactual (E2(z_t, a_actual) - E2(z_t, a_cf)) that
     answers "did I cause this specific outcome?" at attribution time. MECH-221 is the
@@ -30690,6 +30739,11 @@
     nature of the requirement distinguishes it from SD-003 (query-time) and MECH-095
     (comparator-based detection): residualization must precede all downstream access to
     z_world, not just at attribution query points.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-095 removed. This claim's own text already distinguishes itself from
+    MECH-095 (continuous vs comparator-based detection) -- both consume the efference-copy
+    signal as parallel siblings, not one depending on the other.
   registered: "2026-04-11"
 
 - id: MECH-222
@@ -34604,7 +34658,16 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: SD-064  # 2026-08-10, chip chip-20260810-phase-consistency-reconciliation:
+                              # SD-064's own falsifier is explicitly SUBSTRATE-BLOCKED on
+                              # SD-027 ("the SD-027 boundary gate is not implemented in
+                              # V3... a clean gate-ablation would self-route
+                              # substrate_not_ready"), unlike this cluster's other 3
+                              # cases -- SD-064 has NOT been tested without SD-027, and
+                              # SD-027's own notes anticipate a V3-minimal retrofit as
+                              # viable (not categorically impossible).
   claim_level: architectural
   registered_utc: 2026-04-17
   depends_on:
@@ -36617,7 +36680,6 @@
     - INV-049          # sleep necessity (coordinates with consolidation mode)
     - MECH-092         # micro-quiescence replay
     - ARC-038          # viability map (one write target)
-    - ARC-039          # entorhinal grid loop (offline consolidation target)
     - SD-033a          # lateral-PFC-analog rule/goal substrate (primary write target)
     - SD-033b          # OFC-analog specific-outcome / state-space substrate (secondary write target)
     - SD-033c          # vmPFC-analog value substrate (gated under mode-specific rules)
@@ -36737,6 +36799,18 @@
     reinstatement gain + Line B competitive suppression) is the
     separately-registered uncovered piece, V4-leaning. No status change
     to MECH-261.
+
+    2026-08-10 edge correction (phase-consistency-reconciliation chip
+    chip-20260810-phase-consistency-reconciliation): depends_on: ARC-039 was
+    removed. It was recorded as a *symmetric* association ("offline consolidation
+    target"), but depends_on is a directed build prerequisite, and MECH-261 reached
+    status: stable in V3 (V3-EXQ-446/455/453) while ARC-039's entorhinal circuit was
+    never built -- so ARC-039 was never a prerequisite of MECH-261. ARC-039 is a
+    future *consumer* of MECH-261's offline_consolidation mode weight; that true
+    direction is recorded on ARC-039's own depends_on: MECH-261. The reversed edge
+    had silently reclassified ARC-039 from its authored v4 scope to v3 via
+    check_claim_phase_consistency.py. See evidence/planning/
+    arc039_phase_reclassification_staged_20260808.md for the full writeup.
   evidence_quality_note: >
     2026-06-19 (governance-apply, failure_autopsy_V3-EXQ-460g CONFIRMED): V3-EXQ-460g (supersedes
     460f) -> MECH-261 non_contributory, NOT weakened: all closures were hook-driven
@@ -38825,6 +38899,17 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
+  phase_locked: true  # intrinsic V4 scope. SD-033e's own 2026-08-07 reclassification_note
+                      # is explicit and self-limiting: "what MECH-487 actually depends on
+                      # is the ALREADY-LANDED V3-narrow parameter-free geometric de-commit
+                      # lever ... NOT the FULL learned-substrate scope ... (MECH-264
+                      # counterfactual-value head + MECH-265 monitor, prerequisites still
+                      # genuinely V4-bound per MECH-163/CausalGridWorldV2)" -- SD-033e's
+                      # v3 slice used ONLY functions 1+4/MECH-264, never MECH-265
+                      # ("MECH-265 relative-importance is structurally V4-blocked
+                      # (single-resource env, no K>=2 goals)", SD-033e's own
+                      # implementation_note). Set 2026-08-10 per chip
+                      # chip-20260810-phase-consistency-reconciliation.
   depends_on:
     - SD-033e          # primary substrate this mechanism lives in
     - MECH-264         # related but distinct: MECH-264 is pairwise chosen-vs-counterfactual, MECH-265 is over-all-goals
@@ -44522,7 +44607,6 @@
   registered_utc: 2026-05-03
   implemented_utc: 2026-05-03
   depends_on:
-    - MECH-095     # the primary substrate_ceiling claim this unblocks
     - SD-022       # body-damage substrate that SD-047 layers on top of
     - SD-029       # scheduled external hazard substrate (SD-047 adds unscheduled sources alongside)
   functional_restatement: >
@@ -44578,6 +44662,13 @@
     Pitcher & Ungerleider 2021 (conf=0.78, lateral cortex pathway);
     Davidson & Wolpert 2005 (conf=0.70, forward-model scaffold); Woo/
     Liu/Spelke 2023 (conf=0.65, falsifier branch). lit_conf=0.796.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-095 removed -- REVERSED edge. Per this claim's OWN original inline
+    comment ("the primary substrate_ceiling claim this UNBLOCKS"), SD-047 is the
+    prerequisite substrate that unblocks testing MECH-095, not a dependent of it. SD-047
+    was built and validated (7/7 preflight, 184/184 contracts, V3-EXQ-509 PASS)
+    independent of MECH-095's phase status.
   evidence_quality_note: >
     Substrate IMPLEMENTED 2026-05-03 (ree-v3 commit forthcoming;
     ree_core/environment/causal_grid_world.py).
@@ -53646,7 +53737,6 @@
     - INV-073    # developmental bootstrapping necessity (causal upstream principle)
     - ARC-065    # diversity stack -- the V3 mechanism ARC-072 scopes the gap beyond
     - MECH-269   # V_s monostrategy -- diagnostic of gap (1)
-    - MECH-325   # hippocampal cue-indexed trajectory library (what gap (2) requires)
     - MECH-326   # PFC top-down bias as retrieval gate (the missing routing mechanism)
     - SD-016     # frontal cue-indexed integration -- the V3 stub with broken gradient
   lit_conf: 0.74
@@ -53750,6 +53840,14 @@
       - Combined gap: the agent learns one thing in one context
         and cannot adapt in any other context -- the null-diversity
         pole.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-325 removed -- reversed edge. MECH-325's own notes: "MECH-325 is
+    the positive specification; ARC-072 names the GAP BETWEEN MECH-325 and the V3
+    substrate" -- ARC-072 exists because MECH-325 does NOT exist; it cannot depend on
+    MECH-325 being built. ARC-072's own diagnostics (EXQ-563c/567, EXP-0155, V3-EXQ-568)
+    all ran without MECH-325 ever built, explicitly staged BEFORE "committing to the
+    full library architecture at V4."
   implementation_note: >
     SD-055 substrate-ready 2026-05-21 (IGW-20260521-021): differentiable CEM path
     landed 2026-05-15; V3-EXQ-568 PASS (grad_max=372, UC1-UC5). Closes EXP-0155
@@ -56845,9 +56943,17 @@
       from: "decision:MECH-325@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: ARC-072
+  implementation_phase: v4
+  phase_provenance: assigned
+  phase_locked: true  # intrinsic V4 scope, reverted 2026-08-10 (chip
+                      # chip-20260810-phase-consistency-reconciliation): the
+                      # ARC-072->MECH-325 edge that drove this reclassification was
+                      # reversed (see ARC-072.notes correction). Own notes: "describes
+                      # the target architecture for the hippocampal module BEYOND V3...
+                      # V4 candidate designs... All candidates require the
+                      # diversity-bootstrapping phase" -- explicit V4 target-
+                      # architecture scope, confirmed by ARC-072's diagnostics already
+                      # running without it.
   v3_pending: true
   claim_level: mechanistic
   registered_utc: "2026-05-15"
@@ -61985,6 +62091,11 @@
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
+  phase_locked: true  # intrinsic V4 scope: own notes "the right response is to wait for
+                      # the upstream substrate, NOT more experiments"; "DO NOT build in
+                      # V3". MECH-463/465 reference it as a comparative/contrasting
+                      # hypothesis, not a prerequisite. Set 2026-08-10 per chip
+                      # chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   depends_on:
     - MECH-055
@@ -62373,6 +62484,16 @@
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
+  phase_locked: true  # intrinsic V4 scope, second confirmed instance of the ARC-039
+                      # false-positive pattern. MECH-487's own 2026-08-07 governance
+                      # review already found: "ARC-085 left at v4 DELIBERATELY, not
+                      # reclassified: this claim's own depends_on comment and notes text
+                      # above both already say ARC-085 is a 'candidate eventual host,'
+                      # not a current requirement -- MECH-487 does not need ARC-085 to
+                      # exist or be built for its own V3 content to stand. The
+                      # phase-consistency WARN is a known false-positive here." Set
+                      # 2026-08-10 per chip chip-20260810-phase-consistency-reconciliation
+                      # so this stops silently re-triggering.
   version_relevance: v4_v5
   depends_on:
     - ARC-007
@@ -62732,6 +62853,11 @@
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
+  phase_locked: true  # intrinsic V4 scope: own notes "DO NOT build in V3 until routed by
+                      # experiment (Q-062)". ARC-120's reference is evidentiary (one of
+                      # several existing authority-gating instances it surveys), not a
+                      # prerequisite. Set 2026-08-10 per chip
+                      # chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   depends_on:
     - MECH-261
@@ -64969,6 +65095,11 @@
   epistemic_category: substrate_conditional
   implementation_phase: v4
   v3_pending: true
+  phase_locked: true  # intrinsic V4 scope: own notes "substrate_conditional on a V4
+                      # affect substrate not yet built. DO NOT build in V3". MECH-463
+                      # references it as a comparative/contrasting hypothesis, not a
+                      # prerequisite. Set 2026-08-10 per chip
+                      # chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   registered_utc: 2026-06-10
   depends_on:
@@ -65005,6 +65136,12 @@
   epistemic_category: substrate_conditional
   implementation_phase: v4
   v3_pending: true
+  phase_locked: true  # intrinsic V4 scope: needs the not-yet-built ARC-085 event-token
+                      # store. Four V3 claims (INV-093/MECH-471/MECH-472/MECH-474)
+                      # reference it as motivational/analogous context, not a build
+                      # prerequisite -- confirmed by all being independently
+                      # testable/tested on V3 substrate without it. Set 2026-08-10 per
+                      # chip chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   claim_level: architectural
   registered_utc: 2026-06-10
@@ -65110,6 +65247,10 @@
   epistemic_category: substrate_conditional
   implementation_phase: v4
   v3_pending: true
+  phase_locked: true  # intrinsic V4 scope: memory_lifecycle_v4 cluster, needs the
+                      # not-yet-built V4 memory-lifecycle store. MECH-471 references it
+                      # analogically per its own notes, not as a prerequisite. Set
+                      # 2026-08-10 per chip chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   registered_utc: 2026-06-10
   depends_on:
@@ -65235,6 +65376,10 @@
   epistemic_category: substrate_conditional
   implementation_phase: v4
   v3_pending: true
+  phase_locked: true  # intrinsic V4 scope: memory_lifecycle_v4 cluster, needs the
+                      # not-yet-built V4 memory-lifecycle store. MECH-471 references it
+                      # analogically per its own notes, not as a prerequisite. Set
+                      # 2026-08-10 per chip chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   registered_utc: 2026-06-10
   depends_on:
@@ -67506,6 +67651,10 @@
   epistemic_category: substrate_conditional
   implementation_phase: v4
   v3_pending: true
+  phase_locked: true  # intrinsic V4 scope: memory_lifecycle_v4 cluster, needs the
+                      # not-yet-built V4 memory-lifecycle store. MECH-471 references it
+                      # analogically per its own notes, not as a prerequisite. Set
+                      # 2026-08-10 per chip chip-20260810-phase-consistency-reconciliation.
   version_relevance: v4_v5
   registered_utc: 2026-06-10
   depends_on:
@@ -75024,8 +75173,6 @@
   registered_utc: "2026-07-18"
   depends_on:
     - MECH-439   # F-dominance -- the variance monopoly this claim says arousal amplifies rather than breaks
-    - MECH-359   # candidate-differentiated affect vector -- states the argmax-invariance of a scalar; this is its selection-side consequence
-    - MECH-390   # subtractive sparsification / convergent-weak-channel summation -- the structurally anti-F-dominance prescription
     - SD-011     # z_harm_a -- the affective stream feeding the urgency threshold shrinkage
     - MECH-229   # VALENCE_WANTING -- the realised-valence EMA driving the D1/D2 tonic gain
   location: evidence/planning/conversion_ceiling_prong_map.md
@@ -75128,6 +75275,13 @@
     measurement. (3) SCOPE: this tests arousal as a scalar on the SD-011 commit
     threshold specifically, not every arousal route (the D1/D2 tonic gain and the
     softmax-temperature routes are untouched).
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-359 and MECH-390 removed. Both are v4 claims MECH-463 cites for
+    COMPARISON only ("distinct from MECH-359 in POLARITY..."; "MECH-390 prescribes the
+    structurally anti-F-dominance form... this claim supplies the mechanism and falsifier
+    MECH-390 currently lacks") -- MECH-463 ran 4 real experiments (V3-EXQ-785/785a/785b/
+    787) without either ever being built.
+
     HYPOTHESIS-SPACE LEDGER: applied at this adjudication under qid
     arousal-variance-amplifier (hypothesis_space_registry.v1.json), 2 of 3 frozen
     hypotheses eliminated. H-arousal-concentrates and H-arousal-broadens ELIMINATED;
@@ -75318,7 +75472,6 @@
   depends_on:
     - SD-011
     - MECH-463
-    - MECH-359
   location: evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
   source:
     - evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
@@ -75381,6 +75534,11 @@
     recommended_substrate_queue_entry.action = none. That verdict is correct for the
     VARIANCE-GEOMETRY framing (every precondition green on every scored arm) and may not
     hold for this one, which is why stage 1 is a spike rather than a queued experiment.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-359 removed -- the stage-1 scoping spike (lowering commit_threshold,
+    re-running the 785a design on existing V3 substrate) never requires MECH-359's
+    substrate; comparative reference only.
 
 # ---------------------------------------------------------------------------
 # Registered 2026-07-22 -- six thought intakes written 2026-07-21 by session
@@ -75631,7 +75789,6 @@
     - MECH-288
     - MECH-321
     - MECH-091
-    - MECH-298
     - Q-081
   notes: >
     FALSIFIER: an event-triggered-average / alignment statistic computed BOTH
@@ -75653,6 +75810,13 @@
     recoverable from logs. This is the FIRST candidate in cluster A that could be
     queued, and only after that audit. No experiment proposal minted here for that
     reason.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-298 removed. MECH-466's own text: "REE already emits every required
+    landmark (MECH-288 boundary pulses, the beta commitment gate, mode transitions,
+    sleep-phase markers), so no substrate change is needed" -- V3-EXQ-831 tested this
+    claim on existing landmarks without MECH-298 (an explicitly optional future pull)
+    ever being built.
   evidence_quality_note: |
     [2026-07-29 governance, V3-EXQ-831 weakens; failure_autopsy_2026-07-28-sweep, confirmed]: first
     experimental test of MECH-466 (waking-only scope). Event-locked coordination does not exceed
@@ -75821,12 +75985,10 @@
   source:
     - docs/thoughts/2026-08-06_scientific_evolution_of_ree.md
   depends_on:
-    - MECH-368   # event-level write-authority gate: an event earns write-eligibility per-event, not by default
     - ARC-107    # BG-mirroring eligibility-gating constitution: committed-action authority passes through an earned eligibility mask
     - SD-032b    # dACC/aMCC adaptive-control: behavioural-adjustment authority written to a learnable, not fixed, store
     - MECH-261   # mode-conditioned write gating: which substrates may write is earned by operating-mode state, not innate
     - MECH-094   # simulation-vs-real hypothesis-tag: simulated content is denied committed/write authority until tagged real
-    - INV-039    # consolidation rate gated by demonstrated map stability, not granted uniformly
   notes: >
     FRAMING CLAIM from the 2026-08-06 historical-archaeology thought intake (Observation
     4: "competence consistently precedes authority"). ARGUABLY IMPLIED by the depends_on
@@ -75843,6 +76005,11 @@
     competence-acquisition/retention cluster (MECH-457, competence_retention_dissociable_
     from_acquisition) -- those are about HOW HARD competence is to install and keep; this
     claim is about what authority is CONDITIONED ON once competence exists.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-368 and INV-039 removed. Both are EVIDENTIARY INSTANCES this framing
+    generalizes over (like the remaining 4 deps), not build prerequisites -- ARC-120
+    "introduces no new mechanism" of its own (own text above) and has nothing to build.
 
 - id: ARC-121
   title: "REE's mechanisms increasingly converge on maintaining and consuming a SHARED epistemic-state object (knowledge / belief / uncertainty / possibility / commitment / action) rather than each existing as an isolated computational function: prediction, replay, harm/ethics evaluation, planning and learning read and update a common epistemic relationship rather than independent local state."
@@ -75907,7 +76074,6 @@
     - MECH-262
     - SD-033a
     - MECH-261
-    - MECH-254
   notes: >
     THE COVERAGE GAP, which is the cheapest genuinely-new thing in this intake. REE's
     distractor evidence (V3-EXQ-484 salience-coordinator gating protecting rule state
@@ -75951,6 +76117,13 @@
     informative evidence; leg c was simply never reachable at this config). Route: /queue-experiment
     with a battery design that guarantees target-consumption opportunities occur (denser targets
     and/or a longer horizon) before drawing any conclusion about leg (c) dissociability.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-254 removed. MECH-467's own STANDING CONTAINMENT RULE ("REE-v3
+    attention is DISTRIBUTED precision-selection control, not a missing module... A new
+    attention substrate is justified only if an experiment exposes a SPECIFIC failure")
+    already disclaims needing MECH-254's v4 boundary-gate implementation; V3-EXQ-874
+    tested legs (a)/(b) without it.
 
 - id: INV-092
   title: "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost."
@@ -76695,12 +76868,8 @@
     - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
     - "Microsoft SkillOpt -- Executive Strategy for Self-Evolving Agent Skills (neighbouring implementation strategy, NOT an architectural template)"
   depends_on:
-    - MECH-392
-    - INV-080
-    - MECH-401
     - MECH-083
     - MECH-261
-    - ARC-092
   # Phase-1 pilot (substrate_stability_and_drift_detection_plan.md, 2026-08-03): author-declared,
   # deliberately conservative (safe to over-include, unsafe to under-include) -- NOT machine-proven
   # the way arm_fingerprint's per-cell scoped hashes are. Used only by
@@ -76741,6 +76910,15 @@
     EXPLICITLY NOT PROPOSED: text-based skill documents inside REE, any literal SkillOpt
     import, a new foundational learning mechanism, or anything on the V3 critical path.
 
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: MECH-392/INV-080/MECH-401/ARC-092 removed. All four are v4,
+    substrate_conditional, DO-NOT-BUILD-IN-V3 claims that MECH-471 references only
+    ANALOGICALLY ("the consolidation path has the discipline... registering the
+    consolidation properties again would duplicate... this is a GENERALISATION claim to
+    a different path, not a restatement" -- MECH-471's own text above). MECH-471 was
+    tested via 3 real V3 experiments (V3-EXQ-875/875a/890) with none of the four ever
+    built; they were never build prerequisites.
+
 - id: MECH-472
   title: "HELD-OUT CONTEXT distinguishes skill acquisition from task memorisation: a competence update should be promoted to durable only on evidence from contexts that did not generate it."
   claim_type: mechanism_hypothesis
@@ -76764,7 +76942,6 @@
     - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
   depends_on:
     - MECH-471
-    - ARC-092
   notes: >
     FALSIFIER: paired in-context vs held-out-context evaluation of the SAME learned
     competence; a gap beyond a threshold marks memorisation rather than acquisition.
@@ -76888,7 +77065,6 @@
     - MECH-261
     - MECH-163
     - MECH-179
-    - ARC-092
   notes: >
     NARROW FORM ONLY IS REGISTERED AS TESTABLE. The BROAD form -- adding imitation and
     language-mediated scaffolding to the menu -- is SUBSTRATE-BLOCKED (neither is built).
@@ -76907,6 +77083,11 @@
     nothing to select between and the comparison is vacuous. Verify this in the baseline
     before running the selecting arm.
     Live V3-adjacent question; testable now. See EXP-0401.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: ARC-092 removed -- the falsifier design above (fixed-regime arms vs a
+    selecting arm over MECH-312b/c, MECH-261, MECH-163, MECH-179) never invokes
+    ARC-092's imagination-provenance mechanism; it is a topical, not build, reference.
 
 - id: INV-093
   title: "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT."
@@ -76930,7 +77111,6 @@
   depends_on:
     - INV-004
     - INV-006
-    - ARC-092
     - EXT-009
     - MECH-471
     - INV-092
@@ -76956,6 +77136,11 @@
     invariant_type universal: constrains any refinement mechanism by design, not emergent
     from a particular substrate SD. Currently a constraint on a FUTURE mechanism -- no
     refinement-strength knob exists to sweep yet.
+
+    2026-08-10 edge correction (chip chip-20260810-phase-consistency-reconciliation):
+    depends_on: ARC-092 removed -- a cross-listed ethics-perimeter sibling reference
+    (same shape as INV-080's own "depends_on retained as informative links" precedent
+    elsewhere in this file), not a build prerequisite for this universal invariant.
 
 # --- Cluster F: bounded knowledge-artefact optimisation, REE ASSEMBLY --------
 # ASSEMBLY GOVERNANCE half of the Microsoft SkillOpt source. Registers as
