@@ -1606,3 +1606,4 @@ One line per hourly tick. ASCII only.
 2026-08-10T18:14:44Z LAUNCH (manual interactive) IGW-20260810-210 worktree=igw-210-substrate-ready-sd-orienting-dec
 2026-08-10T18:53:42Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
 2026-08-10T18:53:21Z no eligible item (skipped 239): IGW-20260810-001:skill /governance not allowed; IGW-20260810-002:skill /governance not allowed; IGW-20260810-006:skill /governance not allowed
+2026-08-10T18:56:12Z auto-defer IGW-20260810-210 hash=eaf877141f7e for 48h (complete)
