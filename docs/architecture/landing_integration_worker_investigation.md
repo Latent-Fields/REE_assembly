@@ -260,12 +260,16 @@ conclusion holds without needing to build anything larger.
 
 ## Follow-on (chipped, not built in this session)
 
-One durable chip spawned for the narrow validation-cache implementation described in §6, per the
-project's default of chipping engineering follow-on rather than building it inline in an
-already-large investigation turn. See `TASK_CHIPS.json` / `WORKSPACE_STATE.md` for the live
-reference.
+Two durable chips spawned, per the project's default of chipping engineering follow-on rather
+than building it inline in an already-large investigation turn. See `TASK_CHIPS.json` /
+`WORKSPACE_STATE.md` for the live reference.
 
-A second, out-of-scope finding (`ree-cloud-5`'s 68%-failing heartbeat-writer rebase-retry,
-§4) is **not** chipped by this session — it is a heartbeat-writer correctness bug uncovered
-incidentally during this archaeology, not part of the landing-worker question, and is flagged
-here for whichever session next touches `runner_remote_control.py`'s heartbeat push path.
+1. **`chip-20260810-validation-cache`** — the narrow validation-cache implementation described
+   in §6. This is the landing-worker investigation's own deliverable.
+2. **`chip-20260810-cloud5-heartbeat-rebase-fix`** — the `ree-cloud-5` 68%-failing
+   heartbeat-writer rebase-retry (§4), a correctness bug uncovered incidentally during this
+   archaeology and out of scope for the landing-worker question itself. Initially left
+   unchipped and only flagged in this document; corrected at `/session-land` close, since this
+   codebase's chip-by-default convention (chip everything that isn't `/governance` or
+   `/failure-autopsy` work) applies to it too, and a diagnosis doc with a concrete recommended
+   fix already existed (`REE_assembly/evidence/planning/ree_cloud5_push_lag_diagnosis_2026-08-09.md`).
