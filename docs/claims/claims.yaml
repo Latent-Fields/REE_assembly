@@ -11408,6 +11408,8 @@
   pending_retest_after_substrate: true
   ceiling_retest_binding_substrate: ["multi_agent_ecology_v5:MAE-3"]
   ceiling_retest_binding_note: "Re-pointed 2026-07-12 (governance IGW-20260712-001 consumption of failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed ran VALIDLY (non_degenerate:True, all 4 arms pass guards) and the comparator does no functional work (no arm discriminates, best +0.028; baseline already carries contact). This is the 1st VALID substrate_ceiling hit and it EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction: a single-agent V3 env cannot make an agency comparator load-bearing because world-caused drift is not a structurally-distinct OTHER. The owed positive-discrimination retest is now BLOCKED on the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3), NOT on any single-agent SD-047 test-bed. Re-derive brake refuses a 4th single-agent SD-047 letter. PRIOR (superseded) re-point 2026-07-11 (047m): had pointed at agency_comparator_testbed_sd047 -- that test-bed is now built + validly exercised, so it is retired as the binding substrate."
+  ceiling_decision: deferred  # 2026-08-10 governance, GOV-CEIL-1 ceiling-exhausted audit (11 mechanical hits): the standard field mirroring the existing ceiling_retest_binding_substrate/_note above -- the audit script checks THIS field name for the Parked exemption, which the bespoke pair above (predating the standardized fields) did not trigger. Not genuinely exhausted; already re-pointed to a specific not-yet-built substrate (multi_agent_ecology_v5:MAE-3), same reasoning as ceiling_retest_binding_note.
+  ceiling_routing_note: "See ceiling_retest_binding_note above -- re-pointed to multi_agent_ecology_v5:MAE-3, not exhausted. Deferred, not demoted."
   adjudicated_at_utc: "2026-07-11T12:37:35Z"
   adjudication_outcome: demoted
   implementation_phase: v5
@@ -21405,6 +21407,8 @@
     - SD-010
     - ARC-035
   epistemic_category: substrate_ceiling
+  ceiling_decision: deferred  # 2026-08-10 governance, GOV-CEIL-1 ceiling-exhausted audit (5 mechanical hits)
+  ceiling_routing_note: "2026-08-10 GOV-CEIL-1 ceiling-exhaustion audit flagged 5 mechanical hits. NOT applying the standard demotion -- the specific unblock has just been identified THIS cycle, not exercised yet: the substrate_queue.json SD-016 entry (2026-08-10 amend, V3-EXQ-907/908 GOV-FANOUT-1 portfolio) confirms H1 (ctxdiv auxiliary loss, breaks the uniform-softmax saddle robustly) and SPLITs H3 (annealed Gumbel-softmax CONFIRMED, straight-through top-k ELIMINATED) -- combining H1's objective with H3's Gumbel-softmax operator is a concrete, scoped, not-yet-built fix. Deferred pending that build; remove this marker once it lands and re-tests."
   what_would_answer: |
     SD-016 splits into two independently falsifiable sub-questions.
 
@@ -34803,6 +34807,8 @@
     it reaches the outcome metric -- structurally identical to the confirmed
     substrate_ceiling pattern on ARC-062's GAP-B falsifier (21 runs, same
     root). Held pending MECH-269/MECH-269b V_s landing.
+  ceiling_decision: deferred  # 2026-08-10 governance, GOV-CEIL-1 ceiling-exhausted audit (13 mechanical hits)
+  ceiling_routing_note: "2026-08-10 GOV-CEIL-1 ceiling-exhaustion audit flagged 13 mechanical hits. NOT applying the standard demotion -- the epistemic_category_note above already names a specific, credible, not-yet-landed unblock (MECH-269/MECH-269b V_s landing), the same shape as ARC-062's own GAP-B pattern this claim cross-references. Deferred pending that landing; remove this marker once it lands and a fresh C2-evaluable retest runs."
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural

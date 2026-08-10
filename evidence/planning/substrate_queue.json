@@ -70,7 +70,7 @@
     }
   },
   "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
-  "last_updated_utc": "2026-08-09T06:15:00Z",
+  "last_updated_utc": "2026-08-10T15:25:05Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1460,14 +1460,28 @@
           "metric": "Readiness preconditions cleared on all 3 seeds (world_encoder_weights_moved=5.0 vs threshold 1.0; z_world_spread_lift 3.53-5.20 vs threshold 1.3, i.e. 2.7-4.0x margin). C2 control PASS 3/3 (OFF sel_entropy_mean 2.772587-2.772587 vs ln(16)=2.772589 -- exact saddle reproduction). C1 PRIMARY FAIL 0/3 (ON sel_entropy_mean 2.7428-2.7628 vs <2.5 threshold). C1b ANTI-DEGENERACY FAIL 0/3 (ON sel_context_divergence 0.0039-0.0513 vs >0.1 threshold). Encoder fix confirmed to genuinely take; selectivity still does not emerge.",
           "target": "ON sel_entropy_mean < 2.5 AND ON sel_context_divergence > 0.1 on >=2/3 seeds, with OFF reproducing the ln(16) saddle -- under a confirmed-varying encoder (this precondition is now the distinguishing feature vs 418m)",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_907_sd016_h1_ctxdiv_20260809T130845Z_v3",
+          "experiment_type": "v3_exq_907_sd016_h1_ctxdiv",
+          "metric": "ctxdiv auxiliary loss (lambda in {0.1,0.5,2.0}) breaks the uniform-softmax saddle robustly with a clean attribution control -- H1 CONFIRMED",
+          "target": "context-conditioned mode-switch objective integrated into SD-016's training loss",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_908_sd016_h3_hard_selection_20260809T131209Z_v3",
+          "experiment_type": "v3_exq_908_sd016_h3_hard_selection",
+          "metric": "annealed Gumbel-softmax CONFIRMED (C1b passes 3/3, genuine context-conditioned sparsification); straight-through top-k ELIMINATED (constant_peaky_degenerate)",
+          "target": "Gumbel-softmax selection operator integrated into SD-016's implementation",
+          "resolved": "open"
         }
       ],
-      "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope.",
+      "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope. [2026-08-10 amend] Combine H1's ctxdiv-auxiliary-loss objective with H3's annealed Gumbel-softmax selection operator (GOV-FANOUT-1 portfolio legs both resolved, V3-EXQ-907 CONFIRMED + V3-EXQ-908 SPLIT).",
       "implementation_note_update": "SD-016 substrate (sd016_enabled, writepath_mode, diversification weight, sd016_temperature_learnable, compute_attention_entropy_loss) is fully wired and bit-identical to legacy with all flags OFF. EXQ-418d/418e/418f/418g establish that the substrate-side mechanism works as designed but the env does not generate cross-context z_world variation for the substrate to retrieve over (the user's diagnosis 2026-04-28: 'the world is too simple. not enough entropy in every single configuration to support as much information extraction'). Status changed from implemented_but_failing_validation -> parked_pending_env_entropy_precondition. SD-017 / MECH-150 / MECH-151 / MECH-152 / ARC-041 / INV-040 retests blocked on the env precondition rather than on SD-016 substrate quality. Validation experiment is now V3-EXQ-418h env-richness probe (NOT a substrate retest); SD-016 retest queue paused until env precondition is empirically satisfied.",
       "implementation_status": "parked_pending_selection_mechanism_fix",
       "implemented_session": "implement-sd016-path1-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
+      "last_seen_session": "queue-depth-low-ops-aac785",
       "metric_trajectory": {
         "direction": "context_dependent",
         "observations": [
@@ -1744,20 +1758,28 @@
           "experiment_type": "v3_exq_894a_mech074d_bla_remap_attribution_selectivity",
           "metric": "C1 attribution_mass_excess / C2 context_jaccard_gap never reach 2/3-seed pass at any of 4 swept PE-sigma thresholds; mass-excess and fire-fraction both fall monotonically with sigma (Spearman -1.0 both), refuting the over-firing/dilution alternative from V3-EXQ-894",
           "target": "attribution_mass_excess > 0.05 AND context_jaccard_gap > 0.05 on >=2/3 seeds, at some operating point, under a trainable attribution head",
-          "resolved": "built_pending_retest",
+          "resolved": "superseded",
           "substrate_built_utc": "2026-08-09T07:45:00Z",
           "substrate_commits": [
             "ree-v3 25e04cf5f5",
             "ree-v3 d2c8d6f2f0"
           ],
-          "retest_queue_id": "V3-EXQ-894b"
+          "retest_queue_id": "V3-EXQ-894b",
+          "resolved_note": "The prior item's target (a trainable head existing and being tested) asked only for a trainable head to exist; V3-EXQ-894b built and tested one and it did not clear the target, so the read is superseded by a narrower, more specific target (retuned entropy_weight/MSE balance) rather than resolved."
+        },
+        {
+          "run_id": "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+          "experiment_type": "v3_exq_894b_mech074d_bla_trainable_attribution_head",
+          "metric": "C2 context_jaccard_gap stays at 0/3 seeds in both ARM_HEAD_TRAINED (914 updates) and ARM_HEAD_TRAINED_LONG (1998 updates); delta vs fixed rule -0.006 / -0.025 respectively -- training budget ruled out, loss-term balance implicated by the module's own docstring",
+          "target": "context_jaccard_gap > 0.05 on >=2/3 seeds under a trainable head with a retuned entropy_weight/MSE balance",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "Two peer non-trainable arithmetic substrates mirroring biological BLA/CeA division. BLAAnalog (slow/content): MECH-074a inverted-U arousal-dependent encoding_gain on hippocampal write strength; MECH-074b content-selective per-trace retrieval_bias; MECH-074d Moita-2004 attribution-gated remap_signal. CeAAnalog (fast/scalar): MECH-046 mode_prior log-odds bias to SalienceCoordinator; MECH-074c fast_prime candidate-prior pulse with cortical_confirmation hold. Modules: ree_core/amygdala/{bla,cea}.py. Master flag use_amygdala_analog (default False). Promoted to provisional 2026-04-22, stable 2026-04-24.",
       "implementation_status": "implemented",
       "implemented_session": "implement-sd035-amygdala-2026-04-21",
       "implemented_utc": "2026-04-21T00:00:00Z",
-      "last_seen_session": "v3-exq-812-harness-repair-1f9438",
+      "last_seen_session": "queue-depth-low-ops-aac785",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -7068,6 +7090,126 @@
       "implementation_status": "gated the two untrained scorer heads (reality_scorer, harm_cost_fallback_scorer) out of the E3 trajectory score by default",
       "implementation_note_update": "IMPLEMENTED 2026-08-09T08:30:42Z (ree-v3 193bbec). Decision: REMOVE (gate out), not wire -- wiring would require inventing training labels for 'final-state viability' and a fallback-harm signal distinct from the already-trained harm_eval_head (unspecified architecture, out of scope). New E3Config.e3_include_untrained_fallback_scorers (default False = FIX, deliberately not a no-op): compute_reality_cost -> coherence(smoothness) only; compute_harm_cost_fallback -> trained harm_eval_head sum only. Heads stay instantiated (state_dict/checkpoint keys unchanged); only their contribution is gated (benefit_eval_head idiom). Contract: ree-v3 tests/contracts/test_e3_scorer_completion.py (5 tests, deterministic property; re-randomising the dead heads leaves the default score bit-identical, legacy-flag negative control). Design doc: docs/architecture/sd_e3_scorer_completion.md. Two pre-existing contracts legitimately shifted with the de-contaminated scoring and were repaired (test_modulatory_authority_survives_large_primary_scores opts into the legacy flag for its score-explosion setup; test_q081 live-probe navigation counts relaxed to the non-degeneracy invariants its own docstring names -- HEAD-vs-fix A/B confirmed the shift is the fix). NAV_BIAS FINDING (brief's second question): V3-EXQ-190a's eval loop DID newly add the nav_bias forced-random-action override (lines 402-406, self-labelled 'the deliberate C4 fix'); predecessor V3-EXQ-190's eval loop was pure select_action. It was INTENTIONAL by the 190a author but is a measurement confound -- forcing 40% random eval actions dilutes the condition-dependent signal C1/C2/C3 measure. Any MECH-022 retest MUST raise eval_episodes, NOT apply nav_bias in eval. ready=False: the MECH-022 full retest is governance-gated (pending_retest_after_substrate), not an auto-queueable build.",
       "validation_experiment": "ree-v3 tests/contracts/test_e3_scorer_completion.py (deterministic contract, in lieu of a stochastic experiment); MECH-022 behavioural retest is governance-gated"
+    },
+    {
+      "sd_id": "SD-RESIDUE-VALENCE-BOUND",
+      "title": "ResidueField RBFLayer.update_valence(): clamp/decay the unbounded valence accumulator",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+          "experiment_type": "v3_exq_906a_full_stack_observational_fishtank",
+          "metric": "z_world_norm ~150-320 and excite/dread channels in the hundreds under sustained continuous multi-segment exposure (203 realized steps, 1 seed), vs ~0.5-0.7 at smoke scale -- RBFLayer.update_valence() accumulator has no decay/clamp",
+          "target": "bounded, interpretable valence magnitude under sustained exposure (decay term or explicit clamp)",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3",
+          "experiment_type": "v3_exq_906c_full_stack_observational_fishtank",
+          "metric": "liking mean=19.88 (~50x a smoke-observed 0.39 per-step ceiling); dread rises 40-110x across 8 episodes in both 906b/906c (excite already flagged); residue_wanting exact 0.0/3793 steps (orphaned writer, not floor -- separate defect, see substrate_paths)",
+          "target": "liking/dread/excite bounded to a per-tick-plausible hedonic-impact range after clamp+decay; residue_wanting writer methods invoked from the agent step loop",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "RBFLayer.update_valence() in ree_core/residue/field.py is an unclamped += with no decay, fired every step MECH-307 split-surprise crosses threshold. Confirmed to affect ALL SIX valence indices (wanting/liking/harm_discriminative/surprise/excite/dread), not just excite -- liking and dread independently confirmed to share the identical write path (906b/906c cluster autopsy, 2026-08-10). Separately: residue_wanting's two writer methods (update_benefit_salience, update_schema_wanting in ree_core/agent.py) are never called from the 906-family agent step loop -- an orphaned-writer plumbing bug distinct from the accumulator-bound issue, on the same substrate area.",
+      "priority": 3,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/residue/field.py",
+        "ree_core/agent.py::update_benefit_salience",
+        "ree_core/agent.py::update_schema_wanting"
+      ],
+      "added_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "queue-depth-low-ops-aac785"
+    },
+    {
+      "sd_id": "theta-buffer-phase-aware-summary",
+      "title": "Phase/sequence-order-aware ThetaBuffer summary (replace flat-mean packaging)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-032",
+        "MECH-089"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_228c_arc032_theta_bypass_readout_20260809T110214Z_v3",
+          "experiment_type": "v3_exq_228c_arc032_theta_bypass_readout",
+          "metric": "persist_delta_mean=4.47e-07 (no effect), noise_delta_mean=-0.0671 (reversed -- ACTIVE noisier)",
+          "target": "persist_delta_mean >= 0.02 AND noise_delta_mean >= 0.005 on >= 2/3 seeds",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "ThetaBuffer.summary() currently computes a flat unweighted mean over a fixed 10-step window, which cannot represent within-window ordinal/phase structure. Two independent lines of evidence (V3-EXQ-228c direct DVs; MECH-089 EXQ-066/EXQ-122) show this flat-mean packaging actively degrades E3's discrimination. Build a phase/sequence-order-preserving summary grounded in Dragoi 2006 (theta-sequence compression) / Colgin 2016 (theta-gamma nesting). Exact source location not resolved in this autopsy's fact-gathering pass -- likely ree_core hippocampal/E1-output-packaging module, MECH-089's ownership.",
+      "priority": 2,
+      "severity": "degrading",
+      "substrate_paths": [],
+      "added_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "queue-depth-low-ops-aac785"
+    },
+    {
+      "sd_id": "mech357-freeze-incompatible-pressure-mechanism",
+      "title": "Genuine freeze-incompatible Stage-H pressure for MECH-357 testing: agent-directed predator pursuit AND/OR episode-length/event-suddenness redesign",
+      "node_class": "complex (probe-gated)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-357"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+          "experiment_type": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard",
+          "metric": "G_H_INTACT_frac=0.6667 tied with G_H_LESION_frac=0.6667 (discrimination criterion fails on exact tie, not near-miss)",
+          "target": "G_H_INTACT_frac > G_H_LESION_frac (discrimination) AND G_H_LESION_frac < 0.667 (headroom)",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "Two consecutive config-only pressure escalations (static field 603r, mobile-predator env-drift 603s) both fail to make the LESION negative control fail its own gate. Scope BOTH candidate fixes before committing: (a) genuine agent-directed predator pursuit in Stage-H (previously deferred as not config-buildable when 603s was designed), and (b) an environment-mechanics investigation into episode length and discrete/sudden novel-threat-event timing (vs continuous drift) as a cheaper alternative that may achieve the needed discriminative pressure without new pursuit-AI code. User-raised hypothesis (2026-08-10 interactive gate): current episodes may not be long enough and/or lack sufficiently sudden/novel events for measurability. Marked complex (probe-gated), not a naked build task, because which of (a)/(b) to build is itself the open question -- a scoping spike is owed before committing to implementation.",
+      "priority": 2,
+      "severity": null,
+      "substrate_paths": [],
+      "added_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "queue-depth-low-ops-aac785"
+    },
+    {
+      "sd_id": "SD-ORIENTING-DECISION-SCALE",
+      "title": "Fix norm-vs-benefit-value scale mismatch in defensive-orienting override decision (MECH-489 Component 4/5)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-489"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_910_mech489_defensive_orienting_validation_20260810T004433Z_v3",
+          "experiment_type": "v3_exq_910_mech489_defensive_orienting_validation",
+          "metric": "decision_alignment across 206 logged overrides: approach=0, withdraw=206, resume=0",
+          "target": "a properly-scaled comparison should yield a non-degenerate mix of approach/withdraw/resume tracking actual event valence, not a 100%-one-sided split",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "ree_core/agent.py select_action()'s Component 4/5 block compares _do_harm_val (a structurally non-negative L2 norm of z_harm_s) against _do_benefit (an RBF attraction value, near-zero unless very close to a previously-beneficial region) as if they were commensurable magnitudes. Normalize/rescale both onto the same scale (e.g. z-score each against its own running distribution, or compare signed valence rather than norm-vs-value) before the approach/withdraw/resume branch.",
+      "priority": 1,
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/agent.py::select_action"
+      ],
+      "added_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "queue-depth-low-ops-aac785"
     }
   ],
   "schema_version": "substrate_queue/v2"
