@@ -47106,8 +47106,16 @@
     substrate: it is a non-Bayesian rule-creator that proposes
     discriminative policy modes for the updaters to refine. ARC-062 is
     the V3 instantiation of this slot (weak reading: gated-policy
-    architecture with learned context discriminator). ARC-063 is the V4
-    deferred form (strong reading: distributed CandidateRule field with
+    architecture with learned context discriminator). [STALE 2026-08-10
+    governance: the next sentence originally called ARC-063 "the V4
+    deferred form" -- ARC-063 was brought forward V4->V3 2026-05-18
+    (implementation_phase: v3, v3_pending: true, per its own
+    brought_forward_utc field) precisely because MECH-309 depends on it
+    and MECH-309 is V3 -- phase follows dependency. ARC-063's V1
+    substrate landed 2026-06-04. Only ARC-077 (the social/population
+    extension) remains genuinely substrate-blocked, on a caregiver/
+    teacher-agent multi-agent substrate that does not exist in V3.] ARC-063
+    is the strong reading (distributed CandidateRule field with
     tolerance-gated availability and structured evidence-trace records,
     per the 2026-05-04 thought-intake on tolerance-gated rule
     apprehension).
@@ -47381,7 +47389,7 @@
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: ARC-062
-  title: "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063, V4-deferred). Architectural slot, not yet implemented."
+  title: "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063 -- brought forward V4->V3 2026-05-18, this parenthetical is stale as of registration 2026-05-08). Architectural slot, not yet implemented."
   claim_type: architectural_commitment
   subject: policy.rule_apprehension_layer.weak_reading
   ml_translation_note: >
@@ -48437,6 +48445,16 @@
     verbatim (both readings share the identical MECH-439 conversion ceiling)
     so the pair does not drift into inconsistent release conditions.
   functional_restatement: >
+    [STALE 2026-08-10 governance: this entire block predates the
+    2026-05-18 V4->V3 bring-forward (brought_forward_utc field above) and
+    was never revised to match. Every "V4"/"V4-bound"/"implementation_phase=v4"
+    reference below is historical, not current -- ARC-063 is
+    implementation_phase: v3, v3_pending: true, with a landed V1 substrate
+    (2026-06-04, ree_core/policy/candidate_rule_field.py). See notes field
+    below (already correctly dated) and evidence_quality_note for the live
+    reading. Left unedited rather than rewritten, per this repo's
+    evidentiary-integrity convention for superseded prose.]
+
     ARC-063 registers the V4 architectural slot for the strong-reading
     form of the rule-apprehension layer. It formalises the structural
     cluster proposed in the 2026-05-04 thought-intake on tolerance-gated
