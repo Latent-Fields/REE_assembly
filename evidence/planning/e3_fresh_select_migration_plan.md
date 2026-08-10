@@ -1,7 +1,7 @@
 # E3 fresh-select instrument — shared-helper migration (plan of record)
 
 **Opened:** 2026-07-20T12:37Z (session `peaceful-morse-5cf712`)
-**Status:** IN PROGRESS — 2 of 3 call sites migrated (689i now the sole remaining, UNBLOCKED, has run; see §5, updated 2026-08-10)
+**Status:** IN PROGRESS — all 3 call sites migrated; only the `e3-exemption-backlog` lint counter (§4/§5) remains outstanding (updated 2026-08-10)
 **Substrate:** `ree-v3` `experiments/_lib/fresh_select.py` (landed `acd48f9`, 2026-07-20)
 
 ## Why this doc exists
@@ -105,8 +105,8 @@ closing.
 |---|---|---|
 | 699c | **MIGRATED** | ree-v3 `acd48f9` |
 | 699b | **MIGRATED** — off the shared helper (`experiments/_lib/fresh_select.py`), both exemption markers removed, `validate_experiments.py` reports OK (0 exempt); the two prior runs (both FAIL / `non_contributory` / `substrate_not_ready_requeue`, composition question `levers_compound` not reached) are unaffected by this instrument-only migration | runs `v3_exq_699b_..._20260724T123550Z_v3`, `v3_exq_699b_..._20260724T205940Z_v3` (both pre-migration); migration itself: ree-v3 (this session) |
-| 689i | **UNBLOCKED, not yet migrated** — ran once, self-routed FAIL (`substrate_not_ready_requeue`) but confirmed autopsy adjudicates "gate defect, science upheld": C_PRIMARY (the criterion that actually tests MECH-448) passed cleanly; the two failing gates were instrument-side (a first-use noise-control's power, and an ambiguous-direction readiness comparator). Recommended `evidence_direction: supports` for MECH-448, pending governance write-up (not applied here) | run `v3_exq_689i_..._20260722T162850Z_v3`; `failure_autopsy_V3-EXQ-689i_2026-07-24` (status: confirmed, user-adjudicated 2026-07-24); markers still present on `origin/main` |
+| 689i | **MIGRATED** — off the shared helper (`experiments/_lib/fresh_select.py`), both exemption markers removed, `validate_experiments.py` reports OK (0 exempt); own semantics preserved verbatim (`is_p1` gating, episode-END flush per §3). The prior run (self-routed FAIL `substrate_not_ready_requeue`, but confirmed autopsy adjudicates "gate defect, science upheld" -- C_PRIMARY passed cleanly; recommended `evidence_direction: supports` for MECH-448, pending governance write-up, not applied here) is unaffected by this instrument-only migration | run `v3_exq_689i_..._20260722T162850Z_v3` (pre-migration); `failure_autopsy_V3-EXQ-689i_2026-07-24` (status: confirmed, user-adjudicated 2026-07-24); migration itself: ree-v3 `1233b84e4b` |
 | `e3-exemption-backlog` lint counter | **NOT BUILT** — see §4 | — |
 
-Close this doc when §5 has no un-migrated call-site rows (currently 689i) and the lint
-counter row is resolved.
+Close this doc when §5 has no un-migrated call-site rows (none remaining) and the lint
+counter row is resolved (still outstanding — see `e3-exemption-backlog` row above).
