@@ -1,37 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-09T21:03:45Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-910",
-  "current_exq_started_utc": "2026-08-09T20:45:59.159706+00:00",
-  "current_title": "MECH-489 (SD-099) defensive-orienting response: ablation validation vs 906b ground-truth events",
-  "current_claim_id": "MECH-489",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 0 / full_stack_observational_showcase",
-    "runs_done": 1,
-    "runs_total": 4,
-    "episodes_done": 170,
-    "episodes_total": 220,
-    "overall_pct": 44.3
-  },
-  "seconds_elapsed": 1066,
-  "seconds_remaining": 3134,
-  "recent_lines": [
-    "Seed 0 Condition orienting_off",
-    "Seed 0 Condition full_stack_observational_showcase",
-    "[EXQ-906b] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON",
-    "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4924",
-    "[train] stage0b seed=0 ep 30/220",
-    "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=3655",
-    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.4456 harm_steps=483"
+  "last_tick_utc": "2026-08-10T00:48:40Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-906c",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-866b",
+      "result": "PASS",
+      "completed_at": "2026-08-03T19:24:06.174504+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-888",
+      "result": "PASS",
+      "completed_at": "2026-08-04T07:52:57.551542+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-900",
+      "result": "PASS",
+      "completed_at": "2026-08-08T10:38:46.565176+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-904",
+      "result": "PASS",
+      "completed_at": "2026-08-08T20:11:50.967141+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-910",
+      "result": "FAIL",
+      "completed_at": "2026-08-10T00:44:34.511340+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 5551,
-  "runner_version": "r4999 df02311 2026-08-09",
+  "runner_version": "r5000 80930bf 2026-08-09 (running r4999 df02311)",
   "gpu": {
     "available": false
   },
