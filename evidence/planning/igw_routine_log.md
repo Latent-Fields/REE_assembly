@@ -1596,3 +1596,6 @@ One line per hourly tick. ASCII only.
 2026-08-10T12:49:54Z skip: paused (.igw_routine_pause present)
 2026-08-10T13:49:58Z skip: paused (.igw_routine_pause present)
 2026-08-10T14:50:00Z skip: paused (.igw_routine_pause present)
+2026-08-10T15:50:43Z workset committed (regen -- 241 items, 28 ready, 0 in flight)
+2026-08-10T15:50:43Z auto-defer IGW-20260810-232 hash=795d137abe65 for 48h (reaped -> completed_resumable)
+2026-08-10T15:50:43Z GC keep igw-232-literature-proposal-for-mech-489 (ledger IGW-20260810-232 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
