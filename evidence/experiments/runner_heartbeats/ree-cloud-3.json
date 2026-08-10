@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-10T20:29:42Z",
+  "last_tick_utc": "2026-08-10T20:39:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-910a",
   "current_exq_started_utc": "2026-08-10T18:56:08.235848+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 0 / full_stack_observational_showcase",
     "runs_done": 5,
     "runs_total": 4,
-    "episodes_done": 170,
+    "episodes_done": 4,
     "episodes_total": 220,
-    "overall_pct": 144.3
+    "overall_pct": 125.5
   },
-  "seconds_elapsed": 5615,
+  "seconds_elapsed": 6221,
   "seconds_remaining": 0,
   "recent_lines": [
     "Seed 0 Condition orienting_off",
@@ -67,7 +67,12 @@
     "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4973",
     "[train] stage0b seed=0 ep 30/220",
     "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=3543",
-    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.2120 harm_steps=1092"
+    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.2120 harm_steps=1092",
+    "[train] p1 seed=0 ep 220/220 survival_gate=FAIL",
+    "[eval] seed=0 ep 1/8 steps=500 done_cause=step_limit spawn_attempts=1",
+    "[eval] seed=0 ep 2/8 steps=500 done_cause=step_limit spawn_attempts=2",
+    "[eval] seed=0 ep 3/8 steps=349 done_cause=health_depleted spawn_attempts=1",
+    "[eval] seed=0 ep 4/8 steps=397 done_cause=health_depleted spawn_attempts=1"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
