@@ -1602,3 +1602,4 @@ One line per hourly tick. ASCII only.
 2026-08-10T15:50:02Z STAGE IGW-20260810-208 skill=/implement-substrate prio=25 worktree=igw-208-substrate-ready-sd-residue-valen (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-10T16:51:42Z skip: paused (.igw_routine_pause present)
 2026-08-10T17:52:17Z workset committed (regen -- 240 items, 26 ready, 0 in flight)
+2026-08-10T17:51:44Z STAGE IGW-20260810-210 skill=/implement-substrate prio=25 worktree=igw-210-substrate-ready-sd-orienting-dec (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
