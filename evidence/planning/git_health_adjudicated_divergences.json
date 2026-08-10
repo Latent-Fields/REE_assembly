@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "_read_by": "REE_assembly/scripts/runner_git_health.py (load_adjudicated_divergences)",
+  "_purpose": "Human-confirmed-benign same-run_id-different-content verdicts for the fleet git-health probe. A record only downgrades a divergent finding whose LOCAL untracked copy's content_sha256 matches EXACTLY -- see the loader's docstring for why host/repo/run_id/content_sha256 must ALL match. A record missing content_sha256 is dropped at load time (inert, never a wildcard).",
+  "adjudications": [
+    {
+      "host": "ree-cloud-2",
+      "repo": "REE_assembly",
+      "run_id": "v3_exq_850_mech204_sd076_h2_exposure_budget_probe_20260801T005937Z_v3",
+      "content_sha256": "8ac30e05ab1b4ab1ee2145f4d6bb2439d85319e4b30fda72466e321a7432d5ef",
+      "content_sha256_confirmed_at": "2026-08-10T06:49:00Z",
+      "content_sha256_confirmed_by": "`runner_git_health.py --host ree-cloud-2 --json` (ree-worker-2 woken briefly for this read, user-authorized; powered back off immediately after)",
+      "adjudicated_at": "2026-08-09T20:07:00Z",
+      "adjudicated_by": "process-goal-topology-thoughts-262b36",
+      "note": "Confirmed benign: origin's experiment_pack/v1 packed manifest carries the identical interpretation block (preconditions, measured/threshold/met triples) plus a 2026-08-01 governance disposition (evidence_direction: superseded, V3-EXQ-850/853 superseded by V3-EXQ-860) that cloud-2's untracked pre-pack raw runner dump predates (evidence_direction: inconclusive, no disposition note). Diffed structurally, not eyeballed; origin holds strictly more/equally-informative content. Untracked copy deliberately left in place, not deleted -- non-evidence residue, not a loss risk.",
+      "reference": "evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-08-09.md"
+    }
+  ]
+}
