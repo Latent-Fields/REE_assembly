@@ -2271,6 +2271,100 @@ def test_aggregate_exclusion_does_not_apply_to_a_non_pass():
     assert flag == "verified", flag
 
 
+# ---------------------------------------------------------------------------
+# criteria_non_degenerate{} <-> criteria[] join, FOURTH sub-case (V3-EXQ-908).
+#
+# Unlike all three precedents above, this manifest's interpretation block has
+# NO criteria[] array at all -- by_name is empty and the aggregate exclusion
+# can never fire. The driver instead reports per-arm PAIRS of keys using an
+# <arm_label>::<check_name> naming convention (e.g. C1_breaks_saddle beside
+# C1b_context_dependent for the same arm); a False sanity-check sibling next
+# to a True, independently-measured, load-bearing sibling is the author's own
+# DV-symmetry design working as intended, not a gate cleared on nothing.
+# Regression target: failure_autopsy_V3-EXQ-908_2026-08-10.md.
+# ---------------------------------------------------------------------------
+
+def _hard_selection(c1_gumbel=False, c1b_gumbel=True,
+                    c1_topk=False, c1b_topk=True):
+    """The real V3-EXQ-908 declaration shape, reduced to what the join reads.
+    No criteria[] array at all -- that absence IS the defect being fixed."""
+    return {
+        "label": "sd016_h3_hard_selection_breaks_saddle:A2_tagger_gumbel",
+        "criteria_non_degenerate": {
+            "C2_off_arm_on_saddle": True,
+            "A1_tagger_soft::C1_breaks_saddle": True,
+            "A1_tagger_soft::C1b_context_dependent": True,
+            "A2_tagger_gumbel::C1_breaks_saddle": c1_gumbel,
+            "A2_tagger_gumbel::C1b_context_dependent": c1b_gumbel,
+            "A3a_topk_k1::C1_breaks_saddle": c1_topk,
+            "A3a_topk_k1::C1b_context_dependent": c1b_topk,
+        },
+    }
+
+
+def test_arm_paired_key_with_true_sibling_is_not_vacuous():
+    """THE FIX. A2_tagger_gumbel::C1_breaks_saddle=False has a True same-arm
+    sibling (C1b_context_dependent), so it does not trip vacuous_pass."""
+    _, flag = b._compute_adjudication(_hard_selection(), "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_arm_with_both_siblings_false_still_flags():
+    """SAFETY. If an arm's checks are BOTH False there is no True sibling to
+    license the exclusion, so the conservative default still fires."""
+    interp = _hard_selection()
+    interp["criteria_non_degenerate"]["A2_tagger_gumbel::C1b_context_dependent"] = False
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_sibling_exclusion_gated_on_absence_of_criteria_array():
+    """NEGATIVE CONTROL. The same "::" key shape, but this time criteria[] IS
+    present (even a single unrelated, non-load-bearing entry) -- the fourth
+    exclusion must not fire; only the pre-existing exclusions may apply, and
+    none of them match this criteria[] here, so the flag is unchanged."""
+    interp = _hard_selection()
+    interp["criteria"] = [{"name": "unrelated_check", "load_bearing": False,
+                           "passed": True}]
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_key_without_double_colon_is_unaffected_by_the_sibling_check():
+    """NEGATIVE CONTROL. A plain (non `<arm>::<check>`) False key has no
+    prefix to pair against and must keep flagging, exactly as before."""
+    interp = {"label": "x", "criteria_non_degenerate": {"plain_check": False}}
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_sibling_exclusion_does_not_apply_to_a_non_pass():
+    """A FAIL was never vacuous_pass; the exclusion must not change that."""
+    _, flag = b._compute_adjudication(_hard_selection(), "FAIL", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_908_manifest_end_to_end():
+    """The real V3-EXQ-908 manifest (all three False C1 keys, each with a True
+    C1b sibling) resolves to verified, not vacuous_pass."""
+    interp = {
+        "label": "sd016_h3_hard_selection_breaks_saddle:A2_tagger_gumbel",
+        "criteria_non_degenerate": {
+            "C2_off_arm_on_saddle": True,
+            "A1_tagger_soft::C1_breaks_saddle": True,
+            "A1_tagger_soft::C1b_context_dependent": True,
+            "A2_tagger_gumbel::C1_breaks_saddle": False,
+            "A2_tagger_gumbel::C1b_context_dependent": True,
+            "A3a_topk_k1::C1_breaks_saddle": False,
+            "A3a_topk_k1::C1b_context_dependent": True,
+            "A3b_topk_k2::C1_breaks_saddle": False,
+            "A3b_topk_k2::C1b_context_dependent": True,
+        },
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
 # --- atomic-write drift guard --------------------------------------------
 #
 # build_experiment_indexes.py rewrites ~10 shared artifacts under

@@ -459,6 +459,15 @@ def _compute_adjudication(interpretation: Any, status: str,
                              2026-08-09.md). Safe because a degenerate GATED
                              subset makes the aggregate itself passed:false,
                              which (3b) catches before this path runs.
+                             A FOURTH exception covers manifests with no
+                             criteria[] array AT ALL, using an
+                             <arm_label>::<check_name> key convention: a False
+                             key is excluded from the vacuity check if some
+                             OTHER key sharing the same <arm_label> prefix is
+                             True (the author's own paired sanity-check/
+                             load-bearing-gate design, e.g. V3-EXQ-908's
+                             per-arm C1/C1b pair). See failure_autopsy_V3-EXQ-908_
+                             2026-08-10.md.
       - "verified"        -- declared structure(s) present and all checks hold.
 
     The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
@@ -638,12 +647,55 @@ def _compute_adjudication(interpretation: Any, status: str,
             return False
         return len([n for n in by_name if n.startswith(key + "_")]) != 1
 
+    # FOURTH sub-case of the join-mismatch class (V3-EXQ-908, 2026-08-10). Unlike
+    # all three precedents above, this manifest's interpretation block carries NO
+    # criteria[] array AT ALL -- by_name is empty, _aggregate_cleared can never be
+    # True, and none of the exclusions above can ever fire here. With nothing to
+    # match, the legacy fallback would flag on criteria_non_degenerate{}'s bare
+    # False values alone.
+    #
+    # V3-EXQ-908 reports per-arm keys using an <arm_label>::<check_name> naming
+    # convention: A2_tagger_gumbel::C1_breaks_saddle=False sits beside
+    # A2_tagger_gumbel::C1b_context_dependent=True for the SAME arm. The driver's
+    # own docstring (v3_exq_908_sd016_h3_hard_selection.py, "DV-SYMMETRY CHECK")
+    # explains why: for a hard-selection arm, near-zero entropy (C1) is a
+    # mechanical byproduct of the selector's own construction (topk k=1 forces
+    # exactly 0; annealed Gumbel anneals toward 0), not evidence of context-
+    # discrimination -- the genuinely informative, independently-measured gate is
+    # C1b. A False C1 beside a True C1b for the same arm is the author's own
+    # DV-symmetry design working as intended, not a gate cleared on nothing. See
+    # failure_autopsy_V3-EXQ-908_2026-08-10.md Sec.1.
+    #
+    # THE LICENCE: a key that follows the <arm>::<check> convention (contains
+    # "::") and is False is excluded from the vacuity check if some OTHER key
+    # sharing the same <arm> prefix is True. GATED to manifests with no
+    # criteria[] array at all -- a manifest that DOES carry criteria[] already
+    # has the three exclusions above to draw on, and narrowing this one to the
+    # exact confirmed shape keeps it from interacting with that logic in any
+    # unmeasured way. Ambiguity still resolves toward FLAGGING: a False key with
+    # no True same-arm sibling (or no "::" at all) stays in the vacuity check.
+    #
+    # NARROW BY MEASUREMENT: across every manifest under evidence/experiments as
+    # of 2026-08-10, exactly ONE (V3-EXQ-908) uses the "::" arm-prefix convention
+    # in criteria_non_degenerate{} at all, so this exclusion is inert everywhere
+    # else today.
+    _no_criteria_array = not (isinstance(_criteria, list) and len(_criteria) > 0)
+
+    def _has_true_arm_sibling(key: str) -> bool:
+        if not _no_criteria_array or "::" not in key:
+            return False
+        prefix = key.split("::", 1)[0]
+        return any(str(k2).split("::", 1)[0] == prefix and str(k2) != key
+                   and v2 is True
+                   for k2, v2 in crit.items() if "::" in str(k2))
+
     non_load_bearing = {k for k in (str(x) for x in crit.keys())
                         if _load_bearing_for(k) is False}
     degeneracy_assertions = [v for k, v in crit.items()
                              if not str(k).endswith("_branch")
                              and str(k) not in non_load_bearing
-                             and not _out_of_aggregate_scope(str(k))]
+                             and not _out_of_aggregate_scope(str(k))
+                             and not _has_true_arm_sibling(str(k))]
     if str(status).upper() == "PASS" and any(v is False for v in degeneracy_assertions):
         return label, "vacuous_pass"
     return label, "verified"
