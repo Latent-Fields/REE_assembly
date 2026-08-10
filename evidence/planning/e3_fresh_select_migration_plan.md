@@ -1,7 +1,7 @@
 # E3 fresh-select instrument — shared-helper migration (plan of record)
 
 **Opened:** 2026-07-20T12:37Z (session `peaceful-morse-5cf712`)
-**Status:** IN PROGRESS — all 3 call sites migrated; only the `e3-exemption-backlog` lint counter (§4/§5) remains outstanding (updated 2026-08-10)
+**Status:** CLOSED — all 3 call sites migrated and the `e3-exemption-backlog` lint counter is built (§4/§5) (updated 2026-08-10)
 **Substrate:** `ree-v3` `experiments/_lib/fresh_select.py` (landed `acd48f9`, 2026-07-20)
 
 ## Why this doc exists
@@ -92,12 +92,11 @@ Three sibling lints in the same file **do** carry backlog counters —
 exist for exactly this purpose: making known-outstanding migrations visible on every run. The two
 E3 lints have exemption markers but **no backlog counter**.
 
-**Recommended follow-up (not done here):** add an `e3-exemption-backlog` counter to the two E3
-lints, mirroring the three existing ones. That would make this doc redundant — every
-`validate_experiments.py` run would report the outstanding count until the last marker is gone,
-and no future session would depend on finding a planning doc. Not done in this session because it
-is a code change with contract implications for the two corpus fire pins, and the session was
-closing.
+**Recommended follow-up (built 2026-08-10, ree-v3 `78f7543b80`):** added an `e3-exemption-backlog`
+counter, mirroring the three existing ones — a new, separate lint rather than a change to the two
+E3 lints themselves, so their own corpus fire pins are untouched. This doc is now redundant: every
+`validate_experiments.py` run reports the outstanding count until the last marker is gone, and no
+future session needs to find this planning doc.
 
 ## 5. Status table
 
@@ -106,7 +105,7 @@ closing.
 | 699c | **MIGRATED** | ree-v3 `acd48f9` |
 | 699b | **MIGRATED** — off the shared helper (`experiments/_lib/fresh_select.py`), both exemption markers removed, `validate_experiments.py` reports OK (0 exempt); the two prior runs (both FAIL / `non_contributory` / `substrate_not_ready_requeue`, composition question `levers_compound` not reached) are unaffected by this instrument-only migration | runs `v3_exq_699b_..._20260724T123550Z_v3`, `v3_exq_699b_..._20260724T205940Z_v3` (both pre-migration); migration itself: ree-v3 (this session) |
 | 689i | **MIGRATED** — off the shared helper (`experiments/_lib/fresh_select.py`), both exemption markers removed, `validate_experiments.py` reports OK (0 exempt); own semantics preserved verbatim (`is_p1` gating, episode-END flush per §3). The prior run (self-routed FAIL `substrate_not_ready_requeue`, but confirmed autopsy adjudicates "gate defect, science upheld" -- C_PRIMARY passed cleanly; recommended `evidence_direction: supports` for MECH-448, pending governance write-up, not applied here) is unaffected by this instrument-only migration | run `v3_exq_689i_..._20260722T162850Z_v3` (pre-migration); `failure_autopsy_V3-EXQ-689i_2026-07-24` (status: confirmed, user-adjudicated 2026-07-24); migration itself: ree-v3 `1233b84e4b` |
-| `e3-exemption-backlog` lint counter | **NOT BUILT** — see §4 | — |
+| `e3-exemption-backlog` lint counter | **BUILT** — `e3_exemption_backlog_lint` in `validate_experiments.py`, wired into `CHECK_NAMES`/summary/WARNINGS and the shared corpus scan; corpus fire-rate pinned at 10 (699b/689i confirmed clean; the ten firing carry a marker for reasons unrelated to this migration) | ree-v3 `78f7543b80` |
 
-Close this doc when §5 has no un-migrated call-site rows (none remaining) and the lint
-counter row is resolved (still outstanding — see `e3-exemption-backlog` row above).
+Closed: §5 has no un-migrated call-site rows and the lint counter row is resolved (see
+`e3-exemption-backlog` row above, evidence `78f7543b80`).
