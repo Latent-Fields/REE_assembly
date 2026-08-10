@@ -1,0 +1,150 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_910a_mech489_defensive_orienting_decision_retest",
+  "run_id": "v3_exq_910a_mech489_defensive_orienting_decision_retest_20260810T213616Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-10T21:36:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-489"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "defensive_orienting_partial_or_unmet",
+    "preconditions": [
+      {
+        "name": "pooled_limb_damage_injected_count_sufficient",
+        "description": "At least 3 pooled limb_damage_injected events across all ON-arm seeds are needed for its alignment_rate to be a meaningful measurement (906b's own single-seed run saw 15-31 per field over 3909 steps -- this is a not-structurally-impossible check, not a power analysis).",
+        "measured": 72,
+        "threshold": 3,
+        "met": true
+      },
+      {
+        "name": "pooled_external_hazard_injected_count_sufficient",
+        "description": "At least 3 pooled external_hazard_injected events across all ON-arm seeds are needed for its alignment_rate to be a meaningful measurement (906b's own single-seed run saw 15-31 per field over 3909 steps -- this is a not-structurally-impossible check, not a power analysis).",
+        "measured": 58,
+        "threshold": 3,
+        "met": true
+      },
+      {
+        "name": "pooled_world_rule_shift_occurred_count_sufficient",
+        "description": "At least 3 pooled world_rule_shift_occurred events across all ON-arm seeds are needed for its alignment_rate to be a meaningful measurement (906b's own single-seed run saw 15-31 per field over 3909 steps -- this is a not-structurally-impossible check, not a power analysis).",
+        "measured": 29,
+        "threshold": 3,
+        "met": true
+      },
+      {
+        "name": "pooled_overrides_count_sufficient",
+        "description": "At least 5 pooled Component-4/5 overrides across all ON-arm seeds are needed for decision_alignment (criterion (c)) to be a meaningful measurement of the SD-ORIENTING-DECISION-SCALE fix -- this is the readiness gate for the criterion this re-queue actually exists to test.",
+        "measured": 21,
+        "threshold": 5,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_alignment_limb_damage_injected": true,
+      "C_alignment_external_hazard_injected": true,
+      "C_alignment_world_rule_shift_occurred": true,
+      "C_coupling_moved_beats_12b_baseline": true,
+      "C_coupling_modechange_beats_12b_baseline": true,
+      "C_decision_alignment_non_degenerate": true
+    },
+    "event_trigger_alignment": {
+      "limb_damage_injected": {
+        "n_events": 72,
+        "n_aligned": 0,
+        "alignment_rate": 0.0
+      },
+      "external_hazard_injected": {
+        "n_events": 58,
+        "n_aligned": 0,
+        "alignment_rate": 0.0
+      },
+      "world_rule_shift_occurred": {
+        "n_events": 29,
+        "n_aligned": 0,
+        "alignment_rate": 0.0
+      }
+    },
+    "on_arm_coupling": {
+      "n_spike": 67,
+      "p_moved_given_spike": 0.08955223880597014,
+      "p_modechange_given_spike": 0.08955223880597014,
+      "n_nospike": 7188,
+      "p_moved_unconditional": 0.012799109627156371,
+      "p_modechange_unconditional": 0.06121313299944352
+    },
+    "off_arm_coupling_legacy_proxy": {
+      "n_spike": 266,
+      "p_moved_given_spike": 0.23308270676691728,
+      "p_modechange_given_spike": 0.2593984962406015,
+      "n_nospike": 7522,
+      "p_moved_unconditional": 0.276256314809891,
+      "p_modechange_unconditional": 0.16471683063015155
+    },
+    "baseline_12b": {
+      "p_moved_given_spike": 0.443,
+      "p_moved_unconditional": 0.24,
+      "p_modechange_given_spike": 0.154,
+      "p_modechange_unconditional": 0.111
+    },
+    "decision_alignment": {
+      "n_overrides": 21,
+      "decision_counts": {
+        "approach": 0,
+        "withdraw": 206,
+        "resume": 0
+      }
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "d65dce587186053ca51a9ed89d38ee57915ec1b62bb2e22f6c38f46817ae3892",
+  "substrate_commit": {
+    "commit": "ad8bd4aa3c7198d4cbebf5cd0bfe003ca58e1c55",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 57280,
+    "ticks_active": 53844,
+    "writer_calls": 21533,
+    "active_frac": 0.9400139664804469,
+    "writer_defect": false,
+    "n_agents": 4,
+    "goal_state_present": true
+  }
+}
