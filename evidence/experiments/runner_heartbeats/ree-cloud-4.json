@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-10T19:19:17Z",
+  "last_tick_utc": "2026-08-10T19:24:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-913",
   "current_exq_started_utc": "2026-08-10T19:09:21.770728+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 0 / with_sleep",
     "runs_done": 0,
     "runs_total": 4,
-    "episodes_done": 170,
+    "episodes_done": 13,
     "episodes_total": 220,
-    "overall_pct": 19.3
+    "overall_pct": 1.5
   },
-  "seconds_elapsed": 596,
-  "seconds_remaining": 2761,
+  "seconds_elapsed": 901,
+  "seconds_remaining": 13595,
   "recent_lines": [
     "[V3-EXQ-913] Developmental-Ecology Fishtank Successor",
     "Seeds: [0, 1]  Arms: ['with_sleep', 'no_sleep']  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
@@ -28,7 +28,21 @@
     "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4814",
     "[train] stage0b seed=0 ep 30/220",
     "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=2979",
-    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.3291 harm_steps=476"
+    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.3291 harm_steps=476",
+    "[train] p1 seed=0 ep 220/220 survival_gate=FAIL",
+    "[eval] seed=0 arm=with_sleep ep 1/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 2/24 steps=500 done_cause=step_limit sleep_fired=True spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 3/24 steps=413 done_cause=health_depleted sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 4/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 5/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 6/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 7/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 8/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 9/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=2",
+    "[eval] seed=0 arm=with_sleep ep 10/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 11/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 12/24 steps=500 done_cause=step_limit sleep_fired=True spawn_attempts=1",
+    "[eval] seed=0 arm=with_sleep ep 13/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
