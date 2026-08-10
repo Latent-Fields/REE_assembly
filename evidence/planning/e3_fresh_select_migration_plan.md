@@ -1,7 +1,7 @@
 # E3 fresh-select instrument — shared-helper migration (plan of record)
 
 **Opened:** 2026-07-20T12:37Z (session `peaceful-morse-5cf712`)
-**Status:** IN PROGRESS — 1 of 3 call sites migrated (other 2 now UNBLOCKED — both have run; see §5, updated 2026-08-09)
+**Status:** IN PROGRESS — 2 of 3 call sites migrated (689i now the sole remaining, UNBLOCKED, has run; see §5, updated 2026-08-10)
 **Substrate:** `ree-v3` `experiments/_lib/fresh_select.py` (landed `acd48f9`, 2026-07-20)
 
 ## Why this doc exists
@@ -34,7 +34,7 @@ below); they are simply unblocked and ready to pick up.
 
 | Script | Namespace | Queue id | State (2026-08-09) |
 |---|---|---|---|
-| `experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py` | `exq699b` | V3-EXQ-699b (priority 28) | RAN 2x (both FAIL) — unblocked, not migrated |
+| `experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py` | `exq699b` | V3-EXQ-699b (priority 28) | RAN 2x (both FAIL) — MIGRATED 2026-08-10 |
 | `experiments/v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair.py` | `exq689i` | V3-EXQ-689i (priority 30) | RAN — unblocked, not migrated |
 
 Exemption markers still present on `origin/main` in both, reconfirmed 2026-08-09
@@ -104,9 +104,9 @@ closing.
 | Call site | State | Evidence |
 |---|---|---|
 | 699c | **MIGRATED** | ree-v3 `acd48f9` |
-| 699b | **UNBLOCKED, not yet migrated** — ran 2x, both FAIL / `non_contributory` / `substrate_not_ready_requeue`; the composition question (`levers_compound`) was not reached either time — readiness precondition `gapa_consumed_summary_divergence_all_arms` unmet both runs | runs `v3_exq_699b_..._20260724T123550Z_v3`, `v3_exq_699b_..._20260724T205940Z_v3`; markers still present on `origin/main` |
+| 699b | **MIGRATED** — off the shared helper (`experiments/_lib/fresh_select.py`), both exemption markers removed, `validate_experiments.py` reports OK (0 exempt); the two prior runs (both FAIL / `non_contributory` / `substrate_not_ready_requeue`, composition question `levers_compound` not reached) are unaffected by this instrument-only migration | runs `v3_exq_699b_..._20260724T123550Z_v3`, `v3_exq_699b_..._20260724T205940Z_v3` (both pre-migration); migration itself: ree-v3 (this session) |
 | 689i | **UNBLOCKED, not yet migrated** — ran once, self-routed FAIL (`substrate_not_ready_requeue`) but confirmed autopsy adjudicates "gate defect, science upheld": C_PRIMARY (the criterion that actually tests MECH-448) passed cleanly; the two failing gates were instrument-side (a first-use noise-control's power, and an ambiguous-direction readiness comparator). Recommended `evidence_direction: supports` for MECH-448, pending governance write-up (not applied here) | run `v3_exq_689i_..._20260722T162850Z_v3`; `failure_autopsy_V3-EXQ-689i_2026-07-24` (status: confirmed, user-adjudicated 2026-07-24); markers still present on `origin/main` |
 | `e3-exemption-backlog` lint counter | **NOT BUILT** — see §4 | — |
 
-Close this doc when §5 has no un-migrated call-site rows (currently 699b, 689i) and the lint
+Close this doc when §5 has no un-migrated call-site rows (currently 689i) and the lint
 counter row is resolved.
