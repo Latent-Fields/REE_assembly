@@ -18326,13 +18326,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/substrate_ceiling
-    as_of: 2026-07-11
+    reading: candidate/standard
+    as_of: 2026-08-10
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-710_2026-07-03
-      as_of: 2026-07-03
-      verdict: non_contributory/substrate_ceiling
+      from: failure_autopsy_V3-EXQ-710_2026-07-20
+      as_of: 2026-07-20
+      verdict: non_contributory/measurement_invalid
   depends_on:
     - MECH-062
     - ARC-005
@@ -18382,10 +18382,30 @@
     reconfiguration where the single F-collapsed arena structurally denied it. PROMOTES NOTHING; MECH-140
     stays candidate / substrate_ceiling / pending_retest_after_substrate. See
     docs/architecture/learned_cross_loop_arbitration.md "Addendum: ascending-spiral gain".
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   implementation_phase: v3
   pending_retest_after_substrate: true
   evidence_quality_note: >
+    [2026-08-10 governance, GOV-APPLY-1 re-read of failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed,
+    user-gated re-adjudication of the SAME 710 run, applying now): the 2026-07-03 autopsy's own
+    evidentiary basis is WITHDRAWN, not the manifest's self-routed weakens (already dead). Two
+    independent defects invalidate the 2026-07-03 "measurement adequate" reading: the DV is
+    hold-weighted (not fresh-selection-gated, so it double-counts stale rank-holds) and its A2
+    ablation-control is a rank-preserving perturbation of a rank-based readout -- analytically
+    guaranteed null, zero power, cannot fail (confirmed independently: A2_ABLATED == A0_OFF
+    bit-identically, which the 2026-07-03 read as a validity WIN was actually the vacuity tell).
+    710 is MECH-140's SOLE evidence row -- withdrawal leaves it with ZERO valid experimental
+    evidence, reverting it to lit-only (lit_conf 0.695, Keller 2020 / Aquino 2026 PLOS Biology).
+    Per the autopsy's own user gate: epistemic_category drops substrate_ceiling -> standard (the
+    ceiling reading was earned solely by the withdrawn measurement; an untested claim is not a
+    ceiling-blocked one). Status stays candidate; pending_retest_after_substrate stays true;
+    NOT a demotion -- MECH-140 is strong-lit/untested (novel-discovery-adjacent), not
+    under-supported. The soft-competitive-settling implementation itself is NOT withdrawn (the
+    2026-07-20 autopsy independently confirms it is built, live, and rank-faithful under a flat
+    kernel) -- only the diagnostic reading of its functional effect is invalid. GOV-CEIL-1
+    MECH-439 ceiling-exhaustion count corrected 10 -> 9 (710 dropped from the hit list; demotion
+    still stands, margin to N=3 unaffected). Old note (2026-07-03 reading, retained for
+    reconstruction) follows.
     V3-EXQ-710 (2026-07-03, MECH-140 x MECH-450 DISINHIBITORY SOFT-COMPETITIVE SETTLING validation;
     claim_ids [MECH-140, MECH-450, MECH-439]; experiment_purpose=evidence) FAIL / non_degenerate=True.
     The manifest self-routes a DECISIVE weakens (MECH-140 weakens / MECH-450 weakens / MECH-439
@@ -69871,7 +69891,7 @@
       verdict: non_contributory/precondition_unmet
   epistemic_category: standard
   ceiling_decision: exhausted
-  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g)."
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-18"
@@ -69893,6 +69913,10 @@
     ascending-spiral gain -- target-PARITY controller' + learned_cross_loop_arbitration.md 'Sub-addendum:
     bounded parity controller' + substrate_queue v4_loop_segregation (failure_record[7].repaired_by).
   evidence_quality_note: >
+    [2026-08-10 governance, GOV-APPLY-1]: hit count corrected 10 -> 9, 710 dropped
+    (failure_autopsy_V3-EXQ-710_2026-07-20 confirmed re-adjudication withdrew the 2026-07-03 710
+    autopsy's own evidentiary basis -- see MECH-140's evidence_quality_note for the full defect
+    account). Demotion stands unaffected. Old note follows.
     GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy
     hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer
     substrate -> demoted to contested candidate (epistemic_category standard, ceiling_decision exhausted).
@@ -78025,6 +78049,19 @@
     MECH-321 remains candidate / v3_pending; this build makes its R4 half MEASURABLE, and
     measurement is what governance acts on. MECH-094 N/A (waking path, no simulated memory
     writes); phased training N/A (no encoder head, no new parameters).
+    [2026-08-10 governance, V3-EXQ-839 CONFIRMED (failure_autopsy_V3-EXQ-839_2026-07-30)]:
+    mid-execution reachability validated cleanly -- total_midexec_on=415, total_midexec_off=0
+    (C1 PASS, C2 negative-control PASS). Attributability: 4/6 attributable-tier seeds fired the
+    hook (matching pre-registration exactly); both non-attributable-tier seeds (23, 53) were
+    bit-identical between arms as predicted. Readiness preconditions and non-degeneracy both
+    green. Recommended epistemic_category: standard (not substrate_ceiling -- nothing ceilinged).
+    Routing: queue a successor MECH-321 R4 EVIDENCE experiment (new EXQ, claim_ids=[MECH-321])
+    testing the behavioural/task effect of the now-reachable hook (does aborting a stale
+    committed macro on mid-execution decomposition improve task performance), using this run's
+    behavioural_delta block as the design template per the Experimental Recording Standard.
+    Chipped chip-20260810-mech321-r4-behavioural-effect. Still NO claim status/confidence change
+    to MECH-321 (claim_ids=[] by design on this diagnostic) -- reachability is now measured;
+    the behavioural effect is not.
 
 - id: SD-086
   title: z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (ree_core/predictors/e3_selector.py:1182 lambda_ethical, :3128 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.

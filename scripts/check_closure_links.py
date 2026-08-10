@@ -60,8 +60,21 @@ except Exception as exc:  # pragma: no cover - environment problem, not a data p
 # in the frontmatter even though it does not resolve to a renderable node. Exempt it
 # here (and ONLY it) so the validator stays green while honouring that decision. Any
 # OTHER dangling ref is a typo and must fail. Keyed by (source_node, field, target).
+#
+# behavioral_diversity_isolation:GAP-C / GAP-C-build cross_plan_link to
+# "v4_loop_segregation:ARC-110" (added governance_2026_06_27 / reconcile_2026_07_10
+# in behavioral_diversity_isolation_plan.md): v4_loop_segregation is tracked as a
+# substrate_queue.json entry (sd_id v4_loop_segregation, V3-closure-required per its
+# own reclassification_note_2026_07_03), not as a closure-map plan file -- there is
+# no v4_loop_segregation_plan.md and none is owed (the substrate landed no-op-default
+# 2026-06-27; the tracking lives in claims.yaml ARC-110 + the substrate_queue entry).
+# The pointer is deliberate (names the live conversion-ceiling frontier for two
+# sibling nodes) and not renderable as a node. Exempt both (/governance cycle
+# queue-depth-low-ops-aac785, 2026-08-10).
 DANGLING_ALLOWLIST = {
     ("sleep_substrate:GAP-2", "depends_on", "arc_062_rule_apprehension:ARC-065-substrate"),
+    ("behavioral_diversity_isolation:GAP-C", "cross_plan_link", "v4_loop_segregation:ARC-110"),
+    ("behavioral_diversity_isolation:GAP-C-build", "cross_plan_link", "v4_loop_segregation:ARC-110"),
 }
 
 # Fields on each node whose entries point at other nodes/plans.

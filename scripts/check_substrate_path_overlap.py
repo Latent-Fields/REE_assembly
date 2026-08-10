@@ -371,7 +371,7 @@ def main() -> int:
     candidates_sorted = sorted(result["candidates"], key=lambda c: (c["sd_id"] or "", c["run_id"]))
     for c in candidates_sorted:
         print("  - %s [%s]" % (c["run_id"], c["experiment_type"]))
-        print("      substrate_queue %s (%s) -- %s" % (c["sd_id"], c["title"], c["substrate_paths"]))
+        print("      substrate_queue %s (%s) -- %s" % (c["sd_id"], c["sd_title"], c["substrate_paths"]))
         print("      run %s > entry added_utc %s" % (c["run_timestamp"], c["added_utc"]))
 
     return 1 if (args.strict and n) else 0

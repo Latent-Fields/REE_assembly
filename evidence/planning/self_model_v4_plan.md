@@ -257,13 +257,14 @@ closure_plan:
         bears_on: []
         scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: []
-      depends_on: [MECH-454]
+      depends_on: []
       cross_plan_link: []
       assembly_status: queued
       readiness_gate:
         - "what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where the load-bearing uncertainty is about REE's OWN future capability/branch (not the world's). If MECH-454 + de-commit (MECH-090/091/342, SD-034, ARC-108-JOB-2) + ghost-trace (MECH-292/SD-039) ALONE prevent premature foreclosure -> the explicit self-future-model is UNNECESSARY (close this node). If REE still forecloses because it cannot represent uncertainty about its OWN future options -> the explicit V4 self-model is REQUIRED (route to the self-model build)."
         - "NON-DEGENERACY: the decisive uncertainty must genuinely be about the SELF's future option-set, not re-expressible as object/world uncertainty MECH-454 already handles -- else the question is vacuous (MECH-454 subsumes it)."
-      last_updated: 2026-06-24
+      last_updated: 2026-08-10
+      governance_2026_08_10: "Dangling-link fix (/governance cycle queue-depth-low-ops-aac785, check_closure_links.py; frontmatter only, no other change). depends_on: [MECH-454] pointed at a claims.yaml claim id, not a closure-map node -- `depends_on` is scoped to node/plan references and no such node exists, so it read as dangling. MECH-454's relationship to this node is already fully documented in the title, readiness_gate and completion_note below; depends_on cleared to [] (this node has no actual closure-map blocker -- status stays assembling)."
       completion_note: "Folded in 2026-06-24 from a /thought-digestion pass (user disposition: fold the meta-level into this plan rather than mint a standalone claim). Origin = a meta-discussion of a temporal-reasoning failure (collapsing an unknown future distribution into a confident point and prematurely foreclosing a cheap reusable option); the OBJECT-LEVEL fix is registered as MECH-454 (candidate / substrate_conditional / v3), this node tracks the V4 META-LEVEL leg (REE reasoning about the unknowability of its OWN future). Distinct from SELF-3 / SELF-4 (DR-10 z_self-in-E3 / DR-12 E2-PE confidence -- object-level self-state in scoring); this is SECOND-ORDER uncertainty over the self's FUTURE option-space. Lit cluster to anchor when this node activates (the MECH-454 lit-pull is queued first; this node's prospective-cognition strands are deferred): constructive episodic simulation (Schacter & Addis; Hassabis & Maguire; Buckner & Carroll) + OFC counterfactual / foregone-option coding (Boorman; Kolling). OFF the V3 closure %; PROMOTES NOTHING."
 ---
 # Self-Model Integration -- V4 Forward Roadmap
