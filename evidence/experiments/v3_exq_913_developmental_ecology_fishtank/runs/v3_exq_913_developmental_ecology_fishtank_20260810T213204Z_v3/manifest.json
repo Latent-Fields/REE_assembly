@@ -1,0 +1,201 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_913_developmental_ecology_fishtank",
+  "run_id": "v3_exq_913_developmental_ecology_fishtank_20260810T213204Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-10T21:32:04Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "developmental_ecology_mechanisms_engaged",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained",
+        "description": "harm-pathway co-training ran >=1 optimizer step",
+        "measured": 25045.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "layout_continuity_confirmed",
+        "description": "every seed/arm's segment boundaries after the first used env.reset_to() (not env.reset()), and the persisted hazard positions matched the canonical ep0 draw at every boundary",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "zone_map_active",
+        "description": "microhabitat_enabled=True actually produced a non-None _zone_map at ep0 in every seed/arm (positive-control check that the probabilistic-habitat-cue manipulation engaged, not a silent no-op)",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sleep_ablation_engaged",
+        "description": "WITH_SLEEP arm fired >=1 real sleep cycle AND NO_SLEEP arm fired exactly 0, pooled across seeds",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": true,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": true,
+      "channel_excite": true,
+      "channel_dread": true,
+      "harm_pathway_trained": true,
+      "freeze_not_permanently_locked": true,
+      "layout_continuity_confirmed": true,
+      "zone_map_active": true,
+      "sleep_ablation_engaged": true
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "layout_continuity_confirmed",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "zone_map_active",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "sleep_ablation_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "all_seed_arm_verdicts_pass",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_s",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_un",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_a",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_drive",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_goal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_vigor",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_override",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_block",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_excite",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_dread",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "Diagnostic READINESS characterization (not a hypothesis test): PASS = the core affect channels vary AND harm-pathway training ran AND all three combined mechanisms (layout continuity, microhabitat probabilistic-habitat-cue placement, sleep-vs-no-sleep ablation) engaged as designed. The scientifically load-bearing readouts are the within_life_development / sleep_ablation_per_seed / zone_habitat blocks below, which are reported regardless of PASS/FAIL -- 5 matched WITH_SLEEP-firing-vs-NO_SLEEP-control segment comparisons were obtained across 2 seeds. claim_ids=[]; does not weight governance."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b803f18b93268733b0d5809ba6b2e37fd86d2a4342c7187699d159f2f76806b6",
+  "substrate_commit": {
+    "commit": "359d1d5c2354af23263a97fd783c51078718ca5d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 88384,
+    "ticks_active": 54304,
+    "writer_calls": 53153,
+    "active_frac": 0.6144098479362781,
+    "writer_defect": false,
+    "n_agents": 4,
+    "goal_state_present": true
+  }
+}
