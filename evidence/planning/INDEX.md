@@ -1,9 +1,9 @@
 # Planning Index
 
-Generated: `2026-08-09T20:23:53.989897Z`
+Generated: `2026-08-10T05:32:32.156685Z`
 
-- Evidence backlog: `evidence_backlog.v1.json` (405 item(s))
+- Evidence backlog: `evidence_backlog.v1.json` (406 item(s))
 - Experiment proposals: `experiment_proposals.v1.json` (380 item(s))
-- Architecture gap register: `architecture_gap_register.v1.json` (92 item(s), consider_new_structure=0)
-- Dormant high-conflict watchlist: `DORMANT_HIGH_CONFLICT_WATCHLIST.md` (39 item(s))
+- Architecture gap register: `architecture_gap_register.v1.json` (94 item(s), consider_new_structure=0)
+- Dormant high-conflict watchlist: `DORMANT_HIGH_CONFLICT_WATCHLIST.md` (41 item(s))
 - Planning criteria: `planning_criteria.v1.yaml`

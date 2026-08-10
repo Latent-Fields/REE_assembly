@@ -253,6 +253,7 @@ USAGE
 
 import argparse
 import base64
+import hashlib
 import json
 import os
 import subprocess
@@ -364,7 +365,7 @@ done
 #
 # READ-ONLY. Every git call here is status / ls-tree / show.
 UNTRACKED_PY = r'''
-import json, os, re, subprocess, sys, time
+import hashlib, json, os, re, subprocess, sys, time
 
 MAX_FINDINGS = 25
 MAX_BYTES = 8 * 1024 * 1024
@@ -530,6 +531,12 @@ def grade_path(root, ref, rel, idx):
         cands = idx.get("runpaths", {}).get(run_id, ())
         if origin_match(root, ref, doc, raw, cands) is not False:
             return "clear", None
+        # content_sha256 of the LOCAL copy, not the origin one -- this is what
+        # lets a future run recognise "the exact bytes a human already
+        # adjudicated benign", so an adjudication can never silently swallow a
+        # genuinely NEW divergence on the same run_id (only a byte-identical
+        # re-report of the one already reviewed). None when the file could not
+        # be read, so an unreadable local file can never spuriously match.
         return "divergent", {
             "path": rel,
             "run_id": run_id,
@@ -537,6 +544,8 @@ def grade_path(root, ref, rel, idx):
             "elapsed_seconds": doc.get("elapsed_seconds"),
             "bytes": len(raw or ""),
             "origin_paths": list(cands)[:MAX_CANDIDATES],
+            "content_sha256": (hashlib.sha256(raw.encode("utf-8")).hexdigest()
+                                if raw is not None else None),
         }
 
     # 2) Basename grading, on the name AND on the de-.bak'd stem.
@@ -1351,6 +1360,110 @@ def claims_for_target(target, enabled=True):
     return load_active_claims()
 
 
+ADJUDICATIONS_PATH = os.path.join(
+    LOCAL_BASE, "REE_assembly", "evidence", "planning",
+    "git_health_adjudicated_divergences.json")
+
+
+def load_adjudicated_divergences(path=ADJUDICATIONS_PATH):
+    """Human-confirmed-benign same-run_id-different-content verdicts. Fails open.
+
+    Each record is keyed on (host, repo, run_id, content_sha256) -- ALL FOUR,
+    not run_id alone -- so a record only ever downgrades the EXACT byte
+    content a human already reviewed. A future edit to the untracked copy, or
+    a genuinely different phantom-completion that happens to share a run_id,
+    produces a different content_sha256 and is never silently suppressed; see
+    the module docstring's remedy (a) -- "never drop on a judgement call"
+    applies equally to never SUPPRESSING on one.
+
+    A record missing any of the four keys is dropped rather than loaded with
+    a None standing in for a wildcard -- adjudication_covering() already
+    refuses a None content_sha256, but failing closed here too means a
+    malformed record can never accidentally match everything.
+    """
+    try:
+        with open(path, "r") as fh:
+            data = json.load(fh)
+    except Exception:
+        return []
+    out = []
+    for a in (data or {}).get("adjudications", []):
+        if not isinstance(a, dict):
+            continue
+        if not (a.get("host") and a.get("repo") and a.get("run_id")
+                and a.get("content_sha256")):
+            continue
+        out.append(a)
+    return out
+
+
+def adjudication_covering(records, host, repo, run_id, content_sha256):
+    """The adjudication record matching this exact divergent finding, or None.
+
+    All four of host/repo/run_id/content_sha256 must match. A hash-only match
+    would ignore which box the review was actually about; a host/repo/run_id
+    match without the hash is exactly the failure mode this whole mechanism
+    exists to avoid (see load_adjudicated_divergences docstring).
+    """
+    if not content_sha256:
+        return None
+    for a in records:
+        if (a.get("host") == host and a.get("repo") == repo
+                and a.get("run_id") == run_id
+                and a.get("content_sha256") == content_sha256):
+            return a
+    return None
+
+
+def apply_adjudications(host, graded, records):
+    """Downgrade adjudicated-benign divergent findings to notes, in place.
+
+    Mirrors apply_claims: MUTATES the `divergent` list (both the top-level
+    untracked bucket and, when present, the nested gitignored bucket) so
+    every downstream consumer -- main()'s fleet-wide summary count,
+    classify()'s escalation text -- sees the downgrade automatically rather
+    than needing to know about a second bucket.
+
+    Motivating case (2026-08-09): a confirmed-benign divergence for
+    v3_exq_850 on ree-cloud-2 re-triggered the identical "diff both before
+    deleting EITHER" escalation on every probe run, forever, with no way to
+    record "this was already looked at". See
+    evidence/planning/recovered_stranded_manifests/README_ree-cloud-2_2026-08-09.md
+    section 2.
+    """
+    if not records:
+        return graded
+
+    def _split(repo, divergent):
+        kept, adjudicated = [], []
+        for f in divergent or []:
+            a = adjudication_covering(records, host, repo,
+                                       f.get("run_id", ""),
+                                       f.get("content_sha256"))
+            if a:
+                d = dict(f)
+                d["adjudication"] = a
+                adjudicated.append(d)
+            else:
+                kept.append(f)
+        return kept, adjudicated
+
+    for repo, info in (graded or {}).items():
+        if not isinstance(info, dict):
+            continue
+        kept, adjudicated = _split(repo, info.get("divergent"))
+        if adjudicated:
+            info["divergent"] = kept
+            info["adjudicated_divergent"] = adjudicated
+        g = info.get("gitignored")
+        if isinstance(g, dict):
+            gkept, gadjudicated = _split(repo, g.get("divergent"))
+            if gadjudicated:
+                g["divergent"] = gkept
+                g["adjudicated_divergent"] = gadjudicated
+    return graded
+
+
 def resolve_hosts(hosts):
     """Selected targets, or None when a name matched nothing.
 
@@ -1559,6 +1672,27 @@ def classify(d):
                 reasons.append(
                     f"    (+{u['truncated']} beyond the report cap -- use --json)")
 
+        # ADJUDICATED-BENIGN DIVERGENCE: a human already reviewed this EXACT
+        # byte content (content_sha256 match, not just run_id) and confirmed
+        # it is not a phantom-completion / partial-write -- reported as a
+        # quiet note naming that review, never re-escalated as if new. A
+        # divergence whose content has since changed is NOT covered by this
+        # and still reports in full below.
+        adjudicated = u.get("adjudicated_divergent") or []
+        if adjudicated:
+            reasons.append(
+                f"{len(adjudicated)} untracked run manifest(s) with a "
+                f"same-run_id-different-content divergence ALREADY ADJUDICATED "
+                f"BENIGN by a prior human review -- not re-escalated; the match "
+                f"is on exact byte content, so a NEW divergence on the same "
+                f"run_id still reports in full below")
+            for f in adjudicated[:3]:
+                a = f.get("adjudication") or {}
+                reasons.append(
+                    f"    {f.get('run_id', '?')} -- {f.get('path', '?')} "
+                    f"(adjudicated {a.get('adjudicated_at', '?')}, see "
+                    f"{a.get('reference', '?')})")
+
         # DIVERGENT: the run_id IS on origin, but not carrying this content.
         # Reported separately from a strand because the remedy is the opposite:
         # a strand needs recovering, this needs ADJUDICATING -- one of the two
@@ -1601,6 +1735,18 @@ def classify(d):
                     reasons.append(
                         f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
                         f"-- {f.get('path', '?')}")
+            gadj = g.get("adjudicated_divergent") or []
+            if gadj:
+                reasons.append(
+                    f"{len(gadj)} GITIGNORED run manifest(s) with a "
+                    f"same-run_id-different-content divergence ALREADY "
+                    f"ADJUDICATED BENIGN -- not re-escalated")
+                for f in gadj[:3]:
+                    a = f.get("adjudication") or {}
+                    reasons.append(
+                        f"    {f.get('run_id', '?')} -- {f.get('path', '?')} "
+                        f"(adjudicated {a.get('adjudicated_at', '?')}, see "
+                        f"{a.get('reference', '?')})")
             gd = g.get("divergent") or []
             if gd:
                 reasons.append(
@@ -1866,6 +2012,7 @@ def selftest():
     failed += _selftest_prepull_grading()
     failed += _selftest_local_target()
     failed += _selftest_claims()
+    failed += _selftest_adjudicated_divergence()
     failed += _selftest_parent_crosscheck()
     failed += _selftest_recheck_and_host_resolution()
     failed += _selftest_fetch_is_local_only()
@@ -2067,6 +2214,22 @@ def _selftest_grader():
             bad += 1
         else:
             print("  [PASS] grader: divergent finding names its origin copy")
+        # content_sha256 is what a later adjudication matches on -- a missing
+        # or wrong hash here means an adjudication could never fire (silent,
+        # not a crash), so it is pinned by comparing against the LOCAL
+        # untracked bytes computed the same way (raw dict -> json.dump ->
+        # sha256), not a hardcoded literal that would drift with the fixture.
+        exp_hash = hashlib.sha256(
+            json.dumps(dict(kept, outcome="FAIL", elapsed_seconds=999.0)).encode(
+                "utf-8")).hexdigest()
+        dhashes = [f.get("content_sha256") for f in got.get("divergent", [])]
+        if dhashes != [exp_hash]:
+            print(f"  [FAIL] divergent content_sha256 {dhashes} != [{exp_hash}] "
+                  f"-- an adjudication keyed on this hash could never match")
+            bad += 1
+        else:
+            print("  [PASS] grader: divergent finding carries the LOCAL "
+                  "copy's content_sha256, matching a direct hash of its bytes")
         bad += _selftest_ignored_bucket(tmp, root)
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
@@ -2564,6 +2727,194 @@ def _selftest_claims():
     return bad
 
 
+def _selftest_adjudicated_divergence():
+    """Adjudicated-benign divergence cross-check (chip
+    chip-20260809-githealth-adjudicated-divergence-note).
+
+    The real case (README_ree-cloud-2_2026-08-09.md section 2): v3_exq_850's
+    untracked cloud-2 copy diverges from origin's packed copy, confirmed
+    benign by a structural diff. Without this, the SAME finding re-escalates
+    on every future probe forever. The three branches this must get right:
+    an exact-content match downgrades to a note; the SAME run_id with
+    DIFFERENT content (the untracked copy edited again, or a genuinely new
+    phantom-completion) must NOT be silently swallowed by a stale
+    adjudication; and with no adjudication record at all, behaviour is
+    unchanged from before this chip.
+    """
+    import tempfile
+
+    kept_hash = hashlib.sha256(
+        json.dumps({"run_id": "v3_exq_850_x_v3", "outcome": "FAIL"}).encode(
+            "utf-8")).hexdigest()
+    drifted_hash = hashlib.sha256(
+        json.dumps({"run_id": "v3_exq_850_x_v3", "outcome": "FAIL",
+                    "edited": True}).encode("utf-8")).hexdigest()
+
+    adjudications_doc = {
+        "schema_version": 1,
+        "adjudications": [
+            {"host": "ree-cloud-2", "repo": "REE_assembly",
+             "run_id": "v3_exq_850_x_v3", "content_sha256": kept_hash,
+             "adjudicated_at": "2026-08-09T20:07:00Z",
+             "reference": ("evidence/planning/recovered_stranded_manifests/"
+                           "README_ree-cloud-2_2026-08-09.md")},
+            # malformed -- missing content_sha256 -- must be DROPPED at load,
+            # not loaded with a None standing in for "matches anything".
+            {"host": "ree-cloud-3", "repo": "REE_assembly",
+             "run_id": "some_other_run_v3"},
+        ],
+    }
+    fd, path = tempfile.mkstemp(prefix="rgh-adjudications-", suffix=".json")
+    with os.fdopen(fd, "w") as fh:
+        json.dump(adjudications_doc, fh)
+    try:
+        records = load_adjudicated_divergences(path)
+    finally:
+        os.unlink(path)
+
+    bad = 0
+    if len(records) != 1:
+        print(f"  [FAIL] a malformed (no content_sha256) record was loaded: "
+              f"{records}")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: a record missing content_sha256 is "
+              "dropped at load, not loaded as a wildcard")
+
+    checks = [
+        # (host, repo, run_id, sha, want_matched, what)
+        ("ree-cloud-2", "REE_assembly", "v3_exq_850_x_v3", kept_hash, True,
+         "exact host/repo/run_id/hash match"),
+        ("ree-cloud-3", "REE_assembly", "v3_exq_850_x_v3", kept_hash, False,
+         "same content on a DIFFERENT host is not covered"),
+        ("ree-cloud-2", "ree-v3", "v3_exq_850_x_v3", kept_hash, False,
+         "same content in a DIFFERENT repo is not covered"),
+        ("ree-cloud-2", "REE_assembly", "v3_exq_850_x_v3", drifted_hash, False,
+         "the SAME run_id with DIFFERENT content is NOT covered by a stale "
+         "adjudication"),
+        ("ree-cloud-2", "REE_assembly", "v3_exq_850_x_v3", None, False,
+         "a missing local content_sha256 never matches (fails closed)"),
+        ("ree-cloud-2", "REE_assembly", "unrelated_run_v3", kept_hash, False,
+         "a different run_id is not covered"),
+    ]
+    for host, repo, run_id, sha, want, what in checks:
+        got = adjudication_covering(records, host, repo, run_id, sha)
+        if (got is not None) != want:
+            print(f"  [FAIL] adjudication_covering({host}, {repo}, {run_id}, "
+                  f"...) matched={got is not None}, want {want} ({what})")
+            bad += 1
+    if not bad:
+        print(f"  [PASS] adjudications: all {len(checks)} host/repo/run_id/"
+              f"content-hash containment cases correct")
+
+    # ...the downgrade itself: divergent -> adjudicated_divergent, never both,
+    # and the SAME run_id at a DIFFERENT content hash must stay a live finding
+    # beside it -- the confound this whole mechanism exists to avoid.
+    graded = {"REE_assembly": {"divergent": [
+        {"path": "evidence/experiments/v3_exq_850_x_v3.json",
+         "run_id": "v3_exq_850_x_v3", "outcome": "FAIL",
+         "content_sha256": kept_hash},
+        {"path": "evidence/experiments/v3_exq_850_x_v3.json.bak.new",
+         "run_id": "v3_exq_850_x_v3", "outcome": "FAIL",
+         "content_sha256": drifted_hash},
+    ]}}
+    apply_adjudications("ree-cloud-2", graded, records)
+    info = graded["REE_assembly"]
+    left = [f["content_sha256"] for f in info["divergent"]]
+    adj = [f["run_id"] for f in info.get("adjudicated_divergent", [])]
+    if left != [drifted_hash] or adj != ["v3_exq_850_x_v3"]:
+        print(f"  [FAIL] adjudications: downgrade wrong -- divergent left "
+              f"{left}, adjudicated {adj}")
+        bad += 1
+    elif info["adjudicated_divergent"][0]["adjudication"]["reference"] != (
+            "evidence/planning/recovered_stranded_manifests/"
+            "README_ree-cloud-2_2026-08-09.md"):
+        print("  [FAIL] adjudications: the downgraded entry does not NAME "
+              "its adjudicating write-up")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: the exact-content match becomes a "
+              "NOTE naming its adjudication; the drifted-content sibling "
+              "with the SAME run_id stays a live divergent finding")
+
+    # ...on a DIFFERENT host, the identical content must NOT downgrade --
+    # host-scoping is load-bearing, not incidental.
+    graded2 = {"REE_assembly": {"divergent": [
+        {"path": "evidence/experiments/v3_exq_850_x_v3.json",
+         "run_id": "v3_exq_850_x_v3", "outcome": "FAIL",
+         "content_sha256": kept_hash},
+    ]}}
+    apply_adjudications("ree-cloud-3", graded2, records)
+    if graded2["REE_assembly"].get("adjudicated_divergent"):
+        print("  [FAIL] adjudications: downgraded on the WRONG host")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: identical content on a different "
+              "host does not downgrade")
+
+    # ...and the printed report: an adjudicated entry reads as a quiet note
+    # naming the review, a genuinely new divergence beside it still escalates
+    # in full -- mirrors the claim_covered / real-strand coexistence pattern.
+    status, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=dict(
+            untracked=2, ignored=0, truncated=0, notes={},
+            findings=[], divergent=[
+                {"path": "evidence/experiments/v3_exq_850_x_v3.json.bak.new",
+                 "run_id": "v3_exq_850_x_v3", "outcome": "FAIL",
+                 "origin_paths": ["evidence/experiments/v3_exq_850_x_v3.json"]},
+            ],
+            adjudicated_divergent=[
+                {"path": "evidence/experiments/v3_exq_850_x_v3.json",
+                 "run_id": "v3_exq_850_x_v3",
+                 "adjudication": {
+                     "adjudicated_at": "2026-08-09T20:07:00Z",
+                     "reference": ("evidence/planning/"
+                                   "recovered_stranded_manifests/"
+                                   "README_ree-cloud-2_2026-08-09.md")}},
+            ])))
+    blob = " ".join(reasons)
+    if status != "OK":
+        print(f"  [FAIL] adjudications: an adjudicated divergence changed "
+              f"status to {status}")
+        bad += 1
+    elif "ADJUDICATED" not in blob or "README_ree-cloud-2_2026-08-09.md" not in blob:
+        print("  [FAIL] adjudications: the adjudicated note does not name "
+              "its review write-up in the report")
+        bad += 1
+    elif "Diff both before deleting EITHER" not in blob:
+        print("  [FAIL] adjudications: the genuinely-still-divergent sibling "
+              "stopped being escalated")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: report names the adjudicating review "
+              "for the settled entry AND still escalates the live divergent "
+              "sibling beside it")
+
+    # fail-open: an unreadable registry must never turn into an exception or
+    # a downgrade of everything.
+    if load_adjudicated_divergences("/nonexistent/adjudications.json") != []:
+        print("  [FAIL] adjudications: a missing registry did not fail open")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: a missing/unreadable registry fails "
+              "open")
+
+    # --no-adjudications parity: an empty records list must be a true no-op,
+    # never touching the input at all.
+    graded3 = {"REE_assembly": {"divergent": [
+        {"path": "x", "run_id": "v3_exq_850_x_v3",
+         "content_sha256": kept_hash}]}}
+    apply_adjudications("ree-cloud-2", graded3, [])
+    if "adjudicated_divergent" in graded3["REE_assembly"]:
+        print("  [FAIL] adjudications: an empty records list still downgraded")
+        bad += 1
+    else:
+        print("  [PASS] adjudications: an empty records list "
+              "(--no-adjudications) is a true no-op")
+    return bad
+
+
 def _selftest_parent_crosscheck():
     """The v3_exq_614 false-positive fix: a WORKER's STRANDED finding cleared
     against the PARENT (Mac) checkout's own fresh index.
@@ -2888,6 +3239,11 @@ def main():
                     help="do not cross-check findings against active "
                          "TASK_CLAIMS entries (they are what distinguishes a "
                          "strand from another session's live work)")
+    ap.add_argument("--no-adjudications", action="store_true",
+                    help="do not downgrade a divergent finding that exactly "
+                         "matches a recorded adjudicated-benign verdict "
+                         "(evidence/planning/git_health_adjudicated_divergences"
+                         ".json) -- every divergence reports in full")
     ap.add_argument("--no-parent-crosscheck", action="store_true",
                     help="do not cross-check a WORKER's STRANDED finding "
                          "against the PARENT (Mac) checkout's own freshly-"
@@ -2914,8 +3270,13 @@ def main():
     bad = False
     stranded = 0
     divergent = 0
+    adjudicated_hits = 0
     graded = 0
     gitignored_hits = 0
+    # Loaded at most once per run -- the file is small and host-scoped inside
+    # apply_adjudications, so re-reading it per target would be pure overhead
+    # for no additional freshness within a single invocation.
+    adjudications = [] if args.no_adjudications else load_adjudicated_divergences()
     # Built at most once per run, lazily -- only once a WORKER target (t.ip is
     # not None) actually needs it, so a Mac-only invocation (`--host mac`)
     # never pays for it. Shared across every worker target in this run: the
@@ -2935,6 +3296,8 @@ def main():
         claims = claims_for_target(t, enabled=not args.no_claims)
         apply_claims({r: repos[r].get("untracked") for r in repos
                       if isinstance(repos[r].get("untracked"), dict)}, claims)
+        apply_adjudications(name, {r: repos[r].get("untracked") for r in repos
+                      if isinstance(repos[r].get("untracked"), dict)}, adjudications)
         # Parent-index cross-check: WORKER targets only (t.ip is not None).
         # The Mac's own findings are already graded against this exact ref
         # (freshly fetched by _probe_local), so cross-checking them against
@@ -2962,10 +3325,12 @@ def main():
                 stranded += len(u.get("findings") or [])
                 stranded += int(u.get("truncated") or 0)
                 divergent += len(u.get("divergent") or [])
+                adjudicated_hits += len(u.get("adjudicated_divergent") or [])
                 g = u.get("gitignored")
                 if isinstance(g, dict):
                     gitignored_hits += len(g.get("findings") or [])
                     divergent += len(g.get("divergent") or [])
+                    adjudicated_hits += len(g.get("adjudicated_divergent") or [])
             report[name]["repos"][repo] = {
                 "status": status, "reasons": reasons, "raw": d,
             }
@@ -3008,9 +3373,11 @@ def main():
         print("untracked grading: SKIPPED (--no-untracked) -- stranded run "
               "manifests would not be visible in this run")
     else:
+        adj_suffix = (f" ({adjudicated_hits} more already adjudicated benign "
+                      f"and not re-escalated)" if adjudicated_hits else "")
         print(f"untracked grading: {graded} untracked path(s) graded against "
               f"origin, {stranded} stranded run manifest(s), "
-              f"{divergent} same-run_id-different-content")
+              f"{divergent} same-run_id-different-content{adj_suffix}")
     if args.ignored:
         print(f"gitignored grading: {gitignored_hits} run manifest(s) found in "
               f"gitignored path(s) (ignored DIRECTORIES are not descended into)")
