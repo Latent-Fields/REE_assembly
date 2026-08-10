@@ -1599,3 +1599,4 @@ One line per hourly tick. ASCII only.
 2026-08-10T15:50:43Z workset committed (regen -- 241 items, 28 ready, 0 in flight)
 2026-08-10T15:50:43Z auto-defer IGW-20260810-232 hash=795d137abe65 for 48h (reaped -> completed_resumable)
 2026-08-10T15:50:43Z GC keep igw-232-literature-proposal-for-mech-489 (ledger IGW-20260810-232 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-08-10T15:50:02Z STAGE IGW-20260810-208 skill=/implement-substrate prio=25 worktree=igw-208-substrate-ready-sd-residue-valen (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
