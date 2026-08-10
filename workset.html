@@ -297,7 +297,8 @@
     border-bottom: 1px solid #21262d;
   }
   #pending-chips .pc-row:last-child { border-bottom: none; }
-  #pending-chips .pc-row:hover { background: #161b22; }
+  #pending-chips .pc-row:hover { background: #161b22; cursor: pointer; }
+  #pending-chips .pc-row.pc-copied { background: #2ea04326; }
   #pending-chips .pc-row .pc-status {
     font-family: ui-monospace, monospace; font-size: 10px;
     padding: 1px 6px; border-radius: 8px; text-align: center;
@@ -378,7 +379,9 @@
     archive or crash. "open" means not known to be stale -- it cannot see whether you
     already clicked the live chip in the UI, only whether a session later withdrew it.
     A "claimed" badge means a worker already has it via `chip_ledger.py claim` -- do not
-    also start it by hand until that claim goes stale.</div>
+    also start it by hand until that claim goes stale. Click a row to copy its full
+    spawn_task prompt to the clipboard, with a `chip_ledger.py claim` step always
+    prepended -- paste it into a new session to claim and run the chip.</div>
   <div class="pc-list" id="pc-list"></div>
 </details>
 <section class="leverage-rail" id="leverage-rail" hidden></section>
@@ -591,7 +594,11 @@ function renderChips() {
          (ch.claim_note ? (' -- ' + ch.claim_note) : ''))
       : 'not claimed';
     const claimText = isClaimed ? ('claimed: ' + ch.claimed_by) : '--';
-    return '<div class="pc-row">' +
+    const rowTip = (ch.prompt || ch.tldr || ch.title)
+      ? 'Click to copy this chip\'s prompt (with a chip_ledger.py claim step prepended) -- ' +
+        'paste into a new session to claim and run it'
+      : 'No prompt recorded for this chip';
+    return '<div class="pc-row" title="' + escapeAttr(rowTip) + '">' +
       '<span class="pc-status' + statusCls + '">' + escapeHtml(ch.status || '?') + '</span>' +
       '<span class="pc-title" title="' + escapeAttr(titleTip) + '">' + escapeHtml(ch.title || '(untitled)') + '</span>' +
       '<span class="pc-session" title="' + escapeAttr(ch.cwd || '') + '">' + escapeHtml(ch.session_id || '?') + '</span>' +
@@ -600,6 +607,67 @@ function renderChips() {
         escapeHtml(claimText) + '</span>' +
       '</div>';
   }).join('');
+  list.querySelectorAll('.pc-row').forEach((row, i) => {
+    row.addEventListener('click', () => copyChipPrompt(sorted[i], row));
+  });
+}
+
+// Builds the "claim this chip before doing anything else" preamble that
+// copyChipPrompt() always prepends. This is the mechanism, not the stored
+// ledger prompt -- it applies to EVERY chip copied from this row (even one
+// recorded before the claim/unclaim feature existed, or an origin/kind:
+// headless entry with no chip_ref-aware author), because it is generated
+// fresh from chip.chip_ref at copy time rather than relying on whatever the
+// spawning session happened to write into --prompt. See chip_ledger.py's
+// "CLAIMING" docstring section: claim() refuses with exit 3 when another
+// live (non-stale) claimant already has the chip, which is exactly the
+// double-start this exists to prevent when a chip is handed off by pasting
+// rather than through spawn_task/dispatch.
+function chipClaimPreamble(chipRef) {
+  return '## FIRST ACTION -- before any other work, claim this chip on the ' +
+    'durable ledger so no one else starts it too:\n' +
+    '/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/chip_ledger.py claim ' +
+    '--chip-ref ' + chipRef + ' --note "claimed via pasted workset prompt" --push\n\n' +
+    'If that exits 3 (already claimed by someone else and not stale) or says the ' +
+    'chip is no longer "open", STOP here and report that instead of doing the work ' +
+    'below.\n\n---\n\n';
+}
+
+// Copies a chip's full recorded spawn_task prompt (chip_ledger.py's --prompt,
+// the exact text a session passed to spawn_task -- see CLAUDE.md "Every
+// spawn_task call MUST be immediately paired with chip_ledger.py record"),
+// with the claim preamble above always prepended, to the clipboard -- so
+// pasting this into a new session both claims the chip and hands it the
+// original instructions. Falls back to tldr/title only for pre-mandate
+// chips that never got a real prompt recorded (amend-prompt refusal shipped
+// 2026-08-03); the claim preamble still goes on those too, as long as the
+// chip has a chip_ref (every chip has had one since the ledger's first
+// schema version, so this is not a further fallback in practice).
+function copyChipPrompt(chip, rowEl) {
+  const body = (chip && (chip.prompt || chip.tldr || chip.title)) || '';
+  if (!body) {
+    toast('This chip has no prompt text to copy');
+    return;
+  }
+  const payload = (chip && chip.chip_ref)
+    ? chipClaimPreamble(chip.chip_ref) + body
+    : body;
+  const done = () => {
+    if (rowEl) {
+      rowEl.classList.add('pc-copied');
+      setTimeout(() => rowEl.classList.remove('pc-copied'), 900);
+    }
+    toast('Chip prompt copied (with claim step) -- paste into a new session to claim and run it');
+  };
+  if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(payload).then(done).catch(() => {
+      if (copyViaTextarea(payload)) done();
+      else toast('Copy failed -- clipboard unavailable');
+    });
+    return;
+  }
+  if (copyViaTextarea(payload)) done();
+  else toast('Copy failed -- clipboard unavailable');
 }
 
 function formatReleaseWindow(assignedAt, releasedAt) {
