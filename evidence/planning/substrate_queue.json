@@ -69,8 +69,8 @@
       "populated_by": "/failure-autopsy Step 7, when the autopsy's own finding resolves or supersedes a specific prior failure_record item on the SAME entry (uncommon -- most autopsies add a new item rather than resolve an old one), and /governance Step 6a-iii, the more common path: a later build's validation run makes an earlier failure_record item's `target` moot. Not backfilled across historical entries in bulk; populate going forward and opportunistically when reading an old entry closely enough to judge each item confidently."
     }
   },
-  "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
-  "last_updated_utc": "2026-08-10T16:58:37Z",
+  "last_seen_session": "fishtank-max-episode-steps",
+  "last_updated_utc": "2026-08-10T19:29:56Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -7218,6 +7218,28 @@
       ],
       "added_session": "queue-depth-low-ops-aac785",
       "last_seen_session": "queue-depth-low-ops-aac785"
+    },
+    {
+      "sd_id": "SD-FISHTANK-MAX-EPISODE-STEPS",
+      "title": "Parameterize CausalGridWorldV2 per-segment step cap (max_episode_steps kwarg, was hardcoded 500)",
+      "node_class": "complicated (buildable)",
+      "status": "implemented",
+      "status_phase": "closed",
+      "ready": true,
+      "implementation_note": "IMPLEMENTED 2026-08-10 (ree-v3 9d3d148ff8, chip-20260810-fishtank-max-episode-steps). CausalGridWorldV2 (ree_core/environment/causal_grid_world.py) step() computed `_step_cap_reached = self.steps >= 500` -- a bare literal, no constructor parameter anywhere in the class, so no driver could raise a single continuous segment past 500 steps regardless of its own steps_per_episode argument. Added `max_episode_steps: int = 500` constructor kwarg (stored as self.max_episode_steps); `_step_cap_reached` now reads `self.steps >= self.max_episode_steps`. Also fixed body_state[9] (episode_progress observable, previously self.steps / 500.0 -- would have silently saturated to 1.0 at step 500 of any longer-capped episode) to read self.steps / float(self.max_episode_steps). Bit-identical when the kwarg is omitted (default 500 matches the literal it replaces); confirmed via inline smoke test (default-omitted cap at 500, max_episode_steps=1500 honored end-to-end, episode_progress tracks the configured cap not the old literal, max_episode_steps=10 small-cap sanity) and the two existing contract tests exercising the default cap (test_episode_termination_recording.py, test_sd094_subgoal_arrival_and_hazard_free_contamination.py::test_done_cause_reports_step_limit_at_the_cap), neither of which passes this kwarg and both of which pass unmodified -- 33 passed via remote_pytest.sh on ree-worker-4. Not surfaced through REEConfig.from_dims (flat env-only kwarg, SD-022/023/029/047/048/049 precedent). No design doc written -- this is a pure parameterization of an existing termination condition, not a new architectural mechanism.",
+      "added_utc": "2026-08-10T19:29:56Z",
+      "added_session": "fishtank-max-episode-steps",
+      "last_seen_session": "fishtank-max-episode-steps",
+      "priority": 3,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "related_claims": [],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/environment/causal_grid_world.py"
+      ],
+      "validation_experiment": "None queued by this session -- the actual uncensored-single-life survival experiment that consumes this kwarg is separate /queue-experiment follow-on work, chipped rather than built here (out of this chip's scope by explicit instruction).",
+      "origin": "REE_assembly/evidence/planning/organism_lifespan_development_review_906_lineage_2026-08-10.md Section 10 item 1 (uncensored survival-to-death Fishtank successor design). V3-EXQ-912 (queued 2026-08-10, ree-v3 a3d36d4878) worked around this gap's prior absence with a segment-count scaling design instead of a true single-segment uncensored design; see that experiment's module docstring 'SUBSTRATE READINESS FINDING' section."
     }
   ],
   "schema_version": "substrate_queue/v2"
