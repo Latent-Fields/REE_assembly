@@ -1586,3 +1586,4 @@ One line per hourly tick. ASCII only.
 2026-08-10T03:46:06Z skip IGW-20260810-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-10T04:46:38Z skip IGW-20260810-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-10T05:48:15Z workset committed (regen -- 240 items, 27 ready, 0 in flight)
+2026-08-10T05:47:08Z SPAWN IGW-20260810-232 skill=/lit-pull prio=40 uuid=6faa28e6-411f-42aa-ba99-850f44422930 pid=51838 worktree=igw-232-literature-proposal-for-mech-489
