@@ -1,0 +1,174 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_912_uncensored_survival_fishtank",
+  "run_id": "v3_exq_912_uncensored_survival_fishtank_20260810T190239Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-10T19:02:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "uncensored_survival_still_censoring_dominated",
+    "preconditions": [
+      {
+        "name": "harm_pathway_trained",
+        "description": "harm-pathway co-training ran >=1 optimizer step",
+        "measured": 3968.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "all_segments_completed",
+        "description": "every seed's driver loop reached the configured EVAL_EPISODES segment count (no early crash/truncation silently shrinking n)",
+        "measured": 60.0,
+        "threshold": 60.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": true,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": true,
+      "channel_excite": true,
+      "channel_dread": true,
+      "harm_pathway_trained": true,
+      "freeze_not_permanently_locked": true,
+      "segments_actually_varied_duration": true,
+      "sufficient_uncensored_deaths": false
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "sufficient_uncensored_deaths",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "segments_varied_duration",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_s",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_un",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_a",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_drive",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_goal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_vigor",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_override",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_block",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_excite",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_dread",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "Large-n (60 segments/seed x 1 seeds = 60 total) characterization of the within-500-step-cap health_depleted death-time distribution on the 906b ecology tier. PASS = harm-pathway training ran AND the core affect channels vary AND >= 10 genuine (uncensored) death events were observed across all seeds combined (observed: 4). Even on a FAIL/still-censoring-dominated outcome, the pooled pct_right_censored (0.933) and n_uncensored_deaths_total are the load-bearing scientific readouts -- this is a characterization run, not a hypothesis test. See module docstring 'SUBSTRATE READINESS FINDING' for why the per-segment 500-step ceiling itself is NOT removed by this run (a substrate change, chipped separately for /implement-substrate) and 'ECOLOGY CHOICE' for why this deliberately reuses 906b's environment tuning rather than 911's. claim_ids=[]; does not weight governance."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fdeea35d72985a4e1aa8528cbc38574488721b5819480b44a49e8682a30c7b4b",
+  "substrate_commit": {
+    "commit": "59056eb405bbb9de7f05e63aee6095b0a81b8e3d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 35583,
+    "ticks_active": 8992,
+    "writer_calls": 30337,
+    "active_frac": 0.25270494337183486,
+    "writer_defect": false,
+    "n_agents": 1,
+    "goal_state_present": true
+  }
+}
