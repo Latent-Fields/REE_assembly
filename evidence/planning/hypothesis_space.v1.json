@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-09T05:55:41Z",
+  "generated_at": "2026-08-10T06:34:58Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 147,
-      "built_modules": 121,
-      "fraction_built": 0.8231,
+      "total_modules": 148,
+      "built_modules": 122,
+      "fraction_built": 0.8243,
       "state_counts": {
         "proposed": 26,
         "implemented": 86,
-        "implemented_pending_validation": 20,
+        "implemented_pending_validation": 21,
         "validated": 15
       },
-      "build_proof_gap": 106,
-      "build_proof_gap_note": "121 modules built, 106 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 107,
+      "build_proof_gap_note": "122 modules built, 107 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,23 +31,23 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 55,
+      "total_surviving": 53,
       "total_initial": 97,
       "total_initial_at_registration": 78,
       "total_fanout_added": 19,
-      "total_resolved_out": 39,
-      "total_confirmed": 21,
-      "reduction_pct_vs_current": 40.2,
-      "net_narrowing_pct": 29.5,
+      "total_resolved_out": 40,
+      "total_confirmed": 22,
+      "reduction_pct_vs_current": 41.2,
+      "net_narrowing_pct": 32.1,
       "convergence_classes": {
-        "narrowing": 13,
-        "static": 13,
+        "narrowing": 14,
+        "static": 12,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "55 alive against 78 originally enumerated, and against 97 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "53 alive against 78 originally enumerated, and against 97 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 31
     },
     "decide": {
@@ -61,115 +61,121 @@
       "date": "2026-05-06",
       "surviving": 96,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-11",
       "surviving": 95,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-13",
       "surviving": 93,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-15",
       "surviving": 89,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-16",
       "surviving": 88,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-17",
       "surviving": 85,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-18",
       "surviving": 79,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-19",
       "surviving": 75,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-20",
       "surviving": 74,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-24",
       "surviving": 73,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-27",
       "surviving": 71,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-29",
       "surviving": 70,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-07-31",
       "surviving": 69,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-01",
       "surviving": 67,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-02",
       "surviving": 61,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-04",
       "surviving": 60,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-06",
       "surviving": 59,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-08",
       "surviving": 58,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
     },
     {
       "date": "2026-08-09",
-      "surviving": 55,
+      "surviving": 57,
       "closure_pct": 76.9,
-      "build_pct": 82.3
+      "build_pct": 82.4
+    },
+    {
+      "date": "2026-08-10",
+      "surviving": 53,
+      "closure_pct": 76.9,
+      "build_pct": 82.4
     }
   ],
   "questions": [
@@ -3222,27 +3228,30 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "process"
+        ],
+        "families_touched": [
+          "process"
+        ],
         "families_fresh": [
-          "process",
           "representation"
         ],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 3,
-      "alive": 3,
-      "resolved_out": 0,
-      "confirmed": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.3333,
+      "bits_removed": 1.58,
       "synthesis": null,
       "hypotheses": [
         {
@@ -3250,9 +3259,11 @@
           "label": "no context-conditioned training signal tested",
           "desc": "No tested selection mechanism (q.k attention, feedforward tagger, or Path-1's diversification loss) has ever been given a training objective that specifically rewards context-CONDITIONED divergence (sel_context_divergence), as distinct from population-level slot diversity.",
           "axis": "drive",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Not yet adjudicated -- pre-registered at fan-out time per failure_autopsy_V3-EXQ-898_2026-08-08.",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-907"
+          ],
+          "basis": "V3-EXQ-907 (failure_autopsy_V3-EXQ-907_2026-08-10, confirmed): all three ctxdiv-lambda arms (0.1, 0.5, 2.0) break the uniform-softmax saddle consistently (entropy ~2.457 vs A0 control 2.773, ctxdiv ~0.565), robust across lambda choice. Matched-budget baseline (A1) does not break the saddle -- rules out a capacity confound. C2 control passes 3/3.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -3272,11 +3283,22 @@
           "label": "soft end-to-end gate lacks competitive/sparsifying mechanism",
           "desc": "The tagger is a soft, end-to-end differentiable gate with no competitive/sparsifying mechanism (no lateral inhibition, no k-winner-take-all). A hard/competitive selection mechanism (Gumbel-softmax with annealed temperature, or explicit top-k gating) might structurally force sparsification that gradient descent alone has not discovered.",
           "axis": "algorithm",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Not yet adjudicated -- pre-registered at fan-out time per failure_autopsy_V3-EXQ-898_2026-08-08.",
-          "children": [],
-          "met_elimination_bar": false
+          "state": "split",
+          "evidence_runs": [
+            "V3-EXQ-908"
+          ],
+          "basis": "V3-EXQ-908 (failure_autopsy_V3-EXQ-908_2026-08-10, confirmed): C2 off-arm control passes 3/3. Per-arm verdicts split -- annealed Gumbel-softmax clears both C1 (entropy) and C1b (context-divergence, 3/3 seeds, ctxdiv 0.6875) -- genuine context-conditioned sparsification. Straight-through top-k (k=1, k=2) clears C1 only trivially (near-zero entropy is expected by construction of the operator, per the driver's own docstring) but fails C1b 0/3 -- constant_peaky_degenerate, context-independent collapse. The manifest's indexer vacuous_pass flag was confirmed a false positive (4th distinct criteria_non_degenerate<->criteria[] join-mismatch sub-case) during this autopsy.",
+          "children": [
+            {
+              "label": "Gumbel-softmax (annealed)",
+              "state": "confirmed"
+            },
+            {
+              "label": "straight-through top-k (k=1, k=2)",
+              "state": "eliminated"
+            }
+          ],
+          "met_elimination_bar": true
         }
       ],
       "decision": {
@@ -3371,6 +3393,34 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-908",
+      "all_runs": [
+        "V3-EXQ-908"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "sd016_retrieval_selectivity_mechanism",
+      "claims": [
+        "SD-016"
+      ],
+      "moved": "V3-EXQ-908 (failure_autopsy_V3-EXQ-908_2026-08-10, confirmed): C2 off-arm control passes 3/3. Per-arm verdicts split -- annealed Gumbel-softmax clears both C1 (entropy) and C1b (context-divergence, 3/3 seeds, ctxdiv 0.6875) -- genuine context-conditioned sparsification. Straight-through top-k (k=1, k=2) clears C1 only trivially (near-zero entropy is expected by construction of the operator, per the driver's own docstring) but fails C1b 0/3 -- constant_peaky_degenerate, context-independent collapse. The manifest's indexer vacuous_pass flag was confirmed a false positive (4th distinct criteria_non_degenerate<->criteria[] join-mismatch sub-case) during this autopsy.",
+      "resolved_utc": "2026-08-09T13:12:09Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-907",
+      "all_runs": [
+        "V3-EXQ-907"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "sd016_retrieval_selectivity_mechanism",
+      "claims": [
+        "SD-016"
+      ],
+      "moved": "V3-EXQ-907 (failure_autopsy_V3-EXQ-907_2026-08-10, confirmed): all three ctxdiv-lambda arms (0.1, 0.5, 2.0) break the uniform-softmax saddle consistently (entropy ~2.457 vs A0 control 2.773, ctxdiv ~0.565), robust across lambda choice. Matched-budget baseline (A1) does not break the saddle -- rules out a capacity confound. C2 control passes 3/3.",
+      "resolved_utc": "2026-08-09T13:08:45Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-821b",
       "all_runs": [

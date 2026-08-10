@@ -1,0 +1,35 @@
+{
+  "schema_version": "failure_autopsy_batch/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "session_id": "queue-depth-low-ops-aac785",
+  "status": "confirmed",
+  "member_artifacts": [
+    "failure_autopsy_V3-EXQ-228c_2026-08-10.json",
+    "failure_autopsy_mech075-second-cluster_2026-08-10.json",
+    "failure_autopsy_V3-EXQ-603s_2026-08-10.json",
+    "failure_autopsy_V3-EXQ-324d_2026-08-10.json",
+    "failure_autopsy_V3-EXQ-907_2026-08-10.json",
+    "failure_autopsy_V3-EXQ-908_2026-08-10.json"
+  ],
+  "excluded_at_discovery": {
+    "reason": "owned by concurrent active claim relaxed-shtern-75392b (V3-EXQ-906 lineage organism-level review), not duplicated",
+    "targets": ["V3-EXQ-906b", "V3-EXQ-906c", "V3-EXQ-909", "V3-EXQ-910", "V3-EXQ-911"]
+  },
+  "cross_cutting_observation": {
+    "targets": ["V3-EXQ-903a", "V3-EXQ-324d"],
+    "claims": ["MECH-075", "SD-020"],
+    "shape": "identical seed-variance pattern under otherwise clean, well-powered, non-degenerate tests -- a signal reliable in a minority of seeds, near-zero-or-negative in the rest, under identical config",
+    "recommendation": "consider a single shared root-cause diagnostic (per-seed training-trajectory logging) rather than two separate investigations"
+  },
+  "governance_note_only": {
+    "target": "V3-EXQ-899 near-duplicate manifest",
+    "run_id": "v3_v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3",
+    "note": "near-identical to the confirmed-autopsied and claims.yaml-applied 214833Z manifest (same script, same day). Recommend marking discussed as a redundant duplicate rather than a second full autopsy.",
+    "not_a_full_autopsy": true
+  },
+  "standing_checks": {
+    "dry_run_citation_check": "all 6 run_ids confirmed real",
+    "re_derive_brake": {"ARC-032": 0, "MECH-075": 0, "SD-020": 0, "MECH-357": 0, "fired_for_any": false},
+    "granularity_debt_recurrence": {"ARC-032": false, "MECH-075": false, "SD-020": false, "MECH-357": false}
+  }
+}

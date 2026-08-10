@@ -1,0 +1,102 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_908_sd016_h3_hard_selection_20260809T131209Z_v3",
+      "queue_id": "V3-EXQ-908",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "adjudication_review": {
+        "indexer_flag": "vacuous_pass",
+        "verdict": "false_positive",
+        "mechanism": "manifest has no interpretation.criteria[] array at all -- the indexer's legacy fallback flags any False criteria_non_degenerate key not ending in _branch, catching the three deliberately-degenerate C1 keys (A2_tagger_gumbel/A3a_topk_k1/A3b_topk_k2 ::C1_breaks_saddle) that the driver's own docstring explains are expected-trivial by construction of the selection operator. The real load-bearing gate, C1b, is genuinely measured and correctly discriminates (Gumbel passes 3/3, both top-k variants fail 0/3).",
+        "sub_case": "4th distinct sub-case of the criteria_non_degenerate<->criteria[] join-mismatch class (after V3-EXQ-783 name-spelling, V3-EXQ-830 direction-reversal, and the aggregate-criterion exclusion fixed 2026-08-09 for V3-EXQ-906/665/664)",
+        "recommended_followup": "chip for build_experiment_indexes.py: manifests with no criteria[] array should not fall to the blanket legacy fallback without checking whether the flagging key's aggregate/gating counterpart also failed"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear_differentiates_within_axis",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate_flagged_by_tooling_gap_not_the_run",
+        "integration": "coupled_non_degenerate_on_load_bearing_gate",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "not applicable -- clean PASS once the indexer false-positive is resolved"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dentate-gyrus lateral inhibition / CA3 competitive retrieval (pattern separation)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "differentiates within the axis: gradual competitive sharpening (Gumbel) succeeds, immediate hard winner-take-all (top-k) fails -- favors the gradual-competition reading of the biological analog",
+        "lit_status": "n/a for this diagnostic leg -- biological grounding lives in the portfolio scoping doc"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "diagnostic",
+      "recommended_evidence_quality_note": "N/A -- claim_ids empty, no claims.yaml entry to update. Feeds SD-016 substrate_queue.json.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-016",
+        "note": "[2026-08-10 governance, V3-EXQ-907+908, confirmed failure_autopsy_V3-EXQ-907_2026-08-10 + failure_autopsy_V3-EXQ-908_2026-08-10]: GOV-FANOUT-1 portfolio legs H1 (drive) and H3 (algorithm) both resolved. H1 CONFIRMED: ctxdiv auxiliary loss (any lambda in {0.1,0.5,2.0}) breaks the uniform-softmax saddle, clean attribution control. H3 SPLIT: annealed Gumbel-softmax CONFIRMED (C1b passes 3/3, genuine context-conditioned sparsification); straight-through top-k ELIMINATED (constant_peaky_degenerate -- context-independent collapse). V3-EXQ-908's indexer vacuous_pass flag confirmed a false positive (4th join-mismatch sub-case, tooling gap not a finding). Recommend combining H1's objective with H3's Gumbel-softmax operator into SD-016's actual implementation; H2 (representation axis) remains gated on lit-pull, not blocking.",
+        "severity": "cosmetic",
+        "substrate_paths": ["REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py"]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": false,
+        "fires": false,
+        "note": "claim-free diagnostic, granularity-debt check not applicable"
+      },
+      "learning_extracted": [
+        "H3 confirmed for Gumbel-softmax specifically, not hard selection in general: annealed soft-to-hard competition genuinely sparsifies; immediate hard top-k collapses to a context-independent 'constant_peaky' pattern.",
+        "vacuous_pass flag confirmed a genuine indexer false positive -- a 4th distinct sub-case of the criteria_non_degenerate<->criteria[] join-mismatch class."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "step_9b_resolution": {
+    "qid": "sd016_retrieval_selectivity_mechanism",
+    "hypothesis": "H3-algorithm-competitive-gating",
+    "mode": "B",
+    "resolution": {
+      "state": "split",
+      "resolving_runs": ["V3-EXQ-908"],
+      "evidence_direction": "supports",
+      "epistemic_category": "standard",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "basis": "C2 off-arm control passes 3/3. Per-arm verdicts split: A2_tagger_gumbel clears both C1 and C1b (3/3 each) -- genuine context-conditioned sparsification. A3a_topk_k1 and A3b_topk_k2 clear C1 trivially (by construction of the operator) but fail C1b 0/3 -- constant_peaky_degenerate, context-independent collapse.",
+      "children": [
+        {"label": "Gumbel-softmax (annealed)", "state": "confirmed"},
+        {"label": "straight-through top-k (k=1, k=2)", "state": "eliminated"}
+      ]
+    },
+    "combined_with": {
+      "qid": "sd016_retrieval_selectivity_mechanism",
+      "hypothesis": "H1-drive-context-divergence",
+      "resolved_in_file": "failure_autopsy_V3-EXQ-907_2026-08-10.json"
+    }
+  }
+}

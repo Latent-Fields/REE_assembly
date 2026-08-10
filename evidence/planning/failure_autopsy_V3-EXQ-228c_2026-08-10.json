@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_228c_arc032_theta_bypass_readout_20260809T110214Z_v3",
+      "queue_id": "V3-EXQ-228c",
+      "claim_ids": ["ARC-032"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear, implementation diverges",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled, confirmed non-inert",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "biology-divergence implementation gap (Implementation partial, not complete -- MECHANISM FAILED not established)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Sigurdsson et al. 2010 frontal-hippocampal theta synchrony supporting goal maintenance",
+        "dependencies": ["MECH-089 ThetaBuffer packaging"],
+        "is_formal_import": true,
+        "divergence": "flat unweighted mean over a fixed window vs literature's phase/sequence-order encoding (Dragoi 2006, Colgin 2016)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "[2026-08-10 governance, V3-EXQ-228c, confirmed failure_autopsy_V3-EXQ-228c_2026-08-10]: the redesign owed by the 228b autopsy (E3-tick-restricted, direct persistence/proximity-noise DVs) has now run. Precondition met (1.00 frac). Both primary criteria FAILED 0/3 seeds, with a REVERSED trend registered as a finding (theta ACTIVE noisier on 3/3 seeds, less persistent on 1/3) -- converging with MECH-089's confirmed EXQ-066/EXQ-122 findings that static/uniform theta-averaging measurably hurts E3's fine-grained discrimination. Biology (Dragoi 2006, Colgin 2016) attributes theta's functional payload to phase/sequence-order structure; ThetaBuffer's flat unweighted mean cannot represent this by construction -- a biology-divergence implementation gap, not a claim falsification. epistemic_category stays substrate_conditional. Routing: /implement-substrate for a phase/sequence-order-aware theta summary. Status unchanged (candidate).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "theta-buffer-phase-aware-summary",
+        "title": "Phase/sequence-order-aware ThetaBuffer summary (replace flat-mean packaging)",
+        "implementation_hint": "ThetaBuffer.summary() currently computes a flat unweighted mean over a fixed 10-step window, which cannot represent within-window ordinal/phase structure. Two independent lines of evidence (V3-EXQ-228c direct DVs; MECH-089 EXQ-066/EXQ-122) show this flat-mean packaging actively degrades E3's discrimination. Build a phase/sequence-order-preserving summary grounded in Dragoi 2006 (theta-sequence compression) / Colgin 2016 (theta-gamma nesting). Exact source location not resolved in this autopsy's fact-gathering pass -- likely ree_core hippocampal/E1-output-packaging module, MECH-089's ownership.",
+        "unblocks_claims": ["ARC-032", "MECH-089"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [],
+        "failure_record_entry": {
+          "run_id": "v3_exq_228c_arc032_theta_bypass_readout_20260809T110214Z_v3",
+          "experiment_type": "v3_exq_228c_arc032_theta_bypass_readout",
+          "metric": "persist_delta_mean=4.47e-07 (no effect), noise_delta_mean=-0.0671 (reversed -- ACTIVE noisier)",
+          "target": "persist_delta_mean >= 0.02 AND noise_delta_mean >= 0.005 on >= 2/3 seeds",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": true,
+        "fires": false,
+        "note": "ARC-032 cluster: 8 prior autopsied targets, alignment distribution other=4/weakened=1 -- only one weakened target (076e, wrong-DV) and this new weakened target (228c) share no structural overlap beyond 'measurement adequacy'; not a granularity-debt pattern."
+      },
+      "learning_extracted": [
+        "Direct, fair measurement of ARC-032's own CONFIRMING DVs shows no persistence effect and a reversed noise effect.",
+        "Converges with MECH-089's independently-confirmed EXQ-066/EXQ-122 findings that flat-mean theta-averaging degrades E3 discrimination.",
+        "Biology (Dragoi 2006, Colgin 2016) attributes theta's functional payload to phase/sequence-order structure the flat-mean cannot represent."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}

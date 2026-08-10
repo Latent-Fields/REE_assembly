@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_907_sd016_h1_ctxdiv_20260809T130845Z_v3",
+      "queue_id": "V3-EXQ-907",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled_non_degenerate",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "not applicable -- clean PASS, no ambiguity"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- training-objective/algorithm-diagnostic leg, not an architectural-biology triage",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "N/A -- claim_ids empty, no claims.yaml entry to update. Feeds SD-016 substrate_queue.json only (see combined routing note in failure_autopsy_V3-EXQ-908_2026-08-10.json).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-016",
+        "note": "Combined routing (H1+H3 together) applied once via failure_autopsy_V3-EXQ-908_2026-08-10.json's recommended_substrate_queue_entry (action: amend) to avoid a duplicate substrate_queue write for the same SD-016 entry."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": false,
+        "fires": false,
+        "note": "claim-free diagnostic, granularity-debt check not applicable"
+      },
+      "learning_extracted": [
+        "H1 (drive/objective axis) confirmed: context-divergence auxiliary loss breaks the uniform-softmax saddle, robustly across three lambda values.",
+        "Clean matched-budget attribution control rules out a capacity confound."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "step_9b_resolution": {
+    "qid": "sd016_retrieval_selectivity_mechanism",
+    "hypothesis": "H1-drive-context-divergence",
+    "mode": "B",
+    "resolution": {
+      "state": "confirmed",
+      "resolving_runs": ["V3-EXQ-907"],
+      "evidence_direction": "supports",
+      "epistemic_category": "standard",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": false,
+      "basis": "All three ctxdiv-lambda arms break the saddle consistently (entropy ~2.457 vs A0 control 2.773); matched-budget baseline (A1) does not, ruling out a capacity confound. C2 control passes 3/3."
+    },
+    "applied_in_file": "failure_autopsy_V3-EXQ-908_2026-08-10.json"
+  }
+}

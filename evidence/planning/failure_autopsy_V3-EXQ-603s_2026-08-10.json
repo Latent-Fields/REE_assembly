@@ -1,0 +1,92 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+      "queue_id": "V3-EXQ-603s",
+      "claim_ids": ["MECH-357"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "too_sparse_pressure_still_insufficient",
+        "measurement": "adequate_two_sided_guard_functioning",
+        "integration": "coupled_but_confounded",
+        "scale": "not_implicated"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "environment/implementation-adequacy gap, mixed -- not chargeable to the mechanism alone"
+      },
+      "biological_reference": {
+        "closest_mechanism": "active-avoidance paradigms relying on discrete, sudden threat-onset to produce Pavlovian-instrumental conflict",
+        "dependencies": ["SD-058", "MECH-279 PAG freeze", "MECH-302/303/304 relief/safety"],
+        "is_formal_import": false,
+        "divergence": "unclear whether continuous environment-drift reproduces the discrete/sudden threat-onset structure the literature's paradigms use",
+        "lit_status": "partial"
+      },
+      "recording_integrity_note": {
+        "substrate_stable_across_run": false,
+        "drifted_since_resolved": true,
+        "recorded_hash": "8ab857999d706d1ca0407bf58dccc78c95c49a4cee9e8db0f5607b29ffbf2c3a",
+        "on_disk_hash_at_stamp": "40a2b6c129b3f8f7a9e27111c4d0942805ed5bf93cdc821d3d50072e7dc75373",
+        "machine": "ree-cloud-4",
+        "disposition": "adjudicated at face value per user confirmation; flagged separately for infra follow-up, not treated as invalidating this run's finding"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "second consecutive config-only pressure escalation (603r static field, 603s mobile predators via aggressive env-drift) still fails to make LESION fail its own negative control -- this time on an exact tie (0.6667 vs 0.6667), not a near-miss. avoidance_efficacy numerically ~0 across all three arms independent of the LESION/INTACT/POSCTRL question. non_contributory -- the config-only pressure lever space appears exhausted. Routed to /implement-substrate, scoped to investigate BOTH genuine agent-directed predator pursuit AND an episode-length/event-suddenness environment-mechanics redesign before committing to full pursuit-AI implementation.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mech357-freeze-incompatible-pressure-mechanism",
+        "title": "Genuine freeze-incompatible Stage-H pressure for MECH-357 testing: agent-directed predator pursuit AND/OR episode-length/event-suddenness redesign",
+        "implementation_hint": "Two consecutive config-only pressure escalations (static field 603r, mobile-predator env-drift 603s) both fail to make the LESION negative control fail its own gate. Scope BOTH candidate fixes before committing: (a) genuine agent-directed predator pursuit in Stage-H (previously deferred as not config-buildable when 603s was designed), and (b) an environment-mechanics investigation into episode length and discrete/sudden novel-threat-event timing (vs continuous drift) as a cheaper alternative that may achieve the needed discriminative pressure without new pursuit-AI code. User-raised hypothesis (2026-08-10 interactive gate): current episodes may not be long enough and/or lack sufficiently sudden/novel events for measurability.",
+        "unblocks_claims": ["MECH-357"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": null,
+        "substrate_paths": [],
+        "failure_record_entry": {
+          "run_id": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+          "experiment_type": "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard",
+          "metric": "G_H_INTACT_frac=0.6667 tied with G_H_LESION_frac=0.6667 (discrimination criterion fails on exact tie, not near-miss)",
+          "target": "G_H_INTACT_frac > G_H_LESION_frac (discrimination) AND G_H_LESION_frac < 0.667 (headroom)",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": true,
+        "fires": false,
+        "note": "1 prior target (603r), claim_alignment unclear, no target reads weakened -- not granularity debt regardless of count, per the granularity_debt_cluster.py reader's own explicit statement."
+      },
+      "learning_extracted": [
+        "Two consecutive config-only pressure escalations fail to make LESION fail its negative control; this time on an exact tie.",
+        "avoidance_efficacy numerically ~0 across all three arms independent of the pressure question -- a separate signal worth investigating.",
+        "Substrate-hash drift recorded mid-run on ree-cloud-4; adjudicated at face value, flagged separately.",
+        "User's hypothesis: episode length / event-suddenness may be the missing ingredient, distinct from full pursuit-AI."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}

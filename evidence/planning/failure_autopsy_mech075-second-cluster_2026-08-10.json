@@ -1,0 +1,135 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T06:27:24Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_903a_mech075_ventral_vta_rpe_probe_20260809T160911Z_v3",
+      "queue_id": "V3-EXQ-903a",
+      "claim_ids": ["MECH-075"],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial",
+        "environment": "unclear",
+        "measurement": "adequate",
+        "integration": "isolated_immature",
+        "scale": "possibly_insufficient"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "prerequisites/training-reliability gap (readiness gate unstable across seeds)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "VTA reward-prediction-error grounding of valuation (Duszkiewicz et al. 2018)",
+        "dependencies": ["MECH-267 CEM proposal noise-scale gain"],
+        "is_formal_import": false,
+        "divergence": "none identified -- this is a training-reliability finding, not a biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-903a (ventral, recalibrated 5 seeds/majority 3): readiness gate STILL fails on majority (2/5, grounding corr swings +0.53 to -0.003 across seeds) -- self-routed substrate_not_ready_requeue, CONFIRMED correct. Second consecutive attempt at more seeds has not closed the gate; routed to a targeted diagnostic (per-episode training-trajectory logging) rather than a third combined attempt.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "Diagnostic needed before any substrate action is warranted -- routing to /queue-experiment diagnostic, not implement-substrate, at this stage."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopisies": [],
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": true,
+        "fires": false,
+        "note": "MECH-075 cluster: 10 prior autopsied targets, alignment distribution intact=6/other=4, zero weakened -- not a granularity-debt pattern."
+      },
+      "learning_extracted": [
+        "Readiness gate (valuation-head grounding to reward) fails on majority for the second consecutive attempt despite recalibration to 5 seeds/majority 3.",
+        "Per-seed grounding correlation is highly variable (+0.53 to -0.003) under identical config, suggesting training instability rather than sampling noise.",
+        "Shares a seed-variance shape with V3-EXQ-324d (SD-020), a different claim, flagged as a possible cross-cutting pattern."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_905a_mech075_dorsal_lc_arousal_probe_20260809T130730Z_v3",
+      "queue_id": "V3-EXQ-905a",
+      "claim_ids": ["MECH-075"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete_correctly_calibrated",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled_stable",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "weakens the decision-time operationalization; construct-validity gap (biological reference only partial) keeps this short of a clean mechanism-failed reading"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE arousal gain modulation (Kempadoo 2016, Galvez-Marquez 2022, Lemon & Manahan-Vaughan 2006)",
+        "dependencies": ["MECH-267 CEM proposal noise-scale gain"],
+        "is_formal_import": false,
+        "divergence": "literature grounds LC-arousal in plasticity/consolidation-timescale effects; current operationalization is decision-time CEM-candidate-spread noise -- a construct-validity gap",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-905a (dorsal, LC_GAIN correctly re-derived 2.0->80.0): manipulation now clearly differential (C1 3/3) but the decisive metric (basin_width) shows literally zero effect (2/3 seeds identical to 4+ decimals) -- weakens the CEM-decision-time operationalization specifically; flags a construct-validity gap (LC-arousal literature grounds plasticity-timescale effects, not decision-time). Routed to /lit-pull.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "Pending /lit-pull outcome on decision-time vs plasticity-timescale LC-arousal role before any substrate action."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "checked": true,
+        "fires": false,
+        "note": "Same corpus check as 903a -- zero weakened targets prior to this pair; not a granularity-debt pattern."
+      },
+      "learning_extracted": [
+        "LC_GAIN recalibration (2.0->80.0) produced a genuinely differential manipulation (C1 clears cleanly), closing the 'underpowered' explanation used for the predecessor run.",
+        "Despite that, basin_width (the decisive geometry metric) shows zero effect -- the manipulation does something, just not what C2 measures.",
+        "Independent corroboration of a construct-validity gap flagged by the predecessor cluster autopsy: LC-arousal's literature grounding is plasticity-timescale, not decision-time."
+      ],
+      "routing": "lit-pull"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "two distinct findings sharing claim + mechanism family (MECH-267 gain-modulated CEM noise), not one structural property",
+    "is_independent_bugs": true,
+    "structural_property": "903a: training-reliability/prerequisites gap. 905a: construct-validity gap on a correctly-calibrated manipulation. Reported together for claim/mechanism-family locality only.",
+    "readings": ["ventral_readiness_still_unstable_second_attempt", "dorsal_manipulation_confirmed_but_metric_null_construct_gap"]
+  }
+}
