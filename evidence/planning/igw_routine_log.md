@@ -1608,3 +1608,8 @@ One line per hourly tick. ASCII only.
 2026-08-10T18:53:21Z no eligible item (skipped 239): IGW-20260810-001:skill /governance not allowed; IGW-20260810-002:skill /governance not allowed; IGW-20260810-006:skill /governance not allowed
 2026-08-10T18:56:12Z auto-defer IGW-20260810-210 hash=eaf877141f7e for 48h (complete)
 2026-08-10T18:56:13Z complete IGW-20260810-210 launched_manual->completed outcome=USEFUL_LANDED: Implemented SD-ORIENTING-DECISION-SCALE (MECH-489 Component 4/5 z-score fix, ree
+2026-08-10T19:54:14Z GC removed worktree igw-210-substrate-ready-sd-orienting-dec (removed; branch deleted)
+2026-08-10T19:54:07Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-08-10T19:54:36Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
+2026-08-10T19:54:07Z no eligible item (skipped 239): IGW-20260810-001:skill /governance not allowed; IGW-20260810-002:skill /governance not allowed; IGW-20260810-006:skill /governance not allowed
+2026-08-10T20:54:55Z no eligible item (skipped 239): IGW-20260810-001:skill /governance not allowed; IGW-20260810-002:skill /governance not allowed; IGW-20260810-006:skill /governance not allowed
