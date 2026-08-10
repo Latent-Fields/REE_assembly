@@ -1,0 +1,146 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_909_sleep_dv_fishtank_multifiring",
+  "run_id": "v3_exq_909_sleep_dv_fishtank_multifiring_20260810T011652Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-10T01:16:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sleep_dv_nonnull_detected",
+    "preconditions": [
+      {
+        "name": "waking_diversity_present",
+        "description": "mean waking mode-entropy across all just-completed segments clears a generous floor -- confirms there is diversity for sleep to have converted, well below 906b's own measured 1.88-2.10 bits/segment",
+        "measured": 1.4545109553386857,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sws_write_mechanism_engaged",
+        "description": "mean sws_n_writes across firings -- confirms the SWS schema-pass write path actually ran, not just that the cycle nominally fired",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "rem_rollout_mechanism_engaged",
+        "description": "mean rem_n_rollouts across firings -- confirms REM terrain rollouts actually ran",
+        "measured": 10.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "replay_draw_mechanism_structurally_reachable",
+        "description": "agent.sleep_loop.draws_per_cycle (structural, set once at agent construction) -- on 906b's UNMODIFIED config this is 0 on every seed, making replay_diversity_index permanently the -1.0 zero-draws sentinel regardless of waking diversity (confirmed empirically before writing this script -- see module docstring). This precondition verifies THIS run's config fix actually took effect.",
+        "measured": 50.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "control": "structural, all seeds"
+      },
+      {
+        "name": "sufficient_firing_sample",
+        "description": "total sleep-cycle firings across all seeds -- the review's own bar for what an n=1 ad-hoc read cannot establish",
+        "measured": 45.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "waking_diversity_present": true,
+      "sws_write_mechanism_engaged": true,
+      "rem_rollout_mechanism_engaged": true,
+      "replay_draw_mechanism_structurally_reachable": true,
+      "sufficient_firing_sample": true,
+      "routing_gate_live_all_seeds": true
+    },
+    "criteria": [
+      {
+        "name": "waking_diversity_present",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "sws_write_mechanism_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "rem_rollout_mechanism_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "replay_draw_mechanism_structurally_reachable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "sufficient_firing_sample",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "routing_gate_live_all_seeds",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "Discrimination rule (pre-registered): a firing is 'non-null' if sws_slot_diversity > 0.01 OR replay_diversity_index > 0.01 (i.e. real, non-sentinel positive value). frac_nonnull=1.000 across 45 firings; label='sleep_dv_nonnull_detected' iff frac_nonnull >= 0.1, else 'sleep_dv_conversion_blocked'. Diagnostic discrimination for sleep_substrate_plan.md GAP-2 (does NOT itself unblock GAP-2 either way) -- claim_ids=[]; does not weight governance. See module docstring for the config delta vs V3-EXQ-906b and why it does not touch the waking-diversity substrate under test."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ac008d68f6b7770bf0a5f2bd46b9b6bad5b22cde3b7015703e2a44ffdfba9e08",
+  "substrate_commit": {
+    "commit": "28e65a8c8e178117af9d56a2e1adcaa56fed4bd1",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 68133,
+    "ticks_active": 54579,
+    "writer_calls": 29494,
+    "active_frac": 0.8010655629430672,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
