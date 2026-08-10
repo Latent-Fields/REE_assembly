@@ -7131,9 +7131,9 @@
       "sd_id": "theta-buffer-phase-aware-summary",
       "title": "Phase/sequence-order-aware ThetaBuffer summary (replace flat-mean packaging)",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "REE_assembly/docs/architecture/sd_100_theta_buffer_phase_aware_summary.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "ARC-032",
@@ -7145,15 +7145,20 @@
           "experiment_type": "v3_exq_228c_arc032_theta_bypass_readout",
           "metric": "persist_delta_mean=4.47e-07 (no effect), noise_delta_mean=-0.0671 (reversed -- ACTIVE noisier)",
           "target": "persist_delta_mean >= 0.02 AND noise_delta_mean >= 0.005 on >= 2/3 seeds",
-          "resolved": "open"
+          "resolved": "resolved"
         }
       ],
       "implementation_hint": "ThetaBuffer.summary() currently computes a flat unweighted mean over a fixed 10-step window, which cannot represent within-window ordinal/phase structure. Two independent lines of evidence (V3-EXQ-228c direct DVs; MECH-089 EXQ-066/EXQ-122) show this flat-mean packaging actively degrades E3's discrimination. Build a phase/sequence-order-preserving summary grounded in Dragoi 2006 (theta-sequence compression) / Colgin 2016 (theta-gamma nesting). Exact source location not resolved in this autopsy's fact-gathering pass -- likely ree_core hippocampal/E1-output-packaging module, MECH-089's ownership.",
+      "implementation_note": "IMPLEMENTED 2026-08-10 (chip-20260810-theta-buffer-phase-aware-summary): ree_core/latent/theta_buffer.py ThetaBuffer.summary() gained a fixed forward-sweep phase-weighted mode (config.heartbeat.use_theta_phase_weighted_summary, default False/bit-identical to the pre-existing flat mean). See ree-v3/CLAUDE.md SD-100 entry for full data flow + tests. Recommended (not queued this session): a V3-EXQ-228d re-test of ARC-032 with the new summary enabled.",
       "priority": 2,
       "severity": "degrading",
-      "substrate_paths": [],
+      "substrate_paths": [
+        "ree_core/latent/theta_buffer.py",
+        "ree_core/utils/config.py",
+        "ree_core/agent.py"
+      ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "queue-depth-low-ops-aac785"
+      "last_seen_session": "sd-016-h3-algorithm-3370cd"
     },
     {
       "sd_id": "mech357-freeze-incompatible-pressure-mechanism",
@@ -7186,10 +7191,12 @@
       "sd_id": "SD-ORIENTING-DECISION-SCALE",
       "title": "Fix norm-vs-benefit-value scale mismatch in defensive-orienting override decision (MECH-489 Component 4/5)",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_orienting_decision_scale.md",
       "added_utc": "2026-08-10T15:32:33Z",
+      "implementation_note": "IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component 4/5): both channels now z-scored against their own running mean/mean-absolute-deviation (EMA, frozen while orienting is active) before comparison, instead of raw magnitudes. Regression-tested directly: the bug's exact shape (harm only ~1 MAD above its baseline, benefit numerically smaller but ~8-10 MADs above its own baseline) flips from withdraw (old) to approach (new). STATUS implemented_pending_validation: mechanism landed and smoke-tested, but no ablation run has yet re-measured decision_alignment on live data -- that is the outstanding 910a re-queue (valence-gating sub-component only).",
+      "validation_experiment": "PENDING -- 910a re-queue (valence-gating sub-component only), not yet queued",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-489"

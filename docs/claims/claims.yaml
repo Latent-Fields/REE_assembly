@@ -10640,6 +10640,17 @@
     steps -- data quality OK). Strengthens context-gated interpretation: uniform temporal
     smoothing is harmful at any tested batch size. Genuine weakening for static-k variant.
     Hold at active; context-dependent gating design needed before promotion.
+
+    [2026-08-10 implement-substrate, SD-100]: a fixed (non-trained) forward-sweep phase-weighted
+    summary mode landed in ThetaBuffer.summary() (config.heartbeat.use_theta_phase_weighted_summary,
+    default False/bit-identical), replacing the permutation-invariant flat mean this note's own
+    EXQ-066/EXQ-122 findings identified as harmful. This is a step toward the "context-dependent
+    theta window" redesign line this note has left open since 2026-03-28 -- it is position/phase-
+    sensitive rather than uniform, but it is NOT the context-GATED (stable-vs-volatile-window)
+    variant this note specifically calls for; that remains open. See
+    sd_100_theta_buffer_phase_aware_summary.md. Hold at active; validation via a recommended
+    V3-EXQ-228d re-test (ARC-032) is the natural first read on whether phase-weighting alone
+    (without context-gating) recovers the static-k losses.
   what_would_answer: |
     ALREADY-ESTABLISHED (do not re-litigate): uniform static-k theta batching
     (k=1, 2, 4) is CONFIRMED HARMFUL for harm attribution (EXQ-066: batched
@@ -14786,6 +14797,15 @@
     implementation gap, not a claim falsification. epistemic_category stays substrate_conditional.
     Routing: /implement-substrate for a phase/sequence-order-aware theta summary.
     pending_retest_after_substrate. Status unchanged (candidate).
+
+    [2026-08-10 implement-substrate, SD-100]: landed. ree-v3 ThetaBuffer.summary() now supports
+    a fixed forward-sweep phase-weighted mode (config.heartbeat.use_theta_phase_weighted_summary,
+    default False/bit-identical) replacing the permutation-invariant flat mean with a von-Mises-
+    style phase kernel, addressing the biology-divergence gap the V3-EXQ-228c autopsy identified.
+    See sd_100_theta_buffer_phase_aware_summary.md and ree-v3/CLAUDE.md's SD-100 entry.
+    pending_retest_after_substrate LEFT true -- the substrate is built but not yet retested; a
+    V3-EXQ-228d re-run with the new summary enabled is recommended (not queued by this session).
+    Status unchanged (candidate); no confidence/promotion change (implement-substrate scope only).
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: z_goal_norm must clear >= 0.05 (the EXQ-247
     gate) for goal-context maintenance to be meaningfully present at all --
@@ -79337,7 +79357,17 @@
   implementation_phase: v3
   v3_pending: false
   epistemic_category: standard
-  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE fix owed before valence-gating sub-component can be re-tested
+  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE fix LANDED 2026-08-10 (see implementation_note); valence-gating sub-component still awaits its re-test run (910a re-queue)
+  implementation_note: >
+    SD-ORIENTING-DECISION-SCALE IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component
+    4/5, docs/architecture/sd_orienting_decision_scale.md): fixed the norm-vs-value scale mismatch
+    failure_autopsy_V3-EXQ-910_2026-08-10 identified (harm-norm vs benefit-RBF-value compared as
+    raw magnitudes, structurally biasing every override toward withdraw). Both channels are now
+    z-scored against their own running mean/MAD before comparison. SD-099 itself (the parent gate)
+    is unchanged. pending_retest_after_substrate stays true until a 910a re-queue (valence-gating
+    sub-component only -- the trigger-alignment sub-claim already stands as fairly falsified and
+    does not need re-testing) actually runs; this note records that the substrate blocker is
+    cleared, not that the retest has happened.
   claim_level: mechanistic
   registered_utc: "2026-08-09"
   instantiates: SD-099
