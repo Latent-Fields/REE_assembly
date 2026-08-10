@@ -1,0 +1,52 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T14:21:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_909_sleep_dv_fishtank_multifiring_20260810T011652Z_v3",
+      "queue_id": "V3-EXQ-909",
+      "claim_ids": [],
+      "bears_on": "fishtank_sleep_consolidation_instrumentation",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under_instrumented",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED, leaning MEASURES/recording-debt -- not a REE finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS/REM sleep-dependent memory consolidation and replay",
+        "dependencies": ["SD-017"],
+        "is_formal_import": false,
+        "divergence": "none diagnosed -- instrumentation gap, not translation fidelity",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claim-free diagnostic; non-null label is a narrow structural non-degeneracy check (not stuck at -1.0 zero-draws sentinel), not a behavioural diversity finding; replay_diversity_index exactly 0.02 zero-variance across 45 firings; no pre/post-sleep behavioural window recorded anywhere in the data (recording gap)",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "learning_extracted": [
+        "'Non-null' per the pre-registered rule is a structural non-degeneracy check, not a behavioural diversity finding -- plain-English label overclaims",
+        "replay_diversity_index exactly 0.02, zero variance, across all 45 firings/3 seeds -- itself a strongly degenerate result",
+        "Recording-debt, not measurement-debt: the pre/post-sleep behavioural comparison the user's original question needs was never written to the manifest, so it cannot be recovered from already-collected data -- fix is to RECORD it in a re-run, not redesign the metric"
+      ],
+      "routing": "queue-experiment"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T14:21:33Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_906b_full_stack_observational_fishtank_20260809T163034Z_v3",
+      "queue_id": "V3-EXQ-906b",
+      "claim_ids": [],
+      "bears_on": "fishtank_906_lineage_ecology_showcase",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too_sparse",
+        "measurement": "adequate",
+        "integration": "coupled_but_unstable",
+        "scale": "likely_insufficient"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED, not chargeable to REE alone -- corroborates already-tracked MECH-309"
+      },
+      "biological_reference": {
+        "closest_mechanism": "coral-reef refugia / prey-fish shelter-vs-forage ecology (SD-054)",
+        "dependencies": ["SD-054", "SD-029", "MECH-256", "MECH-269", "ARC-062", "ARC-063", "ARC-077"],
+        "is_formal_import": false,
+        "divergence": "none -- collapse-to-a-pole is the already-anticipated MECH-309 prediction",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claim-free diagnostic showcase; corroborates MECH-309 in a new context, see cluster note",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "learning_extracted": [
+        "5/6 coupling metrics replicate 906b within noise across seeds; 1 (dread<->z_harm_a) sign-flips unexplained",
+        "Excursion frequency comfortably clears V3-EXQ-522's own pre-registered numeric bars"
+      ],
+      "routing": "governance-note-only"
+    },
+    {
+      "run_id": "v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3",
+      "queue_id": "V3-EXQ-906c",
+      "claim_ids": [],
+      "bears_on": "fishtank_906_lineage_ecology_showcase",
+      "failed_criterion": null,
+      "adjudication_disposition": {
+        "flag": "precondition_unmet",
+        "precondition": "excite_channel_contaminated",
+        "adjudicated": "correct, self-documented caveat -- NOT a mislabel. The self-route label coupling_instrumentation_live stands (new instrumentation is producing data); the flag correctly narrows only coupling_excite_benefit_contemporaneous_r as untrustworthy until SD-RESIDUE-VALENCE-BOUND lands."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under_instrumented",
+        "integration": "coupled_but_unstable",
+        "scale": "unknown"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MECHANISM+MEASURES (residue-channel plumbing defects), not REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- instrumentation/plumbing defect",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claim-free diagnostic; residue_wanting orphaned writer + liking/dread extend excite's unclamped-accumulator defect (SD-RESIDUE-VALENCE-BOUND scope widened)",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-RESIDUE-VALENCE-BOUND",
+        "severity": "degrading",
+        "substrate_paths": ["ree_core/residue/field.py::RBFLayer.update_valence", "ree_core/agent.py::update_benefit_salience", "ree_core/agent.py::update_schema_wanting"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3",
+          "experiment_type": "v3_exq_906c_full_stack_observational_fishtank",
+          "metric": "liking mean=19.88 (~50x a smoke-observed 0.39 per-step ceiling); dread rises 40-110x across 8 episodes in both 906b/906c; residue_wanting exact 0.0/3793 steps (orphaned writer, not floor)",
+          "target": "liking/dread/excite bounded to a per-tick-plausible hedonic-impact range after clamp+decay; residue_wanting writer methods invoked from the agent step loop",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "learning_extracted": [
+        "residue_wanting writer methods (update_benefit_salience, update_schema_wanting) are never called from the 906-family agent step loop",
+        "liking and dread confirmed to share excite's identical unclamped RBFLayer.update_valence() write path -- SD-RESIDUE-VALENCE-BOUND scope must widen to all six valence indices"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_911_ecology_enrichment_fishtank_20260809T201208Z_v3",
+      "queue_id": "V3-EXQ-911",
+      "claim_ids": [],
+      "bears_on": "fishtank_906_lineage_ecology_showcase",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too_sparse",
+        "measurement": "adequate",
+        "integration": "coupled_but_unstable",
+        "scale": "likely_insufficient"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED, not chargeable to REE alone -- corroborates already-tracked MECH-309; novel ENVIRONMENT geometry finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "coral-reef refugia / prey-fish shelter-vs-forage ecology (SD-054)",
+        "dependencies": ["SD-054", "SD-029"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "claim-free diagnostic showcase; confirms confound-reduction fires as designed; reef-resource spatial gap (4-5 cells) exceeds sensory radius (2), foreclosing opportunity-triggered-exit testing by construction",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "learning_extracted": [
+        "benefit_approach_confound_reduced gate cleared as designed (sample floor 20, measured 68)",
+        "Reef-to-nearest-resource gap (4-5 cells) exceeds agent sensory radius (2) in every episode -- opportunity-triggered exit cannot be exercised by the current ecology's geometry at all"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "fishtank full-stack observational showcase on the harm-pathway-trained, reef-enabled substrate",
+    "is_independent_bugs": false,
+    "structural_property": "every genuinely new finding (residue-channel contamination, reef-geometry foreclosure) is a property of the shared 906-family substrate, not of any one run's specific config",
+    "readings": ["substrate_enrichment"]
+  }
+}

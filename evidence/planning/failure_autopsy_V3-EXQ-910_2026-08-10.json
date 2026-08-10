@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-10T14:21:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_910_mech489_defensive_orienting_validation_20260810T004433Z_v3",
+      "queue_id": "V3-EXQ-910",
+      "claim_ids": ["MECH-489"],
+      "bears_on": "defensive_orienting_trigger_and_decision_validation",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "partial",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- trigger-alignment sub-claim fairly falsified per MECH-489's own pre-registered signature, refined by an independent MEASURES corroboration; valence-gating sub-claim confounded by a MECHANISM implementation bug and not fairly tested. Not chargeable to REE alone."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Sokolov orienting reflex (phasic freeze-arrest -> orient/identify -> override)",
+        "dependencies": ["SD-099", "MECH-279", "MECH-395", "MECH-482", "MECH-483", "MECH-205"],
+        "is_formal_import": false,
+        "divergence": "channel type (unsigned surprise + harm norm) is a reasonable translation; this substrate's specific surprise-channel composition does not concentrate on the target hazard events (corroborated independently by the reef review's surprise-peak browser)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_note": "Revises the manifest's current 'weakens'. Trigger/identification sub-component fairly hits falsifying signature #1 (near-zero ground-truth alignment despite the recommended onset-detector design being built correctly -- verified by reading ree_core/pag/defensive_orienting.py). Valence-gated decision sub-component NOT fairly tested: ree_core/agent.py:8008-8022 compares a structurally non-negative harm norm against a near-zero-unless-close-to-resource benefit attraction value, biasing every override toward withdraw independent of actual valence -- fully explains the observed 0/0/206 approach/resume/withdraw split on its own.",
+      "recommended_evidence_quality_note": "See .md artifact for full draft text -- MIXED verdict, pending_retest_after_substrate on the decision sub-component only once SD-ORIENTING-DECISION-SCALE lands; trigger-alignment falsification stands and needs no re-test.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-ORIENTING-DECISION-SCALE",
+        "title": "Fix norm-vs-benefit-value scale mismatch in defensive-orienting override decision (MECH-489 Component 4/5)",
+        "implementation_hint": "ree_core/agent.py select_action()'s Component 4/5 block compares _do_harm_val (a structurally non-negative L2 norm of z_harm_s) against _do_benefit (an RBF attraction value, near-zero unless very close to a previously-beneficial region) as if they were commensurable magnitudes. Normalize/rescale both onto the same scale (e.g. z-score each against its own running distribution, or compare signed valence rather than norm-vs-value) before the approach/withdraw/resume branch.",
+        "unblocks_claims": ["MECH-489"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": ["ree_core/agent.py::select_action"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_910_mech489_defensive_orienting_validation_20260810T004433Z_v3",
+          "experiment_type": "v3_exq_910_mech489_defensive_orienting_validation",
+          "metric": "decision_alignment across 206 logged overrides: approach=0, withdraw=206, resume=0",
+          "target": "a properly-scaled comparison should yield a non-degenerate mix of approach/withdraw/resume tracking actual event valence, not a 100%-one-sided split",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "The derivative/onset-detector trigger design the prior review recommended was built exactly as specified -- corrects the review's own speculation that a naive absolute threshold was likely used",
+        "A real, identifiable code bug (norm-vs-attraction-value scale mismatch) in the decision layer fully explains the 100%-withdraw lockup, independent of the trigger-alignment question",
+        "MECH-489's own pre-registered falsifying signature #1 is hit, refined by an independent MEASURES corroboration from the sibling reef-ecology review's surprise-peak browser",
+        "MECH-489 bundles two testable sub-mechanisms this run resolves in opposite directions -- a candidate granularity-debt case if a second split-fate autopsy recurs (not fired: first autopsy, 0 prior hits)"
+      ],
+      "routing": "implement-substrate"
+    }
+  ]
+}
