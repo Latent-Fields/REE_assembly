@@ -442,11 +442,23 @@ hazard/resource layout, confounding within-life development analysis). This sess
 specifically evidenced requirements for a developmental-ecology redesign, rather than restating that
 proposal:
 
-1. **Resource/reef spatial reachability.** Section 1b-D found the reef-to-nearest-resource gap (4-5
-   cells) exceeds the agent's sensory radius (2) in every episode of both runs — no version of an
-   opportunity-triggered leave-shelter policy can be exercised, tested, or learned under the current
-   geometry. A developmental ecology aimed at testing risk/reward contingency needs at least some
-   resources reachable from within (or at the edge of) sensory range of the shelter zone.
+1. ~~**Resource/reef spatial reachability.** Section 1b-D found the reef-to-nearest-resource gap
+   (4-5 cells) exceeds the agent's sensory radius (2) in every episode of both runs — no version of
+   an opportunity-triggered leave-shelter policy can be exercised, tested, or learned under the
+   current geometry. A developmental ecology aimed at testing risk/reward contingency needs at
+   least some resources reachable from within (or at the edge of) sensory range of the shelter
+   zone.**~~
+   **[CORRECTED 2026-08-10, see `developmental_ecology_curiosity_foraging_correction_2026-08-10.md`
+   Section 1 — left visible rather than deleted, per this repository's supersession convention.]**
+   The empirical finding above (the gap exceeds sensory radius) is correct and stands. The
+   inference drawn from it — that this forecloses a testable strategy and that the fix is to make
+   food sensible from the reef — does not: REE's curiosity/exploration machinery is specifically
+   intended to license leaving shelter without a currently sensed target, so
+   "sense food from the reef -> leave" is not the only, or the most developmentally interesting,
+   pipeline available. The corrected requirement is that resources be **discoverable through the
+   exploratory repertoire without requiring pre-departure perception**, plus a perceptible habitat
+   cue that probabilistically (not deterministically) predicts elevated resource likelihood — see
+   the correction document Sections 1c/4 for the full requirement and design principle.
 2. **Decoupling sleep firing from segment-boundary reset.** Section 6's retrospective test was
    confounded specifically because the one sleep firing available coincided with a segment boundary that
    also triggered a full environment reset. A design that lets sleep fire mid-segment (not only at
