@@ -1588,3 +1588,11 @@ One line per hourly tick. ASCII only.
 2026-08-10T05:48:15Z workset committed (regen -- 240 items, 27 ready, 0 in flight)
 2026-08-10T05:47:08Z SPAWN IGW-20260810-232 skill=/lit-pull prio=40 uuid=6faa28e6-411f-42aa-ba99-850f44422930 pid=51838 worktree=igw-232-literature-proposal-for-mech-489
 2026-08-10T06:49:47Z skip: paused (.igw_routine_pause present)
+2026-08-10T07:49:50Z skip: paused (.igw_routine_pause present)
+2026-08-10T08:49:51Z skip: paused (.igw_routine_pause present)
+2026-08-10T09:49:52Z skip: paused (.igw_routine_pause present)
+2026-08-10T10:49:52Z skip: paused (.igw_routine_pause present)
+2026-08-10T11:49:53Z skip: paused (.igw_routine_pause present)
+2026-08-10T12:49:54Z skip: paused (.igw_routine_pause present)
+2026-08-10T13:49:58Z skip: paused (.igw_routine_pause present)
+2026-08-10T14:50:00Z skip: paused (.igw_routine_pause present)

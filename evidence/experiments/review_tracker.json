@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-09T06:36:27Z",
+  "last_review_utc": "2026-08-10T15:20:50Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1125,7 +1125,22 @@
     "v3_exq_905_mech075_dorsal_lc_arousal_probe",
     "v3_exq_906_full_stack_observational_fishtank",
     "v3_exq_902_sd048_default_scale_calibration_sweep",
-    "v3_v3_exq_821a_runner_error_20260808T111711Z_v3"
+    "v3_v3_exq_821a_runner_error_20260808T111711Z_v3",
+    "v3_exq_906a_full_stack_observational_fishtank",
+    "v3_exq_894b_mech074d_bla_trainable_attribution_head",
+    "v3_exq_228c_arc032_theta_bypass_readout",
+    "v3_exq_905a_mech075_dorsal_lc_arousal_probe",
+    "v3_exq_903a_mech075_ventral_vta_rpe_probe",
+    "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard",
+    "v3_exq_324d_sd020_harm_surprise_pe_real_flagpath",
+    "v3_exq_910_mech489_defensive_orienting_validation",
+    "v3_exq_907_sd016_h1_ctxdiv",
+    "v3_exq_908_sd016_h3_hard_selection",
+    "v3_exq_876a_mech025_doing_mode_convergence_redesign",
+    "v3_exq_906b_full_stack_observational_fishtank",
+    "v3_exq_911_ecology_enrichment_fishtank",
+    "v3_exq_909_sleep_dv_fishtank_multifiring",
+    "v3_exq_906c_full_stack_observational_fishtank"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3904,7 +3919,23 @@
     "v3_exq_903_mech075_ventral_vta_rpe_probe_20260808T222748Z_v3",
     "v3_exq_905_mech075_dorsal_lc_arousal_probe_20260808T232406Z_v3",
     "v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3",
-    "v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3"
+    "v3_exq_902_sd048_default_scale_calibration_sweep_20260809T002118Z_v3",
+    "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+    "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+    "v3_exq_228c_arc032_theta_bypass_readout_20260809T110214Z_v3",
+    "v3_exq_905a_mech075_dorsal_lc_arousal_probe_20260809T130730Z_v3",
+    "v3_exq_903a_mech075_ventral_vta_rpe_probe_20260809T160911Z_v3",
+    "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+    "v3_exq_324d_sd020_harm_surprise_pe_real_flagpath_20260809T171606Z_v3",
+    "v3_exq_910_mech489_defensive_orienting_validation_20260810T004433Z_v3",
+    "v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3",
+    "v3_exq_907_sd016_h1_ctxdiv_20260809T130845Z_v3",
+    "v3_exq_908_sd016_h3_hard_selection_20260809T131209Z_v3",
+    "v3_exq_876a_mech025_doing_mode_convergence_redesign_20260809T133528Z_v3",
+    "v3_exq_906b_full_stack_observational_fishtank_20260809T163034Z_v3",
+    "v3_exq_911_ecology_enrichment_fishtank_20260809T201208Z_v3",
+    "v3_exq_909_sleep_dv_fishtank_multifiring_20260810T011652Z_v3",
+    "v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6104,6 +6135,29 @@
         "v3_exq_906_full_stack_observational_fishtank_20260809T003857Z_v3"
       ],
       "note": "Second governance cycle in this session, same day. Applied the 8 remaining confirmed autopsies from the batch left pending at the end of the previous cycle (all completed by a concurrent /failure-autopsy session, queue-depth-low-ops-aac785, between the two cycles). V3-EXQ-190a (MECH-022, non_contributory/substrate_conditional -- self-declared 'retire_ree_claim' NOT accepted: autopsy found 2 untrained scorer subnetworks contaminating the metric plus a measurement-design change (nav_bias extended into eval); routes /implement-substrate, substrate_queue SD-E3-SCORER-COMPLETION created). V3-EXQ-228b (ARC-032, does_not_support/measurement_test_design_defect -- first-ever non-degenerate test of this claim, but ~89% of episode steps reuse cached trajectories unaffected by the ablation, diluting the readout; routes /queue-experiment for a redesigned measurement). V3-EXQ-244b (MECH-165, supports/standard but weak/marginal effect, not statistically significant, applied with the caveat noted). V3-EXQ-603r (MECH-357, non_contributory/measurement_test_design_defect -- new third confound discovered: the harm-pathway fix alone rescues survival independent of the instrumental-avoidance gate, masking any discrimination). V3-EXQ-899 (INV-034/Q-021, cross-referenced -- reconfirms what was already applied last cycle, formally rules out MECH-307 as the G0 fix, substrate_queue mech457_competence_bootstrap_explorer amended). V3-EXQ-906 (no claims, the indexer's vacuous_pass flag CONFIRMED FALSE POSITIVE -- a criteria_non_degenerate/criteria[] join gap, genuine PASS, cleared). V3-EXQ-903+905 (MECH-075 cluster: 903 inconclusive, self-route confirmed correct, seed-mean statistic masked a majority-gate FAIL; 905 non_contributory/measurement_test_design_defect, gain constant an order of magnitude too small, inherited unchanged from a prior FAILed design). epistemic_category vocabulary mismatch confirmed SYSTEMIC, not a 3-instance fluke: this batch alone used the invalid value 'measurement_test_design_defect' on 4 targets (228b, 603r, 902, 905) in addition to 'competence_implementation_gap' on 190a/899 -- left each claim's existing epistemic_category unchanged (none needed correction to an INVALID value this time, since the pre-existing categories were already valid) rather than force-mapping an inexact translation; the corpus-wide audit chip from the prior cycle (chip-20260809-epistemic-category-vocab-audit) now has a much larger scope to report. Promotion/demotion agenda: MECH-357, SD-033e held pending V3 substrate (standard, no real decision); SD-009 held candidate pending conflict resolution (routine, unchanged since demotion). ERROR manifest V3-EXQ-821a remains pending /diagnose-errors, unresolved across both cycles today."
+    },
+    {
+      "timestamp_utc": "2026-08-10T15:20:50Z",
+      "session_label": "queue-depth-low-ops-aac785 (/governance cycle 2026-08-10, worktree)",
+      "reviewed_run_ids": [
+        "v3_exq_906a_full_stack_observational_fishtank_20260809T081031Z_v3",
+        "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+        "v3_exq_228c_arc032_theta_bypass_readout_20260809T110214Z_v3",
+        "v3_exq_905a_mech075_dorsal_lc_arousal_probe_20260809T130730Z_v3",
+        "v3_exq_903a_mech075_ventral_vta_rpe_probe_20260809T160911Z_v3",
+        "v3_exq_603s_instrumental_avoidance_freeze_incompatible_hazard_20260809T161324Z_v3",
+        "v3_exq_324d_sd020_harm_surprise_pe_real_flagpath_20260809T171606Z_v3",
+        "v3_exq_910_mech489_defensive_orienting_validation_20260810T004433Z_v3",
+        "v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3",
+        "v3_exq_907_sd016_h1_ctxdiv_20260809T130845Z_v3",
+        "v3_exq_908_sd016_h3_hard_selection_20260809T131209Z_v3",
+        "v3_exq_876a_mech025_doing_mode_convergence_redesign_20260809T133528Z_v3",
+        "v3_exq_906b_full_stack_observational_fishtank_20260809T163034Z_v3",
+        "v3_exq_911_ecology_enrichment_fishtank_20260809T201208Z_v3",
+        "v3_exq_909_sleep_dv_fishtank_multifiring_20260810T011652Z_v3",
+        "v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3"
+      ],
+      "note": "Third governance cycle in this session. Step 1.5 autopsy pre-flight: 7 of 9 FAIL/diagnostic items already had confirmed autopsies from an earlier chapter of this same session (228c/903a+905a/603s/324d/907/908/894b+906a); 899 was a confirmed near-duplicate of the already-reviewed 214833Z run (governance note, no autopsy owed); the remaining 5 (906b/906c/911/909/910, the fishtank-lineage runs the user specifically asked governance to review) had only rich observational-review docs, not confirmed adjudication -- cleared inline this session via /failure-autopsy (route A), clustering 906b+906c+911 (shared ecology/measurement-defect shape) and autopsying 909 and 910 standalone. V3-EXQ-910 (MECH-489) autopsy corrected the source review's own speculation by reading ree_core/pag/defensive_orienting.py directly (the recommended derivative/onset trigger design WAS built correctly) and found a NEW mechanism bug independently (a norm-vs-benefit-value scale mismatch in ree_core/agent.py:8008-8022 that structurally biases every override toward withdraw) -- evidence_direction revised weakens->mixed, SD-ORIENTING-DECISION-SCALE created (severity=corrupting). Mid-session, found two further human-analysis documents (developmental_ecology_curiosity_foraging_correction_2026-08-10.md, sleep_transition_investigation_906_lineage_2026-08-10.md) not named in the initial command that materially corrected two of the just-written autopsies' routing (906-cluster's reef-geometry finding and 909's recording-gap finding were both already superseded by an already-chipped, more comprehensive developmental-ecology successor design) -- both autopsies amended before finalizing, avoiding a duplicate-work recommendation. Promotion/demotion agenda (4 AskUserQuestion decisions): MECH-025 promoted candidate->provisional (V3 gate cleared, fresh confirming V3-EXQ-876a evidence, clean non-outcome-findings skim). SD-020 promoted candidate->provisional after applying the V3-EXQ-324d reclassification (non_contributory, cross-cutting training-instability pattern) first, per the user's chosen sequencing. MECH-100 (GFLAG-0019/0020, not in the standard pending_user queue since already stable) left at stable + caveat noting the pre-SD-070 evidence base and the corrected-but-weaker biological citation; needs_review cleared. Remaining 7 pending_user items (MECH-142/143/SD-009 conflict-resolution, MECH-236/289/357/SD-033e hold-pending-v3-substrate) confirmed as-is, no change. Also applied: MECH-074d (894b, weakens/substrate_conditional, pending_retest_after_substrate -- loss-term balance now the load-bearing open question). MECH-075 (903a inconclusive/905a weakens, second cluster on the same two legs, construct-validity gap flagged for dorsal leg). ARC-032 (228c, weakens/substrate_conditional, pending_retest_after_substrate -- biology-divergence implementation gap in ThetaBuffer's flat-mean packaging). MECH-357 (603s, non_contributory, third consecutive inconclusive-by-design-defect result, config-only pressure lever space exhausted). MECH-309 (906-cluster corroboration note, no status change -- cross-referenced not re-registered). GFLAG-0021 (MECH-321 stale evidence_quality_note corrected with the RNG-reset-asymmetry diagnosis, matching what_would_answer's existing correction). GFLAG-0022 (MECH-480's superseded ERROR manifest evidence_direction fixed, both flat and pack copies). Clinical-hours push-hold encountered mid-cycle (15:26 IST, inside the 09:00-17:00 window) -- commits landed bot-authored locally per user decision, push deferred to Step 7 alongside everything else."
     }
   ]
 }

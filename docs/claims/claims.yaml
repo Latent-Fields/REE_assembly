@@ -4211,15 +4211,15 @@
   claim_type: mechanism_hypothesis
   subject: cognitive_modes.action_doing_precision
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-08-10
     needs_review: false
     evidence:
-      from: "decision:MECH-025@2026-03-16T18:20:19.361130Z"
-      as_of: 2026-03-16
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:MECH-025@2026-08-10"
+      as_of: 2026-08-10
+      verdict: promote_to_provisional/applied
   evidence_quality_note: |
     V3 gate cleared (2026-03-28): SD-004 (action objects), SD-005 (z_self/z_world split),
     and ARC-016 (dynamic precision) now implemented in ree-v3. V3 action-doing mode
@@ -4250,6 +4250,15 @@
     (4/5 seeds), opposite the predicted sign. Read as non_contributory/measurement_test_design_defect
     (re-operationalize the doing-mode causal-signal DV), not evidence against the claim. Routed to
     /queue-experiment. Stays candidate.
+    2026-08-10 (governance, promote_to_provisional applied): V3-EXQ-876a is the re-operationalized
+    DV the 876 autopsy's what_would_answer block called for -- C1_doing_mode_delta_reversed tests
+    the reversed sign directly (per the FALSIFYING/CONFIRMING framing above), and PASSES on all 5
+    seeds (doing_mode_delta=-0.179, not razor-thin). All 6 criteria (incl. precision_ratio, a
+    ~3.6e5 separation between committed/uncommitted precision, matching the "4-5 orders of
+    magnitude" already observed in 876) clear on every seed. Governance's own mandatory
+    non-outcome-findings skim of the driver source found nothing amiss (real margin on the
+    load-bearing criterion, no OR/AND join-mismatch, no config-branch asymmetry). exp_conf=0.857,
+    conflict_ratio=0, 4 supports/2 mixed/0 weakens. Promoted candidate -> provisional.
   epistemic_category: standard
   depends_on:
     - ARC-016
@@ -9371,11 +9380,12 @@
     as_of: 2026-08-08
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-894a_2026-08-08"
-      as_of: 2026-08-08
-      verdict: FAIL/weakens -- over-firing/dilution alternative refuted (Spearman -1.0 across sigma sweep); attribution gate consistently fails, competence_implementation_gap
+      from: "failure_autopsy_V3-EXQ-906a_894b_2026-08-09"
+      as_of: 2026-08-09
+      verdict: FAIL/weakens -- trainability-alone refuted, loss-term balance (entropy_weight vs MSE) now the load-bearing open question
   epistemic_category: substrate_conditional
   implementation_phase: v3
+  pending_retest_after_substrate: true  # SD-035 substrate_queue entry amended 894a/894b; loss-balance fix owed before next retest
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
   depends_on:
@@ -9459,6 +9469,23 @@
     cycle with this failure_record (a learnable/better-calibrated attribution head is the fix owed,
     not a re-test). Worth a future promotion/demotion look given two consecutive weakens results on
     the same core mechanism.
+
+    [/governance 2026-08-10, V3-EXQ-894b, confirmed failure_autopsy_V3-EXQ-906a_894b_2026-08-09,
+    post-substrate retest of the 894a implement-substrate routing]: the learnable BLA attribution
+    head (SD-035) was built and genuinely trains (914/1998 optimizer updates past the 200-step warm
+    threshold). H1 (a learned attribution recovers C1+C2 where the fixed rule never did) is PARTIALLY
+    supported: C1 attribution_selectivity recovers fully (0/3 -> 3/3 seeds) but C2
+    context_differentiated_addressing -- the actual Moita 2004 dissociation this claim is about --
+    does NOT recover in either trained arm (stays 0/3 seeds; jaccard_gap flat-to-slightly-negative).
+    Doubling the training budget did not help, ruling out "needs more experience." The module's own
+    docstring predicted this exact shape: the entropy regularizer can buy C1 at C2's expense when
+    entropy_weight is too large relative to the variance-normalised MSE term. Diagnosis: trainability
+    alone was NOT the missing ingredient; the specific loss-term balance is now the load-bearing open
+    question -- a tuning/calibration gap, not an architecture-absence gap. Three iterations
+    (894/894a/894b) have progressively NARROWED the diagnosis (dilution confound refuted ->
+    trainability-alone refuted -> loss-balance implicated) -- convergence, not a
+    structurally-different-signatures pattern that would call for splitting the claim. Stays
+    provisional / pending_retest_after_substrate.
 - id: MECH-075
   title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
@@ -9589,6 +9616,22 @@
     valid claims.yaml enum -- see chip-20260809-epistemic-category-vocab-audit). Status unchanged
     (candidate) -- both legs remain untested at adequate power; a gain constant inherited from a
     prior FAILed design must be re-derived against the observed signal distribution, not reused.
+
+    [2026-08-10 governance, V3-EXQ-903a+905a, confirmed failure_autopsy_mech075-second-cluster_2026-08-10,
+    second cluster on the same two legs]: V3-EXQ-903a (ventral, recalibrated to 5 seeds/majority-of-3):
+    readiness gate STILL fails on majority (2/5 pass, grounding correlation swings +0.53 to -0.003
+    across seeds) -- self-routed substrate_not_ready_requeue, CONFIRMED CORRECT again. Second
+    consecutive attempt at more seeds has not closed the readiness gate; routed to a targeted
+    diagnostic (per-episode training-trajectory logging) rather than a third combined attempt.
+    inconclusive/standard. V3-EXQ-905a (dorsal, LC_GAIN correctly re-derived 2.0->80.0 per the prior
+    cluster's own finding): the manipulation is now clearly differential (C1 3/3 seeds) but the
+    decisive metric (basin_width) shows literally zero effect (2/3 seeds identical to 4+ decimal
+    places) -- weakens the CEM-decision-time operationalization specifically, and flags a
+    construct-validity gap: the LC-arousal literature this claim's anatomical_note cites grounds
+    plasticity-TIMESCALE effects, not decision-TIME effects. Routed to /lit-pull. Status unchanged
+    (candidate) -- the dorsal leg's manipulation-magnitude defect is now fixed, but the DV itself may
+    be measuring the wrong construct; re-derive brake and granularity-debt checks both run, neither
+    fires (this claim's autopsy history diverges by leg, not by a single recurring shape).
 - id: MECH-076
   title: "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation)."
   claim_type: mechanism_hypothesis
@@ -11713,12 +11756,13 @@
   status: stable
   live_status:
     reading: stable
-    as_of: 2026-07-11
-    needs_review: true
+    as_of: 2026-08-10
+    needs_review: false
     needs_review_reason: >
       [2026-08-09] Evidence-currency + citation-integrity review flagged for the next
-      /governance cycle; see evidence_quality_note. Status deliberately LEFT AT stable --
-      a stable claim is not demoted outside a governance cycle.
+      /governance cycle; RESOLVED 2026-08-10 (LEFT AT stable + caveat, see
+      evidence_quality_note) -- both GFLAG-0019 and GFLAG-0020 now carry a recorded
+      governance disposition.
     evidence:
       from: "decision:MECH-100@2026-03-19T19:52:00Z"
       as_of: 2026-03-19
@@ -11781,6 +11825,18 @@
     of 0.62 was assigned on the assumption that a stronger source sat behind it. Re-scoring a
     stable claim's literature evidence is a governance disposition and is left open.
     Full working: evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md
+
+    [2026-08-10 governance disposition on GFLAG-0019/GFLAG-0020]: LEFT AT stable, both flags
+    resolved with this caveat rather than a status change. (1) Evidence-currency: all four
+    supporting runs predate SD-070's fix and V3-EXQ-897 (the first re-measurement under the fixed
+    substrate) reads direction=unknown, not supports, and does not tag MECH-100 -- no experiment
+    currently queued targets a clean re-verification under the SD-070 recipe; flagged for a future
+    /queue-experiment session rather than queued here. (2) Citation integrity: MECH-100's sole
+    biological citation, now corrected to Murray/Bussey/Saksida 2007, supports a weaker proposition
+    than the claim's own prose and was scored at 0.62 on the false premise of a stronger uncited
+    source -- literature confidence should be treated as provisional pending a deliberate re-score,
+    not relied on as strong grounding until that happens. needs_review cleared (both flags now have
+    a recorded governance disposition); GFLAG-0019 and GFLAG-0020 resolved.
   implementation_phase: v3
   depends_on:
     - SD-005
@@ -14651,6 +14707,7 @@
       verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v3
   epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true  # phase/sequence-order-aware theta summary owed (V3-EXQ-228c, 2026-08-10)
   depends_on:
     - MECH-089
     - MECH-116
@@ -14715,6 +14772,18 @@
     routing=queue-experiment: a redesigned readout scoring z_goal persistence / goal-proximity
     noise directly, and/or measured only on E3-tick steps (not full-episode aggregate), is owed.
     Status unchanged (candidate).
+
+    [2026-08-10 governance, V3-EXQ-228c, confirmed failure_autopsy_V3-EXQ-228c_2026-08-10]: the
+    redesign owed by the 228b autopsy (E3-tick-restricted, direct persistence/proximity-noise DVs)
+    has now run. Precondition met (1.00 frac). Both primary criteria FAILED 0/3 seeds, with a
+    REVERSED trend registered as a finding (theta ACTIVE noisier on 3/3 seeds, less persistent on
+    1/3) -- converging with MECH-089's confirmed EXQ-066/EXQ-122 findings that static/uniform
+    theta-averaging measurably hurts E3's fine-grained discrimination. Biology (Dragoi 2006, Colgin
+    2016) attributes theta's functional payload to phase/sequence-order structure; ThetaBuffer's
+    flat unweighted mean cannot represent this by construction -- a biology-divergence
+    implementation gap, not a claim falsification. epistemic_category stays substrate_conditional.
+    Routing: /implement-substrate for a phase/sequence-order-aware theta summary.
+    pending_retest_after_substrate. Status unchanged (candidate).
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: z_goal_norm must clear >= 0.05 (the EXQ-247
     gate) for goal-context maintenance to be meaningfully present at all --
@@ -29831,15 +29900,15 @@
     SD-087 (2026-06-10 z_harm_a saturation intake, candidate 2) for the two-arm OFF-vs-ON falsifier;
     consider a standing default_off audit across other claims.'
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-08-09
+    reading: provisional
+    as_of: 2026-08-10
     needs_review: false
     evidence:
-      from: v3_exq_324_sd020_harm_surprise_pe_20260411T050533Z_v3
-      as_of: 2026-08-09
-      verdict: mixed/FAIL_1of5_governance_demotion
+      from: "failure_autopsy_V3-EXQ-324d_2026-08-10"
+      as_of: 2026-08-10
+      verdict: non_contributory/promote_to_provisional_applied -- first genuine well-powered real-flag-path test since the 2026-08-09 demotion, 1/5 seeds clean pass, 4/5 near-zero (cross-cutting training-instability suspected, not evidence against)
   claim_level: architectural
   depends_on: [SD-011, SD-019, ARC-016]
   functional_restatement: >
@@ -29895,6 +29964,23 @@
     finding through V3-EXQ-856/857a is a separate, later investigation and is unaffected by this
     demotion (see SD-087's own note, which already treats SD-020's stable-vs-flag-on scoping
     question as separately open).
+
+    [2026-08-10 governance, V3-EXQ-324d, confirmed failure_autopsy_V3-EXQ-324d_2026-08-10]: the
+    genuine real-flag-path test GFLAG-0005 asked for (and the 2026-08-09 demotion note above named
+    as owed before any re-promotion) has now run. All non-degeneracy gates clean (344+ harm
+    events/seed, manipulation confirmed real, DV not saturation-masked -- this is the well-powered
+    test EXQ-324/324a/324b never were). 1/5 seeds pass all three criteria; the other 4 show
+    near-zero-or-negative surprise correlation (-0.07 to -0.13) against one strong positive outlier
+    (seed 3, +0.61). Reclassified non_contributory rather than does_not_support: the seed-variance
+    shape closely echoes V3-EXQ-903a (MECH-075 ventral, a different claim) under otherwise clean,
+    well-powered conditions -- flagged as a possible cross-cutting training-instability pattern in
+    newly-trained PE/valuation heads, worth a shared diagnostic before either result is trusted as
+    informative. Excluded from conflict_ratio as a non-contributory result. Promoted candidate ->
+    provisional the same cycle (exp_conf=0.857 after this reclassification, conflict_ratio improves
+    with the mixed/weakens entry removed from the denominator; strong literature support unchanged,
+    5 entries, lit_conf=0.915) -- the shipped real-flag-path implementation has now had its first
+    genuine, well-powered, non-degenerate test since the 2026-08-09 demotion, and it is (mostly)
+    consistent with the claim rather than against it.
   notes: >
     Addresses Q-036 directly. If SD-020 is confirmed experimentally, Q-036 answer is:
     "surprise (PE) is necessary in addition to temporal integration." The implementation
@@ -47243,6 +47329,18 @@
     behavioural channel after V3-EXQ-485h (OFC) to corroborate MECH-439. No status
     change (substrate_ceiling / v3_pending / pending_retest_after_substrate).
     654f -> superseded. Routing: /implement-substrate (GAP-A gain/contrast amend).
+
+    [2026-08-10 governance, failure_autopsy_906b-906c-911-cluster_2026-08-10, confirmed]:
+    V3-EXQ-906b/906c/911 (diagnostic showcases, claim_ids=[]) corroborate the
+    monomodal-collapse-without-rule-apprehender reading in a NEW context: real, replicated
+    protective shelter use (2.4x/1.6x lower harm-rate while sheltering) with excursion frequency
+    comfortably clearing V3-EXQ-522's own pre-registered numeric bars (C1/C2/C3), but no
+    demonstrated contingent control (opportunity-triggered exit is structurally untestable by the
+    current ecology's geometry per a later correction -- see
+    developmental_ecology_curiosity_foraging_correction_2026-08-10.md; threat-triggered return is
+    weak, distance-dependent, inconsistent across seeds). This is the collapse landing on the
+    safety pole of a real two-attractor context, exactly as this claim predicts happens absent a
+    discriminative rule-apprehension layer -- not a fresh finding; no status/confidence change.
   notes: >
     Diagnostic claim, not a substrate or implementation claim. MECH-309
     explains why SD-054 (and any substrate alone) is insufficient to
@@ -54589,7 +54687,16 @@
     shows the screen's own monotonicity assumption is FALSIFIED -- 5 of the 7 screen-matched seeds
     did NOT actually land in both_decompose at the full measurement schedule (held: false) -- direct
     evidence the ON-arm manipulation itself perturbs whether/when decomposition fires, undermining
-    the matched-pair premise structurally, not just statistically. The 2026-08-05 autopsy (routing
+    the matched-pair premise structurally, not just statistically.
+    [CORRECTED 2026-08-10 governance, GFLAG-0021: the preceding "ON-arm manipulation perturbs
+    decomposition" reading was WITHDRAWN by the 2026-08-09 GFLAG-0014/0015 correction (see the
+    what_would_answer field below) -- 867b's own manifest contradicts it (the violation is in the
+    OFF arm, which is provably inert). The actual cause is an RNG-reset asymmetry: screen cells
+    call _run_cell directly with no reset, while measurement cells enter through arm_cell (which
+    resets all RNG), so the two phases measure DIFFERENT agents -- not that the manipulation itself
+    perturbs decomposition. The ratified routing (redesign the DV away from post-hoc
+    divergence-tick matching) is unaffected; only the diagnosis of WHY the screen-then-match family
+    is invalid changes.] The 2026-08-05 autopsy (routing
     confirmed, NOT YET ratified by /governance per the standing autopsy-does-not-chip-its-own-routing
     rule) explicitly refuses a same-design V3-EXQ-867c and instead calls for a redesigned DV/matching
     strategy (e.g. an unconditional whole-episode harm-rate comparison across all measurement seeds
@@ -61470,6 +61577,7 @@
   implementation_phase: v3
   v3_pending: true
   epistemic_category: standard
+  pending_retest_after_substrate: true  # freeze-incompatible pressure lever owed (V3-EXQ-603s, 2026-08-10); combined-fix rerun 603r/603s both non_contributory by design defect, mechanism-engagement claim untested at adequate power
   claim_level: mechanistic
   registered_utc: "2026-06-07"
   depends_on:
@@ -61562,6 +61670,18 @@
     scope is unaffected). MECH-357's mechanism-engagement claim is STILL neither confirmed nor
     falsified -- tested twice now, under two different confound sets, both inconclusive by
     design defect rather than by the mechanism itself. Status unchanged (candidate/v3_pending).
+
+    [2026-08-10 governance, V3-EXQ-603s, confirmed failure_autopsy_V3-EXQ-603s_2026-08-10]: second
+    consecutive config-only pressure escalation (603r static field, 603s mobile predators via
+    aggressive env-drift) still fails to make LESION fail its own negative control -- this time on
+    an exact tie (0.6667 vs 0.6667), not a near-miss. avoidance_efficacy numerically ~0 across all
+    three arms independent of the LESION/INTACT/POSCTRL question. non_contributory -- the
+    config-only pressure lever space appears exhausted. Routed to /implement-substrate, scoped to
+    investigate BOTH genuine agent-directed predator pursuit AND an episode-length/event-suddenness
+    environment-mechanics redesign before committing to full pursuit-AI implementation.
+    pending_retest_after_substrate. Third consecutive inconclusive-by-design-defect result; MECH-357's
+    mechanism-engagement claim remains neither confirmed nor falsified. Status unchanged
+    (candidate/v3_pending).
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: freeze must commit on LESION arm and the gate must
     engage+suppress on INTACT arm. ALREADY MET ONCE, cleanly: V3-EXQ-603h reported
@@ -79147,10 +79267,16 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: "2026-08-09"
+    as_of: "2026-08-10"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-910_2026-08-10"
+      as_of: "2026-08-10"
+      verdict: "mixed -- trigger-alignment sub-claim fairly falsified per this claim's own pre-registered falsifying signature; valence-gating sub-claim confounded by a code bug, not fairly tested"
   implementation_phase: v3
   v3_pending: false
+  epistemic_category: standard
+  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE fix owed before valence-gating sub-component can be re-tested
   claim_level: mechanistic
   registered_utc: "2026-08-09"
   instantiates: SD-099
@@ -79190,6 +79316,28 @@
     (the freeze is a disguised timer, not epistemically driven -- the exact failure mode the
     baseline-freeze fix during the build was designed to prevent, so this would indicate a
     regression or an unforeseen second such bug).
+  evidence_quality_note: >
+    [2026-08-10 governance, V3-EXQ-910, confirmed failure_autopsy_V3-EXQ-910_2026-08-10, first
+    genuine touchpoint for this claim]: MIXED, not a clean weakens. The trigger/identification
+    sub-component (Components 1-3) fairly hits this claim's own pre-registered falsifying
+    signature #1 (near-zero alignment on ground-truth injected events: 2.6%/1.5%/0.0% on
+    limb_damage_injected/external_hazard_injected/world_rule_shift_occurred, despite the
+    recommended derivative/onset-detector design being built correctly -- verified by reading
+    ree_core/pag/defensive_orienting.py directly, correcting a prior review's speculation that a
+    naive absolute threshold was likely used instead). This is refined by an independent MEASURES
+    corroboration (the sibling reef-ecology review's surprise-peak browser): this ecology's
+    residue_surprise channel is dominated by reef-boundary crossings and resource events, not
+    hazard-type events, so a correctly-designed onset detector built on it will still under-fire on
+    the specific event types this validation targets. The valence-gated decision sub-component
+    (Components 4-5) is NOT fairly tested: a real code bug in ree_core/agent.py:8008-8022 compares
+    a structurally non-negative harm norm against a near-zero-unless-close-to-resource benefit
+    attraction value, structurally biasing every override toward withdraw independent of actual
+    event valence -- fully explains the observed 0/0/206 approach/resume/withdraw split on its own.
+    Routed /implement-substrate (SD-ORIENTING-DECISION-SCALE, severity=corrupting); recommend a
+    910a re-queue after the fix lands, scoped to re-test valence-gating only (the trigger-alignment
+    falsification stands and does not need re-testing). Re-derive brake and granularity-debt checks
+    both run: neither fires (first autopsy on this claim, 0 prior hits). Status unchanged
+    (candidate).
   notes: >
     Built 2026-08-09 (session 906b-defensive-orienting-v3) via /implement-substrate, from
     observational_review_V3-EXQ-906b_2026-08-09.md Sections 11b/11d (design, user-ratified "as
