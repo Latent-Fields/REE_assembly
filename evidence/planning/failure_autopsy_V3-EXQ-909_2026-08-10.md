@@ -58,10 +58,13 @@ whether consolidation produced any behavioural effect.
 | Integration | isolated | the pass bar (OR of two channels at a shallow 0.01 floor) does not establish "diverse", just "not-permanently-zero" |
 | Scale | unknown | n=45 firings/3 seeds is a real sample for the structural non-degeneracy check, but says nothing about behavioural effect since that comparison was never recorded |
 
-**Failure-location (GOV-FAILLOC-1):** MEASURES (shallow OR-gated bar overstates what "non-null"
-established) + a genuine RECORDING gap (the readout needed existed conceptually but was never
-written to the manifest, distinct from a measurement gap where the metric itself is blind).
-Net: **MIXED, leaning MEASURES/recording-debt — not a REE finding.**
+**Failure-location (GOV-FAILLOC-1):** MEASURES — sharpened after reading
+`sleep_transition_investigation_906_lineage_2026-08-10.md` Section 4 (read after this artifact's
+initial draft): not merely a shallow OR-gated bar or a missing readout, but **a different DV
+entirely** — 909's pre-registered rule targets sleep-mechanism internal diversity
+(`sws_slot_diversity`, `replay_diversity_index`), which has zero conceptual overlap with
+behavioural trajectory reorganisation. Net: **MEASURES — the measure was never aimed at the
+behavioural-reorganisation question at all, not a REE finding.**
 
 ## Learning extracted
 
@@ -76,20 +79,28 @@ Net: **MIXED, leaning MEASURES/recording-debt — not a REE finding.**
    measurement-debt: the fix is recording a matched post-firing window in a re-run, not
    redesigning the metric.
 
-## Repair pathway
+## Repair pathway — ALREADY CHIPPED, sharpened by a document read after the initial draft of
+this artifact
 
-`complicated (buildable)` — recording gap, not a measurement redesign. Per the
-Experimental Recording Standard (`experimental_recording_standard_2026-07-12.md` §3c
-family-keyed payload): a 909a re-run whose only change is to log a matched post-firing waking
-window (route efficiency, hazard exposure, resource acquisition, action entropy) keyed to the
-same `(seed, boundary_index)` as the existing `sleep_firing_records`, calling
-`stamp_recording_core(...)` plus the new readout. A blind re-run would reproduce the same blind
-spot at the same compute cost — the fix is specifically to RECORD, not to re-measure differently.
+`complicated (buildable)` — recording gap, not a measurement redesign. Originally drafted as an
+independent "909a" recording-only re-run recommendation; checked against
+`sleep_transition_investigation_906_lineage_2026-08-10.md` before finalizing, which (a) sharpens
+this autopsy's own "recording gap" framing to something more precise — Section 4 establishes
+909 did not merely fail to record the right readout, it measured **sleep-mechanism internal
+diversity, a different DV entirely**, with zero overlap with the behavioural-reorganisation
+question — and (b) confirms a fuller fix is already chipped:
+`chip-20260810-fishtank-developmental-ecology` item 3 has been amended (a third time, by that
+same document, Section 9) to specify an explicit sleep-vs-matched-no-sleep ABLATION arm — the
+minimum design that actually separates a sleep effect from ordinary elapsed-time/experience
+effects, which a bare "add pre/post instrumentation" re-run (my original 909a framing) would not
+by itself provide. **No independent 909a recommendation is issued here** — this autopsy's
+finding is superseded by, and should be read through, that chip's design.
 
 ## `recommended_substrate_queue_entry`
 
-`action: none` — this is an experiment-instrumentation gap (routes to `/queue-experiment`), not
-a substrate/mechanism gap.
+`action: none` — this is an experiment-instrumentation gap, already routed via the existing
+chip (see Repair pathway above), not a substrate/mechanism gap and not a fresh queue-experiment
+proposal.
 
 ## Recommended `evidence_quality_note`
 
@@ -104,9 +115,10 @@ Not applicable — no fan-out, no pre-registered hypothesis adjudicated. Skip cl
 
 `claim_ids: []` — neither applies.
 
-## Routing (confirmed at interactive gate)
+## Routing (revised after reading the sleep-transition investigation document)
 
-**queue-experiment** — recording-gap re-run (909a), same question, instrumentation-only change
-citing the Experimental Recording Standard. Not spawned from this artifact (per the skill's
-Step 8 rule against self-chipping a routing this session's own gate just confirmed) — governance
-records the recommendation; a future `/queue-experiment` session or governance chip executes it.
+**Already chipped, no new routing issued.** `chip-20260810-fishtank-developmental-ecology`
+item 3 (amended a third time) already specifies the sleep-vs-no-sleep ablation design this
+finding calls for, and does so more precisely (as an ablation, not a bare instrumentation
+add-on) than this autopsy's original 909a framing. Governance should not spawn a duplicate chip
+for this finding.

@@ -38,15 +38,16 @@
       },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "non_contributory",
-      "recommended_evidence_quality_note": "claim-free diagnostic; non-null label is a narrow structural non-degeneracy check (not stuck at -1.0 zero-draws sentinel), not a behavioural diversity finding; replay_diversity_index exactly 0.02 zero-variance across 45 firings; no pre/post-sleep behavioural window recorded anywhere in the data (recording gap)",
+      "recommended_evidence_quality_note": "claim-free diagnostic; non-null label is a narrow structural non-degeneracy check (not stuck at -1.0 zero-draws sentinel), not a behavioural diversity finding; replay_diversity_index exactly 0.02 zero-variance across 45 firings. Sharpened after reading sleep_transition_investigation_906_lineage_2026-08-10.md Section 4: this is not merely a recording gap, 909 measured sleep-mechanism internal diversity, a DIFFERENT DV entirely, with zero overlap with behavioural reorganisation. Fix already chipped (chip-20260810-fishtank-developmental-ecology item 3, sleep-vs-no-sleep ablation).",
       "recommended_substrate_queue_entry": {"action": "none"},
       "pending_retest_after_substrate": false,
       "learning_extracted": [
         "'Non-null' per the pre-registered rule is a structural non-degeneracy check, not a behavioural diversity finding -- plain-English label overclaims",
         "replay_diversity_index exactly 0.02, zero variance, across all 45 firings/3 seeds -- itself a strongly degenerate result",
-        "Recording-debt, not measurement-debt: the pre/post-sleep behavioural comparison the user's original question needs was never written to the manifest, so it cannot be recovered from already-collected data -- fix is to RECORD it in a re-run, not redesign the metric"
+        "909 measured a different DV entirely (sleep-mechanism internal diversity) from the behavioural-reorganisation question it is often read as answering -- zero overlap, per an independent document read after this artifact's initial draft",
+        "No new routing issued -- already chipped with a fuller ablation design than this autopsy's original 909a framing"
       ],
-      "routing": "queue-experiment"
+      "routing": "governance-note-only"
     }
   ]
 }

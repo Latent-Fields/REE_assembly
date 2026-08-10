@@ -164,12 +164,18 @@ other rather than testing independent things.
 - **Finding 2 (residue defects)** → `complicated (buildable)` → `/implement-substrate`. Wire
   `update_benefit_salience()`/`update_schema_wanting()` into the step loop; extend the
   clamp/decay fix (already scoped for `excite`) to `liking` and `dread` explicitly.
-- **Finding 1 environment gap (reef geometry)** → `complicated (buildable)` design constraint for
-  a future ecology redesign → `/queue-experiment` (new EXQ; not queued here per the
-  mandatory-skill-path rule). Two concrete requirements to carry forward: (a) resource
-  reachability from at least the edge of the shelter zone's sensory range; (b) decouple sleep
-  firing from segment-boundary reset (this second requirement is 909's territory — see that
-  autopsy).
+- **Finding 1 environment gap (reef geometry) — ALREADY CHIPPED, do not re-propose.** Checked
+  before finalizing this artifact: `developmental_ecology_curiosity_foraging_correction_2026-08-10.md`
+  (read this session, after the initial draft of this autopsy) corrects the reef review's own
+  Section 8 item 1 — "resources must be reef-perceptible" was the WRONG inference from the
+  correct empirical finding (91-97% of departures have no resource within sensory range); REE's
+  curiosity/exploration machinery (SD-025, active in this ecology) makes discovery-through-
+  exploration a valid, more developmentally interesting pipeline than direct sensing, so the real
+  gap is a probabilistic habitat cue (shifts resource-spawn prior without guaranteeing it), not
+  sensory reachability. This is already folded into `chip-20260810-fishtank-developmental-ecology`
+  (amended twice: once for this correction, once for a sleep-ablation extension — see the 909
+  autopsy). **No new queue-experiment recommendation is issued here** — this autopsy's Finding 1
+  environment note should be read through that correction, not as an independent proposal.
 - **Finding 1 MECH-309 corroboration** → governance note only (see below); no claims.yaml status
   change.
 
@@ -224,8 +230,9 @@ adjudicates a pre-registered hypothesis. Checked: no existing `qid` in
 
 `claim_ids: []` on all three targets — no claim-keyed brake or granularity-debt cluster applies.
 
-## Routing (confirmed at interactive gate)
+## Routing (confirmed at interactive gate; environment-gap routing revised after reading the
+correction document — see Repair pathway above)
 
 - **implement-substrate** — SD-RESIDUE-VALENCE-BOUND amend (residue channel fixes, `residue_wanting` orphaned writer)
-- **queue-experiment** (future session, not spawned here) — developmental-ecology redesign carrying forward the reef-resource reachability requirement
+- **already chipped, no new routing issued** — the environment/reef-geometry finding is superseded framing; see `chip-20260810-fishtank-developmental-ecology`
 - **governance note only** — MECH-309 corroboration, no claims.yaml status/confidence change
