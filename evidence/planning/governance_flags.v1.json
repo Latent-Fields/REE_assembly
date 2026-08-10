@@ -294,9 +294,9 @@
       "summary": "GFLAG-0014's correction did NOT reach claims.yaml MECH-321 evidence_quality_note, though its resolution_note says it did: the 2026-08-09 GFLAG-0014/0015 correction block was appended to what_would_answer only, while evidence_quality_note's 2026-08-04 entry still asserts the withdrawn misdiagnosis verbatim ('direct evidence the ON-arm manipulation itself perturbs whether/when decomposition fires, undermining the matched-pair premise structurally') with no correction marker in that field -- and GFLAG-0014 is already status=resolved, so nothing will revisit it. The confirmed autopsy artifact evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.md line 84 ('That is direct evidence the ON-arm manipulation changes decomposition timing/occurrence itself') and its .json sibling (root_cause / self_route fields) carry the same withdrawn inference uncorrected -- these are staged-doc section 8 item 1, explicitly left as a governance disposition. The correct diagnosis is the RNG-reset asymmetry (screen cells call _run_cell with no reset_all_rng; measurement cells enter through arm_cell, so the two phases measure different agents). Ratified routing is unaffected. The registry half is DONE: hypothesis_space_registry.v1.json resolution.basis + observation_bottleneck were synced from live_gate on 2026-08-09 (REE_assembly 721f52448a, chip-20260809-mech321-registry-sync), text-only, state/bar fields untouched, integrity a=0 b=0 c=0 d=0.",
       "raised_by_session": "metaworker-chip-20260809-mech321-registry-sync",
       "raised_at": "2026-08-09T08:03:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-10T15:18:50Z",
+      "resolution_note": "2026-08-10 governance: corrected MECH-321's evidence_quality_note 2026-08-04 entry with a [CORRECTED] marker naming the RNG-reset-asymmetry diagnosis, matching the what_would_answer field's existing GFLAG-0014/0015 correction. See claims.yaml MECH-321."
     },
     {
       "flag_id": "GFLAG-0022",
