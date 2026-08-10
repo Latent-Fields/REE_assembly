@@ -1603,3 +1603,6 @@ One line per hourly tick. ASCII only.
 2026-08-10T16:51:42Z skip: paused (.igw_routine_pause present)
 2026-08-10T17:52:17Z workset committed (regen -- 240 items, 26 ready, 0 in flight)
 2026-08-10T17:51:44Z STAGE IGW-20260810-210 skill=/implement-substrate prio=25 worktree=igw-210-substrate-ready-sd-orienting-dec (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-08-10T18:14:44Z LAUNCH (manual interactive) IGW-20260810-210 worktree=igw-210-substrate-ready-sd-orienting-dec
+2026-08-10T18:53:42Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
+2026-08-10T18:53:21Z no eligible item (skipped 239): IGW-20260810-001:skill /governance not allowed; IGW-20260810-002:skill /governance not allowed; IGW-20260810-006:skill /governance not allowed
