@@ -1646,3 +1646,7 @@ One line per hourly tick. ASCII only.
 2026-08-11T16:05:48Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
 2026-08-11T17:06:17Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
 2026-08-11T18:00:28Z complete IGW-20260810-208 staged->completed outcome=USEFUL_LANDED: SD-RESIDUE-VALENCE-BOUND implemented via a separate session (fishtank-affect-tel
+2026-08-11T18:07:20Z GC removed worktree igw-208-substrate-ready-sd-residue-valen (removed; branch deleted)
+2026-08-11T18:06:55Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-08-11T18:07:59Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
+2026-08-11T18:06:55Z no eligible item (skipped 239): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
