@@ -524,3 +524,36 @@ convergence) resolves mostly to an already-tracked mechanism gap (`MECH-309`); t
 finding (accumulator contamination) now covers three channels instead of one; the strongest environment
 finding (resource/reef unreachability) is a concrete, fixable geometry fact, not a REE competence
 question.
+
+---
+
+## Addendum (chip-20260810-fishtank-affect-telemetry, 2026-08-11): 3a/3e's telemetry-gap claim, verified against code
+
+Section 3a stated "none of relief (`MECH-302`), safety (`MECH-303`/`MECH-304`), or arousal (`z_beta`) are
+surfaced in the Fishtank driver's telemetry" and 3e recommended surfacing all three. Direct verification
+against `ree-v3/experiments/v3_exq_664_affective_fishtank_showcase.py` and `REE_assembly/fishtank_viz.html`
+found this claim was **only 2/3 correct**:
+
+- **`z_beta` was already fully surfaced** — computed at `_eval_agent` (not inside `_read_affect`) as
+  `z_beta_val = float(latent.z_beta.mean().item())`, present in every `step_rec` since the driver's
+  original commit (`9f3b1e1`, predating this review), and already rendered in the viz's Affect panel
+  (`vZbeta` metric row + a dedicated timeline channel). No gap existed; 3a's claim about `z_beta`
+  specifically was an oversight, not a finding. No code change made.
+- **Relief (`MECH-302`) and safety (`MECH-303`/`MECH-304`) are genuinely not reachable under this
+  driver's current config** — both are real, validated substrate (`MECH-302` via V3-EXQ-517c,
+  `MECH-303` via V3-EXQ-760, `MECH-304` active via V3-EXQ-763), but each sits behind its own
+  default-`False` config flag never set in `_make_agent_and_env`: `use_suffering_derivative_comparator`
+  (relief, gates `agent.suffering_comparator` / `agent._relief_completion_event`),
+  `use_conditioned_safety_store` (cue-specific safety, `agent._conditioned_safety_signal`), and
+  `use_contextual_safety_terrain` (contextual safety, gates whether `agent.residue_field`'s safety RBF
+  terrain ever accumulates via `evaluate_safety`/`accumulate_safety`). Flipping any of these is a
+  behavioural/config change (relief fires MECH-057a commitment release; safety gates licence
+  commitment-release and approach), not a read-side telemetry addition, so it was correctly out of
+  scope for a telemetry-only chip and was not done.
+
+**Net effect: no code changes landed in `ree-v3` or `REE_assembly` for this chip** — the driver and viz
+were already correct for `z_beta`, and relief/safety cannot be added without a substrate/config change
+that a telemetry-only chip must not make. A follow-on chip was spawned for the actual remaining
+work: a *new*, separate Fishtank experiment variant with `use_suffering_derivative_comparator=True`,
+`use_conditioned_safety_store=True`, `use_contextual_safety_terrain=True` set (never as a change to
+664's own defaults), which would make relief/safety genuinely observable in a dedicated run.
