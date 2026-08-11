@@ -1,11 +1,23 @@
 {
   "schema_version": "v1",
   "runner_pid": 3973580,
-  "runner_started_at": "2026-08-10T01:19:07.313555+00:00",
-  "last_updated": "2026-08-10T01:47:12.774208+00:00",
+  "runner_started_at": "2026-08-11T17:08:56.208846+00:00",
+  "last_updated": "2026-08-11T20:51:19.860481+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-603t",
+      "backlog_id": "",
+      "claim_id": "MECH-357",
+      "title": "MECH-357 SD-029 scheduled-external-hazard Stage-H: agent-relative discrete threat replaces 603s's undirected mobile-predator drift (successor of 603s)",
+      "description": "",
+      "estimated_minutes": 282.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3780,6 +3792,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 1080.6
+    },
+    {
+      "queue_id": "V3-EXQ-917",
+      "backlog_id": "",
+      "claim_id": "SD-011",
+      "title": "MECH-303 contextual_safety_harm_threshold calibration battery: reachability/discrimination across num_hazards x harm_obs_a sourcing mode",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "outcome=PASS evidence_direction=supports label=mech303_tension_sourcing_mode_dependent | manifest=/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-917 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-917.json",
+      "started_at": "2026-08-11T17:17:00.803125+00:00",
+      "completed_at": "2026-08-11T20:51:19.858525+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 12859.1
     }
   ]
 }
