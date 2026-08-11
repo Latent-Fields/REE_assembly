@@ -1,0 +1,98 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_916_relief_safety_fishtank_showcase",
+  "run_id": "v3_exq_916_relief_safety_fishtank_showcase_20260811T064913Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-11T06:49:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "relief_safety_showcase_channels_live",
+    "criteria_non_degenerate": {
+      "channel_z_harm_s": true,
+      "channel_z_harm_un": true,
+      "channel_z_harm_a": true,
+      "channel_drive": true,
+      "channel_z_goal": false,
+      "channel_vigor": false,
+      "channel_override": true,
+      "channel_z_block": false,
+      "channel_excite": true,
+      "channel_dread": true,
+      "channel_safety_cue_signal": true,
+      "channel_safety_terrain_read": false,
+      "freeze_fires_present": true,
+      "block_steps_present": true,
+      "freeze_not_permanently_locked": true,
+      "relief_fires_present": true
+    },
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "blocked_agency_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "Telemetry showcase, follow-on to V3-EXQ-664. PASS = the core affect channels (z_harm_a, z_harm_un, drive) vary across eval, the blocked-agency pole engages, and PAG freeze (if it fires) does not permanently lock the agent. No claim_ids; does not weight governance. excite/dread/override AND relief_event/safety_cue_signal/safety_terrain_read (the MECH-302/303/304 channels this experiment newly enables) are reported but not load-bearing -- MECH-302 needs a genuine sustained z_harm_a descent and MECH-304 needs a prior MECH-302 firing to seed its EMA prototype, so either can be legitimately sparse within a bounded eval window even when correctly wired."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "81132e9bf1861a1d7f8c048903d8073afedf2bdc89fcfec9ab612d25b2592201",
+  "substrate_commit": {
+    "commit": "828bd8b8c980d9c99f0fd944c42f43186c42baa2",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 11166,
+    "ticks_active": 0,
+    "writer_calls": 11166,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
