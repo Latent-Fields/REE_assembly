@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-08-11_mech_075_lc_ne_decision_time_gain_astonjones2005",
+  "timestamp_utc": "2026-08-11T17:02:14Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Aston-Jones, Gary", "Cohen, Jonathan D"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational, extremely well-replicated review establishing that phasic LC firing IS decision-locked (~90-150ms latency around a discrimination/target-detection decision, brief 3-4-spike bursts) and is proposed to modulate downstream target-neuron gain at that same short timescale -- this licenses 'decision-time LC effects' as a real phenomenon in principle. Confidence held at moderate rather than high because the entire empirical base for the theory is cortical/decision-network gain modulation (LIP, cingulate, sensory cortex target-detection), not hippocampal attractor dynamics -- it establishes plausibility, not applicability to MECH-075's specific dorsal-HPC operationalization.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Phasic LC excitatory responses to target cues occur at short latency (~90-150ms) and consist of only 3-4 action potentials followed by a long refractory period -- the effect window per burst is brief, not sustained",
+    "The theory's evidentiary base is cortical target-detection and decision-network gain (LIP, ACC, OFC afferents to LC), not hippocampal attractor geometry",
+    "Tonic vs phasic LC modes map onto exploration vs exploitation over a task, not onto within-single-decision attractor width"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "adaptive_gain", "decision_time", "phasic_tonic", "construct_validity"],
+  "mapping": {
+    "source_claim_statement": "LC neurons fire phasically, time-locked to the outcome of a task-related decision process (~90-150ms latency), and this phasic activation is proposed to transiently increase the gain of target-neuron populations engaged by that decision, facilitating the ensuing behavior. Tonic LC mode (high baseline, low phasic responsivity) instead tracks disengagement/exploration over longer task epochs.",
+    "ree_translation": "This is the strongest available theoretical grounding for treating an LC-arousal signal as decision-time-relevant at all: if phasic LC bursts are decision-locked and modulate target-population gain within that same short window, then a CEM-decision-time gain manipulation (V3-EXQ-905a's basin_width read) is not obviously the wrong timescale on priors. But the theory's target populations throughout are cortical decision/attention circuits, never hippocampal attractor networks -- it licenses 'LC can act fast' in general, not 'LC widens hippocampal attractor basins within one decision' specifically.",
+    "mapping_caveat": "This is a theoretical/review synthesis of primarily cortical and oculomotor decision-circuit data (target-detection tasks, LIP/ACC/OFC), not hippocampal electrophysiology. It answers question (b) from the /lit-pull brief (is decision-time even a plausible LC timescale at all) with a qualified yes for cortical gain, but says nothing directly about whether the SAME fast-gain mechanism extends to dorsal-HPC attractor basin geometry -- that extension is the exact gap MECH-075's dorsal leg needs and this paper does not close it.",
+    "source_context": "Cross-species review (primarily macaque electrophysiology, target-detection/oddball vigilance tasks) synthesizing LC single-unit recording literature; not hippocampus-specific."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "Canonical, heavily-cited theory paper -- source quality is very high. Mapping fidelity is deliberately kept low: the paper's decision-time claims are about cortical/oculomotor gain, and applying them to hippocampal attractor-basin width is an unsupported extrapolation the paper itself never makes. Transfer risk elevated for the same reason -- moving from 'LC modulates cortical target-neuron gain within ~150ms of a decision' to 'LC widens dorsal-HPC attractor basins within a single CEM decision step' skips an entire mechanistic and anatomical step."
+  }
+}

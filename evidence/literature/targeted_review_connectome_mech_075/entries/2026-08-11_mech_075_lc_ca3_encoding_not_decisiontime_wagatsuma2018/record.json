@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-08-11_mech_075_lc_ca3_encoding_not_decisiontime_wagatsuma2018",
+  "timestamp_utc": "2026-08-11T17:02:14Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Locus coeruleus input to hippocampal CA3 drives single-trial learning of a novel context",
+    "authors": ["Wagatsuma, Akiko", "Okuyama, Teruhiro", "Sun, Chen", "Smith, Lillian M", "Abe, Kuniya", "Tonegawa, Susumu"],
+    "year": 2018,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1714082115"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong optogenetic causal evidence that LC input to CA3 is functionally important -- but the readout is explicitly encoding-then-next-day-retention, not a within-trial/decision-time attractor measure. Directly weakens the decision-time operationalization of MECH-075's dorsal leg by demonstrating that the field's own gold-standard LC-CA3 causal study measures its effect via delayed behavioral retention, not immediate representational geometry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optogenetic silencing of LC input to CA3 during the day-1 novel-context exposure impairs day-2 recognition memory -- the causal window is at encoding, but the READOUT requires a 24-hour retention interval",
+    "Silencing LC input to CA3 during the day-2 recall test itself has no effect -- the LC-CA3 pathway is not needed for retrieval/decision-time performance, only for what gets encoded",
+    "The mechanism is explicitly framed as 'plastic changes in the CA3 microcircuit' (i.e. synaptic plasticity), with place-field similarity across days as the geometric readout, not basin width within a single exploration bout",
+    "No measurement anywhere in the paper of attractor basin width, convergence speed, or any within-session/within-decision geometric quantity"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "ca3", "single_trial_learning", "encoding_vs_retrieval", "construct_validity", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic inhibition of LC axon terminals in CA3 during a single 4-minute novel-context exposure impairs subsequent (next-day) recognition memory for that context, as measured by exploration time and c-Fos/calcium-imaging place-field similarity across the two exposures. The same manipulation during the day-2 recall session itself has no effect -- the LC-CA3 pathway acts specifically at encoding, driving plastic reorganization of the CA3 microcircuit that persists to be read out later.",
+    "ree_translation": "This is the closest existing causal LC-to-CA3 study to MECH-075's dorsal leg, and it directly illustrates the construct-validity gap the autopsy flagged: the paper's own experimental design treats the LC-CA3 effect as an ENCODING/plasticity phenomenon whose behavioral signature only appears at a later retention test, not as something read out synchronously with the arousal manipulation. V3-EXQ-905a's basin_width metric is computed within the same decision window as the LC_GAIN manipulation -- structurally closer to the (LC-CA3-during-recall) condition this paper found to be null, than to the (LC-CA3-during-encoding, tested next day) condition where the effect was found.",
+    "mapping_caveat": "Species/task differ (mouse contextual fear/novel-object paradigm vs. V3's CEM decision loop), and the paper's readout (place-field similarity across exposures, c-Fos reactivation) is not a basin-width or attractor-geometry metric in any formal sense -- the attractor-dynamics link is REE's inference, not the paper's own framing. The paper cannot rule out that a decision-time attractor effect ALSO exists alongside the encoding-time effect it measured; it simply never looked for one.",
+    "source_context": "Mouse, dorsal CA3, optogenetic (Arch-mediated) inhibition of LC axon terminals, novel open-field context exposure with c-Fos immunostaining and in vivo calcium imaging of individual CA3 pyramidal cells across a 2-day protocol."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "High-quality optogenetic causal study in a top venue with converging behavioral, IEG, and calcium-imaging readouts. Mapping fidelity moderate-high because this is the single most directly on-target LC-to-dorsal-CA3 causal paper in the literature; transfer risk moderate because the species/task/readout differ substantially from V3's CEM decision loop, and because the paper's silence on within-trial dynamics is an absence of evidence, not evidence of absence, for a decision-time effect."
+  }
+}

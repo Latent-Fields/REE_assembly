@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-08-11_mech_075_global_remapping_crossexposure_grella2019",
+  "timestamp_utc": "2026-08-11T17:02:14Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Locus Coeruleus Phasic, But Not Tonic, Activation Initiates Global Remapping in a Familiar Environment",
+    "authors": ["Grella, Stephanie L", "Neil, Jonathan M", "Edison, Hilary T", "Strong, Vanessa D", "Odintsova, Irina V", "Walling, Susan G", "Martin, Gerard M", "Marrone, Diano F", "Harley, Carolyn W"],
+    "year": 2019,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1956-18.2018"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "The paper title and framing ('global remapping', 'network reset') sound directly on-topic for a decision-time attractor claim, and this is exactly why it is important: on close reading, the remapping is inferred entirely from immediate-early-gene expression compared across two 5-minute exposures separated by 20 minutes, not from any within-exploration/real-time readout. The authors themselves state their method cannot detect whether a population-code switch happens within seconds during ongoing exploration. This directly weakens the assumption that 'global remapping' literature licenses a decision-time attractor-width metric.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remapping is detected via catFISH immediate-early-gene (Arc/Zif268) compartmentalization comparing TWO separated 5-minute exposures 20 minutes apart, not via real-time recording during a single exploration bout",
+    "Authors explicitly state: 'rate remapping, place field rotation, or place field splitting occurring with novelty would not be detected as a loss of network overlap' -- their own technique cannot resolve within-session dynamics",
+    "The manipulation is pharmacological (glutamate microinfusion into LC) delivered over a 30-second infusion period, itself far longer than a single decision, with a further 60-second dwell before behavior begins",
+    "No optogenetic or electrophysiological demonstration exists in this paper of a remapping event occurring within seconds of phasic LC firing during ongoing behavior"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "global_remapping", "network_reset", "catfish", "construct_validity", "cross_exposure"],
+  "mapping": {
+    "source_claim_statement": "Bilateral pharmacological activation of LC (glutamate microinfusion, mimicking phasic mode) prior to a rat's second exposure to an already-familiar environment causes the hippocampal population code -- indexed via catFISH IEG expression compared across the first and second 5-minute exposures -- to shift toward a 'novel-like' pattern (global remapping), whereas tonic-mode LC activators (bethanechol, orexin A, CRF) do not. LC silencing (clonidine) before a genuinely novel environment blocks the normal remapping that would otherwise occur.",
+    "ree_translation": "This is the paper whose vocabulary ('global remapping', building on Bouret & Sara's 'network reset' theory) most closely resembles MECH-075's dorsal-leg prediction that high-LC-arousal widens/reorganizes the hippocampal attractor. But the paper's own methodology only ever compares population state ACROSS two temporally separated exposures (20 min apart) -- it provides no evidence about whether such a reorganization happens within the span of a single ongoing decision, which is exactly what V3-EXQ-905a's basin_width metric requires. If the field's best 'remapping' paper cannot demonstrate within-session dynamics, that is direct evidence the current literature does not support treating basin_width-within-a-decision as construct-valid for this mechanism.",
+    "mapping_caveat": "Absence of a within-session demonstration in this paper is not proof that within-session remapping does not occur -- catFISH is fundamentally an across-exposure comparison technique and could not have detected a fast effect even if one existed. The authors' own limitations paragraph makes this explicit. Species (rat) and pharmacological (not optogenetic) manipulation also differ from V3's mechanistic framing.",
+    "source_context": "Rat, open-field exploration, pharmacological LC microinfusion (glutamate/bethanechol/orexin-A/CRF/clonidine), catFISH immediate-early-gene compartmental analysis across dentate gyrus, CA1, and CA3."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Solid, peer-reviewed J Neurosci study building on the well-established network-reset theoretical tradition (Bouret & Sara 2005). Mapping fidelity moderate: the conceptual link (LC phasic activation -> hippocampal population-code reorganization) is exactly the right shape for MECH-075's dorsal leg, but the methodology's inherent across-exposure blindness to within-session dynamics is a real limitation the authors themselves flag, not an artifact of REE's reading."
+  }
+}

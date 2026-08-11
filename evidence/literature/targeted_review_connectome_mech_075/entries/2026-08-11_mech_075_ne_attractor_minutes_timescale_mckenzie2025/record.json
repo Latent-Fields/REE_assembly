@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-08-11_mech_075_ne_attractor_minutes_timescale_mckenzie2025",
+  "timestamp_utc": "2026-08-11T17:02:14Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Event boundaries drive norepinephrine release and distinctive neural representations of space in the rodent hippocampus",
+    "authors": ["McKenzie, Sam", "Sommer, Alexa L", "Donaldson, Tia N", "Pimentel, Isabella", "Kakani, Meghana", "Choi, Ina J", "Newman, Ehren L", "English, Daniel F"],
+    "year": 2025,
+    "venue": "eLife (reviewed preprint)",
+    "doi": "10.7554/eLife.105183.1",
+    "url": "https://elifesciences.org/reviewed-preprints/105183"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "The single most directly on-target paper found in this review: it explicitly frames real-time CA1 population dynamics under measured NE release in attractor language ('NE perturbed neural activity away from the stored attractor'). This is genuine, current, within-session evidence that NE tracks hippocampal representational dynamics during ongoing behavior -- but the reported timescale is minutes (exponential decay of both NE signal and representational drift over ~10 minutes), one to two orders of magnitude slower than a single CEM decision step. Confidence held at moderate because it is a reviewed preprint (not yet a final version-of-record) and because the direct attractor-basin-width vs. decision-time question is still not tested at the sub-minute scale.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "NE signal (GRAB-NE fiber photometry) rises sharply at a context-transition event boundary and then exponentially DECAYS TO BASELINE OVER MINUTES, not seconds",
+    "CA1 population representational drift away from the steady-state code tracks the same minutes-scale decay as the NE signal -- 'the patterns recorded in the first minute were less correlated than those observed 10 minutes into the session'",
+    "The authors did not find enhanced replay of post-transition moments -- the expected plasticity/consolidation signature was absent, leaving the mechanism as an online attractor perturbation rather than a memory-consolidation effect, but still on a multi-minute timescale",
+    "No claim or measurement anywhere in the paper of a sub-second or single-decision-step attractor transition"
+  ],
+  "tags": ["mech_075", "locus_coeruleus", "norepinephrine", "attractor_dynamics", "event_boundary", "construct_validity", "fiber_photometry", "reviewed_preprint"],
+  "mapping": {
+    "source_claim_statement": "Using GRAB-NE fiber photometry in dorsal CA1, the authors show NE release rises immediately upon entry into a testing arena and decays exponentially to a steady state over several minutes; concurrently (in a separate electrophysiology dataset), the hippocampal population code shows elevated representational novelty immediately after a context transition, settling into a stable ('attractor') pattern at a similar rate to the NE decay. NE release magnitude is proportional to the deviance between the current neural representation and the settled steady-state code.",
+    "ree_translation": "This is the closest existing empirical match to MECH-075's dorsal-leg prediction -- NE tracking and driving deviation from a hippocampal attractor state -- and it is framed in exactly that vocabulary by the authors. It directly supports the idea that basin geometry (not just plasticity) is a construct NE genuinely modulates. But the timescale reported (minutes, exponential decay over ~10 min) is dramatically slower than a single V3 CEM decision step, which is the operative timescale of V3-EXQ-905a's basin_width readout. This is the strongest evidence in this review that the underlying phenomenon MECH-075 wants to capture is real, and the strongest evidence that the CURRENT operationalization is measuring it at the wrong timescale by roughly two orders of magnitude.",
+    "mapping_caveat": "This is a reviewed preprint, not yet a peer-reviewed version of record -- findings could still change through revision. The NE-fiber-photometry and CA1-electrophysiology data also come from separate cohorts of animals (not simultaneous recording), so the NE-decay/representational-drift correlation is an across-experiment inference, not a single-subject causal link. The paper also explicitly did not find the expected replay signature, meaning even the authors are not fully settled on the underlying mechanism.",
+    "source_context": "Mouse, dorsal CA1, GRAB-NE fiber photometry (N=8) plus separately-collected multi-unit electrophysiology (N=3, public dataset) during open-field exploration across context transitions."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderated because this is a reviewed preprint, not a final published paper, and the two measurement modalities are not simultaneous in the same animals. Mapping fidelity is the highest of any entry in this batch -- this is the one paper that actually uses attractor-dynamics language to describe a real-time, NE-linked hippocampal representational readout, which is precisely the construct MECH-075's dorsal leg needs. The confidence-limiting factor is timescale, captured in the direction/rationale above rather than in the components."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_075",
+  "entry_id": "2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021",
+  "timestamp_utc": "2026-08-11T17:02:14Z",
+  "claim_ids_tested": ["MECH-075"],
+  "source": {
+    "title": "Separable actions of acetylcholine and noradrenaline on neuronal ensemble formation in hippocampal CA3 circuits",
+    "authors": ["Prince, Luke Y", "Bacon, Thomas", "Humphries, Rebecca", "Tsaneva-Atanasova, Krasimira", "Clopath, Claudia", "Mellor, Jack R"],
+    "year": 2021,
+    "venue": "PLOS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1009435"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "A computational modeling paper, grounded in prior electrophysiology, that explicitly and deliberately codes noradrenaline's action on CA3 ensemble formation as a plasticity-ENABLING (STDP-gating) factor only -- with no online/moment-to-moment modulation of cellular excitability or recurrent synaptic weight, in direct contrast to how the same model treats acetylcholine. This is current computational-modeling consensus that directly supports reading a null within-decision noradrenergic basin_width effect as consistent with, rather than contradicting, how the field currently models NE's action on CA3 attractor circuits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model explicitly states noradrenaline 'was assumed to enable synaptic plasticity between CA3 pyramidal cells and therefore ensemble formation but did not otherwise affect CA3 network properties' -- no online effect on excitability, recurrent weight, or inhibition beyond a fixed ~30% IPSC reduction",
+    "Acetylcholine, by contrast, is modeled with an immediate ~5mV depolarization and instantaneous reduction of recurrent CA3-CA3 synaptic weight -- i.e. the SAME modeling framework gives ACh a fast/online channel and gives NE none",
+    "Noradrenaline narrows (not widens) the burst-frequency window in which ensembles can stably form (ensembles form at 30Hz but are 'almost completely abolished' at 20Hz under NA alone) -- a plasticity-permissiveness effect, not a basin-widening gain effect",
+    "No receptor-kinetics or phasic/tonic timescale distinction is modeled for noradrenaline at all -- the paper's own silence on NE timescale reflects that the modeling literature has not yet needed to resolve it"
+  ],
+  "tags": ["mech_075", "noradrenaline", "ca3", "computational_model", "ensemble_formation", "plasticity_gate", "construct_validity"],
+  "mapping": {
+    "source_claim_statement": "In a biophysically-constrained computational model of CA3 ensemble formation from theta-burst input, acetylcholine and noradrenaline are given SEPARABLE roles: acetylcholine acts fast and online (immediate depolarization, immediate recurrent-weight suppression) to reconfigure network dynamics moment-to-moment, while noradrenaline is modeled purely as a permissive gate on STDP-mediated synaptic plasticity -- it changes whether an ensemble CAN form via learning, not the instantaneous shape of the network's attractor landscape.",
+    "ree_translation": "This is direct evidence from the computational-modeling literature -- the domain closest to REE's own mechanistic framing -- that the field's current best model of NE's action on CA3 explicitly does NOT include a fast, within-decision, basin-width-type effect. If this model is representative of current mechanistic thinking, then V3-EXQ-905a's null basin_width result under a correctly-calibrated LC_GAIN manipulation is not an anomaly needing explanation -- it is what the closest analogous computational model would predict. The construct MECH-075's dorsal leg wants (LC-arousal widening the CA3 attractor within a decision) is, on this account, targeting a channel (online/fast NE-network coupling) that the field's own models currently do not implement, precisely because there is little direct electrophysiological evidence to build it from.",
+    "mapping_caveat": "This is a MODELING ASSUMPTION, not a direct empirical measurement -- the authors chose to model NE as plasticity-only based on their reading of the (sparse) electrophysiological literature, and the paper does not claim to have exhaustively ruled out a fast NE effect. A different set of modelers, or a future model incorporating findings like McKenzie et al. 2025 (this same review batch), could plausibly build a fast/online NE channel. Its evidentiary weight here is as a signal of current field consensus, not as a direct empirical falsification of decision-time NE effects.",
+    "source_context": "Computational/biophysical network model of hippocampal CA3, parameterized from prior rodent CA3 slice electrophysiology; theta-burst-driven ensemble formation as the target phenomenon."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Peer-reviewed computational biology paper, well-parameterized against slice electrophysiology, but its NE-as-plasticity-gate framing is a modeling choice built on the SAME sparse-empirical-base problem this whole review is documenting -- so it functions as evidence of field consensus/framing rather than as an independent empirical falsification. Weighted moderately for that reason."
+  }
+}

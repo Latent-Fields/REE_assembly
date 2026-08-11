@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-09T22:52:28.214911Z`
+Generated: `2026-08-11T17:06:38.093300Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Generated: `2026-08-09T22:52:28.214911Z`
 | `targeted_review_connectome_mech_072` | [`2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/record.json) | 6 | [`summary`](targeted_review_connectome_mech_072/entries/2026-04-15_mech_072_neural_causal_attribution_self_external_seidel2009/summary.md) |
 | `targeted_review_connectome_mech_073` | [`2026-07-14_mech_073_valence_pattern_completion_ca1_mcmakin2022`](targeted_review_connectome_mech_073/entries/2026-07-14_mech_073_valence_pattern_completion_ca1_mcmakin2022/record.json) | 3 | [`summary`](targeted_review_connectome_mech_073/entries/2026-07-14_mech_073_valence_pattern_completion_ca1_mcmakin2022/summary.md) |
 | `targeted_review_connectome_mech_074` | [`2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/record.json) | 15 | [`summary`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/summary.md) |
-| `targeted_review_connectome_mech_075` | [`2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_075/entries/2026-04-15_mech_075_vta_novelty_two_systems_duszkiewicz2018/summary.md) |
+| `targeted_review_connectome_mech_075` | [`2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021`](targeted_review_connectome_mech_075/entries/2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021/record.json) | 9 | [`summary`](targeted_review_connectome_mech_075/entries/2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021/summary.md) |
 | `targeted_review_connectome_mech_089` | [`2026-04-08_mech089_theta_gamma_learning_tort2009`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/record.json) | 5 | [`summary`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/summary.md) |
 | `targeted_review_connectome_mech_090` | [`2026-05-28_mech090_premature_commit_pathology_roesch2007`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/record.json) | 12 | [`summary`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/summary.md) |
 | `targeted_review_connectome_mech_091` | [`2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/record.json) | 5 | [`summary`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/summary.md) |
