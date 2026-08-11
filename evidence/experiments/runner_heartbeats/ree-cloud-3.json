@@ -1,48 +1,39 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-11T18:24:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-919",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-863",
-      "result": "PASS",
-      "completed_at": "2026-08-02T12:13:14.357552+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-866b",
-      "result": "PASS",
-      "completed_at": "2026-08-03T19:24:06.174504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-888",
-      "result": "PASS",
-      "completed_at": "2026-08-04T07:52:57.551542+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-900",
-      "result": "PASS",
-      "completed_at": "2026-08-08T10:38:46.565176+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-904",
-      "result": "PASS",
-      "completed_at": "2026-08-08T20:11:50.967141+00:00"
-    }
+  "last_tick_utc": "2026-08-11T18:51:46Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-916a",
+  "current_exq_started_utc": "2026-08-11T18:50:45.638399+00:00",
+  "current_title": "Relief/Safety Fishtank Showcase successor -- residue_wanting orphaned-writer fix + benefit_exposure dict-source/use_proxy_fields fix",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / relief_safety_showcase",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 0,
+    "episodes_total": 50,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 61,
+  "seconds_remaining": 3600,
+  "recent_lines": [
+    "[V3-EXQ-916a] Relief/Safety Fishtank Showcase",
+    "Seeds: [0, 1, 2]",
+    "Warmup: 50 eps  Eval: 5 eps  Steps/ep: 200",
+    "Affect: SD-019a SD-037 MECH-279 MECH-307 MECH-320 MECH-353 (+524 reef stack)",
+    "Relief/safety (NEW): MECH-302 MECH-303 MECH-304",
+    "Output: REE_assembly/evidence/experiments/v3_exq_916a_relief_safety_fishtank_showcase/",
+    "Seed 0 Condition relief_safety_showcase",
+    "[EXQ-916a] Seed 0  warmup=50  eval=5  steps/ep=200  dry_run=False",
+    "[EXQ-916a] Seed 0 -- world_obs_dim=275  body_obs_dim=12  affective+relief/safety stack ON"
   ],
-  "runner_pid": 925,
-  "runner_version": "r5065 2bac65e 2026-08-11 (running r5064 004a5d5)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 923,
+  "runner_version": "r5070 99a5f4f 2026-08-11",
   "gpu": {
     "available": false
   },
