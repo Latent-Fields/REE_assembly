@@ -1628,3 +1628,7 @@ One line per hourly tick. ASCII only.
 2026-08-11T05:00:24Z reaped TASK_CLAIMS igw-auto-igw-231-proposal-for-mech-236-20260811T035910Z (ledger IGW-20260811-231 -> completed_resumable)
 2026-08-11T05:00:25Z GC removed worktree igw-231-proposal-for-mech-236 post-reap (ledger IGW-20260811-231 -> completed_resumable; removed; branch deleted)
 2026-08-11T05:00:01Z no eligible item (skipped 239): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-006:skill /governance not allowed
+2026-08-11T06:00:32Z GC removed worktree igw-auto-mech-proposal-6996fe (removed; branch deleted)
+2026-08-11T06:00:29Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-08-11T06:00:44Z workset committed (regen -- 241 items, 26 ready, 0 in flight)
+2026-08-11T06:00:29Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
