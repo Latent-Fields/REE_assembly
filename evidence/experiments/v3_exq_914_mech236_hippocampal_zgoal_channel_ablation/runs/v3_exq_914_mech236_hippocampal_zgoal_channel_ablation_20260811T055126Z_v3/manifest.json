@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_914_mech236_hippocampal_zgoal_channel_ablation",
+  "run_id": "v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T055126Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-11T05:51:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-236"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech293_channel_no_measurable_navigation_advantage",
+    "preconditions": [
+      {
+        "name": "mech293_ghost_branch_live",
+        "description": "ARM_OPEN's MECH-293 ghost branch actually admits >=1 candidate on average; else ARM_OPEN is functionally identical to ARM_CLOSED and any null C_MAIN result is an instrumentation gap, not evidence against MECH-236.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.0,
+        "direction": "lower",
+        "control": "worst seed across ARM_OPEN cells (ARM_OPEN/seed46)",
+        "offending_cell": "ARM_OPEN/seed46",
+        "met": true
+      },
+      {
+        "name": "zgoal_formed_comparably_closed_and_open",
+        "description": "z_goal norm clears a floor in BOTH ARM_CLOSED and ARM_OPEN -- the 'preserving E3 goal encoding' control MECH-236's testable prediction specifies.",
+        "measured": 0.3168854811310507,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "worst seed across CLOSED (ARM_CLOSED/seed42) and OPEN (ARM_OPEN/seed42)",
+        "offending_cell": "ARM_OPEN/seed42",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_MAIN_open_beats_closed_resource_proximity",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_MAIN_open_beats_closed_resource_proximity": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e8534d15b01fb539858fd17e4132ff7d3a896f0c6152c4969da38425f26967af",
+  "substrate_commit": {
+    "commit": "bfda4c95df64fa89233bc8f2703426ea4e3ef6ef",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 1896,
+    "ticks_active": 1886,
+    "writer_calls": 1896,
+    "active_frac": 0.9947257383966245,
+    "writer_defect": false,
+    "n_agents": 15,
+    "goal_state_present": true
+  }
+}
