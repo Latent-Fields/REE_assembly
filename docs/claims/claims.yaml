@@ -80339,6 +80339,75 @@
     fluency is a valid proxy because it is downstream of the thing it would
     otherwise mask.
 
+- id: Q-092
+  title: "Does a held-out, permutation-tested classifier ('umpire') over a multivariate
+    trajectory-segment feature signature (refuge occupancy, excursion structure, hazard
+    relationships, transitions, spatial distribution) detect context-sensitive behavioural
+    differentiation between SD-054 reef-ON and reef-OFF conditions -- above BOTH a permutation
+    null AND a matched untrained/random-policy control -- and does that differentiation show
+    selective sensitivity to the reef-presence axis specifically, as distinct from an orthogonal
+    nuisance perturbation (e.g. hazard_food_attraction magnitude)?"
+  claim_type: open_question
+  subject: measurement.behavioural_diversity.cross_environment_discriminability_umpire
+  polarity: open
+  status: open
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-08-11"
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires both trained-policy arms (reef-ON, reef-OFF) to
+    produce non-zero-variance trajectory-segment feature vectors on held-out episodes (a run
+    where either condition collapses to a single degenerate trajectory self-routes
+    substrate_not_ready, not a verdict).
+    CONFIRMING signature: a classifier trained on held-in episodes classifies held-out
+    episodes' condition (reef-ON vs reef-OFF) at accuracy exceeding a label-permutation null
+    (p<0.05) AND exceeding the same pipeline run on an untrained/random-policy control sampled
+    from the same two environments (rules out "the environments just look different"
+    regardless of policy) AND remains selectively sensitive to the reef-presence axis under an
+    orthogonal nuisance perturbation (e.g. hazard_food_attraction shifted) rather than losing
+    or gaining discriminability indiscriminately.
+    FALSIFYING signature: held-out accuracy does not clear the permutation null; OR it clears
+    the null but does not exceed the matched untrained-policy control (the signal is
+    environment-geometry, not policy-behaviour); OR the orthogonal-perturbation check shows the
+    discriminator is equally sensitive to the nuisance axis as to the real one (not
+    ecological-problem-specific).
+  depends_on:
+    - ARC-065     # diversity-generation pathway the umpire would be evaluating evidence about
+    - ARC-062     # context-discriminator architecture -- distinguished, not conflated, in notes
+    - MECH-309    # current best diagnosis of the reef phenotype the raw thought responded to
+    - MECH-439    # F-dominance ceiling -- interpretive caveat for a null/weak umpire result
+    - MECH-191    # reusable classifier-discriminability code pattern
+    - SD-054      # substrate supplying both the two-condition contrast and the perturbation knob
+  notes: >
+    Raw thought: docs/thoughts/2026-08-11_behavioural_diversity_umpire.md.
+    Structured intake: evidence/planning/thought_intake_2026-08-11_behavioural_diversity_umpire.md
+    (full novelty comparison, methodology refinement, and minimal-experiment design).
+
+    This is a MEASUREMENT-layer claim, not an architecture claim: it asks whether a specific
+    evaluation methodology (cross-environment classifier discriminability, held-out, permutation-
+    tested, matched-control-guarded, orthogonal-perturbation-checked) detects structure that the
+    existing behavioral_diversity_acceptance_criteria.md Rung-2 test (within-environment TV
+    distance at two hand-picked probe states) does not test for. A PASS would strengthen the
+    evidential case that reaches ARC-065/ARC-062 Rung 1/2, not substitute for their own
+    acceptance criteria. A null/weak result should be interpreted jointly with MECH-439
+    (F-dominance ceiling) before being read as evidence against the reframing itself -- see
+    thought_intake_2026-08-11_behavioural_diversity_umpire.md "Affected existing claims."
+
+    DO NOT treat a positive result alone as evidence of "strategy" -- Stage 1 (discriminability)
+    and Stage 2 (feature-importance interpretation) are deliberately kept separate per the
+    intake's "Key formulations" #5; a Stage-2 gloss still requires the existing FP taxonomy
+    (behavioral_diversity_acceptance_criteria.md) before any adaptive-control claim is made.
+
+    Related, distinct sibling: Q-092's own methodology (held-out classifier, permutation null,
+    matched-control guard) is reused directly, same day, for the PRE/POST-SLEEP case by MECH-490
+    (sleep_transition_investigation_906_lineage_2026-08-10.md Section 13d item 5) -- that is a
+    forward-plan REFERENCE to this claim's methodology, not a duplicate or a dependency edge.
+  evidence_quality_note: >
+    Proposed 2026-08-11 from user thought intake. No experimental evidence yet. Minimal
+    experiment design in thought_intake_2026-08-11_behavioural_diversity_umpire.md "Next steps."
+  location: evidence/planning/thought_intake_2026-08-11_behavioural_diversity_umpire.md
+
 # --- continuity / branching / substrate-migration cluster
 #     (INV-098 / INV-099 / INV-100 / ARC-124 / ARC-125 / SD-095 / SD-096) ---
 # Registered 2026-08-07 from

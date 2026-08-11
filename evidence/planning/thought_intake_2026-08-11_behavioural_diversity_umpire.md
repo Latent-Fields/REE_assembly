@@ -6,8 +6,8 @@ nav_exclude: true
 
 **Raw thought file:** `docs/thoughts/2026-08-11_behavioural_diversity_umpire.md`
 **Session:** jovial-shannon-35d300, 2026-08-11
-**Status:** processed, candidate claim DRAFTED not yet registered (claims.yaml contended --
-see "Candidate claims" below)
+**Status:** processed, claim registered (Q-092, registered 2026-08-11 at session-land once the
+earlier claims.yaml contention cleared)
 
 ---
 
@@ -130,19 +130,14 @@ additive, same as prior intakes of this shape.
 
 ## Candidate claims
 
-**DRAFTED, NOT YET REGISTERED.** `claims.yaml` is under an active contended claim
-(`fishtank-affect-telemetry-1aba08`, opened 2026-08-11T17:02:47Z, task: "Clamp/decay
-`RBFLayer.update_valence()` unbounded accumulator") for the duration of this session's work;
-`task_claim.py open` arbitration confirmed that session as owner and this session as NOT
-owner when both named `claims.yaml` (checked 2026-08-11T17:46Z). Per the thought-intake
-discipline this is a genuine resource-contention deferral, not a "future registration" prose
-punt -- the exact YAML block below is ready to paste as soon as the contention clears; it is
-recorded here specifically so registration is a five-minute mechanical follow-up, not a
-research task, for whichever session does it next (this session, if it clears before close;
-otherwise the next `/governance` or thought-digestion pass).
+**REGISTERED as Q-092** (2026-08-11, at this session's `/session-land` close, once the
+`fishtank-affect-telemetry-1aba08` contention on `claims.yaml` cleared -- confirmed via
+`task_claim.py open` returning no contention at 2026-08-11T18:45Z). The block below is the
+exact text landed in `claims.yaml`, kept here verbatim for provenance rather than trimmed to a
+pointer.
 
 ```yaml
-id: Q-092   # VERIFY max Q-id at registration time; do not trust this number if time has passed
+id: Q-092   # confirmed the free id at registration time (max Q-id was still 091)
 title: "Does a held-out, permutation-tested classifier ('umpire') over a multivariate
   trajectory-segment feature signature (refuge occupancy, excursion structure, hazard
   relationships, transitions, spatial distribution) detect context-sensitive behavioural
