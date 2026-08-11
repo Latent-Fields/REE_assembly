@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_490",
+  "entry_id": "2026-08-11_mech_490_chunk_transition_fluency_blischke2016",
+  "timestamp_utc": "2026-08-11T20:19:54Z",
+  "claim_ids_tested": ["MECH-490"],
+  "source": {
+    "title": "Chunk Concatenation Evolves with Practice and Sleep-Related Enhancement Consolidation in a Complex Arm Movement Sequence",
+    "authors": ["Karl Blischke", "Anne Malangre"],
+    "year": 2016,
+    "venue": "Journal of Human Kinetics",
+    "doi": "10.1515/hukin-2015-0163"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Independent corroboration (different sequence type -- gross arm movements on a 15-element pegboard, not finger keypresses) of the same formation-vs-fluency dissociation as the Bottary companion entry, with sleep specifically implicated (gains present after a night of sleep, absent after equivalent waking retention) -- but this paper does not report sleep-stage EEG data at all, so it cannot independently speak to the REM-vs-SWS question. Confidence set lower than the Bottary entry for that reason and for a smaller, non-age-stratified sample.",
+  "failure_signatures": [
+    "No polysomnography or sleep-stage breakdown is reported in this paper -- the sleep-vs-wake comparison establishes that sleep (of unspecified composition) matters, but says nothing about which stage, so it cannot independently discriminate the REM-vs-SWS question MECH-490's depends_on (MECH-204) raises.",
+    "The reanalysis is of Malangre et al. (2014)'s original dataset restricted to element-level movement times -- a secondary, exploratory analysis on an already-collected small sample (n=24, two groups of 12), not a study purpose-designed to test the concatenation hypothesis with adequate power.",
+    "As with the Bottary entry, this is a rote, once-learned, externally-specified motor sequence (a fixed pegboard order practiced to criterion), not an online-replanned action sequence in a changing task environment -- the same structural transfer risk to Fishtank applies."
+  ],
+  "tags": ["mech-490", "sleep", "chunk_concatenation", "motor_sequence_fluency", "arm_movement"],
+  "mapping": {
+    "source_claim_statement": "Following overnight sleep, but not an equivalent daytime waking interval, participants showed increased 'chunk concatenation' in a 15-element arm-movement sequence -- measured as normalised relative Element Movement Times isolating the production cost specific to sequence CONTEXT (i.e. the cost of transitioning between elements as part of a longer run) from the cost of any individual element in isolation. This gain reflects fluency of an already-acquired sequence, not the initial formation of its constituent chunks.",
+    "ree_translation": "A second, independently collected dataset showing that sleep specifically improves how smoothly an already-learned action sequence is executed as a whole, rather than the formation of its parts -- reinforcing, in a structurally different motor task (continuous arm movement rather than discrete keypresses), that MECH-490's target phenomenon (execution fluency/persistence, not chunk formation) is a real and sleep-sensitive category in human motor learning, independent of any one paradigm's idiosyncrasies.",
+    "mapping_caveat": "No sleep-stage data means this entry contributes to the formation-vs-fluency distinction but nothing to the REM-vs-SWS question -- do not read it as corroborating the NREM2 attribution from the Bottary entry; it is silent on that question, not confirmatory. Same rote-sequence-vs-online-replanning transfer risk to the Fishtank substrate as the companion entry.",
+    "source_context": "Healthy young adults (n=24, mean age 25.5), two-group design (MEM vs EME sleep-timing manipulation), 15-element pegboard sequence learned via massed practice, retention tested at 12h and 24h intervals, laboratory setting, secondary reanalysis of Malangre et al. (2014)."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality moderate: smaller journal, secondary/exploratory reanalysis of an existing dataset rather than a purpose-built confirmatory study, small sample. Included primarily as independent corroboration of the formation/fluency dissociation in a structurally different (gross arm-movement) paradigm from the Bottary entry, not as a strong standalone data point."
+  }
+}

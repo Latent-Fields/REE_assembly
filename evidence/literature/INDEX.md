@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-11T17:06:38.093300Z`
+Generated: `2026-08-11T20:23:54.740182Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -162,6 +162,7 @@ Generated: `2026-08-11T17:06:38.093300Z`
 | `targeted_review_connectome_mech_451` | [`2026-06-27_mech_451_tonic_dopamine_vigour_niv2007`](targeted_review_connectome_mech_451/entries/2026-06-27_mech_451_tonic_dopamine_vigour_niv2007/record.json) | 4 | [`summary`](targeted_review_connectome_mech_451/entries/2026-06-27_mech_451_tonic_dopamine_vigour_niv2007/summary.md) |
 | `targeted_review_connectome_mech_463` | [`2026-07-20_mech_463_tonic_ne_exploration_null_jepma2010`](targeted_review_connectome_mech_463/entries/2026-07-20_mech_463_tonic_ne_exploration_null_jepma2010/record.json) | 3 | [`summary`](targeted_review_connectome_mech_463/entries/2026-07-20_mech_463_tonic_ne_exploration_null_jepma2010/summary.md) |
 | `targeted_review_connectome_mech_480` | [`2026-08-09_mech_480_acc_lofc_execution_gain_dissociation_asaoka2026`](targeted_review_connectome_mech_480/entries/2026-08-09_mech_480_acc_lofc_execution_gain_dissociation_asaoka2026/record.json) | 1 | [`summary`](targeted_review_connectome_mech_480/entries/2026-08-09_mech_480_acc_lofc_execution_gain_dissociation_asaoka2026/summary.md) |
+| `targeted_review_connectome_mech_490` | [`2026-08-11_mech_490_nrem2_finger_tapping_walker2002`](targeted_review_connectome_mech_490/entries/2026-08-11_mech_490_nrem2_finger_tapping_walker2002/record.json) | 4 | [`summary`](targeted_review_connectome_mech_490/entries/2026-08-11_mech_490_nrem2_finger_tapping_walker2002/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |

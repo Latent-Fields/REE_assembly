@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_490",
+  "entry_id": "2026-08-11_mech_490_gated_cascade_commitment_dendauw2024",
+  "timestamp_utc": "2026-08-11T20:19:54Z",
+  "claim_ids_tested": ["MECH-490"],
+  "source": {
+    "title": "The gated cascade diffusion model: An integrated theory of decision making, motor preparation, and motor execution",
+    "authors": ["Elie Dendauw", "Nathan J. Evans", "Gordon D. Logan", "Emmanuel Haffen", "Djamila Bennabi", "Thomas Gajdos", "Mathieu Servant"],
+    "year": 2024,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000464"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "unknown",
+  "confidence": 0.45,
+  "confidence_rationale": "Included as evidence for a PRECONDITION of MECH-490, not for the sleep-link claim itself: it establishes that a variance/threshold-gated commitment architecture -- evidence accumulates, is smoothed, and only releases motor execution once a gate threshold is crossed, after which the motor system commits and stops re-accumulating fresh evidence for that action -- is an empirically supported human decision-motor mechanism, closely analogous in structure to E3Selector's commit_variance/threshold gate. Marked evidence_direction 'unknown' rather than 'supports' because the paper contains no sleep, consolidation, or offline-processing content whatsoever and therefore cannot speak to whether sleep modulates gate persistence -- it only speaks to whether the gate architecture itself is neurally real.",
+  "failure_signatures": [
+    "Zero sleep, consolidation, or time-of-day content in this paper -- it is a same-session, single-timepoint decision-making study (motion perception, numerical cognition, recognition memory, lexical knowledge tasks with EMG), so it provides NO evidence, direction, or otherwise, about whether sleep changes the gate threshold or the persistence of a committed state. Citing it as support for the sleep-link half of MECH-490 would overstate what it shows.",
+    "The four tasks tested are single discrete perceptual/cognitive decisions with one motor response each, not a multi-step action SEQUENCE with an open-loop execution period -- the paper's 'gate' releases one motor act, not a run of several ticks executed without re-scoring, so the analogy to E3Selector's sequence-level commitment is structural, not a direct empirical match.",
+    "The paper does not identify what determines gate-threshold PERSISTENCE or how it might change over time (practice, fatigue, or otherwise) -- it characterises the gate's existence and its role in RT/EMG dynamics within a session, not what modulates its stability across sessions, which is exactly the open question MECH-490 poses for sleep specifically."
+  ],
+  "tags": ["mech-490", "commitment_gate", "decision_making", "motor_preparation", "computational_model", "non_sleep"],
+  "mapping": {
+    "source_claim_statement": "Evidence accumulated during a perceptual or cognitive decision is continuously and progressively conveyed to motor-preparation areas, where it is smoothed (approximating a Kalman-Bucy filter) into a motor-preparation signal that remains gated -- withheld from triggering muscle activation -- until it exceeds an activation threshold, at which point motor commands are released and the system commits to executing the selected response. The model is validated against joint RT-EMG dynamics across four distinct decision domains.",
+    "ree_translation": "REE reads this as independent computational/behavioural grounding that a threshold-gated commitment architecture, structurally analogous to E3Selector's commit_variance < effective_threshold gate, is an empirically supported feature of human decision-to-action pipelines generally -- not a REE-specific invention. This licenses the SHAPE of the commit-gate mechanism (accumulate, smooth, gate, commit, then execute without re-accumulating) as biologically grounded, independent of whether sleep is what modulates its persistence in Fishtank. This entry deliberately grounds only the ARCHITECTURE half of MECH-490 (the commit-gate concept itself), not the SLEEP half (whether sleep modulates gate persistence) -- the two halves need separate literature, and only the other three entries in this pull speak to the sleep half.",
+    "mapping_caveat": "No sleep content at all -- do not read this entry as evidence for or against the claim that sleep increases commit-gate persistence. It is included only to establish that the general gate-then-commit architecture MECH-490 assumes is itself a real, independently-discovered feature of human motor decision-making, distinct from any REE-specific design choice. The single-response, single-session design also means the paper says nothing about SEQUENCE-level, multi-tick open-loop execution, which is the specific behaviour MECH-490 is about.",
+    "source_context": "Healthy adult humans, four separate decision-making paradigms (motion perception, numerical comparison, recognition memory, lexical decision), single-session laboratory testing with concurrent EMG recording, model comparison against alternative diffusion-model variants."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.6,
+    "notes": "Source quality high (Psychological Review, rigorous joint behavioural-EMG model comparison across four task domains). Mapping fidelity capped low because the paper addresses only the architecture precondition, not the sleep-modulation claim MECH-490 actually makes, and its single-response design is a step removed from sequence-level open-loop execution. Confidence reflects strength of evidence for 'a commit-gate architecture like this is real,' not for MECH-490 as a whole."
+  }
+}

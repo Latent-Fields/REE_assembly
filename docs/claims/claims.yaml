@@ -79708,6 +79708,22 @@
     unflagged confound (unmatched spawn position, all 5 pairs) was found during this reanalysis
     and is the non-degeneracy precondition above. Hypothesis-generating only -- do not read as
     supporting evidence for this claim.
+
+    Literature pull (2026-08-11, `targeted_review_connectome_mech_490/synthesis.md`, 4 entries,
+    indexer-computed lit_conf=0.79): Bottary et al. 2016 and Blischke & Malangre 2016
+    independently show chunk FORMATION and chunk-transition FLUENCY are dissociable, sleep-
+    sensitive processes in human motor sequence learning -- direct behavioural precedent for
+    MECH-490's formation-vs-persistence distinction. Bottary 2016 and the foundational Walker
+    et al. 2002 (r=0.72, p=0.008 with stage-2 NREM, no REM relationship) independently converge
+    on NREM2/sleep-spindle activity, not REM, as the relevant stage -- evidence that MECH-204's
+    REM-phase route is likely the wrong substrate for this specific effect if it is real, and
+    that an unmodeled SWS/spindle-linked mechanism would be the closer biological analogue.
+    Dendauw et al. 2024 grounds the commit-gate architecture itself (accumulate/gate/commit) as
+    a real human decision-motor mechanism but contains no sleep content (evidence_direction
+    unknown, not sleep evidence). No paper directly measures a per-tick re-scoring/commit-
+    variance variable, and all four use fixed once-learned sequences, not online-replanned
+    ones -- literature is hypothesis-supporting for the mechanism category and the REM-vs-SWS
+    call, not confirmatory for the E3-specific mechanism.
   notes: >
     Full mechanistic derivation, code citations (e3_selector.py commit-gate, agent.py commitment
     walk, ree_core/policy/policy_chunking.py MECH-322 sleep-carve-out, ree_core/policy/

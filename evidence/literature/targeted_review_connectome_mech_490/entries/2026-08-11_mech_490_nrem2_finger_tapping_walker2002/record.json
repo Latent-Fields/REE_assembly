@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_490",
+  "entry_id": "2026-08-11_mech_490_nrem2_finger_tapping_walker2002",
+  "timestamp_utc": "2026-08-11T20:19:54Z",
+  "claim_ids_tested": ["MECH-490"],
+  "source": {
+    "title": "Practice with Sleep Makes Perfect: Sleep-Dependent Motor Skill Learning",
+    "authors": ["Matthew P. Walker", "Tiffany Brakefield", "Alexandra Morgan", "J. Allan Hobson", "Robert Stickgold"],
+    "year": 2002,
+    "venue": "Neuron",
+    "doi": "10.1016/S0896-6273(02)00746-8"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The foundational, most-cited paper establishing that sleep -- specifically the amount of stage-2 NREM late in the night -- drives overnight motor sequence gains that equivalent wake time does not. Included as the canonical anchor the later chunk-concatenation work refines, and as independent, large-effect, well-replicated confirmation of the NREM2-not-REM stage attribution. Held at moderate rather than high confidence because it measures whole-sequence speed and accuracy (a coarser index than the later chunk-transition-specific work) and does not itself distinguish chunk formation from execution fluency -- that refinement came from the later papers, not this one.",
+  "failure_signatures": [
+    "The outcome measure is overall sequence typing speed and accuracy, not a transition-level or chunk-level breakdown -- this paper alone cannot distinguish 'sleep formed better chunks' from 'sleep made execution of the same chunks more fluent,' the exact distinction MECH-490 needs; that separation is only available from the later Bottary/Blischke work.",
+    "A finger-keypress sequence task, learned to criterion via massed practice in a single session, then retested after one night -- a much shorter and simpler learning/consolidation window than a Fishtank agent's ongoing, environment-conditioned replanning.",
+    "Some later studies (e.g. Rickard et al. 2008, cited widely as a partial non-replication for probabilistic sequence learning) found sleep benefits were smaller or absent for less deterministic sequence structures -- this paper's finding is robust for a fixed, deterministic sequence but should not be over-generalised to all motor-sequence learning without qualification."
+  ],
+  "tags": ["mech-490", "sleep", "nrem2", "motor_sequence_learning", "finger_tapping", "canonical"],
+  "mapping": {
+    "source_claim_statement": "Participants trained on a five-element finger-tapping sequence showed no significant improvement across a 12-hour waking retention interval, but a 20.5% speed improvement (without loss of accuracy) across a 12-hour interval containing a night of sleep. The magnitude of overnight improvement correlated significantly with the percentage of stage-2 NREM sleep obtained, particularly in the last quarter of the night (r=0.72, p=0.008), with no significant correlation to REM sleep amount.",
+    "ree_translation": "REE reads this as the foundational precedent establishing that human motor-sequence consolidation is sleep-dependent and specifically NREM2-linked rather than REM-linked -- the same stage attribution the later, more granular chunk-concatenation work (Bottary et al. 2016) converges on for the fluency-specific sub-phenomenon MECH-490 targets. Taken together with that later work, this paper strengthens the claim's depends_on finding that MECH-204's REM-phase route is unlikely to be the correct biological analogue for a sleep-linked coherence effect, if one exists in the Fishtank data.",
+    "mapping_caveat": "This paper cannot itself discriminate formation from fluency -- it is cited as background/foundational support for the NREM2-not-REM direction, not as direct evidence for the specific commit-gate-persistence mechanism, which the more granular Bottary/Blischke entries address more precisely. Treat as corroborating context, not as primary evidence for MECH-490's specific mechanistic claim.",
+    "source_context": "Healthy young adults, laboratory finger-tapping sequence task, within-subject sleep-vs-wake retention comparison, polysomnography-recorded sleep-stage composition, single-session acquisition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Source quality very high (Neuron, foundational, >1000 citations, tight within-subject design). Mapping fidelity moderate-low specifically because this paper cannot separate formation from fluency -- the distinction MECH-490 is built around -- so it grounds the general NREM2 stage attribution but not the mechanism-specific claim. Included as corroborating canonical context rather than the primary evidentiary basis."
+  }
+}
