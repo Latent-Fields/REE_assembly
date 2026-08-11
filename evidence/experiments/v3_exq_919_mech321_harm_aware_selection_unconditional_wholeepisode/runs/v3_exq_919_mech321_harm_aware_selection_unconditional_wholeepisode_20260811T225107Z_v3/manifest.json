@@ -1,0 +1,193 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode",
+  "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-11T22:51:07Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "harm_aware_selection_does_not_reduce_task_harm_unconditional",
+    "preconditions": [
+      {
+        "name": "ARM_SELECTION_OFF::harm_bias_inert_every_cell",
+        "precondition": "harm_bias_inert_every_cell",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "ARM_SELECTION_OFF carries no manipulation at all: decomp_n_harm_bias_nonzero must be EXACTLY 0 on every OFF measurement cell -- the DV-symmetry declaration's requirement that harm-aware selection is a bit-identical no-op in the arm carrying no manipulation. EXISTENTIAL-PER-CELL, OFF arm only.",
+        "control": "WORST (maximum) OFF-arm measurement cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::off_forward_pe_varies",
+        "precondition": "off_forward_pe_varies",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: committed-trajectory forward PE must have non-zero variance across the whole run. Mirrors 816/839/844/867/867a/867b's identical precondition.",
+        "control": "WORST OFF-arm cell (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 5.5967232521220866e-08,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::off_forward_pe_bounded",
+        "precondition": "off_forward_pe_bounded",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: forward PE must be bounded (no explosion / divergence in the online forward model).",
+        "control": "WORST OFF-arm cell (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.009505535350439864,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_ON::harm_bias_engages_every_cell",
+        "precondition": "harm_bias_engages_every_cell",
+        "arm": "ARM_SELECTION_ON",
+        "kind": "readiness",
+        "description": "ARM_SELECTION_ON's Stage-1 graded harm bias engages on EVERY measurement cell (decomp_n_harm_bias_nonzero > 0), asserted per-cell rather than in aggregate -- 867b satisfied this only in aggregate while individual cells varied 270-1005 fires. EXISTENTIAL-PER-CELL, ON arm only.",
+        "control": "WORST (minimum) ON-arm measurement cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 150.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_51",
+        "kind": "readiness",
+        "description": "A-A null control (OFF vs OFF, same seed, both through arm_cell) must be bit-identical: delta EXACTLY 0.0, action sequences equal. Discharges the matching-validity precondition BY CONSTRUCTION -- the direct fix for 867b's RNG-reset-asymmetry defect.",
+        "control": "A-A replicate pair, seed 51",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_57",
+        "kind": "readiness",
+        "description": "A-A null control (OFF vs OFF, same seed, both through arm_cell) must be bit-identical: delta EXACTLY 0.0, action sequences equal. Discharges the matching-validity precondition BY CONSTRUCTION -- the direct fix for 867b's RNG-reset-asymmetry defect.",
+        "control": "A-A replicate pair, seed 57",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_63",
+        "kind": "readiness",
+        "description": "A-A null control (OFF vs OFF, same seed, both through arm_cell) must be bit-identical: delta EXACTLY 0.0, action sequences equal. Discharges the matching-validity precondition BY CONSTRUCTION -- the direct fix for 867b's RNG-reset-asymmetry defect.",
+        "control": "A-A replicate pair, seed 63",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_69",
+        "kind": "readiness",
+        "description": "A-A null control (OFF vs OFF, same seed, both through arm_cell) must be bit-identical: delta EXACTLY 0.0, action sequences equal. Discharges the matching-validity precondition BY CONSTRUCTION -- the direct fix for 867b's RNG-reset-asymmetry defect.",
+        "control": "A-A replicate pair, seed 69",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_TASK_OUTCOME_IMPROVES_UNCONDITIONAL",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.0037281079774101585,
+        "threshold": 0.0,
+        "statement": "Over ALL measured seeds (no screen, no tiering, no post-hoc selection), the unconditional whole-episode mean harm signal is LESS negative (less harmful) in ARM_SELECTION_ON than ARM_SELECTION_OFF, by an effect exceeding 1.0 x SE over >= 40 paired seeds. Bar unchanged from 844/867/867a/867b; the DV and the unit of comparison are what moved."
+      },
+      {
+        "name": "C2_FORWARD_PE_CORROBORATES",
+        "load_bearing": false,
+        "passed": false,
+        "measured": -4.223524979251026e-05,
+        "threshold": 0.0,
+        "statement": "Consistency check (non-load-bearing, carried over from 844's established finding): over the same seeds, forward-prediction error is also lower in ON than OFF, computed on the same unconditional whole-run basis."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_TASK_OUTCOME_IMPROVES_UNCONDITIONAL": true,
+      "C2_FORWARD_PE_CORROBORATES": true
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3caf57f4f9d524742c82af15404b552344cfb51dac7c37503c676c1a6a2ffdca",
+  "substrate_commit": {
+    "commit": "c2817742673b292b73807cfccb8888439f0144f2",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 63360,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 88,
+    "goal_state_present": false
+  }
+}
