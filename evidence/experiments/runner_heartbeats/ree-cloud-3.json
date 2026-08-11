@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-11T06:15:47Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-914a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-863",
-      "result": "PASS",
-      "completed_at": "2026-08-02T12:13:14.357552+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-866b",
-      "result": "PASS",
-      "completed_at": "2026-08-03T19:24:06.174504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-888",
-      "result": "PASS",
-      "completed_at": "2026-08-04T07:52:57.551542+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-900",
-      "result": "PASS",
-      "completed_at": "2026-08-08T10:38:46.565176+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-904",
-      "result": "PASS",
-      "completed_at": "2026-08-08T20:11:50.967141+00:00"
-    }
+  "last_tick_utc": "2026-08-11T06:32:45Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603t",
+  "current_exq_started_utc": "2026-08-11T06:17:50.925124+00:00",
+  "current_title": "MECH-357 SD-029 scheduled-external-hazard Stage-H: agent-relative discrete threat replaces 603s's undirected mobile-predator drift (successor of 603s)",
+  "current_claim_id": "MECH-357",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_LESION_midline_pag_no_gate_combined_fix",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 20,
+    "episodes_total": 235,
+    "overall_pct": 0.9
+  },
+  "seconds_elapsed": 894,
+  "seconds_remaining": 24206,
+  "recent_lines": [
+    "[v3_exq_603t_instrumental_avoidance_scheduled_external_hazard] starting (dry_run=False)",
+    "Seed 42 Condition ARM_LESION_midline_pag_no_gate_combined_fix",
+    "[train] stage0 ARM_LESION_midline_pag_no_gate_combined_fix seed=42 ep 20/235 z_goal_peak=0.4871"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 921,
-  "runner_version": "r5038 24482c5 2026-08-11",
+  "runner_version": "r5039 bb77c62 2026-08-11 (running r5038 24482c5)",
   "gpu": {
     "available": false
   },
