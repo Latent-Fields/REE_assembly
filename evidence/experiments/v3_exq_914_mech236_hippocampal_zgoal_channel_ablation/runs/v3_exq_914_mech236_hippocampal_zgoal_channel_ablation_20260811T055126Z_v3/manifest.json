@@ -23,7 +23,8 @@
     "MECH-236"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "This run executed against a script content that this session's own read-modify-write race committed to ree-v3 origin/main at commit bfda4c95df (substrate_commit above) -- a mid-edit snapshot of experiments/v3_exq_914_mech236_hippocampal_zgoal_channel_ablation.py that used a PERIODIC anchor-write trigger (every 8 ticks, GRID_SIZE=8) rather than the corrected PROXIMITY-gated trigger (ANCHOR_PROXIMITY_THRESHOLD, GRID_SIZE=16) that landed moments later at commit 1388f4061c. The script's own current docstring documents, from a direct probe of exactly this periodic-write version, that it produces a NEGATIVE/misleading proximity gap: the ghost-probe channel seeds candidates toward stale, arbitrarily-timed past locations rather than genuinely goal-relevant ones, actively steering the agent AWAY from the resource rather than toward it -- a real, measured instrument defect, not a genuine test of MECH-236's claim. This run's c_main_gap_mean=-0.0265 (ARM_OPEN below ARM_CLOSED) is consistent with exactly that defect firing. Re-queued with the corrected script as V3-EXQ-914a (see ree-v3/experiment_queue.json note field on that entry) per the EXQ versioning/supersession policy (CLAUDE.md: 'never silently re-run a failed experiment under the same EXQ ID... set evidence_direction: superseded on the superseded manifest'). This run should NOT count toward MECH-236's experimental confidence/conflict scoring -- the indexer treats evidence_direction: superseded as inactive.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
