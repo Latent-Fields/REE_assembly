@@ -1622,3 +1622,4 @@ One line per hourly tick. ASCII only.
 2026-08-11T01:57:42Z skip IGW-20260811-231: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-11T02:58:12Z skip IGW-20260811-231: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-11T03:58:58Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
+2026-08-11T03:58:42Z SPAWN IGW-20260811-231 skill=/queue-experiment prio=40 uuid=4716ddbe-8347-484b-ad25-1e07130a7122 pid=43616 worktree=igw-231-proposal-for-mech-236
