@@ -1,0 +1,81 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_917_mech303_harm_threshold_calibration_battery",
+  "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-11T20:51:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-011"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech303_tension_sourcing_mode_dependent",
+    "preconditions": [
+      {
+        "name": "z_harm_a_apparatus_reachable",
+        "description": "fraction of ALL battery ticks where z_harm_a.norm() is finite and > floor -- the gate's own measurement, not its discrimination",
+        "measured": 1.0,
+        "threshold": 0.99,
+        "direction": "lower",
+        "control": "every arm in the battery (both sourcing modes, all 5 density levels)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "density_battery_nondegenerate_damage_sourced": true,
+      "density_battery_nondegenerate_proximity_ema_sourced": true,
+      "auc_computation_nondegenerate_damage_sourced": true,
+      "auc_computation_nondegenerate_proximity_ema_sourced": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "27f90e43504ad02060044709162f8f232f7563bd66ec36f0d8b686680460f0f3",
+  "substrate_commit": {
+    "commit": "7846255e17e8a9976a3dd390527989a8b7816e80",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 100,
+    "goal_state_present": false
+  }
+}
