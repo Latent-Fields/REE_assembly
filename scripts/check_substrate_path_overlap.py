@@ -44,6 +44,19 @@ WHAT THIS DOES (read-only; never edits a manifest or substrate_queue.json)
    `wontfix`-equivalent. Ambiguous reads as OPEN -- this gate fails toward
    surfacing a candidate, not toward silence, matching every sibling scan's
    posture on an unparseable/absent field.
+
+   An entry with NO `added_utc` (or one that doesn't parse to a timestamp) is
+   the one exception to that "ambiguous -> surface it" posture: `added_utc` is
+   the ONLY thing that stops step 4 below from matching every completed run
+   ever recorded, so a missing value would flood the report with hundreds of
+   false "may need re-review" hits rather than surfacing a real signal --
+   confirmed live on 2026-08-10 (see `substrate_defect_gate_plan_2026-08-07.md`
+   and the SD-ORIENTING-DECISION-SCALE incident). Unlike the openness check
+   above, this failure mode has real cost to false positives, not just
+   under-coverage, so it fails the OTHER direction: the entry is excluded from
+   gating (reported separately as `entries_missing_added_utc`, with a loud
+   warning on stdout and, under `--strict`, a non-zero exit) rather than
+   silently matching everything.
 2. Builds the manifest index via `check_dry_run_citations.build_index()`
    (never re-implemented -- see that module for why a second copy is how the
    forms drift), which gives `{run_id: {experiment_type, dry_run, paths, ...}}`
@@ -163,15 +176,26 @@ def _module_from_path(path: str) -> Optional[str]:
     return dotted or None
 
 
-def load_corrupting_entries(queue_path: Path) -> Tuple[List[Dict[str, Any]], Optional[str]]:
-    """Return (entries, error). entries is [] on any load problem (never a crash)."""
+def load_corrupting_entries(
+    queue_path: Path,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], Optional[str]]:
+    """Return (entries, entries_missing_added_utc, error).
+
+    entries is [] on any load problem (never a crash). An open
+    severity=corrupting entry that otherwise qualifies (has substrate_paths)
+    but carries no parseable `added_utc` is NOT included in `entries` -- see
+    the module docstring's "one exception" paragraph -- and instead appears
+    in `entries_missing_added_utc` so the caller can warn loudly instead of
+    silently gating against every completed run.
+    """
     try:
         data = json.loads(queue_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        return [], "cannot read %s: %s" % (queue_path, exc)
+        return [], [], "cannot read %s: %s" % (queue_path, exc)
     if not isinstance(data, dict):
-        return [], "%s did not parse to a JSON object" % queue_path
+        return [], [], "%s did not parse to a JSON object" % queue_path
     out: List[Dict[str, Any]] = []
+    missing_added_utc: List[Dict[str, Any]] = []
     for entry in data.get("queue") or []:
         if not isinstance(entry, dict):
             continue
@@ -185,14 +209,22 @@ def load_corrupting_entries(queue_path: Path) -> Tuple[List[Dict[str, Any]], Opt
         modules = {m for m in (_module_from_path(p) for p in paths) if m}
         if not modules:
             continue
+        added_utc = str(entry.get("added_utc") or "")
+        if _added_utc_compact(added_utc) is None:
+            missing_added_utc.append({
+                "sd_id": entry.get("sd_id"),
+                "title": entry.get("title"),
+                "substrate_paths": list(paths),
+            })
+            continue
         out.append({
             "sd_id": entry.get("sd_id"),
             "title": entry.get("title"),
             "substrate_paths": list(paths),
             "modules": modules,
-            "added_utc": str(entry.get("added_utc") or ""),
+            "added_utc": added_utc,
         })
-    return out, None
+    return out, missing_added_utc, None
 
 
 def _run_timestamp(run_id: str) -> Optional[str]:
@@ -264,10 +296,11 @@ def scan(
     queue_path: Path = DEFAULT_SUBSTRATE_QUEUE,
     ree_v3_root: Path = DEFAULT_REE_V3_ROOT,
 ) -> Dict[str, Any]:
-    entries, load_error = load_corrupting_entries(queue_path)
+    entries, entries_missing_added_utc, load_error = load_corrupting_entries(queue_path)
     if load_error:
         return {"load_error": load_error, "entries": [], "candidates": [],
-                "n_entries": 0, "n_runs_scanned": 0, "n_candidates": 0}
+                "entries_missing_added_utc": [], "n_entries": 0,
+                "n_runs_scanned": 0, "n_candidates": 0}
 
     by_run, _by_queue = build_index()
     n_scanned = 0
@@ -297,6 +330,10 @@ def scan(
         n_scanned += 1
 
         for entry in entries:
+            # load_corrupting_entries() already excludes anything whose
+            # added_utc doesn't parse (see entries_missing_added_utc), so
+            # added_compact is never None here -- this call is belt-and-
+            # suspenders, not the gate itself.
             added_compact = _added_utc_compact(entry["added_utc"])
             if added_compact is not None and stamp <= added_compact:
                 continue  # ran at/before the defect was recorded -- not a candidate
@@ -318,6 +355,7 @@ def scan(
         "entries": [{"sd_id": e["sd_id"], "title": e["title"],
                       "substrate_paths": e["substrate_paths"]} for e in entries],
         "candidates": candidates,
+        "entries_missing_added_utc": entries_missing_added_utc,
         "n_entries": len(entries),
         "n_runs_scanned": n_scanned,
         "n_candidates": len(candidates),
@@ -335,16 +373,18 @@ def main() -> int:
     ap.add_argument("--json", action="store_true", dest="as_json",
                     help="emit machine-readable JSON")
     ap.add_argument("--strict", action="store_true",
-                    help="exit 1 if any candidate is found")
+                    help="exit 1 if any candidate is found, or if any open "
+                         "corrupting entry is missing a parseable added_utc")
     args = ap.parse_args()
 
     result = scan(args.substrate_queue, args.ree_v3_root)
     n = result["n_candidates"]
+    missing = result["entries_missing_added_utc"]
 
     if args.as_json:
         json.dump(result, sys.stdout, indent=2, sort_keys=True)
         sys.stdout.write("\n")
-        return 1 if (args.strict and n) else 0
+        return 1 if (args.strict and (n or missing)) else 0
 
     if result["load_error"]:
         print("Substrate-path overlap audit (GOV-SUBPATH-1): %s" % result["load_error"])
@@ -355,15 +395,28 @@ def main() -> int:
           % (result["n_entries"], "y" if result["n_entries"] == 1 else "ies",
              result["n_runs_scanned"]))
 
+    if missing:
+        print("\nWARNING -- %d open severity=corrupting entr%s substrate_paths but NO "
+              "parseable added_utc, so this audit CANNOT gate against %s and skipped "
+              "it entirely (a missing added_utc would otherwise match every completed "
+              "run ever recorded -- see module docstring). Backfill added_utc on:"
+              % (len(missing), "y has" if len(missing) == 1 else "ies have",
+                 "it" if len(missing) == 1 else "them"))
+        for e in missing:
+            print("  - %s (%s) -- %s" % (e["sd_id"], e["title"], e["substrate_paths"]))
+
     if not result["n_entries"]:
-        print("\n  -- no open severity=corrupting substrate_queue entry carries "
-              "substrate_paths (healthy, or the field is not yet populated).")
-        return 0
+        if missing:
+            print("\n  -- 0 gate-able entries (see WARNING above); nothing else to scan.")
+        else:
+            print("\n  -- no open severity=corrupting substrate_queue entry carries "
+                  "substrate_paths (healthy, or the field is not yet populated).")
+        return 1 if (args.strict and missing) else 0
 
     if not n:
         print("\n  -- no completed, non-dry run's driver imports a flagged path "
               "after its entry's added_utc.")
-        return 0
+        return 1 if (args.strict and missing) else 0
 
     print("\nACTIONABLE -- these runs completed AFTER a substrate_queue entry recorded a")
     print("corrupting defect in a module their own driver imports. Evidence, not just")
@@ -374,7 +427,7 @@ def main() -> int:
         print("      substrate_queue %s (%s) -- %s" % (c["sd_id"], c["sd_title"], c["substrate_paths"]))
         print("      run %s > entry added_utc %s" % (c["run_timestamp"], c["added_utc"]))
 
-    return 1 if (args.strict and n) else 0
+    return 1 if (args.strict and (n or missing)) else 0
 
 
 if __name__ == "__main__":

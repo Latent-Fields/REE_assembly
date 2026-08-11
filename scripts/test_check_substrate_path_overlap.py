@@ -153,15 +153,44 @@ class LoadCorruptingEntriesTest(unittest.TestCase):
                  "added_utc": "2026-08-01T00:00:00Z"},
                 {"sd_id": "SD-E", "node_class": "complicated (buildable)"},
             ])
-            entries, err = self.M.load_corrupting_entries(path)
+            entries, missing, err = self.M.load_corrupting_entries(path)
             self.assertIsNone(err)
             self.assertEqual([e["sd_id"] for e in entries], ["SD-A"])
             self.assertEqual(entries[0]["modules"], {"ree_core.predictors.e3_selector"})
+            self.assertEqual(missing, [])
 
     def test_unreadable_file_reports_error_not_crash(self):
-        entries, err = self.M.load_corrupting_entries(Path("/nonexistent/substrate_queue.json"))
+        entries, missing, err = self.M.load_corrupting_entries(Path("/nonexistent/substrate_queue.json"))
         self.assertEqual(entries, [])
+        self.assertEqual(missing, [])
         self.assertIsNotNone(err)
+
+    def test_corrupting_entry_missing_added_utc_is_excluded_not_gated(self):
+        # GOV-SUBPATH-1 fail-safe (2026-08-10 incident): an open severity=corrupting
+        # entry with substrate_paths but no added_utc must NOT enter `entries` --
+        # doing so previously made every completed run a false-positive candidate,
+        # since the added_utc<stamp comparison never fires with nothing to compare.
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._write_queue(tmp, [
+                {"sd_id": "SD-NO-DATE", "title": "orienting decision scale",
+                 "severity": "corrupting",
+                 "substrate_paths": ["ree_core/agent.py::select_action"]},
+            ])
+            entries, missing, err = self.M.load_corrupting_entries(path)
+            self.assertIsNone(err)
+            self.assertEqual(entries, [])
+            self.assertEqual([e["sd_id"] for e in missing], ["SD-NO-DATE"])
+
+    def test_corrupting_entry_unparseable_added_utc_is_excluded_not_gated(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._write_queue(tmp, [
+                {"sd_id": "SD-BAD-DATE", "severity": "corrupting",
+                 "substrate_paths": ["ree_core/agent.py"],
+                 "added_utc": "not-a-date"},
+            ])
+            entries, missing, err = self.M.load_corrupting_entries(path)
+            self.assertEqual(entries, [])
+            self.assertEqual([e["sd_id"] for e in missing], ["SD-BAD-DATE"])
 
 
 class ScanIntegrationTest(unittest.TestCase):
@@ -294,6 +323,39 @@ class ScanIntegrationTest(unittest.TestCase):
         self.assertEqual(result["n_candidates"], 0)
         self.assertEqual(result["n_runs_scanned"], 0)
 
+    def test_missing_added_utc_does_not_flood_with_false_candidates(self):
+        # Regression for the 2026-08-10 incident: SD-ORIENTING-DECISION-SCALE
+        # shipped with no added_utc, so EVERY completed run whose driver
+        # imported ree_core.agent (hundreds of them, historical and current
+        # alike) was reported as a candidate. With the fail-safe, an entry
+        # missing added_utc is excluded from gating entirely -- 0 candidates,
+        # surfaced instead via entries_missing_added_utc.
+        queue_path, ree_v3_root = self._fixture(
+            entries=[{
+                "sd_id": "SD-NO-DATE", "title": "orienting decision scale",
+                "severity": "corrupting",
+                "substrate_paths": ["ree_core/agent.py::select_action"],
+                # no added_utc
+            }],
+            by_run={
+                "v3_exq_905_old_20200101T000000Z_v3": {
+                    "experiment_type": "v3_exq_905_old", "dry_run": False, "paths": [],
+                },
+                "v3_exq_906_new_20260802T000000Z_v3": {
+                    "experiment_type": "v3_exq_906_new", "dry_run": False, "paths": [],
+                },
+            },
+            driver_sources={
+                "v3_exq_905_old": "import ree_core.agent\n",
+                "v3_exq_906_new": "import ree_core.agent\n",
+            },
+        )
+        result = self.M.scan(queue_path, ree_v3_root)
+        self.assertEqual(result["n_candidates"], 0)
+        self.assertEqual(result["n_entries"], 0)
+        self.assertEqual([e["sd_id"] for e in result["entries_missing_added_utc"]],
+                          ["SD-NO-DATE"])
+
     def test_no_corrupting_entries_short_circuits_cleanly(self):
         queue_path, ree_v3_root = self._fixture(
             entries=[],
@@ -307,6 +369,7 @@ class ScanIntegrationTest(unittest.TestCase):
         result = self.M.scan(queue_path, ree_v3_root)
         self.assertEqual(result["n_entries"], 0)
         self.assertEqual(result["n_candidates"], 0)
+        self.assertEqual(result["entries_missing_added_utc"], [])
 
 
 if __name__ == "__main__":
