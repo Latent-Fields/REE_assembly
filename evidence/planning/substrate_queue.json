@@ -1420,7 +1420,7 @@
     },
     {
       "added_session": "governance-2026-04-25T15:15",
-      "blocked_on": "selection-mechanism training signal -- no tested mechanism (q.k attention, feedforward tagger, diversification loss) has ever been given a training signal specifically rewarding context-CONDITIONED divergence, as distinct from population-level slot diversity. The prior env-entropy precondition (z_world cross-context separation) is now SATISFIED (SD-070 recipe, confirmed on this apparatus, 2.7-4.0x margin).",
+      "blocked_on": "[RESOLVED 2026-08-11, see status_note_addendum_20260811] selection-mechanism training signal -- no tested mechanism (q.k attention, feedforward tagger, diversification loss) has ever been given a training signal specifically rewarding context-CONDITIONED divergence, as distinct from population-level slot diversity. The prior env-entropy precondition (z_world cross-context separation) is now SATISFIED (SD-070 recipe, confirmed on this apparatus, 2.7-4.0x margin).",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_016_frontal_cue_integration.md",
       "failure_record": [
@@ -1478,7 +1478,7 @@
       ],
       "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope. [2026-08-10 amend] Combine H1's ctxdiv-auxiliary-loss objective with H3's annealed Gumbel-softmax selection operator (GOV-FANOUT-1 portfolio legs both resolved, V3-EXQ-907 CONFIRMED + V3-EXQ-908 SPLIT).",
       "implementation_note_update": "SD-016 substrate (sd016_enabled, writepath_mode, diversification weight, sd016_temperature_learnable, compute_attention_entropy_loss) is fully wired and bit-identical to legacy with all flags OFF. EXQ-418d/418e/418f/418g establish that the substrate-side mechanism works as designed but the env does not generate cross-context z_world variation for the substrate to retrieve over (the user's diagnosis 2026-04-28: 'the world is too simple. not enough entropy in every single configuration to support as much information extraction'). Status changed from implemented_but_failing_validation -> parked_pending_env_entropy_precondition. SD-017 / MECH-150 / MECH-151 / MECH-152 / ARC-041 / INV-040 retests blocked on the env precondition rather than on SD-016 substrate quality. Validation experiment is now V3-EXQ-418h env-richness probe (NOT a substrate retest); SD-016 retest queue paused until env precondition is empirically satisfied.",
-      "implementation_status": "parked_pending_selection_mechanism_fix",
+      "implementation_status": "implemented",
       "implemented_session": "implement-sd016-path1-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
       "last_seen_session": "queue-depth-low-ops-aac785",
@@ -1500,9 +1500,9 @@
       },
       "parked_session": "sd016-park-pending-env-2026-04-28T20:51",
       "priority": 5,
-      "ready": false,
+      "ready": true,
       "sd_id": "SD-016",
-      "status": "parked_pending_selection_mechanism_fix",
+      "status": "implemented",
       "title": "ContextMemory cue-indexed retrieval -- validation gated on env entropy precondition (2026-04-28)",
       "unblocks_claims": [
         "MECH-150",
@@ -1514,7 +1514,8 @@
       ],
       "validation_experiment": "V3-EXQ-418h",
       "validation_precondition": "z_world cross-context cosine separation gate -- pairwise cos(z_world) within safe batch and within dangerous batch must be substantially HIGHER than cos across safe-vs-dangerous batch; absolute cross-context cosine < 0.95 in at least one env config (target: SD-023 landmarks ON). Falsifiable via V3-EXQ-418h.",
-      "status_note_addendum_20260808": "V3-EXQ-898 (2026-08-08, confirmed failure_autopsy_V3-EXQ-898_2026-08-08): SD-070 encoder fix genuinely restores cross-context z_world variance on this apparatus. Retrieval selectivity still does not emerge -- FAIL now cleanly attributes to the selection mechanism, not the encoder. Recommends a GOV-FANOUT-1 discrimination portfolio (H1 drive / H2 representation, dependency claims MECH-044/ARC-006/ARC-007/MECH-267 all still provisional-unbuilt so this is longer-horizon / H3 algorithm) before committing to one fix. Also flags a genuine lit-pull gap: no literature review grounds the specific biological mechanism (competitive/local pattern-separation dynamics) as the candidate fix direction."
+      "status_note_addendum_20260808": "V3-EXQ-898 (2026-08-08, confirmed failure_autopsy_V3-EXQ-898_2026-08-08): SD-070 encoder fix genuinely restores cross-context z_world variance on this apparatus. Retrieval selectivity still does not emerge -- FAIL now cleanly attributes to the selection mechanism, not the encoder. Recommends a GOV-FANOUT-1 discrimination portfolio (H1 drive / H2 representation, dependency claims MECH-044/ARC-006/ARC-007/MECH-267 all still provisional-unbuilt so this is longer-horizon / H3 algorithm) before committing to one fix. Also flags a genuine lit-pull gap: no literature review grounds the specific biological mechanism (competitive/local pattern-separation dynamics) as the candidate fix direction.",
+      "status_note_addendum_20260811": "GOV-FANOUT-1 portfolio legs resolved (V3-EXQ-907 CONFIRMED, V3-EXQ-908 SPLIT, both confirmed failure_autopsy_V3-EXQ-907/908_2026-08-10.json): H1 ctxdiv-auxiliary-loss objective breaks the uniform-softmax saddle at every lambda in {0.1,0.5,2.0} tested; H3 annealed Gumbel-softmax CONFIRMED (genuine context-conditioned sparsification), straight-through top-k ELIMINATED (constant_peaky_degenerate). Implemented the combination in ree-v3: E1DeepPredictor.compute_context_divergence_loss (ree-v3 110a2785b6, chip-20260810-sd016-h1-h3-combine) promotes V3-EXQ-907's driver-local probe into substrate, gated by sd016_context_divergence_weight (default 0.0 = no-op); the Gumbel/topk selection knob (sd016_cue_slot_tagger_selection) already existed (eeb999a). Recommended production combination: sd016_cue_slot_tagger=True, sd016_cue_slot_tagger_selection='gumbel', sd016_context_divergence_weight=0.5. MECH-151 (action_bias -> E2) / MECH-152 (terrain_weight -> E3) consumer wiring already existed end-to-end (agent.py _integrate_e1) -- this closes the selection-mechanism gap that was the only remaining blocker. 8 new contracts (test_sd016_h1_context_divergence.py); full tests/contracts suite verified green (3565 passed, 17 skipped, 0 failed). MECH-150/151/152/ARC-041/INV-040/SD-017 are now unblocked for their own validation experiments (not run here, per /implement-substrate scope -- queuing those is /queue-experiment's job)."
     },
     {
       "added_session": "governance-2026-04-27T14:11",
