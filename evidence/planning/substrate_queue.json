@@ -7095,9 +7095,11 @@
       "sd_id": "SD-RESIDUE-VALENCE-BOUND",
       "title": "ResidueField RBFLayer.update_valence(): clamp/decay the unbounded valence accumulator",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
-      "design_doc": null,
+      "implemented_at": "2026-08-11",
+      "implementation_note": "Accumulator clamp/decay landed (ree-v3 CLAUDE.md 'SD-RESIDUE-VALENCE-BOUND' entry; ResidueConfig.valence_bounding_enabled, default off/no-op). Validation V3-EXQ-918 queued (diagnostic, claim_ids=[]). SCOPE: this covers ONLY the accumulator-bound half of this entry's failure_record/substrate_paths -- the residue_wanting orphaned-writer half (agent.py::update_benefit_salience / update_schema_wanting never called from the 906-family driver) is explicitly NOT fixed here; traced to be an experiment-script gap (no ree_core step-loop exists to wire it into), out of /implement-substrate's scope per ree-v3/CLAUDE.md's mandatory skill-path rule. Left open/unresolved below pending a /queue-experiment or /diagnose-errors fix to that driver family.",
+      "design_doc": "REE_assembly/docs/architecture/sd_residue_valence_bound.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [],
       "failure_record": [
