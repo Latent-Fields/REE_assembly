@@ -3454,10 +3454,14 @@
           "desc": "No tested selection mechanism (q.k attention, feedforward tagger, or Path-1's diversification loss) has ever been given a training objective that specifically rewards context-CONDITIONED divergence (sel_context_divergence), as distinct from population-level slot diversity.",
           "axis": "drive",
           "pre_registered_utc": "2026-08-08T11:52:04Z",
-          "adjudicating_runs": ["V3-EXQ-907"],
+          "adjudicating_runs": [
+            "V3-EXQ-907"
+          ],
           "resolution": {
             "state": "confirmed",
-            "resolving_runs": ["V3-EXQ-907"],
+            "resolving_runs": [
+              "V3-EXQ-907"
+            ],
             "evidence_direction": "supports",
             "epistemic_category": "standard",
             "self_route_label": "sd016_h1_ctxdiv_breaks_saddle",
@@ -3494,10 +3498,14 @@
           "desc": "The tagger is a soft, end-to-end differentiable gate with no competitive/sparsifying mechanism (no lateral inhibition, no k-winner-take-all). A hard/competitive selection mechanism (Gumbel-softmax with annealed temperature, or explicit top-k gating) might structurally force sparsification that gradient descent alone has not discovered.",
           "axis": "algorithm",
           "pre_registered_utc": "2026-08-08T11:52:04Z",
-          "adjudicating_runs": ["V3-EXQ-908"],
+          "adjudicating_runs": [
+            "V3-EXQ-908"
+          ],
           "resolution": {
             "state": "split",
-            "resolving_runs": ["V3-EXQ-908"],
+            "resolving_runs": [
+              "V3-EXQ-908"
+            ],
             "evidence_direction": "supports",
             "epistemic_category": "standard",
             "self_route_label": "sd016_h3_hard_selection_breaks_saddle:A2_tagger_gumbel",
@@ -3507,8 +3515,14 @@
             "resolved_utc": "2026-08-09T13:12:09Z",
             "basis": "V3-EXQ-908 (failure_autopsy_V3-EXQ-908_2026-08-10, confirmed): C2 off-arm control passes 3/3. Per-arm verdicts split -- annealed Gumbel-softmax clears both C1 (entropy) and C1b (context-divergence, 3/3 seeds, ctxdiv 0.6875) -- genuine context-conditioned sparsification. Straight-through top-k (k=1, k=2) clears C1 only trivially (near-zero entropy is expected by construction of the operator, per the driver's own docstring) but fails C1b 0/3 -- constant_peaky_degenerate, context-independent collapse. The manifest's indexer vacuous_pass flag was confirmed a false positive (4th distinct criteria_non_degenerate<->criteria[] join-mismatch sub-case) during this autopsy.",
             "children": [
-              {"label": "Gumbel-softmax (annealed)", "state": "confirmed"},
-              {"label": "straight-through top-k (k=1, k=2)", "state": "eliminated"}
+              {
+                "label": "Gumbel-softmax (annealed)",
+                "state": "confirmed"
+              },
+              {
+                "label": "straight-through top-k (k=1, k=2)",
+                "state": "eliminated"
+              }
             ]
           }
         }
@@ -3528,9 +3542,13 @@
       "qid": "sd005-zself-zworld-asymmetry",
       "title": "Does SD-005's functional separation of z_world/z_self produce symmetric specialisation, or does only z_self specialise while z_world stays undifferentiated?",
       "short_title": "SD-005 asymmetric specialisation",
-      "claims": ["SD-005"],
+      "claims": [
+        "SD-005"
+      ],
       "registered_utc": "2026-08-08T17:37:36Z",
-      "fanout_sources": ["failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08.json"],
+      "fanout_sources": [
+        "failure_autopsy_grandfathered-arc024-arc033-sd005-cluster_2026-08-08.json"
+      ],
       "is_hero": false,
       "initial_frozen_count": 2,
       "initial_frozen_count_at_registration": 2,
@@ -3618,6 +3636,123 @@
         "observation_bottleneck": null
       },
       "growth_restriction": ""
+    },
+    {
+      "qid": "mech074d_context_addressing_c2_mechanism",
+      "title": "Which mechanism, if any, allows MECH-074d's BLA attribution head to satisfy C2 (context-differentiated addressing, the Moita-2004 dissociation) rather than converging to a context-invariant answer?",
+      "short_title": "MECH-074d C2 context-addressing mechanism",
+      "claims": [
+        "MECH-074d"
+      ],
+      "registered_utc": "2026-08-11T06:01:31Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-894c_2026-08-11.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "hypotheses": [
+        {
+          "hid": "H-mech074d-dilution",
+          "label": "over-firing / dilution",
+          "desc": "The fixed non-trainable attribution gate's PE-sigma threshold is too permissive, diluting real attribution signal with false-positive fires -- recalibrating sigma would recover C1/C2.",
+          "axis": "selection",
+          "pre_registered_utc": "2026-08-08T00:52:19Z",
+          "adjudicating_runs": [
+            "V3-EXQ-894a"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-894a"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "mech074d_attribution_gate_vacuous_across_sigma_sweep",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-08T10:11:57Z",
+            "basis": "V3-EXQ-894a swept bla_remap_pe_sigma_threshold over [1.0,1.5,2.0,2.5]; mean attribution-mass-excess falls MONOTONICALLY with sigma (Spearman -1.0), tracking the fall in fire-fraction rather than diverging as dilution would predict. Per-seed ranking (one selective, one context-blind-deterministic, one null) stable across all four thresholds -- structural, not sampling noise. Confirmed failure_autopsy_V3-EXQ-894a_2026-08-08."
+          }
+        },
+        {
+          "hid": "H-mech074d-trainability",
+          "label": "trainability alone",
+          "desc": "The fixed, non-trainable attribution rule is architecturally incapable of C1/C2; a learnable attribution head (any reasonable training budget) would recover both.",
+          "axis": "algorithm",
+          "pre_registered_utc": "2026-08-08T10:11:57Z",
+          "adjudicating_runs": [
+            "V3-EXQ-894b"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-894b"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "mech074d_trainable_head_does_not_recover_attribution_gate",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-09T08:16:23Z",
+            "basis": "V3-EXQ-894b built and tested the learnable BLAAttributionHead (SD-035): C1 attribution_selectivity recovers fully (0/3->3/3 seeds) but C2 context_differentiated_addressing does NOT recover in either trained arm (stays 0/3 seeds). Doubling the training budget (914->1998 updates) did not help, ruling out 'needs more experience'. Confirmed failure_autopsy_V3-EXQ-906a_894b_2026-08-09."
+          }
+        },
+        {
+          "hid": "H-mech074d-loss-balance",
+          "label": "entropy_weight / MSE loss-term balance",
+          "desc": "The module's own docstring (design decision 3): the entropy penalty and MSE term are in deliberate tension; a large entropy_weight buys C1 (peakedness) at C2's (context-sensitivity) expense. Retuning entropy_weight downward would let the MSE term's context-sensitivity through.",
+          "axis": "algorithm",
+          "pre_registered_utc": "2026-08-09T08:16:23Z",
+          "adjudicating_runs": [
+            "V3-EXQ-894c"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-894c"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "mech074d_entropy_weight_retune_improves_attribution_no_full_pass",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-10T21:26:02Z",
+            "basis": "V3-EXQ-894c swept entropy_weight over [0.02,0.01,0.005,0.001] (sigma fixed at 1.0, single P0 budget). No arm reaches C1 AND C2 on >=2/3 seeds (passing_arm_ids=[]). Raw within/cross-context Jaccard components show the head collapses to a fully deterministic, context-invariant answer (within=cross=1.0000) in 10/15 cells, concentrated at the middle two swept values. The docstring's own predicted tradeoff direction is not supported either (mass_excess improves, not degrades, as entropy_weight falls -- opposite predicted sign). Confirmed failure_autopsy_V3-EXQ-894c_2026-08-11."
+          }
+        },
+        {
+          "hid": "H-mech074d-context-invariant-collapse",
+          "label": "architecture lacks an explicit context-conditioning mechanism",
+          "desc": "The attribution head's loss (peakedness + prediction accuracy) does not penalize context-invariant output, so gradient descent can (and mostly does) converge to a fixed-answer local optimum that still minimizes both loss terms. Either the head's input representation does not carry a reliable context-discriminating signal at all, or the head needs an explicit mechanism forcing its output to condition on context, distinct from any scalar loss-term reweighting.",
+          "axis": "representation",
+          "pre_registered_utc": "2026-08-11T06:01:31Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Newly surfaced by this autopsy's raw within/cross-context Jaccard breakdown of V3-EXQ-894c (not visible from the aggregate jaccard_context_gap statistic alone). Untested directly -- no run has yet probed the attribution head's input representation for context-discriminating signal, nor tested an explicit context-conditioning architectural addition. Suggested probe: failure_autopsy_V3-EXQ-894c_2026-08-11 recommended_substrate_queue_entry (SD-035 amend)."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Which mechanism allows MECH-074d's BLA attribution head to satisfy C2 (context-differentiated addressing) rather than converging to a context-invariant answer?",
+        "live_gate": "H-mech074d-context-invariant-collapse -- one untested locus (representation-layer: does the input carry context signal at all, or is there an optimization-collapse mode); a design-audit should precede queuing per GOV-FANOUT-1 Step 2.5b, paired with the /implement-substrate investigation this autopsy routed to (SD-035 amend).",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "3 of 3 tested loci eliminated (dilution/selection; trainability/algorithm; loss-balance/algorithm) across 4 independent experiments (894/894a/894b/894c) -- all refuted the loss-term-tension theory the module's own docstring proposed. 1 untested locus remains, newly surfaced on a fresh axis (representation) by this autopsy's raw within/cross-context saturation analysis. Not yet decidable."
+      }
     }
   ]
 }

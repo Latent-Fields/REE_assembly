@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-10T16:18:07Z",
+  "generated_at": "2026-08-11T06:05:56Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 152,
-      "built_modules": 122,
-      "fraction_built": 0.8026,
+      "total_modules": 153,
+      "built_modules": 125,
+      "fraction_built": 0.817,
       "state_counts": {
-        "proposed": 30,
-        "implemented": 86,
-        "implemented_pending_validation": 21,
+        "proposed": 28,
+        "implemented": 88,
+        "implemented_pending_validation": 22,
         "validated": 15
       },
-      "build_proof_gap": 107,
-      "build_proof_gap_note": "122 modules built, 107 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 110,
+      "build_proof_gap_note": "125 modules built, 110 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,151 +31,157 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 53,
-      "total_initial": 97,
-      "total_initial_at_registration": 78,
+      "total_surviving": 54,
+      "total_initial": 101,
+      "total_initial_at_registration": 82,
       "total_fanout_added": 19,
-      "total_resolved_out": 40,
+      "total_resolved_out": 43,
       "total_confirmed": 22,
-      "reduction_pct_vs_current": 41.2,
-      "net_narrowing_pct": 32.1,
+      "reduction_pct_vs_current": 42.6,
+      "net_narrowing_pct": 34.1,
       "convergence_classes": {
-        "narrowing": 14,
+        "narrowing": 15,
         "static": 12,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "53 alive against 78 originally enumerated, and against 97 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 31
+      "honest_pair_note": "54 alive against 82 originally enumerated, and against 101 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 32
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 14,
-      "open_questions": 31
+      "open_questions": 32
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 96,
+      "surviving": 100,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-11",
-      "surviving": 95,
+      "surviving": 99,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-13",
-      "surviving": 93,
+      "surviving": 97,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-15",
-      "surviving": 89,
+      "surviving": 93,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-16",
-      "surviving": 88,
+      "surviving": 92,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-17",
-      "surviving": 85,
+      "surviving": 89,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-18",
-      "surviving": 79,
+      "surviving": 83,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-19",
-      "surviving": 75,
+      "surviving": 79,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-20",
-      "surviving": 74,
+      "surviving": 78,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-24",
-      "surviving": 73,
+      "surviving": 77,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-27",
-      "surviving": 71,
+      "surviving": 75,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-29",
-      "surviving": 70,
+      "surviving": 74,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-07-31",
-      "surviving": 69,
+      "surviving": 73,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-01",
-      "surviving": 67,
+      "surviving": 71,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-02",
-      "surviving": 61,
+      "surviving": 65,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-04",
-      "surviving": 60,
+      "surviving": 64,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-06",
-      "surviving": 59,
+      "surviving": 63,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-08",
-      "surviving": 58,
+      "surviving": 61,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-09",
-      "surviving": 57,
+      "surviving": 59,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
     },
     {
       "date": "2026-08-10",
-      "surviving": 53,
+      "surviving": 58,
       "closure_pct": 76.9,
-      "build_pct": 80.3
+      "build_pct": 81.7
+    },
+    {
+      "date": "2026-08-11",
+      "surviving": 54,
+      "closure_pct": 76.9,
+      "build_pct": 81.7
     }
   ],
   "questions": [
@@ -3390,9 +3396,122 @@
         "live_gate": "Not yet queued. Redesign direction named in claims.yaml prose but no EXQ has tested it.",
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "mech074d_context_addressing_c2_mechanism",
+      "title": "Which mechanism, if any, allows MECH-074d's BLA attribution head to satisfy C2 (context-differentiated addressing, the Moita-2004 dissociation) rather than converging to a context-invariant answer?",
+      "short_title": "MECH-074d C2 context-addressing mechanism",
+      "claims": [
+        "MECH-074d"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.75,
+      "bits_removed_vs_registration": 2.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "process"
+        ],
+        "families_touched": [
+          "process"
+        ],
+        "families_fresh": [
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 3,
+      "confirmed": 0,
+      "reduction_numerator": 3,
+      "reduction_ratio": 0.75,
+      "bits_removed": 2.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech074d-dilution",
+          "label": "over-firing / dilution",
+          "desc": "The fixed non-trainable attribution gate's PE-sigma threshold is too permissive, diluting real attribution signal with false-positive fires -- recalibrating sigma would recover C1/C2.",
+          "axis": "selection",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-894a"
+          ],
+          "basis": "V3-EXQ-894a swept bla_remap_pe_sigma_threshold over [1.0,1.5,2.0,2.5]; mean attribution-mass-excess falls MONOTONICALLY with sigma (Spearman -1.0), tracking the fall in fire-fraction rather than diverging as dilution would predict. Per-seed ranking (one selective, one context-blind-deterministic, one null) stable across all four thresholds -- structural, not sampling noise. Confirmed failure_autopsy_V3-EXQ-894a_2026-08-08.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech074d-trainability",
+          "label": "trainability alone",
+          "desc": "The fixed, non-trainable attribution rule is architecturally incapable of C1/C2; a learnable attribution head (any reasonable training budget) would recover both.",
+          "axis": "algorithm",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-894b"
+          ],
+          "basis": "V3-EXQ-894b built and tested the learnable BLAAttributionHead (SD-035): C1 attribution_selectivity recovers fully (0/3->3/3 seeds) but C2 context_differentiated_addressing does NOT recover in either trained arm (stays 0/3 seeds). Doubling the training budget (914->1998 updates) did not help, ruling out 'needs more experience'. Confirmed failure_autopsy_V3-EXQ-906a_894b_2026-08-09.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech074d-loss-balance",
+          "label": "entropy_weight / MSE loss-term balance",
+          "desc": "The module's own docstring (design decision 3): the entropy penalty and MSE term are in deliberate tension; a large entropy_weight buys C1 (peakedness) at C2's (context-sensitivity) expense. Retuning entropy_weight downward would let the MSE term's context-sensitivity through.",
+          "axis": "algorithm",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-894c"
+          ],
+          "basis": "V3-EXQ-894c swept entropy_weight over [0.02,0.01,0.005,0.001] (sigma fixed at 1.0, single P0 budget). No arm reaches C1 AND C2 on >=2/3 seeds (passing_arm_ids=[]). Raw within/cross-context Jaccard components show the head collapses to a fully deterministic, context-invariant answer (within=cross=1.0000) in 10/15 cells, concentrated at the middle two swept values. The docstring's own predicted tradeoff direction is not supported either (mass_excess improves, not degrades, as entropy_weight falls -- opposite predicted sign). Confirmed failure_autopsy_V3-EXQ-894c_2026-08-11.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech074d-context-invariant-collapse",
+          "label": "architecture lacks an explicit context-conditioning mechanism",
+          "desc": "The attribution head's loss (peakedness + prediction accuracy) does not penalize context-invariant output, so gradient descent can (and mostly does) converge to a fixed-answer local optimum that still minimizes both loss terms. Either the head's input representation does not carry a reliable context-discriminating signal at all, or the head needs an explicit mechanism forcing its output to condition on context, distinct from any scalar loss-term reweighting.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Newly surfaced by this autopsy's raw within/cross-context Jaccard breakdown of V3-EXQ-894c (not visible from the aggregate jaccard_context_gap statistic alone). Untested directly -- no run has yet probed the attribution head's input representation for context-discriminating signal, nor tested an explicit context-conditioning architectural addition. Suggested probe: failure_autopsy_V3-EXQ-894c_2026-08-11 recommended_substrate_queue_entry (SD-035 amend).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Which mechanism allows MECH-074d's BLA attribution head to satisfy C2 (context-differentiated addressing) rather than converging to a context-invariant answer?",
+        "distance_phrase": "3 of 3 tested loci eliminated (dilution/selection; trainability/algorithm; loss-balance/algorithm) across 4 independent experiments (894/894a/894b/894c) -- all refuted the loss-term-tension theory the module's own docstring proposed. 1 untested locus remains, newly surfaced on a fresh axis (representation) by this autopsy's raw within/cross-context saturation analysis. Not yet decidable.",
+        "live_gate": "H-mech074d-context-invariant-collapse -- one untested locus (representation-layer: does the input carry context signal at all, or is there an optimization-collapse mode); a design-audit should precede queuing per GOV-FANOUT-1 Step 2.5b, paired with the /implement-substrate investigation this autopsy routed to (SD-035 amend).",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-894c",
+      "all_runs": [
+        "V3-EXQ-894c"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "mech074d_context_addressing_c2_mechanism",
+      "claims": [
+        "MECH-074d"
+      ],
+      "moved": "V3-EXQ-894c swept entropy_weight over [0.02,0.01,0.005,0.001] (sigma fixed at 1.0, single P0 budget). No arm reaches C1 AND C2 on >=2/3 seeds (passing_arm_ids=[]). Raw within/cross-context Jaccard components show the head collapses to a fully deterministic, context-invariant answer (within=cross=1.0000) in 10/15 cells, concentrated at the middle two swept values. The docstring's own predicted tradeoff direction is not supported either (mass_excess improves, not degrades, as entropy_weight falls -- opposite predicted sign). Confirmed failure_autopsy_V3-EXQ-894c_2026-08-11.",
+      "resolved_utc": "2026-08-10T21:26:02Z",
+      "evidence_direction": "weakens"
+    },
     {
       "run": "V3-EXQ-908",
       "all_runs": [
@@ -3422,6 +3541,20 @@
       "evidence_direction": "supports"
     },
     {
+      "run": "V3-EXQ-894b",
+      "all_runs": [
+        "V3-EXQ-894b"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "mech074d_context_addressing_c2_mechanism",
+      "claims": [
+        "MECH-074d"
+      ],
+      "moved": "V3-EXQ-894b built and tested the learnable BLAAttributionHead (SD-035): C1 attribution_selectivity recovers fully (0/3->3/3 seeds) but C2 context_differentiated_addressing does NOT recover in either trained arm (stays 0/3 seeds). Doubling the training budget (914->1998 updates) did not help, ruling out 'needs more experience'. Confirmed failure_autopsy_V3-EXQ-906a_894b_2026-08-09.",
+      "resolved_utc": "2026-08-09T08:16:23Z",
+      "evidence_direction": "weakens"
+    },
+    {
       "run": "V3-EXQ-821b",
       "all_runs": [
         "V3-EXQ-821b"
@@ -3435,6 +3568,20 @@
       "moved": "V3-EXQ-821b (failure_autopsy_V3-EXQ-821b_2026-08-08), CALIBRATED re-run on a validated instrument (BC install dose 300->1200; post_bc_foraging_competence worst-seed 20.95 >= USABLE_INSTALL_FLOOR 10.0 on both arms, clearing the observation bottleneck that invalidated V3-EXQ-821's original 14%-install read). Both the extinguishing treatment and the non-extinguishing control eroded installed competence to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15 required); neither arm's trajectory peak re-cleared the install floor. Anchors floor-achievable (local_view_greedy 34.17, greedy_oracle 42.8), criteria non-degenerate. H-consummation-binding ELIMINATED: the extinguish-and-hand-off binding is NOT the retention mechanism, re-confirming the pre-instrument-fix 821 reading now on a valid instrument. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar). Both arms replicate V3-EXQ-781's independent 'approach-earned/forage-suppressed' signature (mean recent approach reward 0.72-0.88) regardless of extinction -- the total (not partial, cf. V3-EXQ-788/792a's ~0.51-0.53) erosion is attributable to the fixed approach-drive reward coefficient (untested as an axis here, held identical across both arms), not to an unaddressed confound in this leg. This closes the competence_floor retention sub-question on all 4 originally-named mechanisms (2 process-family confirmed, 2 constitution-family -- auxiliary-decay and this one -- eliminated). Any follow-on question about approach-drive reward magnitude is OUT OF SCOPE for this qid per its growth_restriction (see below) and needs its own qid.",
       "resolved_utc": "2026-08-08T16:17:18Z",
       "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-894a",
+      "all_runs": [
+        "V3-EXQ-894a"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "mech074d_context_addressing_c2_mechanism",
+      "claims": [
+        "MECH-074d"
+      ],
+      "moved": "V3-EXQ-894a swept bla_remap_pe_sigma_threshold over [1.0,1.5,2.0,2.5]; mean attribution-mass-excess falls MONOTONICALLY with sigma (Spearman -1.0), tracking the fall in fire-fraction rather than diverging as dilution would predict. Per-seed ranking (one selective, one context-blind-deterministic, one null) stable across all four thresholds -- structural, not sampling noise. Confirmed failure_autopsy_V3-EXQ-894a_2026-08-08.",
+      "resolved_utc": "2026-08-08T10:11:57Z",
+      "evidence_direction": "weakens"
     },
     {
       "run": "V3-EXQ-892",

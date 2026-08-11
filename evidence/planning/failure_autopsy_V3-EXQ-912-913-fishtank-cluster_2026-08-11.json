@@ -1,0 +1,125 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-11T06:01:31Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_912_uncensored_survival_fishtank_20260810T190239Z_v3",
+      "queue_id": "V3-EXQ-912",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete for survival-stat computation; execution incomplete (1 of 2 queued seeds ran)",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "adequate",
+        "scale": "inadequate relative to the run's own design (n=60 of designed n=120)"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "not_ree -- execution/apparatus defect (seed-count under-run via a stale argparse default), not a mechanism/measurement/environment inadequacy; claim-free diagnostic"
+      },
+      "biological_reference": {
+        "closest_mechanism": "survival analysis with right-censoring (Kaplan-Meier-style partitioning); bathtub-shaped mortality hazard for the death-timing pattern",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a -- methodology correctly applied to an already-implemented ecology, not a mechanism claim",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-912 (v3_exq_912_uncensored_survival_fishtank_20260810T190239Z_v3, FAIL, claim_ids=[]) ran at 1 of the queued 2 seeds -- the driver's own --seeds argparse default ([0]) was never updated to match its own docstring's 2-seed design, and neither the queue entry nor the runner enforced the declared seed count. At n=60 (not the designed n=120), 4/60 segments (6.7%) ended health_depleted -- below the pre-registered MIN_UNCENSORED_DEATHS_TOTAL=10 threshold, hence FAIL, but a real and better-powered point estimate than 906b's own n=8-based 25%. Non-contributory to governance (claim_ids=[]); characterization data retained, not treated as a claim-layer weakens. Corrected re-run routed as V3-EXQ-912a.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-QUEUE-SEED-ENFORCEMENT",
+        "title": "Enforce queue-declared seed count into actual --seeds execution (validate_queue.py / experiment_runner.py)",
+        "implementation_hint": "experiment_queue.json's \"seeds\": N field is consumed ONLY by experiment_runner.py's _run_axis_count for progress-bar/ETA denominators -- never translated into a --seeds CLI arg. A driver's own argparse default is the sole source of truth for how many seeds actually run, and validate_queue.py never cross-checks the declared count against either an explicit args --seeds list or the target script's own argparse default. Fix: either (a) have the runner synthesize --seeds 0..N-1 from the queue's seeds count when no explicit args are given, or (b) add a validate_queue.py check that a queue entry with \"seeds\": N>1 and no explicit --seeds in args, targeting a script whose own default has fewer than N entries, is flagged/blocked. V3-EXQ-912 hit this (queued seeds=2, ran seeds=[0]); sibling V3-EXQ-913 avoided it only because its author happened to set SEEDS_DEFAULT=[0,1] correctly.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [
+          "experiments/v3_exq_912_uncensored_survival_fishtank.py",
+          "experiment_runner.py",
+          "validate_queue.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_912_uncensored_survival_fishtank_20260810T190239Z_v3",
+          "experiment_type": "v3_exq_912_uncensored_survival_fishtank",
+          "metric": "manifest seeds=[0] (n_seeds=1) despite queue entry declaring \"seeds\": 2; n_segments_total=60 not designed 120; n_uncensored_deaths_total=4 < MIN_UNCENSORED_DEATHS_TOTAL=10, driving the FAIL",
+          "target": "queue-declared seed count matches actually-executed seed count for every multi-seed queue entry, either by runner enforcement or a validate_queue.py gate",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The queue's seeds:N field is documentation/estimation-only; a driver's own --seeds argparse default is the sole execution source of truth, and nothing cross-checks the two.",
+        "The corrected point estimate at n=60 (6.7% uncensored death rate) is itself informative and better-powered than the n=8 906b/906c priors, independent of the seed-count defect.",
+        "Death-timing pattern (segments 17,19,53,56 of 60) is suggestive of a bathtub-shaped mortality hazard but underpowered at n=4 to confirm."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_913_developmental_ecology_fishtank_20260810T213204Z_v3",
+      "queue_id": "V3-EXQ-913",
+      "claim_ids": [],
+      "failed_criterion": "n/a",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "partially confounded for the within-life-development sub-finding only",
+        "measurement": "adequate, with a matched-comparison-validity thinness caveat",
+        "integration": "adequate",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "PASS stands (mechanism engagement genuine, non-vacuous); one sub-finding (within-life-development decline) is environment-confounded (resource-patch depletion), not a REE-side effect -- must not be read as declining competence"
+      },
+      "biological_reference": {
+        "closest_mechanism": "patch depletion / optimal foraging theory (Charnov's marginal value theorem) for the within-life-development confound; sleep-dependent motor-sequence consolidation for the trajectory-organization finding",
+        "dependencies": [
+          "MECH-357 (SD-058 ilPFC instrumental-avoidance eligibility-trace gate) -- confirmed active, inherited unchanged"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a -- both reference mechanisms directly support the correct reading of this run's own data",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-913 (v3_exq_913_developmental_ecology_fishtank_20260810T213204Z_v3, PASS, claim_ids=[]) -- genuine, non-vacuous engagement of all three combined manipulations (layout continuity, microhabitat zone-weighted cues, sleep-vs-no-sleep ablation), with substantive zone-conditioned field-statistic and sleep-organizes-trajectories findings (the latter on a thinner-than-headline n; 1 of 5 'matched comparisons' is fully degenerate). The flagship within-life-development readout (declining benefit_rate) is confounded by resource-patch depletion (55/96 segments exhausted; the sole zero-exhaustion cell shows a flat trend, r=+0.016 vs -0.13 to -0.65 in the exhausted cells) and should NOT be cited as evidence of declining competence. Non-contributory to governance (claim_ids=[]); descriptive characterization only.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Zone-weighted microhabitat placement leaves a real, perceptible trace in the ambient resource_field/hazard_field channels REE already senses -- not merely a boolean 'zone map exists' engagement flag.",
+        "The within-life-development readout is confounded by resource-patch depletion under this run's own resource_respawn_on_consume=False + layout-continuity design; the sole zero-exhaustion cell (seed1_no_sleep) shows a flat trend where the three exhausted cells show strong decline -- a clean natural control embedded in the run's own data.",
+        "The sleep-ablation 'matched comparisons obtained' count does not distinguish valid from degenerate/null pairings; a future driver in this family should report a matched_comparisons_valid count."
+      ],
+      "routing": "none -- PASS stands, confound flagged in evidence note"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "both targets share the 906b-lineage Fishtank substrate family and experiment_purpose=diagnostic/claim_ids=[], but test structurally different scientific questions (912: uncensored death-time characterization; 913: layout-continuity + habitat-cue + sleep ablation) -- presented as one autopsy for efficiency, not because they share a failure shape.",
+    "is_independent_bugs": true,
+    "structural_property": "no shared structural finding across the two targets; the seed-count execution defect (912) and the resource-depletion confound (913) are independent issues on independent driver scripts.",
+    "readings": []
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-11T06:01:31Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3",
+      "queue_id": "V3-EXQ-894c",
+      "claim_ids": ["MECH-074d"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete for C1 mechanism; likely architecturally underspecified for C2 (no explicit context-conditioning term)",
+        "environment": "adequate",
+        "measurement": "adequate, required raw within/cross-component inspection to reveal the collapse mode aggregate stats hid",
+        "integration": "adequate",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM implicated -- the C2 context-conditioning mechanism appears absent/underspecified in the attribution head's loss formulation (no term penalizes context-invariant output), not chargeable to measurement or environment design"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moita et al. 2004 contextual-vs-auditory dissociation (BLA context-conditional threat memory); Nader/Schafe/LeDoux 2000 reconsolidation necessity",
+        "dependencies": ["SD-011", "ARC-033", "ARC-007", "MECH-073", "SD-035"],
+        "is_formal_import": false,
+        "divergence": "none -- real, well-cited connectome mechanism; collapse-to-invariant-answer maps onto 'learned salience without context-gating', a specific falsifiable framing distinct from the trainability/loss-balance hypotheses already refuted",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "[/failure-autopsy 2026-08-11, V3-EXQ-894c, confirmed failure_autopsy_V3-EXQ-894c_2026-08-11, entropy_weight/MSE balance retune]: H0 confirmed -- no swept entropy_weight value ([0.02,0.01,0.005,0.001], sigma fixed at 1.0) recovers C1 AND C2 on >=2/3 seeds for any arm (passing_arm_ids=[]). Reading past the aggregate jaccard_context_gap statistic into its raw within/cross-context components reveals the attribution head collapses to a fully deterministic, context-invariant target-set selection (within=cross=1.0000 exactly) in 10 of 15 scored cells -- concentrated at the middle two swept values, with only the extremes (module default 0.02, and the smallest 0.001) showing partial, single-seed escape. The module's own predicted C1-vs-C2 tradeoff is also NOT supported by the data (C1's mass_excess statistic improves, not degrades, as entropy_weight falls -- opposite the predicted direction). Diagnosis: the defect looks like an architecture/optimization gap (the head has no explicit mechanism forcing context-conditional output) rather than a loss-weighting tuning problem. Three iterations (894a/894b/894c) have now progressively eliminated dilution, trainability-alone, and loss-balance-alone -- C1 (selectivity) is robustly resolved (0/3->3/3); C2 (context-addressing, the actual Moita 2004 dissociation) remains unresolved across all four manipulations. routing=implement-substrate: substrate_queue.json SD-035 entry to be amended with this failure_record, superseding the 894b 'retuned entropy_weight/MSE balance' target with a narrower one (investigate the head's context-representation input / add explicit context-conditioning). Granularity-debt trigger FIRES: recommend /claim-synthesis split MECH-074d into a selectivity child and a context-addressing child. Stays provisional / pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-035",
+        "unblocks_claims": ["MECH-074d"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/amygdala/attribution_head.py",
+          "ree_core/amygdala/bla.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3",
+          "experiment_type": "v3_exq_894c_mech074d_bla_entropy_weight_sweep",
+          "metric": "jaccard_context_gap (C2) fails to clear 0.05 margin in 13/15 scored cells; within-context and cross-context Jaccard similarity are IDENTICAL (1.0000 exactly) in 10/15 cells, indicating the attribution head has converged to a fully deterministic, context-invariant target-set selection rather than a graded loss of context-sensitivity. Docstring's predicted C1-vs-C2 entropy_weight tradeoff not observed (spearman_mass_excess_vs_entropy_weight=-1.0, opposite predicted sign).",
+          "target": "an entropy-weight/loss-formulation change, OR a verified context-discriminating input signal to the attribution head, that clears C1 AND C2 on >=2/3 seeds without relying on scalar loss-term retuning alone",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_894b_mech074d_bla_trainable_attribution_head_20260809T081623Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "894b's target ('retuned entropy_weight/MSE balance recovers C2') is now itself tested and refuted by 894c across the full swept range; superseded by this run's narrower target (context-representation/architecture investigation, not a further scalar retune)."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-035"
+      },
+      "learning_extracted": [
+        "The bare jaccard_context_gap arm-level statistic hides a within=cross=1.0 saturation (deterministic collapse) that dominates 10 of 15 scored cells -- reading the raw within/cross components was necessary to see the true failure mode.",
+        "The module's own predicted entropy_weight tradeoff (C1 up / C2 down as EW rises) is not supported by the raw data; C1's mass_excess statistic moves opposite the predicted direction as EW falls.",
+        "C1 (attribution selectivity) is now robustly resolved (0/3->3/3 seeds, every trainable-head arm); C2 (context-addressing) has failed under 4 structurally distinct manipulations -- a granularity-debt split candidate, not a single coarse claim's uniform failure."
+      ],
+      "routing": "implement-substrate"
+    }
+  ]
+}
