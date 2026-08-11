@@ -1,0 +1,93 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-11T05:19:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "predecessor": "failure_autopsy_V3-EXQ-910_2026-08-10",
+  "targets": [
+    {
+      "run_id": "v3_exq_910a_mech489_defensive_orienting_decision_retest_20260810T213616Z_v3",
+      "queue_id": "V3-EXQ-910a",
+      "claim_ids": ["MECH-489"],
+      "bears_on": "defensive_orienting_decision_layer_measurement_validity",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "broken",
+        "integration": "partial",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- Leg 1 (event detection) re-confirms V3-EXQ-910's own falsification, not new information. Leg 3/4 (no orient/investigate/resolve operation between arrest and release; identification_confidence is a signal-decay timer, not epistemic) is newly established directly from code, against the SD-099 architecture doc's own narrative framing, NOT against MECH-489's formal claim boundary (which is sound and does not depend on MECH-395/482/483). Criterion (c) (decision_alignment non-degeneracy) is NOT usable as evidence in either direction: decision_counts (206) is ~2x the theoretical maximum (n_overrides=21 x orienting_post_override_bias_ticks=5=105) and byte-identical to V3-EXQ-910's total despite half the override count -- a newly identified MEASURES defect, independent of whether the SD-ORIENTING-DECISION-SCALE fix itself works. REE FAILED is not reached: Measurement fails outright."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Sokolov orienting-reflex arrest-and-habituation (NOT active orienting/investigation -- see divergence)",
+        "dependencies": ["SD-099", "MECH-279", "MECH-395", "MECH-482", "MECH-483", "MECH-205"],
+        "is_formal_import": false,
+        "divergence": "the arrest/release shape (startle, freeze, habituate-and-release) is a sound biological translation; the NARRATIVE framing of the release mechanism ('orient/identify', 'attend to the stimulus until it resolves') overclaims relative to what is computed -- a pure decay-timer over the same triggering channel, with zero causal dependence on any observation, recognition, or epistemic-resolution quantity. This is a narrower, more accurate biological analog (habituation of a startle response) than the claim's own doc language implies.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_note": "Confirmed at interactive gate 2026-08-11. Leg 1 (trigger alignment, 0/0/0% on all three ground-truth event fields) re-confirms V3-EXQ-910's already-established falsification of MECH-489's own pre-registered falsifying signature #1 -- not new weight. Newly established here: (a) identification_confidence is code-verified (ree_core/pag/defensive_orienting.py:299-309) to be a habituation/decay-tracker with zero epistemic content -- a genuine finding against SD-099's own architecture-doc narrative ('orient/identify', 'attend to the stimulus'), not against MECH-489's formal claim boundary, which correctly does not depend on MECH-395/482/483's unbuilt substrate; (b) decision_counts, the measurement criterion (c) depends on, is structurally broken -- decoupled from n_overrides in a way inconsistent with the documented 5-tick persistence-window model (observed 206 vs theoretical max 105 for n_overrides=21), so criterion (c)'s FAIL cannot be read as evidence about the SD-ORIENTING-DECISION-SCALE fix in either direction. Claim boundary retained as-is (confirmed with user); no rewrite recommended.",
+      "recommended_evidence_quality_note": "2026-08-11 (failure_autopsy_V3-EXQ-910a_2026-08-11, confirmed): V3-EXQ-910a is MIXED. Its trigger-alignment result (0/0/0%) reconfirms, not extends, V3-EXQ-910's own falsification of falsifying signature #1 -- no new claim-layer weight from this leg. Its NEW criterion (c) -- decision_alignment non-degeneracy, the SD-ORIENTING-DECISION-SCALE fix's own acceptance test -- FAILED, but the measurement it depends on (decision_counts) is independently shown to be broken: its sum (206) is ~2x the theoretical maximum (n_overrides=21 x orienting_post_override_bias_ticks=5=105 for this run) and is byte-identical to V3-EXQ-910's own total despite half the override count and a different substrate_hash -- inconsistent with the documented persistence-window model, and not attributable to the fix's own arithmetic (which is a separate, unaffected code path). Criterion (c)'s FAIL is therefore NOT usable as evidence that the fix failed, nor as evidence that it succeeded. One robust, window-independent finding survives: across 63 pooled override events (42 in 910 + 21 in 910a), the discrete decision classification made AT the override tick itself never once resolves 'approach' or 'resume' -- but whether this reflects a residual implementation issue, a genuinely threat-dominated event stream, or something else cannot currently be determined. Separately and newly: identification_confidence is code-verified to be a pure signal-decay/habituation tracker with zero epistemic content (ree_core/pag/defensive_orienting.py:299-309) -- confirmed via direct counterfactual analysis (holding epistemic content fixed while letting the phasic channel decay still releases the gate; providing resolving information while the channel stays elevated cannot release it, since no such input channel exists). This is a finding against SD-099's own architecture-doc narrative language, not against MECH-489's formal claim boundary, which is retained unchanged. Routed /implement-substrate (SD-ORIENTING-DECISION-SCALE amend, severity=degrading) for the decision-logging defect; explicitly NOT routing a fresh discriminating experiment until the corrected measurement is available. Re-derive brake and granularity-debt checks both run: neither fires.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-ORIENTING-DECISION-SCALE",
+        "unblocks_claims": ["MECH-489"],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": ["ree_core/agent.py::select_action"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_910a_mech489_defensive_orienting_decision_retest_20260810T213616Z_v3",
+          "experiment_type": "v3_exq_910a_mech489_defensive_orienting_decision_retest",
+          "metric": "decision_counts sum (206) exceeds the theoretical max (n_overrides=21 x orienting_post_override_bias_ticks=5 = 105) by ~2x, and is byte-identical to V3-EXQ-910's total (42 overrides, also 206) -- the per-step orienting_decision log field is decoupled from the intended N-tick persistence window in a way not fully diagnosable from the aggregated manifest alone (no per-step episode log was retained for either run)",
+          "target": "decision_counts sum should be bounded by n_overrides x orienting_post_override_bias_ticks under normal (world_states-tracked) operation, and should NOT reproduce a prior run's total exactly when n_overrides differs substantially",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "V3-EXQ-910's recommended_epistemic_category is 'standard', not 'substrate_ceiling' -- 0 ceiling hits under the R1-R3 convention. This autopsy's own category is also 'standard'. Brake does not apply."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The prior autopsy (failure_autopsy_V3-EXQ-910_2026-08-10.md) mischaracterized its own manifest, describing decision_counts' sum (206) as 'logged overrides' when the manifest's own n_overrides field says 42. This mischaracterization propagated into the SD-ORIENTING-DECISION-SCALE commit message, its architecture doc, and substrate_queue.json's failure_record. Corrected here without silently rewriting the prior artifacts.",
+        "identification_confidence is code-verified to be a habituation/decay-tracker over the same triggering channel that caused the trigger, with zero causal dependence on observation, recognition, uncertainty reduction, or any epistemic-resolution quantity. It is NOT a fixed-timer either (MECH-489's own falsifying signature #3 as literally worded is not triggered) -- it is a third category the claim's pre-registration did not anticipate: decay-coupled but non-epistemic.",
+        "MECH-489's formal claim boundary (depends_on comments distinguishing it from MECH-395/482/483) is scientifically sound and does not require MECH-395/482/483's unbuilt substrate. The gap is one level up: the originating design brief (observational_review_V3-EXQ-906b_2026-08-09.md Section 11b step 3) calls for active 'turn toward and attend to... resolves into an identification' behaviour that was never actually built -- SD-099's architecture doc inherits that language for a component that implements passive decay instead.",
+        "A genuinely new, previously-unidentified measurement defect: decision_counts (the sum over decision_counts.values()) is structurally decoupled from n_overrides in a way inconsistent with the documented orienting_post_override_bias_ticks=5 persistence-window model -- confirmed by the theoretical-maximum violation (206 observed vs 105 max for 910a) and the byte-identical total across two runs with substantially different override counts (42 vs 21). This invalidates criterion (c) as currently computed in BOTH V3-EXQ-910a's direction (cannot be read as 'the fix failed') and any hypothetical PASS (would equally not be trustworthy).",
+        "One robust, persistence-window-independent finding survives the measurement defect: across 63 pooled override events (910+910a combined), the discrete decision classification made at the override tick itself never once resolves 'approach' or 'resume'. Interpretation is undetermined pending the logging fix."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "growth_restriction_check": {
+    "applicable": false,
+    "note": "No existing qid in hypothesis_space_registry.v1.json references MECH-489/MECH-395/MECH-482/MECH-483/SD-099 (checked 2026-08-11). Single-target adjudication against MECH-489's own pre-registered signature, not a discrimination among live rival hypotheses -- no fanout_recommendation. Skip cleanly."
+  },
+  "granularity_debt_check": {
+    "fires": false,
+    "cluster_size": 2,
+    "alignment_distribution": {"weakened_or_mixed": 2},
+    "note": "1 prior target (V3-EXQ-910, weakened) + this target (mixed). Leg 1's finding here re-confirms 910's own signature (not structurally new); the new signature (decision_counts measurement defect) argues for fixing an instrument, not splitting the claim. Does not fire per the standing rule requiring structurally distinct weakened signatures."
+  }
+}
