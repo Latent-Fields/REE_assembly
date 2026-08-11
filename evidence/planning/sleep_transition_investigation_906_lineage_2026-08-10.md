@@ -438,6 +438,160 @@ a future finding on one should not be read as resolving the other.
 
 ---
 
+## 13. Addendum (2026-08-11): E3 commitment-gate mechanistic candidate + V3-EXQ-913 reanalysis
+
+Second follow-on, from a fresh user visual observation independently describing the same
+transition, refined mid-session to specifically **action-sequence coherence** (reversal
+frequency, run length, directional persistence) rather than spatial path smoothness (grids
+cannot be spatially smooth). This section does not repeat the duplication check above — it
+re-confirms this document, `reef_ecology_...review`, and `V3-EXQ-909` are still the complete
+prior-art set (re-checked via `git log --grep`, `TASK_CHIPS.json`, `claims.yaml`) — and adds
+code-grounded mechanistic analysis plus a genuine extension of already-collected data that was
+sitting unread for this purpose.
+
+### 13a. Mechanistic candidates, checked against what's actually enabled in the Fishtank driver
+
+Four candidates traced through `ree_core/` and cross-checked against `use_*` flags in the
+`v3_exq_906b`/`909`/`913`/`916` driver family (none of this document's prior sections did this
+code-level check):
+
+- **E3 commitment-gate persistence — the strongest candidate, and genuinely new to this
+  thread.** `E3Selector` commits to a pre-planned action sequence when
+  `commit_variance < effective_threshold` (`e3_selector.py:3149-3210`); once committed, the
+  agent walks `_committed_step_idx` through that sequence **without re-running CEM/softmax
+  selection each tick** (`agent.py:6059-6072`). Lower commit-variance -> commits more readily
+  and persists longer -> more ticks executed open-loop from one plan -> directly matches
+  "longer coherent action runs, fewer local re-decisions." **Not yet confirmed as sleep-linked
+  in these runs**: its one identified sleep-modulated input,
+  `E3Selector.recalibrate_precision_to` (called only when `use_rem_precision_recalibration=True`,
+  default `False`), is confirmed **off** in every `v3_exq_9*`/fishtank driver (grepped). If a
+  real effect exists in the data below, it is not running through this designed pathway.
+- **Policy chunking (ARC-071/MECH-323/324, sleep-only carve-out MECH-322)** — biologically
+  grounded (Albouy 2013 cited in-module) and `use_policy_chunking=True` IS enabled in the
+  Fishtank driver, but the flag that lets a crystallised chunk actually influence action
+  selection, `use_chunk_proposal_injection`, is confirmed **off** everywhere in the
+  906/909/913/916 family (only set in dedicated ARC-071 diagnostic scripts) and the module's own
+  docstring states the path is bit-identical to OFF when disabled. **Ruled out** as the operative
+  mechanism in the observed runs, though it remains a real, ready-made candidate for a future
+  run that explicitly enables injection.
+- **SHY normalisation (MECH-120)**, active in the driver, does the *opposite* of a naive
+  "sharpens toward the dominant strategy" story: `E1Deep.shy_normalise` shrinks every
+  context-memory slot toward the population mean (homogenises, does not sharpen). Its effect on
+  trajectory coherence, if any, would be indirect (more consistent shared representations
+  feeding E3 scoring) and is currently unmeasured.
+- **Noise floor / softmax temperature (MECH-313)** — confirmed **structurally untouched by
+  sleep anywhere in the code** (no sleep code path writes to it). This matters for the
+  hypothesis below: whatever effect exists cannot be "sleep globally lowered exploration,"
+  because there is no mechanism for that in this substrate.
+- **Replay content-selection (MECH-285/273)** is confirmed **outcome-agnostic** — staleness-
+  weighted or uniform-random sampling, no reward/success term anywhere in either module. This
+  weakens any framing of "sleep preferentially consolidates SUCCESSFUL behavioural structure"
+  specifically; the mechanism as implemented does not select for good outcomes.
+
+### 13b. V3-EXQ-913 already contains a real sleep-vs-no-sleep ablation, previously unread this way
+
+`chip-20260810-fishtank-developmental-ecology`'s third amendment (Section 9 above) proposed a
+sleep-vs-matched-no-sleep ablation arm. **It was already built and run**: V3-EXQ-913
+(`ree-v3` `7786455`, ran 2026-08-10T21:32Z, `PASS` as a diagnostic-readiness check,
+`claim_ids=[]`, `evidence_direction: non_contributory` — never scored as a hypothesis test).
+Its `sleep_ablation_comparison` block logged 5 matched (same seed, same segment index,
+hazard/resource layout held constant via `env.reset_to()`) 100-step `WITH_SLEEP` vs `NO_SLEEP`
+windows across 2 seeds, already computing turning-angle entropy, tortuosity, and straight-run
+length — almost exactly this document's Section 3 metric set. One pair (seed1, seg19) is
+degenerate (`NO_SLEEP` side `path_length=0`) and excluded throughout.
+
+**This session extended that data with the action-*label*-level metrics the refined
+observation specifically asks for** (reversal rate, action-run length, repeat rate — distinct
+from the existing spatial turning/tortuosity, which conflate a 90-degree turn with a full
+reversal), plus a proper significance test and a confound check neither this document's
+Section 3 nor V3-EXQ-913's own manifest performed. Full method: parsed the 62MB episode log
+directly (`v3_exq_913_developmental_ecology_fishtank_20260810T213204Z_episode_log.json`), same
+5 matched pairs, same 100-step windows.
+
+**Action encoding note (methodologically important):** `world_rule_shift_enabled=True` (250-tick
+interval) periodically permutes the live action-ID -> spatial-direction map. Reversal/run-length
+computed on the canonical action-ID inverse pairing (0<->1, 2<->3; action 4=stay has no inverse)
+therefore measures **policy-output-sequence structure**, not necessarily literal spatial
+backtracking, for windows that straddle a rule-shift. This distinction did not exist anywhere in
+this document's prior sections.
+
+| delta (with_sleep minus no_sleep) | seed0/seg1 | seed0/seg11 | seed0/seg21 | seed1/seg9 | sign pattern (n=4 usable) | exact 2-sided sign-test p |
+|---|---|---|---|---|---|---|
+| `turning_entropy_delta` (existing) | -0.378 | -0.430 | -0.442 | +0.469 | 3 neg, 1 pos | 0.625 |
+| `tortuosity_delta` (existing) | -0.881 | -8.0 | -4.025 | 0.0 (tie) | 3 neg, 1 tie (n=3) | 0.25 |
+| `mean_run_length_delta` (new) | +10.417 | +4.808 | +5.238 | -85.714 | 3 pos, 1 neg | 0.625 |
+| `reversal_rate_delta` (new) | -0.040 | 0.0 (tie) | 0.0 (tie) | 0.0 (tie) | 1 neg, 3 ties (n=1) | 1.0 (uninformative) |
+
+**Stated as plainly as the rest of this document's honest-mixed-result convention: n=4 (or
+fewer after ties) cannot reach conventional significance under a sign test even when every
+available sign agrees — the best case here (`tortuosity_delta`, unanimous 3/3 after excluding a
+tie) is p=0.25. This is a hard sample-size ceiling, not evidence against an effect, and must not
+be read as either.** `reversal_rate` sits at a floor (2-6 reversals per 99 transitions across
+all 10 windows) and is uninformative at this n — a floor-effect finding in its own right, not a
+disconfirmation.
+
+**New, previously unflagged confound, found while extracting spawn positions for the confound
+check this reanalysis added:** in **all 5 matched pairs**, the agent's spawn position differs
+between the `with_sleep` and `no_sleep` arms at the same segment index (Manhattan distances
+5-11 cells on a 12x12 board). `env.reset_to()`'s `layout_continuity_confirmed: true` guarantees
+hazard/resource layout continuity only — spawn point is independently re-rolled per arm's own
+RNG stream each segment (`v3_exq_913_developmental_ecology_fishtank.py:351-355`, safe-spawn
+retry loop). **This is a real, unaddressed confound**: a different starting position (different
+distance to nearest hazard/resource/boundary) can by itself change turning and run-length
+statistics independent of any sleep effect, and it affects every one of the 5 comparisons in
+this data. A separate data-quality note: `seed1/no_sleep/seg9`'s window is near-degenerate (the
+agent moves 3 ticks then sits motionless at one cell for the remaining 96, still emitting a
+constant action label) — not the manifest's already-excluded `path_length=0` pair, but similarly
+artifact-prone and worth reading its row with that caveat.
+
+**Overall read on the extended data, stated at the same calibration as this document's existing
+findings**: weakly-consistent-but-underpowered, now with one new corroborating metric
+(`mean_run_length`, 3/4 pairs favouring `with_sleep`, same direction as the existing
+turning/tortuosity numbers) and one newly-uninformative metric (`reversal_rate`, floor effect),
+plus a genuine new confound (unmatched spawn position) that was not checked before and tempers
+how much weight the whole `sleep_ablation_comparison` block can currently bear. This is
+hypothesis-generating, not confirmatory — consistent with, and not overturning, this document's
+existing Section 3/12 conclusions.
+
+### 13c. Refined hypothesis
+
+> Any post-sleep increase in action-sequence coherence in this substrate is more likely to arise
+> from increased persistence of E3's commitment gate (lower commit-variance -> longer open-loop
+> execution of an already-planned action sequence, reducing per-tick re-scoring) than from a
+> "smoothing" of movement per se, a global reduction in stochasticity (structurally excluded --
+> sleep never touches the noise floor), or preferential consolidation of specifically
+> *successful* behavioural structure (replay sampling is confirmed outcome-agnostic). The
+> commit-gate mechanism's only known sleep-linked trigger is disabled in the Fishtank driver, so
+> if the V3-EXQ-913 signal above is real, it is running through an unflagged, currently
+> unmeasured route -- the single most important open question, not yet the "consolidation of
+> successful structure" story the original visual impression suggested.
+
+**Terminology**: prefer **"action-run coherence"** (behavioural-measurement level) and
+**"commitment-gate persistence"** (mechanistic-claim level) over "smoothness" (spatial, already
+corrected away by the user) or "strategy" (implies interpretation ahead of measurement, per the
+Stage-1/Stage-2 discipline in `thought_intake_2026-08-11_behavioural_diversity_umpire.md`).
+
+### 13d. Forward plan (not performed this session; see chip spawns in Housekeeping)
+
+1. **Fix the spawn-position confound** before trusting any future version of this comparison --
+   match spawn position across arms at each segment index, not only hazard/resource layout.
+2. **Instrument the mechanistic variable directly**: log `E3Selector._running_variance` /
+   commit-gate engagement rate per matched window, so a coherence effect (if confirmed) can be
+   tied to the commit-gate hypothesis rather than left as a correlation between behaviour and
+   an unidentified cause.
+3. **Scale seeds** (2 -> at least 5-8) -- the sign-test ceiling in 13b is a sample-size problem,
+   not a methodology problem.
+4. **Transfer test**: once 1-3 produce a real, well-powered signal, rerun the same ablation in a
+   structurally different ecology to distinguish route memorisation from general reorganisation
+   from noise (three-way outcome, per the user's own framing).
+5. **Blinded umpire**: apply the exact cross-environment discriminability methodology from
+   `thought_intake_2026-08-11_behavioural_diversity_umpire.md` to this pre/post-sleep case --
+   held-out classifier over the full feature vector (turning entropy, tortuosity, run length,
+   reversal rate), tested against a permutation null AND a matched-schedule no-firing control,
+   feature-importance inspection only after Stage-1 discriminability passes.
+
+---
+
 ## Decision log
 
 - 2026-08-10: Grounded the `assert` classifier (MECH-353 blocked-agency, `scheduled_action_block`
@@ -452,3 +606,20 @@ a future finding on one should not be read as resolving the other.
   to localise the whole curiosity->consolidation->competence chain. Amended
   `chip-20260810-fishtank-developmental-ecology` a third time (sleep-vs-no-sleep ablation arm).
   Motivated by direct user follow-on request. (session: angry-heisenberg-e8fec7, worktree)
+- 2026-08-11: Second follow-on (fresh, independent user observation, refined mid-session to
+  action-sequence coherence specifically). Added the E3 commitment-gate persistence mechanistic
+  candidate (new to this thread); code-confirmed policy-chunking-injection and MECH-204
+  precision-recalibration/broadcast are BOTH disabled in the Fishtank driver family (rules two
+  plausible mechanisms out); confirmed noise-floor/temperature structurally untouched by sleep
+  and replay content-selection outcome-agnostic. Extended V3-EXQ-913's existing (never
+  hypothesis-scored) `sleep_ablation_comparison` data with action-label reversal-rate/run-length
+  metrics and a sign test (best case p=0.25, n=4 hard ceiling, not significant); found a genuine
+  new confound (spawn position unmatched across arms in all 5 pairs) that was not previously
+  checked. Net: hypothesis-generating, not confirmatory. Refined hypothesis + terminology
+  recommendation in 13c. Forward plan (13d) chipped, not performed here: fix spawn-position
+  match + instrument commit-variance + scale seeds (`/queue-experiment`); ground the
+  commit-gate-persistence mechanism biologically (`/lit-pull`, distinct from chunking's existing
+  lit-pull); scope a shared, reusable behavioural-trajectory-metrics library/experiment pattern
+  (currently reinvented ad hoc across this document, the reef review, and V3-EXQ-913's own
+  analysis script) as a separate research/design chip, per direct user request.
+  (session: jovial-shannon-35d300, worktree)

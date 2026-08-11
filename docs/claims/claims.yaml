@@ -79636,6 +79636,97 @@
     yet. This claim covers only the solo-organism subset: freeze, orient, and
     approach/withdraw/resume.
 
+- id: MECH-490
+  title: "Sleep-associated action-sequence coherence via E3 commitment-gate persistence: if sleep
+    increases post-sleep action-run coherence (fewer local re-decisions / reversals, longer
+    directionally-persistent action runs) in the Fishtank substrate, the most mechanistically
+    plausible route is increased persistence of E3Selector's commitment gate (lower
+    commit_variance -> longer open-loop execution of an already-committed action sequence,
+    reducing per-tick CEM/softmax re-scoring) -- NOT a global reduction in stochasticity
+    (structurally excluded: sleep never touches the noise floor/temperature), NOT preferential
+    consolidation of specifically successful trajectories (replay sampling is confirmed
+    outcome-agnostic, staleness- or uniform-weighted), and NOT policy-chunking macro-execution
+    (use_chunk_proposal_injection is confirmed off in every Fishtank driver, bit-identical to
+    chunking being absent)."
+  claim_type: mechanism_hypothesis
+  subject: sleep.action_sequence_coherence_via_commitment_gate_persistence
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-11"
+    needs_review: false
+    evidence:
+      from: "reanalysis_V3-EXQ-913_2026-08-11"
+      as_of: "2026-08-11"
+      verdict: "hypothesis_generating -- underpowered, not tested for significance at registration"
+  implementation_phase: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-08-11"
+  depends_on:
+    - MECH-204   # precision recalibration (F1) + Phase 7 broadcast -- the only identified sleep-linked input to E3 commit-variance; CONFIRMED OFF (use_rem_precision_recalibration/use_rem_precision_broadcast both default False and unset) in every Fishtank driver checked. If this claim is eventually confirmed, the causal route is NOT this designed pathway -- open question, not assumed.
+    - SD-017     # SWS/REM sleep-phase parent substrate
+    - MECH-120   # SHY normalisation -- active in the driver; homogenises context-memory slots toward the mean (opposite of "sharpens dominant strategy"); candidate indirect route to E3 scoring consistency, unmeasured
+    - MECH-313   # noise floor / temperature -- cross-referenced as the RULED-OUT alternative (sleep structurally cannot touch it)
+    - MECH-285   # SleepReplaySampler -- cross-referenced as outcome-agnostic (staleness-weighted, not success-weighted), weakening any "consolidates SUCCESSFUL structure" framing
+    - MECH-273   # SelfModelAggregator offline gradient -- cross-referenced as outcome-agnostic (uniform random draw from harm-replay buffer)
+  related_claims:
+    - ARC-071    # policy chunking (MECH-323/324/322) -- sibling mechanism for reduced per-tick re-deciding; RULED OUT for the observed runs (use_chunk_proposal_injection off), not for the architecture generally
+    - Q-055      # sleep consolidation preserve-vs-erode TRAJECTORY-CLASS DIVERSITY -- a related but distinct question (diversity across strategies, not coherence within one execution)
+  location: evidence/planning/sleep_transition_investigation_906_lineage_2026-08-10.md
+  source:
+    - evidence/planning/reef_ecology_strategy_affective_occupancy_review_2026-08-10.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires (a) spawn position matched across WITH_SLEEP/NO_SLEEP
+    arms at each compared segment index (CONFIRMED UNMATCHED in the only existing data,
+    V3-EXQ-913 -- a run with this precondition unmet self-routes substrate_not_ready, not a
+    verdict), and (b) E3Selector commit-variance/commit-gate-engagement logged per matched
+    window, so the behavioural signature can be tied to the mechanism rather than left as an
+    unexplained correlation.
+    CONFIRMING signature: with spawn position matched and commit-variance instrumented, WITH_SLEEP
+    windows show BOTH (i) a directionally consistent lift in action-run coherence (mean run
+    length, turning-entropy/tortuosity reduction) across >=5 seeds at a sign-test or permutation
+    p<0.05, AND (ii) that lift covaries with commit-gate engagement rate/lower commit-variance in
+    the same windows -- behaviour and proposed mechanism must move together, not just the
+    behaviour alone.
+    FALSIFYING signature: the coherence lift (if real) shows NO relationship to commit-gate
+    engagement (mechanism wrong even if behaviour is real); OR a matched "long wake interval, no
+    sleep firing" control shows the SAME coherence gain given equivalent elapsed time/experience
+    (relocates the cause to time/experience accumulation, not sleep); OR the effect does not
+    survive the transfer test to a structurally different ecology (route memorisation, not
+    reorganisation).
+  evidence_quality_note: >
+    Registered 2026-08-11 from a user thought (independent second observation of the same
+    transition, refined mid-session to action-sequence coherence specifically) plus a same-day
+    reanalysis of V3-EXQ-913's existing `sleep_ablation_comparison` data (never previously scored
+    against any claim, claim_ids=[] at run time). Extended with action-label reversal-rate/
+    run-length metrics: n=4 usable matched pairs, best-case sign test p=0.25 (tortuosity, 3/3
+    unanimous after excluding a tie) -- a hard sample-size ceiling, not evidence against an
+    effect. mean_run_length agrees in direction with the existing turning/tortuosity numbers
+    (3/4 pairs favour WITH_SLEEP); reversal_rate is floor-effect uninformative. A previously
+    unflagged confound (unmatched spawn position, all 5 pairs) was found during this reanalysis
+    and is the non-degeneracy precondition above. Hypothesis-generating only -- do not read as
+    supporting evidence for this claim.
+  notes: >
+    Full mechanistic derivation, code citations (e3_selector.py commit-gate, agent.py commitment
+    walk, ree_core/policy/policy_chunking.py MECH-322 sleep-carve-out, ree_core/policy/
+    noise_floor.py absence of sleep writes, ree_core/sleep/replay_sampler.py + self_model_
+    aggregator.py outcome-agnostic sampling) and the full V3-EXQ-913 reanalysis table are in
+    evidence/planning/sleep_transition_investigation_906_lineage_2026-08-10.md Section 13.
+
+    Forward plan (not yet built): fix spawn-position match, instrument commit-variance, scale
+    seeds (chip, /queue-experiment); ground the commit-gate-persistence route biologically
+    (chip, /lit-pull -- distinct from ARC-071/MECH-322's own existing Albouy 2013 lit-pull, which
+    grounds chunking, not this claim); the blinded-umpire forward step reuses the methodology of
+    the SAME-DAY, separately-registered Q-092 (cross-environment behavioural-diversity
+    discriminability) rather than inventing a new statistical framework.
+
+    DO NOT read the V3-EXQ-913 reanalysis as confirming evidence -- n=4, p=0.25 best case, and a
+    genuine unmatched-spawn-position confound affecting every comparison. This claim exists to
+    make the hypothesis and its precondition explicit and falsifiable, not because the existing
+    data supports it.
+
 - id: SD-093
   title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."
   claim_type: design_decision
