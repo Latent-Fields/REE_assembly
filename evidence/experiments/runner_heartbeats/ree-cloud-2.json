@@ -1,8 +1,8 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-11T17:05:05Z",
-  "state": "offline",
+  "last_tick_utc": "2026-08-11T17:20:46Z",
+  "state": "idle",
   "current_exq": null,
   "current_exq_started_utc": null,
   "current_title": null,
@@ -12,11 +12,37 @@
   "seconds_elapsed": null,
   "seconds_remaining": null,
   "recent_lines": null,
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
-  "runner_pid": 925,
-  "runner_version": "r5050 046ce36 2026-08-11",
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-603t",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-899",
+      "result": "FAIL",
+      "completed_at": "2026-08-08T21:48:34.332280+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-244b",
+      "result": "PASS",
+      "completed_at": "2026-08-09T00:20:22.877260+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-908",
+      "result": "PASS",
+      "completed_at": "2026-08-09T13:12:10.260420+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-911",
+      "result": "PASS",
+      "completed_at": "2026-08-09T20:12:09.452607+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-916",
+      "result": "PASS",
+      "completed_at": "2026-08-11T06:49:14.367192+00:00"
+    }
+  ],
+  "runner_pid": 837,
+  "runner_version": "r5052 ff7a6d6 2026-08-11",
   "gpu": {
     "available": false
   },
