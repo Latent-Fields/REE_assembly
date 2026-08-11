@@ -1584,7 +1584,7 @@ function buildSeedBtns() {
   logData.seeds.forEach((s, i) => {
     const btn = document.createElement('button');
     btn.className   = 'navBtn' + (i === seedIdx ? ' active' : '');
-    btn.textContent = `seed ${s.seed}`;
+    btn.textContent = `seed ${s.seed}` + (s.arm ? ` (${s.arm})` : '');
     btn.onclick     = () => { seedIdx = i; episodeIdx = 0; stepIdx = 0; fullRefresh(); };
     wrap.appendChild(btn);
   });
