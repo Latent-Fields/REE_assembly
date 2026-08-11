@@ -1645,3 +1645,4 @@ One line per hourly tick. ASCII only.
 2026-08-11T15:05:20Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
 2026-08-11T16:05:48Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
 2026-08-11T17:06:17Z no eligible item (skipped 241): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-003:skill /governance not allowed
+2026-08-11T18:00:28Z complete IGW-20260810-208 staged->completed outcome=USEFUL_LANDED: SD-RESIDUE-VALENCE-BOUND implemented via a separate session (fishtank-affect-tel
