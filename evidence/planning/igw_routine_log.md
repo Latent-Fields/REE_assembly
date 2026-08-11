@@ -1623,3 +1623,8 @@ One line per hourly tick. ASCII only.
 2026-08-11T02:58:12Z skip IGW-20260811-231: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-11T03:58:58Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
 2026-08-11T03:58:42Z SPAWN IGW-20260811-231 skill=/queue-experiment prio=40 uuid=4716ddbe-8347-484b-ad25-1e07130a7122 pid=43616 worktree=igw-231-proposal-for-mech-236
+2026-08-11T05:00:14Z workset committed (regen -- 239 items, 25 ready, 0 in flight)
+2026-08-11T05:00:24Z auto-defer IGW-20260811-231 hash=0f1dde421782 for 48h (reaped -> completed_resumable)
+2026-08-11T05:00:24Z reaped TASK_CLAIMS igw-auto-igw-231-proposal-for-mech-236-20260811T035910Z (ledger IGW-20260811-231 -> completed_resumable)
+2026-08-11T05:00:25Z GC removed worktree igw-231-proposal-for-mech-236 post-reap (ledger IGW-20260811-231 -> completed_resumable; removed; branch deleted)
+2026-08-11T05:00:01Z no eligible item (skipped 239): IGW-20260811-001:skill /governance not allowed; IGW-20260811-002:skill /governance not allowed; IGW-20260811-006:skill /governance not allowed
