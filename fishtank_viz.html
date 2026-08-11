@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-08-10.1 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-08-11.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -455,6 +455,17 @@
         <div class="barRow" id="rowBlock"><span class="afLbl">assert</span>
           <div class="barOuter"><div class="barInner" id="afBlock" style="width:0%;background:#fb7185"></div></div>
           <span class="afVal" id="afBlockV">—</span></div>
+
+        <div class="afSub" id="subRelief">Relief &amp; safety (MECH-302/303/304)</div>
+        <div class="barRow" id="rowRelief"><span class="afLbl">relief</span>
+          <div class="barOuter"><div class="barInner" id="afRelief" style="width:0%;background:#2dd4bf"></div></div>
+          <span class="afVal" id="afReliefV">—</span></div>
+        <div class="barRow" id="rowSafetyCue"><span class="afLbl">safe cue</span>
+          <div class="barOuter"><div class="barInner" id="afSafetyCue" style="width:0%;background:#38bdf8"></div></div>
+          <span class="afVal" id="afSafetyCueV">—</span></div>
+        <div class="barRow" id="rowSafetyTerrain"><span class="afLbl">safe terr</span>
+          <div class="barOuter"><div class="barInner" id="afSafetyTerrain" style="width:0%;background:#86efac"></div></div>
+          <span class="afVal" id="afSafetyTerrainV">—</span></div>
 
         <div class="afSub" id="subSurprise">Surprise (unsigned prediction error, pre-valence)</div>
         <div class="barRow" id="rowSurprise"><span class="afLbl">surprise</span>
@@ -1324,6 +1335,23 @@ function updateAffect(s, steps) {
   const vBlock = setBar('afBlock', 'afBlockV', 'rowBlock', pick(s, ['z_block']),  chMax(steps, ['z_block'], 0.2));
   document.getElementById('subDrive').style.display =
     (vDrive || vGoal || vResWant || vLike || vVigor || vOver || vBlock) ? 'block' : 'none';
+
+  // Relief (MECH-302 relief_event -- a discrete completion pulse, rendered like
+  // `override` as a 0/1 gate rather than an auto-scaled magnitude) and safety
+  // (MECH-304 safety_cue_signal cosine similarity; MECH-303 safety_terrain_read
+  // passive-terrain query). Graceful: hidden when the log has none of these
+  // fields -- every fishtank driver before V3-EXQ-916 (including 664) never
+  // enabled this substrate, so older logs simply don't carry them.
+  const vRelief = setBar('afRelief', 'afReliefV', 'rowRelief',
+                          pick(s, ['relief_event']), 1.0);
+  const vSafeCue = setBar('afSafetyCue', 'afSafetyCueV', 'rowSafetyCue',
+                           pick(s, ['safety_cue_signal']),
+                           chMax(steps, ['safety_cue_signal'], 0.5));
+  const vSafeTerrain = setBar('afSafetyTerrain', 'afSafetyTerrainV', 'rowSafetyTerrain',
+                               pick(s, ['safety_terrain_read']),
+                               chMax(steps, ['safety_terrain_read'], 1.0));
+  document.getElementById('subRelief').style.display =
+    (vRelief || vSafeCue || vSafeTerrain) ? 'block' : 'none';
 
   // Surprise (VALENCE_SURPRISE, unsigned prediction-error magnitude -- the
   // pre-valence channel excite/dread are signed splits of). Graceful: hidden when
