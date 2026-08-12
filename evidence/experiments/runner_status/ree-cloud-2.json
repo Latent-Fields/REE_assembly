@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 838,
   "runner_started_at": "2026-08-12T04:40:48.027333+00:00",
-  "last_updated": "2026-08-12T04:40:49.442922+00:00",
+  "last_updated": "2026-08-12T05:11:15.486723+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -3428,6 +3428,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_918a_sd_residue_valence_bound_validation_20260812T044049Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 1.4
+    },
+    {
+      "queue_id": "V3-EXQ-923",
+      "backlog_id": "",
+      "claim_id": "MECH-267",
+      "title": "MECH-267 GOV-FANOUT-1 H1 leg: mode-conditioning content-persistence at num_cem_iterations=2 (iteration-count discrimination, diagnostic)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | [v3_exq_923] overall: FAIL label=h1_refuted_gaps_at_iters2_as_flat_as_iters3 (non_degenerate=True, C0=True, C_H1(iters=2)=False, C1_context(iters=3)=False, both_mechanisms_active=True, mean_raw_std_gaps_diagnostic={'internal_planning_minus_external_task': 0.054585663601756096, 'external_task_minus_internal_replay': 0.0918179708532989, 'internal_replay_minus_offline_consolidation': 0.031088031238565843}, mean_raw_std_gaps_h1_probe={'internal_planning_minus_external_task': -0.0028445196493218344, 'external_task_minus_internal_replay': 0.002281867153942585, 'internal_replay_minus_offline_consolidation': -5.697505548596382e-06}, mean_raw_std_gaps_production={'internal_planning_minus_external_task': 0.0007764140299210946, 'external_task_minus_internal_replay': 0.002416704765831431, 'internal_replay_minus_offline_consolidation': -0.003747694892808795}) (9.4s) | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-923 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-923.json",
+      "started_at": "2026-08-12T04:55:03.170295+00:00",
+      "completed_at": "2026-08-12T04:55:13.706337+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_923_mech267_gov_fanout1_h1_iteration_count/v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 10.5
+    },
+    {
+      "queue_id": "V3-EXQ-924",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "E3 score-variance decomposition, remeasured post-SD-E3-SCORER-COMPLETION scorer fix (fixed vs legacy A/B)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-924 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-924.json",
+      "started_at": "2026-08-12T05:05:22.966458+00:00",
+      "completed_at": "2026-08-12T05:11:15.484735+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_924_e3_score_variance_decomp_scorer_fix_remeasure_20260812T051115Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 352.5
     }
   ]
 }
