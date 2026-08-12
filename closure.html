@@ -1509,7 +1509,7 @@ function computePlanOrder() {
   ids.forEach((id, i) => { origIdx[id] = i; });
 
   // weighted undirected plan adjacency (count of cross-links between two plans)
-  const SEP = ' ';
+  const SEP = '\x00';
   const wkey = (a, b) => (a < b ? a + SEP + b : b + SEP + a);
   const W = {};
   const nbrW = {};
