@@ -1,0 +1,158 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_921_mech490_sleep_commitgate_spawn_matched",
+  "run_id": "v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-12T15:25:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-490"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech490_precondition_unmet",
+    "combination_rule": "evidence_direction = 'non_contributory' if non_degenerate is False, else 'supports' if (mean_run_length sign-test p<0.05 across >=5 seeds) AND (commit_gate_engagement_rate_delta Pearson r >= +0.3 with mean_run_length_delta), else 'weakens' if the coherence lift is significant but does NOT covary with commit-gate engagement, else 'non_contributory' (lift itself not significant -- underpowered/null, informative neither way).",
+    "criteria": [
+      {
+        "name": "core_channels_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "harm_pathway_trained",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "layout_continuity_confirmed",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "sleep_ablation_engaged",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "spawn_match_rate_met_precondition",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "commit_gate_instrumented",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "freeze_not_locked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "all_seed_arm_verdicts_pass",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_s",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_un",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_harm_a",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_drive",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_goal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_vigor",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "channel_override",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_z_block",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_excite",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "channel_dread",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "note": "outcome PASS/FAIL is a MECHANICAL run-health verdict (core channels vary, harm-pathway trained, layout continuity + sleep ablation engaged) and is INDEPENDENT of evidence_direction, which is the scientific MECH-490 verdict. 14 matched WITH_SLEEP-vs-NO_SLEEP comparisons across 6 seeds; spawn_match_rate=0.786; claim_ids=['MECH-490']; evidence_direction=non_contributory."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e20e55a6428ae9a45dea97a900211d7681aa2045e39e5d7ed3bb6eddb741fd50",
+  "substrate_commit": {
+    "commit": "4d32d085d88d31ce87cd90ddf99d572257e3409f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 300054,
+    "ticks_active": 199911,
+    "writer_calls": 171215,
+    "active_frac": 0.6662500749865025,
+    "writer_defect": false,
+    "n_agents": 12,
+    "goal_state_present": true
+  }
+}
