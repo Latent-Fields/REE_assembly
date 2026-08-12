@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-10T16:18:14Z",
+  "generated_at": "2026-08-12T18:25:41Z",
   "counts": {
-    "total": 999,
-    "reading_drift": 116,
-    "unstamped": 2,
+    "total": 1006,
+    "reading_drift": 117,
+    "unstamped": 7,
     "needs_review": 1,
-    "never_reviewed": 978,
-    "provenance_drift": 260
+    "never_reviewed": 985,
+    "provenance_drift": 261
   },
   "reading_drift": [
     {
@@ -319,6 +319,14 @@
       "derived_reading": "candidate/substrate_conditional",
       "diffs": [
         "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-140",
+      "stored_reading": "candidate/standard",
+      "derived_reading": "candidate",
+      "diffs": [
+        "reading: stored='candidate/standard' derived='candidate'"
       ]
     },
     {
@@ -946,6 +954,26 @@
     },
     {
       "claim": "MECH-465",
+      "would_derive": "candidate/substrate_conditional"
+    },
+    {
+      "claim": "Q-092",
+      "would_derive": "open"
+    },
+    {
+      "claim": "Q-093",
+      "would_derive": "open/substrate_conditional"
+    },
+    {
+      "claim": "MECH-491",
+      "would_derive": "candidate/substrate_conditional"
+    },
+    {
+      "claim": "ARC-127",
+      "would_derive": "candidate/substrate_conditional"
+    },
+    {
+      "claim": "SD-100",
       "would_derive": "candidate/substrate_conditional"
     }
   ],
@@ -1917,6 +1945,7 @@
     "MECH-483",
     "SD-099",
     "MECH-489",
+    "MECH-490",
     "SD-093",
     "SD-092",
     "MECH-485",
@@ -1925,6 +1954,7 @@
     "INV-097",
     "MECH-486",
     "Q-091",
+    "Q-092",
     "INV-098",
     "INV-099",
     "INV-100",
@@ -1936,7 +1966,12 @@
     "SD-097",
     "SD-098",
     "MECH-488",
-    "GOV-FAILLOC-1"
+    "GOV-FAILLOC-1",
+    "Q-093",
+    "GOV-BEHADJ-1",
+    "MECH-491",
+    "ARC-127",
+    "SD-100"
   ],
   "provenance_drift": [
     {
@@ -2207,7 +2242,7 @@
     {
       "claim": "MECH-074d",
       "stored_from": "failure_autopsy_V3-EXQ-906a_894b_2026-08-09",
-      "derived_from": "failure_autopsy_V3-EXQ-906a_894b_2026-08-09#V3-EXQ-894b"
+      "derived_from": "failure_autopsy_V3-EXQ-894c_2026-08-11"
     },
     {
       "claim": "MECH-075",
@@ -2362,7 +2397,7 @@
     {
       "claim": "SD-011",
       "stored_from": "failure_autopsy_V3-EXQ-642_2026-06-06",
-      "derived_from": "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
+      "derived_from": "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12#V3-EXQ-917"
     },
     {
       "claim": "MECH-111",
@@ -2486,7 +2521,7 @@
     },
     {
       "claim": "MECH-140",
-      "stored_from": "failure_autopsy_V3-EXQ-710_2026-07-03",
+      "stored_from": "failure_autopsy_V3-EXQ-710_2026-07-20",
       "derived_from": "failure_autopsy_20260329-legacy-cluster_2026-08-08#V3-EXQ-163"
     },
     {
@@ -2802,7 +2837,7 @@
     {
       "claim": "MECH-267",
       "stored_from": "decision:MECH-267@2026-04-25T15:42:09.107851Z",
-      "derived_from": "failure_autopsy_V3-EXQ-869a_2026-08-03"
+      "derived_from": "failure_autopsy_V3-EXQ-923_2026-08-12"
     },
     {
       "claim": "SD-036",
@@ -3222,7 +3257,12 @@
     {
       "claim": "MECH-489",
       "stored_from": "failure_autopsy_V3-EXQ-910_2026-08-10",
-      "derived_from": "failure_autopsy_V3-EXQ-910_2026-08-10"
+      "derived_from": "failure_autopsy_V3-EXQ-910a_2026-08-11"
+    },
+    {
+      "claim": "MECH-490",
+      "stored_from": "reanalysis_V3-EXQ-913_2026-08-11",
+      "derived_from": "v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_v3"
     },
     {
       "claim": "SD-092",

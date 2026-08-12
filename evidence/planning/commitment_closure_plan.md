@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -38,10 +38,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -56,10 +56,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -75,10 +75,10 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -87,7 +87,8 @@ closure_plan:
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342]
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS", "conversion_ceiling_campaign:P2-rootC"]
-      last_updated: 2026-08-10
+      last_updated: 2026-08-12
+      governance_2026_08_12: "Stale-since-review acknowledgement + routing update (no status change; /governance cycle sd-016-h3-algorithm-3370cd). Flagged by check_closure_drift.py date-aware section: confirmed failure_autopsy_V3-EXQ-923_2026-08-12 reclassified MECH-267, which is in this node unblocks set, after the 2026-08-10 last_updated. Substance: 923 ELIMINATES H1 (iteration-count) of the GOV-FANOUT-1 portfolio opened by failure_autopsy_V3-EXQ-869a_2026-08-03 -- production-settings content wash-out is not iteration-count dependent (gaps flat by iters=2, unchanged at iters=3). non_contributory, consistent with the long-standing pattern this node history records for MECH-090/MECH-267 legs (eliminate a rival rather than falsify). What IS new since 2026-08-10: the portfolio is down to TWO live loci, H2 (mode-dependent term in the CEM elite-selection value function) and H3 (hard-partitioned per-mode candidate pools), NEITHER built, and substrate_queue entry SD-MECH267-CEM-SELECTION-FIX was created this cycle to own them -- deliberately unscoped between H2/H3 per the 2026-08-12 user decision (neither costed). GAP-4 stays in-progress; the live: head already re-projected to the 923 autopsy via Step 3c pre-heal, so only last_updated is bumped here. PROMOTES/DEMOTES NOTHING beyond the MECH-267 evidence_quality_note applied in claims.yaml this cycle."
       governance_2026_08_10: "Stale-since-review acknowledgement only (no status change; /governance cycle queue-depth-low-ops-aac785). Flagged by check_closure_drift.py's date-aware section for 4 confirmed autopsies landing after the 2026-06-25 last_updated, touching this node's scope_claims: failure_autopsy_V3-EXQ-871_2026-08-02 (MECH-090, non_contributory/measurement_test_design_defect, routing=queue-experiment), failure_autopsy_V3-EXQ-869_2026-08-02 (MECH-267, non_contributory/competence_implementation_gap, routing=implement-substrate), failure_autopsy_V3-EXQ-869a_2026-08-03 (MECH-267, non_contributory/competence_implementation_gap, routing=queue-experiment), plus one further reclassification the drift report's summary truncated. All three checked directly are non_contributory (no weakens/supports) -- consistent with the long-standing pattern in this node's history where MECH-090/MECH-267 legs repeatedly self-route substrate_not_ready_requeue rather than falsify. None changes GAP-4's load-bearing status. GAP-4 stays in-progress; last_updated bumped to acknowledge."
       governance_2026_06_25: "Stale-since-review acknowledgement only (no status change; session governance-cycle-20260625T0420Z). Flagged because failure_autopsy_V3-EXQ-466d_2026-06-24 (applied by governance-cycle-20260624T2249Z) reclassified SD-034 -> non_contributory, and SD-034 is in this node's unblocks set. That reclassification is the residue-DISCHARGE leg (part c of the SD-034 done-token), which the 466d autopsy itself called structurally DISTINCT from the MECH-445/446 latch/beta de-commit lineage the 460e..460l autopsies (this node's owner_exq) test -- and it was already reconciled last cycle onto the SIBLING child node commitment_closure:GAP-4-battery (owner repointed 466d -> V3-EXQ-466e). THIS node (GAP-4) tracks the (b) de-commit-conversion lineage per governance_2026_06_23b, which the 466d/SD-034 discharge result does not touch. GAP-4 stays in-progress on the f_dominance_conversion_ceiling amend. last_updated bumped to acknowledge."
       governance_2026_06_23b: "SPLIT (session closure-map-enhance-20260623T043407Z; plan-frontmatter only, NO claims.yaml/queue change). This node's title bundles TWO sub-questions whose work has diverged: (a) OCD-BATTERY COMPLETENESS (the 460b/461/463b/464b/466b/467b/468b *b behavioural cohort for SD-034/MECH-266/267/268 + MECH-342 ecological) and (b) the MECH-090/445/446 COMMIT-ENTRY / DE-COMMIT CONVERSION lineage (the 460h..460l F-dominance lineage, now cross-linked to conversion_ceiling_campaign:P2-rootC). The ~600-word owner_exq is entirely the (b) lineage; (a) is owed-but-unqueued and invisible. Surfaced (a) as a child node commitment_closure:GAP-4-battery so the owed battery arms are visible; THIS node (GAP-4) now tracks the (b) de-commit-conversion lineage. No status change to GAP-4 (in-progress, gated on the f_dominance_conversion_ceiling amend the re-derive brake routed -- under active build by 2 concurrent /implement-substrate sessions)."
@@ -120,10 +121,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -132,7 +133,8 @@ closure_plan:
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-342]
       depends_on: ["commitment_closure:GAP-4", "commitment_closure:GAP-3", "commitment_closure:GAP-11"]
       cross_plan_link: ["sd033_governance:CHK-SD034"]
-      last_updated: 2026-08-10
+      last_updated: 2026-08-12
+      governance_2026_08_12: "Stale-since-review acknowledgement only (no status change; /governance cycle sd-016-h3-algorithm-3370cd). Same trigger as the sibling GAP-4 note: confirmed failure_autopsy_V3-EXQ-923_2026-08-12 reclassified MECH-267 after this node 2026-08-10 last_updated. This node tracks the *b BEHAVIOURAL cohort (460b/461/463b/464b/466b/467b/468b); 923 is a MECHANISM-locus discrimination leg on the CEM elite-refit, not a behavioural-cohort result, so it does not advance or retire any *b leg and changes nothing about this node owed work. Recorded so the acknowledgement is explicit rather than inferred from the sibling. Stays in_progress; last_updated bumped. PROMOTES/DEMOTES NOTHING."
       governance_2026_08_10: "Stale-since-review acknowledgement only (no status change; /governance cycle queue-depth-low-ops-aac785). Flagged for failure_autopsy_V3-EXQ-869_2026-08-02 and failure_autopsy_V3-EXQ-869a_2026-08-03 (both MECH-267, non_contributory/competence_implementation_gap). MECH-267 is one of the commitment-DEPENDENT arms this node's resume_condition already names as deferred-blocked on the incomplete BG commitment layer -- a non_contributory result there is consistent with, not new information against, the existing block. Node stays in_progress as battery-incomplete; last_updated bumped to acknowledge."
       resume_condition: "466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery arm is DONE; the residual node openness is the commitment-DEPENDENT arms (461/464b/467b/468b for MECH-266/267/268, 629-lineage for MECH-342), which the standing don't-queue-commitment-dependent-behavioural rule defers until the BG commitment layer is complete (blocked-on-upstream). Node stays in_progress as battery-incomplete, NOT as discharge-arm-pending."
       governance_2026_06_25: "OWNER 466e RAN terminal PASS/supports 2026-06-25T03:02Z (manifest v3_exq_466e_satisficing_residue_discharge_behavioural_20260625T030205Z_v3; supersedes V3-EXQ-466d). The 466d harness gap is FIXED: sd034_satisficing_discharge_confirmed -- all three load-bearing criteria PASS and non_degenerate (C1_n_closures, C2_discharge_events, C3_off_no_closure_no_discharge), and the new residue-field-populated non-vacuity gate (ON residue_active_peak >= 1 on >= 2/3 seeds) is MET, so C2 now fires genuinely rather than from the 466d empty active_mask. SD-034 records a clean supports for the residue-discharge leg (part c of the done-token). APPLIED (user-approved 'Apply supports + supersede 466d'): SD-034 evidence supports (auto-scored); 466d manifest -> evidence_direction:superseded (whole run scoring-excluded); SD-034 STAYS provisional + pending_retest_after_substrate=True (the de-commit-authority lineage GAP-4/460h..460l still owes its retest -- a single discharge-leg PASS does not clear the claim's broader retest debt). 466e marked reviewed. Node STAYS in_progress: the SD-034 discharge arm is delivered, but the MECH-266/267/268/342 commitment-dependent arms remain deferred-blocked on the incomplete BG commitment layer (don't-queue rule). This is Case 3 in closure-drift terms -- the owner_exq 466e reached terminal PASS, but the node is legitimately non-terminal pending those deferred successor arms (blocked-on-upstream BG commitment layer), NOT drifted. (session governance-cycle-20260625T0420Z)"
@@ -143,10 +145,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -161,10 +163,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -178,10 +180,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -196,10 +198,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -229,10 +231,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -247,10 +249,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -266,10 +268,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "weakens/competence_implementation_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-12"
+        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        verdict: "non_contributory/standard"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:

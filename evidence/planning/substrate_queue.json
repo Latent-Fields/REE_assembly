@@ -70,7 +70,7 @@
     }
   },
   "last_seen_session": "fishtank-max-episode-steps",
-  "last_updated_utc": "2026-08-10T19:29:56Z",
+  "last_updated_utc": "2026-08-12T18:24:49Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1773,6 +1773,14 @@
           "experiment_type": "v3_exq_894b_mech074d_bla_trainable_attribution_head",
           "metric": "C2 context_jaccard_gap stays at 0/3 seeds in both ARM_HEAD_TRAINED (914 updates) and ARM_HEAD_TRAINED_LONG (1998 updates); delta vs fixed rule -0.006 / -0.025 respectively -- training budget ruled out, loss-term balance implicated by the module's own docstring",
           "target": "context_jaccard_gap > 0.05 on >=2/3 seeds under a trainable head with a retuned entropy_weight/MSE balance",
+          "resolved": "superseded",
+          "resolved_note": "894b's target ('retuned entropy_weight/MSE balance recovers C2') is now itself tested and refuted by 894c across the full swept range; superseded by this run's narrower target (context-representation/architecture investigation, not a further scalar retune)."
+        },
+        {
+          "run_id": "v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3",
+          "experiment_type": "v3_exq_894c_mech074d_bla_entropy_weight_sweep",
+          "metric": "jaccard_context_gap (C2) fails to clear 0.05 margin in 13/15 scored cells; within-context and cross-context Jaccard similarity are IDENTICAL (1.0000 exactly) in 10/15 cells, indicating the attribution head has converged to a fully deterministic, context-invariant target-set selection rather than a graded loss of context-sensitivity. Docstring's predicted C1-vs-C2 entropy_weight tradeoff not observed (spearman_mass_excess_vs_entropy_weight=-1.0, opposite predicted sign).",
+          "target": "an entropy-weight/loss-formulation change, OR a verified context-discriminating input signal to the attribution head, that clears C1 AND C2 on >=2/3 seeds without relying on scalar loss-term retuning alone",
           "resolved": "open"
         }
       ],
@@ -1780,7 +1788,7 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd035-amygdala-2026-04-21",
       "implemented_utc": "2026-04-21T00:00:00Z",
-      "last_seen_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "sd-016-h3-algorithm-3370cd",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",
@@ -1815,8 +1823,8 @@
       "validation_experiment": "V3-EXQ-473 + V3-EXQ-474",
       "severity": "degrading",
       "substrate_paths": [
-        "ree_core/amygdala/bla.py",
-        "ree_core/agent.py"
+        "ree_core/amygdala/attribution_head.py",
+        "ree_core/amygdala/bla.py"
       ],
       "status_note_addendum_20260808": "V3-EXQ-894/894a (2 independent experiments) show BLAAnalog's attribution gate does not respond to PE-threshold recalibration -- next build owed is a trainable/learnable attribution head (see failure_record). Recommended by failure_autopsy_V3-EXQ-894a_2026-08-08.",
       "status_note_addendum_20260809": "BUILT 2026-08-09: the trainable attribution head MECH-074d deferred is landed as ree_core/amygdala/attribution_head.BLAAttributionHead (ree-v3 25e04cf5f5 + d2c8d6f2f0), off by default via bla_attribution_head='contribution_threshold' so trunk is bit-identical. Validation V3-EXQ-894b queued (ree-v3 3470eb16b6 + cb3dafe3d9), same C1/C2 instrument as 894/894a, smoke PASS. failure_record entry moved open -> built_pending_retest; it is NOT resolved until governance reads 894b's result. Two measured constraints worth knowing before touching the head: cosine scoring is load-bearing (a raw dot product over ContextMemory's 0.01 slot init gives EXACTLY uniform attention), and the prediction loss must be normalised by the running target variance (raw MSE was ~100x below the entropy term). Instrument precondition: the legacy ContextMemory write path homogenises the slot bank to off-diagonal cosine 1.0000 within ~24 episodes, which defeats ANY attribution rule -- validation must restore a differentiated store per episode (894a's harness does) or set contextmemory_gated_content_write=True. STILL OWED: the MECH-074d implementation_note in claims.yaml was NOT written -- session mech-322/sd009-897-followon held the claims.yaml claim and the arbitration verdict was binding; see docs/architecture/sd_035_amygdala_analog.md 'Second pass: trainable attribution head' for the full record in the meantime."
@@ -7109,7 +7117,7 @@
       "sd_id": "SD-RESIDUE-VALENCE-BOUND",
       "title": "ResidueField RBFLayer.update_valence(): clamp/decay the unbounded valence accumulator",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
+      "status": "implemented",
       "ready": true,
       "implemented_at": "2026-08-11",
       "implementation_note": "Accumulator clamp/decay landed (ree-v3 CLAUDE.md 'SD-RESIDUE-VALENCE-BOUND' entry; ResidueConfig.valence_bounding_enabled, default off/no-op). Validation V3-EXQ-918 queued (diagnostic, claim_ids=[]). SCOPE: this covered ONLY the accumulator-bound half of this entry's failure_record/substrate_paths at the time -- the residue_wanting orphaned-writer half (agent.py::update_benefit_salience / update_schema_wanting never called from the 906-family driver) was explicitly NOT fixed here; it was traced to be an experiment-script gap (no ree_core step-loop exists to wire it into), out of /implement-substrate's scope per ree-v3/CLAUDE.md's mandatory skill-path rule. That half is now RESOLVED separately: ree-v3 26260a519634 (V3-EXQ-916a, experiments/v3_exq_916a_relief_safety_fishtank_showcase.py) wires residue_wanting's writer calls into the driver's step loop; the same landing also fixed an independent benefit_exposure read-wrong-dict + use_proxy_fields-gated defect found lineage-wide in the 664-derived fishtank family (fixed in 916a only, not retroactively in historical predecessors). See failure_record below for the per-run resolution.",
@@ -7142,7 +7150,11 @@
         "ree_core/agent.py::update_schema_wanting"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "queue-depth-low-ops-aac785"
+      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "validating_runs": [
+        "v3_exq_918a_sd_residue_valence_bound_validation_20260812T044049Z_v3"
+      ],
+      "validation_note_2026_08_12": "VALIDATED by V3-EXQ-918a (confirmed failure_autopsy_V3-EXQ-918a_2026-08-12, evidence_direction=supports). Unit-level reproduction of BOTH the original unbounded-accumulator bug (OFF arm, bit-identical to the pre-fix +=) and the fix (ON arm, clamped to exactly valence_clamp_abs), across 3 channels x 3 seeds, with a met readiness precondition ruling out a silent-no-op false-bounded reading. status implemented_pending_validation -> implemented."
     },
     {
       "sd_id": "theta-buffer-phase-aware-summary",
@@ -7265,6 +7277,111 @@
       ],
       "validation_experiment": "None queued by this session -- the actual uncensored-single-life survival experiment that consumes this kwarg is separate /queue-experiment follow-on work, chipped rather than built here (out of this chip's scope by explicit instruction).",
       "origin": "REE_assembly/evidence/planning/organism_lifespan_development_review_906_lineage_2026-08-10.md Section 10 item 1 (uncensored survival-to-death Fishtank successor design). V3-EXQ-912 (queued 2026-08-10, ree-v3 a3d36d4878) worked around this gap's prior absence with a segment-count scaling design instead of a true single-segment uncensored design; see that experiment's module docstring 'SUBSTRATE READINESS FINDING' section."
+    },
+    {
+      "sd_id": "SD-MECH267-CEM-SELECTION-FIX",
+      "title": "Fix MECH-267 mode-content wash-out in HippocampalModule CEM elite-refit (locus TBD: mode-aware value-function term or partitioned candidate pools)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-267"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3",
+          "experiment_type": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count",
+          "metric": "mean pairwise raw_std gaps at num_cem_iterations=2 (C_H1): -0.0028 / 0.0023 / ~0.000006, vs FLOOR_PRODUCTION=0.01",
+          "target": "gaps must clear 0.01 at some intermediate iteration count between 1 (clean, 0.031-0.092) and 3 (washed out, per 869a) to support H1; none does -- flat by iters=2, unchanged at iters=3",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "V3-EXQ-869/869a/923 eliminated three candidate explanations for why mode-conditioned proposal content survives at num_cem_iterations=1 but washes out by iterations=2-3: noise-scale-only (869), noise-scale+horizon-depth together (869a), and the iteration count itself (923). Two loci remain, neither built: H2 -- add an explicit mode-dependent term to the CEM elite-selection value function (not merely a scoring-window depth, which is what horizon-depth already does); H3 -- hard-partition CEM candidate pools per operating_mode so elite-refit never mixes candidates across modes. Unscoped between the two per 2026-08-12 user decision (neither has been costed) -- a future session should scope feasibility for both before committing to a build, or build both and re-measure C1 at iters=3 for each.",
+      "priority": 1,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/hippocampal/module.py"
+      ],
+      "added_session": "sd-016-h3-algorithm-3370cd",
+      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "added_utc": "2026-08-12T18:24:49Z",
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-923_2026-08-12.json"
+    },
+    {
+      "sd_id": "SD-MECH303-THRESHOLD-SOURCING",
+      "title": "Give MECH-303's contextual_safety_harm_threshold a DEDICATED proximity-anticipatory harm signal, decoupled from SD-022 damage-sourced z_harm_a",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-303"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+          "experiment_type": "v3_exq_917_mech303_harm_threshold_calibration_battery",
+          "metric": "damage_sourced (production default) AUC safe-vs-unsafe capped at 0.52 (chance) across all 18 swept thresholds (0.02-0.8); no threshold both reachable and discriminating",
+          "target": "a threshold value and/or sourcing convention under which the live MECH-303 gate is both reachable (fires on a meaningful tick fraction) and discriminates safe from hazardous contexts (AUC notably >0.5) under the PRODUCTION sourcing convention",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "ROUTING DECIDED 2026-08-12 (user-adjudicated, /governance): implement option (a) -- a DEDICATED proximity-anticipatory signal for MECH-303's gate -- NOT option (b), a threshold retune on the existing damage-sourced signal. V3-EXQ-917 found the production default (damage_sourced, SD-022 body-damage) never clears chance-level (AUC<=0.52) safe-vs-unsafe discrimination at any of 18 tested thresholds, while the legacy proximity_ema_sourced signal (limb_damage_enabled=False) reaches AUC 0.84-0.97 with reachability 0.23-0.98 across thresholds 0.4-0.8. Option (b) was REJECTED because damage_sourced is load-bearing for SD-022's own body-damage-tracking purpose and for other z_harm_a consumers, so re-sourcing the shared signal would fix this gate by breaking theirs -- a SECOND harm signal is the correct shape, consistent with the SD-011 dual-stream separation (sensory-discriminative proximity/intensity vs affective-motivational accumulated deviation). Build a proximity-EMA-style anticipatory signal that MECH-303's specific gate consumes, leaving every existing z_harm_a consumer untouched. MUST include an audit of which production drivers (764, 520, 916/916a, and any future driver enabling use_contextual_safety_terrain) consume which signal, plus a threshold calibrated into the reachable+discriminating band that 917 measured for the anticipatory signal.",
+      "priority": 2,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/utils/config.py",
+        "ree_core/environment/causal_grid_world.py",
+        "ree_core/agent.py"
+      ],
+      "added_session": "sd-016-h3-algorithm-3370cd",
+      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "added_utc": "2026-08-12T18:24:49Z",
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json"
+    },
+    {
+      "sd_id": "SD-QUEUE-SEED-ENFORCEMENT",
+      "title": "Enforce queue-declared seed count into actual --seeds execution (validate_queue.py / experiment_runner.py)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_912_uncensored_survival_fishtank_20260810T190239Z_v3",
+          "experiment_type": "v3_exq_912_uncensored_survival_fishtank",
+          "metric": "manifest seeds=[0] (n_seeds=1) despite queue entry declaring \"seeds\": 2; n_segments_total=60 not designed 120; n_uncensored_deaths_total=4 < MIN_UNCENSORED_DEATHS_TOTAL=10, driving the FAIL",
+          "target": "queue-declared seed count matches actually-executed seed count for every multi-seed queue entry, either by runner enforcement or a validate_queue.py gate",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3",
+          "experiment_type": "v3_exq_920_uncensored_survival_single_life_fishtank",
+          "metric": "only 1 of the pre-registered 8 seeds executed; the queue entry correctly declared \"seeds\": 8. SECOND independent occurrence of the same defect within two days, on a different driver -- this is systemic, not a one-off authoring slip. NOTE the manifest's own self-route label 'single_life_uncensored_survival_still_censoring_dominated' is INCORRECT and must not be read as a measurement finding: pct_right_censored_pooled=0.0 (literally zero censoring).",
+          "target": "same as above -- declared seed count is enforced, so a seed-count shortfall cannot masquerade as a scientific FAIL",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "experiment_queue.json's \"seeds\": N field is consumed ONLY by experiment_runner.py's _run_axis_count for progress-bar/ETA denominators -- never translated into a --seeds CLI arg. A driver's own argparse default is the sole source of truth for how many seeds actually run, and validate_queue.py never cross-checks the declared count against either an explicit args --seeds list or the target script's own argparse default. Fix: either (a) have the runner synthesize --seeds 0..N-1 from the queue's seeds count when no explicit args are given, or (b) add a validate_queue.py check that a queue entry with \"seeds\": N>1 and no explicit --seeds in args, targeting a script whose own default has fewer than N entries, is flagged/blocked. V3-EXQ-912 hit this (queued seeds=2, ran seeds=[0]) and V3-EXQ-920 hit it independently (queued seeds=8, ran 1); sibling V3-EXQ-913 avoided it only because its author happened to set SEEDS_DEFAULT=[0,1] correctly. IMPACT NOTE: this defect silently converts an under-powered run into a scientific FAIL, so it can corrupt adjudication of ANY multi-seed experiment, not just the two that surfaced it.",
+      "priority": 1,
+      "severity": "degrading",
+      "substrate_paths": [
+        "experiment_runner.py",
+        "validate_queue.py",
+        "experiments/v3_exq_912_uncensored_survival_fishtank.py"
+      ],
+      "added_session": "sd-016-h3-algorithm-3370cd",
+      "last_seen_session": "sd-016-h3-algorithm-3370cd",
+      "added_utc": "2026-08-12T18:24:49Z",
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-912-913-fishtank-cluster_2026-08-11.json"
     }
   ],
   "schema_version": "substrate_queue/v2"

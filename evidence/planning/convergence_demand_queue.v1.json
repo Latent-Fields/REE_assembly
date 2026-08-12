@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-07-18T07:22:38Z",
+  "last_updated_utc": "2026-08-12T18:24:49Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -307,6 +307,47 @@
         "MECH-461"
       ],
       "last_known_state_note": "Appended by /governance cycle 2026-07-18 Sense pass from the confirmed cluster autopsy failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18 (non_contributory / competence_implementation_gap; re-derive brake FIRED 7th -- REFUSE further config/env/credit/capacity re-queue). Qualifies as mechanism-unclear, NOT merely awaiting a run. Sense-only: no intake run, no claims registered, no REE_convergence thread opened. COORDINATION: the successor GOV-FANOUT-1 portfolio (H-bc-prior vs H-approach-primitive) is the live discrimination; an intake should INFORM which competence-directed dependency to build, never pre-empt the discrimination or trigger a blind build (the substrate_queue entry mech457_competence_bootstrap_explorer is blocked_pending_discrimination for exactly that reason). || MINE+REGISTER COMPLETE 2026-07-18 (session hopeful-mcclintock-9b9948). Biology precondition discharged FIRST per biology_before_formal_definitions: evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/ (8 sources; Dominici 2011 innate motor-primitive basis retained-and-augmented across 5 species, Zeng 2021 self-generated-movement closed loop, Ahmadlou 2021 ZIm reward-independent investigatory drive, Kesner 2022 seeking-as-environment-prediction-error, Szczypka 2001 DA-deficient mice starve with perception/motor/hedonics intact, Mackevicius 2023 untutored self-organisation + tutor binding, Veit 2023 ghost control matching a live conspecific, Volman 1995 untutored song structured-but-abnormal). REGISTERED: MECH-459 (return-scale invariance blocks actor bootstrap -- REE stacks TWO two-sided normalisers, r/running_std then per-episode (adv-mean)/std, forming a scale-invariance operator that divides out magnitude levers BY CONSTRUCTION and re-amplifies a zero-forage episode to a unit-variance noise gradient; DreamerV3 corrective = stationary symlog + one-sided max(1,Per95-Per5) + twohot/CE critic), MECH-460 (transient behavioural-prior bootstrap -- the prior supplies tractable EXPLORATION primarily, with value-side grounding and diversity-preservation separable; REE already owns in-substrate demonstrators LocalViewGreedyPolicy/OraclePolicy so no permanent external demonstrator is needed; JSRL h->0 rollout handoff is the only strong transience construct in the literature), MECH-461 (innate action-primitive basis PLUS a reward-independent engagement drive -- the conjunction, with the Zeng closed-loop requirement that the drive output must train something). COORDINATION HONOURED: no build licensed, no experiment queued, V3-EXQ-780/781 left untouched as claimed, mech457_competence_bootstrap_explorer stays blocked_pending_discrimination, and hypothesis_space_registry.v1.json NOT amended -- MECH-459 is a THIRD route belonging to neither live leg, and whether competence_floor gains a third ALIVE hypothesis is deliberately left to /governance under the GOV-FANOUT-1 growth contract. MECH-460 and MECH-461 were registered as an EVEN-HANDED pair so the intake does not bias the discrimination toward the leg that already has the 32.72 existence proof; the claims record explicitly that BC clearing the floor does NOT discriminate among the three, since BC bypasses the return pathway entirely. NOTABLE FOR ADJUDICATION: if MECH-459 holds, the four \"eliminated\" axes (769/770/771/772) are weaker evidence than they appear -- a scale-invariant instrument could not have moved on them whatever their true effect. Honest counterweight recorded on the claim: 772 potential-based shaping changes advantage SHAPE not scale and still floored, so only the weaker noise-re-amplification form survives. MECH-457 unchanged: still candidate/v3_pending, necessary-not-sufficient."
+    },
+    {
+      "row_id": "CDQ-008",
+      "routing_target": "design_query",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "design_resolved",
+        "detail": "A costed decision between H2 (explicit mode-dependent term in the CEM elite-selection VALUE FUNCTION) and H3 (hard-partitioned per-operating_mode CEM candidate pools) as the locus of the MECH-267 mode-content wash-out, sufficient to scope substrate_queue entry SD-MECH267-CEM-SELECTION-FIX for build.",
+        "satisfied": false
+      },
+      "target_nodes": [
+        "commitment_closure:GAP-4"
+      ],
+      "mechanism_gap": "Mode-conditioned trajectory proposal content survives CEM at num_cem_iterations=1 but washes out by iterations=2-3: elite-refit re-converges the candidate population toward a mode-INVARIANT optimum, erasing the operating_mode conditioning the proposals carried. Necessity is established (MECH-267 provisional); the MECHANISM that preserves mode structure through iterative elite refitting is not. Three candidate explanations already eliminated by V3-EXQ-869 (noise-scale-only), 869a (noise-scale + horizon-depth), 923 (iteration count) -- this is the residual after a GOV-FANOUT-1 portfolio, not an un-enumerated question.",
+      "external_sources": [
+        {
+          "name": "DreamerV3 / discrete latent codebook actor",
+          "angle": "categorical latent structure that survives iterative refinement by construction rather than by tuning -- bears on H3 (partitioned pools)",
+          "intake_state": "COMPLETED",
+          "path": "REE_convergence/sources/dreamer-v3/"
+        },
+        {
+          "name": "Options / hierarchical-RL mode-conditioned planning",
+          "angle": "option-conditioned value functions keep a mode term INSIDE the objective the planner optimises rather than in the proposal distribution -- the direct analogue of H2",
+          "intake_state": "NEW",
+          "path": null
+        },
+        {
+          "name": "CEM-based planners with structured/multimodal proposal distributions (e.g. mixture-CEM, CEM+GMM variants)",
+          "angle": "the known failure mode of vanilla CEM collapsing a multimodal elite set to a single mode, and the published fixes for it -- speaks to whether this is a MECH-267-specific defect or a generic CEM property",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "HIGH",
+      "generation": "v3",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": "Sensed /governance 2026-08-12 (session sd-016-h3-algorithm-3370cd) from confirmed failure_autopsy_V3-EXQ-923_2026-08-12. Paired with substrate_queue entry SD-MECH267-CEM-SELECTION-FIX (priority 1, created same cycle), which is deliberately UNSCOPED between H2 and H3 per the 2026-08-12 user decision -- neither locus has been costed. This row is the demand-side twin of that entry: the build cannot responsibly start until the locus fork resolves. NOTE the third external source is the load-bearing one to mine first -- if elite-set mode collapse is a GENERIC property of vanilla CEM with known published fixes, that reframes the whole question from 'which REE locus is wrong' to 'which standard CEM remedy applies', and neither H2 nor H3 as currently posed may be the right frame."
     }
   ]
 }

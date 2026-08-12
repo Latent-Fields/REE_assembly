@@ -9383,9 +9383,9 @@
       from: "failure_autopsy_V3-EXQ-906a_894b_2026-08-09"
       as_of: 2026-08-09
       verdict: FAIL/weakens -- trainability-alone refuted, loss-term balance (entropy_weight vs MSE) now the load-bearing open question
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   implementation_phase: v3
-  pending_retest_after_substrate: true  # SD-035 substrate_queue entry amended 894a/894b; loss-balance fix owed before next retest
+  pending_retest_after_substrate: true  # SD-035 substrate_queue entry amended 894a/894b/894c; context-representation fix owed before next retest
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-474 substrate-readiness PASS x2 (supports); promoted to provisional 2026-04-22
   registered_utc: 2026-04-21
   depends_on:
@@ -9486,6 +9486,25 @@
     trainability-alone refuted -> loss-balance implicated) -- convergence, not a
     structurally-different-signatures pattern that would call for splitting the claim. Stays
     provisional / pending_retest_after_substrate.
+
+    [/governance 2026-08-12, V3-EXQ-894c, confirmed failure_autopsy_V3-EXQ-894c_2026-08-11,
+    entropy_weight/MSE balance retune]: the loss-balance hypothesis 894b left load-bearing is now
+    itself REFUTED. H0 confirmed -- no swept entropy_weight value ([0.02, 0.01, 0.005, 0.001], sigma
+    fixed at 1.0) recovers C1 AND C2 on >=2/3 seeds for any arm (passing_arm_ids=[]). The decisive
+    reading is below the aggregate statistic: within-context and cross-context Jaccard similarity are
+    IDENTICAL (1.0000 exactly) in 10/15 cells, so the attribution head has converged to a fully
+    DETERMINISTIC, CONTEXT-INVARIANT target-set selection -- not a graded loss of context-sensitivity
+    that a scalar retune could rebalance. The docstring's predicted C1-vs-C2 entropy_weight tradeoff
+    is not merely absent but inverted (spearman_mass_excess_vs_entropy_weight=-1.0, opposite the
+    predicted sign). epistemic_category moved substrate_conditional -> standard per the autopsy's
+    recommendation: four consecutive negative results (894/894a/894b/894c) on the same core mechanism
+    have now excluded dilution, trainability, and loss-term balance in turn, so the suppression that
+    category afforded is no longer warranted -- this claim should be exposed to the ordinary
+    promotion/demotion pass and is worth an explicit demotion look next cycle. routing=implement-substrate:
+    SD-035 substrate_queue entry AMENDED with this failure_record and 894b's prior record marked
+    superseded; the fix owed is a context-DISCRIMINATING input signal to the attribution head (or a
+    loss FORMULATION change), NOT a further scalar retune -- that route is now closed by measurement.
+    Stays provisional / pending_retest_after_substrate.
 - id: MECH-075
   title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
@@ -13498,6 +13517,23 @@
     Downstream claims (SD-003, SD-013, SD-021, ARC-033) cascade off SD-011; promotion
     reflects its structural role and strong convergent evidence. Full stable status
     withheld pending SD-003 / ARC-033 resolution + conflict ratio below 0.3.
+
+    [/governance 2026-08-12, V3-EXQ-917, confirmed
+    failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12, supports]: the
+    sensory/affective separation this claim asserts is confirmed to be REAL AND CONSEQUENTIAL, and
+    the run resolves the complex (probe-gated) open question in
+    mech303_contextual_safety_threshold_reachability.md (2026-08-11). The z_harm_a threshold
+    reachability/discrimination tension is NOT intrinsic to the encoder -- it dissociates cleanly by
+    SOURCING MODE. Under the production default (damage_sourced, i.e. SD-022 body-damage), safe-vs-
+    unsafe AUC never exceeds 0.52 (chance) across all 18 swept thresholds (0.02-0.8); under the
+    legacy proximity_ema_sourced signal (limb_damage_enabled=False) the same apparatus reaches AUC
+    0.84-0.97 with reachability 0.23-0.98 across thresholds 0.4-0.8. Read carefully, this SUPPORTS
+    SD-011 rather than weakening it: the two sourcing modes are not interchangeable readouts of one
+    signal, which is precisely the dual-stream separation SD-011 posits -- damage-sourced z_harm_a
+    tracks accumulated homeostatic deviation (its stated job) and is therefore the WRONG signal for
+    an anticipatory contextual-safety gate, which needs proximity/intensity. Status unchanged
+    (stable). The consequence is downstream on MECH-303, not here -- see that claim's note and the
+    SD-MECH303-THRESHOLD-SOURCING substrate_queue entry created this cycle.
   notes: >
     Implementation in CausalGridWorldV2: emit harm_obs_a (EMA of harm_obs_s, tau=10-30
     steps) alongside harm_obs_s (renamed from harm_obs). HarmEncoderA(harm_obs_a -> z_harm_a)
@@ -39472,6 +39508,23 @@
     substrate_ceiling). Routed to a GOV-FANOUT-1 discrimination portfolio (3 legs: iteration-count,
     mode-aware scoring, partitioned pools) rather than a third sequential same-question letter --
     see the fanout_recommendation in failure_autopsy_V3-EXQ-869a_2026-08-03.json.
+
+    [/governance 2026-08-12, V3-EXQ-923, confirmed failure_autopsy_V3-EXQ-923_2026-08-12,
+    GOV-FANOUT-1 portfolio leg H1]: H1 (iteration-count) is ELIMINATED. Production-settings content
+    wash-out is NOT iteration-count dependent -- mean pairwise raw_std gaps at num_cem_iterations=2
+    read -0.0028 / 0.0023 / ~0.000006 against FLOOR_PRODUCTION=0.01, i.e. already flat by iters=2 and
+    unchanged at iters=3 (869a), with no intermediate count recovering the clean iters=1 signal
+    (0.031-0.092). non_contributory: the leg eliminates a rival rather than bearing on MECH-267
+    itself. Portfolio state after this leg: H2 (an explicit mode-dependent term in the CEM
+    elite-selection VALUE FUNCTION, distinct from the scoring-window depth horizon-depth already
+    supplies) and H3 (hard-partitioned per-operating_mode CEM candidate pools so elite-refit never
+    mixes across modes) remain the only live loci, and NEITHER is built. Three candidate explanations
+    are now excluded in sequence -- noise-scale-only (869), noise-scale+horizon-depth (869a),
+    iteration-count (923). routing=implement-substrate: new substrate_queue entry
+    SD-MECH267-CEM-SELECTION-FIX created this cycle, deliberately UNSCOPED between H2 and H3 per the
+    2026-08-12 user decision (neither has been costed); a future session should scope feasibility for
+    both before committing to a build, or build both and re-measure C1 at iters=3 for each. Stays
+    provisional / pending_retest_after_substrate.
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-268
   title: "dACC conflict saturation: the dACC-analog (SD-032b) prediction-error / conflict signal caps and habituates under repeated identical outcomes; it does not grow unboundedly as conflict persists. Without saturation, a stuck governance loop can generate unbounded pe signal that never triggers a mode change, which is the control-theory signature of persistent rumination."
@@ -45903,6 +45956,40 @@
     recorded on MECH-303 as a cluster-level note that the safety-
     expression machinery is prefrontal-hippocampal-thalamic. Thalamic
     relay + remote/recent axis UNIMPLEMENTED (documentation-only).
+
+    [/governance 2026-08-12, V3-EXQ-917, confirmed
+    failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12,
+    threshold-sourcing calibration battery]: this claim's live gate is
+    currently WIRED TO THE WRONG SIGNAL, and that is a substrate defect
+    rather than evidence against the mechanism. Under the production
+    default (damage_sourced z_harm_a, SD-022 body-damage) the
+    contextual_safety_harm_threshold gate cannot discriminate safe from
+    hazardous contexts at ANY of 18 swept thresholds (0.02-0.8): AUC
+    caps at 0.52, i.e. chance. The legacy proximity_ema_sourced signal
+    (limb_damage_enabled=False) reaches AUC 0.84-0.97 on the same
+    apparatus, with a reachable+discriminating band around
+    threshold 0.55 (reachability 0.77, AUC 0.9625) to 0.6
+    (reachability 0.85, AUC 0.969). So every prior null result on this
+    claim measured through a gate that could not fire informatively --
+    the mechanism was never given a fair test, and no evidence_direction
+    is applied to MECH-303 from this run.
+    ROUTING DECISION (2026-08-12, user-adjudicated): take option (a),
+    a DEDICATED proximity-anticipatory signal for MECH-303's gate,
+    decoupled from SD-022's damage-sourcing -- NOT option (b), a
+    threshold retune on the existing damage-sourced signal. Rationale:
+    damage_sourced is load-bearing for SD-022's own body-damage-tracking
+    purpose and for other consumers of z_harm_a, so re-sourcing the
+    shared signal would fix this gate by breaking theirs; a second harm
+    signal is the correct shape, and the SD-011 dual-stream separation
+    (see that claim's 2026-08-12 note) is exactly why. This makes a
+    substrate build LIVE for a claim that had none: substrate_queue
+    entry SD-MECH303-THRESHOLD-SOURCING created this cycle
+    (priority 2, severity degrading), and
+    pending_retest_after_substrate set true -- the behavioural retest is
+    owed once the dedicated signal lands, and requires auditing which
+    other production drivers (764, 520, 916/916a, and any future driver
+    enabling use_contextual_safety_terrain) should consume which signal.
+  pending_retest_after_substrate: true
   depends_on:
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
     - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
@@ -60843,7 +60930,7 @@
       verdict: non_contributory/precondition_unmet
   implementation_phase: v3
   v3_pending: true
-  pending_retest_after_substrate: true  # scaffolded_sd054_onboarding nav-competence transfer (gov 2026-06-13)
+  pending_retest_after_substrate: false  # cleared /governance 2026-08-12: MECH-342's own substrate_queue entry is implemented_validated_v3_exq_592g and no closure node names this claim; the retest had no live target. v3_pending gate still holds.
   claim_level: mechanistic
   registered_utc: "2026-06-02"
   governance_note_2026_06_13: >
@@ -70635,7 +70722,7 @@
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
-  pending_retest_after_substrate: true  # commitment-closure-control-plane
+  pending_retest_after_substrate: false  # cleared /governance 2026-08-12: sole route f_dominance_conversion_ceiling is exhausted (no 2026-07-20 withdrawal, unlike v4_loop_segregation) and this claim already carries ceiling_decision: exhausted; the retest had no live target. v3_pending gate still holds.
   registered_utc: "2026-06-19"
   what_would_answer: >
     REGIME-SCOPED to WEAK-natural-commit seeds (OFF-arm committed_steps ~ 0, where the closure
@@ -70761,7 +70848,7 @@
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
-  pending_retest_after_substrate: true  # commitment-closure-control-plane
+  pending_retest_after_substrate: false  # cleared /governance 2026-08-12: sole route f_dominance_conversion_ceiling is exhausted (no 2026-07-20 withdrawal, unlike v4_loop_segregation) and this claim already carries ceiling_decision: exhausted; the retest had no live target. v3_pending gate still holds.
   registered_utc: "2026-06-19"
   what_would_answer: >
     On the amended substrate (committed-run-scaled refractory ON), the ON-arm within-arm
