@@ -255,3 +255,115 @@ methodology supporting this one open question, not a separate claim.
 5. No lit-pull performed for this intake -- the methodology (classifier two-sample test with a
    permutation null) is standard statistics/ML practice, not a REE-specific biological claim
    requiring citation-backed grounding the way `INV-074` did.
+
+---
+
+## Precondition check (2026-08-12)
+
+**Chip:** `chip-20260812-q092-precondition-check` (spawned at `/session-land` close of
+`jovial-shannon-35d300`). Checks the two non-degeneracy preconditions "Next steps" item 3 above
+required before `/queue-experiment` for Q-092.
+
+### Precondition 1 -- do sufficient SD-054 reef-ON/reef-OFF TRAINED-agent runs exist or are cheap to reuse?
+
+**NO.** Surveyed every `reef_enabled`-touching experiment script and manifest under
+`ree-v3/experiments/` and `REE_assembly/evidence/experiments/`. Every candidate falls into one of
+three disqualifying buckets -- none supplies a reusable trained-checkpoint pair on this axis:
+
+- **Heuristic policy, not a trained REE agent.** `V3-EXQ-522` (`reef_monostrategy_break`) is the
+  only run with a clean reef-ON (`ARM_1`/`ARM_2`, `n_reef_cells=33`) vs reef-OFF (`ARM_0_baseline`,
+  `n_reef_cells=0`) contrast and a PASS verdict (30 episodes x 3 seeds) -- but its own script
+  (`ree-v3/experiments/v3_exq_522_reef_monostrategy_break.py:17,68`) runs a hand-coded
+  "harm-avoiding, reef-aware, resource-seeking heuristic," never a trained `REEAgent`. Its
+  `claim_ids_tested: []` / `experiment_purpose: diagnostic` classification in the manifest is
+  consistent with that -- it was never meant to carry trained-policy evidence.
+- **Genuinely-trained `REEAgent`, but INCONCLUSIVE_UNDERTRAINED.** `V3-EXQ-523`/`523a`/`523b`
+  (`sd029_reef_comparator`, `ARM_0_baseline` vs `ARM_1_reef_food_ext`) and `V3-EXQ-528`
+  (`sd029_comparator_trained`, explicit `ARM_0: baseline (reef_enabled=False)` vs reef-ON, 120
+  episodes x 3 seeds) all import and train a real `REEAgent`
+  (`ree-v3/experiments/v3_exq_528_sd029_comparator_trained.py:50,225`), but every one of them
+  returned `status: INCONCLUSIVE_UNDERTRAINED`, `evidence_direction: non_contributory`, with
+  `p1_graduated_all: false` and `p1_r2` in the 0.11-0.28 range (528's own metrics.json) -- the
+  training never converged even at 120 episodes/3 seeds. These target SD-029/MECH-256
+  (event-conditioning), not trajectory-level behavioural diversity directly, but the convergence
+  failure is evidence against "cheap to reuse" on this exact axis regardless.
+- **Trained agent, but single-condition (no reef-OFF counterpart).** The `V3-EXQ-906b`/`906c`/
+  `912`/`913` "fishtank" observational lineage and `V3-EXQ-524`/`524a` showcase runs are genuinely
+  trained, long-horizon agents on the reef substrate -- but reef and forage coexist within the
+  SAME episode (the reef review's own words: "all-ON, not the scored trained-policy arm that
+  V3-EXQ-522 targets," `reef_ecology_strategy_affective_occupancy_review_2026-08-10.md` Section
+  1b). There is no reef-`enabled=False`-trained counterpart in this lineage to pair against.
+  `V3-EXQ-526` (`q034_reef_threshold_sweep`) also trains a real `REEAgent` but hardcodes
+  `REEF_ENABLED = True` as a module constant (`v3_exq_526_q034_reef_threshold_sweep.py:115`) and
+  sweeps hazard/food density instead -- reef presence itself is never the varied axis.
+
+**Conclusion:** a Q-092 first pass would need FRESH training in both conditions, exactly as the
+minimal-experiment design already anticipated as the fallback ("Train... if available"). This is
+not by itself disqualifying, but the demonstrated difficulty getting a `REEAgent` to converge on
+this substrate even at 120 episodes/3 seeds (528) is a real risk that a freshly commissioned run
+comes back `substrate_not_ready_requeue`/undertrained before the umpire ever gets a signal to
+classify -- reinforcing the need for precondition 2 below rather than substituting for it.
+
+### Precondition 2 -- is MECH-439's F-dominance ceiling expected to leave committed-action diversity at the trajectory level?
+
+**NO -- the ceiling is confirmed still active and unresolved as of today.** Read `MECH-439`'s and
+`ARC-107`'s current `claims.yaml` blocks in full (`docs/claims/claims.yaml:70036-70253` and
+`:72875-72929`):
+
+- `MECH-439` (F-dominance conversion ceiling): `status: candidate`, `ceiling_decision: exhausted`
+  for the parametric/arithmetic rebalance route, `assembly_status: in_progress`, `awaiting:
+  ARC-107`. Its `evidence_quality_note` documents **11 confirmed `substrate_ceiling`/
+  `non_contributory` failure-autopsy hits** (689a/700/700a-d/709/710/711/713) through 2026-07-05,
+  most recently corrected (count 10->9, one hit withdrawn on re-adjudication) by governance on
+  2026-08-10 -- two days before this check -- with the demotion explicitly standing unaffected.
+  The primary harm/goal score F still monopolises ~88-89% of E3 committed-selection variance
+  (`V3-EXQ-571` baseline), and committed-action-class entropy stays essentially flat under every
+  tested diversity channel, including a run (`V3-EXQ-713`) that achieved a genuinely fair
+  arbitration parity win and *still* failed to convert.
+- `ARC-107` (the BG-constitution route MECH-439 now awaits): `status: candidate` (not yet
+  promoted), gated instantiation ("built only if 689a's outcome favours the constitutional
+  reading"). Its own `live_status.evidence` cites `V3-EXQ-689g` as `supports/PASS` (2026-06-21),
+  but the specific committed-entropy-lift result under child claim `MECH-448`
+  (`docs/claims/claims.yaml:70959`, "committed-action-class entropy 0.938 STRICT-ABOVE both
+  collapsed [controls]") was subsequently **WITHDRAWN** (line ~70984) on discovery of a
+  measurement/DV-accumulation defect -- `MECH-448`'s current `live_status.verdict` reads
+  `supports/measurement_test_design_defect`, and sibling `MECH-449`'s reads
+  `non_contributory/measurement_test_design_defect`. So the one positive on-substrate signal that
+  committed-action diversity had actually been lifted above the F-ceiling is currently invalidated,
+  not confirmed.
+
+**Conclusion:** there is no validated positive discrimination anywhere in the claims graph showing
+committed-action-level diversity has broken free of the F-dominance monopoly, on this substrate or
+any other. Trajectory-level behavioural diversity is architecturally capped upstream (per
+`MECH-439`'s own stated mechanism -- F decides every non-tie before any modulatory/diversity
+channel can act) exactly as the thought-intake's own interpretive caveat anticipated.
+
+### Go/no-go recommendation: **NO-GO -- do not queue Q-092 yet**
+
+Both preconditions fail as of 2026-08-12. Per "Next steps" item 3's own stated risk, running the
+umpire experiment now would very likely reproduce the
+`substrate_not_ready_requeue`/non-informative-null pattern already seen across this claim
+cluster's other diagnostics -- and per `MECH-439`'s own interpretive caveat (repeated in the
+`behavioral_diversity_acceptance_criteria.md` companion section's "Interpretive caveat"), a null
+result obtained under these conditions would be uninformative noise, not evidence against the
+umpire methodology or against `ARC-065`/`ARC-062`.
+
+**What would flip this to GO:**
+1. A `V3-EXQ-689g`-successor or fresh run on the actual reef substrate (not the synthetic
+   falsifier harness) showing committed-action-class entropy lifted strict-above both
+   collapsed-proposer and matched-noise controls, WITHOUT the measurement-defect that invalidated
+   `MECH-448`'s prior positive -- i.e. `ARC-107`/`MECH-448`/`MECH-449` reaching a genuinely
+   confirmed (not withdrawn) positive discrimination. Until then, per `MECH-439`'s own
+   pre-registered falsifier, the ceiling should be assumed active.
+2. Given (1), a fresh reef-ON/reef-OFF trained-policy pair (>=3 seeds each, sufficient episodes
+   for a held-out split) would still need to be trained to convergence -- no existing run supplies
+   this cheaply (Precondition 1 above).
+
+**Re-check trigger:** re-run this precondition check the next time `MECH-439` or `ARC-107`
+receives a governance-reviewed status change (promotion, a new confirmed positive discrimination,
+or ceiling-exhaustion applied to the constitutional route too), or the next time a genuinely
+trained, converged SD-054 reef-ON/reef-OFF run pair lands in `evidence/experiments/`.
+
+No files other than this one were modified by this check, per the chip's scope
+(`behavioral_diversity_acceptance_criteria.md`, `claims.yaml`, and Rung thresholds were read only,
+not edited).
