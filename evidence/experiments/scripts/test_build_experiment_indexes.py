@@ -15,6 +15,8 @@ V3-EXQ-648a and V3-EXQ-649 `precondition_unmet`.
 Run directly:  python test_build_experiment_indexes.py
 Or via pytest:  pytest test_build_experiment_indexes.py
 """
+import contextlib
+import io
 import json
 import os
 import sys
@@ -2475,6 +2477,137 @@ def test_the_write_scan_is_not_vacuous():
             '        fh.write(t)\n')
     assert _scan_non_atomic_writes(good) == [], \
         "detector false-positives on helper-routed / read / fdopen code"
+
+
+# --- Cross-epoch / cross-canonical-profile aggregation guard (2026-08-12) --
+#
+# See REE_assembly/evidence/planning/architecture_epoch_investigation.md
+# Sections 4, 10, 11: no comparison/aggregation tool anywhere in the project
+# refused or flagged when results from different architecture_epoch (or,
+# newly, canonical_profile_hash) values were pooled together for a single
+# claim's confidence/conflict scoring. `_detect_cross_epoch_pooling` /
+# `_write_claim_evidence_matrix`'s wiring of it are additive-only: they never
+# set scoring_excluded and never change confidence/conflict computation.
+
+def _epoch_run(run_id, claim_id, architecture_epoch="", canonical_profile_hash=""):
+    run = _run_record(run_id=run_id, claim_ids_tested=[claim_id])
+    run.architecture_epoch = architecture_epoch
+    run.canonical_profile_hash = canonical_profile_hash
+    b._evaluate_runs([run], {})
+    return run
+
+
+def test_cross_epoch_pooling_fires_when_claim_spans_two_epochs():
+    """The core positive case: two PASS runs tagging the same claim under two
+    different architecture_epoch values must trip the guard by default."""
+    runs = [
+        _epoch_run("run_epoch_a", "MECH-TEST-1", architecture_epoch="ree_hybrid_guardrails_v1"),
+        _epoch_run("run_epoch_b", "MECH-TEST-1", architecture_epoch="ree_self_model_v1"),
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z")
+
+    finding = matrix["claims"]["MECH-TEST-1"].get("cross_epoch_pooling")
+    assert finding is not None, "guard did not fire on a genuine two-epoch pool"
+    assert finding["annotated_intentional"] is False
+    assert finding["architecture_epoch_values"] == [
+        "ree_hybrid_guardrails_v1", "ree_self_model_v1",
+    ]
+    assert finding["canonical_profile_hash_values"] == []
+
+
+def test_same_epoch_no_cross_epoch_pooling():
+    """Negative control: two PASS runs sharing one architecture_epoch (and no
+    canonical_profile_hash at all -- the entire legacy corpus) must NOT trip
+    the guard, and the claim summary must carry no new key at all."""
+    runs = [
+        _epoch_run("run_a", "MECH-TEST-2", architecture_epoch="ree_hybrid_guardrails_v1"),
+        _epoch_run("run_b", "MECH-TEST-2", architecture_epoch="ree_hybrid_guardrails_v1"),
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z")
+
+    assert "cross_epoch_pooling" not in matrix["claims"]["MECH-TEST-2"]
+
+
+def test_cross_canonical_profile_hash_pooling_fires_independently_of_epoch():
+    """Same architecture_epoch, but two distinct canonical_profile_hash values
+    -- the finer-grained dimension must trip the guard on its own."""
+    runs = [
+        _epoch_run("run_p1", "MECH-TEST-3", architecture_epoch="ree_hybrid_guardrails_v1",
+                   canonical_profile_hash="hash_aaaa"),
+        _epoch_run("run_p2", "MECH-TEST-3", architecture_epoch="ree_hybrid_guardrails_v1",
+                   canonical_profile_hash="hash_bbbb"),
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z")
+
+    finding = matrix["claims"]["MECH-TEST-3"].get("cross_epoch_pooling")
+    assert finding is not None, "guard did not fire on a genuine two-profile pool"
+    assert finding["architecture_epoch_values"] == []
+    assert finding["canonical_profile_hash_values"] == ["hash_aaaa", "hash_bbbb"]
+
+
+def test_cross_epoch_pooling_claims_yaml_annotation_suppresses_warning():
+    """intentional_cross_epoch_comparison: true in the claim registry silences
+    the WARNING print but still records the finding (annotated_intentional=True)
+    -- the annotation exempts, it does not hide the pooling from audit."""
+    runs = [
+        _epoch_run("run_a", "MECH-TEST-4", architecture_epoch="ree_hybrid_guardrails_v1"),
+        _epoch_run("run_b", "MECH-TEST-4", architecture_epoch="ree_self_model_v1"),
+    ]
+    registry = {"MECH-TEST-4": {"intentional_cross_epoch_comparison": "true"}}
+    buf = io.StringIO()
+    with tempfile.TemporaryDirectory() as td:
+        with contextlib.redirect_stdout(buf):
+            matrix = b._write_claim_evidence_matrix(
+                Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z",
+                claim_registry=registry)
+
+    finding = matrix["claims"]["MECH-TEST-4"]["cross_epoch_pooling"]
+    assert finding["annotated_intentional"] is True
+    assert "MECH-TEST-4" not in buf.getvalue()
+
+
+def test_cross_epoch_pooling_cli_flag_suppresses_warning():
+    """--allow-cross-epoch-claim (threaded as allow_cross_epoch_claims) is the
+    one-off, non-claims.yaml-editing exemption path."""
+    runs = [
+        _epoch_run("run_a", "MECH-TEST-5", architecture_epoch="ree_hybrid_guardrails_v1"),
+        _epoch_run("run_b", "MECH-TEST-5", architecture_epoch="ree_self_model_v1"),
+    ]
+    buf = io.StringIO()
+    with tempfile.TemporaryDirectory() as td:
+        with contextlib.redirect_stdout(buf):
+            matrix = b._write_claim_evidence_matrix(
+                Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z",
+                allow_cross_epoch_claims={"MECH-TEST-5"})
+
+    finding = matrix["claims"]["MECH-TEST-5"]["cross_epoch_pooling"]
+    assert finding["annotated_intentional"] is True
+    assert "MECH-TEST-5" not in buf.getvalue()
+
+
+def test_cross_epoch_pooling_is_additive_does_not_exclude_from_scoring():
+    """The guard must never set scoring_excluded and must never change which
+    entries count toward confidence -- both cross-epoch runs above must still
+    be scored (runs_total == 2, no scoring_excluded on either entry)."""
+    runs = [
+        _epoch_run("run_a", "MECH-TEST-6", architecture_epoch="ree_hybrid_guardrails_v1"),
+        _epoch_run("run_b", "MECH-TEST-6", architecture_epoch="ree_self_model_v1"),
+    ]
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": runs}, {}, "2026-08-12T00:00:00Z")
+
+    summary = matrix["claims"]["MECH-TEST-6"]
+    assert summary["runs_total"] == 2
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "MECH-TEST-6"]
+    assert len(claim_entries) == 2
+    assert all("scoring_excluded" not in e for e in claim_entries)
 
 
 def _run_all():

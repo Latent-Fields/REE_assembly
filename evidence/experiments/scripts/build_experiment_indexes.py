@@ -224,6 +224,18 @@ class RunRecord:
     # queryability, NOT scored.
     machine: str = ""
     machine_class: str = ""
+    # canonical-profile provenance (2026-08-12): which curated organism bundle
+    # (if any) built this run's config -- ree-v3 ree_core/utils/canonical_profile.py
+    # (CanonicalProfileSpec) + experiments/_lib/canonical_profile_fingerprint.py
+    # (freeze+persist). canonical_profile is the "<name>@<version>" qualified
+    # name; canonical_profile_hash is the frozen artifact's content hash.
+    # Caller-supplied only -- absent on every run that does not construct its
+    # config from a profile, which as of introduction is the entire corpus.
+    # Surfaced for queryability AND consumed by the cross-epoch aggregation
+    # guard (_detect_cross_epoch_pooling) below; still NOT scored -- it does
+    # not touch confidence, conflict, or scoring_excluded on its own.
+    canonical_profile: str = ""
+    canonical_profile_hash: str = ""
     # z_goal-stream liveness (2026-07-27). The runtime backstop's counter block
     # (ree-v3 experiments/_lib/z_goal_stream.py), carried verbatim for
     # queryability. Surfaced, NEVER scored: it does not touch confidence,
@@ -1566,6 +1578,10 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
         machine = str(manifest.get("machine", "") or "").strip()
         machine_class = str(manifest.get("machine_class", "") or "").strip()
+        # canonical-profile provenance, read the same way as substrate_hash above:
+        # caller-supplied, absent on the legacy corpus (no-op default).
+        canonical_profile = str(manifest.get("canonical_profile", "") or "").strip()
+        canonical_profile_hash = str(manifest.get("canonical_profile_hash", "") or "").strip()
         # z_goal-stream liveness block, read AFTER the flat-provenance backfill
         # (same reason as machine_class: a pack from before the mapper carried it
         # is thin). A non-dict or empty value collapses to {} == UNMEASURED, which
@@ -1611,6 +1627,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 label_balance=label_balance,
                 machine=machine,
                 machine_class=machine_class,
+                canonical_profile=canonical_profile,
+                canonical_profile_hash=canonical_profile_hash,
                 z_goal_stream=z_goal_stream,
             )
         )
@@ -2692,6 +2710,96 @@ def _compute_claim_confidence(
     return exp_conf, lit_conf, overall, rationale
 
 
+# Cross-epoch / cross-canonical-profile aggregation guard (2026-08-12). See
+# REE_assembly/evidence/planning/architecture_epoch_investigation.md Sections
+# 4, 10, 11: no comparison/plotting/aggregation tool anywhere in the project
+# refused or even flagged when results from different architecture_epoch (or,
+# now that it exists, canonical_profile_hash) values were pooled together for
+# a single claim's confidence/conflict scoring. `architecture_epoch` today is
+# a coarse generation tag (V2 and V3 currently share one string, so
+# epoch-based filtering is presently a no-op between those two generations --
+# see Section 1); `canonical_profile_hash` is a finer-grained, content-hashed
+# identity of which curated organism bundle (if any) built a run's config
+# (Section 8). Pooling scored evidence across either boundary silently
+# compares results from what may be materially different organisms.
+#
+# ADDITIVE ONLY: this never sets scoring_excluded and never touches
+# confidence/conflict computation, which is already finalized by the time
+# this runs (over `claim_to_entries`, the exact same already-scored
+# population `_summarize_claim_entries` consumes). It only WARNS (stdout) and
+# attaches a `cross_epoch_pooling` finding to the claim's summary dict for
+# downstream visibility -- a claim is never excluded, demoted, or
+# reclassified by this guard on its own.
+#
+# Annotation convention (Section 11's "explicit cross-epoch comparison
+# annotation", designed here since none existed): a claim is exempt from the
+# WARNING (the finding is still recorded, with annotated_intentional=True)
+# when EITHER (a) `claims.yaml` declares
+# `intentional_cross_epoch_comparison: true` under that claim id (parsed by
+# _load_claim_registry; absent on every existing entry today, so this is a
+# no-op against the current registry), OR (b) the claim id is passed via the
+# `--allow-cross-epoch-claim` CLI flag for a one-off, non-claims.yaml-editing
+# override. Both exist for the deliberate "does mechanism X's effect
+# replicate under the new profile" comparison Section 11 names.
+def _detect_cross_epoch_pooling(
+    claim_id: str,
+    entries: list[dict[str, Any]],
+    claim_registry: "dict[str, dict[str, str]] | None" = None,
+    allow_claims: "set[str] | None" = None,
+) -> "dict[str, Any] | None":
+    """Detect (and, unless annotated, warn about) mixed-epoch/-profile pooling.
+
+    `entries` must be the SCORED entries for this claim (i.e. claim_to_entries
+    entries, which already exclude every scoring_excluded branch) -- this
+    deliberately does not re-derive that filter so it can never disagree with
+    what actually fed confidence/conflict.
+
+    Returns None when the claim's scored evidence is epoch/profile-uniform
+    (including when every entry omits the field entirely, e.g. an all-literature
+    claim or a pre-Recording-Standard corpus) -- so a normal, single-organism
+    claim gets no new key at all and legacy output stays byte-identical.
+    """
+    epochs = sorted({
+        str(e["architecture_epoch"]) for e in entries if e.get("architecture_epoch")
+    })
+    profiles = sorted({
+        str(e["canonical_profile_hash"]) for e in entries if e.get("canonical_profile_hash")
+    })
+    cross_epoch = len(epochs) > 1
+    cross_profile = len(profiles) > 1
+    if not (cross_epoch or cross_profile):
+        return None
+
+    annotated = bool(allow_claims) and claim_id in allow_claims
+    if not annotated and claim_registry:
+        meta = claim_registry.get(claim_id) or {}
+        annotated = _coerce_bool(meta.get("intentional_cross_epoch_comparison", ""))
+
+    finding: dict[str, Any] = {
+        "architecture_epoch_values": epochs if cross_epoch else [],
+        "canonical_profile_hash_values": profiles if cross_profile else [],
+        "annotated_intentional": annotated,
+    }
+
+    if not annotated:
+        spans = []
+        if cross_epoch:
+            spans.append(f"architecture_epoch={epochs}")
+        if cross_profile:
+            spans.append(f"canonical_profile_hash={profiles}")
+        print(
+            f"  WARNING: {claim_id} pools SCORED evidence across "
+            f"{' and '.join(spans)} -- results from different organisms are "
+            f"being aggregated toward this claim's confidence/conflict without "
+            f"an explicit cross-epoch annotation. Add "
+            f"'intentional_cross_epoch_comparison: true' under {claim_id} in "
+            f"claims.yaml, or pass --allow-cross-epoch-claim {claim_id}, if this "
+            f"pooling is deliberate."
+        )
+
+    return finding
+
+
 def _summarize_claim_entries(
     entries: list[dict[str, Any]],
     now: datetime,
@@ -2800,6 +2908,8 @@ def _write_claim_evidence_matrix(
     generated_at: str,
     planning_criteria: dict[str, Any] | None = None,
     scoring_exclusions: dict[str, set[str]] | None = None,
+    claim_registry: dict[str, dict[str, str]] | None = None,
+    allow_cross_epoch_claims: set[str] | None = None,
 ) -> dict[str, Any]:
     """Build the claim evidence matrix.
 
@@ -2906,6 +3016,10 @@ def _write_claim_evidence_matrix(
                 unlinked_entry["machine_class"] = run.machine_class
             if run.machine:
                 unlinked_entry["machine"] = run.machine
+            if run.canonical_profile:
+                unlinked_entry["canonical_profile"] = run.canonical_profile
+            if run.canonical_profile_hash:
+                unlinked_entry["canonical_profile_hash"] = run.canonical_profile_hash
             # z_goal-stream liveness: surfaced, never scored. Unlinked runs get it
             # too -- a substrate-readiness diagnostic that tags no claim is exactly
             # the shape both confirmed defects took (V3-EXQ-830 was caught only by
@@ -2977,6 +3091,13 @@ def _write_claim_evidence_matrix(
                 entry["machine_class"] = run.machine_class
             if run.machine:
                 entry["machine"] = run.machine
+            # Canonical-profile provenance: surfaced for queryability AND consumed
+            # (alongside architecture_epoch above) by the cross-epoch aggregation
+            # guard below. NOT scored on its own.
+            if run.canonical_profile:
+                entry["canonical_profile"] = run.canonical_profile
+            if run.canonical_profile_hash:
+                entry["canonical_profile_hash"] = run.canonical_profile_hash
             # z_goal-stream liveness: surfaced for queryability only. Emitted
             # verbatim and ONLY when the run measured it, so an absent key means
             # UNMEASURED and legacy entries stay byte-identical. It deliberately
@@ -3084,6 +3205,13 @@ def _write_claim_evidence_matrix(
     for claim_id in sorted(claim_to_entries.keys()):
         summary = _summarize_claim_entries(claim_to_entries[claim_id], now)
         if summary:
+            cross_epoch_pooling = _detect_cross_epoch_pooling(
+                claim_id, claim_to_entries[claim_id],
+                claim_registry=claim_registry,
+                allow_claims=allow_cross_epoch_claims,
+            )
+            if cross_epoch_pooling:
+                summary["cross_epoch_pooling"] = cross_epoch_pooling
             matrix["claims"][claim_id] = summary
 
     matrix["entries"].sort(
@@ -3149,6 +3277,11 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     This parser intentionally handles the repository's simple YAML pattern and avoids non-stdlib deps.
     v3_pending and implementation_phase == "v3" both signal that the claim cannot be meaningfully
     tested until the V3 substrate exists — governance recommendations are suppressed for these.
+
+    intentional_cross_epoch_comparison (2026-08-12): exempts a claim from the
+    cross-epoch aggregation guard's WARNING (see _detect_cross_epoch_pooling)
+    when its scored evidence deliberately spans more than one
+    architecture_epoch or canonical_profile_hash. Absent on every claim today.
     """
     registry: dict[str, dict[str, str]] = {}
     current_id: str | None = None
@@ -3172,6 +3305,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_awaiting: str | None = None
     current_assembly_status: str | None = None
     current_revisit_after: str | None = None
+    # Cross-epoch aggregation guard annotation (2026-08-12) -- see
+    # _detect_cross_epoch_pooling. Absent on every existing entry today, so
+    # this is a no-op against the current registry.
+    current_intentional_cross_epoch: bool = False
     _collecting_eq_note: bool = False  # True while reading a block-scalar evidence_quality_note
 
     if not path.exists():
@@ -3205,6 +3342,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "awaiting": current_awaiting or "",
                     "assembly_status": current_assembly_status or "",
                     "revisit_after": current_revisit_after or "",
+                    "intentional_cross_epoch_comparison": str(current_intentional_cross_epoch),
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
@@ -3220,6 +3358,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_awaiting = None
             current_assembly_status = None
             current_revisit_after = None
+            current_intentional_cross_epoch = False
             _collecting_eq_note = False
             continue
 
@@ -3264,6 +3403,11 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_revisit_after = _strip_inline_yaml_comment(line.split(":", 1)[1]).strip("\"'")
             continue
 
+        if current_id and line.startswith("  intentional_cross_epoch_comparison:"):
+            val = _strip_inline_yaml_comment(line.split(":", 1)[1]).lower()
+            current_intentional_cross_epoch = val in ("true", "yes", "1")
+            continue
+
         if current_id and line.startswith("  evidence_quality_note:"):
             rest = line.split(":", 1)[1].strip().strip("\"'")
             if rest == "|":
@@ -3297,6 +3441,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "awaiting": current_awaiting or "",
             "assembly_status": current_assembly_status or "",
             "revisit_after": current_revisit_after or "",
+            "intentional_cross_epoch_comparison": str(current_intentional_cross_epoch),
         }
     return registry
 
@@ -7292,6 +7437,20 @@ def main() -> None:
             "runs' evidence."
         ),
     )
+    parser.add_argument(
+        "--allow-cross-epoch-claim",
+        action="append",
+        default=[],
+        metavar="CLAIM_ID",
+        help=(
+            "Exempt CLAIM_ID from the cross-epoch/cross-canonical-profile "
+            "aggregation guard's WARNING for this run only (does not edit "
+            "claims.yaml). Repeatable. Use for a deliberate one-off "
+            "cross-epoch comparison; for a standing exemption, set "
+            "'intentional_cross_epoch_comparison: true' under the claim in "
+            "claims.yaml instead. See _detect_cross_epoch_pooling."
+        ),
+    )
     args = parser.parse_args()
 
     base_dir = args.root.resolve()
@@ -7379,6 +7538,8 @@ def main() -> None:
         base_dir, by_experiment, by_literature, generated_at,
         planning_criteria=planning_criteria,
         scoring_exclusions=scoring_exclusions,
+        claim_registry=claim_registry,
+        allow_cross_epoch_claims=set(args.allow_cross_epoch_claim),
     )
 
     # Arm-reuse fingerprint index (plan section 9.1). Independent of claim scoring;
