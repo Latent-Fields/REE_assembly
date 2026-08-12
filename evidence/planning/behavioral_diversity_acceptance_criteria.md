@@ -3,7 +3,7 @@
 **Created:** 2026-05-15T23:01:02Z  
 **Author session:** behavioral-diversity-acceptance-criteria-2026-05-15T230102Z  
 **Status:** draft  
-**Related claims:** ARC-065, ARC-062, ARC-064, MECH-260, MECH-313, MECH-314, MECH-320, SD-017, SD-003, ARC-033  
+**Related claims:** ARC-065, ARC-062, ARC-064, MECH-260, MECH-313, MECH-314, MECH-320, SD-017, SD-003, ARC-033, Q-092  
 **Proposed new claims:** Q-046, Q-047, INV-074  
 
 ---
@@ -18,9 +18,17 @@ series:
 |----------------------|---------------------|-----------------|
 | **FP-1** Random action noise | H(action) > 0 only when temperature is forced up | Re-measure at T=1.0 with noise floor OFF |
 | **FP-2** Environment drift alone | Action distribution shifts but follows env change, not policy state | Compare matched-entropy random walk as control |
+| **FP-2b** Cross-environment geometry (umpire generalisation of FP-2) | A cross-environment discriminator distinguishes two environments by raw geometry / spawn-pool differences alone, regardless of what any policy does inside them | Compare a matched untrained/random-policy control run through the SAME two environments (Q-092's matched-control-policy guard) |
 | **FP-3** Hard-coded policy branches | Apparent switching is a fixed conditional, not a learned cut | Ablate diversity substrates; switch should disappear |
 | **FP-4** Metric-only diversity | H(action) high but all trajectories have identical harm / goal profiles | Measure trajectory-class x harm distribution jointly |
 | **FP-5** Training-phase artefact | Diversity present during exploration; collapses after convergence | Re-measure after 200+ post-convergence training episodes |
+
+**FP-2b is not an independent failure mode.** It is FP-2 generalised from the within-environment
+probe-state case (Rung 2's TV distance between two states in one map) to the cross-environment
+case Q-092's umpire methodology introduces (two genuinely different environments). Both defend
+against the identical underlying failure: the observed signal being attributable to environment
+identity/geometry rather than to policy behaviour. See the companion section below (after Rung 2)
+for the full justification of why this is a generalisation rather than a new class.
 
 ---
 
@@ -349,6 +357,132 @@ of ARC-065 itself.
 
 Rung 2 FAIL with `ablation TV = baseline TV` (ablating ARC-065 does not change TV) is an
 FP-3 diagnosis -- the switching is hard-coded and ARC-065 does not contribute.
+
+---
+
+## Companion -- Cross-Environment Discriminability ("Umpire" Methodology, Q-092)
+
+**Status note.** This is a measurement-METHODOLOGY companion to Rung 2, not a new Rung with
+its own PASS/FAIL threshold. It does not enter the strict Rung 0-4 gating chain defined in
+Governance sequencing below -- a Q-092 result neither unblocks nor substitutes for any Rung.
+Source: `evidence/planning/thought_intake_2026-08-11_behavioural_diversity_umpire.md` (full
+novelty comparison and minimal-experiment design); registered as claim Q-092 in `claims.yaml`
+(2026-08-11).
+
+### What generalises from Rung 2, precisely
+
+Q-092's "umpire" (a held-out, permutation-tested classifier over a multivariate trajectory-
+segment signature) is a GENERALISATION of the Rung 2 test above -- not a replacement for it and
+not a different question.
+
+| Dimension | Rung 2 (existing) | Q-092 umpire (generalisation) |
+|---|---|---|
+| Comparison axis | WITHIN one environment (SD-054 reef), two hand-picked probe states (s_reef vs s_forage; s_safe vs s_hazard) | CROSS-environment: two genuinely different ecological problems (SD-054 reef-ON vs reef-OFF) |
+| Feature | ONE pre-chosen scalar -- action-distribution TV distance at a fixed probe state | Feature-agnostic MULTIVARIATE trajectory-segment signature (refuge occupancy, excursion structure, hazard relationships, transitions, spatial distribution), with the combination left to the classifier rather than pre-specified |
+| Test object | Action distribution at a fixed point in the episode | Held-out classifier discriminability over whole trajectory segments, with an explicit train/held-out episode split (a discipline the Rung framework does not otherwise state) |
+| Necessity / specificity check | Agent-substrate ablation (ARC-065 substrates OFF; switching should disappear) | Environment-side orthogonal-perturbation selectivity (a nuisance axis, e.g. `hazard_food_attraction`, is perturbed and the verdict should stay comparatively stable) -- no existing Rung has an analog of this check |
+| Interpretation discipline | Rung labels ("state-contingent strategy switching") name the interpretation inside the metric definition itself | Explicit two-stage separation: Stage 1 (bare discriminability, no interpretive claim) then Stage 2 (feature-importance / coefficient gloss, only after Stage 1 clears) |
+
+**What does NOT generalise.** Rung 2's necessity test (ablate ARC-065 substrates, confirm TV
+distance decreases) has no cross-environment analog here: because Q-092 compares across two
+different environments rather than two probe states in one environment, an untrained/random
+policy could already discriminate the two conditions from raw geometry alone (see FP-2b above).
+The matched-control-policy guard below is what does the work Rung 2's ablation test does, adapted
+to the cross-environment case -- it is not an omission.
+
+### Criterion (measurement definition -- not a Rung threshold)
+
+A cross-environment discriminability result is CONFIRMING only if all three hold jointly:
+
+1. **Above-chance (3a).** Held-out classifier accuracy (trained on SD-054 reef-ON vs reef-OFF
+   trajectory segments, evaluated on a disjoint held-out episode/seed split) exceeds a
+   label-permutation null (p<0.05).
+2. **Above-matched-control (3b).** The SAME classifier pipeline, run on trajectories from an
+   untrained/random-policy control sampled from the SAME two environments, must be exceeded by
+   the trained-policy discriminability by a pre-registered margin. This is the FP-2b guard.
+3. **Selectivity (4).** Re-evaluating the held-out classifier on episodes from a mildly
+   perturbed Env-A (e.g. `hazard_food_attraction` shifted, or `reef_patch_radius` +/-1 -- an
+   orthogonal nuisance axis, not the reef-presence axis itself) still classifies these as "A" at
+   a comparably high rate -- the signature is robust to nuisance perturbation, not merely fit to
+   one specific instantiation.
+
+A NON-DEGENERACY PRECONDITION applies before any of the above is meaningful: both trained-policy
+arms must produce non-zero-variance trajectory-segment feature vectors on held-out episodes. A
+run where either condition collapses to a single degenerate trajectory self-routes
+`substrate_not_ready_requeue`, not a verdict (mirrors `Q-046`'s and `MECH-488`'s precondition
+language).
+
+### What counts as PASS (Stage 1 -- bare discriminability only)
+
+- (3a), (3b), and (4) all hold, on the TRAINED, held-out-evaluated policy.
+- The result establishes "context-sensitive behavioural differentiation exists" as a bare
+  statistical fact -- no claim about goals, adaptiveness, or "strategy" is made or needed at
+  this stage.
+
+### What does NOT count as PASS
+
+- (3a) clears the permutation null but (3b) does not exceed the matched-control margin -- the
+  signal is environment geometry, not policy behaviour (FP-2b).
+- (3a) and (3b) both clear but (4) fails -- the discriminator is equally sensitive to the
+  nuisance axis as to the reef-presence axis, i.e. not ecological-problem-specific.
+- A positive Stage 1 result treated, by itself, as evidence of "strategy" -- Stage 1
+  (discriminability) and Stage 2 (feature-importance interpretation) are deliberately kept
+  separate; a Stage-2 gloss still requires the existing FP taxonomy on this page before any
+  adaptive-control claim is made.
+
+### False positives prevented
+
+FP-2b (see the top-of-document table and its footnote for why this is a generalisation of FP-2,
+not a new class). The selectivity check (4) additionally covers a failure mode with no FP-1..FP-5
+analog: a discriminator that is real but not axis-specific.
+
+### Cross-references and evidential weight
+
+Q-092 `depends_on`: `ARC-065` (diversity-generation pathway being evaluated), `ARC-062`
+(context-discriminator architecture -- a different kind of object from the umpire; ARC-062's
+discriminator is a generative component trained end-to-end with behaviour, while the umpire is
+an external, offline, held-out evaluator with no causal role -- do not conflate the two), `MECH-309`
+(current best diagnosis of the reef phenotype the raw thought responded to), `MECH-439`
+(F-dominance ceiling -- see interpretive caveat below), `MECH-191` (reusable classifier-
+discriminability code pattern, `v3_exq_686_mech191_signal_state_discriminability.py`), `SD-054`
+(reef substrate supplying both the two-condition contrast and the perturbation knob).
+
+A Q-092 PASS would strengthen the evidential case reaching `ARC-065` (Rung 1: candidate ->
+provisional) and `ARC-062` (Rung 2: primary evidence target) by providing a second, independently
+powered, cross-environment discriminability signal alongside the within-environment TV-distance
+test above. It is explicitly NOT a substitute for either Rung's own acceptance criteria: `ARC-065`
+promotion still requires Rung 1 PASS on `V3-EXQ-569` (matched-entropy control) plus independent
+multi-env replication; `ARC-062` promotion still requires Rung 2 PASS (TV > 0.3 at both probe-
+state pairs, ablation-confirmed). Q-092 sits alongside, not inside, the Rung 0-4 gating chain.
+
+### Interpretive caveat -- read jointly with MECH-439
+
+A null or weak Q-092 result must be read jointly with `MECH-439` (F-dominance conversion ceiling:
+the primary harm/goal score F monopolises ~88-89% of E3 committed-selection variance; per-
+candidate diversity generated upstream by `ARC-065` collapses at the committed argmax) before
+being taken as evidence against the umpire methodology itself, or against `ARC-065`/`ARC-062`.
+If `MECH-439`'s ceiling is active, committed-action diversity may be architecturally capped
+before it ever reaches the trajectory level Q-092 measures -- in which case a null umpire result
+corroborates `MECH-439`, not a defect in the discriminability methodology or a refutation of
+"umpire, not ruler" as an evaluation principle. Do not classify a null Q-092 result as
+`does_not_support` for `ARC-065`/`ARC-062` without first checking whether `MECH-439`/`MECH-442`
+(the parked MAP-Elites behavioural-descriptor archive fix) is the operative constraint.
+
+### Experiments
+
+| Exp ID | Design | Target metric | Status |
+|--------|--------|---------------|--------|
+| V3-EXQ-TBD (Q-092 umpire) | SD-054 reef-ON vs reef-OFF, >=3 seeds each; held-out episode/seed split; classifier per `MECH-191` harness pattern; permutation null; untrained-policy control; `hazard_food_attraction`/`reef_patch_radius` selectivity perturbation | held-out accuracy vs. permutation null (3a); trained vs. matched-control margin (3b); selectivity retention under nuisance perturbation (4) | Not queued -- per the thought-intake's own non-degeneracy discipline, first confirm sufficient reef-ON/reef-OFF trained-agent episode counts exist or are cheap to produce, and check whether `MECH-439`'s ceiling is expected to leave enough committed-action diversity at the trajectory level for the umpire to have anything to detect |
+
+### Governance note
+
+A Q-092 PASS strengthens but does not substitute for Rung 1/Rung 2 evidence toward `ARC-065`/
+`ARC-062` (see Cross-references above). A Q-092 FAIL/null result requires the `MECH-439`
+interpretive check above before being read as evidence against the reframing, `ARC-065`, or
+`ARC-062`. This companion section does not alter the status, epistemic_category, or PASS/FAIL
+threshold of any Rung 0-4 criterion on this page, and Q-092 is not added to the Claim-to-rung
+mapping or Governance sequencing tables below -- it is evaluated on its own terms as an open
+question, per its `claims.yaml` entry.
 
 ---
 
