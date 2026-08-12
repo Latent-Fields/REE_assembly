@@ -1697,3 +1697,5 @@ One line per hourly tick. ASCII only.
 2026-08-12T21:25:10Z STAGE IGW-20260812-215 skill=/implement-substrate prio=25 worktree=igw-215-substrate-ready-sd-mech267-cem-s (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-12T22:26:43Z workset committed (regen -- 246 items, 31 ready, 0 in flight)
 2026-08-12T22:26:28Z STAGE IGW-20260812-216 skill=/implement-substrate prio=25 worktree=igw-216-substrate-ready-sd-mech303-thres (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-08-12T23:27:40Z workset committed (regen -- 246 items, 31 ready, 0 in flight)
+2026-08-12T23:27:25Z no eligible item (skipped 246): IGW-20260812-001:skill /governance not allowed; IGW-20260812-002:skill /governance not allowed; IGW-20260812-003:skill /governance not allowed
