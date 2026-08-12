@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
   "runner_pid": 3973580,
-  "runner_started_at": "2026-08-11T17:08:56.208846+00:00",
-  "last_updated": "2026-08-11T20:51:19.860481+00:00",
+  "runner_started_at": "2026-08-11T20:53:36.266868+00:00",
+  "last_updated": "2026-08-12T15:25:40.828904+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-603t",
+      "queue_id": "V3-EXQ-228d",
       "backlog_id": "",
-      "claim_id": "MECH-357",
-      "title": "MECH-357 SD-029 scheduled-external-hazard Stage-H: agent-relative discrete threat replaces 603s's undirected mobile-predator drift (successor of 603s)",
+      "claim_id": "ARC-032",
+      "title": "ARC-032 theta phase-weighted-summary readout: z_goal persistence + goal-proximity-score noise at E3-tick granularity (SD-100 retest of 228c)",
       "description": "",
-      "estimated_minutes": 282.0,
+      "estimated_minutes": 200.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-919",
+      "backlog_id": "",
+      "claim_id": "MECH-321",
+      "title": "MECH-321 harm-aware selection, unconditional whole-episode harm rate (n=40 seeds, no screen/tiering, redesigned DV + A-A null control)",
+      "description": "",
+      "estimated_minutes": 140.8,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3794,18 +3805,32 @@
       "actual_secs": 1080.6
     },
     {
-      "queue_id": "V3-EXQ-917",
+      "queue_id": "V3-EXQ-920",
       "backlog_id": "",
-      "claim_id": "SD-011",
-      "title": "MECH-303 contextual_safety_harm_threshold calibration battery: reachability/discrimination across num_hazards x harm_obs_a sourcing mode",
+      "claim_id": "",
+      "title": "Uncensored survival-to-death fishtank, TRUE single-life design (max_episode_steps-enabled, supersedes V3-EXQ-912's segment-count-scaling workaround)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "Status: FAIL | final_outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-920 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-920.json",
+      "started_at": "2026-08-11T20:53:36.279565+00:00",
+      "completed_at": "2026-08-11T21:09:07.620047+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 931.3
+    },
+    {
+      "queue_id": "V3-EXQ-921",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-490 sleep commit-gate persistence: spawn-matched + commit-variance instrumented sleep-vs-no-sleep ablation (V3-EXQ-913 successor, 6 seeds)",
       "description": "",
       "result": "PASS",
-      "result_summary": "outcome=PASS evidence_direction=supports label=mech303_tension_sourcing_mode_dependent | manifest=/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-917 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-917.json",
-      "started_at": "2026-08-11T17:17:00.803125+00:00",
-      "completed_at": "2026-08-11T20:51:19.858525+00:00",
-      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json",
+      "result_summary": "Status: PASS | final_outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-921 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-921.json",
+      "started_at": "2026-08-11T21:09:09.706433+00:00",
+      "completed_at": "2026-08-12T15:25:40.823679+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_v3.json",
       "completed_by": "ree-cloud-1",
-      "actual_secs": 12859.1
+      "actual_secs": 65791.1
     }
   ]
 }
