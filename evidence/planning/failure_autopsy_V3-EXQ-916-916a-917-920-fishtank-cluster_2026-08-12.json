@@ -1,0 +1,206 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-12T04:16:58Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_916_relief_safety_fishtank_showcase_20260811T064913Z_v3",
+      "queue_id": "V3-EXQ-916",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "partial",
+        "integration": "partially_coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-302 (relief) / MECH-303 (contextual safety terrain) / MECH-304 (conditioned safety store)",
+        "dependencies": ["MECH-057a", "MECH-091", "MECH-094", "SD-011", "SD-012", "ARC-007"],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Diagnostic showcase confirming MECH-302/303/304 telemetry channels are live and non-degenerate. z_goal and residue_wanting read structurally flat in this run due to a lineage-wide recording gap (benefit_exposure never reaches update_z_goal/update_benefit_salience because use_proxy_fields=False plus a wrong-dict read) affecting the entire 664-derived driver family (664/906/909/911/912/913/916). Fixed in successor V3-EXQ-916a; not retroactively fixed in this run. See SD-RESIDUE-VALENCE-BOUND substrate_queue.json entry (already resolved 2026-08-11, ree-v3 26260a519634) -- no further routing needed from this autopsy.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "MECH-302/303/304 telemetry channels are real and correctly wired once their default-False flags are enabled",
+        "Non-core channel flatness (z_goal) traced to a lineage-wide recording gap, not a mechanism defect"
+      ],
+      "routing": "none (already resolved elsewhere; this autopsy confirms)"
+    },
+    {
+      "run_id": "v3_exq_916a_relief_safety_fishtank_showcase_20260811T194142Z_v3",
+      "queue_id": "V3-EXQ-916a",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-302 (relief) / MECH-303 (contextual safety terrain) / MECH-304 (conditioned safety store)",
+        "dependencies": ["MECH-057a", "MECH-091", "MECH-094", "SD-011", "SD-012", "ARC-007"],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Successor to V3-EXQ-916 fixing the residue_wanting/benefit_exposure recording gap (use_proxy_fields=True plus an info-dict read, and update_benefit_salience wired into the step loop). z_goal now reads non-degenerate (chan_max_std_z_goal=0.078, was 0.0 flat in 916). Seed-level simulation outputs are bit-identical to 916, confirming the fix is purely instrumentation; 916's own PASS gates are untouched and 916 is not superseded. Lineage-wide retrofit to 664/906/909/911/912/913 remains explicitly out of scope per the driver's own docstring -- already recorded in substrate_queue.json SD-RESIDUE-VALENCE-BOUND (resolved 2026-08-11).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "residue_wanting/benefit_exposure recording gap confirmed fixed for this driver; bit-identical simulation confirms the fix is instrumentation-only"
+      ],
+      "routing": "none (fix already landed and already recorded in substrate_queue.json)"
+    },
+    {
+      "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+      "queue_id": "V3-EXQ-917",
+      "claim_ids": ["SD-011"],
+      "failed_criterion": "discrimination (C1 damage_sourced arm only; overall PASS via C2 proximity_ema_sourced)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened_with_caveat",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete_battery_partial_production_consumer",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "partially_coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SD-011 affective-harm encoder dual-stream architecture; MECH-303 contextual safety terrain (consumer)",
+        "dependencies": ["SD-010", "ARC-027", "SD-012", "ARC-007", "MECH-304"],
+        "is_formal_import": false,
+        "divergence": "Production sourcing (damage_sourced, SD-022 body-damage) maps to a reactive/sensory-discriminative-style signal; legacy sourcing (proximity_ema_sourced) maps to an anticipatory/affective-motivational-style signal. MECH-303 models anticipatory contextual safety learning, so gating it on the reactive signal is a mechanistic mismatch -- predicted by the Melzack/Craig/Rainville dual-pathway pain dissociation already cited in SD-011's own evidence trail.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-917 resolves the complex (probe-gated) open question from mech303_contextual_safety_threshold_reachability.md (2026-08-11): the SD-011 affective-harm encoder's threshold reachability/discrimination tension is NOT intrinsic -- it dissociates cleanly by sourcing mode. Under the production default (damage_sourced, SD-022 body-damage), the safe-vs-unsafe AUC never exceeds 0.52 (chance) across 18 thresholds tested (C1 FAIL). Under the legacy pre-SD-022 sourcing (proximity_ema_sourced, a slow EMA of hazard/resource spatial proximity), AUC reaches 0.84-0.97 across a wide threshold band 0.4-0.8 (C2 PASS). Overall evidence_direction=supports is correct under the run's own OR-gate combination rule (found a workable configuration), but this should NOT be read as validating the PRODUCTION default -- every driver that has exercised MECH-303's live threshold gate (764, 520, 916) uses damage_sourced, and none of them can calibrate a working threshold under it. Biological grounding: this matches the classical dissociation between reactive/interoceptive nociception (damage-triggered, Melzack & Casey 1968 sensory-discriminative component) and anticipatory contextual threat perception (proximity/context-driven, the affective-motivational component SD-011's own dual-stream design is grounded in) -- MECH-303 models the latter (contextual safety learning), so gating it on the former (accumulated body damage) is a mechanistically mismatched sourcing choice, not evidence the encoder itself cannot discriminate.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-MECH303-THRESHOLD-SOURCING",
+        "title": "Recalibrate MECH-303 contextual_safety_harm_threshold to use a proximity-anticipatory signal instead of SD-022 damage-sourced z_harm_a",
+        "implementation_hint": "V3-EXQ-917 found the production default (damage_sourced, SD-022 body-damage) never clears chance-level (AUC<=0.52) safe-vs-unsafe discrimination for MECH-303's threshold gate at any of 18 tested thresholds, while the legacy proximity_ema_sourced signal (limb_damage_enabled=False) reaches AUC 0.84-0.97 with reachability 0.23-0.98 across thresholds 0.4-0.8. Either (a) source MECH-303's specific gate from a dedicated proximity-EMA-style anticipatory signal decoupled from SD-022's damage-sourcing default (so other consumers of z_harm_a that need body-damage tracking are unaffected), or (b) make the harm_obs_a sourcing mode itself driver/consumer-configurable and set contextual_safety_harm_threshold to a value in the reachable+discriminating band (e.g. threshold=0.55: reachability 0.77, AUC 0.9625; or threshold=0.6: reachability 0.85, AUC 0.969). Needs a design decision on whether other production drivers (764, 520, 916/916a and any future driver enabling use_contextual_safety_terrain) should switch sourcing, since damage_sourced is also relied upon by SD-022's own body-damage-tracking purpose -- this may require a SECOND harm signal rather than re-sourcing the existing one.",
+        "unblocks_claims": ["MECH-303"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/utils/config.py",
+          "ree_core/environment/causal_grid_world.py",
+          "ree_core/agent.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+          "experiment_type": "v3_exq_917_mech303_harm_threshold_calibration_battery",
+          "metric": "damage_sourced (production default) AUC safe-vs-unsafe capped at 0.52 (chance) across all 18 swept thresholds (0.02-0.8); no threshold both reachable and discriminating",
+          "target": "a threshold value and/or sourcing convention under which the live MECH-303 gate is both reachable (fires on a meaningful tick fraction) and discriminates safe from hazardous contexts (AUC notably >0.5) under the PRODUCTION sourcing convention",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "SD-011: 6 prior tagging targets, mostly grandfathered 2026-03/04 z_world-forward-model findings (structurally different sub-question, unclear/weakened distribution unrelated to sourcing-mode). MECH-303: 0 tagging targets on this run. First occurrence of this specific finding; not a recurring pattern."
+      },
+      "learning_extracted": [
+        "SD-011 encoder discrimination tension is sourcing-mode dependent, not intrinsic -- resolves an open complex(probe-gated) question",
+        "Production default (SD-022 damage-sourcing) is mechanistically mismatched for MECH-303's anticipatory contextual-safety purpose; legacy proximity-EMA sourcing works well",
+        "Biological grounding (Melzack/Craig/Rainville dual-pathway pain dissociation, already in SD-011's evidence trail) predicts exactly this dissociation"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3",
+      "queue_id": "V3-EXQ-920",
+      "claim_ids": [],
+      "failed_criterion": "absolute (sufficient_uncensored_deaths: 1 observed vs floor=4)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "broken_execution_wiring",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "n/a",
+        "scale": "insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": null,
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "infrastructure/execution defect (queue-to-CLI args wiring gap); not chargeable to REE, mechanism, measurement, or environment"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Self-route label single_life_uncensored_survival_still_censoring_dominated is INCORRECT and should not be read as a measurement finding -- pct_right_censored_pooled=0.0 (literally zero censoring; the max_episode_steps-enabled design worked exactly as intended). The true cause of the FAIL is that only 1 of the pre-registered 8 seeds actually executed: the queue entry correctly declared \"seeds\": 8, but experiment_runner.py's run_experiment() builds subprocess CLI args ONLY from the queue item's \"args\" field (raw_args = item.get('args', [])) -- the declarative \"seeds\" count is used solely for the progress-bar denominator (_run_axis_count), never translated into --seeds CLI arguments. This queue entry carried no \"args\" field, so the driver's own --seeds default ([0], a single seed) silently governed the actual run. The seed that DID run (seed 0) behaved exactly as the pre-registered STEP-BUDGET CALIBRATION predicted (1 uncensored death at 1475 steps, well within the expected 261-487+ range extrapolated from V3-EXQ-912's naive hazard-rate calibration) -- this is an execution/wiring gap, not a scientific result about within-life survival or censoring.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "experiment_queue.json's \"seeds\": N field is progress-tracking metadata only -- never translated into CLI --seeds arguments by experiment_runner.py; a driver's own argparse default must independently match its documented seed count or the queue entry must carry an explicit \"args\" field",
+        "The self-routed interpretation.label can be actively misleading when a driver's else-branch hardcodes a failure-mode string regardless of true cause (recurring pattern, canonical V3-EXQ-642)"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Four experiment_purpose=diagnostic targets from the same 2026-08-11 Fishtank/harm-substrate testing day, bundled for session efficiency -- NOT a single convergent structural failure.",
+    "is_independent_bugs": true,
+    "structural_property": null,
+    "readings": [
+      "916_916a_recording_debt_resolved",
+      "917_sourcing_mode_dependent_threshold_implement_substrate",
+      "920_seeds_wiring_execution_gap_requeue"
+    ]
+  }
+}
