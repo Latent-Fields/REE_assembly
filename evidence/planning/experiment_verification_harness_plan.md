@@ -1,3 +1,49 @@
+---
+closure_plan:
+  id: experiment_verification_harness
+  generation: process
+  title: "Experiment Verification Harness -- Plan of Record (insights follow-on, gaps 1-3)"
+  registered: 2026-08-03
+  last_updated: 2026-08-03
+  owner: machinery
+  summary: >
+    Close 3 scoped gaps in the incident-driven lint ratchet (a new
+    experiment script can dodge the whole 19-lint corpus; no consolidated
+    index across the 19 lints; the JSON whole-file-reformat bug class has
+    no mechanical check), corrected against an `/insights` report that
+    had wrongly framed this as "build a verification harness from
+    scratch." generation: process -- infra/tooling lane, not V3 substrate
+    science; owns no scientific claims, so it is segmented out of the V3
+    closure % and rendered on the shared `process` tab.
+  scope_claims: []
+  sibling_plans: [substrate_stability_and_drift_detection]
+  nodes:
+    - id: "experiment_verification_harness:GAP-1"
+      title: "Block 1c in precommit_contracts.sh -- run the 19 test_*_lint.py subset for new experiment scripts that would otherwise dodge Block 2"
+      phase: 1
+      status: done
+      severity: high
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "Landed ree-v3 a249c708b2 (main). 8 new tests added (test_precommit_contracts_experiment_lint_scope.py), red/green-checked (5/8 genuinely failed against the pre-fix script); existing test_precommit_contracts_gate_scope.py + test_precommit_contracts_routing.py (24 tests) re-run clean, no regression. Full ~13min contract suite not run for this change since it touches neither ree_core/ nor experiments/_lib/."
+    - id: "experiment_verification_harness:GAP-2"
+      title: "tests/contracts/LINT_INDEX.md -- one row per test_*_lint.py file (bug class, motivating incident, hard vs warn-only)"
+      phase: 2
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "Landed ree-v3 74011a8981 (main). Enumerates all 19 lints individually; also corrected a stale '47 lint files' count (from an unfiltered find that double-counted .pyc cache variants and nested .claude/worktrees/ copies) to the real, filtered count of 19 -- now the authoritative count going forward, per this doc's own correction note."
+    - id: "experiment_verification_harness:GAP-3"
+      title: "scripts/check_json_edit_locality.py -- WARN on whole-file JSON reformats of CLAUDE.md 'exposed files' vs narrow structural appends"
+      phase: 3
+      status: done
+      severity: high
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "Landed REE_Working 8cc401e (master). 12 new tests, red/green-checked; caught a real bug via a production-scale smoke test against this repo's own 1735-line TASK_CLAIMS.json (--repo . resolved against the script's own location's parent instead of the caller's cwd, so a worktree invocation silently checked the wrong repo's staged set -- fixed, pinned by test_repo_dot_resolves_against_cwd_not_script_location). Standalone tool only -- not wired into any PreToolUse hook (a separate decision, affects every commit fleet-wide)."
+---
+
 # Experiment Verification Harness — Plan of Record
 
 **Status:** all 3 gaps landed. **Owner:** interactive sessions (no dedicated chip yet).

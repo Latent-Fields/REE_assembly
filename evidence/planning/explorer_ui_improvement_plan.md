@@ -1,3 +1,83 @@
+---
+closure_plan:
+  id: explorer_ui_improvement
+  generation: process
+  title: "Explorer UI Improvement Plan"
+  registered: 2026-08-02
+  last_updated: 2026-08-02
+  owner: machinery
+  summary: >
+    A static read-through of explorer.html (~9,600 lines) + serve.py
+    (~6,800 lines), cross-referencing what serve.py computes/reads against
+    what the frontend actually renders, in the spirit of the
+    pending_review_count badge fix that motivated the review. Scope:
+    explorer.html + serve.py only -- linked-out pages (/workset, /closure,
+    /progress, /brain-map, /code-atlas, /machines, /igw, fishtank_viz.html)
+    are separate files with their own review surface, out of scope here.
+    generation: process -- infra/tooling lane, not V3 substrate science;
+    owns no scientific claims, so it is segmented out of the V3 closure %
+    and rendered on the shared `process` tab.
+  scope_claims: []
+  sibling_plans: []
+  nodes:
+    - id: "explorer_ui_improvement:QUEUE-API"
+      title: "Surface priority + claimed_by through _queue_items_from_raw() (Finding #1) + client-side stale-claim/priority chips + priority-descending queue sort"
+      phase: 1
+      status: done
+      severity: high
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Landed REE_assembly ce7ac6096b. _queue_items_from_raw() (serve.py) now passes through priority + claimed_by (both /api/queue/v3 and /api/queue/live share the function, so one edit fixed both); the client-side priority chip + claimStaleHtml() 6h-stale warning added earlier in the same session now light up; queue cards sort by priority descending (A2)."
+    - id: "explorer_ui_improvement:LIST-VIEW"
+      title: "List view: click-to-sort column headers, current-epoch-only filter, has-conflict filter, pagination (~100/page)"
+      phase: 1
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Landed REE_assembly ce7ac6096b. A1 (click-to-sort headers, not a sort-by dropdown), A3 (current-epoch filter wired into the List view's applyFilters(), matching Map/Governance), A4 (has-conflict checkbox), D1 (numbered pagination, ~100/page) all implemented per user decisions taken during the build. A5 (Experiments > Completed sort) and D2 (mobile breakpoints) confirmed already adequate, no change needed."
+    - id: "explorer_ui_improvement:WORKSPACE-HEALTH"
+      title: "TASK_CLAIMS staleness + orphaned-stash surfacing via a third corner-dock card (B2)"
+      phase: 2
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Landed REE_assembly 166f3b773e (chip chip-20260802-claims-stash-surfacing), after being initially deferred as needing real backend work rather than a UI tweak. serve.py gained /api/workspace/health (60s-cached, shells out to audit_stale_claims.py + audit_stashes.py --json rather than porting their classification logic); explorer.html gained a 'Workspace' corner-dock card, following the existing Coordination-card pattern (B4) rather than a nav badge."
+    - id: "explorer_ui_improvement:PENDING-REVIEW-DEEPLINK"
+      title: "pendingReviewBadge deep-links to the pending_review.md doc instead of just switching to the Experiments view (B5)"
+      phase: 2
+      status: done
+      severity: low
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Landed REE_assembly ce7ac6096b."
+    - id: "explorer_ui_improvement:VISUAL"
+      title: "Dark mode via prefers-color-scheme (C1), inline-hex-to-CSS-variable migration (C2), More-menu reorganisation (C3)"
+      phase: 3
+      status: partial
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "C1 landed auto via prefers-color-scheme, including a wider-than-originally-scoped literal-color sweep needed for legibility (4 translucent 'glass' chrome surfaces, 5 claim-type badges, ~10 toolbar/pill/card backgrounds across Governance and Map, 22 identical background:#fff -> var(--card)). C2 partial BY DESIGN, not left incomplete: the literal saturated status colors (pass/fail/warning badges, priority text) deliberately stay unconverted -- legible unconverted against dark, and a full sweep of Process/Architecture/Graph views remains open if wanted. C3 partial by user decision: Docs promoted to top-level nav; Contributors + 6 external dashboard links stay in the More dropdown."
+    - id: "explorer_ui_improvement:DOCS-PICKER"
+      title: "Docs picker redesign: searchable sidebar panel + server-generated index (replaces the 70-item flat <select>) (C4)"
+      phase: 3
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Landed REE_assembly 90bfe64e24 (chip chip-20260802-docs-picker-redesign, user-approved both open questions). serve.py gained GET /api/docs/index: hybrid auto-discovery limited to six low-noise directories (docs/ root, docs/governance, docs/claims, docs/strategy, docs/examples, docs/notes; +43 newly-reachable docs) alongside the existing explicitly-curated docs/architecture (247 files, ~48 curated) and evidence/planning (799 files, 11 curated) overrides in docs_picker_config.json -- a naive full recursive scan would have surfaced ~1,400 files, recreating the flat-dropdown problem at 20x scale."
+    - id: "explorer_ui_improvement:CLOSURE-PAGE-AUDIT"
+      title: "Extend the same 'grep serve.py's computed dicts against what the frontend renders' technique to closure.html (B3)"
+      phase: 4
+      status: open
+      severity: low
+      owner_exq: null
+      last_updated: 2026-08-02
+      completion_note: "Explicitly out of scope for this pass -- closure.html is a separate file with its own review surface, per the doc's header. Flagged as a possible follow-on, not started."
+---
+
 # Explorer UI Improvement Plan
 
 **Status:** Most items below are LANDED (REE_assembly master `ce7ac6096b`,

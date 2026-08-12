@@ -1,3 +1,59 @@
+---
+closure_plan:
+  id: e3_fresh_select_migration
+  generation: process
+  title: "E3 Fresh-Select Instrument -- Shared-Helper Migration"
+  registered: 2026-07-20
+  last_updated: 2026-08-10
+  owner: machinery
+  summary: >
+    Migrate the three E3 sentinel-key freshness instrument call sites
+    (699c/699b/689i) off inlined copies onto the shared
+    experiments/_lib/fresh_select.py helper, and close the lint-visibility
+    gap (no backlog counter existed for the two E3 lints' exemption
+    markers) that made the outstanding migration invisible to automated
+    checks. generation: process -- infra/tooling lane, not V3 substrate
+    science; owns no scientific claims, so it is segmented out of the V3
+    closure % and rendered on the shared `process` tab (sibling of
+    pack_writer_single_writer_migration, the same "migrate call sites onto
+    a shared helper, one lint backlog counter at a time" shape).
+  scope_claims: []
+  sibling_plans: [pack_writer_single_writer_migration]
+  nodes:
+    - id: "e3_fresh_select_migration:P0"
+      title: "Extract E3 fresh-select instrument into shared helper + migrate first consumer (699c)"
+      phase: 0
+      status: done
+      severity: high
+      owner_exq: null
+      last_updated: 2026-07-20
+      completion_note: "ree-v3 acd48f9 (ff from 67ad105) extracted FreshSelectProbe/FreshSelectCounter into experiments/_lib/fresh_select.py + contract test_fresh_select_wholesale_reassign.py; first consumer v3_exq_699c_pcomp_demotion_x_gonogo_fixed_n.py migrated, both exemption markers removed. Suite at land: 1915 passed / 2 skipped / 39 subtests; both E3 corpus fire pins unchanged (discharge inert until a script imports the helper)."
+    - id: "e3_fresh_select_migration:P1"
+      title: "Migrate remaining call site V3-EXQ-699b onto the shared helper"
+      phase: 1
+      status: done
+      severity: medium
+      owner_exq: "V3-EXQ-699b"
+      last_updated: 2026-08-10
+      completion_note: "699b migrated off the shared helper, both exemption markers removed, validate_experiments.py reports OK (0 exempt). Two prior FAIL runs (non_contributory / substrate_not_ready_requeue, composition question levers_compound not reached) unaffected -- instrument-only migration."
+    - id: "e3_fresh_select_migration:P2"
+      title: "Migrate remaining call site V3-EXQ-689i onto the shared helper (preserve is_p1 gating + episode-END flush)"
+      phase: 1
+      status: done
+      severity: medium
+      owner_exq: "V3-EXQ-689i"
+      last_updated: 2026-08-10
+      completion_note: "689i migrated (ree-v3 1233b84e4b), own semantics preserved verbatim (is_p1 gating, episode-END flush -- differs from 699b/699c's is_p2 gating / episode-start flush). Prior run's failure_autopsy (confirmed, user-adjudicated 2026-07-24) recommends evidence_direction: supports for MECH-448, pending governance write-up -- not applied by this migration."
+    - id: "e3_fresh_select_migration:P3"
+      title: "Build e3-exemption-backlog lint counter (structural fix so this doc becomes unnecessary)"
+      phase: 2
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-10
+      completion_note: "ree-v3 78f7543b80 added e3_exemption_backlog_lint to validate_experiments.py, wired into CHECK_NAMES/summary/the shared corpus scan; corpus fire-rate pinned at 10 (699b/689i confirmed clean, the ten firing carry a marker for unrelated reasons). Doc closed: every validate_experiments.py run now reports the outstanding exemption count directly, so no future session needs to find this planning doc."
+---
+
 # E3 fresh-select instrument — shared-helper migration (plan of record)
 
 **Opened:** 2026-07-20T12:37Z (session `peaceful-morse-5cf712`)
