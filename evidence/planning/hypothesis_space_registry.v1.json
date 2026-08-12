@@ -3757,6 +3757,169 @@
         "decision_log_ref": null,
         "distance_phrase": "3 of 3 tested loci eliminated (dilution/selection; trainability/algorithm; loss-balance/algorithm) across 4 independent experiments (894/894a/894b/894c) -- all refuted the loss-term-tension theory the module's own docstring proposed. 1 untested locus remains, newly surfaced on a fresh axis (representation) by this autopsy's raw within/cross-context saturation analysis. Not yet decidable."
       }
+    },
+    {
+      "qid": "e3_fdominance_causal_discrimination",
+      "title": "Which of H1 (literal-F dominance), H2 (primary-field dominance), H3 (upstream insufficiency), or H4 (conditional specialisation) explains E3's apparent F-authority -- and does the substrate's default operating regime (near-uniform, uncommitted selection) even permit a fair test of any of them as posed?",
+      "short_title": "E3 F-dominance causal discrimination (H1-H4) + selector-regime confound",
+      "claims": [
+        "MECH-439",
+        "ARC-062"
+      ],
+      "registered_utc": "2026-08-12T09:01:42Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-925_2026-08-12.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_growth_events": [],
+      "discovery_growth_events": [
+        {
+          "recorded_utc": "2026-08-12T16:47:22Z",
+          "discovery_source": "failure_autopsy_V3-EXQ-925_2026-08-12.json",
+          "added_hids": [
+            "H0-selector-regime-confound"
+          ],
+          "delta": 1,
+          "rationale": "H0 draws on an independent, established mechanism -- accumulator/drift-diffusion decision models, where near-uniform choice under a low signal-to-noise ratio (small score range relative to decision temperature/noise) is a textbook signature of weak evidence, not intuition applied after the fact. It was genuinely unconsidered when H1-H4 were pre-registered (ree-v3 commit dcd4b6639a, 2026-08-12T06:44:40Z): all four concern WHICH channel has causal authority, none anticipated that NO channel would have meaningful absolute authority at this scale regardless of identity. The run's own instrumentation is what surfaces it -- fixing the counterfactual-replay reconstruction bug (previously reproducing the live selection only ~2.5% of the time, chance at K=32) exposed committed=False on every observed tick and normalised entropy 0.998, a finding that did not exist as such before the replay arithmetic was corrected during this session's authoring."
+        }
+      ],
+      "hypotheses": [
+        {
+          "hid": "H1-literal-f-dominance",
+          "label": "literal-F dominance",
+          "desc": "Literal F itself has candidate-specific causal authority sufficient to suppress useful competitors.",
+          "axis": "process",
+          "pre_registered_utc": "2026-08-12T06:44:40Z",
+          "adjudicating_runs": [
+            "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "selector_uncommitted_near_uniform",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-12T09:01:42Z",
+            "basis": "C1 (literal-F lesion) moved the selection distribution (total variation 0.0005177) but with NO consistent direction toward the independently-preferred (ground-truth-safer) candidate on disagreement events (delta_p_safer_mean=-0.0000016, frac_moved_toward_safer=0.376) -- the H1-supportive branch (delta_p_safer>0.01 and frac_toward>0.5) did not fire. Stays alive: committed_fraction=0.000 means the run mostly did not test the COMMITTED-selection regime H1 is actually about (MECH-439's own framing); this may not have been a fair test of H1 as posed."
+          }
+        },
+        {
+          "hid": "H2-primary-field-dominance",
+          "label": "primary-field (eligibility) dominance",
+          "desc": "Not literal F specifically; the broader pre-modulatory/eligibility pathway retains privileged authority even when literal F alone is attenuated.",
+          "axis": "process",
+          "pre_registered_utc": "2026-08-12T06:44:40Z",
+          "adjudicating_runs": [
+            "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "selector_uncommitted_near_uniform",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-12T09:01:42Z",
+            "basis": "MECH-448 eligibility-envelope toggling (C4) changed the winner on 0.0% of events -- no evidence the eligibility mechanism itself is an independent locus of authority beyond literal F in this sample. Stays alive for the same regime-confound reason as H1: near-uniform, uncommitted selection (entropy 0.998) means the toggle had almost nothing to move regardless of whether H2 holds under committed selection."
+          }
+        },
+        {
+          "hid": "H3-upstream-insufficiency",
+          "label": "upstream insufficiency",
+          "desc": "Apparent dominance is mainly downstream of inadequate candidate generation/representation; competing channels do not yet carry useful candidate-specific evidence.",
+          "axis": "representation",
+          "pre_registered_utc": "2026-08-12T06:44:40Z",
+          "adjudicating_runs": [
+            "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+            ],
+            "evidence_direction": "mixed",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "selector_uncommitted_near_uniform",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-12T09:01:42Z",
+            "basis": "NEAR-MISS: the driver's own H3-supportive threshold (competitor_tv<1e-9 AND competitor_influence_factual<0.05) did not fire -- competitor_had_influence_factual_f_rate=0.0858 narrowly exceeds 0.05; competitor_had_influence_lesioned_f_rate=0.0959 also exceeds it, so the 'near-zero in both conditions' branch also missed. Both sit in a weak, ambiguous middle zone. Qualitatively favoured by the biological-reference reading (accumulator/DDM low-SNR near-uniform selection is the expected signature of weak, only-partially-differentiated evidence -- SD-056 moved pairwise distance 0.0000->0.12-0.16, real but modest), but not confirmed by hard thresholds. Stays alive."
+          }
+        },
+        {
+          "hid": "H4-conditional-specialisation",
+          "label": "conditional specialisation",
+          "desc": "F controls where informative, competitors can gain control where their information is useful; this is substantially appropriate, not a defect.",
+          "axis": "process",
+          "pre_registered_utc": "2026-08-12T06:44:40Z",
+          "adjudicating_runs": [
+            "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "selector_uncommitted_near_uniform",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-12T09:01:42Z",
+            "basis": "The H4-supportive branch (delta_p_safer<-0.01, i.e. lesioning F makes the independently-judged outcome WORSE) did not fire (delta_p_safer_mean=-0.0000016, effectively zero). Stays alive for the same regime-confound reason as H1/H2: this run mostly sampled from a near-uniform distribution, so it cannot distinguish 'F does no useful work' (contra H4) from 'F's useful work only shows up under committed selection, which barely engaged here'."
+          }
+        },
+        {
+          "hid": "H0-selector-regime-confound",
+          "label": "selector-regime / scale confound (new, discovered)",
+          "desc": "Neither pre-registered hypothesis: at this substrate's corpus-standard default configuration (use_gap_scaled_commit_temperature=False, temperature=1.0), the E3 selector essentially never engages committed (argmin) selection -- committed_fraction=0.000 across 2493 fresh events, 2 seeds -- and normalised selection entropy is 0.998 (near-uniform). At this scale, NO channel, F included, meaningfully steers the choice, independent of which of H1-H4 might hold under a committed-selection regime. This is a materially different situation from 'F dominates and suppresses competitors': V3-EXQ-924's finding that F is ~96% of score TEMPORAL variance does not license a claim about absolute cross-candidate steering authority, and here the two diverge sharply. MECH-439's own 'committed-selection variance monopoly' framing presumes an operating regime this default configuration does not, in practice, occupy.",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-08-12T09:01:42Z",
+          "discovery_source": "failure_autopsy_V3-EXQ-925_2026-08-12.json",
+          "adjudicating_runs": [
+            "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "selector_uncommitted_near_uniform",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-12T09:01:42Z",
+            "basis": "Directly measured: committed_fraction=0.000 (exact), selection_entropy_normalised_mean=0.99820, replay reconstruction validated to 7.87e-09 vs the selector's own recorded distribution (so the near-uniform reading is not a replay-arithmetic artifact), degeneracy check passed (non_degenerate=true). This was not a rival explanation considered when H1-H4 were framed (2026-08-12, ree-v3 commit dcd4b6639a) -- it was revealed only once the counterfactual-replay bug (reproducing the live selection ~2.5% of the time, chance at K=32) was fixed during this session's authoring and the replay began perturbing the REAL captured score vector."
+          }
+        }
+      ],
+      "synthesis": {
+        "surviving_label": "H0 selector-regime/scale confound (discovered) -- dominates the observed pattern; H1-H4 remain undetermined pending a regime-matched re-test",
+        "text": "None of H1, H2, or H4 were eliminated or confirmed by V3-EXQ-925 (2026-08-12): C1's F-lesion moved the score distribution but with no consistent direction, and eligibility toggling almost never changed the winner. H3 was a near-miss (competitor influence 0.086 factual / 0.096 F-lesioned, both just outside the driver's own 0.05 threshold on either side), qualitatively favoured by the biological-reference reading (weak, only-partially-differentiated candidate evidence is expected to produce near-uniform choice) but not confirmed. The dominant finding instead is H0: at this substrate's default configuration, the selector essentially never engages committed selection (committed_fraction=0.000, entropy 0.998), so this run may not have been a fair test of any of H1-H4 as MECH-439's own committed-selection-authority framing poses them. User-confirmed routing: a /queue-experiment redesign that engages committed selection (use_gap_scaled_commit_temperature or an extended-training wider-score-range configuration) before re-testing H1-H4. A candidate note bearing on MECH-439's own evidence_quality_note was drafted for /governance review (not applied by this autopsy)."
+      },
+      "decision": {
+        "decision_question": "Which of H1-H4 explains E3's apparent F-authority, and does MECH-439's committed-selection framing describe this substrate's actual default operating regime?",
+        "live_gate": "A regime-matched re-test (committed selection genuinely engaged, e.g. via use_gap_scaled_commit_temperature or an extended-training wider-score-range configuration) that produces a non-trivial committed_fraction and a clean disagreement-conditioned discrimination among H1/H2/H4, with H3 read against the same biological-reference lens.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One regime-matched re-test away from a clean H1-H4 discrimination; the current evidence rules out none of H1/H2/H4 and leaves H3 a near-miss.",
+        "observation_bottleneck": "Selector never engaged committed (argmin) selection in this run (committed_fraction=0.000); H1-H4 as framed presume committed selection."
+      }
     }
   ]
 }

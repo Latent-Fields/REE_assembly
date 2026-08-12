@@ -1,0 +1,95 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-12T16:47:22Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
+      "queue_id": "V3-EXQ-925",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- deliberately claim-free (discriminates among causal explanations for MECH-439's mechanism without testing it)",
+        "biological_reference": "partial -- accumulator/DDM-style low-SNR near-uniform selection is the expected biological signature of weak evidence; qualitatively favours H3 but not confirmed by the driver's own hard thresholds",
+        "prerequisites": "immature -- SD-056 trains cleanly in aggregate (0.0165->0.1531) but only 2/3 seeds cleared both readiness floors; competitor-channel training reliability across seeds is itself weak",
+        "implementation": "partial -- only 1 of ~7 documented modulatory channels exercised (gated_policy); use_gap_scaled_commit_temperature left at its corpus-standard default False, so committed selection never engaged",
+        "environment": "adequate -- CausalGridWorldV2 config matches the validated 643a/604a/569d combination",
+        "measurement": "adequate -- 0 always-core recording gaps; replay reconstruction validated to 7.87e-9; degeneracy check passed",
+        "integration": "coupled but weakly differentiated -- E2/E3/SD-056/MECH-448 all wired and firing; joint effect of modest candidate differentiation x temperature=1.0 produces near-flat selection",
+        "scale": "likely insufficient (candidate differentiation) -- 0.12-0.16 achieved vs ~0.0000 untrained, but modest"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- not evidence REE's selector is broken, nor a clean confirmation of H1/H2/H3/H4; Implementation reads partial so no single-bucket REE-FAILED read is licensed"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Basal-ganglia-like commit gate (variance-threshold commitment) feeding a Luce-choice/softmax action-selection reduction; accumulator/drift-diffusion-style dynamics",
+        "dependencies": ["candidate-action value differentiation (z_world/SD-056)", "commit-threshold engagement (use_gap_scaled_commit_temperature)"],
+        "is_formal_import": true,
+        "divergence": "Near-uniform choice under weak evidence differentiation is the EXPECTED biological signature of a low-SNR regime, not a defect -- favours H3 (upstream insufficiency) as the biologically face-valid reading, though the driver's own hard thresholds land just short of confirming it",
+        "lit_status": "absent -- no dedicated lit entry on variance-share vs absolute steering authority for this substrate's selection mechanism specifically"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No claim is tagged on this target (claim_ids=[]); 'standard' is recorded here only for schema completeness per GOV-CAT-1 discipline, not applied to any claims.yaml entry.",
+      "recommended_evidence_direction": "diagnostic",
+      "recommended_evidence_quality_note": "N/A -- claim_ids=[]. See governance_note_candidate below for a draft MECH-439 note (informational only, not an evidence_direction verdict on MECH-439).",
+      "governance_note_candidate": {
+        "target_claim": "MECH-439",
+        "note_text": "2026-08-12 (failure_autopsy_V3-EXQ-925_2026-08-12, informational, claim_ids=[] on the adjudicating run -- does not itself weaken or strengthen MECH-439): V3-EXQ-925's frozen-state causal-replay harness found committed_fraction=0.000 across 2493 fresh E3 selections (2 seeds) at this substrate's corpus-standard default configuration (use_gap_scaled_commit_temperature=False, temperature=1.0) -- the selector predominantly sampled from a near-uniform softmax (selection_entropy_normalised=0.998) rather than taking a committed argmin. MECH-439's 'committed-selection variance monopoly' framing presumes committed selection is the substrate's typical operating regime; this run's finding is that, at default configuration, it largely is not. This does not itself falsify or weaken MECH-439 (the run adjudicates no claim), but it bears on how strongly any PRIOR MECH-439 evidence resting on committed-selection assumptions should be read, IF that prior evidence also ran uncommitted -- an audit of the 9 confirmed substrate_ceiling autopsy hits' configurations was NOT performed by this autopsy and would be needed before drawing that conclusion. Recommend /governance weigh whether to (a) attach this note as-is, (b) commission an audit of the 9 hits' committed_fraction/temperature configuration before attaching anything, or (c) treat as informational only pending the queued regime-matched re-test.",
+        "user_confirmed_draft": true,
+        "applied_by_this_autopsy": false
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Test-design gap, not a substrate build gap -- use_gap_scaled_commit_temperature and the MECH-448 eligibility envelope already exist and are already built (MECH-448/449 are already epistemic_category=standard). No new substrate_queue.json entry needed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "note": "N/A -- claim_ids=[]; the mechanical brake counts substrate_ceiling hits per claim_id and has nothing to count here."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Variance-share (temporal, ~96% per V3-EXQ-924) and absolute cross-candidate steering authority can diverge sharply; F-dominance claims resting on variance-share alone are not licensed to claim behavioural authority without checking selection_entropy_normalised and committed_fraction directly.",
+        "This substrate, at its corpus-standard default configuration, essentially never engages committed (argmin) selection (committed_fraction=0.000 across 2493 events, 2 seeds). MECH-439's own 'committed-selection variance monopoly' framing presumes an operating regime this default configuration does not, in practice, occupy.",
+        "H1/H2/H4 are not eliminated by this run; H3 is a near-miss, qualitatively favoured by the biological-reference reading but not confirmed by the driver's own hard thresholds.",
+        "Per-seed training reliability of the competitor channel is itself weak (1/3 seeds: zero per-candidate signal despite SD-056 clearing its own floor)."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Same-question redesign (new letter off V3-EXQ-925, not a new EXQ number) that engages committed selection (use_gap_scaled_commit_temperature=True, or an extended-training/wider-score-range configuration restricting analysis to committed-only ticks) before re-testing H1-H4. User-confirmed at the Step 8 interactive gate, 2026-08-12."
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger": {
+    "new_question_qid": "e3_fdominance_causal_discrimination",
+    "mode": "B (same-cycle registration, H1-H4) + C (discovery, H0 selector-regime confound)",
+    "growth_restriction_applicable": false,
+    "growth_restriction_reason": "New question, not an addition to an existing one -- the growth-restriction check applies only when attaching to an already-registered question."
+  },
+  "interactive_gate": {
+    "conducted": true,
+    "conducted_utc": "2026-08-12T16:42:00Z",
+    "questions_and_answers": [
+      {
+        "question": "How should H1-H4 be resolved given the near-uniform-selection / uncommitted-selector confound?",
+        "selected": "Leave H1-H4 alive; register the regime confound as a new discovery (Recommended)"
+      },
+      {
+        "question": "What follow-on routing should this autopsy recommend?",
+        "selected": "/queue-experiment redesign: engage committed selection before re-testing H1-H4 (Recommended)"
+      },
+      {
+        "question": "Should the SELECTOR REGIME finding be drafted as a candidate note against MECH-439's evidence_quality_note for governance to consider?",
+        "selected": "Yes, draft the note for governance's Step 8/2b review (Recommended)"
+      }
+    ],
+    "recommendation_agreement_logged": true
+  }
+}
