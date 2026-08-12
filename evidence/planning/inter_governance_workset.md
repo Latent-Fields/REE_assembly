@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-12T05:15:03Z`
+Generated: `2026-08-12T06:17:31Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,28 +11,28 @@ UI: http://localhost:8000/workset
 
 - Items: **245** (ready 29, in_flight 0, blocked 165)
 - By generation: clinical 11, meta 4, process 10, v3 80, v4 77, v5 38, v6 25
-- Pending review: **15**
+- Pending review: **17**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-906c, V3-EXQ-921, V3-EXQ-924
+- Live EXQs: V3-EXQ-906c, V3-EXQ-921
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): ARC-045 -> v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3
 
 ## Work packages
 
-### IGW-20260812-001 -- Complete governance review (15 pending)
+### IGW-20260812-001 -- Complete governance review (17 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 15 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 17 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260812-001
-Title: Complete governance review (15 pending)
+Title: Complete governance review (17 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 15 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 17 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -5453,8 +5453,8 @@ Instructions:
 ### IGW-20260812-238 -- Confirm evidence: MECH-191 (lit 0.86, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0291 status=blocked_substrate: functional-state channels do not externalize >=2 differentially-active, cross-architecturally-consistent dimensions; scalar channel-norm readouts of tonic accumulators are satu
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260803-igw-confirm-mech191) recorded EXP-0291 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs un
+- **Blocked by:** experiment_proposals.v1.json EXP-0329 status=blocked_substrate: functional-state channels do not externalize >=2 differentially-active, cross-architecturally-consistent dimensions; scalar channel-norm readouts of tonic accumulators are satu
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260803-igw-confirm-mech191) recorded EXP-0329 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs un
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5464,8 +5464,8 @@ Title: Confirm evidence: MECH-191 (lit 0.86, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-191
-Blocked by: experiment_proposals.v1.json EXP-0291 status=blocked_substrate: functional-state channels do not externalize >=2 differentially-active, cross-architecturally-consistent dimensions; scalar channel-norm readouts of tonic accumulators are satu
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260803-igw-confirm-mech191) recorded EXP-0291 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs un
+Blocked by: experiment_proposals.v1.json EXP-0329 status=blocked_substrate: functional-state channels do not externalize >=2 differentially-active, cross-architecturally-consistent dimensions; scalar channel-norm readouts of tonic accumulators are satu
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (metaworker-chip-20260803-igw-confirm-mech191) recorded EXP-0329 status=blocked_substrate in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs un
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5503,8 +5503,8 @@ Instructions:
 ### IGW-20260812-240 -- Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0516 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0516 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Blocked by:** experiment_proposals.v1.json EXP-0533 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0533 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5514,8 +5514,8 @@ Title: Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-282
-Blocked by: experiment_proposals.v1.json EXP-0516 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0516 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Blocked by: experiment_proposals.v1.json EXP-0533 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun.
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0533 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5528,8 +5528,8 @@ Instructions:
 ### IGW-20260812-241 -- Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0342 status=gated: MECH-338 is the 'select-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull.' Same absent caregiver-agent substrate as its parent.
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (elastic-merkle-e0cca8) recorded EXP-0342 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Blocked by:** experiment_proposals.v1.json EXP-0375 status=gated: MECH-338 is the 'select-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull.' Same absent caregiver-agent substrate as its parent.
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (elastic-merkle-e0cca8) recorded EXP-0375 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5539,8 +5539,8 @@ Title: Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-338
-Blocked by: experiment_proposals.v1.json EXP-0342 status=gated: MECH-338 is the 'select-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull.' Same absent caregiver-agent substrate as its parent.
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (elastic-merkle-e0cca8) recorded EXP-0342 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Blocked by: experiment_proposals.v1.json EXP-0375 status=gated: MECH-338 is the 'select-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull.' Same absent caregiver-agent substrate as its parent.
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (elastic-merkle-e0cca8) recorded EXP-0375 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5553,8 +5553,8 @@ Instructions:
 ### IGW-20260812-242 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0521 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0521 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Blocked by:** experiment_proposals.v1.json EXP-0537 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0537 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5564,8 +5564,8 @@ Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: SD-055
-Blocked by: experiment_proposals.v1.json EXP-0521 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0521 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Blocked by: experiment_proposals.v1.json EXP-0537 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory).
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0537 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5603,8 +5603,8 @@ Instructions:
 ### IGW-20260812-244 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0527 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0527 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Blocked by:** experiment_proposals.v1.json EXP-0542 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0542 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5614,8 +5614,8 @@ Title: Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-340
-Blocked by: experiment_proposals.v1.json EXP-0527 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0527 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Blocked by: experiment_proposals.v1.json EXP-0542 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0542 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5628,8 +5628,8 @@ Instructions:
 ### IGW-20260812-245 -- Confirm evidence: MECH-339 (lit 0.67, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0525 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
-- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0525 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+- **Blocked by:** experiment_proposals.v1.json EXP-0541 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
+- **Why now:** ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0541 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -5639,8 +5639,8 @@ Title: Confirm evidence: MECH-339 (lit 0.67, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-339
-Blocked by: experiment_proposals.v1.json EXP-0525 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
-Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0525 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
+Blocked by: experiment_proposals.v1.json EXP-0541 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
+Why now: ALREADY ADJUDICATED -- do not re-investigate. A prior session (determined-ritchie-55a3a6) recorded EXP-0541 status=gated in experiment_proposals.v1.json. See blocked_by; re-runs of this confirmer are NO-OPs until that status is cleared.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
