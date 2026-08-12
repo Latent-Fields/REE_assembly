@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-08-12T03:21:45.375474Z`
+Generated: `2026-08-12T06:08:48.879225Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -68,6 +68,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-142` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-143` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-150` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-152` | `provisional` | Demotion review: provisional -> candidate | `demote_to_candidate` | `pending_user` |
 | `MECH-153` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-163` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-165` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
@@ -227,7 +228,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-032
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.525, conflict_ratio=0.833, exp_entries=5, lit_entries=8; directions supports=7, weakens=5, mixed=1, unknown=0, conflict_ratio=0.833
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.524, conflict_ratio=0.833, exp_entries=5, lit_entries=8; directions supports=7, weakens=5, mixed=1, unknown=0, conflict_ratio=0.833
 - Evidence quality note: EXQ-076d FAIL 1/4 (tested jointly with MECH-116, 2026-03-27): same null result as MECH-116 at 2000 steps. ARC-032's specific prediction (theta-bypass degrades goal maintenance) has not been tested -- EXQ-076 only tests joint goal conditioning; no theta-bypass ablation condition was included. ARC-032 remains untested as a standalone architectural claim. Design a separate ablation experiment isolati…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -246,7 +247,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.125, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.375, conflict_ratio=1, exp_entries=2, lit_entries=2; directions supports=2, weakens=2, mixed=0, unknown=0, conflict_ratio=1
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
@@ -283,7 +284,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-045
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.408, conflict_ratio=1, exp_entries=3, lit_entries=3; directions supports=3, weakens=3, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.407, conflict_ratio=1, exp_entries=3, lit_entries=3; directions supports=3, weakens=3, mixed=0, unknown=0, conflict_ratio=1
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1222,7 +1223,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.125, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.59, conflict_ratio=0.5, exp_entries=2, lit_entries=2; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1237,6 +1238,22 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-03-31T20:20:00.000000Z`
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Hold at candidate: conflict_ratio=1.0, only 2 experimental entries, empty evidence quality note. Needs dedicated experiments.
+
+### MECH-152
+- Current status: `provisional`
+- Decision needed: Demotion review: provisional -> candidate
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.325, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Evidence quality note: >
+- Recommendation: `demote_to_candidate`
+- Options (pros/cons):
+  - Demote now (reduces false certainty, destabilizes current roadmap references)
+  - Hold and run conflict-resolution suite first (more data, temporary ambiguity)
+  - Split into subclaims (isolates conflict, increases registry complexity)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### MECH-153
 - Current status: `candidate`
@@ -1260,7 +1277,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-163
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.535, conflict_ratio=0.375, exp_entries=3, lit_entries=14; directions supports=13, weakens=3, mixed=1, unknown=0, conflict_ratio=0.375
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.534, conflict_ratio=0.375, exp_entries=3, lit_entries=14; directions supports=13, weakens=3, mixed=1, unknown=0, conflict_ratio=0.375
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1298,7 +1315,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-166
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.408, conflict_ratio=0.857, exp_entries=3, lit_entries=4; directions supports=4, weakens=3, mixed=0, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.407, conflict_ratio=0.857, exp_entries=3, lit_entries=4; directions supports=4, weakens=3, mixed=0, unknown=0, conflict_ratio=0.857
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -3111,7 +3128,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-009
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.317, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.316, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: [2026-08-08 governance, V3-EXQ-897, confirmed failure_autopsy_V3-EXQ-897_2026-08-08]: well-controlled ablation (2 arms x 3 seeds) of an additional event-type CE head layered on the SD-070 anti-collapse recipe (held constant in both arms). Positive control and encoder-trained preconditions both met. Primary DV (held-out frozen-probe decodability margin) clears the floor in BOTH arms (mean ON 0.065,…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -3593,6 +3610,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 
 | claim_id | status | conflict_ratio |
 |---|---|---|
+| `ARC-041` | `candidate` | 1 |
 | `ARC-045` | `candidate` | 1 |
 | `INV-047` | `candidate` | 1 |
 | `INV-091` | `candidate` | 1 |
@@ -3615,14 +3633,13 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `Q-002` | `active` | 0.8 |
 | `Q-003` | `active` | 0.8 |
 | `MECH-099` | `candidate` | 0.727 |
-| `ARC-041` | `candidate` | 0.667 |
 | `INV-054` | `candidate` | 0.667 |
 | `INV-087` | `candidate` | 0.667 |
 | `MECH-073` | `provisional` | 0.667 |
 | `MECH-090` | `active` | 0.667 |
 | `MECH-130` | `candidate` | 0.667 |
 | `MECH-143` | `candidate` | 0.667 |
-| `MECH-150` | `candidate` | 0.667 |
+| `MECH-152` | `provisional` | 0.667 |
 | `MECH-463` | `candidate` | 0.667 |
 | `MECH-466` | `candidate` | 0.667 |
 | `Q-001` | `active` | 0.667 |
@@ -3641,6 +3658,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `INV-088` | `candidate` | 0.5 |
 | `MECH-057b` | `candidate` | 0.5 |
 | `MECH-118` | `candidate` | 0.5 |
+| `MECH-150` | `candidate` | 0.5 |
 | `MECH-165` | `candidate` | 0.5 |
 | `MECH-188` | `candidate` | 0.5 |
 | `MECH-236` | `candidate` | 0.5 |
@@ -3686,4 +3704,9 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `ARC-018` | `provisional` | 0.32 |
 | `MECH-457` | `candidate` | 0.316 |
 
-WARNING: 92 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+WARNING: 93 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+
+## Substrate changes with dependent invariants
+
+No substrate status changes this run. No dependent invariants flagged.
+

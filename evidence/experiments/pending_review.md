@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-12T03:18:33Z`  
+Generated: `2026-08-12T06:09:04Z`  
 Last review: `2026-08-10T15:20:50Z`  
-Pending: **14** item(s) -- 3 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 4 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
+Pending: **17** item(s) -- 6 PASS, 11 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
@@ -14,6 +14,11 @@ Pending: **14** item(s) -- 3 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T055126Z_v3` | 2026-08-11T05:51 | MECH-236 | — |
 | `v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T065911Z_v3` | 2026-08-11T06:59 | MECH-236 | — |
 | `v3_exq_603t_instrumental_avoidance_scheduled_external_hazard_20260811T173724Z_v3` | 2026-08-11T17:37 | MECH-357 | — |
+| `v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3` | 2026-08-11T21:09 | (no claim tags) | — |
+| `v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3` | 2026-08-11T22:51 | MECH-321 | — |
+| `v3_exq_228d_arc032_theta_phase_weighted_readout_20260811T234236Z_v3` | 2026-08-11T23:42 | ARC-032 | — |
+| `v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3` | 2026-08-12T03:51 | ARC-041, MECH-150, MECH-151, MECH-152 | — |
+| `v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3` | 2026-08-12T04:55 | MECH-267 | — |
 
 ## PASS (verify & close)
 
@@ -22,6 +27,9 @@ Pending: **14** item(s) -- 3 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_913_developmental_ecology_fishtank_20260810T213204Z_v3` | 2026-08-10T21:32 | (no claim tags) |
 | `v3_exq_916_relief_safety_fishtank_showcase_20260811T064913Z_v3` | 2026-08-11T06:49 | (no claim tags) |
 | `v3_exq_916a_relief_safety_fishtank_showcase_20260811T194142Z_v3` | 2026-08-11T19:41 | (no claim tags) |
+| `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` | 2026-08-11T20:51 | SD-011 |
+| `v3_exq_918a_sd_residue_valence_bound_validation_20260812T044049Z_v3` | 2026-08-12T04:40 | (no claim tags) |
+| `v3_exq_924_e3_score_variance_decomp_scorer_fix_remeasure_20260812T051115Z_v3` | 2026-08-12T05:11 | (no claim tags) |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -29,27 +37,8 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 
 | Run ID | Status | Self-route label |
 |--------|--------|-------------------|
-| `v3_exq_916_relief_safety_fishtank_showcase_20260811T064913Z_v3` | PASS | relief_safety_showcase_channels_live |
-| `v3_exq_916a_relief_safety_fishtank_showcase_20260811T194142Z_v3` | PASS | relief_safety_showcase_channels_live |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| FAIL | `v3_exq_228d_arc032_theta_phase_weighted_readout_20260811T234236Z_v3` | v3_exq_228d_arc032_theta_phase_weighted_readout | V3-EXQ-228d | does_not_support |
-| PASS | `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` | v3_exq_917_mech303_harm_threshold_calibration_battery | V3-EXQ-917 | supports |
-| FAIL | `v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3` | v3_exq_920_uncensored_survival_single_life_fishtank | V3-EXQ-920 | non_contributory |
-| FAIL | `v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3` | v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode | V3-EXQ-919 | weakens |
-
-## Needs diagnosis (ERROR manifests -> /diagnose-errors)
-
-These are durable ERROR-class result manifests on disk -- most commonly a runner-synthesized record for a crash-before-manifest (a script that exited non-zero before writing any manifest; incident V3-EXQ-654e). They are scoring-neutral (no claim tags) so they never weight claim confidence, but each is a real code crash that needs `/diagnose-errors` and a re-queue under a NEW letter. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs`.
-
-| Outcome | Manifest stem | Queue ID | Machine | Summary |
-|---------|---------------|----------|---------|---------|
-| ERROR | `v3_v3_exq_918_runner_error_20260811T173942Z_v3` | V3-EXQ-918 | ree-cloud-3 | Non-zero exit code 1; no runner sentinel (stdout-derived 'UNKNOWN' not trusted o |
+| `v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3` | FAIL | h1_refuted_gaps_at_iters2_as_flat_as_iters3 |
+| `v3_exq_924_e3_score_variance_decomp_scorer_fix_remeasure_20260812T051115Z_v3` | PASS | — |
 
 ---
 
