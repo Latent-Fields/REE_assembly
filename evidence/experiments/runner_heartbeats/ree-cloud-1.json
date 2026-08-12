@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-12T21:46:33Z",
+  "last_tick_utc": "2026-08-12T22:36:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-464e",
   "current_exq_started_utc": "2026-08-12T16:40:35.205589+00:00",
@@ -12,17 +12,19 @@
     "run_label": "Seed 42 / CURRICULUM_BUILT_COMPETING_GOALS",
     "runs_done": 0,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 3.8
+    "overall_pct": 21.4
   },
-  "seconds_elapsed": 18358,
-  "seconds_remaining": 82180,
+  "seconds_elapsed": 21377,
+  "seconds_remaining": 78515,
   "recent_lines": [
     "[v3_exq_464e_mech266_competing_goals_behavioural] starting (dry_run=False, env_seed_base=None)",
     "Seed 42 Condition CURRICULUM_BUILT_COMPETING_GOALS",
     "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4673 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.953 gate=pass"
+    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.953 gate=pass",
+    "[train] p0_guided seed=42 ep 130/265 mean_len=198.2 rv=0.02521",
+    "[train] hazard_avoidance seed=42 ep 170/265 median_last=5.0 survival_gate=FAIL"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
