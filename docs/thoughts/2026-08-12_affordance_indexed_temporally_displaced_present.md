@@ -288,6 +288,44 @@ It would require something closer to:
 
 This provides another reason why commitment may be architecturally important in REE beyond simply reducing behavioural indecision.
 
+## Using the existing claims/dependency machinery
+
+Because REE claims are treated as hypotheses or working beliefs rather than immutable specifications, this thought can also be used **backwards** as a design and investigation tool.
+
+If some part of the theory is provisionally entertained, ask:
+
+> **If this were true, what functional relationships would have to exist?**
+
+Those implied relationships can then be traced through the project's existing claim, closure-plan, substrate, task and experiment dependency machinery. The purpose is not to make the architecture conform to the theory, but to expose consequences that can themselves be tested.
+
+For example, this thought may imply candidate functional dependencies such as:
+
+- an actionable predictive present requires differentiated action-conditioned futures;
+- commitment should reduce uncertainty about the organism's own near-future action;
+- post-commitment control should permit local correction without continuously reopening higher-level choice;
+- sufficiently consequential prediction violations should possess interrupt/decommit authority;
+- interruption should reopen candidate branching;
+- commitment horizons may depend on prediction quality, familiarity and action timescale;
+- nested commitments may require different levels of protected execution and interrupt authority.
+
+These are **theory-derived implications, not established REE requirements**.
+
+Where an implication appears important, ingestion should ask:
+
+1. Is the implied function already represented by an existing claim or mechanism?
+2. Is the relevant dependency already present in a closure plan or active task?
+3. Does current evidence support, contradict or leave it unresolved?
+4. Would a missing dependency justify a new hypothesis, claim, substrate investigation or discriminating experiment?
+5. Can the higher-level theory be falsified without assuming that REE's present implementation is the only possible implementation?
+
+The reasoning should remain bidirectional:
+
+**theoretical hypothesis → implied computational necessity → candidate architectural dependency → experiment/evidence → revision of the architectural hypothesis and, where appropriate, the originating theory.**
+
+This separation matters. A phenomenological/theoretical proposition, a computational requirement inferred from it, and a particular REE implementation hypothesis are not the same epistemic object. Failure of one proposed implementation should not automatically falsify the higher-level theory; conversely, attractiveness of the higher-level theory must not be allowed to promote an untested implementation into canonical architecture.
+
+Therefore this thought should be ingested through the **existing** claims/dependency machinery rather than spawning a parallel methodology. Back-propagated dependencies should be explicitly recognisable as theory-derived until independently supported.
+
 ## Falsifiable consequences
 
 The proposal generates several broad predictions.
@@ -317,3 +355,5 @@ The consequence is a different picture of subjective time:
 ## Follow-up
 
 This thought merits a dedicated literature and architecture pass before any attempt to promote it into a formal claim. Relevant literature families include intentional binding, action-effect temporal prediction, sensorimotor temporal recalibration, chronostasis, predictive remapping around saccades, postdictive reconstruction, readiness potentials, subjective intention timing, motor commitment, affordance theory, and hierarchical control.
+
+During ingestion, explicitly consider whether the thought generates useful **theory-derived backward dependencies** through the existing claims/closure machinery. Check for existing claims, tasks and substrates before creating new work, and preserve the distinction between a working theory, a computational implication, and a particular proposed REE implementation.
