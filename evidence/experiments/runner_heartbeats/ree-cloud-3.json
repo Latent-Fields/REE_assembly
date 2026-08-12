@@ -1,48 +1,31 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-12T06:45:47Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-925",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-866b",
-      "result": "PASS",
-      "completed_at": "2026-08-03T19:24:06.174504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-888",
-      "result": "PASS",
-      "completed_at": "2026-08-04T07:52:57.551542+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-900",
-      "result": "PASS",
-      "completed_at": "2026-08-08T10:38:46.565176+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-904",
-      "result": "PASS",
-      "completed_at": "2026-08-08T20:11:50.967141+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-916a",
-      "result": "PASS",
-      "completed_at": "2026-08-11T19:41:42.788269+00:00"
-    }
+  "last_tick_utc": "2026-08-12T06:51:22Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-925",
+  "current_exq_started_utc": "2026-08-12T06:47:50.312485+00:00",
+  "current_title": "E3 F-dominance frozen-state causal-replay harness (H1/H2/H3/H4 discrimination, SD-056-trained substrate)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "starting...",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 0,
+    "episodes_total": 600,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 212,
+  "seconds_remaining": 4500,
+  "recent_lines": [
+    "== seed 42: P0 SD-056 warmup (60 episodes) =="
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 925,
-  "runner_version": "r5104 dcd4b66 2026-08-12",
+  "runner_version": "r5105 b02eb64 2026-08-12 (running r5104 dcd4b66)",
   "gpu": {
     "available": false
   },
