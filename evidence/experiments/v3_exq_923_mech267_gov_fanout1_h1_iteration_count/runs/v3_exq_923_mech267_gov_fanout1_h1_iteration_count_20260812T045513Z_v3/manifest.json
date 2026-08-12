@@ -1,0 +1,150 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count",
+  "run_id": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-12T04:55:13.442457Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-267"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-267": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "h1_refuted_gaps_at_iters2_as_flat_as_iters3",
+    "preconditions": [
+      {
+        "name": "both_mechanisms_active",
+        "description": "mode_noise_scale and mode_horizon_scale both measured non-None, and effective_horizon varies by mode -- confirms both named MECH-267 mechanisms fired at runtime, not just per config inspection.",
+        "measured": true,
+        "threshold": true,
+        "met": true,
+        "control": "runtime diagnostics on every cell, all iteration counts"
+      },
+      {
+        "name": "diagnostic_manipulation_check_iters1",
+        "description": "Same C0 gate as 869/869a: mean pairwise raw_std gaps at iters=1 each clear FLOOR_DIAGNOSTIC on a known-working manipulation (mode-conditioned proposal generation itself, before any elite-refit).",
+        "measured": 0.031088031238565843,
+        "threshold": 0.015,
+        "direction": "lower",
+        "met": true,
+        "control": "iters=1, the condition 869/869a already validated clean"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_mechanism_activation_check",
+        "load_bearing": true,
+        "passed": true,
+        "detail": {
+          "noise_scale_active": true,
+          "horizon_scale_active": true,
+          "horizon_varies_by_mode": true,
+          "distinct_effective_horizons": [
+            2,
+            3,
+            4
+          ],
+          "effective_horizon_by_mode": {
+            "internal_planning": 4,
+            "external_task": 2,
+            "internal_replay": 3,
+            "offline_consolidation": 4
+          },
+          "both_mechanisms_active": true
+        }
+      },
+      {
+        "name": "C0_diagnostic_manipulation_check_iters1",
+        "load_bearing": true,
+        "passed": true,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": 0.054585663601756096,
+          "external_task_minus_internal_replay": 0.0918179708532989,
+          "internal_replay_minus_offline_consolidation": 0.031088031238565843
+        },
+        "floor": 0.015
+      },
+      {
+        "name": "C_H1_iteration_count_probe_iters2",
+        "load_bearing": true,
+        "passed": false,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": -0.0028445196493218344,
+          "external_task_minus_internal_replay": 0.002281867153942585,
+          "internal_replay_minus_offline_consolidation": -5.697505548596382e-06
+        },
+        "floor": 0.01,
+        "note": "THE H1 TEST. PASS = content persists at iters=2 (wash-out is iteration-count dependent). FAIL = H1's own pre-registered null met (gaps at iters=2 as flat as iters=3)."
+      },
+      {
+        "name": "C1_context_production_iters3",
+        "load_bearing": false,
+        "passed": false,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": 0.0007764140299210946,
+          "external_task_minus_internal_replay": 0.002416704765831431,
+          "internal_replay_minus_offline_consolidation": -0.003747694892808795
+        },
+        "floor": 0.01,
+        "note": "Context only -- already established FAIL by 869a; reported for direct comparability."
+      },
+      {
+        "name": "C2_seed_majority_full_ordering_iters2",
+        "load_bearing": false,
+        "passed": false,
+        "n_seeds_full_order": 2,
+        "n_seeds_total": 30
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_mechanism_activation_check": true,
+      "C0_diagnostic_manipulation_check_iters1": true,
+      "C_H1_iteration_count_probe_iters2": true,
+      "C1_context_production_iters3": true,
+      "C2_seed_majority_full_ordering_iters2": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory (this is a diagnostic; evidence_direction is always non_contributory regardless of which way the discrimination resolves -- the finding is which HYPOTHESIS is favoured, not a claim-supporting or claim-weakening reading) if the mechanism-activation check fails, or the primary DV is degenerate at iters=1, or C0 (manipulation check) fails -- none of these are informative about H1. Else: interpretation.label = h1_supported_... (outcome PASS) iff C_H1 (mean pairwise raw_std gaps at iters=2 each clear FLOOR_PRODUCTION); else h1_refuted_... (outcome FAIL). C1 and C2 are reported alongside as non-gating context."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "aa644532a9b2cb09d1ebda7ca9a935edd6101f793276cf80ec59bee5b36da8ab",
+  "substrate_commit": {
+    "commit": "d6fed3246e6450d46c1b62aa28a9f3285d788bc2",
+    "dirty": false,
+    "branch": "main"
+  }
+}
