@@ -2840,18 +2840,22 @@
           "desc": "The content-persistence wash-out depends on num_cem_iterations itself; a lower iteration count (e.g. 2) would preserve mode-conditioned content that iters=3 erases",
           "axis": "selection",
           "pre_registered_utc": "2026-08-03T08:33:56Z",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-923"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "Untested -- only iters=1 and iters=3 have ever been measured for this question; no intermediate value exists in any run to date. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H1."
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-923"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "h1_refuted_gaps_at_iters2_as_flat_as_iters3",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-12T04:55:13.442457Z",
+            "basis": "V3-EXQ-923 (30 seeds, both mechanisms confirmed active): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C_H1 at iters=2 failed flat (gaps -0.0028/0.0023/~0.000006 vs 0.01 floor), same order of magnitude as iters=3's reading. Confirmed autopsy failure_autopsy_V3-EXQ-923_2026-08-12: standard/non_contributory -- content wash-out is not iteration-count dependent."
           }
         },
         {
@@ -2898,10 +2902,10 @@
       "synthesis": null,
       "decision": {
         "decision_question": "Does the currently-implemented CEM-based hippocampal proposal pipeline preserve MECH-267's mode-conditioned content through production-settings elite-refit, and if not, which locus (iteration count / scoring criterion / pool architecture) fixes it?",
-        "live_gate": "H-mech267-fewer-iters, H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- three untested loci, not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the three should precede queuing per GOV-FANOUT-1 Step 2.5b.",
+        "live_gate": "H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- two untested loci remain (iteration-count eliminated 2026-08-12), not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the two should precede queuing per GOV-FANOUT-1 Step 2.5b. A substrate_queue entry (SD-MECH267-CEM-SELECTION-FIX) was created unscoped between the two per failure_autopsy_V3-EXQ-923_2026-08-12.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "2 of 2 tested upstream-signal mechanisms eliminated (noise-scale alone; noise-scale+horizon-depth together) -- both wash out identically at production iters=3. 3 untested loci remain, on 3 distinct design axes (selection/iteration-count, representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out."
+        "distance_phrase": "3 of 3 tested upstream mechanisms/loci eliminated (noise-scale alone; noise-scale+horizon-depth together; iteration-count) -- all wash out identically at production settings or intermediate iteration counts. 2 untested loci remain, on 2 distinct design axes (representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out."
       }
     },
     {

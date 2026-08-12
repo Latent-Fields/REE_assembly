@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-12T06:36:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3",
+      "queue_id": "V3-EXQ-923",
+      "claim_ids": ["MECH-267"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (inherited from confirmed failure_autopsy_V3-EXQ-869/869a; not re-tested in this leg)",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled but unstable",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM FAILED (localized to HippocampalModule CEM elite-refit selection procedure, not organism-level REE FAILED)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "state-dependent hippocampal replay content, differentiated by cognitive mode (planning/task-execution/replay/consolidation)",
+        "dependencies": ["mode_noise_scale (MECH-267 base mechanism)", "mode_horizon_scale (horizon-depth mechanism, built 2026-08-02)"],
+        "is_formal_import": false,
+        "divergence": "not applicable to this leg -- biology triage inherited from 869/869a, not re-litigated; this run is a computational selection-algorithm discrimination, not a biology-fidelity test",
+        "lit_status": "present (inherited)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "GOV-FANOUT-1 portfolio (opened by failure_autopsy_V3-EXQ-869a_2026-08-03) update: H1 (iteration-count) eliminated by V3-EXQ-923 (confirmed failure_autopsy_V3-EXQ-923_2026-08-12) -- production-settings content wash-out is not iteration-count dependent. H2 (mode-aware scoring) and H3 (partitioned pools) remain the only live loci, both pending a substrate build.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-MECH267-CEM-SELECTION-FIX",
+        "title": "Fix MECH-267 mode-content wash-out in HippocampalModule CEM elite-refit (locus TBD: mode-aware value-function term or partitioned candidate pools)",
+        "implementation_hint": "V3-EXQ-869/869a/923 eliminated three candidate explanations for why mode-conditioned proposal content survives at num_cem_iterations=1 but washes out by iterations=2-3: noise-scale-only modulation (869), noise-scale+horizon-depth together (869a), and the iteration count itself (923). Two loci remain, neither built: H2 -- add an explicit mode-dependent term to the CEM elite-selection value function (not merely a scoring-window depth, which is what horizon-depth already does); H3 -- hard-partition CEM candidate pools per operating_mode so elite-refit never mixes candidates across modes. Unscoped between the two per 2026-08-12 user decision (neither has been costed) -- a future session should scope feasibility for both before committing to a build, or build both and re-measure C1 at iters=3 for each.",
+        "unblocks_claims": ["MECH-267"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": ["ree_core/hippocampal/module.py"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3",
+          "experiment_type": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count",
+          "metric": "mean pairwise raw_std gaps at num_cem_iterations=2 (C_H1): -0.0028 / 0.0023 / ~0.000006, vs FLOOR_PRODUCTION=0.01",
+          "target": "gaps must clear 0.01 at some intermediate iteration count between 1 (clean, 0.031-0.092) and 3 (washed out, per 869a) to support H1; none does -- flat by iters=2, unchanged at iters=3",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-MECH267-CEM-SELECTION-FIX",
+        "note": "MECH-267 carries 0 prior substrate_ceiling autopsies under R1-R3 (869/869a both read competence_implementation_gap/non_contributory, not substrate_ceiling; this target reads standard). Brake does not fire; even if it were counted, the discrimination-diagnostic carve-out from 869a's own routing continues to apply -- this leg attacks a distinct design axis (iteration-count) from either prior run, and the routing (implement-substrate, unscoped between two named loci) is exactly the brake's prescribed alternative to a same-question re-letter."
+      },
+      "learning_extracted": [
+        "H1 (iteration-count) refuted: content wash-out is not a function of elite-refit pass count -- gone by pass 2, unchanged by pass 3.",
+        "H-mech267-fewer-iters eliminated in hypothesis_space_registry.v1.json (mech267_content_persistence_cem_refit).",
+        "H2 (mode-aware scoring) and H3 (partitioned pools) are the only remaining live loci; both need a substrate build not present in ree_core today.",
+        "Content survives exactly one elite-refit pass and is gone by the second, suggestive (not dispositive) toward cross-mode elite pooling (H3's target) dominating quickly -- a genuine H2-vs-H3 discrimination requires building at least one of them."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "user_confirmation": {
+    "confirmed_utc": "2026-08-12T06:35:00Z",
+    "decision": "Create substrate_queue entry, unscoped between H2 and H3 -- neither locus has been scoped for feasibility/cost yet."
+  }
+}

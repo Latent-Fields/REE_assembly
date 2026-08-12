@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-11T06:05:56Z",
+  "generated_at": "2026-08-12T06:39:24Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,37 +8,37 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 153,
-      "built_modules": 125,
-      "fraction_built": 0.817,
+      "built_modules": 127,
+      "fraction_built": 0.8301,
       "state_counts": {
-        "proposed": 28,
-        "implemented": 88,
-        "implemented_pending_validation": 22,
+        "proposed": 26,
+        "implemented": 89,
+        "implemented_pending_validation": 23,
         "validated": 15
       },
-      "build_proof_gap": 110,
-      "build_proof_gap_note": "125 modules built, 110 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 112,
+      "build_proof_gap_note": "127 modules built, 112 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 76.9,
-      "node_total": 83,
+      "closure_pct": 75.9,
+      "node_total": 84,
       "node_done_weighted": 63.8,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 54,
+      "total_surviving": 53,
       "total_initial": 101,
       "total_initial_at_registration": 82,
       "total_fanout_added": 19,
-      "total_resolved_out": 43,
+      "total_resolved_out": 44,
       "total_confirmed": 22,
-      "reduction_pct_vs_current": 42.6,
-      "net_narrowing_pct": 34.1,
+      "reduction_pct_vs_current": 43.6,
+      "net_narrowing_pct": 35.4,
       "convergence_classes": {
         "narrowing": 15,
         "static": 12,
@@ -47,7 +47,7 @@
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "54 alive against 82 originally enumerated, and against 101 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "53 alive against 82 originally enumerated, and against 101 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 32
     },
     "decide": {
@@ -60,128 +60,128 @@
     {
       "date": "2026-05-06",
       "surviving": 100,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-11",
       "surviving": 99,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-13",
       "surviving": 97,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-15",
       "surviving": 93,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-16",
       "surviving": 92,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-17",
       "surviving": 89,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-18",
       "surviving": 83,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-19",
       "surviving": 79,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-20",
       "surviving": 78,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-24",
       "surviving": 77,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-27",
       "surviving": 75,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-29",
       "surviving": 74,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-07-31",
       "surviving": 73,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-01",
       "surviving": 71,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-02",
       "surviving": 65,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-04",
       "surviving": 64,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-06",
       "surviving": 63,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-08",
       "surviving": 61,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-09",
       "surviving": 59,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
       "date": "2026-08-10",
       "surviving": 58,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     },
     {
-      "date": "2026-08-11",
-      "surviving": 54,
-      "closure_pct": 76.9,
-      "build_pct": 81.7
+      "date": "2026-08-12",
+      "surviving": 53,
+      "closure_pct": 75.9,
+      "build_pct": 83.0
     }
   ],
   "questions": [
@@ -2566,8 +2566,8 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.4,
-      "bits_removed_vs_registration": 0.74,
+      "net_narrowing_ratio": 0.6,
+      "bits_removed_vs_registration": 1.32,
       "convergence": {
         "convergence_class": "narrowing",
         "reason": "no fan-out growth; eliminations in 2 families",
@@ -2580,13 +2580,13 @@
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 3,
-      "alive": 3,
-      "resolved_out": 2,
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 3,
       "confirmed": 0,
-      "reduction_numerator": 2,
-      "reduction_ratio": 0.4,
-      "bits_removed": 0.74,
+      "reduction_numerator": 3,
+      "reduction_ratio": 0.6,
+      "bits_removed": 1.32,
       "synthesis": null,
       "hypotheses": [
         {
@@ -2620,11 +2620,13 @@
           "label": "wash-out is iteration-count dependent",
           "desc": "The content-persistence wash-out depends on num_cem_iterations itself; a lower iteration count (e.g. 2) would preserve mode-conditioned content that iters=3 erases",
           "axis": "selection",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Untested -- only iters=1 and iters=3 have ever been measured for this question; no intermediate value exists in any run to date. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H1.",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-923"
+          ],
+          "basis": "V3-EXQ-923 (30 seeds, both mechanisms confirmed active): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C_H1 at iters=2 failed flat (gaps -0.0028/0.0023/~0.000006 vs 0.01 floor), same order of magnitude as iters=3's reading. Confirmed autopsy failure_autopsy_V3-EXQ-923_2026-08-12: standard/non_contributory -- content wash-out is not iteration-count dependent.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-mech267-mode-aware-scoring",
@@ -2653,8 +2655,8 @@
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Does the currently-implemented CEM-based hippocampal proposal pipeline preserve MECH-267's mode-conditioned content through production-settings elite-refit, and if not, which locus (iteration count / scoring criterion / pool architecture) fixes it?",
-        "distance_phrase": "2 of 2 tested upstream-signal mechanisms eliminated (noise-scale alone; noise-scale+horizon-depth together) -- both wash out identically at production iters=3. 3 untested loci remain, on 3 distinct design axes (selection/iteration-count, representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out.",
-        "live_gate": "H-mech267-fewer-iters, H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- three untested loci, not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the three should precede queuing per GOV-FANOUT-1 Step 2.5b.",
+        "distance_phrase": "3 of 3 tested upstream mechanisms/loci eliminated (noise-scale alone; noise-scale+horizon-depth together; iteration-count) -- all wash out identically at production settings or intermediate iteration counts. 2 untested loci remain, on 2 distinct design axes (representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out.",
+        "live_gate": "H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- two untested loci remain (iteration-count eliminated 2026-08-12), not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the two should precede queuing per GOV-FANOUT-1 Step 2.5b. A substrate_queue entry (SD-MECH267-CEM-SELECTION-FIX) was created unscoped between the two per failure_autopsy_V3-EXQ-923_2026-08-12.",
         "observation_bottleneck": null
       }
     },
@@ -3498,6 +3500,20 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-923",
+      "all_runs": [
+        "V3-EXQ-923"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-923 (30 seeds, both mechanisms confirmed active): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C_H1 at iters=2 failed flat (gaps -0.0028/0.0023/~0.000006 vs 0.01 floor), same order of magnitude as iters=3's reading. Confirmed autopsy failure_autopsy_V3-EXQ-923_2026-08-12: standard/non_contributory -- content wash-out is not iteration-count dependent.",
+      "resolved_utc": "2026-08-12T04:55:13.442457Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-894c",
       "all_runs": [
