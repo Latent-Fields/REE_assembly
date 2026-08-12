@@ -2790,6 +2790,29 @@
       "outcome": "NO_OP",
       "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
       "worktree_gc_at": "2026-08-12T06:18:03Z"
+    },
+    {
+      "igw_id": "IGW-20260812-215",
+      "stable_hash": "be961fd75216",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "MECH-267"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: SD-MECH267-CEM-SELECTION-FIX",
+      "worktree": ".claude/worktrees/igw-215-substrate-ready-sd-mech267-cem-s",
+      "branch": "claude/igw-215-substrate-ready-sd-mech267-cem-s",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260812-215",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-215-substrate-ready-sd-mech267-cem-s && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-215-substrate-ready-sd-mech267-cem-s-20260812T212553Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-08-12T21:25:10Z",
+      "staged_at": "2026-08-12T21:25:10Z",
+      "status": "staged"
     }
   ],
   "dispositions": [

@@ -1693,3 +1693,4 @@ One line per hourly tick. ASCII only.
 2026-08-12T18:25:07Z skip: paused (.igw_routine_pause present)
 2026-08-12T19:25:08Z skip: paused (.igw_routine_pause present)
 2026-08-12T20:25:08Z skip: paused (.igw_routine_pause present)
+2026-08-12T21:25:40Z workset committed (regen -- 246 items, 31 ready, 0 in flight)
