@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-12T21:25:11Z`
+Generated: `2026-08-12T22:26:29Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,7 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **7**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-464e, V3-EXQ-467e, V3-EXQ-906c
+- Live EXQs: V3-EXQ-436e, V3-EXQ-464e, V3-EXQ-467e, V3-EXQ-906c
 
 - Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-464e
 
@@ -985,7 +985,7 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** behavioral_diversity_isolation:GAP-K
-- **Why now:** EXHAUSTED 2026-07-06 -- no further work owed. The cross-loop-arbitration-REWEIGHTING conversion route this node owned (learned gating 709 / ascending-spiral 711 / bounded parity controller 713) ran to terminal and does NOT convert committed
+- **Why now:** NOT EXHAUSTED -- CORRECTED 2026-08-12. Reopening requires a CORRECTED-DV INSTRUMENT, not a re-letter. The 2026-07-06 exhaustion recorded here was WITHDRAWN 2026-07-20 by confirmed failure_autopsy_V3-EXQ-711-713_2026-07-20 (REE_assembly acef
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -996,7 +996,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: assembling
 Gap(s): behavioral_diversity_isolation:GAP-K
 Claims: MECH-439, ARC-108, MECH-450
-Why now: EXHAUSTED 2026-07-06 -- no further work owed. The cross-loop-arbitration-REWEIGHTING conversion route this node owned (learned gating 709 / ascending-spiral 711 / bounded parity controller 713) ran to terminal and does NOT convert committed
+Why now: NOT EXHAUSTED -- CORRECTED 2026-08-12. Reopening requires a CORRECTED-DV INSTRUMENT, not a re-letter. The 2026-07-06 exhaustion recorded here was WITHDRAWN 2026-07-20 by confirmed failure_autopsy_V3-EXQ-711-713_2026-07-20 (REE_assembly acef
 
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
