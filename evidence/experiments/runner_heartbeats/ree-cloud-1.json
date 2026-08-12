@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-11T23:58:42Z",
+  "last_tick_utc": "2026-08-12T03:14:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-921",
   "current_exq_started_utc": "2026-08-11T21:09:09.706433+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 2 / with_sleep",
     "runs_done": 4,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 220,
-    "overall_pct": 33.3
+    "overall_pct": 34.5
   },
-  "seconds_elapsed": 10173,
-  "seconds_remaining": 21638,
+  "seconds_elapsed": 21914,
+  "seconds_remaining": 21269,
   "recent_lines": [
-    "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=3595",
-    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.4354 harm_steps=479",
     "[train] p1 seed=0 ep 220/220 survival_gate=FAIL",
     "[eval] seed=0 arm=no_sleep ep 1/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=1 spawn_pos=(6, 1)",
     "[eval] seed=0 arm=no_sleep ep 2/24 steps=500 done_cause=step_limit sleep_fired=False spawn_attempts=2 spawn_pos=(4, 6)",
@@ -118,7 +116,9 @@
     "[EXQ-921] seed=1 arm=no_sleep segments=24 sleep_cycles_fired=0 continuity_resets=23/23",
     "verdict: PASS seed=1 arm=no_sleep core_ok=True harm_trained=True layout_continuity_confirmed=True",
     "Seed 2 Condition with_sleep",
-    "[EXQ-921] seed=2 arm=with_sleep world_obs_dim=350 body_obs_dim=17 use_sleep_loop=True"
+    "[EXQ-921] seed=2 arm=with_sleep world_obs_dim=350 body_obs_dim=17 use_sleep_loop=True",
+    "[train] stage0 seed=2 ep 20/220 z_goal_peak=0.4494",
+    "[train] stage0b seed=2 ep 30/220"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
