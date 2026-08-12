@@ -342,6 +342,29 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0025",
+      "claim_ids": [
+        "ARC-062",
+        "ARC-063",
+        "MECH-260",
+        "MECH-263",
+        "MECH-281",
+        "MECH-309",
+        "MECH-445",
+        "MECH-446",
+        "Q-045",
+        "SD-033b",
+        "SD-037"
+      ],
+      "flag_type": "stale_note",
+      "summary": "conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign_plan.md) shows assembly_status=ran_exhausted_for_substrate dated 2026-08-08 -- the umbrella campaign node ran terminal and will not be revisited. These 11 claims (ARC-062, ARC-063, MECH-260, MECH-263, MECH-281, MECH-309, MECH-445, MECH-446, Q-045, SD-033b, SD-037) each carry pending_retest_after_substrate:true last touched 2026-07-11 (before the exhaustion), so the flag no longer reflects reality. MECH-445/MECH-446 are also directly linked via behavioral_diversity_isolation's de-commit-face node and are the SAME claims named in the motivating incident (session jovial-shannon-35d300, 2026-08-12) alongside the P2-rootC cluster in GFLAG-0024. Detected by scripts/audit_retest_staleness.py (CANDIDATE-STALE, high confidence; REE_assembly/evidence/planning/retest_staleness_audit_report.md, 2026-08-12). This flag only reports the drift -- governance needs to decide the actual disposition per claim (clear the flag, re-route to a different substrate, or demote per GOV-CEIL-1 ceiling-exhaustion). NOTE: FULLSTACK unblocking 11 distinct claims is a broad umbrella node -- weigh accordingly, this says less about any ONE claim individually than the narrower P2-rootC/GAP-K clusters do.",
+      "raised_by_session": "pensive-franklin-1e285b",
+      "raised_at": "2026-08-12T18:18:23Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
