@@ -1,0 +1,3456 @@
+{
+  "results": [
+    {
+      "claim_id": "ARC-030",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        },
+        {
+          "id": "goal_pipeline:GAP-4",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "goal_pipeline:GAP-7",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "The three BG-like loops require symmetric Go (approach) and NoGo (avoidance) sub-channels; pure NoGo architecture produces behavioral flatness.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        },
+        {
+          "node_id": "goal_pipeline:GAP-4",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "goal_pipeline:GAP-7",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        }
+      ]
+    },
+    {
+      "claim_id": "ARC-032",
+      "inline_comment": "phase/sequence-order-aware theta summary owed (V3-EXQ-228c, 2026-08-10)",
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "The theta-rate packaging of E1 output (MECH-089 ThetaBuffer) is the primary pathway through which E1's goal-context maintenance reaches E3's trajectory scoring -- the computational analog of frontal-hippocampal theta synchronisation.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        }
+      ]
+    },
+    {
+      "claim_id": "ARC-045",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-08-07",
+      "linked_nodes": [
+        {
+          "id": "sleep_substrate:GAP-2",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "upstream-blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
+    },
+    {
+      "claim_id": "ARC-046",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node infant_substrate:GAP-9 (infant_substrate) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "infant_substrate:GAP-9",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-A",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "The infant stage requires a hazard protection mechanism that permits sensorially salient harm exposure without catastrophic residue saturation.",
+      "terminal_hits": [
+        {
+          "node_id": "infant_substrate:GAP-9",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ]
+    },
+    {
+      "claim_id": "ARC-060",
+      "inline_comment": "[2026-06-08 governance] survival-leg cohort gated on escape-affordance-bridge substrate (failure_autopsy_V3-EXQ-603h_2026-06-08)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "A good agent needs both a continuous wanting landscape and a discrete bank of unresolved goal traces: field-level wanting supports smooth local guidance, while ghost-goal traces preserve blocked or deferred goals whose local gradient has collapsed."
+    },
+    {
+      "claim_id": "ARC-062",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-A",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-B",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-B",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "commitment_closure:GAP-1",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "sd_037_axis_b:P1b",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "assembling",
+          "assembly_status": "in_progress",
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063 -- brought forward V4->V3 2026-05-18, this parenthetical is stale as of registration 2026-05-08). Architectural slot, not yet implemented.",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "commitment_closure:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "ARC-063",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-E",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-F",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-G",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-L",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "grammar_primitive_mining_v6:GRAM-3",
+          "plan_id": "grammar_primitive_mining_v6",
+          "file": "grammar_primitive_mining_v6_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "language_emergence_bootstrap_v6:LANG-5",
+          "plan_id": "language_emergence_bootstrap_v6",
+          "file": "language_emergence_bootstrap_v6_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "sleep_substrate:GAP-1",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "object_representation_v4:OBJ-1",
+          "plan_id": "object_representation_v4",
+          "file": "object_representation_v4_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "object_representation_v4:OBJ-4",
+          "plan_id": "object_representation_v4",
+          "file": "object_representation_v4_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 1
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-E",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-F",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-G",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-L",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sleep_substrate:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 5
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "object_representation_v4:OBJ-1",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "ARC-068",
+      "inline_comment": "[2026-06-08 governance] survival-leg cohort gated on escape-affordance-bridge substrate (failure_autopsy_V3-EXQ-603h_2026-06-08)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "opportunity_cost_no_op_penalty (waiting accumulates forgone-reward cost; passive trajectories pay for time consumed). Architectural commitment: trajectories that consume time without progress are not free in E3 scoring; the score function carries an additive cost on no-op / repeated-stationary candidates that scales with the agent's average expected reward rate. Companion to ARC-066 (capacity-to-vigor) and ARC-067 (idle aversion). Existing dACC switch_value (SD-032b / Kolling 2015 foraging) is the closest current substrate but covers a different framing (when to switch FROM the current option to alternatives), not the always-on cost of choosing the null action."
+    },
+    {
+      "claim_id": "ARC-108",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node behavioral_diversity_isolation:GAP-K (behavioral_diversity_isolation) shows a terminal signal (assembly_status=exhausted) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-K",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "assembling",
+          "assembly_status": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "id": "conversion_ceiling_campaign:CAMPAIGN",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "biology_grounding_convergence_v4:BG-2",
+          "plan_id": "biology_grounding_convergence_v4",
+          "file": "biology_grounding_convergence_v4_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Unified dopamine substrate -- signed dopaminergic-RPE teaching signal feeding LEARNED gating weights on the E3 selector: the cortico-striatal weights that decide which channel wins committed-selection authority should themselves be LEARNED via three-factor plasticity (Hebbian co-activation x signed dopaminergic RPE) with the D1-LTP / D2-LTD asymmetry, consolidating the currently-scattered RPE / vigor / incentive functions into one substrate and supplying the GPi->lateral-habenula negative-RPE drain. The ARC-107 arbitration layer (MECH-447/448/449 + the authority rescale) is today pure arithmetic with NO learned parameters; F monopolises 88-89% of committed-selection variance (MECH-439) precisely because no learned striatal weighting can re-weight channels through experience. The single highest-leverage missing BG piece and the proposed next attack on MECH-439.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-K",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=exhausted",
+          "signal_type": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:CAMPAIGN",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "biology_grounding_convergence_v4:BG-2",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "ARC-110",
+      "inline_comment": "SET 2026-06-29 (707b NARROW autopsy): re-test A1_LOOPS COUPLED with dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) once that arbitration-LEARNING substrate is built -- a redesign testing a DIFFERENT mechanism (new EXQ, different claim_ids), NOT a same-claim re-letter. Not queued now.",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-25",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Parallel segregated cortico-BG-thalamic loops (motor / cognitive-set / motivational): committed-action selection should run through SEPARATE striatal loop channels -- a motor loop, an associative/cognitive-set loop, and a limbic/motivational loop -- each owning its own eligibility-and-gate, arbitrated AFTER within-loop competition, rather than collapsing all channels into ONE shared E3 selection arena where the dACC/lPFC/OFC analogs feed in only as additive biases. HYPOTHESIS (assembly-map A.2 / s.D): the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse -- F monopolises 88-89% of committed-selection variance because every channel competes in one F-dominated arena; with segregated loops F could dominate only the motor loop and could not drown the limbic 'is this worth committing to' computation, which is a different loop with a different value. Translation target is FUNCTIONAL (the Alexander/DeLong/Strick parallel-loop organisation as a divergence-ledgered, falsifier-validated analogue), NOT anatomical mimicry."
+    },
+    {
+      "claim_id": "INV-034",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-08",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance."
+    },
+    {
+      "claim_id": "INV-050",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node sleep_substrate:GAP-5b (sleep_substrate) went status=done on 2026-08-08, after the claim's last-touched date 2026-08-01 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-08-01",
+      "linked_nodes": [
+        {
+          "id": "sleep_substrate:GAP-5b",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
+      "terminal_hits": [
+        {
+          "node_id": "sleep_substrate:GAP-5b",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "INV-051",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity."
+    },
+    {
+      "claim_id": "INV-088",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-03",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "world_goal_evaluator_bounded_by_z_world_differentiation"
+    },
+    {
+      "claim_id": "INV-089",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-16",
+      "linked_nodes": [],
+      "claim_status": "provisional",
+      "claim_title": "harm_evaluator_bounded_by_z_harm_differentiation"
+    },
+    {
+      "claim_id": "INV-091",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-22",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Integration and protected non-equivalence are JOINTLY necessary: cross-stream similarity has a viable band. Too little shared organisation is fragmentation; too much is representational collapse. An adequate architecture must satisfy both constraints at once, with a measurable quantity in between -- not merely satisfy each on a separate axis."
+    },
+    {
+      "claim_id": "MECH-074d",
+      "inline_comment": "SD-035 substrate_queue entry amended 894a/894b; loss-balance fix owed before next retest",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-09",
+      "linked_nodes": [],
+      "claim_status": "provisional",
+      "claim_title": "BLA analogue emits a remap_signal on harm-PE spike when predictor-attribution flags specific latent codes \u2014 partial (~one-third) remap, NOT wholesale replacement."
+    },
+    {
+      "claim_id": "MECH-090",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:P2-rootC (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-08-03",
+      "claim_last_touched": "2026-08-03",
+      "linked_nodes": [
+        {
+          "id": "biology_grounding_convergence_v4:BG-3",
+          "plan_id": "biology_grounding_convergence_v4",
+          "file": "biology_grounding_convergence_v4_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "commitment_closure:GAP-2",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-4",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 6
+        },
+        {
+          "id": "commitment_closure:GAP-5",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "commitment_closure:GAP-11",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "active",
+      "claim_title": "BG-level beta oscillations gate E3-to-action-selection propagation, not E3 internal updating.",
+      "terminal_hits": [
+        {
+          "node_id": "commitment_closure:GAP-2",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-5",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "commitment_closure:GAP-11",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 5
+        },
+        {
+          "node_id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-095",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-20",
+      "linked_nodes": [
+        {
+          "id": "multi_agent_ecology_v5:MAE-3",
+          "plan_id": "multi_agent_ecology_v5",
+          "file": "multi_agent_ecology_v5_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change."
+    },
+    {
+      "claim_id": "MECH-102",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "multi_agent_ecology_v5:MAE-4",
+          "plan_id": "multi_agent_ecology_v5",
+          "file": "multi_agent_ecology_v5_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 1
+        }
+      ],
+      "claim_status": "active",
+      "claim_title": "Violence is a terminal error-correction mechanism triggered only when all other channels fail."
+    },
+    {
+      "claim_id": "MECH-122",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-03",
+      "linked_nodes": [],
+      "claim_status": "provisional",
+      "claim_title": "Thalamo-cortical spindle-equivalent bursts package E3/hippocampal replay content for z_theta delivery AND gate external sensory input, protecting the consolidation episode from interruption."
+    },
+    {
+      "claim_id": "MECH-135",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
+    },
+    {
+      "claim_id": "MECH-140",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-10",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Tri-loop gate conflict arbitration uses soft-competitive disinhibition (indirect pathway inter-collicular competition) rather than winner-take-all suppression; WTA imposed across loops causes coupling collapse."
+    },
+    {
+      "claim_id": "MECH-163",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-27 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-27",
+      "linked_nodes": [
+        {
+          "id": "hippocampal_planning_v4:HPL-1",
+          "plan_id": "hippocampal_planning_v4",
+          "file": "hippocampal_planning_v4_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "NARROWED 2026-07-22 to leg (1) only; RESTATED 2026-07-27 (model-free -> depth-limited). Two dissociable goal-directed PATHWAYS operate in parallel -- a HABIT pathway that is a myopic, DEPTH-LIMITED read of the forward model (SD-081 dualsystem_habit_depth, SNc/dorsal-striatum analog) sufficient for approach in practised contexts, and a hippocampally-planned pathway that is the FULL-HORIZON read of the SAME model (VTA/ventral-striatum+PFC analog) -- AND THE PLANNED PATHWAY IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. E1 2026-07-27: the descriptor `model-free` was STRUCK. ree_core contains no model-free machinery of any kind (no cached S-R values, no TD error, no Q-table) and never has; SD-081 implements the habit read as _score_depth_limit truncation of the same model-based E3 scorer, so the two pathways are ONE model read at two grains. E2: WEAKENED by V3-EXQ-786b (2026-07-24, non_degenerate, familiarity AUC 0.848 against a 0.7 bar): C1_recruitment_higher_on_novel FAILED with two pathways and no arbitrator. 786b is the repaired re-test of V3-EXQ-786a, whose own `weakens` was WITHDRAWN 2026-07-24 for a degenerate DV -- leg (1) is therefore NO LONGER experimentally untested. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration), SUPPORTED by V3-EXQ-811a (2026-07-24, PASS). Restatement rationale: evidence/planning/claim_synthesis_MECH-163_2026-07-27.md.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-166",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-08-07",
+      "linked_nodes": [
+        {
+          "id": "sleep_substrate:GAP-2",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "upstream-blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
+    },
+    {
+      "claim_id": "MECH-173",
+      "inline_comment": "substrate_queue MECH-204 amend (Phase 7 / Option B accuracy-anchored broadcast recalibration + waking confidence-inflation source); see failure_autopsy_V3-EXQ-774_2026-07-17",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-20",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss."
+    },
+    {
+      "claim_id": "MECH-180",
+      "inline_comment": "SD-MEL-CONSUMER (adaptive sleep-cadence), minted 2026-07-07",
+      "verdict": "RETEST-DUE",
+      "reason": "node sleep_substrate:GAP-5b (sleep_substrate) went status=done on 2026-08-08, after the claim's last-touched date 2026-08-01 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-08-01",
+      "linked_nodes": [
+        {
+          "id": "sleep_substrate:GAP-5b",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Novel environments and high-MEL learning episodes adaptively upregulate the learning drive component of sleep (INV-050 third drive), producing measurable increases in slow-wave activity power, sleep spindle density, and hippocampal replay rate proportional to the novelty and prediction error load encountered during the preceding wake period.",
+      "terminal_hits": [
+        {
+          "node_id": "sleep_substrate:GAP-5b",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-189",
+      "inline_comment": "goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)",
+      "verdict": "RETEST-DUE",
+      "reason": "node infant_substrate:GAP-3 (infant_substrate) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "infant_substrate:GAP-3",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "infant_substrate:GAP-11",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "infant_substrate:GAP-11b",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "During the child phase, high-salience benefit contacts under high contextual complexity are written to persistent ContextMemory as super-ordinal goal anchors that bias adult z_goal seeding across novel episodes.",
+      "terminal_hits": [
+        {
+          "node_id": "infant_substrate:GAP-3",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "infant_substrate:GAP-11",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "infant_substrate:GAP-11b",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-229",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        },
+        {
+          "id": "goal_pipeline:GAP-7",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "provisional",
+      "claim_title": "E3 produces reliably distinct wanting and liking behavioral signals: wanting drives persistent approach toward goal-encoded locations (incentive salience); liking produces only consummatory response at resource contact.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        },
+        {
+          "node_id": "goal_pipeline:GAP-7",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-260",
+      "inline_comment": "commitment-closure-control-plane beta-engagement (460e autopsy 2026-06-17)",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-C",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-F",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "commitment_closure:GAP-6",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "clinical_failure_modes:OCD-THREE-LAYER",
+          "plan_id": "clinical_failure_modes",
+          "file": "psychiatric_failure_modes_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "self_attribution:GAP-1",
+          "plan_id": "self_attribution",
+          "file": "self_attribution_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C-build",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "self_attribution:GAP-2",
+          "plan_id": "self_attribution",
+          "file": "self_attribution_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-F",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "commitment_closure:GAP-6",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-C-build",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-261",
+      "inline_comment": "documentary: commitment-closure-control-plane beta-engagement (460e autopsy 2026-06-17); does NOT demote stable status",
+      "verdict": "UNDETERMINED",
+      "reason": "linked node(s) show a terminal signal with no live.as_of date -- cannot establish it postdates the claim's last-touched date without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "autobiographical_memory_v4:ABM-8",
+          "plan_id": "autobiographical_memory_v4",
+          "file": "autobiographical_memory_v4_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "memory_lifecycle_v4:MEM-1",
+          "plan_id": "memory_lifecycle_v4",
+          "file": "memory_lifecycle_v4_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "memory_lifecycle_v4:MEM-7",
+          "plan_id": "memory_lifecycle_v4",
+          "file": "memory_lifecycle_v4_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "stable",
+      "claim_title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical.",
+      "terminal_hits": [
+        {
+          "node_id": "autobiographical_memory_v4:ABM-8",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "memory_lifecycle_v4:MEM-1",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-262",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node arc_062_rule_apprehension:GAP-C (arc_062_rule_apprehension) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-C",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-D",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "commitment_closure:GAP-1",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-A",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-B",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Rule-selective persistence in lateral-PFC-analog: stimulus-abstracted rule representations in SD-033a persist across simulated time steps without external drive, remain selective through distractor events, and emerge through training rather than being innate.",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-C",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-D",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "commitment_closure:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-263",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "commitment_closure:GAP-8",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "assembling",
+          "assembly_status": "built",
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P3-ofc",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "built",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "OFC-analog state-space and specific-outcome representation: SD-033b represents both a structured cognitive map of the current task state space and the specific outcomes expected from actions in each state. Value signals ride on top of this structured representation rather than being stored in it directly.",
+      "terminal_hits": [
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-266",
+      "inline_comment": "mode-governance-engagement (gov 2026-06-13)",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:P2-rootC (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "commitment_closure:GAP-3",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-4",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 6
+        },
+        {
+          "id": "commitment_closure:GAP-4-battery",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "commitment_closure:GAP-11",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "sd033_governance:CHK-CLAIMS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-MECH266",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "sd033_governance:CHK-SD034",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        }
+      ],
+      "claim_status": "provisional",
+      "claim_title": "Asymmetric mode hysteresis in SalienceCoordinator: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it, and the asymmetry is mode-specific. Schmitt-trigger extension of the existing SD-032a enter-threshold logic (currently enter-only / symmetric).",
+      "terminal_hits": [
+        {
+          "node_id": "commitment_closure:GAP-3",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-11",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 5
+        },
+        {
+          "node_id": "sd033_governance:CHK-CLAIMS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-MECH266",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "sd033_governance:CHK-SD034",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-267",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:P2-rootC (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "commitment_closure:GAP-4",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 6
+        },
+        {
+          "id": "commitment_closure:GAP-4-battery",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "sd033_governance:CHK-CLAIMS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-MECH267",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "sd033_governance:CHK-SD034",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        }
+      ],
+      "claim_status": "provisional",
+      "claim_title": "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection.",
+      "terminal_hits": [
+        {
+          "node_id": "sd033_governance:CHK-CLAIMS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-MECH267",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "sd033_governance:CHK-SD034",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-280",
+      "inline_comment": null,
+      "verdict": "UNDETERMINED",
+      "reason": "linked node(s) show a terminal signal with no live.as_of date -- cannot establish it postdates the claim's last-touched date without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "sd_037_axis_a:P3",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_a:P4",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P3",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P4",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys.",
+      "terminal_hits": [
+        {
+          "node_id": "sd_037_axis_a:P3",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "sd_037_axis_a:P4",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-281",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "clinical_failure_modes:NARCOLEPSY-CATAPLEXY",
+          "plan_id": "clinical_failure_modes",
+          "file": "psychiatric_failure_modes_plan.md",
+          "status": "open",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "sd_037_axis_a:P1",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "sd_037_axis_a:P3",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_a:P4",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P1b",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "assembling",
+          "assembly_status": "in_progress",
+          "unblocks_count": 2
+        },
+        {
+          "id": "sd_037_axis_b:P3",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P4",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-A",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-B",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy).",
+      "terminal_hits": [
+        {
+          "node_id": "sd_037_axis_a:P1",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "sd_037_axis_a:P3",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "sd_037_axis_a:P4",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-295",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-4 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "drives_motivation_v4:DRV-2",
+          "plan_id": "drives_motivation_v4",
+          "file": "drives_motivation_v4_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "goal_pipeline:GAP-4",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "The drive -> liking-stream -> approach-cue gain pathway is one of several drive->approach pathways in the REE substrate. It biases approach action scoring via a liking-specific per-candidate score_bias contribution, but is NOT the sole or necessary pathway by which drive amplification reaches approach action selection (narrowed 2026-05-31 from necessity to modulation per V3-EXQ-490j autopsy; original necessity title preserved in functional_restatement history). Parallel architecturally first-class drive->approach pathways operate in the same substrate: MECH-216 schema-readout wanting, MECH-290 backward credit sweep, MECH-307 anticipatory liking, and serotonin tonic_5ht benefit_salience.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-4",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-309",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-A",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-B",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "commitment_closure:GAP-1",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Monomodal policy collapse is the equilibrium of a parametric-policy agent without a rule-apprehension layer. Bayesian update and gradient descent revise weights over a hypothesis space they do not invent; without a non-Bayesian rule-creator that proposes discriminative policy modes ('near-hazard -> reef regime; else -> forage regime'), the trainer collapses to the smoothest single regime good-enough across the whole state space. Monostrategy is therefore not a bug of training but the predicted output of an architecture in which only updaters exist and no apprehender does. Falsifiable by the weak-reading rule-apprehension experiment (ARC-062): a gated-policy architecture trained on the same substrate should break the collapse where standard E3 does not.",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "commitment_closure:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-313",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node behavioral_diversity_isolation:GAP-C-build (behavioral_diversity_isolation) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-C",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C-build",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "stochastic_noise_floor (max_entropy_policy_regularisation_LC_NE_tonic_analog). A floor-level stochastic action-selection noise that prevents complete deterministic collapse of the policy. Biological substrate: locus coeruleus tonic firing producing baseline action-selection variability (Aston-Jones & Cohen 2005 adaptive-gain model). Computational analog: max-entropy policy regularisation / SAC entropy bonus (Haarnoja et al. 2018). Distinct from MECH-260 dACC anti-recency: MECH-313 is a state-independent noise floor, while MECH-260 is a state-dependent recency penalty. Both can contribute to anti-monostrategy pressure but operate via different mechanisms; whether they collapse into a single substrate or are mutually load-bearing is open (Q-045).",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-C-build",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-314",
+      "inline_comment": "/governance 2026-06-29: STAYS TRUE, retest RE-POINTED. The 706b brake-LOCK routed MECH-314's owed retest to the v4_loop_segregation substrate (ARC-110); that substrate LANDED 2026-06-27 and its validation V3-EXQ-707b (weakens-NARROW, failure_autopsy_V3-EXQ-707b_2026-06-29) found the conversion ceiling INTRINSIC -- loop segregation alone does NOT lift it. So MECH-314's ceiling did NOT lift via the loop-seg substrate (the substrate-ceiling audit \"ceiling-may-have-lifted\" flag is a false-positive driven by other implemented substrates that list MECH-314, e.g. INF-ENV-004/modulatory-bias-authority, not the binding one). Owed retest is now re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (MECH-448/449/ARC-107) -- a different mechanism, unbuilt. PROMOTES NOTHING. [prior: /governance 2026-06-25 RE-ASSERTED after failure_autopsy_V3-EXQ-705b; was lifted 2026-06-08 after 604c PASS on the selection-face.]",
+      "verdict": "RETEST-DUE",
+      "reason": "node behavioral_diversity_isolation:GAP-G (behavioral_diversity_isolation) went status=deferred on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-G",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "infant_substrate:GAP-4",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "infant_substrate:GAP-13",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-A",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        }
+      ],
+      "claim_status": "candidate_substrate_landed",
+      "claim_title": "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-G",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "infant_substrate:GAP-4",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-314b",
+      "inline_comment": "/governance 2026-07-20: REINSTATED -- the 2026-06-08 lift cited the V3-EXQ-604c PASS, which failure_autopsy_V3-EXQ-604c_2026-07-20 shows was structurally vacuous for this claim (broadcast scalar vs argmax-derived DV). Gated on the ARC-065 GAP-A Phase-2 per-candidate build.",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-20",
+      "linked_nodes": [],
+      "claim_status": "candidate_substrate_landed",
+      "claim_title": "uncertainty_driven_curiosity_frontopolar_analog. A reward bonus that tracks epistemic value -- how much the agent would learn from sampling a state or action. Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature). Sub-flavour of MECH-314 structured curiosity bonus. Active-inference framing: bonus equals epistemic value term in expected free energy decomposition (Friston 2010/2015)."
+    },
+    {
+      "claim_id": "MECH-314c",
+      "inline_comment": "/governance 2026-07-20: REINSTATED -- the 2026-06-08 lift cited the V3-EXQ-604c PASS, which failure_autopsy_V3-EXQ-604c_2026-07-20 shows was structurally vacuous for this claim (broadcast scalar vs argmax-derived DV). Gated on the ARC-065 GAP-A Phase-2 per-candidate build.",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-20",
+      "linked_nodes": [],
+      "claim_status": "candidate_substrate_landed",
+      "claim_title": "learning_progress_curiosity_intrinsic_motivation_analog. A reward bonus that tracks the rate-of-improvement of the agent's predictive model (or any internal-state quantity); actions that produce a steepening learning curve receive a positive bonus. Most computationally instantiated in ML literature (Schmidhuber 1991, Pathak et al. 2017); least biologically anchored of the three MECH-314 sub-flavours -- no clean cellular or regional analog. Distinguishes from MECH-314a (recency-based) and MECH-314b (uncertainty-based) by tracking second-order signal (improvement rate) rather than first-order (count or uncertainty)."
+    },
+    {
+      "claim_id": "MECH-320",
+      "inline_comment": "[2026-06-08 governance] survival-leg cohort gated on escape-affordance-bridge substrate (failure_autopsy_V3-EXQ-603h_2026-06-08)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate_substrate_landed",
+      "claim_title": "tonic_vigor_coupling_score_bias (capacity-keyed E3 score-side action drive / mesolimbic-DA-vigor-analog / average-reward-rate opportunity-cost regulator). Child mechanism for ARC-066 (tonic_vigor_coupling) AND ARC-068 (opportunity_cost_no_op_penalty -- collapse into MECH-320 per ARC-068 lit-pull R3 verdict 2026-05-16; MECH-320's w_passive term IS the ARC-068 implementation). Adds a tonic vigor scalar v_t to E3 trajectory scoring as an additive bias toward action-trajectories and an additive cost on no-op / repeated-stationary trajectories, where v_t is a slow EWMA over the realised E3-score-receipt stream. Target-free: bias applies regardless of whether any z_goal is currently active. Distinct from MECH-313 (LC-NE noise floor -- noise on choice, orthogonal axis), MECH-216 (target-conditioned wanting), SD-012 (deficit-keyed drive, opposite coupling), and MECH-330 (ARC-067 boredom -- valence-side z_harm_a write, different architectural layer)."
+    },
+    {
+      "claim_id": "MECH-321",
+      "inline_comment": "2026-08-01: awaiting SD-hazard-aware-policy-decomposition build",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-07",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition; depth cap 3 is an ENGINEERING choice, not a literature-derived constant (provenance corrected 2026-07-27 -- see evidence_quality_note). The MULTI-LEVEL commitment is ARC-070's R3 verdict (Badre & D'Esposito 2009) and STANDS; that source never supported a level COUNT, and Badre & Nee 2018 (Badre's own re-appraisal) finds the evidence supports neither a unitary model of lateral frontal function nor a unidimensional abstraction gradient, so there is no single ordered axis along which to cap. The cap rests instead on tractability + operator symmetry (mirrors ARC-071's chunk_max_depth so the inverse operations stay symmetric; open Q-claim on hard-vs-soft). Magnitude prior only, with an explicit grain caveat: Koechlin 2003 resolves a 3-level lateral-PFC cascade (4 with Koechlin & Summerfield 2007 frontopolar branching), but at ANATOMICAL grain -- heterogeneous, anatomically fixed control levels, NOT homogeneous recursion depth of one operator re-applying to its own output. Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged)."
+    },
+    {
+      "claim_id": "MECH-324",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
+    },
+    {
+      "claim_id": "MECH-329",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "The wanting system (mesolimbic dopamine / approach motivation) seeds z_goal anchors via accidental benefit contacts before the liking system (hedonic evaluation) is calibrated -- producing a first wave of super-ordinal goals shaped by approach drive rather than calibrated preference."
+    },
+    {
+      "claim_id": "MECH-333",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "plasticity_neuromodulation_v4:PLW-1",
+          "plan_id": "plasticity_neuromodulation_v4",
+          "file": "plasticity_neuromodulation_v4_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Critical period open phase: the dominant scoring pathway's effective update magnitude must be suppressed (or diversity circuit signal weight amplified to competitive parity) during a time-bounded plasticity-open window, preventing winner-take-all capture before diversity circuits achieve viable weight; REE analog of E/I balance shift and GABA maturation that opens biological critical periods."
+    },
+    {
+      "claim_id": "MECH-334",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Critical period closure / crystallization: once diversity circuits establish competitive weight during the MECH-333 open window, a complementary closure mechanism reduces plasticity for the crystallized diversity distribution while restoring full dominant-pathway update scale; without closure, diversity representations remain equally vulnerable to gradient-driven overwriting throughout all subsequent training."
+    },
+    {
+      "claim_id": "MECH-342",
+      "inline_comment": "scaffolded_sd054_onboarding nav-competence transfer (gov 2026-06-13)",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:P2-rootC (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "commitment_closure:GAP-4",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 6
+        },
+        {
+          "id": "commitment_closure:GAP-4-battery",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "sd033_governance:CHK-SD034",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "control_plane.commit_maintenance_release. The R-c readiness signals that gate commitment ENTRY (MECH-090: score_margin decisiveness + nav_competence) must ALSO be able to RELEASE an already-elevated beta latch when execution readiness degrades mid-commitment. The release is a graded, bounded-accumulation drift-to-a-release-bound (conflict-scaled by the deficit magnitude), NOT a one-shot threshold flag; targeted to the active committed motor program (not a global brake); and hysteretic with a reengagement path that guards the premature-abort pole. This closes the V3-EXQ-592f reach gap (the MECH-090 R-c conjunction is admission-only by design; no existing release pathway covers degraded-readiness-mid- commitment).",
+      "terminal_hits": [
+        {
+          "node_id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "sd033_governance:CHK-SD034",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-357",
+      "inline_comment": "freeze-incompatible pressure lever owed (V3-EXQ-603s, 2026-08-10); combined-fix rerun 603r/603s both non_contributory by design defect, mechanism-engagement claim untested at adequate power",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Infralimbic-PFC-analog freeze-suppression + instrumental-avoidance gate: the mechanism instantiating SD-058. A pure-arithmetic regulator (ree_core/pfc/infralimbic_avoidance_gate.py, sibling to SD-035 CeA/BLA, MECH-279 PAG, MECH-313/MECH-320 policy regulators) with three coordinated pieces, all behind use_instrumental_avoidance (no-op default): (a) an instrumental-avoidance ACTION pathway -- a per-candidate E3 score-bias that under threat penalises the no-op/freeze class proportional to effective avoidance-efficacy, RELEASING the instrumental action (it does not pick the escape direction; E3's harm gradient does -- ARC-007-strict-compatible); (b) an ilPFC freeze-SUPPRESSION gate that, when effective_efficacy*threat_scale >= threshold, overrides the MECH-279 freeze no-op so the agent acts instead of freezing; (c) an eligibility-trace avoidance-efficacy learner credited when a directed action under threat drops z_harm_a (Debiec & Sullivan 2017 gradual acquisition), bootstrapped by a protective-scaffold floor that anneals across Stage-H (Turchetta 2020)."
+    },
+    {
+      "claim_id": "MECH-428",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "subgoal_bootstrapped_goal_seeding"
+    },
+    {
+      "claim_id": "MECH-439",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node behavioral_diversity_isolation:GAP-K (behavioral_diversity_isolation) shows a terminal signal (assembly_status=exhausted) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-K",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "assembling",
+          "assembly_status": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "id": "biology_grounding_convergence_v4:BG-2",
+          "plan_id": "biology_grounding_convergence_v4",
+          "file": "biology_grounding_convergence_v4_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:CAMPAIGN",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-K",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=exhausted",
+          "signal_type": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "biology_grounding_convergence_v4:BG-2",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:CAMPAIGN",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-440",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node behavioral_diversity_isolation:GAP-C-build (behavioral_diversity_isolation) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-24 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-24",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-C-build",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "state_conditioned_self_annealing_noise_floor (NoisyNet learned-parametric-weight-noise analog). A mechanistic refinement of MECH-313's tonic exploration noise floor. MECH-313 is registered as a STATE-INDEPENDENT floor (a post-softmax max-entropy/temperature analog); V3-EXQ-687 found that floor NON-PROPAGATING -- the temperature was invisible to the argmax/committed action (selected_action_entropy=0.0, the r1a_entropy_only_artefact the degeneracy gate caught). MECH-440 asserts the LC-NE tonic floor must instead be injected as LEARNED PER-PARAMETER (factorised-Gaussian) WEIGHT NOISE in the E3 selection pathway, so it (i) PROPAGATES into the committed action (it changes which action is argmax, not just a discarded pre-commit temperature), (ii) is STATE-CONDITIONED by construction (weight noise x state-dependent activations perturbs different states differently, with no hand-set per-state schedule), and (iii) SELF-ANNEALS (a gradient-trained per-parameter sigma falls where the policy is confident and stays up where exploration pays, so the floor does not wash out committed-action diversity uniformly). External analog: NoisyNet (Fortunato et al. 2018).",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-C-build",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "MECH-445",
+      "inline_comment": "commitment-closure-control-plane",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Closure->beta coupling engagement: a closure-plane commit (closure fired on a real sequence completion) elevates/binds the MECH-090 bistable latch via the use_closure_commit_beta_coupling path INDEPENDENT of a natural running_variance < commit_threshold commit-entry -- i.e. on seeds where the agent does not naturally commit decisively, the closure still drives a latch elevation the de-commit then acts on. Child A of the SD-034 de-commit-pipeline decomposition (S3).",
+      "terminal_hits": [
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-446",
+      "inline_comment": "commitment-closure-control-plane",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "De-commit-authority magnitude: the closure-coupled de-commit lowers post-closure latch occupancy with authority magnitude sufficient to overcome the natural-commit occupancy it competes against -- the committed-run-scaled refractory drives a within-arm around-closure occupancy drop (pre-closure vs post-closure window on the ON arm), scaling with committed-run length so a long committed run triggers a proportionally long de-commit. Child B of the SD-034 de-commit-pipeline decomposition (S4).",
+      "terminal_hits": [
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-450",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node behavioral_diversity_isolation:GAP-K (behavioral_diversity_isolation) shows a terminal signal (assembly_status=exhausted) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-K",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "assembling",
+          "assembly_status": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "id": "conversion_ceiling_campaign:CAMPAIGN",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "biology_grounding_convergence_v4:BG-2",
+          "plan_id": "biology_grounding_convergence_v4",
+          "file": "biology_grounding_convergence_v4_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Minimal recurrent settling step over the eligible set: replace the one-shot feed-forward argmin/softmax committed-selection readout with a few rounds of mutual-inhibition (surround-inhibition) updates on the within-eligible _modulatory_accum field BEFORE commit, so the committed action emerges from a bounded recurrent SETTLING competition rather than a single global comparison. A hard argmin over an F-dominated score always returns the F-winner (the conversion ceiling); a settling competition with lateral inhibition can FLIP the selected attractor when a modulatory channel is strong enough, and turns the additive _modulatory_accum BLEND into a competitive winner-take-most. The V3-bounded version of the BG's recurrent settling dynamics; the full learned thalamo-cortico-basal loop is the V4 bet.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-K",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=exhausted",
+          "signal_type": "exhausted",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:CAMPAIGN",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "biology_grounding_convergence_v4:BG-2",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "MECH-451",
+      "inline_comment": "SET 2026-06-27 (704b autopsy): retest the finer-channel conversion once ARC-110 segregated loops + an in-layer null exist.",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Intermediate channel-granularity falsifier -- before the full segregated-loop build (ARC-110), expose the compressed E3 score_bias modulatory channel as SEVERAL separately-learnable finer channels (OFC-devaluation / dACC-conflict / lateral-PFC rule-evidence / vigour / liking) to the learned-gating layer (ARC-108 w_chan), so the learner can discover SEPARATELY that different control functions matter in different states. The current single global w_chan learns one weight over a pre-compressed blend; this tests whether the F-dominance conversion ceiling (MECH-439) is REPRESENTATIONAL COMPRESSION (finer channels convert non-motor influence to committed action) rather than a requirement for full per-loop competition (finer channels do NOT convert, and only ARC-110 segregated loops do). The cheap intermediate rung BETWEEN ARC-108's one global weight vector and ARC-110's full segregated loops -- a V3-tractable falsifier that can pre-empt the V4 loop build."
+    },
+    {
+      "claim_id": "MECH-457",
+      "inline_comment": "substrate_queue mech457_competence_bootstrap_explorer: original build (022a284) failed the 765 retest (capacity gap); CAPACITY-SIDE AMEND built 2026-07-16 (hidden 256 + 5x budget + warm-start/credit-reliability + z_world detached) but V3-EXQ-769 (supersedes 765) RAN + REGRESSED (raw ON 6.48->0.12) -- capacity axis FALSIFIED (failure_autopsy_V3-EXQ-769_2026-07-17); reconfirmation re-routed to GOV-FANOUT-1 portfolio V3-EXQ-770/771/772 (drive-schedule / reward-coupling / credit-horizon)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-24",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "action_learning_as_first_class_actor_critic_substrate / rpe_driven_policy_learning. Competent action learning in REE requires a DEDICATED RPE-driven actor-critic policy-learning substrate (a dorsal-striatal analog: a parameterized actor trained on a reward-error teaching signal, with a value-baseline critic), architecturally distinct from -- and NOT reducible to -- the current thin bias_head REINFORCE readout over the prediction-trained (SD-056 e2 world-forward contrastive) encoder. The V3-EXQ-724 competence autopsy localized REE's foraging wall (integrated all-ON agent forages ~0 resources/episode vs a 1.0 floor) to exactly this un-varied invariant: action is learned only as a bias on a representation trained for SENSORY PREDICTION, never as a first-class policy object trained on RETURN. 'Prediction-rich, action-poor': REE trains a substantial world model but has no dedicated action-learning system -- in brains, action learning IS a substantial learning system (O'Doherty 2004 dorsal-striatum-as-actor; Schultz 1997 dopaminergic RPE teacher), not a bias term on a prediction model."
+    },
+    {
+      "claim_id": "MECH-471",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-07",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Behavioural-competence updates require the same BOUNDED / PROVENANCED / ROLLBACK-CAPABLE discipline already registered for consolidation. MECH-392, INV-080 and MECH-401 give the memory-consolidation path bounded, attributable, provenance-carrying, rollback-capable, over-rewrite-gated editing; NOTHING EQUIVALENT is registered for behavioural competence -- policy / affordance / action-object learning has no rollback, no provenance record, and no gate against a single successful rollout propagating widely."
+    },
+    {
+      "claim_id": "MECH-489",
+      "inline_comment": "SD-ORIENTING-DECISION-SCALE fix LANDED 2026-08-10 (see implementation_note); valence-gating sub-component still awaits its re-test run (910a re-queue)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-10",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Defensive-orienting response: a phasic freeze-arrest -> orient/identify -> epistemic-sufficiency-override -> valence-gated approach/withdraw/resume behavioural chain triggered by a sudden, UNIDENTIFIED onset (positive-derivative spike in unsigned prediction-error surprise and/or sensory-discriminative harm), distinct from MECH-279 (chronic, accumulated-suffering freeze) and from MECH-482/MECH-483 (persistent target-bound epistemic_deficit accumulator and the diffuse orient/survey regime it drives -- the opposite end of the timescale from this PHASIC, transient trigger, which MECH-482 explicitly excludes by definition)."
+    },
+    {
+      "claim_id": "Q-021",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-08-08",
+      "linked_nodes": [],
+      "claim_status": "open",
+      "claim_title": "Does training with harm-avoidance signals only, without explicit approach drives, produce behavioral flatness (quiescent degenerate policy)?"
+    },
+    {
+      "claim_id": "Q-028",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "multi_agent_ecology_v5:MAE-5",
+          "plan_id": "multi_agent_ecology_v5",
+          "file": "multi_agent_ecology_v5_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "open",
+      "claim_title": "How should REE behave when axioms conflict -- e.g., preserving self (INV-026) vs preserving others (INV-028) when both cannot be achieved simultaneously?"
+    },
+    {
+      "claim_id": "Q-029",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "multi_agent_ecology_v5:MAE-6",
+          "plan_id": "multi_agent_ecology_v5",
+          "file": "multi_agent_ecology_v5_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "open",
+      "claim_title": "Is loneliness -- unshared suffering -- an ethical harm category in its own right, derivable from Axiom 5 (love exists / INV-029)? If love is real and sharing joys and sorrows is its mechanism, does enforced isolation constitute architectural harm?"
+    },
+    {
+      "claim_id": "Q-043",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "open",
+      "claim_title": "How should the relative weights of MECH-313 (stochastic noise floor / LC-NE tonic analog) and MECH-314 (structured curiosity bonus / frontopolar curiosity) be calibrated for V3 substrates? Falsifiable with parametric sweep on SD-054 reef substrate plus ARC-062 gated-policy."
+    },
+    {
+      "claim_id": "Q-044",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-07-20",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "open",
+      "claim_title": "Are MECH-314a (striatal novelty), MECH-314b (frontopolar uncertainty-driven curiosity), and MECH-314c (learning-progress curiosity) three distinct substrates with independent contributions, or three different readings of one mechanism with different upstream inputs (e.g., novelty as a special case of uncertainty as a special case of learning progress)?"
+    },
+    {
+      "claim_id": "Q-045",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-H",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-C-build",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "open",
+      "claim_title": "Is MECH-313 (LC-NE tonic noise floor) a separate parameter from MECH-260 (dACC anti-recency penalty), or do they collapse into one anti-monostrategy substrate? Falsifiable with the four-arm ablation: both-OFF / 313-only / 260-only / both-ON, on SD-054 reef substrate with ARC-062 gated-policy enabled.",
+      "terminal_hits": [
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-C-build",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "Q-081",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-22",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Does REE's configured multi-rate execution produce SHARED cross-stream organisation, or only configured rate separation? SD-006 guarantees that E1/E2/E3 run at characteristic rates; nothing asserts or tests that the heterogeneous streams (E1/E2/E3, harm, goal, salience, hippocampal, control) thereby occupy recurrent system-level configurations or exhibit homologous transition motifs. Configured rate separation does not entail shared organisation."
+    },
+    {
+      "claim_id": "Q-085",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-27",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Is committed-macro GRAIN a controllability parameter? If habit is chunked action sequences selected by a single goal-directed process (Dezfouli & Balleine 2013) rather than a separate outcome-insensitive controller, then the duration over which the planner CANNOT intervene is set by committed-macro grain -- MECH-323's chunk_max_size x chunk_max_depth -- and the chunk-size budget is a CONTROLLABILITY parameter, not only a formation parameter. A budget set too high would present as outcome-insensitivity while REPORTING NOTHING at the accumulator, because nothing in MECH-323 measures the intervention interval it creates."
+    },
+    {
+      "claim_id": "SD-014",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-1 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-08-08 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-08-08",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-1",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Hippocampal map nodes must store an explicit 4-component valence vector (wanting, liking, harm-discriminative, surprise) updated incrementally per visit; replay prioritisation is weighted by drive-state-gated valence relevance.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-1",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "SD-015",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Goal-directed navigation requires a dedicated z_resource encoder that captures object-type features invariant to spatial location, separate from z_world.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        }
+      ]
+    },
+    {
+      "claim_id": "SD-017",
+      "inline_comment": null,
+      "verdict": "CURRENT",
+      "reason": "linked node(s) show no terminal/exhausted signal -- retest genuinely still pending",
+      "claim_last_touched": "2026-08-07",
+      "linked_nodes": [
+        {
+          "id": "sleep_substrate:GAP-2",
+          "plan_id": "sleep_substrate",
+          "file": "sleep_substrate_plan.md",
+          "status": "upstream-blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "stable",
+      "claim_title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated."
+    },
+    {
+      "claim_id": "SD-032b",
+      "inline_comment": "c2 retest gated on committed-action diversity (ARC-065 GAP-A / MECH-439); failure_autopsy_V3-EXQ-445h_2026-06-19",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "dACC/aMCC-analog (adaptive control): module that reads z_harm_a precision-weighted prediction error, z_conflict, and control-demand signals; outputs behavioural-adjustment magnitude; writes to a learnable striatal-analog action-value target."
+    },
+    {
+      "claim_id": "SD-033a",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node arc_062_rule_apprehension:GAP-C (arc_062_rule_apprehension) went status=done on 2026-08-08, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-C",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-D",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "commitment_closure:GAP-1",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-2",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-6",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-A",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-B",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes.",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-C",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-D",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "commitment_closure:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-2",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-6",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        }
+      ]
+    },
+    {
+      "claim_id": "SD-033b",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "commitment_closure:GAP-8",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "assembling",
+          "assembly_status": "built",
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:P3-ofc",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "built",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "OFC-analog (specific-outcome prediction and task-structure cognitive map): module that represents the state space of the current task and the specific outcomes expected from actions in each state. E2's natural substrate address for harm-predictive rollouts; distinct from scalar value integration (SD-033c).",
+      "terminal_hits": [
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "SD-034",
+      "inline_comment": "commitment-closure-control-plane (gov 2026-06-13; 460f autopsy 2026-06-18)",
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:P2-rootC (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "arc_062_rule_apprehension:GAP-C",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "biology_grounding_convergence_v4:BG-3",
+          "plan_id": "biology_grounding_convergence_v4",
+          "file": "biology_grounding_convergence_v4_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "commitment_closure:GAP-1",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-2",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-3",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-4",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 6
+        },
+        {
+          "id": "commitment_closure:GAP-4-battery",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "in_progress",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "commitment_closure:GAP-6",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "commitment_closure:GAP-11",
+          "plan_id": "commitment_closure",
+          "file": "commitment_closure_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 5
+        },
+        {
+          "id": "sd033_governance:CHK-CLAIMS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 4
+        },
+        {
+          "id": "sd033_governance:CHK-SD034",
+          "plan_id": "sd033_governance",
+          "file": "sd033_governance_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-A",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-B",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "arc_062_rule_apprehension:GAP-D",
+          "plan_id": "arc_062_rule_apprehension",
+          "file": "arc_062_rule_apprehension_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        }
+      ],
+      "claim_status": "provisional",
+      "claim_title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied. [UMBRELLA NARROWED 2026-06-19: the de-commit-authority sub-property (closure->latch coupling + de-commit magnitude) is decomposed into children MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude); see those claims. SD-034 remains the umbrella design_decision -- closure-operator existence + five-part 'done' token firing + No-Go install are retained here and provisional; NOT demoted, NOT superseded.]",
+      "terminal_hits": [
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-C",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-1",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-2",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-3",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-6",
+          "as_of": "2026-08-08",
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "commitment_closure:GAP-11",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 5
+        },
+        {
+          "node_id": "sd033_governance:CHK-CLAIMS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-EXP_PROPOSALS",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 4
+        },
+        {
+          "node_id": "sd033_governance:CHK-SD034",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "arc_062_rule_apprehension:GAP-D",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "SD-037",
+      "inline_comment": null,
+      "verdict": "CANDIDATE-STALE",
+      "reason": "node conversion_ceiling_campaign:FULLSTACK (conversion_ceiling_campaign) shows a terminal signal (assembly_status=ran_exhausted_for_substrate) dated 2026-08-08, after the claim's last-touched date 2026-07-11",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "behavioral_diversity_isolation:GAP-I",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "in-progress",
+          "assembly_status": null,
+          "unblocks_count": 10
+        },
+        {
+          "id": "sd_037_axis_a:P1",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 2
+        },
+        {
+          "id": "sd_037_axis_a:P2",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "sd_037_axis_a:P3",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_a:P4",
+          "plan_id": "sd_037_axis_a",
+          "file": "sd_037_axis_a_consumer_input_recalibration_plan.md",
+          "status": "deferred",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P1b",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "assembling",
+          "assembly_status": "in_progress",
+          "unblocks_count": 2
+        },
+        {
+          "id": "sd_037_axis_b:P2",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "sd_037_axis_b:P3",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "sd_037_axis_b:P4",
+          "plan_id": "sd_037_axis_b",
+          "file": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+          "status": "blocked",
+          "assembly_status": null,
+          "unblocks_count": 3
+        },
+        {
+          "id": "conversion_ceiling_campaign:FULLSTACK",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "conversion_ceiling_campaign:P2-rootC",
+          "plan_id": "conversion_ceiling_campaign",
+          "file": "conversion_ceiling_campaign_plan.md",
+          "status": "assembling",
+          "assembly_status": "ran_exhausted_for_substrate",
+          "unblocks_count": 0
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-A",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 1
+        },
+        {
+          "id": "behavioral_diversity_isolation:GAP-B",
+          "plan_id": "behavioral_diversity_isolation",
+          "file": "behavioral_diversity_isolation_plan.md",
+          "status": "partial",
+          "assembly_status": null,
+          "unblocks_count": 3
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists.",
+      "terminal_hits": [
+        {
+          "node_id": "sd_037_axis_a:P1",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 2
+        },
+        {
+          "node_id": "sd_037_axis_a:P2",
+          "as_of": null,
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        },
+        {
+          "node_id": "sd_037_axis_a:P3",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "sd_037_axis_a:P4",
+          "as_of": null,
+          "reason": "status=deferred",
+          "signal_type": "retest_due",
+          "unblocks_count": 3
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:FULLSTACK",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "conversion_ceiling_campaign:P2-rootC",
+          "as_of": "2026-08-08",
+          "reason": "assembly_status=ran_exhausted_for_substrate",
+          "signal_type": "exhausted",
+          "unblocks_count": 0
+        },
+        {
+          "node_id": "behavioral_diversity_isolation:GAP-A",
+          "as_of": "2026-08-08",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 1
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "claim_id": "SD-049",
+      "inline_comment": null,
+      "verdict": "RETEST-DUE",
+      "reason": "node goal_pipeline:GAP-2 (goal_pipeline) went status=done on 2026-08-10, after the claim's last-touched date 2026-07-11 -- substrate landed, the retest is now actionable (not evidence of drift)",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [
+        {
+          "id": "goal_pipeline:GAP-2",
+          "plan_id": "goal_pipeline",
+          "file": "goal_pipeline_plan.md",
+          "status": "done",
+          "assembly_status": null,
+          "unblocks_count": 9
+        },
+        {
+          "id": "infant_substrate:GAP-14",
+          "plan_id": "infant_substrate",
+          "file": "infant_substrate_plan.md",
+          "status": "blocked_pending_substrate",
+          "assembly_status": null,
+          "unblocks_count": 2
+        }
+      ],
+      "claim_status": "candidate",
+      "claim_title": "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work.",
+      "terminal_hits": [
+        {
+          "node_id": "goal_pipeline:GAP-2",
+          "as_of": "2026-08-10",
+          "reason": "status=done",
+          "signal_type": "retest_due",
+          "unblocks_count": 9
+        }
+      ]
+    },
+    {
+      "claim_id": "SD-054",
+      "inline_comment": "[2026-06-08 governance] survival-leg cohort gated on escape-affordance-bridge substrate (failure_autopsy_V3-EXQ-603h_2026-06-08)",
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-11",
+      "linked_nodes": [],
+      "claim_status": "candidate",
+      "claim_title": "Reef enrichment substrate: env-level behavioral-diversity substrate adding coral-reef safe zones (hazard-free patches with a static scent gradient) and food-attracted hazard drift to CausalGridWorldV2. Creates two competing behavioral attractors -- 'flee to reef' vs 'forage' -- to break monomodal route-exploitation in agents whose policy collapses to a single fixed trajectory, unblocking SD-029 C2 / C3 measurement. Pure environment substrate; no trainable parameters; no MECH-094 interaction. Renamed from SD-050 on 2026-05-08 to resolve a registry-ID collision with the suffering-derivative comparator."
+    },
+    {
+      "claim_id": "SD-078",
+      "inline_comment": null,
+      "verdict": "UNLINKED",
+      "reason": "no *_plan.md node's unblocks_claims (or one cross_plan_link hop) names this claim id -- cannot audit without guessing",
+      "claim_last_touched": "2026-07-25",
+      "linked_nodes": [],
+      "claim_status": "candidate_substrate_landed",
+      "claim_title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
+    }
+  ],
+  "skipped_plans": [],
+  "counts": {
+    "RETEST-DUE": 17,
+    "CURRENT": 10,
+    "UNLINKED": 32,
+    "CANDIDATE-STALE": 19,
+    "UNDETERMINED": 2
+  }
+}
