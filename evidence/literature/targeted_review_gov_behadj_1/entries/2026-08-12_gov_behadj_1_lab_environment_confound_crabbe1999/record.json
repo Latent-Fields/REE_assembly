@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gov_behadj_1",
+  "entry_id": "2026-08-12_gov_behadj_1_lab_environment_confound_crabbe1999",
+  "timestamp_utc": "2026-08-12T03:12:52Z",
+  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "source": {
+    "title": "Genetics of mouse behavior: interactions with laboratory environment",
+    "authors": ["John C. Crabbe", "Douglas Wahlsten", "Bruce C. Dudek"],
+    "year": 1999,
+    "venue": "Science",
+    "doi": "10.1126/science.284.5420.1670",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10356397/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "This is a landmark, rigorously designed multi-site replication (identical apparatus/protocol/environmental controls, 3 labs, several inbred strains + 1 null mutant, 6 behaviors tested simultaneously) that directly supplies the exact historical precedent the source thought's own 'literature mining' section asked for: an apparently genuine, well-measured behavioral effect (strain-driven genotype differences) that turned out to be idiosyncratic to testing context despite maximal standardization. Held to 0.65 rather than higher because the mapping from a physical wet-lab confound to REE's computational substrate is real but indirect (see mapping_caveat) -- it establishes the CLASS of failure (protocol standardization is necessary but not sufficient to rule out context-dependence), not a REE-specific instance.",
+  "failure_signatures": [
+    "Despite apparatus, protocols, and 'many environmental variables' being rigorously equated across 3 laboratories, strain-by-lab interactions were still detected: 'for some tests, the magnitude of genetic differences depended upon the specific testing lab' -- i.e. a behavioral effect that looked like a clean genotype effect was in fact partly an artifact of unmeasured context.",
+    "The authors' own conclusion is a direct caution against the source thought's implicit assumption that sufficiently rigorous perturbation/replication protocols will fully discriminate genuine organisation from artifact: 'experiments characterizing mutants may yield results that are idiosyncratic to a particular laboratory' even when the experimenters believed they had controlled for context."
+  ],
+  "tags": ["gov-behadj-1", "replication", "confounding", "known_failure_mode", "cross_context_generalization", "behavioral_genetics"],
+  "mapping": {
+    "source_claim_statement": "Six behaviors were measured in several inbred mouse strains and one null mutant, simultaneously, in three laboratories that rigorously equated apparatus, protocol, and environment. Strains differed markedly in all behaviors (a real genotype effect existed), but there were ALSO systematic, test-dependent differences in that effect across labs -- the same genotype produced a different-sized behavioral signature depending on which lab ran it.",
+    "ree_translation": "REE Assembly's own documented cross-machine-class contract divergence (torch.multinomial returning different discrete actions from bit-identical probability tensors on darwin-arm64 vs linux-x86_64, see [reference-cross-machine-class-contract-divergence]) is a structurally close, already-observed analogue of exactly this failure mode inside REE itself: an apparently substrate-level behavioral effect can be partly a function of WHICH machine/environment ran it, not only of the mechanism under test. GOV-BEHADJ-1's proposed workflow (perturb, blind, replicate, generalise) reduces but -- per this paper -- does not guarantee elimination of this risk; the paper is direct evidence that 'apparently meaningful behaviour' can partially vanish or shift under a better-controlled multi-context replication than the one used to first notice it, which is exactly the class of historical example the source thought's literature-mining instructions asked for.",
+    "mapping_caveat": "This is a between-PHYSICAL-LABORATORY confound in wet-lab animal genetics, not a computational/simulation-substrate finding -- the specific mechanisms of 'lab effect' here (handling, room noise, technician identity, subtle apparatus wear) do not literally exist in REE's Fishtank runs. The transferable lesson is structural (standardized-protocol replication across contexts is necessary but insufficient to guarantee a behavioral effect is not idiosyncratic to unmeasured context), not a specific technique GOV-BEHADJ-1 could adopt wholesale.",
+    "source_context": "Simultaneous testing of several inbred mouse strains and 1 null mutant across 3 independent laboratories, 6 behavioral tests, apparatus/protocol/environment deliberately standardized as tightly as feasible across sites."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Canonical, highly-cited Science paper with an unusually strong multi-site design for its era; the finding has been repeatedly replicated and discussed in the behavioral-genetics methods literature since. Mapping fidelity moderate: the general lesson (standardization does not guarantee context-independence) transfers cleanly to REE's own cross-machine-class divergence; the specific mechanism (physical lab environment) does not."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gov_behadj_1",
+  "entry_id": "2026-08-12_gov_behadj_1_multiverse_analysis_steegen2016",
+  "timestamp_utc": "2026-08-12T03:12:52Z",
+  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "source": {
+    "title": "Increasing Transparency Through a Multiverse Analysis",
+    "authors": ["Sara Steegen", "Francis Tuerlinckx", "Andrew Gelman", "Wolf Vanpaemel"],
+    "year": 2016,
+    "venue": "Perspectives on Psychological Science",
+    "doi": "10.1177/1745691616658637",
+    "url": "https://journals.sagepub.com/doi/10.1177/1745691616658637"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "A highly-cited, formal statistical methodology directly answering the source thought's 'statistical methods for multi-metric adjudication' request: rather than picking one analysis pipeline and reporting its result, multiverse analysis runs the SAME question through every reasonable combination of data-processing/analytic choices and reports how conclusions vary across that space. This gives GOV-BEHADJ-1's 'Adjudicate' step ('judge the pattern of evidence across measures... rather than allowing one metric to define the phenomenon') a concrete, established, off-the-shelf statistical instantiation rather than leaving it as a qualitative aspiration. Confidence held at 0.65 because the paper's own domain (survey/questionnaire data processing choices) differs from REE's (trajectory-metric definitional choices), though the underlying logic transfers cleanly.",
+  "failure_signatures": [],
+  "tags": ["gov-behadj-1", "metascience", "multiverse_analysis", "adjudicate_step", "researcher_degrees_of_freedom", "anti_goodharting"],
+  "mapping": {
+    "source_claim_statement": "Constructing an analysis dataset from raw data typically involves many individually defensible but essentially arbitrary choices (exclusion criteria, transformations, coding decisions). Rather than reporting results from one such choice, a multiverse analysis runs the identical analysis across the full combinatorial set of reasonable alternative choices and reports how the conclusion's robustness (or fragility) depends on which choices were made.",
+    "ree_translation": "GOV-BEHADJ-1's anti-Goodharting checklist asks, informally, 'could the metric improve while the behaviour of interest worsens, or vice versa?' and 'what alternative processes could change the metric?' -- multiverse analysis operationalizes that concern directly and formally: instead of picking one definition of 'reversal frequency' or one windowing choice for 'excursion duration' and reporting the result, a REE behavioral-adjudication skill could run the SAME hypothesis test across the full reasonable space of metric-definition choices (window sizes, smoothing parameters, state-boundary thresholds) and report whether the conclusion holds across that space or is an artifact of one arbitrary choice. This gives the source thought's 'Adjudicate' step -- currently described only qualitatively as 'judge the pattern of evidence across measures' -- a concrete, citable, established statistical procedure to adopt or adapt.",
+    "mapping_caveat": "The paper's own example domain is survey/questionnaire data (exclusion criteria, item coding) rather than continuous behavioral trajectory data; REE's analogous 'reasonable alternative choices' (smoothing window, reversal-detection threshold, state-boundary definition) would need to be enumerated separately for behavioral time-series data, which the paper does not itself address. A large combinatorial choice space also creates its own multiple-comparisons interpretation burden, which the multiverse-analysis literature itself flags as a limitation requiring care, not a fully solved problem.",
+    "source_context": "Methodological/statistical paper illustrated with a re-analysis of published survey data on fertility and religiosity/political attitudes, demonstrating how conclusions vary substantially across a multiverse of reasonable data-processing choices."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Highly cited (1000+ citations), influential open-science methods paper in a leading psychological methods journal. Mapping fidelity moderate: the general principle (test robustness across the full reasonable choice space rather than reporting one arbitrary pipeline) transfers cleanly, but REE-specific implementation (enumerating reasonable behavioral-metric definitional choices) is not addressed by the source and would need REE-side development."
+  }
+}

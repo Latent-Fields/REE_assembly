@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gov_behadj_1",
+  "entry_id": "2026-08-12_gov_behadj_1_unsupervised_syllable_discovery_wiltschko2015",
+  "timestamp_utc": "2026-08-12T03:12:52Z",
+  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "source": {
+    "title": "Mapping Sub-Second Structure in Mouse Behavior",
+    "authors": ["Alexander B. Wiltschko", "Matthew J. Johnson", "Giuliano Iurilli", "Ralph E. Peterson", "Jesse M. Katon", "Stan L. Pashkovski", "Victoria E. Abraira", "Ryan P. Adams", "Sandeep Robert Datta"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.11.031",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0896627315010375"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "This is the foundational paper for Motion Sequencing (MoSeq), a formal, rigorous, widely-adopted generative-model approach to exactly the 'discovery-oriented analysis' the source thought gestures at informally. It demonstrates that a real, established, statistically principled method exists for decomposing continuous behavior into a reusable vocabulary of stereotyped modules with defined transition probabilities -- direct confirmation that the thought's aspiration (motifs/states/transitions rather than aggregate totals) is not merely plausible but already has a mature methodological answer in computational ethology. Confidence held at 0.7 rather than higher because REE's environment (2D/discrete grid navigation) differs substantially from MoSeq's domain (3D depth-video pose dynamics in an open field), so the specific modeling machinery would need substantial adaptation, not direct reuse.",
+  "failure_signatures": [
+    "MoSeq's own methodology requires selecting a model-order hyperparameter (the number of distinct behavioral syllables/states), which has no single objectively correct value -- illustrating that even a rigorous, formal, unsupervised discovery method does not eliminate researcher degrees of freedom, it relocates them from ad hoc metric choice to model-order/hyperparameter choice, a caution directly relevant to how GOV-BEHADJ-1's 'Discover' step would need its own explicit anti-Goodharting safeguards if implemented with an analogous generative model."
+  ],
+  "tags": ["gov-behadj-1", "computational_ethology", "unsupervised_discovery", "behavioral_motifs", "discover_step"],
+  "mapping": {
+    "source_claim_statement": "3D depth-camera imaging of freely moving mice, combined with an autoregressive hidden Markov model (AR-HMM) over pose dynamics, shows that mouse behavior is organized into sub-second (~300ms), reused, stereotyped modules ('syllables') with well-defined transition probabilities between them -- a formal, generative-model-based decomposition of continuous behavior into discrete, statistically discoverable units, without pre-specifying which behaviors to look for.",
+    "ree_translation": "This is a mature, working instantiation of exactly the source thought's 'behaviour as structured process, not merely aggregate output' section and its 'discovery-oriented' analytical channel. If GOV-BEHADJ-1 is ever hardened into a skill, the 'Discover' step should point to this class of method (formal generative segmentation with an explicit transition-probability structure) as the rigorous baseline, rather than informal visual inspection or ad hoc post-hoc feature engineering -- the source thought's own phrasing ('what behavioural structure is present that we did not think to measure?') is precisely the question MoSeq-class methods are built to answer with statistical rigor.",
+    "mapping_caveat": "MoSeq operates on continuous, high-dimensional 3D pose data from a physical animal in an open field; REE's Fishtank agent operates in a discrete or low-dimensional grid environment with a much smaller and more constrained action/state space. A direct AR-HMM-over-pose adaptation is not appropriate; the transferable content is the modeling PHILOSOPHY (formal generative segmentation over informal metric engineering) and the general architecture (discrete latent states + explicit transition structure), not the specific depth-video pipeline.",
+    "source_context": "Freely moving C57BL/6J mice in an open field, 3D depth camera imaging, unsupervised AR-HMM segmentation of continuous pose-dynamics time series into discrete behavioral modules."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Foundational, highly-cited NeuroResource paper in a top neuroscience journal, methodologically rigorous and since extensively validated and extended (MoSeq2, keypoint-MoSeq). Mapping fidelity moderate: REE's environment and observation modality differ substantially from MoSeq's, so the specific technique would need reinvention, but the underlying discovery-oriented modeling philosophy transfers well."
+  }
+}

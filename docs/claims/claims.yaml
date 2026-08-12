@@ -81481,6 +81481,60 @@
     organisation vs. mechanism); explicit anti-Goodharting checklist (what
     alternative process could move this metric; could the metric improve while
     the phenomenon of interest worsens, or vice versa).
+
+    LIT-PULL (2026-08-12, chip-20260812-behadj-litpull, 9 entries, lit_conf=0.83,
+    evidence/literature/targeted_review_gov_behadj_1/): the "umpire, not ruler"
+    reframing is methodologically sound and has real precedent across ethology,
+    movement ecology, behavioural neuroscience, metascience, RL, and psychometrics
+    -- but the pull, run per the source thought's own instruction to search for
+    CONTRADICTING methods rather than only supporting citations, surfaced three
+    substantive complications that must be preserved alongside the supporting
+    content, not smoothed over. (1) Blinding is necessary but demonstrably NOT
+    sufficient on its own: Lit et al. 2011 (Animal Cognition) is a modern,
+    controlled Clever Hans replication showing detection-dog handlers' false
+    beliefs produced 225 false alerts across 164 no-scent trials -- the
+    contamination point was the human's REAL-TIME interpretation, before any
+    post-hoc scoring blind could catch it, meaning the proposed "Blind" step (hide
+    labels at scoring time) protects a narrower slice of the risk than it appears
+    to; the REE-relevant analogue is the researcher's own first unblinded visual
+    read of a Fishtank trajectory, which is where "looked smoother" originates.
+    (2) The anti-Goodharting risk RECURS inside every more-rigorous alternative,
+    it does not disappear: McClintock et al. 2020 (Ecology Letters, the field-
+    standard HMM review) and Wiltschko et al. 2015 (Neuron, MoSeq) both confirm
+    rigorous discovery-oriented machinery exists, but both are explicit that
+    state-count / model-order selection has "no foolproof or automatic way" and
+    that free-parameterized models can output data-driven "states" with no real
+    correspondence -- the same Goodharting risk the claim raises for hand-picked
+    metrics reappears one level up, at model selection. (3) The claim's own
+    motivating Fishtank observations (reef-use coherence, post-sleep smoothness)
+    were noticed within a limited run set, not checked against held-out
+    procedurally-varied environments -- Cobbe et al. 2019 (ICML, CoinRun) is the
+    highest-fidelity mapping in the pull (both are deep RL agents) and shows
+    apparent in-distribution competence can be pure training-distribution
+    memorization, invisible without a dedicated generalisation test; until that
+    test is run on the actual Fishtank data, the observations that motivated this
+    claim cannot yet be distinguished from the failure mode Cobbe et al. document.
+    Positive/supporting findings of note: Crabbe et al. 1999 (Science) is a direct
+    historical instance of "apparently meaningful behaviour" (a genotype effect)
+    remaining partly idiosyncratic to unmeasured context despite rigorous
+    multi-lab standardisation -- structurally close to REE's own confirmed
+    cross-machine-class torch.multinomial divergence
+    ([reference-cross-machine-class-contract-divergence]), suggesting machine
+    class/substrate version belongs alongside seeds/layouts as a candidate
+    confound in any "Replicate" step. Belkaid et al. 2020 (Communications
+    Biology) is a worked positive template for "variability is not noise": mice
+    in a deterministic-reward task actively generated randomness and a
+    discriminating switch-test perturbation confirmed it was a regulated
+    strategy, not passive noise -- directly analogous to the claim's own
+    "Perturb" step done well. Steegen et al. 2016 (multiverse analysis) and
+    Flake & Fried 2020 (questionable measurement practices, not independently
+    verified past abstract-level -- paywalled) give the "Adjudicate" step and the
+    anti-Goodharting checklist established, citable statistical form rather than
+    leaving them qualitative. Full synthesis with per-step breakdown:
+    evidence/literature/targeted_review_gov_behadj_1/synthesis.md. Per
+    GOV-HELDOUT-1, this lit-pull is not itself evidence the methodology "works" --
+    status/epistemic_category are unchanged, governance's call, only real
+    application to a real claim answers that question.
   what_would_answer: >
     This is a governance_rule/process proposal, not an empirical hypothesis about
     REE's substrate -- its "falsification" is procedural: does formalising this

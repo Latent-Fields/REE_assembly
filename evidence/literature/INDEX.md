@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-11T20:23:54.740182Z`
+Generated: `2026-08-12T03:21:45.375474Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -190,6 +190,7 @@ Generated: `2026-08-11T20:23:54.740182Z`
 | `targeted_review_games_with_rules_ef` | [`2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008`](targeted_review_games_with_rules_ef/entries/2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008/record.json) | 9 | [`summary`](targeted_review_games_with_rules_ef/entries/2026-05-16_q035_arc049_inv059_normative_structure_games_rakoczy2008/summary.md) |
 | `targeted_review_ghost_goal_search` | [`2026-06-13_ghost_goal_mech339_video_context_isarida2020`](targeted_review_ghost_goal_search/entries/2026-06-13_ghost_goal_mech339_video_context_isarida2020/record.json) | 18 | [`summary`](targeted_review_ghost_goal_search/entries/2026-06-13_ghost_goal_mech339_video_context_isarida2020/summary.md) |
 | `targeted_review_goal_disengagement` | [`2026-06-13_disengage_mech340_mpfc_lesion_control_kubala2012`](targeted_review_goal_disengagement/entries/2026-06-13_disengage_mech340_mpfc_lesion_control_kubala2012/record.json) | 11 | [`summary`](targeted_review_goal_disengagement/entries/2026-06-13_disengage_mech340_mpfc_lesion_control_kubala2012/summary.md) |
+| `targeted_review_gov_behadj_1` | [`2026-08-12_gov_behadj_1_unsupervised_syllable_discovery_wiltschko2015`](targeted_review_gov_behadj_1/entries/2026-08-12_gov_behadj_1_unsupervised_syllable_discovery_wiltschko2015/record.json) | 9 | [`summary`](targeted_review_gov_behadj_1/entries/2026-08-12_gov_behadj_1_unsupervised_syllable_discovery_wiltschko2015/summary.md) |
 | `targeted_review_guilt_repair_moral_emotion` | [`2026-06-12_inv_081_guilt_shame_neural_signatures_piretti2023`](targeted_review_guilt_repair_moral_emotion/entries/2026-06-12_inv_081_guilt_shame_neural_signatures_piretti2023/record.json) | 4 | [`summary`](targeted_review_guilt_repair_moral_emotion/entries/2026-06-12_inv_081_guilt_shame_neural_signatures_piretti2023/summary.md) |
 | `targeted_review_hazard_avoidance_learning` | [`2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020`](targeted_review_hazard_avoidance_learning/entries/2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020/record.json) | 5 | [`summary`](targeted_review_hazard_avoidance_learning/entries/2026-06-07_sd_054_safe_rl_curriculum_induction_turchetta2020/summary.md) |
 | `targeted_review_hippocampal_affect_stream_count` | [`2026-05-08_social_self_other_danjo2018`](targeted_review_hippocampal_affect_stream_count/entries/2026-05-08_social_self_other_danjo2018/record.json) | 10 | [`summary`](targeted_review_hippocampal_affect_stream_count/entries/2026-05-08_social_self_other_danjo2018/summary.md) |
