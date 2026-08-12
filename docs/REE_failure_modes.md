@@ -1,6 +1,6 @@
 ---
 title: Failure Modes
-nav_order: 10
+nav_order: 11
 ---
 
 # REE failure modes (implementation-focused)

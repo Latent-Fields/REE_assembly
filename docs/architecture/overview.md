@@ -1,6 +1,6 @@
 ---
 title: Architecture
-nav_order: 3
+nav_order: 4
 has_children: true
 ---
 
@@ -23,6 +23,10 @@ has_children: true
 **Status:** legacy  
 **Claim ID:** IMPL-015
 <a id="impl-015"></a>
+
+> Before the component-by-component map below: [What Is REE Made Of?](what_is_ree_made_of.md)
+> gives the whole-system picture first -- what REE is made of mechanically, and why it is a
+> hybrid dynamical system rather than "a neural network."
 
 ---
 

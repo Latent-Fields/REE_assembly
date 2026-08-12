@@ -1,6 +1,6 @@
 ---
 title: Invariants
-nav_order: 5
+nav_order: 6
 ---
 
 # REE Architectural Invariants

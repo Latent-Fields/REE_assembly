@@ -8,8 +8,8 @@ Run from repo root:
 
 Structure produced:
   TOP LEVEL (ordered):
-    Home / Why This Architecture? / Architecture (section) / Foundations /
-    Invariants / Roadmap / Research Status / Related Work / Glossary /
+    Home / Why This Architecture? / What Is REE Made Of? / Architecture (section) /
+    Foundations / Invariants / Roadmap / Research Status / Related Work / Glossary /
     Failure Modes / Vignettes / REE for Psychiatrists / Closure Dashboard /
     Governance (section) / Contribute Compute
   ARCHITECTURE -> 16 themed collapsible sub-sections (3-level nav):
@@ -39,27 +39,28 @@ SECTIONS_DIR = os.path.join(ARCH, "sections")
 TOP_LEVEL = {
     "index.md":                                  {"title": "Home",                  "nav_order": 1},
     "architecture/ethical_agency_derivation.md": {"title": "Why This Architecture?","nav_order": 2},
-    "architecture/overview.md":                  {"title": "Architecture",          "nav_order": 3, "has_children": True},
-    "architecture/five_axioms_foundations.md":   {"title": "Foundations",           "nav_order": 4},
-    "invariants.md":                             {"title": "Invariants",            "nav_order": 5},
-    "roadmap.md":                                {"title": "Roadmap",               "nav_order": 6},
-    "research_status.md":                        {"title": "Research Status",       "nav_order": 7},
-    "related_work.md":                           {"title": "Related Work",          "nav_order": 8},
-    "glossary.md":                               {"title": "Glossary",              "nav_order": 9},
-    "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 10},
-    "vignettes.md":                              {"title": "Vignettes",             "nav_order": 11},
-    "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 12},
-    "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 13},
-    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 14},
-    "visualizations.md":                         {"title": "Visualizations",        "nav_order": 15},
-    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 17},
+    "architecture/what_is_ree_made_of.md":       {"title": "What Is REE Made Of?",  "nav_order": 3},
+    "architecture/overview.md":                  {"title": "Architecture",          "nav_order": 4, "has_children": True},
+    "architecture/five_axioms_foundations.md":   {"title": "Foundations",           "nav_order": 5},
+    "invariants.md":                             {"title": "Invariants",            "nav_order": 6},
+    "roadmap.md":                                {"title": "Roadmap",               "nav_order": 7},
+    "research_status.md":                        {"title": "Research Status",       "nav_order": 8},
+    "related_work.md":                           {"title": "Related Work",          "nav_order": 9},
+    "glossary.md":                               {"title": "Glossary",              "nav_order": 10},
+    "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 11},
+    "vignettes.md":                              {"title": "Vignettes",             "nav_order": 12},
+    "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 13},
+    "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 14},
+    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 15},
+    "visualizations.md":                         {"title": "Visualizations",        "nav_order": 16},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 18},
 }
 
 # ---------------------------------------------------------------------------
 # 2. Governance section (top-level parent + children)
 # ---------------------------------------------------------------------------
 
-GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 16, "has_children": True}
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 17, "has_children": True}
 GOVERNANCE_CHILDREN = {
     "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
     "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},

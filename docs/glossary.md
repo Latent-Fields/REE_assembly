@@ -1,6 +1,6 @@
 ---
 title: Glossary
-nav_order: 9
+nav_order: 10
 ---
 
 # Glossary
@@ -15,6 +15,11 @@ nav_order: 9
 ---
 
 - **REE:** Reflective‑Ethical Engine.
+- **Cognifold:** The total evolving internal state-space of the machine together with the
+  structured transformations that determine how one state becomes the next — not any single
+  latent stream, and not the union of every optional mechanism in the repository, but the
+  instantiated dynamical system a given configuration actually runs. See
+  [What Is REE Made Of?](architecture/what_is_ree_made_of.md).
 - **E1:** Deep predictor (long-horizon context model).
 - **E2:** Fast predictor (short-horizon reflex model).
 - **E3:** Trajectory selector (planning and commitment module).

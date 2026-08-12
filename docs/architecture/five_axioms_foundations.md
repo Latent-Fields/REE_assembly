@@ -1,6 +1,6 @@
 ---
 title: Foundations
-nav_order: 4
+nav_order: 5
 status: active
 status_asof: 2026-07-10
 status_claim: INV-025

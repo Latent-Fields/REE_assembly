@@ -269,6 +269,11 @@ INDEX_BODY = """<div class="ree-home">
           <strong>Why This Architecture?</strong>
           <p>The derivation in full, the cognifold motif, and why the brain result matters.</p>
         </a>
+        <a class="ree-route-card" href="{{ '/architecture/what_is_ree_made_of.html' | relative_url }}">
+          <span>Whole-system picture</span>
+          <strong>What Is REE Made Of?</strong>
+          <p>Learned structure, moment-to-moment activity, persistent state, and explicit dynamics -- before the mechanism inventory.</p>
+        </a>
         <a class="ree-route-card" href="{{ '/architecture/post_hoc_filter_insufficiency.html' | relative_url }}">
           <span>Alignment framing</span>
           <strong>Post-Hoc Filter Insufficiency</strong>
