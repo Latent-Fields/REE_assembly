@@ -70722,7 +70722,7 @@
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
-  pending_retest_after_substrate: false  # cleared /governance 2026-08-12: sole route f_dominance_conversion_ceiling is exhausted (no 2026-07-20 withdrawal, unlike v4_loop_segregation) and this claim already carries ceiling_decision: exhausted; the retest had no live target. v3_pending gate still holds.
+  pending_retest_after_substrate: true  # RESTORED /governance 2026-08-12 (same cycle, self-correction): the earlier clear was WRONG. It read f_dominance_conversion_ceiling as exhausted from that entry's status STRING, which embeds the 2026-07-05 arbitration-route exhaustion -- the exact verdict WITHDRAWN 2026-07-20 by failure_autopsy_V3-EXQ-711-713_2026-07-20. The entry itself is node_class: complex (probe-gated), status_phase: probe_gated, pending_retest_after_substrate: true -- a live probe-gated route, not a dead one. Retest stands.
   registered_utc: "2026-06-19"
   what_would_answer: >
     REGIME-SCOPED to WEAK-natural-commit seeds (OFF-arm committed_steps ~ 0, where the closure
@@ -70848,7 +70848,7 @@
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
-  pending_retest_after_substrate: false  # cleared /governance 2026-08-12: sole route f_dominance_conversion_ceiling is exhausted (no 2026-07-20 withdrawal, unlike v4_loop_segregation) and this claim already carries ceiling_decision: exhausted; the retest had no live target. v3_pending gate still holds.
+  pending_retest_after_substrate: true  # RESTORED /governance 2026-08-12 (same cycle, self-correction): the earlier clear was WRONG. It read f_dominance_conversion_ceiling as exhausted from that entry's status STRING, which embeds the 2026-07-05 arbitration-route exhaustion -- the exact verdict WITHDRAWN 2026-07-20 by failure_autopsy_V3-EXQ-711-713_2026-07-20. The entry itself is node_class: complex (probe-gated), status_phase: probe_gated, pending_retest_after_substrate: true -- a live probe-gated route, not a dead one. Retest stands.
   registered_utc: "2026-06-19"
   what_would_answer: >
     On the amended substrate (committed-run-scaled refractory ON), the ON-arm within-arm
