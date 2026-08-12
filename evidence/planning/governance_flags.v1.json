@@ -310,6 +310,21 @@
       "status": "resolved",
       "resolved_at": "2026-08-10T15:18:50Z",
       "resolution_note": "2026-08-10 governance: set v3_v3_exq_870_runner_error_20260802T105035Z_v3's evidence_direction to superseded (both flat and pack manifests) naming V3-EXQ-870a. claim_ids=[], no scoring impact."
+    },
+    {
+      "flag_id": "GFLAG-0023",
+      "claim_ids": [
+        "ARC-108",
+        "MECH-439",
+        "MECH-450"
+      ],
+      "flag_type": "stale_note",
+      "summary": "behavioral_diversity_isolation:GAP-K (behavioral_diversity_isolation_plan.md) shows assembly_status=exhausted dated 2026-08-08 -- the campaign face this node tracks ran terminal and will not be revisited. These 3 claims (ARC-108, MECH-439, MECH-450) each carry pending_retest_after_substrate:true last touched 2026-07-11 (before the exhaustion), so the flag no longer reflects reality: the substrate isn't 'not yet landed', it landed and the retest already exhausted. Detected by scripts/audit_retest_staleness.py (CANDIDATE-STALE, high confidence; REE_assembly/evidence/planning/retest_staleness_audit_report.md, 2026-08-12). This flag only reports the drift -- governance needs to decide the actual disposition per claim (clear the flag, re-route to a different substrate, or demote per GOV-CEIL-1 ceiling-exhaustion).",
+      "raised_by_session": "pensive-franklin-1e285b",
+      "raised_at": "2026-08-12T18:17:58Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
