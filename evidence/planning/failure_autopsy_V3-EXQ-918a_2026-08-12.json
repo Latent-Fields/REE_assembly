@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-12T04:56:07Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_918a_sd_residue_valence_bound_validation_20260812T044049Z_v3",
+      "queue_id": "V3-EXQ-918a",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[], no claim gates on this SD",
+        "biological_reference": "clear -- bounded-accumulator/habituation pattern, restores assumed invariant",
+        "prerequisites": "present -- depends_on: none",
+        "implementation": "complete -- single shared helper for both callers, off-by-default preserves historical evidence bit-identical",
+        "environment": "adequate -- unit-level test at the exact primitive is the correct scope",
+        "measurement": "adequate -- readiness precondition + C1-C4 jointly cover reproduction, fix, backward-compat, non-interference",
+        "integration": "coupled, stable -- one control point for 13 agent.py call sites plus sensitized-wanting path",
+        "scale": "n/a -- plumbing fix, not a capacity question"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "not_applicable -- clean confirming PASS, no FAIL and no organism-level REE-failed read to classify"
+      },
+      "biological_reference": {
+        "closest_mechanism": "bounded/habituating accumulation at a fixed-capacity memory substrate (leaky-integrator decay + hard clamp), the standard computational analog of homeostatic/allostatic bounding",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a -- plumbing fix restoring an assumed invariant, not a novel mechanism under scientific test",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-918a (confirmed /failure-autopsy 2026-08-12) independently validates SD-RESIDUE-VALENCE-BOUND: unit-level reproduction of both the original unbounded-accumulator bug (OFF arm, bit-identical to pre-fix +=) and the fix (ON arm, clamped to exactly valence_clamp_abs), across 3 channels x 3 seeds, with a met readiness precondition ruling out a silent-no-op false-bounded reading. Self-route label sd_residue_valence_bound_validated is accurate and non-vacuous.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-RESIDUE-VALENCE-BOUND",
+        "severity": null,
+        "substrate_paths": ["ree_core/residue/field.py", "ree_core/utils/config.py"]
+      },
+      "resolves_prior_failure_record": [],
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The SD-RESIDUE-VALENCE-BOUND fix is genuinely validated, not merely self-reported: independent unit-level reproduction of both the original bug and the fix, both matching predicted exact values.",
+        "The active_center_exists readiness precondition is load-bearing, not decorative -- it held at 100% (18/18 cells), ruling out a silent-no-op false-bounded contamination of the verdict.",
+        "wanting_sensitized's exemption from the C3 exact-match check is correctly scoped (it is gain-saturating, not a flat accumulator) -- the driver author already understood this, avoiding a spurious near-miss.",
+        "The separate, previously-descoped 'residue_wanting orphaned writer' defect (same motivating autopsy cluster, structurally distinct bug) is confirmed already fully handled by a landed thread (V3-EXQ-916a + two follow-on chips) -- nothing further to route on it from this autopsy."
+      ],
+      "routing": "none"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_confirmation": {
+    "presented_via": "AskUserQuestion",
+    "selected_option": "Confirm as diagnosed (Recommended)",
+    "recommendation_log": "RECOMMENDATION_LOG.jsonl"
+  }
+}
