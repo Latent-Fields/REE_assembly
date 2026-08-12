@@ -1670,3 +1670,8 @@ One line per hourly tick. ASCII only.
 2026-08-12T04:14:04Z no eligible item (skipped 245): IGW-20260812-001:skill /governance not allowed; IGW-20260812-002:skill /governance not allowed; IGW-20260812-003:skill /governance not allowed
 2026-08-12T05:15:41Z workset committed (regen -- 245 items, 29 ready, 0 in flight)
 2026-08-12T05:14:58Z SPAWN IGW-20260812-237 skill=/queue-experiment prio=40 uuid=6d22bb8c-2f2d-4593-bb00-e3f0db67168b pid=47707 worktree=igw-237-proposal-for-mech-490
+2026-08-12T06:17:50Z workset committed (regen -- 245 items, 29 ready, 0 in flight)
+2026-08-12T06:18:02Z auto-defer IGW-20260812-237 hash=e5141922bb5a for 48h (reaped -> completed_resumable)
+2026-08-12T06:18:02Z reaped TASK_CLAIMS igw-auto-igw-237-proposal-for-mech-490-20260812T051559Z (ledger IGW-20260812-237 -> completed_resumable)
+2026-08-12T06:18:03Z GC removed worktree igw-237-proposal-for-mech-490 post-reap (ledger IGW-20260812-237 -> completed_resumable; removed; branch deleted)
+2026-08-12T06:17:28Z no eligible item (skipped 245): IGW-20260812-001:skill /governance not allowed; IGW-20260812-002:skill /governance not allowed; IGW-20260812-003:skill /governance not allowed
