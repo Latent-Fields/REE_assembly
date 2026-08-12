@@ -1,29 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 923,
-  "runner_started_at": "2026-08-11T18:50:45.482001+00:00",
-  "last_updated": "2026-08-11T19:41:42.789220+00:00",
+  "runner_pid": 925,
+  "runner_started_at": "2026-08-12T06:45:46.858561+00:00",
+  "last_updated": "2026-08-12T09:01:42.970102+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-919",
+      "queue_id": "V3-EXQ-921",
       "backlog_id": "",
-      "claim_id": "MECH-321",
-      "title": "MECH-321 harm-aware selection, unconditional whole-episode harm rate (n=40 seeds, no screen/tiering, redesigned DV + A-A null control)",
+      "claim_id": "",
+      "title": "MECH-490 sleep commit-gate persistence: spawn-matched + commit-variance instrumented sleep-vs-no-sleep ablation (V3-EXQ-913 successor, 6 seeds)",
       "description": "",
-      "estimated_minutes": 140.8,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-917",
-      "backlog_id": "",
-      "claim_id": "SD-011",
-      "title": "MECH-303 contextual_safety_harm_threshold calibration battery: reachability/discrimination across num_hazards x harm_obs_a sourcing mode",
-      "description": "",
-      "estimated_minutes": 2000.0,
+      "estimated_minutes": 352.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2249,6 +2238,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_916a_relief_safety_fishtank_showcase_20260811T194142Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 3057.1
+    },
+    {
+      "queue_id": "V3-EXQ-925",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "E3 F-dominance frozen-state causal-replay harness (H1/H2/H3/H4 discrimination, SD-056-trained substrate)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: FAIL | verdict: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-925 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-925.json",
+      "started_at": "2026-08-12T06:47:50.312485+00:00",
+      "completed_at": "2026-08-12T09:01:42.969242+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 8032.7
     }
   ]
 }
