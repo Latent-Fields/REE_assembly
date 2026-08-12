@@ -1,6 +1,11 @@
 # Working Thought: Behavioural Adjudication as a Scientific Skill for REE Assembly
 
-**Status:** provisional working thought; intended for literature mining, criticism, revision, and eventual skill development rather than immediate hardening into methodology.
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-11_behavioural_adjudication_scientific_skill.md
+Processed in:
+- docs/claims/claims.yaml#GOV-BEHADJ-1
+
+**Editorial status of the thought itself (unchanged by intake):** provisional working thought; intended for literature mining, criticism, revision, and eventual skill development rather than immediate hardening into methodology. Registered as a candidate governance_rule (GOV-BEHADJ-1) so the proposal is tracked -- registration does not mean it has been hardened into a skill.
 
 The recent organism-level Fishtank work suggests that REE Assembly may need a dedicated scientific skill for behavioural experiment design and adjudication.
 

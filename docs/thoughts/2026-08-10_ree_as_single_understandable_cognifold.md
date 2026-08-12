@@ -1,7 +1,10 @@
 # Thought: REE as a single understandable cognifold
 
 **Date:** 2026-08-10
-**Status:** unprocessed
+Status: processed
+Superseded by: docs/thoughts/2026-08-10_ree_as_one_understandable_cognifold.md (canonical
+  draft of the same idea, independently written up three times; see that file's header for
+  the reconciliation note)
 
 My vision for REE is ultimately one single understandable cognifold. As the architecture has become richer, however, it has become easier to understand individual mechanisms while becoming harder to see the whole object they make together. A useful corrective is to describe REE-v3 at the level of what it actually *is mechanistically*, before naming its many biological analogues or mechanism IDs.
 

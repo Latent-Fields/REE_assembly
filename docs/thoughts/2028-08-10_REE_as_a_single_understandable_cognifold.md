@@ -1,7 +1,10 @@
 REE as a single understandable cognifold
 
-Date: 2026-08-10
-Status: Unstructured thought / explanatory framing / public-communication proposal
+Date: 2026-08-10 (filename year "2028" is a typo for 2026)
+Status: processed
+Superseded by: docs/thoughts/2026-08-10_ree_as_one_understandable_cognifold.md (canonical
+  draft of the same idea, independently written up three times; see that file's header for
+  the reconciliation note)
 
 My vision for REE is ultimately one single understandable cognifold.
 

@@ -1,8 +1,11 @@
 Thought: REE efficiency may need to be understood as lifetime cognitive efficiency, not model size
 
 Date: 2026-08-10
-Status: Raw thought for ingestion
-Ingestion note: This thought contains conceptual, strategic, experimental and evaluation-methodology material. Please do not assume it belongs wholly in the unstructured-thought layer. Consider whether parts should generate or update research strategy, evaluation plans, scaling experiments, developmental plans, or public-facing explanatory material. Preserve the original thought as a source record even if derivative records are created elsewhere.
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-10_REE_efficiency.md
+Processed in:
+- docs/claims/claims.yaml#Q-093
+Original ingestion note (preserved, not fully actioned this pass): This thought contains conceptual, strategic, experimental and evaluation-methodology material. Please do not assume it belongs wholly in the unstructured-thought layer. Consider whether parts should generate or update research strategy, evaluation plans, scaling experiments, developmental plans, or public-facing explanatory material. Preserve the original thought as a source record even if derivative records are created elsewhere. -- The core testable hypothesis (control-machinery scaling) is registered as Q-093; the broader research-strategy/evaluation-methodology material (scaling-curve protocol, six sub-questions) is carried as notes on Q-093 and in the Stage 2 intake rather than as separate research-strategy or public-facing artifacts, which remain a follow-on.
 
 A consequence of thinking about REE as one evolving cognifold is that another potentially important property becomes visible: if REE eventually works, it may be computationally quite compact relative to many current agentic artificial-intelligence systems.
 

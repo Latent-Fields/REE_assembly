@@ -1,9 +1,9 @@
 # Milestone — An Inspectable Artificial Organism
 
 **Date:** 2026-08-04
-**Status:** processed
+Status: processed
 **Intake:** evidence/planning/thought_intake_2026-08-04_milestone_inspectable_artificial_organism.md
-**Registered:** none this pass -- see intake Section 6 (one candidate: attach as content for GOV-V3FREEZE-1's deferred flagship-demonstration / developmental-milestones slot, pending user decision)
+**Registered:** none this pass -- see intake Section 9 (user decided 2026-08-07 NOT to attach this text to GOV-V3FREEZE-1; no claims.yaml edit follows)
 **Migrated from:** `Latent-Fields/ree-paper/thought_intakes/2026-08-04_milestone_inspectable_artificial_organism.md`
 **Original commit:** `3963f4644fc5c37e626db31f21fc6bbc5d544f87`
 

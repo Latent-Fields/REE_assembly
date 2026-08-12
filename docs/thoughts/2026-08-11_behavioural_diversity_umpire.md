@@ -1,5 +1,7 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-08-11_behavioural_diversity_umpire.md
+Processed in:
+- docs/claims/claims.yaml#Q-092
 
 # Behavioural Diversity -- We Never Needed a Ruler, We Needed an Umpire
 

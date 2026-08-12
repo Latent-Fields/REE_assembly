@@ -1,6 +1,14 @@
 # Thought Intake: Ecological succession as a developmental curriculum for REE
 
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md
+Processed in:
+- docs/claims/claims.yaml#MECH-491 (self-scent-as-external-memory-trace)
+- docs/claims/claims.yaml#ARC-127 (conditional/contextual danger generalisation)
+- docs/claims/claims.yaml#SD-100 (environment-embedded circadian ecology)
+- No new claim registered: epoch-naming scheme (Steve/Adam), periodic comparative-ethology
+  benchmarking process, and "environment as experimental instrument" design rule -- these
+  are process/naming proposals, not falsifiable empirical claims; see Stage 2 intake.
 
 Date: 2026-08-11
 Source: discussion of environmental development for REE beyond the current v3 fish-world environment

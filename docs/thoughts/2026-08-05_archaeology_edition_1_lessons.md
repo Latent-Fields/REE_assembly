@@ -1,8 +1,8 @@
 # Thought Intake: Scientific Observations Following REE Historical Archaeology Edition 1.0
 
-**Status:** processed
+Status: processed
 **Intake:** evidence/planning/thought_intake_2026-08-05_archaeology_edition_1_lessons.md
-**Processed in:**
+Processed in:
 - docs/claims/claims.yaml#MECH-482 (Observations 1, 2, 8, immediate follow-up)
 - docs/claims/claims.yaml#MECH-483 (Observation 2)
 - docs/claims/claims.yaml#Q-089 (Observation 8, immediate follow-up)

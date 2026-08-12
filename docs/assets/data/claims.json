@@ -362,7 +362,7 @@
   },
   "ARC-041": {
     "assembly_state": "awaiting_substrate",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-016",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -1115,6 +1115,15 @@
     "type": "architectural_commitment",
     "what_would_answer": "Answered by architectural AUDIT plus a worked transition case.\nSUBSTRATE PRECONDITION: requires commitments that persist beyond a single\nepisode and are legible as objects (not merely implicit in weights), plus a\ntransition that could drop or duplicate them. V3 has commitment boundaries\nbut no persistent inter-episode obligation store and no transition protocol.\nNON-DEGENERACY PRECONDITION: at least one obligation must be OUTSTANDING at\nthe moment of transition -- a migration performed with nothing owed cannot\ndistinguish explicit inheritance from no inheritance at all.\nCONFIRMING signature: after a copy, each branch's obligation set is\ninspectable and matches a STATED rule (whatever it is), and after a rollback\nthe restored state's obligations are stated rather than implied; a\ndeliberately-induced transition with an outstanding repair obligation shows\nit neither vanishing nor silently doubling.\nVIOLATED if obligation state is carried implicitly in transferred weights\nwith no inspectable record -- in which case erasure and multiplication are\nboth possible and neither is detectable, which is precisely the condition\nthe claim forbids.\n"
   },
+  "ARC-127": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "environment.conditional_hazard_valence",
+    "title": "Generalising REE's environmental hazard/valence system from fixed per-object-class danger to conditional, context-dependent danger (time-of-day, a post-feeding window, co-occurring organism state, or combinations of these) is architecturally necessary to force representation of combined sensory evidence, time, memory, and environmental state together, rather than a simple fixed-category lookup.\n",
+    "type": "architectural_commitment",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires a conditional-danger environment variant (e.g. a hazard class dangerous only in a specific time window or organism-state combination) plus a matched fixed-valence control condition using the same objects, and a held-out generalisation test (novel timing/context combinations not seen during training).\nCONFIRMING: REE's learned avoidance/approach behaviour becomes conditionally sensitive (differs by time/state/context) in a way a fixed-valence-trained control agent's behaviour does not, and this conditional sensitivity survives the held-out generalisation test.\nFALSIFYING: REE fails to learn any conditional sensitivity (treats the object class as uniformly dangerous or safe regardless of context, no better than chance at discriminating safe vs. dangerous instances), OR the existing fixed-valence architecture already achieves equivalent discrimination without requiring any conditional-valence extension (context information is already implicitly available and usable through other existing channels).\n"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1195,6 +1204,15 @@
     "title": "REE:Assembly analogies must be LABELLED as analogies. REE (the cognitive architecture) and REE Assembly (the scientific-development and governance machinery) have strong structural parallels; any analogy between them must be marked as an analogy and must NEVER be used as evidence that REE operates the way Assembly does, or vice versa.",
     "type": "governance_rule",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: this is a governance_rule, not an empirical claim -- there\nis no experimental falsifier (see notes above). This is a COMPLIANCE-AUDIT condition,\ncheckable by inspecting claims.yaml / docs / thought-intake artefacts for citation\ndiscipline, not by any REE experiment.\n\nVIOLATED-BY: an artefact (claim note, architecture doc, thought-intake writeup,\nskill/CLAUDE.md text) draws a structural parallel between REE (the cognitive\narchitecture) and REE Assembly (the governance/development machinery) and then uses that\nparallel AS EVIDENCE -- treats a finding, invariant, or piece of experimental support in\none system as transferring to the other -- without explicitly flagging the parallel as\nan analogy. Concretely: (i) citing an architecture-side result to justify adopting or\nstrengthening an Assembly-side governance rule, or vice versa, without a disclaimer that\nthe resemblance is rhetorical/structural only; (ii) a claim's confidence, status, or\nevidence_direction being influenced by cross-system resemblance rather than by evidence\nproper to that system; (iii) merging or conflating an architecture-cluster claim with an\nAssembly-cluster claim on analogy grounds alone (the E/F SkillOpt split is the named\nexample of what NOT to do).\n\nCOMPLIANT: the parallel is drawn but explicitly labelled as an analogy and explicitly\ndenied evidential force -- e.g. GOV-STRAT-1's own notes: \"the INV-020 symmetry is an\nANALOGY and MUST BE CITED AS ONE ... It is a reason to ADOPT this rule; it is NOT\nevidence that the Assembly behaves like the architecture, nor that INV-020's\nexperimental support transfers here. It does not.\" The same pattern in GOV-HELDOUT-1\nand GOV-REJECT-1.\n\nAUDIT METHOD: grep claims.yaml / docs/ for REE<->Assembly structural comparisons and\ncheck each hit either (a) carries an explicit analogy disclaimer / cites GOV-ANALOGY-1,\nor (b) is a genuine biological/architectural analogy unrelated to REE:Assembly (e.g.\n\"BLA analogue\" -- out of scope for this rule).\n\n[2026-08-08 thought-digestion]: audit run against the four claims that draw this\nparallel (GOV-STRAT-1, GOV-HELDOUT-1, GOV-REJECT-1, GOV-META-1) -- all four already\ncite GOV-ANALOGY-1 in depends_on and carry the compliant disclaimer. No violation found.\n"
+  },
+  "GOV-BEHADJ-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.behavioural_adjudication_methodology",
+    "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.\n",
+    "type": "governance_rule",
+    "what_would_answer": "This is a governance_rule/process proposal, not an empirical hypothesis about REE's substrate -- its \"falsification\" is procedural: does formalising this into a skill and applying it to >=1 real organism-level behavioural claim change the adjudication outcome (or the confidence in it) relative to the ad hoc pre-specified-metric approach it replaces? Per GOV-HELDOUT-1's own discipline, do not treat drafting the skill as evidence it works -- promote only after real use, and record whether it changed anything.\n"
   },
   "GOV-CALIB-1": {
     "assembly_state": "remaining",
@@ -2035,7 +2053,7 @@
   },
   "INV-040": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-016",
     "emergent_from": [
       "ARC-041",
@@ -4103,7 +4121,7 @@
   },
   "MECH-150": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-016",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -4113,7 +4131,7 @@
   },
   "MECH-151": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-016",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -4123,7 +4141,7 @@
   },
   "MECH-152": {
     "assembly_state": "mature",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-016",
     "epistemic_stance": "believed",
     "status": "provisional",
@@ -7116,6 +7134,15 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires (a) spawn position matched across WITH_SLEEP/NO_SLEEP\narms at each compared segment index (CONFIRMED UNMATCHED in the only existing data,\nV3-EXQ-913 -- a run with this precondition unmet self-routes substrate_not_ready, not a\nverdict), and (b) E3Selector commit-variance/commit-gate-engagement logged per matched\nwindow, so the behavioural signature can be tied to the mechanism rather than left as an\nunexplained correlation.\nCONFIRMING signature: with spawn position matched and commit-variance instrumented, WITH_SLEEP\nwindows show BOTH (i) a directionally consistent lift in action-run coherence (mean run\nlength, turning-entropy/tortuosity reduction) across >=5 seeds at a sign-test or permutation\np<0.05, AND (ii) that lift covaries with commit-gate engagement rate/lower commit-variance in\nthe same windows -- behaviour and proposed mechanism must move together, not just the\nbehaviour alone.\nFALSIFYING signature: the coherence lift (if real) shows NO relationship to commit-gate\nengagement (mechanism wrong even if behaviour is real); OR a matched \"long wake interval, no\nsleep firing\" control shows the SAME coherence gain given equivalent elapsed time/experience\n(relocates the cause to time/experience accumulation, not sleep); OR the effect does not\nsurvive the transfer test to a structurally different ecology (route memorisation, not\nreorganisation).\n"
   },
+  "MECH-491": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "memory.external_scent_trace_internal_memory_interaction",
+    "title": "REE emitting a slowly-decaying self-scent trail into the environment, later re-encountered as an external sensory signal, produces measurable interaction with internal spatial/episodic memory (confirmation, conflict, or substitution effects) that is distinct from -- and detectable independently of -- internal memory operating alone.\n",
+    "type": "mechanism",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires a self-scent-deposit-and-decay mechanism in the environment substrate (does not exist in v3 fish-world) and REE's internal episodic/spatial memory state readable at the point of comparison.\nCONFIRMING: REE's behaviour or internal-memory readout differs measurably between (a) revisiting a location with its own fresh scent present, (b) revisiting after the scent has decayed, and (c) revisiting a location never visited but carrying another organism's overlapping scent -- in a pattern consistent with the scent functioning as an external memory cue (e.g. faster reorientation, altered precision/confidence signals, or measurable belief updating), not merely being ignored.\nFALSIFYING: behaviour/internal state is statistically indistinguishable across conditions (a)-(c), or the self-scent signal is used identically to any other undifferentiated sensory-novelty cue -- i.e. REE shows no differential treatment of \"this is my own trace\" versus \"this is unfamiliar.\"\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7942,6 +7969,15 @@
     "type": "open_question",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires both trained-policy arms (reef-ON, reef-OFF) to\nproduce non-zero-variance trajectory-segment feature vectors on held-out episodes (a run\nwhere either condition collapses to a single degenerate trajectory self-routes\nsubstrate_not_ready, not a verdict).\nCONFIRMING signature: a classifier trained on held-in episodes classifies held-out\nepisodes' condition (reef-ON vs reef-OFF) at accuracy exceeding a label-permutation null\n(p<0.05) AND exceeding the same pipeline run on an untrained/random-policy control sampled\nfrom the same two environments (rules out \"the environments just look different\"\nregardless of policy) AND remains selectively sensitive to the reef-presence axis under an\northogonal nuisance perturbation (e.g. hazard_food_attraction shifted) rather than losing\nor gaining discriminability indiscriminately.\nFALSIFYING signature: held-out accuracy does not clear the permutation null; OR it clears\nthe null but does not exceed the matched untrained-policy control (the signal is\nenvironment-geometry, not policy-behaviour); OR the orthogonal-perturbation check shows the\ndiscriminator is equally sensitive to the nuisance axis as to the real one (not\necological-problem-specific).\n"
   },
+  "Q-093": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "open",
+    "subject": "measurement.cognitive_efficiency.control_machinery_scaling",
+    "title": "Does REE's organising/control machinery (E1, E2, E3, commitment, replay, residue, goal-maintenance dynamics) scale sublinearly relative to the richness of the representational spaces it organises (latent fields, perceptual/semantic knowledge, hippocampal structures) -- measured as competence achieved per unit of total lifetime computational and experiential cost (developmental/training compute, environmental experience, inference, memory storage/retrieval, offline replay/consolidation, adaptation after environmental change, planning/ counterfactual simulation) -- at approximately MATCHED behavioural competence against comparison systems, rather than at unmatched competence or raw parameter/model-size counts?\n",
+    "type": "open_question",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: the comparison is vacuous unless REE and the baseline system are first matched at approximately equal behavioural competence on the same task family -- comparing lifetime-compute or footprint at UNMATCHED competence proves nothing about efficiency, only about the competence gap. This precondition is not yet met for REE-v3 (see notes); this claim cannot be tested validly until it is.\nCONFIRMING: once matched-competence comparison points exist, REE's total lifetime cost at matched competence is lower than baseline systems', AND/OR the cost of REE's control/organising machinery (E1/E2/E3, commitment, replay, residue, goal maintenance) grows sub-proportionally as the richness of what its representational spaces (z_world, semantic/episodic memory, hippocampal structures) can encode increases across REE configurations of fixed control-machinery size.\nFALSIFYING: at matched competence, REE's control-machinery cost scales comparably to or worse than baseline systems, or REE's own control machinery must scale roughly in proportion to representational richness to sustain competence as that richness grows (no efficiency dividend from persistent structured state + selective computation over in-context recomputation).\n"
+  },
   "RA-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "asked",
@@ -8113,7 +8149,7 @@
   "SD-017": {
     "assembly_state": "mature",
     "assembly_status": "built",
-    "awaiting": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+    "awaiting": "SD-016",
     "epistemic_stance": "shown",
     "status": "stable",
     "subject": "sleep_phase.minimal_sleep_infrastructure_v3",
@@ -8947,6 +8983,15 @@
     "title": "Defensive-orienting response: a toggleable PAG-analog phasic gate (DefensiveOrientingGate) that arrests locomotion on a sudden, unidentified onset (positive-derivative detector over residue_surprise AND z_harm_s norm, distinct trigger channels from MECH-279's chronic z_harm_a), holds until an identification-confidence accumulator (driven by decay of the triggering channel's excess-over-baseline, not a fixed timer) reaches sufficiency, then releases into a valence-gated approach/withdraw/resume decision expressed as an E3Selector.select() score_bias toward/away from the trigger location. The Sokolov orienting-reflex shape, and the organism-level closure of the observational_review_V3-EXQ-906b Section 4 affect-behaviour temporal-decoupling finding.",
     "type": "design_decision",
     "what_would_answer": "Pre-registered in the 906b review itself (Section 13-A): post-build, the built chain's trigger\nshould fire reliably on the ground-truth injected events (limb_damage_injected /\nexternal_hazard_injected / world_rule_shift_occurred) that the pre-build baseline could not\nreliably catch, and the surprise-onset->freeze / post-identification dread->withdraw /\nexcite->approach couplings should move well past the pre-build incidental baselines (12b:\nP(moved@t+1|spike)=44.3% vs 24.0% unconditional; P(mode-change@t+1|spike)=15.4% vs 11.1%)\ntoward a sharp, deterministic signature -- not merely reproduce the incidental correlation\nalready present without any purpose-built mechanism.\n"
+  },
+  "SD-100": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "environment.circadian_ecology_substrate",
+    "title": "Env-level substrate: a diurnal cycle (day/night-linked food-spawn reduction, competitor-activity reduction, visibility change) added to the fish-world environment, intended to make sleep onset ecologically motivated -- by interacting with REE's existing homeostatic/circadian/MEL sleep-drive regulation (INV-050) -- rather than remaining only internally/mechanically imposed.\n",
+    "type": "design_decision",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires the diurnal-cycle environment variant to be built (day/night food/competitor/visibility modulation) plus a matched non-diurnal control environment with equivalent total resource/hazard statistics, so that any effect is attributable to the DIURNAL STRUCTURE and not merely to a difference in overall resource availability.\nCONFIRMING: REE's sleep-onset timing and/or location becomes correlated with the ecologically-sensible window (low expected reward, behavioural quiescence opportunity, previously-learned-safe location) beyond what INV-050's existing internal drives alone predict in the matched non-diurnal control -- e.g. REE preferentially becomes quiescent in a learned-safe location during the low-food night window, and this preference is absent or weaker in the non-diurnal control at matched accumulated sleep pressure.\nFALSIFYING: sleep-onset timing/location is statistically indistinguishable between the diurnal and matched non-diurnal control environments -- i.e. the added ecological structure provides no additional explanatory signal beyond INV-050's existing internal drives.\n"
   },
   "SENT-0": {
     "assembly_state": "remaining",

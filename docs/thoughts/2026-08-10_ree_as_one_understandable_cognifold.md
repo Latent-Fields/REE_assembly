@@ -1,6 +1,17 @@
 # Thought Intake: REE as one understandable cognifold
 
-Status: unprocessed
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-10_ree_as_a_single_understandable_cognifold.md
+Processed in:
+- No claims.yaml entry: this is a documentation/public-communication proposal, not a
+  falsifiable empirical claim. See Stage 2 intake.
+- Canonical draft of a three-way duplicate: the same idea was independently written up
+  three times (this file; 2026-08-10_ree_as_single_understandable_cognifold.md;
+  2028-08-10_REE_as_a_single_understandable_cognifold.md, whose year is a typo for 2026).
+  This file (most complete: explicit "Possible affected components" section) is treated as
+  canonical; the other two are marked superseded, pointing here.
+- Follow-on chipped: writing the actual public-facing page is tracked as a separate task,
+  not performed as part of thought intake.
 
 Date: 2026-08-10
 Source: discussion of what mechanically constitutes REE-v3 when the environment is excluded

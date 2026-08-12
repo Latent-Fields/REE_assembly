@@ -81338,3 +81338,320 @@
     the rule works in live use -- promote only after the new failure_location
     summary / Step 7 extension has actually been exercised in >=1 real (not
     retrospectively-applied) autopsy, and record whether it changed anything.
+
+- id: Q-093
+  title: >
+    Does REE's organising/control machinery (E1, E2, E3, commitment, replay,
+    residue, goal-maintenance dynamics) scale sublinearly relative to the richness
+    of the representational spaces it organises (latent fields, perceptual/semantic
+    knowledge, hippocampal structures) -- measured as competence achieved per unit
+    of total lifetime computational and experiential cost (developmental/training
+    compute, environmental experience, inference, memory storage/retrieval, offline
+    replay/consolidation, adaptation after environmental change, planning/
+    counterfactual simulation) -- at approximately MATCHED behavioural competence
+    against comparison systems, rather than at unmatched competence or raw
+    parameter/model-size counts?
+  claim_type: open_question
+  subject: measurement.cognitive_efficiency.control_machinery_scaling
+  polarity: open
+  status: open
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-12"
+  depends_on:
+    - MECH-457
+  notes: >
+    Raw thought: docs/thoughts/2026-08-10_REE_efficiency.md.
+    Structured intake: evidence/planning/thought_intake_2026-08-10_REE_efficiency.md.
+
+    The thought's own text is explicit that "REE-v3 is currently enormously less
+    competent than the large pretrained systems with which such a comparison might
+    eventually be made" and that the question is not parameter count or raw compute
+    per step, but competence-per-lifetime-cost measured only once two systems are
+    matched at approximately equal behavioural competence on a shared task family.
+    That matching precondition is currently unmet -- hence substrate_conditional
+    rather than standard, even though the measurement PROTOCOL itself (scaling
+    curves: competence vs lifetime compute, vs environmental experience, vs
+    persistent memory, adult inference cost vs competence, adaptation achieved per
+    unit additional experience/compute) is fully describable now and does not
+    itself require new architecture.
+
+    Six further sub-questions from the raw thought are recorded here as scope for
+    a future evaluation-methodology writeup rather than as separate claims: is REE
+    cheaper per cognitive cycle; cheaper at matched competence; does REE need less
+    environmental experience per acquired capability; cheaper to adapt once mature;
+    does a mature REE stay efficient because acquired structure persists rather
+    than needing in-context reconstruction; how does developmental "raising" cost
+    compare with pretraining cost when both are counted end-to-end (pretraining/
+    raising + inference + adaptation + memory, for both system classes).
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the comparison is vacuous unless REE and the
+    baseline system are first matched at approximately equal behavioural competence
+    on the same task family -- comparing lifetime-compute or footprint at UNMATCHED
+    competence proves nothing about efficiency, only about the competence gap. This
+    precondition is not yet met for REE-v3 (see notes); this claim cannot be tested
+    validly until it is.
+
+    CONFIRMING: once matched-competence comparison points exist, REE's total
+    lifetime cost at matched competence is lower than baseline systems', AND/OR the
+    cost of REE's control/organising machinery (E1/E2/E3, commitment, replay,
+    residue, goal maintenance) grows sub-proportionally as the richness of what its
+    representational spaces (z_world, semantic/episodic memory, hippocampal
+    structures) can encode increases across REE configurations of fixed
+    control-machinery size.
+
+    FALSIFYING: at matched competence, REE's control-machinery cost scales
+    comparably to or worse than baseline systems, or REE's own control machinery
+    must scale roughly in proportion to representational richness to sustain
+    competence as that richness grows (no efficiency dividend from persistent
+    structured state + selective computation over in-context recomputation).
+  evidence_quality_note: >
+    Proposed 2026-08-10 from user thought intake, registered 2026-08-12. No
+    experimental evidence yet; no matched-competence baseline currently exists to
+    test against.
+  location: evidence/planning/thought_intake_2026-08-10_REE_efficiency.md
+
+- id: GOV-BEHADJ-1
+  title: >
+    REE Assembly needs a dedicated behavioural-adjudication methodology/skill for
+    organism-level behavioural experiment design and interpretation ("umpire, not
+    ruler": observe, preserve the observation without embedding an explanation,
+    generate competing explanations, derive predictions, construct discriminating
+    perturbations, blind condition labels where practical, apply pre-specified
+    hypothesis-directed measures, also run discovery-oriented analysis for
+    structure not anticipated in advance, adjudicate across the pattern of
+    evidence, replicate, and test generalisation under environmental change) --
+    because a fixed, pre-specified scalar-metric approach risks conflating
+    stochasticity/exploration/noise with the behavioural organisation actually of
+    interest, and risks Goodharting once a convenient metric becomes the de facto
+    definition of the phenomenon.
+  claim_type: governance_rule
+  subject: governance.epistemics.behavioural_adjudication_methodology
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-12"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-12"
+  source_thought: docs/thoughts/2026-08-11_behavioural_adjudication_scientific_skill_working_thought.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+    - Q-092
+  related_claims:
+    - Q-092
+    - GOV-FAILLOC-1
+  source:
+    - docs/thoughts/2026-08-11_behavioural_adjudication_scientific_skill_working_thought.md
+    - evidence/planning/thought_intake_2026-08-11_behavioural_adjudication_scientific_skill.md
+  notes: >
+    EXPLICITLY PROVISIONAL, per the source thought's own framing: "intended for
+    literature mining, criticism, revision, and eventual skill development rather
+    than immediate hardening into methodology." Registered as a candidate so the
+    proposal is tracked, not because it is ready to formalise into a skill.
+
+    Q-092 (registered 2026-08-11, same day) is the first concrete application of
+    the same "umpire, not ruler" reframing, narrowly scoped to SD-054 reef
+    cross-environment discriminability -- this claim generalises that instance
+    into a standing methodology proposal for ALL organism-level behavioural
+    claims, not only the reef case.
+
+    GOV-FAILLOC-1 is the nearest structural precedent: both are working thoughts
+    that exposed a methodological gap in an existing REE-Assembly adjudication
+    process (failure autopsy there, behavioural-experiment interpretation here)
+    and propose an explicit triage/workflow discipline rather than a new
+    architectural mechanism.
+
+    Key content to preserve for eventual skill drafting: three-level separation
+    of Observation / Interpretation / Mechanism (each may be wrong independently);
+    behaviour as structured process (motifs, states, transitions) rather than
+    aggregate totals; hypothesis-directed AND discovery-oriented analysis in
+    parallel; variability treated as potentially adaptive/structured rather than
+    default noise; discriminating perturbations (positive, destructive, orthogonal
+    negative control) preferred over additional metrics; strict separation of
+    discovery from confirmation (exploratory observation -> formalised hypothesis
+    -> pre-specified predictions -> unseen runs -> adjudication); blinding of
+    condition labels during scoring where practical; testing behavioural
+    properties for invariance at the correct level (surface vs. functional
+    organisation vs. mechanism); explicit anti-Goodharting checklist (what
+    alternative process could move this metric; could the metric improve while
+    the phenomenon of interest worsens, or vice versa).
+  what_would_answer: >
+    This is a governance_rule/process proposal, not an empirical hypothesis about
+    REE's substrate -- its "falsification" is procedural: does formalising this
+    into a skill and applying it to >=1 real organism-level behavioural claim
+    change the adjudication outcome (or the confidence in it) relative to the
+    ad hoc pre-specified-metric approach it replaces? Per GOV-HELDOUT-1's own
+    discipline, do not treat drafting the skill as evidence it works -- promote
+    only after real use, and record whether it changed anything.
+  location: evidence/planning/thought_intake_2026-08-11_behavioural_adjudication_scientific_skill.md
+
+- id: MECH-491
+  title: >
+    REE emitting a slowly-decaying self-scent trail into the environment, later
+    re-encountered as an external sensory signal, produces measurable interaction
+    with internal spatial/episodic memory (confirmation, conflict, or substitution
+    effects) that is distinct from -- and detectable independently of -- internal
+    memory operating alone.
+  claim_type: mechanism
+  subject: memory.external_scent_trace_internal_memory_interaction
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  claim_level: mechanistic
+  registered_utc: "2026-08-12"
+  depends_on:
+    - ARC-047
+  notes: >
+    Raw thought: docs/thoughts/2026-08-11_ecological_succession_as_developmental_curriculum.md.
+    Structured intake: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md.
+
+    DISTINGUISHED FROM ARC-047 (checked during intake, not conflated): ARC-047 is
+    an unbuilt v5 design for OTHER-agent state-leakage scent channels
+    (wanting/seeking/alarm/harm_stress/direction/celebration/defense) for social
+    cognition (mirror modelling, cooperative behaviour) in a multi-REE-instance
+    SocialGridWorld. This claim is about REE's OWN emitted trail scent functioning
+    as an EXTERNAL MEMORY CUE for single-agent spatial/episodic memory -- a
+    different subject (memory, not social cognition), a different emitter
+    (self, not other agents), and no dependency on ARC-047's multi-agent
+    machinery. depends_on ARC-047 only because it is the nearest existing
+    scent-channel infrastructure precedent, not because this claim requires it.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires a self-scent-deposit-and-decay
+    mechanism in the environment substrate (does not exist in v3 fish-world) and
+    REE's internal episodic/spatial memory state readable at the point of
+    comparison.
+
+    CONFIRMING: REE's behaviour or internal-memory readout differs measurably
+    between (a) revisiting a location with its own fresh scent present, (b)
+    revisiting after the scent has decayed, and (c) revisiting a location never
+    visited but carrying another organism's overlapping scent -- in a pattern
+    consistent with the scent functioning as an external memory cue (e.g. faster
+    reorientation, altered precision/confidence signals, or measurable belief
+    updating), not merely being ignored.
+
+    FALSIFYING: behaviour/internal state is statistically indistinguishable
+    across conditions (a)-(c), or the self-scent signal is used identically to
+    any other undifferentiated sensory-novelty cue -- i.e. REE shows no
+    differential treatment of "this is my own trace" versus "this is unfamiliar."
+  evidence_quality_note: >
+    Proposed 2026-08-11 from user thought intake, registered 2026-08-12. No
+    experimental evidence; substrate does not yet exist (v4-scoped).
+  location: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md
+
+- id: ARC-127
+  title: >
+    Generalising REE's environmental hazard/valence system from fixed
+    per-object-class danger to conditional, context-dependent danger (time-of-day,
+    a post-feeding window, co-occurring organism state, or combinations of these)
+    is architecturally necessary to force representation of combined sensory
+    evidence, time, memory, and environmental state together, rather than a
+    simple fixed-category lookup.
+  claim_type: architectural_commitment
+  subject: environment.conditional_hazard_valence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: "2026-08-12"
+  depends_on: []
+  notes: >
+    Raw thought: docs/thoughts/2026-08-11_ecological_succession_as_developmental_curriculum.md.
+    Structured intake: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md.
+
+    Example from the raw thought: harmless jellyfish alongside dangerous
+    jellyfish of the same visible class, with danger conditional on
+    time-of-day, a post-feeding window, a co-occurring detectable organism
+    state, or a combination -- changing the learning problem from "jellyfish are
+    dangerous" to "this jellyfish, in this state, under these conditions, is
+    dangerous." No existing REE hazard mechanism in the current fish-world
+    environment implements conditional/contextual valence; the current hazard
+    system applies fixed valence per object class.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires a conditional-danger environment
+    variant (e.g. a hazard class dangerous only in a specific time window or
+    organism-state combination) plus a matched fixed-valence control condition
+    using the same objects, and a held-out generalisation test (novel
+    timing/context combinations not seen during training).
+
+    CONFIRMING: REE's learned avoidance/approach behaviour becomes conditionally
+    sensitive (differs by time/state/context) in a way a fixed-valence-trained
+    control agent's behaviour does not, and this conditional sensitivity
+    survives the held-out generalisation test.
+
+    FALSIFYING: REE fails to learn any conditional sensitivity (treats the
+    object class as uniformly dangerous or safe regardless of context, no
+    better than chance at discriminating safe vs. dangerous instances), OR the
+    existing fixed-valence architecture already achieves equivalent
+    discrimination without requiring any conditional-valence extension (context
+    information is already implicitly available and usable through other
+    existing channels).
+  evidence_quality_note: >
+    Proposed 2026-08-11 from user thought intake, registered 2026-08-12. No
+    experimental evidence; substrate does not yet exist (v4-scoped).
+  location: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md
+
+- id: SD-100
+  title: >
+    Env-level substrate: a diurnal cycle (day/night-linked food-spawn reduction,
+    competitor-activity reduction, visibility change) added to the fish-world
+    environment, intended to make sleep onset ecologically motivated -- by
+    interacting with REE's existing homeostatic/circadian/MEL sleep-drive
+    regulation (INV-050) -- rather than remaining only internally/mechanically
+    imposed.
+  claim_type: design_decision
+  subject: environment.circadian_ecology_substrate
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  claim_level: architectural
+  registered_utc: "2026-08-12"
+  depends_on:
+    - INV-050
+    - SD-017
+  notes: >
+    Raw thought: docs/thoughts/2026-08-11_ecological_succession_as_developmental_curriculum.md.
+    Structured intake: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md.
+
+    DISTINGUISHED FROM INV-050 (checked during intake, not duplicated): INV-050
+    is about the INTERNAL regulation of sleep-phase architecture (circadian
+    timing, homeostatic synaptic pressure, and Model Error Load as the three
+    drives). This claim is about adding EXTERNAL ecological structure to the
+    environment substrate that those internal drives would then respond to --
+    the environment does not currently vary by time of day at all in the v3
+    fish-world, so there is nothing for a circadian internal drive to track
+    ecologically yet. depends_on INV-050 and SD-017 because this substrate is
+    designed to interact with, not replace or duplicate, that existing internal
+    regulation.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: requires the diurnal-cycle environment variant
+    to be built (day/night food/competitor/visibility modulation) plus a matched
+    non-diurnal control environment with equivalent total resource/hazard
+    statistics, so that any effect is attributable to the DIURNAL STRUCTURE and
+    not merely to a difference in overall resource availability.
+
+    CONFIRMING: REE's sleep-onset timing and/or location becomes correlated with
+    the ecologically-sensible window (low expected reward, behavioural
+    quiescence opportunity, previously-learned-safe location) beyond what
+    INV-050's existing internal drives alone predict in the matched non-diurnal
+    control -- e.g. REE preferentially becomes quiescent in a learned-safe
+    location during the low-food night window, and this preference is
+    absent or weaker in the non-diurnal control at matched accumulated sleep
+    pressure.
+
+    FALSIFYING: sleep-onset timing/location is statistically indistinguishable
+    between the diurnal and matched non-diurnal control environments -- i.e. the
+    added ecological structure provides no additional explanatory signal beyond
+    INV-050's existing internal drives.
+  evidence_quality_note: >
+    Proposed 2026-08-11 from user thought intake, registered 2026-08-12. No
+    experimental evidence; substrate does not yet exist (v4-scoped).
+  location: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md

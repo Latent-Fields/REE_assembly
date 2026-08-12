@@ -1,22 +1,29 @@
 # Thought Sweep Report
 
-Generated: `2026-08-05T21:32:19.088454Z`
+Generated: `2026-08-12T02:54:20.748811Z`
 
 | metric | count |
 |---|---|
-| total thought files | 170 |
-| processed | 170 |
-| unprocessed | 0 |
-| processed missing `Processed in` links | 2 |
+| total thought files | 186 |
+| processed | 185 |
+| unprocessed | 1 |
+| processed missing `Processed in` links | 9 |
 
 ## Unprocessed Queue
 
-- _none_
+- `INTAKE_AUDIT_REPORT.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
 - `2026-06-25_continuity_branching_and_substrate_migration.md`
 - `2026-07-09_residue_as_care_marker_and_mood_regulation.md`
+- `2026-08-04_milestone_inspectable_artificial_organism.md`
+- `2026-08-07_dynamic_goal_structure_relational_possibility_topology.md`
+- `2026-08-07_responsibility_counterfactual_memory.md`
+- `2026-08-08_prospective_navigation_through_goal_topology.md`
+- `2026-08-09_control_plane_as_stopping_signal_gated_on_f_dominance.md`
+- `2026-08-10_ree_as_single_understandable_cognifold.md`
+- `2028-08-10_REE_as_a_single_understandable_cognifold.md`
 
 ## Processed Snapshot
 
@@ -186,7 +193,22 @@ Generated: `2026-08-05T21:32:19.088454Z`
 - `2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md` (2 link(s) in `Processed in`)
 - `2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md` (2 link(s) in `Processed in`)
 - `2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md` (2 link(s) in `Processed in`)
+- `2026-08-04_milestone_inspectable_artificial_organism.md` (0 link(s) in `Processed in`)
+- `2026-08-05_archaeology_edition_1_lessons.md` (7 link(s) in `Processed in`)
 - `2026-08-05_convergent_cognitive_motifs_in_language_models.md` (1 link(s) in `Processed in`)
 - `2026-08-05_epistemic_deficit_and_orienting.md` (3 link(s) in `Processed in`)
+- `2026-08-06_scientific_evolution_of_ree.md` (4 link(s) in `Processed in`)
+- `2026-08-07_dynamic_goal_structure_relational_possibility_topology.md` (0 link(s) in `Processed in`)
+- `2026-08-07_responsibility_counterfactual_memory.md` (0 link(s) in `Processed in`)
+- `2026-08-08_prospective_navigation_through_goal_topology.md` (0 link(s) in `Processed in`)
+- `2026-08-09_control_plane_as_stopping_signal_gated_on_f_dominance.md` (0 link(s) in `Processed in`)
+- `2026-08-09_failure_autopsy_failure_location_buckets.md` (1 link(s) in `Processed in`)
+- `2026-08-10_REE_efficiency.md` (1 link(s) in `Processed in`)
+- `2026-08-10_ree_as_one_understandable_cognifold.md` (1 link(s) in `Processed in`)
+- `2026-08-10_ree_as_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
+- `2026-08-11_behavioural_adjudication_scientific_skill_working_thought.md` (1 link(s) in `Processed in`)
+- `2026-08-11_behavioural_diversity_umpire.md` (1 link(s) in `Processed in`)
+- `2026-08-11_ecological_succession_as_developmental_curriculum.md` (4 link(s) in `Processed in`)
+- `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
