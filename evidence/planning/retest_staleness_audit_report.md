@@ -234,3 +234,67 @@ This audit is a point-in-time run. Recommend re-running it as a matter of course
 2. A new bucket in `/governance`'s Step 1.5 audit-flag walk, since adjudicating a stale retest flag is squarely governance's call, not a detection-time fix.
 
 Per CLAUDE.md's "Held-out check before shipping a standing-rule change", wiring either of these into CLAUDE.md or a skill needs the manual >=3 historical-case discipline before it ships -- out of scope for this chip. Left for a human or a future session to pick up.
+
+## DECISION (2026-08-13, session jovial-shannon-35d300, chip chip-20260812-retest-audit-process-wiring): NEITHER wiring proposal is adopted
+
+Ran the held-out check the report above deferred. Verdict: **do not add a Session Startup
+Protocol step; do not add a dedicated `/governance` Step 1.5 bucket.** Both proposals fail
+on evidence gathered from real, non-degenerate historical cases -- not on principle.
+
+**Case 1 -- the motivating incident itself (session jovial-shannon-35d300, 2026-08-12).**
+OLD (no check) vs NEW (a Session Startup step) genuinely differ: NEW would have surfaced
+SD-034 as CANDIDATE-STALE before any chip was spawned, saving the investigative work the
+incident actually cost. This is the one case where wiring in helps -- taken alone it argues
+FOR a Session Startup step.
+
+**Case 2 -- GFLAG-0023/24/25 adjudication (session sd-016-h3-algorithm-3370cd, 2026-08-12,
+same day).** This is the decisive counter-evidence, and it is why "wire into governance
+Step 1.5" is rejected outright: the follow-on session raised these findings as ordinary
+`stale_note` flags in `governance_flags.v1.json` and Step 1a -- the EXISTING, generic
+"open governance flags" walk, unmodified -- consumed and adjudicated all three the SAME
+DAY, no new bucket needed. `stale_note` already had 9 prior resolved instances before
+these three (12 total of 26 items in the registry); this is not a novel flag shape needing
+new machinery, it is the 10th-12th use of a mechanism that already works. OLD and NEW give
+the SAME (correct) answer here, which is the informative part: a proposed rule that changes
+nothing on a real test case is evidence the rule is redundant, not evidence it is safe to
+add. **Governance-side: no wiring needed. Use `governance_flag.py add --flag-type
+stale_note` for future runs, exactly as this cycle already did.**
+
+**Case 3 -- re-running the tool AFTER the 2026-08-12 adjudication (verified live,
+2026-08-13, `scanned=80 CANDIDATE-STALE=18` -- unchanged).** Of the 18 CANDIDATE-STALE
+claims this tool found, governance's adjudication KEPT the flag (i.e. ruled NOT actually
+stale) on 16 of them -- only MECH-445/MECH-446 genuinely cleared. Re-running the tool today
+reproduces the exact same 18, because nothing the adjudication did (a `governance_flags.v1.json`
+resolution_note) touches any field this tool reads (`claims.yaml` `live_status.as_of` /
+`evidence.as_of`, or the plan-doc `assembly_status`/`live` block) -- confirmed by direct
+read: MECH-090/SD-034/MECH-445/MECH-446's `as_of` dates are untouched since before the
+adjudication. So a Session Startup step re-running this tool raw would re-surface the SAME
+16 already-adjudicated-as-not-stale claims, unchanged, in EVERY future session that
+touches `claims.yaml` (a High-Contention File touched routinely) -- forever, with no decay
+mechanism. This is a harder noise problem than the worktree-skills precedent CLAUDE.md
+already accepted at ~94% initial fire rate: that one decays as `sync_worktree_settings.py`
+adoption spreads and a worktree cut from current master reports clean; this one has no
+analogous convergence built in yet. A repeating, non-decaying, majority-false-positive
+banner is exactly the "banner everyone skips" failure CLAUDE.md's own noise-budget
+discussion warns against -- OLD (no step) avoids it entirely; NEW (an unconditional step)
+walks into it on the very next claims.yaml-touching session. Non-degenerate: the two give
+different, and here clearly different-in-quality, outcomes.
+
+**Held-out check result: 3 non-degenerate cases, 1 for wiring in, 2 against (and the
+strongest against is not a preference call -- it is a reproducible, currently-live noise
+defect).** Per CLAUDE.md's own tie-break ("if you cannot find 3 such cases, that is itself
+the finding... narrow the rule"), the applicable move here is narrower still: the cases
+were found, and two of three say the rule as proposed causes a live problem. Case 1's
+benefit is real but is better captured by the pattern CLAUDE.md already uses for
+narrow-domain, non-blanket guidance (e.g. Step 8's "when the session touches sleep /
+SD-017 / MECH-204 ... read X before any code or experiment edit") than by a new
+unconditional Session Startup step -- and even that narrower form should wait until the
+tool gains a dedup/suppression mechanism (e.g. skip a claim whose CANDIDATE-STALE finding
+already has a `resolved` `stale_note` GFLAG naming it, or track a
+`retest_staleness_last_reviewed` date on the claim) so a re-run does not just replay
+Case 3's noise for the narrower audience too.
+
+**Disposition: this audit stays a standalone, on-demand tool** -- re-run it by hand when
+reviewing `claims.yaml` health (as `/governance` already effectively does by raising
+`stale_note` flags for what it finds), not as a standing per-session or per-cycle
+obligation. Revisit wiring it in, in either form, only after the dedup gap above is closed.
