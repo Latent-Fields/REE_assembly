@@ -10,7 +10,11 @@
       "run_id": "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
       "queue_id": "V3-EXQ-436e",
       "supersedes": "V3-EXQ-436d",
-      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "claim_ids": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
       "self_route_label": "insufficient_occupancy_for_c1",
       "failed_criterion": "readiness_precondition",
       "failed_criterion_note": "Neither a discrimination criterion nor a negative control. P0 check sufficient_occupancy_for_c1 measured 2 scoreable seeds against a floor of 3; the C1 comparison was never reached on 3/5 seeds. The other 4 P0 checks all cleared.",
@@ -33,7 +37,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "SWS hippocampus-to-neocortex schema installation followed by REM-direction attribution filling; context slot formation as a learned hidden-state prior",
-        "dependencies": ["cue-distinguishable context representations (z_world cross-context separation)", "a write path that addresses distinct slots for distinct contexts", "offline replay passes"],
+        "dependencies": [
+          "cue-distinguishable context representations (z_world cross-context separation)",
+          "a write path that addresses distinct slots for distinct contexts",
+          "offline replay passes"
+        ],
         "is_formal_import": false,
         "divergence": "none identified -- the failure is configuration and environment, not translation fidelity",
         "lit_status": "present"
@@ -51,6 +59,30 @@
         "ARC-045": "non_contributory",
         "MECH-166": "non_contributory"
       },
+      "per_claim_recommendation": {
+        "SD-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-DV-repair to after-SD-016-armed; epistemic_category unset -> standard",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays stable"
+        },
+        "ARC-045": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-DV-repair to after-SD-016-armed; epistemic_category unset -> standard",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-166": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-DV-repair to after-SD-016-armed; epistemic_category unset -> standard",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "per_claim_recommendation_note": "Written so GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py, governance.sh Step 3h) can mechanically see whether this autopsy's recommendation was ever APPLIED. That scan is the only standing check asking the applied question, and it can ONLY read targets carrying this field -- measured coverage before this artifact was 1 of 1151 confirmed targets, because `per_claim_recommendation` was never in the /failure-autopsy skill's Step 9 schema, so producers had nothing telling them to emit it. `change` is deliberately NOT the bare string STANDS: the scan skips STANDS outright, and while the evidence DIRECTION genuinely stands at non_contributory, three things here are unapplied and would otherwise be invisible once this run leaves pending_review.md -- the epistemic_category (currently unset on all three claims, so GOV-CAT-1 also has a hit), the evidence_quality_note append, and the pending_retest re-scoping. This matters specifically for the blind spot GOV-APPLY-1 was built for: once a run is in review_tracker.reviewed_run_ids it drops out of pending_review.md and the confirmed autopsy covering it is never re-read.",
       "interpretable_signal": "Stated explicitly before recommending non_contributory, per the standing rule. (1) The DV repair is empirically confirmed working -- 4/5 P0 checks clear, drift neutralisation verified against a re-derived null. (2) On both seeds where the corrected instrument is defined, C1 passes in the predicted direction, one substantially (0.96795 -> 0.83109). (3) A durable substrate property is established: ContextMemory.write()'s argmin addressing has a deterministic single-slot fixed point under a degenerate query stream. (4) An alternative cause was tested and refuted. The run is non_contributory to the CLAIMS specifically, not uninformative.",
       "recommended_evidence_quality_note": "[2026-08-13 governance, V3-EXQ-436e, confirmed failure_autopsy_V3-EXQ-436e_2026-08-13, successor to V3-EXQ-436d]: fifth generation, and the FIRST with a sound instrument -- all six items of the 2026-08-07 methodology-check recommendation are implemented and empirically confirmed (occupancy-masked DV; similarity and occupancy reported separately; WAKING_ONLY given a real write path, 15,428 calls; Adam drift neutralised, NO_WRITES arm max |z| = 1.67 against a re-derived null of mean 1.9e-05 / sd 7.8e-03; baseline re-derived at run time). Recording standard complete, 0 dry runs, non_degenerate true. FAIL is at the P0 readiness layer, NOT the comparison: only 2/5 seeds carry >= 2 occupied ContextMemory slots (need 3), because seeds 7/13/100 occupy exactly ONE slot of 16 in BOTH arms despite 3,019-4,884 write() calls each -- arm-independent, therefore not an effect of sleep. On both seeds where the corrected DV is defined, C1 PASSES in the predicted direction (seed 42 0.99902 -> 0.99656; seed 200 0.96795 -> 0.83109), i.e. 2/2 directional but under-powered against the registered 3/5 bar. Root cause established by probe: ContextMemory.write() addresses by argmin(query . memory) and has a deterministic single-slot fixed point when the query stream is near-constant, predicted 5/5 by sign(q . (write_signal - memory[argmin])); an alternative hypothesis that 436e's own requires_grad_(False) freeze caused it was TESTED AND REFUTED (frozen and unfrozen both fan out to 11-14/16 slots under varied input). The degenerate-query regime is the long-registered SD-016 z_world bottleneck (cross-batch cosine 0.998, substrate_queue SD-016 entry, 2026-04-28), whose selection-mechanism fix LANDED 2026-08-11 (ree-v3 110a2785b6) with SD-017 named in its unblocks_claims -- and V3-EXQ-436e, queued 2026-08-12, armed none of it (sd016_cue_slot_tagger and sd016_context_divergence_weight both absent from the driver and config; the code IS in 436e's substrate commit 871c221933, verified by merge-base). non_contributory: the run is a precondition failure upstream of the comparison and weighs on the claims in NEITHER direction. epistemic_category standard, deliberately NOT substrate_ceiling -- the substrate is built and merely unarmed, so the answer is not gated on substrate work; stamping ceiling would fire the re-derive brake against the re-queue that is the correct action. pending_retest_after_substrate stays true, re-scoped from \"after-DV-repair\" to \"after-SD-016-armed\": V3-EXQ-436f is owed, identical to 436e but with sd016_cue_slot_tagger=True / selection='gumbel' / sd016_context_divergence_weight=0.5. Supersedes the 436c/436d weakens readings, which the 2026-08-07 methodology check had already retired -- NOTHING in this lineage currently constitutes evidence against SD-017/ARC-045/MECH-166. PROMOTES/DEMOTES NOTHING this cycle.",
       "recommended_substrate_queue_entry": {
@@ -72,7 +104,11 @@
       "re_derive_brake": {
         "fired": false,
         "threshold": 2,
-        "counts_under_r1_r3": {"SD-017": 2, "ARC-045": 0, "MECH-166": 0},
+        "counts_under_r1_r3": {
+          "SD-017": 2,
+          "ARC-045": 0,
+          "MECH-166": 0
+        },
         "prior_substrate_ceiling_autopsies": [
           "failure_autopsy_V3-EXQ-538a_2026-07-10",
           "failure_autopsy_grandfathered-sleep-cluster_2026-08-08"
@@ -86,9 +122,18 @@
       "granularity_debt_trigger": {
         "fires": false,
         "cluster_counts": {
-          "SD-017": {"targets": 14, "files": 7},
-          "ARC-045": {"targets": 6, "files": 6},
-          "MECH-166": {"targets": 6, "files": 6}
+          "SD-017": {
+            "targets": 14,
+            "files": 7
+          },
+          "ARC-045": {
+            "targets": 6,
+            "files": 6
+          },
+          "MECH-166": {
+            "targets": 6,
+            "files": 6
+          }
         },
         "alignment_distribution": "unclear (436b, 436d pending_review batch, 538a), weakened (436c), untested (436d methodology-check), intact (242 proxy substrate, 436a)",
         "reason": "Numeric precondition met but substantively against firing. (1) The single `weakened` target (436c) was explicitly REVERSED by failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07, which found the whole DV confounded; under latest-adjudication-wins no live target reads weakened. (2) The differing signatures (recording gap -> write_gate payload defect -> metric confound -> occupancy/configuration) are successive defects in ONE apparatus being debugged layer by layer on ONE question, not distinct facets of a claim that is secretly several claims. The claim has never been tested at all. Routing /claim-synthesis here would inflate the believed tail on what is measurement and configuration debt.",
