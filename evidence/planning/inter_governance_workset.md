@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-13T02:28:54Z`
+Generated: `2026-08-13T04:29:50Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **246** (ready 31, in_flight 0, blocked 164)
 - By generation: clinical 11, meta 4, process 10, v3 81, v4 77, v5 38, v6 25
-- Pending review: **7**
+- Pending review: **10**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-464e, V3-EXQ-906c
@@ -20,19 +20,19 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260813-001 -- Complete governance review (7 pending)
+### IGW-20260813-001 -- Complete governance review (10 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 7 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 10 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260813-001
-Title: Complete governance review (7 pending)
+Title: Complete governance review (10 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 7 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 10 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
