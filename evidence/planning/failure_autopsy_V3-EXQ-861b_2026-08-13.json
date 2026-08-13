@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T19:43:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3",
+      "queue_id": "V3-EXQ-861b",
+      "claim_ids": ["INV-050", "MECH-180"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "likely insufficient (CALIB_EPISODES=3)"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES FAILED"
+      },
+      "biological_reference": {
+        "closest_mechanism": "learning/model-update-demand third sleep drive (Model Error Load, MEL) modulating offline consolidation duration/intensity",
+        "dependencies": ["SD-MEL-PRODUCER", "SD-MEL-CONSUMER"],
+        "is_formal_import": false,
+        "divergence": "none implicated -- this is a measurement/calibration finding, not a biology-plausibility question",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-050": "standard",
+        "MECH-180": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-861b (INV-050/MECH-180 independent-seed replication, GFLAG-0002's re-gated promotion test; confirmed failure_autopsy_V3-EXQ-861b_2026-08-13) -> FAIL, non_contributory both claims. Seeds [7,271,883], disjoint from the prior 42/123/456 lineage. C1 (within-seed graded MEL->offline-duration monotonicity, sws_power+replay_rate) replicated CLEANLY on all 3 new seeds -- but this leg is near-tautological given deterministic consumer arithmetic (project's own V3-EXQ-718a lesson). The DECISIVE independence leg (C2, ON-HIGH exceeds a pinned MEL-consumer-absent baseline) failed on 2/3 new seeds -- traced to a calibration-noise artifact, NOT an absence of coupling: mel_reference (a 3-episode CALIB_EPISODES point estimate, decoupled pass) shows ~3x cross-seed sampling noise (ARM_0 factor 0.636-1.719 across all 6 seeds run in this lineage to date, INCLUDING the three prior 'confirmed positive' runs), comparable to or exceeding the effect size C2 needs to discriminate. This noise was already present in 845/861/861a but was masked by their conjunctive 3-DV gate always failing on the separately-broken spindle_density leg; narrowing to 2 DVs (this run) is what exposed it, not what introduced it. Net: 4/6 seeds tested to date show the predicted ON>OFF direction; 2/6 (7, 271) show the sign flipped by calibration noise. GFLAG-0002 remains UNRESOLVED, not failed -- promotion stays gated on a genuinely trustworthy independent test. Routed to /queue-experiment for a same-question calibration-fix redesign (letter suffix, e.g. 861c): increase CALIB_EPISODES and/or use an uncertainty-aware C2 threshold rather than a bare point comparison. Explicitly recommend AGAINST a bare re-seed at the same methodology (real chance of repeating the same coin-flip). epistemic_category UNCHANGED -> standard.",
+      "per_claim_recommendation": {
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Append evidence_quality_note documenting V3-EXQ-861b (non_contributory; C2 leg inconclusive due to a diagnosed calibration-reference-noise artifact, not a falsification; C1 replicated cleanly on 3 new seeds but is near-tautological). GFLAG-0002 stays UNRESOLVED (independent-seed test inconclusive, not failed) -- promotion remains gated. status/epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Append evidence_quality_note documenting V3-EXQ-861b (non_contributory on the independence-discrimination leg; DV1/DV2 within-seed relationship replicated on 3 new seeds, C2 control leg diagnosed as calibration-noise-limited rather than falsifying). DV3/MECH-122 gap untouched, unchanged. v3_pending and pending_retest_after_substrate STAY true. epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate/v3_pending"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No ree_core substrate defect. The fix is entirely within the experiment driver's own calibration methodology (ree-v3/experiments/v3_exq_861*.py: CALIB_EPISODES and the C2 threshold logic), not a substrate build. MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION (the pre-existing, separately-tracked DV3 gap) is untouched by this finding -- not amended."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "note": "recommended_epistemic_category is standard, not substrate_ceiling, so this reading does not increment either claim's R1-R3 count. MECH-180 stays at 2 (677, 718a), INV-050 stays at 3 (701b, 701c, 718a) -- both already fired historically and released once SD-MEL-PRODUCER was built+validated per each claim's ceiling_routing_note."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "scripts/granularity_debt_cluster.py run for both claims. MECH-180: 6 targets, alignment distribution intact=0/unclear=3/strengthened=2/other=1, no target reads weakened. INV-050: 6 targets, intact=3/unclear=3, no target reads weakened. Measurement/test-design debt (now characterized as a calibration-precision gap specifically), not granularity debt -- consistent with this lineage's own prior GOV-GRAN-1 P1 disposition (2026-07-16: coherent single buildable gap, not bundled independent mechanisms)."
+      },
+      "learning_extracted": [
+        "Measurement gap (primary): MEL-reference calibration (CALIB_EPISODES=3, short decoupled pass) has cross-seed sampling noise (~3x spread) comparable to or exceeding the C2 effect size -- present in every prior run in this lineage, masked until this run narrowed the gate to 2 DVs.",
+        "Positive-negative result (partial): the within-seed graded MEL->offline-duration relationship (C1) replicated cleanly on 3 genuinely independent seeds -- some real, if near-tautological, independent corroboration.",
+        "No new dependency gap, no biology divergence, no ree_core implementation gap."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
