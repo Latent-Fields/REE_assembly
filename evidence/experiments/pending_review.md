@@ -1,22 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-13T06:09:54Z`  
-Last review: `2026-08-12T18:24:49Z`  
-Pending: **10** item(s) -- 0 PASS, 9 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_910a_mech489_defensive_orienting_decision_retest_20260810T213616Z_v3` | 2026-08-10T21:36 | MECH-489 | — |
-| `v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T065911Z_v3` | 2026-08-11T06:59 | MECH-236 | — |
-| `v3_exq_603t_instrumental_avoidance_scheduled_external_hazard_20260811T173724Z_v3` | 2026-08-11T17:37 | MECH-357 | — |
-| `v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3` | 2026-08-11T22:51 | MECH-321 | — |
-| `v3_exq_228d_arc032_theta_phase_weighted_readout_20260811T234236Z_v3` | 2026-08-11T23:42 | ARC-032 | — |
-| `v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3` | 2026-08-12T03:51 | ARC-041, MECH-150, MECH-151, MECH-152 | — |
-| `v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3` | 2026-08-12T22:17 | ARC-045, MECH-166, SD-017 | — |
-| `v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3` | 2026-08-13T00:18 | MECH-266, SD-032a | — |
-| `v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3` | 2026-08-13T02:01 | MECH-266, SD-032a | — |
+Generated: `2026-08-13T06:34:57Z`  
+Last review: `2026-08-13T06:33:28Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 
