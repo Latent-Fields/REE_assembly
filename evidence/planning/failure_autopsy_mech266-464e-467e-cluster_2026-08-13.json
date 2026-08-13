@@ -1,0 +1,249 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T04:16:33Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "session_id": "pensive-franklin-1e285b",
+  "companion_md": "failure_autopsy_mech266-464e-467e-cluster_2026-08-13.md",
+  "targets": [
+    {
+      "run_id": "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
+      "queue_id": "V3-EXQ-467e",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-266 hysteresis dose-response never entered a mixed-occupancy regime where a graded exit threshold could express; untested, not weakened",
+        "biological_reference": "clear -- BG direct/indirect + tonic-DA hysteresis; 6-entry lit-pull complete 2026-04-27. Observed bang-bang arbitration is the inverse of the Cools 2008 inverted-U smooth modulation the lit-pull specified",
+        "prerequisites": "present -- SD-032a implemented; the two 467d blockers (_clone_for_arm GoalState drop, uncapped dacc_pe) are fixed and the fix demonstrably works",
+        "implementation": "partial -- AFFINITY_INPUT_CAP=2.0 over-corrects; symbol-of-mechanism (rails, set_hysteresis_ratio) present, functional role (graded stability/flexibility trade-off) absent at this operating point",
+        "environment": "adequate -- contact guard 3/3, P2 contact rate 0.149-0.362, 83-215 contact events/seed",
+        "measurement": "under-instrumented / misleading -- M1 min() conflation; M2 min-over-all-ratios gate anti-correlated with the predicted effect; M3 mean_dwell mode-agnostic so C1 compares dwell across two different occupied modes",
+        "integration": "coupled but unstable -- external_task_drive x dacc_pe x salience argmax interact bang-bang; the cap moves where the step sits, not whether there is a step",
+        "scale": "unknown -- 3 seeds, 12 eval episodes per ratio; adequate to establish saturation, not powered to find a narrow mixed band"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia direct/indirect pathway asymmetry with tonic-DA-dependent hysteresis; AIC-dACC salience network switching (Menon & Uddin 2010)",
+        "dependencies": ["tonic dopamine baseline setting stability/flexibility balance", "D1/D2 opponent gating (Collins & Frank 2014 OPAL)", "graded salience aggregation upstream of mode commitment"],
+        "is_formal_import": true,
+        "divergence": "'Schmitt trigger' is an electronics formalism standing in for smooth baseline-dependent modulation. The claim's own evidence_quality_note carries implementation recommendation (1): keep enter/exit independently tunable because Cools 2008 inverted-U is smooth modulation, NOT a fixed-gap Schmitt trigger. Observed saturation is the inverse of that biology -- load-bearing, and predicted by the lit-pull four months before this run.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-266": "standard",
+        "SD-032a": "standard"
+      },
+      "recommended_epistemic_category_note": "NOT substrate_ceiling. The substrate advanced here (occupancy 0.0 -> 1.0), it did not ceiling. A 7th ceiling stamp would feed GOV-CEIL-1 toward demoting a claim whose substrate just improved, place MECH-266 in _EPI_SUPPRESS_PROPOSAL (hiding it from GOV-GRAN-1) and mark it not-v3-testable -- exactly when the discriminating experiments are worth running. Failure mode is measurement_test_design_defect + calibration; recorded in four_layer_diagnosis and the note, not in the enum field.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-266": "non_contributory",
+        "SD-032a": "non_contributory"
+      },
+      "interpretable_signal_note": "NOT non-contributory at every layer. The run is a declared calibration check (driver source 467e:165-174: 'this run is that calibration check, not a confirmed final value') and it returned its answer: AFFINITY_INPUT_CAP=2.0 is mis-calibrated on the full 3-seed curriculum. It also establishes that external_task occupancy is now reachable, overturning the standing zero-occupancy record.",
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial + MEASURES established) -- not chargeable to REE alone; implementation reads partial so the REE-FAILED bar is not met"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-467e (2026-08-13): non_contributory -- did not score MECH-266. The 467d blockers are fixed and external_task occupancy is now reachable (1.0 at r=0.10 on every seed vs 0.0 everywhere in 467b/c/d), but AFFINITY_INPUT_CAP=2.0 over-corrects into bang-bang arbitration: a step function with occupancy ~1.0 at r=0.10 and exactly 0.0 at every r>=0.50, and n_switches == n_episodes (12) identical across a 20x rail sweep. Three measurement defects: the min-over-ratio-arms non-vacuity gate is anti-correlated with C1's own predicted effect (stronger hysteresis drives occupancy to 0 at high rails, failing the gate); the same min() conflates 'mode unreachable' with 'mode saturated', emitting a factually-false route_reason 'external_task_mode_not_occupied' when the mode is 100% occupied at r=0.10; and mean_dwell is mode-agnostic (all_run_lengths accumulates any mode change), so C1's monotonicity test compares external_task dwell at r=0.10 against internal_planning dwell at r>=0.50, where the rail no longer acts and the values are unmanipulated noise. Category standard, not substrate_ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mode-governance-engagement",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/cingulate/salience_coordinator.py",
+          "ree_core/utils/config.py"
+        ],
+        "severity_note": "corrupting: the min()-based non-vacuity gate emits a route_reason that is factually false about the substrate state ('mode not occupied' when it is 100% occupied). A new experiment inheriting this gate pattern produces a non_contributory verdict with a wrong stated cause, which routes substrate work in the wrong direction -- the failure looks valid and is not.",
+        "implementation_hint_update": "SUPERSEDES the existing hint's direction. 'Supply an external-task pressure that produces genuine external_task occupancy' is DONE and works (occupancy 0.0 -> 1.0 via salience_affinity_input_cap, ree-v3 9bcde4cb63, + the _clone_for_arm GoalState fix). The open problem is the opposite: the drive now dominates absolutely and no cap value is yet known to admit a mixed regime. Next work is (a) determine whether a mixed regime exists at any cap (H1) or the discrete argmax register is structurally bang-bang (H2), and (b) restate the readiness gate per-arm/regime-conditioned rather than min-across-a-swept-range.",
+        "unblocks_claims": ["MECH-266", "SD-032a"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
+          "experiment_type": "v3_exq_467e_mech266_mode_stickiness_behavioural",
+          "metric": "step-function occupancy: fraction_in_external_task ~1.0 at r=0.10 and exactly 0.0 at r in {0.50,1.00,1.50,2.00} on all 3 seeds; n_switches == n_episodes (12) at every r>=0.50, invariant across a 20x rail sweep; C1 monotonicity fails 3/3 on unmanipulated dwell noise above the step",
+          "target": "a working implementation must exhibit per-arm fraction_in_external_task strictly between OCCUPANCY_FLOOR (0.1) and 0.9 on >= 2/3 seeds at >= 2 adjacent hysteresis ratios, with n_switches varying monotonically in r",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "PARTIAL -- the zero-occupancy half only. The prior item recorded 'n_switches = 12 == n_episodes for every hysteresis ratio; mean_dwell = total_steps/n_runs (episode-length artefact)'. 467e overturns the implied unreachability (occupancy is now ~1.0 at r=0.10). The switching half is NOT resolved: n_switches == n_episodes still holds at every r>=0.50. Governance should split this item rather than close it wholesale."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "count_at_fire": 6,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+          "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+          "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        ],
+        "refused_requeue": true,
+        "refusal_note": "REFUSED: a naked V3-EXQ-467f re-queue -- another lettered iteration of the same question, at the same AFFINITY_INPUT_CAP, behind the same min()-based gate, against the same substrate. QUALIFIER: genuine substrate enrichment DID land between letters d and e (salience_affinity_input_cap, ree-v3 9bcde4cb63, plus the _clone_for_arm GoalState fix) and demonstrably moved the system 0.0 -> 1.0 occupancy -- the documented condition under which the threshold may be raised for a claim whose substrate is being enriched between letters. That licenses the H1/H2/H3 portfolio (different questions, different DVs) and the instrumentation fix; it does NOT license another same-question letter.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mode-governance-engagement"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "qid": "mech266_mode_arbitration_saturation",
+        "live_hypotheses": [
+          "H1: cap mis-calibration -- some AFFINITY_INPUT_CAP (or per-signal caps) admits a mixed-occupancy regime; the arbiter can mix and the sweep has not found the operating point",
+          "H2: structural bang-bang -- SD-032a's discrete argmax mode register cannot produce graded occupancy at ANY cap; the cap relocates the step but never removes it",
+          "H3: instrumentation -- the non-vacuity gate and the mode-agnostic dwell statistic are ill-posed, so the verdicts are artefacts of the instrument rather than of the substrate"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "representation", "sketch": "sweep AFFINITY_INPUT_CAP across the full 3-seed curriculum; DV = per-arm fraction_in_external_task reported per-arm (never min). Null: no cap yields per-arm occupancy in (0.1, 0.9) on >= 2/3 seeds."},
+          {"hypothesis": "H2", "axis": "constitution", "sketch": "instrument the continuous salience aggregate MARGIN pre-argmax rather than the discrete mode label; characterise its distribution across caps. Null: the margin distribution is unimodal/graded, i.e. saturation is a cap artefact rather than structural."},
+          {"hypothesis": "H3", "axis": "instrumentation", "sketch": "re-score the BANKED 464e/467e data with a per-arm regime-conditioned occupancy gate and an occupancy-conditioned dwell statistic. No new run. Null: re-scoring changes no verdict."}
+        ],
+        "note": "GOV-FANOUT-1. Run H3 FIRST -- it consumes only banked data and can invalidate the premises of H1/H2 before either burns compute. H2 is the leg that would otherwise never be asked: every prior experiment in this lineage read the discrete mode label, which is exactly the variable that cannot distinguish 'graded arbitration rendered discrete at the output' from 'arbitration discrete all the way down'."
+      },
+      "recording_gap": {
+        "missing_always_core": ["config", "elapsed_seconds"],
+        "blocking": false,
+        "note": "affinity_input_cap=2.0 IS recorded in pre_registered_thresholds, and substrate_hash/substrate_commit (clean)/machine_class/seeds are present, so the knob under calibration is recorded and adjudication is not blocked. Close the gap on the successor via stamp_recording_core(...)."
+      },
+      "learning_extracted": [
+        "A non-vacuity gate built on min() across a SWEPT range is anti-correlated with the effect it gates when the sweep is designed to cross a transition; the matched statistic must be regime-conditioned, not minimised across the range.",
+        "A mode-agnostic dwell statistic is unsafe as a DV when occupancy is non-stationary across the sweep -- it silently changes which mode it summarizes mid-experiment.",
+        "min() over arms/ratios cannot distinguish 'mode unreachable' from 'mode saturated all-or-nothing'; both read 0.0, and the two imply opposite substrate fixes."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3",
+      "queue_id": "V3-EXQ-464e",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C1/C2 passed 3/3 but vacuously (criteria_non_degenerate false on both); MECH-266's graded asymmetry was never exercised, only the arm manipulation's ability to pin a mode",
+        "biological_reference": "clear -- same reference as 467e; zero-switch total commitment on the sticky arm is the inverse of a graded BG stability/flexibility balance",
+        "prerequisites": "present -- SD-032a implemented; the two 464d blockers fixed; MECH-259 symmetric baseline available as ARM_SYMMETRIC",
+        "implementation": "partial -- AFFINITY_INPUT_CAP=2.0 over-corrects; sticky arm reaches 1.0 occupancy with 0 switches on all 3 seeds",
+        "environment": "adequate -- contact guard 3/3, P2 contact rate 0.154-0.292, GAP-3 dual_cue competing-goal env primitive present",
+        "measurement": "under-instrumented / misleading -- M1 min()-across-arms conflation produces a factually-false route_reason; criteria_non_degenerate correctly caught the vacuity but the emitted cause is wrong",
+        "integration": "coupled but unstable -- same bang-bang arbitration as 467e on substrate-identical code",
+        "scale": "unknown -- 3 seeds, 15 eval episodes per arm"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia direct/indirect pathway asymmetry with tonic-DA-dependent hysteresis; AIC-dACC salience network switching (Menon & Uddin 2010)",
+        "dependencies": ["tonic dopamine baseline setting stability/flexibility balance", "D1/D2 opponent gating (Collins & Frank 2014 OPAL)", "graded salience aggregation upstream of mode commitment"],
+        "is_formal_import": true,
+        "divergence": "Same as 467e: the 'Schmitt trigger' formalism vs Cools 2008 inverted-U smooth modulation. A zero-switch, 100%-occupancy sticky arm is a stuck-in-mode caricature rather than the calibrated asymmetry MECH-266 asserts.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-266": "standard",
+        "SD-032a": "standard"
+      },
+      "recommended_epistemic_category_note": "NOT substrate_ceiling -- see the 467e target's note; identical reasoning, substrate-identical code.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-266": "non_contributory",
+        "SD-032a": "non_contributory"
+      },
+      "interpretable_signal_note": "The vacuous PASS is itself informative: C1/C2 pass on 3/3 seeds with MAXIMAL separation (1.0 vs 0.0 occupancy; 0 vs 15 switches) and are correctly flagged degenerate. Effect size is not evidence of non-degeneracy. The run also establishes that external_task occupancy is now reachable, overturning the standing zero-occupancy record.",
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial + MEASURES established) -- not chargeable to REE alone"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-464e (2026-08-13): non_contributory -- did not score MECH-266 despite both load-bearing criteria passing on 3/3 seeds. The pass is vacuous (criteria_non_degenerate false on C1 and C2): the sticky arm reaches fraction_in_external_task=1.0 with ZERO switches on every seed while the symmetric arm reads 0.0 on 2/3 seeds, so C1 (asym occupancy exceeds sym) and C2 (asym switches <= sym) are satisfied by rail saturation rather than by a graded hysteresis asymmetry. The 464d blockers ARE fixed -- occupancy moved from 0.0 on every seed/arm to 1.0 on the sticky arm -- but AFFINITY_INPUT_CAP=2.0 over-corrects into bang-bang arbitration with no mixed regime. The occupancy non-vacuity gate's min-across-arms statistic conflates 'mode unreachable' with 'mode saturated', emitting a factually-false route_reason 'external_task_mode_not_occupied'. Category standard, not substrate_ceiling: the substrate advanced rather than ceilinged.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mode-governance-engagement",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/cingulate/salience_coordinator.py",
+          "ree_core/utils/config.py"
+        ],
+        "unblocks_claims": ["MECH-266", "SD-032a"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3",
+          "experiment_type": "v3_exq_464e_mech266_competing_goals_behavioural",
+          "metric": "bang-bang arm separation: ARM_ASYM_STICKY_TASK fraction_in_external_task=1.0 with n_switches=0 on all 3 seeds; ARM_SYMMETRIC 0.0 on seeds 42/43 (100% internal_planning) and 0.4331 on seed 44; C1/C2 pass 3/3 vacuously (criteria_non_degenerate false)",
+          "target": "a working implementation must exhibit BOTH arms with fraction_in_external_task strictly between OCCUPANCY_FLOOR (0.1) and 0.9 on >= 2/3 seeds, with the sticky arm exceeding the symmetric arm by >= C1_OCCUPANCY_MARGIN while both retain non-zero switching",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "The prior item recorded 'fraction_in_external_task = 0.0 both arms all seeds; n_switches = 15 == n_episodes (episode-boundary settle artefact)'. 464e overturns it: the sticky arm reaches 1.0 on all 3 seeds and the symmetric arm reaches 0.4331 on seed 44. The mode-governance-engagement build achieved its stated goal; the residual failure is the opposite pathology (saturation), recorded as a new failure_record item."
+          },
+          {
+            "sd_id": "sd_salience_contested_mode_occupancy",
+            "run_id": "V3-EXQ-464b / 464c / 467d / 464d (all four FAIL)",
+            "resolved": "resolved",
+            "resolved_note": "This item asserts 'fraction_in_external_task = 0.0 at EVERY seed WITH use_external_task_drive=True, across a 20x hysteresis sweep'. That assertion is now FALSE: 464e reads 1.0 on the sticky arm of every seed and 467e reads ~1.0 at r=0.10 on every seed. NOTE this resolution targets a DIFFERENT substrate_queue entry (sd_salience_contested_mode_occupancy, priority 3) than this autopsy's amend target -- governance should apply it there. The entry's other consumers (MECH-048, MECH-259, ARC-005 routing double-dissociation) still need the >= 2-modes-occupied precondition, which bang-bang arbitration does NOT satisfy: the entry should stay open on that basis, with only this failure_record item closed."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "count_at_fire": 6,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+          "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+          "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        ],
+        "refused_requeue": true,
+        "refusal_note": "REFUSED: a naked V3-EXQ-464f re-queue at the same cap behind the same min()-based gate. Same qualifier as the 467e target: real substrate enrichment landed between d and e and moved the system, licensing the H1/H2/H3 portfolio but not another same-question letter.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mode-governance-engagement"
+      },
+      "recording_gap": {
+        "missing_always_core": ["config", "elapsed_seconds"],
+        "blocking": false,
+        "note": "affinity_input_cap=2.0 recorded in pre_registered_thresholds; substrate_commit clean. Close on the successor via stamp_recording_core(...)."
+      },
+      "learning_extracted": [
+        "A 'vacuous pass' can carry maximal effect size -- 464e's C1/C2 pass 3/3 with perfect separation and are correctly degenerate. Effect size is not evidence of non-degeneracy; the criteria_non_degenerate flag earned its keep.",
+        "The mode-governance-engagement substrate build SUCCEEDED at its stated goal; two substrate_queue failure records asserting permanent zero occupancy are now factually stale."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Contact guard (absolute/negative-control precondition) PASSES 3/3 on both targets; the occupancy precondition that enables discrimination FAILS on both. Underneath, 19 of 21 arm/ratio cells sit at exactly 0.0 or exactly 1.0 fraction_in_external_task, with zero switches on every saturated-high cell and n_switches == n_episodes on every saturated-low cell.",
+    "is_independent_bugs": false,
+    "structural_property": "The SalienceCoordinator arbitrates BANG-BANG: after the salience_affinity_input_cap fix, external_task either wins totally or loses totally, with no mixed-occupancy regime anywhere in the swept range. Two structurally different tests (a 5-point dose-response sweep and a 2-arm contrast), with different DVs and different PASS shapes, running on substrate-identical code (the only diff between their substrate_commits is a phase3-queue snapshot of experiment_queue.json), return the same observation. The predecessors' failure was 'the mode is never occupied'; the successor's is 'the mode is only ever fully occupied or fully empty' -- a genuinely different signature produced by the fix for the first one.",
+    "readings": ["substrate_calibration", "structural_bang_bang"],
+    "readings_note": "These force different planning decisions (calibrate the cap vs redesign the discrete mode register) and the banked data cannot separate them -- every observation to date is consistent with both. That is what makes this a discrimination rather than a single named build, and why routing is a GOV-FANOUT-1 portfolio.",
+    "substrate_identity_verified": true
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "tagging_targets": 7,
+    "files": 4,
+    "alignment_distribution": {"intact": 3, "weakened": 2, "unclear": 1, "unstamped": 1},
+    "read_via": "scripts/granularity_debt_cluster.py MECH-266",
+    "rationale": "At least one target reads `weakened` and the signatures HAVE changed structurally across letters (b/c/d: mode never occupied -> e: mode occupied but all-or-nothing), which is normally the /claim-synthesis shape. NOT routed there this cycle because the newest signature change is attributable to a single known named cause (the cap over-correction), not to the broad claim hiding several finer mechanisms. Decomposing MECH-266 now would decompose against an instrument with three identified defects and an operating point already known to be wrong.",
+    "defer_until": "the H1/H2 portfolio resolves; if a calibrated, correctly-gated substrate still produces structurally-different failures, that is genuine granularity debt and /claim-synthesis becomes the right call",
+    "routing": null
+  },
+  "hypothesis_space_ledger": {
+    "qid": "mech266_mode_arbitration_saturation",
+    "mode": "A",
+    "growth_restriction_checked": true,
+    "growth_restriction_applies": false,
+    "growth_restriction_note": "No existing question in hypothesis_space_registry.v1.json covers MECH-266 or SD-032a, so this is a NEW questions[] entry and no growth_restriction can apply (a question being registered in this edit cannot carry one)."
+  }
+}

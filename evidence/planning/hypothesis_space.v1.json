@@ -1,19 +1,19 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-12T18:25:23Z",
+  "generated_at": "2026-08-13T04:34:44Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 153,
+      "total_modules": 156,
       "built_modules": 127,
-      "fraction_built": 0.8301,
+      "fraction_built": 0.8141,
       "state_counts": {
-        "proposed": 26,
-        "implemented": 89,
-        "implemented_pending_validation": 23,
+        "proposed": 29,
+        "implemented": 90,
+        "implemented_pending_validation": 22,
         "validated": 15
       },
       "build_proof_gap": 112,
@@ -31,157 +31,163 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 58,
-      "total_initial": 106,
-      "total_initial_at_registration": 86,
+      "total_surviving": 61,
+      "total_initial": 109,
+      "total_initial_at_registration": 89,
       "total_fanout_added": 20,
       "total_resolved_out": 44,
       "total_confirmed": 23,
-      "reduction_pct_vs_current": 41.5,
-      "net_narrowing_pct": 32.6,
+      "reduction_pct_vs_current": 40.4,
+      "net_narrowing_pct": 31.5,
       "convergence_classes": {
         "narrowing": 15,
-        "static": 13,
+        "static": 14,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "58 alive against 86 originally enumerated, and against 106 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 33
+      "honest_pair_note": "61 alive against 89 originally enumerated, and against 109 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 34
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 14,
-      "open_questions": 33
+      "open_questions": 34
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 105,
+      "surviving": 108,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-11",
-      "surviving": 104,
+      "surviving": 107,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-13",
-      "surviving": 102,
+      "surviving": 105,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-15",
-      "surviving": 98,
+      "surviving": 101,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-16",
-      "surviving": 97,
+      "surviving": 100,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-17",
-      "surviving": 94,
+      "surviving": 97,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-18",
-      "surviving": 88,
+      "surviving": 91,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-19",
-      "surviving": 84,
+      "surviving": 87,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-20",
-      "surviving": 83,
+      "surviving": 86,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-24",
-      "surviving": 82,
+      "surviving": 85,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-27",
-      "surviving": 80,
+      "surviving": 83,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-29",
-      "surviving": 79,
+      "surviving": 82,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-31",
-      "surviving": 78,
+      "surviving": 81,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-01",
-      "surviving": 76,
+      "surviving": 79,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-02",
-      "surviving": 70,
+      "surviving": 73,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-04",
-      "surviving": 69,
+      "surviving": 72,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-06",
-      "surviving": 68,
+      "surviving": 71,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-08",
-      "surviving": 66,
+      "surviving": 69,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-09",
-      "surviving": 64,
+      "surviving": 67,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-10",
-      "surviving": 63,
+      "surviving": 66,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-12",
-      "surviving": 58,
+      "surviving": 65,
       "closure_pct": 75.9,
-      "build_pct": 83.0
+      "build_pct": 81.4
+    },
+    {
+      "date": "2026-08-13",
+      "surviving": 61,
+      "closure_pct": 75.9,
+      "build_pct": 81.4
     }
   ],
   "questions": [
@@ -3613,6 +3619,87 @@
         "distance_phrase": "One regime-matched re-test away from a clean H1-H4 discrimination; the current evidence rules out none of H1/H2/H4 and leaves H3 a near-miss.",
         "live_gate": "A regime-matched re-test (committed selection genuinely engaged, e.g. via use_gap_scaled_commit_temperature or an extended-training wider-score-range configuration) that produces a non-trivial committed_fraction and a clean disagreement-conditioned discrimination among H1/H2/H4, with H3 read against the same biological-reference lens.",
         "observation_bottleneck": "Selector never engaged committed (argmin) selection in this run (committed_fraction=0.000); H1-H4 as framed presume committed selection."
+      }
+    },
+    {
+      "qid": "mech266_mode_arbitration_saturation",
+      "title": "Why does the SalienceCoordinator arbitrate bang-bang after the salience_affinity_input_cap fix -- is the saturation an artefact of the cap operating point (H1), structural to SD-032a's discrete argmax mode register (H2), or an artefact of the non-vacuity gate and mode-agnostic dwell statistic used to measure it (H3)?",
+      "short_title": "MECH-266 mode-arbitration saturation (H1-H3)",
+      "claims": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": "Registered as a NEW question at first fan-out -- no prior question covered MECH-266/SD-032a, so this is not growth of an adjudicated denominator and no growth_restriction applies.",
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "instrumentation",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-cap-miscalibration",
+          "label": "cap mis-calibration",
+          "desc": "Some AFFINITY_INPUT_CAP value (or per-signal caps) admits a mixed-occupancy regime; the arbiter can mix and the sweep has simply not found the operating point.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; adjudicating experiment not yet queued.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-structural-bang-bang",
+          "label": "structural bang-bang",
+          "desc": "SD-032a's discrete argmax mode register cannot produce graded occupancy at ANY cap; the cap relocates the step but never removes it.",
+          "axis": "intrinsic-architecture",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; adjudicating experiment not yet queued.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-instrument-illposed",
+          "label": "instrumentation ill-posed",
+          "desc": "The non-vacuity gate and the mode-agnostic dwell statistic are ill-posed, so the non_contributory verdicts are artefacts of the instrument rather than of the substrate.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; adjudicating experiment not yet queued.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is the observed bang-bang mode arbitration a cap operating-point artefact, a structural property of SD-032a's discrete mode register, or an artefact of the measurement instrument?",
+        "distance_phrase": "One zero-cost re-scoring (H3) away from knowing whether the substrate question is even well-posed; two probes beyond that from separating cap artefact from structural saturation.",
+        "live_gate": "H3 re-scores the banked 464e/467e data with a per-arm regime-conditioned occupancy gate and an occupancy-conditioned dwell statistic; if the verdicts survive, a cap sweep (H1) reporting PER-ARM occupancy plus direct instrumentation of the continuous pre-argmax salience margin (H2) discriminates the remaining two.",
+        "observation_bottleneck": "Every experiment in this lineage has measured the DISCRETE mode label. That variable is saturated by construction under an argmax and cannot distinguish H1 from H2; the continuous pre-argmax salience margin has never been instrumented."
       }
     }
   ],
