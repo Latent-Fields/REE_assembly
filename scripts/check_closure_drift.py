@@ -91,20 +91,25 @@ DRIFT_REPORT = PLANNING_DIR / "closure_drift.md"
 # nodes directly on the closure map (the markdown report is human-facing only).
 DRIFT_JSON = PLANNING_DIR / "closure_drift.json"
 
-KNOWN_PLANS = [
-    "arc_062_rule_apprehension_plan.md",
-    "commitment_closure_plan.md",
-    "infant_substrate_plan.md",
-    "goal_pipeline_plan.md",
-    "self_attribution_plan.md",
-    "sd033_governance_plan.md",
-    "sleep_substrate_plan.md",
-    "behavioral_diversity_isolation_plan.md",
-    "conversion_ceiling_campaign_plan.md",
-    "sd_037_axis_a_consumer_input_recalibration_plan.md",
-    "sd_037_axis_b_sustained_threat_curriculum_plan.md",
-    "arm_reuse_fingerprint_plan.md",
-]
+# Auto-discovered (glob), NOT a hand-maintained whitelist -- fixed 2026-08-13
+# after this used to be a literal `KNOWN_PLANS` list that had silently gone
+# stale: `global_workspace_jlens_plan.md` and `arc_005_control_plane_routing_plan.md`
+# are both real `generation: v3` plans with non-deferred remaining work (visible
+# in closure_status.md's own "Plans" table), but neither was ever added to the
+# list, so this drift checker had been silently skipping them since they were
+# created -- while `generate_closure_snapshot.py` and serve.py's `read_closure()`
+# both auto-discover via `PLANNING_DIR.glob("*_plan.md")` (serve.py's
+# `CLOSURE_KNOWN_PLANS` is only an ordering hint, always glob-supplemented; see
+# `read_closure()`'s `candidates = list(CLOSURE_KNOWN_PLANS)` + glob top-up) and
+# so never missed them. This function makes the three plan-discovery paths agree
+# structurally instead of by someone remembering to update a fourth list every
+# time a new `*_plan.md` is registered -- the class of bug, not just the instance,
+# is what needed fixing (see check_closure_links.py's `_candidate_plan_files()`
+# for the same pattern already used for link-dangling checks).
+def _discover_plan_files() -> list[str]:
+    if not PLANNING_DIR.exists():
+        return []
+    return [p.name for p in sorted(PLANNING_DIR.glob("*_plan.md"))]
 
 NON_TERMINAL_STATUSES = {
     "in_progress",
@@ -659,13 +664,9 @@ def main() -> int:
     stale_since: list[dict] = []
     assembly_frontier: list[dict] = []
     missing_plan_last_updated: list[str] = []
-    missing_files: list[str] = []
 
-    for plan_name in KNOWN_PLANS:
+    for plan_name in _discover_plan_files():
         path = PLANNING_DIR / plan_name
-        if not path.exists():
-            missing_files.append(plan_name)
-            continue
         fm = parse_plan_frontmatter(path)
         plan = fm.get("closure_plan") if isinstance(fm, dict) else None
         if not isinstance(plan, dict):
@@ -969,13 +970,6 @@ def main() -> int:
             lines.append(f"- `evidence/planning/{name}`")
     lines.append("")
 
-    if missing_files:
-        lines.append(f"## Known plan files missing on disk ({len(missing_files)})")
-        lines.append("")
-        for name in missing_files:
-            lines.append(f"- `evidence/planning/{name}`")
-        lines.append("")
-
     DRIFT_REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     # JSON sidecar for the closure map. `drifted` and `stale_since` are the two
@@ -1043,8 +1037,7 @@ def main() -> int:
         f"stale_since_review={len(stale_review)}  "
         f"assembling={len(assembly_frontier)} (revisit_due={len(revisit_due)})  "
         f"status_plane_drift={len(status_drifted)}/{status_checked}  "
-        f"plans_missing_last_updated={len(missing_plan_last_updated)}  "
-        f"plans_missing_on_disk={len(missing_files)}"
+        f"plans_missing_last_updated={len(missing_plan_last_updated)}"
     )
     return 0
 

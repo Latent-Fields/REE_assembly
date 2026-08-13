@@ -75,6 +75,7 @@ except Exception:  # pragma: no cover - keep the snapshot self-contained
         "tracked": 0.2,
         "pending_governance_stamp": 0.4,
         "open": 0.0,
+        "pending": 0.0,
         # Required-but-under-construction; excluded from the % (does not punish
         # correct assembly), surfaced on a separate assembly-frontier axis.
         # MUST stay byte-identical to serve.py CLOSURE_STATUS_WEIGHTS.
@@ -84,6 +85,9 @@ except Exception:  # pragma: no cover - keep the snapshot self-contained
         "deferred V4": None,
         "deferred_v4": None,
         "deferred_v5": None,
+        "parked": None,
+        "parked_indefinite": None,
+        "closed": None,
     }
 
 # Deferred == not required for v3 closure (excluded from the progress denominator).
@@ -278,6 +282,16 @@ def main() -> int:
     plans = []                 # per-plan rollup dicts
     no_frontmatter = []        # *_plan.md with no closure_plan block
     all_nodes = []             # flattened node records with plan context
+    # Node status strings with no entry in STATUS_WEIGHTS silently fall through
+    # `.get(st, 0.0)` and get scored as `open` (unstarted) regardless of what they
+    # actually mean -- confirmed 2026-08-13: `closed`/`parked`/`parked_indefinite`
+    # (terminal-but-not-`done` decisions) and `pending` (queued) were all scoring
+    # as 0.0-weighted `open` work before their weights were added. Collecting and
+    # printing every miss here (instead of letting STATUS_WEIGHTS.get()'s default
+    # absorb it quietly) is what keeps a FUTURE new status string from repeating
+    # this -- the fix for one drift incident should be catching the next one, not
+    # just patching the one found.
+    unknown_statuses: list[tuple[str, str, str]] = []
 
     for path in plan_files:
         fm = _parse(path)
@@ -295,6 +309,8 @@ def main() -> int:
         for n in nodes:
             st = _norm_status(n.get("status"))
             counts[st] = counts.get(st, 0) + 1
+            if st not in STATUS_WEIGHTS:
+                unknown_statuses.append((path.name, str(n.get("id")), st))
             w = STATUS_WEIGHTS.get(st, 0.0)
             if w is not None:
                 w_total += 1.0
@@ -583,6 +599,15 @@ def main() -> int:
         f"overall_progress={overall * 100:.1f}%  "
         f"roadmap_plans={len(roadmap_plans)}  roadmap_nodes={len(roadmap_nodes)}"
     )
+    if unknown_statuses:
+        print(
+            f"WARNING: {len(unknown_statuses)} node(s) use a status not in "
+            "STATUS_WEIGHTS -- scored as `open` (0.0) by default, which is almost "
+            "certainly wrong. Add the status to CLOSURE_STATUS_WEIGHTS in serve.py "
+            "(and the byte-identical fallback in this file) or fix the node:"
+        )
+        for plan_file, node_id, status in unknown_statuses:
+            print(f"    {plan_file}  {node_id}  status={status!r}")
     return 0
 
 

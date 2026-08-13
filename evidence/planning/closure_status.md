@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-13T06:10:12Z
+Generated: 2026-08-13T18:52:21Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,18 +8,20 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **76.0%** across 84 non-deferred nodes in 13 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **26** nodes.
+- Weighted progress: **74.2%** across 86 non-deferred nodes in 15 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **28** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
 - Deferred (not required for v3 closure): 13 nodes.
 - Done: 58 nodes.
-- Status tally: assembling=10  blocked=9  blocked_pending_substrate=2  deferred=13  done=58  in_progress=9  open=3  partial=2  upstream_blocked=1
+- Status tally: assembling=10  blocked=9  blocked_pending_substrate=2  deferred=13  done=58  in_progress=9  open=5  partial=2  upstream_blocked=1
 
 ## Plans
 
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
+| `mech303_safety_threshold_plan.md` | MECH-303 Safety-Threshold Sourcing | 1 | 0% | open:1 | 2026-08-13 |
+| `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 0% | open:1 | 2026-08-13 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
@@ -33,7 +35,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
 
-## Remaining work to close v3 (26)
+## Remaining work to close v3 (28)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
@@ -54,7 +56,9 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-08-12 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cr | 2026-07-10 |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-10 |
+| mech303_safety_threshold_plan.md | `mech303_safety_threshold:BUILD` | Give MECH-303's contextual_safety_harm_threshold a dedicated proximity-anticipat | open |  | high |  |  | 2026-08-13 |
+| mech357_avoidance_efficacy_plan.md | `mech357_avoidance_efficacy:BUILD` | Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the d | open |  | high |  |  | 2026-08-13 |
+| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-13 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-9` | Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sol | open |  | high |  |  | 2026-08-12 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial |  | medium |  | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-07-20 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate |  | medium |  | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-23 |
@@ -176,9 +180,9 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 82.1% across 53 non-deferred nodes in 9 plan(s).
-- **V4**: 31.5% across 99 non-deferred nodes in 14 plan(s).
-- **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
+- **PROCESS**: 87.0% across 50 non-deferred nodes in 9 plan(s).
+- **V4**: 32.2% across 97 non-deferred nodes in 14 plan(s).
+- **V5**: 16.8% across 38 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
 
 | gen | plan | node | title | status | sev | gate (readiness) | last_updated |
@@ -300,7 +304,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | closed | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-13 |
 | process | e3_fresh_select_migration_plan.md | `e3_fresh_select_migration:P3` | Build e3-exemption-backlog lint counter (structural fix so this doc be | done | medium |  | 2026-08-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-8` | Biology grounding: guilt-as-reparative-motivation vs shame-as-withdraw | closed | medium | L1 guilt-vs-shame (guilt-as-reparative-motivation vs shame-as-withdrawal/concealment) -- t | 2026-06-12 |
-| governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-V4-REGISTERS` | Phase 2 -- V4 governance registers (welfare-risk full, assembly routin | deferred | medium | authored when each gate's first requires_welfare_review node activates (gains owner_exq);  |  |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-V4-REGISTERS` | Phase 2 -- V4 governance registers (welfare-risk full, assembly routin | deferred | medium | authored when each gate's first requires_welfare_review node activates (gains owner_exq);  | 2026-06-19 |
 | process | experiment_verification_harness_plan.md | `experiment_verification_harness:GAP-2` | tests/contracts/LINT_INDEX.md -- one row per test_*_lint.py file (bug  | done | medium |  | 2026-08-03 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:WORKSPACE-HEALTH` | TASK_CLAIMS staleness + orphaned-stash surfacing via a third corner-do | done | medium |  | 2026-08-02 |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-7` | Biology grounding for the social affect-binding + reciprocity-developm | deferred | medium | Per project rule feedback_biology_before_formal_definitions: the suffering/empathy social  | 2026-06-10 |
@@ -375,7 +379,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-6` | Laughter regime-transition discharge (MECH-364) + crying/distress-voca | blocked | medium | E3 conflict/constraint-load readout: ARC-016 already exposes an E3-derived prediction-vari | 2026-06-10 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-4` | Drive / incentive salience grounding L2 -> L3 | done | medium | Neural analog: mesolimbic incentive salience (wanting != liking). Divergence AUDITED: the  | 2026-07-07 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:MED-ROWS` | Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Div | done | medium | DONE 2026-06-18..19: CDQ-002 (NoisyNet + RND/Plan2Explore -> MECH-440/441 candidate/substr | 2026-06-19 |
-| governance | ethics_perimeter_plan.md | `ethics_perimeter:P3-V5V6-PERIMETER` | Phase 3 -- V5/V6 perimeter registers (responsible release, external cr | deferred | medium | authored on first V5/V6 node activation; SENT-14 release policy adopted_split_deferred |  |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P3-V5V6-PERIMETER` | Phase 3 -- V5/V6 perimeter registers (responsible release, external cr | deferred | medium | authored on first V5/V6 node activation; SENT-14 release policy adopted_split_deferred | 2026-06-19 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:VISUAL` | Dark mode via prefers-color-scheme (C1), inline-hex-to-CSS-variable mi | partial | medium |  | 2026-08-02 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:DOCS-PICKER` | Docs picker redesign: searchable sidebar panel + server-generated inde | done | medium |  | 2026-08-02 |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-6` | ACh permissive write-gate on the surprise buffer (MECH-207) | blocked | medium | MECH-205 surprise buffer + MECH-206 CA1 PE comparator present (sleep_substrate stack) | 2026-06-10 |
@@ -402,7 +406,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-5` | Non-terminal failure-grade taxonomy as a transfer-world launch profile | deferred | medium | V3 LIVE scaffold substrate it formalises: scaffolded_sd054_onboarding (nursery / protected | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-6` | Prescriptive + diagnostic ethical-trajectory certification: CBF forwar | blocked | medium | MECH-145 (prescriptive CBF certificate, already implementation_phase: v5) needs (1) the RE | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-7` | Two-axis failure-mode taxonomy: named failure modes x cross-cutting vu | deferred | medium | ARC-086 (two-axis index) is epistemic_category substrate_conditional / implementation_phas | 2026-06-10 |
-| governance | ethics_perimeter_plan.md | `ethics_perimeter:P4-TOOLING` | Phase 4 -- ethics tooling (preflight/release-sensitivity checks, ethic | deferred | medium | only after registers stable; check_node_ethics_metadata.py explicitly deferred |  |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P4-TOOLING` | Phase 4 -- ethics tooling (preflight/release-sensitivity checks, ethic | deferred | medium | only after registers stable; check_node_ethics_metadata.py explicitly deferred | 2026-06-19 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-7` | Graded action-status vocabulary -- decide whether deliberation needs a | deferred | medium | Q-068 is an OPEN QUESTION (answer_state): does REE need an explicit graded action-status v | 2026-06-10 |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-7` | Schema-primed rapid assimilation (INV-039) | blocked | medium | stable, dense residue-field map from sustained V3 training (a sparse/unstable map reverts  | 2026-06-10 |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-8` | Improvement-tier enrichments -- compression, dual-mode construction, a | deferred | medium | MECH-230/236/238 V3 navigation substrate present (metric-space goal encoding) -- the base  | 2026-06-10 |

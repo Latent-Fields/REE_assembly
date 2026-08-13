@@ -130,9 +130,9 @@ to the structural delta. Points at the CLAUDE.md guidance in its own message.
 
 | Gap | Fix | Status | Landed at |
 |---|---|---|---|
-| 1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | **done** | ree-v3 `a249c708b2` (main) |
-| 2 | `tests/contracts/LINT_INDEX.md` | **done** | ree-v3 `74011a8981` (main) |
-| 3 | `scripts/check_json_edit_locality.py` | **done** | REE_Working `8cc401e` (master) |
+| GAP-1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | **done** | ree-v3 `a249c708b2` (main) |
+| GAP-2 | `tests/contracts/LINT_INDEX.md` | **done** | ree-v3 `74011a8981` (main) |
+| GAP-3 | `scripts/check_json_edit_locality.py` | **done** | REE_Working `8cc401e` (master) |
 
 Gap 3 verification: 12 new tests, red/green-checked. Also caught a real bug
 via a production-scale smoke test (not just synthetic fixtures) against this

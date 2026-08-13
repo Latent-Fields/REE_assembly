@@ -1961,6 +1961,9 @@ CLOSURE_STATUS_WEIGHTS = {
     "tracked": 0.2,
     "pending_governance_stamp": 0.4,
     "open": 0.0,
+    # `pending`: not yet started (derived_evidence_index_plan.md's phase gates) --
+    # same treatment as `open`.
+    "pending": 0.0,
     # `assembling` / `open_by_design`: the node is REQUIRED for v3 and actively
     # (or intentionally) under construction -- substrate being built, not a
     # stalled gap. Weight None == excluded from the closure-% denominator so it
@@ -1974,6 +1977,23 @@ CLOSURE_STATUS_WEIGHTS = {
     "deferred V4": None,
     "deferred_v4": None,
     "deferred_v5": None,
+    # `parked` / `parked_indefinite` (pack_writer_single_writer_migration_plan.md
+    # STEP-7.1/7.2): a considered decision to shelve, revisit only if a concrete
+    # need appears -- same "not required right now" shape as `deferred`, so it
+    # gets the same None (excluded, not scored as still-outstanding `open` work).
+    "parked": None,
+    "parked_indefinite": None,
+    # `closed`: found without a weight entry 2026-08-13 -- was silently falling
+    # through STATUS_WEIGHTS.get(st, 0.0) and being scored as `open` (unstarted),
+    # the opposite of its meaning. Used across several V4/V5/process plans for a
+    # terminal decision that is NOT a build outcome (see
+    # substrate_stability_and_drift_detection_plan.md STEP P1f-more-gate-idioms'
+    # own completion_note: "status=closed is this plan's closest existing enum
+    # value to ... 'will not build' (a deliberate terminal decision, not a build
+    # outcome, so 'done' would misrepresent it)"). None (excluded from the
+    # denominator), matching `deferred`/`parked` rather than crediting it as
+    # `done` -- the node authors explicitly avoided `done` on purpose.
+    "closed": None,
 }
 
 # Default generation for a plan/node that does not declare one. The V3 closure

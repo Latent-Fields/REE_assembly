@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-13T06:36:00Z",
+  "generated_at": "2026-08-13T18:52:21Z",
   "counts": {
-    "drifted": 0,
+    "drifted": 2,
     "stale_since": 0,
     "suppressed": 1,
     "assembling": 10,
@@ -16,20 +16,20 @@
   },
   "assembly_frontier": [
     {
-      "node_id": "commitment_closure:GAP-8",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "assembling",
-      "awaiting": null,
-      "assembly_status": "built",
-      "revisit_after": null,
-      "revisit_due": false
-    },
-    {
       "node_id": "behavioral_diversity_isolation:GAP-K",
       "plan": "behavioral_diversity_isolation_plan.md",
       "node_status": "assembling",
       "awaiting": null,
       "assembly_status": "blocked_on_upstream",
+      "revisit_after": null,
+      "revisit_due": false
+    },
+    {
+      "node_id": "commitment_closure:GAP-8",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "assembling",
+      "awaiting": null,
+      "assembly_status": "built",
       "revisit_after": null,
       "revisit_due": false
     },
@@ -106,6 +106,23 @@
       "revisit_due": false
     }
   ],
-  "drifted": [],
+  "drifted": [
+    {
+      "node_id": "arc_005_control_plane_routing:GAP-B",
+      "plan": "arc_005_control_plane_routing_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-846",
+      "manifest": "evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json",
+      "autopsy": null
+    },
+    {
+      "node_id": "arc_005_control_plane_routing:GAP-A-precision-diagnostic",
+      "plan": "arc_005_control_plane_routing_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-848, V3-EXQ-848a, V3-EXQ-848b (recommended, not yet queued)",
+      "manifest": "evidence/experiments/v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3.json",
+      "autopsy": "evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json"
+    }
+  ],
   "stale_since": []
 }
