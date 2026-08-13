@@ -6,7 +6,7 @@ closure_plan:
   registered: 2026-06-10
   last_updated: 2026-08-05
   scope_claims: [SD-012, MECH-216, MECH-295, MECH-111, MECH-347, ARC-073, SD-057]
-  sibling_plans: [goal_pipeline, object_representation_v4]
+  sibling_plans: [goal_pipeline, object_representation_v4, orienting_epistemic_deficit_v3]
   roadmap_note: >
     FORWARD ROADMAP, not a closure map. V4 has no experiments yet, so nodes
     carry no owner_exq and the drift checker stays dormant against them. The
@@ -70,25 +70,6 @@ closure_plan:
         - "L-non-terminal-needs: ethology of non-feeding drives (grooming, play, exploration) as homeostatically-regulated systems, not just deficit-reduction"
       last_updated: 2026-06-13
       completion_note: "GROUNDED 2026-06-13 via /lit-pull -> evidence/literature/targeted_review_drive_arbitration/ (5 literature_evidence/v1 entries). MECH-394 lit_conf 0->0.855, SD-060 lit_conf 0->0.755 (exp_conf stays 0; promotes nothing -- both substrate_conditional V4). Entries: Burnett et al. 2016 (Neuron, hunger-driven motivational state competition: contextual, satiation-graded suppression of rival drives -- the existence proof for MECH-394's soft-competitive orchestration AND SD-060's multi-axis register); Niv Daw Joel & Dayan 2007 (Psychopharmacology, tonic-DA opportunity-cost-of-time: the common-currency term arbitration needs); Pezzulo Rigoli & Friston 2015 (Prog Neurobiol, priors-as-drives / precision-weighted soft competition -- resolves the claim's loose 'Pezzulo 2014' citation; cross-ref ARC-073 exploratory-vs-homeostatic); McFarland & Sibly 1975 (Phil Trans R Soc B, behavioural final common path -- foundational ethology, source of REE's 'candidate'/'competitiveness' vocabulary, anchors the WTA pole MECH-394 argues against); Mu et al. 2020 (Nat Commun, grooming as behavioural-homeostatic de-arousal -- one worked non-feeding homeostatic integrator for SD-060). Biology-before-formal-definitions satisfied: MECH-394 (already registered candidate) and the DRV-2 policy it precedes are now grounded ahead of any V4 build. REGISTERED 2026-06-13 (was proposal-first; registered at user direction): MECH-435 -- a candidate partner sub-claim (component of MECH-394, substrate_conditional V4) that arbitration is priced in a common opportunity-cost-of-time currency (a global tonic vigour signal above per-axis benefit terms), motivated by Niv 2007 -- the currency MECH-394 currently leaves unspecified. Wired into MECH-394.depends_on + DRV-2 unblocks_claims; Niv 2007 entry now tags MECH-394 + MECH-435. Honest caveat carried into the record: Niv's signal sets vigour of a chosen action, and a global scalar with no cross-axis gradient cannot by itself carve WHICH drive wins (ties to the live candidate-differentiated-affect concern). Original grounding-debt note preserved: the arbitration policy (DRV-2) instantiates a formal competition mechanism; per the biology-before-formal-definitions rule it must be grounded before registration to avoid the SD-003 / SD-010 philosophy-right / mechanism-wrong failure mode."
-    - id: "drives_motivation_v4:DRV-4"
-      title: "Orienting/surveying drive: pre-approach active-sensing control state"
-      phase: 3
-      status: blocked
-      blocker_class: v3_assembly_sequence
-      severity: high
-      owner_exq: null
-      unblocks_claims: ["MECH-395"]
-      depends_on: ["drives_motivation_v4:DRV-1"]
-      cross_plan_link: []
-      blocking_on: "RE-SCOPED 2026-08-07 (session elegant-ishizaka-ddd4f6): the V3-EXQ-640 gate this entry originally named has been RUN, twice over (640, 640a) -- the discriminating pattern did not resolve to orienting. 640 found the cue barely moves z_goal (~0.4% nudge) with zero approach lift over background; 640a ruled out magnitude (25x gain x 5x kappa sweep, still flat/negative) and reclassified the gap as a shared E3 selection-authority ceiling (same shape as the MECH-314/320/341 modulatory-bias-drowning cluster). Orienting is therefore UNDIAGNOSED, not ruled out: no clean post-cue signal exists yet to test it against. Current gate = the cue-authority thread closing (V3-EXQ-812, 2026-07-24, most recent attempt, failed on a readiness precondition -- candidate pool not differentiated enough to evaluate selection authority; same candidate-pool-collapse confound as the GAP-A cluster). This is in-sequence V3 assembly work, not a cross-generation V4 deferral -- see version_relevance/implementation_phase note below."
-      readiness_gate:
-        - "V3 LIVE upstream cue chain the orienting mode sits between: SD-057 / MECH-347 cue-triggered wanting (cue recall fires), MECH-295 drive->liking->approach (assumes an approach vector already exists)"
-        - "V3 LIVE distinct neighbours to keep separate: MECH-111 curiosity/novelty (broad info-seeking, not cue-triggered local sampling), attention/precision-selection (content weighting, not motor active-sensing)"
-        - "RESOLVED diagnostic thread: V3-EXQ-638a + V3-EXQ-640 + V3-EXQ-640a (post-cue action/gradient instrumentation + gain sweep) -- routed to cue-to-action / E3 selection-authority ceiling, NOT to orienting. See failure_autopsy_V3-EXQ-640_2026-06-05.md and failure_autopsy_V3-EXQ-640a_2026-06-06.md."
-        - "Current live thread: V3-EXQ-812 (2026-07-24) -- MECH-295 cue-authority direct test, FAILED on candidate_proximity_evaluable readiness precondition (measured 0.0). Resume DRV-4's own diagnostic once a cue-authority channel clears this precondition."
-        - "Snail-race method (still valid, now second-in-sequence behind cue-authority): build the orient/survey DIAGNOSTIC (orient_mode_entries_after_cue, survey_steps, heading_entropy, gradient_information_gain) once a cue reliably reaches action selection -- BEFORE any orienting substrate."
-      last_updated: 2026-08-07
-      completion_note: "thought_intake_2026-06-04_orienting_surveying_drive.md S3/S4: a cue-triggered, need-gated, pre-approach active-sensing mode -- distinct from curiosity, cue recall, and approach. It is what FINDS the approach vector MECH-295 assumes. RECLASSIFIED 2026-08-07 (session elegant-ishizaka-ddd4f6, user-directed): implementation_phase moved v4 -> v3 on MECH-395 (claims.yaml amendment pending -- see WORKSPACE_STATE.md / TASK_CLAIMS for the in-flight claims.yaml session this depends on). Rationale: V3 is not a closed, tested substrate being checked against a fixed spec -- it is still being assembled. DRV-4/MECH-395 is sequenced, gated-but-in-scope V3 assembly work (waiting on the cue-authority/E3-selection-authority thread, which is itself live V3 work), not deferred-generation roadmap. Treating it as 'v4' hid it from V3 closure tracking and let its own gating text go stale for two months after the gate it named was actually cleared."
     - id: "drives_motivation_v4:DRV-5"
       title: "Non-terminal failure-grade taxonomy as a transfer-world launch profile"
       phase: 4
@@ -110,14 +91,21 @@ closure_plan:
 
 **Registered:** 2026-06-10
 **Generation:** v4 (forward roadmap; excluded from the V3 closure %) for DRV-1/2/3/5.
-**DRV-4 (orienting) RE-SCOPED 2026-08-07:** V3 assembly-sequence, not V4-deferred --
-see DRV-4's `blocking_on` above and the claims.yaml MECH-395/482/483/Q-089
-`implementation_phase` amendment it depends on (in-flight as of this edit; see
-WORKSPACE_STATE.md). Rationale: V3 is still being assembled, not a closed
-substrate under test, so a claim gated on in-progress V3 work (the E3
-selection-authority / cue-authority thread) is V3-scope, not a separate future
-generation. DRV-1/2/3/5 remain genuinely V4 (no live V3 thread motivates pulling
-them forward).
+**DRV-4 (orienting) MOVED OUT 2026-08-13:** the node previously lived here as
+DRV-4, RE-SCOPED 2026-08-07 to note it was V3 assembly-sequence work
+mis-filed under a generation:v4 plan. That mis-filing was never actually
+fixed (a plan's `generation` applies to every node in it -- there is no
+node-level override in serve.py / generate_closure_snapshot.py /
+check_closure_drift.py), so MECH-395 stayed excluded from V3 closure
+tracking even after its own claims.yaml `implementation_phase` read v3. Per
+/governance 2026-08-12 audit + user-directed disposition 2026-08-13
+(session curiosity-orienting-closure-gap-27d495), DRV-4's node now lives at
+`orienting_epistemic_deficit_v3:ORNT-1` in the new
+`orienting_epistemic_deficit_v3_plan.md`, alongside MECH-482/483/Q-089
+(which had no owning node anywhere) and MECH-489/SD-099 (also absent from
+every plan despite SD-099 already being implemented). DRV-1/2/3/5 remain
+genuinely V4 here (no live V3 thread motivates pulling them forward; user
+confirmed 2026-08-13 -- "the other drives I am not sure about").
 **Status:** roadmap
 **Scope:** sequence the motivational layer beyond REE's single homeostatic
 food/energy axis -- a register of non-terminal needs (DRV-1), an arbitration
@@ -153,7 +141,7 @@ substrate work is honest to build.
 | 1 -- drive register | DRV-1 | SD-012 + MECH-111/ARC-073 (NEW register) | V4 first decision | unify scattered drive seeds into first-class axes |
 | 2 -- arbitration | DRV-2 | MECH-295/216/290/307 + ARC-073 (NEW policy) | V4 | DRV-1 register exists; goal_pipeline arbitration settled |
 | 2 -- grounding | DRV-3 | NEW arbitration claim | cross-cutting | drive-competition / opportunity-cost biology lit-pull |
-| 3 -- orienting drive | DRV-4 | SD-057/MECH-347/MECH-295 (NEW MECH) | V3 assembly-sequence (re-scoped 2026-08-07), gated on cue-authority thread | V3-EXQ-812 successor clears the candidate-proximity readiness precondition AND shows cue-to-action authority; then resume the orienting diagnostic |
+| 3 -- orienting drive | MOVED 2026-08-13 -> `orienting_epistemic_deficit_v3:ORNT-1` | SD-057/MECH-347/MECH-295 (NEW MECH) | V3 assembly-sequence, now tracked in a v3-generation plan | V3-EXQ-812 successor clears the candidate-proximity readiness precondition AND shows cue-to-action authority; then resume the orienting diagnostic |
 | 4 -- launch profile | DRV-5 | scaffolded_sd054_onboarding (NEW criterion) | deferred / transfer-world | only when transfer-world work is scheduled |
 
 ---
@@ -163,15 +151,16 @@ substrate work is honest to build.
 - **No new drive axes are added to ree-v3 now.** SD-012's single food/energy
   axis stays the only live homeostatic drive. The register (DRV-1) is a V4
   design decision; registering this roadmap changes no V3 behaviour.
-- **The orienting drive IS now registered (STALE bullet, corrected 2026-08-07):**
-  MECH-395 (narrow, cue-triggered orienting; registered 2026-06-10) and
-  MECH-482/MECH-483/Q-089 (broader epistemic-deficit-driven orienting cluster;
-  registered 2026-08-05) all exist in claims.yaml. What has NOT happened is a
-  substrate build for any of them -- the V3-EXQ-640/640a diagnostics ran and
-  did NOT discriminate for orienting; they routed to a shared E3
-  selection-authority ceiling instead (see DRV-4's `blocking_on`). DRV-4 stays
-  `blocked`; do not build an orienting substrate before a cue reliably reaches
-  action selection.
+- **The orienting drive IS now registered, AND now closure-tracked (updated
+  2026-08-13):** MECH-395 (narrow, cue-triggered orienting; registered
+  2026-06-10) and MECH-482/MECH-483/Q-089 (broader epistemic-deficit-driven
+  orienting cluster; registered 2026-08-05) all exist in claims.yaml. What
+  has NOT happened is a substrate build for any of them -- the V3-EXQ-640/640a
+  diagnostics ran and did NOT discriminate for orienting; they routed to a
+  shared E3 selection-authority ceiling instead. These four claims are now
+  owned by nodes in `orienting_epistemic_deficit_v3_plan.md` (moved out of
+  this plan 2026-08-13, see the frontmatter `Generation` note above) rather
+  than by this plan -- do not re-register nodes for them here.
 - **The failure-grade taxonomy stays deferred (transfer-world).** DRV-5 is
   explicitly self-scoped by its intake as future new-ecology work, off the V3
   critical path. It is `deferred`, not `open`, to honour that containment.
@@ -192,6 +181,7 @@ substrate work is honest to build.
 | claims.yaml MECH-295 / MECH-216 / MECH-290 / MECH-307 | the drive->approach pathways DRV-2 must arbitrate over |
 | claims.yaml SD-057 / MECH-347 | cue-triggered wanting -- the chain DRV-4 inserts an orienting step into |
 | evidence/planning/goal_pipeline_plan.md | sibling plan owning z_goal seeding/override arbitration |
+| evidence/planning/orienting_epistemic_deficit_v3_plan.md | new v3-generation sibling plan owning MECH-395/482/483/Q-089/MECH-489/SD-099 (moved out of DRV-4 here, 2026-08-13) |
 
 ---
 
@@ -298,3 +288,33 @@ substrate work is honest to build.
   claimed 2026-08-07T13:32:33Z) at write time, so the amendment was drafted and
   handed to the user rather than applied. See WORKSPACE_STATE.md Recent Work
   for the drafted diff and its landing status.
+- **2026-08-13** (session `curiosity-orienting-closure-gap-27d495`,
+  chip-20260813-curiosity-orienting-closure-map-gap, user-directed): the
+  2026-08-07 claims.yaml amendment above DID land at some point (MECH-395
+  now reads `implementation_phase: v3` in claims.yaml), but this plan's own
+  `generation: v4` frontmatter was never updated to match, so DRV-4/MECH-395
+  stayed excluded from V3 closure tracking for another 6 days -- a live
+  plan/claims self-inconsistency, surfaced by /governance 2026-08-12
+  (session sd-016-h3-algorithm-3370cd). Traced with the user: none of
+  serve.py / generate_closure_snapshot.py / check_closure_drift.py support a
+  node-level `generation` override (only plan-level), so flipping this
+  whole plan's generation to v3 was rejected -- it would have incorrectly
+  pulled DRV-1 (done)/DRV-2 (blocked)/DRV-3 (closed)/DRV-5 (deferred) into
+  V3 tracking despite the plan's own text (and the user, explicitly) saying
+  those four remain genuinely V4 ("I am not sure about" them). DRV-4's node
+  MOVED to `orienting_epistemic_deficit_v3:ORNT-1` in a new v3-generation
+  plan, `orienting_epistemic_deficit_v3_plan.md`, alongside MECH-482
+  (epistemic_deficit accumulator) / MECH-483 (orient/survey regime) /
+  Q-089 (cold-start-split question) -- all three previously prose-only
+  here, with no owning node anywhere -- and MECH-489/SD-099
+  (defensive-orienting), which were absent from every `*_plan.md` despite
+  SD-099 already being implemented (2026-08-09) and MECH-489 already
+  carrying real experimental evidence (V3-EXQ-910/910a). User's stated
+  rationale for keeping the cluster together and pulling it into v3
+  ownership: "I am very sure the information hunger and the three
+  associated curiosity drive like systems are needed" for commitment to
+  work properly, tying to the standing basal-ganglia-commitment research
+  thread (see `project_bg_commitment_over_f_dominance_route` memory) --
+  noted here for continuity; not acted on further in this session (out of
+  this audit's scope). DRV-1/2/3/5 nodes and their content are otherwise
+  UNCHANGED by this edit. No claims.yaml edits.
