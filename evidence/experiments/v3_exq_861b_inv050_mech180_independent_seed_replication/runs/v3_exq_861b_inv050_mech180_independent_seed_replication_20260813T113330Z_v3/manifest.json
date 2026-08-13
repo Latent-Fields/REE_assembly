@@ -1,0 +1,152 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_861b_inv050_mech180_independent_seed_replication",
+  "run_id": "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-13T11:33:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-050": "non_contributory",
+    "MECH-180": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_control_degenerate",
+    "preconditions": [
+      {
+        "name": "seeds_disjoint_from_prior_lineage",
+        "description": "THE MANIPULATION. This run's seed set must share NO seed with any prior INV-050/MECH-180 run (718/718a/845/861/861a, and INV-051's 901), all of which used exactly {42,123,456}. A non-empty intersection would make this another same-configuration re-run rather than the independent replication GFLAG-0002 re-gated promotion on. Measured = size of the intersection; must be 0.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "seed sets audited programmatically across all recorded manifests tagging INV-050 and/or MECH-180",
+        "met": true
+      },
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds -- the world model must be trained for MEL to live at a meaningful scale (R1).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecological_novelty_mel_gradient_present_this_config",
+        "description": "measured mean_mel is non-degenerately graded (mel[HIGH] >= mel[NONE]*(1+MIN_MEL_SPREAD)) across the 4 ON arms, on >= 2/3 seeds -- re-confirms the V3-EXQ-798a/845 novelty->MEL producer link ON THE NEW SEEDS. Below-floor means the IV never varied on this seed set (not-ready), NOT an INV-050/MECH-180 falsification (R2). This precondition sits UPSTREAM of the weakens branch precisely so a seed set with no IV variation cannot produce negative evidence.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": true,
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true,
+      "seeds_independent_of_prior_lineage": true
+    },
+    "per_dv_seed_pass_fraction": {
+      "sws_power": 1.0,
+      "spindle_density": 0.0,
+      "replay_rate": 1.0
+    },
+    "per_dv_pass": {
+      "sws_power": true,
+      "spindle_density": false,
+      "replay_rate": true
+    },
+    "scored_dvs": [
+      "sws_power",
+      "replay_rate"
+    ],
+    "unscored_dvs": [
+      "spindle_density"
+    ],
+    "dv3_scoring_excluded_reason": "spindle_density (mean_sws_new_slot_diversity) is RECORDED but NOT SCORED: its enabling substrate is not built. substrate_queue.json entry MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION reads status=implemented_validation_failed_needs_followup_fix -- V3-EXQ-861a confirmed the content-selection mechanism fires every cycle (mean_spindle_selection_applied=1.0) but its selection_weight is uniformly flat because ThetaBuffer.consolidation_summary() is a 10-tick recency average of the same window supplying the prototypes compared against it, hence self-similar regardless of arm. The named follow-up fix (re-source consolidation_ref from a signal correlated with the world_rule_shift/MEL axis) is NOT built. Gating on it would guarantee a fourth non_contributory and veto the two clean scored DVs, exactly as the conjunctive gate did in V3-EXQ-845 and V3-EXQ-861a.",
+    "dv3_blocking_sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+    "independence": {
+      "this_run_seeds": [
+        7,
+        271,
+        883
+      ],
+      "prior_lineage_seeds": [
+        42,
+        123,
+        456
+      ],
+      "prior_lineage_runs": [
+        "V3-EXQ-718",
+        "V3-EXQ-718a",
+        "V3-EXQ-845",
+        "V3-EXQ-861",
+        "V3-EXQ-861a",
+        "V3-EXQ-901"
+      ],
+      "seed_overlap": [],
+      "seeds_disjoint": true,
+      "non_degeneracy_levers_satisfied": [
+        "a_new_seeds",
+        "c_consumer_absent_control_arm"
+      ],
+      "non_degeneracy_levers_not_satisfied": [
+        "b_held_out_environment"
+      ],
+      "limitation": "Environment-independence is NOT established: SD-MEL-PRODUCER was built and validated (V3-EXQ-798a) against this same CausalGridWorldV2 instance, and no held-out environment exists. A PASS here establishes SEED-independence only.",
+      "residual_lever_c_note": "ARM_4_HIGH_OFF shows the elevation is consumer-driven rather than environmental stochasticity, but does NOT separate genuine third-drive coupling from the consumer's own deterministic MEL->duration arithmetic. Full discharge needs a MEL-injection-decoupled arm (consumer ON, reference decoupled from the environment, novelty still varying), NOT run here."
+    },
+    "replication_note": "Single-variable replication of V3-EXQ-861: identical env, arms, thresholds, readout code and agent config (use_mech122_spindle_content_selection=False, 861's own value); ONLY the seed set differs. Thresholds were deliberately NOT re-tuned -- a replication that moved its thresholds would not be a replication."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "170dece4ca7ca9ad7051e318e19076eb7d04b97696d5ab75ce153ca498090de6",
+  "substrate_commit": {
+    "commit": "bd836c50b472121bcce53b21de1b5da17337ea05",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 43583,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 15,
+    "goal_state_present": true
+  }
+}
