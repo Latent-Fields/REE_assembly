@@ -89,15 +89,18 @@ closure_plan:
         Registered in claims.yaml 2026-08-05 (thought-digestion, "Epistemic
         Deficit and Orienting" intake), no owning closure node until this
         plan. DO NOT build in V3 yet per its own claims.yaml registration
-        note. Its concrete build path is already scoped in
-        substrate_queue.json as GAP-A (extend MECH-314b/314c uncertainty
-        signals to per-candidate treatment) -- priority 1, unclaimed as of
-        2026-08-07, main blocker (a clamp saturation bug) cleared
-        2026-07-21 per drives_motivation_v4_plan.md's 2026-08-07 decision-log
-        entry -- so this is buildable-on-demand once claimed, not blocked on
-        an unresolved unknown. status: open (not blocked) reflects that
-        GAP-A has not yet been claimed/started; flip to in_progress once it
-        is.
+        note. UPDATED 2026-08-13 (this session, found while checking for
+        follow-on work): the GAP-A architectural SLOT (extend MECH-314b/314c
+        to per-candidate treatment) already LANDED 2026-08-08 (ree-v3
+        c0e0ce8, bit-identical off) -- but that slot is capability
+        infrastructure, not MECH-482's actual source. Its own design doc
+        (evidence/planning/mech314bc_percandidate_extension_staged_2026-08-08.md)
+        explicitly routes MECH-482's genuine per-candidate accumulator as
+        follow-on, still unbuilt, status AWAITING USER REVIEW as of
+        2026-08-08 (not yet actioned by any chip as of this note). status:
+        open correctly reflects that the accumulator itself has not been
+        claimed/started; flip to in_progress once the design doc is
+        reviewed and a build begins.
     - id: "orienting_epistemic_deficit_v3:ORNT-3"
       title: "orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-driven)"
       phase: 2
