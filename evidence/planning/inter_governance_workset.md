@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-13T06:10:10Z`
+Generated: `2026-08-13T07:30:21Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **246** (ready 31, in_flight 0, blocked 164)
 - By generation: clinical 11, meta 4, process 10, v3 81, v4 77, v5 38, v6 25
-- Pending review: **10**
+- Pending review: **1**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-861b, V3-EXQ-906c
@@ -22,19 +22,19 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260813-001 -- Complete governance review (10 pending)
+### IGW-20260813-001 -- Complete governance review (1 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 10 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260813-001
-Title: Complete governance review (10 pending)
+Title: Complete governance review (1 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 10 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -544,7 +544,7 @@ Instructions:
 ### IGW-20260813-214 -- Substrate ready: mech357-freeze-incompatible-pressure-mechanism
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
-- **Why now:** Two consecutive config-only pressure escalations (static field 603r, mobile-predator env-drift 603s) both fail to make the LESION negative control fail its own gate. Scope BOTH candidate fixes before 
+- **Why now:** Thread the already-built hazard_agent_pursuit parameter (causal_grid_world.py:517-535,1108,4980-5010) through scaffolded_sd054_onboarding.py's Stage-H _build_env (~line 1780-1800), mirroring how sched
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -554,7 +554,7 @@ Title: Substrate ready: mech357-freeze-incompatible-pressure-mechanism
 Lane: substrate | Skill: /implement-substrate
 Status: ready
 Claims: MECH-357
-Why now: Two consecutive config-only pressure escalations (static field 603r, mobile-predator env-drift 603s) both fail to make the LESION negative control fail its own gate. Scope BOTH candidate fixes before 
+Why now: Thread the already-built hazard_agent_pursuit parameter (causal_grid_world.py:517-535,1108,4980-5010) through scaffolded_sd054_onboarding.py's Stage-H _build_env (~line 1780-1800), mirroring how sched
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -653,22 +653,22 @@ Instructions:
 
 </details>
 
-### IGW-20260813-225 -- Retest after substrate: ARC-032
+### IGW-20260813-225 -- Retest after substrate: ARC-041
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
-- **Why now:** Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
+- **Blocked by:** not v3-testable: ARC-041 epistemic_category=substrate_conditional
+- **Why now:** Held by the governance V3-pending gate (ARC-041 epistemic_category=substrate_conditional) -- a /queue-experiment cannot yield contributory evidence. See blocked_by. (R5; mirrors R1.)
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260813-225
-Title: Retest after substrate: ARC-032
+Title: Retest after substrate: ARC-041
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
-Claims: ARC-032
-Blocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
-Why now: Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
+Claims: ARC-041
+Blocked by: not v3-testable: ARC-041 epistemic_category=substrate_conditional
+Why now: Held by the governance V3-pending gate (ARC-041 epistemic_category=substrate_conditional) -- a /queue-experiment cannot yield contributory evidence. See blocked_by. (R5; mirrors R1.)
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
