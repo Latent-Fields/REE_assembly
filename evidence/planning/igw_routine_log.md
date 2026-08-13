@@ -1725,3 +1725,6 @@ One line per hourly tick. ASCII only.
 2026-08-13T18:36:08Z STAGE IGW-20260813-217 skill=/implement-substrate prio=25 worktree=igw-217-substrate-ready-sd-queue-seed-en (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-13T19:37:19Z workset committed (regen -- 251 items, 33 ready, 0 in flight)
 2026-08-13T19:37:04Z no eligible item (skipped 251): IGW-20260813-001:skill /governance not allowed; IGW-20260813-002:skill /governance not allowed; IGW-20260813-003:skill /governance not allowed
+2026-08-13T20:37:36Z skip: paused (.igw_routine_pause present)
+2026-08-13T21:37:55Z workset committed (regen -- 249 items, 33 ready, 0 in flight)
+2026-08-13T21:37:39Z no eligible item (skipped 249): IGW-20260813-001:skill /governance not allowed; IGW-20260813-002:skill /governance not allowed; IGW-20260813-003:skill /governance not allowed
