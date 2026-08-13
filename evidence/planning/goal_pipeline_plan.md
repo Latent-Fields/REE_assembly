@@ -36,10 +36,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -54,10 +54,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -85,10 +85,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -103,10 +103,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -127,10 +127,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -145,10 +145,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
@@ -164,10 +164,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-10"
-        from: "failure_autopsy_V3-EXQ-228c_2026-08-10"
-        verdict: "weakens/substrate_conditional"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+        verdict: "does_not_support/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: false
       join:
