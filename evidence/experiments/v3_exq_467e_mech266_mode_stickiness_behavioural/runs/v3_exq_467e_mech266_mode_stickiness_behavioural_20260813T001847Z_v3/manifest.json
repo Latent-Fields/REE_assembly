@@ -1,0 +1,125 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_467e_mech266_mode_stickiness_behavioural",
+  "run_id": "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-13T00:18:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "external_task_occupancy_reachable",
+        "kind": "readiness",
+        "description": "the contested external_task mode is genuinely occupied across the sweep -- per-seed min over ratio arms of fraction_in_external_task > OCCUPANCY_FLOOR -- on >= 2/3 guard-passing seeds. The SAME occupancy statistic the dose-response operates over (V3-EXQ-643 same-statistic rule). Unchanged from 467d's gate; 467e adds the goal_state clone fix + salience_affinity_input_cap so the substrate underneath the gate can actually clear it. A zero-occupancy read here means the two fixes are still insufficient (e.g. AFFINITY_INPUT_CAP mis-calibrated for the full curriculum), NOT a MECH-266 falsification.",
+        "control": "fraction of guard-passing seeds with per-seed min-ratio-arm fraction_in_external_task > OCCUPANCY_FLOOR.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_dwell_monotone_non_increasing_in_r",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_low_r_dwell_ge_ratio_times_high_r",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false
+    },
+    "contact_guard": {
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "occupancy_non_vacuity_gate": {
+      "definition": "per-seed min over ratio arms of fraction_in_external_task > OCCUPANCY_FLOOR on >= 2/3 guard-passing seeds (the SAME occupancy statistic the dose-response operates over). Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false weakens. Unchanged from 467d.",
+      "min_fraction": 0.6666666666666666,
+      "ratios": [
+        0.1,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "c2_min_dwell_ratio": 2.0,
+      "occupancy_floor": 0.1
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b24049f12bf3fd772e94e91e3add805ab686f90b63275eba2b844d5acbfe69b6",
+  "substrate_commit": {
+    "commit": "2399196f2075d89ef06d47da53d80a725beab8e5",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 140485,
+    "ticks_active": 140482,
+    "writer_calls": 5550,
+    "active_frac": 0.999978645406983,
+    "writer_defect": false,
+    "n_agents": 18,
+    "goal_state_present": true
+  }
+}
