@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T05:24:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_603t_instrumental_avoidance_scheduled_external_hazard_20260811T173724Z_v3",
+      "queue_id": "V3-EXQ-603t",
+      "claim_ids": ["MECH-357"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- readiness precondition R4 failed, so the primary discrimination comparison (G_H_INTACT vs G_H_LESION) is not a valid test of the claim under the driver's own pre-registered guard",
+        "biological_reference": "clear -- infralimbic-PFC to central-amygdala/PAG freeze-suppression circuit underlying active avoidance (Moscarello & LeDoux 2013/2020; Diehl et al. 2018 PL-BLA-amygdala inhibitory circuit; Ho et al. 2025 IL-PV freeze-suppression); 3 dated lit entries in targeted_review_connectome_mech_357",
+        "prerequisites": "present -- SD-058, MECH-279, SD-035, SD-011 all IMPLEMENTED per ree-v3/CLAUDE.md; SD-059/MECH-358 escape-affordance bridge on for all arms",
+        "implementation": "partial -- gate structurally engages (R1/R2/R3 all met) but the learned avoidance_efficacy eligibility trace underflows to numerically zero (1e-89 to 1e-127) in every arm/seed of this run, consistent with 603h/603r/603s; traced to a ~90-100:1 decay:credit tick ratio against leak_rate=0.02 in infralimbic_avoidance_gate.py, so suppression has been governed by the annealing scaffold_floor alone in every run to date, never learned efficacy",
+        "environment": "too sparse / wrong pressures -- 4th distinct config-only pressure design (603h static, 603r static+fixes, 603s mobile-predator drift, 603t scheduled discrete adjacency) still fails to make ARM_LESION fail its own negative control; this attempt is worse than 603s's tie (LESION reached full 1.0 ceiling vs 603s's 0.6667 tie)",
+        "measurement": "adequate -- the two-sided discriminative-headroom guard performed exactly as designed, correctly self-routing rather than emitting a false verdict; validate_recording.py clean",
+        "integration": "coupled but unstable -- ilPFC gate + escape-affordance bridge (MECH-358) + harm-pathway-training fix + hazard-field mechanics all interact; no run to date has isolated any single component's marginal contribution",
+        "scale": "adequate -- no signal that model capacity or budget is the bottleneck; failure is squarely about environment-pressure design and the newly-characterized eligibility-trace parameterization"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Infralimbic-PFC -> central amygdala/PAG freeze-suppression circuit underlying active (instrumental) avoidance, distinguished from Pavlovian freezing",
+        "dependencies": ["SD-035 (amygdala salience)", "MECH-279 (PAG freeze gate)", "SD-011 (z_harm_a affective stream)", "SD-058 (own substrate)", "SD-059/MECH-358 (escape-affordance bridge)"],
+        "is_formal_import": false,
+        "divergence": "none identified -- faithful biological translation; the new finding (eligibility-trace leak:learn imbalance) is an implementation defect, not a biology-vs-formalism divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-13 governance, V3-EXQ-603t, confirmed failure_autopsy_V3-EXQ-603t]: fourth consecutive inconclusive-by-design-defect result on the Stage-H readiness guard (after 603h/603r/603s). The SD-029 scheduled_external_hazard fix (agent-relative, discrete adjacency event; the scoping-recommended successor to 603s's undirected mobile-predator drift) again failed to make ARM_LESION fail its own negative control -- G_H_LESION_frac reached full ceiling (1.0/3), i.e. less conflict than 603s's exact tie (0.6667/0.6667), not more. discriminative_headroom_below=False; non_contributory by design (readiness R4 unmet), not a MECH-357 falsification -- ARM_INTACT actually scored worse than ARM_LESION (0.333 vs 1.0) but this comparison is not load-bearing under the failed guard. Separately and newly characterized: avoidance_efficacy remains numerically underflowed to ~0 (1e-89 to 1e-127) in every arm/seed, consistent with 603h/603r/603s -- traced to a ~90-100:1 decay:credit tick ratio against leak_rate=0.02 in infralimbic_avoidance_gate.py, meaning the gate's suppression has been governed by the annealing scaffold_floor alone, never by learned efficacy, in every run to date. Config-only Stage-H pressure levers (static field, mobile-predator drift, scheduled discrete adjacency) now appear exhausted across three distinct designs; routing to /implement-substrate to wire the already-built hazard_agent_pursuit (causal_grid_world.py) into scaffolded_sd054_onboarding.py, the remaining candidate named in substrate_queue.json's mech357-freeze-incompatible-pressure-mechanism node. epistemic_category unchanged (standard); status unchanged (candidate/v3_pending); MECH-357's mechanism-engagement and survival predictions remain neither confirmed nor falsified after four attempts.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech357-freeze-incompatible-pressure-mechanism",
+        "title": "Wire agent-directed hazard pursuit into Stage-H onboarding; separately investigate eligibility-trace leak:learn imbalance",
+        "implementation_hint": "Thread the already-built hazard_agent_pursuit parameter (causal_grid_world.py:517-535,1108,4980-5010) through scaffolded_sd054_onboarding.py's Stage-H _build_env (~line 1780-1800), mirroring how scheduled_external_hazard/env_drift are already threaded. Config-only pressure levers (static field, mobile-predator drift, scheduled discrete adjacency) are exhausted across 3 distinct designs; agent-directed pursuit is the one remaining candidate. Separately: infralimbic_avoidance_gate.py's eligibility trace decays ~90-100x faster than it credits (leak_rate=0.02 vs learn_rate=0.05, applied on very different tick counts), underflowing to numerical zero in every run to date -- this may need its own substrate_queue line item rather than folding into this one.",
+        "unblocks_claims": ["MECH-357"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree-v3/experiments/scaffolded_sd054_onboarding.py",
+          "ree-v3/ree_core/environment/causal_grid_world.py",
+          "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_603t_instrumental_avoidance_scheduled_external_hazard_20260811T173724Z_v3",
+          "experiment_type": "v3_exq_603t_instrumental_avoidance_scheduled_external_hazard",
+          "metric": "G_H_LESION_frac reached 1.0 (full ceiling) under scheduled discrete-adjacency hazard pressure, worse (less conflict) than 603s's 0.6667 tie under mobile-predator drift",
+          "target": "readiness R4 requires G_H_LESION_frac < 0.333 (LESION must fail its own negative control) before the primary MECH-357 comparison is valid",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate"
+      },
+      "learning_extracted": [
+        "Config-only Stage-H hazard-pressure levers (static field, mobile-predator drift, scheduled discrete adjacency) are exhausted across three structurally distinct designs -- none has made the LESION negative control fail",
+        "The learned avoidance_efficacy eligibility trace has never been observed to function as designed in any run to date (603h/603r/603s/603t) -- it is a separate, newly-characterized implementation defect (leak:learn imbalance) independent of the environment-pressure question",
+        "The already-built hazard_agent_pursuit primitive on CausalGridWorldV2 is the one remaining candidate pressure mechanism and is buildable now, not probe-gated"
+      ],
+      "routing": "implement-substrate"
+    }
+  ]
+}

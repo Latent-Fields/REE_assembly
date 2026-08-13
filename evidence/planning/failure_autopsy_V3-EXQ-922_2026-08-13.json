@@ -1,0 +1,100 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T05:24:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3",
+      "queue_id": "V3-EXQ-922",
+      "claim_ids": ["MECH-150", "MECH-151", "MECH-152", "ARC-041"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "aligned -- the run's design maps 1:1 onto each claim's stated mechanism at each claim's own pre-registered granularity; ARC-041's what_would_answer predicted this exact dissociation shape",
+        "biological_reference": "clear for MECH-150/152/ARC-041 (dedicated targeted_review directories each); thin (inline-only, no dedicated lit-pull) for MECH-151",
+        "prerequisites": "present -- all formal depends_on for all 4 claims are implemented/stable/active/substrate_conditional; MECH-160 (ARC-041's one non-implemented dependency) correctly excluded from claim_ids as out of scope",
+        "implementation": "complete -- readiness preconditions (world_encoder weight movement, z_world spread lift) passed all 3 seeds at 2.7-4.0x margin; MECH-150's own gate passed cleanly 3/3 on all three criteria",
+        "environment": "adequate -- the long-standing SD-016 env-entropy precondition (blocked_on, resolved 2026-08-11) is satisfied via the SD-070 recipe",
+        "measurement": "adequate -- MECH-152's Pearson-r methodology exactly replicates V3-EXQ-194a's own validated metric; MECH-151 uses a paired per-seed relative comparison; majority-of-seeds gating throughout",
+        "integration": "adequate for the tested path (E1->E2 via direct-distillation, E1->E3 via the real end-to-end path); NOT adequate as a test of SD-055's specific CEM-gradient integration -- HippocampalModule.propose_trajectories() is never invoked by this driver",
+        "scale": "adequate -- world_dim=128 matches the validated V3-EXQ-783/898/907/908 operating point; no scale/capacity constraint implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dual OFC (action-gating)/vmPFC (value-weighting) circuit architecture; OFC/vmPFC pattern completion from partial sensory cues (Murray & Izquierdo 2007); vmPFC lesion/Iowa Gambling Task contextual precision deficit (Bechara 1994)",
+        "dependencies": ["MECH-150 (retrieval)", "ARC-035 (stored-to-active pathway)", "SD-010", "ARC-016"],
+        "is_formal_import": false,
+        "divergence": "MECH-150's ContextMemory uses query-key attention where biological hippocampal pattern completion is auto-associative/Hopfield-like -- a documented fidelity gap; the Gumbel-softmax categorical selection (a formal ML import) grafted onto this biological target is a plausible interaction candidate for why MECH-152's graded correlational output (a CA3-completion-like job) may not coexist well with the WTA-like hardness MECH-150 needs from the same single mechanism",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-922 (2026-08-12), production-combo run under GOV-FANOUT-1's recommended configuration (cue_slot_tagger=True, selection=gumbel, ctxdiv_weight=0.5). MECH-150 CONFIRMED (C1/C1b/C2 all PASS 3/3, resolving the stale 418-series/898 chain). MECH-151 SUPPORTS the narrow context-conditioning mechanism (2/3 seeds) but explicitly does NOT validate SD-055's CEM-gradient-restoration path (never invoked by this driver). MECH-152 FAILS cleanly under the strict production-arm scoring (0/3 both criteria), materially worse than 194a's own MIXED result -- but the A0_OFF (legacy soft-selection) arm's numbers were much closer to threshold than A1_PRODUCTION's, a real interpretive lead pointing at a selection-hardness interaction rather than outright mechanism absence. ARC-041's own pre-registered dissociation signature (exactly one pathway surviving) is met by MECH-151-survives/MECH-152-fails -- see per_claim_recommendation for ARC-041's disposition, which the user explicitly HELD pending a discriminating ablation rather than finalizing as a falsification this cycle.",
+      "per_claim_recommendation": {
+        "MECH-150": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "candidate (unchanged) -- refresh stale evidence_quality_note (still describes the 2026-03/04 EXQ-181b training-objective gap) and retire the 2026-08-06 digestion_note (its two blocking conditions are now both resolved) -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-151": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "first-ever experimental evidence entry for this claim -> standard, scoped explicitly to exclude SD-055's gradient-path question",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-152": {
+          "recommended_evidence_direction": "does_not_support",
+          "recommended_epistemic_category": "standard",
+          "change": "provisional (unchanged) -- clean falsifier under strict production-arm scoring, but A0_OFF proximity to threshold is a live discriminating lead (selection-hardness interaction vs mechanism absence); queue the soft-selection+ctxdiv-ON ablation before further disposition -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        },
+        "ARC-041": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "substrate_conditional",
+          "change": "HELD -- user explicitly declined to finalize the dual-pathway falsification write-up this cycle (2026-08-13 Step 8 gate: chose 'Hold ARC-041's falsification' over the recommended 'Accept the split routing'), since the dissociation is driven by MECH-152's result and MECH-152's own disposition is itself gated on the queued soft-selection ablation. epistemic_category left UNCHANGED at substrate_conditional (not downgraded to standard) precisely because disposition is not final. Re-examine once the MECH-152 ablation resolves.",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate, disposition not finalized this cycle"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-016",
+        "title": "Add MECH-152 failure record; discriminate selection-hardness interaction from mechanism absence",
+        "implementation_hint": "Add a failure_record entry for V3-EXQ-922's MECH-152 result (r_w_harm/r_w_goal collapse under A1_PRODUCTION's hard-Gumbel selection). No new substrate code needed for the immediate follow-on -- a soft-selection + ctxdiv=0.5 ablation arm (not yet run in 907/908/922) would discriminate whether the collapse is selection-hardness-specific or a genuine absence of the MECH-152 mechanism; this is a driver-only new arm on the existing substrate.",
+        "unblocks_claims": ["MECH-152", "ARC-041"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "informational",
+        "substrate_paths": [],
+        "failure_record_entry": {
+          "run_id": "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3",
+          "experiment_type": "v3_exq_922_sd016_mech151_152_arc041_production_combo",
+          "metric": "MECH-152 under A1_PRODUCTION: r_w_harm_mean=0.0013 (threshold >0.5), r_w_goal_mean=-0.0077 (threshold <-0.3), both FAIL 0/3; A0_OFF (legacy soft selection) scored much closer to threshold (r_w_harm_mean=0.356, r_w_goal_mean=-0.355)",
+          "target": "C1 r_w_harm>0.5 AND C2 r_w_goal<-0.3 under the production (hard-Gumbel) selection configuration",
+          "resolved": "open"
+        }
+      },
+      "resolves_prior_failure_record": [],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null
+      },
+      "learning_extracted": [
+        "MECH-150 is now cleanly confirmed after a long chain of prior FAILs sequentially misattributed to a missing training objective, then env-entropy -- both are now confirmed satisfied on this apparatus",
+        "ARC-041's own pre-registered dissociation signature (exactly one of two pathways surviving) was met -- but the user chose to hold the finalized falsification write-up pending a discriminating ablation on MECH-152, since MECH-152's own result carries an unresolved interpretive lead (A0_OFF's near-threshold numbers)",
+        "MECH-151's 'supports' verdict is explicitly narrower than it might first appear -- it does not touch SD-055's CEM-gradient-restoration mechanism, which this driver's docstring flags as a documented no-op in this design"
+      ],
+      "routing": "queue-experiment"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T05:24:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+      "queue_id": "V3-EXQ-919",
+      "claim_ids": ["MECH-321"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- C1 (load-bearing) fails in the negative direction on the cleanest, best-powered test this lineage has produced (n=40, all preconditions green, A-A control bit-identical); non-load-bearing C2 also fails to corroborate mechanistically",
+        "biological_reference": "partial -- strong, dedicated 9-entry lit-pull (targeted_review_threat_modulated_defensive_path_selection) exists and the built substrate follows its recommended two-stage form, but two literature-identified co-determinants (escapability, threat-predictability) are explicitly un-built",
+        "prerequisites": "present -- all four depends_on (ARC-070, MECH-288, MECH-269, MECH-094) are landed V3 substrate; every readiness precondition (bias inertness OFF, bias engagement ON, PE variance/boundedness, A-A bit-identity) met",
+        "implementation": "complete -- both selection stages (graded bias + categorical override) are built, wired, and confirmed non-inert (150+ fires per ON cell, all seeds) for the specific mechanism under test (magnitude-only harm-aware selection)",
+        "environment": "adequate -- unlike prior generations, this env robustly drives engagement and produces non-degenerate variance; no environment-side precondition failed",
+        "measurement": "adequate -- the explicit fix-point of the 844/867/867a/867b lineage: no screen, unconditional whole-episode DV, n=40 hard floor, A-A control confirms zero uncontrolled variation; first genuinely decisive measurement in the lineage",
+        "integration": "coupled but unstable -- harm-bias term genuinely integrated into the score_bias chain and categorical override into the candidate pool, but net effect across seeds is inconsistent in sign (per-seed deltas ~-0.33 to +0.24)",
+        "scale": "adequate -- n=40 meets the pre-registered power floor; not a scale-limited result"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Fanselow's Predatory Imminence Continuum + threat-modulated defensive-path-selection literature (Mobbs, Evans, Cooper, Blanchard & Blanchard)",
+        "dependencies": ["escapability (distance-to-refuge, relative speed, path angle -- Cooper 2016)", "threat-cue predictability/certainty (Fanselow 2022, Blanchard & Blanchard 1989)"],
+        "is_formal_import": false,
+        "divergence": "the built two-stage magnitude-only substrate follows the lit-pull's recommended Form B structure but omits two of its named co-determinants (escapability, predictability), both explicitly flagged in the lit-pull as deferred refinement not blocking a first buildable version",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "[2026-08-11 governance, V3-EXQ-919, confirmed]: the redesigned, unconditional whole-episode measurement (no screen, no tiering, n=40 pre-registered seeds, A-A control bit-identical) that 867b's own autopsy called for is now complete and decisive. All readiness preconditions green; harm-aware selection engages robustly (150+ fires per ON-arm cell, every seed). C1_TASK_OUTCOME_IMPROVES_UNCONDITIONAL FAILS (mean delta -0.00373, rel. improvement -3.1%, wrong-direction relative to the criterion); C2 (mechanistic PE corroboration) also fails to corroborate (-0.0000422), and engagement anti-correlates weakly with outcome (Spearman rho -0.286). This is the first structurally decisive negative result in the 844/867/867a/867b/919 lineage -- not a repeat of a prior measurement-instrument defect (re-derive brake: 0 prior substrate_ceiling hits; granularity-debt check: 919's failure signature differs structurally from 844's partial-corroborated negative). The built magnitude-only harm-bias/categorical-override substrate (Form B two-stage design) is a reasonable but partial translation of its own grounding lit-pull (targeted_review_threat_modulated_defensive_path_selection), which explicitly flagged escapability and threat-predictability as additional biologically-supported co-determinants deferred at build time. Route: /implement-substrate (amend SD-hazard-aware-policy-decomposition) to add one or both deferred input channels before re-testing this claim; do not re-queue the magnitude-only design under a new letter.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-hazard-aware-policy-decomposition",
+        "title": "Add escapability and/or threat-predictability input channel to harm-aware selection",
+        "implementation_hint": "The two-stage design (graded harm_bias + categorical select_harm_aware_leaves override) is built and confirmed non-inert, but is magnitude-only. The commissioning lit-pull (targeted_review_threat_modulated_defensive_path_selection) names escapability (distance-to-refuge/relative-speed/path-angle) and threat-predictability as additional biologically-supported co-determinants, explicitly deferred as 'not blocking a first buildable version.' Add one or both as new input channels to harm_bias/select_harm_aware_leaves before re-testing MECH-321.",
+        "unblocks_claims": ["MECH-321"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/policy/policy_decomposition.py",
+          "ree_core/hippocampal/module.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+          "experiment_type": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode",
+          "metric": "harm_delta_mean_unconditional = -0.003728 (n=40, SE 0.02292); engagement-outcome Spearman rho = -0.28563",
+          "target": "C1 requires harm_delta_mean > 1.0*SE with rel_improvement >= 0; magnitude-only harm-aware selection does not clear it",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate"
+      },
+      "learning_extracted": [
+        "The first structurally decisive test in a 5-generation lineage (844/867/867a/867b/919) is a clean negative for magnitude-only harm-aware selection",
+        "The built substrate is a partial, not full, translation of its own grounding literature review -- escapability and threat-predictability were explicitly deferred, not omitted through oversight",
+        "Engagement anti-correlating (not merely failing to correlate) with outcome is a real, if modest, signal worth carrying forward rather than treating as pure null"
+      ],
+      "routing": "implement-substrate"
+    }
+  ]
+}

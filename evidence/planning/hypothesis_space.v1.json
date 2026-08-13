@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-13T05:19:18Z",
+  "generated_at": "2026-08-13T05:46:15Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,28 +31,28 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 61,
+      "total_surviving": 60,
       "total_initial": 109,
       "total_initial_at_registration": 89,
       "total_fanout_added": 20,
-      "total_resolved_out": 44,
+      "total_resolved_out": 45,
       "total_confirmed": 23,
-      "reduction_pct_vs_current": 40.4,
-      "net_narrowing_pct": 31.5,
+      "reduction_pct_vs_current": 41.3,
+      "net_narrowing_pct": 32.6,
       "convergence_classes": {
-        "narrowing": 15,
-        "static": 14,
+        "narrowing": 16,
+        "static": 13,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "61 alive against 89 originally enumerated, and against 109 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "60 alive against 89 originally enumerated, and against 109 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 34
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 14,
+      "ready": 15,
       "open_questions": 34
     }
   },
@@ -178,14 +178,20 @@
       "build_pct": 81.4
     },
     {
-      "date": "2026-08-12",
+      "date": "2026-08-11",
       "surviving": 65,
       "closure_pct": 75.9,
       "build_pct": 81.4
     },
     {
+      "date": "2026-08-12",
+      "surviving": 64,
+      "closure_pct": 75.9,
+      "build_pct": 81.4
+    },
+    {
       "date": "2026-08-13",
-      "surviving": 61,
+      "surviving": 60,
       "closure_pct": 75.9,
       "build_pct": 81.4
     }
@@ -2913,26 +2919,28 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 1.0,
+      "bits_removed_vs_registration": null,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
           "process"
         ],
+        "families_touched": [
+          "process"
+        ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 1,
-      "alive": 1,
-      "resolved_out": 0,
+      "surviving": 0,
+      "alive": 0,
+      "resolved_out": 1,
       "confirmed": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 1.0,
+      "bits_removed": null,
       "synthesis": null,
       "hypotheses": [
         {
@@ -2940,25 +2948,26 @@
           "label": "harm-aware mid-execution leaf selection reduces realised task harm relative to harm-blind selection",
           "desc": "When a divergence-eligible decomposition fires in both the harm-aware (ON) and harm-blind (OFF) arms on a matched seed, the ON arm's post-divergence harm signal is less negative than OFF's by >=1SE over >=6 paired seeds.",
           "axis": "selection",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
             "V3-EXQ-844",
             "V3-EXQ-867",
             "V3-EXQ-867a",
-            "V3-EXQ-867b"
+            "V3-EXQ-867b",
+            "V3-EXQ-919"
           ],
-          "basis": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- the screen-then-match design family is invalid. CORRECTED 2026-08-09 (governance GFLAG-0014/0015 adjudication; text synced into this field from live_gate per /failure-autopsy Step 9b): the ORIGINAL reading of that violation -- 'the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires' -- is WRONG and is withdrawn. 867b's own manifest contradicts it: the violation appears in the OFF arm, where the manipulation is provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell); OFF-arm multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5 seeds, impossible for a monotone counter over a prefix extension; and at full schedule the matching held PERFECTLY (on_only and off_only tiers both EMPTY, 0 discordant of 10 measured seeds). The actual cause is an instrumentation defect: screen cells call _run_cell directly with NO RNG reset, while measurement cells enter through arm_cell (which calls reset_all_rng), so the two phases measure DIFFERENT agents and the prefix-monotonicity premise the screen-soundness check assumed never applied. Full analysis: evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8. The ratified routing is UNCHANGED by this correction (pool-exhaustion alone already forced a DV redesign): failure_autopsy_2026-08-05_pending_review_batch (confirmed, routing ratified by /governance 2026-08-07): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question. Text correction only -- state, control_passed, non_degenerate and met_elimination_bar are unchanged.",
+          "basis": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- the screen-then-match design family is invalid. CORRECTED 2026-08-09 (governance GFLAG-0014/0015 adjudication; text synced into this field from live_gate per /failure-autopsy Step 9b): the ORIGINAL reading of that violation -- 'the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires' -- is WRONG and is withdrawn. 867b's own manifest contradicts it: the violation appears in the OFF arm, where the manipulation is provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell); OFF-arm multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5 seeds, impossible for a monotone counter over a prefix extension; and at full schedule the matching held PERFECTLY (on_only and off_only tiers both EMPTY, 0 discordant of 10 measured seeds). The actual cause is an instrumentation defect: screen cells call _run_cell directly with NO RNG reset, while measurement cells enter through arm_cell (which calls reset_all_rng), so the two phases measure DIFFERENT agents and the prefix-monotonicity premise the screen-soundness check assumed never applied. Full analysis: evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8. The ratified routing is UNCHANGED by this correction (pool-exhaustion alone already forced a DV redesign): failure_autopsy_2026-08-05_pending_review_batch (confirmed, routing ratified by /governance 2026-08-07): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question. Text correction only -- state, control_passed, non_degenerate and met_elimination_bar are unchanged. RESOLVED 2026-08-13 (/failure-autopsy, session jovial-shannon-35d300, failure_autopsy_V3-EXQ-919_2026-08-13): the redesign this entry's own live_gate called for (unconditional whole-episode harm-rate DV, no screen, n=40 seeds x 2 arms, 4-seed A-A null control discharging the matching-validity precondition by construction) ran as V3-EXQ-919. All readiness preconditions green (per_arm_gate.all_green=true, red_arms=[]); A-A control bit-identical (max_abs_delta=0.0); harm-aware selection engages robustly (150+ min fires per ON-arm cell, every seed). C1 (load-bearing) FAILS in the negative direction: harm_delta_mean_unconditional=-0.003728 (n=40, SE=0.02292); C2 (mechanistic PE corroboration) also fails to corroborate (-0.0000422); engagement anti-correlates weakly with outcome (engagement_outcome_spearman_rho=-0.28563). This is the first structurally decisive, non-degenerate, fully-powered test in the lineage -- the hypothesis is ELIMINATED as built (magnitude-only harm-aware selection). The commissioning lit-pull (targeted_review_threat_modulated_defensive_path_selection) named escapability and threat-predictability as additional biologically-supported co-determinants explicitly deferred at build time -- routed to /implement-substrate (amend SD-hazard-aware-policy-decomposition) to add one or both before any re-test; a same-design re-queue is refused.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         }
       ],
       "decision": {
-        "readiness_state": "observation_bottleneck",
-        "evidence_decile": 2,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "Does harm-aware selection reduce task-level harm, given the matched-pair design cannot currently produce enough held comparisons to test it?",
-        "distance_phrase": "4 of 4 tested legs (844/867/867a/867b) inconclusive for structurally different reasons each time; the design itself, not the sample size, is now the suspect.",
-        "live_gate": "A redesigned DV/matching strategy that does not depend on post-hoc divergence-tick matching is needed before this question is testable at adequate power. DESIGNED 2026-08-08 (chip-20260808-mech321-repose-measurement-design), NOT YET QUEUED -- see evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md (status: awaiting user review). Proposed: unconditional whole-episode harm-rate DV over ALL measured seeds (no screen, no matched-pair tiering), n=40 seeds x 2 arms at the unchanged 12x60 schedule (~19h, ~1.9x V3-EXQ-867b's compute; SE ~0.023 vs 867b's realised 0.111 at n=4), plus a 4-seed A-A null control (OFF vs OFF, expected delta exactly 0.0) that discharges what_would_answer precondition (2) BY CONSTRUCTION rather than by verification. Next step is a /queue-experiment session; assign a NEW EXQ number (not an 867c letter) per that doc section 7. NOTE -- that doc also RE-DIAGNOSES this entry's own observation_bottleneck: 867b's screen-soundness violation is an instrumentation artifact (screen cells run without an RNG reset while measurement cells enter through arm_cell, so the two phases measure different agents and the prefix-monotonicity premise never applied), NOT evidence that the ON-arm manipulation perturbs decomposition -- the violation appears in the OFF arm, where the manipulation is inert, and at full schedule the matching held perfectly (0 on_only, 0 off_only). Raised to /governance as an evidence_discrepancy flag; observation_bottleneck and hypotheses[0].resolution.basis are left unedited for governance to adjudicate.",
-        "observation_bottleneck": "Screen-then-match designs assume short-screen decomposition behaviour predicts full-schedule behaviour; 867b's own screen_soundness_check registered violations on 5/7 screen-matched seeds. CORRECTED 2026-08-09 (governance GFLAG-0014/0015; synced from live_gate per /failure-autopsy Step 9b): those violations are an INSTRUMENTATION ARTIFACT, not evidence that the ON-arm manipulation perturbs decomposition -- screen cells call _run_cell directly with no RNG reset while measurement cells enter through arm_cell (reset_all_rng), so the screen and the measurement observe DIFFERENT agents and the prefix-monotonicity premise never applied; the violation appears in the OFF arm where the manipulation is inert, and at full schedule the matching held perfectly (0 on_only, 0 off_only). The bottleneck therefore is not that decomposition is unstable under the manipulation -- it is that the screen-then-match family cannot produce comparable screen and measurement phases at all, so no post-hoc divergence-tick-matched DV built on it can be trusted. See evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8."
+        "distance_phrase": "RESOLVED. 5 of 5 tested legs (844/867/867a/867b/919) complete; 919 was the first structurally decisive one. The design defect is fixed; the remaining distance is a biological-completeness gap in the built mechanism (escapability/predictability channels deferred at build time), not a measurement problem.",
+        "live_gate": "RESOLVED 2026-08-13 by V3-EXQ-919 (the exact redesign this field called for). Question is decidable now: magnitude-only harm-aware selection does NOT reduce task-level harm (hypothesis eliminated, see hypotheses[0].resolution). New live_gate for any FUTURE retest of this mechanism: an escapability and/or threat-predictability input channel must be added to the harm-bias/select_harm_aware_leaves substrate first (per the commissioning lit-pull's deferred co-determinants) -- a same-design re-queue is refused per the confirmed autopsy's re-derive-brake reasoning.",
+        "observation_bottleneck": null
       }
     },
     {
@@ -3734,6 +3743,24 @@
       "evidence_direction": "non_contributory"
     },
     {
+      "run": "V3-EXQ-919",
+      "all_runs": [
+        "V3-EXQ-844",
+        "V3-EXQ-867",
+        "V3-EXQ-867a",
+        "V3-EXQ-867b",
+        "V3-EXQ-919"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "mech321_harm_aware_selection_task_effect",
+      "claims": [
+        "MECH-321"
+      ],
+      "moved": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- the screen-then-match design family is invalid. CORRECTED 2026-08-09 (governance GFLAG-0014/0015 adjudication; text synced into this field from live_gate per /failure-autopsy Step 9b): the ORIGINAL reading of that violation -- 'the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires' -- is WRONG and is withdrawn. 867b's own manifest contradicts it: the violation appears in the OFF arm, where the manipulation is provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell); OFF-arm multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5 seeds, impossible for a monotone counter over a prefix extension; and at full schedule the matching held PERFECTLY (on_only and off_only tiers both EMPTY, 0 discordant of 10 measured seeds). The actual cause is an instrumentation defect: screen cells call _run_cell directly with NO RNG reset, while measurement cells enter through arm_cell (which calls reset_all_rng), so the two phases measure DIFFERENT agents and the prefix-monotonicity premise the screen-soundness check assumed never applied. Full analysis: evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8. The ratified routing is UNCHANGED by this correction (pool-exhaustion alone already forced a DV redesign): failure_autopsy_2026-08-05_pending_review_batch (confirmed, routing ratified by /governance 2026-08-07): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question. Text correction only -- state, control_passed, non_degenerate and met_elimination_bar are unchanged. RESOLVED 2026-08-13 (/failure-autopsy, session jovial-shannon-35d300, failure_autopsy_V3-EXQ-919_2026-08-13): the redesign this entry's own live_gate called for (unconditional whole-episode harm-rate DV, no screen, n=40 seeds x 2 arms, 4-seed A-A null control discharging the matching-validity precondition by construction) ran as V3-EXQ-919. All readiness preconditions green (per_arm_gate.all_green=true, red_arms=[]); A-A control bit-identical (max_abs_delta=0.0); harm-aware selection engages robustly (150+ min fires per ON-arm cell, every seed). C1 (load-bearing) FAILS in the negative direction: harm_delta_mean_unconditional=-0.003728 (n=40, SE=0.02292); C2 (mechanistic PE corroboration) also fails to corroborate (-0.0000422); engagement anti-correlates weakly with outcome (engagement_outcome_spearman_rho=-0.28563). This is the first structurally decisive, non-degenerate, fully-powered test in the lineage -- the hypothesis is ELIMINATED as built (magnitude-only harm-aware selection). The commissioning lit-pull (targeted_review_threat_modulated_defensive_path_selection) named escapability and threat-predictability as additional biologically-supported co-determinants explicitly deferred at build time -- routed to /implement-substrate (amend SD-hazard-aware-policy-decomposition) to add one or both before any re-test; a same-design re-queue is refused.",
+      "resolved_utc": "2026-08-11T22:51:07Z",
+      "evidence_direction": "weakens"
+    },
+    {
       "run": "V3-EXQ-894c",
       "all_runs": [
         "V3-EXQ-894c"
@@ -3907,23 +3934,6 @@
       "moved": "V3-EXQ-887 (3 seeds, first-ever genuine experimental evidence for SD-014): readiness gate green (R1-R4 all met, instrument's own orthogonal synthetic control confirms it CAN detect separability, tau=-0.011 vs ceiling 0.5), non_degenerate=true. Both load-bearing criteria fail on every seed: C1 mean_pairwise_tau_dissociated 0.87-0.89 (near 1.0 = rankings barely move with drive state) vs TAU_MAX=0.85; C2 max_abs_channel_spearman(w,l) 0.93-0.97 vs RHO_MAX=0.90 (highly collinear). Root cause read directly from ree_core/agent.py: update_liking() (line 10287) writes VALENCE_LIKING from raw benefit_exposure (threshold-gated); update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure) -- a smoothed/calibrated transform of the SAME underlying signal, not an independent pathway the way dopamine-mediated wanting and opioid-mediated liking are in the cited biology (Smith/Berridge/Aldridge 2011). Eliminated AS CURRENTLY IMPLEMENTED -- a concrete buildable fix exists (decouple wanting's computation from raw benefit_exposure, e.g. an incentive-sensitization term), and a retest after that fix would open a fresh hypothesis, not resolve this one.",
       "resolved_utc": "2026-08-04T02:25:47Z",
       "evidence_direction": "weakens"
-    },
-    {
-      "run": "V3-EXQ-867b",
-      "all_runs": [
-        "V3-EXQ-844",
-        "V3-EXQ-867",
-        "V3-EXQ-867a",
-        "V3-EXQ-867b"
-      ],
-      "momentum_class": "underpowered",
-      "qid": "mech321_harm_aware_selection_task_effect",
-      "claims": [
-        "MECH-321"
-      ],
-      "moved": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- the screen-then-match design family is invalid. CORRECTED 2026-08-09 (governance GFLAG-0014/0015 adjudication; text synced into this field from live_gate per /failure-autopsy Step 9b): the ORIGINAL reading of that violation -- 'the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires' -- is WRONG and is withdrawn. 867b's own manifest contradicts it: the violation appears in the OFF arm, where the manipulation is provably inert (decomp_n_harm_bias_nonzero == 0 on every OFF cell); OFF-arm multi_action_commits DECREASED from the 4-episode screen to the 12-episode measurement on 5 seeds, impossible for a monotone counter over a prefix extension; and at full schedule the matching held PERFECTLY (on_only and off_only tiers both EMPTY, 0 discordant of 10 measured seeds). The actual cause is an instrumentation defect: screen cells call _run_cell directly with NO RNG reset, while measurement cells enter through arm_cell (which calls reset_all_rng), so the two phases measure DIFFERENT agents and the prefix-monotonicity premise the screen-soundness check assumed never applied. Full analysis: evidence/planning/mech321_harm_aware_selection_measurement_redesign_staged_2026-08-08.md sections 2 and 8. The ratified routing is UNCHANGED by this correction (pool-exhaustion alone already forced a DV redesign): failure_autopsy_2026-08-05_pending_review_batch (confirmed, routing ratified by /governance 2026-08-07): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question. Text correction only -- state, control_passed, non_degenerate and met_elimination_bar are unchanged.",
-      "resolved_utc": "2026-08-04T01:59:12Z",
-      "evidence_direction": "unknown"
     },
     {
       "run": "V3-EXQ-882",

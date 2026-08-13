@@ -1,0 +1,58 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T05:24:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_228d_arc032_theta_phase_weighted_readout_20260811T234236Z_v3",
+      "queue_id": "V3-EXQ-228d",
+      "claim_ids": ["ARC-032"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- two consecutive fair, direct-DV, precondition-cleared tests (228c flat-mean, 228d phase-weighted) both show theta ACTIVE as the worse arm on the noise criterion (100%/100% of seeds reversed across both runs, std_effect -6.10); C1 shows no discriminable effect either time",
+        "biological_reference": "clear, translation improved but still diverges empirically -- literature well-identified (Dragoi 2006, Colgin 2016, Benchenane 2010, Hyman 2010, Sigurdsson 2010); SD-100's von-Mises phase kernel is a genuine phase-coding-grounded fix, yet the empirical direction did not flip",
+        "prerequisites": "present -- MECH-089 (status active, implemented) and MECH-116 (functionally wired via e1_goal_conditioned) both exercised; SD-100 landed and confirmed non-inert",
+        "implementation": "complete -- SD-100 fully implements the phase-weighted summary as specified in its design doc; not a stub, built, validated, and exercised end-to-end in this run",
+        "environment": "adequate -- same curriculum/scaffold recipe as 228b/228c; shared-training deepcopy-split design controls for training variance",
+        "measurement": "mixed -- C2 (prox_noise_temporal) adequate (large, well-separated, robust effect); C1 (persistence_cos) possibly ceiling-saturated (~0.999997 in both conditions, delta -2.7e-7), a genuine open measurement-adequacy question specific to C1, newly flagged by this autopsy",
+        "integration": "coupled, confirmed non-inert -- ablation demonstrably changes trajectory-candidate generation; e3_tick_ratio confirms the theta-sensitive window is hit as designed",
+        "scale": "adequate -- 3 seeds x 2 conditions, full curriculum, consistent with prior lineage members; not a scale-limited null"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Frontal (mPFC)-hippocampal theta phase synchrony supporting goal-directed navigation (Benchenane 2010, Hyman 2010, Sigurdsson 2010), with phase/order-coding specifics from theta-sequence compression (Dragoi & Buzsaki 2006) and theta-gamma phase nesting (Colgin 2016)",
+        "dependencies": ["MECH-089 (ThetaBuffer)", "MECH-116 (E1 goal-conditioning)"],
+        "is_formal_import": true,
+        "divergence": "the original ThetaBuffer.summary() was a flat unweighted mean -- a formal/engineering simplification with no phase-coding content, diagnosed at 228c as the biology-divergence gap. SD-100's replacement (a literature-grounded von-Mises-style forward-sweep phase kernel) is a genuine translation attempt, and the reversal PERSISTED under it -- a stronger finding than 228c's, since it is no longer attributable to the flat-mean's permutation-invariance specifically",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_quality_note": "[2026-08-13 governance, V3-EXQ-228d, confirmed failure_autopsy]: SD-100's phase-weighted ThetaBuffer summary (landed 2026-08-10, addressing 228c's diagnosed flat-mean permutation-invariance gap) was retested with the same E3-tick-restricted, direct-DV protocol as 228c. Precondition met (1.00 frac seeds); both primary criteria again FAILED 0/3 seeds, with the REVERSED trend persisting under the phase-weighted summary (theta ACTIVE noisier on 100% of seeds, std_effect -6.10; less persistent on 67% of seeds, though persistence_cos is near-ceiling ~0.999997 in both conditions and may lack discriminating range). This is a stronger finding than 228c's because it is no longer attributable to the flat mean's permutation-invariance specifically -- two structurally-independent implementations (flat mean and phase-weighted kernel) now both show theta ACTIVE as the worse arm on the noise readout. epistemic_category recommended down from substrate_conditional to standard (the substrate gate that justified the conditional has been built and tested); routing: flag for governance re-examination of ARC-032's disposition rather than a further /implement-substrate iteration, unless a narrowly-scoped theta_phase_concentration sweep is deliberately chosen as one more probe. USER CONFIRMED (2026-08-13): flag for governance re-examination, recommended option accepted.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "severity": null,
+        "substrate_paths": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "route_to": null,
+        "note": "literal substrate_ceiling string-match count is 0 (no prior autopsy in this lineage used that exact category), but this is a de facto 3rd build-fix-retest cycle with no resolution -- the qualitative pattern the brake exists to catch, without the exact enum label. Treated as a de facto trigger: a same-claim /implement-substrate re-queue is NOT recommended without a new, concretely scoped hypothesis (e.g. a narrow theta_phase_concentration sweep, which remains available as a deliberate governance choice, not a default next step)."
+      },
+      "learning_extracted": [
+        "Two structurally independent theta-summary implementations (flat mean, phase-weighted von-Mises kernel) both show the same reversed effect on the noise criterion -- this rules out the specific implementation-gap explanation from 228c's autopsy as the sole cause",
+        "The persistence criterion (C1) may be measurement-inadequate due to ceiling saturation (~0.999997 in both arms across all seeds), independent of whether ARC-032 is true -- this is a genuinely new nuance not flagged by prior autopsies in this lineage",
+        "The driver script's own docstring correctly pre-registered this exact outcome shape and its governance-escalation implication before the run executed"
+      ],
+      "routing": "governance-demotion"
+    }
+  ]
+}
