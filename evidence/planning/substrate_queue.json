@@ -7421,10 +7421,10 @@
       "sd_id": "SD-QUEUE-SEED-ENFORCEMENT",
       "title": "Enforce queue-declared seed count into actual --seeds execution (validate_queue.py / experiment_runner.py)",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented",
+      "status_phase": "closed",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_queue_seed_enforcement.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [],
       "failure_record": [
@@ -7433,14 +7433,16 @@
           "experiment_type": "v3_exq_912_uncensored_survival_fishtank",
           "metric": "manifest seeds=[0] (n_seeds=1) despite queue entry declaring \"seeds\": 2; n_segments_total=60 not designed 120; n_uncensored_deaths_total=4 < MIN_UNCENSORED_DEATHS_TOTAL=10, driving the FAIL",
           "target": "queue-declared seed count matches actually-executed seed count for every multi-seed queue entry, either by runner enforcement or a validate_queue.py gate",
-          "resolved": "open"
+          "resolved": "resolved",
+          "addressed_by": "validate_queue.seed_enforcement_lint, IMPLEMENTED 2026-08-13 -- see this entry's implementation_note."
         },
         {
           "run_id": "v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3",
           "experiment_type": "v3_exq_920_uncensored_survival_single_life_fishtank",
           "metric": "only 1 of the pre-registered 8 seeds executed; the queue entry correctly declared \"seeds\": 8. SECOND independent occurrence of the same defect within two days, on a different driver -- this is systemic, not a one-off authoring slip. NOTE the manifest's own self-route label 'single_life_uncensored_survival_still_censoring_dominated' is INCORRECT and must not be read as a measurement finding: pct_right_censored_pooled=0.0 (literally zero censoring).",
           "target": "same as above -- declared seed count is enforced, so a seed-count shortfall cannot masquerade as a scientific FAIL",
-          "resolved": "open"
+          "resolved": "resolved",
+          "addressed_by": "validate_queue.seed_enforcement_lint, IMPLEMENTED 2026-08-13 -- see this entry's implementation_note."
         }
       ],
       "implementation_hint": "experiment_queue.json's \"seeds\": N field is consumed ONLY by experiment_runner.py's _run_axis_count for progress-bar/ETA denominators -- never translated into a --seeds CLI arg. A driver's own argparse default is the sole source of truth for how many seeds actually run, and validate_queue.py never cross-checks the declared count against either an explicit args --seeds list or the target script's own argparse default. Fix: either (a) have the runner synthesize --seeds 0..N-1 from the queue's seeds count when no explicit args are given, or (b) add a validate_queue.py check that a queue entry with \"seeds\": N>1 and no explicit --seeds in args, targeting a script whose own default has fewer than N entries, is flagged/blocked. V3-EXQ-912 hit this (queued seeds=2, ran seeds=[0]) and V3-EXQ-920 hit it independently (queued seeds=8, ran 1); sibling V3-EXQ-913 avoided it only because its author happened to set SEEDS_DEFAULT=[0,1] correctly. IMPACT NOTE: this defect silently converts an under-powered run into a scientific FAIL, so it can corrupt adjudication of ANY multi-seed experiment, not just the two that surfaced it.",
@@ -7454,7 +7456,9 @@
       "added_session": "sd-016-h3-algorithm-3370cd",
       "last_seen_session": "sd-016-h3-algorithm-3370cd",
       "added_utc": "2026-08-12T18:24:49Z",
-      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-912-913-fishtank-cluster_2026-08-11.json"
+      "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-912-913-fishtank-cluster_2026-08-11.json",
+      "implementation_note": "IMPLEMENTED 2026-08-13 (ree-v3, session failure-autopsy-8e0cca, chip-20260812-queue-seed-enforcement). Added validate_queue.seed_enforcement_lint (+ _script_seeds_default_count / _module_list_constants / _args_list / _declared_seed_count helpers) as a blocking ERROR wired into validate()'s existing per-item loop. Fires only on the fully-conjunctive, statically-verified case: declared seeds > 1, no explicit --seeds override in the item's args (shlex-split identically to experiment_runner.run_experiment's own parsing), and the target script's own --seeds argparse default is AST-resolvable to fewer seed values than declared (inline list/tuple literals, module-level NAME references, and list(NAME)/tuple(NAME) are all resolved; default=None -- the largest single corpus pattern -- a type=str comma-string contract, or an unresolvable expression are left silent, never guessed). Because validate() is already called from BOTH main() (the PreToolUse commit-blocking hook) AND experiment_runner.load_queue() (every runner's startup on every machine, sys.exit(1) on any error), this ONE check gives commit-time AND fleet-wide runner-startup enforcement -- including cloud workers that pull main directly and never see the commit hook -- without a second implementation. Deliberately did NOT implement runner-side --seeds synthesis (the implementation_hint's other proposed option): the corpus's --seeds contracts are heterogeneous (literal seed-value lists vs a single int count vs a comma-string), so synthesizing 0..N-1 would risk silently overwriting an author's deliberately-chosen seed values (breaking arm-reuse fingerprint matching) or guessing values never specified; a loud refusal is safer. Retroactively confirmed against both real incident scripts on disk (v3_exq_912_uncensored_survival_fishtank.py, v3_exq_920_uncensored_survival_single_life_fishtank.py). Swept the resolver over the full 1351-script experiments/ corpus with zero crashes (~11% confidently resolved, rest deferred). Validation: tests/contracts/test_validate_queue_seed_enforcement.py (17 tests) + existing tests/contracts/test_validate_queue_prereg_share_feasibility.py (15) + tests/preflight/test_queue_integrity.py (2), all green via remote_pytest.sh; full suite also run before landing.",
+      "validation_experiment": "None queued -- this is an instrumentation/data-integrity fix (a commit-hook + runner-startup lint), not a substrate mechanism a governance experiment would test. Its own regression suite (tests/contracts/test_validate_queue_seed_enforcement.py) is the validation, retroactively pinned against the two real confirmed-defect scripts."
     }
   ],
   "schema_version": "substrate_queue/v2"
