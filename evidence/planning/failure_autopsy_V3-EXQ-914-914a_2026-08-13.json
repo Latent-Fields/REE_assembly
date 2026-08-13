@@ -1,0 +1,112 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T04:52:40Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T055126Z_v3",
+      "queue_id": "V3-EXQ-914",
+      "claim_ids": ["MECH-236"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- superseded instrument defect, not a claim-layer finding",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "instrument defect: mid-edit script snapshot from a read-modify-write race (periodic anchor-write trigger instead of the corrected proximity-gated trigger)",
+        "environment": "n/a",
+        "measurement": "n/a",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- instrument defect, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "n/a -- instrument defect, already excluded from scoring"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "Ratified by failure_autopsy_V3-EXQ-914-914a_2026-08-13: this run executed against a mid-edit script snapshot (periodic anchor-write trigger, GRID_SIZE=8) committed by a read-modify-write race in the shared ree-v3 checkout (origin/main bfda4c95df), superseded moments later by the corrected proximity-gated trigger (1388f4061c). The current script's own docstring confirms, via direct probe, that the periodic version produces a NEGATIVE proximity gap by steering the agent toward stale, goal-irrelevant locations -- a real instrument defect, not evidence on MECH-236. Correctly already evidence_direction=superseded; no change needed. This autopsy exists to formalize the diagnosis and clear the pending_review.md blind-spot net entry.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Confirms the existing evidence_direction_note's diagnosis: a read-modify-write race between two ree-v3 commits (bfda4c95df periodic-trigger snapshot, superseded by 1388f4061c proximity-gated fix) is the root cause, not a MECH-236 test failure."
+      ],
+      "routing": "none -- already superseded and correctly excluded from scoring"
+    },
+    {
+      "run_id": "v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T065911Z_v3",
+      "queue_id": "V3-EXQ-914a",
+      "claim_ids": ["MECH-236"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened_with_caveat",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "too_sparse",
+        "measurement": "under_instrumented",
+        "integration": "isolated",
+        "scale": "likely_insufficient"
+      },
+      "biological_reference": {
+        "closest_mechanism": "mPFC (nucleus reuniens) -> CA1 trajectory-dependent firing (Ito et al. 2015, Nature, DOI 10.1038/nature14396); hippocampal theta sweeps forming goal-directed vectors independent of current position (Yu et al. 2026 / Tang et al. 2026, Nat Neurosci)",
+        "dependencies": ["MECH-230 (z_goal formation)", "ARC-007 (residue-field terrain scoring)", "SD-004 (action-object map backbone)"],
+        "is_formal_import": false,
+        "divergence": "REE mechanism (MECH-293 ghost-probe channel, 20% minority probe budget seeded from a ranked ghost-goal bank) is a sparser, more indirect translation than the biology's continuous online goal-vector modulation of trajectory generation -- a secondary note, not the decisive issue in this run.",
+        "lit_status": "present"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES FAILED (test-design gap) -- not chargeable to the claim"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "standard is the behaviour-preserving mapping for a measurement/test-design finding; substrate_conditional/substrate_ceiling would incorrectly suppress GOV-GRAN-1 surfacing and v3-testability for a gap that is test-design, not substrate-build (wanting_weight already exists as an unused lever).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-914a's null C_MAIN result (mean gap 0.0032, 1/5 seeds passing) is a test-design artifact, not evidence against MECH-236. Code trace of _score_trajectory (ree_core/hippocampal/module.py:1513) confirms the CEM elite-selection scoring function has no functional connection to resource-benefit/goal-relatedness under this run's configuration: wanting_weight=0.0 (the only goal-weighted scoring term, deliberately zeroed to isolate the channel), benefit_terrain_enabled=False (default, unset), and NUM_HAZARDS=0 (so the remaining ARC-007 residue-field term, a harm-accumulation mechanism, has nothing to accumulate). The ghost-probe channel itself functions correctly (P1/P2 preconditions both met) -- it proposes goal-tagged candidates, but nothing downstream can preferentially select them. See failure_autopsy_V3-EXQ-914-914a_2026-08-13 for the full trace. Recommend non_contributory/standard, pending a redesign (V3-EXQ-914b) that gives CEM elite-selection a real reward-linked term reachable jointly with the ghost-probe channel.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "HippocampalModule._score_trajectory (CEM elite-selection scoring) is goal-blind by default: wanting_weight=0 and benefit_terrain_enabled=False are both REEConfig defaults, and the remaining ARC-007 residue-field term is a harm-accumulation mechanism with nothing to accumulate when NUM_HAZARDS=0. Any future MECH-236/MECH-292/MECH-293 evidence run must deliberately enable a reward-linked scoring term or the result cannot discriminate the channel's effect from scoring-blindness.",
+        "The substrate_queue.json modulatory-bias-selection-authority fix (E3.select, implemented) does not reach into the hippocampal CEM's own internal elite-selection/refit step -- a goal-blind refit can discard a genuinely better candidate before E3 ever sees it. Not routed as new substrate work here since the existing lever (wanting_weight) already covers it; flagged for a future session if this call site recurs as a blocker across more than this one claim.",
+        "P1 precondition threshold (>= 0.0, direction lower) passes even a fully-inert cell (seed 46: 0 ghost candidates admitted the entire run), which is then still counted in the 5-seed C_MAIN denominator as if informative. Worth tightening in any successor driver reusing this precondition pattern.",
+        "NUM_HAZARDS=0 (a reasonable choice to avoid a documented untrained-agent death confound) silences ARC-007's residue field entirely when it is the sole scoring term -- a general caution for any future driver relying on ARC-007 STRICT terrain scoring as its only candidate differentiator in a zero-hazard environment."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "predecessor/successor pair sharing one claim (MECH-236), NOT a convergent multi-claim pattern",
+    "is_independent_bugs": true,
+    "structural_property": "914 is an instrument defect (concurrent-commit race); 914a is an independently-diagnosed test-design gap (goal-blind CEM scoring). The two are related only by lineage (914 -> 914a per EXQ versioning policy), not by a shared underlying substrate defect.",
+    "readings": ["instrument_defect_ratified", "test_design_gap_identified"]
+  }
+}
