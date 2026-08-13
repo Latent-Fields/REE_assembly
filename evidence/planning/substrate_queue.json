@@ -70,7 +70,7 @@
     }
   },
   "last_seen_session": "fishtank-max-episode-steps",
-  "last_updated_utc": "2026-08-12T18:24:49Z",
+  "last_updated_utc": "2026-08-13T06:37:52Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1474,6 +1474,13 @@
           "metric": "annealed Gumbel-softmax CONFIRMED (C1b passes 3/3, genuine context-conditioned sparsification); straight-through top-k ELIMINATED (constant_peaky_degenerate)",
           "target": "Gumbel-softmax selection operator integrated into SD-016's implementation",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3",
+          "experiment_type": "v3_exq_922_sd016_mech151_152_arc041_production_combo",
+          "metric": "MECH-152 under A1_PRODUCTION: r_w_harm_mean=0.0013 (threshold >0.5), r_w_goal_mean=-0.0077 (threshold <-0.3), both FAIL 0/3; A0_OFF (legacy soft selection) scored much closer to threshold (r_w_harm_mean=0.356, r_w_goal_mean=-0.355)",
+          "target": "C1 r_w_harm>0.5 AND C2 r_w_goal<-0.3 under the production (hard-Gumbel) selection configuration",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "DIAGNOSIS REVISED 2026-04-28: V3-EXQ-418f probe + V3-EXQ-418g 4-arm together demonstrate the bottleneck is upstream of the SD-016 attention path. Even with perfectly orthogonal slots (B2/B3 slot_diversity=1.000) and delta-function-peaky attention (B1/B3 attn_entropy=0.000), action_class_entropy stays at 1.105e-10 across all arms because z_world produces near-identical queries (cosine 0.998 across batch). The substrate's mechanism (cue-indexed retrieval) requires distinguishable z_world cue patterns; the current CausalGridWorldV2 configs (size=8, 1-5 hazards, no SD-023 landmarks engaged) do not generate enough cross-context z_world entropy for any retrieval substrate to do work. Substrate-side rework (writepath_mode, diversification, learned temperature, attention-entropy minimisation, world_query_proj bias=False) all addressed downstream symptoms; none can synthesise cross-context variance that the encoder is not producing. NEW PRECONDITION (env-richness gate): any SD-016 retest must first demonstrate cross-context z_world cosine separation in the env config used. Probe queued as V3-EXQ-418h (SD-023 landmarks ON vs OFF, safe-vs-dangerous z_world batches, cosine separation metric). If the precondition is satisfied with landmarks ON, SD-016 retest reuses the EXQ-418g 4-arm under that env config; if not, SD-016 validation is parked pending broader env enrichment scope. [2026-08-10 amend] Combine H1's ctxdiv-auxiliary-loss objective with H3's annealed Gumbel-softmax selection operator (GOV-FANOUT-1 portfolio legs both resolved, V3-EXQ-907 CONFIRMED + V3-EXQ-908 SPLIT).",
@@ -1481,7 +1488,7 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd016-path1-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "queue-depth-low-ops-aac785",
+      "last_seen_session": "gov-failure-autopsy-8e0cca",
       "metric_trajectory": {
         "direction": "context_dependent",
         "observations": [
@@ -1515,7 +1522,8 @@
       "validation_experiment": "V3-EXQ-418h",
       "validation_precondition": "z_world cross-context cosine separation gate -- pairwise cos(z_world) within safe batch and within dangerous batch must be substantially HIGHER than cos across safe-vs-dangerous batch; absolute cross-context cosine < 0.95 in at least one env config (target: SD-023 landmarks ON). Falsifiable via V3-EXQ-418h.",
       "status_note_addendum_20260808": "V3-EXQ-898 (2026-08-08, confirmed failure_autopsy_V3-EXQ-898_2026-08-08): SD-070 encoder fix genuinely restores cross-context z_world variance on this apparatus. Retrieval selectivity still does not emerge -- FAIL now cleanly attributes to the selection mechanism, not the encoder. Recommends a GOV-FANOUT-1 discrimination portfolio (H1 drive / H2 representation, dependency claims MECH-044/ARC-006/ARC-007/MECH-267 all still provisional-unbuilt so this is longer-horizon / H3 algorithm) before committing to one fix. Also flags a genuine lit-pull gap: no literature review grounds the specific biological mechanism (competitive/local pattern-separation dynamics) as the candidate fix direction.",
-      "status_note_addendum_20260811": "GOV-FANOUT-1 portfolio legs resolved (V3-EXQ-907 CONFIRMED, V3-EXQ-908 SPLIT, both confirmed failure_autopsy_V3-EXQ-907/908_2026-08-10.json): H1 ctxdiv-auxiliary-loss objective breaks the uniform-softmax saddle at every lambda in {0.1,0.5,2.0} tested; H3 annealed Gumbel-softmax CONFIRMED (genuine context-conditioned sparsification), straight-through top-k ELIMINATED (constant_peaky_degenerate). Implemented the combination in ree-v3: E1DeepPredictor.compute_context_divergence_loss (ree-v3 110a2785b6, chip-20260810-sd016-h1-h3-combine) promotes V3-EXQ-907's driver-local probe into substrate, gated by sd016_context_divergence_weight (default 0.0 = no-op); the Gumbel/topk selection knob (sd016_cue_slot_tagger_selection) already existed (eeb999a). Recommended production combination: sd016_cue_slot_tagger=True, sd016_cue_slot_tagger_selection='gumbel', sd016_context_divergence_weight=0.5. MECH-151 (action_bias -> E2) / MECH-152 (terrain_weight -> E3) consumer wiring already existed end-to-end (agent.py _integrate_e1) -- this closes the selection-mechanism gap that was the only remaining blocker. 8 new contracts (test_sd016_h1_context_divergence.py); full tests/contracts suite verified green (3565 passed, 17 skipped, 0 failed). MECH-150/151/152/ARC-041/INV-040/SD-017 are now unblocked for their own validation experiments (not run here, per /implement-substrate scope -- queuing those is /queue-experiment's job)."
+      "status_note_addendum_20260811": "GOV-FANOUT-1 portfolio legs resolved (V3-EXQ-907 CONFIRMED, V3-EXQ-908 SPLIT, both confirmed failure_autopsy_V3-EXQ-907/908_2026-08-10.json): H1 ctxdiv-auxiliary-loss objective breaks the uniform-softmax saddle at every lambda in {0.1,0.5,2.0} tested; H3 annealed Gumbel-softmax CONFIRMED (genuine context-conditioned sparsification), straight-through top-k ELIMINATED (constant_peaky_degenerate). Implemented the combination in ree-v3: E1DeepPredictor.compute_context_divergence_loss (ree-v3 110a2785b6, chip-20260810-sd016-h1-h3-combine) promotes V3-EXQ-907's driver-local probe into substrate, gated by sd016_context_divergence_weight (default 0.0 = no-op); the Gumbel/topk selection knob (sd016_cue_slot_tagger_selection) already existed (eeb999a). Recommended production combination: sd016_cue_slot_tagger=True, sd016_cue_slot_tagger_selection='gumbel', sd016_context_divergence_weight=0.5. MECH-151 (action_bias -> E2) / MECH-152 (terrain_weight -> E3) consumer wiring already existed end-to-end (agent.py _integrate_e1) -- this closes the selection-mechanism gap that was the only remaining blocker. 8 new contracts (test_sd016_h1_context_divergence.py); full tests/contracts suite verified green (3565 passed, 17 skipped, 0 failed). MECH-150/151/152/ARC-041/INV-040/SD-017 are now unblocked for their own validation experiments (not run here, per /implement-substrate scope -- queuing those is /queue-experiment's job).",
+      "mech152_note_2026_08_13": "failure_autopsy_V3-EXQ-922_2026-08-13 (confirmed): no new substrate code needed for the immediate follow-on -- a soft-selection + ctxdiv=0.5 ablation arm (not yet run in 907/908/922) would discriminate whether the collapse is selection-hardness-specific or a genuine absence of the MECH-152 mechanism; this is a driver-only new arm on the existing substrate, routed to /queue-experiment, not a build task. MECH-150 CONFIRMED and MECH-151 SUPPORTS (scoped) under this same run."
     },
     {
       "added_session": "governance-2026-04-27T14:11",
@@ -4917,13 +4925,31 @@
           "run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
           "experiment_type": "v3_exq_464c_mech266_competing_goals_behavioural",
           "metric": "fraction_in_external_task = 0.0 both arms all seeds; n_switches = 15 == n_episodes (episode-boundary settle artifact); C1 task-occupancy contrast pinned 0-vs-0",
-          "target": "min_across_arms(fraction_in_external_task) > floor (e.g. > 0.1) reachable on the positive control so the asymmetric exit-rail has a contested mode to bind"
+          "target": "min_across_arms(fraction_in_external_task) > floor (e.g. > 0.1) reachable on the positive control so the asymmetric exit-rail has a contested mode to bind",
+          "resolved": "resolved",
+          "resolved_note": "The prior item recorded 'fraction_in_external_task = 0.0 both arms all seeds; n_switches = 15 == n_episodes (episode-boundary settle artefact)'. 464e overturns it: the sticky arm reaches 1.0 on all 3 seeds and the symmetric arm reaches 0.4331 on seed 44. The mode-governance-engagement build achieved its stated goal; the residual failure is the opposite pathology (saturation), recorded as a new failure_record item."
         },
         {
           "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
           "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
           "metric": "n_switches = 12 == n_episodes for every hysteresis ratio; mean_dwell = total_steps/n_runs (episode-length artifact); dose-response non-monotone and uninterpretable",
-          "target": "genuine switch counts (n_switches > n_episodes) and in-mode dwell that responds to the hysteresis ratio, once external_task occupancy is driven"
+          "target": "genuine switch counts (n_switches > n_episodes) and in-mode dwell that responds to the hysteresis ratio, once external_task occupancy is driven",
+          "resolved": "resolved",
+          "resolved_note": "PARTIAL -- the zero-occupancy half only. The prior item recorded 'n_switches = 12 == n_episodes for every hysteresis ratio; mean_dwell = total_steps/n_runs (episode-length artefact)'. 467e overturns the implied unreachability (occupancy is now ~1.0 at r=0.10). The switching half is NOT resolved: n_switches == n_episodes still holds at every r>=0.50. Governance should split this item rather than close it wholesale."
+        },
+        {
+          "run_id": "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
+          "experiment_type": "v3_exq_467e_mech266_mode_stickiness_behavioural",
+          "metric": "step-function occupancy: fraction_in_external_task ~1.0 at r=0.10 and exactly 0.0 at r in {0.50,1.00,1.50,2.00} on all 3 seeds; n_switches == n_episodes (12) at every r>=0.50, invariant across a 20x rail sweep; C1 monotonicity fails 3/3 on unmanipulated dwell noise above the step",
+          "target": "a working implementation must exhibit per-arm fraction_in_external_task strictly between OCCUPANCY_FLOOR (0.1) and 0.9 on >= 2/3 seeds at >= 2 adjacent hysteresis ratios, with n_switches varying monotonically in r",
+          "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3",
+          "experiment_type": "v3_exq_464e_mech266_competing_goals_behavioural",
+          "metric": "bang-bang arm separation: ARM_ASYM_STICKY_TASK fraction_in_external_task=1.0 with n_switches=0 on all 3 seeds; ARM_SYMMETRIC 0.0 on seeds 42/43 (100% internal_planning) and 0.4331 on seed 44; C1/C2 pass 3/3 vacuously (criteria_non_degenerate false)",
+          "target": "a working implementation must exhibit BOTH arms with fraction_in_external_task strictly between OCCUPANCY_FLOOR (0.1) and 0.9 on >= 2/3 seeds, with the sticky arm exceeding the symmetric arm by >= C1_OCCUPANCY_MARGIN while both retain non-zero switching",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "On the 603n foraging substrate the SalienceCoordinator never receives salience signals that put the agent in external_task mode (fraction_in_external_task=0.0), so the MECH-266 over-binding / dose-response contrasts cannot express and the n_switches non-vacuity gate certifies episode-boundary settles. Substrate work: supply an external-task pressure (e.g. a salience-driving task primitive) that produces genuine external_task occupancy on the foraging agent, and re-state the readiness gate as min_across_arms(fraction_in_external_task) > floor rather than n_switches >= 1.",
@@ -4931,7 +4957,7 @@
       "priority_note": "Bumped to priority 1 per user (governance 2026-06-13); autopsy suggested 2 -- blocks 2 provisional claims (MECH-266/SD-032a) with fresh failure records + holds the MECH-266 demotion.",
       "autopsy_ref": "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
       "added_session": "governance-cycle-20260613T0858Z",
-      "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
+      "last_seen_session": "gov-failure-autopsy-8e0cca",
       "implementation_log": {
         "landed_utc": "2026-06-13T09:45:43Z",
         "session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
@@ -4960,7 +4986,14 @@
           "staleness_step_8_5": "NOT triggered (no-op-default; no dependent claim mechanism changed by this landing alone -- MECH-266/SD-032a remain pending_retest_after_substrate until the corrected validation run above lands; KEEP all evidence)."
         }
       },
-      "validation_reconcile_2026_07_08": "Status 'implemented_pending_validation' lagged the record (session ecstatic-pare-45f7ad, PROMOTES NOTHING). Both named validations RAN 2026-06-13 and self-routed on the readiness gate (external_task occupancy floor unmet -- the depends_on_unresolved Stage-H nav-competence dependency), so the validation is no longer queued/pending but the substrate still owes a contributory run once the dependency lands: v3_exq_464d_mech266_competing_goals_behavioural_20260613T183908Z_v3 (FAIL/non_contributory/substrate_not_ready_requeue) + v3_exq_467d_mech266_mode_stickiness_behavioural_20260613T153223Z_v3 (FAIL/non_contributory/substrate_not_ready_requeue). Both reviewed. MECH-266/SD-032a statuses UNCHANGED in claims.yaml (pending_retest_after_substrate holds)."
+      "validation_reconcile_2026_07_08": "Status 'implemented_pending_validation' lagged the record (session ecstatic-pare-45f7ad, PROMOTES NOTHING). Both named validations RAN 2026-06-13 and self-routed on the readiness gate (external_task occupancy floor unmet -- the depends_on_unresolved Stage-H nav-competence dependency), so the validation is no longer queued/pending but the substrate still owes a contributory run once the dependency lands: v3_exq_464d_mech266_competing_goals_behavioural_20260613T183908Z_v3 (FAIL/non_contributory/substrate_not_ready_requeue) + v3_exq_467d_mech266_mode_stickiness_behavioural_20260613T153223Z_v3 (FAIL/non_contributory/substrate_not_ready_requeue). Both reviewed. MECH-266/SD-032a statuses UNCHANGED in claims.yaml (pending_retest_after_substrate holds).",
+      "severity": "corrupting",
+      "severity_note": "corrupting: the min()-based non-vacuity gate emits a route_reason that is factually false about the substrate state ('mode not occupied' when it is 100% occupied). A new experiment inheriting this gate pattern produces a non_contributory verdict with a wrong stated cause, which routes substrate work in the wrong direction -- the failure looks valid and is not.",
+      "substrate_paths": [
+        "ree_core/cingulate/salience_coordinator.py",
+        "ree_core/utils/config.py"
+      ],
+      "implementation_hint_update_2026_08_13": "SUPERSEDES the existing hint's direction. 'Supply an external-task pressure that produces genuine external_task occupancy' is DONE and works (occupancy 0.0 -> 1.0 via salience_affinity_input_cap, ree-v3 9bcde4cb63, + the _clone_for_arm GoalState fix). The open problem is the opposite: the drive now dominates absolutely and no cap value is yet known to admit a mixed regime. Next work is (a) determine whether a mixed regime exists at any cap (H1) or the discrete argmax register is structurally bang-bang (H2), and (b) restate the readiness gate per-arm/regime-conditioned rather than min-across-a-swept-range."
     },
     {
       "sd_id": "SD-061",
@@ -6251,7 +6284,18 @@
       "implementation_hint": "SEPARATE build from sd_032d_mu_kappa_mode_prior_overlays -- deliberately not bundled. The mu-overlay build is cheaper and is decisive for MECH-048's ENTROPY half regardless of occupancy; this one gates the SWITCHING-PRESSURE half. Note the non-occupancy precondition also blocks the ARC-005 routing double-dissociation, whose non-degeneracy precondition requires >= 2 modes occupied >= 5% of steps. No ree_core/cingulate/ work had landed between 2026-06-13 and 2026-07-21, and no experiment has ever exercised use_pcc_analog (0 manifests mention it).",
       "probe_queue_id": "V3-EXQ-797",
       "scoping_note_2026_07_21": "SCOPED 2026-07-21T18:10Z by practical-volhard-2c1876, AFTER this row was added -- read this BEFORE acting on implementation_hint above, two of whose three candidate causes are now FALSIFIED. (a) nav-competence / Stage-H ceiling: FALSIFIED by V3-EXQ-467d's OWN manifest -- contact guard passed 3/3 seeds (contact_non_vacuity_met=true, guard_fraction=1.0, p2_contact_rate 0.330/0.167, z_goal_norm_at_contact_peak 0.505/0.438 vs a 0.4 gate). The agent WAS foraging. (b) coordinator threshold/logit arithmetic: FALSIFIED by direct execution of SalienceCoordinator under 467d's exact registration -- external_task WINS the argmax and fires the MECH-266 trigger once external_task_drive >= ~0.567. The coordinator is fine. RESIDUAL is the engagement INJECTION path (agent.py:5744-5771): engagement = clip(commit_w*[beta_gate.is_elevated] + prox_w*goal_proximity, 0, 1), and goal_proximity = 1/(1+MSE_SUM(.)) (goal.py:832) sums over all world dims so it tops out ~0.71 at realistic norms, making engagement effectively BINARY on the beta latch -- which elevates on sustained multi-step action commitment, i.e. on the BG/commitment layer still under construction. That is why this stays complex (probe-gated) rather than complicated (buildable). TWO INDEPENDENT SUBSTRATE FACTS: (i) select_action returns at agent.py:5458 BEFORE the salience block at :5744, so the SalienceCoordinator ticks only on E3 ticks -- ~1 env step in 10 (e3_steps_per_tick=10); any per-env-step read of coord._input_signals pseudo-replicates ~10x. This also means 467d's mean_dwell was counted in ENV steps while the mode can only change on an E3 tick, so its dwell units were not decision units (recorded, not adjudicated). (ii) a post-hoc beta_gate.is_elevated read returns True spuriously because the engagement block runs BEFORE this same call's elevate() sites (:7273, :7467).",
-      "last_seen_session": "blissful-dewdney-2a9ed2"
+      "last_seen_session": "gov-failure-autopsy-8e0cca",
+      "failure_record_resolutions_2026_08_13": [
+        {
+          "resolved_note": "failure_autopsy_mech266-464e-467e-cluster_2026-08-13: this entry's own assertion 'fraction_in_external_task = 0.0 at EVERY seed WITH use_external_task_drive=True, across a 20x hysteresis sweep' is now FALSE -- 464e reads 1.0 on the sticky arm of every seed and 467e reads ~1.0 at r=0.10 on every seed. This entry's OTHER consumers (MECH-048, MECH-259, ARC-005 routing double-dissociation) still need the >=2-modes-occupied precondition, which bang-bang arbitration does NOT satisfy -- the entry stays open on that basis; only the zero-occupancy assertion above is closed.",
+          "closed_run_ids": [
+            "V3-EXQ-464b",
+            "V3-EXQ-464c",
+            "V3-EXQ-467d",
+            "V3-EXQ-464d"
+          ]
+        }
+      ]
     },
     {
       "sd_id": "SD-MEL-PRODUCER",
@@ -7192,7 +7236,7 @@
     },
     {
       "sd_id": "mech357-freeze-incompatible-pressure-mechanism",
-      "title": "Genuine freeze-incompatible Stage-H pressure for MECH-357 testing: agent-directed predator pursuit AND/OR episode-length/event-suddenness redesign",
+      "title": "Wire agent-directed hazard pursuit into Stage-H onboarding; separately investigate eligibility-trace leak:learn imbalance",
       "node_class": "complex (probe-gated)",
       "status": "pending_implementation",
       "ready": true,
@@ -7216,14 +7260,25 @@
           "target": "G_H_INTACT_frac > G_H_LESION_frac (discrimination) AND G_H_LESION_frac < 0.667 (headroom)",
           "resolved": "open",
           "note": "This is the follow-on this node's own implementation_hint recommended (mech357_freeze_incompatible_pressure_scoping_2026-08-10.md's SD-029 scheduled_external_hazard candidate, over agent-directed pursuit). It ran 2026-08-11 and also failed discrimination -- LESION reached full-ceiling survival, i.e. LESS conflict than 603s's exact-tie, not more. As of 2026-08-12 this run sits unreviewed in evidence/experiments/pending_review.md and has not been autopsied; found and logged here by chip-20260812-developmental-life-definition-scoping while scoping an unrelated developmental-readiness question. This is now a 5th inconclusive-by-design-defect attempt (603h/603k/603r/603s/603t); the agent-directed-pursuit candidate (this node's other named option, and the already-built ree_core hazard_agent_pursuit fallback per commit 39b5ca8) remains untried."
+        },
+        {
+          "run_id": "v3_exq_603t_instrumental_avoidance_scheduled_external_hazard_20260811T173724Z_v3",
+          "experiment_type": "v3_exq_603t_instrumental_avoidance_scheduled_external_hazard",
+          "metric": "G_H_LESION_frac reached 1.0 (full ceiling) under scheduled discrete-adjacency hazard pressure, worse (less conflict) than 603s's 0.6667 tie under mobile-predator drift",
+          "target": "readiness R4 requires G_H_LESION_frac < 0.333 (LESION must fail its own negative control) before the primary MECH-357 comparison is valid",
+          "resolved": "open"
         }
       ],
-      "implementation_hint": "Two consecutive config-only pressure escalations (static field 603r, mobile-predator env-drift 603s) both fail to make the LESION negative control fail its own gate. Scope BOTH candidate fixes before committing: (a) genuine agent-directed predator pursuit in Stage-H (previously deferred as not config-buildable when 603s was designed), and (b) an environment-mechanics investigation into episode length and discrete/sudden novel-threat-event timing (vs continuous drift) as a cheaper alternative that may achieve the needed discriminative pressure without new pursuit-AI code. User-raised hypothesis (2026-08-10 interactive gate): current episodes may not be long enough and/or lack sufficiently sudden/novel events for measurability. Marked complex (probe-gated), not a naked build task, because which of (a)/(b) to build is itself the open question -- a scoping spike is owed before committing to implementation. UPDATE 2026-08-12: the scoping's own recommended (b)-style fix was built and run as V3-EXQ-603t (SD-029 scheduled_external_hazard) and ALSO failed discrimination (see failure_record) -- (b)'s config-only lever space now also appears exhausted, one attempt in. The remaining untried candidate is (a), genuine agent-directed predator pursuit, for which env: hazard_agent_pursuit (ree-v3 commit 39b5ca8) already exists as a sibling to hazard_food_attraction but has not yet been threaded through a driver/experiment. This run needs a /failure-autopsy before further design work, not a straight re-scope.",
+      "implementation_hint": "Thread the already-built hazard_agent_pursuit parameter (causal_grid_world.py:517-535,1108,4980-5010) through scaffolded_sd054_onboarding.py's Stage-H _build_env (~line 1780-1800), mirroring how scheduled_external_hazard/env_drift are already threaded. Config-only pressure levers (static field, mobile-predator drift, scheduled discrete adjacency) are exhausted across 3 distinct designs; agent-directed pursuit is the one remaining candidate. Separately: infralimbic_avoidance_gate.py's eligibility trace decays ~90-100x faster than it credits (leak_rate=0.02 vs learn_rate=0.05, applied on very different tick counts), underflowing to numerical zero in every run to date -- this may need its own substrate_queue line item rather than folding into this one.",
       "priority": 2,
-      "severity": null,
-      "substrate_paths": [],
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree-v3/experiments/scaffolded_sd054_onboarding.py",
+        "ree-v3/ree_core/environment/causal_grid_world.py",
+        "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
+      ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "queue-depth-low-ops-aac785"
+      "last_seen_session": "gov-failure-autopsy-8e0cca"
     },
     {
       "sd_id": "SD-ORIENTING-DECISION-SCALE",
@@ -7233,8 +7288,8 @@
       "ready": true,
       "design_doc": "docs/architecture/sd_orienting_decision_scale.md",
       "added_utc": "2026-08-10T15:32:33Z",
-      "implementation_note": "IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component 4/5): both channels now z-scored against their own running mean/mean-absolute-deviation (EMA, frozen while orienting is active) before comparison, instead of raw magnitudes. Regression-tested directly: the bug's exact shape (harm only ~1 MAD above its baseline, benefit numerically smaller but ~8-10 MADs above its own baseline) flips from withdraw (old) to approach (new). STATUS implemented_pending_validation: mechanism landed and smoke-tested, but no ablation run has yet re-measured decision_alignment on live data -- that is the outstanding 910a re-queue (valence-gating sub-component only).",
-      "validation_experiment": "PENDING -- 910a re-queue (valence-gating sub-component only), not yet queued",
+      "implementation_note": "IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component 4/5): both channels now z-scored against their own running mean/mean-absolute-deviation (EMA, frozen while orienting is active) before comparison, instead of raw magnitudes. Regression-tested directly: the bug's exact shape (harm only ~1 MAD above its baseline, benefit numerically smaller but ~8-10 MADs above its own baseline) flips from withdraw (old) to approach (new). STATUS implemented_pending_validation: mechanism landed and smoke-tested, but no ablation run has yet re-measured decision_alignment on live data -- that is the outstanding 910a re-queue (valence-gating sub-component only). UPDATE 2026-08-13 (failure_autopsy_V3-EXQ-910a_2026-08-11): scale-mismatch fix confirmed working via the retest's own robust finding (across 63 pooled override events, discrete decision classification never once resolves 'approach'/'resume' -- independent of the broken decision_counts measurement). Residual: decision_counts itself is a separate, degrading-severity logging defect (see failure_record + severity_note), not yet fixed.",
+      "validation_experiment": "V3-EXQ-910a ran (2026-08-11) but its own acceptance criterion (decision_alignment non-degeneracy) is not usable due to the decision_counts logging defect above -- a further retest is owed once that logging defect is fixed.",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-489"
@@ -7246,16 +7301,24 @@
           "metric": "decision_alignment across 206 logged overrides: approach=0, withdraw=206, resume=0",
           "target": "a properly-scaled comparison should yield a non-degenerate mix of approach/withdraw/resume tracking actual event valence, not a 100%-one-sided split",
           "resolved": "open"
+        },
+        {
+          "run_id": "v3_exq_910a_mech489_defensive_orienting_decision_retest_20260810T213616Z_v3",
+          "experiment_type": "v3_exq_910a_mech489_defensive_orienting_decision_retest",
+          "metric": "decision_counts sum (206) exceeds the theoretical max (n_overrides=21 x orienting_post_override_bias_ticks=5 = 105) by ~2x, and is byte-identical to V3-EXQ-910's total (42 overrides, also 206) -- the per-step orienting_decision log field is decoupled from the intended N-tick persistence window in a way not fully diagnosable from the aggregated manifest alone (no per-step episode log was retained for either run)",
+          "target": "decision_counts sum should be bounded by n_overrides x orienting_post_override_bias_ticks under normal (world_states-tracked) operation, and should NOT reproduce a prior run's total exactly when n_overrides differs substantially",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "ree_core/agent.py select_action()'s Component 4/5 block compares _do_harm_val (a structurally non-negative L2 norm of z_harm_s) against _do_benefit (an RBF attraction value, near-zero unless very close to a previously-beneficial region) as if they were commensurable magnitudes. Normalize/rescale both onto the same scale (e.g. z-score each against its own running distribution, or compare signed valence rather than norm-vs-value) before the approach/withdraw/resume branch.",
       "priority": 1,
-      "severity": "corrupting",
+      "severity": "degrading",
       "substrate_paths": [
         "ree_core/agent.py::select_action"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "queue-depth-low-ops-aac785"
+      "last_seen_session": "gov-failure-autopsy-8e0cca",
+      "severity_note": "degrading (residual): the ORIGINAL corrupting-severity norm-vs-value scale mismatch (Component 4/5) is FIXED and validated by regression test. V3-EXQ-910a's retest surfaced a SEPARATE, lesser residual defect in decision_counts persistence-window logging (severity=degrading per failure_autopsy_V3-EXQ-910a_2026-08-11) -- not usable as evidence the fix failed or succeeded."
     },
     {
       "sd_id": "SD-FISHTANK-MAX-EPISODE-STEPS",
