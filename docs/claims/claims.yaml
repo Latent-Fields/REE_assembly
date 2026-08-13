@@ -14763,15 +14763,15 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-08-13
     needs_review: false
     evidence:
-      from: "decision:ARC-032@2026-03-29T21:16:41.185592Z"
-      as_of: 2026-03-29
-      verdict: hold_candidate_resolve_conflict/applied
+      from: "failure_autopsy_V3-EXQ-228d_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "does_not_support -- second, structurally-independent theta-summary implementation (phase-weighted kernel) again shows theta ACTIVE as the worse arm, reversed trend persists"
   implementation_phase: v3
-  epistemic_category: substrate_conditional
-  pending_retest_after_substrate: true  # phase/sequence-order-aware theta summary owed (V3-EXQ-228c, 2026-08-10)
+  epistemic_category: standard  # moved down from substrate_conditional 2026-08-13 -- the substrate gate (SD-100 phase-weighted summary) that justified "conditional" is now built and tested; failure_autopsy_V3-EXQ-228d_2026-08-13
+  pending_retest_after_substrate: false  # cleared 2026-08-13 -- the owed substrate build (SD-100) + retest (V3-EXQ-228d) are both complete; does_not_support
   depends_on:
     - MECH-089
     - MECH-116
@@ -14857,6 +14857,26 @@
     pending_retest_after_substrate LEFT true -- the substrate is built but not yet retested; a
     V3-EXQ-228d re-run with the new summary enabled is recommended (not queued by this session).
     Status unchanged (candidate); no confidence/promotion change (implement-substrate scope only).
+
+    [2026-08-13 governance, V3-EXQ-228d, confirmed failure_autopsy_V3-EXQ-228d_2026-08-13]: SD-100's
+    phase-weighted ThetaBuffer summary (landed 2026-08-10, addressing 228c's diagnosed flat-mean
+    permutation-invariance gap) was retested with the same E3-tick-restricted, direct-DV protocol as
+    228c. Precondition met (1.00 frac seeds); both primary criteria again FAILED 0/3 seeds, with the
+    REVERSED trend persisting under the phase-weighted summary (theta ACTIVE noisier on 100% of
+    seeds, std_effect -6.10; less persistent on 67% of seeds, though persistence_cos is near-ceiling
+    ~0.999997 in both conditions and may lack discriminating range). This is a stronger finding than
+    228c's because it is no longer attributable to the flat mean's permutation-invariance
+    specifically -- two structurally-independent implementations (flat mean and phase-weighted
+    kernel) now both show theta ACTIVE as the worse arm on the noise readout. does_not_support.
+    epistemic_category moved DOWN from substrate_conditional to standard (the substrate gate that
+    justified the conditional has now been built and tested). Routing: flag for governance
+    re-examination of ARC-032's disposition rather than a further /implement-substrate iteration,
+    unless a narrowly-scoped theta_phase_concentration sweep is deliberately chosen as one more
+    probe. pending_retest_after_substrate cleared (the owed substrate build+retest is complete).
+    Status left unchanged (candidate) this cycle -- two independent implementations now converge on
+    a null/reversed effect for the theta-packaging mechanism specifically; a future cycle should
+    weigh whether this warrants a further demotion review rather than remaining a standing
+    re-examination flag.
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: z_goal_norm must clear >= 0.05 (the EXQ-247
     gate) for goal-context maintenance to be meaningfully present at all --
@@ -18970,13 +18990,15 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "decision:MECH-150@2026-03-31T20:20:00.000000Z"
-      as_of: 2026-03-31
-      verdict: hold_candidate_resolve_conflict/applied
+      from: "failure_autopsy_V3-EXQ-922_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "supports -- C1/C1b/C2 all PASS 3/3 seeds under GOV-FANOUT-1's recommended production config, resolving the stale 418-series/898 chain"
   implementation_phase: v3
+  epistemic_category: standard
+  pending_retest_after_substrate: false
   depends_on:
     - ARC-001
     - SD-005
@@ -19020,44 +19042,25 @@
     differentiated cue content. This is a prerequisite for experimental evaluation
     of MECH-150's core claim. See EXQ-181b result.
   evidence_quality_note: >
-    EXQ-181 was degenerate (n_context_B=0 across all seeds -- hazard field ambient
-    everywhere with num_hazards=4, hazard-distal threshold never fires; C1
-    unmeasurable; marked superseded). EXQ-181b (num_hazards=1, proper sampling)
-    obtained valid context separation and found cosine_sim=0.9999 (0/3 seeds pass
-    C1) and harm_r2=0.23 (1/3 seeds pass C2). The circuit exists but ContextMemory
-    requires supervised context-labeling training before it can carry differentiated
-    cue content. MECH-150 cannot be evaluated until that training objective is added.
-    Pre-experimental prerequisite, not a claim refutation.
+    [SUPERSEDED HISTORY] EXQ-181 was degenerate (n_context_B=0 across all seeds --
+    hazard field ambient everywhere with num_hazards=4, hazard-distal threshold never
+    fires; C1 unmeasurable; marked superseded). EXQ-181b (num_hazards=1, proper
+    sampling) obtained valid context separation and found cosine_sim=0.9999 (0/3
+    seeds pass C1) and harm_r2=0.23 (1/3 seeds pass C2), attributed at the time to a
+    missing supervised context-labeling training objective. That diagnosis was itself
+    superseded (2026-06-05, V3-EXQ-418 series) by relocating the real bottleneck to
+    the environment's cross-context z_world entropy, which produced the env-entropy
+    precondition SD-016's queue entry gated on.
+
+    [2026-08-13 governance, V3-EXQ-922, confirmed failure_autopsy_V3-EXQ-922_2026-08-13]:
+    CONFIRMED. Production-combo run under GOV-FANOUT-1's recommended configuration
+    (cue_slot_tagger=True, selection=gumbel, ctxdiv_weight=0.5) -- the env-entropy
+    precondition is now satisfied and C1/C1b/C2 all PASS 3/3 seeds, resolving the
+    stale 418-series/898 chain and the training-objective/env-entropy blocker history
+    above. First-ever confirming evidence for this claim. epistemic_category standard.
+    Status unchanged (candidate) -- a single confirming run is not yet promotion-grade,
+    but the long-standing precondition blocker is now cleared.
   evidence: []
-  digestion_note: >
-    2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d, parallel
-    research agent): what_would_answer was DELIBERATELY NOT WRITTEN. This
-    claim's own text (evidence_quality_note, notes) states the blocker is a
-    missing supervised context-labeling training objective on ContextMemory
-    (per EXQ-181b, 2026-03/04). That is STALE. A later, still-unresolved probe
-    chain (V3-EXQ-418d/e/f/g/h/m, through 2026-06-05) relocated the actual
-    bottleneck: the environment (CausalGridWorldV2, no SD-023 landmarks
-    engaged) never generates enough cross-context z_world variation for ANY
-    retrieval substrate to differentiate on (cosine(z_world) across contexts
-    stays ~0.998 even with a perfectly-tuned attention path -- EXQ-418g:
-    action_class_entropy pinned at 1.1e-10 identically across all 4 arms).
-    This produced a formal env-entropy precondition
-    (cross-context cosine(z_world) < 0.95 in at least one env config), tested
-    and FAILed by V3-EXQ-418h, with a refresh/rescoping probe explicitly
-    named as queued (not yet run) in
-    evidence/planning/failure_autopsy_V3-EXQ-418m_2026-06-05.md.
-    evidence/planning/substrate_queue.json's SD-016 entry lists MECH-150 (plus
-    MECH-151/152, ARC-041, INV-040, SD-017) as blocked on THIS precondition,
-    status parked_pending_env_entropy_precondition, not on the training-
-    objective gap this claim's own notes still describe.
-    NEXT DIGESTION PASS: (1) check whether the EXQ-418h refresh/rescoping
-    probe named in the 2026-06-05 autopsy has since run and what its outcome
-    was; (2) check whether substrate_queue.json's SD-016 entry status has
-    moved off parked_pending_env_entropy_precondition; (3) reconcile that
-    outcome with this claim's own notes/evidence_quality_note (which should
-    also be refreshed to state the CURRENT blocker, independent of whether
-    what_would_answer is written in the same pass) before drafting a
-    falsifier. Remove this note once done.
 
 - id: MECH-151
   title: "The cue-indexed E1 context vector (MECH-150) projects to an action_bias signal that is added to E2.action_object() outputs, producing top-down contextual weighting of the action-affordance manifold prior to HippocampalModule search."
@@ -19067,9 +19070,15 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: "2026-08-13"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-922_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "supports -- narrow context-conditioning mechanism confirmed on 2/3 seeds under GOV-FANOUT-1's recommended production config; explicitly does NOT validate SD-055's CEM-gradient-restoration path (never invoked by this driver)"
   implementation_phase: v3
+  epistemic_category: standard
+  pending_retest_after_substrate: true  # SD-055 gradient-flow question remains open and untested by V3-EXQ-922 (see evidence_quality_note); a separate driver invoking the differentiable-CEM path is owed
   instantiates: SD-033c    # vmPFC-analog subdivision: MECH-151 is one of the existing mechanisms consolidated under SD-033c (see SD-033c.depends_on)
   depends_on:
     - MECH-150
@@ -19097,37 +19106,22 @@
     evaluation input but action gate modulation.
     Registered 2026-03-31 from frontal cue-integration circuit design.
   evidence: []
-  digestion_note: >
-    2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d, parallel
-    research agent): what_would_answer was DELIBERATELY NOT WRITTEN. This
-    claim's own record carries NO blocker statement at all (thinner even than
-    sibling MECH-150's stale one) -- but TWO separate, unresolved, more-recent
-    blocking threads apply and neither is mentioned here.
-    (1) INHERITED env-entropy precondition, same as MECH-150 (see its own
-    digestion_note): substrate_queue.json's SD-016 entry lists MECH-151
-    directly in unblocks_claims, status parked_pending_env_entropy_precondition,
-    reconfirmed by evidence/planning/failure_autopsy_V3-EXQ-418m_2026-06-05.md
-    -- z_world carries no cross-context variance (pairwise cosine ~0.998) in
-    current env configs, upstream of this claim's own cue_action_proj bias.
-    (2) THIS CLAIM'S OWN, SEPARATE gate: cue_action_proj (the signal-generating
-    head this claim's mechanism depends on) has a documented dead-gradient
-    defect. substrate_queue.json's SD-055 entry records the gradient was 0 due
-    to an argsort barrier in CEM elite-selection (EXP-0155); a fix
-    (use_differentiable_cem) landed 2026-05-15 but is OPT-IN, not default, and
-    behavioural cue-conditioned divergence validation was still deferred as of
-    2026-05-21 (2026-05-31 governance note blocks any default flip pending
-    that validation). evidence/planning/failure_autopsy_V3-EXQ-640a_2026-06-06.md
-    Section 3 point 2 empirically confirms the consequence under default
-    settings: mean_cue_action_bias_norm was NULL in every one of 6 cells
-    (n_cue_action_bias_present = 0) -- the exact action_bias signal this claim
-    posits was measured as literally absent under defaults.
-    NEXT DIGESTION PASS: treat SD-016 (env-entropy) and SD-055 (gradient-flow)
-    as TWO separate, both currently-unsatisfied non-degeneracy preconditions.
-    Check whether either has moved (SD-016's V3-EXQ-418h-successor probe
-    outcome; SD-055's deferred behavioural validation) before drafting. This
-    claim's notes/evidence_quality_note should also be updated to state at
-    least one of these blockers (currently states neither). Remove this note
-    once done.
+  evidence_quality_note: >
+    [2026-08-13 governance, V3-EXQ-922, confirmed failure_autopsy_V3-EXQ-922_2026-08-13,
+    first-ever experimental evidence entry for this claim]: SUPPORTS the narrow
+    context-conditioning mechanism (2/3 seeds) under GOV-FANOUT-1's recommended
+    production config (cue_slot_tagger=True, selection=gumbel, ctxdiv_weight=0.5).
+    RESOLVES the inherited env-entropy precondition this claim shared with MECH-150
+    (SD-016's parked_pending_env_entropy_precondition blocker is now cleared). DOES
+    NOT resolve the separate SD-055 gradient-flow question: this driver never invokes
+    the differentiable-CEM path (use_differentiable_cem, opt-in since 2026-05-15,
+    behavioural validation still deferred), so the dead-gradient defect
+    failure_autopsy_V3-EXQ-640a_2026-06-06 found under DEFAULT settings
+    (mean_cue_action_bias_norm NULL in all 6 cells) remains untested by this run --
+    the support above is scoped explicitly to exclude SD-055's gradient-path question.
+    epistemic_category standard. Status unchanged (candidate); a separate driver
+    invoking the differentiable-CEM path is still owed before the gradient-flow
+    question can be considered resolved.
 
 - id: MECH-152
   title: "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation."
@@ -19137,8 +19131,12 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: "2026-08-13"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-922_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "does_not_support -- clean FAIL under strict production-arm scoring (0/3 both criteria); legacy soft-selection arm (A0_OFF) was much closer to threshold, a live lead pointing at selection-hardness interaction rather than mechanism absence"
   status_note: |
     Promoted candidate -> provisional 2026-04-03.
     Evidence: conf=0.773, conflict_ratio=0, 2 exp supports, 2 lit entries.
@@ -19146,6 +19144,8 @@
     0 conflicting experiments. Note: evidence_quality_note was empty at promotion -- 2 experiments
     is a thin base; evidence_quality_note should be updated when additional experiments run.
   implementation_phase: v3
+  epistemic_category: standard
+  pending_retest_after_substrate: true  # soft-selection+ctxdiv-ON ablation owed (SD-016 amend, failure_autopsy_V3-EXQ-922_2026-08-13) to discriminate selection-hardness interaction from mechanism absence before further disposition
   instantiates: SD-033c    # vmPFC-analog subdivision: MECH-152 is one of the existing mechanisms consolidated under SD-033c (see SD-033c.depends_on)
   depends_on:
     - MECH-150
@@ -19185,6 +19185,20 @@
     harm modulation works) but C2 FAIL (r_w_goal=-0.007, w_goal constant). EXQ-194a
     (phased training) also ran. Hold at candidate: harm pathway validated but goal
     pathway not yet functional. Promote only after w_goal validation. (governance 2026-04-01)
+
+    [2026-08-13 governance, V3-EXQ-922, confirmed failure_autopsy_V3-EXQ-922_2026-08-13]:
+    does_not_support. Production-combo run under GOV-FANOUT-1's recommended configuration
+    (cue_slot_tagger=True, selection=gumbel, ctxdiv_weight=0.5, strict production-arm
+    scoring) -- MECH-152 FAILS cleanly (0/3 both criteria: r_w_harm_mean=0.0013 vs
+    threshold >0.5; r_w_goal_mean=-0.0077 vs threshold <-0.3), materially worse than
+    194a's own MIXED result. But the A0_OFF (legacy soft-selection) arm's numbers were
+    much closer to threshold (r_w_harm_mean=0.356, r_w_goal_mean=-0.355) than
+    A1_PRODUCTION's -- a real interpretive lead pointing at a selection-hardness
+    interaction (hard-Gumbel selection suppressing the terrain-precision signal) rather
+    than outright mechanism absence. Provisional (unchanged); the soft-selection +
+    ctxdiv-ON ablation this note flags as owed is the discriminator between those two
+    readings and should run before any further disposition change. epistemic_category
+    standard.
   what_would_answer: |
     CURRENT EVIDENCE STATE: MIXED (EXQ-194/194a, 2026-04-01) -- the HARM
     pathway is validated (C1 PASS 3/3, r_w_harm=0.70: harm-context
@@ -19229,13 +19243,14 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "decision:ARC-041@2026-03-31T20:20:00.000000Z"
-      as_of: 2026-03-31
-      verdict: hold_candidate_resolve_conflict/applied
+      from: "failure_autopsy_V3-EXQ-922_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "mixed -- pre-registered dual-pathway dissociation signature (exactly one pathway surviving) is technically met (MECH-151 supports / MECH-152 does_not_support), but the disposition is HELD, not finalized, pending MECH-152's own owed ablation"
   implementation_phase: v3
+  pending_retest_after_substrate: true  # HELD -- see evidence_quality_note; re-examine once MECH-152's soft-selection+ctxdiv-ON ablation resolves
   depends_on:
     - MECH-150
     - MECH-151
@@ -19246,7 +19261,7 @@
     - ARC-002
     - ARC-003
     - SD-005
-  epistemic_category: substrate_conditional
+  epistemic_category: substrate_conditional  # left UNCHANGED 2026-08-13 -- disposition not finalized (HELD), do not downgrade; see evidence_quality_note
   what_would_answer: |
     RELATIONSHIP TO SD-016: ARC-041 and SD-016 describe the identical
     physical mechanism (E1 ContextMemory queried with z_world alone ->
@@ -19343,6 +19358,22 @@
     rates, not simultaneous output from a single retrieval step. This may share
     an underlying reason with the E1/E2 developmental training differential vs E3
     (ARC-042 staged development). See MECH-160 for the specific rate asymmetry claim.
+  evidence_quality_note: >
+    [2026-08-13 governance, V3-EXQ-922, confirmed failure_autopsy_V3-EXQ-922_2026-08-13]: HELD,
+    not finalized. V3-EXQ-922's per-arm results technically meet this claim's own pre-registered
+    dissociation signature (exactly one pathway surviving): MECH-151 SUPPORTS the narrow
+    context-conditioning mechanism (2/3 seeds) while MECH-152 does_not_support (clean FAIL 0/3
+    under strict production-arm scoring). The user explicitly DECLINED to finalize this as the
+    dual-pathway falsification during the autopsy (chose "Hold ARC-041's falsification" over the
+    recommended "Accept the split routing"), because the dissociation is driven entirely by
+    MECH-152's result, and MECH-152's own disposition is itself gated on a queued soft-selection +
+    ctxdiv-ON ablation that discriminates a selection-hardness interaction from genuine mechanism
+    absence -- see MECH-152's own evidence_quality_note. epistemic_category left UNCHANGED at
+    substrate_conditional (not downgraded to standard) precisely because disposition is not final.
+    Status unchanged (candidate). Re-examine once the MECH-152 ablation resolves: if MECH-152's
+    FAIL survives under soft selection too, the dual-pathway falsification signature becomes live;
+    if the ablation recovers MECH-152's signal, ARC-041's dual-pathway architecture stands
+    supported on both legs.
   evidence: []
 
 - id: INV-040
@@ -21711,15 +21742,16 @@
   subject: sleep_phase.minimal_sleep_infrastructure_v3
   polarity: asserts
   status: stable
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  epistemic_category: standard
   live_status:
     reading: stable
-    as_of: 2026-08-03
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
-      as_of: 2026-08-07
-      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
+      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -21820,21 +21852,39 @@
     inherits the identical confound -- v3_exq_242/243/245/245a/245b/246 share the shape; any
     criterion pre-registered on it should be re-read with this in mind. PROMOTES/DEMOTES NOTHING
     this cycle (a corrected DV, not this cycle's data, is what would move status).
+
+    [2026-08-13 governance, V3-EXQ-436e, confirmed failure_autopsy_V3-EXQ-436e_2026-08-13]: the
+    436d-methodology-check's owed occupied-slots-only DV repair has now run. Implements all 6 items
+    of that autopsy's Recommendation #4: statistic over occupied slots only (tracking
+    ContextMemory.write()'s own min_idx via a read-only wrapper), similarity/occupancy reported
+    separately (never their product), WAKING_ONLY given a real write path (sd016_writepath_mode=
+    'sense_only') plus a new NO_WRITES calibration-only arm, Adam drift neutralized
+    (context_memory.memory.requires_grad_(False)), baseline re-derived empirically at run time, and
+    the NO_WRITES arm checked against that re-derived null as a P0 gate. Two new P0 gates
+    (waking_writepath_engaged, sufficient_occupancy_for_c1) beyond the 436c/436d sleep-write
+    counters. evidence_direction STANDS at non_contributory (a P0 readiness failure, not a
+    claim-layer result -- third consecutive letter whose FAIL is upstream of the comparison).
+    epistemic_category standard (was unset). pending_retest_after_substrate stays true,
+    RE-SCOPED from "after-DV-repair" (now complete) to "after-SD-016-armed" -- the corrected DV
+    machinery is confirmed sound; the remaining blocker is SD-016's own cue-conditioning wiring
+    (shared substrate with ARC-041/MECH-150/151/152) needing to be armed before this lineage's
+    slot-differentiation question can be tested at adequate power. Status unchanged.
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
   claim_type: architectural_commitment
   subject: hippocampus.bidirectional_information_flow
   polarity: asserts
   status: candidate
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  epistemic_category: standard
   live_status:
     reading: candidate
-    as_of: 2026-08-03
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
-      as_of: 2026-08-07
-      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
+      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -21901,21 +21951,33 @@
     re-scoped after-DV-repair; V3-EXQ-436e chipped on an occupied-slots-only DV. Does NOT weight
     toward demotion. sws_slot_diversity (same whole-bank formula) inherits the identical confound
     across v3_exq_242/243/245/245a/245b/246. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-13 governance, V3-EXQ-436e, confirmed failure_autopsy_V3-EXQ-436e_2026-08-13]: the
+    owed occupied-slots-only DV repair has run (statistic over occupied slots only via a read-only
+    ContextMemory.write() wrapper, similarity/occupancy reported separately, WAKING_ONLY given a
+    real write path plus a new NO_WRITES calibration arm, Adam drift neutralized, baseline
+    re-derived empirically, plus two new P0 gates). evidence_direction STANDS at non_contributory
+    -- a P0 readiness failure (SD-016 not yet armed), not a claim-layer result. epistemic_category
+    standard (was unset). pending_retest_after_substrate stays true, RE-SCOPED from
+    "after-DV-repair" (now complete) to "after-SD-016-armed" -- the corrected DV machinery is
+    confirmed sound; the blocker is SD-016's cue-conditioning wiring needing to be armed. Status
+    unchanged.
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
   claim_type: mechanism_hypothesis
   subject: hippocampus.slot_formation_filling_temporal_separation
   polarity: asserts
   status: candidate
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  epistemic_category: standard
   live_status:
     reading: candidate
-    as_of: 2026-08-03
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
-      as_of: 2026-08-07
-      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
+      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -21978,6 +22040,16 @@
     re-scoped after-DV-repair; V3-EXQ-436e chipped on an occupied-slots-only DV. Does NOT weight
     toward demotion. sws_slot_diversity (same whole-bank formula) inherits the identical confound
     across v3_exq_242/243/245/245a/245b/246. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-13 governance, V3-EXQ-436e, confirmed failure_autopsy_V3-EXQ-436e_2026-08-13]: the
+    owed occupied-slots-only DV repair has run (statistic over occupied slots only, similarity/
+    occupancy reported separately, WAKING_ONLY given a real write path plus a NO_WRITES
+    calibration arm, Adam drift neutralized, baseline re-derived empirically, plus two new P0
+    gates). evidence_direction STANDS at non_contributory -- a P0 readiness failure (SD-016 not
+    yet armed), not a claim-layer result. epistemic_category standard (was unset).
+    pending_retest_after_substrate stays true, RE-SCOPED from "after-DV-repair" (now complete) to
+    "after-SD-016-armed" -- the corrected DV machinery is confirmed sound; the blocker is SD-016's
+    cue-conditioning wiring needing to be armed. Status unchanged.
 - id: MECH-167
   title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
   claim_type: mechanism_hypothesis
@@ -33621,10 +33693,35 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: "2026-08-13"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-914-914a_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory -- MEASURES FAILED (CEM elite-selection goal-blind under this driver's config), not chargeable to the claim; the ghost-probe channel itself functions correctly"
   registered: "2026-04-15"
   implementation_phase: v3
+  epistemic_category: standard
+  pending_retest_after_substrate: false
+  evidence_quality_note: >
+    [2026-08-13 governance, V3-EXQ-914/914a, confirmed failure_autopsy_V3-EXQ-914-914a_2026-08-13,
+    first genuine touchpoint for this claim]: 914 (superseded, already correctly excluded from
+    scoring) -- ratified as a real instrument defect: a read-modify-write race between two ree-v3
+    commits landed a mid-edit periodic-anchor-write snapshot, not a MECH-236 finding. 914a
+    (self-routed weakens, reclassified non_contributory): traced HippocampalModule._score_trajectory
+    (ree_core/hippocampal/module.py:1513) and confirmed CEM elite-selection is goal-blind under this
+    driver's config -- wanting_weight=0.0 (deliberately zeroed to isolate the MECH-293 ghost-probe
+    channel), benefit_terrain_enabled defaults False and is never set, and NUM_HAZARDS=0 leaves the
+    remaining ARC-007 residue-field term (a harm-accumulation mechanism) with nothing to accumulate.
+    The ghost-probe channel itself FUNCTIONS CORRECTLY (both preconditions P1/P2 met, confirmed
+    bit-identical CLOSED-vs-NOGOAL trajectories per the driver's own calibration) but nothing
+    downstream can preferentially select goal-tagged candidates, so C_MAIN's null is structurally
+    near-guaranteed regardless of MECH-236's truth. Failure-location (GOV-FAILLOC-1): MEASURES
+    FAILED, not chargeable to the claim. Routed /queue-experiment redesign (914b: pair
+    wanting_weight>0 with the ghost-probe channel rather than isolating them, and/or restore a
+    hazard/terrain signal). No substrate build owed (wanting_weight already exists as an unused
+    lever). Status unchanged (candidate); epistemic_category standard (first evidence entry, no
+    prior touchpoints).
   depends_on:
     - MECH-230
     - ARC-007
@@ -35671,13 +35768,23 @@
     it falsified nav-competence and frozen-argmax as causes and localised the
     gap to the BG/action-commitment layer (commit term fires on
     < BETA_FLOOR of genuine coordinator ticks) -- i.e. upstream of SD-032a's
-    own substrate. This thread CONFIRMS once a successor run (post a
-    commitment-layer fix, not yet queued as of 2026-08-06) shows
-    fraction_in_external_task > OCCUPANCY_FLOOR on >= 2/3 seeds/arms, at which
-    point MECH-266's own behavioural falsifiers (currently held at
-    provisional/pending_retest_after_substrate) become live. It remains
-    non_contributory (not a weakens against SD-032a) for as long as the gate
-    stays upstream.
+    own substrate.
+
+    UPDATE 2026-08-13 (confirmed failure_autopsy_mech266-464e-467e-cluster_2026-08-13,
+    V3-EXQ-467e + V3-EXQ-464e): the commitment-layer fix landed and occupancy IS now
+    reachable (1.0 at r=0.10 in 467e, sticky-arm 1.0 with zero switches in 464e) -- the
+    predicted successor condition above is met, and MECH-266's own behavioural
+    falsifiers are indeed now live, exactly as this paragraph anticipated. But the
+    readiness gate itself (min-across-arms non-vacuity check) is now confirmed
+    corrupting-severity on ree_core/cingulate/salience_coordinator.py +
+    ree_core/utils/config.py -- it emits a factually-false route_reason when the mode
+    is 100% occupied, and both fresh results self-route non_contributory for a NEW
+    reason (bang-bang arbitration masked by the gate defect), not the old
+    unreachability. This remains non_contributory against SD-032a -- the substrate
+    itself is exercised and working; the residual is a downstream gate/measurement
+    defect plus an over-correction (bang-bang, no mixed regime) in the
+    mode-governance-engagement extension, neither of which implicates SD-032a's core
+    (28 supports / 0 weakens, unchanged).
 
     FALSIFYING signature (would REVERSE stable status -- nothing currently
     threatens this): a well-powered future run in which the coordinator's
@@ -39170,15 +39277,16 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-08-13
     needs_review: false
     evidence:
-      from: "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c"
-      as_of: 2026-06-12
-      verdict: non_contributory/substrate_ceiling
+      from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory (both legs) -- occupancy is now reachable (substrate advanced, not ceilinged) but the mode-governance-engagement gate over-corrects into bang-bang arbitration with no mixed regime; a corrupting-severity measurement defect in the readiness gate's non-vacuity check (min-across-arms) is masking the real state"
   implementation_phase: v3
   v3_pending: false
-  pending_retest_after_substrate: true  # mode-governance-engagement (gov 2026-06-13)
+  epistemic_category: standard  # confirmed 2026-08-13 -- NOT substrate_ceiling; the substrate advanced (occupancy 0.0 -> 1.0), the residual failure is a measurement/gate defect
+  pending_retest_after_substrate: true  # mode-governance-engagement amend owed (corrupting-severity gate fix; bang-bang arbitration needs a mixed-regime cap value or a per-arm/regime-conditioned readiness gate)
   governance_note_2026_06_13: >
     V3-EXQ-464c + 467c reclassified non_contributory (substrate_ceiling,
     pending_retest_after_substrate) per confirmed
@@ -39209,6 +39317,33 @@
     demotion is DEFERRED again (user 2026-06-13): conflict-resolution remains substrate-blocked
     (Stage-H nav competence), so neither demote-now nor hold-and-resolve can make progress this
     cycle. Re-evaluate once external_task occupancy is reachable.
+  governance_note_2026_08_13: >
+    [confirmed failure_autopsy_mech266-464e-467e-cluster_2026-08-13, V3-EXQ-467e + V3-EXQ-464e]:
+    the 467d/464d Stage-H nav-competence blockers ARE fixed -- external_task occupancy is now
+    reachable (1.0 at r=0.10 on every seed vs 0.0 everywhere in 467b/c/d; sticky arm reaches 1.0
+    with zero switches in 464e vs 0.0 everywhere in 464c). The substrate ADVANCED, it did not
+    ceiling. But AFFINITY_INPUT_CAP=2.0 over-corrects into bang-bang arbitration: a step function
+    (occupancy ~1.0 at r=0.10, exactly 0.0 at every r>=0.50; n_switches==n_episodes invariant
+    across a 20x rail sweep in 467e; sticky arm 1.0/zero-switches vs symmetric arm 0.0 on 2/3
+    seeds in 464e). Both results are non_contributory, not falsifying, but for a THIRD reason
+    beyond unreachability: the readiness gate's min-across-arms non-vacuity check is itself
+    corrupting -- it is anti-correlated with C1's own predicted effect (stronger hysteresis drives
+    occupancy to 0 at high rails, failing the gate), conflates "mode unreachable" with "mode
+    saturated," and emits a factually-false route_reason ("external_task_mode_not_occupied") when
+    the mode is 100% occupied at r=0.10. 464e's own criteria pass 3/3 but vacuously
+    (criteria_non_degenerate false -- rail saturation, not graded hysteresis). Severity=corrupting
+    on ree_core/cingulate/salience_coordinator.py + ree_core/utils/config.py: a new experiment
+    inheriting this gate pattern would get a wrong-but-plausible-looking non_contributory verdict.
+    Partially resolves prior failure_record items (467c, 464c -- the zero-occupancy half only, the
+    switching half is NOT resolved) and the sd_salience_contested_mode_occupancy entry's own
+    "occupancy always 0.0" assertion (now false), which should stay open for its OTHER consumers
+    (MECH-048, MECH-259, ARC-005 routing double-dissociation) since bang-bang arbitration does not
+    satisfy their >=2-modes-occupied precondition either. Next work: (a) determine whether a mixed
+    regime exists at any cap value (H1) or the discrete argmax register is structurally bang-bang
+    (H2), and (b) restate the readiness gate per-arm/regime-conditioned rather than
+    min-across-a-swept-range. Status unchanged (provisional); the provisional->candidate demotion
+    question stays open, now on cleaner (non-substrate-blocked, non-vacuous-gate) footing once the
+    gate fix lands.
   implementation_note: >
     IMPLEMENTED 2026-04-21 as a Schmitt-trigger extension of the
     MECH-259 symmetric switch_threshold in ree-v3/ree_core/cingulate/
@@ -45989,6 +46124,21 @@
     owed once the dedicated signal lands, and requires auditing which
     other production drivers (764, 520, 916/916a, and any future driver
     enabling use_contextual_safety_terrain) should consume which signal.
+
+    [GFLAG-0026, raised 2026-08-12T21:17:50Z, resolved 2026-08-13 governance]: two
+    refinements to the 917 finding above, both already consistent with the
+    SD-MECH303-THRESHOLD-SOURCING routing decision -- no status/confidence change.
+    (1) V3-EXQ-917's own "damage_sourced is the production default" premise is
+    corrected: of the 20 drivers that exercise this gate, only 2 (V3-EXQ-520,
+    V3-EXQ-764) actually set limb_damage_enabled=True, and neither is a reviewed
+    scored damage_sourced run; the other 18 (including V3-EXQ-916/916a, which 917's
+    own docstring miscited) run under the proximity_ema_sourced default. (2) The
+    reconciliation this correction feeds is written up in full in
+    evidence/planning/mech303_contextual_safety_threshold_reachability.md
+    (2026-08-12 addendum). Confirms the dedicated-signal routing already chosen
+    remains correct: MECH-303 should not silently inherit limb_damage_enabled from
+    unrelated driver config regardless of which sourcing mode happens to be more
+    common in the corpus.
   pending_retest_after_substrate: true
   depends_on:
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
@@ -61829,12 +61979,16 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-13
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-603t_2026-08-13"
+      as_of: "2026-08-13"
+      verdict: "non_contributory -- 4th consecutive inconclusive-by-design-defect (Stage-H readiness R4 unmet, config-only pressure levers now exhausted across 3 designs); mechanism-engagement/survival predictions still neither confirmed nor falsified"
   implementation_phase: v3
   v3_pending: true
   epistemic_category: standard
-  pending_retest_after_substrate: true  # freeze-incompatible pressure lever owed (V3-EXQ-603s, 2026-08-10); combined-fix rerun 603r/603s both non_contributory by design defect, mechanism-engagement claim untested at adequate power
+  pending_retest_after_substrate: true  # agent-directed hazard_agent_pursuit wiring owed (mech357-freeze-incompatible-pressure-mechanism amend); config-only levers (static field, mobile-predator drift, scheduled adjacency) exhausted across 603r/603s/603t
   claim_level: mechanistic
   registered_utc: "2026-06-07"
   depends_on:
@@ -61939,6 +62093,25 @@
     pending_retest_after_substrate. Third consecutive inconclusive-by-design-defect result; MECH-357's
     mechanism-engagement claim remains neither confirmed nor falsified. Status unchanged
     (candidate/v3_pending).
+
+    [2026-08-13 governance, V3-EXQ-603t, confirmed failure_autopsy_V3-EXQ-603t_2026-08-13]: fourth
+    consecutive inconclusive-by-design-defect result on the Stage-H readiness guard. The SD-029
+    scheduled_external_hazard fix (agent-relative, discrete adjacency event; the scoping-recommended
+    successor to 603s's undirected mobile-predator drift) again failed to make ARM_LESION fail its
+    own negative control -- G_H_LESION_frac reached full ceiling (1.0/3), i.e. less conflict than
+    603s's exact tie (0.6667/0.6667), not more. non_contributory by design (readiness R4 unmet), not
+    a MECH-357 falsification -- ARM_INTACT actually scored worse than ARM_LESION (0.333 vs 1.0) but
+    this comparison is not load-bearing under the failed guard. Separately and newly characterized:
+    avoidance_efficacy remains numerically underflowed to ~0 (1e-89 to 1e-127) in every arm/seed,
+    consistent with 603h/603r/603s -- traced to a ~90-100:1 decay:credit tick ratio against
+    leak_rate=0.02 in infralimbic_avoidance_gate.py, meaning the gate's suppression has been governed
+    by the annealing scaffold_floor alone, never by learned efficacy, in every run to date. Config-only
+    Stage-H pressure levers (static field, mobile-predator drift, scheduled discrete adjacency) now
+    appear exhausted across three distinct designs; routed to /implement-substrate to wire the
+    already-built hazard_agent_pursuit (causal_grid_world.py) into scaffolded_sd054_onboarding.py --
+    the remaining candidate. epistemic_category unchanged (standard); status unchanged
+    (candidate/v3_pending). MECH-357's mechanism-engagement and survival predictions remain neither
+    confirmed nor falsified after four attempts.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: freeze must commit on LESION arm and the gate must
     engage+suppress on INTACT arm. ALREADY MET ONCE, cleanly: V3-EXQ-603h reported
@@ -79620,16 +79793,16 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: "2026-08-10"
+    as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-910_2026-08-10"
-      as_of: "2026-08-10"
-      verdict: "mixed -- trigger-alignment sub-claim fairly falsified per this claim's own pre-registered falsifying signature; valence-gating sub-claim confounded by a code bug, not fairly tested"
+      from: "failure_autopsy_V3-EXQ-910a_2026-08-11"
+      as_of: "2026-08-13"
+      verdict: "mixed -- 910's trigger-alignment falsification reconfirmed (no new weight); new decision_alignment criterion FAILED but its underlying decision_counts measurement is independently broken (2x theoretical max, byte-identical to 910's total despite different override counts), so not usable as evidence either way"
   implementation_phase: v3
   v3_pending: false
   epistemic_category: standard
-  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE fix LANDED 2026-08-10 (see implementation_note); valence-gating sub-component still awaits its re-test run (910a re-queue)
+  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE amend owed (decision-logging defect, severity=degrading) before any further 489 retest is informative
   implementation_note: >
     SD-ORIENTING-DECISION-SCALE IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component
     4/5, docs/architecture/sd_orienting_decision_scale.md): fixed the norm-vs-value scale mismatch
@@ -79701,6 +79874,26 @@
     falsification stands and does not need re-testing). Re-derive brake and granularity-debt checks
     both run: neither fires (first autopsy on this claim, 0 prior hits). Status unchanged
     (candidate).
+
+
+    [2026-08-13 governance, V3-EXQ-910a, confirmed failure_autopsy_V3-EXQ-910a_2026-08-11]: MIXED,
+    reconfirms rather than extends 910. Trigger-alignment (0/0/0%) reconfirms 910's own
+    falsification of falsifying signature #1 -- no new claim-layer weight from this leg. New
+    criterion (c), decision_alignment non-degeneracy (the SD-ORIENTING-DECISION-SCALE fix's own
+    acceptance test), FAILED -- but the measurement it depends on (decision_counts) is
+    independently shown to be broken: its sum (206) is ~2x the theoretical maximum and is
+    byte-identical to V3-EXQ-910's own total despite half the override count and a different
+    substrate_hash. Criterion (c)'s FAIL is therefore NOT usable as evidence the fix failed, nor
+    that it succeeded. One robust, window-independent finding survives: across 63 pooled override
+    events (42 in 910 + 21 in 910a), the discrete decision classification made AT the override
+    tick itself never once resolves "approach" or "resume." Separately and newly:
+    identification_confidence is code-verified to be a pure signal-decay/habituation tracker with
+    zero epistemic content (ree_core/pag/defensive_orienting.py:299-309) -- a finding against
+    SD-099's own architecture-doc narrative language, not against this claim's formal boundary,
+    which is retained unchanged. Routed /implement-substrate (SD-ORIENTING-DECISION-SCALE amend,
+    severity=degrading) for the decision-logging defect; explicitly NOT routing a fresh
+    discriminating experiment until the corrected measurement is available. Re-derive brake and
+    granularity-debt checks both run: neither fires. Status unchanged (candidate).
   notes: >
     Built 2026-08-09 (session 906b-defensive-orienting-v3) via /implement-substrate, from
     observational_review_V3-EXQ-906b_2026-08-09.md Sections 11b/11d (design, user-ratified "as
