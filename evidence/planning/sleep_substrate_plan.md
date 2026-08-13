@@ -12,7 +12,7 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -29,7 +29,7 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -60,7 +60,7 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -78,7 +78,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -98,7 +98,7 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -115,7 +115,7 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -133,7 +133,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -183,7 +183,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -202,7 +202,7 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
@@ -220,7 +220,7 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-08-13"
-        from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
+        from: "failure_autopsy_V3-EXQ-861b_2026-08-13"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"

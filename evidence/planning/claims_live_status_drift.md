@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-13T06:10:20Z
+Generated: 2026-08-13T19:53:58Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -8,7 +8,7 @@ Warn-only by default -- run with `--strict` for a blocking gate.
 
 Claims in registry: 1006
 
-## Reading drift -- HARD (116)
+## Reading drift -- HARD (115)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -43,7 +43,6 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | SD-007 | `implemented` | `implemented` | needs_review: stored=True derived=False |
 | MECH-108 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-114 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
-| ARC-032 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-034 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-037 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-038 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
