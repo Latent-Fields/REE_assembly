@@ -1,0 +1,144 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-13T04:19:12Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
+      "queue_id": "V3-EXQ-436e",
+      "supersedes": "V3-EXQ-436d",
+      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "self_route_label": "insufficient_occupancy_for_c1",
+      "failed_criterion": "readiness_precondition",
+      "failed_criterion_note": "Neither a discrimination criterion nor a negative control. P0 check sufficient_occupancy_for_c1 measured 2 scoreable seeds against a floor of 3; the C1 comparison was never reached on 3/5 seeds. The other 4 P0 checks all cleared.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- a P0 readiness failure upstream of the comparison. On both seeds where the corrected DV is defined C1 passes in the predicted direction (2/2), but the registered bar is 3/5 and the effective denominator is 2, so the criterion is unsatisfiable by construction. Weighs on the claims in NEITHER direction.",
+        "biological_reference": "clear -- hippocampus-to-neocortex schema installation (Diekelmann & Born 2010) and Sanders/Wilson/Gershman 2020 hidden-state prior. Not a formal-definition import; no lit-pull owed.",
+        "prerequisites": "present but unarmed -- SD-016 cue-indexed retrieval landed 2026-08-11 (ree-v3 110a2785b6) naming SD-017 in its unblocks_claims; the run left both enabling knobs at their default-off values.",
+        "implementation": "complete -- both the SWS/REM passes and the SD-016 selection mechanism exist and are wired on trunk. This is a configuration gap, not a build gap.",
+        "environment": "too sparse (known) -- CausalGridWorldV2 z_world cross-context cosine 0.998 (substrate_queue SD-016, 2026-04-28); the SD-070 encoder recipe that lifts it 2.7-4.0x was not applied.",
+        "measurement": "adequate -- first sound instrument in the lineage: occupancy-masked statistic tracking write()'s own min_idx, similarity and occupancy reported separately rather than as a product, untouched-bank null re-derived at run time (n=500), NO_WRITES negative control at exactly 0 writes with max |z| = 1.670 against a 4.0-sigma tolerance.",
+        "integration": "partially coupled -- sleep writes and the ContextMemory readout are correctly coupled; the cue-conditioning that makes the readout differentiable is not engaged.",
+        "scale": "adequate -- 16 slots is not the binding constraint; the write path fans out to 11-14 of them under adequate query variance."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- not chargeable to REE. Dominantly a configuration/precondition failure with a known environment contribution. MECHANISM is not established because the mechanism was never armed; MEASURES is not established because measurement adequacy reads 'adequate' -- the instrument is the one thing this run got right."
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS hippocampus-to-neocortex schema installation followed by REM-direction attribution filling; context slot formation as a learned hidden-state prior",
+        "dependencies": ["cue-distinguishable context representations (z_world cross-context separation)", "a write path that addresses distinct slots for distinct contexts", "offline replay passes"],
+        "is_formal_import": false,
+        "divergence": "none identified -- the failure is configuration and environment, not translation fidelity",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "SD-017": "standard",
+        "ARC-045": "standard",
+        "MECH-166": "standard"
+      },
+      "recommended_epistemic_category_note": "Deliberately NOT substrate_ceiling, and the alternative was live at the Step 8 gate. substrate_ceiling asserts the claim's answer is gated on substrate work; here the substrate shipped 2026-08-11 and merely needs switching on. Stamping ceiling would push SD-017 to a 3rd hit, fire the re-derive brake, refuse the very re-queue that is the correct action, and mark all three not-v3-testable. The failure mode (default-off enabling flag / occupancy precondition) is recorded in the note fields per the standing rule that a failure-mode diagnosis is not an epistemic_category. User-adjudicated 2026-08-13.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-017": "non_contributory",
+        "ARC-045": "non_contributory",
+        "MECH-166": "non_contributory"
+      },
+      "interpretable_signal": "Stated explicitly before recommending non_contributory, per the standing rule. (1) The DV repair is empirically confirmed working -- 4/5 P0 checks clear, drift neutralisation verified against a re-derived null. (2) On both seeds where the corrected instrument is defined, C1 passes in the predicted direction, one substantially (0.96795 -> 0.83109). (3) A durable substrate property is established: ContextMemory.write()'s argmin addressing has a deterministic single-slot fixed point under a degenerate query stream. (4) An alternative cause was tested and refuted. The run is non_contributory to the CLAIMS specifically, not uninformative.",
+      "recommended_evidence_quality_note": "[2026-08-13 governance, V3-EXQ-436e, confirmed failure_autopsy_V3-EXQ-436e_2026-08-13, successor to V3-EXQ-436d]: fifth generation, and the FIRST with a sound instrument -- all six items of the 2026-08-07 methodology-check recommendation are implemented and empirically confirmed (occupancy-masked DV; similarity and occupancy reported separately; WAKING_ONLY given a real write path, 15,428 calls; Adam drift neutralised, NO_WRITES arm max |z| = 1.67 against a re-derived null of mean 1.9e-05 / sd 7.8e-03; baseline re-derived at run time). Recording standard complete, 0 dry runs, non_degenerate true. FAIL is at the P0 readiness layer, NOT the comparison: only 2/5 seeds carry >= 2 occupied ContextMemory slots (need 3), because seeds 7/13/100 occupy exactly ONE slot of 16 in BOTH arms despite 3,019-4,884 write() calls each -- arm-independent, therefore not an effect of sleep. On both seeds where the corrected DV is defined, C1 PASSES in the predicted direction (seed 42 0.99902 -> 0.99656; seed 200 0.96795 -> 0.83109), i.e. 2/2 directional but under-powered against the registered 3/5 bar. Root cause established by probe: ContextMemory.write() addresses by argmin(query . memory) and has a deterministic single-slot fixed point when the query stream is near-constant, predicted 5/5 by sign(q . (write_signal - memory[argmin])); an alternative hypothesis that 436e's own requires_grad_(False) freeze caused it was TESTED AND REFUTED (frozen and unfrozen both fan out to 11-14/16 slots under varied input). The degenerate-query regime is the long-registered SD-016 z_world bottleneck (cross-batch cosine 0.998, substrate_queue SD-016 entry, 2026-04-28), whose selection-mechanism fix LANDED 2026-08-11 (ree-v3 110a2785b6) with SD-017 named in its unblocks_claims -- and V3-EXQ-436e, queued 2026-08-12, armed none of it (sd016_cue_slot_tagger and sd016_context_divergence_weight both absent from the driver and config; the code IS in 436e's substrate commit 871c221933, verified by merge-base). non_contributory: the run is a precondition failure upstream of the comparison and weighs on the claims in NEITHER direction. epistemic_category standard, deliberately NOT substrate_ceiling -- the substrate is built and merely unarmed, so the answer is not gated on substrate work; stamping ceiling would fire the re-derive brake against the re-queue that is the correct action. pending_retest_after_substrate stays true, re-scoped from \"after-DV-repair\" to \"after-SD-016-armed\": V3-EXQ-436f is owed, identical to 436e but with sd016_cue_slot_tagger=True / selection='gumbel' / sd016_context_divergence_weight=0.5. Supersedes the 436c/436d weakens readings, which the 2026-08-07 methodology check had already retired -- NOTHING in this lineage currently constitutes evidence against SD-017/ARC-045/MECH-166. PROMOTES/DEMOTES NOTHING this cycle.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-016",
+        "failure_record_entry": {
+          "run_id": "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
+          "experiment_type": "v3_exq_436e_sd017_mech166_occupied_slot_retest",
+          "metric": "n_occupied_slots = 1 of 16 in BOTH arms on 3/5 seeds (7, 13, 100) despite 3,019-4,884 ContextMemory.write() calls per arm; only 2/5 seeds scoreable against a registered 3/5 bar. Root cause: argmin write-addressing has a deterministic single-slot fixed point under the degenerate query stream this entry has recorded since 2026-04-28 (z_world cross-batch cosine 0.998). SD-017 is named in this entry's unblocks_claims and the selection-mechanism fix landed 2026-08-11 (ree-v3 110a2785b6), but V3-EXQ-436e (queued 2026-08-12) armed neither sd016_cue_slot_tagger nor sd016_context_divergence_weight -- the code IS present in its substrate commit 871c221933 (merge-base verified), just default-off.",
+          "target": ">= 2 occupied slots in both arms on >= 3/5 seeds, under sd016_cue_slot_tagger=True / selection='gumbel' / sd016_context_divergence_weight=0.5",
+          "resolved": "open"
+        },
+        "severity_note": "No severity or substrate_paths change proposed. The SD-016 mechanism is not defective -- it was not switched on -- so there is nothing here for the /queue-experiment Step 2.5c defect gate to protect other experiments from. Leave the existing entry's severity/substrate_paths as governance already has them.",
+        "corpus_observation": "Recorded, not chipped (user decision at the Step 8 gate). Only 5 drivers in ree-v3/experiments/ arm sd016_cue_slot_tagger (418m, 898, 907, 908, 922 -- all SD-016's own lineage) and only 2 arm sd016_context_divergence_weight. MECH-150, MECH-151, MECH-152, ARC-041 and INV-040 are also named in this entry's unblocks_claims and may be in the same default-off position; not investigated by this autopsy."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_rescope_note": "Re-scoped a second time: 'after-substrate' (pre-2026-08-07) -> 'after-DV-repair' (2026-08-07 methodology check) -> 'after-SD-016-armed' (2026-08-13, this autopsy). The sleep_substrate:GAP-2 closure node still describes the blocker in the original pre-2026-08-07 framing and has not tracked either re-scoping.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "counts_under_r1_r3": {"SD-017": 2, "ARC-045": 0, "MECH-166": 0},
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-538a_2026-07-10",
+          "failure_autopsy_grandfathered-sleep-cluster_2026-08-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "This autopsy recommends `standard`, so it adds no ceiling hit and SD-017 stays at 2. Neither counted SD-017 hit is in the 436 lineage -- every 436-family adjudication carries a measurement_* / precondition_unmet category, correctly excluded by R3. Independently, the brake's own stated exemption applies: the substrate IS genuinely being enriched between letters (436c->436d gated_content_write; 436d->436e occupancy masking + drift neutralisation + negative control; 436e->436f SD-016 cue-slot tagging), so a same-question re-queue is the intended path rather than the loop the brake exists to stop."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_counts": {
+          "SD-017": {"targets": 14, "files": 7},
+          "ARC-045": {"targets": 6, "files": 6},
+          "MECH-166": {"targets": 6, "files": 6}
+        },
+        "alignment_distribution": "unclear (436b, 436d pending_review batch, 538a), weakened (436c), untested (436d methodology-check), intact (242 proxy substrate, 436a)",
+        "reason": "Numeric precondition met but substantively against firing. (1) The single `weakened` target (436c) was explicitly REVERSED by failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07, which found the whole DV confounded; under latest-adjudication-wins no live target reads weakened. (2) The differing signatures (recording gap -> write_gate payload defect -> metric confound -> occupancy/configuration) are successive defects in ONE apparatus being debugged layer by layer on ONE question, not distinct facets of a claim that is secretly several claims. The claim has never been tested at all. Routing /claim-synthesis here would inflate the believed tail on what is measurement and configuration debt.",
+        "counted_by": "granularity_debt_cluster.py (targets whose own claim_ids name the claim), not a filename grep"
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The DV repair commissioned by the 2026-08-07 methodology check WORKED and should not be re-litigated: all six items landed and are empirically confirmed (NO_WRITES arm at exactly 0 writes, max |z| = 1.670 against a re-derived null; waking writepath engaged at 15,428 calls). V3-EXQ-436f inherits this instrument unchanged.",
+        "ContextMemory.write() addresses by argmin(query . memory) and has a DETERMINISTIC single-slot fixed point under a near-constant query stream, with a closed-form sign discriminator q . (write_signal - memory[argmin]) < 0 that predicted lock-vs-rotate 5/5. A durable property of the write rule relevant to every ContextMemory consumer, not only this lineage.",
+        "REFUTED HYPOTHESIS (recorded so it is not re-derived): 436e's own context_memory.memory.requires_grad_(False) freeze does NOT cause the occupancy collapse. Frozen and unfrozen both fan out to 11-14 of 16 slots under varied input, at 600 and 3000 write loads, with and without the sd016 diversification step. The freeze/diversification interaction is real but inert at this operating point.",
+        "A substrate can be recorded as landed-and-unblocking-claim-X while every experiment testing X still runs against its default-off flag. substrate_queue.unblocks_claims is not mechanically connected to any experiment's config. V3-EXQ-436e was queued 20 hours after SD-016's addendum declared SD-017 unblocked and armed none of it.",
+        "Two independent diagnostic lines converged on one substrate property: the 2026-04-28 attention/retrieval finding (z_world cross-batch cosine 0.998, read side) and this run's write-occupancy collapse (write side) are the same degenerate-query regime.",
+        "A P0 readiness failure is not a claim-layer result. V3-EXQ-436e is the third consecutive letter whose FAIL is upstream of the comparison; treating any of them as evidence about SD-017/ARC-045/MECH-166 would be a layer error."
+      ],
+      "routing": "queue-experiment",
+      "routing_spec": {
+        "successor_queue_id_suggested": "V3-EXQ-436f",
+        "kind": "same-question re-run, alphabetic suffix",
+        "unchanged_from_436e": "driver, conditions (NO_WRITES / WAKING_ONLY / SWS_THEN_REM), seeds [42, 7, 13, 100, 200], training loop, action-selection wiring, occupied-slots-only DV, C1 shape (paired, directional, >= 3/5 seeds), all five P0 checks",
+        "single_change": {
+          "sd016_cue_slot_tagger": true,
+          "sd016_cue_slot_tagger_selection": "gumbel",
+          "sd016_context_divergence_weight": 0.5
+        },
+        "rationale": "The production combination named by substrate_queue SD-016's own status_note_addendum_20260811. V3-EXQ-436e already carries the sufficient_occupancy_for_c1 P0 gate, so if arming still fails to lift slot fan-out the run self-reports as a readiness failure rather than producing a misleading scored result. Approximately 32 minutes of cloud compute.",
+        "queue_note_requirement": "Record in the 436f queue entry note that its predecessor failed on occupancy with SD-016 unarmed, so the comparison 436f is making is legible without re-reading this artifact.",
+        "not_routed": {
+          "implement-substrate": "Nothing is owed as a build -- the mechanism exists and is on trunk since 2026-08-11.",
+          "lit-pull": "Biological reference is clear and already grounded; not a formal-definition import.",
+          "claim-synthesis": "See granularity_debt_trigger -- measurement and configuration debt, not granularity debt.",
+          "governance-demotion": "The demotion threshold requires the claim to have been tested fairly; it has not been tested at all."
+        },
+        "chip_policy_note": "This session does NOT spawn the V3-EXQ-436f chip. Per CLAUDE.md Session Land Protocol step 6, a /failure-autopsy does not chip follow-on that its own not-yet-ratified routing names -- /governance Step 2b re-confirms the routing before Step 4/6a applies it, and chipping here would race that confirmation. Recorded for governance to chip."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger": {
+    "applies": false,
+    "reason": "No fanout_recommendation is emitted (the bottleneck routes to a single unambiguous re-queue with an already-built mechanism, not a discrimination among >= 2 live hypotheses), and the single target's adjudication resolves no pre-registered leg in hypothesis_space_registry.v1.json -- no question in the ledger carries a hypothesis whose adjudicating_runs name V3-EXQ-436e. Step 9b therefore skips cleanly; the registry and its three derive-only siblings are not touched by this autopsy."
+  },
+  "provenance": {
+    "session_id": "jovial-shannon-35d300",
+    "session_label": "SD-017/ARC-045/MECH-166 436e adjudication",
+    "gates_run": [
+      "check_dry_run_citations.py -- 0 dry cited, 5 clean, exit 0",
+      "validate_recording.py -- OK, 1 complete, 0 always-core gaps",
+      "granularity_debt_cluster.py -- SD-017 / ARC-045 / MECH-166",
+      "re-derive brake count under the R1-R3 convention"
+    ],
+    "coordination_plane_pause": "NOT held by this session. task_claim.py open refused the autopsy-pause claim (exit 3) -- owner igw-auto-igw-216-substrate-ready-sd-mech303-thres-20260812T222657Z, a STAGED-never-launched IGW claim. The plane was already paused for the whole diagnosis by a concurrent peer autopsy (pensive-franklin-1e285b-pause, MECH-266 464e/467e cluster), confirmed via coordination_plane.is_coordination_plane_paused() -> (True, 'pensive-franklin-1e285b-pause'), so the lock's purpose was served. The artifact claim (jovial-shannon-35d300) covering these two files opened cleanly and uncontended."
+  }
+}
