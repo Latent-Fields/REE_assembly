@@ -179,6 +179,39 @@
         "sign"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-436e_2026-08-13|0|5": {
+      "artifact": "failure_autopsy_V3-EXQ-436e_2026-08-13",
+      "claim_ids": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "embedded_ids": [
+        "436e",
+        "v3-exq-436e"
+      ],
+      "flags": [
+        "third_consecutive"
+      ],
+      "item_index": 5,
+      "run_id": "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
+      "source": "autopsy",
+      "strong_severity": true,
+      "target_index": 0,
+      "text": "A P0 readiness failure is not a claim-layer result. V3-EXQ-436e is the third consecutive letter whose FAIL is upstream of the comparison; treating any of them as evidence about SD-017/ARC-045/MECH-166 would be a layer error.",
+      "tokens": [
+        "claim-layer",
+        "comparison",
+        "error",
+        "fail",
+        "failure",
+        "layer",
+        "letter",
+        "readiness",
+        "treating",
+        "upstream"
+      ]
+    },
     "autopsy|failure_autopsy_V3-EXQ-514q_2026-06-16|0|1": {
       "artifact": "failure_autopsy_V3-EXQ-514q_2026-06-16",
       "claim_ids": [
@@ -969,6 +1002,57 @@
         "split-fate",
         "sub-mechanisms",
         "testable"
+      ]
+    },
+    "autopsy|failure_autopsy_V3-EXQ-914-914a_2026-08-13|1|1": {
+      "artifact": "failure_autopsy_V3-EXQ-914-914a_2026-08-13",
+      "claim_ids": [
+        "MECH-236"
+      ],
+      "embedded_ids": [],
+      "flags": [
+        "recurs"
+      ],
+      "item_index": 1,
+      "run_id": "v3_exq_914_mech236_hippocampal_zgoal_channel_ablation_20260811T065911Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 1,
+      "text": "The substrate_queue.json modulatory-bias-selection-authority fix (E3.select, implemented) does not reach into the hippocampal CEM's own internal elite-selection/refit step -- a goal-blind refit can discard a genuinely better candidate before E3 ever sees it. Not routed as new substrate work here since the existing lever (wanting_weight) already covers it; flagged for a future session if this call site recurs as a blocker across more than this one claim.",
+      "tokens": [
+        "already",
+        "better",
+        "blocker",
+        "call",
+        "candidate",
+        "covers",
+        "discard",
+        "does",
+        "elite-selection",
+        "ever",
+        "existing",
+        "flagged",
+        "future",
+        "genuinely",
+        "goal-blind",
+        "hippocampal",
+        "implemented",
+        "internal",
+        "json",
+        "lever",
+        "modulatory-bias-selection-authority",
+        "reach",
+        "refit",
+        "routed",
+        "sees",
+        "select",
+        "session",
+        "site",
+        "step",
+        "substrate",
+        "substrate_queue",
+        "wanting_weight",
+        "work"
       ]
     },
     "autopsy|failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12|3|1": {
@@ -1892,7 +1976,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-08-12T18:26:05Z",
+  "last_swept_at": "2026-08-13T05:19:42Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -1949,6 +2033,7 @@
     "failure_autopsy_V3-EXQ-436b_2026-08-02.json": 1785667957.8075736,
     "failure_autopsy_V3-EXQ-436c_2026-08-03.json": 1785752327.570451,
     "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.json": 1786137958.7999935,
+    "failure_autopsy_V3-EXQ-436e_2026-08-13.json": 1786596415.456954,
     "failure_autopsy_V3-EXQ-445h_2026-06-19.json": 1781879536.2040417,
     "failure_autopsy_V3-EXQ-455a_2026-05-25.json": 1784537630.5768764,
     "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04.json": 1780554770.920178,
@@ -2248,6 +2333,7 @@
     "failure_autopsy_V3-EXQ-910_2026-08-10.json": 1786371933.468331,
     "failure_autopsy_V3-EXQ-910a_2026-08-11.json": 1786425715.2250483,
     "failure_autopsy_V3-EXQ-912-913-fishtank-cluster_2026-08-11.json": 1786428213.4325554,
+    "failure_autopsy_V3-EXQ-914-914a_2026-08-13.json": 1786596880.3948073,
     "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json": 1786508459.6863186,
     "failure_autopsy_V3-EXQ-918a_2026-08-12.json": 1786510799.4227335,
     "failure_autopsy_V3-EXQ-923_2026-08-12.json": 1786516837.5521908,
@@ -2287,6 +2373,7 @@
     "failure_autopsy_mech025-cluster-876-671b_2026-08-03.json": 1785748835.6335511,
     "failure_autopsy_mech075-second-cluster_2026-08-10.json": 1786343361.4801238,
     "failure_autopsy_mech075-vta-lc-cluster_2026-08-09.json": 1786254342.297757,
+    "failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json": 1786595627.6535141,
     "failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25.json": 1785023783.3349857,
     "failure_autopsy_mech457-retention-portfolio_2026-07-20.json": 1784561746.8989909,
     "failure_autopsy_mech463-exogenous-inertness_2026-07-20.json": 1784561531.923593,
@@ -2298,5 +2385,5 @@
     "failure_autopsy_v3exq665-cluster_2026-08-09.json": 1786259604.7569785,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1786509555.577155
+  "seen_review_tracker_mtime": 1786569020.6867068
 }

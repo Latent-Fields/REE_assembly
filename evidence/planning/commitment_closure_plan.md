@@ -12,8 +12,8 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -38,8 +38,8 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -56,8 +56,8 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -75,8 +75,8 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -121,8 +121,8 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -145,8 +145,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -163,8 +163,8 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -180,8 +180,8 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -198,8 +198,8 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -231,8 +231,8 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -249,8 +249,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
@@ -268,8 +268,8 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-12"
-        from: "failure_autopsy_V3-EXQ-923_2026-08-12"
+        as_of: "2026-08-13"
+        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
