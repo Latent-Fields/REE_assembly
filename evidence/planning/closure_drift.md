@@ -1,17 +1,14 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-08-13T19:53:46Z
+Generated: 2026-08-13T20:35:19Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
 Warn-only -- this script never blocks the governance pipeline.
 
-## Drifted nodes (2)
+## Drifted nodes (0)
 
-| plan | node | status | owner_exq | node last_updated | terminal signal |
-|------|------|--------|-----------|-------------------|-----------------|
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | in-progress | V3-EXQ-846 | 2026-07-31 | manifest `evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json` |
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A-precision-diagnostic` | in-progress | V3-EXQ-848, V3-EXQ-848a, V3-EXQ-848b (recommended, not yet queued) | 2026-08-03 | manifest `evidence/experiments/v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3.json` + autopsy `evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json` |
+_None._
 
 ## Suppressed (legitimately non-terminal) (1)
 

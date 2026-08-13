@@ -24220,6 +24220,32 @@
     independent replications. Promotion re-gated on a genuinely independent test (new seeds, and/or
     a held-out environment, and/or a consumer-absent control per the claim's own what_would_answer
     non-degeneracy precondition). No status change. PROMOTES NOTHING.
+    [2026-08-13 governance, V3-EXQ-861b, confirmed failure_autopsy_V3-EXQ-861b_2026-08-13]: this
+    was that genuinely independent test -- seeds [7,271,883], disjoint from the prior lineage's
+    [42,123,456], with ARM_4_HIGH_OFF retained as the consumer-absent control. FAIL, self-route
+    mel_control_degenerate. C1 (within-seed graded MEL->duration monotonicity, this invariant's
+    own DVs sws_power/replay_rate) replicated CLEANLY on all 3 new seeds. C2 (the decisive
+    independence leg: ON factor > pinned OFF baseline) failed 2/3 seeds (7, 271), but the autopsy
+    traced this to a CALIBRATION-NOISE artifact, not an absence of coupling: the mel_reference
+    denominator is a noisy 3-episode point estimate with a ~3x cross-seed spread (0.636-1.719
+    across all 6 seeds run in this lineage to date) comparable to or larger than the effect size
+    C2 needs to discriminate. This noise was present in every prior "confirmed positive" run
+    (845/861/861a) too but was invisible -- their 3-DV conjunctive gate was always driven to
+    c2_pass=False by the separately-broken spindle_density leg regardless of DV1/DV2's own
+    margin; narrowing to 2 DVs in 861b is what EXPOSED the fragility, not what introduced it.
+    Net: 4/6 seeds tested to date (42,123,456,883) show the predicted ON>OFF direction robustly;
+    2/6 (7,271) flip sign on calibration noise. NOT weakened (C1 replicated cleanly; C2's failure
+    is diagnosed as a non-biological instrument gap), NOT independently corroborated either (the
+    decisive leg didn't resolve). GOV-FAILLOC-1: Implementation established, Environment
+    established, Measurement NOT established (CALIB_EPISODES=3 undersized vs the noise floor) ->
+    single-bucket MEASURES FAILED, not a demotion case. evidence_direction non_contributory,
+    epistemic_category UNCHANGED (standard). GFLAG-0002 REMAINS UNRESOLVED (not failed, not
+    passed) pending a re-run with a fixed calibration procedure. Routed to /queue-experiment for
+    a same-question letter (861c: more calibration episodes and/or an uncertainty-aware C2
+    threshold) -- explicitly NOT a bare re-seed at the same methodology. No substrate_queue
+    change (driver-methodology fix, not a ree_core defect). Re-derive brake: does not fire
+    (recommended_epistemic_category is standard, not substrate_ceiling). PROMOTES/DEMOTES
+    NOTHING.
   pending_retest_after_substrate: true
   pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent. SUPERSEDED 2026-08-01: the deferred substrate (SD-MEL-PRODUCER) landed and validated 2026-07-21/29; epistemic_category is now standard (see evidence_quality_note RESOLVED entry). pending_retest_after_substrate STAYS true, now pointed at the narrower MECH-122 content-packaging gap tracked on sibling MECH-180."
   depends_on:
@@ -24694,6 +24720,22 @@
     substrate_ceiling re-derive brake stays at 1 prior ceiling hit (V3-EXQ-677), threshold 2 not
     reached, does not fire. pending_retest_after_substrate STAYS true pending the MECH-122 write-gate
     fix (amend landed this cycle on MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION).
+
+    [2026-08-13 governance, V3-EXQ-861b, confirmed failure_autopsy_V3-EXQ-861b_2026-08-13]: the
+    GFLAG-0002 independence-gated replication (see sibling INV-050's evidence_quality_note for
+    the full account -- seeds [7,271,883] disjoint from prior lineage, C1 replicated cleanly on
+    all 3, C2 failed 2/3 seeds but the autopsy diagnosed a calibration-noise artifact in the
+    driver's mel_reference denominator, not an absence of coupling). DV1/DV2 (this claim's own
+    sws_power/replay_rate) are the SAME two DVs INV-050 shares; DV3 (spindle_density, the
+    MECH-122-content-packaging-dependent leg) was pre-registered DESCOPED this run (scored gate
+    narrowed to the 2 built DVs) and is UNAFFECTED by this run's finding -- MECH122-CONTENT-
+    PACKAGING-SPINDLE-SELECTION stays implemented_validation_failed_needs_followup_fix, unchanged.
+    evidence_direction non_contributory, epistemic_category UNCHANGED (standard). v3_pending
+    STAYS. pending_retest_after_substrate STAYS true (still pointed at the MECH-122 write-gate
+    fix for DV3; unaffected by this run). Re-derive brake: does not fire (2 confirmed
+    substrate_ceiling hits, 677/718a; recommended_epistemic_category here is standard, not
+    substrate_ceiling, so no increment). Routed to /queue-experiment for a same-question letter
+    (861c, calibration redesign) -- explicitly not a bare re-seed. PROMOTES/DEMOTES NOTHING.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)

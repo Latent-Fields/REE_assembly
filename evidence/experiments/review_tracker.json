@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-13T06:33:28Z",
+  "last_review_utc": "2026-08-13T20:30:17Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1156,7 +1156,8 @@
     "v3_exq_922_sd016_mech151_152_arc041_production_combo",
     "v3_exq_436e_sd017_mech166_occupied_slot_retest",
     "v3_exq_467e_mech266_mode_stickiness_behavioural",
-    "v3_exq_464e_mech266_competing_goals_behavioural"
+    "v3_exq_464e_mech266_competing_goals_behavioural",
+    "v3_exq_861b_inv050_mech180_independent_seed_replication"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3973,7 +3974,8 @@
     "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3",
     "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
     "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
-    "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3"
+    "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3",
+    "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6252,6 +6254,20 @@
         "v3_v3_exq_926_runner_error_20260813T045041Z_v3 (V3-EXQ-926, MECH-449) -- non-zero exit code 1, no runner sentinel; routes to /diagnose-errors, not autopsy"
       ],
       "notes": "Autopsy pre-flight (Step 1.5) cleared: all 6 items from last cycle's left_pending_needs_failure_autopsy (914a/603t/919/228d/922, plus 910a's deeper measurement-validity autopsy) were confirmed by a concurrent session mid-cycle (REE_assembly 924fcf4652) while this session was drafting the walk; re-synced onto that landing (discarded own stale pre-pull regen, derive-only, no data lost) rather than racing it. Plus 467e/464e (MECH-266/SD-032a cluster) autopsied this session. Applied to claims.yaml: MECH-489 mixed (SD-ORIENTING-DECISION-SCALE amend, severity=degrading -- decision_counts measurement independently broken, not usable as evidence either way); MECH-357 non_contributory (4th consecutive Stage-H readiness-guard defect, config-only pressure levers exhausted across 3 designs, routed hazard_agent_pursuit wiring); ARC-032 does_not_support + epistemic_category substrate_conditional->standard (2nd structurally-independent theta-summary implementation confirms the reversed-trend null; flagged for a future demotion-review discussion, not applied this cycle); MECH-236 non_contributory (914 superseded/instrument-defect ratified, 914a MEASURES-FAILED per GOV-FAILLOC-1 -- CEM elite-selection goal-blind under this driver's zeroed wanting_weight, not chargeable to the claim; first genuine touchpoint); MECH-150 supports/confirmed (resolves the stale 418-series/898 env-entropy blocker, digestion_note retired); MECH-151 supports, scoped to explicitly exclude SD-055's still-open gradient-flow question; MECH-152 does_not_support, stays provisional (A0_OFF proximity-to-threshold is a live selection-hardness lead, soft-selection+ctxdiv-ON ablation owed before further disposition); ARC-041 HELD per user's mid-autopsy choice (epistemic_category left substrate_conditional, not finalized as the dual-pathway falsification pending MECH-152's ablation); SD-017/ARC-045/MECH-166 non_contributory, epistemic_category unset->standard, pending_retest_after_substrate re-scoped from after-DV-repair (now complete, 436e confirms the occupied-slots-only DV repair is sound) to after-SD-016-armed; MECH-266/SD-032a non_contributory but for a NEW reason (substrate advanced -- occupancy 0.0->1.0 -- but the mode-governance-engagement readiness gate is now confirmed severity=corrupting on salience_coordinator.py/config.py, masking a bang-bang-arbitration state as unreachability; SD-032a's own core stays stable/unimplicated). GFLAG-0026 (MECH-303) folded into evidence_quality_note and resolved -- corrects V3-EXQ-917's own premise (2/20 drivers set limb_damage_enabled, not the majority) and confirms last cycle's SD-MECH303-THRESHOLD-SOURCING routing already covers it, no status change. V3-EXQ-926 (MECH-449, ERROR) left pending, routes to /diagnose-errors per skill boundary, never autopsied. Promotion/demotion agenda: MECH-152's standing demote_to_candidate recommendation held (autopsy's own ablation-owed read takes precedence over the generic conflict-ratio recommendation); remaining pending_user items (MECH-074d/142/143/236/289/357/SD-009/027/033e) confirmed as-is, no new information this cycle beyond what the FAIL walk above already covers for MECH-236/357/152. GOV-DIAG-1 discussed in detail: ARC-070/MECH-321/MECH-288's 6/6/3-hit recurrence traces one underlying GOV-FANOUT-1 portfolio (816b/816d env-axis, 816c measurement-axis, 830 scale-axis) all converging on 'no axis produces a discriminating low-V_s condition', with 839 already validating mid-execution reachability and recommending a genuine MECH-321 R4 behavioural evidence experiment (not yet queued) -- chipped. fishtank_906_lineage_ecology_showcase's 3-hit recurrence is a claim-free observational showcase series recurring by design (telemetry-maximalism), not a mis-posed-question signature -- no action. GOV-CEIL-1 ceiling-may-have-lifted: ARC-030 (MECH-307 substrate now implemented) -- chipped for retest."
+    },
+    {
+      "timestamp_utc": "2026-08-13T20:30:17Z",
+      "session_label": "governance cycle (closure-maps-correctness-807268, worktree)",
+      "reviewed_run_ids": [
+        "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_861b_inv050_mech180_independent_seed_replication"
+      ],
+      "left_pending_needs_diagnose_errors": [
+        "v3_v3_exq_926_runner_error_20260813T045041Z_v3 (V3-EXQ-926, MECH-449) -- non-zero exit code 1, no runner sentinel; unchanged since last cycle, routes to /diagnose-errors, not autopsy"
+      ],
+      "notes": "Single pending FAIL this cycle: V3-EXQ-861b (INV-050/MECH-180 GFLAG-0002 independent-seed replication), already autopsied and user-confirmed in this same worktree's prior /failure-autopsy session ~1h before this cycle started (failure_autopsy_V3-EXQ-861b_2026-08-13, confirmed). Applied to claims.yaml: both claims evidence_direction non_contributory, epistemic_category UNCHANGED (standard), GFLAG-0002 remains unresolved (C1 replicated cleanly on 3 disjoint seeds; C2 failed 2/3 seeds but traced to a calibration-noise artifact in the driver's mel_reference denominator, not an absence of coupling). Routed to /queue-experiment for same-question letter 861c (calibration redesign), not yet chipped (autopsy-recommended routing chips only after governance ratification per 2026-07-30 rule). Promotion/demotion agenda (9 pending_user items): MECH-152's demote_to_candidate recommendation is STALE relative to today's earlier V3-EXQ-922 autopsy, which explicitly held provisional pending an owed soft-selection+ctxdiv-ON ablation -- formally recorded via record_decision.py (hold_provisional_pending_ablation, applied) rather than demoting, matching the prior cycle's same-day judgment. Remaining 8 pending_user items (MECH-142/143/236/289/357, SD-009/027/033e) are standing recurring holds with unchanged underlying gates -- reaffirmed as-is, formally recorded via record_decision.py (applied) so the decision_status reflects in the next regen. Claim contention noted: this cycle's governance-pause claim opened --allow-overlap against an active igw-auto-igw-217 implement-substrate claim on claims.yaml (staged, not launched, no live process) -- proceeded per user direction; genuinely different task, no edit collision observed."
     }
   ]
 }
