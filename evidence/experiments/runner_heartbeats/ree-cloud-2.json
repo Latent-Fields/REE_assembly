@@ -1,48 +1,48 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-14T16:02:51Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-603u",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-923",
-      "result": "FAIL",
-      "completed_at": "2026-08-12T04:55:13.706337+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-924",
-      "result": "PASS",
-      "completed_at": "2026-08-12T05:11:15.484735+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-929",
-      "result": "PASS",
-      "completed_at": "2026-08-14T08:16:06.932285+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-930",
-      "result": "PASS",
-      "completed_at": "2026-08-14T09:24:38.089566+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-933",
-      "result": "PASS",
-      "completed_at": "2026-08-14T15:58:45.461389+00:00"
-    }
+  "last_tick_utc": "2026-08-14T16:33:31Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-920a",
+  "current_exq_started_utc": "2026-08-14T16:14:59.730697+00:00",
+  "current_title": "Uncensored survival-to-death fishtank, TRUE single-life design -- MULTI-SEED re-run of V3-EXQ-920 (explicit --seeds 0..7; supersedes 920's 1-of-8-seeds execution defect)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 1 / single_life_uncensored_survival",
+    "runs_done": 1,
+    "runs_total": 8,
+    "episodes_done": 20,
+    "episodes_total": 220,
+    "overall_pct": 13.6
+  },
+  "seconds_elapsed": 1112,
+  "seconds_remaining": 6020,
+  "recent_lines": [
+    "[V3-EXQ-920] Uncensored Survival-to-Death Fishtank, TRUE Single-Life Design",
+    "Seeds: [0, 1, 2, 3, 4, 5, 6, 7]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
+    "Train eps/seed: 220  Eval: 1 continuous life x up to 20000 steps/seed (906b ecology, max_episode_steps=20000 via SD-FISHTANK-MAX-EPISODE-STEPS)",
+    "Output: REE_assembly/evidence/experiments/v3_exq_920_uncensored_survival_single_life_fishtank/",
+    "Seed 0 Condition single_life_uncensored_survival",
+    "[EXQ-920] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON (906b ecology, max_episode_steps=20000)",
+    "[train] stage0 seed=0 ep 20/220 z_goal_peak=0.4782",
+    "[train] stage0b seed=0 ep 30/220",
+    "[train] p0 seed=0 ep 130/220 harm_enabled=True harm_steps=3078",
+    "[train] hazard seed=0 ep 170/220 G_H=FAIL harm_eval_range=0.2666 harm_steps=452",
+    "[train] p1 seed=0 ep 220/220 survival_gate=FAIL",
+    "[eval] seed=0 ep 1/1 steps=1944 done_cause=health_depleted spawn_attempts=1",
+    "[EXQ-920] seed=0 channel std: z_harm_a=2.6383  z_harm_un=0.0506  drive=0.2919  z_goal=0.1027  vigor=0.0000  z_block=0.0126  excite=2.1213  dread=0.1059",
+    "[EXQ-920] seed=0 realized_steps=1944 done_cause=health_depleted cumulative_lived_steps=1944",
+    "verdict: PASS seed=0 core_ok=True harm_trained=True",
+    "Seed 1 Condition single_life_uncensored_survival",
+    "[EXQ-920] seed=1 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON (906b ecology, max_episode_steps=20000)",
+    "[train] stage0 seed=1 ep 20/220 z_goal_peak=0.4276"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 840,
-  "runner_version": "r5171 1ba7682 2026-08-14 (running r5170 6e27d86)",
+  "runner_version": "r5174 0d963c6 2026-08-14 (running r5170 6e27d86)",
   "gpu": {
     "available": false
   },
