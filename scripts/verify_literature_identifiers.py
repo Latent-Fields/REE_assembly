@@ -398,6 +398,116 @@ def pubmed_declared_doi(rec):
 
 
 # --------------------------------------------------------------------------
+# the DOI -> PMID crosswalk (esearch `<doi>[AID]`)
+#
+# ``pubmed_declared_doi`` above answers "which DOI does PubMed hold for this
+# PMID". This is the same question asked the other way round, and it is the only
+# route that reaches the 1579 records carrying a DOI and no PMID -- for which
+# ``doi_pmid_mismatch`` and ``crossview_title_mismatch`` structurally cannot
+# fire, there being nothing to cross-resolve against.
+#
+# WHAT IT CAN AND CANNOT ADD, stated plainly because the obvious reading is too
+# generous. The comparison this enables is against the record's OWN declared
+# title and first author, so it is verdict 3's shape, not verdict 1's: it is not
+# record-internal, and it is not conclusive in verdict 1's sense. What it
+# genuinely adds over verdict 3 is a SECOND, INDEPENDENT authoritative view of
+# the same DOI -- reaching the cases where Crossref and doi.org resolve nothing
+# at all (so verdict 3 fails open and the record goes unchecked entirely), or
+# resolve to a record carrying no title or no author list.
+
+PUBMED_AID_CACHE_KIND = "pubmed_aid"
+
+ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+
+# PubMed answers a `<doi>[AID]` term in one of two visibly different ways, and
+# the difference is the reliable hit/miss signal -- more reliable than a
+# non-empty idlist alone. A DOI it INDEXES is rewritten into a tokenised phrase
+# search over the Publisher ID field:
+#
+#     term 10.1523/JNEUROSCI.4718-06.2007[AID]
+#       -> "10 1523 jneurosci 4718 06 2007"[Publisher ID]      count=1
+#
+# A DOI it does NOT index comes back with the term UNTRANSLATED and a
+# `phrasesnotfound` entry:
+#
+#     term 10.48550/arXiv.2004.04136[AID]
+#       -> 10.48550/arXiv.2004.04136[AID]                      count=0
+#
+# Requiring the marker is what keeps a DOI made of ordinary English words from
+# being silently reinterpreted as a free-text search whose hits would then be
+# read as a crosswalk. Measured against the corpus, an untranslated query never
+# returns ids -- so this is a belt-and-braces guard, and it is cheap.
+AID_TRANSLATION_MARKER = "[Publisher ID]"
+
+
+def aid_cache_key(doi):
+    """Cache key for the crosswalk. Lower-cased, like the other DOI-keyed kinds.
+
+    NOT ``normalise_doi``: that is the COMPARISON form and collapses slash runs,
+    so keying on it would serve one cached answer for two DOIs that were queried
+    as different strings. The value actually sent to PubMed is what gets cached.
+    """
+    return str(doi).strip().lower()
+
+
+def fetch_pubmed_aid(doi, cache_dir, limiter, timeout=30):
+    """esearch the PubMed AID index for one DOI. Returns the payload, or None if cached.
+
+    DELIBERATELY DOES NOT CACHE FAILURES, which is a departure from
+    ``audit.fetch_crossref`` / ``fetch_pubmed`` and the reason is worth stating.
+    Those cache a failure so a permanently-dead identifier is not re-fetched on
+    every sweep, which is right when the failure is a 404 about a specific work.
+    Here the common answer is a legitimate MISS (``count=0``, "this DOI is not a
+    PubMed record") and that IS cached -- it is an answer. What must not be
+    cached is a TRANSPORT failure: an HTTP 429 from NCBI's rate limiter or a
+    dropped connection, persisted as though it were an answer, would silently
+    remove that record from every future sweep with no way to tell it apart from
+    a real miss. Failures are returned to the caller, counted, and named.
+    """
+    path = audit.cache_path(cache_dir, PUBMED_AID_CACHE_KIND, aid_cache_key(doi))
+    if path.exists():
+        return None
+    url = (ESEARCH_URL + "?db=pubmed&retmode=json&term="
+           + urllib.parse.quote(str(doi) + "[AID]", safe=""))
+    try:
+        limiter.wait()
+        body = audit.http_get(url, timeout=timeout)
+        result = (json.loads(body).get("esearchresult") or {})
+        payload = {"ok": True, "message": {
+            "count": str(result.get("count", "0")),
+            "idlist": [str(i) for i in (result.get("idlist") or [])],
+            "querytranslation": str(result.get("querytranslation") or ""),
+        }}
+    except urllib.error.HTTPError as exc:
+        return {"ok": False, "error": "http_%d" % exc.code}
+    except Exception as exc:
+        return {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    return payload
+
+
+def pubmed_holds_doi(rec, doi):
+    """True / False / None -- does PubMed's record for this PMID declare this DOI?
+
+    The round trip that makes a crosswalk hit trustworthy, and it is not
+    ceremonial. ``[AID]`` is a tokenised PHRASE search, so a query is contained
+    by any longer Publisher ID with the same leading tokens -- a DOI recorded
+    with a suffix (``...014.suppl``) can match a query for its stem. Confirming
+    that PubMed's own ``articleids`` for the returned PMID names the DOI that was
+    asked about rules that out completely.
+
+    None when PubMed serves no DOI for that record at all, which is a real
+    condition (it is why ``crossview_title_mismatch`` has to exist) and must fail
+    open rather than read as a contradiction.
+    """
+    declared = pubmed_declared_doi(rec)
+    if not declared:
+        return None
+    return normalise_doi(declared) == normalise_doi(doi)
+
+
+# --------------------------------------------------------------------------
 # resolution
 
 
@@ -480,6 +590,171 @@ class Resolver:
     def pmid_view(self, pmid):
         rec = self.pubmed_record(pmid)
         return (audit.pubmed_view(rec), "pubmed") if rec else (None, "unresolvable")
+
+    def pmids_for_doi(self, doi):
+        """(pmids, why) -- which PMIDs PubMed holds for this DOI.
+
+        The three return shapes are deliberately distinct and callers must not
+        collapse them:
+
+            ([], "not_in_pubmed")   asked and answered -- PubMed indexes no
+                                    record for this DOI. This is the COMMON
+                                    case, not a finding: arXiv preprints, ML
+                                    conference papers, book chapters and
+                                    monographs are all legitimately absent.
+            ([pmid, ...], "ok")     asked and answered with a mapping.
+            (None, <reason>)        the question could not be asked -- offline,
+                                    budget spent, transport failure. Fail open.
+        """
+        key = aid_cache_key(doi)
+        cached = audit.load_cached(self.cache_dir, PUBMED_AID_CACHE_KIND, key)
+        if cached is None:
+            if not self._may_fetch("aid:%s" % doi):
+                return None, "unfetched"
+            payload = self._with_timeout(
+                fetch_pubmed_aid, doi, self.cache_dir, self._ncbi)
+            cached = audit.load_cached(self.cache_dir, PUBMED_AID_CACHE_KIND, key)
+            if cached is None:
+                why = (payload or {}).get("error") or "esearch_failed"
+                self.errors.append(("aid:%s" % doi, why))
+                self.skipped.append(("aid:%s" % doi, "esearch failed"))
+                return None, why
+        if not cached.get("ok"):
+            return None, cached.get("error") or "esearch_failed"
+        message = cached.get("message") or {}
+        idlist = [str(i) for i in (message.get("idlist") or [])]
+        if not idlist:
+            return [], "not_in_pubmed"
+        if AID_TRANSLATION_MARKER not in (message.get("querytranslation") or ""):
+            # Hits from a query PubMed did not read as an identifier lookup.
+            # Never seen in this corpus; treated as unusable rather than trusted.
+            return None, "untranslated_query"
+        return idlist, "ok"
+
+
+# The crosswalk outcomes that are NOT findings. Every one of them is a reason the
+# question could not be answered, or was answered "no such record" -- and the
+# first of those is the common case by a wide margin. Named here so the sweep can
+# report them by bucket instead of dropping them (CLAUDE.md, "No silent caps").
+CROSSWALK_NON_FINDING_STATUSES = (
+    "placeholder",              # already reported by check_placeholder
+    "not_in_pubmed",            # THE COMMON CASE -- arXiv, ML venues, books
+    "unfetched",                # offline, or the network budget is spent
+    "esearch_failed",           # transport failure; not cached, retried later
+    "untranslated_query",       # PubMed did not read the term as an identifier
+    "ambiguous",                # >1 PMID for one DOI
+    "pmid_unresolvable",        # esummary has nothing for the returned PMID
+    "unconfirmed_mapping",      # the round trip could not confirm it
+    "no_declared_fields",       # the record declares no title or no authors
+    "agrees",                   # crosswalk confirms the record. The good case.
+)
+
+
+def crosswalk_doi(target, resolver):
+    """Resolve one record's DOI through PubMed's AID index.
+
+    Returns a dict carrying ``status`` (one of CROSSWALK_NON_FINDING_STATUSES,
+    or ``"names_a_different_paper"``) plus whatever was learned along the way.
+    Written as one function returning a status rather than as a predicate,
+    because the sweep needs the buckets as much as it needs the findings: the
+    ratio of ``not_in_pubmed`` to everything else is what tells a later reader
+    whether this check is worth its ~1600 calls.
+    """
+    out = {"rel": target["rel"], "entry": target["entry"], "doi": target["doi"],
+           "pmid": None, "status": None, "why": None,
+           "title_ok": None, "author_ok": None,
+           "pubmed_title": None, "pubmed_first_author": None,
+           "doi_resolves_elsewhere": None}
+    doi = target["doi"]
+    if not doi:
+        out["status"] = "no_doi"
+        return out
+    if is_placeholder_doi(doi):
+        out["status"] = "placeholder"
+        return out
+
+    pmids, why = resolver.pmids_for_doi(doi)
+    out["why"] = why
+    if pmids is None:
+        out["status"] = "unfetched" if why == "unfetched" else (
+            "untranslated_query" if why == "untranslated_query" else "esearch_failed")
+        return out
+    if not pmids:
+        out["status"] = "not_in_pubmed"
+        return out
+    if len(pmids) > 1:
+        # One DOI, several PubMed records (a duplicate deposit, or a preprint and
+        # its published version). Which one the record MEANT is exactly the
+        # external judgement this tool refuses to make.
+        out["status"] = "ambiguous"
+        out["pmid"] = ",".join(pmids)
+        return out
+
+    pmid = pmids[0]
+    out["pmid"] = pmid
+    rec = resolver.pubmed_record(pmid)
+    if rec is None:
+        out["status"] = "pmid_unresolvable"
+        return out
+    if pubmed_holds_doi(rec, doi) is not True:
+        out["status"] = "unconfirmed_mapping"
+        return out
+
+    view = audit.pubmed_view(rec)
+    out["pubmed_title"] = view["title"]
+    out["pubmed_first_author"] = (view["authors"] or [None])[0]
+
+    source = target["source"]
+    declared_title = source.get("title")
+    declared_authors = source.get("authors") or []
+    if not declared_title or not declared_authors:
+        out["status"] = "no_declared_fields"
+        return out
+
+    out["title_ok"] = titles_agree(declared_title, view["title"])
+    out["author_ok"] = first_authors_agree(declared_authors, view["authors"])
+    if out["title_ok"] is False and out["author_ok"] is False:
+        out["status"] = "names_a_different_paper"
+    else:
+        out["status"] = "agrees"
+    return out
+
+
+def check_doi_crosswalk(target, resolver):
+    """The crosswalk as a verdict: this DOI names a paper the record does not describe.
+
+    BOTH axes are required, for exactly the reason verdict 3 requires both --
+    title alone is the subtitle-truncation false positive, first author alone is
+    the name-change / preprint-order / non-ASCII one. This reuses ``titles_agree``
+    and ``first_authors_agree`` rather than restating the comparison, so the
+    documented false positives cannot come back through a second door.
+
+    NOT in CHECKS_NETWORKED, and therefore not on the commit-gate path. That is
+    deliberate and is a standing constraint, not an oversight: a new blocking
+    verdict may not be wired in ahead of a whole-corpus baseline measurement, the
+    way verdict 3's conjunction was measured at 21/21 before it was trusted. See
+    the crosswalk section of
+    evidence/planning/literature_identifier_cross_resolution_findings_2026-08-14.md.
+    """
+    result = crosswalk_doi(target, resolver)
+    if result["status"] != "names_a_different_paper":
+        return None
+    return Verdict(
+        "doi_crosswalk_names_a_different_paper",
+        target["rel"],
+        "PubMed indexes doi %s as pmid %s, %r by %s -- but the record declares "
+        "%r by %s. Title AND first author both disagree, so the DOI names a "
+        "different paper from the one this entry describes"
+        % (target["doi"], result["pmid"], (result["pubmed_title"] or "")[:110],
+           result["pubmed_first_author"],
+           (target["source"].get("title") or "")[:110],
+           (target["source"].get("authors") or ["?"])[0]),
+        declared={"doi": target["doi"],
+                  "title": target["source"].get("title"),
+                  "first_author": (target["source"].get("authors") or [None])[0]},
+        authoritative={"via": "pubmed_aid_crosswalk", "pmid": result["pmid"],
+                       "title": result["pubmed_title"],
+                       "first_author": result["pubmed_first_author"]})
 
 
 def batch_fetch_pubmed(pmids, cache_dir, limiter, batch=100, verbose=True):
@@ -957,6 +1232,192 @@ def cmd_gate(args):
     return 1 if args.exit_nonzero else 0
 
 
+PROVENANCE_NOTE_HEADING = "## PROVENANCE NOTE"
+
+
+def write_pmid_into_record(record_path, pmid, doi, note_line, dry_run=False):
+    """Add ``source.pmid`` to a record that has none, plus a summary.md note.
+
+    Refuses rather than overwrites: a record that already carries a PMID is not
+    this function's business, and a silent overwrite of an identifier is exactly
+    the class of edit the 2026-08-14 findings insist must be verified by round
+    trip first. Returns a short status string.
+
+    ``source.pmid`` is inserted immediately after ``source.doi`` because that is
+    where every both-identifier record in this corpus carries it -- key order in
+    a JSON object is not semantic, but a 1000-record diff that also reshuffles
+    key order is a diff nobody reads.
+    """
+    data = json.loads(Path(record_path).read_text(encoding="utf-8"))
+    source = data.get("source") or {}
+    if source.get("pmid"):
+        return "already_has_pmid"
+    if normalise_doi(source.get("doi")) != normalise_doi(doi):
+        return "doi_changed_under_us"
+
+    rebuilt = {}
+    for key, value in source.items():
+        rebuilt[key] = value
+        if key == "doi":
+            rebuilt["pmid"] = str(pmid)
+    if "pmid" not in rebuilt:
+        rebuilt["pmid"] = str(pmid)
+    data["source"] = rebuilt
+
+    summary_path = Path(record_path).parent / (data.get("summary_path")
+                                               or "summary.md")
+    if dry_run:
+        return "would_write"
+
+    Path(record_path).write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if summary_path.exists():
+        text = summary_path.read_text(encoding="utf-8")
+        if not text.endswith("\n"):
+            text += "\n"
+        summary_path.write_text(
+            text + "\n" + PROVENANCE_NOTE_HEADING + "\n\n" + note_line + "\n",
+            encoding="utf-8")
+    return "written"
+
+
+def cmd_doi_crosswalk(args):
+    """The other direction of the crosswalk: ask PubMed which PMID it holds for a DOI.
+
+    Reaches the 1579 DOI-only records that ``--cross-check`` structurally cannot,
+    there being nothing in those records to cross-resolve a DOI against.
+    """
+    cache_dir = Path(args.cache)
+    targets = collect_all_targets()
+    scope = [t for t in targets if t["doi"] and not t["pmid"]]
+
+    resolver = Resolver(cache_dir, offline=args.offline,
+                        budget=args.network_budget,
+                        timeout=None if args.offline else args.timeout)
+
+    # Pass A -- esearch only. Kept separate from the evaluation so pass B can be
+    # served entirely from cache, which is what makes the esummary half BATCHED
+    # (100 ids per request) rather than one request per candidate.
+    print("DOI-only records to crosswalk: %d" % len(scope), flush=True)
+    candidates = []
+    for i, target in enumerate(scope, 1):
+        if is_placeholder_doi(target["doi"]):
+            continue
+        pmids, _ = resolver.pmids_for_doi(target["doi"])
+        if pmids and len(pmids) == 1:
+            candidates.append(pmids[0])
+        if args.progress and i % args.progress == 0:
+            print("  esearch %d/%d  (fetched %d, mapped %d)"
+                  % (i, len(scope), resolver.spent, len(candidates)), flush=True)
+
+    if candidates and not args.offline:
+        batch_fetch_pubmed(candidates, cache_dir,
+                           audit.RateLimiter(audit.NCBI_RATE))
+
+    # Pass B -- evaluate, cache-only.
+    offline_resolver = Resolver(cache_dir, offline=True)
+    results = [crosswalk_doi(t, offline_resolver) for t in scope]
+
+    buckets = {}
+    for result in results:
+        buckets.setdefault(result["status"], []).append(result)
+    findings = buckets.get("names_a_different_paper", [])
+    agreeing = buckets.get("agrees", [])
+
+    print("=" * 78)
+    print("LITERATURE DOI -> PMID CROSSWALK (esearch <doi>[AID])")
+    print("=" * 78)
+    print("records with an identifier      : %d" % len(targets))
+    print("DOI-only records (the scope)    : %d" % len(scope))
+    for status in sorted(buckets, key=lambda k: -len(buckets[k])):
+        print("  %-26s : %d" % (status, len(buckets[status])))
+    if resolver.errors:
+        print("esearch transport failures      : %d (NOT cached; re-run to retry)"
+              % len(resolver.errors))
+
+    if findings:
+        print("\nCONCLUSIVE (title AND first author both disagree): %d" % len(findings))
+        for result in findings:
+            print("  %s" % result["rel"])
+            print("      doi %s -> pmid %s: %r by %s"
+                  % (result["doi"], result["pmid"],
+                     (result["pubmed_title"] or "")[:100],
+                     result["pubmed_first_author"]))
+
+    # Agreement with one axis dissenting is NOT a finding -- each single-axis
+    # disagreement is a documented false-positive class -- but it is the right
+    # hand-triage queue, so it is named rather than folded into "agrees".
+    soft = [r for r in agreeing if r["title_ok"] is False or r["author_ok"] is False]
+    if soft:
+        print("\nONE AXIS DISAGREES (not a finding; hand-triage queue): %d" % len(soft))
+        for result in soft[:args.show_soft]:
+            print("  %s  [title_ok=%s author_ok=%s]"
+                  % (result["rel"], result["title_ok"], result["author_ok"]))
+            print("      doi %s -> pmid %s: %r by %s"
+                  % (result["doi"], result["pmid"],
+                     (result["pubmed_title"] or "")[:100],
+                     result["pubmed_first_author"]))
+        if len(soft) > args.show_soft:
+            print("  ... and %d more (--show-soft N, or read --json)"
+                  % (len(soft) - args.show_soft))
+
+    written = []
+    if args.write_pmid != "none":
+        # Only ever writes a PMID that the round trip CONFIRMED and whose title
+        # agrees. `unresolvable` is the narrow default and the one with a real
+        # coverage argument behind it -- see the findings doc: for a DOI Crossref
+        # and doi.org both fail to resolve, the record is currently unreachable
+        # by every networked verdict, and a confirmed PMID is the only thing that
+        # brings it back inside them. `all` is a derived-pair bulk write and its
+        # cost is argued there too.
+        stamp = time.strftime("%Y-%m-%d", time.gmtime())
+        for result in agreeing:
+            if result["title_ok"] is not True or not result["pmid"]:
+                continue
+            target = next(t for t in scope if t["rel"] == result["rel"])
+            if args.write_pmid == "unresolvable":
+                view, _ = Resolver(cache_dir, offline=args.offline,
+                                   budget=args.network_budget).doi_view(result["doi"])
+                if view is not None:
+                    continue
+            note = ("`source.pmid` was added on %s by "
+                    "`scripts/verify_literature_identifiers.py --doi-crosswalk "
+                    "--write-pmid`. It is PubMed's own answer to "
+                    "`esearch %s[AID]`, round-trip verified: PubMed's "
+                    "`articleids` for pmid %s names that same DOI, and the "
+                    "PubMed title agrees with the declared title. Provenance "
+                    "only -- no `confidence`, `evidence_direction`, `mapping` or "
+                    "`claim_ids_tested` field was touched. Note the pair is "
+                    "DERIVED from the DOI, so it is not independent "
+                    "corroboration of it."
+                    % (stamp, result["doi"], result["pmid"]))
+            status = write_pmid_into_record(target["path"], result["pmid"],
+                                            result["doi"], note,
+                                            dry_run=args.dry_run)
+            written.append((result["rel"], result["pmid"], status))
+        print("\nPMID backfill (%s, mode=%s): %d record(s)"
+              % ("DRY RUN" if args.dry_run else "written", args.write_pmid,
+                 len(written)))
+        for rel, pmid, status in written:
+            print("  %-8s %s -> pmid %s" % (status, rel, pmid))
+
+    if args.json:
+        Path(args.json).write_text(json.dumps({
+            "n_records_with_identifier": len(targets),
+            "n_doi_only": len(scope),
+            "buckets": {k: len(v) for k, v in buckets.items()},
+            "findings": findings,
+            "one_axis_disagrees": soft,
+            "esearch_errors": [{"identifier": e[0], "error": e[1]}
+                               for e in resolver.errors],
+            "backfilled": [{"rel": r, "pmid": p, "status": s}
+                           for r, p, s in written],
+        }, indent=1), encoding="utf-8")
+        print("\nwrote %s" % args.json)
+
+    return 1 if (args.exit_nonzero and findings) else 0
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         description=__doc__.split("\n")[0],
@@ -968,6 +1429,28 @@ def main(argv=None):
                              "one identical argument list.")
     parser.add_argument("--cross-check", action="store_true",
                         help="corpus-wide DOI<->PMID cross-resolution")
+    parser.add_argument("--doi-crosswalk", action="store_true",
+                        help="the other direction: ask PubMed which PMID it "
+                             "holds for each DOI-only record's DOI "
+                             "(esearch '<doi>[AID]')")
+    parser.add_argument("--write-pmid", choices=("none", "unresolvable", "all"),
+                        default="none",
+                        help="with --doi-crosswalk, backfill a confirmed PMID "
+                             "into records that carry none. 'unresolvable' "
+                             "(the narrow, argued case) writes only where the "
+                             "DOI resolves through NEITHER Crossref nor "
+                             "doi.org, so the record is currently unreachable "
+                             "by every networked verdict; 'all' is a bulk "
+                             "derived-pair write (default: none)")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="with --write-pmid, report what would be written "
+                             "and write nothing")
+    parser.add_argument("--progress", type=int, default=100, metavar="N",
+                        help="print a progress line every N records during the "
+                             "esearch pass (0 = silent; default: 100)")
+    parser.add_argument("--show-soft", type=int, default=25, metavar="N",
+                        help="how many one-axis-disagreement records to print "
+                             "(default: 25)")
     parser.add_argument("--paths", nargs="*", metavar="PATH",
                         help="gate mode: check only the records these paths "
                              "implicate (repo-relative or absolute; a "
@@ -1009,9 +1492,11 @@ def main(argv=None):
 
     if args.paths is not None:
         return cmd_gate(args)
+    if args.doi_crosswalk:
+        return cmd_doi_crosswalk(args)
     if args.cross_check:
         return cmd_cross_check(args)
-    parser.error("one of --cross-check or --paths is required")
+    parser.error("one of --cross-check, --doi-crosswalk or --paths is required")
 
 
 if __name__ == "__main__":
