@@ -229,6 +229,16 @@ echo "--- Step 3c-pre: Closure-plan frontmatter strict-YAML lint (warn-only) ---
 # governance_* etc.) that parses under the snapshot's stale on-disk artifact but
 # FAILS the strict yaml.safe_load the live explorer uses, silently dropping the
 # whole plan to frontmatter_pending. Incident 2026-06-19 (commit 4c0313b052).
+#
+# THIS RUN CANNOT CATCH THE CYCLE'S OWN FRONTMATTER EDITS. It is a fixed point in
+# the REGEN, and a governance session's Step 5b/6a closure-plan hand-edits happen
+# AFTER governance.sh has finished -- so a break introduced there is never seen
+# here. That is how e5927f8acb (2026-08-13) landed two unterminated quoted
+# scalars and made both ARC-005 closure nodes invisible for a day with this lint
+# in place and passing. The re-run is now an explicit step in
+# .claude/skills/governance/SKILL.md Step 7 (Git sync), with
+# hygiene_routine_tick.py source 9 as the mechanical backstop. Do not "simplify"
+# either away on the grounds that this line already covers it -- it does not.
 "$PYTHON" scripts/check_plan_frontmatter.py || true
 
 echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
