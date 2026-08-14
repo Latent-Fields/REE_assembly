@@ -1,6 +1,16 @@
-# Timmermann, Ploner, Haucke, Schmitz, Baltissen, Schnitzler (2001/2002) -- Cortical representation of first and second pain sensation in humans
+# Ploner, Gross, Timmermann, Schnitzler (2002) -- Cortical representation of first and second pain sensation in humans
 
-**Source:** Proc Natl Acad Sci USA. 2001 Sep;99(19):12444-8. DOI: 10.1073/pnas.182272899. PMID: 12209003.
+**Source:** Proc Natl Acad Sci USA. 2002 Sep 17;99(19):12444-8. DOI: 10.1073/pnas.182272899. PMID: 12209003.
+
+> **Correction, 2026-08-14.** This entry previously carried the author list and
+> year of a *different* paper -- Timmermann, Ploner, Haucke, Schmitz, Baltissen &
+> Schnitzler (2001), *J Neurophysiol* 86(3) -- while its title, DOI, PMID, venue,
+> volume, issue, pages and every scientific finding described below belong to
+> Ploner, Gross, Timmermann & Schnitzler (2002), *PNAS* 99(19):12444-8. The two
+> papers share an author and a topic, which is presumably how they were conflated.
+> `source.authors` and `source.year` have been corrected against Crossref
+> (10.1073/pnas.182272899 -> issued 2002-09-03). The directory slug still reads
+> `timmermann2002`; it is the stable `entry_id` and was left alone deliberately.
 
 ## What the study did
 
