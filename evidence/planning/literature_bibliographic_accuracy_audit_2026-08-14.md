@@ -15,6 +15,28 @@ Tool: `scripts/audit_literature_bibliographic_accuracy.py` (committed; `--fetch`
 > surfaced in the process. See the new **"Disposition of items 1-3"** section at the bottom.
 > Item 0 (MECH-186 / GFLAG-0027) is **still open** and is still where a reader should start.
 
+> **UPDATE 2026-08-14T08:04Z — BOTH RECOMMENDATIONS BELOW ARE NOW BUILT**, by follow-on chip
+> `chip-20260814-lit-identifier-verification-gate`. Findings and design:
+> [`literature_identifier_cross_resolution_findings_2026-08-14.md`](literature_identifier_cross_resolution_findings_2026-08-14.md).
+>
+> - **Recommendation 1 (DOI↔PMID cross-resolution)** — `scripts/verify_literature_identifiers.py
+>   --cross-check`. Found **7 further misidentified records** across the 491 that carry both
+>   identifiers, all repaired (`b22155a885`); the sweep now reports 0. **Four of the seven are wrong
+>   PMIDs, which is a defect class THIS audit structurally cannot see** — it resolves the DOI and,
+>   once that resolves, never consults the PMID. So the ~2% figure below is an *under*-count of
+>   identifier defects, not an over-count.
+> - **Recommendation 2 (pull-time gate)** — wired as stage 2 of `scripts/precommit_literature.sh`,
+>   scoped to the records a commit touches, blocking by default, and failing open on every network
+>   condition. Whole-corpus baseline is **1 record of 2072** (the habenula placeholder, GFLAG-0031,
+>   deliberately unwaived).
+>
+> The instruction below — *do not* turn `audit_literature_bibliographic_accuracy.py --exit-nonzero`
+> into a commit gate — **still stands and was followed**: the new checker holds only the conclusive
+> subset of this audit's evidence, and this audit remains a report a human triages. The four false
+> positives listed under "Known false positives of the detector" are pinned as negative-control tests
+> there, and one of them (**subtitle truncation, in its short-title form**) turned out to fire in the
+> new checker's first cut and is now fixed.
+
 ---
 
 ## What this audit is, and why the schema audit cannot do it

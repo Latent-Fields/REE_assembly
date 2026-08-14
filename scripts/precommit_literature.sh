@@ -1,6 +1,41 @@
 #!/usr/bin/env bash
-# precommit_literature.sh -- run scripts/validate_literature.py when staged
-# changes touch REE_assembly/evidence/literature/**.
+# precommit_literature.sh -- run scripts/validate_literature.py AND
+# scripts/verify_literature_identifiers.py when staged changes touch
+# REE_assembly/evidence/literature/**.
+#
+# TWO STAGES, AND THEY ANSWER DIFFERENT QUESTIONS
+# -----------------------------------------------
+#   stage 1  validate_literature.py            schema + filesystem structure.
+#                                              Offline, whole-record, fast.
+#   stage 2  verify_literature_identifiers.py  do the record's IDENTIFIERS name
+#                                              the work it describes? Needs the
+#                                              network, so it fails OPEN.
+#
+# Stage 2 is the "pull-time gate" the 2026-08-14 bibliographic-accuracy audit
+# ranked as its second recommendation, and it is the only measure that stops the
+# defect ENTERING. The audit found ~2% of 2073 identifier-carrying records
+# misidentify the work, dominated by hallucinated near-miss DOIs -- a well-formed
+# DOI, right journal, right year, final digits altered, resolving to a real but
+# DIFFERENT paper. Nothing syntactic can see that: the identifier is valid and it
+# resolves. Only asking what it resolves TO can. One API call per new record here,
+# against 2073 at audit time.
+#
+# Both stages are scoped to the records THE COMMIT TOUCHES (--paths), never the
+# whole corpus, so a future backlog cannot wedge an unrelated commit.
+#
+# WHY STAGE 2 MAY BLOCK, AND WHY THE WHOLE-CORPUS AUDIT MAY NOT
+# -------------------------------------------------------------
+# `audit_literature_bibliographic_accuracy.py --exit-nonzero` is deliberately NOT
+# wired in here and must not be: its output is a FLAG for a human to triage, it
+# has a documented false-positive list, and it carries a residue of
+# known-unrepairable records, so it would fire on ordinary work and get switched
+# off -- strictly worse than no gate. verify_literature_identifiers.py exists to
+# hold only the CONCLUSIVE subset of that evidence (the record's own two
+# identifiers contradicting each other; both resolution routes describing
+# different works; title AND first author both disagreeing), and it is measured:
+# over all 2072 identifier-carrying records it produces ONE live verdict, the
+# synthetic habenula placeholder that ought to block. That measurement, not
+# optimism, is why stage 2 blocks by default.
 #
 # Called from the PreToolUse hook in REE_Working/.claude/settings.json on any
 # `git commit` bash invocation. Self-gates: if no evidence/literature/ paths are
@@ -42,11 +77,30 @@
 # for). Turn it off with REE_LITERATURE_GATE_BLOCK=0 only as a temporary escape
 # hatch, and say in the commit why.
 #
+# FAILING OPEN IS A DESIGN REQUIREMENT OF STAGE 2, NOT A CONCESSION
+# -----------------------------------------------------------------
+# Stage 2 is the only commit gate in this repo that needs the network. It
+# therefore treats every non-verdict condition as a pass: unreachable API, HTTP
+# error, unresolvable identifier, a record declaring no title or no authors, and
+# the per-invocation network budget being spent (whatever went unchecked is
+# NAMED, never silently dropped). A gate that blocks a commit because NCBI was
+# rate-limiting is a gate that gets uninstalled by lunchtime. Only a positive
+# contradiction blocks. It is also given a short socket timeout and a bounded
+# budget so a bulk pull cannot turn `git commit` into a three-minute wait, and
+# cached identifiers are free -- re-committing an unchanged record costs nothing.
+#
 # Exit codes:
 #   0 -- nothing staged under evidence/literature/, or clean, or report-only
 #   2 -- findings AND blocking enabled (blocks the commit; same code as
-#        validate_queue.py)
+#        validate_queue.py). Either stage can produce this.
 #   3 -- internal error (repo or validator missing)
+#
+# Escape hatches, both temporary and both worth explaining in the commit message:
+#   REE_LITERATURE_GATE_BLOCK=0             stage 1 report-only
+#   REE_LITERATURE_IDENTIFIER_GATE_BLOCK=0  stage 2 report-only
+#   REE_LITERATURE_IDENTIFIER_GATE=0        skip stage 2 entirely (e.g. a box
+#                                           with no outbound network, where it
+#                                           would only ever print a skip note)
 #
 # Usage:
 #   bash REE_assembly/scripts/precommit_literature.sh [--block|--report-only]
@@ -54,9 +108,11 @@
 set -u
 
 BLOCK="${REE_LITERATURE_GATE_BLOCK:-1}"
+IDENT_BLOCK="${REE_LITERATURE_IDENTIFIER_GATE_BLOCK:-1}"
+IDENT_ENABLED="${REE_LITERATURE_IDENTIFIER_GATE:-1}"
 case "${1:-}" in
-    --block)       BLOCK=1 ;;
-    --report-only) BLOCK=0 ;;
+    --block)       BLOCK=1; IDENT_BLOCK=1 ;;
+    --report-only) BLOCK=0; IDENT_BLOCK=0 ;;
 esac
 
 # Resolve the REE_assembly repo root, worktree-aware. `git rev-parse` first --
@@ -136,20 +192,85 @@ if [ "$RC" -eq 3 ]; then
 fi
 
 # `OK (...)` is the clean line; anything else is a finding worth surfacing.
+SCHEMA_CLEAN=0
 case "$OUT" in
-    *"validate_literature: OK"*) exit 0 ;;
+    *"validate_literature: OK"*) SCHEMA_CLEAN=1 ;;
 esac
 
-echo "$OUT"
-if [ "$BLOCK" = "1" ]; then
+if [ "$SCHEMA_CLEAN" != "1" ]; then
+    echo "$OUT"
+    if [ "$BLOCK" = "1" ]; then
+        echo ""
+        echo "precommit_literature: BLOCKING -- a record this commit touches is invalid."
+        echo "  The corpus baseline was 0 findings of 2189 as of 2026-08-14, so this is"
+        echo "  something this commit introduced or is carrying forward."
+        echo "  Fix the record, or set REE_LITERATURE_GATE_BLOCK=0 for a temporary"
+        echo "  escape hatch (and say why in the commit message)."
+        exit 2
+    fi
     echo ""
-    echo "precommit_literature: BLOCKING -- a record this commit touches is invalid."
-    echo "  The corpus baseline was 0 findings of 2189 as of 2026-08-14, so this is"
+    echo "precommit_literature: stage 1 report-only (REE_LITERATURE_GATE_BLOCK=0), commit NOT blocked."
+fi
+
+# ---------------------------------------------------------------------------
+# Stage 2 -- identifier verification. Runs on the SAME scoped path list, which is
+# already built in "$@" as `--repo <repo> --paths <...>`; both tools take that
+# spelling, deliberately, so the two stages cannot drift about which records a
+# commit implicates.
+#
+# It runs even when stage 1 found something non-blocking, because the two answer
+# different questions and a schema finding says nothing about whether the
+# identifier is right.
+
+[ "$IDENT_ENABLED" = "1" ] || exit 0
+
+IDENT="$REPO/scripts/verify_literature_identifiers.py"
+if [ ! -f "$IDENT" ]; then
+    # Absent checker -> no check. Consistent with every other gate in this repo
+    # being `[ -f ]`-gated, and with stage 2's fail-open contract.
+    echo "precommit_literature: $IDENT missing -- identifier stage SKIPPED" >&2
+    exit 0
+fi
+
+IOUT="$("$PY" "$IDENT" --exit-nonzero "$@" 2>&1)"
+IRC=$?
+
+case "$IOUT" in
+    *"verify_literature_identifiers: OK"*)
+        # Print the OK line only when it carries a caveat (skipped identifiers,
+        # waived findings); a bare pass stays silent, like stage 1's.
+        case "$IOUT" in
+            *"NOT checked"*|*"waived"*) echo "$IOUT" ;;
+        esac
+        exit 0 ;;
+esac
+
+# Anything else is a conclusive finding. Note IRC is only consulted to
+# distinguish a finding from an internal error -- the OK line above is the
+# authoritative clean signal, same convention as stage 1.
+echo "$IOUT"
+if [ "$IDENT_BLOCK" = "1" ] && [ "$IRC" -ne 0 ]; then
+    echo ""
+    echo "precommit_literature: BLOCKING -- an identifier on a record this commit"
+    echo "  touches CONCLUSIVELY names a different work. This is not a fuzzy match:"
+    echo "  either the record's own doi and pmid contradict each other, both"
+    echo "  resolution routes describe different works, or the declared title AND"
+    echo "  first author both disagree with what the identifier returns."
+    echo ""
+    echo "  Whole-corpus baseline was 1 record of 2072 as of 2026-08-14 (a known"
+    echo "  synthetic placeholder, GFLAG-0031), so this is almost certainly"
     echo "  something this commit introduced or is carrying forward."
-    echo "  Fix the record, or set REE_LITERATURE_GATE_BLOCK=0 for a temporary"
-    echo "  escape hatch (and say why in the commit message)."
+    echo ""
+    echo "  Fix the identifier -- resolve it and read back the title, do not guess"
+    echo "  a neighbouring suffix. If the record carries a pmid, PubMed's own"
+    echo "  articleids DOI for it is the authoritative crosswalk. If the correct"
+    echo "  identifier genuinely cannot be determined, use doi: null (\"checked,"
+    echo "  none exists\") and raise a governance flag rather than inventing one."
+    echo ""
+    echo "  Temporary escape hatch: REE_LITERATURE_IDENTIFIER_GATE_BLOCK=0 (and"
+    echo "  say why in the commit message)."
     exit 2
 fi
 echo ""
-echo "precommit_literature: report-only (REE_LITERATURE_GATE_BLOCK=0), commit NOT blocked."
+echo "precommit_literature: stage 2 report-only, commit NOT blocked."
 exit 0

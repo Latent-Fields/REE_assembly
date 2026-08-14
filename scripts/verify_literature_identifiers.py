@@ -76,10 +76,23 @@ diffs of REE_assembly 461da94faa and ded51143ff):
 Verdict 1 was evaluated across all 491 both-identifier records: 9 disagreements,
 of which 2 were the legacy APA double-slash DOI form (``10.1037//0022-006x...``,
 normalised away here) and 7 are real. Verdict 2 adds 1 more that verdict 1
-structurally cannot see. Those 7 findings are recorded in
+structurally cannot see. Those findings are recorded in
 evidence/planning/literature_identifier_cross_resolution_findings_2026-08-14.md
-and are deliberately NOT waived -- they are repairable, and a waiver list that
-absorbs repairable defects is how a gate stops meaning anything.
+and were deliberately NOT waived -- they were repairable, and a waiver list that
+absorbs repairable defects is how a gate stops meaning anything. All 7 were
+repaired in REE_assembly b22155a885, so ``--cross-check`` now reports 0.
+
+WHAT THE WHOLE-CORPUS GATE BASELINE ACTUALLY IS (measured 2026-08-14, after that
+repair, over all 2072 identifier-carrying records with every verdict enabled):
+
+    1 live verdict, over 1 record  -- the habenula placeholder DOI, which is a
+                                      synthetic record and SHOULD block
+    1 waived                       -- hyman2010, GFLAG-0029
+
+That is the number the commit gate's blocking default rests on, and it is the
+same flip condition precommit_literature.sh states for its own schema half. It
+is worth re-measuring (the one-liner is in that script's header) before assuming
+it still holds, because it is a property of the corpus, not of this code.
 
 AVOIDING THE KNOWN FALSE POSITIVES -- STRUCTURALLY, NOT BY THRESHOLD
 --------------------------------------------------------------------
@@ -93,7 +106,10 @@ this corpus is a cut-off that drifts as the corpus grows:
     accepts CONTAINMENT in either direction, not just a ratio. This also fires
     between two authoritative sources (Crossref *"The Unengaged Mind"* vs PubMed
     *"The Unengaged Mind: Defining Boredom in Terms of Attention"*, ratio 0.48),
-    which is why verdict 2 needs it as much as verdict 3 does.
+    which is why verdict 2 needs it as much as verdict 3 does. Both of those
+    examples are SHORT, and getting them right needs the affix form of
+    containment specifically -- see TITLE_AFFIX_MIN_CHARS, which is where the
+    first version of this file got it wrong and shipped a live false positive.
   * NON-ASCII SURNAMES. ``strip_accents`` normalises combining diacritics but
     not distinct letters, so Hoydal/Hoydal and Rodriguez/Rodriguez read as a
     mismatch. Handled by ``fold_special_letters``, which maps the
@@ -160,6 +176,29 @@ import audit_literature_bibliographic_accuracy as audit  # noqa: E402
 REPO = audit.REPO
 DEFAULT_CACHE = audit.DEFAULT_CACHE
 
+
+def set_repo(repo_root):
+    """Point this module AND the audit module it borrows from at `repo_root`.
+
+    Both have to move together. ``collect_all_targets`` delegates to
+    ``audit.collect_targets``, which globs ``audit.LIT_ROOT`` -- so setting only
+    this module's REPO would leave the corpus scan pointed at the real
+    REE_assembly checkout while path-relativisation used the override. That is a
+    silent wrong answer rather than an error, which is exactly the shape of bug
+    the tests exist to catch, so it must not be possible to set one without the
+    other.
+
+    Needed for two callers: precommit_literature.sh, which passes the
+    git-resolved repo root so both of its stages agree about which checkout they
+    are gating (it matters in a `git worktree add` checkout); and the tests,
+    which build a throwaway corpus in a tempdir.
+    """
+    global REPO
+    REPO = Path(repo_root).resolve()
+    audit.REPO = REPO
+    audit.LIT_ROOT = REPO / "evidence" / "literature"
+    return REPO
+
 # The audit's own bucket boundary, kept identical so the two tools agree about
 # what "the titles disagree" means. Containment (below) is what actually keeps
 # this off the false positives; the ratio only has to separate the tail, and the
@@ -171,6 +210,25 @@ TITLE_RATIO_MIN = 0.60
 # is coincidence rather than a subtitle relationship ("Pain" in "Pain and the
 # Brain"). Titles this short are rare and fall through to the ratio.
 TITLE_CONTAINMENT_MIN_CHARS = 20
+
+# The same floor for the AFFIX form -- the shorter title being a whole-word
+# PREFIX or SUFFIX of the longer. It is lower than the free-substring floor on
+# purpose: a subtitle relationship is always an affix relationship, never a
+# mid-string one, so an affix hit is much stronger evidence than a substring hit
+# and can be trusted at a shorter length.
+#
+# 20 was the ONLY floor when this file was written, and it produced a live false
+# positive in its own corpus: `norm_title("The Unengaged Mind")` is 18
+# characters, so containment was refused and the pair fell through to a 0.48
+# ratio -- exactly the subtitle-truncation false positive the docstring above
+# says containment exists to prevent, and the very case it names. The audit's
+# own documented example ("The p Factor", 12 characters) failed for the same
+# reason. Measured A/B over the 21 pre-repair true positives (the diffs of
+# 461da94faa and ded51143ff): 21/21 still fire with the affix rule added, and 3
+# false positives stop firing. Short-prefix traps stay rejected by the floor
+# ("Pain" in "Pain and the Brain", "Learning" in "Learning to see the wood for
+# the trees" -- both 4-8 characters, both still False).
+TITLE_AFFIX_MIN_CHARS = 12
 
 # Uncached identifiers this invocation is allowed to fetch before it stops
 # checking and says what it skipped. A bulk pull commit touching 300 new records
@@ -254,12 +312,32 @@ def titles_agree(a, b):
     prepends section headings: 'Social psychology. Just think: ...'). A ratio
     alone puts those at 0.24-0.48, i.e. squarely inside the true-positive range,
     which is exactly the audit's documented subtitle-truncation false positive.
+
+    Containment is tested in two forms, and the split is what makes the shorter
+    floor safe (see TITLE_AFFIX_MIN_CHARS):
+
+      AFFIX      the shorter title is a whole-word prefix or suffix of the
+                 longer. This is the shape a dropped subtitle or a prepended
+                 section heading actually takes, so it is trusted from 12
+                 normalised characters.
+      SUBSTRING  the shorter appears whole-word ANYWHERE in the longer. Weaker
+                 evidence, so it keeps the 20-character floor.
+
+    Whole-word matching in both, via space padding: without it, 'the p factor'
+    would also be contained in 'the p factorial design', which is a different
+    work.
     """
     na, nb = audit.norm_title(a), audit.norm_title(b)
     if not na or not nb:
         return None
+    if na == nb:
+        return True
     short, long_ = (na, nb) if len(na) <= len(nb) else (nb, na)
-    if len(short) >= TITLE_CONTAINMENT_MIN_CHARS and short in long_:
+    if len(short) >= TITLE_AFFIX_MIN_CHARS and (
+            long_.startswith(short + " ") or long_.endswith(" " + short)):
+        return True
+    if len(short) >= TITLE_CONTAINMENT_MIN_CHARS and (
+            " " + short + " ") in (" " + long_ + " "):
         return True
     ratio = audit.title_ratio(a, b)
     if ratio is None:
@@ -486,33 +564,39 @@ WAIVERS = [
         "entry": "2026-03-29_arc_032_frontal_theta_hippocampus_reward_hyman2010",
         "doi": "10.1002/hipo.20709",
         "reason": (
-            "Audit 2026-08-14 'Left unrepaired' item 1: the DOI resolves to "
-            "Christie, 'Exercising some control over the hippocampus' (2009). "
-            "The declared title matches Hyman et al. but neither the year nor "
-            "the DOI disambiguates WHICH Hyman paper, and the record carries no "
-            "PMID to cross-resolve against. Undeterminable, not unrepaired."
-        ),
-    },
-    {
-        "entry": "2026-05-16_q035_arc049_murray_trevarthen_1985_double_video",
-        "doi": "10.1163/156853995X00822",
-        "reason": (
-            "Audit 2026-08-14 'Left unrepaired' item 2: book chapter whose DOI "
-            "resolves to an unrelated work; Crossref's proposed Routledge "
-            "reprint DOI was clearly wrong ('Intonation in Discourse'). Needs a "
-            "human judgement about which edition the entry means."
-        ),
-    },
-    {
-        "entry": "2026-05-16_arc049_inv059_gergely_watson1996_social_biofeedback",
-        "doi": "10.1163/156853995X00101",
-        "reason": (
-            "Audit 2026-08-14 'Left unrepaired' item 2: same shape as the "
-            "Murray & Trevarthen chapter above -- chapter-level DOI for a "
-            "reprinted classic, resolves to an unrelated work."
+            "Audit 2026-08-14 'Left unrepaired' item 1b, GFLAG-0029 (open): the "
+            "DOI resolves to Christie, 'Exercising some control over the "
+            "hippocampus' (2009). The declared title is fabricated, and the "
+            "content the summary describes is Jones & Wilson (2005), not either "
+            "candidate Hyman paper -- so writing an identifier would change the "
+            "EVIDENCE, not the provenance. The record carries no PMID to "
+            "cross-resolve against. Undeterminable pending governance, which is "
+            "a different thing from unrepaired."
         ),
     },
 ]
+
+# TWO FURTHER WAIVERS WERE WRITTEN HERE AND HAVE BEEN REMOVED AS DEAD, which is
+# the value-keying above working exactly as intended rather than a regression.
+# They covered the DOIs `10.1163/156853995X00822`
+# (q035_arc049_murray_trevarthen_1985_double_video) and `10.1163/156853995X00101`
+# (arc049_inv059_gergely_watson1996_social_biofeedback), on the audit's then-open
+# "book chapter, needs an edition judgement" reading. REE_assembly ec4467bcf4
+# settled both the other way -- neither work has a chapter-level DOI at all, so
+# both records now carry `doi: null` ("checked, none exists"), one with a verified
+# PMID and one with the containing volume's ISBN. A waiver keyed on a DOI VALUE
+# that no longer appears anywhere can never match again, so keeping it would only
+# mislead a later reader into thinking those records are still exempt. Confirmed
+# against the live records before removal.
+#
+# The habenula placeholder (`10.0000/example-doi`,
+# neuro_pe_habenula_da/.../2026-02-13_habenula_da_signed_pe_review, GFLAG-0031)
+# is deliberately NOT waived, even though it is known and open. It is the one
+# record in the corpus that trips this gate today, and it SHOULD: the entry cites
+# no real work, so a commit touching it ought to stop and read the flag. It also
+# costs nothing in practice -- disposing of the entry means DELETING it, and a
+# deleted record.json resolves to no target at all (collect_scoped_targets skips
+# paths that do not exist), so the gate cannot obstruct its own remedy.
 
 
 def waiver_for(entry_name, doi=None, pmid=None):
@@ -877,6 +961,11 @@ def main(argv=None):
     parser = argparse.ArgumentParser(
         description=__doc__.split("\n")[0],
         formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--repo", default=None,
+                        help="REE_assembly repo root (default: this script's "
+                             "repo). Same spelling as validate_literature.py's, "
+                             "so precommit_literature.sh can hand both stages "
+                             "one identical argument list.")
     parser.add_argument("--cross-check", action="store_true",
                         help="corpus-wide DOI<->PMID cross-resolution")
     parser.add_argument("--paths", nargs="*", metavar="PATH",
@@ -887,8 +976,18 @@ def main(argv=None):
                         help="with --cross-check, batch-populate the pubmed "
                              "cache first (unbudgeted)")
     parser.add_argument("--offline", action="store_true",
-                        help="never touch the network; cache only")
-    parser.add_argument("--cache", default=str(DEFAULT_CACHE))
+                        default=os.environ.get("REE_LIT_BIB_OFFLINE") == "1",
+                        help="never touch the network; cache only (also "
+                             "REE_LIT_BIB_OFFLINE=1, which is how a box with no "
+                             "outbound network, and the test suite, keep the "
+                             "commit-gate path off the wire without having to "
+                             "thread a flag through precommit_literature.sh)")
+    parser.add_argument("--cache",
+                        default=os.environ.get("REE_LIT_BIB_CACHE")
+                        or str(DEFAULT_CACHE),
+                        help="response cache directory (also REE_LIT_BIB_CACHE); "
+                             "lives outside the repo -- ~2000 API responses are "
+                             "not repo content (default: %s)" % DEFAULT_CACHE)
     parser.add_argument("--network-budget", type=int,
                         default=DEFAULT_NETWORK_BUDGET,
                         help="max uncached identifiers to fetch (0 = unlimited); "
@@ -903,6 +1002,8 @@ def main(argv=None):
                              "chains safely)")
     args = parser.parse_args(argv)
 
+    if args.repo:
+        set_repo(args.repo)
     if args.network_budget == 0:
         args.network_budget = None
 
