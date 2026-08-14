@@ -19,6 +19,16 @@ Two jobs, and the second is the one that matters:
 reports the failing-set DELTA -- newly-failing records are regressions and the
 schema change should not land with any.
 
+``--exit-nonzero`` turns the report into a gate (exit 1 on any failing record).
+Default is exit 0 even with findings, so the audit chains safely -- same
+convention as ``audit_stashes.py`` and ``audit_vendored_copies.py``. The corpus
+reached **0 failing of 2189 on 2026-08-14**, which is what makes the flag usable
+at all: a gate that fires on every commit gets turned off, so this must not be
+switched on again while a backlog exists. Note the COMMIT gate is
+``scripts/precommit_literature.sh`` -> ``scripts/validate_literature.py``, which
+is scoped to the records a commit actually touches; this flag is the
+WHOLE-CORPUS gate, for a scheduled or manual sweep.
+
 jsonschema on the Mac and the cloud boxes is 3.2.0, which has no
 ``Draft202012Validator``. The schema declares 2020-12 but uses no keyword that
 postdates draft-07, so Draft7Validator is a faithful checker here; prefer the
@@ -166,6 +176,8 @@ def main():
                     help="also validate against the schema at REF and diff the failing sets")
     ap.add_argument("--pointer", action="append", default=None,
                     help="schema location for --drift (repeatable; default: top level and source)")
+    ap.add_argument("--exit-nonzero", action="store_true",
+                    help="exit 1 if any record fails (default: exit 0, chains safely)")
     args = ap.parse_args()
 
     records = load_records()
@@ -203,7 +215,9 @@ def main():
         for reason, rels in sorted(by_reason.items(), key=lambda kv: -len(kv[1])):
             print(f"  {len(rels):4d}  {reason[:110]}")
 
-    return 1 if (args.baseline and set(failures) - set(base_failures)) else 0
+    if args.baseline and set(failures) - set(base_failures):
+        return 1
+    return 1 if (args.exit_nonzero and failures) else 0
 
 
 if __name__ == "__main__":

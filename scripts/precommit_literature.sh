@@ -16,34 +16,48 @@
 # never touches that object. A schema nothing reads documents convention; it
 # does not hold a line. This script is what reads it, on the commit path.
 #
-# REPORT-ONLY BY DEFAULT -- AND THAT IS DELIBERATE
-# ------------------------------------------------
-# The corpus has a non-zero baseline (17 findings in 17 of 2189 records at
-# REE_assembly 0bfbedccfd, being worked by sibling cleanup chips). A gate that
-# fires on every commit gets disabled, which is strictly worse than no gate --
-# so this REPORTS and returns 0 until that count is at or near zero.
+# BLOCKING BY DEFAULT SINCE 2026-08-14 -- AND THE CONDITION FOR THAT IS RECORDED
+# -----------------------------------------------------------------------------
+# This shipped REPORT-ONLY, deliberately: the corpus then had a 17-finding
+# baseline (17 of 2189 at REE_assembly 0bfbedccfd) being worked by sibling
+# cleanup chips, and a gate that fires on every commit gets disabled, which is
+# strictly worse than no gate. The stated flip condition was "once the corpus
+# baseline is at zero".
 #
-# Flip it with REE_LITERATURE_GATE_BLOCK=1 (env) or --block. Note what the flip
-# actually costs, because it is much less than it looks: the validator is scoped
-# to the records the COMMIT TOUCHES (--paths), not the whole corpus, so the
-# pre-existing baseline cannot wedge an unrelated commit even in blocking mode.
-# What blocks is a commit that touches a record which is itself bad.
+# It is now zero, and both checks agree:
+#     validate_literature.py     OK (2189 records checked, 0 findings)
+#     audit_literature_schema.py 2189 records, 0 failing against HEAD schema
+# reached by e8dcda8644 (the last missing summary.md) on top of 590842afa0 (the
+# residual 16 source-object drifts). So the default flips, per its own rule.
+#
+# What the flip costs is much less than it looks: the validator is scoped to the
+# records the COMMIT TOUCHES (--paths), not the whole corpus, so even a future
+# backlog cannot wedge an unrelated commit. What blocks is a commit that touches
+# a record which is itself bad -- which is the entire point.
+#
+# IF THIS EVER STARTS FIRING ON ORDINARY WORK, the fix is NOT to soften it in
+# place. Either the corpus has regressed (fix the records) or the schema has
+# drifted from real convention (run `audit_literature_schema.py --drift` and
+# decide direction from the whole-corpus enumeration, which is what that flag is
+# for). Turn it off with REE_LITERATURE_GATE_BLOCK=0 only as a temporary escape
+# hatch, and say in the commit why.
 #
 # Exit codes:
-#   0 -- nothing staged under evidence/literature/, or report-only, or clean
+#   0 -- nothing staged under evidence/literature/, or clean, or report-only
 #   2 -- findings AND blocking enabled (blocks the commit; same code as
 #        validate_queue.py)
 #   3 -- internal error (repo or validator missing)
 #
 # Usage:
-#   bash REE_assembly/scripts/precommit_literature.sh [--block]
+#   bash REE_assembly/scripts/precommit_literature.sh [--block|--report-only]
 
 set -u
 
-BLOCK="${REE_LITERATURE_GATE_BLOCK:-0}"
-if [ "${1:-}" = "--block" ]; then
-    BLOCK=1
-fi
+BLOCK="${REE_LITERATURE_GATE_BLOCK:-1}"
+case "${1:-}" in
+    --block)       BLOCK=1 ;;
+    --report-only) BLOCK=0 ;;
+esac
 
 # Resolve the REE_assembly repo root, worktree-aware. `git rev-parse` first --
 # git invokes hooks with the working tree already correct for the commit in
@@ -129,11 +143,13 @@ esac
 echo "$OUT"
 if [ "$BLOCK" = "1" ]; then
     echo ""
-    echo "precommit_literature: BLOCKING (REE_LITERATURE_GATE_BLOCK=1)."
-    echo "  Fix the record, or unset the flag to return to report-only."
+    echo "precommit_literature: BLOCKING -- a record this commit touches is invalid."
+    echo "  The corpus baseline was 0 findings of 2189 as of 2026-08-14, so this is"
+    echo "  something this commit introduced or is carrying forward."
+    echo "  Fix the record, or set REE_LITERATURE_GATE_BLOCK=0 for a temporary"
+    echo "  escape hatch (and say why in the commit message)."
     exit 2
 fi
 echo ""
-echo "precommit_literature: report-only, commit NOT blocked."
-echo "  Set REE_LITERATURE_GATE_BLOCK=1 once the corpus baseline is at zero."
+echo "precommit_literature: report-only (REE_LITERATURE_GATE_BLOCK=0), commit NOT blocked."
 exit 0
