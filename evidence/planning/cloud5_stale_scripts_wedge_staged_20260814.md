@@ -78,6 +78,16 @@ entry the context diff happens to match.
    the ref move forever**.
 7. The ref never moves -> the checkout stays behind -> go to 1.
 
+**Differential confirmation, same box, same minute, same tooling.** Pushing this very
+artifact to `REE_assembly` — which was independently diverged at `[ahead 27, behind 75]`
+on `ree-cloud-5` — went through the identical rejected-push -> cherry-pick-retry path and
+then **converged automatically**: `_converge_after_push()` proved all 27 ahead commits,
+`safe_adopt_ref.py` moved the ref, and the post-move skew repair discarded 16 staged
+reverts and ~30 staged deletions. `REE_assembly` is now `## master...origin/master`, clean.
+So the machinery is not broken and the box is not at fault — the umbrella repo's refusal is
+caused *specifically* by its stranded, permanently-unprovable commits. That isolates the
+cause to step 5 below and rules out the alternatives.
+
 **The load-bearing asymmetry:** orphans accrue continuously, but proof is all-or-nothing.
 A single stranded commit converts a transient divergence into a permanent wedge. After
 that, `scripts/` is frozen at whatever revision HEAD held at that moment, and **every guard
