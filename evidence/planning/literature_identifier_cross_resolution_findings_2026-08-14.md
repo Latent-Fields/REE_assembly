@@ -157,6 +157,11 @@ That measurement, not optimism, is why stage 2 **blocks by default** — it is t
 `precommit_literature.sh` records for its own stage 1 ("once the corpus baseline is at zero"). It is a
 property of the corpus rather than of the code, so re-measure before assuming it still holds.
 
+> **Denominator moved, verdict did not.** The scoping fix later on this page brought 7 secondary-only
+> records into scope, so the *current* gate figure is **1 of 2079** — same single live verdict, same
+> single waiver. Re-measured 2026-08-14 after the cache fix; see "Baselines re-measured, and
+> unchanged" at the end. `--cross-check` still prints 2072 by design.
+
 The habenula placeholder is deliberately **not** waived. It is a synthetic record that cites no real
 work, so a commit touching it ought to stop and read the flag — and it costs nothing in practice,
 because disposing of the entry means *deleting* it, and a deleted `record.json` resolves to no target
@@ -512,3 +517,101 @@ Five mutations of the implementation were each confirmed to fail a specific new 
 disjunction removed; pmc verdict made to fetch; scoped collection reverted to doi/pmid; arXiv
 fidelity guard removed; the doi-confirms shortcut removed), so the suite is differential rather than
 merely green.
+
+## The shared cache could persist a transport failure as an answer (fixed 2026-08-14)
+
+Found while extending the gate to the secondary identifiers, and left unfixed there on purpose: the
+audit module's caching is what its published false-positive counts are measured through, so changing
+it belonged in its own careful commit rather than a drive-by.
+
+`fetch_crossref`, `fetch_doiorg` and `fetch_pubmed` each ended in an **unconditional**
+`path.write_text(json.dumps(payload))` that ran for every exception, including a bare transport
+failure. Every one of them also returns early on `path.exists()` and never re-asks. So an HTTP 429
+from NCBI's rate limiter, a 503, or a dropped connection was written into `~/lit_bib_cache` as a
+**permanent verdict about that identifier**, on every box that holds the cache, for every mode of
+every literature checker that reads it. `doi_view` and `pubmed_record` then read `ok is False` and
+returned `unresolvable` forever, and the gate failed open for that record **silently** — the record
+was not even named in `resolver.skipped`, because from the resolver's point of view the question had
+been asked and answered.
+
+Reproduced before fixing, against a dead proxy over the five arxiv-bearing records: six cache entries
+written, all `{"ok": false, "error": "URLError: ... Connection refused"}`, against three real and
+perfectly good DOIs — and the run reported only *two* identifiers unchecked, silently swallowing the
+three DOIs into `unresolvable`. Post-fix, the same command writes **nothing** and names all five.
+
+The fix is the split `fetch_pubmed_aid` already documented and the 2026-08-14 secondary fetchers
+already followed — cache an ANSWER, return a TRANSPORT failure to the caller uncached — applied to
+the three originals. The answer sets are **per-endpoint**, because "which HTTP status is an answer"
+is a fact about each API, not a global:
+
+| endpoint | HTTP statuses that are an ANSWER | why |
+|---|---|---|
+| Crossref | `404` | "I do not know this DOI" is a real answer, and caching it is what stops every dead DOI being re-fetched on every sweep |
+| doi.org | `404` | conclusive: doi.org negotiates against every registration agency, so "no such DOI" here means registered nowhere |
+| NCBI eutils | *(none)* | eutils does not 404 an unknown id — it answers `200` with an `error` field, already cached as `not_found`. A 404 here means the request or the service is wrong, not the PMID |
+
+`401`/`403` are **not** answers anywhere: none of these endpoints requires authentication, so a
+401/403 is about the requester — rate limiting dressed as a 403, a WAF, an intercepting proxy —
+never about the identifier. `410` is excluded on the asymmetry that decides every borderline case
+here: being wrong in the not-an-answer direction costs one re-fetch; being wrong in the other
+direction is silent, permanent loss of coverage.
+
+A transport failure is now also **named** rather than collapsed into `unresolvable`. Both still fail
+open, so no verdict changes — what changes is what the run *says*. `unresolvable` asserts the
+question was asked and answered, and a record dropped from coverage by a 429 must not be able to
+hide inside that word. This could not be written for DOIs until the fetchers stopped caching the
+failure, since until then it was indistinguishable from a real negative on the very next read.
+
+### The live cache was clean: 0 poisoned entries of 4477
+
+Audited before deciding anything, because a large count would have been the finding and would have
+changed what the baselines below mean:
+
+```
+crossref     1635   1552 ok    83 not-ok   -- all http_404
+doiorg         83     65 ok    18 not-ok   -- all http_404
+pubmed       1467   1467 ok     0 not-ok
+arxiv           2      2 ok     0 not-ok
+openlibrary     5      4 ok     1 not-ok   -- not_found
+pubmed_aid   1285   1285 ok     0 not-ok
+```
+
+Every not-ok entry is a genuine answer (`http_404` for the two DOI endpoints, `not_found` for the
+200-shaped ones). Nothing was deleted, and nothing needed to be. **This is one box** (`ree-cloud-5`);
+the same audit is worth re-running anywhere else that holds a `lit_bib_cache`, and it is a two-line
+scan over `ok is false and error not in ("http_404", "not_found")`.
+
+### Baselines re-measured, and unchanged
+
+Offline, against a copy of the warm cache:
+
+```
+gate (--paths, whole corpus) : 1 conclusive finding in 1 of 2079 records, 1 waived
+--cross-check                : 2072 records, 492 carrying both, 0 conclusive disagreements
+--secondary-check            : 90 in scope, 0 gating, 0 report-only
+```
+
+Same live verdict (the habenula placeholder) and same waiver (hyman2010) as when the gate's blocking
+default was set. **The gate denominator is 2079, not the 2072 quoted above** — the two differ by
+exactly the 7 secondary-only records the scoping fix brought into scope, and `--cross-check` still
+prints 2072 because it preserves the doi/pmid population deliberately.
+
+### The audit's own output is bit-identical on a warm cache
+
+The constraint on this change was that the audit must keep reporting what its documented
+false-positive counts say it reports. Verified rather than asserted: pre-fix and post-fix modules run
+against two copies of the same warm cache produce **byte-identical** `--json` findings and identical
+stdout (the only textual difference is the `--json` path each was told to write), neither run mutates
+its cache, and `--fetch` on that cache reports `0 uncached identifiers / cache is complete` — so on a
+warm cache the changed code paths are never entered at all.
+
+### Tests for the split
+
+21 in `TestPrimaryFetcherCaching` and `TestTransportFailureIsReportedNotSilent`, offline and
+time-independent, copying the shape of `TestFetchPubmedAidCaching` and `TestSecondaryFetchers`.
+**Differential, not merely green**: run against the pre-fix modules, 13 of the 21 fail. The 8 that
+pass on both are the negative controls, and they are the half that matters most — a real 404 IS
+cached, a success IS cached, eutils' `not_found` IS cached, a cached identifier still returns `None`
+without re-fetching, and a DOI both resolvers genuinely do not know is still `unresolvable` and still
+absent from `skipped`. Refusing to cache a real 404 would be its own regression; the bug was never
+"it caches failures", it was "it cannot tell the two apart".
