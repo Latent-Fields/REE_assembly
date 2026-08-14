@@ -1,0 +1,135 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_932_zgoal_wanting_coupling_reinstrument",
+  "run_id": "v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-14T15:54:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "wanting_behaviour_coupling_detected",
+    "preconditions": [
+      {
+        "name": "residue_wanting_nondegenerate",
+        "description": "residue_wanting must actually vary this run (the way 916a validated the writer fix, chan_max_std~0.57) or the wanting->behaviour couplings are unmeasurable; below-floor self-routes substrate_not_ready_requeue, NOT a null/ceiling",
+        "measured": 0.5679693590845976,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "V3-EXQ-916a landed run: chan_max_std_residue_wanting=0.568, nondegen=True",
+        "met": true
+      },
+      {
+        "name": "z_goal_nondegenerate",
+        "description": "z_goal must vary for its couplings and the matched re-check vs 906c's near-null to be meaningful",
+        "measured": 0.0779962590494903,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "V3-EXQ-916a landed run: chan_max_std_z_goal=0.078, nondegen=True",
+        "met": true
+      },
+      {
+        "name": "couplings_adequately_powered",
+        "description": "every coupling has >= MIN_COUPLING_N paired obs; measured is the WORST (smallest-n) coupling",
+        "measured": 998.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "offending_cell": "zgoal_t_to_approach_t1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "coupling_zgoal_t_to_approach_t1_powered": true,
+      "coupling_zgoal_t_to_benefit_t1t3_powered": true,
+      "coupling_zgoal_t_to_benefitexp_t1t3_powered": true,
+      "coupling_wanting_t_to_approach_t1_powered": true,
+      "coupling_wanting_t_to_benefitexp_t1t3_powered": true,
+      "coupling_wanting_t_to_moved_t1_powered": true,
+      "coupling_wanting_t_to_reefexit_t1_powered": true,
+      "coupling_wanting_zgoal_contemporaneous_powered": true,
+      "residue_wanting_varies": true,
+      "z_goal_varies": true
+    },
+    "criteria": [
+      {
+        "name": "residue_wanting_measurable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "z_goal_measurable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "couplings_adequately_powered",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "combination_rule": "PASS (measurement_valid) = residue_wanting varies AND z_goal varies AND core channels non-degenerate AND every coupling has >= MIN_COUPLING_N pairs. This gates MEASUREMENT VALIDITY, not coupling detection: whether any coupling clears the |r|/|rho| floor is REPORTED (any_wanting_coupling_nontrivial / any_zgoal_coupling_nontrivial), never gated.",
+    "coupling_summary": {
+      "floor_r": 0.15,
+      "min_n": 200.0,
+      "reference_906c_near_null_r": 0.07,
+      "nontrivial_couplings": [
+        "zgoal_t_to_benefitexp_t1t3",
+        "wanting_t_to_benefitexp_t1t3",
+        "wanting_t_to_moved_t1",
+        "wanting_zgoal_contemporaneous"
+      ],
+      "any_wanting_coupling_nontrivial": true,
+      "any_zgoal_coupling_nontrivial": true
+    },
+    "note": "OBSERVATIONAL / DIAGNOSTIC -- promotes nothing, weights no governance (claim_ids=[], experiment_purpose=diagnostic). Answers organism-review Section 3 Level A (observational coupling) for residue_wanting for the FIRST time, on V3-EXQ-916a's repaired substrate (residue_wanting now varies; it was hard-0 across the whole 906-family lineage), and re-checks z_goal against 906c's near-null (r~0.07, n=3785) using the byte-identical 906c instrument on the fixed substrate. A lagged correlation is consistent with but does NOT establish that the signal DRIVES behaviour (common-cause confounds: proximity to a resource raises both wanting and approach). The causal-necessity test is the SEPARATE ablation V3-EXQ-931 (CEM wanting_weight); this must not be read as causal. PASS means the instrument produced a valid, well-powered measurement, NOT that a coupling was found; a well-measured null (wanting_behaviour_coupling_null) is the correct reading if residue_wanting varied but predicts nothing above the floor."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "db079f2167d90a7007a84a2a99f636933b81549546795ea60d3ba3758270d803",
+  "substrate_commit": {
+    "commit": "c38e083d59498eb025bafa4de8af617128915cb1",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 11166,
+    "ticks_active": 97,
+    "writer_calls": 11166,
+    "active_frac": 0.008687085796166935,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
