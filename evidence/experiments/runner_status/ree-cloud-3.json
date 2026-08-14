@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 925,
-  "runner_started_at": "2026-08-12T06:45:46.858561+00:00",
-  "last_updated": "2026-08-12T09:01:42.970102+00:00",
+  "runner_pid": 922,
+  "runner_started_at": "2026-08-14T17:10:49.502603+00:00",
+  "last_updated": "2026-08-14T17:10:53.237362+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-921",
+      "queue_id": "V3-EXQ-603u",
+      "backlog_id": "",
+      "claim_id": "MECH-357",
+      "title": "MECH-357 agent-directed hazard pursuit Stage-H retest (6th pressure candidate; 603s+directedness)",
+      "description": "",
+      "estimated_minutes": 282.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-920a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-490 sleep commit-gate persistence: spawn-matched + commit-variance instrumented sleep-vs-no-sleep ablation (V3-EXQ-913 successor, 6 seeds)",
+      "title": "Uncensored survival-to-death fishtank, TRUE single-life design -- MULTI-SEED re-run of V3-EXQ-920 (explicit --seeds 0..7; supersedes 920's 1-of-8-seeds execution defect)",
       "description": "",
-      "estimated_minutes": 352.0,
+      "estimated_minutes": 234.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2252,6 +2263,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 8032.7
+    },
+    {
+      "queue_id": "V3-EXQ-926a",
+      "backlog_id": "",
+      "claim_id": "MECH-449",
+      "title": "MECH-449/ARC-107 perseveration-axis conversion falsifier (untested leg of 689g; live MECH-260 dACC vector) [supersedes 926: EVIDENCE_DIR path fix]",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [926a] outcome=PASS label=perseveration_axis_converts conversions={'42': 0.96875, '43': 0.96875, '44': 1.0} specificity_gap=0.979 empty_eligible=0 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-926a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-926a.json",
+      "started_at": "2026-08-14T17:10:49.607017+00:00",
+      "completed_at": "2026-08-14T17:10:53.236220+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 3.6
     }
   ]
 }
