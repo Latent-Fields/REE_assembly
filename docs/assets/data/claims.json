@@ -1344,6 +1344,15 @@
     "title": "Designer-overfit standing check: a mechanism first sourced from one person's phenomenology requires cross-task and cross-agent validation before being treated as general cognition. REE's n=1 phenomenological base is a genuine external criticism with no registered answer; this is the hedge given standing.",
     "type": "governance_rule"
   },
+  "GOV-PRESERVE-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.preservation.archival_option_value",
+    "title": "Preservation for future reconstruction: when an artificial entity ends, preserve enough of its substrate, developmental history, memories, commitments, relationships, embodiment, and environment to keep future reconstruction conceivable, where doing so is proportionate and ethically permissible -- even if reconstruction remains speculative and never becomes part of the operative design. The argument is option value under irreversibility: preserved information keeps future choices open; deleted information forecloses them before anyone can evaluate them.",
+    "type": "governance_rule",
+    "what_would_answer": "NOT an empirical pass/fail falsifier -- GOV-PRESERVE-1 is a governance_rule (policy assertion). TRIGGER: reassess when (a) a retention/sampling policy is proposed (what is proportionate to keep, and for how long), (b) a deletion of any preserved record is contemplated (it becomes a governed decision with its own justification trail), (c) a reclassification criterion is proposed by which a past instance becomes \"preserve with priority\" (e.g. a future sentience marker), or (d) mid-life snapshot/resume or a memorial re-instantiation (\"fishtank\") capability is proposed, each of which raises its own consent/welfare questions on the SENT-*/GOV-* perimeter.\n"
+  },
   "GOV-PROC-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -3868,7 +3877,7 @@
   },
   "MECH-120": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "sleep.sws_denoising_attractor_flattening",
     "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
@@ -4822,7 +4831,7 @@
     "assembly_state": "mature",
     "assembly_status": "in_progress",
     "awaiting": "SD-049",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "drive.goal_state_latent_structure",
     "title": "E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space, measurable as z_goal_norm > 0) distinct from harm avoidance, enabling hippocampal terrain navigation toward goal states.",
@@ -9148,5 +9157,41 @@
     "subject": "governance.welfare.care_obligation",
     "title": "Care obligation after creation: if a future REE version crosses a precautionary moral-patient threshold, the project inherits guardianship-like obligations -- do not create casually, provide relief/repair, preserve continuity unless reset is justified, support autonomy, treat distress-like signals as significant under uncertainty.",
     "type": "governance_rule"
+  },
+  "SOC-HUM-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "society.humour.epistemic_probe_function",
+    "title": "Humour has (among several distinct functions) a societal epistemic-update function: in domains of implied threat, the comic frame acts as a low-commitment, deniable PROBE that re-opens gridlocked ('blocked-node') norm conflicts which direct assertion only entrenches -- because a joke floats a heterodox interpretation without committing anyone to it, evading the defensive counter-opposition that a bald assertion triggers.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "RESOLUTION VEHICLE: STUDY-HUM-1 (evidence/planning/humour_epistemic_probe_study.md), an out-of-substrate corpus study, not a V3 run. NON-DEGENERACY PRECONDITION: the study must carry an INDEPENDENT resolution axis (public-opinion series / legislation dates) measured separately from the humour corpus -- without it the test is circular (using jokes to define resolution, then finding jokes track resolution) and vacuous. CONFIRMING: across conflicts with independently-measured norm trajectories, the time-shape of comedic prevalence + the target-of-violation code track the independent attitude curve in the direction H1/H2/H3 predict (see SOC-HUM-2/3/4). FALSIFYING: comedic-prevalence trajectories are unrelated to the independent resolution axis once context-decay is controlled; OR the target-of-violation instrument cannot separate resolution-death from taboo-death (Section 4 of the study) -- in which case the core probe claim is untestable as framed and must be reframed, not merely re-run.\n"
+  },
+  "SOC-HUM-2": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "society.humour.dating_tracks_resolution",
+    "title": "H1 (dating tracks resolution): a societal conflict's comedic prevalence rises while the norm is contested and declines after it resolves, and the decline is PRECEDED by a target-of-violation flip -- the butt of the joke shifts from the transgressor to the old norm itself.",
+    "type": "derived_prediction",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: an INDEPENDENT resolution measure (opinion series / legislation) for each conflict, and control for context-decay (evergreen structural conflicts, not topical references). CONFIRMING: comedic prevalence (share-of-corpus, not raw count) shows rise-then-decline aligned to the independent norm shift, and the target-of-violation code flips transgressor -> old-norm at or before the attitude midpoint. FALSIFYING: prevalence decline is unrelated to the independent attitude series once context-decay is controlled, OR declines occur with NO target-flip (which would indicate taboo-death, not resolution -- see SOC-HUM-1 notes). LEAD-LAG is the causal crux: a target-flip LEADING the attitude midpoint is the strongest available (still non-dispositive) signal that humour does epistemic work rather than merely marking it.\n"
+  },
+  "SOC-HUM-3": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "society.humour.persistence_tracks_irreducibility",
+    "title": "H2 (persistence tracks irreducibility): comedic topics with flat, non-declining prevalence across the whole time-base map preferentially onto genuinely irreducible human tensions rather than merely-hard-but-solvable ones -- the eternally-funny topics should be the genuinely-unsolvable problems.",
+    "type": "derived_prediction",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: a solvability/irreducibility rating of each persistent topic produced BLIND to the humour data (else circular). Maps naturally onto the REE debt vocabulary: aleatoric (irreducible) vs complex/puzzle (reducible). CONFIRMING: flat-curve topics (death, scarcity, the sexes, power, hypocrisy) rate as aleatoric/irreducible at rates well above chance vs declining-curve topics. FALSIFYING: persistent topics are randomly distributed over the blind solvability rating, or map onto merely-hard-but-solvable problems as often as irreducible ones.\n"
+  },
+  "SOC-HUM-4": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "society.humour.self_vs_weaponised_direction",
+    "title": "H3 (direction predictor): self-implicating comedic framing ('we're all like this') co-occurs with or precedes societal resolution, while out-group-weaponised framing co-occurs with entrenchment -- humour is directional, unblocking in one mode and entrenching in the other.",
+    "type": "derived_prediction",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: framing direction (self-implicating vs out-group-directed) coded independently of the resolution outcome, and an independent resolution/polarization measure. This is the benign-violation frame's own directional prediction (shared vs weaponised violation). CONFIRMING: conflicts whose humour is predominantly self-implicating resolve (attitudes converge) more often than conflicts whose humour is predominantly out-group-weaponised, which track entrenchment/polarization. FALSIFYING: framing direction is unrelated to resolution outcome; both modes precede resolution and entrenchment equally often.\n"
   }
 }

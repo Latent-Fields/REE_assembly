@@ -82359,3 +82359,155 @@
     (ree-v3/tests/contracts/test_reconstruction_record.py); the governance rule itself is a
     candidate policy assertion, not an experimental result.
   location: evidence/planning/preservation_snapshot_plan.md
+# Registered 2026-08-14 from user thought intake
+# (docs/thoughts/2026-08-14_humour_societal_epistemic_probe.md) -- humour as a societal
+# epistemic-update mechanism. Adjacent-to-REE research thread: test domain is societal
+# humour corpora + independent opinion series, NOT the V3 experiment substrate
+# (epistemic_category: out_of_domain). Study protocol at
+# evidence/planning/humour_epistemic_probe_study.md (STUDY-HUM-1). Parent depends on the
+# individual-level laughter mechanism MECH-110.
+- id: SOC-HUM-1
+  title: "Humour has (among several distinct functions) a societal epistemic-update function: in domains of implied threat, the comic frame acts as a low-commitment, deniable PROBE that re-opens gridlocked ('blocked-node') norm conflicts which direct assertion only entrenches -- because a joke floats a heterodox interpretation without committing anyone to it, evading the defensive counter-opposition that a bald assertion triggers."
+  claim_type: mechanism_hypothesis
+  subject: society.humour.epistemic_probe_function
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-14
+    needs_review: false
+  epistemic_category: out_of_domain
+  claim_level: functional
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-14"
+  functional_restatement: >
+    Humour operates in the benign-violation domain (a real implied/potential threat that
+    an interpretation releases). In that domain, a joke is a DE-COMMITTED probe: "I'm only
+    joking" is an epistemic escape hatch that lets a heterodox interpretation be floated at
+    near-zero commitment cost, so nobody's belief is on the line and the defensive
+    "opposed-back" immune response that direct assertion triggers does not fire. Laughter
+    is the assay readout of whether the reframe is societally viable yet. This lets a
+    gridlocked norm-conflict (a "blocked node", by analogy to the REE claim index) be
+    re-explored where assertion would only entrench it. Structurally this is the REE
+    commitment / spike-before-commit pattern at societal scale. Explicitly ONE of several
+    humour functions (affiliation, status, play, cognitive reward are others); scoped
+    narrowly on purpose so it is falsifiable rather than a theory-of-everything.
+  depends_on:
+    - MECH-110
+  source:
+    - docs/thoughts/2026-08-14_humour_societal_epistemic_probe.md
+    - evidence/planning/humour_epistemic_probe_study.md
+  location: evidence/planning/humour_epistemic_probe_study.md
+  what_would_answer: >
+    RESOLUTION VEHICLE: STUDY-HUM-1 (evidence/planning/humour_epistemic_probe_study.md),
+    an out-of-substrate corpus study, not a V3 run. NON-DEGENERACY PRECONDITION: the study
+    must carry an INDEPENDENT resolution axis (public-opinion series / legislation dates)
+    measured separately from the humour corpus -- without it the test is circular (using
+    jokes to define resolution, then finding jokes track resolution) and vacuous.
+    CONFIRMING: across conflicts with independently-measured norm trajectories, the
+    time-shape of comedic prevalence + the target-of-violation code track the independent
+    attitude curve in the direction H1/H2/H3 predict (see SOC-HUM-2/3/4). FALSIFYING:
+    comedic-prevalence trajectories are unrelated to the independent resolution axis once
+    context-decay is controlled; OR the target-of-violation instrument cannot separate
+    resolution-death from taboo-death (Section 4 of the study) -- in which case the core
+    probe claim is untestable as framed and must be reframed, not merely re-run.
+  notes: >
+    Theory anchors independently: benign-violation (McGraw & Warren) + relief theory.
+    MECH-110 is the INDIVIDUAL-level laughter mechanism (rapid threat-tag cycling /
+    incongruity-resolution); SOC-HUM-1 is the distinct SOCIETAL-level function built on
+    top of it. Two documented refinements that make it falsifiable: (1) "dating" of old
+    jokes is two-valued -- resolution-death (violation now trivial) vs taboo-death
+    (violation no longer benign) -- same observable, opposite epistemic states, separated
+    by the target-of-violation code; (2) humour is directional -- self-implicating framing
+    unblocks, out-group-weaponised framing entrenches (SOC-HUM-4). Connects to the
+    commitment machinery (BG commitment, de-commit lever) and exploration-vs-exploitation.
+- id: SOC-HUM-2
+  title: "H1 (dating tracks resolution): a societal conflict's comedic prevalence rises while the norm is contested and declines after it resolves, and the decline is PRECEDED by a target-of-violation flip -- the butt of the joke shifts from the transgressor to the old norm itself."
+  claim_type: derived_prediction
+  subject: society.humour.dating_tracks_resolution
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-14
+    needs_review: false
+  epistemic_category: out_of_domain
+  claim_level: functional
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-14"
+  depends_on:
+    - SOC-HUM-1
+  source:
+    - evidence/planning/humour_epistemic_probe_study.md
+  location: evidence/planning/humour_epistemic_probe_study.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: an INDEPENDENT resolution measure (opinion series /
+    legislation) for each conflict, and control for context-decay (evergreen structural
+    conflicts, not topical references). CONFIRMING: comedic prevalence (share-of-corpus,
+    not raw count) shows rise-then-decline aligned to the independent norm shift, and the
+    target-of-violation code flips transgressor -> old-norm at or before the attitude
+    midpoint. FALSIFYING: prevalence decline is unrelated to the independent attitude
+    series once context-decay is controlled, OR declines occur with NO target-flip (which
+    would indicate taboo-death, not resolution -- see SOC-HUM-1 notes). LEAD-LAG is the
+    causal crux: a target-flip LEADING the attitude midpoint is the strongest available
+    (still non-dispositive) signal that humour does epistemic work rather than merely
+    marking it.
+- id: SOC-HUM-3
+  title: "H2 (persistence tracks irreducibility): comedic topics with flat, non-declining prevalence across the whole time-base map preferentially onto genuinely irreducible human tensions rather than merely-hard-but-solvable ones -- the eternally-funny topics should be the genuinely-unsolvable problems."
+  claim_type: derived_prediction
+  subject: society.humour.persistence_tracks_irreducibility
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-14
+    needs_review: false
+  epistemic_category: out_of_domain
+  claim_level: functional
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-14"
+  depends_on:
+    - SOC-HUM-1
+  source:
+    - evidence/planning/humour_epistemic_probe_study.md
+  location: evidence/planning/humour_epistemic_probe_study.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: a solvability/irreducibility rating of each persistent
+    topic produced BLIND to the humour data (else circular). Maps naturally onto the REE
+    debt vocabulary: aleatoric (irreducible) vs complex/puzzle (reducible). CONFIRMING:
+    flat-curve topics (death, scarcity, the sexes, power, hypocrisy) rate as
+    aleatoric/irreducible at rates well above chance vs declining-curve topics. FALSIFYING:
+    persistent topics are randomly distributed over the blind solvability rating, or map
+    onto merely-hard-but-solvable problems as often as irreducible ones.
+- id: SOC-HUM-4
+  title: "H3 (direction predictor): self-implicating comedic framing ('we're all like this') co-occurs with or precedes societal resolution, while out-group-weaponised framing co-occurs with entrenchment -- humour is directional, unblocking in one mode and entrenching in the other."
+  claim_type: derived_prediction
+  subject: society.humour.self_vs_weaponised_direction
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-14
+    needs_review: false
+  epistemic_category: out_of_domain
+  claim_level: functional
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-14"
+  depends_on:
+    - SOC-HUM-1
+  source:
+    - evidence/planning/humour_epistemic_probe_study.md
+  location: evidence/planning/humour_epistemic_probe_study.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: framing direction (self-implicating vs out-group-directed)
+    coded independently of the resolution outcome, and an independent resolution/polarization
+    measure. This is the benign-violation frame's own directional prediction (shared vs
+    weaponised violation). CONFIRMING: conflicts whose humour is predominantly
+    self-implicating resolve (attitudes converge) more often than conflicts whose humour is
+    predominantly out-group-weaponised, which track entrenchment/polarization. FALSIFYING:
+    framing direction is unrelated to resolution outcome; both modes precede resolution and
+    entrenchment equally often.
