@@ -1,8 +1,30 @@
-# Summary: Wikenheiser & Redish (2015) — "Decoupled traversals of the hippocampal sequence reflect decisions about the future"
+# Summary: Wikenheiser & Redish (2015) — "Hippocampal theta sequences reflect current goals"
 
 **Entry ID:** 2026-03-29_mech_033_hippocampal_sequences_wikenheiser2015
 **Claim tested:** MECH-033 (E2 forward-prediction kernels seed hippocampal rollouts)
 **Evidence direction:** supports | **Confidence:** 0.78
+
+---
+
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`).**
+> `source.title` and `source.doi` were repaired. The record previously declared the title
+> *"Decoupled traversals of the hippocampal sequence reflect decisions about the future"* and
+> the DOI `10.1038/nn.3945`. No paper with that title exists (Crossref bibliographic search
+> returns nothing resembling it), and `10.1038/nn.3945` is Zhang et al., *"Dopaminergic and
+> glutamatergic microdomains in a subset of rodent mesoaccumbens axons"* (Nat Neurosci 18:386-392)
+> — an unrelated paper. The record's own `pmid` `25559082` was already correct and is what
+> recovered the work: Wikenheiser & Redish, *"Hippocampal theta sequences reflect current goals"*,
+> Nat Neurosci 18(2):289-294, DOI `10.1038/nn.3909`. Declared authors, year and venue all already
+> matched that paper, so only the title and DOI were wrong.
+>
+> **UNRESOLVED, flagged for governance (GFLAG-0028): the "What the paper did" section below does
+> not describe nn.3909.** That study used a circular-track delay-discounting foraging task (three
+> feeder sites, fixed per-session delays, rats free to wait or skip) and its result is that theta
+> look-ahead extends farther on journeys to more distant goals and predicts the destination. The
+> text below instead describes a T-maze with probabilistic reward and vicarious-trial-and-error
+> head-scanning at a stationary choice point — the paradigm of Johnson & Redish (2007), not of the
+> cited paper. The prose was deliberately left unedited pending governance, exactly as for
+> GFLAG-0027; `confidence`, `evidence_direction` and `mapping` were not touched.
 
 ---
 

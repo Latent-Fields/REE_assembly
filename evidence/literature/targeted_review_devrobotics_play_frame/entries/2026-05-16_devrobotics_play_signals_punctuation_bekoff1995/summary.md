@@ -3,6 +3,20 @@
 **Entry ID:** 2026-05-16_devrobotics_play_signals_punctuation_bekoff1995
 **Claim IDs:** INV-059, ARC-049, MECH-196
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`).**
+> `source.doi` previously held `10.1163/156853995X00822`, which does not resolve (HTTP 404) and is
+> not a registered DOI. The correct identifier for Bekoff, *"Play Signals as Punctuation: the
+> Structure of Social Play in Canids"*, Behaviour 132(5-6):419-429 (1995) is
+> **`10.1163/156853995X00649`**, verified against Crossref on title, author and year. Title, author,
+> year and venue were already correct and were not changed.
+>
+> **Note for governance (GFLAG-0030): this paper is entered TWICE in the corpus.** The other entry is
+> `targeted_review_ethological_play_signals/entries/2026-05-16_arc049_bekoff1995_play_signals_canids_punctuation`,
+> which carried a *different* fabricated DOI (`10.1163/156853995X00101`, also 404) for the same work
+> and has since been corrected to the same real DOI. The two entries overlap on ARC-049 and INV-059
+> and carry different confidences (0.72 here, 0.88 there), so the same single study currently counts
+> twice toward those claims. Deduplication is a governance decision and was not made here.
+
 ## What the paper does
 
 Bekoff (1995) analyses the temporal placement of play bows -- the stereotyped fore-body lowering signal -- relative to other actions in naturally occurring play sequences in three canid species (adult and infant domestic dogs, infant wolves, infant coyotes). Using an ethogram of 35 behavioral patterns, he tests whether bows are randomly distributed across play sequences or cluster around actions that are also used in aggressive/predatory contexts and could therefore be misinterpreted. Film analysis establishes non-random placement statistically.

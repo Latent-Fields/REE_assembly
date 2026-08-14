@@ -6,6 +6,19 @@
 
 **Evidence direction:** supports | **Confidence:** 0.73
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`).**
+> `source.doi` previously held `10.1097/00004583-198903000-00016`, which is Cohn & Tronick,
+> *"Specificity of Infants' Response to Mothers' Affective Behavior"* (J Am Acad Child Adolesc
+> Psychiatry 28:242-248, 1989) — an unrelated paper. The cited work is a 1996 *International Journal
+> of Psycho-Analysis* article, not a book chapter, and it has **no DOI**: PubMed (PMID 9119582)
+> carries no `doi` articleid for it, and Crossref has no matching record. `doi` was therefore set to
+> `null` ("checked, none exists", per the v1 schema) and the verified `pmid` `9119582` added as the
+> record's identifier. Title, authors, year and venue were already correct and were not changed.
+> The 2018 Routledge reprint `10.4324/9780429471643-7` was deliberately **not** used: it is a
+> differently-titled chapter credited to the book's authors (Fonagy et al.), so citing it would
+> misstate which text this entry read. The summary content matches the cited work; nothing else was
+> touched.
+
 ## Key Finding
 
 Infants possess a dedicated contingency detection and maximising mechanism that tracks conditional probability of environmental responses to their behavior. Applied to parental affect-mirroring, this mechanism mediates emotional self-awareness development. The mechanism operates preverbally, presymbolically, and is biologically primary. Caregiver expressions must be 'marked' (perceptibly different from ordinary expressions) to allow the infant to tag them as communicative rather than realistic.

@@ -2,6 +2,32 @@
 
 **Claim tested:** ARC-032 -- theta-rate packaging of E1 output is the primary pathway for goal-context maintenance reaching E3
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`). NO field was
+> changed; this entry's source could NOT be determined and is flagged for governance (GFLAG-0029).**
+> Every identifier on this record is demonstrably wrong, and they do not agree with each other:
+> - `source.title` is fabricated. No paper called *"Simultaneous recording of hippocampal and medial
+>   prefrontal theta oscillations: implications for spatial navigation and working memory"* exists;
+>   a PubMed author search for Hyman JM + Hasselmo ME + theta returns five papers, none of them it.
+> - `source.doi` `10.1002/hipo.20709` is Christie, *"Exercising some control over the hippocampus"*
+>   (Hippocampus 19:887-888, 2009).
+> - `source.url` points at PMID 19489006, which is Hill et al., *"Endogenous cannabinoid signaling is
+>   required for voluntary exercise-induced enhancement of progenitor cell proliferation in the
+>   hippocampus"* — also unrelated.
+> - The declared authors (Hyman, Zilli, Paley, Hasselmo) are a real author list, but it is shared by
+>   *two* papers, and the declared `year` and `venue` point at different ones: Hyman et al. 2005,
+>   Hippocampus 15:739-749 (`10.1002/hipo.20106`) matches the venue; Hyman et al. 2010, Front Integr
+>   Neurosci 4:2 (`10.3389/neuro.07.002.2010`) matches the year.
+>
+> **Neither Hyman paper is the study described below.** Hyman 2010 used an operant lever-press DNMS
+> task and reports that theta *entrainment of mPFC units* fell on error trials while firing rates did
+> not; Hyman 2005 used linear-track running and open-field foraging with no working-memory component.
+> The account below — simultaneous HPC/mPFC LFPs, spatial alternation, coherence elevated specifically
+> in the *stem* of the maze, mPFC theta phase leading hippocampal theta — is the signature of Jones &
+> Wilson (2005), *"Theta rhythms coordinate hippocampal-prefrontal interactions in a spatial memory
+> task"* (PLoS Biol 3:e402), which Hyman 2010 itself cites. Repointing the identifier at that paper
+> would be a change of *evidence*, not of provenance, so nothing was written. `confidence`,
+> `evidence_direction` and `mapping` were not touched.
+
 ## What the paper did
 
 Hyman and colleagues recorded LFPs simultaneously from hippocampus and medial prefrontal cortex in freely moving rats performing spatial alternation and working memory tasks. The alternation task is a canonical rodent working memory paradigm: the animal must alternate between left and right arms of a T- or Y-maze, which requires holding the most recent choice in working memory to avoid repeating it. The paper examined whether theta oscillations in mPFC and hippocampus were coordinated during this task, and in particular whether the coordination changed as a function of the working memory demands of the current maze segment.

@@ -1,5 +1,19 @@
 # Bekoff 1995: Play Signals as Punctuation -- The Structure of Social Play in Canids
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`).**
+> `source.doi` previously held `10.1163/156853995X00101`, which does not resolve (HTTP 404) and is
+> not a registered DOI. The correct identifier for Bekoff, *"Play Signals as Punctuation: the
+> Structure of Social Play in Canids"*, Behaviour 132(5-6):419-429 (1995) is
+> **`10.1163/156853995X00649`**, verified against Crossref on title, author and year. Title, author,
+> year and venue were already correct and were not changed.
+>
+> **Note for governance (GFLAG-0030): this paper is entered TWICE in the corpus.** The other entry is
+> `targeted_review_devrobotics_play_frame/entries/2026-05-16_devrobotics_play_signals_punctuation_bekoff1995`,
+> which carried a *different* fabricated DOI (`10.1163/156853995X00822`, also 404) for the same work
+> and has since been corrected to the same real DOI. The two entries overlap on ARC-049 and INV-059
+> and carry different confidences (0.88 here, 0.72 there), so the same single study currently counts
+> twice toward those claims. Deduplication is a governance decision and was not made here.
+
 ## What the paper did
 
 Marc Bekoff systematically observed play bows in infant domestic dogs, infant wolves, infant coyotes, and adult domestic dogs, using sequence analysis to determine whether bows are randomly distributed throughout play or clustered at specific moments. The key dependent variable was the temporal placement of play bows relative to potentially ambiguous actions -- specifically, biting accompanied by rapid side-to-side head shaking (bite-shake), which also occurs during predatory and agonistic encounters.
