@@ -577,9 +577,58 @@ pubmed_aid   1285   1285 ok     0 not-ok
 ```
 
 Every not-ok entry is a genuine answer (`http_404` for the two DOI endpoints, `not_found` for the
-200-shaped ones). Nothing was deleted, and nothing needed to be. **This is one box** (`ree-cloud-5`);
-the same audit is worth re-running anywhere else that holds a `lit_bib_cache`, and it is a two-line
-scan over `ok is false and error not in ("http_404", "not_found")`.
+200-shaped ones). Nothing was deleted, and nothing needed to be.
+
+#### Per-box coverage, and the scan is now a supported flag
+
+The cache is per-box and is not version controlled, so the result above covers **`ree-cloud-5` only**
+and says nothing about any other machine. Re-running it elsewhere was chipped
+(`chip-20260814-lit-cache-poison-audit-other-boxes`), and that chip found the remaining boxes are not
+reachable from a cloud worker: `ree-cloud-5` holds no ssh private key and no `hcloud`, the hub refuses
+publickey from it, and `ree-worker-2/3/4` do not answer on port 22 at all (powered off). The Mac
+(`DLAPTOP-4`) — the box where the audit and the gate are actually run, and therefore the one that
+matters most — has to run this itself.
+
+| box | cached | poisoned | when | how |
+|---|---|---|---|---|
+| `ree-cloud-5` | 4477 | **0** | 2026-08-14 | re-confirmed under the strict per-endpoint rule below |
+| `DLAPTOP-4` (Mac) | — | **not yet audited** | — | not reachable from a cloud worker |
+| `ree-cloud-1` (hub) | — | **not yet audited** | — | ssh publickey refused from `ree-cloud-5` |
+| `ree-cloud-2/3/4` | — | **not yet audited** | — | powered off; not woken, this is not worth billing for |
+
+What the chip did land is that the scan is no longer a two-line snippet each box has to re-derive:
+
+```
+scripts/audit_literature_bibliographic_accuracy.py --scan-poison    # report; deletes nothing
+scripts/audit_literature_bibliographic_accuracy.py --scan-poison --purge-poison
+```
+
+The report always prints before the purge, because the **count is the finding** — it is what the
+baselines below are conditional on — and deleting first would destroy it. A purge is otherwise safe:
+the next `--fetch` simply re-asks.
+
+**The answer sets are per-ENDPOINT and derived from the fetchers' own constants, and that is
+load-bearing rather than tidiness.** The obvious one-global-set version — `error not in ("http_404",
+"not_found")`, which is what the first hand-written scan used — is wrong in both directions at once.
+It is right that `http_404` is an answer for Crossref and doi.org ("I do not know this DOI"), but for
+`pubmed` a 404 **is** poison, since eutils answers an unknown id with 200 plus an `error` field and
+never 404s it — so the global version cannot report the pubmed case even though its own comment said
+that case is poison. And `pubmed_aid` has an *empty* answer set, since esearch answers an unknown DOI
+with a perfectly good 200 and `count=0`, so **any** non-ok entry there is a persisted transport
+failure. Verified differentially: against a fixture holding one poisoned pubmed `http_404`, the global
+version reports 0 and the shipped table reports 1.
+
+`CACHE_ANSWER_ERRORS` is therefore computed from `DOI_ANSWER_HTTP_CODES` / `PUBMED_ANSWER_HTTP_CODES`
+rather than restating them, and a cache directory with no rule is reported `UNKNOWN:` rather than
+assumed clean. Tests: `scripts/test_audit_literature_cache_poison.py` (18, time-independent, tempdir
+caches, no network). Roughly half are negative controls — a Crossref/doi.org 404, a `not_found`, an
+`ok` entry — because the scan's real failure mode is not missing poison but calling an answer poison,
+which deletes a good cached negative and re-fetches it on every sweep forever.
+
+Re-running that strict scan on `ree-cloud-5` reproduces the table above exactly: **0 poisoned of
+4477**. So the original conservative result was not merely conservative-and-lucky — the box is clean
+under the stricter rule too, including the pubmed-404 and `pubmed_aid` cases the conservative scan
+could not see.
 
 ### Baselines re-measured, and unchanged
 

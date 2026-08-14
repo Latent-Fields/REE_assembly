@@ -48,6 +48,15 @@ long sweep can be run in foreground chunks::
     audit_literature_bibliographic_accuracy.py --fetch --limit 300   # populate cache
     audit_literature_bibliographic_accuracy.py --report              # read cache only
     audit_literature_bibliographic_accuracy.py --report --json out.json
+    audit_literature_bibliographic_accuracy.py --scan-poison   # audit the cache
+
+``--scan-poison`` is the retrospective half of the answer-vs-transport-failure
+split enforced below: it audits an EXISTING cache for entries written before
+that fix landed. The cache is per-box and is not version controlled, so it has
+to be run on every machine that holds one -- a clean result on one says nothing
+about any other. ``--purge-poison`` deletes what it finds (safe: the next
+``--fetch`` re-asks), but record the COUNT first, since it is what the gate's
+measured baselines are conditional on.
 
 ``--report`` never touches the network, so it is safe to iterate on. The cache
 lives OUTSIDE the repo (``--cache``, default ``~/lit_bib_cache``) -- ~2000 API
@@ -251,6 +260,116 @@ def http_get(url, timeout=30):
 # the other direction is silent, permanent loss of coverage.
 DOI_ANSWER_HTTP_CODES = frozenset({404})
 PUBMED_ANSWER_HTTP_CODES = frozenset()
+
+
+def _http_errors(codes):
+    return frozenset("http_%d" % c for c in codes)
+
+
+# The same split, expressed as "which ``error`` values is each cache directory
+# ALLOWED to hold" -- this is what ``--scan-poison`` audits an existing cache
+# against. Everything here is DERIVED from the constants above, or from the
+# corresponding fetcher in ``verify_literature_identifiers``, rather than
+# restated: a hand-copied table drifts from the fetchers silently, and the whole
+# point of the scan is to detect entries the fetchers should never have written.
+#
+# ``pubmed_aid`` is the one empty set, and deliberately so: it is an esearch
+# QUERY, and "no such DOI" comes back as a perfectly good 200 with ``count=0``,
+# cached ``ok: True``. So that fetcher has no not-found answer to cache at all,
+# and ANY non-ok entry in it is a persisted transport failure.
+#
+# A directory with no rule here is reported UNKNOWN, never assumed clean -- a
+# new cache kind added without a rule must show up as unaudited rather than
+# silently passing.
+CACHE_ANSWER_ERRORS = {
+    "crossref": _http_errors(DOI_ANSWER_HTTP_CODES),
+    "doiorg": _http_errors(DOI_ANSWER_HTTP_CODES),
+    "pubmed": frozenset({"not_found"}) | _http_errors(PUBMED_ANSWER_HTTP_CODES),
+    # verify_literature_identifiers: fetch_pmc / fetch_arxiv / fetch_openlibrary
+    # each cache {"ok": False, "error": "not_found"} and return every HTTPError
+    # to the caller UNcached, so "not_found" is their entire answer set.
+    "pmc": frozenset({"not_found"}),
+    "arxiv": frozenset({"not_found"}),
+    "openlibrary": frozenset({"not_found"}),
+    "pubmed_aid": frozenset(),
+}
+
+
+def scan_cache_poison(cache_dir):
+    """Find cache entries holding a TRANSPORT FAILURE rather than an answer.
+
+    Returns ``[(kind, total, [(path, error), ...]), ...]`` in directory-name
+    order, with ``kind`` prefixed ``UNKNOWN:`` for a directory this module has
+    no answer-set rule for.
+
+    Retrospective counterpart to the block comment above: that comment stops new
+    poison being WRITTEN, this finds entries written before the fix landed
+    (REE_assembly f0ffa68f78). The cache is per-box and is not version
+    controlled, so a clean result on one machine says nothing about any other --
+    this has to be run on each box that holds a ``~/lit_bib_cache``.
+
+    An unparseable file counts as poison: a truncated write is not an answer
+    either, and re-fetching it is the same cheap fix.
+    """
+    root = Path(cache_dir)
+    out = []
+    if not root.is_dir():
+        return out
+    for sub in sorted(p for p in root.iterdir() if p.is_dir()):
+        answers = CACHE_ANSWER_ERRORS.get(sub.name)
+        kind = sub.name if answers is not None else "UNKNOWN:" + sub.name
+        total = 0
+        bad = []
+        for path in sorted(sub.glob("*.json")):
+            total += 1
+            try:
+                rec = json.loads(path.read_text(encoding="utf-8"))
+            except Exception:
+                bad.append((path, "UNPARSEABLE"))
+                continue
+            if rec.get("ok"):
+                continue
+            error = str(rec.get("error"))
+            if answers is None or error not in answers:
+                bad.append((path, error))
+        out.append((kind, total, bad))
+    return out
+
+
+def cmd_scan_poison(args):
+    """Report -- and with ``--purge-poison``, delete -- poisoned cache entries.
+
+    Deleting is safe: the next ``--fetch`` simply re-asks. But the COUNT is the
+    finding and has to be recorded before anything is removed, so the report
+    always prints first and the purge is a separate opt-in flag.
+    """
+    scanned = scan_cache_poison(args.cache)
+    if not scanned:
+        print("scan-poison: no cache at %s (nothing to audit)" % args.cache)
+        return 0
+    total_all = poisoned_all = 0
+    for kind, total, bad in scanned:
+        total_all += total
+        poisoned_all += len(bad)
+        print("%-14s total=%-6d poisoned=%d" % (kind, total, len(bad)))
+        counts = {}
+        for _, error in bad:
+            counts[error] = counts.get(error, 0) + 1
+        for error, n in sorted(counts.items(), key=lambda kv: -kv[1])[:args.show]:
+            print("    %5d  %s" % (n, error[:70]))
+    print("scan-poison: %d poisoned of %d cached (%s)"
+          % (poisoned_all, total_all, args.cache))
+    if poisoned_all and args.purge_poison:
+        for _, _, bad in scanned:
+            for path, _ in bad:
+                path.unlink()
+        print("scan-poison: deleted %d entries -- re-run with --fetch to "
+              "repopulate, then re-measure the baselines" % poisoned_all)
+    elif poisoned_all:
+        print("scan-poison: re-run with --purge-poison to delete them")
+    if args.exit_nonzero and poisoned_all:
+        return 1
+    return 0
 
 
 def fetch_crossref(doi, cache_dir, limiter):
@@ -753,7 +872,16 @@ def main(argv=None):
     ap.add_argument("--json", help="write the full findings to this path")
     ap.add_argument("--json-all", action="store_true", help="include every compared row")
     ap.add_argument("--exit-nonzero", action="store_true")
+    ap.add_argument("--scan-poison", action="store_true",
+                    help="audit the cache for persisted transport failures")
+    ap.add_argument("--purge-poison", action="store_true",
+                    help="with --scan-poison, delete what it finds")
     args = ap.parse_args(argv)
+
+    if args.scan_poison:
+        return cmd_scan_poison(args)
+    if args.purge_poison:
+        ap.error("--purge-poison requires --scan-poison")
 
     if not args.fetch and not args.report:
         args.report = True
