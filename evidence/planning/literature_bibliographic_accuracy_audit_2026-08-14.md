@@ -1,7 +1,8 @@
 # Literature corpus — bibliographic accuracy audit, 2026-08-14
 
 **Status: FINDINGS REPORT. The repairs described in "Repairs applied" below HAVE been
-committed. Everything under "Left unrepaired" has NOT been changed and needs a human.
+committed. Everything under "Left unrepaired" has NOT been changed and needs a human —
+start with item 0, which is the only finding that touches evidence rather than provenance.
 No `confidence`, `evidence_direction`, `mapping`, or `claim_ids_tested` field was touched
 anywhere in this work.**
 
@@ -117,9 +118,61 @@ with the Crossref list, and the attribution corrected in `summary.md` prose.
 **Group 4 — author-order corrections (5 records).** Yu & Dayan 2005 (3 entries, declared as
 "Dayan, Yu") and Walker & van der Helm 2009 (2 entries, declared reversed).
 
+**Group 5 — prose attribution in 16 `summary.md` files.** The wrong author list was asserted in
+the text as well as in `source.authors`. Attribution only; no scientific content changed.
+
+**Effect, measured by re-running the audit on the repaired corpus:** bucket (b) **47 → 8**. All
+8 residual flags are accounted for below — 4 unrepairable, 4 known false positives. Bucket (a)
+went 30 → 31: the new entry is `mech_029_moral_neuroscience_social_decisionmaking_2019`, whose
+online-first/issue year discrepancy only became visible once its DOI was corrected. The schema
+audit still reports **0 failing of 2189**.
+
+Commits: `461da94faa` (g1), `ded51143ff` (g2), `b062ceaf58` (g3), `64995256a7` (g4),
+`01ad824153` (g5).
+
 ---
 
 ## Left unrepaired — needs a human
+
+**0. THE ONE FINDING THAT IS NOT PROVENANCE — a summary describing a different paper than
+its own identifier. This is the "much bigger deal" case and it was NOT touched.**
+
+`targeted_review_connectome_mech_186/entries/2026-04-09_mech_186_5ht_valence_model_based_huys2015/summary.md`
+
+Every other record checked had the right content under the wrong name. This one is a **blend of
+two papers**, and the blend runs through the evidence, not just the byline:
+
+- The record's `title` and `doi` (`10.1038/mp.2015.46`) are **Worbe, Palminteri, Savulich, Daw,
+  Fernandez-Egea, Robbins & Voon (2016) Molecular Psychiatry**, *"Valence-dependent influence of
+  serotonin depletion on model-based choice strategy"* — an ATD study whose reward/punishment
+  asymmetry is exactly what MECH-186 is being supported by, and whose venue the summary's own
+  confidence reasoning correctly names ("Molecular Psychiatry").
+- But the heading, the "What the paper did" section and the limitations section describe
+  **Huys et al., *"Interplay of approximate planning strategies"*** — *"a large-scale study
+  (n=1,762 online participants)"*, *"the ATD subsample (n=38)"*, *"The online sample (n=1,762) is
+  not the ATD sample"*. Those sample sizes are not the Worbe study's.
+
+So the **stated methodological basis for `confidence: 0.62` is partly drawn from a study the
+entry is not citing**, and one of the limitations ("the large N is correlational") is a caveat
+about a sample that is not in the cited paper at all. `source.authors` was corrected to Worbe et
+al. (the title and DOI already agreed, so the author list was the outlier) — but the **summary
+prose was deliberately left alone**, and `confidence` / `evidence_direction` were not touched.
+
+**What a human needs to decide:** whether the MECH-186 support rests on the Worbe result (in
+which case the summary needs rewriting against that paper, and the sample-size claims deleted)
+or on Huys et al. (in which case this should be two entries, and the Huys one needs its own
+correct identifier). Either way `confidence: 0.62` should be re-derived, because its recorded
+reasoning cites both.
+
+**Two more records may have the same shape but could not be settled from Crossref** (no abstract
+is served for either DOI), so they were also left prose-uncorrected:
+- `arc_041/entries/2026-04-02_arc_041_ofc_vmpfc_representational_spaces_2024` — title and DOI are
+  Moneta, Grossman & Schuck (TiNS 2024), but the summary's content (lateral-OFC credit assignment
+  vs medial-OFC value-guided choice, *"across primate species"*) reads as Rudebeck & Murray, who
+  were the declared authors.
+- `arc_041/entries/2026-04-02_arc_041_vmpfc_cognitive_map_value_2025` — title and DOI are Veselic
+  et al. (Cell 2025); the summary describes macaque single-unit recordings, which is consistent
+  with that author list but was not independently confirmed.
 
 **1. Two records whose correct identifier could not be determined.**
    - `2026-03-29_mech_033_hippocampal_sequences_wikenheiser2015` — declared title
