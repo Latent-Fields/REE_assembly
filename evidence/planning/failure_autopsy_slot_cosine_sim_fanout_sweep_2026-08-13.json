@@ -1,0 +1,742 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-14T01:41:47Z",
+ "scope": "fanout_sweep",
+ "status": "awaiting_human_confirmation",
+ "staging_mode": true,
+ "staging_mode_note": "Headless metaworker chip (chip-20260813-slotcosinesim-fanout-sweep). Nothing was applied to claims.yaml or to any manifest; every disposition below is a proposal for /governance, per the precedent set by failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07.",
+ "autopsy_kind": "fanout_sweep",
+ "autopsy_kind_note": "Discharges the fan-out recommendation left open by failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07 (REE_assembly 01d985a422): 'A grep-level sweep for other criteria pre-registered on a whole-bank cosine is warranted.' Not a fresh autopsy of any single run.",
+ "discharges": "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07 -> fanout_recommendation",
+ "sweep_scope": {
+  "corpus": "ree-v3/experiments/*.py referencing sws_slot_diversity or slot_cosine_sim",
+  "total_drivers": 32,
+  "excluded_436_family": 6,
+  "triaged": 26,
+  "excluded_ids": [
+   "436",
+   "436a",
+   "436b",
+   "436c",
+   "436d",
+   "436e"
+  ]
+ },
+ "substrate_state": {
+  "site": "ree-v3/ree_core/agent.py:11328-11343 (run_sws_schema_pass)",
+  "masked": "diagonal only -- NO occupancy mask",
+  "unchanged_as_of": "2026-08-13",
+  "identity": "sws_slot_diversity == 1 - slot_cosine_sim on the same bank with the same mask (436d F7b, still live)",
+  "metrics_dict_default_site": "ree-v3/ree_core/agent.py:11197 (sws_slot_diversity initialised 0.0; returned unchanged when sws_enabled is False)"
+ },
+ "untouched_bank_null": {
+  "probe": "400 fresh ContextMemory(latent_dim=64) inits on the real ree-v3 substrate; whole-bank mean(1 - off_diag_cosine)",
+  "mean": 0.999284,
+  "sd": 0.00861,
+  "min": 0.968025,
+  "max": 1.021729,
+  "p_gt_0_10": 1.0,
+  "p_gt_0_05": 1.0,
+  "p_gt_0_02": 1.0,
+  "p_gt_0_01": 1.0,
+  "consequence": "Every absolute lower-bound criterion on diversity in the corpus is satisfied by a bank nothing was written to. This is the SECOND direction of the confound: 436d's C1 failed for the wrong reason; these pass for the wrong reason."
+ },
+ "triage": {
+  "load_bearing_on_raw_wholebank": [
+   "242",
+   "245",
+   "245a",
+   "245b",
+   "265",
+   "265a",
+   "429",
+   "430",
+   "500",
+   "500a",
+   "673"
+  ],
+  "diagnostic_record_only": [
+   "243",
+   "246",
+   "385",
+   "385a",
+   "418",
+   "418a",
+   "418l",
+   "691",
+   "901",
+   "909",
+   "922"
+  ],
+  "already_independently_fixed": [
+   "845",
+   "861",
+   "861a",
+   "861b"
+  ],
+  "independent_prior_discovery": {
+   "artifact": "failure_autopsy_V3-EXQ-845_2026-08-01",
+   "note": "Found the same whole-bank confound six days BEFORE the 436d check, by a different route (write-count entanglement rather than occupancy). 861/861a/861b now route on mean_sws_new_slot_diversity (occupied-this-cycle slots only) and retain the old statistic as mean_sws_slot_diversity_wholebank_legacy, explicitly NON-GATING. Two independent lineages converging on the same defect is the strongest evidence that the statistic, not any one experiment, is the problem. 861's before/after ContextMemory.memory snapshot needs no ree_core change and is the natural repair template."
+  }
+ },
+ "findings": [
+  {
+   "id": "F1",
+   "severity": "material",
+   "claim": "INV-044",
+   "title": "An active promotion resting entirely on the confounded instrument",
+   "gate": "v3_exq_429_inv044_bayesian_prior_before_posterior.py:316 -- outcome = PASS iff (c1_pass and c2_pass); BOTH are the raw whole-bank statistic",
+   "criteria": {
+    "C1": {
+     "gating": true,
+     "registered": "ORDERED mean_sws_slot_diversity > 0.05 in >=2/3 seeds",
+     "measured": 0.288,
+     "defect": "Threshold ~20x below the untouched-bank value (0.9993). An empty bank passes with P=1.0000. Measured 0.288 == whole-bank cosine ~0.71, i.e. substantial homogenisation, read by C1 as success."
+    },
+    "C2": {
+     "gating": true,
+     "registered": "ORDERED mean_sws_slot_diversity > WAKING_ONLY final_slot_diversity in >=2/3",
+     "measured": "0.288 vs 0.177",
+     "defect": "Compares ORDERED's mid-training per-cycle mean against WAKING's end-of-training final value. Per 436d F5 the baseline is Adam drift on context_memory.memory and is non-monotone in training time."
+    },
+    "C4": {
+     "gating": false,
+     "registered": "REM_ONLY < ORDERED in ALL seeds",
+     "measured": "REM_ONLY 0.0 in 3/3",
+     "defect": "0.0 is the agent.py:11197 metrics-dict default, not a measurement -- REM_ONLY runs no SWS pass. Guaranteed to pass whenever ORDERED > 0. Quoted in the promotion note as the leading contrast."
+    }
+   },
+   "index_state": {
+    "genuine_exp_count": 2,
+    "pass_runs": 2,
+    "fail_runs": 0,
+    "entries": [
+     "v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3",
+     "v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3"
+    ],
+    "experimental_confidence": 0.625,
+    "overall_confidence": 0.768,
+    "evidence_quadrant": "confirmed_established",
+    "status": "provisional"
+   },
+   "consequence": "100% of INV-044's experimental evidence base is the confounded instrument. There is no unaffected experimental evidence to fall back on. Promotion to provisional (governance 2026-04-19) quoted the confounded numbers verbatim."
+  },
+  {
+   "id": "F2",
+   "severity": "note_inverted",
+   "claim": "INV-010",
+   "title": "Recorded rationale is backwards; no direction change",
+   "criterion": "430 C3 -- SLEEP mean_sws_slot_diversity > 0.02 in ALL seeds; passed 3/3 at 0.342 / 0.290 / 0.083",
+   "recorded_note": "SWS slots differentiated (C3 3/3) but did not translate to behavioral harm reduction -- symptom of missing MECH-261 mode-conditioned offline-write gating substrate.",
+   "defect": "Against the 0.9993 untouched-bank value those readings are whole-bank cosine ~0.66 / 0.71 / 0.92 -- the bank became substantially MORE homogeneous. 'Slots differentiated' is inverted. NO_SLEEP reads 0.0, the same agent.py:11197 placeholder.",
+   "weighting_impact": "none -- 430 is already non_contributory and INV-010 has genuine_exp_count=0",
+   "consequence": "The note's causal story currently scopes INV-010's retest eligibility onto MECH-261 substrate maturity, on a dissociation that was never observed."
+  },
+  {
+   "id": "F3",
+   "severity": "flag_no_change",
+   "claim": "SD-017",
+   "title": "Both supporting runs carry the confound, neither decisively",
+   "index_state": {
+    "pass_runs": 2,
+    "fail_runs": 3,
+    "experimental_confidence": 0.684,
+    "overall_confidence": 0.777,
+    "status": "stable"
+   },
+   "runs": {
+    "265a": {
+     "criterion": "C2 mean_sws_slot_diversity > 0.10",
+     "measured": 0.257,
+     "defect": "same vacuity class as F1 C1 (P=1.0000 on an empty bank); not the sole criterion"
+    },
+    "500a": {
+     "criterion": "C3 mean_replay_quality >= 8.0 where replay_quality = rem_n_rollouts + 0.25*sws_n_writes + 0.1*sws_slot_diversity",
+     "measured": 8.09995,
+     "decisive": false,
+     "detail": "rem_n_rollouts=6.0, sws_n_writes=8.0 -> non-diversity part is EXACTLY 8.0, so C3 passes under >= with or without the confounded term. But 100% of the visible margin is that term, and a strict > would have made it the sole reason for the pass.",
+     "secondary": "Reports sws_slot_diversity ~0.9995 with slot_diversity_before_test == slot_diversity_after_test to full float precision in every cycle and seed -- the untouched-bank null despite 8 writes/cycle, because 8 EMA writes (0.9*old + 0.1*new) barely perturb a near-orthogonal init. The term adds a near-constant +0.0999, i.e. a constant, not information."
+    }
+   },
+   "consequence": "No direction change proposed. Flagged so 265a/500a are not later cited as independent corroboration of slot differentiation -- neither measures it."
+  },
+  {
+   "id": "F4",
+   "severity": "material_but_already_decided",
+   "claim": "MECH-120",
+   "title": "Two weakens entries governance already voted to discount are still scoring",
+   "index_state": {
+    "pass_runs": 1,
+    "fail_runs": 2,
+    "genuine_exp_count": 3,
+    "experimental_confidence": 0.454,
+    "status": "candidate"
+   },
+   "gate": "245 PASS = S1 AND S2, BOTH on slot_cosine_sim (100% of the gate)",
+   "governance_decision_on_record": "claims.yaml: 'EXQ-245 FAIL x2 (2026-04-05, 2026-04-07): both reclassified to non_contributory -- proxy substrate without full offline-phase architecture.' Flat manifests agree (non_contributory + 2026-04-08 note).",
+   "why_still_scoring": "See F5 -- the reclassification never reached the run-pack manifest the indexer reads.",
+   "data_degeneracy": "Independently of occupancy: 2/3 seeds pin BOTH arms at slot_cosine_sim ~0.9999998 vs 0.999997 (1e-6 differences -- the legacy write_gate-as-payload collapse 436d repaired); the third seed's control arm sits at 0.000449, the untouched-bank null. S2/P1 is unsatisfiable in 3/3 seeds by two different mechanisms.",
+   "note": "245a/245b are also load-bearing on the statistic but WERE correctly reclassified non_contributory and are excluded from the genuine count."
+  },
+  {
+   "id": "F5",
+   "severity": "adjacent_infrastructure",
+   "claim": null,
+   "title": "26 governance corrections stranded in subdirectory manifests the indexer never reads",
+   "site": "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py:1454",
+   "code": "flat_manifest = _load_json(base_dir / f\"{run_id}.json\")  # TOP LEVEL ONLY",
+   "mechanism": "_merge_flat_manifest_overrides (line 1297) overlays a flat governance correction onto a stale pack when the flat is ANNOTATED and the pack is NOT -- exactly 245's shape. But when the flat manifest lives in an experiment-type subdirectory rather than at evidence/experiments/<run_id>.json the lookup misses, _load_json returns {}, and the overlay is a documented no-op. No warning fires: the WARNING is gated on _flat_applied.",
+   "confirmation": "Two cases resolving in OPPOSITE directions, index matching the pack both times: 242 (pack non_contributory / flat weakens -> index non_contributory) and 245 (pack weakens / flat non_contributory -> index weakens).",
+   "scan": {
+    "run_packs_scanned": 2817,
+    "no_top_level_flat_sibling": 1948,
+    "stranded_annotated_disagreements": 26
+   },
+   "stranded": [
+    {
+     "run_id": "v3_exq_244_mech165_reverse_replay_diversity_20260405T132907Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_245_mech120_shy_normalisation_20260405T131647Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_245_mech120_shy_normalisation_20260407T091221Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_246_mech122_spindle_coordination_20260405T132145Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "supports",
+       "flat": "inconclusive"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_321a_mech090_bistable_gate_20260416T200620Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "non_contributory"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_325a_sd021_descending_pain_modulation_20260419T045712Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {},
+       "flat": {
+        "SD-021": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_325d_sd032c_aic_descending_modulation_20260420T160057Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-032c": "does_not_support",
+        "SD-021": "does_not_support"
+       },
+       "flat": {
+        "SD-021": "non_contributory",
+        "SD-032c": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_326a_wanting_gradient_nav_fix_dry_20260413T074905Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-015": "does_not_support",
+        "MECH-229": "supports"
+       },
+       "flat": {
+        "SD-015": "non_contributory",
+        "MECH-229": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_328b_mech112_zgoal_structured_latent_dry_20260413T074659Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "supports",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-230": "supports",
+        "SD-012": "supports"
+       },
+       "flat": {
+        "MECH-230": "non_contributory",
+        "SD-012": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_395_mech220_harm_hub_20260418T202544Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-220": "weakens"
+       },
+       "flat": {
+        "MECH-220": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_452_mech257_dual_function_e2_20260420T144002Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "diagnostic",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-257": "weakens",
+        "SD-013": "mixed",
+        "ARC-033": "mixed"
+       },
+       "flat": {
+        "MECH-257": "non_contributory",
+        "SD-013": "non_contributory",
+        "ARC-033": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_452_mech257_dual_function_e2_20260420T155214Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "diagnostic",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-257": "weakens",
+        "SD-013": "mixed",
+        "ARC-033": "mixed"
+       },
+       "flat": {
+        "MECH-257": "non_contributory",
+        "SD-013": "non_contributory",
+        "ARC-033": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_452a_mech257_dual_function_e2_reef_20260505T184639Z_v3",
+     "disagreements": {
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-257": "weakens",
+        "SD-013": "mixed",
+        "ARC-033": "mixed"
+       },
+       "flat": {
+        "MECH-257": "mixed",
+        "SD-013": "mixed",
+        "ARC-033": "mixed"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_453_mech261_write_gate_landing_20260420T223050Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "diagnostic",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-261": "weakens",
+        "SD-032a": "mixed",
+        "SD-032e": "mixed"
+       },
+       "flat": {
+        "MECH-261": "non_contributory",
+        "SD-032a": "non_contributory",
+        "SD-032e": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_453_mech261_write_gate_landing_20260420T232926Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "diagnostic",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "MECH-261": "weakens",
+        "SD-032a": "mixed",
+        "SD-032e": "mixed"
+       },
+       "flat": {
+        "MECH-261": "non_contributory",
+        "SD-032a": "non_contributory",
+        "SD-032e": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_511_sd048_interoceptive_noise_substrate_readiness_20260503T113836Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_514_sd049_phase_2_behavioural_validation_20260504T100649Z_v3",
+     "disagreements": {
+      "superseded_by": {
+       "pack": null,
+       "flat": "v3_exq_514a_sd049_phase_2_behavioural_validation"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_514j_sd049_phase2_reef_mech307_spcem_20260520T223612Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-049": "weakens",
+        "SD-015": "weakens",
+        "MECH-229": "non_contributory",
+        "MECH-230": "non_contributory",
+        "MECH-307": "mixed"
+       },
+       "flat": {
+        "SD-049": "non_contributory",
+        "SD-015": "non_contributory",
+        "MECH-229": "non_contributory",
+        "MECH-230": "non_contributory",
+        "MECH-307": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_526_q034_reef_threshold_sweep_20260506T082834Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "weakens",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "Q-034": "weakens"
+       },
+       "flat": {
+        "Q-034": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_535a_sd029_p3_eval_fix_20260507T203343Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "mixed",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-029": "supports",
+        "MECH-256": "weakens"
+       },
+       "flat": {
+        "SD-029": "non_contributory",
+        "MECH-256": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_537_sd029_single_pass_residual_20260508T122953Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "non_contributory",
+       "flat": "superseded"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-029": "non_contributory",
+        "MECH-256": "non_contributory"
+       },
+       "flat": {
+        "SD-029": "superseded",
+        "MECH-256": "superseded"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_537b_sd029_decoupled_curricula_20260508T180253Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "non_contributory",
+       "flat": "superseded"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-029": "non_contributory",
+        "MECH-256": "non_contributory"
+       },
+       "flat": {
+        "SD-029": "superseded",
+        "MECH-256": "superseded"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_537c_sd029_capacity_lift_20260508T205935Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "non_contributory",
+       "flat": "superseded"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "SD-029": "non_contributory",
+        "MECH-256": "non_contributory"
+       },
+       "flat": {
+        "SD-029": "superseded",
+        "MECH-256": "superseded"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_540f_mech307_default_fix_3seed_20260515T201826Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "superseded"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {},
+       "flat": {
+        "MECH-307": "superseded",
+        "MECH-216": "superseded",
+        "MECH-205": "superseded",
+        "MECH-093": "superseded",
+        "SD-014": "superseded",
+        "MECH-295": "superseded"
+       }
+      },
+      "superseded_by": {
+       "pack": null,
+       "flat": "V3-EXQ-540g"
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_591_isef005_curriculum_vs_flat_20260526T184231Z_v3",
+     "disagreements": {
+      "evidence_direction": {
+       "pack": "does_not_support",
+       "flat": "non_contributory"
+      },
+      "evidence_direction_per_claim": {
+       "pack": {
+        "ARC-046": "does_not_support"
+       },
+       "flat": {
+        "ARC-046": "non_contributory"
+       }
+      }
+     }
+    },
+    {
+     "run_id": "v3_exq_881_mech293_ghost_probe_seed_efficacy_20260802T151542Z_v3",
+     "disagreements": {
+      "non_degenerate": {
+       "pack": null,
+       "flat": true
+      }
+     }
+    }
+   ],
+   "routing": "OUT OF SCOPE for this sweep and deliberately NOT fixed here. Needs its own owner: several of the 26 are supersession records rather than direction flips, and each needs individual adjudication. Recorded because it is the reason F4 is still live, and because its blast radius is an order of magnitude wider than this sweep's."
+  },
+  {
+   "id": "F6",
+   "severity": "note_inverted",
+   "claim": "SD-017 / ARC-045 / MECH-166",
+   "title": "242 direction already correct, recorded rationale inverted",
+   "gate": "242 PASS = C1 AND (C2 OR C4); C1 = slot_cosine_sim(SWS_ONLY) < slot_cosine_sim(WAKING_ONLY) in >=3/5 -- the exact 436d C1 shape, and the sole determinant of all three per-claim directions in the driver",
+   "weighting_impact": "none -- run-pack manifest and index both already read non_contributory for all three claims",
+   "recorded_note": "Diagnostic: proxy substrate ... Slot differentiation works (4/5 seeds) but behavioral benefit doesn't follow. Representationally encouraging but not testable at this substrate level.",
+   "per_seed": [
+    {
+     "seed": 42,
+     "waking_only": 0.000966,
+     "sws_only": 0.000448,
+     "reading": "both inside the untouched-bank null"
+    },
+    {
+     "seed": 7,
+     "waking_only": 0.002224,
+     "sws_only": 1.0,
+     "reading": "total collapse"
+    },
+    {
+     "seed": 13,
+     "waking_only": -0.012985,
+     "sws_only": 1.0,
+     "reading": "total collapse"
+    },
+    {
+     "seed": 100,
+     "waking_only": -0.00596,
+     "sws_only": 1.0,
+     "reading": "total collapse"
+    },
+    {
+     "seed": 200,
+     "waking_only": -0.002195,
+     "sws_only": 1.0,
+     "reading": "total collapse"
+    }
+   ],
+   "defect": "All five WAKING_ONLY values sit within +-1.6 sd of the untouched-bank cosine null (436d F2: mean 0.000145, sd 0.008121) -- the waking arm wrote nothing, 436d F1 reproduced three months earlier. The note's '4/5' is the four seeds reading exactly 1.000000, which is TOTAL HOMOGENISATION (legacy write_gate-as-payload collapse), not differentiation. C1 is unsatisfiable in 5/5 seeds: the comparison arm is at the metric's zero point and writing content can only raise the statistic (436d F3). Effective denominator 0, not 5 -- worse than 436d's <=3.",
+   "consequence": "'Representationally encouraging' is the phrase most likely to be cited forward and it is unsupported."
+  },
+  {
+   "id": "F7",
+   "severity": "latent",
+   "claim": "MECH-171",
+   "title": "673 load-bearing on the raw formula, already fully discounted",
+   "site": "v3_exq_673_mech171_vicious_cycle_sleep_disruption.py:170 -- driver-local _compute_slot_diversity, identical raw whole-bank formula",
+   "gate": "PASS = (C1 AND C3 AND C5) OR (C2 AND C4); C1 and C2 both on slot_diversity, one in each disjunct",
+   "weighting_impact": "none -- all 7 runs non_contributory (out_of_domain, failure_autopsy_batch9_2026-06-12); MECH-171 genuine_exp_count=0",
+   "consequence": "Recorded so a future re-scope of MECH-171 into domain does not silently re-activate a confounded gate."
+  }
+ ],
+ "recommendations": [
+  {
+   "n": 1,
+   "claim": "INV-044",
+   "action": "evidence_direction supports -> non_contributory on BOTH V3-EXQ-429 runs; epistemic_category measurement_test_design_defect; re-derive status (removes 2/2 experimental entries, so provisional is no longer supported by experiment -- candidate, or provisional explicitly on literature alone with that stated); amend evidence_quality_note to record that the promotion rationale's leading figure (REM_ONLY=0.0) was a metrics-dict placeholder.",
+   "escalation": "This is a demotion-shaped change and should go to the user explicitly, not be applied as routine cleanup."
+  },
+  {
+   "n": 2,
+   "claim": "INV-010",
+   "action": "No direction change. Strike 'SWS slots differentiated (C3 3/3)' from the evidence_quality_note (inverted) and re-scope the retest gate -- the MECH-261 attribution rests on a dissociation that was never observed."
+  },
+  {
+   "n": 3,
+   "claim": "MECH-120",
+   "action": "No new decision -- execute the one already taken 2026-04-08. Propagate the non_contributory reclassification of both V3-EXQ-245 runs into their run-pack manifests.",
+   "expected_effect": "fail_runs 2 -> 0, genuine_exp_count 3 -> 1, exp_conf rises from 0.454."
+  },
+  {
+   "n": 4,
+   "claim": "SD-017",
+   "action": "No direction change. Note that neither supporting run (265a, 500a) measures slot differentiation, so they must not be cited as corroboration of it."
+  },
+  {
+   "n": 5,
+   "claim": "SD-017 / ARC-045 / MECH-166",
+   "action": "No direction change for 242. Correct the run-pack note: 'Slot differentiation works (4/5 seeds)' is the four collapsed seeds."
+  },
+  {
+   "n": 6,
+   "claim": null,
+   "action": "Substrate repair (durable fix): run_sws_schema_pass should emit an occupancy-masked statistic ALONGSIDE (not instead of) the legacy one, following 861's already-proven before/after-snapshot pattern -- similarity and occupancy k reported SEPARATELY, never their product. Until then no new criterion should be pre-registered on sws_slot_diversity, and the absolute-threshold form (diversity > eps) should be prohibited outright: it is satisfied by an empty bank at P=1.0000."
+  },
+  {
+   "n": 7,
+   "claim": null,
+   "action": "Route F5 to its own owner -- 26 stranded governance corrections is a coordination-plane defect with far wider blast radius than this sweep."
+  }
+ ],
+ "fanout_recommendation": {
+  "is_discrimination": false,
+  "note": "909 (v3_exq_909_sleep_dv_fishtank_multifiring.py:478) uses sws_slot_diversity > 0.01 as half of its pre-registered 'is the sleep DV non-null' discrimination rule. An untouched bank clears that with P=1.0000, so the probe can report sleep_dv_nonnull_detected for a bank nothing was written to. claim_ids=[] and it weights no claim, so this is NOT a claim-layer finding -- but 909 exists to decide whether the sleep DV is live for sleep_substrate_plan.md GAP-2, and that decision is being made with a detector that cannot return 'null'."
+ },
+ "what_this_sweep_did_NOT_establish": [
+  "Whether any underlying hypothesis is true. This invalidates instruments, not claims. INV-044 in particular may well be correct -- it has 6 literature entries at lit_conf 0.863; what it lacks is uncompromised EXPERIMENTAL support.",
+  "What a corrected DV would have reported for any run here. As with 436d, no per-slot occupancy or write-index trace is persisted in these manifests, so the occupied-only statistic is not recoverable by post-hoc reanalysis; 861's snapshot method requires a re-run.",
+  "Whether 500/500a's replay_quality composite is sound in other respects -- only the 0.1*sws_slot_diversity term was examined.",
+  "The other 25 stranded corrections in F5 -- each needs individual adjudication and several are supersessions, not direction flips. Only the 245 pair was traced end to end.",
+  "Any ree-v2 / ree-v1 driver. Scope was ree-v3/experiments/*.py."
+ ],
+ "provenance": {
+  "session_id": "metaworker-chip-20260813-slotcosinesim-fanout-sweep",
+  "chip_ref": "chip-20260813-slotcosinesim-fanout-sweep",
+  "substrate_read_at": "ree-v3 working tree, 2026-08-13",
+  "index_snapshot": "evidence/experiments/claim_evidence.v1.json generated_at_utc 2026-08-13T19:53:12.093011Z",
+  "authoritative_manifest_source": "runs/<run_id>/manifest.json -- the flat sibling is stale for several of these runs; see F5",
+  "code_sites_examined": [
+   "ree-v3/ree_core/agent.py:11328-11343 (run_sws_schema_pass diversity block)",
+   "ree-v3/ree_core/agent.py:11197 (metrics-dict default)",
+   "ree-v3/ree_core/predictors/e1_deep.py:36-60 (ContextMemory)",
+   "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py:1297-1374,1454-1474"
+  ],
+  "probes_run": [
+   "untouched-bank null: 400 fresh ContextMemory(latent_dim=64) inits on the real substrate, whole-bank mean(1 - off_diag_cosine)"
+  ]
+ },
+ "contention_note": "task_claim.py open --resources REE_assembly/docs/claims/claims.yaml returned exit 3 naming THIS session as OWNER (earliest claimed_at); three stale igw-auto-* claims (>6h) also name the file and were reported as notes. No claims.yaml edit was made regardless -- dispositions are governance's call.",
+ "claim_resource_path_note": "The chip's pre-registered resource list named failure_autopsy_slot_cosine_sim_fanout_sweep_2026.md; the actual dated filenames were claimed under a second TASK_CLAIMS entry (...-artifact) before either file was written, per CLAUDE.md's rule that a resource discovered mid-task is claimed before write-time."
+}
