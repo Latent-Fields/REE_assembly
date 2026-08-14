@@ -1,5 +1,18 @@
 # Summary: Berridge, Robinson & Aldridge (2009) — Dissecting components of reward: liking, wanting, and learning
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> `source.pmid` was `19336238`, which is a **different Berridge 2009 paper** -- "'Liking' and
+> 'wanting' food rewards: brain substrates and roles in eating disorders", Physiol Behav
+> `10.1016/j.physbeh.2009.02.044`. The declared `doi` `10.1016/j.coph.2008.12.014` was already
+> correct and identifies the work this summary describes, so the PMID was corrected to `19162544`
+> (verified: that PubMed record's own DOI is the declared one, Curr Opin Pharmacol 9(1):65-73,
+> Berridge, Robinson & Aldridge). `pmc: PMC2756052` added from the same record. Found by
+> `scripts/verify_literature_identifiers.py --cross-check`, which resolves a record's DOI and PMID
+> against each other; the previous audit could not see this, because it stops once the DOI resolves.
+
 ## What the paper did
 
 This 2009 review by Berridge, Robinson, and Aldridge consolidates the wanting/liking/learning dissociation with a decade of additional anatomical and pharmacological precision beyond the 1998 paper. The central contribution over and above the earlier work is the detailed mapping of hedonic 'hotspots': discrete subregions of the nucleus accumbens shell (a roughly cubic-millimetre zone in the medial shell) and ventral pallidum where pharmacological stimulation with mu-opioid agonists or endocannabinoids specifically amplifies hedonic liking reactions — affective taste responses to sucrose — without correspondingly driving wanting or approach. Outside these hotspots, stimulation of the same structures with the same agents drives wanting (increased instrumental behavior, approach, consumption) without amplifying liking reactions. The paper situates these hotspots within a broader distributed network and argues that liking emerges from coordinated activation across the network rather than from any single node.

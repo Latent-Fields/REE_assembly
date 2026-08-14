@@ -1,6 +1,30 @@
 # Interoception: the sense of the physiological condition of the body
-**Craig, A. D. (2003). *Nature Reviews Neuroscience*, 4(8), 655-666.**
-DOI: [10.1038/nrn1153](https://doi.org/10.1038/nrn1153)
+
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> **BOTH identifiers on this record were wrong, and they disagreed with each other.** `doi`
+> `10.1038/nrn1153` resolves to *"In This Issue"*, the front-matter item at Nat Rev Neurosci
+> 4(6):425; `pmid` `12894801` is a French history-of-pharmacy article about the Boulduc dynasty of
+> Parisian apothecaries. Neither is a Craig paper.
+>
+> The work this summary actually describes is **Craig, "How do you feel? Interoception: the sense of
+> the physiological condition of the body", Nature Reviews Neuroscience 3(8):655-666 (2002)**,
+> `10.1038/nrn894`, PMID `12154366`. The summary's own citation line was decisive: it gave issue 8
+> and pages 655-666, which are that paper's exactly, and the content is unmistakably it -- lamina I
+> -> VMpo -> insula, "the material me", the global emotional moment. The declared `title` was the
+> real title with its "How do you feel?" opening dropped, which is why it read as a plausible match
+> for the (different) Craig 2003 *Current Opinion in Neurobiology* review; the pages rule that one
+> out.
+>
+> Corrected: `title` to the full title, `year` 2003 -> 2002, `doi`, `pmid`, and `volume`/`issue`/
+> `pages` added. The citation line below was corrected from "4(8)" to "3(8)" and its year to 2002.
+> **The `entry_id` and directory name still say `craig2003` and were deliberately NOT renamed** --
+> `entry_id` is what the indexer keys on and what `claim_evidence.v1.json` carries, so renaming it
+> is a separate, riskier change than a provenance fix. Read it as a label, not as the year.
+**Craig, A. D. (2002). *Nature Reviews Neuroscience*, 3(8), 655-666.**
+DOI: [10.1038/nrn894](https://doi.org/10.1038/nrn894)
 
 ## What the study did
 

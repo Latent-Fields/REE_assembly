@@ -1,5 +1,16 @@
 # Summary: Ferrand et al. 2022 — Actigraphy Dimensions Predict Bipolar Disorder Recurrence
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> `source.pmid` was `35456302`, which is an **unrelated orthopaedic paper** in the same journal and
+> issue (Sung et al., "Chronological Analysis of Primary Cervical Spine Infection",
+> `10.3390/jcm11082210`). The declared `doi` `10.3390/jcm11082204` was already correct, so the PMID
+> was corrected to `35456294` (verified: J Clin Med 11(8), Ferrand, Hennion & Godin, whose own DOI is
+> the declared one). Note the near-miss shape on both sides -- `...2204` vs `...2210`, `...294` vs
+> `...302`: this is the signature of an identifier generated from plausibility rather than looked up.
+
 ## Study Overview
 
 Ferrand and colleagues recruited 69 euthymic bipolar disorder patients and had each wear an actigraphy device for 21 days. They then followed participants for a median of 3.5 years (range 2-4.5), recording every mood episode recurrence. The question was not just whether actigraphy predicts relapse — several earlier studies had addressed that — but which dimensions of actigraphy data carry the predictive signal. Using principal component analysis, they identified two core dimensions: one capturing sleep quantity and variability, and one capturing the amplitude, stability, and fragmentation of circadian rhythms. Only the second — the circadian dimension — significantly predicted time to recurrence.

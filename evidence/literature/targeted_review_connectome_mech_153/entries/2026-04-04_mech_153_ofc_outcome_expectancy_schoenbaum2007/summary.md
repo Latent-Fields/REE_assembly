@@ -1,5 +1,17 @@
 # Summary: Schoenbaum, Saddoris & Stalnaker (2007) -- OFC in Reversal Learning and the Encoding of Outcome Expectancies
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> `source.doi` was `10.1146/annurev.neuro.30.051606.094479`, which does not resolve (HTTP 404), and
+> `source.venue` said *Annual Review of Neuroscience*. Both were wrong: the record's own `pmid`
+> `17698988` was already correct and identifies the work as **Annals of the New York Academy of
+> Sciences** 1121:320-335, `10.1196/annals.1401.001` -- same title, same three authors, same year.
+> `doi` and `venue` corrected accordingly and `volume`/`pages` added; the already-declared
+> `pmc: PMC2430624` was confirmed against that PubMed record. The paper itself, its findings and its
+> relevance to MECH-153 are unchanged -- only the journal it appeared in was misrecorded.
+
 **Entry:** 2026-04-04_mech_153_ofc_outcome_expectancy_schoenbaum2007
 **Claim tested:** MECH-153 -- E1 ContextMemory requires supervised context-labeling objective for differentiated representations
 **Evidence direction:** supports | **Confidence:** 0.73

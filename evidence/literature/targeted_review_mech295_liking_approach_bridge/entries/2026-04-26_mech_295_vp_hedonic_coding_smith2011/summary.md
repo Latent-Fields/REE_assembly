@@ -1,5 +1,15 @@
 # Smith, Berridge & Aldridge 2011 -- Disentangling pleasure from incentive salience in VP
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> `source.pmid` was `21525253`, which is an **unrelated nutrition study** (Gilmore et al., "Consumption
+> of high-oleic acid ground beef...", J Nutr `10.3945/jn.110.136085`). The declared `doi`
+> `10.1073/pnas.1101920108` was already correct, so the PMID was corrected to `21670308` (verified:
+> PNAS 108(27):E255-64, Smith, Berridge & Aldridge, and that record's own DOI is the declared one).
+> `source.url`, which pointed at the wrong PubMed page, was updated to match.
+
 **Claim under review:** MECH-295 -- liking-stream activation is a necessary intermediate between drive amplification (SD-012) and approach-cue selection.
 
 **Tag:** (a) direct support for liking-required-for-drive-to-approach.

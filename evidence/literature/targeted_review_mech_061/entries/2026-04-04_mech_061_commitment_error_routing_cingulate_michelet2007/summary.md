@@ -1,5 +1,16 @@
 # Summary: Michelet et al. (2007) — Commitment and Error Evaluation in the Rostral Cingulate Motor Area
 
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-identifier-verification-gate`). Provenance only -- no
+> `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched, and
+> nothing below this block was changed except where this note says so.**
+>
+> `source.doi` was `10.1523/JNEUROSCI.1883-07.2007`, which does not resolve (HTTP 404) -- a
+> well-formed DOI in the right journal and year that names no paper. The record's own `pmid`
+> `17626209` was already correct and gives the real identifier,
+> `10.1523/JNEUROSCI.4718-06.2007` (verified on title, first author and year: J Neurosci
+> 27(28):7482-9, Michelet, Bioulac, Guehl, Escola & Burbaud). Title, authors, venue and locators
+> were all already correct, so only `doi` changed.
+
 **Source:** Michelet T, Bioulac B, Guehl D, Escola L, Burbaud P. Impact of Commitment on Performance Evaluation in the Rostral Cingulate Motor Area. *Journal of Neuroscience*, 27(28), 7482-7489.
 
 ## The Question They Were Asking
