@@ -174,7 +174,18 @@ wired, `tonic_5ht_enabled=True`), 32 candidates/tick throughout:
 
 **`wanting_weight = 0.5` flipped the CEM argmin 0 times in 618 scored ticks across 5/5 seeds**,
 on top of the 484 ticks of the first probe -- 1102 ticks, zero flips, at the documented
-operating value. `w=50` flips 0-3 ticks (4/5 seeds nonzero, but marginal); `w=500` flips in
+operating value.
+
+> **CORRECTION (same day, found while authoring the driver): those tick counts are ~10x
+> INFLATED.** `REEAgent.generate_trajectories` (`agent.py:5581-5611`) returns **cached**
+> `_committed_candidates` whenever `not ticks["e3_tick"]`, and the E3 cadence default is
+> `e3_steps_per_tick=10` (`ree_core/heartbeat/clock.py`). Both probes re-scored on **every env
+> step**, so one genuine CEM refit was counted up to ~10 times -- the same latch-and-reread
+> hazard `/queue-experiment` documents for the E3 `last_*` diagnostics, one layer up. The
+> **direction** of the zero-flip reading is unaffected (zero is zero at any denominator), but its
+> **n** is ~10x smaller than stated: ~1102 env steps is roughly **~110 genuine refits**. The
+> queued driver gates the re-score on `ticks["e3_tick"]` and reports `n_latched_ticks`, and a
+> full-length engagement check on the honest denominator is in section 6a below. `w=50` flips 0-3 ticks (4/5 seeds nonzero, but marginal); `w=500` flips in
 **5/5 seeds** (5-142 ticks). So the instrument demonstrably *can* detect authority, which is what
 makes the null at 0.5 a finding rather than an artefact.
 
@@ -310,6 +321,43 @@ minutes wall-clock on `ree-cloud-5`, so a full run is on the order of tens of mi
 
 ---
 
+### Finding D -- full-length engagement check on the HONEST (e3_tick) denominator
+
+Run 2026-08-14 with the queued driver's own `_run_cell`, full length (10 episodes x 40 steps),
+seeds 42/43, re-score gated on `ticks["e3_tick"]`:
+
+| arm | seed | genuine refits | latched | flips | flip rate | wanting nonzero frac | \|WANTING\|max | authority ratio | mean_resource_proximity |
+|---|---|---|---|---|---|---|---|---|---|
+| ARM_W0 | 42 | 104 | 25 | 0 | 0.0000 | 0.750 | 0.0178 | 1.7e-04 | 0.6480 |
+| ARM_W0 | 43 | 98 | 302 | 0 | 0.0000 | 0.980 | 0.5301 | 5.1e-03 | 0.6839 |
+| ARM_W05 | 42 | 104 | 25 | 0 | 0.0000 | 0.750 | 0.0178 | 1.7e-04 | 0.6480 |
+| ARM_W05 | 43 | 98 | 302 | 0 | 0.0000 | 0.980 | 0.5301 | 5.1e-03 | 0.6839 |
+| ARM_W5000 | 42 | 104 | 25 | **43** | **0.4135** | 0.750 | 0.0178 | 1.7e-04 | 0.6480 |
+| ARM_W5000 | 43 | 98 | 302 | **96** | **0.9796** | 0.980 | 0.5301 | 5.1e-03 | 0.6839 |
+
+Three things this settles:
+
+1. **P1 clears on the honest denominator** -- ~100 genuine refits per cell, wanting field live
+   in both seeds. The design is not vacuous.
+2. **P3 clears decisively**, which is why the positive control was raised from `w=500` to
+   `w=5000` at Step-4 smoke time: the probe's `w=500` flip counts were measured on the inflated
+   env-step denominator, so a control calibrated there could have failed on the honest one and
+   self-routed the whole run `substrate_not_ready_requeue`. This change strengthens a control
+   and does not touch the load-bearing C_AUTH criterion.
+3. **ARM_W0 and ARM_W05 are BIT-IDENTICAL on every readout** -- 0 flips in 202 genuine refits.
+   The pre-registered C_AUTH criterion is predicted to fail, and is registered anyway.
+
+**And one genuinely new observation, which changes how C_BEHAV must be read.** At `w=5000` the
+CEM argmin flips on **41-98%** of refits while `mean_resource_proximity` stays **bit-identical**
+to the ablated arm (0.6480 / 0.6839). So on this substrate **a flipped CEM elite-selection argmin
+does not, by itself, change behaviour** -- E3's own downstream action selection
+(`agent.py:11415/11432/11449`) re-scores, and the flipped candidate evidently yields the same
+executed action class. Two consequences: (a) a null C_BEHAV is the EXPECTED reading even in an
+arm with full selection authority, and must not be reported as evidence that the wanting pathway
+is behaviourally inert -- that conflates two separate links in the chain; (b) there is a second,
+independent authority gap downstream of the one this design measures, which no experiment
+currently addresses. Recorded in the driver's `c_behav_note` manifest field.
+
 ## 4. What this does NOT test (brief item 4)
 
 **This does not retest V3-EXQ-914's ghost-branch finding.** 914/914a manipulated
@@ -399,5 +447,30 @@ Field-liveness instrumentation (Finding A):
 Recorded here rather than left implicit, because this note is the durable artifact and the chip
 resolution note is only a pointer to it.
 
-- **Not queued at time of first landing (2026-08-14T11:22Z).** See the closing status line
-  appended below if a queueing pass followed in the same session.
+- **QUEUED as `V3-EXQ-931`** (2026-08-14), via `/queue-experiment`.
+  Script: `ree-v3/experiments/v3_exq_931_cem_wanting_weight_selection_authority.py`.
+  Both the script and the queue entry are on `ree-v3` `origin/main` (commit `ff69ac7e85`;
+  a follow-up `ed7294d0b6` removed a stray pre-rename copy -- see the ID-collision note below).
+  `validate_experiments.py --strict` OK, `validate_queue.py` OK, `--dry-run` smoke PASS,
+  full-length engagement check in Finding D.
+- **ID collision, resolved.** This was authored as V3-EXQ-929; a concurrent session landed
+  `v3_exq_929_sleep_gap9_within_life_trigger.py` under that number during the run, and a third
+  had already moved something 929 -> 930. Renamed to **931** after re-deriving the next free id
+  from scripts + git log + the evidence corpus together.
+- **STEP 8.6 NOT PERFORMED -- OPERATOR ACTION REQUIRED.** This was queued from `ree-cloud-5`,
+  which has no `REE_assembly/coordinator.env`, so `POST /queue/add` could not be issued. Under
+  Phase 3 the runners read the **coordinator DB**, not `experiment_queue.json`, and a git-only
+  add from a headless cloud box is documented to be deleted by the next `phase3-queue` snapshot
+  **without ever running** (4 losses in 4 attempts, 2026-08-08, this same box). **The entry is
+  not runnable until a coordinator-capable box POSTs it.** From the Mac:
+  ```bash
+  set -a; . /Users/dgolden/REE_Working/REE_assembly/coordinator.env; set +a
+  ITEM=$(git -C /Users/dgolden/REE_Working/ree-v3 show ff69ac7e85:experiment_queue.json \
+    | /opt/local/bin/python3 -c "import json,sys; d=json.load(sys.stdin); print(json.dumps({'item': next(i for i in d['items'] if i.get('queue_id')=='V3-EXQ-931')}))")
+  curl -s -m 8 -X POST -H "Authorization: Bearer ${COORDINATOR_LOCAL_TOKEN}" \
+    -H "Content-Type: application/json" -d "$ITEM" "${COORDINATOR_URL}/queue/add"
+  ```
+  Read the item from the **commit**, not the working tree -- a snapshot tick has very likely
+  already deleted it from the file on disk. That is the expected case, not an error.
+- **Governance flag raised: `GFLAG-0033`** (MECH-236, `evidence_discrepancy`) carrying Finding A
+  -- that the routed V3-EXQ-914b fix is necessary but not sufficient.
