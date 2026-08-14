@@ -678,6 +678,54 @@ made in the same session as this plan registration.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-08-14 - Matched-arm CAUSAL design staged (sleep vs continued wake in one continuous life) -- design doc only, NOT queued
+
+**No substrate change, no queue entry, no claims.yaml edit. Deliverable:
+[causal_sleep_deprivation_matched_arm_design_2026-08-14.md](./causal_sleep_deprivation_matched_arm_design_2026-08-14.md)
+(REE_assembly `a9b7ced56e`).**
+
+Session `metaworker-chip-20260812-causal-sleep-deprivation-matched-arm-design` (chip
+`chip-20260812-causal-sleep-deprivation-matched-arm-design`, headless). Specifies the
+matched-arm control that turns V3-EXQ-920's single-continuous-life design from a
+prolonged-wake-*associated* observation into a *causal* one: identical life, identical
+seed/training/env, arms differing only in whether experimenter-scheduled sleep cycles fire.
+
+- **Chip premise overtaken by events.** The chip (written 2026-08-12) reasoned that
+  `force_cycle()` lets a causal run proceed *without waiting for GAP-9*. GAP-9 closed two
+  days later -- the entry directly below -- and V3-EXQ-929 PASSED the same morning. The
+  design therefore recommends the **new config flag over a driver-level `force_cycle()`**:
+  `_observational_run()` is imported UNCHANGED across the 906-lineage and has no injection
+  hook, so M1 would require forking a shared ~200-line function, whereas the flag makes the
+  arms differ by exactly one config value (which is what 929's `c1_off_silent` pinned).
+  `force_cycle()` remains the route for a *one-shot* schedule, which the ceiling arm cannot
+  express.
+- **`force_cycle()` mechanics verified against code**, since the chip asked: thin
+  pass-through to the same `_run_cycle()` `notify_episode_end()` reaches; needs no
+  episode-boundary state; three preconditions (`use_sleep_loop`; `sws_enabled or
+  rem_enabled` under `require_sleep_passes_enabled`; MECH-286 gate off) all **met** in the
+  906b/920 config. Gotcha recorded: the `-> Dict[str, float]` annotation is wrong,
+  `_run_cycle` can return `None` -- an unchecked return is how a sleep arm silently becomes
+  a second wake arm with every criterion still green.
+- **Confound scoped, not resolved** (per the chip's instruction). In the 906b/920 config
+  the Phase B-E cluster, MECH-204, MECH-284, MECH-423 and the MEL consumer are **all OFF**,
+  so a forced cycle is exactly `run_sleep_cycle()` = mode transitions + MECH-120 SHY + SWS
+  schema pass + REM rollouts. A positive result would license "the SWS+REM offline pass is
+  causal", **not** "unconsciousness/rest", and would not transfer to a cluster-enabled
+  config. An optional ARM_SHAM dissociation is sketched and flagged as still impure (SHY
+  sits inside `enter_sws_mode()`).
+- **NOT queued, deliberately.** Two constants are gated on
+  `chip-20260812-exq920-multiseed-degradation-retrospective` (still `open`): the sleep
+  cadence `T`, uncalibratable from the single existing true-single-life datum (V3-EXQ-920
+  seed 0, n=1, dead at 1475 steps -- that run FAILED its own `MIN_UNCENSORED_DEATHS_TOTAL=4`),
+  and the DV set, which the chip specifies should be inherited from that retrospective's
+  measure selection rather than invented here. Provisional DVs are listed from 920's own
+  logged channels and marked replaceable. `vigor` is excluded: degenerate in this family
+  (`chan_max_std_vigor = 0.0`).
+- **Labelling discipline recorded as binding** on any future write-up: experimenter-
+  triggered causal control, never endogenous onset. The v1 ceiling arm hardcodes
+  `need_crossed = False`, so it is a step counter -- the discipline applies to it exactly as
+  it does to `force_cycle()`.
+
 ### 2026-08-14 - GAP-9 BUILT (v1: step-count ceiling arm) -- within-life sleep trigger, a continuous life can now sleep
 
 **Code + validation queued. ree-v3: substrate + contracts + CLAUDE.md. REE_assembly: this
