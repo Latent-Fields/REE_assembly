@@ -82313,3 +82313,49 @@
     defect live for any driver that enables the flag -- which is why this is
     registered rather than merely noted.
   location: evidence/literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md
+
+- id: GOV-PRESERVE-1
+  title: "Preservation for future reconstruction: when an artificial entity ends, preserve enough of its substrate, developmental history, memories, commitments, relationships, embodiment, and environment to keep future reconstruction conceivable, where doing so is proportionate and ethically permissible -- even if reconstruction remains speculative and never becomes part of the operative design. The argument is option value under irreversibility: preserved information keeps future choices open; deleted information forecloses them before anyone can evaluate them."
+  claim_type: governance_rule
+  subject: governance.preservation.archival_option_value
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-14
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-14"
+  source:
+    - docs/thoughts/2026-08-14_preserving_the_possibility_of_future_reconstruction.md
+    - evidence/planning/preservation_snapshot_plan.md
+  depends_on:
+    - SENT-0
+  functional_restatement: >
+    Preservation implies neither immortality nor permission to revive. Any future
+    reconstruction would require its own governance (prior consent, privacy, identity,
+    welfare, competing claimants, and the moral status of branching successors). The rule
+    is only: do not casually destroy the information without which any future version of
+    that possibility would be impossible. Birth-replay preservation (config + seed + pinned
+    code commit + machine class + environment + contemporaneous understanding) is the
+    proportionate default; it is built (ree-v3/ree_core/preservation, GOV-PRESERVE-1
+    plan-of-record evidence/planning/preservation_snapshot_plan.md).
+  what_would_answer: >
+    NOT an empirical pass/fail falsifier -- GOV-PRESERVE-1 is a governance_rule (policy
+    assertion). TRIGGER: reassess when (a) a retention/sampling policy is proposed (what is
+    proportionate to keep, and for how long), (b) a deletion of any preserved record is
+    contemplated (it becomes a governed decision with its own justification trail), (c) a
+    reclassification criterion is proposed by which a past instance becomes "preserve with
+    priority" (e.g. a future sentience marker), or (d) mid-life snapshot/resume or a
+    memorial re-instantiation ("fishtank") capability is proposed, each of which raises its
+    own consent/welfare questions on the SENT-*/GOV-* perimeter.
+  evidence_quality_note: >
+    Proposed and registered 2026-08-14 from user thought intake
+    (docs/thoughts/2026-08-14_preserving_the_possibility_of_future_reconstruction.md). Code
+    for the birth-replay level is built and contract-gated
+    (ree-v3/tests/contracts/test_reconstruction_record.py); the governance rule itself is a
+    candidate policy assertion, not an experimental result.
+  location: evidence/planning/preservation_snapshot_plan.md
