@@ -1374,6 +1374,50 @@ def _merge_flat_manifest_overrides(
     return merged, disagreements, True
 
 
+def _resolve_flat_sibling(base_dir: Path, run_dir: Path, run_id: str) -> Path | None:
+    """Locate the flat manifest sibling of a run pack, or None if there is none.
+
+    A run pack lives at ``<base>/<experiment_type>/runs/<run_id>/manifest.json``
+    and its flat sibling is written to ONE of two places, and historically both
+    were used:
+
+      1. ``<base>/<run_id>.json``            -- the top level, and
+      2. ``<base>/<experiment_type>/<run_id>.json`` -- beside the run's own
+         experiment-type directory (``run_dir.parent.parent``).
+
+    Until 2026-08-14 only (1) was consulted, so a run whose flat copy lives in
+    (2) got ``{}`` from the lookup and the governance overlay in
+    ``_merge_flat_manifest_overrides`` became a silent no-op -- silent because
+    the WARNING there is gated on the overlay having applied. Measured on the
+    corpus at the time of the fix: 231 packs had ONLY a subdirectory sibling,
+    26 of which carried an annotated governance correction that disagreed with
+    an unannotated pack and was therefore never reaching the index (the
+    confirmed live case being V3-EXQ-245's two `weakens` rows still scoring
+    against MECH-120 after governance reclassified them `non_contributory` on
+    2026-04-08).
+
+    ORDER IS LOAD-BEARING: top level FIRST, subdirectory only as a fallback.
+    This is deliberately the opposite of "resolve relative to the pack", which
+    is the intuitive reading and is WRONG on the real data. 18 packs carry BOTH
+    siblings, and in all 18 the top-level copy is the one governance annotated
+    -- consistent with the convention documented at the merge call site, that a
+    correction is written to ``evidence/experiments/<run_id>.json``. In 6 of
+    those the SUBDIRECTORY copy is an unannotated emitter artefact, so
+    preferring it would suppress a correction that applies today: a strictly
+    additive fix would have become a regression. Checking the top level first
+    keeps every currently-working case bit-identical and only adds behaviour
+    where the lookup previously found nothing at all.
+
+    Deliberately NOT a glob over the tree: both candidates are exact paths, so
+    this costs at most two stat calls per pack.
+    """
+    for candidate in (base_dir / f"{run_id}.json",
+                      run_dir.parent.parent / f"{run_id}.json"):
+        if candidate.is_file():
+            return candidate
+    return None
+
+
 def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, list[RunRecord]]:
     by_experiment: dict[str, list[RunRecord]] = defaultdict(list)
 
@@ -1451,7 +1495,11 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # inverse legacy shape (pack annotated, flat a stale earlier emission --
         # the v3_exq_150-series) is left untouched. A missing sibling => {} =>
         # no-op (legacy/synthetic runs without a flat sibling are untouched).
-        flat_manifest = _load_json(base_dir / f"{run_id}.json")
+        # The sibling may sit at the top level OR in the run's experiment-type
+        # directory; see _resolve_flat_sibling for why the top level wins when
+        # both exist.
+        _flat_path = _resolve_flat_sibling(base_dir, run_dir, run_id)
+        flat_manifest = _load_json(_flat_path) if _flat_path is not None else {}
         manifest, _flat_disagreements, _flat_applied = _merge_flat_manifest_overrides(
             manifest, flat_manifest)
         _dir_disagree = [d for d in _flat_disagreements if d[0] in _FLAT_DIRECTION_FIELDS]

@@ -692,6 +692,148 @@ def test_real_legacy_150_series_pack_direction_survives_merge():
     assert checked >= 1, "expected at least one annotated-pack legacy pair present"
 
 
+# ── flat sibling in the experiment-type SUBDIRECTORY (2026-08-14) ────────────
+# Regression target: `_scan_runs` resolved the flat sibling as
+# `base_dir / f"{run_id}.json"` -- the top level ONLY. A run whose flat copy
+# lives at `<experiment_type>/<run_id>.json` therefore got `{}`, and the
+# governance overlay became a silent no-op (silent because its WARNING is gated
+# on the overlay having applied). 231 packs on the corpus had only a
+# subdirectory sibling; 26 carried an annotated correction disagreeing with an
+# unannotated pack. Confirmed live: V3-EXQ-245's two `weakens` rows still
+# scoring against MECH-120 after governance reclassified them
+# `non_contributory` on 2026-04-08.
+#
+# Driven END-TO-END through `_scan_runs` rather than against
+# `_merge_flat_manifest_overrides` directly, for the same reason the 150-series
+# contract above is: the defect was in the file LOOKUP, not the merge, so a
+# test that hands the merge two dicts cannot see it at all.
+
+_SUB_RUN_ID = "v3_exq_9245_subdir_sibling_20260408T182815Z_v3"
+_SUB_EXPERIMENT_TYPE = "v3_exq_9245_subdir_sibling"
+
+
+def _write_pair(base: Path, pack_extra: dict, flat_extra: dict | None,
+                *, sub_flat_extra: dict | None = None) -> None:
+    """Materialise a run pack under `base` plus its flat sibling(s).
+
+    `flat_extra` writes the TOP-LEVEL `<run_id>.json`; `sub_flat_extra` writes
+    the `<experiment_type>/<run_id>.json` one. Either may be None (absent), so
+    a single helper covers all four presence combinations.
+    """
+    run_dir = base / _SUB_EXPERIMENT_TYPE / "runs" / _SUB_RUN_ID
+    run_dir.mkdir(parents=True)
+    pack = {"run_id": _SUB_RUN_ID, "timestamp_utc": "2026-04-08T18:28:15Z",
+            "status": "FAIL", "claim_ids_tested": ["MECH-9120"],
+            "architecture_epoch": "ree_hybrid_guardrails_v1"}
+    pack.update(pack_extra)
+    (run_dir / "manifest.json").write_text(json.dumps(pack), encoding="utf-8")
+    (run_dir / "metrics.json").write_text("{}", encoding="utf-8")
+    (run_dir / "summary.md").write_text("synthetic\n", encoding="utf-8")
+    base_flat = {"run_id": _SUB_RUN_ID, "timestamp_utc": "2026-04-08T18:28:15Z",
+                 "status": "FAIL"}
+    if flat_extra is not None:
+        (base / f"{_SUB_RUN_ID}.json").write_text(
+            json.dumps({**base_flat, **flat_extra}), encoding="utf-8")
+    if sub_flat_extra is not None:
+        (base / _SUB_EXPERIMENT_TYPE / f"{_SUB_RUN_ID}.json").write_text(
+            json.dumps({**base_flat, **sub_flat_extra}), encoding="utf-8")
+
+
+def _scan_direction(pack_extra: dict, flat_extra: dict | None,
+                    *, sub_flat_extra: dict | None = None) -> str:
+    """Real `_scan_runs` over a one-run synthetic tree -> the scored direction."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        _write_pair(base, pack_extra, flat_extra, sub_flat_extra=sub_flat_extra)
+        records = b._scan_runs(base, {}).get(_SUB_EXPERIMENT_TYPE, [])
+        assert len(records) == 1, f"expected 1 scanned run, got {len(records)}"
+        assert records[0].run_id == _SUB_RUN_ID
+        return records[0].evidence_direction
+
+
+def test_subdir_flat_correction_reaches_the_index():
+    """The V3-EXQ-245 shape: no top-level sibling at all, the annotated
+    governance correction lives in the experiment-type subdirectory, the pack is
+    an unannotated earlier emission. The correction must win. FAILS before the
+    2026-08-14 lookup fix (scores the pack's `weakens`)."""
+    assert _scan_direction(
+        {"evidence_direction": "weakens"},
+        None,
+        sub_flat_extra={
+            "evidence_direction": "non_contributory",
+            "evidence_direction_note": "Governance 2026-04-08: reclassified.",
+        },
+    ) == "non_contributory"
+
+
+def test_subdir_flat_correction_reaches_the_index_opposite_direction():
+    """Same lookup, corrections resolving the OTHER way (the V3-EXQ-242 pair, in
+    which the pack read `non_contributory` and the flat correction `weakens`).
+    Pinned separately so the test above cannot pass by a merge that happens to
+    prefer one particular token."""
+    assert _scan_direction(
+        {"evidence_direction": "non_contributory"},
+        None,
+        sub_flat_extra={
+            "evidence_direction": "weakens",
+            "evidence_direction_note": "Governance: genuine negative evidence.",
+        },
+    ) == "weakens"
+
+
+def test_subdir_flat_does_not_flip_an_annotated_pack():
+    """NEGATIVE CONTROL, the v3_exq_150-series shape relocated into the
+    subdirectory: pack carries the supersession annotation, the subdirectory
+    flat is a stale unannotated earlier emission. Widening the LOOKUP must not
+    widen the AUTHORITY rule -- the pack stays authoritative."""
+    assert _scan_direction(
+        {"evidence_direction": "superseded",
+         "evidence_direction_note": "Sleep not implemented in V3. Superseded."},
+        None,
+        sub_flat_extra={"evidence_direction": "mixed"},
+    ) == "superseded"
+
+
+def test_top_level_sibling_wins_when_both_exist():
+    """The 18 both-present packs (the v3_exq_445 family): the TOP-LEVEL copy is
+    the one governance annotated, and in 6 of them the subdirectory copy is an
+    unannotated emitter artefact. Preferring the pack-relative path -- the
+    intuitive ordering -- would suppress a correction that applies today, i.e.
+    turn an additive fix into a regression. Pins that the top level is consulted
+    first."""
+    assert _scan_direction(
+        {"evidence_direction": "weakens"},
+        {"evidence_direction": "non_contributory",
+         "degeneracy_reason": "All arms identical on the criterion-bearing metrics."},
+        sub_flat_extra={"evidence_direction": "weakens"},
+    ) == "non_contributory"
+
+
+def test_no_sibling_anywhere_is_still_a_noop():
+    """Legacy/synthetic runs with neither sibling keep scoring the pack."""
+    assert _scan_direction({"evidence_direction": "weakens"}, None) == "weakens"
+
+
+def test_resolve_flat_sibling_presence_matrix():
+    """Unit-level cover of the resolver itself, over all four presence
+    combinations -- the end-to-end tests above exercise only the two that change
+    the scored direction."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        run_dir = base / _SUB_EXPERIMENT_TYPE / "runs" / _SUB_RUN_ID
+        run_dir.mkdir(parents=True)
+        top = base / f"{_SUB_RUN_ID}.json"
+        sub = base / _SUB_EXPERIMENT_TYPE / f"{_SUB_RUN_ID}.json"
+
+        assert b._resolve_flat_sibling(base, run_dir, _SUB_RUN_ID) is None
+        sub.write_text("{}", encoding="utf-8")
+        assert b._resolve_flat_sibling(base, run_dir, _SUB_RUN_ID) == sub
+        top.write_text("{}", encoding="utf-8")
+        assert b._resolve_flat_sibling(base, run_dir, _SUB_RUN_ID) == top
+        sub.unlink()
+        assert b._resolve_flat_sibling(base, run_dir, _SUB_RUN_ID) == top
+
+
 def test_does_not_support_still_maps_to_weakens():
     """Guardrail: the does_not_support -> weakens synonym is INTENTIONALLY
     preserved (171 manifests use it as a genuine 'evidence against' label).
