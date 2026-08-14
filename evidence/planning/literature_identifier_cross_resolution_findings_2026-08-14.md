@@ -4,9 +4,13 @@
 provenance only — no `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was
 touched anywhere in this work. The cross-resolution check now reports 0 over the whole corpus.**
 
-Chip: `chip-20260814-lit-identifier-verification-gate`.
-Tool: `scripts/verify_literature_identifiers.py` (`--cross-check` for the sweep, `--paths` for the gate).
-Tests: `scripts/test_verify_literature_identifiers.py` (70, time-independent, offline).
+Chip: `chip-20260814-lit-identifier-verification-gate`, extended by
+`chip-20260814-lit-doi-only-pmid-crosswalk` and `chip-20260814-lit-gate-secondary-identifiers`
+(see the two closing sections).
+Tool: `scripts/verify_literature_identifiers.py` — `--cross-check` (DOI<->PMID sweep),
+`--doi-crosswalk` (the other direction), `--secondary-check` (arxiv_id / pmc / isbn),
+`--paths` (the gate).
+Tests: `scripts/test_verify_literature_identifiers.py` (213, time-independent, offline).
 Wired into: `scripts/precommit_literature.sh` as stage 2.
 
 This implements both recommendations of
@@ -354,15 +358,157 @@ Nothing from this chip. The two open flags this touches were both raised earlier
 - **GFLAG-0031** (`habenula_da_signed_pe_review`) — a fully synthetic record contributing to MECH-053
   and MECH-054 in `claim_evidence.v1.json`. Deliberately unwaived, so it blocks.
 
-One thing a later session could usefully do, not started here:
-
-- **The gate does not yet cover `arxiv_id`, `pmc` or `isbn`.** All three are resolvable and none is
-  checked today, so a wrong one enters unnoticed. Note the crosswalk section above raises the prior
-  on this being worth doing: `not_in_pubmed` is 165 records, and the arXiv/ML-venue population inside
-  it is precisely the set no identifier check reaches at all today.
+**DONE (2026-08-14, `chip-20260814-lit-gate-secondary-identifiers`):** the gate now covers
+`arxiv_id`, `pmc` and `isbn` — see the section below.
 
 **DONE (2026-08-14, `chip-20260814-lit-doi-only-pmid-crosswalk`):** extending the crosswalk to the
 1579 DOI-only records — see the section above. The motivating hope, that it would catch a hallucinated
 DOI whose *title happens to be right* on a record with no PMID to cross-resolve against, found **no
 such record**: 0 live findings, 1409 positive confirmations, and one title-side defect from the
 hand-triage queue rather than from the verdict.
+
+---
+
+## The secondary identifiers: `arxiv_id`, `pmc`, `isbn`
+
+Chip: `chip-20260814-lit-gate-secondary-identifiers`, the second of the two follow-ups listed above,
+now done. Mode: `verify_literature_identifiers.py --secondary-check`. Code:
+REE_assembly `44bb62c9a8`.
+
+The v1 schema declares five resolvable identifiers and the gate checked two. So a wrong
+`arxiv_id`, `pmc` or `isbn` entered the corpus unnoticed — precisely the gap the doi/pmid work had
+just closed for the other two, left open on three fields that are no less resolvable.
+
+**The population, and why it decided the design.** 90 records of 2189 carry one of the three:
+
+| identifier | n | also carries | reachable by a crosswalk? |
+|---|---|---|---|
+| `pmc` | 80 | **all 80** carry a `pmid` | yes — PubMed's `articleids` |
+| `arxiv_id` | 5 | 3 carry a DataCite arXiv DOI | yes, for those 3 — the DOI *encodes* the id |
+| `isbn` | 5 | none carries a doi or pmid | no |
+
+Note the first row is not a lucky coincidence to be relied on; it is a fact about *this* corpus that
+`--secondary-check` re-measures. But while it holds, the pmc check is free.
+
+### Three gating verdicts, all crosswalk-first, all measured at 0
+
+The chip's instruction was to prefer the crosswalk shape — a contradiction between two of the
+record's *own* identifiers, conclusive with no title comparison at all, like `doi_pmid_mismatch` —
+and reach for title/author comparison only where no crosswalk exists. That turned out to be
+available for **both** gating axes, which is why adding three identifiers did **not** add three
+lookups per record:
+
+| verdict | baseline | network | what it proves |
+|---|---|---|---|
+| `pmc_pmid_mismatch` | **0 of 80** | **none** | PubMed's own `articleids` for the declared pmid name a different PMC id |
+| `arxiv_doi_mismatch` | **0 of 3** | **none** | `10.48550/arXiv.<id>` *is* the arXiv id, and it disagrees with the declared one |
+| `arxiv_names_a_different_paper` | **0 of 5** | 1 call, for 2 records | verdict 3's conjunction against the arXiv API |
+| `malformed_identifier` (isbn) | **0 of 5** | **none** | the ISBN's own check digit does not verify |
+
+`pmc_pmid_mismatch` costs nothing because the crosswalk is *inside the esummary record verdict 1 has
+already fetched* — the `pmc` and `pmcid` fields sit alongside the `doi` field that check reads.
+`arxiv_names_a_different_paper` is **skipped entirely** when the record's own arXiv DOI already
+confirms the id, which is what takes it from 5 records to 2. A test asserts `resolver.spent == 0` in
+both cases, so a later change that quietly starts fetching fails rather than slowing the commit path.
+
+**The near-miss defect class reaches arXiv too**, which is the reason verdict 7 exists at all rather
+than being waved off as a 5-record population: `1703.04977` is Kendall & Gal, and `1703.04978` is
+*"Lectures on EW Standard Model"* by Godbole. A confabulated final digit resolves to a real,
+different paper here exactly as it does for a DOI. That pair is a test fixture.
+
+### ISBN: a measured "not worth gating", which is the finding rather than a shortfall
+
+`isbn_names_a_different_work` is implemented, tested and **report-only**. The reason is a property
+of the identifier, not of the comparison: **an ISBN names a VOLUME, not a chapter.** So a *correct*
+ISBN on a chapter record resolves to a different title by different people — the volume's **editors**
+— and trips verdict 3's conjunction on a record with nothing wrong with it.
+
+Measured per record, with the venue disjunction disabled:
+
+| record | title | first author | outcome |
+|---|---|---|---|
+| `arc_026 frankfurt2004` | agrees | agrees | agrees |
+| `inv_029 frankfurt1999` | agrees | agrees | agrees |
+| `mech_102 axelrod1984` | agrees | agrees | agrees (hyphenated ISBN, normalised) |
+| `q035_arc049 murray_trevarthen_1985` | **disagrees** | **disagrees** | **FIRES — and the record is correct** |
+| `arc_026 bratman1987` | — | — | OpenLibrary holds no such ISBN → fails open |
+
+The same conjunction measures **0 false positives in 2060 records** on the DOI path and **1 in 5**
+here. The declared title is the chapter (*"Emotional regulation of interactions between
+two-month-olds and their mothers"*); ISBN 9780893912314 is *"Social perception in infants"*, edited
+by Field & Fox.
+
+What rescues it is accepting the declared `venue` as an alternative title — a chapter record's
+`venue` is conventionally the containing volume. That works, and it is shipped, but it is **a rule
+written from the single record it rescues**, which is exactly what CLAUDE.md's held-out check warns
+against putting on a commit gate. `venue` is also not schema-enforced, so the rescue is not general
+(a test pins that a chapter record with no `venue` is *not* rescued). And coverage is weak from the
+other end: 1 of the 5 is absent from OpenLibrary entirely.
+
+So the comparison reports and does not block. **Flip condition: >= 15 ISBN-carrying records, of which
+the chapter-shaped ones are separable by a rule that was not written from them.** The network-free
+half — the checksum — *does* gate, because it has none of this trouble.
+
+This is the same treatment, and the same standing rule, as `doi_crosswalk_names_a_different_paper`
+above: a verdict may be implemented and left off the gate path with its reason recorded, rather than
+being either shipped blocking or dropped.
+
+### `check_pmc_declared_vs_identifier` is implemented and deliberately unwired, for a different reason
+
+The chip named `db=pmc` esummary as the pmc authority, and it is implemented against it. But it
+reaches **0 records**: all 80 pmc-carrying records also carry a pmid, so `pmc_pmid_mismatch` already
+covers every one of them *conclusively and for free*, while this would spend an esummary call per
+record to reach a strictly weaker (verdict-3 shaped, not record-internal) conclusion. It is tested
+so the coverage exists the day a pmc-only record arrives. Same arithmetic as the DOI crosswalk's:
+implemented, 0 marginal coverage, therefore off the gate — re-measure, do not assume.
+
+### A scoping gap the new verdicts exposed, which was worse than the missing checks
+
+`collect_scoped_targets` and `collect_all_targets` both filtered on **doi/pmid only**. So a record
+whose *only* identifier was an `arxiv_id` or an `isbn` — **7 records** in this corpus — was not a
+gate target at all: the gate printed its `OK (0 records with an identifier in scope)` line having
+checked **nothing**, which reads as a pass. Both collectors now take a record carrying **any** of
+the five. `collect_all_targets(keys=("doi", "pmid"))` preserves the doi/pmid population so
+`--cross-check` still prints the 2072 this document quotes.
+
+`audit_literature_bibliographic_accuracy.collect_targets` was deliberately **left bit-identical** —
+its false-positive counts are quoted by number in the 2026-08-14 audit and must stay reproducible —
+so the wider scan lives in the verifier instead of being pushed down into the audit module.
+
+### The fail-open contract, re-verified rather than assumed
+
+A third API in the commit path is a third way to be unreachable, and that was the constraint to
+respect rather than the box to tick. It was answered structurally: **OpenLibrary is never contacted
+on the gate path at all** (verdict 8 is report-only), and two of the three gating axes make no call.
+Only arXiv is added to the wire, for the records whose id no DOI confirms, and it carries its own
+per-invocation cap (`ARXIV_FETCH_BUDGET`, 8) on top of the shared `--network-budget`, because arXiv's
+request-rate guidance must not become something `git commit` inherits.
+
+Verified live against the real corpus rather than only in fixtures:
+
+```
+budget exhausted   -> OK (5 records checked, 0 findings) (4 NOT checked: network budget spent)  exit 0
+API unreachable    -> OK (5 records checked, 0 findings) (2 NOT checked: arxiv fetch failed)    exit 0
+13 secondary records, warm cache                                                          0.084s
+```
+
+Both name what went unchecked, and both exit 0 under `--exit-nonzero`. An arXiv answer about a
+*different* id than the one asked for is refused rather than trusted (`arxiv_entry_is_faithful`,
+the twin of the PubMed-side `aid_query_is_faithful` that caught the Diamond case above) — it fails
+open, so a future change in how arXiv echoes ids costs coverage rather than correctness.
+
+### Tests
+
+143 new (213 in `scripts/test_verify_literature_identifiers.py`, 314 across the four literature
+suites), offline and time-independent. **Roughly half are negative controls**, one per false-positive
+shape each new axis brings: a PubMed record not in PMC at all (the common case across PubMed); an
+ordinary journal DOI sitting beside an `arxiv_id`, which is the *normal* shape for a published
+preprint and must never read as a crosswalk; a version suffix; preprint author order (the CURL case,
+likelier on this axis than on the DOI one since the arXiv version *is* the preprint); an
+initials-only declared author against arXiv's full given names; and the ISBN chapter case, asserted
+in both directions — that it *would* fire without the venue disjunction, and that it does not with it.
+
+Five mutations of the implementation were each confirmed to fail a specific new test (venue
+disjunction removed; pmc verdict made to fetch; scoped collection reverted to doi/pmid; arXiv
+fidelity guard removed; the doi-confirms shortcut removed), so the suite is differential rather than
+merely green.
