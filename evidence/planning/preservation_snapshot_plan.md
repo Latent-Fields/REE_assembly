@@ -82,30 +82,97 @@ Contract: `ree-v3/tests/contracts/test_reconstruction_record.py` (13 tests — r
 incl. the segmenter-scales regression, sufficiency after JSON-text round-trip, integrity/tamper,
 append-only, non-`ree_core` import refusal).
 
-**Not yet wired to a lifecycle hook.** Increment 1 is the record + storage primitive. Emitting a
-record automatically at a natural boundary (end-of-life termination, Phase 2→3 transition via
-`InfantCurriculumScheduler(on_phase3_entry=...)`, or sleep entry) is a small follow-on and is
-deliberately separate from the primitive.
+## Increment 1b — emitter (BUILT)
+
+`ree-v3/experiments/_lib/preservation.py` is the experiment-side glue that turns the pure record
+primitive into an emission a driver can call at the point a life ends. It fills provenance from
+`manifest_core` / `arm_fingerprint` (`compute_single_arm_substrate_hash`, `machine_class()`,
+`substrate_commit` — None-tolerant in a git-less checkout, with the full commit detail incl. `dirty`
+stored under `understanding`) and writes an immutable record via `preserve_life(archive_dir=...)`.
+
+**Emission is OPT-IN and PER-LIFE, on purpose.** Not every experiment arm is "a life worth
+preserving"; `GOV-PRESERVE-1` asks for *proportionate* preservation. So a driver calls
+`preserve_life(...)` deliberately when a life it cares about ends — nothing fires for every run, and
+nothing is wired into the shared runner hot path (`archive_dir` is required and explicit, so
+preservation never silently writes into a coordinator-managed tree). Contract:
+`ree-v3/tests/contracts/test_preservation_capture.py` (3 tests — reconstructable-record round-trip
+from the emitter, provenance populated, append-only).
+
+**Deferred (fleet-touching, so not done here):** making a record fire *automatically* at a boundary
+(end-of-life termination, Phase 2→3 via `InfantCurriculumScheduler(on_phase3_entry=...)`, or sleep
+entry) is a default-off config flag + one call in the runner/experiment lifecycle. Default-off keeps
+every existing run byte-identical, but it is an executable-code-plane change (the fleet pulls `main`)
+and should land behind the full contract gate — a small, separate follow-on.
 
 ---
 
-## Increment 2 — mid-life snapshot/resume (NOT started)
+## Increment 2 — mid-life snapshot/resume (SCOPED, not started)
 
-To resume or branch an instance at step N (the perturbation/branch experiments the imaging thought
-— `docs/thoughts/2026-08-13_...longitudinal...md` — wants), the missing pieces are:
+**Goal:** capture an organism's full live state at step N, restore it into a fresh process, and
+resume (or branch) bit-for-bit — the substrate for the perturbation / matched-branch experiments the
+imaging thought (`docs/thoughts/2026-08-13_...longitudinal...md`) wants: *observe → associate →
+hypothesise → intervene → replay → adjudicate*.
 
-- a **whole-organism serializer** walking every sub-module, parametric *and* the non-parametric
-  stores listed above, with a per-module capture/restore contract maintained module-by-module;
-- **RNG bit-state** capture (`random.getstate`, `np.random...bit_generator.state`,
-  `torch.get_rng_state`) — the harness only *reseeds*, never captures live state;
-- **environment live-state** capture (grid contamination fields, agent position/health, step
-  counter, the live `default_rng` state);
-- **branch/rollback/migrate semantics**, including loading an old snapshot against a newer
-  `substrate_hash` (versioned migration).
+**Classification: `complex (probe-gated)`.** The single most important constraint (from the substrate
+recon) is that **there is no single seam yielding full fidelity for free.** `REEAgent` has no
+`state_dict`/`load_state_dict` override; the default `nn.Module.state_dict` captures only registered
+Parameters/buffers and **silently drops every non-parametric store** — a plain Python class hanging
+off the agent, or a plain attribute on an `nn.Module`. So this is per-module capture/restore
+contract work, maintained module-by-module as the substrate grows. It must be **costed against real
+reuse before it is started**; the spike below exists to produce that cost estimate.
 
-`complex (probe-gated)`: the single most important constraint is that there is **no single seam
-yielding full fidelity for free** — this is ongoing per-module maintenance, so it should be costed
-against real reuse before being started.
+### What must be captured (the ~10 mandatory-core non-parametric stores + env + RNG)
+
+| Store | file:line | Round-trip today? | Work |
+|---|---|---|---|
+| `super_ordinal_goal_memory` | `ree_core/goal.py:635/648` | **yes** (`state_dict`/`load_state_dict`) | wire into a whole-organism walker |
+| `goal_state` | `ree_core/goal.py:1257/1272` | yes, but does **not** aggregate its `incentive_bank` | aggregate `incentive_bank` (`goal.py:773/779`) into it |
+| `serotonin` | `ree_core/neuromodulation/serotonin.py:355/365` | **yes** (`get_state`/`load_state`) | wire in |
+| `residue_field` EWC anchor | `ree_core/residue/field.py:527-535` | **capture-only** (`snapshot_ewc_anchor`, no loader) | add a loader |
+| `residue_field._harm_history` | `ree_core/residue/field.py:445` | no (plain `List[Tensor]`) | new capture/restore |
+| `visitation_counter._next_idx` | `ree_core/…/visitation.py:59` | no (buffers captured, **ring pointer not** → resume corrupts allocation) | new capture |
+| `gated_policy` crystallization + lazy `expansion` | `ree_core/policy/gated_policy.py:341-342,424` | no; **lazy `expansion` submodule → state_dict key mismatch** on load into a pre-crystallize agent | rebuild `expansion` before load, restore flag |
+| `anchor_set` | `ree_core/…/anchor_set.py:201-212` | no (per-anchor payload only) | new whole-set capture |
+| `staleness_accumulator` | `ree_core/…/staleness_accumulator.py:168` | capture-only (`snapshot`, no restore) | add a loader |
+| `ghost_goal_bank` | `ree_core/…/ghost_goal_bank.py:179` | no (mostly derived) | capture the non-derived residue |
+| **env** `CausalGridWorld` | `ree_core/environment/causal_grid_world.py` | **no serializer at all** | position/health/`grid`/`contamination_grid`/`steps` + **two** live `np.random.default_rng` bit-states (`:1383`, `:1217`) |
+| **torch global RNG** | E3 selector `multinomial` at `e3_selector.py:1749/2256/3446/3555`, etc. | n/a | `torch.get_rng_state()` / `set_rng_state()` (+ cuda if GPU) |
+
+Plus ~20 optional analog modules (OFC/lateral-PFC/AIC/frontopolar/…) that expose a diagnostic
+`get_state()` with **no matching setter** — captured only when enabled, each a small addition.
+
+### The design fork every store forces
+`super_ordinal_goal_memory.state_dict` deliberately omits its telemetry counters
+(`_n_writes/_last_*`). Each store needs the same call: **what is load-bearing state to restore vs.
+throwaway telemetry to drop.** Getting this wrong is a silent fidelity bug, so each store's
+capture/restore ships with its own round-trip contract (save → mutate → restore → assert bit-equal).
+
+### RNG + branch semantics
+- The harness only *reseeds* (`reset_all_rng`); it never captures live RNG. Mid-run resume needs the
+  torch global state and both env PRNG bit-states (and `np.random`/`random` global state only if a
+  live path uses them — `replay_sampler.py:187`, `hippocampal/module.py:175`).
+- **branch/rollback/migrate**: loading a snapshot against a *newer* `substrate_hash` needs a versioned
+  migration story (or an explicit refuse-and-report). A branch is two resumes from one snapshot with
+  divergent post-branch RNG.
+
+### De-risking spike (do this FIRST, then decide)
+1. **`SuperOrdinalGoalMemory`** (`goal.py:355`, built `agent.py:3070`) — small, tensor-based, and it
+   already ships **both** directions, so the spike is a cheap round-trip equality test that
+   establishes the per-store pattern cost and forces the state-vs-telemetry fork on the smallest
+   surface.
+2. Then **one worst-case**: the `residue_field` EWC anchor (capture-exists / no-restore, interacts
+   with registered buffers) **or** `gated_policy` crystallization (lazy submodule breaks naive load)
+   — to size the tail risk before committing to the full ~10-store rollout.
+3. **Decision gate:** extrapolate per-store cost × stores + env + RNG + the ongoing maintenance tax
+   (every new substrate store needs a capture/restore + contract) against the concrete experiments
+   that need mid-life resume. Proceed only if that reuse is real; otherwise birth-replay (Increment 1)
+   already preserves the possibility of future reconstruction, which is the thought's actual ask.
+
+### Verification strategy (when built)
+Save at step N → restore into a fresh process → replay K steps → assert equivalence **within a
+machine class** (same discrete-sampling caveat as Increment 1: assert on pre-quantizer quantities or
+same-machine, and stamp `machine_class`). A matched unperturbed resume vs. a perturbed resume is the
+experimental payload.
 
 ---
 
@@ -133,8 +200,9 @@ claimants, branching-successor moral status). This sits on the ethics perimeter 
 | Config JSON serializer (tagged, exact) | done | `ree_core/preservation/reconstruction_record.py` |
 | ReconstructionRecord schema + integrity + append-only storage | done | same |
 | `reconstruct_config` → bit-identical birth agent | done + contract | same + contract test |
-| Contract test (13) | done, local green | `tests/contracts/test_reconstruction_record.py` |
+| Contract test (record, 13) | done, green on hub | `tests/contracts/test_reconstruction_record.py` |
 | GOV-PRESERVE-1 archival-ethics rule | registered candidate | `docs/claims/claims.yaml` |
-| Auto-emit at a lifecycle hook (termination / phase / sleep) | TODO (small) | — |
-| Increment 2 (mid-life snapshot/resume) | not started (`complex (probe-gated)`) | — |
+| Emitter glue `preserve_life` (opt-in, per-life) | **done + contract (3)** | `experiments/_lib/preservation.py`, `tests/contracts/test_preservation_capture.py` |
+| Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
+| Increment 2 (mid-life snapshot/resume) | **scoped** (`complex (probe-gated)`); spike = `SuperOrdinalGoalMemory` | this doc, §"Increment 2" |
 | Memorial Fishtank (re-instantiate remnants) | aspiration; needs its own governance | — |
