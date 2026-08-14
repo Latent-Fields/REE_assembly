@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-14T17:13:59Z",
+  "last_tick_utc": "2026-08-14T17:49:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-920a",
   "current_exq_started_utc": "2026-08-14T16:14:59.730697+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 2 / single_life_uncensored_survival",
     "runs_done": 2,
     "runs_total": 8,
-    "episodes_done": 30,
+    "episodes_done": 220,
     "episodes_total": 220,
-    "overall_pct": 26.7
+    "overall_pct": 37.5
   },
-  "seconds_elapsed": 3540,
-  "seconds_remaining": 9357,
+  "seconds_elapsed": 5648,
+  "seconds_remaining": 7979,
   "recent_lines": [
     "[V3-EXQ-920] Uncensored Survival-to-Death Fishtank, TRUE Single-Life Design",
     "Seeds: [0, 1, 2, 3, 4, 5, 6, 7]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
@@ -48,7 +48,10 @@
     "Seed 2 Condition single_life_uncensored_survival",
     "[EXQ-920] seed=2 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON (906b ecology, max_episode_steps=20000)",
     "[train] stage0 seed=2 ep 20/220 z_goal_peak=0.4462",
-    "[train] stage0b seed=2 ep 30/220"
+    "[train] stage0b seed=2 ep 30/220",
+    "[train] p0 seed=2 ep 130/220 harm_enabled=True harm_steps=15148",
+    "[train] hazard seed=2 ep 170/220 G_H=FAIL harm_eval_range=0.3100 harm_steps=1583",
+    "[train] p1 seed=2 ep 220/220 survival_gate=FAIL"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
