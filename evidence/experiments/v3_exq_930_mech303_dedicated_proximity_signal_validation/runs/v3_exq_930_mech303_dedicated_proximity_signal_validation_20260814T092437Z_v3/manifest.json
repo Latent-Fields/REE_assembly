@@ -1,0 +1,88 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_930_mech303_dedicated_proximity_signal_validation",
+  "run_id": "v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-14T09:24:37Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-303"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech303_dedicated_signal_discriminates_zharma_does_not",
+    "preconditions": [
+      {
+        "name": "both_signals_apparatus_reachable",
+        "description": "fraction of battery ticks where BOTH z_harm_a.norm() and safety_proximity_harm return a finite value -- the gate signals' own reachability, not their discrimination",
+        "measured": 1.0,
+        "threshold": 0.99,
+        "direction": "lower",
+        "control": "every arm in the battery (all 5 density levels)",
+        "met": true
+      },
+      {
+        "name": "dedicated_signal_varies_with_density",
+        "description": "std across the 5 per-density means of the DEDICATED signal -- the SAME cross-density range statistic the load-bearing AUC criterion routes on (not a magnitude proxy); a flat signal means the dedicated channel is inert/misconfigured",
+        "measured": 0.33112425460957284,
+        "threshold": 0.001,
+        "direction": "lower",
+        "control": "positive control = hazard density genuinely varies 0->8 across the battery",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "dedicated_density_battery_nondegenerate": true,
+      "dedicated_auc_computation_nondegenerate": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f8b70b727fe09d87fe2cfd377636ca03155945bed34e5e776ce2e45b54d1147b",
+  "substrate_commit": {
+    "commit": "13f7ee538f87b05a1544da788586537c4399c85d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 50,
+    "goal_state_present": false
+  }
+}
