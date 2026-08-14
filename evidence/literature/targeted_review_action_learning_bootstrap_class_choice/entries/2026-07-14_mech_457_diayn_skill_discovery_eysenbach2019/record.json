@@ -33,7 +33,8 @@
     "skill_discovery",
     "unsupervised",
     "heavyweight",
-    "reusable_skills"
+    "reusable_skills",
+    "class_surveyed:options_skills"
   ],
   "mapping": {
     "source_claim_statement": "Learns diverse distinguishable skills with no environment reward by maximizing mutual information between a latent skill code z and visited states (a discriminator predicts z from state), keeping each skill max-entropy; learned skills accelerate downstream task learning and hierarchical control.",
@@ -46,6 +47,5 @@
     "mapping_fidelity": 0.6,
     "transfer_risk": 0.5,
     "notes": "Distinct capability (reusable skills) but heaviest build and weakest fit to a small substrate; deprioritise vs cheaper composable classes."
-  },
-  "class_surveyed": "OPTIONS / SKILLS"
+  }
 }

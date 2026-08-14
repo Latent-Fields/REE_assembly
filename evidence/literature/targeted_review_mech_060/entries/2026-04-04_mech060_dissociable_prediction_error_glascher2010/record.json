@@ -24,13 +24,7 @@
   "evidence_class": "neuroscience_experiment",
   "evidence_direction": "supports",
   "confidence": 0.72,
-  "confidence_rationale": "Demonstrates anatomically and computationally dissociable prediction error channels: a state prediction error (SPE) in intraparietal sulcus and lateral PFC (model-based, prospective/simulational) and a reward prediction error (RPE) in ventral striatum (model-free, realized outcome). This two-channel architecture directly parallels REE's pre-commit simulation channel vs post-commit realized-error channel. The write-boundary enforcement claim requires the signals to stay architecturally separated; this paper shows the brain maintains that separation neuroanatomically. Confidence moderate rather than high because the paper does not address 'write-boundary enforcement' or contamination consequences if channels are blended -- it establishes dissociability but not the pathological consequences of mixing.",
-  "confidence_components": {
-    "relevance": 0.85,
-    "mechanistic_specificity": 0.70,
-    "write_boundary_coverage": 0.40,
-    "replication_status": 0.90
-  },
+  "confidence_rationale": "Demonstrates anatomically and computationally dissociable prediction error channels: a state prediction error (SPE) in intraparietal sulcus and lateral PFC (model-based, prospective/simulational) and a reward prediction error (RPE) in ventral striatum (model-free, realized outcome). This two-channel architecture directly parallels REE's pre-commit simulation channel vs post-commit realized-error channel. The write-boundary enforcement claim requires the signals to stay architecturally separated; this paper shows the brain maintains that separation neuroanatomically. Confidence moderate rather than high because the paper does not address 'write-boundary enforcement' or contamination consequences if channels are blended -- it establishes dissociability but not the pathological consequences of mixing. Confidence decomposition as originally recorded (domain-specific components, not the canonical source_quality/mapping_fidelity/transfer_risk): relevance 0.85, mechanistic_specificity 0.7, write_boundary_coverage 0.4, replication_status 0.9.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "lit_gap:write_boundary_enforcement_not_tested",

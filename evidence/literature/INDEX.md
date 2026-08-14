@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-12T03:21:45.375474Z`
+Generated: `2026-08-14T03:48:41.647128Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -425,6 +425,7 @@ Generated: `2026-08-12T03:21:45.375474Z`
 | `targeted_review_sd_082` | [`2026-07-29_sd_082_rule_to_action_readout_muhammad2006`](targeted_review_sd_082/entries/2026-07-29_sd_082_rule_to_action_readout_muhammad2006/record.json) | 8 | [`summary`](targeted_review_sd_082/entries/2026-07-29_sd_082_rule_to_action_readout_muhammad2006/summary.md) |
 | `targeted_review_sd_087` | [`2026-08-02_sd_087_primacy_bias_rl_nikishin2022`](targeted_review_sd_087/entries/2026-08-02_sd_087_primacy_bias_rl_nikishin2022/record.json) | 4 | [`summary`](targeted_review_sd_087/entries/2026-08-02_sd_087_primacy_bias_rl_nikishin2022/summary.md) |
 | `targeted_review_self_model_integration` | [`2026-06-13_sd_030_motor_awareness_control_comparator_frith2000`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/record.json) | 6 | [`summary`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/summary.md) |
+| `targeted_review_sleep_onset_multiinput_gap9` | [`2026-08-14_gap9_unihemispheric_predation_rattenborg1999`](targeted_review_sleep_onset_multiinput_gap9/entries/2026-08-14_gap9_unihemispheric_predation_rattenborg1999/record.json) | 7 | [`summary`](targeted_review_sleep_onset_multiinput_gap9/entries/2026-08-14_gap9_unihemispheric_predation_rattenborg1999/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/record.json) | 8 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |

@@ -2,12 +2,18 @@
   "schema_version": "literature_evidence/v1",
   "entry_id": "2026-04-04_mech_059_free_energy_predictive_coding_FristonKiebel2009",
   "literature_type": "targeted_review_mech_059",
-  "claim_ids_tested": ["MECH-059"],
+  "claim_ids_tested": [
+    "MECH-059"
+  ],
   "timestamp_utc": "2026-04-04T09:00:00Z",
-  "citation": {
-    "authors": ["Friston, Karl", "Kiebel, Stefan"],
+  "evidence_direction": "supports",
+  "source": {
+    "authors": [
+      "Karl Friston",
+      "Stefan Kiebel"
+    ],
     "title": "Predictive coding under the free-energy principle",
-    "journal": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
     "year": 2009,
     "volume": "364",
     "issue": "1521",
@@ -16,14 +22,13 @@
     "pmid": "19528002",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2666703/"
   },
-  "relevance_to_claim": "Foundational paper establishing the free-energy / predictive coding framework. Introduces the mathematical formalism in which precision-weighted prediction error (xi = Pi * epsilon) is the unified quantity minimised by the brain. The paper explicitly distinguishes prediction error (epsilon, carried by superficial pyramidal cells ascending the hierarchy) from precision (Pi, a separate parameter controlling post-synaptic gain), and describes two distinct populations: state units encoding predictions and error units encoding prediction errors. Precision weights are not encoded by error unit activity itself but by the synaptic gain applied to error unit outputs. This is the theoretical grounding for the MECH-059 claim that the confidence channel must remain structurally distinct from the residual error signal.",
-  "evidence_direction": "supports",
-  "evidence_strength": "strong",
-  "evidence_type": "theoretical_framework",
-  "key_quotes": [
-    "In these generalized schemes, precision is encoded by the synaptic gain (post-synaptic responsiveness) of units reporting prediction errors.",
-    "The activities of error units are a function of the states and the dynamics of state units are a function of prediction error.",
-    "Sources of forward and backward connections are superficial and deep pyramidal cells respectively. Error units can be identified with superficial pyramidal cells because the only messages that pass up the hierarchy are prediction errors."
-  ],
-  "notes": "The paper does not explicitly frame this as a 'separation requirement' — it treats the architecture as the natural Bayesian formulation. The separation is structural: precision is a parameter of the generative model optimised separately from the state trajectories that produce prediction errors. Conflating them would correspond to treating the inverse-variance as part of the error signal itself, which would break the inference scheme. This implicit separation is exactly what MECH-059 makes explicit as an architectural requirement."
+  "evidence_class": "theoretical_framework",
+  "confidence": 0.6,
+  "confidence_rationale": "Migrated 2026-08-14 from the pre-contract record shape. Originally recorded as evidence_strength 'strong' with no numeric confidence; 0.6 is the value the indexer already substituted for this record, so the migration does not re-weight the evidence. The paper does not explicitly frame this as a 'separation requirement' — it treats the architecture as the natural Bayesian formulation. The separation is structural: precision is a parameter of the generative model optimised separately from the state trajectories that produce prediction errors. Conflating them would correspond to treating the inverse-variance as part of the error signal itself, which would break the inference scheme. This implicit separation is exactly what MECH-059 makes explicit as an architectural requirement.",
+  "summary_path": "summary.md",
+  "mapping": {
+    "source_claim_statement": "See summary.md for the source's own claim; this entry predates the mapping convention.",
+    "ree_translation": "Foundational paper establishing the free-energy / predictive coding framework. Introduces the mathematical formalism in which precision-weighted prediction error (xi = Pi * epsilon) is the unified quantity minimised by the brain. The paper explicitly distinguishes prediction error (epsilon, carried by superficial pyramidal cells ascending the hierarchy) from precision (Pi, a separate parameter controlling post-synaptic gain), and describes two distinct populations: state units encoding predictions and error units encoding prediction errors. Precision weights are not encoded by error unit activity itself but by the synaptic gain applied to error unit outputs. This is the theoretical grounding for the MECH-059 claim that the confidence channel must remain structurally distinct from the residual error signal.",
+    "mapping_caveat": "Migrated from a pre-contract record that recorded relevance as a single prose field; the source-faithful statement and the caveat were never separated out and are not reconstructed here."
+  }
 }

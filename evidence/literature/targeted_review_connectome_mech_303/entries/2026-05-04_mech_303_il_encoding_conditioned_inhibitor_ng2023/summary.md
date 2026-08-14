@@ -13,3 +13,9 @@ The partial overlap with reward-responding neurons is a direct qualifier on MECH
 **Limitations and caveats.** The compound-cue context conflates 'safety prediction' with 'conflict resolution'. Most recorded neurons responded to the compound but not safety-alone, suggesting what is being encoded is primarily the cognitive conflict signal -- safety overriding fear -- rather than the standalone safety prediction that MECH-303 targets. Only IL was recorded; the vHipp-PL pathway posited by MECH-303 and Meyer 2019 is not assessed. Male rats only.
 
 **Confidence: 0.84.** Best available direct electrophysiology of IL safety encoding in a well-matched paradigm. The partial reward-neuron overlap is a genuine qualifier but not a falsification.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Retagging note
+
+Retagged 2026-05-04 from MECH-303 to MECH-304. Single-unit IL encoding of conditioned inhibitors (cue-specific, teaching-signal-driven) belongs to the MECH-304 system, not the contextual passive safety system (MECH-303).

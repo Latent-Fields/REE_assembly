@@ -36,7 +36,8 @@
     "goal_generation",
     "frontier",
     "competence_directed",
-    "unsupervised_teacher"
+    "unsupervised_teacher",
+    "class_surveyed:curriculum_goal_generation"
   ],
   "mapping": {
     "source_claim_statement": "A goal-generating teacher network proposes target cells to a goal-conditioned student, rewarded (adversarially) for goals the student reaches in more than t* steps but not never -- keeping goals at the moving frontier of competence; this solves KeyCorridor/ObstructedMaze where IMPALA and count-based/RND intrinsic bonuses fail.",
@@ -49,6 +50,5 @@
     "mapping_fidelity": 0.78,
     "transfer_risk": 0.38,
     "notes": "Cleanest discrete-gridworld precedent for an unsupervised competence-manufacturing signal; the goal-space precondition is the main transfer risk."
-  },
-  "class_surveyed": "CURRICULUM / GOAL-GENERATION"
+  }
 }

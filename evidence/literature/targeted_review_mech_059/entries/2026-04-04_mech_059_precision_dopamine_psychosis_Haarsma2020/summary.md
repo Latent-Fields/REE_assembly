@@ -13,3 +13,15 @@ The double dissociation logic here is the key contribution from the perspective 
 Unsigned prediction errors — signals of surprise or mismatch without sign — were encoded in superior frontal cortex and dorsal anterior cingulate. Precision weighting scaled these signals according to environmental reliability, with better precision weighting associated with better task performance (Rho = -0.45, p < 0.001). Psychosis patients showed reduced precision-weighted responses correlating with symptom severity and schizotypy. The authors frame this as a disruption in the mechanism through which dopamine normally amplifies precise (reliable) prediction errors and attenuates imprecise (unreliable) ones.
 
 For REE, this paper provides several things. First, it confirms the neuroscience consensus that precision and prediction error are separated at both the computational and neurochemical level. Second, it shows that the consequences of conflating them are not subtle — disrupted precision weighting produces a systematic learning deficit and, in extreme cases, psychosis-spectrum symptoms. This is consistent with the REE prediction that corrupting the confidence channel (treating z_beta as a transform of residual error) would impair the architecture's ability to calibrate commitment appropriately. The ARC-016 circuit validated in V2 (E3-derived variance driving commit threshold) is the REE implementation of the healthy precision weighting demonstrated here.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Key quotes (from the pre-contract record)
+
+> fMRI revealed coding of unsigned prediction errors, which signal surprise, relative to their precision in superior frontal cortex.
+
+> Healthy people, but not patients with first-episode psychosis, take into account the precision of the environment when updating beliefs.
+
+> Precision weighting of cortical prediction error signals is a key mechanism through which dopamine modulates inference and contributes to the pathogenesis of psychosis.
+
+> D2 receptor antagonist sulpiride significantly disrupted precision-weighting in the left SFC (F2,56 = 4.025, p = 0.023).

@@ -3,10 +3,25 @@
   "literature_type": "targeted_review_relief_completion_mechanism",
   "entry_id": "2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019",
   "timestamp_utc": "2026-05-03T12:03:09Z",
-  "claim_ids_tested": ["MECH-303"],
+  "claim_ids_tested": [
+    "MECH-303"
+  ],
   "source": {
     "title": "Ventral hippocampus interacts with prelimbic cortex during inhibition of threat response via learned safety in both mice and humans",
-    "authors": ["Heidi C. Meyer", "Paola Odriozola", "Emily M. Cohodes", "Jeffrey D. Mandell", "Anfei Li", "Ruirong Yang", "Baila S. Hall", "Jason T. Haberman", "Sadie J. Zacharek", "Conor Liston", "Francis S. Lee", "Dylan G. Gee"],
+    "authors": [
+      "Heidi C. Meyer",
+      "Paola Odriozola",
+      "Emily M. Cohodes",
+      "Jeffrey D. Mandell",
+      "Anfei Li",
+      "Ruirong Yang",
+      "Baila S. Hall",
+      "Jason T. Haberman",
+      "Sadie J. Zacharek",
+      "Conor Liston",
+      "Francis S. Lee",
+      "Dylan G. Gee"
+    ],
     "year": 2019,
     "venue": "Proceedings of the National Academy of Sciences",
     "doi": "10.1073/pnas.1910481116",
@@ -14,7 +29,6 @@
   },
   "evidence_class": "fmri_connectivity",
   "evidence_direction": "supports",
-  "evidence_direction_correction_note": "Corrected 2026-05-04 from 'weakens' to 'supports'. Original direction was assigned during a MECH-302 lit pull where these papers weaken the single-pipeline reading. But MECH-303 IS the parallel-substrate claim -- the vHipp->PL safety-circuit finding directly supports MECH-303's claim that safety-cue prediction routes through prefrontal-hippocampal substrate.",
   "confidence": 0.78,
   "confidence_rationale": "Cross-species (mouse chemogenetics + human fMRI) convergent demonstration that conditioned inhibition via safety learning routes through a vHipp-to-PL pathway (or human homologue vHipp-dACC), dissociable from amygdala and vmPFC connectivity. Specifically: vHipp neurons projecting to PL (NOT to IL or BLA) are more active to safety and compound cues, and their activity correlates with freezing. This is the strongest direct anatomical support for MECH-303's vHipp-PL pathway claim.",
   "summary_path": "summary.md",
@@ -22,7 +36,14 @@
     "An REE substrate that models 'predicting where relief will come from' as the same mechanism that handles 'this thing just made suffering drop' will lose the architectural distinction between the safety-prediction circuit (vHipp -> PL) and the relief-completion circuit (BA -> NAcSh).",
     "The cross-species mapping is partial — humans show hippocampal-dorsal-anterior-cingulate connectivity rather than literal hippocampal-PL connectivity, which the authors translate via homology rather than direct anatomical match."
   ],
-  "tags": ["relief_completion", "safety_signal", "ventral_hippocampus", "prelimbic", "cross_species", "parallel_substrate"],
+  "tags": [
+    "relief_completion",
+    "safety_signal",
+    "ventral_hippocampus",
+    "prelimbic",
+    "cross_species",
+    "parallel_substrate"
+  ],
   "mapping": {
     "source_claim_statement": "Ventral hippocampal neurons projecting to the prelimbic cortex (but not to the infralimbic cortex or basolateral amygdala) are more active to safety and compound (threat+safety) cues than to threat cues, and their activity correlates with freezing behaviour. In humans, hippocampal-dorsal-ACC functional connectivity (but not hippocampal-vmPFC or hippocampal-BLA connectivity) differentiates threat, safety, and compound conditions.",
     "ree_translation": "Conditioned inhibition of threat via learned safety routes through a hippocampus-to-prefrontal pathway that is anatomically distinct from both the amygdalar threat circuit and the ventral-striatal relief-completion circuit. For REE this strengthens the case (also made by Kreutzmann 2020 for IL) that the predictive encoding of safety is a parallel substrate, not a polarity-flip of the goal-achievement encoder. The architectural decision should be hybrid: completion event reuses goal-achievement machinery; safety-cue prediction has its own learned-prediction structure.",
@@ -32,7 +53,7 @@
   "confidence_components": {
     "source_quality": 0.85,
     "mapping_fidelity": 0.75,
-    "transfer_risk": 0.20,
+    "transfer_risk": 0.2,
     "notes": "PNAS, cross-species design with chemogenetic specificity in the rodent and matched task in humans. Transfer risk reduced by the species convergence."
   }
 }

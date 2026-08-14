@@ -34,7 +34,8 @@
     "rnd",
     "intrinsic_motivation",
     "exploration",
-    "duplication_risk"
+    "duplication_risk",
+    "class_surveyed:novelty_drive"
   ],
   "mapping": {
     "source_claim_statement": "A frozen random target network + trained predictor yields a prediction-error exploration bonus (a smooth pseudo-count) that drives above-average-human play on the sparse-reward game Montezuma's Revenge without demonstrations.",
@@ -47,6 +48,5 @@
     "mapping_fidelity": 0.85,
     "transfer_risk": 0.45,
     "notes": "High source+mapping; transfer_risk elevated because Atari novelty-reward alignment does not transfer to sparse foraging."
-  },
-  "class_surveyed": "NOVELTY-DRIVE"
+  }
 }

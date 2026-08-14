@@ -28,3 +28,9 @@ The conditioned-inhibition paradigm is one specific operationalisation of safety
 ## Confidence
 
 Source quality is high (PNAS, cross-species, projection-defined manipulation in the rodent arm). Mapping fidelity is moderate because of the imperfect species homology and the paradigm specificity. Transfer risk is reduced by the species convergence. Net confidence 0.78, weakens — same role as Kreutzmann 2020, pulling the recommendation toward hybrid by surfacing the parallel substrate for safety-cue prediction.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Evidence-direction correction
+
+Corrected 2026-05-04 from 'weakens' to 'supports'. Original direction was assigned during a MECH-302 lit pull where these papers weaken the single-pipeline reading. But MECH-303 IS the parallel-substrate claim -- the vHipp->PL safety-circuit finding directly supports MECH-303's claim that safety-cue prediction routes through prefrontal-hippocampal substrate.

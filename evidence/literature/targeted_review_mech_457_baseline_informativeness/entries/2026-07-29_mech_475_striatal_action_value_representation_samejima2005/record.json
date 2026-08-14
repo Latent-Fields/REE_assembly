@@ -3,10 +3,17 @@
   "literature_type": "targeted_review_mech_457_baseline_informativeness",
   "entry_id": "2026-07-29_mech_475_striatal_action_value_representation_samejima2005",
   "timestamp_utc": "2026-07-29T06:40:07Z",
-  "claim_ids_tested": ["MECH-475"],
+  "claim_ids_tested": [
+    "MECH-475"
+  ],
   "source": {
     "title": "Representation of action-specific reward values in the striatum",
-    "authors": ["Kazuyuki Samejima", "Yasumasa Ueda", "Kenji Doya", "Minoru Kimura"],
+    "authors": [
+      "Kazuyuki Samejima",
+      "Yasumasa Ueda",
+      "Kenji Doya",
+      "Minoru Kimura"
+    ],
     "year": 2005,
     "venue": "Science",
     "doi": "10.1126/science.1115270"
@@ -20,11 +27,16 @@
     "The signal is an ACTION-value code, not an advantage or a baseline per se -- so the paper establishes WHERE an informative action-critic lives but does not itself demonstrate that removing/flattening it produces active degradation; that causal step is imported from lesion (Rothenhoefer) and computational (Fujimoto, Tucker) entries.",
     "Fewer neurons coded relative value or the choice; a substrate that represents absolute action-values without a strong relative/advantage code is consistent with REE's measured pathology (an advantage dominated by variance) but the paper does not measure variance of the value estimate."
   ],
-  "tags": ["mech_475", "action_value", "striatum", "actor_critic", "reward_representation"],
+  "tags": [
+    "mech_475",
+    "action_value",
+    "striatum",
+    "actor_critic",
+    "reward_representation"
+  ],
   "mapping": {
     "source_claim_statement": "During a delay before choosing between left and right handle turns based on estimated reward probabilities, more than one-third of striatal projection neurons were selective to the value of ONE of the two actions; fewer were tuned to relative values or to action choice, indicating explicit representation of action values in the striatum.",
-    "ree_translation": "MECH-475 characterises the critic on REE's MECH-457 actor-critic pathway. The claim's notes commissioned this lit-pull to decide whether REE's foraging DV is stimulus-like (resource-directed) or action-like. Samejima shows action-specific reward VALUE is a real, explicitly-coded striatal signal -- i.e. the brain implements exactly the action-value critic REE's pathway is trying to learn. This licenses treating REE's DV as action-like and locates the biological analog of REE's critic in the dorsal/caudate-putamen action-value population rather than the VS.",
-    "ree_translation_note": "Together with Rothenhoefer 2017 (VS lesion spares action-value learning) this resolves the divergence: action-value learning is intact after a VS lesion because it is carried by this dorsal-striatal action-value code, not the VS.",
+    "ree_translation": "MECH-475 characterises the critic on REE's MECH-457 actor-critic pathway. The claim's notes commissioned this lit-pull to decide whether REE's foraging DV is stimulus-like (resource-directed) or action-like. Samejima shows action-specific reward VALUE is a real, explicitly-coded striatal signal -- i.e. the brain implements exactly the action-value critic REE's pathway is trying to learn. This licenses treating REE's DV as action-like and locates the biological analog of REE's critic in the dorsal/caudate-putamen action-value population rather than the VS. Together with Rothenhoefer 2017 (VS lesion spares action-value learning) this resolves the divergence: action-value learning is intact after a VS lesion because it is carried by this dorsal-striatal action-value code, not the VS.",
     "mapping_caveat": "Correlational single-unit evidence in a two-action handle-turn task, not a causal manipulation and not a foraging environment; it establishes the EXISTENCE and LOCUS of an action-value critic, not that its uninformativeness causes active competence loss. The destructiveness prediction still rests on the lesion and computational entries.",
     "source_context": "Extracellular single-unit recording from striatal projection neurons in monkeys performing a free-choice reward-probability task; regression of delay-period activity onto action values estimated by an RL model."
   },

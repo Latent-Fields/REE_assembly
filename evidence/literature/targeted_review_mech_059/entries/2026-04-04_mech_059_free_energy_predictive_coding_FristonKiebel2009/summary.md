@@ -13,3 +13,13 @@ The neurobiological implementation the paper proposes makes this separation conc
 The paper is not primarily about the necessity of this separation — it takes the Bayesian formulation as given and works out its biological consequences. But the separation is an inescapable structural feature of the framework. A system that encodes precision as a function of prediction error magnitude has made a category error: it has confused the noise estimate with the signal being estimated. This is precisely the failure mode MECH-059 is designed to prevent in REE. The confidence channel (z_beta or equivalent) must track uncertainty in the generative model's parameters, not the instantaneous residual from the last prediction step.
 
 One important nuance: Friston and Kiebel describe a unified computational operation (precision-weighted prediction error), not two separate output streams. The separation is in the optimisation variables, not necessarily in the anatomical wiring. REE MECH-059 goes slightly further in requiring architectural separation — but this paper provides the theoretical warrant for that requirement.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Key quotes (from the pre-contract record)
+
+> In these generalized schemes, precision is encoded by the synaptic gain (post-synaptic responsiveness) of units reporting prediction errors.
+
+> The activities of error units are a function of the states and the dynamics of state units are a function of prediction error.
+
+> Sources of forward and backward connections are superficial and deep pyramidal cells respectively. Error units can be identified with superficial pyramidal cells because the only messages that pass up the hierarchy are prediction errors.

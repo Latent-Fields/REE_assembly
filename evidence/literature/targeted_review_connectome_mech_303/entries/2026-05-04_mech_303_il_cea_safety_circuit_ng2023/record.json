@@ -3,11 +3,20 @@
   "literature_type": "targeted_review_connectome_mech_303",
   "entry_id": "2026-05-04_mech_303_il_cea_safety_circuit_ng2023",
   "timestamp_utc": "2026-05-04T01:05:15Z",
-  "claim_ids_tested": ["MECH-304"],
-  "retag_note": "Retagged 2026-05-04 from MECH-303 to MECH-304. IL->CeA is the expression pathway of the cue-specific conditioned inhibition system (MECH-304), not the contextual passive safety system (MECH-303).",
+  "claim_ids_tested": [
+    "MECH-304"
+  ],
   "source": {
     "title": "Suppressing fear in the presence of a safety cue requires infralimbic cortical signaling to central amygdala",
-    "authors": ["Ng, Ka", "Pollock, Michael", "Escobedo, Abraham", "Bachman, Brent", "Miyazaki, Nanami", "Bartlett, Edward L", "Sangha, Susan"],
+    "authors": [
+      "Ng, Ka",
+      "Pollock, Michael",
+      "Escobedo, Abraham",
+      "Bachman, Brent",
+      "Miyazaki, Nanami",
+      "Bartlett, Edward L",
+      "Sangha, Susan"
+    ],
     "year": 2023,
     "venue": "Neuropsychopharmacology",
     "doi": "10.1038/s41386-023-01598-0",
@@ -23,7 +32,14 @@
     "The study tested only expression (recall), not acquisition, of safety. It is unclear whether IL->CeA is also required to initially encode the safety-cue prediction store that MECH-303 posits.",
     "Safety was demonstrated via fear suppression, not via approach toward safety-associated stimuli. The approach-toward-safety arm of MECH-303 is not tested here."
   ],
-  "tags": ["mech_304", "infralimbic", "central_amygdala", "safety_circuit", "chemogenetics", "conditioned_inhibition"],
+  "tags": [
+    "mech_304",
+    "infralimbic",
+    "central_amygdala",
+    "safety_circuit",
+    "chemogenetics",
+    "conditioned_inhibition"
+  ],
   "mapping": {
     "source_claim_statement": "The infralimbic cortex projection to the central amygdala is necessary for expressing learned fear suppression in the presence of a safety cue; the projection to the basolateral amygdala is not.",
     "ree_translation": "MECH-304 posits that the expression/output pathway of cue-specific conditioned safety runs through IL->CeA. This paper directly establishes that circuit: IL->CeA (not IL->BLA) is necessary for expressing conditioned inhibition. In REE terms the IL->CeA projection is the gate that drops the avoidance commitment when the specific learned safety cue is present -- the output limb of the MECH-304 mechanism.",
@@ -33,7 +49,7 @@
   "confidence_components": {
     "source_quality": 0.85,
     "mapping_fidelity": 0.78,
-    "transfer_risk": 0.30,
+    "transfer_risk": 0.3,
     "notes": "High methodological quality (intersectional chemogenetics, within-subjects design, histological verification, virus-free and miss controls). Mapping fidelity docked because the paper addresses the expression/output pathway rather than the predictive encoding store that is MECH-303's primary target. Transfer risk is moderate: rodent-male only and species-specific cue compounds."
   }
 }

@@ -815,6 +815,10 @@ class LiteratureRecord:
     claim_ids_tested: list[str] = field(default_factory=list)
     evidence_class: str = "review"
     evidence_direction: str = "unknown"
+    # Mirrors RunRecord.evidence_direction_per_claim. A literature entry can bear
+    # differently on the several claims it tags just as an experiment run can, and
+    # without this the blanket evidence_direction was applied to every one of them.
+    evidence_direction_per_claim: dict[str, str] = field(default_factory=dict)
     architecture_epoch: str = ""
     confidence: float = 0.5
     confidence_rationale: str = ""
@@ -1791,6 +1795,17 @@ def _scan_literature(
 
         evidence_class = str(record.get("evidence_class", "review")).strip() or "review"
         evidence_direction = _normalize_direction(record.get("evidence_direction"))
+        # Per-claim direction overrides, same contract as the manifest path above:
+        # when present for a claim_id, replaces the entry-level direction for that
+        # claim only; absent keys fall back to it. "unknown" entries are dropped so
+        # a placeholder cannot mask the entry-level value.
+        raw_per_claim = record.get("evidence_direction_per_claim") or {}
+        evidence_direction_per_claim: dict[str, str] = {}
+        if isinstance(raw_per_claim, dict):
+            for cid, val in raw_per_claim.items():
+                normalized = _normalize_direction(val)
+                if normalized != "unknown":
+                    evidence_direction_per_claim[str(cid)] = normalized
         architecture_epoch = str(record.get("architecture_epoch", "")).strip()
         if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
             architecture_epoch = current_epoch
@@ -1815,6 +1830,7 @@ def _scan_literature(
                 claim_ids_tested=claim_ids_tested,
                 evidence_class=evidence_class,
                 evidence_direction=evidence_direction,
+                evidence_direction_per_claim=evidence_direction_per_claim,
                 architecture_epoch=architecture_epoch,
                 confidence=confidence,
                 confidence_rationale=confidence_rationale,
@@ -3237,7 +3253,9 @@ def _write_claim_evidence_matrix(
                 "timestamp_utc": lit.timestamp_raw,
                 "status": "SOURCE",
                 "evidence_class": _prefix_class("literature", lit.evidence_class),
-                "evidence_direction": lit.evidence_direction,
+                "evidence_direction": lit.evidence_direction_per_claim.get(
+                    claim_id, lit.evidence_direction
+                ),
                 "confidence": lit.confidence,
                 "confidence_rationale": lit.confidence_rationale,
                 "failure_signatures": lit.failure_signatures,

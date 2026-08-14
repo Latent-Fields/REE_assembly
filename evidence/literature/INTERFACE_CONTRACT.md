@@ -38,25 +38,56 @@ Required fields:
 
   `pmcid` is a deprecated spelling of `pmc`, still accepted so existing entries validate. Use `pmc`.
 - `evidence_class`: string class token (ingestion prefixes with `lit:` in the matrix).
-- `evidence_direction`: one of `supports`, `weakens`, `mixed`, `unknown`.
+- `evidence_direction`: one of `supports`, `weakens`, `mixed`, `unknown`. The enum is closed and
+  matches the tokens `build_experiment_indexes._normalize_direction` actually honours -- adding a
+  token here without adding it there produces a record that validates and is *still* ingested as
+  `unknown`, which is worse than one that fails validation. If an entry bears differently on the
+  several claims it tags, use `evidence_direction_per_claim`; do not invent a token.
 - `confidence`: number in `[0, 1]`.
 - `confidence_rationale`: short string describing how confidence was assigned.
 - `summary_path`: path to summary file (usually `summary.md`).
 
 Optional fields:
 
+- `evidence_direction_per_claim`: object mapping a claim ID to its own direction, e.g.
+  `{"MECH-303": "supports", "MECH-304": "weakens"}`, using the same closed enum. Without it, an
+  entry testing several claims applies one blanket `evidence_direction` to all of them; a claim
+  absent from the object falls back to that blanket value. This mirrors the convention already
+  mandated for experiment manifests testing more than one claim (umbrella `CLAUDE.md`).
 - `failure_signatures`: string array for explicit contradiction signatures.
-- `tags`: string array.
+- `tags`: string array. The `prefix:value` form is an established idiom here (`candidate:...`,
+  `class_surveyed:...`, `support_tag:...`) and is where a per-entry annotation label belongs --
+  do not add a new top-level field for one.
 - `mapping`: object for source-to-REE translation details:
   - `source_claim_statement`: short source-faithful statement of what the paper actually claims.
   - `ree_translation`: REE framing of that source claim.
   - `mapping_caveat`: explicit boundary/risk in the translation.
   - optional `source_context`: short task/species/modality context note.
-- `confidence_components`: object for confidence decomposition:
+- `confidence_components`: object for confidence decomposition. All three components are required
+  when the object is present, and the object is closed:
   - `source_quality`: number in `[0, 1]` (method quality / source reliability).
   - `mapping_fidelity`: number in `[0, 1]` (how faithful REE translation is to source wording).
-  - `transfer_risk`: number in `[0, 1]` (risk that domain transfer to REE is invalid).
-  - optional `notes`: short calibration note.
+  - `transfer_risk`: number in `[0, 1]` (**risk** that domain transfer to REE is invalid -- higher
+    is worse, the opposite polarity to the other two).
+  - optional `notes`: short calibration note; this is where a domain-specific consideration goes.
+
+  Do not substitute domain-specific component names. 2132 of the 2143 records carrying this object
+  use exactly these three, and `evidence/planning/scripts/build_connectome_literature_pull.py`
+  specifies them as required output.
+
+## Validation
+
+`scripts/audit_literature_schema.py` validates the whole corpus against
+`schemas/v1/literature_evidence.schema.json` and, with `--drift`, reports for every undeclared key
+how many records use it, in which `literature_type` directories, over what date range. That
+enumeration is what decides whether a field is convention (widen the schema) or drift (normalise the
+records) -- decide from the full corpus, not from a sample. `--baseline <ref>` diffs the failing set
+against the schema at a git ref, so a change can be asserted regression-free before it lands.
+
+**Nothing enforces this contract mechanically.** No hook, CI job, or indexer step validates a record
+against the schema, so a new entry can drift without anything failing; run the audit deliberately.
+As of 2026-08-14, 37 of 2189 records fail, all inside `source` (denormalised `citation` blocks and
+prose keys that the 2026-08-14 `source` reconciliation deliberately declined to admit).
 
 ## Confidence Guidance
 

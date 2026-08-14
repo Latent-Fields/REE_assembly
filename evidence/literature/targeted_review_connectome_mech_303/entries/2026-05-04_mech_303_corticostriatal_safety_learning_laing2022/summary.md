@@ -17,3 +17,9 @@ Whether MECH-303 should be mapped to the CI pathway or the SS pathway is a genui
 **Limitations and caveats.** No single-unit resolution; encoding vs. retrieval confounded. Healthy adults only. The CI vs. SS paradigm distinction may not map cleanly onto the MECH-302 teaching-signal concept -- the CI in this study is driven by threat-signal pairing, not by relief-completion.
 
 **Confidence: 0.76.** High-quality human 7T fMRI with a principled within-subjects safety-signal dissociation. Confidence docked for mapping-fidelity uncertainty -- the CI/SS distinction cuts across MECH-303's substrate claim in a way that requires architectural resolution.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Retagging note
+
+Expanded 2026-05-04 from MECH-303 to [MECH-303, MECH-304] following the MECH-303/304 split. Standard safety signal (vmPFC/hippocampus) maps to MECH-303; conditioned inhibitor (dorsal striatum/dlPFC) maps to MECH-304. Both claims directly supported.

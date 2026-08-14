@@ -23,3 +23,29 @@ Several caveats limit the mapping. First, the Murray et al. claim is about long-
 ## Confidence reasoning
 
 Confidence is 0.62. The biological argument -- categorical discrimination requires categorical training pressure, not just reconstruction -- is conceptually aligned with MECH-100. But the mechanistic gap between biological experience-dependent perirhinal development and auxiliary CE loss training in a deep learning context is substantial, and the anatomical analog is imprecise. The Murray et al. work supports the conceptual grounding but does not directly demonstrate that reconstruction loss is insufficient to produce discriminative representations in a neural network encoder -- that argument comes from the REE experimental evidence (EXQ-013, EXQ-014) and from the deep learning literature, which is outside PubMed scope.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Metadata correction
+
+```json
+{
+  "corrected_utc": "2026-08-09T07:06:57Z",
+  "corrected_by_session": "metaworker-chip-20260809-sd009-897-followon",
+  "chip_ref": "chip-20260809-sd009-897-followon",
+  "fields_corrected": [
+    "source.title",
+    "source.venue",
+    "source.doi",
+    "source.url"
+  ],
+  "previous_values": {
+    "source.title": "What we know and do not know about the functions of the perirhinal cortex",
+    "source.venue": "Annual Review of Neuroscience",
+    "source.doi": "10.1146/annurev.neuro.29.051605.112951",
+    "source.url": "https://pubmed.ncbi.nlm.nih.gov/17645520/"
+  },
+  "reason": "Bibliographic metadata ONLY -- evidence_direction, confidence, mapping and failure_signatures are UNCHANGED and were not re-adjudicated here. Verified against PubMed 2026-08-09: the authors, year and venue identify Murray EA, Bussey TJ, Saksida LM (2007), Annu Rev Neurosci 30:99-122, PMID 17417938, DOI 10.1146/annurev.neuro.29.051605.113046. Each replaced field was wrong: the previous title is not a paper by these authors; the previous DOI differs from the real one in its final digits and does not resolve to it; and the previous URL's PMID 17645520 is an unrelated 2007 liver-transplantation paper in Hepatology Research. entry_id keeps its '_murray2004' suffix because entry_id is an identifier other artefacts key on, not a citation -- the '2004' in it traces to the same non-existent 'Murray et al. 2004, TICS 8:56-61' citation carried in claims.yaml prose, corrected in the same pass.",
+  "record": "evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md"
+}
+```

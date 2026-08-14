@@ -29,3 +29,9 @@ The paper does not record from the IL during relief itself, only during safety e
 ## Confidence
 
 Source quality is good (Psychopharmacology, well-controlled with PL comparison and both sexes). Mapping fidelity is moderate because the paradigm tests one specific operationalisation. Transfer risk is moderate. Net confidence 0.74, weakens — in the sense that it weakens the simple Model 1 reading by surfacing a parallel substrate for safety-cue prediction.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Evidence-direction correction
+
+Corrected 2026-05-04 from 'weakens' to 'supports'. Original direction was assigned during a MECH-302 lit pull where IL/vHipp-PL papers weaken the single-pipeline reading of MECH-302. But MECH-303 IS the parallel-substrate claim -- IL being the required substrate for safety-cue expression directly supports MECH-303.

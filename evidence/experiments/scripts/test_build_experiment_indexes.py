@@ -2769,3 +2769,97 @@ def _run_all():
 
 if __name__ == "__main__":
     sys.exit(1 if _run_all() else 0)
+
+
+# --- literature evidence_direction_per_claim (2026-08-14) -------------------
+# A literature entry tagging several claims used to apply ONE blanket
+# evidence_direction to every one of them -- the same failure the manifest path
+# has carried `evidence_direction_per_claim` for since long before. The field
+# was in use in evidence/literature/ records but undeclared in
+# literature_evidence.schema.json AND unread here, so a divergent per-claim
+# direction was silently discarded. Admitting it to the schema without wiring
+# it here would have been the worse half of the fix: a record that validates and
+# is still mis-ingested (exactly the state the non-enum "refines" token was in).
+
+def _write_lit_entry(root, lit_type, entry_id, record):
+    entry_dir = root / lit_type / "entries" / entry_id
+    entry_dir.mkdir(parents=True, exist_ok=True)
+    (entry_dir / "summary.md").write_text("# summary\n")
+    (entry_dir / "record.json").write_text(json.dumps(record))
+    return entry_dir
+
+
+def _lit_record(entry_id, claims, direction="supports", per_claim=None):
+    rec = {
+        "schema_version": "literature_evidence/v1",
+        "entry_id": entry_id,
+        "timestamp_utc": "2026-05-04T00:00:00Z",
+        "claim_ids_tested": claims,
+        "source": {"title": "T", "authors": ["A B"], "year": 2020},
+        "evidence_class": "review",
+        "evidence_direction": direction,
+        "confidence": 0.7,
+        "confidence_rationale": "r",
+        "summary_path": "summary.md",
+    }
+    if per_claim is not None:
+        rec["evidence_direction_per_claim"] = per_claim
+    return rec
+
+
+def _scan_one(record):
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp) / "literature"
+        _write_lit_entry(root, "targeted_review_x", record["entry_id"], record)
+        by_lit = b._scan_literature(root, {})
+    return by_lit["targeted_review_x"][0]
+
+
+def test_literature_per_claim_direction_overrides_blanket():
+    lit = _scan_one(_lit_record(
+        "e1", ["MECH-303", "MECH-304"], direction="supports",
+        per_claim={"MECH-304": "weakens"}))
+    assert lit.evidence_direction == "supports"
+    assert lit.evidence_direction_per_claim == {"MECH-304": "weakens"}, \
+        lit.evidence_direction_per_claim
+
+
+def test_literature_per_claim_absent_key_falls_back_to_blanket():
+    """A claim not named in the override keeps the entry-level direction --
+    this is what makes the field safe to add to an existing record."""
+    lit = _scan_one(_lit_record(
+        "e2", ["MECH-303", "MECH-304"], direction="supports",
+        per_claim={"MECH-304": "weakens"}))
+    resolved = {c: lit.evidence_direction_per_claim.get(c, lit.evidence_direction)
+                for c in lit.claim_ids_tested}
+    assert resolved == {"MECH-303": "supports", "MECH-304": "weakens"}, resolved
+
+
+def test_literature_per_claim_placeholder_unknown_is_dropped():
+    """"unknown" is _normalize_direction's fallback for any unrecognised token,
+    so keeping it would let a typo silently mask a real entry-level direction."""
+    lit = _scan_one(_lit_record(
+        "e3", ["MECH-303"], direction="supports",
+        per_claim={"MECH-303": "unknown", "MECH-999": "not_a_direction"}))
+    assert lit.evidence_direction_per_claim == {}, lit.evidence_direction_per_claim
+
+
+def test_literature_without_per_claim_is_unchanged():
+    """Negative control: 2187 of 2189 corpus records have no such key, and must
+    keep behaving exactly as before."""
+    lit = _scan_one(_lit_record("e4", ["MECH-303", "MECH-304"], direction="weakens"))
+    assert lit.evidence_direction_per_claim == {}
+    assert lit.evidence_direction == "weakens"
+
+
+def test_literature_schema_declares_per_claim_direction():
+    """Couples the schema to this code. The 2026-08-14 reconciliation admitted
+    the field on the grounds that the indexer honours it; if a later edit drops
+    it from the schema, that justification is gone and this fails."""
+    schema_path = (Path(__file__).resolve().parents[2]
+                   / "literature" / "schemas" / "v1" / "literature_evidence.schema.json")
+    schema = json.loads(schema_path.read_text())
+    spec = schema["properties"]["evidence_direction_per_claim"]
+    assert set(spec["additionalProperties"]["enum"]) == \
+        set(schema["properties"]["evidence_direction"]["enum"]), \
+        "per-claim enum must track the entry-level enum"

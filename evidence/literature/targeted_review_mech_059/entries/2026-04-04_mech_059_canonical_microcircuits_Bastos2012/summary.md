@@ -15,3 +15,13 @@ Precision weighting operates through an entirely different mechanism. Specific s
 There is a temporal dynamics argument here that maps onto REE in an interesting way. Prediction errors are updated at the timescale of the perceptual stimulus — within hundreds of milliseconds. Precision estimates are updated more slowly, reflecting accumulated evidence about environmental volatility or task context. In REE terms, this corresponds to the observation that z_beta (or an equivalent confidence channel) should track model uncertainty over episodes, not flip with every prediction step. A system whose confidence channel is derived from instantaneous residual error has no mechanism for this slower timescale of reliability assessment — it is, in effect, running without an uncertainty representation at all, just a relabelled error signal.
 
 The broader message from Bastos et al. is that the cortex has gone to considerable architectural expense to maintain this separation. Different cell types, different layers, different oscillatory regimes. That expense is not incidental — it is necessary for the inference to work correctly. MECH-059 encodes the same engineering rationale.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Key quotes (from the pre-contract record)
+
+> We have placed the precision of the feedforward prediction error against the superficial pyramidal cells. This quantity controls the postsynaptic sensitivity or gain to (intrinsic and top-down) pre-synaptic inputs.
+
+> There is a specific type of GABAergic neuron that appears to control distal dendritic excitability, gating top down excitatory signals differentially during behavior.
+
+> Feedforward connections originate predominately from superficial layers and feedback connections from deep layers, suggesting that feedforward connections use relatively high frequencies, compared to feedback connections.

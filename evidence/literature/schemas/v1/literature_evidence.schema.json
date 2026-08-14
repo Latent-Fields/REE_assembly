@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "ree://literature-evidence/v1/literature_evidence.schema.json",
   "title": "REE Literature Evidence v1",
+  "description": "A single literature entry's record.json. `additionalProperties` is false at the top level, and stays false on purpose: this object is a record of the corpus's actual convention, not a free-form bag. Reconciled against full-corpus usage twice on 2026-08-14 -- first the `source` object, then everything outside it -- using `scripts/audit_literature_schema.py --drift`, which reports for each undeclared key how many records use it, in how many literature_type directories, over what date range. That enumeration is what decides direction, and it should be re-run rather than reasoned from a sample. Corpus-wide and still-current usage is convention: widen the schema (that is how `source.pmid` and `evidence_direction_per_claim` got in). Usage confined to ONE directory from ONE pull session on ONE date is drift: normalise the records instead. Three kinds of content were rejected on that basis and belong elsewhere: (a) per-entry annotation labels from a single pull -- put them in `tags`, where the `prefix:value` form is already an established idiom; (b) prose -- provenance notes, metadata corrections, retrieval caveats, retagging rationale -- which belongs in the entry's summary.md, the dominant corpus convention; and (c) bespoke `confidence_components` names, against which the canonical three are used exactly by 2132 of the 2143 records that carry the object. NOTHING MECHANICALLY ENFORCES THIS SCHEMA TODAY -- no hook, no CI job, no indexer check validates a record against it, so it documents convention rather than gating it, and a new record can drift without anything failing.",
   "type": "object",
   "required": [
     "schema_version",
@@ -56,7 +57,16 @@
     "evidence_class": { "type": "string" },
     "evidence_direction": {
       "type": "string",
+      "description": "Direction of this source's bearing on the claims in `claim_ids_tested`. The enum is closed and matches the tokens `build_experiment_indexes._normalize_direction` actually honours -- widening it here WITHOUT widening that function produces a record that validates but is silently ingested as 'unknown', which is worse than a rejected record. A 2026-08-14 entry carrying the non-enum token 'refines' was in exactly that state and was corrected to 'mixed' rather than admitted.",
       "enum": ["supports", "weakens", "mixed", "unknown"]
+    },
+    "evidence_direction_per_claim": {
+      "type": "object",
+      "description": "Per-claim direction overrides, e.g. {\"MECH-303\": \"supports\", \"MECH-304\": \"weakens\"}. Without it, an entry testing several claims applies one blanket `evidence_direction` to all of them. This is the SAME convention already mandated for experiment manifests with more than one claim (umbrella CLAUDE.md; read by serve.py and by the indexer's experiment path), so the literature entries using it are early adopters of an existing cross-corpus convention rather than local drift -- which is why this field is admitted where the rest of the 2026-08-14 top-level drift was normalised away instead. A claim absent here falls back to `evidence_direction`.",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["supports", "weakens", "mixed", "unknown"]
+      }
     },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
     "confidence_rationale": { "type": "string" },

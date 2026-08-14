@@ -3,28 +3,20 @@
   "literature_type": "targeted_review_connectome_mech_100",
   "entry_id": "2026-03-29_mech_100_ventral_stream_categorical_murray2004",
   "timestamp_utc": "2026-03-29T14:00:00Z",
-  "claim_ids_tested": ["MECH-100"],
+  "claim_ids_tested": [
+    "MECH-100"
+  ],
   "source": {
     "title": "Visual perception and memory: a new view of medial temporal lobe function in primates and rodents",
-    "authors": ["Murray EA", "Bussey TJ", "Saksida LM"],
+    "authors": [
+      "Murray EA",
+      "Bussey TJ",
+      "Saksida LM"
+    ],
     "year": 2007,
     "venue": "Annual Review of Neuroscience 30:99-122",
     "doi": "10.1146/annurev.neuro.29.051605.113046",
     "url": "https://pubmed.ncbi.nlm.nih.gov/17417938/"
-  },
-  "metadata_correction": {
-    "corrected_utc": "2026-08-09T07:06:57Z",
-    "corrected_by_session": "metaworker-chip-20260809-sd009-897-followon",
-    "chip_ref": "chip-20260809-sd009-897-followon",
-    "fields_corrected": ["source.title", "source.venue", "source.doi", "source.url"],
-    "previous_values": {
-      "source.title": "What we know and do not know about the functions of the perirhinal cortex",
-      "source.venue": "Annual Review of Neuroscience",
-      "source.doi": "10.1146/annurev.neuro.29.051605.112951",
-      "source.url": "https://pubmed.ncbi.nlm.nih.gov/17645520/"
-    },
-    "reason": "Bibliographic metadata ONLY -- evidence_direction, confidence, mapping and failure_signatures are UNCHANGED and were not re-adjudicated here. Verified against PubMed 2026-08-09: the authors, year and venue identify Murray EA, Bussey TJ, Saksida LM (2007), Annu Rev Neurosci 30:99-122, PMID 17417938, DOI 10.1146/annurev.neuro.29.051605.113046. Each replaced field was wrong: the previous title is not a paper by these authors; the previous DOI differs from the real one in its final digits and does not resolve to it; and the previous URL's PMID 17645520 is an unrelated 2007 liver-transplantation paper in Hepatology Research. entry_id keeps its '_murray2004' suffix because entry_id is an identifier other artefacts key on, not a citation -- the '2004' in it traces to the same non-existent 'Murray et al. 2004, TICS 8:56-61' citation carried in claims.yaml prose, corrected in the same pass.",
-    "record": "evidence/planning/sd009_murray_citation_and_mech100_currency_review_2026-08-09.md"
   },
   "evidence_class": "connectome_mechanistic_review",
   "evidence_direction": "supports",
@@ -35,7 +27,14 @@
     "If perirhinal category selectivity is entirely explained by input statistics (reconstruction pressure) without any top-down categorical signal, MECH-100's auxiliary loss claim would be weakened",
     "If the relevant biological analog for z_world is dorsal rather than ventral stream, the Murray et al. mapping would be mislocated"
   ],
-  "tags": ["mech_100", "ventral_stream", "categorical_selectivity", "perirhinal_cortex", "object_recognition", "top_down"],
+  "tags": [
+    "mech_100",
+    "ventral_stream",
+    "categorical_selectivity",
+    "perirhinal_cortex",
+    "object_recognition",
+    "top_down"
+  ],
   "mapping": {
     "source_claim_statement": "Perirhinal cortex (the terminus of the ventral visual stream in rodents) develops categorical object representations through experience. Lesions impair the ability to distinguish objects that share many features -- a categorically demanding task -- suggesting that category-level discrimination requires active learning beyond simple feature extraction.",
     "ree_translation": "The z_world encoder (ventral stream analog) cannot develop event-discriminative representations through reconstruction loss alone, just as perirhinal cortex cannot develop category-selective responses through passive input exposure. An explicit categorical training signal -- the event-type CE auxiliary loss in MECH-100 -- is required to force z_world to carry discriminative information, analogous to the categorical discrimination demands that shape perirhinal representations.",

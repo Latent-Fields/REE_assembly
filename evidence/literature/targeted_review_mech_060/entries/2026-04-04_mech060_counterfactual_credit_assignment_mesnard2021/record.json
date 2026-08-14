@@ -31,14 +31,8 @@
   },
   "evidence_class": "ml_computational",
   "evidence_direction": "supports",
-  "confidence": 0.60,
-  "confidence_rationale": "Mesnard et al. (2021) address the credit assignment problem in RL by separating what was imagined (the agent's hindsight-conditional estimate of what would have happened under a counterfactual action) from what was realized (the actual return). The core architecture trains a future-conditional value baseline that estimates the counterfactual return -- functionally equivalent to a pre-commit simulation channel -- while the policy gradient update uses the difference between actual return and this counterfactual baseline as the error signal, which is the realized-error channel. An independence loss enforces that the counterfactual baseline does not mix information that is only available post-action, which is the computational analogue of write-boundary enforcement. This architecture supports MECH-060 because it provides an existence proof that separating imagined-outcome estimation from realized-outcome error is both architecturally tractable and empirically beneficial -- the separation reduces policy gradient variance and improves learning. The paper does not operate in a harm-attribution domain, and the write-boundary here is an optimisation constraint rather than a safety constraint, but the computational structure is directly analogous.",
-  "confidence_components": {
-    "relevance": 0.70,
-    "mechanistic_specificity": 0.75,
-    "write_boundary_coverage": 0.60,
-    "replication_status": 0.80
-  },
+  "confidence": 0.6,
+  "confidence_rationale": "Mesnard et al. (2021) address the credit assignment problem in RL by separating what was imagined (the agent's hindsight-conditional estimate of what would have happened under a counterfactual action) from what was realized (the actual return). The core architecture trains a future-conditional value baseline that estimates the counterfactual return -- functionally equivalent to a pre-commit simulation channel -- while the policy gradient update uses the difference between actual return and this counterfactual baseline as the error signal, which is the realized-error channel. An independence loss enforces that the counterfactual baseline does not mix information that is only available post-action, which is the computational analogue of write-boundary enforcement. This architecture supports MECH-060 because it provides an existence proof that separating imagined-outcome estimation from realized-outcome error is both architecturally tractable and empirically beneficial -- the separation reduces policy gradient variance and improves learning. The paper does not operate in a harm-attribution domain, and the write-boundary here is an optimisation constraint rather than a safety constraint, but the computational structure is directly analogous. Confidence decomposition as originally recorded (domain-specific components, not the canonical source_quality/mapping_fidelity/transfer_risk): relevance 0.7, mechanistic_specificity 0.75, write_boundary_coverage 0.6, replication_status 0.8.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "scope_mismatch:model_free_credit_not_harm_attribution",

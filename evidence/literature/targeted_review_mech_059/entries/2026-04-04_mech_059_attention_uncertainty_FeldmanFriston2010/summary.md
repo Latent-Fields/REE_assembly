@@ -13,3 +13,15 @@ The paper's concrete proposal is that these two estimation problems are implemen
 The paper goes further in arguing that this is not merely an implementation convenience but a logical necessity. When precision itself depends on the state of the world — that is, when environmental reliability is context-sensitive — the system must infer precision from observations using its own generative model, in parallel with inferring world states. You cannot bootstrap precision from error magnitude without circularity, because the error magnitude is itself dependent on the precision estimate. The two inferences must proceed in tandem, using shared but distinct information.
 
 For REE, this translates directly to MECH-059. The confidence channel (tracking uncertainty in z_world or z_harm model parameters) must not be derived from prediction error magnitude, because prediction error magnitude is a joint function of world state and model confidence — it does not uniquely determine either. A system that derives its confidence channel from its residual error has no independent confidence signal at all; it has just relabelled the error with a delay. The MECH-059 experimental result (|corr(score_dispersion, PE)| = 0.067) is exactly what Feldman and Friston's framework predicts should be true of a correctly implemented system.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Key quotes (from the pre-contract record)
+
+> Both predictions about the state of the world generating sensory data and the precision of those data have to be optimized.
+
+> Precision is encoded by the post-synaptic gain (responsiveness) of units reporting prediction errors.
+
+> Attention rests on estimating precision and is therefore an integral part of perception.
+
+> When the precision of sensory signals depend on states of the world, optimizing internal models requires simultaneously inferring both world states and their associated precision.

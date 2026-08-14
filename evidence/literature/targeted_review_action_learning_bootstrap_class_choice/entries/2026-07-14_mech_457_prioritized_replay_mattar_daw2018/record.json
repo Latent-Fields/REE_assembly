@@ -31,7 +31,8 @@
     "credit_assignment",
     "utility",
     "backward_credit_sweep",
-    "hippocampus"
+    "hippocampus",
+    "class_surveyed:memory_reverse_replay_credit"
   ],
   "mapping": {
     "source_claim_statement": "Replay accesses memories in order of utility (gain x need): 'gain' propagates a newly-encountered outcome backward to preceding states (reverse replay), 'need' evaluates imminent choices forward; this single prioritised-access rule reproduces empirical replay phenomenology and unifies planning, learning and consolidation.",
@@ -44,6 +45,5 @@
     "mapping_fidelity": 0.75,
     "transfer_risk": 0.3,
     "notes": "High-value low-cost upgrade to machinery REE already has; prioritised queue is tiny in a small gridworld."
-  },
-  "class_surveyed": "MEMORY / REVERSE-REPLAY CREDIT"
+  }
 }

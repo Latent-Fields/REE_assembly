@@ -3,7 +3,9 @@
   "literature_type": "targeted_review_mech_057",
   "entry_id": "2026-04-04_mech_057_bg_beta_gate_leventhal2012",
   "timestamp_utc": "2026-04-04T09:00:00Z",
-  "claim_ids_tested": ["MECH-057a"],
+  "claim_ids_tested": [
+    "MECH-057a"
+  ],
   "source": {
     "title": "Basal Ganglia Beta Oscillations Accompany Cue Utilization",
     "authors": [
@@ -24,13 +26,7 @@
   "evidence_class": "empirical_neuroscience",
   "evidence_direction": "supports",
   "confidence": 0.71,
-  "confidence_components": {
-    "mechanistic_alignment": 0.75,
-    "species_and_substrate": 0.65,
-    "directness_of_test": 0.70,
-    "replication_status": 0.75
-  },
-  "confidence_rationale": "Directly measures beta oscillations throughout cortical-BG circuits during a cued choice task in rats. Finds beta power elevated post-decision, after cue determines motor output -- consistent with a stabilized gating state that reduces interference from competing actions. This is the empirical referent for MECH-090 and MECH-057a: high beta = closed BG gate = committed-sequence protection. The framing as 'postdecision stabilized state' maps directly to MECH-057a's claim that committed action sequences suppress sensory precision reweighting. Confidence reduced slightly because the paper does not directly measure sensory precision or prediction-error suppression -- it establishes the beta correlate of commitment, not the downstream sensory effect.",
+  "confidence_rationale": "Directly measures beta oscillations throughout cortical-BG circuits during a cued choice task in rats. Finds beta power elevated post-decision, after cue determines motor output -- consistent with a stabilized gating state that reduces interference from competing actions. This is the empirical referent for MECH-090 and MECH-057a: high beta = closed BG gate = committed-sequence protection. The framing as 'postdecision stabilized state' maps directly to MECH-057a's claim that committed action sequences suppress sensory precision reweighting. Confidence reduced slightly because the paper does not directly measure sensory precision or prediction-error suppression -- it establishes the beta correlate of commitment, not the downstream sensory effect. Confidence decomposition as originally recorded (domain-specific components, not the canonical source_quality/mapping_fidelity/transfer_risk): mechanistic_alignment 0.75, species_and_substrate 0.65, directness_of_test 0.7, replication_status 0.75.",
   "failure_signatures": [
     "Beta power tracked movement suppression rather than post-commitment stabilization -- contradicts MECH-057a",
     "Beta reset after cue was sufficient to gate action without any sustained elevation -- would weaken the 'committed state suppresses precision' framing"

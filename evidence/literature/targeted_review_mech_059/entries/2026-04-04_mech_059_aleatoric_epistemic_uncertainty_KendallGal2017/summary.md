@@ -13,3 +13,13 @@ The failure mode when these are conflated is instructive. A network trained only
 Kendall and Gal's solution is to parameterise the two uncertainty types separately in the loss function, deriving a heteroscedastic loss where aleatoric uncertainty acts as a learned multiplier on the error term. The result they call 'learned attenuation': when the model has learned that a particular input regime is inherently noisy, it automatically downweights its own prediction errors for that regime. The empirical improvement in semantic segmentation and depth estimation confirms that the separation carries genuine information.
 
 The REE parallel is direct. MECH-059 requires that the confidence channel (tracking model uncertainty about z_world or z_harm parameters — epistemic uncertainty in Kendall and Gal's terms) must not be derived from instantaneous prediction error. A confidence channel derived from PE is just aleatoric noise plus epistemic uncertainty collapsed — usable for neither purpose. The V2 MECH-059 experiment result (|corr| = 0.067 between score dispersion and PE) is the REE empirical analogue of what Kendall and Gal show theoretically: in a correctly implemented system, the confidence channel and the prediction error are orthogonal. This paper provides the cleanest computational argument for why that orthogonality is not a side effect but a requirement.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Key quotes (from the pre-contract record)
+
+> Aleatoric uncertainty captures noise inherent in the observations... uncertainty which cannot be reduced even if more data were to be collected.
+
+> Epistemic uncertainty accounts for uncertainty in the model -- uncertainty which can be explained away given enough data.
+
+> Our explicit uncertainty formulation leads to new loss functions for these tasks, which can be interpreted as learned attenuation. This makes the loss more robust to noisy data.

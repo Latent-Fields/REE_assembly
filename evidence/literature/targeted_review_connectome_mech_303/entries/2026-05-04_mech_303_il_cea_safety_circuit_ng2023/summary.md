@@ -11,3 +11,9 @@
 **Limitations and caveats.** The study tests expression (recall) of learned safety, not acquisition. Whether IL->CeA is also required to initially build the safety-prediction store is not tested. Female rats in this paradigm typically fail to suppress fear to the safety compound -- a sex difference the authors attribute to differential IL function -- raising questions about whether the mechanism generalises. Most importantly, this paper establishes the output limb of the circuit (IL->CeA for expression), not the input/encoding limb (what writes into the safety-prediction store). MECH-303's most novel claim is about the parallel encoding store and its teaching signal, which this paper does not directly address. That said, a clean projection-level dissociation from the BLA pathway in a well-controlled chemogenetic study is a high-quality substrate marker for the MECH-303 IL node.
 
 **Confidence: 0.82.** High methodological quality and direct circuit relevance. Docked for the expression-vs-encoding ambiguity and the rodent-male-only scope.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Retagging note
+
+Retagged 2026-05-04 from MECH-303 to MECH-304. IL->CeA is the expression pathway of the cue-specific conditioned inhibition system (MECH-304), not the contextual passive safety system (MECH-303).
