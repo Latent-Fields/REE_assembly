@@ -234,6 +234,74 @@ def fetch_crossref(doi, cache_dir, limiter):
     return payload
 
 
+def fetch_doiorg(doi, cache_dir, limiter):
+    """CSL-JSON via doi.org content negotiation -- resolves DataCite too.
+
+    Crossref's API only knows Crossref-registered DOIs, so an arXiv DOI
+    (``10.48550/arXiv.*``, DataCite) 404s there and looks like a bad
+    identifier when it is perfectly good. 81 of the first sweep's 95
+    "unresolvable" DOIs were exactly this. doi.org negotiates against
+    whichever registration agency actually owns the prefix.
+    """
+    path = cache_path(cache_dir, "doiorg", doi.lower())
+    if path.exists():
+        return None
+    path.parent.mkdir(parents=True, exist_ok=True)
+    url = "https://doi.org/" + urllib.parse.quote(doi, safe="/")
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/vnd.citationstyles.csl+json",
+        },
+    )
+    try:
+        limiter.wait()
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            body = resp.read().decode("utf-8", "replace")
+        payload = {"ok": True, "message": json.loads(body)}
+    except urllib.error.HTTPError as exc:
+        payload = {"ok": False, "error": "http_%d" % exc.code}
+    except Exception as exc:
+        payload = {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    return payload
+
+
+def csl_view(msg):
+    """Normalise a CSL-JSON record (doi.org content negotiation)."""
+    years = []
+    for key in ("issued", "published-print", "published-online", "published"):
+        node = msg.get(key) or {}
+        parts = node.get("date-parts") or []
+        if parts and parts[0] and parts[0][0]:
+            try:
+                years.append(int(parts[0][0]))
+            except (TypeError, ValueError):
+                pass
+    authors = []
+    for a in msg.get("author") or []:
+        fam = a.get("family") or a.get("literal") or a.get("name") or ""
+        if fam:
+            authors.append(fam)
+    title = msg.get("title") or ""
+    if isinstance(title, list):
+        title = title[0] if title else ""
+    container = msg.get("container-title") or msg.get("publisher") or ""
+    if isinstance(container, list):
+        container = container[0] if container else ""
+    return {
+        "years": sorted(set(years)),
+        "authors": authors,
+        "title": title,
+        "venue": container,
+        "type": msg.get("type", ""),
+        "volume": msg.get("volume"),
+        "issue": msg.get("issue"),
+        "page": msg.get("page"),
+    }
+
+
 def fetch_pubmed(pmid, cache_dir, limiter):
     path = cache_path(cache_dir, "pubmed", str(pmid))
     if path.exists():
@@ -261,7 +329,11 @@ def fetch_pubmed(pmid, cache_dir, limiter):
 
 
 def load_cached(cache_dir, kind, ident):
-    path = cache_path(cache_dir, kind, ident.lower() if kind == "crossref" else str(ident))
+    # DOI keys are cached lower-cased (DOIs are case-insensitive, and arXiv
+    # DOIs carry an uppercase 'X' that otherwise misses the cache); PMIDs are
+    # numeric and unaffected.
+    key = str(ident).lower() if kind in ("crossref", "doiorg") else str(ident)
+    path = cache_path(cache_dir, kind, key)
     if not path.exists():
         return None
     try:
@@ -361,9 +433,22 @@ def cmd_fetch(args):
 
     todo = []
     for t in targets:
-        if t["doi"] and not cache_path(cache_dir, "crossref", t["doi"].lower()).exists():
-            todo.append(("crossref", t["doi"]))
-        elif not t["doi"] and t["pmid"]:
+        if t["doi"]:
+            cr_path = cache_path(cache_dir, "crossref", t["doi"].lower())
+            if not cr_path.exists():
+                todo.append(("crossref", t["doi"]))
+                continue
+            # Crossref said no -- try the registration-agency-agnostic route
+            # before believing the identifier is bad, then PubMed.
+            cached = load_cached(cache_dir, "crossref", t["doi"])
+            if cached and not cached.get("ok"):
+                if not cache_path(cache_dir, "doiorg", t["doi"].lower()).exists():
+                    todo.append(("doiorg", t["doi"]))
+                elif t["pmid"] and not cache_path(
+                    cache_dir, "pubmed", str(t["pmid"])
+                ).exists():
+                    todo.append(("pubmed", str(t["pmid"])))
+        elif t["pmid"]:
             if not cache_path(cache_dir, "pubmed", str(t["pmid"])).exists():
                 todo.append(("pubmed", str(t["pmid"])))
     # De-duplicate: the same DOI legitimately appears in more than one entry.
@@ -393,6 +478,8 @@ def cmd_fetch(args):
         kind, ident = item
         if kind == "crossref":
             fetch_crossref(ident, cache_dir, cr_limiter)
+        elif kind == "doiorg":
+            fetch_doiorg(ident, cache_dir, cr_limiter)
         else:
             fetch_pubmed(ident, cache_dir, nc_limiter)
         with lock:
@@ -470,8 +557,11 @@ def cmd_report(args):
             elif cached.get("ok"):
                 view, via = crossref_view(cached["message"]), "crossref"
             else:
+                dc = load_cached(cache_dir, "doiorg", t["doi"])
                 pm = load_cached(cache_dir, "pubmed", str(t["pmid"])) if t["pmid"] else None
-                if pm and pm.get("ok"):
+                if dc and dc.get("ok"):
+                    view, via = csl_view(dc["message"]), "doi.org"
+                elif pm and pm.get("ok"):
                     view, via = pubmed_view(pm["message"]), "pubmed"
                 else:
                     unresolved.append(
@@ -479,7 +569,7 @@ def cmd_report(args):
                             "path": str(t["path"].relative_to(REPO)),
                             "doi": t["doi"],
                             "pmid": t["pmid"],
-                            "error": cached.get("error"),
+                            "error": (dc or cached).get("error"),
                             "title": (t["source"].get("title") or "")[:120],
                         }
                     )
