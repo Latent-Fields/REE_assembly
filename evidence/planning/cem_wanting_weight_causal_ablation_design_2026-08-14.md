@@ -1,7 +1,7 @@
 # CEM `wanting_weight` / VALENCE_WANTING scoring pathway -- causal-ablation design
 
-**Status: DESIGN NOTE + READINESS FINDINGS. No experiment has been queued from this document yet.
-Nothing here has been written to `claims.yaml` or `substrate_queue.json`.**
+**Status: DESIGN NOTE + READINESS FINDINGS. Nothing here has been written to `claims.yaml` or
+`substrate_queue.json`. Whether an experiment was queued from it is recorded in section 7.**
 
 - Author: headless metaworker chip `chip-20260812-cem-wanting-weight-causal-ablation`
 - Date: 2026-08-14
@@ -159,6 +159,41 @@ primary harm/goal score term, so they never change argmax"), now measured at a *
 upstream call site -- the hippocampal CEM elite-selection refit, which happens **before**
 candidates ever reach E3, and which that already-implemented fix does not reach.
 
+### Finding B2 -- confirmation at 5 episodes x 5 seeds, and the pre-registered env config
+
+Second probe (`NUM_HAZARDS=1`, 5 episodes x 40 steps, seeds 42/43/45/46/47, `update_residue`
+wired, `tonic_5ht_enabled=True`), 32 candidates/tick throughout:
+
+| seed | active centers | \|WANTING\|max | ticks wanting != 0 | wanting spread | terrain spread | flips @0.5 | @50 | @500 | steps alive | contacts |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 42 | 32 | 0.0178 | 30/60 | 1.08e-05 | 4.67e-02 | **0** | 0 | 5 | 60 | 8 |
+| 43 | 32 | 0.2427 | 189/200 | 1.50e-04 | 4.61e-02 | **0** | 1 | 120 | 200 | 4 |
+| 45 | 32 | 0.0140 | 103/116 | 2.07e-05 | 8.48e-02 | **0** | 1 | 7 | 116 | 15 |
+| 46 | 32 | 0.0228 | 31/42 | 4.94e-05 | 8.42e-02 | **0** | 2 | 15 | 42 | 17 |
+| 47 | 28 | 0.0985 | 158/200 | 3.41e-04 | 6.32e-02 | **0** | 3 | 142 | 200 | 26 |
+
+**`wanting_weight = 0.5` flipped the CEM argmin 0 times in 618 scored ticks across 5/5 seeds**,
+on top of the 484 ticks of the first probe -- 1102 ticks, zero flips, at the documented
+operating value. `w=50` flips 0-3 ticks (4/5 seeds nonzero, but marginal); `w=500` flips in
+**5/5 seeds** (5-142 ticks). So the instrument demonstrably *can* detect authority, which is what
+makes the null at 0.5 a finding rather than an artefact.
+
+**Env config decision (settles open decision 1 below): `NUM_HAZARDS=1`.** At this setting P1
+(field live) clears **5/5** seeds -- 28-32 active centers, `|VALENCE_WANTING|max` 0.014-0.243,
+`ticks_wanting_nonzero_frac` 0.50-0.95, all comfortably above the 0.25 bar -- and P3 (positive
+control) clears **5/5**. `NUM_HAZARDS=0` fails P1 on seed 43 (0 harm -> 0 centers);
+`NUM_HAZARDS=2` fails P1 on 3/3 probed seeds (harm plentiful, benefit contact zero).
+
+Two caveats to carry into the queue entry rather than bury:
+- **`hazard_harm` is inert here.** `hazard_harm=0.05` and `0.1` produced *bit-identical* numbers
+  in every one of the 10 cells, including harm-event counts -- so in this configuration the harm
+  driving residue accumulation comes from `proximity_harm_scale` / health depletion, not hazard
+  contact. Not chased further; recorded so nobody tunes that knob expecting an effect.
+- **Early death on 3/5 seeds.** Seeds 42/45/46 ran 60/116/42 of a possible 200 steps. That is
+  the untrained-agent death confound V3-EXQ-914 removed by setting `NUM_HAZARDS=0` -- which is
+  not available here, since it is exactly what empties the field. `steps_alive` must be reported
+  per arm per seed, and any behavioural (C_BEHAV) comparison must be per-step-normalised.
+
 ### Finding C -- the wanting channel needs a near-mutually-exclusive conjunction in this env
 
 `VALENCE_WANTING` becomes nonzero only where **harm has already allocated a center** AND
@@ -301,13 +336,10 @@ purpose, with the findings reported into MECH-236's `evidence_quality_note` and 
 
 ## 5. Open decisions a queueing session must settle
 
-1. **Env config.** `NUM_HAZARDS` must be > 0 for the field to have centers at all (Finding A/C)
-   but > 1 kills benefit contact (Finding C). `NUM_HAZARDS=1` is the only probed setting where
-   all three seeds got both harm and contact. A follow-up probe over
-   `hazard_harm in {0.05, 0.1}` x seeds {42,43,45,46,47} at 5 episodes was launched to settle
-   this; **its result is not yet folded into this document.** Whoever queues this must re-run or
-   read that probe and pre-register the winning config with its numbers, exactly as 914's
-   "READOUT CALIBRATION" block does.
+1. ~~**Env config.**~~ **SETTLED -- see Finding B2.** `NUM_HAZARDS=1`, `GRID_SIZE=16`,
+   `NUM_RESOURCES=3`, `use_proxy_fields=True`; P1 clears 5/5 seeds and P3 clears 5/5.
+   `hazard_harm` is inert in this configuration and 3/5 seeds die early -- both recorded above,
+   both must be reproduced verbatim in the queue entry's calibration block.
 2. **Whether to force the wanting field instead of earning it.** A driver-issued
    `residue_field.accumulate(z_world, ...)` seed at resource-proximal locations would guarantee
    P1 across all seeds, at the cost of the field no longer being the agent's own. 914 faced the
@@ -359,3 +391,13 @@ flip = argmin(terrain_i - w * wanting_i) != argmin(terrain_i)     # selection au
 Field-liveness instrumentation (Finding A):
 `hip.residue_field.rbf_field.active_mask.sum()` and
 `hip.residue_field.rbf_field.valence_vecs[:, VALENCE_WANTING].abs().max()`.
+
+---
+
+## 7. Queue status
+
+Recorded here rather than left implicit, because this note is the durable artifact and the chip
+resolution note is only a pointer to it.
+
+- **Not queued at time of first landing (2026-08-14T11:22Z).** See the closing status line
+  appended below if a queueing pass followed in the same session.
