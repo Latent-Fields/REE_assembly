@@ -45,6 +45,70 @@ closure_plan:
       depends_on: ["arc_062_rule_apprehension:GAP-A"]
       cross_plan_link: ["commitment_closure:GAP-1", "behavioral_diversity_isolation:GAP-I", "conversion_ceiling_campaign:FULLSTACK"]
       blocked_by: []
+      diagnostic_recurrence_metabolized:
+        date: 2026-08-14
+        metabolized_hits:
+          - v3_exq_906b_full_stack_observational_fishtank_20260809T163034Z_v3
+          - v3_exq_906c_full_stack_observational_fishtank_20260810T014711Z_v3
+          - v3_exq_911_ecology_enrichment_fishtank_20260809T201208Z_v3
+        covers_tokens:
+          - fishtank_906_lineage_ecology_showcase
+        note: >
+          GOV-DIAG-1's prescribed response was carried out IN FULL for the
+          906b -> 906c -> 911 fishtank ecology-showcase chain (routed by
+          /governance 2026-08-12, session sd-016-h3-algorithm-3370cd; executed by
+          chip-20260812-govdiag1-repose-fishtank906). Full attribution +
+          re-operationalization: evidence/planning/govdiag1_repose_fishtank906_2026-08-12.md.
+          PROMOTES/DEMOTES NOTHING -- no claims.yaml edit, no experiment queued,
+          no manifest evidence_direction changed; this marker and that artifact
+          are the only writes. HOMED HERE, not on a node of its own: no plan node
+          owns the free-form showcase token, and this node is the correct home --
+          same claim (MECH-309), same substrate (SD-054 reef/shelter), same
+          phenomenon (monomodal collapse vs discriminative regime switching).
+          (1) ATTRIBUTED: the chain is NOT an instrumentation artifact. The two
+          competing explanations were both checked against code and manifests and
+          both refuted as causes. Seed shortfall: REFUTED cleanly -- queue entries
+          declare "seeds": 1, manifests report n_seeds=1.0/seeds=[0], drivers
+          default to [0] BY DESIGN and say so in their docstrings; declared equals
+          actual, unlike V3-EXQ-912/920 which the seed-enforcement defect really
+          did hit. Recording gap: PRESENT (the obs_dict-vs-info benefit_exposure
+          read is live at v3_exq_906b_...py:572, pinning benefit_exposure to 0.0
+          on every step) but NON-CAUSAL -- z_goal, the only gap-affected channel
+          in CORE_CHANNELS, was non-degenerate in all three (chan_max_std 0.0722/
+          0.0750/0.0737, writer_defect false) because it varied through
+          drive_level; residue_wanting (zeroed, 906c) is EXTRA_CHANNELS only; and
+          V3-EXQ-916a proved the fix is purely instrumentation (bit-identical
+          sim). (2) RE-POSED: the no-verdict is DEFINITIONAL, not empirical --
+          claim_ids=[] plus experiment_purpose=diagnostic fixes
+          evidence_direction=non_contributory before a step runs, and every
+          load-bearing criterion is a liveness gate whose FAIL branch means
+          "re-run the instrument", never "hypothesis H is false". The question
+          underneath is a MECH-309 discrimination (contingent shelter/forage
+          control vs monomodal collapse), re-operationalized onto two
+          pre-registered contingency DVs on this substrate: C1 opportunity-
+          triggered exit (P(exit reef | resource sensed) - P(exit | not sensed),
+          both branches updating MECH-309) and C2 threat-triggered return,
+          DISTANCE-STRATIFIED to kill the absolute-distance confound the
+          906b/906c/911 autopsy flagged. The liveness gates move to preconditions
+          (VOID, not PASS, if unmet), plus conditioning-event floors -- the C1
+          floor is the one the current reef geometry fails. (3) REFUSED: a
+          same-question letter re-queue (906d / 911a / any further showcase on
+          this criteria set), in the re-derive brake's spirit. (4) ROUTED, NOT
+          QUEUED: successor spec `reef_contingency_discrimination` for
+          /queue-experiment -- claim_ids [MECH-309], seeds >= 8 (rate contrasts,
+          not one trajectory), habitat-cue geometry per
+          developmental_ecology_curiosity_foraging_correction_2026-08-10.md
+          (probabilistic spawn-prior shift, NOT "resources must be reef-
+          perceptible"), already covered by chip-20260810-fishtank-developmental-
+          ecology -- do not spawn a second chip for it. EXQ id deliberately not
+          minted here. Also surfaced for /governance, not acted on: this is a
+          GOV-FANOUT-1 candidate (measurement / environment / mechanism axes),
+          and a factual correction to failure_autopsy_V3-EXQ-916-916a-917-920-
+          fishtank-cluster_2026-08-12 -- its "use_proxy_fields left at default
+          False" is wrong for this sub-lineage (CausalGridWorldV2 setdefaults it
+          True at causal_grid_world.py:5187+; the operative defect is the
+          wrong-dict read alone). Conclusion unchanged; mechanism as written
+          would misdirect a future reader.
       governance_2026_07_07: "V3-EXQ-714 (confirmed failure_autopsy_V3-EXQ-714_2026-07-07; governance-apply) RECONFIRMS this node's ceiling: the FULLSTACK selection+valuation composite aborted at C1 readiness (GAP-A consumed-summary divergence 0.004 + OFC devalued-range 0.0007 starved at FULL P0=200; C2 never scored), non_contributory for ARC-062/MECH-309. Re-derive brake FIRED (20th ARC-062 / 19th MECH-309); fullstack re-queue REFUSED; route /implement-substrate f_dominance_conversion_ceiling GAP-A-divergence-survival face. Status stays in-progress (no change) -- acknowledgement of the 2026-07-07 evidence only."
       reconcile_2026_07_09: "COMPETENCE-WALL REFRAME ABSORBED (closure-drift stale-since reconcile; plan-frontmatter only, NO claims.yaml/queue change). failure_autopsy_V3-EXQ-719a_2026-07-08 (confirmed, governance-applied REE_assembly master 07acd6ad29; reclassified ARC-062/MECH-309) reframes this node's ceiling: the conversion-ceiling dissociation diagnostic gave the FIRST direct competence measurement of the integrated all-ON agent (forages 0.065/0.0/0.455 resources/ep, below the 1.0 floor on 0/3 seeds; MI above the shuffle null 3/3 but marginal committed entropy moderate-to-high = diffuse state-blind commitment, NOT literal monomodal collapse). This reframes the whole 654h/485i/625e/460h/460i downstream-behavioural-retest wall -- and 714's C1 readiness abort -- as ONE root: a behavioural-COMPETENCE / training-regime ceiling (thin P1 = 90-ep bias-head-only REINFORCE on a frozen encoder; all-ON mechanism interference a live alternative), NOT another selection lever (MECH-448/449 built + selection-face lifted on GAP-A). GAP-B closes only on a C2 committed-class-entropy PASS, which now requires the all-ON agent to competently commit FIRST. Live path = the brake-EXEMPT V3-EXQ-724 competence-localization diagnostic (running), then /implement-substrate on the localized competence gap. Re-derive brake FIRED (21st ARC-062 / 20th MECH-309); a same-claim behavioural re-test (654-letter, 722, 719b) is REFUSED. Status stays in-progress; ARC-062/MECH-309 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate -- UNWEAKENED. Acknowledgement of the 2026-07-08 evidence only."
       last_updated: 2026-08-01
