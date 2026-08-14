@@ -1,0 +1,361 @@
+# CEM `wanting_weight` / VALENCE_WANTING scoring pathway -- causal-ablation design
+
+**Status: DESIGN NOTE + READINESS FINDINGS. No experiment has been queued from this document yet.
+Nothing here has been written to `claims.yaml` or `substrate_queue.json`.**
+
+- Author: headless metaworker chip `chip-20260812-cem-wanting-weight-causal-ablation`
+- Date: 2026-08-14
+- Substrate probed: `ree-v3` @ working tree of `/home/ree/REE_Working/ree-v3` (see "Provenance")
+- Related: V3-EXQ-914 / 914a, `failure_autopsy_V3-EXQ-914-914a_2026-08-13.md`, MECH-236,
+  V3-EXQ-916a (`residue_wanting` orphaned-writer fix), organism review Section 3 Level C
+
+---
+
+## 0. One-paragraph summary
+
+The brief asked for a Level-C causal-necessity ablation of the CEM trajectory-scoring
+`wanting_weight * mean(VALENCE_WANTING)` term -- ARM ON vs ARM OFF, isolating the *scoring*
+contribution rather than the *proposal* channel V3-EXQ-914 tested. A Step-2.5a readiness probe
+run for this design shows that **the naive ON/OFF behavioural ablation would be structurally
+guaranteed null**, for two independent, separately-confirmed reasons, and therefore must not be
+queued in that form. (1) The 914 driver family never calls `agent.update_residue(...)`, so the
+residue field has **zero active RBF centers**, so `VALENCE_WANTING` is identically 0 and the
+wanting term is inert regardless of `wanting_weight` -- a strictly deeper defect than the
+2026-08-13 autopsy's `NUM_HAZARDS=0` diagnosis. (2) Even once the field is live, the wanting
+term's spread **across candidate trajectories within a scoring tick** is 2-3 orders of magnitude
+smaller than the terrain term's, and at the documented operating value `wanting_weight=0.5` it
+**never changed the CEM argmin in 484 scored ticks across 9 probed cells** -- the
+V3-EXQ-604c uniform-broadcast / "modulatory-bias-selection-authority" hazard, measured for the
+first time at the hippocampal CEM elite-selection call site. The design below therefore replaces
+the behavioural-gap primary DV with a **selection-authority DV over a `wanting_weight`
+dose-response ladder**, which is informative regardless of outcome, and reports the behavioural
+DV as secondary.
+
+---
+
+## 1. Where the pathway actually is (task item 1)
+
+Single consumer, confirmed by source read:
+
+- `ree_core/hippocampal/module.py::HippocampalModule._score_trajectory` (def at line 1517;
+  the wanting block at lines ~1573-1581):
+
+  ```
+  terrain_score = residue_field.evaluate_trajectory(world_seq).sum()          # ARC-007 STRICT
+  if self.config.wanting_weight > 0:
+      valence_flat  = residue_field.evaluate_valence(world_seq.reshape(B*H, D))
+      wanting_score = valence_flat[..., VALENCE_WANTING].mean()
+      terrain_score = terrain_score - self.config.wanting_weight * wanting_score
+  if curiosity_weight > 0: ...        # unrelated
+  # SD-MECH267 mode_value_weight term  # unrelated, independent of wanting_weight
+  return terrain_score                # CEM MINIMISES -- lower is better
+  ```
+
+- Config: `HippocampalConfig.wanting_weight`, `ree_core/utils/config.py:2055`, **default 0.0**,
+  docstring "Set ~0.3-0.5 for goal-directed navigation". Threaded from
+  `REEConfig.from_dims(wanting_weight=...)` (`config.py:5849/7167`).
+- `_score_trajectory` is used for (a) CEM elite-selection refit ranking of ghost-mixed candidates
+  (`module.py` `_mix_value_flat_with_ghost` -> ~2365) and (b) the support-preserving keep/drop
+  ranking (~1486), and its output feeds action-selection scoring (`agent.py:11415/11432/11449`).
+- A second, structurally identical consumer exists in
+  `ree_core/hippocampal/ghost_goal_bank.py:264` (`w_term = cfg.wanting_weight * wanting`) but
+  that is `GhostGoalBankConfig.wanting_weight` (default 1.0, `config.py:1885`) -- a **different
+  field on a different config object**, ranking bank entries, not trajectories. Do not conflate
+  the two; the ablation below manipulates `config.hippocampal.wanting_weight` only.
+
+Writer side (what puts anything into `VALENCE_WANTING` at all):
+
+- `REEAgent.update_benefit_salience(benefit_exposure, drive_level)` (`agent.py:10738`)
+  -> `ResidueField.update_valence(z_world, VALENCE_WANTING, salience)` (`field.py:816`)
+  -> writes at `_nearest_active_center(z_world)`; **returns silently if no center is active**.
+- Requires `serotonin.enabled` (i.e. `tonic_5ht_enabled=True`) and `salience > 0`, i.e. a
+  genuinely nonzero `benefit_exposure`, which in `CausalGridWorldV2` requires
+  `use_proxy_fields=True` and reading `info["benefit_exposure"]` (NOT `obs_dict`) -- this is
+  exactly the V3-EXQ-916a fix, and it is a **driver-side** requirement: no agent-level step loop
+  makes this call.
+
+---
+
+## 2. Readiness findings (Step 2.5a empirical probe -- the load-bearing part)
+
+Probe script: `/tmp/probe_wanting_scoring.py` (throwaway; its full logic is reproduced in
+Appendix A so this note is self-contained). Agent/env built to V3-EXQ-914's own recipe
+(`GRID_SIZE=16`, `NUM_RESOURCES=3`, `use_proxy_fields=True`, `z_goal_enabled=True`,
+`drive_weight=2.0`, forced `update_z_goal(0.5, 0.9)` per tick) plus `tonic_5ht_enabled=True`
+and the canonical `update_benefit_salience(info["benefit_exposure"], drive_level)` call.
+
+### Finding A -- the 914 driver family never calls `agent.update_residue()`, so the residue field is EMPTY
+
+RBF centers in the main residue field are activated **only** by `ResidueField.accumulate()`
+(`field.py:633` -> `RBFLayer.add_residue` -> `active_mask[idx] = True`). Its sole production call
+site is `REEAgent.update_residue()` (`agent.py:9653`, the `harm_signal < 0` branch at 9812-9824).
+`update_residue` is the canonical post-action hook (`experiments/_harness.py:201/357-361`,
+"exactly one `agent.update_residue(harm_signal, ...)` per tick"). **V3-EXQ-914's step loop does
+not call it** (its loop is sense -> clock -> `_e1_tick` -> `generate_trajectories` ->
+`select_action` -> `update_z_goal` -> `env.step`).
+
+Measured, first probe pass (`update_residue` NOT called, matching 914 exactly):
+
+| config | harm events | active centers (max) | \|VALENCE_WANTING\|max |
+|---|---|---|---|
+| NUM_HAZARDS=0 seed 42 | 9 | **0** | 0.000000 |
+| NUM_HAZARDS=0 seed 43 | 0 | **0** | 0.000000 |
+| NUM_HAZARDS=2 seed 42 | 32 | **0** | 0.000000 |
+| NUM_HAZARDS=2 seed 43 | 48 | **0** | 0.000000 |
+
+Second pass, identical except `agent.update_residue(harm_signal)` added after `env.step`:
+
+| config | harm events | active centers (max) | \|VALENCE_WANTING\|max |
+|---|---|---|---|
+| NUM_HAZARDS=0 seed 42 | 9 | 12 | 0.209283 |
+| NUM_HAZARDS=0 seed 43 | 0 | 0 | 0.000000 |
+| NUM_HAZARDS=2 seed 42 | 32 | 32 | 0.000000 (no benefit contact) |
+| NUM_HAZARDS=2 seed 43 | 14 | 27 | 0.000000 (no benefit contact) |
+
+**This sharpens the 2026-08-13 autopsy.** That autopsy attributed the dead terrain term to
+`NUM_HAZARDS=0` ("a harm-accumulation mechanism with nothing to accumulate"). The probe shows
+that is not the operative cause: with `NUM_HAZARDS=2` and 48 harm events the field is *still*
+empty, because the harm never reaches the field. The operative cause is the missing
+`update_residue` call. Consequently, in V3-EXQ-914/914a **`_score_trajectory` returned identically
+0.0 for every candidate in every arm** -- not merely "goal-blind", but *entirely* flat, with CEM
+elite selection reduced to index tie-break. This is a stricter version of the autopsy's
+`MEASURES FAILED` verdict and does not change it; it does change what a successor must fix.
+
+> **Load-bearing for V3-EXQ-914b.** The autopsy routes 914b to "pair `wanting_weight > 0` with the
+> ghost-probe channel". **That is necessary but NOT sufficient.** If 914b sets `wanting_weight>0`
+> while keeping 914's step loop, `VALENCE_WANTING` stays identically zero and 914b is vacuous
+> again, for a third time. 914b must additionally (a) call `agent.update_residue(harm_signal)`
+> per tick, (b) set `tonic_5ht_enabled=True`, (c) `use_proxy_fields=True` + read
+> `info["benefit_exposure"]` (the 916a fix), and (d) verify a nonzero `VALENCE_WANTING` as a
+> gating precondition rather than assuming it.
+
+### Finding B -- the wanting term has no selection authority at documented operating weights
+
+Even with the field live, the term must **vary across candidates within a tick** to change any
+selection; a constant offset is rank-preserving (the V3-EXQ-604c uniform-broadcast hazard).
+Measured by counterfactual re-score: at every scored tick, compute per-candidate terrain score
+and wanting term, then compare `argmin(terrain)` with `argmin(terrain - w * wanting)`.
+
+32 candidates per tick throughout. `update_residue` wired. 3 episodes x 40 steps per cell.
+
+| config | ticks | wanting spread (mean) | terrain spread (mean) | ratio | argmin flips @ w=0.5 / 5 / 50 / 500 / 5000 |
+|---|---|---|---|---|---|
+| NH=0 s42 | 63 | 1.72e-04 | (n/a, see note) | -- | **0** / 0 / 38 / 50 / 50 |
+| NH=0 s43 | 120 | 0 (field empty) | 5.40e-03 | -- | 0 / 0 / 0 / 0 / 0 |
+| NH=0 s45 | 82 | 1.59e-04 | 1.82e-02 | 1:114 | **0** / 8 / 14 / 48 / 69 |
+| NH=1 s42 | 35 | 8.95e-07 | 2.70e-02 | 1:30000 | **0** / 0 / 0 / 0 / 2 |
+| NH=1 s43 | 120 | 7.38e-05 | 2.68e-02 | 1:363 | **0** / 0 / 0 / 40 / 109 |
+| NH=1 s45 | 62 | 1.83e-05 | 5.17e-02 | 1:2822 | **0** / 0 / 1 / 7 / 49 |
+| NH=2 s42/43/45 | 32/120/96 | 0 (no benefit contact) | 2.2e-2..3.2e-2 | -- | 0 everywhere |
+
+**At `wanting_weight = 0.5` -- the value `HippocampalConfig`'s own docstring prescribes for
+"goal-directed navigation" -- the argmin flipped 0 times out of 484 scored ticks, across every
+probed cell.** Flips first appear around `w ~ 5-50` and become the majority case only at
+`w ~ 500-5000`, i.e. **3-4 orders of magnitude above the documented operating range.**
+
+This is the same pattern `substrate_queue.json`'s `modulatory-bias-selection-authority` entry
+documents for `E3.select` ("modulatory/secondary score-bias channels ... are dominated by the
+primary harm/goal score term, so they never change argmax"), now measured at a *different*,
+upstream call site -- the hippocampal CEM elite-selection refit, which happens **before**
+candidates ever reach E3, and which that already-implemented fix does not reach.
+
+### Finding C -- the wanting channel needs a near-mutually-exclusive conjunction in this env
+
+`VALENCE_WANTING` becomes nonzero only where **harm has already allocated a center** AND
+**benefit exposure is nonzero at a nearby location**. In `CausalGridWorldV2` those two pull apart:
+`NUM_HAZARDS=0` gives benefit contact but often no harm at all (seed 43: 0 harm events, 0
+centers); `NUM_HAZARDS=2` gives plentiful harm but drives contact to zero (0 contacts on all
+three probed seeds, and early death on seed 42). `NUM_HAZARDS=1` is the only probed setting where
+all three seeds produced both -- and it still produced very small wanting magnitudes on two of
+three seeds. **The env config is therefore itself a pre-registered, probe-calibrated choice, not
+an inherited default.** See section 5 for the final selection.
+
+---
+
+## 3. The design (task items 2-4)
+
+**Purpose: `diagnostic`, not `evidence`.** Justified: Finding B means the behavioural
+ON/OFF contrast is structurally near-guaranteed null at operating weights, so a behavioural
+evidence run would reproduce exactly the vacuity the 914a autopsy charged as `MEASURES FAILED`.
+What is genuinely unknown, and is what this run measures, is *where along the `wanting_weight`
+axis the pathway acquires selection authority at all*, and whether behaviour changes once it does.
+
+### Arms -- a dose-response ladder, not a binary ablation
+
+| arm | `wanting_weight` | role |
+|---|---|---|
+| `ARM_W0` | 0.0 | **the ablation** (pathway fully removed); also a structural negative control -- its selection-flip rate is 0 by construction |
+| `ARM_W05` | 0.5 | the documented operating value ("~0.3-0.5 for goal-directed navigation") |
+| `ARM_W50` | 50.0 | supra-operating; probe says flips begin around here |
+| `ARM_W500` | 500.0 | **positive control** -- the instrument must be able to detect authority somewhere, or the whole measurement is uninformative |
+
+Everything else is IDENTICAL across arms. In particular the MECH-293 ghost-probe stack is held
+**OFF in every arm** (`use_mech293_ghost_probes=False` and its whole prerequisite stack), which is
+what makes this a genuinely different test from V3-EXQ-914/914b -- see section 4.
+
+### Wiring required in every arm (this is what makes the pathway live at all)
+
+1. `tonic_5ht_enabled=True` (else `update_benefit_salience` no-ops -- 916a change 1).
+2. `use_proxy_fields=True` in the env, and read `info["benefit_exposure"]`, not
+   `obs_dict["benefit_exposure"]` (916a change 3).
+3. `agent.update_benefit_salience(benefit_exposure, drive_level=...)` once per tick, at the
+   canonical position right after `update_z_goal` (916a change 2 / `_harness.py`).
+4. **`agent.update_residue(harm_signal)` once per tick after `env.step`** (Finding A -- the
+   canonical `_harness.py:357-361` post-action hook, absent from the 914 lineage).
+5. `z_goal_enabled=True`, `drive_weight=2.0`, forced `update_z_goal(FORCED_BENEFIT=0.5,
+   FORCED_DRIVE=0.9)` per tick -- inherited from 914 unchanged, so `z_goal` formation is held
+   constant and cannot be confounded with the manipulation.
+
+### DVs
+
+**Primary (mechanism, `C_AUTH`): `selection_flip_rate`** -- fraction of scored CEM ticks at which
+`argmin_i( terrain_i - w * wanting_i ) != argmin_i( terrain_i )`, computed per tick by
+counterfactual re-score over the actual candidate pool. Non-degenerate by construction: it is
+defined at every tick, is not a per-step magnitude at the env's competence ceiling, and is
+exactly the quantity "does this pathway have causal authority over selection" asks for.
+
+Reported alongside it, per arm: `wanting_spread_mean` / `terrain_spread_mean` and their ratio
+(`wanting_authority_ratio`), `ticks_wanting_nonzero_frac`, `valence_wanting_abs_max`.
+
+**Secondary (behavioural, `C_BEHAV`, reported, non-gating): `mean_resource_proximity`**
+(`obs["resource_field_view"].max()` averaged over env steps) -- V3-EXQ-914's own DV, already
+calibrated on this env at `GRID_SIZE=16` (probe: mean 0.54, stdev 0.24 -- genuinely
+discriminating, unlike `GRID_SIZE=8` where it saturates at 0.90+-0.02). Plus `contact_rate` and
+`steps_alive` as diagnostic context only.
+
+**On the brief's item 3 caution:** V3-EXQ-914's docstring warns that raw `contact_rate` is a bad
+primary DV here (pinned at 0.00-0.014 in every arm across 5 probe seeds -- the env's foraging
+competence ceiling). **That caution applies unchanged to this design** and is why `contact_rate`
+is diagnostic-only. It applies *more* strongly, in fact: the probe measured 0-11 contacts per
+cell at `NUM_HAZARDS=1`. `mean_resource_proximity` inherits 914's calibration and is the right
+behavioural readout; but per Finding B it is expected null at `ARM_W05` and is therefore
+explicitly **not** the gating criterion.
+
+### Pre-registered acceptance criteria
+
+- **P1 (gating) WANTING FIELD LIVE**: in every arm, `valence_wanting_abs_max > 0` and
+  `ticks_wanting_nonzero_frac >= 0.25`, in `>= 4/5` seeds. If this fails, the run is
+  uninformative about the pathway and must be reported as such, NOT as a null.
+- **P2 (gating) FORMATION MATCHED**: `valence_wanting_abs_max` and `ticks_wanting_nonzero_frac`
+  agree between `ARM_W0` and each ON arm within a pre-registered tolerance over the first
+  episode (before behavioural divergence can feed back into where the agent writes wanting).
+  This is what isolates the SCORING weight from signal FORMATION, per the brief's item 2.
+  Measured on episode 1 only, deliberately: after that the arms visit different states and a
+  formation difference is a *consequence* of the manipulation, not a confound.
+- **P3 (gating) INSTRUMENT CAPABLE**: `ARM_W500.selection_flip_rate > 0` in `>= 3/5` seeds.
+  The positive control. If even `w=500` never flips an argmin, the measurement cannot detect
+  authority and no conclusion about `w=0.5` is warranted.
+- **P0 (structural negative control)**: `ARM_W0.selection_flip_rate == 0` exactly, all seeds.
+- **C_AUTH (the finding)**: report `selection_flip_rate` per arm with per-seed values. The
+  pre-registered *directional* prediction, stated so it can be wrong: if the pathway is
+  causally operative as deployed, `ARM_W05.selection_flip_rate > 0` in `>= 3/5` seeds.
+  **The readiness probe predicts this will FAIL (0/484 ticks).** It is pre-registered anyway
+  because the probe used 3 episodes x 40 steps on 9 cells and the run uses more; a non-zero rate
+  at higher wanting magnitudes would be a genuine, informative surprise.
+- **C_BEHAV (reported, non-gating)**: `mean_resource_proximity` per arm, per seed, with the
+  `ARM_W05 - ARM_W0` and `ARM_W500 - ARM_W0` gaps. Interpreted **only** in the light of C_AUTH:
+  a behavioural gap in an arm whose flip rate is 0 would indicate a leak through some other
+  pathway and should be investigated, not reported as a wanting effect.
+
+### DV-symmetry declaration (mandatory)
+
+`selection_flip_rate` is a **rank/argmin** DV, so monotone-rescaling symmetry **does** apply and
+is the point: it is invariant under any transform that preserves candidate ordering, which is
+precisely why it detects the uniform-broadcast hazard instead of being fooled by it. It is
+**not** invariant under the manipulation (`wanting_weight` scales one additive term
+non-uniformly across candidates whenever the wanting field is non-constant over their world
+states). `mean_resource_proximity` is a per-step continuous magnitude, not derived from any
+CEM-internal score -- 914's own declaration carries over verbatim.
+
+### Cost
+
+4 arms x 5 seeds x 10 episodes x 40 steps = 8000 agent steps plus a 32-candidate counterfactual
+re-score per scored tick. The probe ran 9 cells of 3 x 40 with the same re-score in roughly 6
+minutes wall-clock on `ree-cloud-5`, so a full run is on the order of tens of minutes -- cheap.
+
+---
+
+## 4. What this does NOT test (brief item 4)
+
+**This does not retest V3-EXQ-914's ghost-branch finding.** 914/914a manipulated
+`use_mech293_ghost_probes` -- which candidate trajectories are **PROPOSED** (a minority probe
+budget seeded around ghost-goal-bank anchors). This design holds that channel **OFF in every
+arm** and manipulates `config.hippocampal.wanting_weight` -- how candidates, however proposed,
+are **SCORED** during CEM elite selection. Different config field, different code path, different
+consumer, different question. The two are complementary halves of the same Level-C picture:
+914/914b ask whether goal-tagged candidates get *proposed*; this asks whether a goal/benefit
+gradient can *win* the selection once they are.
+
+**Nor does it duplicate the routed V3-EXQ-914b.** 914b keeps the CLOSED/OPEN ghost-channel
+contrast and turns `wanting_weight` on *in both arms* as an enabling condition. Here
+`wanting_weight` is the manipulated variable and the ghost channel is the constant. Running this
+first is arguably the right order, since it tells 914b's author **what `wanting_weight` value
+would actually make the scoring term bite** -- and Finding B says 0.5 would not.
+
+**It is not a test of MECH-236.** No claim tag is proposed for the primary DV. Candidate tags for
+the eventual write-up, to be settled at queue time and not asserted here: none, `diagnostic`
+purpose, with the findings reported into MECH-236's `evidence_quality_note` and into the
+`modulatory-bias-selection-authority` substrate-queue entry as a second confirmed call site.
+
+---
+
+## 5. Open decisions a queueing session must settle
+
+1. **Env config.** `NUM_HAZARDS` must be > 0 for the field to have centers at all (Finding A/C)
+   but > 1 kills benefit contact (Finding C). `NUM_HAZARDS=1` is the only probed setting where
+   all three seeds got both harm and contact. A follow-up probe over
+   `hazard_harm in {0.05, 0.1}` x seeds {42,43,45,46,47} at 5 episodes was launched to settle
+   this; **its result is not yet folded into this document.** Whoever queues this must re-run or
+   read that probe and pre-register the winning config with its numbers, exactly as 914's
+   "READOUT CALIBRATION" block does.
+2. **Whether to force the wanting field instead of earning it.** A driver-issued
+   `residue_field.accumulate(z_world, ...)` seed at resource-proximal locations would guarantee
+   P1 across all seeds, at the cost of the field no longer being the agent's own. 914 faced the
+   identical choice for anchors and chose driver-issued writes with an explicit "this is an
+   experimental proxy, not discovered production behaviour" flag. The same flag would be
+   required here. Recommendation: **earn it** if `NUM_HAZARDS=1` clears P1 on >= 4/5 seeds;
+   force it only if it does not, and say so loudly.
+3. **Whether `benefit_terrain_enabled=True` belongs in the design.** It would give
+   `_score_trajectory`'s terrain term a benefit-linked signal, which is closer to the deployed
+   architecture -- but it is a *second* benefit-linked pathway and would confound the ablation
+   (ARM_W0 would no longer be benefit-blind). Recommendation: leave it OFF and say why.
+4. **`/queue-experiment` is mandatory** for the script + queue entry (CLAUDE.md "Experiment
+   Scripts"). Nothing in this note may be shortcut into a direct `experiment_queue.json` append.
+
+---
+
+## 6. Provenance / reproduction
+
+- Probes were run against the `ree-v3` working tree on `ree-cloud-5` on 2026-08-14
+  (`/home/ree/REE_Working/ree-v3`), with `/opt/local/bin/python3`.
+- Both probe scripts are throwaway scratch (`/tmp/probe_wanting_scoring.py`,
+  `/tmp/probe_env_config.py`) and are **not** durable; Appendix A restates the measurement
+  logic so the findings can be reproduced without them.
+- The companion chip `chip-20260812-zgoal-wanting-coupling-reinstrument` (observational
+  z_goal/wanting coupling on 916a's repaired substrate) had **not** landed at the time of
+  writing -- it is `status: open`, released DEAD-ON-ARRIVAL when the Mac's headless `claude -p`
+  could not authenticate. So the brief's item 5 sanity-check against an observational coupling
+  measurement was not available. Per the brief, that does not block this design: Finding B is a
+  *direct* measurement of the causal pathway's selection authority and does not depend on a
+  naive observational correlation existing.
+
+## Appendix A -- measurement logic (to reproduce Findings A and B)
+
+Per tick, after `candidates = agent.generate_trajectories(latent, e1_prior, ticks)` and before
+`agent.select_action(...)`:
+
+```python
+hip = agent.hippocampal
+for tr in candidates:                     # 32 candidates in every probed cell
+    ws   = tr.get_world_state_sequence()  # [B, H, world_dim]
+    B, H, D = ws.shape
+    with torch.no_grad():
+        val = hip.residue_field.evaluate_valence(ws.reshape(B * H, D))
+    wanting_i = float(val[..., VALENCE_WANTING].mean())          # the term _score_trajectory uses
+    terrain_i = float(hip.residue_field.evaluate_trajectory(ws).sum())
+flip = argmin(terrain_i - w * wanting_i) != argmin(terrain_i)     # selection authority
+```
+
+Field-liveness instrumentation (Finding A):
+`hip.residue_field.rbf_field.active_mask.sum()` and
+`hip.residue_field.rbf_field.valence_vecs[:, VALENCE_WANTING].abs().max()`.
