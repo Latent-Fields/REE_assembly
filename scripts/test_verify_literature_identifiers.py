@@ -1012,20 +1012,63 @@ class TestPrecommitWiring(unittest.TestCase):
 # silent, ordinary pass is the single most load-bearing assertion below.
 
 
-def esearch_payload(idlist, translated=True, count=None):
+def esearch_payload(idlist, translated=True, count=None, doi="10.1/a",
+                    phrase=None):
     """An esearch response in the shape Resolver.pmids_for_doi reads.
 
     ``translated`` models the observed hit/miss signal: PubMed rewrites a DOI it
     indexes into a `"..."[Publisher ID]` phrase query, and leaves a DOI it does
     not index as the raw `<doi>[AID]` term.
+
+    The phrase is DERIVED from the DOI by default, using the module's own
+    tokeniser rather than a hardcoded string, so a fixture cannot accidentally
+    encode a truncated query and pass the fidelity check by luck. ``phrase``
+    overrides it, which is how the truncation cases below are built.
     """
     ids = [str(i) for i in idlist]
+    body = " ".join(V._id_tokens(doi)) if phrase is None else phrase
     return {"ok": True, "message": {
         "count": str(len(ids) if count is None else count),
         "idlist": ids,
-        "querytranslation": ('"10 1 a"' + V.AID_TRANSLATION_MARKER
-                             if translated else "10.1/a[AID]"),
+        "querytranslation": ('"%s"%s' % (body, V.AID_TRANSLATION_MARKER)
+                             if translated else "%s[AID]" % doi),
     }}
+
+
+class TestAidQueryFidelity(unittest.TestCase):
+    """PubMed sometimes searches only a FRAGMENT of the DOI it was given."""
+
+    def test_the_whole_doi_is_faithful(self):
+        self.assertTrue(V.aid_query_is_faithful(
+            '"10 1523 jneurosci 4718 06 2007"[Publisher ID]',
+            "10.1523/JNEUROSCI.4718-06.2007"))
+
+    def test_the_legacy_apa_double_slash_is_still_faithful(self):
+        # Slash runs vanish under tokenisation, so this must not read as drift.
+        self.assertTrue(V.aid_query_is_faithful(
+            '"10 1037 0022 006x 64 2 295"[Publisher ID]',
+            "10.1037//0022-006x.64.2.295"))
+
+    def test_a_single_trailing_fragment_is_refused(self):
+        # The live corpus case that would otherwise have produced a fabricated
+        # mapping: 10.2307/1130099 was searched as just "1130099", which matched
+        # exactly one unrelated 2023 paper.
+        self.assertFalse(V.aid_query_is_faithful(
+            '"1130099"[Publisher ID]', "10.2307/1130099"))
+        self.assertFalse(V.aid_query_is_faithful(
+            '"3"[Publisher ID]', "10.1207/s15516709cog1401_3"))
+        self.assertFalse(V.aid_query_is_faithful(
+            '"454"[Publisher ID]', "10.24963/ijcai.2023/454"))
+
+    def test_an_untranslated_term_is_refused(self):
+        self.assertFalse(V.aid_query_is_faithful(
+            "10.48550/arXiv.2004.04136[AID]", "10.48550/arXiv.2004.04136"))
+
+    def test_a_superset_phrase_is_refused_too(self):
+        # The other direction of the phrase-containment trap.
+        self.assertFalse(V.aid_query_is_faithful(
+            '"10 1016 j conb 2010 02 014 suppl"[Publisher ID]',
+            "10.1016/j.conb.2010.02.014"))
 
 
 class TestAidCacheKey(unittest.TestCase):
@@ -1070,6 +1113,16 @@ class TestPmidsForDoi(FixtureCase):
         self.assertEqual((None, "untranslated_query"),
                          resolver.pmids_for_doi("10.1/a"))
 
+    def test_a_truncated_query_is_refused_even_with_one_hit(self):
+        # THE dangerous shape, live in this corpus: PubMed searched only
+        # "1130099" and returned exactly one PMID, for an unrelated paper. Count
+        # is 1, the marker is present, and the mapping is still fabricated.
+        resolver = self.fx.resolver()
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.2307/1130099",
+                          esearch_payload(["36860389"], phrase="1130099"))
+        self.assertEqual((None, "truncated_query"),
+                         resolver.pmids_for_doi("10.2307/1130099"))
+
     def test_offline_and_uncached_fails_open_and_is_named(self):
         resolver = self.fx.resolver()
         self.assertEqual((None, "unfetched"), resolver.pmids_for_doi("10.1/never"))
@@ -1086,7 +1139,7 @@ class TestPmidsForDoi(FixtureCase):
         # cache and re-fetch every time. Same bug class the crossref key had.
         resolver = self.fx.resolver()
         self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.48550/arxiv.1",
-                          esearch_payload(["7"]))
+                          esearch_payload(["7"], doi="10.48550/arXiv.1"))
         self.assertEqual((["7"], "ok"),
                          resolver.pmids_for_doi("10.48550/arXiv.1"))
 
@@ -1178,7 +1231,7 @@ class TestCrosswalkDoi(FixtureCase):
             "authors": ["Engel, Andreas K."], "year": 2010,
             "doi": "10.1016/j.conb.2010.02.014"})
         self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
-                          esearch_payload(["20299205"]))
+                          esearch_payload(["20299205"], doi="10.1016/j.conb.2010.02.014"))
         self.fx.cache_put("pubmed", "20299205", pubmed_payload(
             "Neuronal oscillations and visual amplification of speech.",
             ["Schroeder CE"], 2010, doi="10.1016/j.conb.2010.02.014"))
@@ -1263,7 +1316,7 @@ class TestCrosswalkDoi(FixtureCase):
             "title": "A Study of Things", "authors": ["Smith, A"],
             "year": 2001, "doi": "10.1016/j.conb.2010.02.014"})
         self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
-                          esearch_payload(["1"]))
+                          esearch_payload(["1"], doi="10.1016/j.conb.2010.02.014"))
         self.fx.cache_put("pubmed", "1", pubmed_payload(
             "Some Other Paper Entirely.", ["Jones B"], 2010,
             doi="10.1016/j.conb.2010.02.014.suppl"))
@@ -1332,7 +1385,23 @@ class TestCrosswalkDoi(FixtureCase):
 
 
 class TestCrosswalkIsNotOnTheGatePath(FixtureCase):
-    """A new blocking verdict may not be wired in ahead of a corpus baseline."""
+    """Staying off the gate is a MEASURED decision, not caution. Do not "fix" it.
+
+    The obvious reading of this class is "the baseline has not been measured
+    yet". It has been, over all 1579 DOI-only records (2026-08-14), and the
+    verdict's whole-corpus baseline is 0 live findings -- clean enough to block.
+    It stays off the gate for the OTHER measured reason: its marginal coverage
+    over verdict 3 in this corpus is also zero. Every DOI that resolves through
+    neither Crossref nor doi.org -- the blind spot the crosswalk would uniquely
+    cover -- turns out to be absent from PubMed as well (10 of 10). So wiring it
+    in would spend up to two extra network calls per record against a
+    budget-bounded gate, buying nothing, and the budget it spent would come
+    straight out of the coverage of the checks that do fire.
+
+    That is a property of the corpus and not of the code. If a later pull adds a
+    record whose DOI is unresolvable but IS indexed by PubMed, the arithmetic
+    flips and this class should be revisited -- re-measure, do not assume.
+    """
 
     def test_check_is_not_in_checks_networked(self):
         self.assertNotIn(V.check_doi_crosswalk, V.CHECKS_NETWORKED)
@@ -1351,7 +1420,7 @@ class TestCrosswalkIsNotOnTheGatePath(FixtureCase):
         self.fx.cache_put("doiorg", "10.1016/j.conb.2010.02.014",
                           {"ok": False, "error": "http_404"})
         self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
-                          esearch_payload(["20299205"]))
+                          esearch_payload(["20299205"], doi="10.1016/j.conb.2010.02.014"))
         self.fx.cache_put("pubmed", "20299205", pubmed_payload(
             "Neuronal oscillations and visual amplification of speech.",
             ["Schroeder CE"], 2010, doi="10.1016/j.conb.2010.02.014"))

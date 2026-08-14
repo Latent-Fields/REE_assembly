@@ -63,6 +63,30 @@ plus one that needs no network at all:
 4. ``placeholder_identifier`` -- ``10.0000/example-doi`` and friends. Cheap,
    syntactic, and there is one in the corpus today.
 
+AND ONE THAT IS DELIBERATELY NOT A GATE VERDICT
+-----------------------------------------------
+5. ``doi_crosswalk_names_a_different_paper`` (``--doi-crosswalk``) -- the
+   crosswalk run the OTHER way: ask PubMed which PMID it holds for a DOI
+   (``esearch <doi>[AID]``), which is the only route that reaches the 1579
+   records carrying a DOI and no PMID. Verdicts 1 and 2 structurally cannot fire
+   there, having nothing to cross-resolve against.
+
+   It is NOT in CHECKS_NETWORKED, and that is a MEASURED decision rather than
+   caution -- see the crosswalk section of the findings doc. Its whole-corpus
+   baseline is 0 live findings (1 waived: hyman2010, GFLAG-0029, which it
+   re-derived independently of the route that first found it), which is clean
+   enough to block on. What stops it is that its MARGINAL coverage over verdict 3
+   is also 0: the blind spot it would uniquely cover is "the DOI resolves through
+   neither Crossref nor doi.org", and all 10 such records are absent from PubMed
+   too. Wiring it in would spend up to two extra calls per record against a
+   budget-bounded gate to buy nothing, taking that budget out of the checks that
+   do fire. Re-measure before assuming that still holds; it is a property of the
+   corpus, not of this code.
+
+   Its value is as a SWEEP, and there it is substantial: 1409 of 1579 DOI-only
+   records were positively confirmed against a second authoritative source that
+   had never been consulted for them.
+
 MEASURED, NOT ASSERTED
 ----------------------
 Verdict 3's conjunction was evaluated against the 21 records whose DOI the audit
@@ -140,6 +164,10 @@ USAGE
     # corpus-wide DOI<->PMID cross-resolution (the audit's recommendation 1)
     verify_literature_identifiers.py --cross-check --fetch
     verify_literature_identifiers.py --cross-check --offline --json out.json
+
+    # the other direction, for the DOI-only records (~1600 esearch calls, cached)
+    verify_literature_identifiers.py --doi-crosswalk --network-budget 0
+    verify_literature_identifiers.py --doi-crosswalk --offline --json out.json
 
     # gate: only the records these paths implicate (the audit's recommendation 2)
     verify_literature_identifiers.py --paths evidence/literature/.../record.json
@@ -439,6 +467,38 @@ ESEARCH_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 # returns ids -- so this is a belt-and-braces guard, and it is cheap.
 AID_TRANSLATION_MARKER = "[Publisher ID]"
 
+# ...and the marker alone is NOT enough, which was learned from this corpus
+# rather than reasoned out in advance. PubMed sometimes translates a DOI to only
+# a FRAGMENT of itself, dropping every leading token:
+#
+#     10.1207/s15516709cog1401_3  ->  "3"[Publisher ID]           8446 hits
+#     10.24963/ijcai.2023/454     ->  "454"[Publisher ID]         1070 hits
+#     10.2307/1130099             ->  "1130099"[Publisher ID]        1 hit
+#
+# The third is the dangerous shape: a truncated query that happens to be unique
+# returns ONE confident-looking PMID for an unrelated paper (36860389, a 2023
+# Front Public Health article, for a Diamond 1985 child-development study). The
+# `count > 1` rule does not catch it and neither does the marker.
+#
+# So the translated phrase must tokenise to EXACTLY the DOI's own tokens. This
+# fires on 3 of the 1413 indexed DOIs in the corpus, and it fails OPEN (the
+# mapping is refused, not asserted), so a future change in PubMed's normalisation
+# costs coverage rather than correctness -- the safe direction for a gate.
+AID_PHRASE_RE = re.compile(r'^"([^"]*)"\s*\[Publisher ID\]$')
+
+
+def _id_tokens(text):
+    """PubMed's own tokenisation of an identifier: lowercase alphanumeric runs."""
+    return [t for t in re.split(r"[^a-z0-9]+", str(text).lower()) if t]
+
+
+def aid_query_is_faithful(querytranslation, doi):
+    """Did PubMed search for the WHOLE DOI, or only a fragment of it?"""
+    match = AID_PHRASE_RE.match(str(querytranslation).strip())
+    if not match:
+        return False
+    return _id_tokens(match.group(1)) == _id_tokens(doi)
+
 
 def aid_cache_key(doi):
     """Cache key for the crosswalk. Lower-cased, like the other DOI-keyed kinds.
@@ -625,10 +685,15 @@ class Resolver:
         idlist = [str(i) for i in (message.get("idlist") or [])]
         if not idlist:
             return [], "not_in_pubmed"
-        if AID_TRANSLATION_MARKER not in (message.get("querytranslation") or ""):
+        translation = message.get("querytranslation") or ""
+        if AID_TRANSLATION_MARKER not in translation:
             # Hits from a query PubMed did not read as an identifier lookup.
             # Never seen in this corpus; treated as unusable rather than trusted.
             return None, "untranslated_query"
+        if not aid_query_is_faithful(translation, doi):
+            # PubMed searched a FRAGMENT of the DOI. Its hits are about some
+            # other paper whose identifier merely ends the same way.
+            return None, "truncated_query"
         return idlist, "ok"
 
 
@@ -642,6 +707,7 @@ CROSSWALK_NON_FINDING_STATUSES = (
     "unfetched",                # offline, or the network budget is spent
     "esearch_failed",           # transport failure; not cached, retried later
     "untranslated_query",       # PubMed did not read the term as an identifier
+    "truncated_query",          # PubMed searched only a FRAGMENT of the DOI
     "ambiguous",                # >1 PMID for one DOI
     "pmid_unresolvable",        # esummary has nothing for the returned PMID
     "unconfirmed_mapping",      # the round trip could not confirm it
@@ -676,8 +742,8 @@ def crosswalk_doi(target, resolver):
     pmids, why = resolver.pmids_for_doi(doi)
     out["why"] = why
     if pmids is None:
-        out["status"] = "unfetched" if why == "unfetched" else (
-            "untranslated_query" if why == "untranslated_query" else "esearch_failed")
+        out["status"] = why if why in CROSSWALK_NON_FINDING_STATUSES \
+            else "esearch_failed"
         return out
     if not pmids:
         out["status"] = "not_in_pubmed"
@@ -1321,7 +1387,16 @@ def cmd_doi_crosswalk(args):
     buckets = {}
     for result in results:
         buckets.setdefault(result["status"], []).append(result)
-    findings = buckets.get("names_a_different_paper", [])
+    # Waivers apply here exactly as they do to every other verdict -- a record
+    # adjudicated as undeterminable by governance must not be re-reported as a
+    # live finding just because a second route reached it.
+    scope_by_rel = {t["rel"]: t for t in scope}
+    all_findings = buckets.get("names_a_different_paper", [])
+    waived, findings = [], []
+    for result in all_findings:
+        target = scope_by_rel[result["rel"]]
+        (waived if waiver_for(target["entry"], target["doi"], target["pmid"])
+         else findings).append(result)
     agreeing = buckets.get("agrees", [])
 
     print("=" * 78)
@@ -1335,9 +1410,14 @@ def cmd_doi_crosswalk(args):
         print("esearch transport failures      : %d (NOT cached; re-run to retry)"
               % len(resolver.errors))
 
-    if findings:
-        print("\nCONCLUSIVE (title AND first author both disagree): %d" % len(findings))
-        for result in findings:
+    for label, group in (("CONCLUSIVE (title AND first author both disagree)",
+                          findings),
+                         ("WAIVED (see WAIVERS; adjudicated, not re-litigated)",
+                          waived)):
+        if not group:
+            continue
+        print("\n%s: %d" % (label, len(group)))
+        for result in group:
             print("  %s" % result["rel"])
             print("      doi %s -> pmid %s: %r by %s"
                   % (result["doi"], result["pmid"],
@@ -1407,6 +1487,7 @@ def cmd_doi_crosswalk(args):
             "n_doi_only": len(scope),
             "buckets": {k: len(v) for k, v in buckets.items()},
             "findings": findings,
+            "waived": waived,
             "one_axis_disagrees": soft,
             "esearch_errors": [{"identifier": e[0], "error": e[1]}
                                for e in resolver.errors],
