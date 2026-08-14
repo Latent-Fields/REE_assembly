@@ -46307,6 +46307,22 @@
     contextual_safety_accum_weight (0.01), contextual_safety_harm_threshold
     (0.05), contextual_safety_release_threshold (1.0). All no-op at defaults.
     Validation experiment V3-EXQ-520 queued 2026-05-04.
+
+    SD-MECH303-THRESHOLD-SOURCING landed 2026-08-14 (ree-v3 b257e7ad14): gives
+    MECH-303's accumulate-safety gate a DEDICATED anticipatory hazard-proximity
+    signal, decoupled from SD-022's damage-sourced z_harm_a. Addresses the
+    V3-EXQ-917 finding (failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster
+    _2026-08-12) that the live gate cannot discriminate safe-vs-unsafe under
+    damage-sourcing (AUC <=0.52, chance) at any of 18 swept thresholds, while a
+    proximity signal reaches AUC 0.84-0.97. Config (all no-op at defaults):
+    REEConfig.contextual_safety_gate_source ("z_harm_a" default -> unchanged;
+    "proximity_signal" -> dedicated signal), contextual_safety_proximity_threshold
+    (0.25); env CausalGridWorldV2.safety_proximity_signal_enabled emits
+    obs_dict["safety_proximity_harm"]. No status/confidence change: this is a
+    substrate defect fix at the MECH-303-consumer seam, not new evidence. The owed
+    behavioural retest (pending_retest_after_substrate) can now run through a gate
+    that fires informatively. Validation experiment V3-EXQ-929 queued 2026-08-14.
+    See docs/architecture/sd_mech303_threshold_sourcing.md.
   location: evidence/literature/targeted_review_connectome_mech_303/
   enrichment_anchors:
     - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
