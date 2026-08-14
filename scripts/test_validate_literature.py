@@ -373,6 +373,48 @@ class ScopeTest(LiteratureTreeTestCase):
         self.assertEqual(len(found), 1)
         self.assertEqual(n_records, 1)
 
+    def test_a_non_record_entry_file_resolves_to_its_record(self):
+        """The commit gate stages summary.md, not only record.json.
+
+        A staged summary.md DELETION breaks the summary_path of a record that is
+        not itself staged -- scoping to staged record.json files alone would miss
+        exactly the defect the deletion caused.
+        """
+        summary = self._record("2026-05-16_bad").parent / "summary.md"
+        resolved = V.resolve_scope_paths(self.tmp, [str(summary)])
+        self.assertEqual(resolved, [self._record("2026-05-16_bad")])
+
+    def test_repo_relative_and_absolute_inputs_agree(self):
+        rel = ("evidence/literature/targeted_review_x/entries/"
+               "2026-05-16_bad/summary.md")
+        self.assertEqual(
+            V.resolve_scope_paths(self.tmp, [rel]),
+            V.resolve_scope_paths(self.tmp, [str(self.tmp / rel)]))
+
+    def test_resolution_is_deduplicated_and_order_stable(self):
+        entry = self._record("2026-05-16_bad").parent
+        resolved = V.resolve_scope_paths(self.tmp, [
+            str(entry / "summary.md"),
+            str(entry / "record.json"),
+            str(entry / "summary.md"),
+        ])
+        self.assertEqual(resolved, [self._record("2026-05-16_bad")])
+
+    def test_a_record_outside_any_entries_dir_still_resolves_to_itself(self):
+        """An unreachable record has no entry-directory ancestor to walk up to,
+        and is precisely the case that must not be silently dropped."""
+        stray = self.lit / "targeted_review_x" / "record.json"
+        self.assertEqual(V.resolve_scope_paths(self.tmp, [str(stray)]), [stray])
+
+    def test_a_literature_type_root_file_resolves_to_nothing(self):
+        """A review-root summary.md implicates no single record -- and must not
+        silently widen the scope to the whole corpus."""
+        self.assertEqual(
+            V.resolve_scope_paths(
+                self.tmp,
+                [str(self.lit / "targeted_review_x" / "summary.md")]),
+            [])
+
 
 class CliTest(LiteratureTreeTestCase):
     def _run(self, argv):
