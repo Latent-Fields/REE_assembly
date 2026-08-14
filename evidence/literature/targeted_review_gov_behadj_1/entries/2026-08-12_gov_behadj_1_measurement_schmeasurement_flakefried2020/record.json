@@ -3,10 +3,15 @@
   "literature_type": "targeted_review_gov_behadj_1",
   "entry_id": "2026-08-12_gov_behadj_1_measurement_schmeasurement_flakefried2020",
   "timestamp_utc": "2026-08-12T03:12:52Z",
-  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "claim_ids_tested": [
+    "GOV-BEHADJ-1"
+  ],
   "source": {
     "title": "Measurement Schmeasurement: Questionable Measurement Practices and How to Avoid Them",
-    "authors": ["Jessica Kay Flake", "Eiko I. Fried"],
+    "authors": [
+      "Jessica Kay Flake",
+      "Eiko I. Fried"
+    ],
     "year": 2020,
     "venue": "Advances in Methods and Practices in Psychological Science",
     "doi": "10.1177/2515245920952393",
@@ -17,7 +22,14 @@
   "confidence": 0.55,
   "confidence_rationale": "A widely-cited open-science methods paper that formalizes, within an established psychometric construct-validity framework, precisely the anti-Goodharting concern GOV-BEHADJ-1's source thought raises informally about behavioral metrics ('a behavioural metric should generally remain an indicator, not an ontology'). It names 'questionable measurement practices' (QMPs) as a distinct category alongside the better-known questionable RESEARCH practices, and supplies a structured set of transparency questions about construct definition and operationalization that a REE behavioural-adjudication skill's Measure step could adopt close to as-is. Confidence held moderate (0.55) because the paper's full text sits behind a publisher paywall and could not be directly verified beyond abstract-level and secondary-source description, and because its own domain (self-report psychometric instruments) maps only loosely onto REE's computational behavioral metrics.",
   "failure_signatures": [],
-  "tags": ["gov-behadj-1", "psychometrics", "construct_validity", "anti_goodharting", "questionable_measurement_practices", "measure_step"],
+  "tags": [
+    "gov-behadj-1",
+    "psychometrics",
+    "construct_validity",
+    "anti_goodharting",
+    "questionable_measurement_practices",
+    "measure_step"
+  ],
   "mapping": {
     "source_claim_statement": "Questionable measurement practices (QMPs) -- decisions researchers make when constructing, selecting, or reporting a measurement instrument that raise doubts about whether it validly captures the intended construct -- are proposed as an under-recognized companion category to the better-known questionable RESEARCH practices (p-hacking, selective reporting). The authors provide a structured set of transparency questions researchers should answer about how a construct was operationally defined and measured, arguing that transparent answers to these questions are necessary for meaningful replication and honest evaluation of a study's inferential claims.",
     "ree_translation": "GOV-BEHADJ-1's own anti-Goodharting section already asks informally: 'what phenomenon is this metric intended to index? what alternative processes could change the metric? could the metric improve while the behaviour of interest worsens?' This paper gives that informal checklist a formal home in the established psychometric/open-science literature on construct validity and measurement transparency, and supplies additional structured questions (about how the construct was operationally defined, and whether that definition was fixed before or adjusted after seeing the data) that a hardened REE skill could adopt directly as part of its 'Measure' step documentation requirements -- effectively a citable precedent for treating metric-definition choices with the same pre-registration-style discipline the source thought already proposes for the discovery/confirmation split.",
@@ -29,5 +41,6 @@
     "mapping_fidelity": 0.4,
     "transfer_risk": 0.5,
     "notes": "Well-cited open-science methods paper in a reputable psychological-methods journal, but this entry's assessment rests on abstract-level and secondary-source description rather than a first-hand read of the full six-question framework, since the publisher page could not be fetched directly. Mapping fidelity held down because the specific QMP catalogue is built around self-report psychometric instruments, a different measurement modality from REE's computational trajectory metrics."
-  }
+  },
+  "summary_path": "summary.md"
 }

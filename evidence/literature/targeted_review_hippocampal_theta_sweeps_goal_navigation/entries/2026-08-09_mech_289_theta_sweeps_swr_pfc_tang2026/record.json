@@ -3,10 +3,22 @@
   "literature_type": "targeted_review_hippocampal_theta_sweeps_goal_navigation",
   "entry_id": "2026-08-09_mech_289_theta_sweeps_swr_pfc_tang2026",
   "timestamp_utc": "2026-08-09T18:33:10Z",
-  "claim_ids_tested": ["MECH-289", "MECH-236"],
+  "claim_ids_tested": [
+    "MECH-289",
+    "MECH-236"
+  ],
   "source": {
     "title": "Goal-directed hippocampal theta sweeps during memory-guided navigation",
-    "authors": ["Wenbo Tang", "Xiyu Mei", "Ryan E. Harvey", "Estrella Carbajal-Leon", "Talia Netzer", "Hongyu Chang", "Azahara Oliva", "Antonio Fernandez-Ruiz"],
+    "authors": [
+      "Wenbo Tang",
+      "Xiyu Mei",
+      "Ryan E. Harvey",
+      "Estrella Carbajal-Leon",
+      "Talia Netzer",
+      "Hongyu Chang",
+      "Azahara Oliva",
+      "Antonio Fernandez-Ruiz"
+    ],
     "year": 2026,
     "venue": "Nature Neuroscience",
     "doi": "10.1038/s41593-026-02364-3",
@@ -20,7 +32,15 @@
     "This is a preprint-derived summary (PMC12407861 mirrors the bioRxiv version, DOI 10.1101/2025.08.26.672489); the published Nature Neuroscience version (DOI 10.1038/s41593-026-02364-3) may differ in details not captured here.",
     "Learning-dependence is explicitly part of the finding (goal-directed sweeps are described as learning-dependent, distinct from a stereotypic left-right alternating sweep type) -- this paper does not claim ALL theta sweeps are goal-directed, only a learned subpopulation, a distinction REE's claims should not flatten."
   ],
-  "tags": ["mech-289", "mech-236", "hippocampus", "theta_sweeps", "sharp_wave_ripple", "prefrontal_cortex", "swr_replay"],
+  "tags": [
+    "mech-289",
+    "mech-236",
+    "hippocampus",
+    "theta_sweeps",
+    "sharp_wave_ripple",
+    "prefrontal_cortex",
+    "swr_replay"
+  ],
   "mapping": {
     "source_claim_statement": "In rats performing memory-guided navigation, hippocampal place-cell sequences within theta cycles come in two kinds: a stereotypic left-right alternating sweep, and a distinct, learning-dependent goal-directed sweep that predicts the animal's upcoming trajectory toward a remembered goal. These goal-directed sweeps are coordinated with prefrontal cortex activity and are preferentially replayed during sharp-wave ripples (SWR). Mechanistically, a subpopulation of CA1 cells encodes egocentric goal direction, and reduced feedback inhibition is proposed as part of the circuit basis for generating these goal-directed sweeps.",
     "ree_translation": "Directly grounds MECH-289's claim that the hippocampal SWR trajectory generator operates as one generative substrate across both 'online (theta-analog)' and 'quiescent (offline, SWR-analog)' modes -- this paper is the first evidence this session found that explicitly links theta-cycle goal-directed sweeps to preferential SWR replay in the SAME learned content, rather than treating them as unrelated phenomena. Also supports MECH-236's goal-conditioning premise via the CA1 egocentric-goal-direction subpopulation finding, complementing Yu et al.'s dissociation-design evidence for the same premise.",
@@ -29,8 +49,9 @@
   },
   "confidence_components": {
     "source_quality": 0.85,
-    "mapping_fidelity": 0.70,
-    "transfer_risk": 0.50,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.5,
     "notes": "Full-text (preprint, via PMC mirror) accessible, giving a fuller methodological picture than abstract-only. Mapping fidelity is good for MECH-289's dual-mode (theta/SWR) generative-substrate claim specifically -- this is the most directly on-target paper in the cluster for that claim. Transfer risk unchanged from the rest of the directory (rat spatial navigation vs. REE's abstract action-object/possibility-topology space)."
-  }
+  },
+  "summary_path": "summary.md"
 }

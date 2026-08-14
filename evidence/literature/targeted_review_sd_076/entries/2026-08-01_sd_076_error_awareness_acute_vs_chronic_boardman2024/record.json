@@ -3,10 +3,20 @@
   "literature_type": "targeted_review_sd_076",
   "entry_id": "2026-08-01_sd_076_error_awareness_acute_vs_chronic_boardman2024",
   "timestamp_utc": "2026-08-01T00:00:24Z",
-  "claim_ids_tested": ["SD-076"],
+  "claim_ids_tested": [
+    "SD-076"
+  ],
   "source": {
     "title": "Awareness of errors is reduced by sleep loss",
-    "authors": ["Johanna M. Boardman", "Zachariah R. Cross", "Michelle M. Bravo", "Thomas Andrillon", "Eugene Aidman", "Clare Anderson", "Sean P. A. Drummond"],
+    "authors": [
+      "Johanna M. Boardman",
+      "Zachariah R. Cross",
+      "Michelle M. Bravo",
+      "Thomas Andrillon",
+      "Eugene Aidman",
+      "Clare Anderson",
+      "Sean P. A. Drummond"
+    ],
     "year": 2024,
     "venue": "Psychophysiology",
     "doi": "10.1111/psyp.14523"
@@ -20,7 +30,15 @@
     "Chronic sleep RESTRICTION (repeated nights of partial sleep loss) DID reduce behavioral error awareness, increase detection latency, and reduce Pe amplitude -- so the drift SD-076 posits is empirically real, but appears to require accumulated exposure across multiple sleep-wake cycles, not a single wake episode, which bears directly on GOV-FANOUT-1's H2 (insufficient training exposure).",
     "If REE's asymmetric-EMA is meant to model the ACUTE, within-episode regime, this paper predicts it should show little to no drift; if it is meant to model the CHRONIC, across-cycles regime, the driver's K=1 single-fire, 30-episode design may simply not accumulate enough exposure to express it -- directly informing whether the fanout's H2 (exposure) or H3 (wrong mechanism) is the better explanation for V3-EXQ-794a's small effect."
   ],
-  "tags": ["sd-076", "mech-204", "sleep_deprivation", "sleep_restriction", "error_awareness", "metacognition", "timescale"],
+  "tags": [
+    "sd-076",
+    "mech-204",
+    "sleep_deprivation",
+    "sleep_restriction",
+    "error_awareness",
+    "metacognition",
+    "timescale"
+  ],
   "mapping": {
     "source_claim_statement": "Using the Error Awareness Task with combined behavioral and EEG (ERN, Pe) measures across two separate studies, acute total sleep deprivation (14 participants) did not reduce behavioral error awareness or its neural correlates, whereas chronic sleep restriction (27 participants, multiple nights) did reduce behavioral error awareness, slowed error detection, and reduced Pe amplitude.",
     "ree_translation": "REE reads this as the clearest available timescale evidence bearing on GOV-FANOUT-1's H2 (insufficient training exposure) versus H3 (wrong mechanism form). If human metacognitive drift specifically requires chronic, multi-cycle sleep restriction rather than a single acute wake episode to become measurable, then V3-EXQ-794a's 30-episode/K=1 single-fire-sleep full behavioural loop is testing the regime where the biology itself predicts a small or absent effect -- which argues for H2 (extend training exposure across more sleep cycles) over H3 (redesign the mechanism), while not eliminating H3 outright.",
@@ -32,5 +50,6 @@
     "mapping_fidelity": 0.6,
     "transfer_risk": 0.4,
     "notes": "Source quality strong: 2024, purpose-built two-study design directly contrasting acute vs chronic sleep loss with converging behavioral+EEG measures. Mapping fidelity moderate: the acute/chronic timescale distinction maps well onto REE's exposure-budget question, but per-trial error awareness is a narrower construct than an accumulating precision estimate. Transfer risk moderate: the dissociation itself is the useful fact, independent of exact construct match."
-  }
+  },
+  "summary_path": "summary.md"
 }

@@ -3,10 +3,22 @@
   "literature_type": "targeted_review_gov_behadj_1",
   "entry_id": "2026-08-12_gov_behadj_1_unsupervised_syllable_discovery_wiltschko2015",
   "timestamp_utc": "2026-08-12T03:12:52Z",
-  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "claim_ids_tested": [
+    "GOV-BEHADJ-1"
+  ],
   "source": {
     "title": "Mapping Sub-Second Structure in Mouse Behavior",
-    "authors": ["Alexander B. Wiltschko", "Matthew J. Johnson", "Giuliano Iurilli", "Ralph E. Peterson", "Jesse M. Katon", "Stan L. Pashkovski", "Victoria E. Abraira", "Ryan P. Adams", "Sandeep Robert Datta"],
+    "authors": [
+      "Alexander B. Wiltschko",
+      "Matthew J. Johnson",
+      "Giuliano Iurilli",
+      "Ralph E. Peterson",
+      "Jesse M. Katon",
+      "Stan L. Pashkovski",
+      "Victoria E. Abraira",
+      "Ryan P. Adams",
+      "Sandeep Robert Datta"
+    ],
     "year": 2015,
     "venue": "Neuron",
     "doi": "10.1016/j.neuron.2015.11.031",
@@ -19,7 +31,13 @@
   "failure_signatures": [
     "MoSeq's own methodology requires selecting a model-order hyperparameter (the number of distinct behavioral syllables/states), which has no single objectively correct value -- illustrating that even a rigorous, formal, unsupervised discovery method does not eliminate researcher degrees of freedom, it relocates them from ad hoc metric choice to model-order/hyperparameter choice, a caution directly relevant to how GOV-BEHADJ-1's 'Discover' step would need its own explicit anti-Goodharting safeguards if implemented with an analogous generative model."
   ],
-  "tags": ["gov-behadj-1", "computational_ethology", "unsupervised_discovery", "behavioral_motifs", "discover_step"],
+  "tags": [
+    "gov-behadj-1",
+    "computational_ethology",
+    "unsupervised_discovery",
+    "behavioral_motifs",
+    "discover_step"
+  ],
   "mapping": {
     "source_claim_statement": "3D depth-camera imaging of freely moving mice, combined with an autoregressive hidden Markov model (AR-HMM) over pose dynamics, shows that mouse behavior is organized into sub-second (~300ms), reused, stereotyped modules ('syllables') with well-defined transition probabilities between them -- a formal, generative-model-based decomposition of continuous behavior into discrete, statistically discoverable units, without pre-specifying which behaviors to look for.",
     "ree_translation": "This is a mature, working instantiation of exactly the source thought's 'behaviour as structured process, not merely aggregate output' section and its 'discovery-oriented' analytical channel. If GOV-BEHADJ-1 is ever hardened into a skill, the 'Discover' step should point to this class of method (formal generative segmentation with an explicit transition-probability structure) as the rigorous baseline, rather than informal visual inspection or ad hoc post-hoc feature engineering -- the source thought's own phrasing ('what behavioural structure is present that we did not think to measure?') is precisely the question MoSeq-class methods are built to answer with statistical rigor.",
@@ -31,5 +49,6 @@
     "mapping_fidelity": 0.55,
     "transfer_risk": 0.4,
     "notes": "Foundational, highly-cited NeuroResource paper in a top neuroscience journal, methodologically rigorous and since extensively validated and extended (MoSeq2, keypoint-MoSeq). Mapping fidelity moderate: REE's environment and observation modality differ substantially from MoSeq's, so the specific technique would need reinvention, but the underlying discovery-oriented modeling philosophy transfers well."
-  }
+  },
+  "summary_path": "summary.md"
 }

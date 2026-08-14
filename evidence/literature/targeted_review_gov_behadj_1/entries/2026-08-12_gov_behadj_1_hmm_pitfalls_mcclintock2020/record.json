@@ -3,10 +3,20 @@
   "literature_type": "targeted_review_gov_behadj_1",
   "entry_id": "2026-08-12_gov_behadj_1_hmm_pitfalls_mcclintock2020",
   "timestamp_utc": "2026-08-12T03:12:52Z",
-  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "claim_ids_tested": [
+    "GOV-BEHADJ-1"
+  ],
   "source": {
     "title": "Uncovering ecological state dynamics with hidden Markov models",
-    "authors": ["Brett T. McClintock", "Roland Langrock", "Olivier Gimenez", "Emmanuelle Cam", "David L. Borchers", "Richard Glennie", "Toby A. Patterson"],
+    "authors": [
+      "Brett T. McClintock",
+      "Roland Langrock",
+      "Olivier Gimenez",
+      "Emmanuelle Cam",
+      "David L. Borchers",
+      "Richard Glennie",
+      "Toby A. Patterson"
+    ],
     "year": 2020,
     "venue": "Ecology Letters",
     "doi": "10.1111/ele.13610",
@@ -21,7 +31,14 @@
     "When the transition matrix is fully free-parameterized, 'the characteristics of the model states as represented by the state-dependent distributions are fully data driven, and hence may not correspond exactly to biologically meaningful entities' -- i.e. an unsupervised or semi-supervised discovery pass can output statistically coherent 'states' that are model artifacts rather than real behavioral categories, a known failure mode in behavioural classification directly requested by the source thought's literature-mining instructions.",
     "'Coarse-graining could result in masking or misclassification of meaningfully distinct states' when approximating a continuous behavioral space with too few discrete states -- and conditional-independence violations (observation at time t depending on the observation at t-1, not just the hidden state at t) can further confound behavioral inference if unaddressed."
   ],
-  "tags": ["gov-behadj-1", "movement_ecology", "hidden_markov_models", "state_discovery", "known_failure_mode", "sequence_structure"],
+  "tags": [
+    "gov-behadj-1",
+    "movement_ecology",
+    "hidden_markov_models",
+    "state_discovery",
+    "known_failure_mode",
+    "sequence_structure"
+  ],
   "mapping": {
     "source_claim_statement": "Hidden Markov models provide the standard statistically rigorous framework in movement ecology for inferring discrete latent behavioral states (e.g. resting, foraging, transiting) from continuous tracking data, incorporating covariates and autocorrelation, but the review documents substantial open methodological challenges: state-number selection has no automatic solution, free-parameterized models can produce data-driven 'states' with no biological correspondence, and coarse-graining or conditional-independence violations can distort inference.",
     "ree_translation": "This paper is the single most direct match in the pull to the source thought's own informal proposal (refuge/explore/food-seeking/acquisition/return as discrete states with transitions between them, reversal frequency and excursion duration as pre-specified metrics). It confirms HMMs are the established, more rigorous formal machinery for exactly this kind of claim -- but its documented pitfalls should be read as a direct extension of GOV-BEHADJ-1's own anti-Goodharting checklist: if REE were to formalize its discovery-oriented channel using HMM-family models, the review's caution about data-driven states lacking real-world (for REE, functional) correspondence is precisely the same risk the source thought raises for hand-picked scalar metrics, now recurring at the level of MODEL SELECTION rather than metric selection. Any REE skill built from GOV-BEHADJ-1 should treat 'how many states did the model discover, and were they validated as functionally meaningful rather than merely statistically convenient' as its own checklist item.",
@@ -33,5 +50,6 @@
     "mapping_fidelity": 0.65,
     "transfer_risk": 0.3,
     "notes": "Authoritative review by the field's leading methodologists in a top ecology journal, published 2020 and reflecting current best practice and known limitations. Mapping fidelity relatively high because the review's central subject -- inferring discrete behavioral states with transition structure from movement/tracking data -- is structurally close to what GOV-BEHADJ-1 itself proposes for REE trajectories."
-  }
+  },
+  "summary_path": "summary.md"
 }

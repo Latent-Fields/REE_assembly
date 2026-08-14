@@ -3,10 +3,18 @@
   "literature_type": "targeted_review_gov_behadj_1",
   "entry_id": "2026-08-12_gov_behadj_1_rl_generalization_gap_cobbe2019",
   "timestamp_utc": "2026-08-12T03:12:52Z",
-  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "claim_ids_tested": [
+    "GOV-BEHADJ-1"
+  ],
   "source": {
     "title": "Quantifying Generalization in Reinforcement Learning",
-    "authors": ["Karl Cobbe", "Oleg Klimov", "Chris Hesse", "Taehoon Kim", "John Schulman"],
+    "authors": [
+      "Karl Cobbe",
+      "Oleg Klimov",
+      "Chris Hesse",
+      "Taehoon Kim",
+      "John Schulman"
+    ],
     "year": 2019,
     "venue": "Proceedings of the 36th International Conference on Machine Learning (ICML)",
     "url": "http://proceedings.mlr.press/v97/cobbe19a.html"
@@ -19,7 +27,14 @@
     "Deep RL agents evaluated only within their training distribution (the same small set of levels/seeds used during training) can show high, apparently competent performance while dramatically failing to generalize to held-out, structurally similar but previously unseen levels -- the CoinRun benchmark quantifies substantial train-test performance gaps that are invisible unless a genuinely novel, procedurally varied test set is used.",
     "Standard RL evaluation practice (reporting performance on the training distribution, or on a small fixed set of episodes/seeds) 'masks substantial overfitting' -- an agent can appear to have learned a general strategy when it has in fact memorized specifics of the limited environment set it was trained and evaluated on."
   ],
-  "tags": ["gov-behadj-1", "reinforcement_learning", "generalization", "generalise_step", "overfitting", "known_failure_mode"],
+  "tags": [
+    "gov-behadj-1",
+    "reinforcement_learning",
+    "generalization",
+    "generalise_step",
+    "overfitting",
+    "known_failure_mode"
+  ],
   "mapping": {
     "source_claim_statement": "Using a purpose-built procedurally-generated environment (CoinRun), the authors show that deep RL agents trained and evaluated on a limited/fixed set of levels can achieve high apparent competence while badly failing to generalize to a held-out set of procedurally varied, structurally similar but unseen levels -- i.e. observed in-distribution competence is not reliable evidence of a general policy, only of successful fitting to the training distribution.",
     "ree_translation": "The source thought's central motivating observations -- Fishtank trajectories 'appearing to show coherent use of environmental structure,' post-sleep behaviour 'appearing smoother' -- were, by the thought's own description, noticed within a limited set of runs, not systematically tested against procedurally varied held-out environments. This paper is a direct, quantitative, established RL precedent for exactly the risk GOV-BEHADJ-1's own 'Generalise' step is designed to guard against: the observed pattern could be memorization of specifics of the small training/observation-distribution rather than a genuinely general behavioral strategy, and standard evaluation (looking at performance/behavior within the same distribution used to notice the effect) cannot distinguish the two. This paper also gives the 'Generalise' step a concrete, established implementation pattern to borrow directly: procedurally vary the environment (food/refuge/hazard placement, layout) and evaluate whether the SAME agent/policy, without retraining, performs comparably on genuinely unseen configurations.",
@@ -31,5 +46,6 @@
     "mapping_fidelity": 0.7,
     "transfer_risk": 0.25,
     "notes": "Canonical, widely-cited ICML paper with rigorous, purpose-built benchmark methodology specifically designed to quantify this exact phenomenon. Mapping fidelity is the highest in this pull because both the source and target are deep RL agents evaluated for behavioral generalization beyond a training/observation distribution -- a much closer domain match than the biological/ethological entries."
-  }
+  },
+  "summary_path": "summary.md"
 }

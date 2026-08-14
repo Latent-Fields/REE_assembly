@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_hippocampal_theta_sweeps_goal_navigation",
   "entry_id": "2026-08-09_mech_236_theta_sweeps_goal_direction_yu2026",
   "timestamp_utc": "2026-08-09T18:33:10Z",
-  "claim_ids_tested": ["MECH-236", "MECH-289"],
+  "claim_ids_tested": [
+    "MECH-236",
+    "MECH-289"
+  ],
   "source": {
     "title": "Hippocampal theta sweeps indicate goal direction during navigation",
-    "authors": ["Changmin Yu", "Zilong Ji", "Jake Ormond", "John O'Keefe", "Neil Burgess"],
+    "authors": [
+      "Changmin Yu",
+      "Zilong Ji",
+      "Jake Ormond",
+      "John O'Keefe",
+      "Neil Burgess"
+    ],
     "year": 2026,
     "venue": "Nature Neuroscience",
     "doi": "10.1038/s41593-026-02365-2",
@@ -19,7 +28,14 @@
   "failure_signatures": [
     "This is the medicalxpress-reported prompting evidence's primary source, and its own abstract is explicit that the goal-directedness of theta sweeps was, prior to this paper, 'unresolved' -- i.e. the field itself did not consider this settled until this and the companion Tang et al. paper. See also the skeptical commentary entry (schmidt2026) in this same directory, which frames the two 2026 papers as first steps toward resolving an active controversy, not a closed question."
   ],
-  "tags": ["mech-236", "mech-289", "hippocampus", "theta_sweeps", "goal_direction", "honeycomb_maze"],
+  "tags": [
+    "mech-236",
+    "mech-289",
+    "hippocampus",
+    "theta_sweeps",
+    "goal_direction",
+    "honeycomb_maze"
+  ],
   "mapping": {
     "source_claim_statement": "Verbatim abstract: \"Successful spatial navigation requires rapid evaluation of potential future trajectories. Hippocampal 'theta sweeps', the sequential activation of place cells within individual theta cycles, exhibit predictive dynamics within the ideal timeframe for this role. However, whether these sequences reflect movement-related variables, perceptual targets or more cognitive goal-directed planning remains unresolved. Using data from the 'Honeycomb' maze, which dissociates head, movement and goal directions, we found that theta sweeps form vectors toward remembered goal locations independent of the rat's movement or heading directions. Stronger goal modulation preceded correct navigational choices, establishing the relevance of theta sweeps for spatial planning.\"",
     "ree_translation": "Direct support for MECH-236's premise that destination-privileging (a goal signal) is read out as a relational property of the represented state rather than derived from the animal's momentary position/heading -- the exact dissociation MECH-236 assumes when it specifies a dedicated z_goal input channel distinct from position-based trajectory generation. Also supports MECH-289's 'online, theta-analog' generative-sweep mode specifically (as opposed to its offline SWR mode, which Tang et al. below addresses more directly).",
@@ -29,7 +45,8 @@
   "confidence_components": {
     "source_quality": 0.85,
     "mapping_fidelity": 0.65,
-    "transfer_risk": 0.50,
+    "transfer_risk": 0.5,
     "notes": "High source quality: peer-reviewed Nature Neuroscience, purpose-built dissociation task, senior authorship (O'Keefe, Burgess) with deep track record in this exact literature. Mapping fidelity moderate-high for MECH-236's specific claim (goal-direction as relational, not motor-derived); transfer risk moderate for the same physical-space-to-abstract-space reason as the Pfeiffer & Foster entry."
-  }
+  },
+  "summary_path": "summary.md"
 }

@@ -3,10 +3,17 @@
   "literature_type": "targeted_review_connectome_mech_490",
   "entry_id": "2026-08-11_mech_490_chunk_concatenation_nrem2_spindle_bottary2016",
   "timestamp_utc": "2026-08-11T20:19:54Z",
-  "claim_ids_tested": ["MECH-490"],
+  "claim_ids_tested": [
+    "MECH-490"
+  ],
   "source": {
     "title": "Insufficient chunk concatenation may underlie changes in sleep-dependent consolidation of motor sequence learning in older adults",
-    "authors": ["Ryan Bottary", "Anna Sonni", "David Wright", "Rebecca M. C. Spencer"],
+    "authors": [
+      "Ryan Bottary",
+      "Anna Sonni",
+      "David Wright",
+      "Rebecca M. C. Spencer"
+    ],
     "year": 2016,
     "venue": "Learning & Memory",
     "doi": "10.1101/lm.043042.116"
@@ -20,7 +27,15 @@
     "Older adults showing 'no significant sleep-dependent improvement' in concatenation is explained post hoc as reduced nREM2 sigma power with age -- an association, not a manipulation, so the sigma-power-drives-concatenation causal claim rests on correlation within a small sample stratified by age.",
     "This is a human finger/arm-sequence paradigm with a fixed, externally-imposed action sequence (a keypress or pegboard order) learned via massed practice -- structurally different from Fishtank's continuously re-planned, environment-conditioned action sequence, where 'the sequence' is generated online by CEM/softmax rather than rote-learned once."
   ],
-  "tags": ["mech-490", "sleep", "chunk_concatenation", "nrem2", "sleep_spindles", "motor_sequence_fluency", "aging"],
+  "tags": [
+    "mech-490",
+    "sleep",
+    "chunk_concatenation",
+    "nrem2",
+    "sleep_spindles",
+    "motor_sequence_fluency",
+    "aging"
+  ],
   "mapping": {
     "source_claim_statement": "In a motor sequence learning task, chunks (fast, low-variability sub-sequences) formed similarly during initial training in young and older adults. After a night of sleep, young adults showed selective SPEEDING of the slowest (between-chunk) transitions -- 'concatenation' -- correlated with nREM2 sigma (spindle) power; older adults showed equivalent transition speeds whether they slept or stayed awake, with no significant correlation between sleep physiology and overnight change, i.e. sleep gave older adults passive protection from interference but not active concatenation.",
     "ree_translation": "REE reads this as direct behavioral-level precedent for MECH-490's central distinction: 'forming a sequence' (chunk creation, already grounded for ARC-071/MECH-323/324 via the striatal-chunking literature) and 'executing an already-formed sequence with fewer internal interruptions' (concatenation/fluency) are dissociable processes with, in this data, a DIFFERENT sleep-stage signature -- nREM2/spindles for fluency, versus the REM-linked precision-recalibration route MECH-204 proposes. If a real coherence effect exists in REE's Fishtank data, this paper is evidence that the biologically closest precedent for its SPECIFIC signature (fewer within-sequence interruptions in an already-planned run) is an NREM2/spindle-linked process, not a REM one -- i.e. MECH-204 (REM) is plausibly the WRONG substrate to re-enable for this specific effect, and a SWS/spindle-linked route (unmodeled in the current substrate) is the biologically closer candidate.",
@@ -32,5 +47,6 @@
     "mapping_fidelity": 0.65,
     "transfer_risk": 0.55,
     "notes": "Source quality good (peer-reviewed Learning & Memory, direct extension of the well-cited Bailey & Doyon-adjacent chunk-concatenation paradigm, sensible age-comparison design) but modest sample size and purely correlational EEG-behavior link. Mapping fidelity moderate-high: the formation/fluency dissociation and the nREM2-not-REM stage attribution both map cleanly onto MECH-490's two open questions, but the underlying measured variable (transition speed) is once removed from a direct commit-gate/re-decision-rate readout."
-  }
+  },
+  "summary_path": "summary.md"
 }

@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_connectome_mech_204",
   "entry_id": "2026-08-01_mech_204_rem_depotentiation_aminergic_withdrawal_vanderhelm2011",
   "timestamp_utc": "2026-08-01T00:00:24Z",
-  "claim_ids_tested": ["MECH-204"],
+  "claim_ids_tested": [
+    "MECH-204"
+  ],
   "source": {
     "title": "REM sleep depotentiates amygdala activity to previous emotional experiences",
-    "authors": ["Els van der Helm", "Justin Yao", "Shubir Dutt", "Vikram Rao", "Jared M. Saletin", "Matthew P. Walker"],
+    "authors": [
+      "Els van der Helm",
+      "Justin Yao",
+      "Shubir Dutt",
+      "Vikram Rao",
+      "Jared M. Saletin",
+      "Matthew P. Walker"
+    ],
     "year": 2011,
     "venue": "Current Biology",
     "doi": "10.1016/j.cub.2011.10.052"
@@ -20,7 +29,15 @@
     "The recalibrated variable here is amygdala BOLD reactivity and subjective emotional intensity to previously-viewed images, not a metacognitive precision/confidence estimate -- the paper offers no evidence, one way or the other, about whether the same REM physiology recalibrates a confidence-in-self-accuracy variable rather than an affective-reactivity variable.",
     "The design contrasts a night of sleep (with REM) against a day of equivalent wakefulness, not REM sleep against non-REM sleep directly -- so the causal attribution to REM specifically (rather than sleep in general) rests on secondary EEG correlations (high-frequency activity) within the sleep condition, a weaker design than a REM-deprivation manipulation would provide."
   ],
-  "tags": ["mech-204", "sd-076", "rem_sleep", "aminergic_withdrawal", "amygdala", "recalibration", "precision"],
+  "tags": [
+    "mech-204",
+    "sd-076",
+    "rem_sleep",
+    "aminergic_withdrawal",
+    "amygdala",
+    "recalibration",
+    "precision"
+  ],
   "mapping": {
     "source_claim_statement": "Following overnight sleep, but not an equivalent period of daytime wakefulness, participants showed reduced amygdala fMRI activity and altered amygdala-prefrontal functional connectivity in response to previously-viewed emotional images, along with reduced next-day subjective emotional intensity; this overnight change correlated with EEG markers of REM sleep physiology, specifically the suppression of high-frequency (>30Hz) activity linked to noradrenergic/adrenergic tone.",
     "ree_translation": "REE reads this as the strongest available biological precedent for MECH-204's general claim that REM sleep physiology -- via withdrawal of an aminergic neuromodulator -- actively RESETS a waking-accumulated set-point, rather than merely permitting passive decay. It is the mechanistic template MECH-204 is a formal reinterpretation of: REM sleep as a periodic corrective process that removes a modulatory drive and thereby depotentiates whatever variable accumulated a bias during waking hours. For REE this licenses the shape of MECH-204's claim (REM sleep does something in this general causal role) without licensing the specific substitution of confidence/precision for affective reactivity, or serotonin for noradrenaline.",
@@ -32,5 +49,6 @@
     "mapping_fidelity": 0.45,
     "transfer_risk": 0.55,
     "notes": "Source quality high: Current Biology, well-cited, careful within-subject sleep-vs-wake design with converging fMRI and EEG evidence. Mapping fidelity is the binding constraint and is low-moderate: both the neuromodulator (NA vs 5-HT) and the target construct (affective reactivity vs metacognitive confidence) diverge from MECH-204's specific claim, so this paper licenses the general architecture, not the specific mechanism."
-  }
+  },
+  "summary_path": "summary.md"
 }

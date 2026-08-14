@@ -3,10 +3,16 @@
   "literature_type": "targeted_review_gov_behadj_1",
   "entry_id": "2026-08-12_gov_behadj_1_survival_model_sequence_analysis_gygax2022",
   "timestamp_utc": "2026-08-12T03:12:52Z",
-  "claim_ids_tested": ["GOV-BEHADJ-1"],
+  "claim_ids_tested": [
+    "GOV-BEHADJ-1"
+  ],
   "source": {
     "title": "Fully flexible analysis of behavioural sequences based on parametric survival models with frailties -- A tutorial",
-    "authors": ["Lorenz Gygax", "Yvonne R. A. van Zeeland", "Christina Rufener"],
+    "authors": [
+      "Lorenz Gygax",
+      "Yvonne R. A. van Zeeland",
+      "Christina Rufener"
+    ],
     "year": 2022,
     "venue": "Ethology",
     "url": "https://onlinelibrary.wiley.com/doi/10.1111/eth.13225"
@@ -18,7 +24,13 @@
   "failure_signatures": [
     "The tutorial's own motivating critique is that standard sequential analysis of behavior has been underused in part because simple Markov-chain description assumes the transition probability from the current state depends only on the current state (memorylessness) -- an assumption that is frequently unrealistic for behavior organized in longer chains or context-dependent sequences, meaning naive transition-probability counting (the implicit default suggested by the source thought's refuge/explore/food-seeking transition language) can misrepresent real sequential structure that has longer-range dependence."
   ],
-  "tags": ["gov-behadj-1", "sequence_structure", "survival_analysis", "markov_chain_limitations", "validated_measures"],
+  "tags": [
+    "gov-behadj-1",
+    "sequence_structure",
+    "survival_analysis",
+    "markov_chain_limitations",
+    "validated_measures"
+  ],
   "mapping": {
     "source_claim_statement": "Parametric survival analysis with frailty terms can model the time-to-transition from one behavioral state to several candidate follow-up states, accommodating complex experimental designs and estimating relative hazards for different transition types -- offering, per the tutorial's framing, a way to 'revive' rigorous sequential analysis of behavior beyond simple Markov-chain transition counting, and to detect more subtle aspects of behavioral organization than aggregate transition frequencies alone.",
     "ree_translation": "The source thought's language of transitions among refuge, exploration, food-seeking, acquisition, and return states implicitly suggests a Markov-chain-style transition-count analysis. This paper is direct evidence that a more statistically rigorous, established alternative already exists in the ethology methods literature for exactly this kind of question -- one that additionally accounts for HOW LONG an organism persists in a state before transitioning (a hazard/time-to-event framing), not just which state follows which. This maps closely onto GOV-BEHADJ-1's own listed candidate metric 'persistence of directed movement,' and suggests a REE behavioural-adjudication skill's 'Measure' step should consider survival/hazard-model machinery rather than simple transition-frequency tables when characterizing sequence structure.",
@@ -30,5 +42,6 @@
     "mapping_fidelity": 0.55,
     "transfer_risk": 0.45,
     "notes": "Peer-reviewed tutorial in a specialist (not top-tier general) ethology journal; methodologically sound based on available abstract/secondary-source description but full text unverified due to paywall, so this entry should be treated as directionally reliable rather than exhaustively checked."
-  }
+  },
+  "summary_path": "summary.md"
 }

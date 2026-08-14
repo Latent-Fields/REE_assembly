@@ -3,10 +3,16 @@
   "literature_type": "targeted_review_hippocampal_theta_sweeps_goal_navigation",
   "entry_id": "2026-08-09_mech_236_place_cell_future_paths_pfeifferfoster2013",
   "timestamp_utc": "2026-08-09T18:33:10Z",
-  "claim_ids_tested": ["MECH-236", "MECH-289"],
+  "claim_ids_tested": [
+    "MECH-236",
+    "MECH-289"
+  ],
   "source": {
     "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
-    "authors": ["Brad E. Pfeiffer", "David J. Foster"],
+    "authors": [
+      "Brad E. Pfeiffer",
+      "David J. Foster"
+    ],
     "year": 2013,
     "venue": "Nature",
     "doi": "10.1038/nature12112",
@@ -19,7 +25,14 @@
   "failure_signatures": [
     "The paper's own framing is limited to 'replay'-class sequence events in an open arena with learned reward locations -- it does not test whether the same mechanism operates for non-spatial or abstract goal structures, which is the generalisation MECH-236/MECH-289 (and the 2026-08-08 REE thought that prompted this pull) actually need."
   ],
-  "tags": ["mech-236", "mech-289", "hippocampus", "theta_sweeps", "prospective_navigation", "goal_directed"],
+  "tags": [
+    "mech-236",
+    "mech-289",
+    "hippocampus",
+    "theta_sweeps",
+    "prospective_navigation",
+    "goal_directed"
+  ],
   "mapping": {
     "source_claim_statement": "Before goal-directed navigation in an open arena, rat hippocampal place-cell sequences ('replay' events) encode spatial trajectories strongly biased toward progressing from the animal's current location to a known goal location, predicting the animal's subsequent path even for novel start-goal combinations.",
     "ree_translation": "Direct empirical precedent for MECH-289's claim that the hippocampal trajectory generator actively generates novel-path sequences (not merely replaying executed paths), and for MECH-236's claim that hippocampal proposal generation must be goal-conditioned rather than purely positional -- this paper is the original demonstration that goal-directedness, not just novelty, characterises these sequences.",
@@ -27,9 +40,10 @@
     "source_context": "Long-Evans rats, open-arena spatial memory task with multiple reward locations and a designated home goal; single-unit hippocampal place-cell recordings."
   },
   "confidence_components": {
-    "source_quality": 0.90,
+    "source_quality": 0.9,
     "mapping_fidelity": 0.55,
     "transfer_risk": 0.55,
     "notes": "High source quality (canonical Nature paper, foundational to the entire theta-sweep/prospective-replay literature, >1000 citations). Mapping fidelity capped at moderate because REE's claims are about an action-object/abstract topology, not literal physical space -- the paper directly supports the narrower 'hippocampal sequences are goal-directed and generative' premise, not the broader abstract-generalisation hypothesis."
-  }
+  },
+  "summary_path": "summary.md"
 }
