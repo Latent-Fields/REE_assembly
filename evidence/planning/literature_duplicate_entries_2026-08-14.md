@@ -201,5 +201,8 @@ confidence to keep, because two reviewers reached different numbers on the same 
 
 - **GFLAG-0030** (already open) covers ARC-049 / INV-059 — the Bekoff pair. Confirmed by
   this scan; **no second flag was raised for it**.
-- **One new flag** raised by this chip for the remaining **33** claims, flag type
-  `evidence_discrepancy`.
+- **GFLAG-0032** (raised by this chip, `evidence_discrepancy`) covers the remaining **33**
+  claims: ARC-006, ARC-007, ARC-018, ARC-032, ARC-042, ARC-065, MECH-033, MECH-040, MECH-044,
+  MECH-045, MECH-056, MECH-057, MECH-057a, MECH-058, MECH-059, MECH-060, MECH-075, MECH-089,
+  MECH-092, MECH-102, MECH-122, MECH-189, MECH-264, MECH-265, MECH-285, MECH-317, MECH-318,
+  MECH-457, Q-011, Q-017, SD-011, SD-032b, SD-033e.
