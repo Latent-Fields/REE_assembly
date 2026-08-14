@@ -151,3 +151,60 @@ any recoverable signal, and the 9th (689a) because its one distinguishing config
 of the pipeline to answer the question. A regime-matched re-test of a MECH-439 falsifier (the "V3-EXQ-925's
 successor letter" option (c) in the autopsy) is the only route that would produce a real answer; a
 retrospective audit of the existing 9 manifests cannot.
+
+---
+
+## 6. Proposed MECH-439 `evidence_quality_note` wording (PROPOSAL — not applied)
+
+> **Added 2026-08-14** (chip `chip-20260812-mech439-committed-regime-audit`, session `jovial-shannon-35d300` —
+> a near-duplicate of the `commit-regime` chip that produced §1–§5; this section completes the one deliverable
+> that chip's spec added, "propose the revised note wording"). This is an INPUT to a future `/governance`
+> Step 2b decision. It is **not** applied to `claims.yaml`, and it does **not** re-adjudicate MECH-439
+> (which already carries `ceiling_decision: exhausted` from GOV-CEIL-1).
+
+The V3-EXQ-925 autopsy drafted a `governance_note_candidate` for MECH-439 **before** this audit ran. That
+draft's option (a) note ended on a conditional — "IF that prior evidence also ran uncommitted, an audit ...
+would be needed." This audit **is** that audit, and its result is that the conditional cannot be resolved
+retrospectively: the prior evidence is regime-**indeterminate**, not confirmed-uncommitted. The note below is
+the 925 draft revised to state what was actually found. It supersedes the 925 draft option (a) wording; do not
+paste the pre-audit draft.
+
+**Proposed note text (for governance to attach as-is, revise, or decline):**
+
+> `[2026-08-12/14, informational, V3-EXQ-925 + mech439_commit_regime_audit_2026-08-12]:` V3-EXQ-925's
+> frozen-state causal-replay harness found `committed_fraction=0.000` across 2493 fresh E3 selections (2 seeds)
+> at the corpus-standard default configuration (`use_gap_scaled_commit_temperature=False`, `temperature=1.0`;
+> `selection_entropy_normalised=0.998`) — i.e. at default config the selector predominantly sampled a
+> near-uniform softmax rather than taking a committed argmin. MECH-439's "committed-selection variance
+> monopoly" framing presumes committed selection is the substrate's typical operating regime, which at default
+> config it is not. **A commissioned audit of the 9 confirmed `substrate_ceiling` hits (689a/700/700a–d/709/711/713)
+> established that the literal per-hit `committed_fraction` audit is not runnable — that instrumentation
+> post-dates all 9 runs, and no driver or manifest records the selector's internal commit gate; the
+> `commit`/`hold`/`entropy`-named manifest fields are argmax-of-output-action diversity, a structurally
+> different quantity (a false friend for this question).** The narrower recoverable fact: **8 of 9 ran with
+> `use_gap_scaled_commit_temperature` at the default `False`** (the same default V3-EXQ-925 measured
+> `committed_fraction=0.000` under); the 9th (689a) set it `True` on its confirmed-hit arm, but that knob only
+> softens the within-commit pick after the gate fires and the arm's own diversity metric shows no signature
+> distinguishing it from the knob-off baseline. **All 9 hits therefore remain INDETERMINATE on commit regime:
+> the MECH-439 evidence base can be neither confirmed regime-confounded nor cleared of it from the existing
+> manifests.** This note does not falsify, weaken, or strengthen MECH-439 (the 925 run adjudicates no claim,
+> `claim_ids=[]`); it records that the regime under which the prior 9 hits' committed-variance readings were
+> taken is retrospectively unverifiable. The only route to a real answer is a regime-matched re-test of a
+> MECH-439 falsifier (V3-EXQ-925's queued successor-letter, autopsy option (c)).
+
+**Verdict on the underlying question ("is the MECH-439 evidence base regime-confounded?"):** *unresolvable
+retrospectively — indeterminate, not confounded and not clean.* The finding is strong enough to caution
+against reading the 9 hits as measured over a confirmed committed-selection regime, but **not** strong enough
+to assert they ran uncommitted (§5 "CANNOT establish"). A note that claimed either direction would overstate
+the evidence.
+
+**Governance options this audit now supports** (revising the 925 draft's a/b/c, since (b) — "commission the
+audit" — is now complete):
+
+- **(a′) Attach the revised note above as informational.** Recommended. It is accurate, does not touch the
+  claim's status/`ceiling_decision`, and prevents a future reader from treating the 9 hits' committed-variance
+  readings as regime-verified.
+- **(c′) Treat as informational only, pending the queued regime-matched re-test**, and attach nothing until
+  that re-test lands. Defensible if governance prefers to minimise note churn on an already-`exhausted` claim.
+- **Do NOT** attach the original 925 draft option (a) wording — it presumes an audit outcome
+  ("IF ... ran uncommitted") that this audit found unobtainable.
