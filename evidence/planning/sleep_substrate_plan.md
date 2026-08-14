@@ -234,14 +234,15 @@ closure_plan:
       completed_note: "Substrate: anchor_weight scaling wired in run_sws_schema_pass(); mean_anchor forwarded by SleepLoopManager._run_cycle(); routing_gate.py docstring updated. Validation: V3-EXQ-565 smoke C1/C2/C3 PASS 2026-05-15 (ARM_0 consumer-OFF weight==1.0; ARM_1 consumer-ON weight~=0.6; sws_n_writes=5 both arms via act_with_split_obs driver). Full runner PASS confirmed 2026-05-15T18:03:11Z (manifest v3_exq_565_wpd_gap8_routing_consumer_20260515T180311Z_v3.json; arm0_applied_mean=1.0, arm1_applied_mean=0.6, C1/C2/C3 all True). EXP-0168 was the planning-time placeholder ID; V3-EXQ-565 is the validated experiment."
     - id: "sleep_substrate:GAP-9"
       title: "Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episode-cadence entry point; the only other entry point, force_cycle(), is an explicit experimenter override, not an emergent trigger) is reachable only via an inter-episode boundary, either agent.reset()'s built-in call (ree_core/agent.py, the standard multi-episode driver pattern per GAP-7) or a driver's own boundary-scoped call (e.g. _segment_boundary_consolidate() in the 906-lineage continuity-preserving observational driver). A TRUE single-continuous-life design (num_episodes=1 / EVAL_EPISODES=1) has zero boundaries within the life by construction, so no sleep cycle -- and no MEL-consumer duration scaling (GAP-5b), no MECH-204 WRITEBACK recalibration (GAP-1), no Phase B-E aggregation cluster (GAP-3) -- can ever fire during that life, regardless of sleep_loop_episodes_K or any other cadence config. distinct from GAP-5 (SD-037 arousal-driven ENTRY timing within a multi-episode driver, V4-deferred): this gap is about REACHABILITY of the trigger at all under a true single-life driver, not about which signal decides entry timing."
-      status: open
+      status: done
       severity: high
       join:
         bears_on: []
         scope_claims: []
       unblocks_claims: []
       depends_on: []
-      last_updated: 2026-08-12
+      last_updated: 2026-08-14
+      implementation_note: "BUILT 2026-08-14 (v1: step-count ceiling arm). ree-v3: SleepLoopManager.notify_waking_step() (ree_core/sleep/phase_manager.py) fires a sleep cycle from REEAgent.update_residue() (ree_core/agent.py, waking path) once within_life_sleep_step_ceiling waking steps have elapsed since the last cycle; behind default-False use_within_life_sleep_trigger (+ within_life_sleep_step_ceiling, both wired through REEConfig.from_dims at 3 sites). notify_episode_end() untouched -> multi-episode drivers bit-identical; OFF path makes no new call -> byte-identical. Emits within_life_trigger_fired/_arm_ceiling/_arm_need/_steps_at_fire. DESIGN CHOSEN per the 2026-08-14 lit synthesis (targeted_review_sleep_onset_multiinput_gap9): (a)+(b) composed -- MEL/need-crossing PRIMARY + step-count ceiling BACKSTOP; v1 wires the CEILING ARM ONLY, the MEL/need-crossing arm (design (b), reusing GAP-5b's SD-MEL-CONSUMER accumulator + entry_permitted's `crossed or at_ceiling`) is a planned follow-up; design (c) reclassified as instrumentation (force_cycle), not counted as closing GAP-9. MECH-094 preserved (fires waking-only, reuses existing _run_cycle path, no new memory writes). use_mech286_sleep_onset_gate deliberately NOT enabled (its threat term reads a chance-level place-safety signal per V3-EXQ-917). Contracts: ree-v3 tests/contracts/test_sleep_within_life_trigger_gap9.py (10). Validation: V3-EXQ-929 (v3_exq_929_sleep_gap9_within_life_trigger; diagnostic; OFF fires 0 / ON fires >=1 / ON all ceiling-arm; dry-run smoke PASS OFF=0 ON=4 ceiling_frac=1.0). ree-v3/CLAUDE.md SD-implemented entry landed. FOLLOW-UP (chip): wire the MEL/need-crossing PRIMARY arm."
       registered_note: "Registered 2026-08-12 (chip chip-20260811-sleep-cadence-boundary-finding, session sleep-cadence-boundary-finding-ea2cc4), surfaced by V3-EXQ-920's own module docstring 'SLEEP-CADENCE DESIGN NOTE' (ree-v3/experiments/v3_exq_920_uncensored_survival_single_life_fishtank.py) while authoring that run's TRUE single-continuous-life uncensored-survival design (EVAL_EPISODES=1, no segment-boundary body-respawn anywhere in the observed window; chip-20260810-fishtank-uncensored-survival-v2, following organism_lifespan_development_review_906_lineage_2026-08-10.md Section 10 item 1). Verified against code this session (not just the docstring): ree_core/agent.py REEAgent.reset() (~line 3152) is the ONLY core-substrate call site of notify_episode_end(); ree_core/sleep/phase_manager.py SleepLoopManager exposes exactly two public entry points into cycle-firing, notify_episode_end() and force_cycle() (the latter an explicit manual override used by diagnostic drivers, not an autonomous within-life trigger -- there is no time-based, step-based, or fatigue-based within-life trigger anywhere in the substrate today). v3_exq_906b_full_stack_observational_fishtank.py's _observational_run() (lines ~438-511) confirms the mechanism concretely: for ep_idx==0 it calls the full agent.reset() (which itself fires notify_episode_end once, before the observed life begins); for every ep_idx>0 it calls _segment_boundary_consolidate() instead of agent.reset() (deliberately, to preserve trajectory continuity across segments -- 906a's 'CONTINUITY REDESIGN'), which is the only site that fires notify_episode_end() DURING the run. With num_episodes=1 the `else` branch (ep_idx>0) never executes, so zero sleep-eligible boundaries occur within the life -- independent of the observational-continuity driver choice: ANY true single-life driver (num_episodes=1, whether or not it uses the continuity pattern) hits the same wall, because agent.reset() itself is called at most once for the whole life. DISTINCT from the existing MECH-180/SD-MEL-PRODUCER/SD-MEL-CONSUMER adaptive-cadence thread (varies K / the prediction-error-driven trigger, assuming the trigger site is reachable via boundaries) and from GAP-5 (SD-037 arousal-driven entry TIMING, V4-deferred, also assumes a reachable trigger site) -- this gap is one level more fundamental: under the CURRENT boundary-only mechanism, the trigger site itself is unreachable once boundaries are removed, so no K value or arousal signal can fix it. `complicated (buildable)` per CLAUDE.md's work-graph debt vocabulary (docs/architecture/work_graph_debt_vocabulary.md) ONCE a design is chosen -- implementing any of the candidate fixes (a step-count/time-based within-life trigger; a fatigue/MEL-magnitude-based trigger reusing GAP-5b's SD-MEL-CONSUMER accumulator; or an experimenter-inserted 'virtual boundary' at a configured step interval that calls notify_episode_end() without a real episode reset) is ordinary implementation work, nothing about it is probe-gated or requires an experiment to discover a fact. The open item is WHICH design to choose, which is an architectural decision (analogous to GAP-5's own SD-037-vs-nothing choice), not an empirical unknown -- so this is registered `open`/gated-on-a-design-decision rather than `complex (probe-gated)`. NOT built here per the registering session's scope (plan-doc registration only, no code/experiment change). A future /implement-substrate or governance session picking this up should: (1) decide the trigger design, (2) land it behind a default-False flag per the codebase's standard OR-only convention (GAP-3's use_sleep_aggregation_cluster precedent), (3) re-run a true-single-life driver (V3-EXQ-920 or successor) to confirm sleep now fires within the life."
 ---
 # Sleep Substrate Plan
@@ -602,7 +603,7 @@ work. See [Resume ritual](#resume-ritual) below.
 | GAP-6 | 5 | done | (none) | Audit complete: all 7 write sites documented in sleep_aggregation_cluster.md; all are architectural exceptions; zero require StepHarness routing | substrate audit (no EXQ) | 2026-05-15 |
 | GAP-7 | 6 | done | (none) | /queue-experiment skill updated with SLEEP DRIVER section + code-review check; 41 sleep-touching experiments audited; 24 annotated with canonical SLEEP DRIVER: label (17 sleep-adjacent only, no annotation needed); skill mirrored to .agents/. | process improvement (no EXQ) | 2026-05-17 |
 | GAP-8 | 3 | done | (none) | Substrate wired (run_sws_schema_pass anchor_weight scaling; SleepLoopManager mean_anchor forwarding). V3-EXQ-565 smoke C1/C2/C3 PASS + full runner PASS confirmed 2026-05-15T18:03Z (arm0=1.0, arm1~=0.6, sws_n_writes>0 both arms) | V3-EXQ-565 | 2026-05-15 |
-| GAP-9 | -- | open | a design decision (which within-life trigger mechanism: step-count/time-based, MEL/fatigue-based reusing GAP-5b's accumulator, or an experimenter-inserted virtual boundary) | **NEW ROW 2026-08-12**, registered from V3-EXQ-920's module docstring finding + code verification this session (ree_core/agent.py `REEAgent.reset()` and ree_core/sleep/phase_manager.py `SleepLoopManager.notify_episode_end()`/`force_cycle()` are the only two entry points into cycle-firing; v3_exq_906b's `_observational_run()`/`_segment_boundary_consolidate()` confirm the boundary-only mechanism concretely). `complicated (buildable)` once the trigger design is chosen; see node `registered_note` for the full finding + candidate designs. Not built this session (plan-doc registration only). | n/a (no code/experiment change this session) | 2026-08-12 |
+| GAP-9 | -- | done | (v1: ceiling arm built) | **BUILT 2026-08-14** (v1 step-count ceiling arm). `SleepLoopManager.notify_waking_step()` fires a sleep cycle from `REEAgent.update_residue()` (waking path) once `within_life_sleep_step_ceiling` waking steps elapse since the last cycle, behind default-False `use_within_life_sleep_trigger`; `notify_episode_end()` untouched (multi-episode bit-identical), OFF byte-identical. DESIGN per the 2026-08-14 lit synthesis: (a)+(b) composed, v1 wires the CEILING ARM ONLY; the MEL/need-crossing PRIMARY arm (design (b), reusing GAP-5b's accumulator) is a planned FOLLOW-UP chip; design (c) reclassified as instrumentation (`force_cycle`). MECH-094 preserved; `use_mech286_sleep_onset_gate` deliberately OFF. Contracts: `test_sleep_within_life_trigger_gap9.py` (10). See node `implementation_note` + the 2026-08-14 decision-log entry. | V3-EXQ-929 (validation; diagnostic; smoke PASS OFF=0/ON=4/ceiling=1.0) | 2026-08-14 |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
 A `paused` row carries a resume condition in the [Decision log](#decision-log).
@@ -666,7 +667,7 @@ SD-016 confound, the experiment configs must additionally enable:
 | GAP-6 / Phase 5 | (new entry to add) | (audit, no claim) | sleep_aggregation_cluster.md |
 | GAP-7 / Phase 6 | (skill change, no queue entry) | n/a | n/a |
 | GAP-8 / Phase 3 | V3-EXQ-565 (full runner PASS 2026-05-15T18:03Z) | MECH-272 | sleep_aggregation_cluster.md |
-| GAP-9 | (not yet queued -- design decision pending) | n/a (no claim yet) | v3_exq_920_uncensored_survival_single_life_fishtank.py module docstring "SLEEP-CADENCE DESIGN NOTE" |
+| GAP-9 | V3-EXQ-929 (validation, diagnostic) | n/a (plan node, no claims.yaml claim) | ree-v3 phase_manager.py `notify_waking_step`; ree-v3/CLAUDE.md SD-implemented entry; 2026-08-14 lit synthesis targeted_review_sleep_onset_multiinput_gap9 |
 
 The substrate_queue.json edits to add cross-references and new entries are
 made in the same session as this plan registration.
@@ -676,6 +677,55 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-08-14 - GAP-9 BUILT (v1: step-count ceiling arm) -- within-life sleep trigger, a continuous life can now sleep
+
+**Code + validation queued. ree-v3: substrate + contracts + CLAUDE.md. REE_assembly: this
+plan doc. No claims.yaml edit (GAP-9 is a plan node, not a claims.yaml claim). GAP-9 status
+open -> done.**
+
+Session `xenodochial-brattain-e1c212` (chip `chip-20260814-sleep-gap9-trigger-focused`, user
+present + explicitly approved the build). Implements the within-life sleep trigger the
+2026-08-14 lit synthesis (below) specified, closing the boundary-only wall registered
+2026-08-12: a TRUE single-continuous life (`num_episodes=1`) can now sleep.
+
+- **Mechanism.** `SleepLoopManager.notify_waking_step(agent)` (new, `phase_manager.py`) is
+  called per WAKING step from `REEAgent.update_residue()` (waking path, after the MEL
+  `note_step_pe`, gated on `use_within_life_sleep_trigger` and `not hypothesis_tag`). It
+  increments a new `SleepCycleState.steps_since_sleep` and fires `_run_cycle` once the
+  counter reaches `within_life_sleep_step_ceiling`, then resets it. `_run_cycle` gains an
+  optional `within_life_meta` (arm attribution merged into the fired cycle's metrics +
+  `cycle_history`) and resets `steps_since_sleep` at every reset point. `notify_episode_end()`
+  is UNTOUCHED.
+- **Design chosen (user go-ahead): (a)+(b) composed, v1 ceiling arm only.** Per the synthesis
+  brief (Section 6), the composed trigger is MEL/need-crossing (design (b)) PRIMARY with a
+  step-count ceiling (design (a)) as anti-starvation backstop -- already the shape of
+  `MELConsumer.entry_permitted()`'s `crossed or at_ceiling`. The user chose to ship the
+  **ceiling arm only** in v1 (guarantees firing in CausalGridWorldV2 where measured MEL is
+  noise-level per GAP-5b); the **MEL/need-crossing PRIMARY arm is a planned follow-up chip**,
+  which will re-base `entry_permitted`'s ceiling onto steps and reuse the per-step MEL
+  accumulator that already runs. The arm-attribution diagnostics
+  (`within_life_trigger_arm_ceiling`/`_arm_need`) ship now so the need arm is a drop-in and a
+  ceiling-only fire is never mistaken for a demand-sensitive one (the V3-EXQ-718a failure
+  mode one level up). Design (c) (experimenter virtual boundary) is reclassified as
+  instrumentation (`force_cycle()`), NOT counted as closing GAP-9.
+- **Config (default-off, byte-identical OFF).** `use_within_life_sleep_trigger` (bool, False)
+  + `within_life_sleep_step_ceiling` (int, 1000), wired through `REEConfig.from_dims()` at all
+  3 sites. OFF -> `update_residue` makes no new call; multi-episode drivers bit-identical.
+- **MECH-094 preserved.** Fires waking-only and reuses the existing `_run_cycle`/
+  `run_sleep_cycle` path -> adds NO new memory writes; offline/replay content keeps its
+  `hypothesis_tag=True` tagging. Re-entrancy guard as belt-and-braces.
+- **`use_mech286_sleep_onset_gate` deliberately NOT enabled** (synthesis 5.2/6): its threat
+  term reads a signal V3-EXQ-917 measured at chance-level place-safety discrimination;
+  enabling it would confound the first true-single-life sleep result.
+- **Contracts:** ree-v3 `tests/contracts/test_sleep_within_life_trigger_gap9.py` (10 tests --
+  OFF bit-identical, ceiling-arm fires on the ceiling step, periodic re-fire, boundary path
+  untouched / no within_life keys, reset clears counter+guard, no-substrate declines,
+  end-to-end continuous life fires ON and never OFF, re-entrancy guard, ceiling validation).
+  Existing sleep/phase_manager consumer contracts (97) still pass -- boundary path unaffected.
+- **Validation:** V3-EXQ-929 (`v3_exq_929_sleep_gap9_within_life_trigger`, diagnostic; OFF vs
+  ON x 3 seeds, single continuous life; C1 OFF fires 0, C2 ON fires >=1, C3 ON all ceiling
+  arm; dry-run smoke PASS OFF=0 / ON=4 / ceiling_frac=1.0). Promotes nothing.
 
 ### 2026-08-14 - GAP-9 literature synthesis: recommends (a)+(b) COMPOSED, reclassifies (c) as instrumentation, and finds the trigger gap is a CALL SITE not a signal
 
