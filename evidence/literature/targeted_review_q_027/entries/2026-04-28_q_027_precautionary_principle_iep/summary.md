@@ -66,11 +66,20 @@ entry supports.
 
 ## Caveats
 
-The IEP entry is unsigned and undated in the visible metadata, which limits
-how strongly any specific phrasing should be cited. The entry is also
-firmly at the policy level -- it does not address single-agent
-decision-making under uncertainty, which is REE's situation. Source quality
-is therefore moderate, not high.
+The IEP entry is a tertiary reference work, lower-tier than SEP, so any
+specific phrasing should be traced to the primary literature it cites rather
+than cited from it. The entry is also firmly at the policy level -- it does
+not address single-agent decision-making under uncertainty, which is REE's
+situation. Source quality is therefore moderate, not high.
+
+> **Correction, 2026-08-14.** This section originally read "The IEP entry is
+> unsigned and undated in the visible metadata". Both premises were wrong.
+> The entry is signed by Tanja Rechnitzer (University of Bern) and was
+> published 2020-03-25 (last modified 2022-03-23), per the site's own
+> metadata; the record's `source.year` was `null` and its `authors` named no
+> byline, and both have been corrected. The confidence of 0.38 and the
+> `source_quality` of 0.55 were scored partly on the withdrawn premise and
+> are deliberately left as-is pending governance re-scoring.
 
 I am marking this *supports* with confidence 0.38 -- low enough to reflect
 the source-quality limit, high enough to register that the entry is
