@@ -30,12 +30,23 @@
 # has a documented false-positive list, and it carries a residue of
 # known-unrepairable records, so it would fire on ordinary work and get switched
 # off -- strictly worse than no gate. verify_literature_identifiers.py exists to
-# hold only the CONCLUSIVE subset of that evidence (the record's own two
-# identifiers contradicting each other; both resolution routes describing
-# different works; title AND first author both disagreeing), and it is measured:
-# over all 2072 identifier-carrying records it produces ONE live verdict, the
-# synthetic habenula placeholder that ought to block. That measurement, not
-# optimism, is why stage 2 blocks by default.
+# hold only the CONCLUSIVE subset of that evidence (the record's own identifiers
+# contradicting each other -- doi vs pmid, pmc vs pmid, arxiv_id vs its own arXiv
+# DOI; both resolution routes describing different works; title AND first author
+# both disagreeing), and it is measured: over all 2072 doi/pmid-carrying records
+# it produces ONE live verdict, the synthetic habenula placeholder that ought to
+# block. That measurement, not optimism, is why stage 2 blocks by default.
+#
+# The SECONDARY identifiers (arxiv_id, pmc, isbn) were added to stage 2 on
+# 2026-08-14 and each cleared its own whole-corpus baseline first, the same way:
+# 0 findings over the 90 records carrying one (`--secondary-check`). Two of the
+# three cost NO extra network call at all -- the pmc crosswalk lives inside the
+# esummary record stage 2 has already fetched, and an arxiv_id is checked against
+# the arXiv DOI in the record's own `doi` field -- so a third API did NOT become
+# a third thing a commit waits on. The ISBN title comparison is deliberately
+# REPORT-ONLY (an ISBN names a volume, not a chapter, so it false-positives on a
+# correct chapter record); only its network-free checksum half gates. Reasoning
+# and numbers: the module docstring, verdicts 5-8.
 #
 # Called from the PreToolUse hook in REE_Working/.claude/settings.json on any
 # `git commit` bash invocation. Self-gates: if no evidence/literature/ paths are
@@ -253,19 +264,25 @@ if [ "$IDENT_BLOCK" = "1" ] && [ "$IRC" -ne 0 ]; then
     echo ""
     echo "precommit_literature: BLOCKING -- an identifier on a record this commit"
     echo "  touches CONCLUSIVELY names a different work. This is not a fuzzy match:"
-    echo "  either the record's own doi and pmid contradict each other, both"
-    echo "  resolution routes describe different works, or the declared title AND"
-    echo "  first author both disagree with what the identifier returns."
+    echo "  either two of the record's OWN identifiers contradict each other (doi"
+    echo "  vs pmid, pmc vs pmid, arxiv_id vs its own arXiv DOI), both resolution"
+    echo "  routes describe different works, the declared title AND first author"
+    echo "  both disagree with what the identifier returns, or the identifier is"
+    echo "  not a valid one at all (a placeholder DOI, or an ISBN whose check"
+    echo "  digit fails)."
     echo ""
     echo "  Whole-corpus baseline was 1 record of 2072 as of 2026-08-14 (a known"
-    echo "  synthetic placeholder, GFLAG-0031), so this is almost certainly"
-    echo "  something this commit introduced or is carrying forward."
+    echo "  synthetic placeholder, GFLAG-0031), and 0 of the 90 records carrying"
+    echo "  an arxiv_id, pmc or isbn, so this is almost certainly something this"
+    echo "  commit introduced or is carrying forward."
     echo ""
     echo "  Fix the identifier -- resolve it and read back the title, do not guess"
     echo "  a neighbouring suffix. If the record carries a pmid, PubMed's own"
-    echo "  articleids DOI for it is the authoritative crosswalk. If the correct"
-    echo "  identifier genuinely cannot be determined, use doi: null (\"checked,"
-    echo "  none exists\") and raise a governance flag rather than inventing one."
+    echo "  articleids for it is the authoritative crosswalk for BOTH the doi and"
+    echo "  the pmc id. For an arxiv_id, the arXiv DOI is 10.48550/arXiv.<the id>."
+    echo "  If the correct identifier genuinely cannot be determined, use null"
+    echo "  (\"checked, none exists\") and raise a governance flag rather than"
+    echo "  inventing one."
     echo ""
     echo "  Temporary escape hatch: REE_LITERATURE_IDENTIFIER_GATE_BLOCK=0 (and"
     echo "  say why in the commit message)."

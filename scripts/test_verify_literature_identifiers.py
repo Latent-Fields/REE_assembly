@@ -83,11 +83,23 @@ def crossref_payload(title, authors, year, venue="A Journal", **extra):
     return {"ok": True, "message": message}
 
 
-def pubmed_payload(title, authors, year, doi=None, venue="A Journal", **extra):
-    """An esummary record, in the shape audit.pubmed_view reads."""
+def pubmed_payload(title, authors, year, doi=None, venue="A Journal", pmc=None,
+                   pmc_only_in_pmcid=False, **extra):
+    """An esummary record, in the shape audit.pubmed_view reads.
+
+    ``pmc`` adds the PMC crosswalk fields. Real esummary records carry the id
+    TWICE -- cleanly under idtype ``pmc``, and wrapped in prose under idtype
+    ``pmcid`` (``pmc-id: PMC8497431;manuscript-id: NIHMS1731801;``) -- so both
+    are emitted, and ``pmc_only_in_pmcid`` builds the fallback-only shape the
+    handful of records that serve one and not the other actually have.
+    """
     ids = [{"idtype": "pubmed", "value": "1"}]
     if doi:
         ids.append({"idtype": "doi", "value": doi})
+    if pmc:
+        if not pmc_only_in_pmcid:
+            ids.append({"idtype": "pmc", "value": pmc})
+        ids.append({"idtype": "pmcid", "value": "pmc-id: %s;" % pmc})
     message = {
         "title": title,
         "authors": [{"name": a, "authtype": "Author"} for a in authors],
@@ -96,6 +108,40 @@ def pubmed_payload(title, authors, year, doi=None, venue="A Journal", **extra):
         "articleids": ids,
     }
     message.update(extra)
+    return {"ok": True, "message": message}
+
+
+def arxiv_payload(arxiv_id, title, authors, year):
+    """An arXiv entry, in the shape V._parse_arxiv_atom produces.
+
+    The ``id`` carries a VERSION SUFFIX because the real API always does -- a
+    query for ``2307.07176`` is answered with ``.../abs/2307.07176v3`` -- and
+    ``arxiv_entry_is_faithful`` has to see through that or it refuses every hit
+    it is given.
+    """
+    return {"ok": True, "message": {
+        "id": "http://arxiv.org/abs/%sv2" % arxiv_id,
+        "title": title,
+        "authors": list(authors),
+        "published": "%d-03-15T07:27:12Z" % year,
+    }}
+
+
+def openlibrary_payload(title, authors, year, subtitle=None,
+                        publisher="A Press"):
+    """An OpenLibrary /api/books record, in the shape V.openlibrary_view reads.
+
+    ``authors`` for an edited volume is its EDITORS, which is exactly why
+    verdict 8 is report-only -- see TestIsbnIsNotOnTheGatePath.
+    """
+    message = {
+        "title": title,
+        "authors": [{"name": a} for a in authors],
+        "publish_date": str(year),
+        "publishers": [{"name": publisher}],
+    }
+    if subtitle:
+        message["subtitle"] = subtitle
     return {"ok": True, "message": message}
 
 
@@ -134,10 +180,26 @@ class Fixture:
         (entry_dir / "summary.md").write_text(summary, encoding="utf-8")
         return entry_dir / "record.json"
 
+    # Mirror the module's own key normalisation rather than restating it: a test
+    # that hardcodes the key passes even when the key rule changes, which is the
+    # failure mode this dict exists to prevent. Every entry is the SAME callable
+    # the module uses on the fetch path, never a re-implementation of it.
+    KEY_NORMALISERS = {
+        "crossref": lambda i: str(i).lower(),
+        "doiorg": lambda i: str(i).lower(),
+        V.PUBMED_AID_CACHE_KIND: staticmethod(V.aid_cache_key),
+        V.ARXIV_CACHE_KIND: staticmethod(V.normalise_arxiv_id),
+        V.OPENLIBRARY_CACHE_KIND: staticmethod(V.canonical_isbn),
+        V.PMC_CACHE_KIND: staticmethod(V.normalise_pmc),
+    }
+
     def cache_put(self, kind, ident, payload):
-        # Mirror the module's own key normalisation rather than restating it: a
-        # test that hardcodes the key passes even when the key rule changes.
-        key = str(ident).lower() if kind in ("crossref", "doiorg") else str(ident)
+        normalise = self.KEY_NORMALISERS.get(kind)
+        if normalise is not None:
+            normalise = getattr(normalise, "__func__", normalise)
+            key = normalise(ident)
+        else:
+            key = str(ident)
         path = audit.cache_path(self.cache, kind, key)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload), encoding="utf-8")
@@ -1632,6 +1694,1049 @@ class TestCrosswalkCli(FixtureCase):
                    "--write-pmid", "unresolvable"])
         self.assertEqual("1", json.loads(
             Path(rec).read_text(encoding="utf-8"))["source"]["pmid"])
+
+
+# --------------------------------------------------------------------------
+# the secondary identifiers -- arxiv_id, pmc, isbn
+#
+# ROUGHLY HALF OF WHAT FOLLOWS IS NEGATIVE CONTROLS, for the same reason as the
+# doi/pmid half above: these verdicts gate commits, so the expensive failure is
+# firing on a CORRECT record. Each new axis brings its own false-positive shape
+# and each is pinned here as a record that must NOT produce a verdict:
+#
+#   pmc     a PubMed record that is not in PMC at all (the common case across
+#           PubMed as a whole) -- test_pubmed_without_a_pmc_id_fails_open
+#   arxiv   preprint author order (the CURL case, MORE likely here than on the
+#           DOI path) -- test_preprint_author_order_alone_does_not_fire
+#           an initials-only declared author against arXiv's full given names
+#           -- test_initials_form_author_agrees
+#           a version suffix -- test_version_suffix_is_not_a_mismatch
+#           a NON-arXiv doi sitting beside an arxiv_id
+#           -- test_an_ordinary_doi_beside_an_arxiv_id_is_silent
+#   isbn    a CHAPTER record against its containing volume's ISBN, which is the
+#           measured false positive that kept verdict 8 off the gate entirely
+#           -- TestIsbnIsNotOnTheGatePath
+
+
+class TestNormalisePmc(unittest.TestCase):
+
+    def test_the_prefix_is_normalised(self):
+        self.assertEqual("PMC2801761", V.normalise_pmc("PMC2801761"))
+        self.assertEqual("PMC2801761", V.normalise_pmc("pmc2801761"))
+        self.assertEqual("PMC2801761", V.normalise_pmc("2801761"))
+        self.assertEqual("PMC2801761", V.normalise_pmc(" PMC 2801761 "))
+
+    def test_empty_is_none(self):
+        self.assertIsNone(V.normalise_pmc(None))
+        self.assertIsNone(V.normalise_pmc(""))
+        self.assertIsNone(V.normalise_pmc("PMC"))
+
+    def test_different_ids_are_not_equal(self):
+        self.assertNotEqual(V.normalise_pmc("PMC2801761"),
+                            V.normalise_pmc("PMC2801762"))
+
+
+class TestPubmedDeclaredPmc(unittest.TestCase):
+
+    def test_the_clean_pmc_field_is_read(self):
+        rec = pubmed_payload("T", ["A"], 2010, pmc="PMC2801761")["message"]
+        self.assertEqual("PMC2801761", V.pubmed_declared_pmc(rec))
+
+    def test_the_pmcid_prose_form_is_the_fallback(self):
+        # `pmc-id: PMC8497431;manuscript-id: NIHMS1731801;` -- a real shape.
+        rec = pubmed_payload("T", ["A"], 2010, pmc="PMC8497431",
+                             pmc_only_in_pmcid=True)["message"]
+        self.assertEqual("PMC8497431", V.pubmed_declared_pmc(rec))
+
+    def test_no_pmc_at_all_is_none_not_an_error(self):
+        # The COMMON case across PubMed: most records are not in PMC.
+        rec = pubmed_payload("T", ["A"], 2010)["message"]
+        self.assertIsNone(V.pubmed_declared_pmc(rec))
+
+
+class TestPmcPmidMismatch(FixtureCase):
+
+    def _record(self, pmc, pubmed_pmc, **kwargs):
+        rec = self.fx.record("pmcrec", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmid": "19816984", "pmc": pmc})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2010, pmc=pubmed_pmc, **kwargs))
+        return rec
+
+    def test_mismatch_fires(self):
+        rec = self._record("PMC2801761", "PMC7282808")
+        verdict = self.assertVerdict(rec, "pmc_pmid_mismatch")
+        self.assertIn("PMC7282808", verdict.detail)
+        self.assertIn("PMC2801761", verdict.detail)
+
+    def test_agreement_is_silent(self):
+        self.assertNoVerdict(self._record("PMC2801761", "PMC2801761"))
+
+    def test_spelling_variation_is_not_a_mismatch(self):
+        # NEGATIVE CONTROL. Both sides go through normalise_pmc, so a record
+        # writing the id in a different case or without the prefix agrees.
+        self.assertNoVerdict(self._record("pmc2801761", "PMC2801761"))
+        self.assertNoVerdict(self._record("2801761", "PMC2801761"))
+
+    def test_the_pmcid_fallback_still_cross_resolves(self):
+        self.assertNoVerdict(self._record("PMC8497431", "PMC8497431",
+                                          pmc_only_in_pmcid=True))
+
+    def test_pubmed_without_a_pmc_id_fails_open(self):
+        # NEGATIVE CONTROL and the big one: most PubMed records are not in PMC,
+        # so "PubMed names no PMC id" must never read as a contradiction.
+        rec = self.fx.record("nopmc", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2010))
+        self.assertNoVerdict(rec)
+
+    def test_an_unresolvable_pmid_fails_open(self):
+        rec = self.fx.record("badpmid", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmid": "99999999", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "99999999", {"ok": False,
+                                                 "error": "not_found"})
+        self.assertNoVerdict(rec)
+
+    def test_a_record_with_no_pmid_does_not_fire_verdict_five(self):
+        # Nothing to cross-resolve against. check_pmc_declared_vs_identifier is
+        # the (report-only) fallback for this shape.
+        rec = self.fx.record("pmconly", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmc": "PMC2801761"})
+        self.assertNoVerdict(rec)
+
+    def test_the_crosswalk_costs_ZERO_extra_network(self):
+        # The load-bearing cost claim in the module docstring: verdict 5 reads
+        # the esummary record verdict 1 has already fetched, so adding it to the
+        # gate adds no calls at all. If a later change makes it fetch anything
+        # of its own, this fails -- which is the point.
+        rec = self._record("PMC2801761", "PMC7282808")
+        target = V.collect_scoped_targets([str(rec)])[0]
+        resolver = V.Resolver(self.fx.cache, offline=False)
+        self.assertIsNotNone(V.check_pmc_pmid_mismatch(target, resolver))
+        self.assertEqual(0, resolver.spent)
+        self.assertEqual([], resolver.skipped)
+
+
+class TestPmcFallbackIsNotOnTheGatePath(FixtureCase):
+    """check_pmc_declared_vs_identifier is implemented and deliberately unwired.
+
+    The obvious reading is "not finished yet". It is not: all 80 pmc-carrying
+    records in this corpus also carry a pmid, so verdict 5 covers every one of
+    them CONCLUSIVELY and for FREE, while this would spend an esummary call per
+    record to reach a strictly weaker verdict-3-shaped conclusion. Wiring it in
+    would cost budget and buy nothing.
+
+    This is a property of the CORPUS, not of the code -- one pmc-only record
+    flips it. Re-measure with --secondary-check; do not assume.
+    """
+
+    def test_check_is_not_in_checks_networked(self):
+        self.assertNotIn(V.check_pmc_declared_vs_identifier, V.CHECKS_NETWORKED)
+        self.assertIn(V.check_pmc_declared_vs_identifier, V.CHECKS_REPORT_ONLY)
+
+    def test_the_gate_stays_silent_on_a_pmc_only_defect(self):
+        rec = self.fx.record("pmconlybad", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmc": "PMC2801761"})
+        self.fx.cache_put(V.PMC_CACHE_KIND, "PMC2801761", {"ok": True,
+            "message": pubmed_payload("Something Else Entirely.",
+                                      ["Jones B"], 2010)["message"]})
+        self.assertNoVerdict(rec)
+
+    def test_but_the_check_itself_does_fire_when_asked(self):
+        rec = self.fx.record("pmconlybad2", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmc": "PMC2801761"})
+        self.fx.cache_put(V.PMC_CACHE_KIND, "PMC2801761", {"ok": True,
+            "message": pubmed_payload("Something Else Entirely.",
+                                      ["Jones B"], 2010)["message"]})
+        target = V.collect_scoped_targets([str(rec)])[0]
+        verdict = V.check_pmc_declared_vs_identifier(target, self.fx.resolver())
+        self.assertIsNotNone(verdict)
+        self.assertEqual("pmc_names_a_different_paper", verdict.kind)
+
+
+class TestNormaliseArxivId(unittest.TestCase):
+
+    def test_the_version_suffix_is_stripped(self):
+        # Load-bearing: the API answers a query for 2307.07176 with
+        # .../abs/2307.07176v3, so without this every hit is refused.
+        self.assertEqual("2307.07176", V.normalise_arxiv_id("2307.07176v3"))
+        self.assertEqual("2307.07176",
+                         V.normalise_arxiv_id("http://arxiv.org/abs/2307.07176v3"))
+
+    def test_prefixes_and_urls_are_stripped(self):
+        for form in ("arXiv:2307.07176", "arxiv:2307.07176",
+                     "https://arxiv.org/abs/2307.07176",
+                     "https://www.arxiv.org/pdf/2307.07176.pdf"):
+            self.assertEqual("2307.07176", V.normalise_arxiv_id(form), form)
+
+    def test_old_style_ids_survive(self):
+        self.assertEqual("cs.lg/0701001", V.normalise_arxiv_id("cs.LG/0701001"))
+
+    def test_near_miss_ids_are_not_equal(self):
+        # The defect class this whole file exists for, one identifier over.
+        self.assertNotEqual(V.normalise_arxiv_id("1703.04977"),
+                            V.normalise_arxiv_id("1703.04978"))
+
+    def test_empty_is_none(self):
+        self.assertIsNone(V.normalise_arxiv_id(None))
+        self.assertIsNone(V.normalise_arxiv_id(""))
+
+
+class TestArxivIdFromDoi(unittest.TestCase):
+
+    def test_a_datacite_arxiv_doi_encodes_the_id(self):
+        self.assertEqual("2106.03443",
+                         V.arxiv_id_from_doi("10.48550/arXiv.2106.03443"))
+        self.assertEqual("2106.03443",
+                         V.arxiv_id_from_doi("10.48550/arxiv.2106.03443"))
+        self.assertEqual("2106.03443",
+                         V.arxiv_id_from_doi("https://doi.org/10.48550/arXiv.2106.03443"))
+
+    def test_an_ordinary_doi_encodes_nothing(self):
+        # NEGATIVE CONTROL. A journal DOI beside an arxiv_id is the normal shape
+        # for a published preprint and must never be read as a crosswalk.
+        self.assertIsNone(V.arxiv_id_from_doi("10.1016/j.conb.2010.02.014"))
+        self.assertIsNone(V.arxiv_id_from_doi(None))
+        self.assertIsNone(V.arxiv_id_from_doi(""))
+
+
+class TestArxivDoiMismatch(FixtureCase):
+
+    def _record(self, arxiv_id, doi):
+        return self.fx.record("arxivrec", {
+            "title": "Causal Influence Detection",
+            "authors": ["Seitzer M"], "year": 2021,
+            "doi": doi, "arxiv_id": arxiv_id})
+
+    def test_mismatch_fires(self):
+        rec = self._record("2106.03443", "10.48550/arXiv.2011.09464")
+        verdict = self.assertVerdict(rec, "arxiv_doi_mismatch")
+        self.assertIn("2011.09464", verdict.detail)
+
+    def test_agreement_is_silent(self):
+        self.assertNoVerdict(self._record("2106.03443",
+                                          "10.48550/arXiv.2106.03443"))
+
+    def test_case_difference_is_not_a_mismatch(self):
+        self.assertNoVerdict(self._record("2106.03443",
+                                          "10.48550/ARXIV.2106.03443"))
+
+    def test_version_suffix_is_not_a_mismatch(self):
+        # NEGATIVE CONTROL: an id recorded with its version against a DOI minted
+        # without one is the SAME preprint.
+        self.assertNoVerdict(self._record("2106.03443v2",
+                                          "10.48550/arXiv.2106.03443"))
+
+    def test_an_ordinary_doi_beside_an_arxiv_id_is_silent(self):
+        # NEGATIVE CONTROL, and the important one: a published preprint carries
+        # a journal DOI AND an arxiv_id, and those two are SUPPOSED to differ.
+        self.assertNoVerdict(self._record("2106.03443",
+                                          "10.1016/j.conb.2010.02.014"))
+
+    def test_it_needs_no_network_at_all(self):
+        rec = self._record("2106.03443", "10.48550/arXiv.2011.09464")
+        target = V.collect_scoped_targets([str(rec)])[0]
+        resolver = V.Resolver(self.fx.cache, offline=False)
+        self.assertIsNotNone(V.check_arxiv_doi_mismatch(target, resolver))
+        self.assertEqual(0, resolver.spent)
+
+
+class TestArxivNamesADifferentPaper(FixtureCase):
+
+    def _record(self, entry, source):
+        return self.fx.record(entry, source)
+
+    def test_a_near_miss_arxiv_id_fires(self):
+        # Real: 1703.04977 is Kendall & Gal; 1703.04978 is "Lectures on EW
+        # Standard Model" by Godbole. Exactly the near-miss defect class the
+        # audit documented for DOIs, reachable here for the first time.
+        rec = self._record("kendallgal", {
+            "title": "What Uncertainties Do We Need in Bayesian Deep Learning "
+                     "for Computer Vision?",
+            "authors": ["Alex Kendall", "Yarin Gal"], "year": 2017,
+            "arxiv_id": "1703.04978"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "1703.04978", arxiv_payload(
+            "1703.04978", "Lectures on EW Standard Model",
+            ["Rohini M. Godbole"], 2017))
+        verdict = self.assertVerdict(rec, "arxiv_names_a_different_paper")
+        self.assertIn("Godbole", verdict.detail)
+
+    def test_a_correct_id_is_silent(self):
+        rec = self._record("ok", {
+            "title": "Supervised Contrastive Learning",
+            "authors": ["Khosla, Prannay"], "year": 2020,
+            "arxiv_id": "2004.11362"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "2004.11362", arxiv_payload(
+            "2004.11362", "Supervised Contrastive Learning",
+            ["Prannay Khosla", "Piotr Teterwak"], 2020))
+        self.assertNoVerdict(rec)
+
+    def test_initials_form_author_agrees(self):
+        # NEGATIVE CONTROL, from the corpus: the record writes "Seitzer M" and
+        # arXiv serves "Maximilian Seitzer".
+        rec = self._record("initials", {
+            "title": "Causal Influence Detection for Improving Efficiency in "
+                     "Reinforcement Learning",
+            "authors": ["Seitzer M", "Scholkopf B"], "year": 2021,
+            "arxiv_id": "2106.03443"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "2106.03443", arxiv_payload(
+            "2106.03443",
+            "Causal Influence Detection for Improving Efficiency in "
+            "Reinforcement Learning",
+            ["Maximilian Seitzer", "Bernhard Schoelkopf"], 2021))
+        self.assertNoVerdict(rec)
+
+    def test_preprint_author_order_alone_does_not_fire(self):
+        # NEGATIVE CONTROL, documented false-positive class 4 -- and MORE likely
+        # on this axis than on the DOI one, since the arXiv version IS the
+        # preprint. The conjunction is what survives it: the title is correct.
+        rec = self._record("curl", {
+            "title": "CURL: Contrastive Unsupervised Representations for "
+                     "Reinforcement Learning",
+            "authors": ["Laskin, Michael"], "year": 2020,
+            "arxiv_id": "2004.04136"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "2004.04136", arxiv_payload(
+            "2004.04136",
+            "CURL: Contrastive Unsupervised Representations for "
+            "Reinforcement Learning",
+            ["Aravind Srinivas", "Michael Laskin"], 2020))
+        self.assertNoVerdict(rec)
+
+    def test_subtitle_truncation_alone_does_not_fire(self):
+        # NEGATIVE CONTROL, documented false-positive class 1.
+        rec = self._record("subtitle", {
+            "title": "SafeDreamer",
+            "authors": ["Weidong Huang"], "year": 2024,
+            "arxiv_id": "2307.07176"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "2307.07176", arxiv_payload(
+            "2307.07176", "SafeDreamer: Safe Reinforcement Learning with "
+            "World Models", ["Weidong Huang"], 2024))
+        self.assertNoVerdict(rec)
+
+    def test_a_confirming_arxiv_doi_skips_the_lookup_entirely(self):
+        # The cost claim: 3 of the 5 arXiv records in the corpus need no call,
+        # because their own DOI already establishes the id record-internally.
+        rec = self._record("confirmed", {
+            "title": "Supervised Contrastive Learning",
+            "authors": ["Khosla, Prannay"], "year": 2020,
+            "doi": "10.48550/arXiv.2004.11362", "arxiv_id": "2004.11362"})
+        target = V.collect_scoped_targets([str(rec)])[0]
+        resolver = V.Resolver(self.fx.cache, offline=False)
+        self.assertIsNone(
+            V.check_arxiv_names_a_different_paper(target, resolver))
+        self.assertEqual(0, resolver.spent)
+
+    def test_an_unresolvable_id_fails_open(self):
+        rec = self._record("gone", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2020, "arxiv_id": "9999.99999"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "9999.99999",
+                          {"ok": False, "error": "not_found"})
+        self.assertNoVerdict(rec)
+
+    def test_an_answer_about_a_different_id_is_refused(self):
+        # The arXiv-side twin of aid_query_is_faithful. An authority quietly
+        # answering about a NEIGHBOURING record would turn a fail-open miss into
+        # a confident wrong verdict.
+        rec = self._record("unfaithful", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2020, "arxiv_id": "2004.11362"})
+        self.fx.cache_put(V.ARXIV_CACHE_KIND, "2004.11362", arxiv_payload(
+            "1703.04978", "Lectures on EW Standard Model",
+            ["Rohini M. Godbole"], 2017))
+        self.assertNoVerdict(rec)
+        resolver = self.fx.resolver()
+        self.assertEqual((None, "unfaithful_answer"),
+                         resolver.arxiv_view("2004.11362"))
+
+    def test_offline_fails_open_and_names_what_it_skipped(self):
+        rec = self._record("offline", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2020, "arxiv_id": "2004.11362"})
+        verdicts, resolver = self.verdicts_for(rec)
+        self.assertEqual([], verdicts)
+        self.assertIn(("arxiv:2004.11362", "offline"), resolver.skipped)
+
+    def test_the_arxiv_fetch_budget_is_named_when_spent(self):
+        # Not a silent cap: the per-kind budget exists so a bulk pull cannot
+        # make `git commit` wait on arXiv's slow request rate, and whatever it
+        # skips has to be reported (CLAUDE.md, "No silent caps").
+        resolver = V.Resolver(self.fx.cache, offline=False, arxiv_budget=1)
+        resolver._may_fetch("arxiv:a", kind="arxiv")
+        self.assertFalse(resolver._may_fetch("arxiv:b", kind="arxiv"))
+        self.assertIn(("arxiv:b", "arxiv fetch budget spent"), resolver.skipped)
+
+    def test_the_arxiv_budget_does_not_cap_the_other_sources(self):
+        resolver = V.Resolver(self.fx.cache, offline=False, arxiv_budget=1)
+        resolver._may_fetch("arxiv:a", kind="arxiv")
+        self.assertTrue(resolver._may_fetch("doi:10.1/a"))
+        self.assertTrue(resolver._may_fetch("pmid:1"))
+
+    def test_arxiv_budget_zero_means_no_cap(self):
+        resolver = V.Resolver(self.fx.cache, offline=False, arxiv_budget=0)
+        for i in range(20):
+            self.assertTrue(resolver._may_fetch("arxiv:%d" % i, kind="arxiv"))
+
+
+class TestIsbnChecksum(unittest.TestCase):
+
+    def test_the_corpus_isbns_all_verify(self):
+        # The measured baseline for verdict 4b: 0 findings of 5.
+        for value in ("9780674458086", "9780691126241", "9780893912314",
+                      "9780521633956", "978-0-465-02122-2"):
+            self.assertIs(True, V.isbn_check_digit_ok(value), value)
+
+    def test_a_transposed_digit_is_caught(self):
+        self.assertIs(False, V.isbn_check_digit_ok("978-0-465-02122-3"))
+        self.assertIs(False, V.isbn_check_digit_ok("9780674458087"))
+
+    def test_isbn_10_with_an_x_check_digit_verifies(self):
+        self.assertIs(True, V.isbn_check_digit_ok("089391231X"))
+        self.assertIs(False, V.isbn_check_digit_ok("0893912311"))
+
+    def test_a_wrong_length_is_none_not_false(self):
+        # A shape problem is validate_literature.py's, not this file's, so it
+        # fails OPEN rather than blocking a commit on a schema question.
+        self.assertIsNone(V.isbn_check_digit_ok("12345"))
+        self.assertIsNone(V.isbn_check_digit_ok(""))
+        self.assertIsNone(V.isbn_check_digit_ok(None))
+
+    def test_an_x_outside_the_check_position_is_none_not_false(self):
+        self.assertIsNone(V.isbn_check_digit_ok("08X391231X"))
+
+    def test_canonical_form_drops_separators(self):
+        self.assertEqual("9780465021222", V.canonical_isbn("978-0-465-02122-2"))
+        self.assertEqual("089391231X", V.canonical_isbn("0-89391-231-x"))
+
+
+class TestIsbnMalformedVerdict(FixtureCase):
+
+    def _record(self, isbn):
+        return self.fx.record("book", {
+            "title": "The Evolution of Cooperation",
+            "authors": ["Robert Axelrod"], "year": 1984, "isbn": isbn})
+
+    def test_a_bad_check_digit_fires(self):
+        verdict = self.assertVerdict(self._record("978-0-465-02122-3"),
+                                     "malformed_identifier")
+        self.assertIn("check digit", verdict.detail)
+
+    def test_a_good_check_digit_is_silent(self):
+        self.assertNoVerdict(self._record("978-0-465-02122-2"))
+
+    def test_it_needs_no_network(self):
+        rec = self._record("9780674458087")
+        target = V.collect_scoped_targets([str(rec)])[0]
+        resolver = V.Resolver(self.fx.cache, offline=False)
+        self.assertIsNotNone(V.check_isbn_malformed(target, resolver))
+        self.assertEqual(0, resolver.spent)
+
+    def test_a_wrong_length_isbn_fails_open(self):
+        self.assertNoVerdict(self._record("12345"))
+
+
+class TestIsbnIsNotOnTheGatePath(FixtureCase):
+    """Verdict 8 is report-only, and this class holds the MEASUREMENT that says so.
+
+    An ISBN identifies a VOLUME, not a chapter. So a CORRECT ISBN on a chapter
+    record resolves to a different title by different people (the volume's
+    editors) and trips verdict 3's conjunction -- the same conjunction that
+    measures 0 false positives in 2060 records on the DOI path produces 1 in 5
+    here, because the identifier's semantics are the problem, not the
+    comparison. The `venue` disjunction rescues it, but that rule was written
+    from the single record it rescues, so it stays off the gate.
+
+    FLIP CONDITION (module docstring, verdict 8): >= 15 ISBN-carrying records,
+    with the chapter-shaped ones separable by a rule not written from them.
+    """
+
+    def _chapter_record(self):
+        # The real corpus record and the real OpenLibrary answer.
+        rec = self.fx.record("murray1985", {
+            "title": "Emotional regulation of interactions between "
+                     "two-month-olds and their mothers",
+            "authors": ["Murray, Lynne", "Trevarthen, Colwyn"], "year": 1985,
+            "venue": "Social Perception in Infants",
+            "isbn": "9780893912314"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780893912314",
+                          openlibrary_payload("Social perception in infants",
+                                              ["Tiffany Field",
+                                               "Nathan A. Fox"], 1985))
+        return rec
+
+    def test_check_is_not_in_checks_networked(self):
+        self.assertNotIn(V.check_isbn_names_a_different_work,
+                         V.CHECKS_NETWORKED)
+        self.assertIn(V.check_isbn_names_a_different_work,
+                      V.CHECKS_REPORT_ONLY)
+
+    def test_the_gate_stays_silent_on_an_isbn_title_defect(self):
+        rec = self.fx.record("wrongisbn", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "isbn": "9780893912314"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780893912314",
+                          openlibrary_payload("Social perception in infants",
+                                              ["Tiffany Field"], 1985))
+        self.assertNoVerdict(rec)
+
+    def test_the_gate_never_contacts_openlibrary(self):
+        # The fail-open argument: a third API in the commit path is a third way
+        # to be unreachable, so verdict 8 keeps it off that path entirely.
+        rec = self.fx.record("uncached", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "isbn": "9780893912314"})
+        target = V.collect_scoped_targets([str(rec)])[0]
+        resolver = V.Resolver(self.fx.cache, offline=False)
+        V.verify_target(target, resolver)
+        self.assertEqual(0, resolver.spent)
+
+    def test_the_chapter_record_WOULD_fire_without_the_venue_disjunction(self):
+        # This is the measurement, asserted rather than described: both axes of
+        # the raw conjunction disagree on a record with nothing wrong with it.
+        rec = self._chapter_record()
+        target = V.collect_scoped_targets([str(rec)])[0]
+        view, _ = self.fx.resolver().isbn_view(target["isbn"])
+        self.assertIs(False, V.titles_agree(target["source"]["title"],
+                                            view["title"]))
+        self.assertIs(False, V.first_authors_agree(
+            target["source"]["authors"], view["authors"]))
+
+    def test_and_the_venue_disjunction_is_what_rescues_it(self):
+        rec = self._chapter_record()
+        target = V.collect_scoped_targets([str(rec)])[0]
+        self.assertIsNone(V.check_isbn_names_a_different_work(
+            target, self.fx.resolver()))
+
+    def test_a_chapter_record_with_no_venue_is_NOT_rescued(self):
+        # Honest about the limit: `venue` is not schema-enforced, so the rescue
+        # is not general. Recorded as a test rather than left as a claim.
+        rec = self.fx.record("noven", {
+            "title": "Emotional regulation of interactions between "
+                     "two-month-olds and their mothers",
+            "authors": ["Murray, Lynne"], "year": 1985,
+            "isbn": "9780893912314"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780893912314",
+                          openlibrary_payload("Social perception in infants",
+                                              ["Tiffany Field"], 1985))
+        target = V.collect_scoped_targets([str(rec)])[0]
+        self.assertIsNotNone(V.check_isbn_names_a_different_work(
+            target, self.fx.resolver()))
+
+    def test_a_monograph_with_a_correct_isbn_agrees(self):
+        rec = self.fx.record("axelrod", {
+            "title": "The Evolution of Cooperation",
+            "authors": ["Robert Axelrod"], "year": 1984,
+            "venue": "Basic Books", "isbn": "978-0-465-02122-2"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "978-0-465-02122-2",
+                          openlibrary_payload("The evolution of cooperation",
+                                              ["Robert M. Axelrod"], 1984))
+        target = V.collect_scoped_targets([str(rec)])[0]
+        self.assertIsNone(V.check_isbn_names_a_different_work(
+            target, self.fx.resolver()))
+
+    def test_an_isbn_openlibrary_does_not_hold_fails_open(self):
+        # 1 of the 5 corpus ISBNs (Bratman 1987) is exactly this.
+        rec = self.fx.record("absent", {
+            "title": "Intention, Plans, and Practical Reason",
+            "authors": ["Bratman, Michael E."], "year": 1987,
+            "isbn": "9780674458086"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780674458086",
+                          {"ok": False, "error": "not_found"})
+        target = V.collect_scoped_targets([str(rec)])[0]
+        self.assertIsNone(V.check_isbn_names_a_different_work(
+            target, self.fx.resolver()))
+
+
+class TestSecondaryFetchers(unittest.TestCase):
+    """Answers are cached; TRANSPORT failures are not. Same split as fetch_pubmed_aid.
+
+    An HTTP 503 persisted as though it were an answer would silently remove that
+    record from every future check, indistinguishably from a real miss.
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_secondary_test_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        self._http_get = audit.http_get
+        self.addCleanup(setattr, audit, "http_get", self._http_get)
+
+    ATOM = ("<?xml version='1.0' encoding='UTF-8'?>"
+            "<feed xmlns='http://www.w3.org/2005/Atom'><entry>"
+            "<id>http://arxiv.org/abs/2307.07176v3</id>"
+            "<title>SafeDreamer</title>"
+            "<published>2023-07-14T06:00:08Z</published>"
+            "<author><name>Weidong Huang</name></author>"
+            "</entry></feed>")
+
+    EMPTY_ATOM = ("<?xml version='1.0' encoding='UTF-8'?>"
+                  "<feed xmlns='http://www.w3.org/2005/Atom'>"
+                  "<opensearch:totalResults xmlns:opensearch="
+                  "'http://a9.com/-/spec/opensearch/1.1/'>0"
+                  "</opensearch:totalResults></feed>")
+
+    def test_arxiv_success_is_cached_and_parsed(self):
+        audit.http_get = lambda url, timeout=30: self.ATOM
+        payload = V.fetch_arxiv("2307.07176", self.tmp,
+                                audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertEqual("SafeDreamer", payload["message"]["title"])
+        self.assertEqual(["Weidong Huang"], payload["message"]["authors"])
+        self.assertTrue(audit.cache_path(self.tmp, V.ARXIV_CACHE_KIND,
+                                         "2307.07176").exists())
+
+    def test_arxiv_no_such_id_IS_cached_because_it_is_an_answer(self):
+        audit.http_get = lambda url, timeout=30: self.EMPTY_ATOM
+        payload = V.fetch_arxiv("9999.99999", self.tmp,
+                                audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+        self.assertEqual("not_found", payload["error"])
+        self.assertTrue(audit.cache_path(self.tmp, V.ARXIV_CACHE_KIND,
+                                         "9999.99999").exists())
+
+    def test_arxiv_transport_failure_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 503, "Service Unavailable",
+                                         {}, None)
+        audit.http_get = boom
+        payload = V.fetch_arxiv("2307.07176", self.tmp,
+                                audit.RateLimiter(1000))
+        self.assertEqual("http_503", payload["error"])
+        self.assertFalse(audit.cache_path(self.tmp, V.ARXIV_CACHE_KIND,
+                                          "2307.07176").exists())
+
+    def test_arxiv_unparseable_body_is_not_a_crash(self):
+        audit.http_get = lambda url, timeout=30: "<not xml"
+        payload = V.fetch_arxiv("2307.07176", self.tmp,
+                                audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+
+    def test_openlibrary_empty_object_is_a_not_found_answer(self):
+        # OpenLibrary answers an unknown ISBN with {} and HTTP 200.
+        audit.http_get = lambda url, timeout=30: "{}"
+        payload = V.fetch_openlibrary("9780674458086", self.tmp,
+                                      audit.RateLimiter(1000))
+        self.assertEqual("not_found", payload["error"])
+        self.assertTrue(audit.cache_path(self.tmp, V.OPENLIBRARY_CACHE_KIND,
+                                         "9780674458086").exists())
+
+    def test_openlibrary_success_is_cached_under_the_canonical_isbn(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"ISBN:9780465021222": {"title": "The evolution of cooperation",
+                                    "authors": [{"name": "Robert M. Axelrod"}],
+                                    "publish_date": "1984"}})
+        payload = V.fetch_openlibrary("978-0-465-02122-2", self.tmp,
+                                      audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(audit.cache_path(self.tmp, V.OPENLIBRARY_CACHE_KIND,
+                                         "9780465021222").exists())
+
+    def test_openlibrary_transport_failure_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.URLError("connection reset")
+        audit.http_get = boom
+        V.fetch_openlibrary("9780465021222", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(audit.cache_path(self.tmp, V.OPENLIBRARY_CACHE_KIND,
+                                          "9780465021222").exists())
+
+    def test_pmc_transport_failure_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 429, "Too Many", {}, None)
+        audit.http_get = boom
+        payload = V.fetch_pmc("PMC2801761", self.tmp, audit.RateLimiter(1000))
+        self.assertEqual("http_429", payload["error"])
+        self.assertFalse(audit.cache_path(self.tmp, V.PMC_CACHE_KIND,
+                                          "PMC2801761").exists())
+
+    def test_pmc_success_is_cached_under_the_normalised_id(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"result": {"2801761": {"title": "Disruption of ripples.",
+                                    "authors": [{"name": "Ego-Stengel V",
+                                                 "authtype": "Author"}],
+                                    "pubdate": "2010 Jan"}}})
+        payload = V.fetch_pmc("PMC2801761", self.tmp, audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(audit.cache_path(self.tmp, V.PMC_CACHE_KIND,
+                                         "PMC2801761").exists())
+
+
+class TestSecondaryTargetCollection(FixtureCase):
+    """A record whose ONLY identifier is secondary must be in scope.
+
+    It was not until 2026-08-14: both collectors filtered on doi/pmid, so an
+    arxiv-only or isbn-only record fell out of scope silently -- the gate
+    printed an OK line and checked nothing. 7 records in this corpus are that
+    shape.
+    """
+
+    def test_an_arxiv_only_record_is_a_target(self):
+        rec = self.fx.record("arxivonly", {
+            "title": "SafeDreamer", "authors": ["Weidong Huang"],
+            "year": 2024, "doi": None, "arxiv_id": "2307.07176"})
+        targets = V.collect_scoped_targets([str(rec)])
+        self.assertEqual(1, len(targets))
+        self.assertEqual("2307.07176", targets[0]["arxiv_id"])
+
+    def test_an_isbn_only_record_is_a_target(self):
+        rec = self.fx.record("isbnonly", {
+            "title": "The Reasons of Love", "authors": ["Frankfurt, Harry G."],
+            "year": 2004, "doi": "", "isbn": "9780691126241"})
+        self.assertEqual(1, len(V.collect_scoped_targets([str(rec)])))
+
+    def test_a_pmc_only_record_is_a_target(self):
+        rec = self.fx.record("pmconly", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmc": "PMC2801761"})
+        self.assertEqual(1, len(V.collect_scoped_targets([str(rec)])))
+
+    def test_a_record_with_no_identifier_at_all_is_still_not_a_target(self):
+        rec = self.fx.record("none", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "doi": None, "pmid": None, "isbn": None})
+        self.assertEqual([], V.collect_scoped_targets([str(rec)]))
+
+    def test_collect_all_targets_sees_the_secondary_records(self):
+        self.fx.record("arxivonly", {
+            "title": "SafeDreamer", "authors": ["Weidong Huang"],
+            "year": 2024, "arxiv_id": "2307.07176"})
+        self.fx.record("doirec", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "doi": "10.1/a"})
+        self.assertEqual(2, len(V.collect_all_targets()))
+
+    def test_the_doi_pmid_population_is_still_addressable_separately(self):
+        # --cross-check keeps printing the 2072 the findings doc quotes.
+        self.fx.record("arxivonly", {
+            "title": "SafeDreamer", "authors": ["Weidong Huang"],
+            "year": 2024, "arxiv_id": "2307.07176"})
+        self.fx.record("doirec", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "doi": "10.1/a"})
+        self.assertEqual(
+            1, len(V.collect_all_targets(keys=("doi", "pmid"))))
+
+
+class TestSecondaryWaivers(FixtureCase):
+    """Waivers are value-keyed on the secondary identifiers too, and normalised.
+
+    A waiver that quietly stops matching is a waiver that quietly starts
+    blocking, so the match goes through the same normalisers the verdicts
+    compare with -- otherwise a waiver written `PMC2801761` would miss a record
+    spelling it `pmc2801761`.
+    """
+
+    def _waive(self, **entry):
+        entry.setdefault("entry", "waived")
+        entry.setdefault("reason", "fixture")
+        saved = V.WAIVERS
+        V.WAIVERS = [entry]
+        self.addCleanup(setattr, V, "WAIVERS", saved)
+
+    def test_a_pmc_waiver_downgrades_but_still_reports(self):
+        self._waive(pmc="PMC2801761")
+        rec = self.fx.record("waived", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        verdicts, _ = self.verdicts_for(rec)
+        self.assertEqual(["waived:pmc_pmid_mismatch"],
+                         [v.kind for v in verdicts])
+
+    def test_a_pmc_waiver_is_normalised_not_string_matched(self):
+        self._waive(pmc="pmc2801761")
+        rec = self.fx.record("waived", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        verdicts, _ = self.verdicts_for(rec)
+        self.assertTrue(all(v.kind.startswith("waived:") for v in verdicts))
+
+    def test_an_isbn_waiver_matches_the_hyphenated_form(self):
+        self._waive(isbn="9780465021223")
+        rec = self.fx.record("waived", {
+            "title": "A Book", "authors": ["Smith, A"], "year": 1984,
+            "isbn": "978-0-465-02122-3"})
+        verdicts, _ = self.verdicts_for(rec)
+        self.assertEqual(["waived:malformed_identifier"],
+                         [v.kind for v in verdicts])
+
+    def test_an_arxiv_waiver_ignores_the_version_suffix(self):
+        self._waive(arxiv_id="2106.03443v2")
+        rec = self.fx.record("waived", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2021,
+            "doi": "10.48550/arXiv.2011.09464", "arxiv_id": "2106.03443"})
+        verdicts, _ = self.verdicts_for(rec)
+        self.assertEqual(["waived:arxiv_doi_mismatch"],
+                         [v.kind for v in verdicts])
+
+    def test_a_waiver_does_not_cover_a_different_secondary_value(self):
+        # The whole point of value-keying: a waived record that later gains a
+        # DIFFERENT wrong identifier still blocks.
+        self._waive(pmc="PMC0000001")
+        rec = self.fx.record("waived", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        self.assertVerdict(rec, "pmc_pmid_mismatch")
+
+
+class TestReportOnlyKinds(FixtureCase):
+    """REPORT_ONLY_KINDS must cover every kind a CHECKS_REPORT_ONLY check emits.
+
+    The sweep prints findings under a "never blocks" heading based on this set,
+    so a kind missing from it would be printed as advisory while actually being
+    a gating verdict -- wrong in the direction that matters. Each check is run
+    against a fixture that makes it FIRE, so adding a report-only check without
+    listing its kind fails here rather than at the next sweep.
+    """
+
+    def _firing_targets(self):
+        out = {}
+        rec = self.fx.record("pmconlybad", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2010, "pmc": "PMC2801761"})
+        self.fx.cache_put(V.PMC_CACHE_KIND, "PMC2801761", {"ok": True,
+            "message": pubmed_payload("Something Else Entirely.",
+                                      ["Jones B"], 2010)["message"]})
+        out[V.check_pmc_declared_vs_identifier] = \
+            V.collect_scoped_targets([str(rec)])[0]
+
+        rec = self.fx.record("isbnbad", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "isbn": "9780893912314"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780893912314",
+                          openlibrary_payload("Social perception in infants",
+                                              ["Tiffany Field"], 1985))
+        out[V.check_isbn_names_a_different_work] = \
+            V.collect_scoped_targets([str(rec)])[0]
+        return out
+
+    def test_report_only_kinds_covers_every_report_only_check(self):
+        targets = self._firing_targets()
+        resolver = self.fx.resolver()
+        for check in V.CHECKS_REPORT_ONLY:
+            self.assertIn(check, targets,
+                          "%s has no firing fixture here -- add one"
+                          % check.__name__)
+            verdict = check(targets[check], resolver)
+            self.assertIsNotNone(verdict,
+                                 "%s did not fire on its fixture"
+                                 % check.__name__)
+            self.assertIn(verdict.kind, V.REPORT_ONLY_KINDS,
+                          "%s emits %r, which is not in REPORT_ONLY_KINDS"
+                          % (check.__name__, verdict.kind))
+
+    def test_no_gating_check_emits_a_report_only_kind(self):
+        # The other direction: a gating verdict whose kind landed in this set
+        # would be printed as advisory by the sweep.
+        self.assertNotIn(V.check_doi_crosswalk, V.CHECKS_NETWORKED)
+        for check in V.CHECKS_NETWORKED + V.CHECKS_OFFLINE:
+            self.assertNotIn(check, V.CHECKS_REPORT_ONLY)
+
+
+class TestSecondaryCheckCli(FixtureCase):
+
+    def _run(self, argv):
+        from io import StringIO
+        out, sys.stdout = sys.stdout, StringIO()
+        try:
+            rc = V.main(argv)
+            return rc, sys.stdout.getvalue()
+        finally:
+            sys.stdout = out
+
+    def _base(self):
+        return ["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                "--offline", "--secondary-check"]
+
+    def test_a_clean_corpus_reports_zero_and_chains_safely(self):
+        self.fx.record("ok", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC2801761"))
+        rc, out = self._run(self._base())
+        self.assertEqual(0, rc)
+        self.assertIn("GATING verdicts                 : 0", out)
+
+    def test_a_gating_finding_sets_exit_one_with_exit_nonzero(self):
+        self.fx.record("bad", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        rc, out = self._run(self._base() + ["--exit-nonzero"])
+        self.assertEqual(1, rc)
+        self.assertIn("pmc_pmid_mismatch", out)
+
+    def test_a_REPORT_ONLY_finding_never_sets_exit_one(self):
+        # The assertion that stops --exit-nonzero quietly promoting verdict 8.
+        self.fx.record("isbnbad", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "isbn": "9780893912314"})
+        self.fx.cache_put(V.OPENLIBRARY_CACHE_KIND, "9780893912314",
+                          openlibrary_payload("Social perception in infants",
+                                              ["Tiffany Field"], 1985))
+        rc, out = self._run(self._base() + ["--exit-nonzero"])
+        self.assertEqual(0, rc)
+        self.assertIn("isbn_names_a_different_work", out)
+        self.assertIn("REPORT-ONLY", out)
+
+    def test_a_doi_only_record_is_out_of_scope(self):
+        self.fx.record("doionly", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "doi": "10.1/a"})
+        rc, out = self._run(self._base())
+        self.assertIn("records in scope here           : 0", out)
+
+    def test_the_sweep_writes_json(self):
+        self.fx.record("bad", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self.fx.cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        out_path = self.fx.tmp / "sweep.json"
+        self._run(self._base() + ["--json", str(out_path)])
+        data = json.loads(out_path.read_text(encoding="utf-8"))
+        self.assertEqual(1, len(data["gating"]))
+        self.assertEqual("pmc_pmid_mismatch", data["gating"][0]["kind"])
+
+
+class TestSecondaryPrecommitWiring(unittest.TestCase):
+    """End-to-end: a staged record with a wrong secondary identifier blocks.
+
+    The point is not that the verdict fires -- that is tested above -- but that
+    the SCOPED path list the hook builds actually reaches these records. A
+    record whose only identifier is secondary used to fall out of
+    collect_scoped_targets entirely, so the gate printed OK and checked nothing.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.script = REPO_ROOT / "scripts" / "precommit_literature.sh"
+        if not cls.script.exists():
+            raise unittest.SkipTest("precommit_literature.sh not present")
+        if not shutil.which("git"):
+            raise unittest.SkipTest("git not available")
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_secondary_hook_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        self.repo = self.tmp / "REE_assembly"
+        self.lit = self.repo / "evidence" / "literature"
+        self.lit.mkdir(parents=True)
+        self.cache = self.tmp / "cache"
+        self.cache.mkdir()
+        for script in ("validate_literature.py",
+                       "verify_literature_identifiers.py",
+                       "audit_literature_bibliographic_accuracy.py"):
+            src = REPO_ROOT / "scripts" / script
+            if not src.exists():
+                raise unittest.SkipTest("%s not present" % script)
+            (self.repo / "scripts").mkdir(exist_ok=True)
+            shutil.copy(src, self.repo / "scripts" / script)
+        subprocess.run(["git", "init", "-q"], cwd=self.repo, check=True)
+        subprocess.run(["git", "config", "user.email", "t@e.st"],
+                       cwd=self.repo, check=True)
+        subprocess.run(["git", "config", "user.name", "T"],
+                       cwd=self.repo, check=True)
+
+    def _record(self, entry, source):
+        entry_dir = self.lit / "targeted_review_x" / "entries" / entry
+        entry_dir.mkdir(parents=True, exist_ok=True)
+        (entry_dir / "record.json").write_text(json.dumps({
+            "schema_version": "literature_evidence/v1",
+            "literature_type": "targeted_review_x",
+            "entry_id": entry,
+            "timestamp_utc": "2026-08-14T00:00:00Z",
+            "claim_ids_tested": ["MECH-001"],
+            "source": source,
+            "evidence_class": "theoretical_review",
+            "evidence_direction": "supports",
+            "confidence": 0.5,
+            "confidence_rationale": "fixture",
+            "summary_path": "summary.md",
+            "tags": ["fixture"],
+        }, indent=1), encoding="utf-8")
+        (entry_dir / "summary.md").write_text("# Summary\n\nbody\n",
+                                              encoding="utf-8")
+        return entry_dir / "record.json"
+
+    def _cache_put(self, kind, ident, payload):
+        normalise = Fixture.KEY_NORMALISERS.get(kind)
+        if normalise is not None:
+            normalise = getattr(normalise, "__func__", normalise)
+            key = normalise(ident)
+        else:
+            key = str(ident)
+        path = audit.cache_path(self.cache, kind, key)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload), encoding="utf-8")
+
+    def _run_gate(self):
+        subprocess.run(["git", "add", "-A"], cwd=self.repo, check=True)
+        env = dict(os.environ)
+        env["REE_LIT_BIB_CACHE"] = str(self.cache)
+        env["REE_LIT_BIB_OFFLINE"] = "1"
+        env["REE_LITERATURE_GATE_BLOCK"] = "0"   # stage 1 is not under test
+        return subprocess.run(
+            ["bash", str(self.script)], cwd=self.repo, env=env,
+            capture_output=True, text=True)
+
+    def test_a_wrong_pmc_blocks_with_exit_2(self):
+        self._record("badpmc", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self._cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC7282808"))
+        result = self._run_gate()
+        self.assertEqual(2, result.returncode, result.stdout + result.stderr)
+        self.assertIn("pmc_pmid_mismatch", result.stdout)
+
+    def test_a_correct_pmc_passes(self):
+        self._record("okpmc", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2010,
+            "pmid": "19816984", "pmc": "PMC2801761"})
+        self._cache_put("pubmed", "19816984", pubmed_payload(
+            "A Study.", ["Smith A"], 2010, pmc="PMC2801761"))
+        result = self._run_gate()
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+
+    def test_an_arxiv_only_record_reaches_the_gate_at_all(self):
+        # The scoping regression this class exists for: before 2026-08-14 this
+        # record was not a target, so the gate reported OK having checked
+        # nothing at all.
+        self._record("badarxiv", {
+            "title": "A Study", "authors": ["Smith, A"], "year": 2021,
+            "doi": "10.48550/arXiv.2011.09464", "arxiv_id": "2106.03443"})
+        result = self._run_gate()
+        self.assertEqual(2, result.returncode, result.stdout + result.stderr)
+        self.assertIn("arxiv_doi_mismatch", result.stdout)
+
+    def test_a_malformed_isbn_blocks_offline(self):
+        # Verdict 4b needs no network at all, so it holds on a box with none.
+        self._record("badisbn", {
+            "title": "A Book", "authors": ["Smith, A"], "year": 1984,
+            "isbn": "978-0-465-02122-3"})
+        result = self._run_gate()
+        self.assertEqual(2, result.returncode, result.stdout + result.stderr)
+        self.assertIn("malformed_identifier", result.stdout)
+
+    def test_a_valid_isbn_only_record_passes_without_touching_openlibrary(self):
+        self._record("okisbn", {
+            "title": "A Book", "authors": ["Smith, A"], "year": 1984,
+            "isbn": "978-0-465-02122-2"})
+        result = self._run_gate()
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
 
 if __name__ == "__main__":
