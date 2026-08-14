@@ -1,8 +1,8 @@
-# Klumpers & Roelofs (2025) — Intersect Between Threat, Active Avoidance, and Reward
+# Badarnee et al. (2025) — Intersect Between Threat, Active Avoidance, and Reward
 
 ## What the paper does
 
-Klumpers and Roelofs review how brain mechanisms for conditioned threat (fear), active avoidance, and reward approach intersect and interact. They propose a neural toggle-switch model: the brain transitions between fear/avoidance and approach/reward states based on cost-reward evaluation in vmPFC/OFC. The amygdala drives threat responses, the nucleus accumbens drives approach motivation, and vmPFC/OFC serves as the arbiter that determines the balance based on contextual evaluation.
+Badarnee and colleagues review how brain mechanisms for conditioned threat (fear), active avoidance, and reward approach intersect and interact. They propose a neural toggle-switch model: the brain transitions between fear/avoidance and approach/reward states based on cost-reward evaluation in vmPFC/OFC. The amygdala drives threat responses, the nucleus accumbens drives approach motivation, and vmPFC/OFC serves as the arbiter that determines the balance based on contextual evaluation.
 
 ## Relevance to MECH-152
 

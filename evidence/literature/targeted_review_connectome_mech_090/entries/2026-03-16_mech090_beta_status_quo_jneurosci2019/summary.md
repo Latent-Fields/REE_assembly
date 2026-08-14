@@ -6,7 +6,7 @@
 
 ## Source
 
-- Helfrich R, Knight RT (2019). *Beta Oscillations in Working Memory, Executive Control of Movement and Thought, and Sensorimotor Function*. Journal of Neuroscience.
+- Schmidt R, Herrojo Ruiz M, Kilavik BE, Lundqvist M, Starr PA, Aron AR (2019). *Beta Oscillations in Working Memory, Executive Control of Movement and Thought, and Sensorimotor Function*. Journal of Neuroscience.
 - DOI: `10.1523/JNEUROSCI.1163-19.2019`
 - URL: `https://www.jneurosci.org/content/39/42/8231`
 

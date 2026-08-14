@@ -1,8 +1,8 @@
-# Liu et al. (2024) — Replay-Triggered Brain-Wide Activation in Humans
+# Huang et al. (2024) — Replay-Triggered Brain-Wide Activation in Humans
 
 ## What the paper does
 
-Liu and colleagues use simultaneous EEG-fMRI to detect hippocampal replay events during rest and demonstrate their brain-wide consequences. They find that transient replay events (~50ms sequential reactivation of learned spatial patterns) trigger increased BOLD activity in hippocampus and medial prefrontal cortex, and strengthen functional connectivity between hippocampus and the default mode network. This provides the first direct evidence in humans that replay engages the DMN, bridging the gap between rodent replay electrophysiology and human DMN neuroimaging.
+Huang and colleagues use simultaneous EEG-fMRI to detect hippocampal replay events during rest and demonstrate their brain-wide consequences. They find that transient replay events (~50ms sequential reactivation of learned spatial patterns) trigger increased BOLD activity in hippocampus and medial prefrontal cortex, and strengthen functional connectivity between hippocampus and the default mode network. This provides the first direct evidence in humans that replay engages the DMN, bridging the gap between rodent replay electrophysiology and human DMN neuroimaging.
 
 ## Relevance to MECH-029
 

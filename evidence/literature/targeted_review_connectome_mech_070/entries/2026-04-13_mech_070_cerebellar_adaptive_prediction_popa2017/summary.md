@@ -1,4 +1,4 @@
-# Popa et al. (2017) -- The Cerebellum: Adaptive Prediction for Movement and Cognition
+# Sokolov, Miall & Ivry (2017) -- The Cerebellum: Adaptive Prediction for Movement and Cognition
 
 ## What the paper did
 
@@ -10,7 +10,7 @@ The review provides a rare quantitative timescale claim: cerebellar predictive c
 
 ## How findings translate to REE
 
-The evidence_quality_note for MECH-070 already documents the problem: EXQ-132 and EXQ-212 showed E2 degrading faster across horizons than E1, which is opposite to the claim. Popa et al. provide the biological grounding for why this experimental result is not a surprise. A cerebellar-analogue system operating under tight temporal constraints -- optimised for up-to-a-second prediction -- would be expected to degrade rapidly when asked to roll out 20-30 discrete steps. The original MECH-070 claim appears to have confused the rollout_horizon design parameter (E2=30 > E1=20) with a genuine claim about the natural operation of the biological system. The neuroscience, read carefully, places E2 as the short-horizon component and E1 as the longer-horizon one, not the reverse. This is consistent with the updated evidence_quality_note: E2's training horizon is 1-step (efference-copy forward prediction), separate from the rollout_horizon. The claim needs reformulating rather than defending.
+The evidence_quality_note for MECH-070 already documents the problem: EXQ-132 and EXQ-212 showed E2 degrading faster across horizons than E1, which is opposite to the claim. Sokolov et al. provide the biological grounding for why this experimental result is not a surprise. A cerebellar-analogue system operating under tight temporal constraints -- optimised for up-to-a-second prediction -- would be expected to degrade rapidly when asked to roll out 20-30 discrete steps. The original MECH-070 claim appears to have confused the rollout_horizon design parameter (E2=30 > E1=20) with a genuine claim about the natural operation of the biological system. The neuroscience, read carefully, places E2 as the short-horizon component and E1 as the longer-horizon one, not the reverse. This is consistent with the updated evidence_quality_note: E2's training horizon is 1-step (efference-copy forward prediction), separate from the rollout_horizon. The claim needs reformulating rather than defending.
 
 ## Limitations
 

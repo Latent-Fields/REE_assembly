@@ -1,4 +1,4 @@
-# Zago et al. (2021) -- The Forward Model: A Unifying Theory for the Role of the Cerebellum in Motor Control and Sense of Agency
+# Welniarz, Worbe & Gallea (2021) -- The Forward Model: A Unifying Theory for the Role of the Cerebellum in Motor Control and Sense of Agency
 
 ## What the paper did
 

@@ -7,7 +7,7 @@
 
 ## Source
 
-- Friston KJ, FitzGerald T, Rigoli F, Schwartenbeck P, Pezzulo G (2017). *Active interoceptive inference and the emotional brain*. Philosophical Transactions of the Royal Society B.
+- Seth AK, Friston KJ (2016). *Active interoceptive inference and the emotional brain*. Philosophical Transactions of the Royal Society B.
 - DOI: `10.1098/rstb.2016.0007`
 - URL: `https://pmc.ncbi.nlm.nih.gov/articles/PMC5062097/`
 

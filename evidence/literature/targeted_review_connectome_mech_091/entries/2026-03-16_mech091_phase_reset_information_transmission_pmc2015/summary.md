@@ -6,7 +6,7 @@
 
 ## Source
 
-- Engel AK, Gerloff C, Hilgetag CC, Nolte G (2013). *Phase-resetting as a tool of information transmission*. Current Opinion in Neurobiology.
+- Canavier CC (2015). *Phase-resetting as a tool of information transmission*. Current Opinion in Neurobiology.
 - DOI: `10.1016/j.conb.2012.12.008`
 - URL: `https://pmc.ncbi.nlm.nih.gov/articles/PMC4375052/`
 

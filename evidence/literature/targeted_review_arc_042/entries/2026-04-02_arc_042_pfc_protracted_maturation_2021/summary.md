@@ -1,4 +1,4 @@
-# Chini & Hangya (2021) — Development of Prefrontal Cortex
+# Kolk & Rakic (2022) — Development of Prefrontal Cortex
 
 ## What the paper does
 

@@ -7,7 +7,7 @@
 
 ## Source
 
-- (Schmitt et al. / Bhatt et al.) (2021). *Thalamic circuits for independent control of prefrontal signal and noise*. Nature.
+- Mukherjee A, Lam NH, Wimmer RD, Halassa MM (2021). *Thalamic circuits for independent control of prefrontal signal and noise*. Nature.
 - DOI: `10.1038/s41586-021-04056-3`
 - URL: `https://www.nature.com/articles/s41586-021-04056-3`
 

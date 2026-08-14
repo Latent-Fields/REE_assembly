@@ -1,8 +1,8 @@
-# Opendak et al. (2021) — Linking mPFC Circuit Maturation to Emotional Memory and Cognitive Flexibility
+# Klune, Jin & DeNardo (2021) — Linking mPFC Circuit Maturation to Emotional Memory and Cognitive Flexibility
 
 ## What the paper does
 
-Opendak, Sullivan, and Sullivan examine how mPFC circuit maturation in rodents regulates the developmental emergence of emotional memory and cognitive flexibility. They show that during specific developmental windows, mPFC circuits undergo rapid changes that directly gate when certain cognitive capacities come online. Critically, immature mPFC circuits don't just produce weaker outputs — they produce qualitatively different behavioral patterns than mature circuits.
+Klune, Jin, and DeNardo examine how mPFC circuit maturation in rodents regulates the developmental emergence of emotional memory and cognitive flexibility. They show that during specific developmental windows, mPFC circuits undergo rapid changes that directly gate when certain cognitive capacities come online. Critically, immature mPFC circuits don't just produce weaker outputs — they produce qualitatively different behavioral patterns than mature circuits.
 
 ## Relevance to ARC-042
 

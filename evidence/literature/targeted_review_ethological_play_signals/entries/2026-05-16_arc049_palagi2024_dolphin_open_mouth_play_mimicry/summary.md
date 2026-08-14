@@ -1,8 +1,8 @@
-# Palagi et al. 2024: Smiling Underwater -- Play Signals and Rapid Mimicry in Bottlenose Dolphins
+# Maglieri et al. 2024: Smiling Underwater -- Play Signals and Rapid Mimicry in Bottlenose Dolphins
 
 ## What the paper did
 
-Palagi and colleagues filmed 22 captive bottlenose dolphins across two facilities (Zoomarine Rome and Planete Sauvage, France) over 80 hours of video. They characterized a previously undescribed facial display -- the open mouth (OM) -- during social play and tested: (1) whether OM is context-specific (more common in social than solitary play), (2) whether OM is attention-directed (emitted within the partner's visual field), and (3) whether OM triggers rapid facial mimicry (RFM) -- automatic replication within 1 second by the receiver.
+Maglieri and colleagues filmed 22 captive bottlenose dolphins across two facilities (Zoomarine Rome and Planete Sauvage, France) over 80 hours of video. They characterized a previously undescribed facial display -- the open mouth (OM) -- during social play and tested: (1) whether OM is context-specific (more common in social than solitary play), (2) whether OM is attention-directed (emitted within the partner's visual field), and (3) whether OM triggers rapid facial mimicry (RFM) -- automatic replication within 1 second by the receiver.
 
 ## Key findings relevant to the claim
 

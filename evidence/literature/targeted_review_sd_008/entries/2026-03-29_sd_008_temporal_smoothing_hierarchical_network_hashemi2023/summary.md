@@ -1,6 +1,6 @@
 # Robust and efficient representations of dynamic stimuli in hierarchical neural networks via temporal smoothing
 
-**Hashemi et al. (2023) -- Frontiers in Computational Neuroscience**
+**Sihn, Kwon & Kim (2023) -- Frontiers in Computational Neuroscience**
 
 ## What the paper did
 

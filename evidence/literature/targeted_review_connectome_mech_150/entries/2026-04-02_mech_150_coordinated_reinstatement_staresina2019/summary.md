@@ -1,8 +1,8 @@
-# Staresina et al. (2019) — Coordinated Representational Reinstatement in Hippocampus and Lateral Temporal Cortex
+# Pacheco Estefan et al. (2019) — Coordinated Representational Reinstatement in Hippocampus and Lateral Temporal Cortex
 
 ## What the paper does
 
-Using intracranial recordings in epilepsy patients, Staresina and colleagues reveal the temporal dynamics of episodic memory retrieval. They demonstrate a double dissociation: early reinstatement of item-context associations in the hippocampus (~500ms post-cue) precedes later reinstatement of item information in lateral temporal cortex. The hippocampal reinstatement correlates with high gamma power increases, suggesting an intrahippocampal pattern completion process that then "ignites" cortical reinstatement.
+Using intracranial recordings in epilepsy patients, Pacheco Estefan and colleagues reveal the temporal dynamics of episodic memory retrieval. They demonstrate a double dissociation: early reinstatement of item-context associations in the hippocampus (~500ms post-cue) precedes later reinstatement of item information in lateral temporal cortex. The hippocampal reinstatement correlates with high gamma power increases, suggesting an intrahippocampal pattern completion process that then "ignites" cortical reinstatement.
 
 ## Relevance to MECH-150
 
