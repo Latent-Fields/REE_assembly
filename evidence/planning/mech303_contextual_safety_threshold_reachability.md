@@ -6,6 +6,20 @@ substrate change made. Discriminating probe (V3-EXQ-917) completed 2026-08-11 --
 against V3-EXQ-760's MECH-303 promotion evidence. Governance review of the addendum's draft
 `evidence_quality_note` is still open.
 **Date:** 2026-08-11 (addendum 2026-08-12)
+
+> **The `z_harm_a.norm()` consumer audit owed by the 2026-08-12 routing decision is done
+> (2026-08-14):** see
+> [`zharma_consumer_callsite_audit.md`](zharma_consumer_callsite_audit.md). It enumerates all
+> **16** executable `z_harm_a` norm call sites in `ree_core` (MECH-492's "10" undercounts --
+> it misses the `.norm(dim=-1)` form and the sleep gate's own site) and adjudicates each as a
+> place-safety proxy, a correctly damage-sourced body/arousal/PE read, or a learned feature.
+> **Two consumers need re-pointing at the dedicated proximity signal, not one:** MECH-303's
+> own gate (`agent.py:5145`) and MECH-286's sleep-onset `threat_ok` conjunct
+> (`sleep/sleep_onset_gate.py:69`, the MECH-492 finding). One site is flagged unadjudicable
+> (MECH-279's PAG freeze gate, which already has a better non-`z_harm_a` source). The audit
+> also says do NOT carry either existing threshold constant (`0.05`, `0.4`) across a re-point.
+> Read it before starting the dedicated-signal build.
+
 **Trigger:** V3-EXQ-916 (Fishtank relief/safety showcase, first driver to enable
 `use_contextual_safety_terrain=True`) found `agent.residue_field.total_safety == 0` and
 `num_safety_steps == 0` for an entire 4000-step diagnostic run (1 seed, 15 warmup + 5 eval
