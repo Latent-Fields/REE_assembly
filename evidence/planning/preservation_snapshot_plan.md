@@ -246,10 +246,21 @@ Contract: `ree-v3/tests/contracts/test_preservation_archive.py` (9 tests — con
 round-trip+reconstruct, append-only, real AES-GCM ciphertext-at-rest + wrong-key refusal, and the
 S3 path driven by an injected fake client so it needs no boto3/network/credentials).
 
+**Physical-token exporter (Increment 1d) — BUILT.** `ree-v3/ree_core/preservation/token.py` turns a
+record into the artifacts for durable physical media (engraved key / jewellery, QR, M-DISC, a
+Piql/Svalbard deposit): the ~180-byte **key line** (`REE-PRESERVE/1|id=…|seed=…|commit=…|machine=…|
+sha256=…` — the engraveable locator+authenticator), the **gzipped record** (~10 KB self-sufficient
+payload), a **manifest** (record integrity + deposited-blob sha256), a **README** (how to verify +
+reconstruct), and a **QR** of the key line when a backend is installed (`segno`, pure-python, zero
+deps — gated and injectable, like boto3/cryptography). `export_token(record, out_dir, …)` +
+`python -m ree_core.preservation.token --record … --out …`. Contract
+`tests/contracts/test_preservation_token.py` (7): key-line round-trip, always-written zero-dep
+artifacts, gz record re-inflates→verifies→**reconstructs bit-identical**, manifest hashes, QR via
+injected fake backend.
+
 **Not done (next):** actually create the Hetzner bucket + a second-vendor bucket and run the fleet's
 records through them (operational, needs the user's account + a generated encryption key kept
-independently); the Zenodo/Software Heritage deposit flow; the physical-token exporter (key + QR +
-gzipped record).
+independently); the Zenodo/Software Heritage deposit flow.
 
 ## Status table (resume primitive)
 
@@ -264,6 +275,7 @@ gzipped record).
 | Emitter glue `preserve_life` (opt-in, per-life) | **done + contract (3)** | `experiments/_lib/preservation.py`, `tests/contracts/test_preservation_capture.py` |
 | Archive backends (Local + S3/Hetzner) + AES-GCM + content-addressing | **done + contract (9)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_archive.py` |
 | European-sovereign storage plan | **documented** | this doc, §"Storage & durability" |
+| Physical-token exporter (key + QR + gz record + README) | **done + contract (7)** | `ree_core/preservation/token.py`, `tests/contracts/test_preservation_token.py` |
 | Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) | — |
 | Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
 | Increment 2 (mid-life snapshot/resume) | **scoped** (`complex (probe-gated)`); spike = `SuperOrdinalGoalMemory` | this doc, §"Increment 2" |
