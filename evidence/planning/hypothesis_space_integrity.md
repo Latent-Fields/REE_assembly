@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-13T19:53:54Z
+Generated: 2026-08-14T03:47:13Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **34** open question(s) across **24** time-series snapshot(s). **0** flag(s) raised, **34** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **2** discovery-growth note(s), **0** discovery-recurrence overlay(s).
+Audited **34** open question(s) across **24** time-series snapshot(s). **0** flag(s) raised, **34** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **2** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -83,7 +83,7 @@ _A `confirmed` resolution (supports + control_passed) also legitimately removes 
 
 - time series 2026-07-29 -> 2026-07-30: surviving fell by 1 with no rise in resolved_out, but total_confirmed is absent from one or both snapshots (predates the field) so a confirmation-explained drop cannot be ruled out -- unverifiable, not a violation.
 
-## Fan-out recurrence (ACTIONABLE, 1) -- N >= 3 portfolios on one question
+## Fan-out recurrence (ACTIONABLE, 0) -- N >= 3 portfolios on one question
 
 _GOV-FROZEN-1 escalation clause. Conditions (a)-(c) license an INDIVIDUAL growth event, so they say nothing about recurrence: a question can fan out indefinitely, clearing every check every time, while its denominator outruns its eliminations. Every portfolio counted below was individually legitimate -- **the recurrence is the signal**, and the reading is that the question may be MIS-POSED rather than under-enumerated._
 
@@ -91,7 +91,23 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 **Response is routing, not demotion.** These are questions, not claims; nothing is promoted or demoted. Re-pose the operationalization before opening another portfolio -- enumerating a further round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Warn-only: this never gates a cycle.
 
-- `competence_floor`: 5 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 20, 0 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 6; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `failure_autopsy_batch-793a-817-819_2026-07-26.json`, `failure_autopsy_mech476-mech475-cluster_2026-07-29.json`, `mech457_retention_portfolio_2026-07-18.md`
+**A count of 0 here is NOT the same as 'no recurrence'.** 1 recurrence(s) are ACKNOWLEDGED this cycle and listed in the next section rather than here -- read both before concluding the ledger is quiet.
+
+_None._
+
+## Recurrence acknowledged (1, advisory) -- worked, not live
+
+_A recurrence overlay whose question has since been RE-POSED and formally closed. The portfolio count never decreases (GOV-FROZEN-1 has no shrinkage operation, correctly), so a question that crossed N goes on firing forever -- including long after every leg was resolved and the qid was closed to further growth. Listing those alongside live ones is a duplicate-work generator that fires once per governance cycle per closed campaign, which is the alarm-fatigue Goodhart vector GOV-FROZEN-1 warns about turned on the rule itself. Confirmed: `competence_floor` closed 2026-08-08 and a governance cycle routed a re-pose chip for it on 2026-08-12, four days later._
+
+**Acknowledgement is not suppression.** The line is still emitted, the restriction is quoted verbatim, and the count appears in the summary above and in both ACTIONABLE section headers. Nothing here clears itself silently -- what is withdrawn is the routing, not the record. **Two conditions, both required:** the question carries a non-empty top-level `growth_restriction` (the same field `/failure-autopsy` Step 9b reads before attaching a leg), AND it has zero `alive` legs. Zero-alive alone is deliberately NOT sufficient: a campaign between portfolios legitimately has no live legs, and `competence_floor` sat at 0 alive twice while still live -- twelve hours before it opened portfolio 4 (2026-07-26) and five days before a leg went back alive (2026-08-02).
+
+**Re-read the restriction before treating any new growth on these questions as sanctioned.** A restriction names its own exception conditions; an acknowledged recurrence that starts growing again is a real finding, not a resolved one.
+
+- `competence_floor`: 5 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 20, 0 leg(s) still alive. **ACKNOWLEDGED (fan-out).** The qid carries a `growth_restriction` closing it to further growth AND no leg is still alive, so this recurrence has been WORKED -- it needs no re-pose routing this cycle. Reported, never suppressed: the count does not decrease and the overlay does not clear itself. Re-read the restriction before treating any new portfolio on this qid as sanctioned. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `failure_autopsy_batch-793a-817-819_2026-07-26.json`, `failure_autopsy_mech476-mech475-cluster_2026-07-29.json`, `mech457_retention_portfolio_2026-07-18.md`
+
+  Restriction, verbatim:
+
+  > CLOSED TO FURTHER FAN-OUT (2026-08-08, competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose). This qid accumulated 5 labelled GOV-FANOUT-1 portfolios (denominator 7 -> 20) before its own standing rule -- set by competence_floor_reposing_2026-07-19.md section 7, 'if a fifth portfolio is proposed on the retention operationalization, treat the recurrence flag as BLOCKING' -- was checked against a real case. Portfolio 5 (failure_autopsy_mech476-mech475-cluster_2026-07-29) opened three legs squarely in the already-decided 'process' family (MECH-475's own registration text names the SAME uninformative-baseline mechanism the retention decision had just confirmed a fix for) and nothing checked the 07-19 rule against it, because the rule lived only as prose in a planning document, not as anything a future /failure-autopsy Step 9b invocation would read. It converged decisively anyway (both MECH-475 and MECH-476 fully retired within days, on their own pre-registered falsifiers) -- that was the outcome, not a property of the process that produced it. RULE, stated here so the next session finds it in the qid it applies to, not in a fourth separate document: a claim whose depends_on includes MECH-457, MECH-459, MECH-460, MECH-475, or MECH-476, and whose first /failure-autopsy would otherwise grow competence_floor by Step 9b's claims+theme matching, should instead pre-register its OWN qid -- UNLESS the specific mechanism under test targets an axis family this qid's decision block still lists as undecided (there is currently none; every family -- process, constitution, instrumentation, representation, world -- carries a resolved answer). This qid's 20 hypotheses and their resolutions are UNCHANGED by this note (GOV-FROZEN-1 has no shrinkage operation and none is invoked); what changes is that this qid should not receive hypothesis #21 onward. The one still-alive leg, H-consummation-binding, is not an exception -- it is complicated (buildable) work (a probe-function fix + one calibrated re-run; see decision.observation_bottleneck), not a discrimination, so it does not need or license a sixth portfolio. Recommended follow-on (not started by this session, per scope discipline): teach /failure-autopsy Step 9b to read a target qid's growth_restriction before Mode A/B registration and surface it to the user at the Step 8 gate rather than silently growing the qid.
 
 ## Advisory -- labelled discovery growth (2, NOT violations)
 
@@ -105,6 +121,8 @@ _An existing question's hypothesis set grew because a genuinely serendipitous ex
 ## Discovery-growth recurrence (ACTIONABLE, 0) -- N >= 3 discovery events on one question
 
 _Mirrors the fan-out recurrence overlay above, for the discovery-growth path. Every event counted below was individually legitimate -- **the recurrence is the signal**: a question racking up repeated 'discoveries' may be using this path as a substitute for pre-registration discipline (an actually-anticipated rival hypothesis being called a discovery each time to dodge Mode A) rather than genuine one-off serendipity. Response is routing -- check whether the next candidate explanation was really unforeseeable before treating it as another discovery. Warn-only: this never gates a cycle._
+
+**Same acknowledgement rule as the fan-out overlay above** -- a closed question with no alive legs is listed under 'Recurrence acknowledged', not here, because `growth_restriction` governs the discovery path too (Step 9b applies it to Mode C in every case). A count of 0 here is not by itself evidence of no recurrence.
 
 _None._
 

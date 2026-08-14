@@ -25,6 +25,12 @@ Checks (design rule 5):
   (d) Elimination-bar violation -- an `eliminated`/`split` hypothesis missing the
       full bar (met_elimination_bar + control_passed + non_degenerate == true).
 
+Also emits ADVISORY overlays that are reported but never counted as flags -- including
+the GOV-FROZEN-1 fan-out/discovery RECURRENCE overlays (N >= FANOUT_RECURRENCE_N growth
+events on one question), and, since 2026-08-14, an ACKNOWLEDGED bucket for a recurrence
+whose question has been re-posed and closed (`growth_restriction` + zero `alive` legs).
+Acknowledgement withdraws the ROUTING, never the record: see `_recurrence_acknowledged`.
+
 Output: evidence/planning/hypothesis_space_integrity.md.
 
 Usage (from REE_assembly/ root):
@@ -54,7 +60,7 @@ RESOLVED_OUT_STATES = {"eliminated", "split"}
 ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
                     "h_fanout_recurrence", "i_confirmed_backed",
                     "j_confirmed_unverifiable", "k_discovery_growth",
-                    "l_discovery_recurrence"}
+                    "l_discovery_recurrence", "m_recurrence_acknowledged"}
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -77,6 +83,65 @@ ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
 # ree_ai_design_critique_plan:WS-1 + f_dominance_conversion_ceiling, and NOT on
 # the `competence_floor` question that has fanned out twice.)
 FANOUT_RECURRENCE_N = 3
+
+# ACKNOWLEDGEMENT of a worked recurrence -- NOT suppression of it.
+#
+# The overlay counts portfolios, and that count never decreases (GOV-FROZEN-1 has
+# no shrinkage operation, correctly). So once a question crosses N it re-fires
+# every cycle FOREVER, including long after the recurrence has been re-posed,
+# formally closed to further growth, and had every leg resolved. Nothing in the
+# ACTIONABLE line distinguishes that from a live campaign about to open another
+# portfolio -- so a reader routes work for it, again, every cycle.
+#
+# Confirmed cost, and this is the whole reason the bucket exists: `competence_floor`
+# was re-posed and closed 2026-08-08 (`growth_restriction` written to the qid; its
+# last alive leg resolved `eliminated` the same day on V3-EXQ-821b), and on
+# 2026-08-12 a `/governance` session read the still-firing ACTIONABLE line and routed
+# `chip-20260812-govfrozen1-repose-competence-floor` -- a duplicate re-pose of an
+# already-closed campaign, FOUR DAYS after closure and after its own routed follow-on
+# had itself been executed. That is precisely the alarm-fatigue Goodhart vector
+# GOV-FROZEN-1 warns about, turned on the rule itself.
+#
+# BOTH HALVES ARE REQUIRED, and the restriction is the load-bearing one:
+#
+#   (i) a non-empty top-level `growth_restriction` -- the SAME field `/failure-autopsy`
+#       Step 9b reads before attaching a leg to an already-registered question. It is a
+#       positive, deliberate, human-authored statement that this qid is closed; and
+#  (ii) zero `alive` legs -- nothing outstanding that a re-pose could still redirect.
+#
+# (ii) ALONE WOULD BE WRONG, and this is not hypothetical -- `competence_floor`'s own
+# history falsifies it twice. It sat at 0 alive with the overlay firing on 2026-07-26
+# (`ed0027587`, 3 portfolios) and again on 2026-08-02 (`ccc067123`, 5 portfolios), and
+# on BOTH occasions the campaign was mid-flight, not closed: portfolio 4 opened twelve
+# hours after the first (`cff9a4fe0`) and a leg went back alive five days after the
+# second (`7d4e8ba0b`). A 0-alive-only predicate would have de-routed the overlay at
+# exactly the two moments it was about to be proved right. A campaign between
+# portfolios legitimately has no live legs; only the restriction says it is closed.
+#
+# And acknowledgement is NEVER silence. The line keeps being emitted, in its own
+# report section, quoting the restriction verbatim, with its count carried into the
+# ACTIONABLE section headers and the stdout summary -- so a closed recurrence stays
+# visible and auditable. A rule that can erase its own alarm is worse than a noisy one;
+# what is removed here is the ROUTING, not the record.
+#
+# Scope, stated honestly (CLAUDE.md held-out check, GOV-HELDOUT-1): across the
+# registry's entire 77-commit history exactly ONE question has ever reached N>=3
+# portfolios and exactly ONE has ever carried a `growth_restriction` -- the same one.
+# So there do NOT exist 3 held-out cases where the old and new behaviour differ; there
+# is 1, and it is the motivating incident. This ships scoped to that incident rather
+# than as a general rule. What the check DID buy is the two negative controls above,
+# which is why (i) is required rather than inferred.
+def _recurrence_acknowledged(restriction: str, alive: int) -> bool:
+    """True when a recurrence is WORKED (closed + nothing outstanding), not live."""
+    return bool(restriction) and alive == 0
+
+
+def _quote_block(text: str, indent: str = "  ") -> str:
+    """Render `text` as a markdown blockquote nested under a list item."""
+    return "\n".join(f"{indent}> {ln}" if ln else f"{indent}>"
+                     for ln in text.splitlines())
+
+
 # An adjudicated basis for an elimination: a weakens, OR a confirmed-cluster
 # non_contributory discrimination that met the bar (design's own Dim-3 worked
 # example treats a sub-floor discrimination against passing reference bands as an
@@ -464,33 +529,85 @@ def _validate_question_growth(q: dict, flags: dict) -> int:
 
     # RECURRENCE overlays (GOV-FROZEN-1 escalation). Every event counted here was
     # individually legitimate -- that is the point. The signal is the COUNT.
+    #
+    # `growth_restriction` is read here ONLY to BUCKET the report line (ACTIONABLE vs
+    # ACKNOWLEDGED). This script stays derive-only: it never writes the field, never
+    # writes the ledger, and adds no second registry producer -- the frozen ledger's
+    # single producer is still `/failure-autopsy` Step 9b. See `_recurrence_acknowledged`.
+    hs = q.get("hypotheses") or []
+    alive = sum(1 for h in hs
+                if (h.get("resolution") or {}).get("state") == "alive")
+    restriction = (q.get("growth_restriction") or "").strip()
+    acknowledged = _recurrence_acknowledged(restriction, alive)
+    # A restriction that does NOT acknowledge is still worth saying out loud: it tells
+    # the reader the qid is closed AND that the second half of the predicate is what
+    # kept the line actionable, rather than leaving the mismatch to be re-derived.
+    restriction_note = (
+        f" NOTE: this qid carries a `growth_restriction`, but {alive} leg(s) are still "
+        "alive, so the recurrence is NOT acknowledged -- both halves are required "
+        "(a campaign between portfolios legitimately has no live legs)."
+        if restriction and not acknowledged else ""
+    )
+
     if len(fanout_sources) >= FANOUT_RECURRENCE_N:
-        hs = q.get("hypotheses") or []
-        alive = sum(1 for h in hs
-                    if (h.get("resolution") or {}).get("state") == "alive")
-        flags["h_fanout_recurrence"].append(
+        head = (
             f"`{qid}`: {len(fanout_sources)} distinct labelled fan-out portfolios "
             f"(>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}, "
-            f"{alive} leg(s) still alive. Each portfolio cleared conditions (a)-(c) "
-            "individually -- the RECURRENCE is the signal. Reading: the question may "
-            "be MIS-POSED rather than under-enumerated. Re-pose the operationalization "
-            "before opening portfolio "
-            f"{len(fanout_sources) + 1}; enumerating another round of rivals on an "
-            "unchanged framing is the denominator-side twin of re-running a braked "
-            "experiment harder. Sources: "
-            + ", ".join(f"`{s}`" for s in sorted(fanout_sources))
+            f"{alive} leg(s) still alive."
         )
+        sources = "Sources: " + ", ".join(f"`{s}`" for s in sorted(fanout_sources))
+        if acknowledged:
+            flags["m_recurrence_acknowledged"].append(
+                f"{head} **ACKNOWLEDGED (fan-out).** The qid carries a "
+                "`growth_restriction` closing it to further growth AND no leg is still "
+                "alive, so this recurrence has been WORKED -- it needs no re-pose "
+                "routing this cycle. Reported, never suppressed: the count does not "
+                "decrease and the overlay does not clear itself. Re-read the "
+                "restriction before treating any new portfolio on this qid as "
+                f"sanctioned. {sources}\n\n"
+                "  Restriction, verbatim:\n\n" + _quote_block(restriction)
+            )
+        else:
+            flags["h_fanout_recurrence"].append(
+                f"{head} Each portfolio cleared conditions (a)-(c) "
+                "individually -- the RECURRENCE is the signal. Reading: the question may "
+                "be MIS-POSED rather than under-enumerated. Re-pose the operationalization "
+                "before opening portfolio "
+                f"{len(fanout_sources) + 1}; enumerating another round of rivals on an "
+                "unchanged framing is the denominator-side twin of re-running a braked "
+                f"experiment harder.{restriction_note} " + sources
+            )
     if len(discovery_sources) >= FANOUT_RECURRENCE_N:
-        flags["l_discovery_recurrence"].append(
+        # Same acknowledgement, because `growth_restriction` governs the discovery path
+        # too: /failure-autopsy Step 9b applies it to "Mode C in every case (discovery
+        # growth is by construction growth of an existing question)". Leaving this
+        # overlay unacknowledged would say a closed qid is closed to fan-out but still
+        # routes on discovery -- an asymmetry the field itself does not have. No live
+        # case exercises it (no question has ever exceeded 1 discovery source), so it is
+        # pinned by the self-test rather than by production.
+        head = (
             f"`{qid}`: {len(discovery_sources)} distinct labelled discovery-growth "
-            f"events (>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}. "
-            "Each event cleared conditions (i)-(iii) individually -- the RECURRENCE is "
-            "the signal. Reading: 'discovery' may be substituting for pre-registration "
-            "discipline rather than genuine one-off serendipity -- check whether a rival "
-            "hypothesis was actually anticipated before its adjudicating run and should "
-            "have gone through Mode A pre-registration instead. Sources: "
-            + ", ".join(f"`{s}`" for s in sorted(discovery_sources))
+            f"events (>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}."
         )
+        sources = "Sources: " + ", ".join(f"`{s}`" for s in sorted(discovery_sources))
+        if acknowledged:
+            flags["m_recurrence_acknowledged"].append(
+                f"{head} {alive} leg(s) still alive. **ACKNOWLEDGED (discovery).** The "
+                "qid carries a `growth_restriction` closing it to further growth AND no "
+                "leg is still alive, so this recurrence has been WORKED -- it needs no "
+                "routing this cycle. Reported, never suppressed. "
+                f"{sources}\n\n  Restriction, verbatim:\n\n" + _quote_block(restriction)
+            )
+        else:
+            flags["l_discovery_recurrence"].append(
+                f"{head} "
+                "Each event cleared conditions (i)-(iii) individually -- the RECURRENCE is "
+                "the signal. Reading: 'discovery' may be substituting for pre-registration "
+                "discipline rather than genuine one-off serendipity -- check whether a rival "
+                "hypothesis was actually anticipated before its adjudicating run and should "
+                f"have gone through Mode A pre-registration instead.{restriction_note} "
+                + sources
+            )
     return min(accounted, growth)
 
 
@@ -554,7 +671,7 @@ def audit(registry: dict, timeseries: list) -> dict:
              "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
              "h_fanout_recurrence": [], "i_confirmed_backed": [],
              "j_confirmed_unverifiable": [], "k_discovery_growth": [],
-             "l_discovery_recurrence": []}
+             "l_discovery_recurrence": [], "m_recurrence_acknowledged": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
     # was recorded -- lets the time-series check attribute a total_initial rise.
@@ -726,6 +843,7 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     n_recurrence = len(flags.get("h_fanout_recurrence") or [])
     n_discovery = len(flags.get("k_discovery_growth") or [])
     n_discovery_recurrence = len(flags.get("l_discovery_recurrence") or [])
+    n_acknowledged = len(flags.get("m_recurrence_acknowledged") or [])
     L = []
     L.append("# Hypothesis-Space Integrity Audit (anti-Goodhart)")
     L.append("")
@@ -748,7 +866,8 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         f"**{n_unverifiable}** unverifiable, "
         f"**{n_recurrence}** fan-out recurrence overlay(s), "
         f"**{n_discovery}** discovery-growth note(s), "
-        f"**{n_discovery_recurrence}** discovery-recurrence overlay(s)."
+        f"**{n_discovery_recurrence}** discovery-recurrence overlay(s), "
+        f"**{n_acknowledged}** acknowledged (worked) recurrence(s)."
     )
     L.append("")
     sections = [
@@ -870,10 +989,59 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         "never gates a cycle."
     )
     L.append("")
+    L.append(
+        f"**A count of 0 here is NOT the same as 'no recurrence'.** {n_acknowledged} "
+        "recurrence(s) are ACKNOWLEDGED this cycle and listed in the next section rather "
+        "than here -- read both before concluding the ledger is quiet."
+    )
+    L.append("")
     if not rec:
         L.append("_None._")
     else:
         for msg in rec:
+            L.append(f"- {msg}")
+    L.append("")
+
+    ack = flags.get("m_recurrence_acknowledged") or []
+    L.append(
+        f"## Recurrence acknowledged ({len(ack)}, advisory) -- worked, not live"
+    )
+    L.append("")
+    L.append(
+        "_A recurrence overlay whose question has since been RE-POSED and formally closed. "
+        "The portfolio count never decreases (GOV-FROZEN-1 has no shrinkage operation, "
+        "correctly), so a question that crossed N goes on firing forever -- including long "
+        "after every leg was resolved and the qid was closed to further growth. Listing "
+        "those alongside live ones is a duplicate-work generator that fires once per "
+        "governance cycle per closed campaign, which is the alarm-fatigue Goodhart vector "
+        "GOV-FROZEN-1 warns about turned on the rule itself. Confirmed: `competence_floor` "
+        "closed 2026-08-08 and a governance cycle routed a re-pose chip for it on "
+        "2026-08-12, four days later._"
+    )
+    L.append("")
+    L.append(
+        "**Acknowledgement is not suppression.** The line is still emitted, the "
+        "restriction is quoted verbatim, and the count appears in the summary above and in "
+        "both ACTIONABLE section headers. Nothing here clears itself silently -- what is "
+        "withdrawn is the routing, not the record. **Two conditions, both required:** the "
+        "question carries a non-empty top-level `growth_restriction` (the same field "
+        "`/failure-autopsy` Step 9b reads before attaching a leg), AND it has zero `alive` "
+        "legs. Zero-alive alone is deliberately NOT sufficient: a campaign between "
+        "portfolios legitimately has no live legs, and `competence_floor` sat at 0 alive "
+        "twice while still live -- twelve hours before it opened portfolio 4 (2026-07-26) "
+        "and five days before a leg went back alive (2026-08-02)."
+    )
+    L.append("")
+    L.append(
+        "**Re-read the restriction before treating any new growth on these questions as "
+        "sanctioned.** A restriction names its own exception conditions; an acknowledged "
+        "recurrence that starts growing again is a real finding, not a resolved one."
+    )
+    L.append("")
+    if not ack:
+        L.append("_None._")
+    else:
+        for msg in ack:
             L.append(f"- {msg}")
     L.append("")
 
@@ -926,6 +1094,13 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         "than genuine one-off serendipity. Response is routing -- check whether the "
         "next candidate explanation was really unforeseeable before treating it as "
         "another discovery. Warn-only: this never gates a cycle._"
+    )
+    L.append("")
+    L.append(
+        "**Same acknowledgement rule as the fan-out overlay above** -- a closed question "
+        "with no alive legs is listed under 'Recurrence acknowledged', not here, because "
+        "`growth_restriction` governs the discovery path too (Step 9b applies it to Mode C "
+        "in every case). A count of 0 here is not by itself evidence of no recurrence."
     )
     L.append("")
     if not disc_rec:
@@ -1094,6 +1269,103 @@ def _self_test() -> int:
              {"hid": "r_b", "pre_registered_utc": "2026-07-05", "resolution": {"state": "alive"}},
              {"hid": "r_c", "pre_registered_utc": "2026-07-06", "resolution": {"state": "alive"}},
          ]},
+        # ACKNOWLEDGED recurrence: 3 valid portfolios, the qid closed by a
+        # `growth_restriction`, and every leg resolved -> the recurrence is WORKED.
+        # Must move to m_recurrence_acknowledged and OUT of the ACTIONABLE bucket,
+        # still never a (b) violation. This is the `competence_floor` shape as of
+        # 2026-08-08 (`342a33e6a`), which the ACTIONABLE overlay re-routed on
+        # 2026-08-12, four days after closure.
+        {"qid": "fanout_closed_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-08-10T00:00:00Z",
+         "growth_restriction": "CLOSED TO FURTHER FAN-OUT (synthetic). Exception: a "
+                               "mechanism targeting an axis family the decision block "
+                               "still lists as undecided.",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-08-11T00:00:00Z",
+              "fanout_source": "failure_autopsy_cl_a_2026-08-11.json",
+              "added_hids": ["cl_a"], "delta": 1},
+             {"recorded_utc": "2026-08-12T00:00:00Z",
+              "fanout_source": "failure_autopsy_cl_b_2026-08-12.json",
+              "added_hids": ["cl_b"], "delta": 1},
+             {"recorded_utc": "2026-08-13T00:00:00Z",
+              "fanout_source": "failure_autopsy_cl_c_2026-08-13.json",
+              "added_hids": ["cl_c"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": hid, "pre_registered_utc": pre,
+              "resolution": {"state": "eliminated", "resolved_utc": res,
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}}
+             for hid, pre, res in [("cl1", "2026-08-10", "2026-08-14"),
+                                   ("cl2", "2026-08-10", "2026-08-14"),
+                                   ("cl_a", "2026-08-11", "2026-08-14"),
+                                   ("cl_b", "2026-08-12", "2026-08-14"),
+                                   ("cl_c", "2026-08-13", "2026-08-14")]
+         ]},
+        # NEGATIVE CONTROL 1 -- restriction present but a leg is STILL ALIVE. The
+        # restriction half alone must NOT acknowledge: there is outstanding work a
+        # re-pose could still redirect. Stays ACTIONABLE, with the mismatch named.
+        # (`competence_floor` 2026-08-08T09:55Z `1c4a52062`: restriction written, one
+        # leg still alive for ~8 hours before V3-EXQ-821b resolved it.)
+        {"qid": "fanout_restricted_alive_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-08-10T00:00:00Z",
+         "growth_restriction": "CLOSED TO FURTHER FAN-OUT (synthetic, still working "
+                               "its last leg).",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-08-11T00:00:00Z",
+              "fanout_source": "failure_autopsy_ra_a_2026-08-11.json",
+              "added_hids": ["ra_a"], "delta": 1},
+             {"recorded_utc": "2026-08-12T00:00:00Z",
+              "fanout_source": "failure_autopsy_ra_b_2026-08-12.json",
+              "added_hids": ["ra_b"], "delta": 1},
+             {"recorded_utc": "2026-08-13T00:00:00Z",
+              "fanout_source": "failure_autopsy_ra_c_2026-08-13.json",
+              "added_hids": ["ra_c"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "ra1", "pre_registered_utc": "2026-08-10",
+              "resolution": {"state": "alive"}},
+             {"hid": "ra2", "pre_registered_utc": "2026-08-10",
+              "resolution": {"state": "alive"}},
+         ] + [
+             {"hid": hid, "pre_registered_utc": pre, "resolution": {"state": "alive"}}
+             for hid, pre in [("ra_a", "2026-08-11"), ("ra_b", "2026-08-12"),
+                              ("ra_c", "2026-08-13")]
+         ]},
+        # NEGATIVE CONTROL 2 -- THE LOAD-BEARING ONE. 0 alive legs, NO restriction:
+        # a campaign BETWEEN portfolios, which legitimately has no live legs. Must
+        # stay ACTIONABLE. `competence_floor` was in exactly this state twice while
+        # still live -- 2026-07-26T00:15Z (`ed0027587`, 3 portfolios), twelve hours
+        # before portfolio 4 opened, and 2026-08-02T18:06Z (`ccc067123`, 5
+        # portfolios), five days before a leg went back alive. A 0-alive-only
+        # predicate would have de-routed the overlay at both of those moments.
+        {"qid": "fanout_between_portfolios_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-08-10T00:00:00Z",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-08-11T00:00:00Z",
+              "fanout_source": "failure_autopsy_bp_a_2026-08-11.json",
+              "added_hids": ["bp_a"], "delta": 1},
+             {"recorded_utc": "2026-08-12T00:00:00Z",
+              "fanout_source": "failure_autopsy_bp_b_2026-08-12.json",
+              "added_hids": ["bp_b"], "delta": 1},
+             {"recorded_utc": "2026-08-13T00:00:00Z",
+              "fanout_source": "failure_autopsy_bp_c_2026-08-13.json",
+              "added_hids": ["bp_c"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": hid, "pre_registered_utc": pre,
+              "resolution": {"state": "eliminated", "resolved_utc": res,
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}}
+             for hid, pre, res in [("bp1", "2026-08-10", "2026-08-14"),
+                                   ("bp2", "2026-08-10", "2026-08-14"),
+                                   ("bp_a", "2026-08-11", "2026-08-14"),
+                                   ("bp_b", "2026-08-12", "2026-08-14"),
+                                   ("bp_c", "2026-08-13", "2026-08-14")]
+         ]},
         # LABELLED discovery growth: born resolved same-day, with a rationale --
         # must land in k_discovery_growth, NOT bucket (b).
         {"qid": "discovery_ok_q", "initial_frozen_count": 2,
@@ -1177,6 +1449,35 @@ def _self_test() -> int:
                              "evidence_direction": "supports", "control_passed": True,
                              "non_degenerate": True}},
          ]},
+        # ACKNOWLEDGED recurrence, DISCOVERY path. `growth_restriction` governs Mode C
+        # too (/failure-autopsy Step 9b: "Mode C in every case"), so a closed qid must
+        # not go on routing on the discovery overlay either. No production case exercises
+        # this -- no question has ever exceeded ONE discovery source -- so this fixture is
+        # the only thing holding the two overlays symmetric.
+        {"qid": "discovery_closed_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-08-10T00:00:00Z",
+         "growth_restriction": "CLOSED TO FURTHER GROWTH (synthetic, discovery path).",
+         "discovery_growth_events": [
+             {"recorded_utc": "2026-08-11T00:00:00Z",
+              "discovery_source": "failure_autopsy_dcl_a_2026-08-11.json",
+              "added_hids": ["dcl_a"], "delta": 1, "rationale": "discovery A."},
+             {"recorded_utc": "2026-08-12T00:00:00Z",
+              "discovery_source": "failure_autopsy_dcl_b_2026-08-12.json",
+              "added_hids": ["dcl_b"], "delta": 1, "rationale": "discovery B."},
+             {"recorded_utc": "2026-08-13T00:00:00Z",
+              "discovery_source": "failure_autopsy_dcl_c_2026-08-13.json",
+              "added_hids": ["dcl_c"], "delta": 1, "rationale": "discovery C."},
+         ],
+         "hypotheses": [
+             {"hid": hid, "pre_registered_utc": d,
+              "resolution": {"state": "confirmed", "resolved_utc": d,
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}}
+             for hid, d in [("dcl1", "2026-08-10"), ("dcl2", "2026-08-10"),
+                            ("dcl_a", "2026-08-11"), ("dcl_b", "2026-08-12"),
+                            ("dcl_c", "2026-08-13")]
+         ]},
         # UNLABELLED growth: no fanout_growth_events covering it -> real (b) flag.
         {"qid": "fanout_bad_q", "initial_frozen_count": 3,
          "initial_frozen_count_at_registration": 2,
@@ -1233,6 +1534,7 @@ def _self_test() -> int:
         "h_fanout_recurrence": flags["h_fanout_recurrence"],
         "k_discovery_growth": flags["k_discovery_growth"],
         "l_discovery_recurrence": flags["l_discovery_recurrence"],
+        "m_recurrence_acknowledged": flags["m_recurrence_acknowledged"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -1276,6 +1578,86 @@ def _self_test() -> int:
          "witnessed late append self-cleared (not flagged, listed as witnessed)"),
         ("unverifiable_quiet", "fanout_unverifiable_q" not in joined_b and "uv_new" in joined_f,
          "no-git-history leg reported unverifiable, NOT flagged"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Recurrence ACKNOWLEDGEMENT discriminations. The predicate has two halves and the
+    # two negative controls below are the reason it does -- each is a real historical
+    # `competence_floor` state in which the campaign was demonstrably still live.
+    joined_m = " ".join(flags["m_recurrence_acknowledged"])
+    ack_msg = next((m for m in flags["m_recurrence_acknowledged"]
+                    if "fanout_closed_q" in m), "")
+    live_msg = next((m for m in flags["h_fanout_recurrence"]
+                     if "fanout_restricted_alive_q" in m), "")
+    for name, cond, msg in [
+        ("ack_fires", "fanout_closed_q" in joined_m,
+         "a closed qid (growth_restriction + 0 alive) is ACKNOWLEDGED"),
+        ("ack_leaves_actionable", "fanout_closed_q" not in joined_h,
+         "an acknowledged recurrence no longer routes work from the ACTIONABLE bucket"),
+        ("ack_not_a_violation", "fanout_closed_q" not in joined_b,
+         "acknowledgement does not turn a legitimate recurrence into a (b) violation"),
+        ("ack_quotes_restriction_verbatim",
+         "Exception: a mechanism targeting an axis family" in ack_msg,
+         "the acknowledged line quotes the restriction VERBATIM -- exception "
+         "conditions are not paraphrased away"),
+        ("ack_still_names_the_count",
+         "3 distinct labelled fan-out portfolios" in ack_msg,
+         "acknowledgement is not suppression: the portfolio count is still reported"),
+        # NEGATIVE CONTROL 1: the restriction half alone is not sufficient.
+        ("ack_needs_zero_alive",
+         "fanout_restricted_alive_q" in joined_h
+         and "fanout_restricted_alive_q" not in joined_m,
+         "a RESTRICTED qid with a live leg stays ACTIONABLE -- restriction alone "
+         "does not acknowledge"),
+        ("ack_names_the_mismatch", "NOT acknowledged" in live_msg,
+         "the restricted-but-alive case says so in the line, rather than leaving "
+         "the reader to re-derive why it is still actionable"),
+        # NEGATIVE CONTROL 2: the load-bearing one. 0 alive without a restriction is
+        # a campaign BETWEEN portfolios -- `competence_floor` sat here twice (2026-07-26
+        # `ed0027587`, 2026-08-02 `ccc067123`) and re-grew both times.
+        ("ack_needs_restriction",
+         "fanout_between_portfolios_q" in joined_h
+         and "fanout_between_portfolios_q" not in joined_m,
+         "0 alive legs WITHOUT a growth_restriction stays ACTIONABLE -- a campaign "
+         "between portfolios has no live legs and is not closed"),
+        ("ack_discovery_path",
+         "discovery_closed_q" in joined_m
+         and "discovery_closed_q" not in " ".join(flags["l_discovery_recurrence"])
+         and "discovery_closed_q" not in joined_b,
+         "the discovery overlay acknowledges on the same predicate -- "
+         "growth_restriction governs Mode C too"),
+        ("ack_below_n_quiet", "fanout_ok_q" not in joined_m,
+         f"a question below N={FANOUT_RECURRENCE_N} is never acknowledged (nothing "
+         "fired to acknowledge)"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Acknowledgement must never be SILENT. The whole risk of this bucket is that it
+    # becomes an alarm that erases itself, so pin the three places the count has to
+    # remain visible in the rendered report a governance session actually reads.
+    rendered = render_report(flags, reg, ts, "2026-08-14T00:00:00Z")
+    n_ack = len(flags["m_recurrence_acknowledged"])
+    for name, cond, msg in [
+        ("render_ack_section", f"## Recurrence acknowledged ({n_ack}, advisory)" in rendered,
+         "the rendered report carries its own acknowledged section"),
+        ("render_ack_lists_qid", "fanout_closed_q" in rendered.split(
+            "## Recurrence acknowledged")[-1],
+         "the acknowledged question is listed in that section, not merely counted"),
+        ("render_actionable_header_warns",
+         f"{n_ack} recurrence(s) are ACKNOWLEDGED" in rendered,
+         "the ACTIONABLE section states the acknowledged count, so a count of 0 "
+         "there can never read as 'no recurrence'"),
+        ("render_summary_counts_ack",
+         f"**{n_ack}** acknowledged (worked) recurrence(s)" in rendered,
+         "the report's summary line counts acknowledged recurrences"),
     ]:
         if cond:
             print(f"  ok   discrimination: {msg}")
@@ -1551,6 +1933,17 @@ def main() -> int:
         for msg in flags["l_discovery_recurrence"]:
             qid = msg.split("`")[1] if "`" in msg else msg[:40]
             print(f"    [discovery-recurrence] {qid}")
+    n_ack = len(flags["m_recurrence_acknowledged"])
+    print(f"  recurrence ACKNOWLEDGED (closed qid + 0 alive legs, advisory): {n_ack}")
+    if n_ack:
+        # Printed even though it routes nothing: a reader who sees "ACTIONABLE: 0"
+        # and stops there must still learn the ledger is not quiet.
+        print("  -- WORKED, not live: re-posed and closed to further growth. No")
+        print("     routing this cycle; re-read the restriction before sanctioning")
+        print("     any new growth on these questions:")
+        for msg in flags["m_recurrence_acknowledged"]:
+            qid = msg.split("`")[1] if "`" in msg else msg[:40]
+            print(f"    [acknowledged] {qid}")
     return 0
 
 
