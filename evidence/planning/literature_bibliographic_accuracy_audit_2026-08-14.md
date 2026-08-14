@@ -9,6 +9,12 @@ anywhere in this work.**
 Chip: `chip-20260814-lit-bibliographic-accuracy`.
 Tool: `scripts/audit_literature_bibliographic_accuracy.py` (committed; `--fetch` then `--report`).
 
+> **UPDATE 2026-08-14T07:05Z — "Left unrepaired" items 1, 2 and 3 have since been worked**
+> by follow-on chip `chip-20260814-lit-unrecoverable-identifiers` (REE_assembly `ec4467bcf4`).
+> Four of the six records were repaired, two were escalated instead, and two further defects
+> surfaced in the process. See the new **"Disposition of items 1-3"** section at the bottom.
+> Item 0 (MECH-186 / GFLAG-0027) is **still open** and is still where a reader should start.
+
 ---
 
 ## What this audit is, and why the schema audit cannot do it
@@ -240,3 +246,147 @@ still growing by automated pull. Two candidates, in order of cost-effectiveness:
 Do **not** turn `audit_literature_bibliographic_accuracy.py --exit-nonzero` into a commit gate
 while the residue above is unrepaired — a gate that fires on every commit gets turned off. Same
 convention, and the same reasoning, as `audit_literature_schema.py`.
+
+---
+
+## Disposition of items 1-3 (2026-08-14T07:05Z, chip `chip-20260814-lit-unrecoverable-identifiers`)
+
+Follow-on to the six records above. **Provenance only**; no `confidence`, `evidence_direction`,
+`mapping` or `claim_ids_tested` field was touched. Commit: REE_assembly `ec4467bcf4` (12 files —
+4 `record.json` repairs plus a `PROVENANCE NOTE` block in each of 7 `summary.md`, the location the
+v1 schema designates for provenance prose). Method: read each entry's `summary.md` first to
+establish what the content actually describes, recover the identifier, then fetch the proposal back
+and compare title, first author and year before writing. Every replacement below was verified that
+way.
+
+**Two of the six were NOT repaired.** In both, the identifier could not be settled without deciding
+a question about the *evidence* rather than the provenance, so nothing was written and the defect
+was escalated instead — the same handling item 0 got.
+
+| record | outcome |
+|---|---|
+| `mech_033_hippocampal_sequences_wikenheiser2015` | **repaired** + GFLAG-0028 |
+| `arc_032_frontal_theta_hippocampus_reward_hyman2010` | **not repaired** → GFLAG-0029 |
+| `arc049_inv059_gergely_watson1996_social_biofeedback` | **repaired** |
+| `q035_arc049_murray_trevarthen_1985_double_video` | **repaired** |
+| `devrobotics_play_signals_punctuation_bekoff1995` | **repaired** + GFLAG-0030 |
+| `arc049_bekoff1995_play_signals_canids_punctuation` | **repaired** + GFLAG-0030 |
+| `habenula_da_signed_pe_review` | **not repaired** → GFLAG-0031 |
+
+### Item 1a — `wikenheiser2015`: repaired from its own PMID; content mismatch escalated
+
+The declared title is **fabricated** — a Crossref bibliographic search for it returns nothing
+resembling it — and `10.1038/nn.3945` is Zhang et al., *"Dopaminergic and glutamatergic microdomains
+in a subset of rodent mesoaccumbens axons"*. The record's own **`pmid` `25559082` was already
+correct** and recovered the work: Wikenheiser & Redish, *"Hippocampal theta sequences reflect current
+goals"*, Nat Neurosci 18(2):289-294, `10.1038/nn.3909`. Declared authors, year and venue already
+matched it, so only `title` and `doi` were wrong.
+
+**This is the third confirmed instance of the report's own Class-1 detector recommendation** (§Class 1,
+"where a record carries both identifiers, they can be resolved against each other with no external
+ground truth") — after `mech_153` and `mech_186_5ht_reward_value_seymour2012`. It is also the *only*
+one of the six that had such an anchor, and the difference in outcome between this record and
+`hyman2010` is entirely down to having one. That is a direct argument for building the
+DOI-vs-PMID cross-resolution check the Recommendation section ranks first.
+
+**GFLAG-0028 (open, MECH-033):** the summary's methods section does not describe nn.3909. It
+describes a T-maze with probabilistic reward and vicarious-trial-and-error head-scanning at a
+stationary choice point — the Johnson & Redish (2007) paradigm. nn.3909 used a circular-track
+delay-foraging task (three feeders, fixed per-session delays, rats free to wait or skip) and reports
+theta look-ahead extending farther toward more distant goals and predicting the destination. The
+prose was left unedited pending governance, as for item 0.
+
+### Item 1b — `hyman2010`: no field written; the entry has no recoverable source
+
+Every identifier on this record is wrong **and they disagree with each other**:
+
+- the title is fabricated (a PubMed author search for Hyman JM + Hasselmo ME + theta returns five
+  papers, none of them it);
+- `10.1002/hipo.20709` is Christie, *"Exercising some control over the hippocampus"* (2009);
+- the `url`'s PMID 19489006 is Hill et al. on cannabinoid signalling and exercise-induced
+  progenitor proliferation — also unrelated;
+- the declared author list is real but shared by **two** papers, and `year` and `venue` point at
+  different ones: Hyman et al. **2005**, Hippocampus 15:739-749 (`10.1002/hipo.20106`) matches the
+  venue; Hyman et al. **2010**, Front Integr Neurosci 4:2 (`10.3389/neuro.07.002.2010`) matches the
+  year.
+
+**Neither Hyman paper is the study the summary describes**, which is what makes this unrepairable
+rather than merely ambiguous. Hyman 2010 used an operant lever-press DNMS task and reports that
+theta *entrainment of mPFC units* fell on error trials while firing rates did not; Hyman 2005 used
+linear-track running and open-field foraging with no working-memory component. The summary's account
+— simultaneous HPC/mPFC **LFPs**, spatial alternation, coherence elevated specifically in the *stem*
+of the maze, mPFC theta phase leading hippocampal theta — is the signature of **Jones & Wilson
+(2005)**, *"Theta rhythms coordinate hippocampal-prefrontal interactions in a spatial memory task"*
+(PLoS Biol 3:e402), a paper Hyman 2010 itself cites. Writing that DOI would change the evidence, not
+the provenance, so the record was left byte-identical and **GFLAG-0029** raised. The audit will keep
+reporting it in bucket (b), which is correct.
+
+### Item 2 — the two "book chapter" records: both were `null`-DOI cases, and one is not a chapter
+
+Neither needed the edition judgement the original item anticipated, because in neither case does a
+chapter-level DOI exist at all. Both now carry `doi: null`, which the v1 schema defines as *"checked,
+none exists"* — more informative than deleting the key.
+
+- **`gergely_watson1996`** is **not a book chapter**: it is a 1996 *International Journal of
+  Psycho-Analysis* article, 77(6):1181-1212, exactly as its own `venue` said. Its DOI
+  (`10.1097/00004583-198903000-00016`) was Cohn & Tronick 1989. PubMed carries no `doi` articleid
+  for the article and Crossref has no record, so `doi` → `null` and the verified **`pmid`
+  `9119582`** was added as the record's identifier. The 2018 Routledge reprint
+  (`10.4324/9780429471643-7`) was deliberately **not** used: different title, credited to the book's
+  authors (Fonagy et al.), so citing it would misstate which text the entry read.
+- **`murray_trevarthen_1985`** is a genuine chapter — *Social Perception in Infants*, Field & Fox
+  (eds), Ablex, 1985 — with no chapter DOI in Crossref and no PubMed record. Its DOI
+  (`10.2307/1130922`) was Zelazo & Shultz, *"Concepts of Potency and Resistance in Causal
+  Prediction"* (Child Development 60:1307, 1989). `doi` and `pmid` → `null`, and the containing
+  volume's **ISBN `9780893912314`** added instead (verified via OpenLibrary), which the schema
+  declares for exactly this case. The Crossref-proposed `10.4324/9781315802572-8` (*"Intonation in
+  Discourse"*) is a different chapter and was not used.
+
+In both, the summary content matches the cited work, so this was pure provenance.
+
+### Item 3a — the Bekoff pair: one real DOI, and a duplicate entry nobody had noticed
+
+Both 404 DOIs were fabricated. The real identifier is **`10.1163/156853995X00649`** — Bekoff,
+*"Play Signals as Punctuation: the Structure of Social Play in Canids"*, Behaviour 132(5-6):419-429
+(1995) — verified against Crossref on title, author and year, and now on both records.
+
+Repairing them is what made the second defect visible, and it is the more consequential one.
+**GFLAG-0030 (open, ARC-049 / INV-059 / Q-035 / MECH-196): this single study is entered twice**, in
+two different `literature_type` reviews, with different confidences (0.72 and 0.88) and overlapping
+`claim_ids_tested`. Both appear in the derived `evidence/experiments/claim_evidence.v1.json`, so one
+paper currently counts as two independent evidence items toward ARC-049 and INV-059. Deduplication
+is a governance call and was not made here. Note the generalisation: **two fabricated DOIs for the
+same paper masked the duplication from any identifier-keyed check** — a corpus-wide duplicate scan
+keyed on the *repaired* DOIs is now worth running, and is cheap.
+
+### Item 3b — `habenula_da_signed_pe_review`: a fully synthetic record, not a bad identifier
+
+This one is a category apart from the rest of the audit and should not be read as a provenance
+finding. The `source` block is a **template placeholder end to end** — `authors`
+`["Example Author A", "Example Author B"]`, `doi` `10.0000/example-doi`, `url`
+`https://example.org/habenula-da-review`, `venue` the generic string `"Neuroscience Review"` — and
+the `summary.md` carries no findings, methods, sample or citations. Unlike every other record in this
+chip, there is nothing in the content from which to identify a paper, so no identifier was invented.
+The placeholder DOI was deliberately **left in place** rather than nulled, so the audit keeps
+reporting it until the entry is disposed of.
+
+**GFLAG-0031 (open, MECH-053 / MECH-054):** the entry asserts `evidence_direction: supports` at
+`confidence: 0.74` for both claims on the basis of a source that does not exist, and it is live in
+`claim_evidence.v1.json`, so it is currently contributing to them. Governance needs to decide
+whether to delete it or commission a real habenula/dopamine signed-PE review in its place.
+
+### Effect on the audit, and what remains
+
+Re-run after the repairs (`--fetch` then `--report`), against `validate_literature.py` reporting
+**0 findings of 2189**:
+
+| bucket | before | after | note |
+|---|---|---|---|
+| (b) first author differs | 8 | **5** | the 4 residual besides `hyman2010` are all documented false positives (Høydal/Rodríguez diacritics, Cushing name change, CURL author order) |
+| (c) identifier does not resolve | 13 | **11** | both Bekoff 404s cleared; the placeholder DOI retained on purpose |
+| (a) year mismatch | 31 | 31 | untouched, per item 4 |
+
+So the only remaining bucket-(b) entry that is *not* a known false positive is `hyman2010`, and the
+only remaining bucket-(c) entry that is not benign is the habenula placeholder — both now carrying an
+open governance flag rather than sitting unattributed. **Five open flags came out of the two audit
+chips together: GFLAG-0027 (item 0, MECH-186), 0028, 0029, 0030 and 0031.**
