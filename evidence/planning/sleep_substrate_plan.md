@@ -677,6 +677,70 @@ made in the same session as this plan registration.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-08-14 - GAP-9 literature synthesis: recommends (a)+(b) COMPOSED, reclassifies (c) as instrumentation, and finds the trigger gap is a CALL SITE not a signal
+
+**Docs-only. No claims.yaml edit, no code touched, no experiments queued. This is
+an input to a design decision, not the decision itself -- GAP-9 stays `open`.**
+
+Session `metaworker-chip-20260812-sleep-onset-multiinput-litsynth` (chip
+`chip-20260812-sleep-onset-multiinput-litsynth`) produced
+[`evidence/literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md`](../literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md)
+-- a consolidation-synthesis weighing GAP-9's three candidate trigger designs
+against the sleep-onset biology, with 7 new entries covering the two topics
+confirmed absent from the corpus (local/regional sleep need; safety-gated sleep
+permission) and re-using the existing Borbely / Walker / Rasch / Huber / Meyniel
+/ Lima-Bednekoff grounding rather than re-deriving it.
+
+**Primary consumer: `chip-20260813-sleep-gap9-trigger-build` (open)**, the chip
+that has to pick the design. Synthesis Section 6 is written as its brief.
+
+Four findings that bear on the plan:
+
+- **The gap is a call site, not a signal.** `MELConsumer.note_step_pe()` is
+  already called per *waking step* from `REEAgent.update_residue`
+  (`ree_core/agent.py:9696`), but `entry_permitted()` has exactly ONE call site
+  in the repo -- inside `notify_episode_end()`
+  (`ree_core/sleep/phase_manager.py:191`). The expensive part of candidate (b)
+  is already built and running; what is missing is a per-step *evaluation*.
+- **Recommend (a)+(b) composed, not a single winner** -- MEL/need crossing as
+  primary with a step-count ceiling as anti-starvation backstop. This is the
+  only shape the source literature endorses (Borbely's two-process model is
+  precisely the composition), and it is *already* the shape of
+  `entry_permitted()` (`crossed or at_ceiling`); the change is re-basing the
+  ceiling from episodes onto steps. It is also robust to GAP-5b's recorded
+  V3-EXQ-718a producer failure: with MEL noise-level in CausalGridWorldV2 the
+  ceiling carries firing and the design degrades gracefully to (a), where pure
+  (b) would simply never fire. **The build must emit which arm of the OR fired**
+  -- otherwise a run where the ceiling carried 100% of firings is
+  indistinguishable from a working demand-sensitive trigger.
+- **Candidate (c) is instrumentation, not a trigger.** An experimenter-inserted
+  virtual boundary has no biological referent and already exists as
+  `force_cycle()` (already the basis of
+  `chip-20260812-causal-sleep-deprivation-matched-arm-design`). It is the right
+  tool for the causal matched-arm experiment and should NOT be counted as
+  closing GAP-9. Note that MECH-286, when enabled, gates `force_cycle()` too --
+  it is evaluated inside `_run_cycle()`.
+- **Do not enable `use_mech286_sleep_onset_gate` in the GAP-9 validation run.**
+  Its threat term is `z_harm_a.norm() < threat_tonic_threshold`, the same
+  expression MECH-303 monitors, which V3-EXQ-917 measured at chance-level
+  safe-vs-unsafe place discrimination (cause confirmed by
+  `chip-20260812-mech303-sourcing-mode-reconciliation` as SD-022's intentional
+  `damage_sourced` re-sourcing). Enabling it would confound the first
+  true-single-life sleep result with a defective gate. Synthesis Section 8
+  proposes a candidate claim on this; it was NOT registered because
+  `task_claim.py open` returned an exit-3 arbitration verdict on `claims.yaml`
+  (owner `igw-auto-igw-217-substrate-ready-sd-queue-seed-en-20260813T183630Z`,
+  not stale at the time). That section is the handover.
+
+Separately recommended but **not** part of the GAP-9 build: re-shape MECH-286's
+threat term from a boolean AND into a graded multiplier on the existing
+`MELConsumer.scale_steps()` duration lever. Four independent sources (Lima 2005,
+Rattenborg 1999, Loftus 2022, Tamaki 2016) agree the biological risk response is
+graded and partial rather than a veto, and the corpus's own Lima & Bednekoff
+1999 risk-allocation entry predicts a hard gate would starve sleep exactly in
+persistently hazardous worlds. Known divergences from the biology accepted
+deliberately for V3 are recorded in synthesis Section 7.
+
 ### 2026-08-12 - GAP-9 registered: sleep trigger is boundary-only, structurally unreachable within a TRUE single-continuous-life driver
 
 **Docs-only. No experiments queued, no claims.yaml edit, no code touched.**
