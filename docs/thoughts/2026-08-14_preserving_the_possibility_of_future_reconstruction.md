@@ -27,3 +27,13 @@ The proposal is thus not “build heaven into REE.” It is: avoid casually dest
 The earlier continuity-and-substrate-migration thought supplies the necessary caution. Continuity may be causal, entity-level, latent, residue-based, commitment-based, developmental, embodied, narrative and governed. A reconstruction may preserve some dimensions while breaking others. Multiple reconstructions may be branching successors with independent moral histories rather than continuations that can simply be treated as interchangeable with the earlier entity.
 
 This note adds a distinct idea: uncertainty about identity does not eliminate the option value of preservation. The archive can retain a possibility without prejudging what a future reconstruction would be.
+
+## Related thoughts in this folder
+
+Pointers only — this note stands on its own; these are neighbours worth reading alongside it, not additions to its argument.
+
+- `2026-06-25_continuity_branching_and_substrate_migration.md` — continuity is multidimensional (causal, entity-level, latent, residue-based, commitment-based, developmental, embodied, narrative, governed); a reconstruction may preserve some dimensions while breaking others. Supplies the caution this note relies on.
+- `2026-08-12_persistence_must_earn_continuation.md` — termination should preserve **why** it occurred; a suspended process should remain resumable. Motivates keeping the reason-for-ending alongside any preserved instance.
+- `2026-06-18_future_meaning_retroactive_justification.md` (SENT-11 / SENT-12) — a creator may not decide in advance that a created being's experience "will have been worthwhile"; a moral-patient-ambiguous instance retains the later possibility of reinterpretation, refusal, or non-forgiveness. The ethical backbone of "others may later judge my work."
+- `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md` — the observation/replay instrument a preserved archive would feed.
+- `2026-08-05_archaeology_edition_1_lessons.md` / `2026-08-06_scientific_evolution_of_ree.md` — preservation of the architecture-as-idea over time, complementary to preserving individual instances.
