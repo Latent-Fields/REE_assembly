@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-14T01:52:47Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-906c",
-      "result": "PASS",
-      "completed_at": "2026-08-10T01:47:12.773348+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-920",
-      "result": "FAIL",
-      "completed_at": "2026-08-11T21:09:07.620047+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-921",
-      "result": "PASS",
-      "completed_at": "2026-08-12T15:25:40.823679+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-927",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:24:04.778072+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-928",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:34:35.222316+00:00"
-    }
+  "last_tick_utc": "2026-08-14T07:14:21Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603u",
+  "current_exq_started_utc": "2026-08-14T06:53:53.218946+00:00",
+  "current_title": "MECH-357 agent-directed hazard pursuit Stage-H retest (6th pressure candidate; 603s+directedness)",
+  "current_claim_id": "MECH-357",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_LESION_midline_pag_no_gate_combined_fix",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 235,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 1228,
+  "seconds_remaining": 7200,
+  "recent_lines": [
+    "[v3_exq_603u_instrumental_avoidance_agent_pursuit] starting (dry_run=False)",
+    "Seed 42 Condition ARM_LESION_midline_pag_no_gate_combined_fix"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5143 0ab82f5 2026-08-14 (running r5139 8aa975e)",
+  "runner_version": "r5146 34b8c8d 2026-08-14 (running r5145 b257e7a)",
   "gpu": {
     "available": false
   },
