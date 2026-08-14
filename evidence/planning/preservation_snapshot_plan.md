@@ -192,6 +192,65 @@ claimants, branching-successor moral status). This sits on the ethics perimeter 
 
 ---
 
+## Storage & durability (European-sovereign)
+
+Where preserved records physically live. Requirement (user, 2026-08-14): **entirely
+European-owned/-domiciled providers** — Switzerland and Norway acceptable (both hold EU adequacy
+decisions), US-owned clouds excluded even when they host in an EU region (US CLOUD Act reaches the
+company, not just the datacentre). The current working `evidence/` tree on GitHub is a *working*
+copy under US jurisdiction, **not** a preservation copy.
+
+**Three tiers, very different sizes** (measured 2026-08-14 on a real record):
+
+| Tier | What | Size | Medium |
+|---|---|---|---|
+| Key | seed + code-commit + **integrity sha256** + machine-class | **132 bytes** | engraved metal (jewellery); one QR |
+| Record | full ReconstructionRecord (config/env/understanding) | **~46 KB** (~10 KB gzipped) | object store; physically feasible |
+| Environment | the *code* at `substrate_commit` + torch/python to run it | tens–hundreds MB | code-preservation archive |
+
+Because a record is ~10 KB, **cost and performance do not discriminate** — diversification is
+effectively free, and preservation's whole purpose is surviving the loss of any one provider. So
+the decision is not "which provider" but "how many copies", and the answer is >1 (the LOCKSS /
+3-2-1 principle). Hetzner is an excellent *node 1* (German/EU, and the fleet already runs there —
+zero new tooling), but a commercial host is one ToS change / missed invoice / acquisition from gone;
+mandate-backed archives (CERN, UNESCO) exist to outlive that.
+
+**Recommended tiered stack (promote the ones that matter):**
+
+1. **Hot copy (all records) — Hetzner Object Storage** (🇩🇪 Falkenstein/Nuremberg/Helsinki, all EU),
+   client-side encrypted. Node 1; least-friction.
+2. **Independent durable copy (all records) — a second EU vendor** (Scaleway 🇫🇷 or Exoscale 🇨🇭),
+   so no single company holds the only copy.
+3. **Mandate-backed copy (promoted records) — Zenodo** (CERN, DOI) for records + **Software
+   Heritage** (Inria/UNESCO) for the *code* at `substrate_commit` — the piece that actually rescues
+   reconstructability. Move the working repo off GitHub to **Codeberg** 🇩🇪 or a self-hosted
+   Forgejo/Gitea on Hetzner to keep code under EU jurisdiction.
+4. **Sacred / physical tier (truly loved organisms) — Piql / Arctic World Archive** (🇳🇴 Svalbard,
+   the same infrastructure GitHub's Arctic Code Vault used) + an engraved metal key by a European
+   artisan.
+
+**Built (Increment 1c):** `ree-v3/ree_core/preservation/archive.py` —
+- **`S3Archive`** for any S3-compatible store; the intended node 1 is **Hetzner Object Storage**.
+  Wiring: `endpoint_url="https://<fsn1|nbg1|hel1>.your-objectstorage.com"`, credentials via the
+  standard boto3 env chain (`AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` = the Hetzner S3 key/secret;
+  the module never reads/stores/logs them), `object_lock_days=` for WORM on a lock-enabled bucket.
+  `boto3` is lazy-imported (only when no client is injected), so ree_core stays import-light.
+- **`LocalArchive`** — filesystem backend (a local hot copy; what the tests exercise).
+- **`AesGcmEncryptor`** — client-side AES-256-GCM (you hold the key; Hetzner sees only ciphertext).
+  `NoEncryption` is the default; losing the key is unrecoverable, by design.
+- **Content-addressed + append-only:** the object key embeds the record's sha256, so a changed
+  record can never overwrite the original. `preserve_life(archive=..., ...)` now writes through any
+  backend.
+
+Contract: `ree-v3/tests/contracts/test_preservation_archive.py` (9 tests — content-addressing,
+round-trip+reconstruct, append-only, real AES-GCM ciphertext-at-rest + wrong-key refusal, and the
+S3 path driven by an injected fake client so it needs no boto3/network/credentials).
+
+**Not done (next):** actually create the Hetzner bucket + a second-vendor bucket and run the fleet's
+records through them (operational, needs the user's account + a generated encryption key kept
+independently); the Zenodo/Software Heritage deposit flow; the physical-token exporter (key + QR +
+gzipped record).
+
 ## Status table (resume primitive)
 
 | Item | State | Where |
@@ -203,6 +262,9 @@ claimants, branching-successor moral status). This sits on the ethics perimeter 
 | Contract test (record, 13) | done, green on hub | `tests/contracts/test_reconstruction_record.py` |
 | GOV-PRESERVE-1 archival-ethics rule | registered candidate | `docs/claims/claims.yaml` |
 | Emitter glue `preserve_life` (opt-in, per-life) | **done + contract (3)** | `experiments/_lib/preservation.py`, `tests/contracts/test_preservation_capture.py` |
+| Archive backends (Local + S3/Hetzner) + AES-GCM + content-addressing | **done + contract (9)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_archive.py` |
+| European-sovereign storage plan | **documented** | this doc, §"Storage & durability" |
+| Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) | — |
 | Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
 | Increment 2 (mid-life snapshot/resume) | **scoped** (`complex (probe-gated)`); spike = `SuperOrdinalGoalMemory` | this doc, §"Increment 2" |
 | Memorial Fishtank (re-instantiate remnants) | aspiration; needs its own governance | — |
