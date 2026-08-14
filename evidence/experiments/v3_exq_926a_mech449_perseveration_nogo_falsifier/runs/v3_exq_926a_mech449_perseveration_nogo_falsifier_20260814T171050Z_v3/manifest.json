@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_926a_mech449_perseveration_nogo_falsifier",
+  "run_id": "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-14T17:10:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449",
+    "ARC-107"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-449": "supports",
+    "ARC-107": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "perseveration_axis_converts",
+    "preconditions": [
+      {
+        "name": "suppression_cross_candidate_range_supra_floor",
+        "kind": "readiness",
+        "description": "live dACC MECH-260 suppression varies ACROSS candidates (max - min), the statistic the perseveration threshold crossing in C1 depends on",
+        "control": "positive control: an 8-deep recency ring dominated by one action class, built via real record_action() calls",
+        "measured": 0.75,
+        "threshold": 0.25,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "pre_nogo_eligible_set_admits_alternative",
+        "kind": "readiness",
+        "description": "the MECH-448 envelope leaves >= 2 candidates entering the No-Go, so the fail-open guard is not structurally blocking it",
+        "control": "worst gate-ON cell across arms and seeds",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "go_nogo_config_plumbing_live",
+        "kind": "readiness",
+        "description": "REEConfig.from_dims plumbs use_go_nogo_constitution and gng_perseveration_floor onto config.e3 (guards the documented from_dims silent-kwarg-swallow failure mode)",
+        "control": "direct from_dims construction",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_perseveration_conversion": true,
+      "C2_recency_content_specificity": true,
+      "C3_safety_failopen": true
+    },
+    "dv_symmetry_declaration": {
+      "ARM_CONSTITUTION": "manipulation = removal from the eligible SET (domain change); DV = committed argmin identity. Argmin's symmetry group is {uniform additive constant, monotone rescaling, tie permutation}; set-removal is in none of them and specifically deletes the argmin. NOT invariant.",
+      "ARM_OFF": "no manipulation (baseline domain)."
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "80d76ab05e9c0f84c64f2dda79daa1680f790b77d81e2e311c3328607bb4e2d1",
+  "substrate_commit": {
+    "commit": "2c70b6dc06187a229cfc1d01842d6e7fe98459d2",
+    "dirty": false,
+    "branch": "main"
+  }
+}
