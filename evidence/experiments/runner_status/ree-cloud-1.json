@@ -1,34 +1,11 @@
 {
   "schema_version": "v1",
   "runner_pid": 3973580,
-  "runner_started_at": "2026-08-11T20:53:36.266868+00:00",
-  "last_updated": "2026-08-12T15:25:40.828904+00:00",
+  "runner_started_at": "2026-08-14T01:23:31.474581+00:00",
+  "last_updated": "2026-08-14T01:24:04.778916+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-228d",
-      "backlog_id": "",
-      "claim_id": "ARC-032",
-      "title": "ARC-032 theta phase-weighted-summary readout: z_goal persistence + goal-proximity-score noise at E3-tick granularity (SD-100 retest of 228c)",
-      "description": "",
-      "estimated_minutes": 200.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-919",
-      "backlog_id": "",
-      "claim_id": "MECH-321",
-      "title": "MECH-321 harm-aware selection, unconditional whole-episode harm rate (n=40 seeds, no screen/tiering, redesigned DV + A-A null control)",
-      "description": "",
-      "estimated_minutes": 140.8,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3831,6 +3808,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 65791.1
+    },
+    {
+      "queue_id": "V3-EXQ-927",
+      "backlog_id": "",
+      "claim_id": "MECH-267",
+      "title": "SD-MECH267-CEM-SELECTION-FIX validation: four-arm re-measure of MECH-267 mode-content wash-out at num_cem_iterations=3 (H2 mode_value_weight / H3 mode_partitioned_cem, diagnostic)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [v3_exq_927] overall: PASS label=fix_effective::H3+BOTH (manipulation_ok=True [480/480], readout_ok=True, off_clears=False, fix_clearing=['H3', 'BOTH'], mean_broad_minus_tight_gap={'OFF': -0.003087, 'H2': -0.001618, 'H3': 0.013631, 'BOTH': 0.011117}) (31.8s) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-927 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-927.json",
+      "started_at": "2026-08-14T01:23:31.486208+00:00",
+      "completed_at": "2026-08-14T01:24:04.778072+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_927_mech267_cem_selection_fix_validation/v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 33.3
     }
   ]
 }
