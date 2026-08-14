@@ -21,3 +21,9 @@ Crick's 1984 searchlight hypothesis proposes that the thalamic reticular nucleus
 **Mapping caveat**: 1984 paper predates modern BG-thalamic and oscillatory frameworks. Searchlight specifically addresses sensory thalamic channels; extension to non-sensory nuclei (MD, VA, VL serving cognitive loops) requires additional claims. Malsburg synapse concept has evolved.
 
 **DOI:** [10.1073/pnas.81.14.4586](https://doi.org/10.1073/pnas.81.14.4586) | **PMID:** 6589612 | **PMC:** PMC345636
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Source note (from record.json)
+
+Original plan cited PMID 6584887 (incorrect — resolves to unrelated rat thymosin paper). Correct PMID is 6589612 (PNAS 81(14):4586–4590, 1984). Confirmed via PubMed.

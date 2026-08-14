@@ -33,3 +33,9 @@ The metadata limitation also warrants caution. The full text was not retrievable
 ## Confidence reasoning
 
 The mixed evidence direction reflects genuine ambiguity: the paper supports the plausibility of a forward-generative process seeding hippocampal sequences (consistent with MECH-033), but the contested nature of preplay and the availability of alternative mechanistic explanations prevent a clear supports verdict. The moderate-low confidence (0.58) reflects: plausible structural mapping, contested phenomenon, unresolved seeding mechanism, and metadata uncertainty. This entry is weaker than the Wikenheiser & Redish and Pfeiffer & Foster entries but still provides useful collateral evidence for the existence of pre-experience hippocampal forward structure.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Metadata note (from record.json)
+
+PubMed metadata API unavailable during literature pull (persistent 500 errors). Title, authors, DOI assigned from confirmed PMID-to-search match (query: hippocampal preplay novel environment place cells 2015) and prior knowledge. Verify against PubMed record before citing.

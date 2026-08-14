@@ -7,3 +7,9 @@ I include this deliberately as the counterweight to the demonstrator-free result
 There is a second observation here I find more interesting than the headline, which is that untutored siblings copied each other. That makes "no demonstrator" a nearly unrealisable condition in a social species -- any peer, however incompetent, is a partial demonstrator, and even full isolates have their own prior output to copy. If one wanted to argue that a competence-directed prior is what closes the gap between structured and competent, the fact that finches will manufacture a demonstrator out of whatever is available is at least suggestive that the demand for one is real.
 
 The caveats are substantial and I have scored them into the confidence rather than around it. This is 1995, with small samples and acoustic-similarity measures partly resting on human listener judgement; it would need replication to meet current standards. More importantly for the mapping, untutored song is *degraded*, not *absent* -- the biological failure mode is a ceiling deficit, whereas the REE converter sits at a near-zero floor. So the paper supports "a demonstrator raises the achievable ceiling" considerably better than it supports "a demonstrator is required to leave the floor", and those are different claims with different implications for the discrimination. Confidence 0.55, direction supports. It earns its place for the evidence-direction it supplies, not for its methodological weight.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Citation caveat (from record.json)
+
+Not PubMed-indexed. Bibliographic details (incl. full author list and DOI) unverified beyond the Consensus record URL; treat citation metadata as provisional.

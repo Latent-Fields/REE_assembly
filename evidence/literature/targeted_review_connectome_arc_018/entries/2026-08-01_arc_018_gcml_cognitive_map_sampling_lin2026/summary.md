@@ -35,3 +35,12 @@ The important negative constraint is therefore: do not read this as "ARC-018 is 
 ## Design note
 
 If a future ARC-018 or SD-004 session revisits action-object indexing, Lin et al. is a useful reference for the missing inverse-model discipline: a map is more useful for planning when the difference vector between current and goal states can be mapped to actions that move the agent in the right direction. REE should not import GCML wholesale, but the state-difference-to-action readout is the clean formal contrast to the known action-object roundtrip defects in the current stack.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Availability and source identifiers (from record.json)
+
+- Preprint DOI (`preprint_doi`): 10.1101/2025.05.14.654027
+- Code (`code_repository`): https://github.com/LH-cbicr/GCML
+- Data (Zenodo) (`zenodo`): 10.5281/zenodo.19370442
+- Secondary trigger (how this paper surfaced) (`secondary_trigger`): https://neurosciencenews.com/brain-inspired-ai-cognitive-maps-31145/

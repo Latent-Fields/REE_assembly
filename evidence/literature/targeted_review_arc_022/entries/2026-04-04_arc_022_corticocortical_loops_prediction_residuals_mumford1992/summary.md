@@ -18,3 +18,9 @@ What Mumford (1992) does not provide is any specificity about what the typed obj
 
 ---
 *Source:* Mumford D (1992). On the computational architecture of the neocortex. II. The role of cortico-cortical loops. *Biological Cybernetics* 66(3):241-251. doi:10.1007/BF00202389
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Source note (from record.json)
+
+Biological Cybernetics 66(3):241-251. This is the direct conceptual predecessor to Rao & Ballard (1999). Part I (1991) established thalamo-cortical loops; Part II establishes the cortico-cortical prediction/residual framework. Often cited as the origin of the typed-prediction-downward / prediction-error-upward architecture in predictive coding.

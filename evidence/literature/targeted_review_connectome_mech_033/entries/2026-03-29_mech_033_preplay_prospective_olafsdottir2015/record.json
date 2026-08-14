@@ -3,16 +3,21 @@
   "literature_type": "targeted_review_connectome_mech_033",
   "entry_id": "2026-03-29_mech_033_preplay_prospective_olafsdottir2015",
   "timestamp_utc": "2026-03-29T11:05:00Z",
-  "claim_ids_tested": ["MECH-033"],
+  "claim_ids_tested": [
+    "MECH-033"
+  ],
   "source": {
     "title": "Hippocampal place cells construct reward related sequences and preplay them during rest",
-    "authors": ["Olafsdottir, H. Freyja", "Carpenter, Francis", "Barry, Caswell"],
+    "authors": [
+      "Olafsdottir, H. Freyja",
+      "Carpenter, Francis",
+      "Barry, Caswell"
+    ],
     "year": 2015,
     "venue": "eLife",
     "doi": "10.7554/eLife.13193",
     "pmid": "26502260",
-    "pmcid": "PMC6095134",
-    "metadata_note": "PubMed metadata API unavailable during literature pull (persistent 500 errors). Title, authors, DOI assigned from confirmed PMID-to-search match (query: hippocampal preplay novel environment place cells 2015) and prior knowledge. Verify against PubMed record before citing."
+    "pmcid": "PMC6095134"
   },
   "evidence_class": "electrophysiology_single_unit",
   "evidence_direction": "mixed",
@@ -22,7 +27,15 @@
   "failure_signatures": [
     "Preplay sequences are statistically indistinguishable from random population activity in some analyses, raising the possibility that apparent 'preplay' reflects post-hoc alignment rather than genuine prospective computation -- which would undercut the rollout-seeding interpretation."
   ],
-  "tags": ["mech_033", "hippocampus", "forward_model", "preplay", "place_cells", "sharp_wave_ripple", "prospective_coding"],
+  "tags": [
+    "mech_033",
+    "hippocampus",
+    "forward_model",
+    "preplay",
+    "place_cells",
+    "sharp_wave_ripple",
+    "prospective_coding"
+  ],
   "mapping": {
     "source_claim_statement": "Hippocampal place cells activate in ordered sequences during rest that predict the arrangement of place fields the animal will later experience in a novel environment. These preplay sequences are reward-associated and suggest the hippocampus can generate structured predictive sequences prior to experience.",
     "ree_translation": "If the hippocampus can generate structured forward sequences for environments it has not yet traversed, this supports the idea that the sequences are seeded by something other than replayed episodic experience. In REE terms, E2 would be the candidate: a forward-prediction kernel that, given a current state estimate and proposed action sequence, generates a trajectory in latent space. Preplay would correspond to E2-seeded rollouts before any experience-based consolidation has occurred -- a 'first-pass' rollout seeded entirely by the transition kernel.",

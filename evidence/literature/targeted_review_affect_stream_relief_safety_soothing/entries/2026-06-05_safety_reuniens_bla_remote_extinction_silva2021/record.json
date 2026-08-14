@@ -3,20 +3,34 @@
   "literature_type": "targeted_review_affect_stream_relief_safety_soothing",
   "entry_id": "2026-06-05_safety_reuniens_bla_remote_extinction_silva2021",
   "timestamp_utc": "2026-06-05T19:45:43Z",
-  "claim_ids_tested": ["MECH-304"],
+  "claim_ids_tested": [
+    "MECH-304"
+  ],
   "source": {
     "title": "A thalamo-amygdalar circuit underlying the extinction of remote fear memories",
-    "authors": ["Bianca A Silva", "Simone Astori", "Allison M Burns", "Hendrik Heiser", "Lukas van den Heuvel", "Giulia Santoni", "Maria Fernanda Martinez-Reza", "Carmen Sandi", "Johannes Graff"],
+    "authors": [
+      "Bianca A Silva",
+      "Simone Astori",
+      "Allison M Burns",
+      "Hendrik Heiser",
+      "Lukas van den Heuvel",
+      "Giulia Santoni",
+      "Maria Fernanda Martinez-Reza",
+      "Carmen Sandi",
+      "Johannes Graff"
+    ],
     "year": 2021,
     "venue": "Nature Neuroscience",
     "doi": "10.1038/s41593-021-00856-y",
     "url": "https://doi.org/10.1038/s41593-021-00856-y",
     "pmid": "34017129",
-    "volume_pages": "24(7):964-974"
+    "volume": "24",
+    "issue": "7",
+    "pages": "964-974"
   },
   "evidence_class": "behavioral_animal",
   "evidence_direction": "supports",
-  "confidence": 0.80,
+  "confidence": 0.8,
   "confidence_rationale": "Multi-method causal circuit dissection (viral tracing, activity mapping, fiber photometry, chemogenetics, closed-loop optogenetics) shows nucleus reuniens (NRe) inputs to basolateral amygdala (BLA) register and transmit safety signals that drive remote fear extinction: NRe-to-BLA activity rises just before freezing cessation, inhibition impairs and activation facilitates extinction. Strong support for an ACTIVE, transmitted safety-prediction signal (MECH-304's conditioned-inhibition / safety-transmission role) as a distinct circuit from threat and from relief-reward substrate. Source quality very high (causal, bidirectional, cross-validated with human imaging cited in paper). Mapping fidelity moderate: MECH-304 names a cortico-striatal encoding + IL-to-CeA expression substrate, whereas Silva adds a midline-THALAMIC (reuniens) node to BLA -- supports the active-safety-transmission premise but extends the named anatomy. Transfer risk low-moderate.",
   "summary_path": "summary.md",
   "failure_signatures": [
@@ -24,7 +38,17 @@
     "The NRe-to-BLA safety signal is specific to REMOTE (30-day) but not recent (1-day) fear extinction -- a time-since-encoding dependence that no current REE safety mechanism represents.",
     "If REE treated safety as identical to relief, this would weaken it: the safety-transmission circuit (reuniens->BLA, suppressing fear) is anatomically separate from the relief-completion reward circuit (NAc/VTA)."
   ],
-  "tags": ["safety", "mech_304", "nucleus_reuniens", "thalamus", "basolateral_amygdala", "fear_extinction", "conditioned_inhibition", "active_safety_transmission", "affect_stream_differentiation"],
+  "tags": [
+    "safety",
+    "mech_304",
+    "nucleus_reuniens",
+    "thalamus",
+    "basolateral_amygdala",
+    "fear_extinction",
+    "conditioned_inhibition",
+    "active_safety_transmission",
+    "affect_stream_differentiation"
+  ],
   "mapping": {
     "source_claim_statement": "Extinction of remote (30-day-old) fear memories depends on nucleus reuniens (midline thalamus) inputs to the basolateral amygdala; NRe-to-BLA inputs activate during remote extinction, are potentiated upon fear reduction, and both total NRe and monosynaptic NRe-to-BLA activity increase shortly before freezing cessation -- i.e. the NRe registers and transmits safety signals to the BLA. Inhibition impairs, activation facilitates, remote fear extinction.",
     "ree_translation": "MECH-304: a discrete predictive structure encoding 'this stimulus actively predicts that suffering will be omitted', whose output pathway gates the release of avoidance/fear and which is updated by relief-completion (MECH-302) events. Silva grounds the ACTIVE safety-transmission half of the safety system -- a transmitted inhibitory signal that suppresses an established threat representation -- distinct from MECH-303's passive contextual store and from MECH-302's reward-circuit offset reinforcement.",
@@ -32,7 +56,7 @@
     "source_context": "Mouse, viral tracing + activity mapping + fiber photometry + chemogenetic + closed-loop optogenetic manipulation; remote vs recent contextual/cued fear extinction; human imaging corroboration cited in paper."
   },
   "confidence_components": {
-    "source_quality": 0.90,
+    "source_quality": 0.9,
     "mapping_fidelity": 0.68,
     "transfer_risk": 0.28,
     "notes": "Exceptional causal circuit evidence for active safety transmission; the fidelity discount is the anatomical mismatch (thalamic relay vs MECH-304's cortico-striatal/IL-CeA wording). Net 0.80 -- the active-safety-prediction premise is strongly supported even where the exact substrate differs."

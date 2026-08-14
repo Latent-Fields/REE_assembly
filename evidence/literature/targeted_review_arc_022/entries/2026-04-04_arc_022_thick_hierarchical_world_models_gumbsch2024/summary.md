@@ -14,3 +14,9 @@ Where THICK falls short of grounding the full ARC-022 pipeline is at the top. Th
 
 ---
 *Source:* Gumbsch C, Sajid N, Martius G, Butz MV (2024). Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics. *ICLR 2024*. OpenReview: https://openreview.net/forum?id=TjCDNssXKU
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Source note (from record.json)
+
+Published as conference paper at ICLR 2024. Code: https://github.com/CognitiveModeling/THICK

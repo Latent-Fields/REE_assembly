@@ -23,3 +23,11 @@ The task is a skilled motor sequence in mice. Mapping to REE's chunked policy pr
 Evidence direction: supports ARC-071/MECH-322/MECH-323. Confidence 0.84.
 
 No new claim is required. MECH-322 already exists and already resolves the older R6 safety-vs-realism escalation. This source strengthens the biological footing and narrows the old Albouy caveat; it does not require a redesign beyond preserving the existing parallel replay-system framing.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Availability and source identifiers (from record.json)
+
+- Code (`code_url`): https://github.com/StephensonJonesLab/Thompson_et_al_2026/tree/V1.02
+- Data (`data_url`): https://doi.org/10.5281/zenodo.20055819
+- License (`license`): CC-BY-4.0

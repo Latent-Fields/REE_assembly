@@ -35,3 +35,9 @@ Finally, Axelrod's model operates at the level of observable behaviour (cooperat
 ## Confidence reasoning
 
 Confidence is 0.67. The structural parallel is the strongest of the four papers reviewed: cooperation breakdown -> escalation is a formally modelled, empirically validated phenomenon in Axelrod's framework, and the mapping to MECH-102 is more than metaphorical -- the key structural conditions (shadow of the future, noise, irreversible defection) have direct analogues in REE's pathway-closure conditions. The ceiling is imposed by the payoff-vs.-architectural-mechanism distinction and the dyadic vs. multi-agent limitation. Overall, this is the best formal support in the current review for MECH-102's core claim at the social/institutional level.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Source note (from record.json)
+
+Foundational monograph; Axelrod 1980a/1980b in Journal of Conflict Resolution also relevant (doi:10.1177/002200278002400101)

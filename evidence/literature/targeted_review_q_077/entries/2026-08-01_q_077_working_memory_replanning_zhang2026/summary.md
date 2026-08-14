@@ -35,3 +35,10 @@ For the user's "stay on task and return after distraction" framing, the paper su
 The study is behavioral, not neural, and uses undergraduate human participants in a lab game. It does not identify a PFC, hippocampal, or basal-ganglia substrate. It also inserted distractions before memory-guided apple retrieval, leaving open whether the same pattern holds when an already-running memory-guided action is interrupted mid-execution. Trial exclusions were large in distraction trials because participants sometimes collected hidden targets before completing the distraction phase, so the cleanest analysis is conditional on following the task structure.
 
 This therefore should not promote, demote, or directly edit MECH-116, SD-033a, MECH-262, or SD-046. It is a Q-077 literature update and a future SD-046 design constraint: representational capacity, active focus, and environmental resampling must be measured separately.
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Availability and source identifiers (from record.json)
+
+- Data and code (`data_and_code`): https://osf.io/6ac5m/files/osfstorage
+- Secondary trigger (how this paper surfaced) (`secondary_trigger`): https://medicalxpress.com/news/2026-07-memory-rapidly-priorities-distractions.html

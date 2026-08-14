@@ -3,16 +3,25 @@
   "literature_type": "targeted_review_affect_stream_relief_safety_soothing",
   "entry_id": "2026-06-05_relief_nac_d1_nmda_coincidence_bergadoacosta2017",
   "timestamp_utc": "2026-06-05T19:45:43Z",
-  "claim_ids_tested": ["MECH-302"],
+  "claim_ids_tested": [
+    "MECH-302"
+  ],
   "source": {
     "title": "Relief learning requires a coincident activation of dopamine D1 and NMDA receptors within the nucleus accumbens",
-    "authors": ["Jorge R Bergado Acosta", "Evelyn Kahl", "Georgios Kogias", "Taygun C Uzuneser", "Markus Fendt"],
+    "authors": [
+      "Jorge R Bergado Acosta",
+      "Evelyn Kahl",
+      "Georgios Kogias",
+      "Taygun C Uzuneser",
+      "Markus Fendt"
+    ],
     "year": 2017,
     "venue": "Neuropharmacology",
     "doi": "10.1016/j.neuropharm.2016.11.022",
     "url": "https://doi.org/10.1016/j.neuropharm.2016.11.022",
     "pmid": "27894877",
-    "volume_pages": "114:58-66"
+    "volume": "114",
+    "pages": "58-66"
   },
   "evidence_class": "behavioral_animal",
   "evidence_direction": "supports",
@@ -23,7 +32,16 @@
     "If REE modelled relief-completion as a wholly separate circuit from reward/goal-achievement, this finding would weaken that design: relief learning shares the NAc D1+NMDA coincidence mechanism with reward learning.",
     "The D1+NMDA requirement is acquisition-specific (co-injection blocked acquisition but not consolidation or expression) -- an REE relief mechanism that gates expression on the same coincidence would be over-specified relative to the biology."
   ],
-  "tags": ["relief", "mech_302", "nucleus_accumbens", "dopamine_d1", "nmda", "reward_circuit_reuse", "appetitive_offset", "affect_stream_differentiation"],
+  "tags": [
+    "relief",
+    "mech_302",
+    "nucleus_accumbens",
+    "dopamine_d1",
+    "nmda",
+    "reward_circuit_reuse",
+    "appetitive_offset",
+    "affect_stream_differentiation"
+  ],
   "mapping": {
     "source_claim_statement": "Acquisition of conditioned relief (association of a stimulus with the offset of an aversive event, which later induces appetitive-like behaviour) requires coincident activation of dopamine D1 and NMDA receptors in the nucleus accumbens -- the same accumbal DA-glutamate interaction that mediates reward learning.",
     "ree_translation": "MECH-302: the relief-completion event (suffering-stream derivative crossing a downward threshold) reuses the reward/goal-achievement completion pipeline. The NAc D1+NMDA coincidence is the cellular signature of that shared reward machinery; relief is a positive reinforcer carried on the value-coding dopamine channel, not a distinct circuit.",
@@ -32,8 +50,8 @@
   },
   "confidence_components": {
     "source_quality": 0.86,
-    "mapping_fidelity": 0.80,
-    "transfer_risk": 0.30,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
     "notes": "Clean staged pharmacology with locomotor control; the relief=reward-circuit claim is exactly MECH-302's premise. Weighted toward source_quality + mapping_fidelity for this mechanistic anchor."
   }
 }

@@ -18,3 +18,9 @@ Brittain and Brown establish that beta oscillations (13–30 Hz) in cortico-basa
 - STN beta burst via hyperdirect pathway → **action commitment gate halt signal**: physiological implementation of commit boundary enforcement during conflict
 
 **DOI:** [10.1016/j.neuroimage.2013.05.084](https://doi.org/10.1016/j.neuroimage.2013.05.084) | **PMID:** 23711535
+
+<!-- normalized-from-record-json 2026-08-14 -->
+
+## Source note (from record.json)
+
+Original plan cited PMID 25035364 (Trends Neurosci title 'Oscillating to a halt') which could not be confirmed in PubMed. Using confirmed Brittain & Brown (2013) NeuroImage review covering the same thesis. A related 2014 paper (Brittain, Sharott & Brown, Eur J Neurosci, PMID 24890470) also cited for completeness.
