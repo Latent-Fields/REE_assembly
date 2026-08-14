@@ -82221,13 +82221,23 @@
 
     SCOPE -- WHAT THIS CLAIM DOES NOT COVER, AND WHO OWNS IT:
       * Building a better-sourced safety signal is owned by
-        substrate_queue entry SD-MECH303-THRESHOLD-SOURCING and
-        chip-20260812-mech303-threshold-sourcing (open). This claim POINTS AT that
-        work: MECH-286 should be re-pointed at whatever dedicated signal that entry
-        lands, and should be enumerated in its consumer audit, which currently names
-        drivers 764/520/916/916a for MECH-303 and does not mention MECH-286.
+        substrate_queue entry SD-MECH303-THRESHOLD-SOURCING, its IGW staging chip
+        chip-igw-20260812-216 (open, awaiting human launch), and the live build chip
+        chip-20260814-mech303-proximity-signal-focused (open). NOTE the pointer
+        churn, since a reader chasing the older refs will find them dead:
+        chip-20260812-mech303-threshold-sourcing was WITHDRAWN 2026-08-14 as
+        superseded by the focused chip above ("same work, better framing"), not
+        abandoned. This claim POINTS AT that work: MECH-286 should be re-pointed at
+        whatever dedicated signal it lands, and should be enumerated in its consumer
+        audit -- which currently names drivers 764/520/916/916a for MECH-303 and does
+        NOT mention MECH-286. That omission is not an oversight so much as a scoping
+        artifact: the existing audit is scoped to drivers enabling
+        use_contextual_safety_terrain, and MECH-286's gate is not one of them, which
+        is precisely how a second consumer of the same expression went unnoticed.
       * The GAP-9 within-life sleep trigger is owned by
-        chip-20260813-sleep-gap9-trigger-build (open).
+        chip-20260814-sleep-gap9-trigger-focused (open); its predecessor
+        chip-20260813-sleep-gap9-trigger-build was likewise WITHDRAWN 2026-08-14 as
+        superseded by that focused successor, not abandoned.
       * Queueing the falsifier experiment is a separate /queue-experiment decision,
         deliberately not taken here.
 
