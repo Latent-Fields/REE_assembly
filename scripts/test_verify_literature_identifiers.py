@@ -54,6 +54,7 @@ import sys
 import tempfile
 import unittest
 import urllib.error
+import urllib.request
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
@@ -2364,6 +2365,286 @@ class TestSecondaryFetchers(unittest.TestCase):
         self.assertTrue(payload["ok"])
         self.assertTrue(audit.cache_path(self.tmp, V.PMC_CACHE_KIND,
                                          "PMC2801761").exists())
+
+
+class TestPrimaryFetcherCaching(unittest.TestCase):
+    """The audit's THREE original fetchers, held to the same answer-vs-transport
+    split ``fetch_pubmed_aid`` and ``TestSecondaryFetchers`` already pin.
+
+    Until 2026-08-14 all three ended in an unconditional ``path.write_text``
+    that ran for EVERY exception, so a 429 from NCBI's rate limiter or a dropped
+    connection was persisted as a permanent verdict about that identifier. Every
+    fetcher returns early on ``path.exists()``, so nothing ever re-asked: one bad
+    network window silently and permanently removed an arbitrary set of records
+    from the commit gate's coverage, and they were not even named in
+    ``resolver.skipped`` -- from the resolver's point of view the question had
+    been asked and answered.
+
+    HALF OF THESE ARE NEGATIVE CONTROLS, and they are the half that matters
+    most. Refusing to cache a real 404 would be its own regression: Crossref and
+    doi.org answer "I do not know this DOI" with a 404, that IS an answer, and
+    re-fetching every dead DOI on every sweep is exactly what the caching is for.
+    The bug was never "it caches failures", it was "it cannot tell the two
+    apart".
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_primary_test_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        self._http_get = audit.http_get
+        self.addCleanup(setattr, audit, "http_get", self._http_get)
+        # fetch_doiorg builds its own Request (it needs the CSL Accept header)
+        # rather than going through audit.http_get, so it has to be stubbed one
+        # level lower. Restored by addCleanup either way.
+        self._urlopen = urllib.request.urlopen
+        self.addCleanup(setattr, urllib.request, "urlopen", self._urlopen)
+
+    def _cached(self, kind, ident):
+        return audit.cache_path(self.tmp, kind, ident).exists()
+
+    def _stub_doiorg(self, body=None, exc=None):
+        class _Resp:
+            def __enter__(self_inner):
+                return self_inner
+
+            def __exit__(self_inner, *a):
+                return False
+
+            def read(self_inner):
+                return body.encode("utf-8")
+
+        def fake(request, timeout=30):
+            if exc is not None:
+                raise exc
+            return _Resp()
+
+        urllib.request.urlopen = fake
+
+    # -- crossref ---------------------------------------------------------
+
+    def test_crossref_success_is_cached(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            crossref_payload("A Paper", ["Smith"], 2001))
+        payload = audit.fetch_crossref("10.1/a", self.tmp,
+                                       audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(self._cached("crossref", "10.1/a"))
+
+    def test_crossref_404_IS_cached_because_it_is_an_answer(self):
+        # NEGATIVE CONTROL. "Crossref does not know this DOI" is a real answer
+        # and must stay cached -- this is the case the pre-fix unconditional
+        # write got right, and the reason these fetchers cache HTTP errors at all.
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 404, "Not Found", {}, None)
+        audit.http_get = boom
+        payload = audit.fetch_crossref("10.1/gone", self.tmp,
+                                       audit.RateLimiter(1000))
+        self.assertEqual("http_404", payload["error"])
+        self.assertTrue(self._cached("crossref", "10.1/gone"))
+
+    def test_crossref_429_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+        audit.http_get = boom
+        payload = audit.fetch_crossref("10.1/b", self.tmp,
+                                       audit.RateLimiter(1000))
+        self.assertEqual("http_429", payload["error"])
+        self.assertFalse(self._cached("crossref", "10.1/b"))
+
+    def test_crossref_503_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 503, "Service Unavailable",
+                                         {}, None)
+        audit.http_get = boom
+        audit.fetch_crossref("10.1/c", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(self._cached("crossref", "10.1/c"))
+
+    def test_crossref_403_is_NOT_cached(self):
+        # Crossref needs no authentication, so a 403 is about the REQUESTER --
+        # rate limiting dressed as a 403, a WAF, an intercepting proxy -- never
+        # about the DOI. Decided explicitly rather than left to fall through.
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 403, "Forbidden", {}, None)
+        audit.http_get = boom
+        audit.fetch_crossref("10.1/d", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(self._cached("crossref", "10.1/d"))
+
+    def test_crossref_urlerror_is_NOT_cached(self):
+        # The exact shape of the live reproduction: an unreachable network
+        # persisted as "URLError: connection refused" against a real DOI.
+        def boom(url, timeout=30):
+            raise urllib.error.URLError("connection refused")
+        audit.http_get = boom
+        payload = audit.fetch_crossref("10.1/e", self.tmp,
+                                       audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+        self.assertIn("URLError", payload["error"])
+        self.assertFalse(self._cached("crossref", "10.1/e"))
+
+    def test_crossref_malformed_body_is_NOT_cached(self):
+        # A 200 carrying garbage is a broken service, not a verdict about the DOI.
+        audit.http_get = lambda url, timeout=30: "{not json"
+        payload = audit.fetch_crossref("10.1/f", self.tmp,
+                                       audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+        self.assertFalse(self._cached("crossref", "10.1/f"))
+
+    def test_crossref_returns_None_when_already_cached(self):
+        # NEGATIVE CONTROL on the change itself: the cached-early-return
+        # contract is what every caller distinguishes "wrote nothing" by, and
+        # the fix adds a second uncached return path beside it.
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            crossref_payload("A Paper", ["Smith"], 2001))
+        audit.fetch_crossref("10.1/g", self.tmp, audit.RateLimiter(1000))
+        audit.http_get = lambda url, timeout=30: self.fail("re-fetched a cached DOI")
+        self.assertIsNone(audit.fetch_crossref("10.1/g", self.tmp,
+                                               audit.RateLimiter(1000)))
+
+    # -- doi.org ----------------------------------------------------------
+
+    def test_doiorg_success_is_cached(self):
+        self._stub_doiorg(body=json.dumps(
+            {"title": "A Paper", "author": [{"family": "Smith"}],
+             "issued": {"date-parts": [[2001]]}}))
+        payload = audit.fetch_doiorg("10.2/a", self.tmp,
+                                     audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(self._cached("doiorg", "10.2/a"))
+
+    def test_doiorg_404_IS_cached_because_it_is_an_answer(self):
+        # NEGATIVE CONTROL, and the conclusive one: doi.org negotiates against
+        # every registration agency, so its 404 means the DOI is registered
+        # nowhere.
+        self._stub_doiorg(exc=urllib.error.HTTPError(
+            "https://doi.org/x", 404, "Not Found", {}, None))
+        payload = audit.fetch_doiorg("10.2/gone", self.tmp,
+                                     audit.RateLimiter(1000))
+        self.assertEqual("http_404", payload["error"])
+        self.assertTrue(self._cached("doiorg", "10.2/gone"))
+
+    def test_doiorg_429_is_NOT_cached(self):
+        self._stub_doiorg(exc=urllib.error.HTTPError(
+            "https://doi.org/x", 429, "Too Many Requests", {}, None))
+        audit.fetch_doiorg("10.2/b", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(self._cached("doiorg", "10.2/b"))
+
+    def test_doiorg_urlerror_is_NOT_cached(self):
+        self._stub_doiorg(exc=urllib.error.URLError("connection refused"))
+        payload = audit.fetch_doiorg("10.2/c", self.tmp,
+                                     audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+        self.assertFalse(self._cached("doiorg", "10.2/c"))
+
+    # -- pubmed -----------------------------------------------------------
+
+    def test_pubmed_success_is_cached(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"result": {"9": pubmed_payload("A Paper", ["Smith"],
+                                            2001)["message"]}})
+        payload = audit.fetch_pubmed("9", self.tmp, audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(self._cached("pubmed", "9"))
+
+    def test_pubmed_not_found_IS_cached_because_it_is_an_answer(self):
+        # NEGATIVE CONTROL. eutils does not 404 an unknown id -- it answers 200
+        # with an `error` field. That is where a real PubMed negative lives, and
+        # it is why no HTTP STATUS is an answer for this endpoint.
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"result": {"404404": {"error": "cannot get document summary"}}})
+        payload = audit.fetch_pubmed("404404", self.tmp,
+                                     audit.RateLimiter(1000))
+        self.assertEqual("not_found", payload["error"])
+        self.assertTrue(self._cached("pubmed", "404404"))
+
+    def test_pubmed_429_is_NOT_cached(self):
+        # NCBI's rate limiter is the single likeliest way this cache could ever
+        # have been poisoned: the corpus holds ~1500 PMIDs and the sweep is
+        # threaded.
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+        audit.http_get = boom
+        payload = audit.fetch_pubmed("11", self.tmp, audit.RateLimiter(1000))
+        self.assertEqual("http_429", payload["error"])
+        self.assertFalse(self._cached("pubmed", "11"))
+
+    def test_pubmed_404_is_NOT_cached_unlike_crossref(self):
+        # The one place the two endpoints deliberately disagree, so it is pinned
+        # rather than left to be "tidied" into a single shared set. A 404 from
+        # eutils means the request or the service is wrong, not the PMID.
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 404, "Not Found", {}, None)
+        audit.http_get = boom
+        audit.fetch_pubmed("12", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(self._cached("pubmed", "12"))
+
+    def test_pubmed_urlerror_is_NOT_cached(self):
+        def boom(url, timeout=30):
+            raise urllib.error.URLError("connection refused")
+        audit.http_get = boom
+        audit.fetch_pubmed("13", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(self._cached("pubmed", "13"))
+
+
+class TestTransportFailureIsReportedNotSilent(unittest.TestCase):
+    """A transport failure must be NAMED, never collapsed into ``unresolvable``.
+
+    Both fail open at the gate, so this changes no verdict -- it changes what the
+    run SAYS. ``unresolvable`` asserts the question was asked and answered, and a
+    record dropped from coverage by a 429 must not be able to hide inside that
+    word. Before the fix it could: the poisoned cache entry made the failure
+    indistinguishable from a real negative on the very next read.
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_report_test_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        self._http_get = audit.http_get
+        self.addCleanup(setattr, audit, "http_get", self._http_get)
+        self._urlopen = urllib.request.urlopen
+        self.addCleanup(setattr, urllib.request, "urlopen", self._urlopen)
+
+        def boom(*a, **kw):
+            raise urllib.error.URLError("connection refused")
+        audit.http_get = boom
+        urllib.request.urlopen = boom
+
+    def test_a_doi_transport_failure_is_skipped_not_unresolvable(self):
+        resolver = V.Resolver(self.tmp)
+        view, why = resolver.doi_view("10.1/x")
+        self.assertIsNone(view)
+        self.assertNotEqual("unresolvable", why)
+        self.assertTrue(any("10.1/x" in label for label, _ in resolver.skipped))
+        self.assertTrue(any("10.1/x" in label for label, _ in resolver.errors))
+
+    def test_a_pmid_transport_failure_is_skipped_not_silent(self):
+        resolver = V.Resolver(self.tmp)
+        self.assertIsNone(resolver.pubmed_record("12345"))
+        self.assertTrue(any("12345" in label for label, _ in resolver.skipped))
+        self.assertTrue(any("12345" in label for label, _ in resolver.errors))
+
+    def test_a_real_negative_is_still_unresolvable_and_still_silent(self):
+        # NEGATIVE CONTROL. A DOI both resolvers genuinely do not know is an
+        # ANSWER: it must keep the `unresolvable` reason and must NOT be counted
+        # as an unchecked record, or the gate's "N not checked" line becomes
+        # noise and stops being read.
+        for kind in ("crossref", "doiorg"):
+            path = audit.cache_path(self.tmp, kind, "10.1/dead")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({"ok": False, "error": "http_404"}),
+                            encoding="utf-8")
+        resolver = V.Resolver(self.tmp)
+        view, why = resolver.doi_view("10.1/dead")
+        self.assertIsNone(view)
+        self.assertEqual("unresolvable", why)
+        self.assertEqual([], resolver.skipped)
+        self.assertEqual([], resolver.errors)
+
+    def test_a_transport_failure_leaves_the_cache_untouched(self):
+        # The whole point: the next run gets to ask again.
+        resolver = V.Resolver(self.tmp)
+        resolver.doi_view("10.1/y")
+        resolver.pubmed_record("999")
+        self.assertEqual([], sorted(self.tmp.rglob("*.json")))
 
 
 class TestSecondaryTargetCollection(FixtureCase):
