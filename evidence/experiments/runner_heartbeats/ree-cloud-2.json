@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-14T16:48:37Z",
+  "last_tick_utc": "2026-08-14T17:03:43Z",
   "state": "running",
   "current_exq": "V3-EXQ-920a",
   "current_exq_started_utc": "2026-08-14T16:14:59.730697+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / single_life_uncensored_survival",
-    "runs_done": 1,
+    "run_label": "Seed 2 / single_life_uncensored_survival",
+    "runs_done": 2,
     "runs_total": 8,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 220,
-    "overall_pct": 14.2
+    "overall_pct": 25.0
   },
-  "seconds_elapsed": 2018,
-  "seconds_remaining": 5981,
+  "seconds_elapsed": 2924,
+  "seconds_remaining": 9575,
   "recent_lines": [
     "[V3-EXQ-920] Uncensored Survival-to-Death Fishtank, TRUE Single-Life Design",
     "Seeds: [0, 1, 2, 3, 4, 5, 6, 7]  curriculum: Stage-0/0b/P0/Stage-H/P1 + harm-pathway training",
@@ -37,7 +37,16 @@
     "Seed 1 Condition single_life_uncensored_survival",
     "[EXQ-920] seed=1 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON (906b ecology, max_episode_steps=20000)",
     "[train] stage0 seed=1 ep 20/220 z_goal_peak=0.4276",
-    "[train] stage0b seed=1 ep 30/220"
+    "[train] stage0b seed=1 ep 30/220",
+    "[train] p0 seed=1 ep 130/220 harm_enabled=True harm_steps=7119",
+    "[train] hazard seed=1 ep 170/220 G_H=FAIL harm_eval_range=0.2761 harm_steps=653",
+    "[train] p1 seed=1 ep 220/220 survival_gate=FAIL",
+    "[eval] seed=1 ep 1/1 steps=1432 done_cause=health_depleted spawn_attempts=1",
+    "[EXQ-920] seed=1 channel std: z_harm_a=0.7893  z_harm_un=0.0377  drive=0.2874  z_goal=0.0927  vigor=0.0000  z_block=0.3239  excite=0.6835  dread=0.0670",
+    "[EXQ-920] seed=1 realized_steps=1432 done_cause=health_depleted cumulative_lived_steps=1432",
+    "verdict: PASS seed=1 core_ok=True harm_trained=True",
+    "Seed 2 Condition single_life_uncensored_survival",
+    "[EXQ-920] seed=2 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON (906b ecology, max_episode_steps=20000)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
