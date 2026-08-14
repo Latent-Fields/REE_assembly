@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_local_sleep_awake_vyazovskiy2011",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180",
+    "SD-017"
+  ],
+  "source": {
+    "title": "Local sleep in awake rats.",
+    "authors": [
+      "Vyazovskiy VV",
+      "Olcese U",
+      "Hanlon EC",
+      "Nir Y",
+      "Cirelli C",
+      "Tononi G"
+    ],
+    "year": 2011,
+    "venue": "Nature",
+    "doi": "10.1038/nature10009",
+    "pmid": "21525926"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "High-profile Nature paper with direct unit recordings; the finding (local cortical populations enter sleep-like OFF periods while the animal is behaviourally awake) is exactly the observation that falsifies a single-global-scalar model of sleep state. Reduced from highest only because the transfer to an artificial agent with no cortical topography is architectural rather than direct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's eventual sleep-need signal is a single global scalar and the substrate is later found to need per-subsystem consolidation at different rates, this entry predicts the global scalar will average away exactly the demand differences that should drive routing -- diagnostic: compare per-region staleness spread against the single MEL value at cycle entry; a wide spread under a mid-range global MEL is the signature."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "local_sleep",
+    "use_dependent",
+    "inv_050",
+    "mech_180",
+    "global_scalar_refutation"
+  ],
+  "mapping": {
+    "source_claim_statement": "After prolonged waking, local populations of cortical neurons in behaviourally awake rats briefly enter sleep-like OFF periods with local slow-wave activity. These local off-periods increase with time awake and predict impaired task performance, despite EEG and behaviour indicating wakefulness.",
+    "ree_translation": "Directly bears on GAP-9's question of what quantity a within-life sleep trigger should read. If sleep need were one global scalar crossing one threshold, an animal would be either asleep or awake; Vyazovskiy shows the regulatory unit is LOCAL and that units can go offline independently of the global state. For REE this means (i) a single global MEL/fatigue scalar is a known simplification rather than a faithful model, and (ii) the eventual V4 target is per-region sleep need, which is also what would make PARTIAL sleep under threat (see Rattenborg 1999 sibling entry) mechanically natural rather than an ad-hoc duration hack.",
+    "mapping_caveat": "REE has no cortical topography and no per-region sleep-need substrate, so this entry cannot be implemented directly in V3. It is recorded as a known divergence (synthesis Section 7 item 1), not as a build target. The performance-error link is also specific to sleep-deprived rats; it does not establish that local sleep is the normal regulatory mode at baseline.",
+    "source_context": "Intracellular and multi-unit recordings in rat cortex across extended waking."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Source quality very high. Mapping fidelity good for the negative claim (sleep need is not one global scalar) but weaker for any positive V3 build, since REE has no regional substrate."
+  }
+}

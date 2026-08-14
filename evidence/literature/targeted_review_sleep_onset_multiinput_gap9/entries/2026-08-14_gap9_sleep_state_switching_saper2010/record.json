@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_sleep_state_switching_saper2010",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "MECH-286",
+    "SD-037",
+    "SD-017",
+    "INV-050"
+  ],
+  "source": {
+    "title": "Sleep state switching.",
+    "authors": [
+      "Saper CB",
+      "Fuller PM",
+      "Pedersen NP",
+      "Lu J",
+      "Scammell TE"
+    ],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.11.032",
+    "pmid": "21172606"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.9,
+  "confidence_rationale": "Authoritative Neuron review by the originators of the flip-flop switch model, integrating circuit anatomy with dynamics. Names the three-way homeostatic/circadian/allostatic decomposition explicitly, which is the organising claim of this synthesis's Verdict 1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE folds a graded safety response directly into MECH-286's boolean AND (e.g. by tuning threat_tonic_threshold) rather than adding a separate continuous term, Saper's architecture predicts chatter: a threshold near the operating point produces rapid permit/refuse oscillation across steps. Diagnostic: count permit-state flips per unit time near threshold; high flip rates are the signature of a missing stabiliser."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "flip_flop",
+    "bistability",
+    "orexin",
+    "stabiliser",
+    "allostatic",
+    "mech_286",
+    "sd_037"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep-wake transitions are produced by a flip-flop switch built from mutual inhibition between VLPO and the monoaminergic arousal groups. The switch is sharply bistable but intrinsically unstable, and orexin neurons -- positioned OUTSIDE the switch -- stabilise it, holding it in the wake state. Loss of orexin produces the state instability of narcolepsy; a stuck switch produces insomnia. Switching is regulated by homeostatic, circadian, and allostatic processes.",
+    "ree_translation": "Two contributions. (1) The explicit homeostatic/circadian/allostatic triad is the source-literature statement of this synthesis's three-type decomposition, and is what licenses treating safety as a separate logical type rather than another additive drive. (2) The switch-plus-external-stabiliser architecture is the recommended shape for MECH-286: a sharp bistable permit as the outer backstop, with a CONTINUOUS term acting on it from outside doing the ordinary graded work -- rather than folding the graded safety response into the boolean condition itself. REE already has the pieces: MECH-286 is the switch, and SD-037's override_signal is already the orexin-analog stabiliser (and is already MECH-286's first gate term).",
+    "mapping_caveat": "A circuit-level review; the flip-flop dynamics arise from specific mutual-inhibition connectivity that REE does not implement -- REE's sleep entry is a procedural call, not a dynamical attractor, so bistability would have to be imposed rather than emergent. The architectural recommendation (sharp switch + external continuous stabiliser) transfers; the dynamical mechanism does not. Note also that REE already has a bistable-gate idiom elsewhere (BetaGate), so the pattern is not foreign to the codebase.",
+    "source_context": "Review of hypothalamic and brainstem sleep-wake circuitry and its switching dynamics."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.22,
+    "notes": "Canonical review. Mapping fidelity good for the architectural recommendation; the dynamical-mechanism half does not transfer to a procedural sleep call."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_ecological_override_homeostasis_loftus2022",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-286",
+    "SD-017",
+    "MECH-180"
+  ],
+  "source": {
+    "title": "Ecological and social pressures interfere with homeostatic sleep regulation in the wild.",
+    "authors": [
+      "Loftus JC",
+      "Harel R",
+      "Nunez CL",
+      "Crofoot MC"
+    ],
+    "year": 2022,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.73695",
+    "pmid": "35229719"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.92,
+  "confidence_rationale": "The single most decisive new source in this pull. A field study that explicitly MEASURED the homeostatic variables (prior sleep, prior exertion) and showed the ecological term won anyway, with no subsequent compensation. This is a controlled-for refutation of the additive-drive-plus-threshold model in exactly the ecological setting REE simulates, not merely an observation that risk matters.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's sleep onset is built as a single accumulated-need threshold with no allostatic term, Loftus predicts the agent will sleep on schedule in unfamiliar or hazardous regions where a real organism would not. Diagnostic: sleep-onset rate conditioned on region novelty/hazard should NOT be flat; a flat rate is the signature of the missing allostatic input.",
+    "If a safety term is added but is sourced from CURRENT harm, Loftus predicts it will fail to fire in the cases that matter, since the baboons responded to unfamiliarity with zero current harm. Diagnostic: correlate the threat term against region novelty; near-zero correlation means the term cannot reproduce this finding."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "homeostatic_override",
+    "allostatic",
+    "predation_risk",
+    "familiarity",
+    "loftus",
+    "global_scalar_refutation",
+    "mech_286"
+  ],
+  "mapping": {
+    "source_claim_statement": "Wild olive baboons tracked with triaxial accelerometry and GPS sacrificed sleep when in less familiar locations and when sleeping in proximity to more group-mates, REGARDLESS of how long they had slept the prior night or how much they had physically exerted themselves the preceding day, and did not compensate via more intense sleep bouts. Survival and social priorities outweighed the physiological drive to maintain sleep homeostasis.",
+    "ree_translation": "Load-bearing for two separate conclusions. (1) Verdict 1: sleep drive is not one accumulating scalar that reliably wins on crossing a threshold -- here the accumulated need was present and measured and was overridden, so an allostatic term is a genuinely separate input of a different logical type, not another addend. (2) Section 5.4: the trigger for the override was LOCATION UNFAMILIARITY, an expectation about unobserved risk with nothing actually attacking the animals. That is direct field evidence that the relevant safety variable is PREDICTED future harm, not current harm level -- which is exactly the organism-review Section 8 question, answered in the predicted direction.",
+    "mapping_caveat": "Observational field data, so the ecological/social pressures are correlational rather than manipulated; the authors cannot fully separate predation risk from social disturbance as the operative cause (both were associated with lost sleep). For REE this ambiguity is largely moot -- REE has no social channel, so the familiarity/risk arm is the one that transfers -- but it means the entry should not be cited as isolating predation specifically.",
+    "source_context": "Accelerometry plus GPS tracking of a wild Papio anubis group; sleep inferred from movement."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.18,
+    "notes": "Mapping fidelity unusually high because the paper measured and controlled for the exact homeostatic variables REE's MEL/Process-S analogue represents, making the override claim directly transferable rather than analogical."
+  }
+}

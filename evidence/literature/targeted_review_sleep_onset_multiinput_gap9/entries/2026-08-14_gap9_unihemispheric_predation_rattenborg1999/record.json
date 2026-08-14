@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_unihemispheric_predation_rattenborg1999",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "MECH-286",
+    "SD-037",
+    "SD-017"
+  ],
+  "source": {
+    "title": "Half-awake to the risk of predation.",
+    "authors": [
+      "Rattenborg NC",
+      "Lima SL",
+      "Amlaner CJ"
+    ],
+    "year": 1999,
+    "venue": "Nature",
+    "doi": "10.1038/17037",
+    "pmid": "29667967"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.9,
+  "confidence_rationale": "Landmark Nature paper with a clean quantitative behavioural manipulation (group edge vs centre) and directional eye-orientation data. The graded, facultative control of sleep depth under risk is exactly the shape question the synthesis needed answered.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE implements a safety term as an all-or-nothing permit and shows a bimodal sleep distribution (full cycles or none) across a hazard gradient, Rattenborg predicts this is wrong-shaped: the biological response is monotone-graded in risk. Diagnostic: sleep duration/depth as a function of threat magnitude should be continuous and monotone, not a step."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "predation_risk",
+    "unihemispheric",
+    "partial_sleep",
+    "graded_gating",
+    "mech_286"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mallards at the edge of a group increased unihemispheric slow-wave sleep from 12.4% to 31.8% relative to birds at the centre, and during unihemispheric sleep directed the open eye away from the group centre 86.2% of the time. Birds can detect approaching predators during unihemispheric sleep and increase its use as predation risk rises. Sleep and wakefulness are controlled simultaneously in different brain regions.",
+    "ree_translation": "The decisive source for the synthesis's recommendation that a safety term be GRADED rather than boolean. The risk response here is not permit/refuse: it is a continuous reallocation of how much of the system sleeps, plus directional steering of the retained vigilance. This is the point at which the local-sleep thread (Krueger, Vyazovskiy) and the safety thread meet -- partial sleep under threat is mechanically natural only if sleep need and sleep state are regionally decomposable. REE cannot do this today (whole-agent sleep), so the duration/depth factor is the available approximation and should be named as an approximation.",
+    "mapping_caveat": "REE has no hemispheric or regional decomposition of its sleep state and no sensory vigilance channel that could stay open during a sleep cycle, so the mechanism cannot be implemented in V3. The transferable content is the SHAPE of the risk response (graded, partial, retained-watch), not the mechanism. The 12.4%/31.8% figures are mallard-specific and are not parameter anchors for REE.",
+    "source_context": "Behavioural and EEG study of mallards in a four-bird row, edge vs centre positions."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Source quality very high with clean quantitative contrast. Transfer risk elevated because the mechanism (unihemispheric sleep) has no V3 analogue; only the response shape transfers."
+  }
+}

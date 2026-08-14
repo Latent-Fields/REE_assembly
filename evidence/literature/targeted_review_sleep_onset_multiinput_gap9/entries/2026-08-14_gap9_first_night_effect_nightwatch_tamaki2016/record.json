@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_first_night_effect_nightwatch_tamaki2016",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "MECH-286",
+    "SD-017",
+    "INV-050"
+  ],
+  "source": {
+    "title": "Night Watch in One Brain Hemisphere during Sleep Associated with the First-Night Effect in Humans.",
+    "authors": [
+      "Tamaki M",
+      "Bang JW",
+      "Watanabe T",
+      "Sasaki Y"
+    ],
+    "year": 2016,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2016.02.063",
+    "pmid": "27112296"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "Well-controlled human neuroimaging study with a within-subject two-night design and a behavioural readout (arousal latency to deviant stimuli), showing the asymmetry is functional rather than incidental. Slightly below the animal field studies because the environmental 'risk' is a laboratory novelty manipulation rather than genuine predation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE adds a novelty/unfamiliarity term to sleep onset that does NOT extinguish with experience in a region, Tamaki predicts the wrong dynamics -- the biological state habituates by the second exposure. Diagnostic: the threat/novelty term's value in a fixed region should decay across repeated visits; a non-decaying term is the signature."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "first_night_effect",
+    "novelty",
+    "vigilance",
+    "partial_sleep",
+    "predicted_harm",
+    "mech_286"
+  ],
+  "mapping": {
+    "source_claim_statement": "On the first night in an unfamiliar environment, the default-mode network in one hemisphere remains less deeply asleep than the other during slow-wave sleep. Deviant auditory stimuli presented to the less-sleeping hemisphere produced more arousals and faster behavioural responses. The asymmetry correlated with sleep-onset latency on night one and was absent by night two.",
+    "ree_translation": "Two contributions. (1) It is the human counterpart of Rattenborg 1999, supporting the synthesis's claim that the risk response is PARTIAL and retains a vigilance channel rather than being a permit/refuse decision -- and it shows this in a species with no unihemispheric sleep capability, so the phenomenon is not a bird-specific curiosity. (2) It is second evidence, alongside Loftus 2022, that the operative variable is PREDICTED rather than current harm: nothing threatening happened on night one, and the vigilance state extinguished with experience by night two, which is the signature of a predictive state being updated rather than a current-harm reading.",
+    "mapping_caveat": "Laboratory novelty is a weak proxy for ecological threat, and the effect is a graded depth asymmetry rather than a sleep-onset decision -- the paper is about how one sleeps in a novel place, not primarily about whether one sleeps. Its use here for the onset question is therefore supporting rather than primary; Loftus 2022 carries that argument.",
+    "source_context": "Human polysomnography plus magnetoencephalography/MRI across two nights a week apart, 35 participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.25,
+    "notes": "Strong within-subject design with a functional readout. Mapping fidelity reduced because the manipulation is novelty-in-a-lab rather than risk, and the DV is sleep depth asymmetry rather than onset."
+  }
+}

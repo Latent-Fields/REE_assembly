@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sleep_onset_multiinput_gap9",
+  "entry_id": "2026-08-14_gap9_neuronal_assembly_sleep_krueger2008",
+  "timestamp_utc": "2026-08-14T00:35:00Z",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180",
+    "SD-017"
+  ],
+  "source": {
+    "title": "Sleep as a fundamental property of neuronal assemblies.",
+    "authors": [
+      "Krueger JM",
+      "Rector DM",
+      "Roy S",
+      "Van Dongen HPA",
+      "Belenky G",
+      "Panksepp J"
+    ],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2521",
+    "pmid": "18985047"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Authoritative Nature Reviews synthesis proposing the local/emergent account of sleep regulation, with a formal model of cortical-column synchronisation. Theory rather than a single decisive experiment, hence 0.85 rather than higher; its empirical companion in this pull is Vyazovskiy 2011.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE later builds per-region sleep need by SUBDIVIDING a global scalar (top-down allocation of a fixed budget) rather than AGGREGATING per-region demand upward, Krueger predicts the wrong dynamics: regions with genuinely high demand cannot exceed their share, so consolidation saturates. Diagnostic: check whether per-region offline effort sums to a constant across arms with different demand profiles."
+  ],
+  "tags": [
+    "gap9",
+    "sleep_onset",
+    "local_sleep",
+    "emergent_global_state",
+    "krueger",
+    "inv_050",
+    "global_scalar_refutation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep is not imposed top-down by a central controller but is a fundamental property of neuronal networks, dependent on prior activity in each network. Local sleep-regulatory substances driven by local metabolic load put individual units into a sleep-like state; whole-organism sleep is an EMERGENT property of local units synchronising through humoral and electrical coupling.",
+    "ree_translation": "Supplies the architectural reading of Vyazovskiy's observation, and is the strongest single source for the synthesis's Verdict 1. For GAP-9 it reframes the question: 'what global signal should trigger sleep' presupposes a top-down controller the biology does not have. The honest V3 position is that REE's single MEL scalar is a coarse stand-in for an emergent aggregate, adopted for tractability. It also predicts the correct DIRECTION of any future refinement: aggregate upward from per-region demand, do not subdivide a global scalar downward.",
+    "mapping_caveat": "This is a theoretical framework, and the local/emergent account remains contested against classical centrally-controlled models. It does not specify how many units, what coupling strength, or what aggregation function -- so it constrains architecture direction but supplies no parameter anchors. It also says nothing about the safety/allostatic input, which is a separate axis (see Loftus 2022 and Lima 2005 sibling entries).",
+    "source_context": "Review plus mathematical model of cortical columns synchronising into whole-organism sleep."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Highly cited review by the originators of the local-sleep account. Mapping fidelity good because the claim is architectural and REE's question is architectural."
+  }
+}
