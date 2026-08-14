@@ -378,6 +378,19 @@
       "status": "resolved",
       "resolved_at": "2026-08-13T06:31:26Z",
       "resolution_note": "Folded into MECH-303's evidence_quality_note (REE_assembly docs/claims/claims.yaml) as a dated GFLAG-0026 addendum: (1) corrects V3-EXQ-917's own premise about which drivers set limb_damage_enabled (2/20, not the majority); (2) confirms the sourcing-mode-dependence finding is already fully consistent with last cycle's SD-MECH303-THRESHOLD-SOURCING routing decision (dedicated proximity signal, not a threshold retune) -- no status/confidence change."
+    },
+    {
+      "flag_id": "GFLAG-0027",
+      "claim_ids": [
+        "MECH-186"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The MECH-186 literature entry 2026-04-09_mech_186_5ht_valence_model_based_huys2015 blends two papers: its title and DOI (10.1038/mp.2015.46) are Worbe et al. 2016 Mol Psychiatry, but its summary.md describes Huys et al. 'Interplay of approximate planning strategies', including sample sizes (n=1,762 online, n=38 ATD) that are not the cited study's -- so part of the stated basis for its confidence 0.62 is a caveat about a paper the entry does not cite. Provenance was corrected (source.authors -> Worbe et al.); confidence and evidence_direction were deliberately left untouched pending governance. Detail: evidence/planning/literature_bibliographic_accuracy_audit_2026-08-14.md item 0.",
+      "raised_by_session": "metaworker-chip-20260814-lit-bibliographic-accuracy",
+      "raised_at": "2026-08-14T06:15:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
