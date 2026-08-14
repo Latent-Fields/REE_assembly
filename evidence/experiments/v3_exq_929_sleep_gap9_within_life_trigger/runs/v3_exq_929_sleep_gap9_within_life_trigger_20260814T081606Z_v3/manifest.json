@@ -1,0 +1,116 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_929_sleep_gap9_within_life_trigger",
+  "run_id": "v3_exq_929_sleep_gap9_within_life_trigger_20260814T081606Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-14T08:16:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "within_life_trigger_validated",
+    "preconditions": [
+      {
+        "name": "life_exceeds_step_ceiling",
+        "description": "the continuous life ran at least within_life_sleep_step_ceiling waking steps, so a within-life fire was structurally possible; a shorter life could silently make the ON arm look non-firing",
+        "measured": 120.0,
+        "threshold": 25.0,
+        "direction": "lower",
+        "met": true,
+        "control": "min waking steps across all conditions/seeds"
+      },
+      {
+        "name": "on_arm_trigger_wired",
+        "description": "the ON arm's SleepLoopManager actually has within_life_trigger set from config -- guards against a from_dims silent-kwargs miswire reading as a non-firing substrate rather than an unwired flag",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "control": "all ON seeds"
+      },
+      {
+        "name": "off_arm_trigger_not_wired",
+        "description": "the OFF arm's within_life_trigger is False (the negative control is genuinely the flag-off substrate, not an accidentally-on one)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": true,
+        "control": "all OFF seeds"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "c1_off_silent": true,
+      "c2_on_fires": true,
+      "c3_on_ceiling_arm": true
+    },
+    "criteria": [
+      {
+        "name": "c1_off_silent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "c2_on_fires",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "c3_on_ceiling_arm",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "combination_rule": "PASS = readiness AND c1_off_silent AND c2_on_fires AND c3_on_ceiling_arm",
+    "dv_symmetry_note": "The manipulation (use_within_life_sleep_trigger) directly gates the DV path (notify_waking_step -> _run_cycle); the cycle-fired count is NOT invariant under the flag, so this is a genuine measurement, not an arithmetic identity.",
+    "note": "Diagnostic substrate-readiness validation for sleep_substrate:GAP-9 (v1 ceiling arm). Untrained agent by design: the DV is structural reachability of a sleep cycle from within a single continuous life, independent of learning. claim_ids=[]; does not weight governance. On PASS, GAP-9's status moves to done (ceiling arm); the MEL/need-crossing arm (design (b)) remains a planned follow-up. use_mech286_sleep_onset_gate deliberately OFF (lit-synthesis brief)."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7429b5e1573becc944bada822dd49a83306ff98b3e705e801d7e00f31f75b944",
+  "substrate_commit": {
+    "commit": "817ae37786f4d36b4fc3ddd9fdd51ab3d9ce9866",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
