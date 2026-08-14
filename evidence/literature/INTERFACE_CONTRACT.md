@@ -23,7 +23,20 @@ Required fields:
   - `title`
   - `authors` (string array)
   - `year` (integer)
-  - optional `venue`, `doi`, `url`
+  - optional `venue`
+  - optional **stable external identifiers**: `doi`, `pmid`, `pmc`, `arxiv_id`, `isbn`, `url`.
+    Record every identifier you actually resolved -- for a biomedical source `pmid` is the primary
+    verification handle and should be present. Any of these may be `null`, which means "checked,
+    none exists"; that is more informative than omitting the key.
+  - optional **in-publication locators**: `volume`, `issue` (string or integer), `pages` (string).
+
+  `source` is closed (`additionalProperties: false`). Two things deliberately do NOT go in it:
+  - a **denormalised rendering** of fields already declared separately -- do not add a formatted
+    `citation` string or a merged `volume_pages`; put the parts in `venue`/`volume`/`issue`/`pages`.
+  - **prose** -- provenance notes, metadata corrections, retrieval caveats, code/data availability.
+    These belong in the entry's `summary.md`, which is the dominant corpus convention.
+
+  `pmcid` is a deprecated spelling of `pmc`, still accepted so existing entries validate. Use `pmc`.
 - `evidence_class`: string class token (ingestion prefixes with `lit:` in the matrix).
 - `evidence_direction`: one of `supports`, `weakens`, `mixed`, `unknown`.
 - `confidence`: number in `[0, 1]`.

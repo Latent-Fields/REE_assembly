@@ -28,6 +28,7 @@
     },
     "source": {
       "type": "object",
+      "description": "Bibliographic provenance for the cited work. Declares three groups: descriptive fields (title/authors/year/venue), stable external identifiers (doi/pmid/pmc/pmcid/arxiv_id/isbn/url), and in-publication locators (volume/issue/pages). `additionalProperties` stays false on purpose, so this object is a record of the corpus's actual citation convention rather than a free-form bag. Two things deliberately do NOT belong here and are rejected: (a) denormalised renderings of fields already declared separately (a formatted `citation` string, a merged `volume_pages`), and (b) prose -- provenance notes, metadata corrections, retrieval caveats -- which belong in the entry's summary.md, the dominant corpus convention. An optional identifier may be null, meaning 'checked, none exists', which is more informative than omitting the key.",
       "required": ["title", "authors", "year"],
       "properties": {
         "title": { "type": "string" },
@@ -37,8 +38,18 @@
         },
         "year": { "type": "integer", "minimum": 1800, "maximum": 2200 },
         "venue": { "type": "string" },
-        "doi": { "type": "string" },
-        "url": { "type": "string" }
+
+        "doi": { "type": ["string", "null"], "description": "DOI, bare (no https://doi.org/ prefix)." },
+        "pmid": { "type": ["string", "null"], "description": "PubMed ID, digits only. The primary verification handle for a biomedical source and the most-used identifier in this corpus after doi." },
+        "pmc": { "type": ["string", "null"], "description": "PubMed Central ID, 'PMC'-prefixed. Synonym of `pmcid`; both are declared because both are already in use with identical value format. New entries should prefer `pmc`." },
+        "pmcid": { "type": ["string", "null"], "description": "Deprecated spelling of `pmc`. Retained so existing entries validate; do not use in new entries." },
+        "arxiv_id": { "type": ["string", "null"], "description": "arXiv identifier, e.g. '2307.07176'." },
+        "isbn": { "type": ["string", "null"], "description": "ISBN for a book-form source, where no doi exists." },
+        "url": { "type": ["string", "null"], "description": "Canonical link, for a source with no doi or other stable identifier." },
+
+        "volume": { "type": ["string", "integer"], "description": "Journal volume. String or integer -- both spellings are already in use." },
+        "issue": { "type": ["string", "integer"], "description": "Journal issue. String or integer -- both spellings are already in use." },
+        "pages": { "type": "string", "description": "Page range, e.g. '338-347'." }
       },
       "additionalProperties": false
     },
