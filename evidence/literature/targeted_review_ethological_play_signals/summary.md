@@ -8,6 +8,8 @@
 
 This review targets the empirical basis for ARC-049's three-level play signal architecture (frame-open, background signal, explicit repair signal), originally described by Bekoff (1995) in canids. Eight entries cover canids, gorillas, geladas, hyenas, dolphins, and ravens, spanning from the foundational 1995 paper to the most recent cetacean study (Palagi 2024, iScience).
 
+**Goal of the pull:** verify generalization beyond canids, understand the functional specificity of each level, find evidence on what determines explicit repair signal deployment, and identify developmental timelines.
+
 ## Summary Verdict
 
 The three-level architecture generalizes robustly beyond canids. Key results:
@@ -46,3 +48,27 @@ The three-level architecture generalizes robustly beyond canids. Key results:
 | 2026-05-16_arc049_nolfo_palagi2022_hyena_play_signals_visual | Nolfo, Casetta & Palagi 2022, Current Zoology | 0.82 |
 | 2026-05-16_arc049_palagi2024_dolphin_open_mouth_play_mimicry | Palagi et al. 2024, iScience | 0.84 |
 | 2026-05-16_arc049_wenig2021_raven_play_emotional_contagion | Wenig, Boucherie & Bugnyar 2021, Animal Cognition | 0.72 |
+
+## Missing Evidence
+
+- Direct evidence for level-3 explicit repair signals in primates (versus the background play face): no study yet isolates a primate-specific repair signal analogous to the canid play bow or hyena ROM
+- Wild population data on RFM timing and play duration relationship (most RFM studies are captive)
+- Longitudinal developmental data on play signal competence (cross-sectional data available for geladas; longitudinal trajectory not yet tracked)
+- Corvid-specific play signal inventory: ravens show emotional contagion but no discrete play signal architecture has been documented in corvids
+
+## Search Terms Used
+
+- play signals primates metacommunication ethology
+- play face open mouth primates chimpanzee function
+- Bekoff play signals canid dog metacommunication
+- animal play behavior social signals development evolution
+- dolphin cetacean play behavior social signals
+- van Hooff play face open mouth display chimpanzee gorilla primate play signal ethology
+- Palagi primate play signals laughter play face repair signals metacommunication
+- play bow function dogs wolves puppies function initiation reinitiation
+- gelada Theropithecus play face facial expression modulation social play
+- hyena play signals visual communication social play
+- raven juvenile play emotional contagion behavioral synchronization
+- Waller gorilla facilitating play through communication teeth exposure play face 2010
+- bottlenose dolphin open mouth play face smile signal rapid mimicry 2024 Palagi
+- Palagi gelada face never lies facial mimicry modulate play 2022
