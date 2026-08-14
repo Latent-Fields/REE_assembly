@@ -388,6 +388,29 @@ frozen set that mixes the two cannot be resolved by any run.
   the mechanism (904: 180 boundary fires → 180 decompositions; 839: 415 mid-execution
   evaluations), and the defect was in the question, not the code.
 
+### 8b. A stale sibling chip on this work-stream — surfaced, not actioned
+
+`chip-20260813-queueexp-mech321-r4` ("Queue MECH-321 R4 behavioural experiment") was
+spawned from the same GOV-DIAG-1 flag on 2026-08-13 and is still `open`. Its brief asks a
+`/queue-experiment` session to build the successor V3-EXQ-839's autopsy recommended — *"a
+MECH-321 R4 evidence experiment testing the behavioural/task effect of the now-reachable
+[mid-execution intervention point]"*.
+
+**That successor already ran.** V3-EXQ-844
+(`v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3`, 2026-08-01,
+`experiment_purpose: evidence`, `claim_ids: [MECH-321]`, load-bearing
+`C1_TASK_OUTCOME_IMPROVES` measured −0.00326 → FAIL, `evidence_direction: weakens`) is
+exactly it, and it was produced by `chip-20260731-mech321-r4-successor`, which is already
+marked `done`. The lineage then continued 867 → 867a → 867b → 919 and closed:
+`H-harm-aware-reduces-task-harm` **eliminated**, autopsy confirmed 2026-08-13, routed to
+`/implement-substrate` amend.
+
+Left open deliberately rather than resolved here — it belongs to another session's
+dispatch lane and a cycle may already be acting on it. Recorded so the next session to
+pick it up resolves it `done` on the 844/919 basis instead of spending a full
+`/queue-experiment` cycle rebuilding a run from twelve days ago. The chip in §8 carries
+this as an explicit STOP-CHECK item.
+
 ---
 
 ## 9. Marker
