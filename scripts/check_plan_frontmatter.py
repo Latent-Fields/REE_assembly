@@ -25,6 +25,25 @@ WHAT THIS DOES: for every `evidence/planning/*_plan.md` that carries a
 WARNING -- with filename, line/col, and the best-effort offending key -- when the
 strict parse fails. It also auto-suggests the usual fix (double-quote the value).
 
+UNTERMINATED-QUOTE ATTRIBUTION (added 2026-08-14, incident 2026-08-13 e5927f8acb):
+the second real incident was a different shape from the first -- not an UNQUOTED
+prose scalar but an ALREADY-QUOTED one that was never CLOSED. That shape breaks
+naive attribution, because YAML does not fail where the missing quote is: the
+unterminated scalar swallows the following line up to ITS opening quote, so
+`problem_mark` lands on the NEXT key's line and the walk-back in `offending_key`
+names the wrong key (it named `queued_2026_07_31` when the broken key was
+`outcome_2026_08_13` a line above). `suggest_fix` then bailed as well, because the
+line it landed on IS already quoted, and the operator got the generic and here
+actively misleading advice "double-quote the offending scalar value".
+
+`unterminated_double_quote()` resolves this with the YAML SCANNER rather than by
+counting quotes: an unterminated opener shows up as a double-quoted ScalarToken
+spanning more than one line and ending exactly on the line the parser tripped on,
+where that end line is itself a `key: "` opener. Counting unescaped `"` per line
+CANNOT distinguish this from a legitimate multi-line double-quoted scalar (both
+have an odd count on their opening line -- verified against the incident blob,
+which contained two of each).
+
 This is a governance HINT, never a gate: it exits 0 regardless of findings (unless
 `--strict` is passed) so it can run warn-only inside `governance.sh`. ASCII-only
 stdout per repo convention.
@@ -33,11 +52,13 @@ Usage (from REE_assembly/ root):
     /opt/local/bin/python3 scripts/check_plan_frontmatter.py            # warn-only, exit 0
     /opt/local/bin/python3 scripts/check_plan_frontmatter.py --strict   # exit 1 on any failure
     /opt/local/bin/python3 scripts/check_plan_frontmatter.py --file PATH # lint one file
+    /opt/local/bin/python3 scripts/check_plan_frontmatter.py --json     # machine-readable
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -121,6 +142,70 @@ def offending_key(fm_text: str, line_no: int) -> str | None:
     return None
 
 
+# A line that opens a mapping key whose value STARTS a double-quoted scalar, e.g.
+# `      queued_2026_07_31: "V3-EXQ-846 ...`. An unterminated scalar on an earlier
+# line terminates on THIS line's opening quote, which is what makes the parser
+# report the error here rather than where the missing quote belongs.
+_KEY_OPENS_DQ_RE = re.compile(r'^\s*[A-Za-z0-9_\-]+\s*:\s*"')
+
+
+def _key_for_value_token(tokens: list, idx: int) -> str | None:
+    """Name of the mapping key whose VALUE is tokens[idx].
+
+    Walks back to the nearest ScalarToken that is itself preceded by a KeyToken,
+    which is how PyYAML emits `key: value` (KeyToken, Scalar, ValueToken, Scalar).
+    """
+    for j in range(idx - 1, 0, -1):
+        tok = tokens[j]
+        if isinstance(tok, yaml.tokens.ScalarToken) and isinstance(
+                tokens[j - 1], yaml.tokens.KeyToken):
+            return tok.value
+    return None
+
+
+def unterminated_double_quote(fm_text: str, fm_line: int):
+    """Locate a double-quoted scalar that was opened and never closed.
+
+    Returns ``(key, open_fm_line)`` -- both 1-based, `open_fm_line` relative to
+    the frontmatter -- or None when this is not the failure shape.
+
+    `fm_line` is the 1-based frontmatter line the parser tripped on. The scanner
+    is used rather than per-line quote counting because a legitimate multi-line
+    double-quoted scalar is textually indistinguishable from an unterminated one
+    (see module docstring). Tolerates the scanner raising partway: the tokens
+    yielded before the raise are still the ones we need, since the unterminated
+    scalar necessarily scanned BEFORE whatever eventually tripped it.
+    """
+    if yaml is None:
+        return None
+    tokens: list = []
+    try:
+        for tok in yaml.scan(fm_text):
+            tokens.append(tok)
+    except yaml.YAMLError:
+        pass
+    except Exception:  # pragma: no cover -- never let attribution break the lint
+        return None
+
+    lines = fm_text.splitlines()
+    target = fm_line - 1  # yaml marks are 0-based
+    for i, tok in enumerate(tokens):
+        if not isinstance(tok, yaml.tokens.ScalarToken) or tok.style != '"':
+            continue
+        if tok.start_mark.line >= tok.end_mark.line:
+            continue  # single-line scalar -- it closed on its own line
+        if tok.end_mark.line != target:
+            continue  # not the scalar the parser tripped on
+        if not (0 <= tok.end_mark.line < len(lines)):
+            continue
+        if not _KEY_OPENS_DQ_RE.match(lines[tok.end_mark.line]):
+            # Ends mid-prose -> a genuine multi-line value, not a swallowed
+            # sibling key. Do not misreport a valid construct as broken.
+            continue
+        return _key_for_value_token(tokens, i), tok.start_mark.line + 1
+    return None
+
+
 def suggest_fix(fm_text: str, line_no: int) -> str | None:
     """Suggest the canonical fix: double-quote the offending scalar value."""
     lines = fm_text.splitlines()
@@ -166,9 +251,27 @@ def check_file(path: Path) -> dict | None:
         col = (mark.column + 1) if mark is not None else 0
         doc_line = (fm_line + 1) if fm_line else 0
         problem = getattr(exc, "problem", None) or str(exc).splitlines()[0]
+        unterminated = unterminated_double_quote(fm_text, fm_line) if fm_line else None
+        if unterminated is not None:
+            # The missing closing quote, not the line YAML tripped on, is the
+            # thing to fix -- and it belongs to a DIFFERENT key.
+            key, open_fm_line = unterminated
+            return {
+                "file": path.name,
+                "kind": "parse_error",
+                "shape": "unterminated_double_quote",
+                "fm_line": fm_line,
+                "doc_line": doc_line,
+                "col": col,
+                "problem": str(problem).strip(),
+                "key": key,
+                "unterminated_doc_line": open_fm_line + 1,
+                "suggestion": None,
+            }
         return {
             "file": path.name,
             "kind": "parse_error",
+            "shape": "unquoted_scalar",
             "fm_line": fm_line,
             "doc_line": doc_line,
             "col": col,
@@ -192,9 +295,16 @@ def main() -> int:
                     help="exit 1 if any closure plan fails strict parse")
     ap.add_argument("--file", type=str, default=None,
                     help="lint a single plan file instead of the whole dir")
+    ap.add_argument("--json", action="store_true",
+                    help="emit machine-readable findings on stdout (no prose report)")
     args = ap.parse_args()
 
     if yaml is None:
+        if args.json:
+            json.dump({"available": False, "findings": [], "scanned": 0,
+                       "closure_plans": 0}, sys.stdout)
+            print("")
+            return 0
         print("check_plan_frontmatter: PyYAML not available -- skipping (warn-only)")
         return 0
 
@@ -225,6 +335,17 @@ def main() -> int:
         if result is not None:
             findings.append(result)
 
+    if args.json:
+        json.dump({
+            "available": True,
+            "scanned": len(targets),
+            "closure_plans": n_closure,
+            "missing_known": missing_known,
+            "findings": findings,
+        }, sys.stdout, sort_keys=True)
+        print("")
+        return 1 if (findings and args.strict) else 0
+
     print("=== check_plan_frontmatter: strict-YAML lint for closure-plan frontmatter ===")
     print(f"Scanned {len(targets)} plan file(s); {n_closure} carry closure_plan frontmatter.")
     if missing_known:
@@ -243,9 +364,20 @@ def main() -> int:
             print("")
             print(f"WARNING: {f['file']}: strict yaml.safe_load FAILED at {loc}{keytxt}")
             print(f"  problem: {f['problem']}")
+            if f.get("shape") == "unterminated_double_quote":
+                print(f"  cause: UNTERMINATED double-quoted scalar opened on line "
+                      f"{f['unterminated_doc_line']}. It has no closing '\"', so YAML")
+                print(f"         swallowed line {f['doc_line']} up to that line's own opening "
+                      "quote -- which is")
+                print("         why the error is reported a line LATER than the actual break.")
             print("  -> serve.py._parse_plan_frontmatter would return None, so the explorer")
             print("     closure-map drops this whole plan to frontmatter_pending:True.")
-            if f.get("suggestion"):
+            if f.get("shape") == "unterminated_double_quote":
+                print(f"  fix: add the missing closing double-quote to the END of line "
+                      f"{f['unterminated_doc_line']}")
+                print(f"       (key '{f['key']}'). Do NOT re-quote line {f['doc_line']} -- it is "
+                      "already quoted.")
+            elif f.get("suggestion"):
                 print("  suggested fix (double-quote the value):")
                 print(f"    {f['suggestion']}")
             else:
