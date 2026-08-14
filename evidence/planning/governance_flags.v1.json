@@ -417,6 +417,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0030",
+      "claim_ids": [
+        "ARC-049",
+        "INV-059",
+        "Q-035",
+        "MECH-196"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Bekoff (1995) 'Play Signals as Punctuation: the Structure of Social Play in Canids' (Behaviour 132:419-429) is entered TWICE in the literature corpus, under two different literature_type reviews, and each entry carried a DIFFERENT fabricated 404 DOI for it (10.1163/156853995X00822 and 10.1163/156853995X00101). Both were repaired to the real doi 10.1163/156853995X00649, which is how the duplication became visible. The two entries -- targeted_review_devrobotics_play_frame/.../2026-05-16_devrobotics_play_signals_punctuation_bekoff1995 (confidence 0.72, ARC-049/INV-059/MECH-196) and targeted_review_ethological_play_signals/.../2026-05-16_arc049_bekoff1995_play_signals_canids_punctuation (confidence 0.88, ARC-049/Q-035/INV-059) -- both appear in the derived claim_evidence.v1.json, so this single study currently counts twice toward ARC-049 and INV-059. Deduplication (or an explicit decision to keep both) is a governance call and was not made here.",
+      "raised_by_session": "metaworker-chip-20260814-lit-unrecoverable-identifiers",
+      "raised_at": "2026-08-14T07:03:08Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
