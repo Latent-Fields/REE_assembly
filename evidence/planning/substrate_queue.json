@@ -69,8 +69,8 @@
       "populated_by": "/failure-autopsy Step 7, when the autopsy's own finding resolves or supersedes a specific prior failure_record item on the SAME entry (uncommon -- most autopsies add a new item rather than resolve an old one), and /governance Step 6a-iii, the more common path: a later build's validation run makes an earlier failure_record item's `target` moot. Not backfilled across historical entries in bulk; populate going forward and opportunistically when reading an old entry closely enough to judge each item confidently."
     }
   },
-  "last_seen_session": "fishtank-max-episode-steps",
-  "last_updated_utc": "2026-08-13T06:37:52Z",
+  "last_seen_session": "intelligent-elgamal-222d2b",
+  "last_updated_utc": "2026-08-14T06:55:01Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -7247,7 +7247,7 @@
       "sd_id": "mech357-freeze-incompatible-pressure-mechanism",
       "title": "Wire agent-directed hazard pursuit into Stage-H onboarding; separately investigate eligibility-trace leak:learn imbalance",
       "node_class": "complex (probe-gated)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -7287,7 +7287,9 @@
         "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
       ],
       "added_session": "queue-depth-low-ops-aac785",
-      "last_seen_session": "gov-failure-autopsy-8e0cca"
+      "last_seen_session": "intelligent-elgamal-222d2b",
+      "implementation_status": "implemented_pending_validation",
+      "implementation_note": "IMPLEMENTED 2026-08-14 (session intelligent-elgamal-222d2b, /implement-substrate). Threaded the already-built hazard_agent_pursuit env param (ree-v3 39b5ca8) through Stage-H _build_env of scaffolded_sd054_onboarding.py via new config field scaffold_hazard_stage_hazard_agent_pursuit (no-op default 0.0, bit-identical for all existing callers; smoke-verified). Validation V3-EXQ-603u queued + POSTed to coordinator (ree-v3 origin/main 34b8c8d): 603u = 603s + directedness (mobile drift interval=1/prob=0.6 + hazard_agent_pursuit=0.9). This is the 6th and final pressure-mechanism candidate; clears the MECH-357 re-derive brake (603s 2026-08-10 + 603t 2026-08-13 -- the 603t autopsy's recommended_substrate_queue_entry names this exact build). Status flips to implemented_validated on a 603u PASS (G_H_INTACT>=2/3 AND G_H_INTACT>G_H_LESION). Design doc: REE_assembly/evidence/planning/mech357_agent_pursuit_build_2026-08-14.md. The eligibility-trace leak:learn imbalance flagged in this node's implementation_hint is split out as the SEPARATE entry mech357-avoidance-efficacy-eligibility-trace-imbalance."
     },
     {
       "sd_id": "SD-ORIENTING-DECISION-SCALE",
@@ -7467,6 +7469,28 @@
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-912-913-fishtank-cluster_2026-08-11.json",
       "implementation_note": "IMPLEMENTED 2026-08-13 (ree-v3, session failure-autopsy-8e0cca, chip-20260812-queue-seed-enforcement). Added validate_queue.seed_enforcement_lint (+ _script_seeds_default_count / _module_list_constants / _args_list / _declared_seed_count helpers) as a blocking ERROR wired into validate()'s existing per-item loop. Fires only on the fully-conjunctive, statically-verified case: declared seeds > 1, no explicit --seeds override in the item's args (shlex-split identically to experiment_runner.run_experiment's own parsing), and the target script's own --seeds argparse default is AST-resolvable to fewer seed values than declared (inline list/tuple literals, module-level NAME references, and list(NAME)/tuple(NAME) are all resolved; default=None -- the largest single corpus pattern -- a type=str comma-string contract, or an unresolvable expression are left silent, never guessed). Because validate() is already called from BOTH main() (the PreToolUse commit-blocking hook) AND experiment_runner.load_queue() (every runner's startup on every machine, sys.exit(1) on any error), this ONE check gives commit-time AND fleet-wide runner-startup enforcement -- including cloud workers that pull main directly and never see the commit hook -- without a second implementation. Deliberately did NOT implement runner-side --seeds synthesis (the implementation_hint's other proposed option): the corpus's --seeds contracts are heterogeneous (literal seed-value lists vs a single int count vs a comma-string), so synthesizing 0..N-1 would risk silently overwriting an author's deliberately-chosen seed values (breaking arm-reuse fingerprint matching) or guessing values never specified; a loud refusal is safer. Retroactively confirmed against both real incident scripts on disk (v3_exq_912_uncensored_survival_fishtank.py, v3_exq_920_uncensored_survival_single_life_fishtank.py). Swept the resolver over the full 1351-script experiments/ corpus with zero crashes (~11% confidently resolved, rest deferred). Validation: tests/contracts/test_validate_queue_seed_enforcement.py (17 tests) + existing tests/contracts/test_validate_queue_prereg_share_feasibility.py (15) + tests/preflight/test_queue_integrity.py (2), all green via remote_pytest.sh; full suite also run before landing.",
       "validation_experiment": "None queued -- this is an instrumentation/data-integrity fix (a commit-hook + runner-startup lint), not a substrate mechanism a governance experiment would test. Its own regression suite (tests/contracts/test_validate_queue_seed_enforcement.py) is the validation, retroactively pinned against the two real confirmed-defect scripts."
+    },
+    {
+      "sd_id": "mech357-avoidance-efficacy-eligibility-trace-imbalance",
+      "title": "MECH-357 avoidance-efficacy eligibility trace: credit/decay imbalance underflows learned efficacy to zero",
+      "status": "pending_implementation",
+      "implementation_status": "not_implemented",
+      "priority": 3,
+      "severity": "degrading",
+      "ready": true,
+      "node_class": "complex (probe-gated)",
+      "substrate_paths": [
+        "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
+      ],
+      "unblocks_claims": [
+        "MECH-357"
+      ],
+      "depends_on_unresolved": [],
+      "design_doc": null,
+      "added_session": "intelligent-elgamal-222d2b",
+      "last_seen_session": "intelligent-elgamal-222d2b",
+      "added_utc": "2026-08-14T06:55:01Z",
+      "implementation_hint": "Split out from mech357-freeze-incompatible-pressure-mechanism 2026-08-14 (session intelligent-elgamal-222d2b). In infralimbic_avoidance_gate.py update_efficacy(): credit fires only when a directed action under threat DROPS z_harm_a (rare), while decay fires on every OTHER under-threat tick (common). Per-event rates are learn_rate=0.05 vs leak_rate=0.02, but the TICK-COUNT asymmetry (n_credit << n_decay) dominates, so the learned avoidance_efficacy underflows toward numerical zero in every run to date. IMPORTANT SCOPE: this does NOT confound the Stage-H G_H validation window (V3-EXQ-603u): effective_efficacy = max(avoidance_efficacy, scaffold_floor) and the protective-scaffold floor (0.8, annealing) keeps effective_efficacy high through Stage-H regardless of the learned component. The underflow degrades P1/P2 TRANSFER/persistence (where the floor has annealed to the learned value), a separate readiness concern. Candidate fixes to probe: (a) credit-eligibility windowing so decay is not charged on every non-credit tick; (b) rebalance leak_rate vs learn_rate against realistic n_credit/n_decay ratios; (c) an eligibility trace with decay proportional to time-since-credit rather than per-tick. Probe-gated: which fix restores a non-trivial learned trace without destabilising the Stage-H credit dynamics is an open question."
     }
   ],
   "schema_version": "substrate_queue/v2"

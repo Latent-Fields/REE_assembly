@@ -18,6 +18,22 @@ status_claim: SD-058
 **Blocks:** `scaffolded_sd054_onboarding` Stage-H / P1 survival leg (goal_pipeline GAP-2);
 transitively ARC-060, MECH-320, ARC-068, SD-054-readiness (all `pending_retest_after_substrate`)
 
+> **Validation attempt 6 (2026-08-14): agent-directed hazard pursuit.** The Stage-H
+> validation has failed to discriminate 5 times (603h/603k/603r static; 603s
+> mobile-predator drift -> exact tie `G_H_INTACT=G_H_LESION=0.6667`; 603t SD-029
+> scheduled adjacency -> LESION ceiling 1.0), each because the pressure mechanism left
+> hazard motion agent-INDEPENDENT or one-shot, so no sustained Pavlovian-instrumental
+> conflict formed. The 6th and final pressure candidate -- **agent-directed hazard
+> pursuit** (`hazard_agent_pursuit`, built into the env by ree-v3 `39b5ca8`) -- was
+> threaded into Stage-H onboarding on 2026-08-14 (session `intelligent-elgamal-222d2b`,
+> `/implement-substrate`) and validation **V3-EXQ-603u** queued (603s + directedness:
+> `hazard_agent_pursuit=0.9`). SD-058 stays `v3_pending` until 603u PASSes. Design +
+> data-flow: [`../../evidence/planning/mech357_agent_pursuit_build_2026-08-14.md`](../../evidence/planning/mech357_agent_pursuit_build_2026-08-14.md).
+> Separately, the MECH-357 avoidance-efficacy eligibility-trace leak:learn imbalance is
+> tracked as its own `substrate_queue` item
+> (`mech357-avoidance-efficacy-eligibility-trace-imbalance`); it does not confound the
+> Stage-H window (the protective-scaffold floor covers it).
+
 ---
 
 ## Problem
