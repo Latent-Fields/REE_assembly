@@ -53,6 +53,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
@@ -997,6 +998,571 @@ class TestPrecommitWiring(unittest.TestCase):
         result = self._run_gate()
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         self.assertIn("SKIPPED", result.stderr)
+
+
+# --------------------------------------------------------------------------
+# the DOI -> PMID crosswalk (esearch `<doi>[AID]`)
+#
+# The dominant risk here is the OPPOSITE of the rest of this file. Every other
+# check starts from an identifier that resolves; this one starts from a question
+# PubMed usually answers "I have no such record" -- 1579 DOI-only records, of
+# which arXiv preprints, ML-conference papers, book chapters and monographs are
+# legitimately absent from PubMed entirely. Reading an empty esearch result as a
+# finding would flag hundreds of CORRECT records, so `not_in_pubmed` being a
+# silent, ordinary pass is the single most load-bearing assertion below.
+
+
+def esearch_payload(idlist, translated=True, count=None):
+    """An esearch response in the shape Resolver.pmids_for_doi reads.
+
+    ``translated`` models the observed hit/miss signal: PubMed rewrites a DOI it
+    indexes into a `"..."[Publisher ID]` phrase query, and leaves a DOI it does
+    not index as the raw `<doi>[AID]` term.
+    """
+    ids = [str(i) for i in idlist]
+    return {"ok": True, "message": {
+        "count": str(len(ids) if count is None else count),
+        "idlist": ids,
+        "querytranslation": ('"10 1 a"' + V.AID_TRANSLATION_MARKER
+                             if translated else "10.1/a[AID]"),
+    }}
+
+
+class TestAidCacheKey(unittest.TestCase):
+
+    def test_key_is_lower_cased(self):
+        self.assertEqual("10.1234/abcx", V.aid_cache_key("10.1234/ABCX"))
+
+    def test_key_is_not_the_comparison_form(self):
+        # normalise_doi collapses slash runs, which is right for COMPARING two
+        # DOIs and wrong for a cache key: the legacy APA double-slash form is a
+        # different string on the wire, so it must get its own cache entry
+        # rather than being served the single-slash form's answer.
+        self.assertEqual("10.1037//0022-006x.64.2.295",
+                         V.aid_cache_key("10.1037//0022-006x.64.2.295"))
+        self.assertNotEqual(V.aid_cache_key("10.1037//0022-006x.64.2.295"),
+                            V.normalise_doi("10.1037//0022-006x.64.2.295"))
+
+
+class TestPmidsForDoi(FixtureCase):
+
+    def test_a_translated_hit_is_a_mapping(self):
+        resolver = self.fx.resolver()
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["17626209"]))
+        self.assertEqual((["17626209"], "ok"), resolver.pmids_for_doi("10.1/a"))
+
+    def test_empty_result_is_not_in_pubmed_not_a_failure(self):
+        # THE COMMON CASE. Distinguishing this from "could not ask" is what
+        # keeps the sweep from flagging every arXiv preprint in the corpus.
+        resolver = self.fx.resolver()
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.48550/arxiv.2004.04136",
+                          esearch_payload([], translated=False))
+        self.assertEqual(([], "not_in_pubmed"),
+                         resolver.pmids_for_doi("10.48550/arXiv.2004.04136"))
+
+    def test_hits_from_an_untranslated_query_are_refused(self):
+        # NEGATIVE CONTROL: ids from a term PubMed did not read as an identifier
+        # lookup are free-text hits, not a crosswalk, and must not be trusted.
+        resolver = self.fx.resolver()
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1", "2"], translated=False))
+        self.assertEqual((None, "untranslated_query"),
+                         resolver.pmids_for_doi("10.1/a"))
+
+    def test_offline_and_uncached_fails_open_and_is_named(self):
+        resolver = self.fx.resolver()
+        self.assertEqual((None, "unfetched"), resolver.pmids_for_doi("10.1/never"))
+        self.assertTrue(any(why == "offline" for _, why in resolver.skipped))
+
+    def test_budget_spent_fails_open_and_is_named(self):
+        resolver = self.fx.resolver(offline=False, budget=0)
+        self.assertEqual((None, "unfetched"), resolver.pmids_for_doi("10.1/never"))
+        self.assertTrue(any(why == "network budget spent"
+                            for _, why in resolver.skipped))
+
+    def test_cache_key_is_case_insensitive_end_to_end(self):
+        # arXiv DOIs carry an uppercase X; a case-sensitive key would miss the
+        # cache and re-fetch every time. Same bug class the crossref key had.
+        resolver = self.fx.resolver()
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.48550/arxiv.1",
+                          esearch_payload(["7"]))
+        self.assertEqual((["7"], "ok"),
+                         resolver.pmids_for_doi("10.48550/arXiv.1"))
+
+
+class TestFetchPubmedAidCaching(unittest.TestCase):
+    """The one deviation from the audit's fetchers: failures are NOT cached."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lit_aid_test_"))
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        self._http_get = audit.http_get
+        self.addCleanup(setattr, audit, "http_get", self._http_get)
+
+    def test_a_success_is_cached(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"esearchresult": {"count": "1", "idlist": ["42"],
+                               "querytranslation": '"x"[Publisher ID]'}})
+        payload = V.fetch_pubmed_aid("10.1/a", self.tmp, audit.RateLimiter(1000))
+        self.assertTrue(payload["ok"])
+        self.assertTrue(audit.cache_path(self.tmp, V.PUBMED_AID_CACHE_KIND,
+                                         "10.1/a").exists())
+
+    def test_an_empty_result_IS_cached_because_it_is_an_answer(self):
+        audit.http_get = lambda url, timeout=30: json.dumps(
+            {"esearchresult": {"count": "0", "idlist": [],
+                               "querytranslation": "10.1/b[AID]"}})
+        V.fetch_pubmed_aid("10.1/b", self.tmp, audit.RateLimiter(1000))
+        self.assertTrue(audit.cache_path(self.tmp, V.PUBMED_AID_CACHE_KIND,
+                                         "10.1/b").exists())
+
+    def test_a_transport_failure_is_NOT_cached(self):
+        # An HTTP 429 from NCBI's rate limiter persisted as a cache entry would
+        # remove that record from every future sweep, indistinguishably from a
+        # real miss. The audit's fetchers cache failures; this one must not.
+        def boom(url, timeout=30):
+            raise urllib.error.URLError("connection reset")
+        audit.http_get = boom
+        payload = V.fetch_pubmed_aid("10.1/c", self.tmp, audit.RateLimiter(1000))
+        self.assertFalse(payload["ok"])
+        self.assertFalse(audit.cache_path(self.tmp, V.PUBMED_AID_CACHE_KIND,
+                                          "10.1/c").exists())
+
+    def test_an_http_error_is_NOT_cached_either(self):
+        def boom(url, timeout=30):
+            raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
+        audit.http_get = boom
+        payload = V.fetch_pubmed_aid("10.1/d", self.tmp, audit.RateLimiter(1000))
+        self.assertEqual("http_429", payload["error"])
+        self.assertFalse(audit.cache_path(self.tmp, V.PUBMED_AID_CACHE_KIND,
+                                          "10.1/d").exists())
+
+
+class TestPubmedHoldsDoi(unittest.TestCase):
+
+    def test_matching_articleids_confirms(self):
+        rec = pubmed_payload("T", ["A"], 2001, doi="10.1/a")["message"]
+        self.assertIs(True, V.pubmed_holds_doi(rec, "10.1/a"))
+
+    def test_a_different_doi_refuses(self):
+        # The phrase-prefix trap: `[AID]` is a tokenised phrase search, so a
+        # query can be contained by a LONGER Publisher ID. The round trip is
+        # what rules that out.
+        rec = pubmed_payload("T", ["A"], 2001,
+                             doi="10.1016/j.conb.2010.02.014.suppl")["message"]
+        self.assertIs(False, V.pubmed_holds_doi(rec, "10.1016/j.conb.2010.02.014"))
+
+    def test_no_doi_at_all_is_unconfirmable_not_a_contradiction(self):
+        rec = pubmed_payload("T", ["A"], 2001, doi=None)["message"]
+        self.assertIsNone(V.pubmed_holds_doi(rec, "10.1/a"))
+
+    def test_legacy_apa_double_slash_still_confirms(self):
+        rec = pubmed_payload("T", ["A"], 1996,
+                             doi="10.1037//0022-006x.64.2.295")["message"]
+        self.assertIs(True, V.pubmed_holds_doi(rec, "10.1037/0022-006x.64.2.295"))
+
+
+class TestCrosswalkDoi(FixtureCase):
+
+    def _crosswalk(self, record_path, **resolver_kwargs):
+        target = V.collect_scoped_targets([str(record_path)])[0]
+        return V.crosswalk_doi(target, self.fx.resolver(**resolver_kwargs))
+
+    def test_a_different_paper_is_a_finding(self):
+        # The shape this check exists for: a DOI-only record whose DOI PubMed
+        # maps to a paper the record does not describe. Verdict 1 and 2 cannot
+        # see it -- there is no PMID in the record to cross-resolve against.
+        rec = self.fx.record("engel2010", {
+            "title": "Beta-band oscillations -- signalling the status quo?",
+            "authors": ["Engel, Andreas K."], "year": 2010,
+            "doi": "10.1016/j.conb.2010.02.014"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
+                          esearch_payload(["20299205"]))
+        self.fx.cache_put("pubmed", "20299205", pubmed_payload(
+            "Neuronal oscillations and visual amplification of speech.",
+            ["Schroeder CE"], 2010, doi="10.1016/j.conb.2010.02.014"))
+        result = self._crosswalk(rec)
+        self.assertEqual("names_a_different_paper", result["status"])
+        self.assertEqual("20299205", result["pmid"])
+
+        verdict = self.assertVerdictOfKind(
+            rec, "doi_crosswalk_names_a_different_paper")
+        self.assertIn("20299205", verdict.detail)
+
+    def test_not_in_pubmed_is_silent(self):
+        # THE COMMON CASE, and the assertion that stops this check flagging
+        # hundreds of correct arXiv / ML-venue / book-chapter records.
+        rec = self.fx.record("arxivrec", {
+            "title": "Curl: Contrastive Unsupervised Representations",
+            "authors": ["Srinivas, Aravind"], "year": 2020,
+            "doi": "10.48550/arXiv.2004.04136"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.48550/arxiv.2004.04136",
+                          esearch_payload([], translated=False))
+        self.assertEqual("not_in_pubmed", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_subtitle_truncation_alone_does_not_fire(self):
+        # NEGATIVE CONTROL, documented false-positive class 1: PubMed prepends
+        # section headings and publishers register main titles only.
+        rec = self.fx.record("subtitle", {
+            "title": "The Unengaged Mind",
+            "authors": ["Eastwood, John D."], "year": 2012,
+            "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "The Unengaged Mind: Defining Boredom in Terms of Attention.",
+            ["Eastwood JD"], 2012, doi="10.1/a"))
+        self.assertEqual("agrees", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_author_name_change_alone_does_not_fire(self):
+        # NEGATIVE CONTROL, documented false-positive class 3. The conjunction
+        # is what makes this survivable -- the title is verbatim correct.
+        rec = self.fx.record("namechange", {
+            "title": "A Study of Things", "authors": ["Benthem, S D"],
+            "year": 2020, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Cushing SD"], 2020, doi="10.1/a"))
+        result = self._crosswalk(rec)
+        self.assertEqual("agrees", result["status"])
+        self.assertIs(False, result["author_ok"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_title_disagreement_alone_does_not_fire(self):
+        rec = self.fx.record("titleonly", {
+            "title": "Something Completely Different",
+            "authors": ["Smith, A"], "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self.assertEqual("agrees", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_ambiguous_mapping_is_refused(self):
+        # Two PubMed records for one DOI (a duplicate deposit, or a preprint and
+        # its published version). Which one the record MEANT is exactly the
+        # external judgement this tool refuses to make.
+        rec = self.fx.record("ambig", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1", "2"]))
+        self.assertEqual("ambiguous", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_unconfirmed_mapping_is_refused(self):
+        # The phrase-prefix trap end to end: esearch returns a PMID whose own
+        # articleids name a LONGER DOI. Without the round trip this would be
+        # read as a mapping and could produce a fabricated finding.
+        rec = self.fx.record("prefix", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1016/j.conb.2010.02.014"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "Some Other Paper Entirely.", ["Jones B"], 2010,
+            doi="10.1016/j.conb.2010.02.014.suppl"))
+        self.assertEqual("unconfirmed_mapping", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_pubmed_serving_no_doi_is_unconfirmed_not_a_finding(self):
+        rec = self.fx.record("nodoiback", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "Something Else Entirely.", ["Jones B"], 2001, doi=None))
+        self.assertEqual("unconfirmed_mapping", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_placeholder_is_left_to_its_own_verdict(self):
+        rec = self.fx.record("placeholder", {
+            "title": "Midbrain dopamine and habenula interactions",
+            "authors": ["Example Author A"], "year": 2024,
+            "doi": "10.0000/example-doi"})
+        self.assertEqual("placeholder", self._crosswalk(rec)["status"])
+
+    def test_record_without_declared_fields_fails_open(self):
+        rec = self.fx.record("nofields", {
+            "title": "", "authors": [], "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "Anything At All.", ["Jones B"], 2001, doi="10.1/a"))
+        self.assertEqual("no_declared_fields", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_offline_fails_open(self):
+        rec = self.fx.record("uncachedwalk", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/never"})
+        self.assertEqual("unfetched", self._crosswalk(rec)["status"])
+        self.assertNoCrosswalkVerdict(rec)
+
+    def test_every_non_finding_status_is_declared(self):
+        # A status the sweep does not know about would be printed as an unnamed
+        # bucket, which is how a silent cap gets in (CLAUDE.md, "No silent caps").
+        for status in ("not_in_pubmed", "ambiguous", "unconfirmed_mapping",
+                       "no_declared_fields", "agrees", "placeholder",
+                       "unfetched", "esearch_failed", "untranslated_query",
+                       "pmid_unresolvable"):
+            self.assertIn(status, V.CROSSWALK_NON_FINDING_STATUSES)
+
+    # -- helpers -----------------------------------------------------------
+
+    def assertVerdictOfKind(self, record_path, kind):
+        target = V.collect_scoped_targets([str(record_path)])[0]
+        verdict = V.check_doi_crosswalk(target, self.fx.resolver())
+        self.assertIsNotNone(verdict, "expected %s, got nothing" % kind)
+        self.assertEqual(kind, verdict.kind)
+        return verdict
+
+    def assertNoCrosswalkVerdict(self, record_path):
+        target = V.collect_scoped_targets([str(record_path)])[0]
+        verdict = V.check_doi_crosswalk(target, self.fx.resolver())
+        self.assertIsNone(
+            verdict, "expected no verdict, got: %s"
+            % (verdict.detail if verdict else ""))
+
+
+class TestCrosswalkIsNotOnTheGatePath(FixtureCase):
+    """A new blocking verdict may not be wired in ahead of a corpus baseline."""
+
+    def test_check_is_not_in_checks_networked(self):
+        self.assertNotIn(V.check_doi_crosswalk, V.CHECKS_NETWORKED)
+
+    def test_the_gate_stays_silent_on_a_crosswalk_only_defect(self):
+        # Same record as test_a_different_paper_is_a_finding, but reached
+        # through verify_target -- what the commit gate actually calls. The DOI
+        # resolves NOWHERE except PubMed, so verdict 3 fails open and the gate
+        # must report nothing at all.
+        rec = self.fx.record("engel2010", {
+            "title": "Beta-band oscillations -- signalling the status quo?",
+            "authors": ["Engel, Andreas K."], "year": 2010,
+            "doi": "10.1016/j.conb.2010.02.014"})
+        self.fx.cache_put("crossref", "10.1016/j.conb.2010.02.014",
+                          {"ok": False, "error": "http_404"})
+        self.fx.cache_put("doiorg", "10.1016/j.conb.2010.02.014",
+                          {"ok": False, "error": "http_404"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1016/j.conb.2010.02.014",
+                          esearch_payload(["20299205"]))
+        self.fx.cache_put("pubmed", "20299205", pubmed_payload(
+            "Neuronal oscillations and visual amplification of speech.",
+            ["Schroeder CE"], 2010, doi="10.1016/j.conb.2010.02.014"))
+        self.assertNoVerdict(rec)
+
+
+class TestWritePmid(FixtureCase):
+    """The backfill. Every test here is about what it REFUSES to do."""
+
+    def _source(self, record_path):
+        return json.loads(Path(record_path).read_text(encoding="utf-8"))["source"]
+
+    def test_writes_the_pmid_after_the_doi(self):
+        rec = self.fx.record("backfill", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a", "url": "https://example.org/x"})
+        self.assertEqual("written", V.write_pmid_into_record(
+            rec, "12345", "10.1/a", "a note"))
+        source = self._source(rec)
+        self.assertEqual("12345", source["pmid"])
+        self.assertEqual(["title", "authors", "year", "doi", "pmid", "url"],
+                         list(source))
+
+    def test_pmid_is_written_as_a_string(self):
+        # The v1 schema declares pmid as ["string", "null"]; an int would
+        # validate-fail on the very next commit.
+        rec = self.fx.record("stringy", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        V.write_pmid_into_record(rec, 12345, "10.1/a", "a note")
+        self.assertEqual("12345", self._source(rec)["pmid"])
+
+    def test_an_existing_pmid_is_never_overwritten(self):
+        rec = self.fx.record("haspmid", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a", "pmid": "999"})
+        self.assertEqual("already_has_pmid", V.write_pmid_into_record(
+            rec, "12345", "10.1/a", "a note"))
+        self.assertEqual("999", self._source(rec)["pmid"])
+
+    def test_a_doi_that_changed_under_us_is_refused(self):
+        # The sweep resolves from a snapshot; a concurrent session repairing the
+        # DOI between the sweep and the write must not get a PMID for the OLD one.
+        rec = self.fx.record("moved", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/new"})
+        self.assertEqual("doi_changed_under_us", V.write_pmid_into_record(
+            rec, "12345", "10.1/old", "a note"))
+        self.assertNotIn("pmid", self._source(rec))
+
+    def test_dry_run_writes_nothing(self):
+        rec = self.fx.record("dry", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.assertEqual("would_write", V.write_pmid_into_record(
+            rec, "12345", "10.1/a", "a note", dry_run=True))
+        self.assertNotIn("pmid", self._source(rec))
+        self.assertNotIn(V.PROVENANCE_NOTE_HEADING,
+                         (rec.parent / "summary.md").read_text(encoding="utf-8"))
+
+    def test_a_provenance_note_is_appended_to_the_summary(self):
+        rec = self.fx.record("noted", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        V.write_pmid_into_record(rec, "12345", "10.1/a",
+                                 "derived from the DOI on 2026-08-14")
+        text = (rec.parent / "summary.md").read_text(encoding="utf-8")
+        self.assertIn(V.PROVENANCE_NOTE_HEADING, text)
+        self.assertIn("derived from the DOI on 2026-08-14", text)
+        self.assertTrue(text.startswith("# Summary"))
+
+    def test_no_evidence_field_is_touched(self):
+        # Provenance only. The standing constraint on every literature repair.
+        rec = self.fx.record("untouched", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        before = json.loads(Path(rec).read_text(encoding="utf-8"))
+        V.write_pmid_into_record(rec, "12345", "10.1/a", "a note")
+        after = json.loads(Path(rec).read_text(encoding="utf-8"))
+        for key in ("confidence", "evidence_direction", "claim_ids_tested",
+                    "evidence_class", "confidence_rationale"):
+            self.assertEqual(before.get(key), after.get(key), key)
+        self.assertEqual({"pmid"}, set(after["source"]) - set(before["source"]))
+
+
+class TestCrosswalkCli(FixtureCase):
+
+    def _run(self, argv):
+        import io
+        import contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            rc = V.main(argv)
+        return rc, buf.getvalue()
+
+    def test_crosswalk_reports_buckets_and_chains_safely(self):
+        self.fx.record("arxivrec", {
+            "title": "A Preprint", "authors": ["Smith, A"], "year": 2020,
+            "doi": "10.48550/arXiv.1"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.48550/arxiv.1",
+                          esearch_payload([], translated=False))
+        rc, out = self._run(["--repo", str(self.fx.repo), "--cache",
+                             str(self.fx.cache), "--offline", "--progress", "0",
+                             "--exit-nonzero", "--doi-crosswalk"])
+        self.assertEqual(0, rc)
+        self.assertIn("not_in_pubmed", out)
+
+    def test_crosswalk_exit_nonzero_only_on_a_finding(self):
+        self.fx.record("bad", {
+            "title": "Beta-band oscillations -- signalling the status quo?",
+            "authors": ["Engel, Andreas K."], "year": 2010,
+            "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["20299205"]))
+        self.fx.cache_put("pubmed", "20299205", pubmed_payload(
+            "Neuronal oscillations and visual amplification of speech.",
+            ["Schroeder CE"], 2010, doi="10.1/a"))
+        rc, out = self._run(["--repo", str(self.fx.repo), "--cache",
+                             str(self.fx.cache), "--offline", "--progress", "0",
+                             "--exit-nonzero", "--doi-crosswalk"])
+        self.assertEqual(1, rc)
+        self.assertIn("names_a_different_paper", out)
+
+    def test_a_both_identifier_record_is_out_of_scope(self):
+        # --cross-check already covers those conclusively; re-asking PubMed for
+        # a DOI whose PMID is declared would spend calls to learn nothing.
+        self.fx.record("both", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a", "pmid": "999"})
+        _, out = self._run(["--repo", str(self.fx.repo), "--cache",
+                            str(self.fx.cache), "--offline", "--progress", "0",
+                            "--doi-crosswalk"])
+        self.assertIn("DOI-only records (the scope)    : 0", out)
+
+    def test_write_pmid_defaults_to_none(self):
+        rec = self.fx.record("nowrite", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self._run(["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                   "--offline", "--progress", "0", "--doi-crosswalk"])
+        self.assertNotIn("pmid", json.loads(
+            Path(rec).read_text(encoding="utf-8"))["source"])
+
+    def test_write_pmid_all_backfills_a_confirmed_agreeing_record(self):
+        rec = self.fx.record("dowrite", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self._run(["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                   "--offline", "--progress", "0", "--doi-crosswalk",
+                   "--write-pmid", "all"])
+        self.assertEqual("1", json.loads(
+            Path(rec).read_text(encoding="utf-8"))["source"]["pmid"])
+
+    def test_write_pmid_never_writes_where_the_title_disagrees(self):
+        # The record's DOI may itself be the wrong one; writing PubMed's PMID
+        # for it would bury that defect behind a self-consistent-looking pair.
+        rec = self.fx.record("wrongdoi", {
+            "title": "Something Completely Different", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self._run(["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                   "--offline", "--progress", "0", "--doi-crosswalk",
+                   "--write-pmid", "all"])
+        self.assertNotIn("pmid", json.loads(
+            Path(rec).read_text(encoding="utf-8"))["source"])
+
+    def test_write_pmid_unresolvable_skips_a_doi_crossref_already_resolves(self):
+        # The narrow default: only a DOI that resolves NOWHERE else gains
+        # anything from a backfill, because only that record is currently
+        # unreachable by every networked verdict.
+        rec = self.fx.record("resolvable", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put("crossref", "10.1/a",
+                          crossref_payload("A Study of Things", ["Smith"], 2001))
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self._run(["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                   "--offline", "--progress", "0", "--doi-crosswalk",
+                   "--write-pmid", "unresolvable"])
+        self.assertNotIn("pmid", json.loads(
+            Path(rec).read_text(encoding="utf-8"))["source"])
+
+    def test_write_pmid_unresolvable_does_write_when_nothing_else_resolves(self):
+        rec = self.fx.record("onlypubmed", {
+            "title": "A Study of Things", "authors": ["Smith, A"],
+            "year": 2001, "doi": "10.1/a"})
+        self.fx.cache_put("crossref", "10.1/a", {"ok": False, "error": "http_404"})
+        self.fx.cache_put("doiorg", "10.1/a", {"ok": False, "error": "http_404"})
+        self.fx.cache_put(V.PUBMED_AID_CACHE_KIND, "10.1/a",
+                          esearch_payload(["1"]))
+        self.fx.cache_put("pubmed", "1", pubmed_payload(
+            "A Study of Things.", ["Smith A"], 2001, doi="10.1/a"))
+        self._run(["--repo", str(self.fx.repo), "--cache", str(self.fx.cache),
+                   "--offline", "--progress", "0", "--doi-crosswalk",
+                   "--write-pmid", "unresolvable"])
+        self.assertEqual("1", json.loads(
+            Path(rec).read_text(encoding="utf-8"))["source"]["pmid"])
 
 
 if __name__ == "__main__":
