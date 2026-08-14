@@ -589,12 +589,23 @@ publickey from it, and `ree-worker-2/3/4` do not answer on port 22 at all (power
 (`DLAPTOP-4`) — the box where the audit and the gate are actually run, and therefore the one that
 matters most — has to run this itself.
 
+**Resolved 2026-08-14 (`chip-20260814-lit-cache-poison-audit-mac-and-hub`, run from the Mac): no
+poison anywhere, because there is no cache anywhere except `ree-cloud-5`.** Both the Mac
+(`/Users/dgolden/lit_bib_cache`) and the hub `ree-cloud-1` (`/home/ree/lit_bib_cache`, scanned over
+ssh) return `no cache ... nothing to audit` — the literature fetchers have simply never populated a
+cache on either box. The 4477-entry cache is centralized on `ree-cloud-5` alone, which is where the
+fetches actually run, and it stays clean (0 poisoned, re-confirmed the same day). So the premise that
+"the box where the gate runs matters most" is correct but moot: the gate on the Mac reads a cache that
+does not exist locally, and the only cache that any checker's `path.exists()` early-return can consult
+is `ree-cloud-5`'s. `ree-cloud-2/3/4` were left powered off (not worth billing) and carry no cache for
+the same reason the hub does not.
+
 | box | cached | poisoned | when | how |
 |---|---|---|---|---|
 | `ree-cloud-5` | 4477 | **0** | 2026-08-14 | re-confirmed under the strict per-endpoint rule below |
-| `DLAPTOP-4` (Mac) | — | **not yet audited** | — | not reachable from a cloud worker |
-| `ree-cloud-1` (hub) | — | **not yet audited** | — | ssh publickey refused from `ree-cloud-5` |
-| `ree-cloud-2/3/4` | — | **not yet audited** | — | powered off; not woken, this is not worth billing for |
+| `DLAPTOP-4` (Mac) | **0 (no cache)** | **0** | 2026-08-14 | `chip-20260814-lit-cache-poison-audit-mac-and-hub`: `--scan-poison` reports `no cache at /Users/dgolden/lit_bib_cache` — the literature fetchers have never run on this box, so there is nothing to poison |
+| `ree-cloud-1` (hub) | **0 (no cache)** | **0** | 2026-08-14 | same chip, over ssh from the Mac: `no cache at /home/ree/lit_bib_cache` — the hub does not run fetches either; the cache lives only on `ree-cloud-5` |
+| `ree-cloud-2/3/4` | — | **not yet audited** | — | still powered off at this run (`hcloud server list`); not woken — not worth billing for, and they hold no cache for the same reason the hub does not |
 
 What the chip did land is that the scan is no longer a two-line snippet each box has to re-derive:
 
