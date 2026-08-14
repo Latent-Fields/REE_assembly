@@ -39592,6 +39592,40 @@
     that reclassification appears applied to this claim's
     evidence_quality_note history but not yet propagated to the manifest
     field itself.
+
+
+    [2026-08-14, SD-MECH267-CEM-SELECTION-FIX IMPLEMENTED, ree-v3
+    ree_core/hippocampal/module.py]: the THIRD and FOURTH facets, both
+    targeting the mode-content WASH-OUT that neither noise-scale nor
+    horizon-depth survives (V3-EXQ-869/869a/923; the CEM refit re-derives
+    ao_std from the mode-blind elite set each iteration and _score_trajectory
+    ranks mode-independently). Locus H2-vs-H3 was left deliberately unscoped
+    (2026-08-12 user decision); on 2026-08-14 the user chose to build BOTH as
+    independent no-op-default flags and re-measure. H2:
+    HippocampalConfig.mode_value_weight (Dict[str, List[float]], default {}) --
+    a mode-dependent term in _score_trajectory keyed on mean z_world
+    (world_dim-length weight vector per mode), subtracted from the terrain
+    score, so elite-selection RANKING stays mode-differentiated every
+    iteration. Keyed on z_world not valence because the fresh-field 869/923
+    regime has identically zero valence. H3:
+    HippocampalConfig.mode_partitioned_cem (bool, default False) -- re-applies
+    the mode noise scale to the freshly-refit ao_std once per CEM iteration
+    (both refit branches) so mode breadth persists; no compounding (ao_std
+    recomputed from elites each iteration). Both gated by
+    mode_conditioning_enabled; not wired through from_dims (set directly on
+    HippocampalConfig like the other mode facets). Diagnostics:
+    _last_mode_value_weight_active, _last_mode_partitioned_cem. Backward
+    compatible: bit-identical at defaults (smoke-verified). Smoke (untrained
+    field, single seed, indicative): H3 lifted the tight-vs-broad raw_std mode
+    gap from 2.1e-06 (OFF control) to 0.0172 (ON, > 0.01 FLOOR_PRODUCTION).
+    Design doc:
+    REE_assembly/docs/architecture/sd_mech267_cem_selection_fix.md. Validation
+    experiment V3-EXQ-928 queued (OFF / H2-only / H3-only / BOTH arms,
+    re-measuring V3-EXQ-869 C1 at num_cem_iterations=3; acceptance = mean
+    pairwise raw_std mode gap >= 0.01 per arm). Does NOT clear
+    pending_retest_after_substrate (the GOV-FANOUT-1 portfolio + the queued
+    validation still owe the retest); confidence/status UNCHANGED (governance,
+    not this build).
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:

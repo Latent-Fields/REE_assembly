@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-09T08:30:42Z",
+  "last_updated_utc": "2026-08-14T01:33:15Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -775,6 +775,20 @@
         }
       ],
       "candidate_stale_note": "Headless /implement-substrate landing: default KEEP. No MARK/REVALIDATE applied (Step 8.5 requires surfacing de-weighting to the user first). MECH-022 already excluded; ARC-007 flagged for governance review."
+    },
+    {
+      "substrate": "SD-MECH267-CEM-SELECTION-FIX",
+      "landed_utc": "2026-08-14T01:33:15Z",
+      "code_landed_utc": "2026-08-14T01:33:15Z",
+      "code_landed_commit": "ree-v3 44fd045",
+      "description": "Added MECH-267's H2 (mode_value_weight -- mode-dependent term in _score_trajectory keyed on mean z_world) and H3 (mode_partitioned_cem -- re-applies mode noise scale to freshly-refit ao_std each CEM iteration) facets to hippocampal/module.py + utils/config.py, both no-op-default and gated by mode_conditioning_enabled. Targets the mode-content wash-out under production num_cem_iterations=3 that noise-scale and horizon-depth do not survive.",
+      "mechanism_changing": false,
+      "mechanism_changing_note": "Both facets are no-op at their defaults (mode_value_weight={}, mode_partitioned_cem=False), so all pre-existing evidence was measured under behaviour bit-identical to the new default -- no dependent evidence is invalidated by this landing. The facets ENABLE a retest (V3-EXQ-928) rather than changing what prior runs measured. MECH-267 was already pending_retest_after_substrate for the GOV-FANOUT-1 portfolio; that is unchanged.",
+      "dependent_claims": [
+        "MECH-267"
+      ],
+      "candidate_stale": [],
+      "candidate_stale_note": "No candidate-stale evidence: defaults are no-op so prior MECH-267 evidence (V3-EXQ-869/869a/923) reflects the same OFF behaviour. Those runs are the motivating wash-out record, already flagged pending_retest_after_substrate for a separate reason (the discrimination portfolio); V3-EXQ-928 is the queued re-measurement."
     }
   ]
 }
