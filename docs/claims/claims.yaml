@@ -82065,3 +82065,209 @@
     Proposed 2026-08-11 from user thought intake, registered 2026-08-12. No
     experimental evidence; substrate does not yet exist (v4-scoped).
   location: evidence/planning/thought_intake_2026-08-11_ecological_succession_as_developmental_curriculum.md
+
+- id: MECH-492
+  title: >
+    MECH-286's sleep-permission threat conjunct is an UNCALIBRATED, UNDECLARED-SOURCE
+    consumer of the same shared z_harm_a.norm() expression whose place-safety
+    informativeness V3-EXQ-917 showed is set by unrelated driver config: the gate's
+    third term is `z_harm_a.norm() < mech286_threat_tonic_threshold` (default 0.4),
+    the identical expression MECH-303's contextual-safety gate reads, which measures
+    at chance (AUC <= 0.52 across 18 swept thresholds) under damage_sourced and at
+    AUC 0.84-0.97 under the proximity_ema_sourced default. MECH-286 declares no
+    sourcing mode of its own and inherits whichever the driver happens to set, and
+    its 0.4 threshold has never been calibrated against any measurement of that
+    signal. Therefore, with use_mech286_sleep_onset_gate enabled, threat_ok does not
+    reliably gate on place safety; being ANDed into a three-way conjunction, a
+    near-constant term silently degrades the gate to an effective always-permit
+    (or, above threshold, always-refuse) rather than a safety gate.
+  claim_type: derived_prediction
+  subject: sleep.mech286_threat_term_sourcing
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: "2026-08-14"
+  depends_on:
+    - MECH-303   # the sourcing defect this claim is derived FROM (see MECH-303's 2026-08-12 V3-EXQ-917 note + GFLAG-0026 fold-in); MECH-286 is a SECOND, previously unnoticed consumer of the same shared expression
+  related_claims:
+    - MECH-286   # the consumer whose third gate term is at issue -- CONCEPTUAL cross-ref, not a build prerequisite (this claim is ABOUT MECH-286's wiring, it does not need MECH-286 built any further than it already is)
+    - SD-022     # damage_sourced (limb_damage_enabled) z_harm_a -- the INTENTIONAL body-damage re-sourcing that decouples the signal from place context; not a defect in SD-022, which is load-bearing for its own purpose
+    - SD-011     # dual nociceptive streams -- the separation that makes "a second, dedicated safety signal" the right shape rather than re-sourcing the shared one
+  functional_restatement: >
+    This is a SUBSTRATE-DEFECT / CONSUMER-SOURCING claim, not a mechanism
+    hypothesis: it asserts nothing new about how sleep onset works and proposes no
+    new machinery. It asserts that an ALREADY-BUILT gate term reads a signal that
+    does not carry the information the term's name and role presuppose, and it is
+    falsifiable by measurement against the substrate as it stands.
+
+    Verified against the code 2026-08-14 (not inferred from the claim texts):
+      * ree-v3/ree_core/sleep/sleep_onset_gate.py::_z_harm_a_tonic_norm returns
+        float(agent._current_latent.z_harm_a.norm()) -- the FULL INSTANTANEOUS norm.
+        Despite the function name and MECH-286's own "z_harm_a tonic component low"
+        wording, there is NO tonic/phasic decomposition anywhere in the path. The
+        gate reads the same instantaneous scalar every other consumer reads.
+      * evaluate_sleep_onset_permit computes
+        threat_ok = harm_a_norm < mech286_threat_tonic_threshold (default 0.4)
+        and ANDs it with override_ok and staleness_ok.
+      * MECH-303's gate is ree-v3/ree_core/agent.py:5145,
+        harm_norm = float(new_latent.z_harm_a.norm().item()) compared against
+        contextual_safety_harm_threshold (default 0.05). Identical expression,
+        threshold 8x tighter.
+      * There are 10 z_harm_a.norm() call sites in ree_core. Only some are
+        place-safety consumers (others use it for surprise/PE, commitment speed,
+        dACC, and the suffering-derivative comparator, where the damage-sourced
+        reading is legitimate). Which of the 10 are place-safety consumers is an
+        OWED AUDIT, deliberately not asserted by this claim.
+
+    THRESHOLD CALIBRATION, the sharpest leg: V3-EXQ-917 located the
+    reachable-AND-discriminating band for this signal at threshold 0.55
+    (reachability 0.77, AUC 0.9625) to 0.6 (reachability 0.85, AUC 0.969).
+    MECH-286's default sits at 0.4 -- BELOW that band, and chosen before any
+    measurement of the signal existed. The two gates use the comparison in
+    different directions and for different purposes, so 0.4 is not "wrong" by
+    transfer; the point is narrower and harder to dismiss: it is UNCALIBRATED,
+    a number no measurement has ever informed.
+
+    WHY THIS IS NOT SIMPLY MECH-303's DEFECT RESTATED. MECH-303's 2026-08-12
+    routing decision (user-adjudicated) took option (a) -- build a DEDICATED
+    proximity-anticipatory safety signal, decoupled from SD-022's damage-sourcing --
+    on the reasoning that re-sourcing the shared z_harm_a would fix one gate by
+    breaking other consumers. That decision named MECH-303 as the consumer to
+    re-point. MECH-286 is a SECOND consumer of the same expression that the routing
+    decision did not enumerate, and it is the one whose failure is silent: MECH-303's
+    gate merely fails to accumulate safety, whereas MECH-286's is one conjunct of an
+    AND that decides whether the agent sleeps at all.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the falsifier must drive the agent through REAL
+    world positions with known ground-truth hazard and read the gate's own emitted
+    diagnostics there. It must NOT set z_harm_a by hand -- see the V3-EXQ-891
+    correction in notes below, which is exactly the degenerate form.
+
+    NO NEW SUBSTRATE INSTRUMENTATION IS NEEDED: evaluate_sleep_onset_permit already
+    emits mech286_threat_ok, mech286_z_harm_a_norm, and mech286_threat_tonic_threshold
+    in its diagnostics dict. A new DRIVER is needed (891 cannot be reused as-is);
+    no ree_core change is.
+
+    The falsifier must be run under BOTH sourcing modes (limb_damage_enabled True
+    and False), because the whole point of the claim is that MECH-286 declares
+    neither and inherits whichever the driver sets.
+
+    CONFIRMING (claim SUPPORTED): mech286_threat_ok fails to discriminate
+    hazardous from non-hazardous locations above chance under the sourcing mode(s)
+    tested, OR is invariant across the ground-truth hazard gradient (near-constant
+    0 or 1 across all locations), OR discriminates under one sourcing mode and not
+    the other -- the last being the specific "informativeness inherited from
+    unrelated driver config" leg, and the one that would confirm the claim in its
+    exact registered form.
+
+    FALSIFYING (claim REFUTED): mech286_threat_ok discriminates hazardous from
+    non-hazardous locations above chance under BOTH sourcing modes at the default
+    threshold of 0.4, i.e. the term does gate on place safety regardless of driver
+    configuration and the sourcing is adequate as built.
+
+    ALSO FALSIFYING (weaker, partial): the term is shown to be near-constant but
+    the conjunction's behaviour is nonetheless unaffected because another conjunct
+    is always the binding one -- in which case the wiring is still undeclared but
+    the "silently degrades the gate" consequence does not hold, and this claim
+    should be narrowed rather than supported.
+  notes: >
+    PROVENANCE. Drafted as the "Proposed candidate claim -- NOT REGISTERED"
+    Section 8 of
+    evidence/literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md
+    (chip-20260812-sleep-onset-multiinput-litsynth, REE_assembly be0d0f48b3).
+    That session drafted but deliberately did NOT register it, because
+    scripts/task_claim.py open returned an exit-3 arbitration verdict on
+    docs/claims/claims.yaml (owner
+    igw-auto-igw-217-substrate-ready-sd-queue-seed-en-20260813T183630Z, not stale
+    at the time) and per CLAUDE.md the non-owner stops. Registered here by
+    chip-20260814-mech286-threat-sourcing-claim once that claim had gone stale.
+
+    REGISTERED FORM DIFFERS FROM THE STAGED DRAFT -- read this before citing
+    Section 8. The staged draft asserted flatly that the signal is measured at
+    chance and therefore carries no place-safety information. That rests on
+    V3-EXQ-917's own "damage_sourced is the production default" premise, which
+    GFLAG-0026 (raised 2026-08-12T21:17:50Z, resolved 2026-08-13 governance)
+    had ALREADY CORRECTED before this claim was registered: of the 20 drivers
+    exercising the MECH-303 gate, only 2 (V3-EXQ-520, V3-EXQ-764) set
+    limb_damage_enabled=True, and the other 18 run the proximity_ema_sourced
+    default, under which the same signal reaches AUC 0.84-0.97. So "the signal is
+    uninformative" is NOT true unconditionally, and registering it that way would
+    have been over-broad and refutable on a technicality rather than on substance.
+    The registered claim is the form that survives the correction: the term has no
+    DECLARED source, inherits informativeness from unrelated driver config, and
+    carries an uncalibrated threshold.
+
+    V3-EXQ-891 CANNOT BE REUSED AS THE FALSIFIER HARNESS -- correction to the
+    staged draft, which suggested it could. 891's "cells" are the 8 design cells
+    of a 2x2x2 factorial over the three gate terms, NOT spatial cells. It sets the
+    threat term by assigning
+    agent._current_latent = types.SimpleNamespace(z_harm_a=v) with v hand-normed to
+    0.10 (safe) or 0.90 (threat). It never runs the encoder, never places the agent
+    in a world, and never touches ground-truth hazard. Its PASS therefore
+    establishes only that the boolean AND is wired correctly; it is silent on
+    whether z_harm_a carries place-safety information. This STRENGTHENS the claim
+    rather than weakening it: the only evidence MECH-286's threat conjunct has ever
+    received comes from a run in which the threat signal was fabricated rather than
+    sensed. 891's value here is as a reusable CALL PATTERN (how to evaluate the gate
+    directly on an agent at an arbitrary state), not as the harness.
+
+    Relatedly, 891's own docstring records that V3-EXQ-599a "always left z_harm_a
+    at 0 (threat_ok True by default) and never exercised it" -- i.e. before 891 the
+    threat conjunct had never fired in either direction in any run. Consistent with
+    the effective-always-permit consequence this claim predicts.
+
+    SCOPE -- WHAT THIS CLAIM DOES NOT COVER, AND WHO OWNS IT:
+      * Building a better-sourced safety signal is owned by
+        substrate_queue entry SD-MECH303-THRESHOLD-SOURCING and
+        chip-20260812-mech303-threshold-sourcing (open). This claim POINTS AT that
+        work: MECH-286 should be re-pointed at whatever dedicated signal that entry
+        lands, and should be enumerated in its consumer audit, which currently names
+        drivers 764/520/916/916a for MECH-303 and does not mention MECH-286.
+      * The GAP-9 within-life sleep trigger is owned by
+        chip-20260813-sleep-gap9-trigger-build (open).
+      * Queueing the falsifier experiment is a separate /queue-experiment decision,
+        deliberately not taken here.
+
+    JOIN: sleep_substrate:GAP-5 ("Sleep entry K-episode deterministic (no arousal
+    trigger)", status deferred, blocking_external "V4 SD-037 arousal substrate") in
+    evidence/planning/sleep_substrate_plan.md. Recorded here rather than in that
+    plan's join block because GAP-5 is deferred and this claim does not change its
+    status; the plan's own scope_claims list does not currently carry MECH-286.
+
+    CLAIM_TYPE RATIONALE, and the road not taken. The originating chip specified
+    "substrate-defect / consumer-sourcing, not a mechanism hypothesis". No
+    substrate_defect claim_type exists in this registry, and inventing one was
+    REJECTED: a new claim_type value falls through every downstream classifier
+    (validate_claims.SUBSTRATE_CLAIM_TYPES, the IGW epistemic-category resolver,
+    check_claim_phase_consistency.NON_COMMITMENT_CLAIM_TYPES) to a default, and a
+    headless worker minting registry vocabulary is a governance act out of
+    proportion to the task. derived_prediction is an EXISTING type (6 prior uses)
+    and is an honest fit: the claim is DERIVED from a measured fact (V3-EXQ-917)
+    plus a code reading, and predicts a consequence, without proposing a mechanism.
+    The nearest structural precedent is MECH-475
+    (uninformative_value_baseline_makes_optimisation_iatrogenic), a measured
+    substrate-defect claim that ran the normal evidence lane and was retired by its
+    own pre-registered falsifier -- the lifecycle wanted here. epistemic_category is
+    set to `standard` EXPLICITLY so the claim stays V3-testable and visible in the
+    experiment lane; substrate_coherence was rejected because it suppresses a claim
+    from the IGW proposal lane and from promote/demote gating, which would be wrong
+    for a claim whose whole point is that it can be measured now.
+  evidence_quality_note: >
+    Registered 2026-08-14 as a candidate. NO direct experimental evidence for or
+    against this claim: no run has ever correlated mech286_threat_ok against
+    ground-truth hazard. The claim's grounding is (a) V3-EXQ-917's measurement of
+    the shared z_harm_a.norm() signal, as folded into MECH-303 by /governance
+    2026-08-12 and corrected by GFLAG-0026 on 2026-08-13, and (b) a direct reading
+    of ree-v3/ree_core/sleep/sleep_onset_gate.py and ree_core/agent.py:5145
+    confirming the two gates read the identical expression.
+
+    Consequential only when use_mech286_sleep_onset_gate is enabled, which is
+    REEConfig-default False. The synthesis that produced this claim recommends the
+    gate be left OFF for the first true-single-life run on exactly these grounds.
+    That bounds the current blast radius to zero in production while leaving the
+    defect live for any driver that enables the flag -- which is why this is
+    registered rather than merely noted.
+  location: evidence/literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md
