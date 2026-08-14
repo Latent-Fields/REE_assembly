@@ -216,7 +216,50 @@ def http_get(url, timeout=30):
         return resp.read().decode("utf-8", "replace")
 
 
+# --------------------------------------------------------------------------
+# ANSWER vs TRANSPORT FAILURE -- what a fetcher is allowed to CACHE
+#
+# Every fetcher below returns early on ``path.exists()`` and never re-asks, so a
+# cached entry is a PERMANENT verdict about that identifier, on this box, for
+# every mode of every literature checker that reads this cache. Only an ANSWER
+# may be written. A TRANSPORT failure -- an HTTP 429 from NCBI's rate limiter, a
+# 503, a dropped connection -- says nothing about the identifier, and persisting
+# one silently removes that record from every future sweep with no way to tell
+# it apart from a genuinely dead identifier. One bad network window would
+# permanently and invisibly shrink the commit gate's coverage.
+#
+# Same split, same reasoning, as ``verify_literature_identifiers``'s
+# ``fetch_pubmed_aid`` / ``fetch_arxiv`` / ``fetch_pmc`` / ``fetch_openlibrary``,
+# whose docstrings state it at length. The sets are per-ENDPOINT rather than
+# global because "which HTTP status is an answer" is a fact about each API:
+#
+#   Crossref and doi.org answer "no such DOI" with a 404. That IS an answer, it
+#   is the case the original unconditional caching got right, and it is why
+#   these fetchers cache HTTP errors at all -- refusing to would re-fetch every
+#   dead DOI on every sweep.
+#
+#   NCBI eutils does NOT 404 an unknown id; it answers 200 with an ``error``
+#   field, which ``fetch_pubmed`` already caches as ``not_found``. So no HTTP
+#   status is an answer there, and the set is empty. A 404 from eutils means the
+#   request or the service is wrong, not the PMID.
+#
+# 401/403 are deliberately NOT answers anywhere: none of these endpoints
+# requires authentication, so a 401/403 is about the REQUESTER -- rate limiting
+# dressed as 403, a WAF, an intercepting proxy -- never about the identifier.
+# 410 is excluded on the same asymmetry that decides every borderline case here:
+# being wrong in the not-an-answer direction costs one re-fetch, being wrong in
+# the other direction is silent, permanent loss of coverage.
+DOI_ANSWER_HTTP_CODES = frozenset({404})
+PUBMED_ANSWER_HTTP_CODES = frozenset()
+
+
 def fetch_crossref(doi, cache_dir, limiter):
+    """Fetch one DOI from Crossref. Returns the payload, or None if cached.
+
+    Caches an answer (including Crossref's 404 "I do not know this DOI"), and
+    returns a transport failure to the caller UNcached -- see the block comment
+    above.
+    """
     path = cache_path(cache_dir, "crossref", doi.lower())
     if path.exists():
         return None
@@ -228,8 +271,10 @@ def fetch_crossref(doi, cache_dir, limiter):
         payload = {"ok": True, "message": json.loads(body).get("message", {})}
     except urllib.error.HTTPError as exc:
         payload = {"ok": False, "error": "http_%d" % exc.code}
+        if exc.code not in DOI_ANSWER_HTTP_CODES:
+            return payload
     except Exception as exc:  # network flake, malformed json, timeout
-        payload = {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
+        return {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
     path.write_text(json.dumps(payload), encoding="utf-8")
     return payload
 
@@ -242,6 +287,11 @@ def fetch_doiorg(doi, cache_dir, limiter):
     identifier when it is perfectly good. 81 of the first sweep's 95
     "unresolvable" DOIs were exactly this. doi.org negotiates against
     whichever registration agency actually owns the prefix.
+
+    Caches an answer -- and its 404 is the conclusive one, since doi.org
+    negotiates against every registration agency, so "no such DOI" here means
+    the DOI is registered nowhere. Returns a transport failure UNcached. See
+    the block comment above ``fetch_crossref``.
     """
     path = cache_path(cache_dir, "doiorg", doi.lower())
     if path.exists():
@@ -262,8 +312,10 @@ def fetch_doiorg(doi, cache_dir, limiter):
         payload = {"ok": True, "message": json.loads(body)}
     except urllib.error.HTTPError as exc:
         payload = {"ok": False, "error": "http_%d" % exc.code}
+        if exc.code not in DOI_ANSWER_HTTP_CODES:
+            return payload
     except Exception as exc:
-        payload = {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
+        return {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
     path.write_text(json.dumps(payload), encoding="utf-8")
     return payload
 
@@ -303,6 +355,14 @@ def csl_view(msg):
 
 
 def fetch_pubmed(pmid, cache_dir, limiter):
+    """esummary one PMID from ``db=pubmed``. Returns the payload, or None if cached.
+
+    The answer here is 200-shaped, not status-shaped: eutils reports an unknown
+    id as a 200 carrying an ``error`` field, cached below as ``not_found``. So
+    ``PUBMED_ANSWER_HTTP_CODES`` is empty and NO HTTP error is cached -- a 429
+    from NCBI's rate limiter is the single likeliest way this cache could ever
+    have been poisoned. See the block comment above ``fetch_crossref``.
+    """
     path = cache_path(cache_dir, "pubmed", str(pmid))
     if path.exists():
         return None
@@ -322,8 +382,10 @@ def fetch_pubmed(pmid, cache_dir, limiter):
             payload = {"ok": True, "message": rec}
     except urllib.error.HTTPError as exc:
         payload = {"ok": False, "error": "http_%d" % exc.code}
+        if exc.code not in PUBMED_ANSWER_HTTP_CODES:
+            return payload
     except Exception as exc:
-        payload = {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
+        return {"ok": False, "error": type(exc).__name__ + ": " + str(exc)[:200]}
     path.write_text(json.dumps(payload), encoding="utf-8")
     return payload
 

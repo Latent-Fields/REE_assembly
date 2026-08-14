@@ -1108,37 +1108,79 @@ class Resolver:
             socket.setdefaulttimeout(prev)
 
     def doi_view(self, doi):
-        """(view, via) for a DOI, or (None, reason)."""
+        """(view, via) for a DOI, or (None, reason).
+
+        A TRANSPORT failure gets its own reason and is recorded in
+        ``skipped``/``errors``, never collapsed into ``unresolvable``. Both fail
+        open at the gate, but ``unresolvable`` asserts the question was asked
+        and answered, and a record dropped from coverage by a 429 must not be
+        able to hide inside that word. Same handling ``arxiv_view`` /
+        ``pmc_view`` / ``isbn_view`` already give their own fetchers -- it could
+        not be written for DOIs until ``audit.fetch_crossref`` / ``fetch_doiorg``
+        stopped CACHING transport failures, since until then the failure was
+        indistinguishable from a real negative on the very next read.
+        """
+        failure = None
         cached = audit.load_cached(self.cache_dir, "crossref", doi)
         if cached is None:
             if not self._may_fetch("doi:%s" % doi):
                 return None, "unfetched"
-            self._with_timeout(audit.fetch_crossref, doi, self.cache_dir, self._crossref)
+            payload = self._with_timeout(
+                audit.fetch_crossref, doi, self.cache_dir, self._crossref)
             cached = audit.load_cached(self.cache_dir, "crossref", doi)
+            if cached is None:
+                failure = (payload or {}).get("error") or "crossref_fetch_failed"
         if cached and cached.get("ok"):
             return audit.crossref_view(cached["message"]), "crossref"
 
         # Crossref only knows Crossref-registered DOIs; an arXiv DOI is DataCite
         # and 404s there while being perfectly good. doi.org content negotiation
-        # reaches whichever agency owns the prefix.
+        # reaches whichever agency owns the prefix. Still worth trying when
+        # Crossref transport-failed: it is the broader resolver, not a fallback
+        # conditional on the first one having answered.
         neg = audit.load_cached(self.cache_dir, "doiorg", doi)
         if neg is None:
             if not self._may_fetch("doi.org:%s" % doi):
                 return None, "unfetched"
-            self._with_timeout(audit.fetch_doiorg, doi, self.cache_dir, self._crossref)
+            payload = self._with_timeout(
+                audit.fetch_doiorg, doi, self.cache_dir, self._crossref)
             neg = audit.load_cached(self.cache_dir, "doiorg", doi)
+            if neg is None:
+                failure = (payload or {}).get("error") or "doiorg_fetch_failed"
         if neg and neg.get("ok"):
             return audit.csl_view(neg["message"]), "doi.org"
+        if failure is not None:
+            # Reached when EITHER lookup transport-failed and nothing resolved,
+            # including the case where doi.org then returned a real 404. That
+            # 404 is conclusive on its own, so naming this a skip is marginally
+            # over-cautious -- deliberately, since the error it avoids is
+            # claiming a record was checked when it was not.
+            self.errors.append(("doi:%s" % doi, failure))
+            self.skipped.append(("doi:%s" % doi, "doi fetch failed"))
+            return None, failure
         return None, "unresolvable"
 
     def pubmed_record(self, pmid):
-        """The raw esummary record for a PMID, or None."""
+        """The raw esummary record for a PMID, or None.
+
+        Returns None for BOTH "PubMed holds no such record" and "the fetch
+        failed", because every caller fails open on either. The two are still
+        told apart for REPORTING: a transport failure is recorded in
+        ``skipped``/``errors`` so the record is named as unchecked rather than
+        silently counted as covered. See ``doi_view``.
+        """
         cached = audit.load_cached(self.cache_dir, "pubmed", str(pmid))
         if cached is None:
             if not self._may_fetch("pmid:%s" % pmid):
                 return None
-            self._with_timeout(audit.fetch_pubmed, str(pmid), self.cache_dir, self._ncbi)
+            payload = self._with_timeout(
+                audit.fetch_pubmed, str(pmid), self.cache_dir, self._ncbi)
             cached = audit.load_cached(self.cache_dir, "pubmed", str(pmid))
+            if cached is None:
+                why = (payload or {}).get("error") or "pubmed_fetch_failed"
+                self.errors.append(("pmid:%s" % pmid, why))
+                self.skipped.append(("pmid:%s" % pmid, "pubmed fetch failed"))
+                return None
         if cached and cached.get("ok"):
             return cached["message"]
         return None
