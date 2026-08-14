@@ -1,0 +1,164 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_931_cem_wanting_weight_selection_authority",
+  "run_id": "v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-14T12:39:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "wanting_scoring_lacks_selection_authority_at_operating_weight",
+    "combination_rule": "PASS = P0 AND P1 AND P2 AND P3 AND C_AUTH (plain AND of all four gates and the load-bearing criterion). C_BEHAV is reported and never gates.",
+    "preconditions": [
+      {
+        "name": "wanting_field_live",
+        "kind": "readiness",
+        "description": "worst arm's fraction of seeds with a nonzero VALENCE_WANTING field and ticks_wanting_nonzero_frac >= 0.25",
+        "control": "the residue field is built by the agent's own harm/benefit contact during the run; NUM_HAZARDS=1 is the probe-calibrated setting where all 5 seeds produced both",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "offending_cell": "ARM_W0",
+        "certifies_arms": [
+          "ARM_W0",
+          "ARM_W05",
+          "ARM_W50",
+          "ARM_W500",
+          "ARM_W5000"
+        ],
+        "met": true
+      },
+      {
+        "name": "formation_matched_episode1",
+        "kind": "readiness",
+        "description": "worst |valence_wanting_abs_max_ep1 - baseline| across ON arms; episode 1 only, before behavioural divergence can feed back",
+        "control": "ARM_W0 (wanting term removed) on the same seed",
+        "measured": 0.0,
+        "threshold": 0.05,
+        "direction": "upper",
+        "offending_cell": null,
+        "certifies_arms": [
+          "ARM_W05",
+          "ARM_W50",
+          "ARM_W500",
+          "ARM_W5000"
+        ],
+        "met": true
+      },
+      {
+        "name": "instrument_can_detect_authority",
+        "kind": "readiness",
+        "description": "fraction of seeds where the positive-control arm (ARM_W5000, wanting_weight=5000.0) flips at least one argmin",
+        "control": "supra-operating wanting_weight, 3 orders of magnitude above the documented range -- if even this never flips, the DV cannot detect authority and no reading of the operating arm is warranted",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "certifies_arms": [
+          "ARM_W0",
+          "ARM_W05",
+          "ARM_W50",
+          "ARM_W500",
+          "ARM_W5000"
+        ],
+        "met": true
+      },
+      {
+        "name": "ablated_arm_flip_rate_is_zero",
+        "kind": "negative_control",
+        "description": "structural negative control: with wanting_weight=0 the counterfactual re-score is the identity, so any nonzero flip rate here is an instrument bug, not a finding",
+        "control": "ARM_W0, arithmetically forced",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "certifies_arms": [
+          "ARM_W0"
+        ],
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "P0": true,
+      "P1": true,
+      "P2": true,
+      "P3": true,
+      "C_AUTH": true
+    },
+    "criteria": [
+      {
+        "name": "P0_ablated_flip_rate_zero",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "P1_wanting_field_live",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "P2_formation_matched",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "P3_instrument_capable",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_AUTH_operating_weight_has_authority",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "808818459f56d04e1316607b944b503b56b8f77e06309f593b10deafea80d79b",
+  "substrate_commit": {
+    "commit": "a57e6dd832ed6cde8d750b046b3d94083bd7307e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 6302,
+    "ticks_active": 6277,
+    "writer_calls": 6302,
+    "active_frac": 0.9960330053951126,
+    "writer_defect": false,
+    "n_agents": 25,
+    "goal_state_present": true
+  }
+}
