@@ -1,0 +1,142 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_928_mech267_cem_selection_fix_validation",
+  "run_id": "v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-14T01:34:34.900592Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-267"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-267": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "fix_effective::H3+BOTH",
+    "preconditions": [
+      {
+        "name": "manipulation_all_cells_engaged_as_configured",
+        "description": "Every (seed, arm, mode) cell's facet engagement matches its arm configuration: OFF -> both diagnostics False; H2 -> _last_mode_value_weight_active True; H3 -> _last_mode_partitioned_cem True; BOTH -> both True. Confirms the two new facets actually fired (or stayed off) at runtime, not merely per config inspection.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "control": "runtime engagement diagnostics on every cell of all arms"
+      },
+      {
+        "name": "raw_std_readout_populated_all_cells",
+        "description": "action_object_decoder_raw_output_stats.std_by_action_dim is a non-empty finite vector on every cell -- the DV can be read. A washed-out (near-zero) per-mode gap is a valid result; an EMPTY/NaN readout is a measurement failure.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "control": "decoder raw-output std vector length + finiteness, every cell"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_manipulation_engagement_check",
+        "load_bearing": true,
+        "passed": true,
+        "detail": {
+          "n_engaged": 480,
+          "n_cells": 480
+        }
+      },
+      {
+        "name": "C_OFF_broad_minus_tight_gap_clears_floor",
+        "load_bearing": false,
+        "passed": false,
+        "mean_gap": -0.0030873304698616267,
+        "floor": 0.01,
+        "note": "control arm -- expected NOT to clear (washed out)"
+      },
+      {
+        "name": "C_H2_broad_minus_tight_gap_clears_floor",
+        "load_bearing": true,
+        "passed": false,
+        "mean_gap": -0.0016183994400004547,
+        "floor": 0.01,
+        "note": "fix arm -- clearing the floor localises the wash-out to this facet"
+      },
+      {
+        "name": "C_H3_broad_minus_tight_gap_clears_floor",
+        "load_bearing": true,
+        "passed": true,
+        "mean_gap": 0.013630905941439172,
+        "floor": 0.01,
+        "note": "fix arm -- clearing the floor localises the wash-out to this facet"
+      },
+      {
+        "name": "C_BOTH_broad_minus_tight_gap_clears_floor",
+        "load_bearing": true,
+        "passed": true,
+        "mean_gap": 0.011116568961491187,
+        "floor": 0.01,
+        "note": "fix arm -- clearing the floor localises the wash-out to this facet"
+      },
+      {
+        "name": "C_at_least_one_fix_arm_clears_floor_with_off_washed_out",
+        "load_bearing": true,
+        "passed": true,
+        "detail": {
+          "fix_clearing": [
+            "H3",
+            "BOTH"
+          ],
+          "off_clears": false
+        },
+        "note": "THE localisation test: >=1 fix arm clears FLOOR_PRODUCTION while the OFF control stays washed out. If no fix arm clears, the fix is insufficient at iters=3. If OFF also clears, the control premise (wash-out at iters=3) failed and the reading is ambiguous."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_manipulation_engagement_check": true,
+      "C_at_least_one_fix_arm_clears_floor_with_off_washed_out": true,
+      "C_OFF_broad_minus_tight_gap_clears_floor": true,
+      "C_H2_broad_minus_tight_gap_clears_floor": true,
+      "C_H3_broad_minus_tight_gap_clears_floor": true,
+      "C_BOTH_broad_minus_tight_gap_clears_floor": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if the raw_std readout is unpopulated on any cell, or the manipulation check fails (a facet did not engage as configured) -- neither is informative about the fix. Else, on a valid measurement: PASS iff >=1 fix arm's across-seed mean broad-minus-tight raw_std gap clears FLOOR_PRODUCTION AND the OFF control does not (the wash-out localisation). FAIL/label=fix_insufficient if no fix arm clears; FAIL/label=control_leak if OFF also clears (premise violated). evidence_direction is always non_contributory (diagnostic): the finding is WHICH fix locus holds, not a claim-supporting or claim-weakening reading."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5060ccf7f8974211be4312445246881be5bf0b0208cd0620b08ab87ecfd87a73",
+  "substrate_commit": {
+    "commit": "fed315c702e5510750b44820d6510a70a6c67c24",
+    "dirty": false,
+    "branch": "main"
+  }
+}
