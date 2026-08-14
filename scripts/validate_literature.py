@@ -380,6 +380,42 @@ def collect_findings(repo_root, schema=None, scope=None):
     return findings, len(ingested)
 
 
+def resolve_scope_paths(repo_root, raw_paths):
+    """Map arbitrary literature paths to the record.json files they implicate.
+
+    The commit gate hands us whatever `git diff --cached` listed, which is not
+    only record.json files. A staged summary.md DELETION breaks the summary_path
+    of a record that is not itself staged, so scoping naively to staged
+    record.json files would miss exactly the defect the deletion caused. Each
+    input therefore resolves to the enclosing entry's record.json.
+
+    Returns a de-duplicated, order-stable list of Paths (which may not exist --
+    collect_findings intersects against the corpus, so a stale path is a no-op).
+    """
+    out, seen = [], set()
+
+    def add(path):
+        if path not in seen:
+            seen.add(path)
+            out.append(path)
+
+    for raw in raw_paths:
+        path = Path(raw)
+        if not path.is_absolute():
+            path = repo_root / path
+        if path.name == "record.json":
+            add(path)
+        # Walk up to the entry directory (the one whose parent is `entries`) and
+        # take its record. Covers summary.md, and any other per-entry file.
+        node = path
+        while node != node.parent:
+            if node.parent.name == "entries":
+                add(node / "record.json")
+                break
+            node = node.parent
+    return out
+
+
 def _class_sort_key(cls):
     try:
         return (0, CLASS_ORDER.index(cls), cls)
@@ -387,13 +423,18 @@ def _class_sort_key(cls):
         return (1, 0, cls)
 
 
-def report(findings, n_records, list_failures=False, examples=3, stream=sys.stdout):
+def report(findings, n_records, list_failures=False, examples=3, stream=None):
     """Grouped by failure class with a count per class.
 
     Deliberately NOT one line per record. 107 individual lines is unreadable, and
     an unreadable report is how a six-month drift stays invisible even after
     someone runs the checker.
+
+    `stream` is resolved at CALL time, not bound as a default: a
+    `stream=sys.stdout` default captures the interpreter's stdout at import and
+    silently ignores any later redirection, which makes the output untestable.
     """
+    stream = sys.stdout if stream is None else stream
     if not findings:
         print("validate_literature: OK (%d records checked, 0 findings)"
               % n_records, file=stream)
@@ -427,10 +468,11 @@ def main(argv=None):
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--repo", default=str(REPO_ROOT),
                         help="REE_assembly repo root (default: this script's repo)")
-    parser.add_argument("--paths", nargs="*", default=None, metavar="RECORD",
-                        help="scope to these record.json paths (repo-relative or "
-                             "absolute). Used by the commit gate to check only "
-                             "the records a commit actually touches.")
+    parser.add_argument("--paths", nargs="*", default=None, metavar="PATH",
+                        help="scope to the records these paths implicate "
+                             "(repo-relative or absolute; a record.json, or any "
+                             "file inside an entry directory). Used by the commit "
+                             "gate to check only what a commit actually touches.")
     parser.add_argument("--list-failures", action="store_true",
                         help="print every finding, not the first few per class")
     parser.add_argument("--exit-nonzero", action="store_true",
@@ -443,12 +485,7 @@ def main(argv=None):
 
     scope = None
     if args.paths is not None:
-        scope = []
-        for raw in args.paths:
-            candidate = Path(raw)
-            if not candidate.is_absolute():
-                candidate = repo_root / candidate
-            scope.append(candidate)
+        scope = resolve_scope_paths(repo_root, args.paths)
         # An explicit empty scope means "this commit touched no records" -- a
         # no-op, not "check everything". Getting this backwards would make the
         # gate scan the whole corpus on every unrelated commit.
