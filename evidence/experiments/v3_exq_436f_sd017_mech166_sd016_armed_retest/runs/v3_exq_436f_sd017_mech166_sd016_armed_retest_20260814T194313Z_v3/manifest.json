@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_436f_sd017_mech166_sd016_armed_retest",
+  "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-14T19:43:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-017",
+    "ARC-045",
+    "MECH-166"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-017": "non_contributory",
+    "ARC-045": "non_contributory",
+    "MECH-166": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "insufficient_occupancy_for_c1",
+    "preconditions": [
+      {
+        "name": "sws_context_memory_writes_occur",
+        "measured": 800.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of ContextMemory.write() calls (sws_n_writes, returned by agent.run_sws_schema_pass() via run_sleep_cycle()) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds -- must be > 0 for the C1 comparison to test the mechanism rather than an unrecorded no-op. Unchanged from 436c/436d.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "rem_attribution_rollouts_occur",
+        "measured": 600.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of hippocampal replay rollouts (rem_n_rollouts) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds. Unchanged from 436c/436d.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "waking_writepath_engaged",
+        "measured": 15078.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of ContextMemory.write() calls fired by the per-tick sense_only hook (agent.py:4847) across all WAKING_ONLY seeds, pooled across all 5 seeds -- NEW in 436e. Confirms the docstring point-3 fix (giving WAKING_ONLY a real write path via sd016_writepath_mode='sense_only') actually engaged this run; F1 of the methodology-check autopsy found this pooled to exactly 0 in 436d.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sufficient_occupancy_for_c1",
+        "measured": 2.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "control": "count of seeds (of 5) where BOTH WAKING_ONLY and SWS_THEN_REM have >=2 occupied slots (the minimum for an off-diagonal pairwise mean to exist) -- NEW in 436e, the direct fix for F6 (seeds 13/200 sat inside the untouched-bank null in 436d, making C1 unsatisfiable there by construction and silently shrinking the effective denominator below the registered 3/5).",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "adam_drift_neutralized",
+        "measured": 1.6695832377215252,
+        "threshold": 4.0,
+        "direction": "upper",
+        "control": "max |z-score| of the NO_WRITES calibration arm's raw whole-bank cosine (slot_cosine_sim_raw_whole_bank) against the freshly-derived untouched-bank null (mean=0.000019, sd=0.007789, n_draws=500), across all 5 seeds -- NEW in 436e, the empirical check for docstring points 4/5/6 (F5: WAKING_ONLY's 436d spread 0.0009-0.47 was fully reproduced by Adam drift alone on context_memory.memory with zero write() calls). context_memory.memory.requires_grad_(False) plus zero write() calls on this arm should hold its raw cosine inside the null; a large z here means something is perturbing the bank that the calibration model does not account for.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd016_arming_engaged",
+        "measured": 25796.27582187578,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "pooled |applied SD-016 H1 context-divergence loss| (sd016_ctxdiv_applied_total) across the two C1 comparison arms (WAKING_ONLY + SWS_THEN_REM) over all 5 seeds -- NEW in 436f. Confirms the SD-016 arming (sd016_enabled + cue_slot_tagger='gumbel' + context_divergence_weight=0.5, with the ctxdiv training-loop wiring this driver adds) actually ENGAGED this run. > floor means compute_context_divergence_loss was called and returned a non-trivial weighted divergence every step; a zero here means the arming was inert (weight or tagger silently off), which must self-report DISTINCTLY from an occupancy collapse (sufficient_occupancy_for_c1) so governance can tell 'armed-but-occupancy-still-collapsed' (read-path fix did not reach write-path occupancy -> route to a write-path successor) from 'arming never engaged'.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "bcfa771e56826280327bfeaea43b1bdadd730a1c8ba726b9fe271673e91e2aca",
+  "substrate_commit": {
+    "commit": "a8d4ec9cc1c91abe980d8739ae737822672c22b6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
