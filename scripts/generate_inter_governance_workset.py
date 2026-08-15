@@ -60,6 +60,42 @@ very next regen. Fix: `_status_implementation_complete` /
 leave retest-blocker semantics untouched. Regression test:
 scripts/test_generate_inter_governance_workset_substrate_staleness.py
 
+FM3b (2026-08-15): FM3'S FIX REACHED ONLY ONE OF THE TWO EMITTING PATHS. It was
+applied inside `_substrate_ready_items()`, which feeds the "Substrate ready:
+<sd>" loop -- but the retest-blocker SYNTHESIS loop ("Implement substrate:
+<sid> (unblocks <cid>)") builds its items straight from `_retest_blockers`'
+structured blockers and never consulted the guard. So a prerequisite whose
+build had already landed was still offered as buildable by the second route:
+FM3 exactly, one path over. Live at the time of the fix: IGW-20260815-228
+"Implement substrate: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION (unblocks
+ARC-045)" rendered status=ready against a substrate_queue entry reading
+`implemented_pending_validation`; five further entries (SD-049, MECH-307,
+ARC-062, f_dominance_conversion_ceiling, v4_loop_segregation) rendered as
+`blocked` "Implement substrate" items for substrate already built. The `ready`
+one is the harmful case -- `pick_candidate` skips anything whose status is not
+`ready`, so only that one could be staged as a worktree and GC-reaped unused.
+Fix: call the SAME `_substrate_implementation_complete` in the synthesis loop
+rather than add a second status test -- two independent allowlists is the
+mechanism by which the first one went stale.
+
+WHEN AUDITING THIS LANE, ENUMERATE THE EMISSION SITES FIRST. There are three
+`skill="/implement-substrate"` `add()` calls, not one: the held-pending-recs
+loop, the "Substrate ready" loop, and the retest-blocker synthesis loop. A
+guard placed in a LOADER (`_substrate_ready_items`) protects only the loop that
+calls that loader. FM3 and FM3b are the same defect found twice for exactly
+this reason.
+
+NOT the defect, though both look like one -- checked 2026-08-15 and recorded
+here so they are not re-investigated. (a) The synthesis loop DOES respect the
+entry's own `ready` flag, transitively: `_implement_substrate_blockers` returns
+a `ready=false (...)` blocker, which forces `sub_status="blocked"`. (b) An
+`implemented_commit_ree_v3` field exists on substrate_queue entries and looks
+like a better structural key than a status allowlist, but it is populated on
+1 of 157 entries (and that one is already classified complete by status), so it
+adds zero coverage -- and it asserts "a commit landed", not "the build is
+complete", which is the very distinction `_status_implementation_complete`'s
+`partial` guard exists to preserve. Deliberately NOT adopted.
+
 FM11 (2026-08-08): RETEST COVERAGE KEYED ON THE QUEUE IS TRANSIENT BY DESIGN.
 The FM8 fix above made `_queued_retest_coverage` see the whole queue, and that
 is correct -- but queue membership was the retest lane's ONLY notion of "this
@@ -2741,6 +2777,22 @@ def build_workset() -> dict:
         for entry in structured_blockers:
             sid = entry.get("sd_id") or ""
             if not sid or sid in emitted_substrate_sd_ids:
+                continue
+            # FM3b (2026-08-15): apply the SAME build-landed guard the
+            # "Substrate ready" loop gets. That loop is filtered inside
+            # `_substrate_ready_items()`, so the FM3 fix never reached THIS
+            # emission path -- an already-built prerequisite was still
+            # rendered as an "Implement substrate: <sid>" item, which is the
+            # FM3 failure arriving by the second route. Deliberately the same
+            # `_substrate_implementation_complete` call rather than a second
+            # status test: two independent allowlists is how the first one
+            # went stale. Its `depends_on_unresolved` carve-out is wanted here
+            # too -- an entry with unresolved prerequisites keeps rendering
+            # `blocked` instead of vanishing. The retest item above is
+            # unaffected: it still names this sid in blocked_by, because
+            # "the code landed" and "the claim it unblocks is retestable" are
+            # different questions and only the first is settled here.
+            if _substrate_implementation_complete(entry):
                 continue
             emitted_substrate_sd_ids.add(sid)
             entry_status = (
