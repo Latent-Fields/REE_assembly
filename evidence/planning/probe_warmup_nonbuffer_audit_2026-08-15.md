@@ -1,6 +1,11 @@
 # probe_warmup / maturation_curriculum non-buffer state audit
 
-**Status: IN PROGRESS (ladder A/B still running). This header is replaced when the run lands.**
+**Status: COMPLETE. Headline: `measure_action_mass` is NOT non-destructive, the mechanism
+is eval-rollout data leaking into the training buffer, and at V3-EXQ-784's real scale it
+flips the saturation verdict on 2 of 6 comparable cells. This is an experimental-validity
+defect on an already-executed, PASSED run -- raised via `governance_flag.py`. The
+warm-start CACHE the chip was written about is not implicated: no executed run ever took
+a cache hit.**
 
 Chip: `chip-20260815-probewarmup-nonbuffer-gap`. Session:
 `metaworker-chip-20260815-probewarmup-nonbuffer-gap`. Box: `ree-cloud-5`.
@@ -126,9 +131,92 @@ They are therefore **latent** defects: correct today by accident of config, wron
 any future consumer that turns either knob on. The phantom `_last_error_var` should be
 replaced by `_last_instantaneous_pe` regardless, since it silently captures nothing.
 
-### 5. Ladder A/B at 784's real scale
+### 5. Ladder A/B at 784's real scale -- the verdict flips
 
-*(pending -- filled in when the run lands)*
+Replicated 784's per-seed ladder at its real configuration (budgets `[0, 4, 10, 25]`,
+`train_steps_per_episode=100`, `read_steps_per_episode=300`, `probe_selects=150`,
+`probe_max_env_steps=4000`, env `size=8 / hazards=2 / resources=3`, both regulators OFF),
+twice per seed:
+
+* **arm A "as-is"** -- exactly what 784 does: each read leaves its residue behind.
+* **arm B "restored"** -- identical, except the agent's full non-`state_dict` attribute
+  tree is captured before each read and restored after it.
+
+RNG is re-pinned to a fixed derived seed at every stage boundary (before each training
+leg and before each read), so both arms see identical randomness and the ONLY difference
+is the agent state each stage starts from. Two seeds, ~100 min each on `ree-cloud-5`.
+
+| seed | budget | A as-is | B restored | delta | A regime | B regime |
+|---|---|---|---|---|---|---|
+| 11 | 0  | 0.998871 | 0.998871 | **0** (control) | ceiling | ceiling |
+| 11 | 4  | 0.902603 | 0.963654 | 0.061051 | headroom | **ceiling** |
+| 11 | 10 | 0.892603 | 0.903844 | 0.011241 | headroom | headroom |
+| 11 | 25 | 0.924767 | 0.889263 | 0.035504 | headroom | headroom |
+| 17 | 0  | 0.991775 | 0.991775 | **0** (control) | ceiling | ceiling |
+| 17 | 4  | 0.668805 | 0.814611 | 0.145806 | headroom | headroom |
+| 17 | 10 | 0.880680 | 0.968924 | 0.088244 | headroom | **ceiling** |
+| 17 | 25 | 0.931594 | 0.824576 | 0.107018 | headroom | headroom |
+
+**The budget-0 rows are the harness control and they are bit-identical**, as they must be:
+budget 0 has no preceding read, so there is no residue for the two arms to differ on. That
+they agree to all 16 digits is what licenses reading the other six rows as a real effect
+rather than as ladder-level nondeterminism.
+
+**Every one of the six post-first-read cells differs**, by 0.011 to 0.146 on a `[0,1]`
+dependent variable whose decision thresholds are 0.05 and 0.95. **Two of the six flip the
+saturation regime** (seed 11 at budget 4; seed 17 at budget 10).
+
+That matters because 784's headline is exactly a count of regime classifications:
+`informative_yield` = fraction of seeds in `headroom`, gated at `> 0.5` and compared
+against the V3-EXQ-777a baseline of 0.286. A cell that flips `headroom` <-> `ceiling`
+moves that number directly, and here the cell-level flip rate is 2/6.
+
+**The perturbation is not a consistent bias, which makes it worse rather than better.**
+Four cells move toward ceiling under restoration and two move away (seed 17 budget 25:
+A 0.9316 vs B 0.8246, i.e. the as-is arm is the more saturated one). So this is
+uncontrolled noise injected into the DV, not an offset that could be argued to cancel
+across seeds.
+
+**Scope of this claim, stated precisely.** This replication is not bit-identical to the
+landed 784 run: 2 seeds rather than 14, a pinned env seed where 784 used OS entropy at
+construction, and RNG re-pinned at stage boundaries (which 784 does not do -- it is what
+makes the A/B a controlled comparison). What it establishes is **sensitivity**: the
+residue can and does change 784's per-cell verdict at its real operating scale. It does
+**not** establish that 784's reported `informative_yield` is wrong by any particular
+amount. Establishing that requires re-running 784 itself with the restore in place, which
+is the recommendation below.
+
+---
+
+## Recommendation
+
+1. **Governance:** treat V3-EXQ-784's `informative_yield` / `target_met` as
+   **provisional**. The run is not invalid on its face -- the saturation phenomenon it
+   measures is real and the budget-0 control cells are uncontaminated by construction --
+   but every post-budget-0 cell was read from an agent whose E1 training pool had been
+   displaced by probe-read data, and 2 of 6 replicated cells changed verdict. Raised as a
+   governance flag rather than adjudicated here.
+
+2. **Fix `measure_action_mass`, and do NOT do it by extending `_E3_NONBUFFER_STATE`.**
+   Hand-listing attribute names is precisely how the E3-only version came to be partial,
+   and the load-bearing state is not in E3 at all -- it is the agent-level experience
+   buffers. The fix should be the census pattern from S2 of
+   `tests/contracts/test_preservation_midlife_spike.py`: partition the attribute surface
+   into restored / config-derived / telemetry and pin it, so a NEW attribute fails the
+   contract until someone classifies it.
+
+3. **A partial fix is worse than none here, so land it as one gated change.** Replacing
+   the phantom `_last_error_var` with the real `_last_instantaneous_pe` and adding
+   `_volatility_estimate` is a two-line change that fixes nothing measurable (both are
+   inert under every config that uses this module today) while making the docstring's
+   "non-destructive" claim look freshly audited. Whatever lands must address the buffer
+   channel or it should not land at all.
+
+4. **This is executable-code plane** (`experiments/_lib/` is pulled by the fleet), so any
+   change is gated on the contract suite per CLAUDE.md "Running the test suite". Not
+   attempted from this headless chip.
+
+5. **`maturation_curriculum` needs no change** -- see the negative result below.
 
 ---
 
