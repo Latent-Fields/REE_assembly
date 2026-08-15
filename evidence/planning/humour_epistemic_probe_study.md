@@ -191,9 +191,63 @@ cheap-diagnostic-first discipline applied reflexively to the study itself.
 - [ ] Source the independent opinion series (Gallup SSM + Gallup interracial-marriage +
       GSS FEFAM already anchored in the spike memo; add Pew acceptance-of-homosexuality,
       Eurobarometer cross-checks).
+- [~] **SECOND PILOT PROMOTED 2026-08-15: Ireland, the referendum lead-lag natural experiment.**
+      Protocol: `evidence/planning/humour_epistemic_probe_ireland_referendum_pilot.md`. Runs
+      AFTER the US coding-manual pilot passes. Tests transportability of the instrument, the
+      **lead-lag crux** against discrete dated referendums (SSM 2015-05-22 62% Yes; Repeal 2018-
+      05-25 66% Yes), and the SOC-HUM-5 medium sub-question. See Section 11.
+- [ ] Source the independent opinion series (Gallup SSM + Gallup interracial-marriage +
+      GSS FEFAM already anchored in the spike memo; add Pew acceptance-of-homosexuality,
+      Eurobarometer + Irish referendum record cross-checks).
 - [ ] Only then: corpus assembly + topic modelling at scale -- with lead-lag **quarantined**
       until it runs on dated primary sources, and the C4 "opinion-resolved-but-humour-taboo-died"
       cell treated as a first-class outcome, not noise.
+
+---
+
+## 11. Cross-cultural scope and the medium-externalization sub-question (candidate SOC-HUM-5)
+
+Sections 1-10 are implicitly **American**, because the humour axis needs canonical, dated,
+broadcast humour media, and the US industrialised that. This raises a genuine subquestion of the
+original idea -- registered here as **candidate SOC-HUM-5** (to be registered in `claims.yaml` via
+the thought-intake / governance route, NOT by a design session):
+
+> **SOC-HUM-5 (candidate).** The humour-as-epistemic-probe mechanism (SOC-HUM-1) is
+> substrate-universal, but its *observable trace* is externalised through culture-specific media of
+> differing recordability. Therefore (a) recorded-humour **volume** is confounded with medium and is
+> **not** cross-culturally comparable; and (b) only the within-culture **target-flip structure** and
+> its **timing** relative to that culture's own resolution axis is comparable.
+> *Null:* the flip-structure, where measurable, does not transport across cultures in a way tied to
+> the mechanism rather than to recordability.
+
+**Why this matters and is not merely a data-availability caveat:** the medium bias is confounded
+with the very thing measured. A culture that resolves norms through dense *oral, small-world*
+humour would register as having *less* humour activity purely because less is recorded -- when the
+mechanism may be *more* active there. So the deliverable is never a global volume comparison; it is
+a within-culture claim ("within each culture with an adequate corpus and a clean resolution axis,
+the flip appears and leads/lags consistently"), compared across cultures on **structure only**.
+
+**Four tiers of applicability:**
+
+- **American** -- calibration case, both axes dense (specials/late-night + Gallup/GSS). The US pilot.
+- **European** -- good resolution axis (Eurobarometer, ESS, referendums); humour axis nationally
+  siloed by language (UK broadcast satire; German *Kabarett*, explicitly societal-critique; French
+  cartoon/cabaret). Per-country corpora, compared on structure.
+- **Irish** -- the paradox and the **sharpest** case: oral/small-world humour (thin recorded layer)
+  BUT the world's cleanest resolution axis (discrete dated referendums) flipping a **shared** old
+  norm (the Catholic Church). **Promoted to an actual second pilot** -- see
+  `humour_epistemic_probe_ireland_referendum_pilot.md`. Dave Allen (1970s) and *Father Ted*
+  (1995-98) already sit in the recorded trail as Church-as-butt deep-lead anchors, decades before
+  the 2015/2018 votes.
+- **Worldwide** -- the honest ceiling: the *mechanism* may be universal, *this measurement* is not
+  culture-neutral. "Worldwide" means medium-appropriate proxies per culture, never a global volume
+  comparison.
+
+The upside: the medium bias becomes a **testable sub-hypothesis**, not just a limitation -- and
+Ireland's referendum axis is the single sharpest place to test whether the flip *leads a discrete
+resolution event*, which the US poll-drift cases can only blur.
+
+---
 
 This is a `/lit-pull` + design thread, not a `/queue-experiment` substrate run -- it does
 not belong in `ree-v3/experiment_queue.json`.
