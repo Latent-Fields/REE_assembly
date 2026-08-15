@@ -249,5 +249,56 @@ resolution event*, which the US poll-drift cases can only blur.
 
 ---
 
+## 12. The normative payoff, and its exact dependency on the evidence (candidates SOC-HUM-6, SOC-HUM-7)
+
+Two further candidate claims, and the reason the study's *normative* conclusion -- that
+entertainers carry a societal responsibility as epistemic infrastructure -- is **earned by
+degrees, never asserted**. (Both are candidates to register via the thought-intake / governance
+route; SOC-HUM-7 routes through the ethics perimeter, not `claims.yaml` alone.)
+
+**Candidate SOC-HUM-6 (observational -- the probe-vs-safety-valve dissociation).** Not all
+tension-humour does epistemic work. A long-standing rival theory -- the **safety-valve** function
+-- holds that humour discharges tension *without* reframing, dissipating the pressure to engage and
+thereby *preserving* the status quo ("putting it back on the shelf"). Three fates, all producing
+laughter: **probe/unblock** (reframes, opens the node -- target-flip / self, benign-violation held);
+**safety-valve/deflect** (releases the steam, closes the node); **entrench/weaponise** (out-group,
+forecloses). SOC-HUM-6 sharpens H1: it is **probe-mode** humour specifically, not humour *volume*,
+that leads resolution; safety-valve humour is null or negatively associated. Testable **now** in the
+corpus being built, via the same coding scheme. *Null:* probe-mode and safety-valve humour relate
+equally (or not at all) to resolution -- in which case the mechanism as stated is wrong.
+
+**Candidate SOC-HUM-7 (interventional -- cultivating the fili).** In a small, high-connectivity
+country with unresolved high-tension conflicts, deliberately training satirists/poets/comedians in
+the **probe mode** -- recovering the institutional role the *fili* historically held in Gaelic
+Ireland -- increases the rate/quality of societal epistemic engagement with those issues.
+**Ethically bounded: the aim is PROCESS, not OUTCOME** -- restoring the capacity to *examine* a
+too-charged issue (the societal analog of the therapeutic stance: make the unbearable thinkable
+*without* dictating the conclusion), never pushing a verdict. Downstream of observational validation;
+routes through the **ethics perimeter** (SENT-/GOV- governance rules). *Null:* trained-cohort output
+shows no shift toward probe-mode, or the shift produces no downstream engagement effect.
+
+**The dependency ladder -- the responsibility claim is calibrated to the evidence, never unconditional:**
+- Flip only **lags** resolution -> entertainers are **barometers** (honest mirrors); "drivers" is false.
+- Probe-mode makes issues safe to examine and the flip **leads** (H1-lead + SOC-HUM-6) -> **enablers**;
+  "decision-helpers" is *earned*, because the mode chosen causally shapes whether exploration happens.
+- That effect is large **and trainable** (SOC-HUM-7) -> **drivers**, and the full vanguard claim is licensed.
+
+**Even the null results carry a (different) responsibility.** If the safety-valve theory wins
+(SOC-HUM-6 null/reversed), the duty *inverts*: **not** to be the pressure-release valve that lets a
+society feel it has engaged while avoiding. The only branch where responsibility fully collapses is
+pure lagging narration -- and even there, "be an honest mirror" survives.
+
+**Posture: research hypothesis, not program.** The normative claim is earned by degrees as each
+hypothesis lands; it is not asserted and then acted on by recruiting practitioners. The spike-first,
+blind-coding, lead-lag-quarantined discipline this thread has kept is exactly what would let the
+eventual normative conclusion -- *if* earned -- stand up rather than read as advocacy. "Newspapers
+may be dead but entertainment is not": if comedy is epistemic machinery and the print fourth-estate
+is collapsing, comedy may be the *surviving* channel -- which raises the stakes of cultivating it
+well, but only once the mechanism is shown to be real. The dependency ladder above is expressed
+structurally in the seed repo's claims matrix as a **claim graph** (SOC-HUM-7 `depends_on`
+SOC-HUM-1/2/6), so "earned by degrees" is a gated promotion, not a slogan.
+
+---
+
 This is a `/lit-pull` + design thread, not a `/queue-experiment` substrate run -- it does
 not belong in `ree-v3/experiment_queue.json`.
