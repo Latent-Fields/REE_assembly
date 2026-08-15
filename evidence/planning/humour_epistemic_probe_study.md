@@ -176,11 +176,18 @@ cheap-diagnostic-first discipline applied reflexively to the study itself.
       form -- a norm resolved (~1985, GSS FEFAM) with only a weak/late flip, so "resolution
       is preceded by a target-flip" is *sufficient-signal*, not *necessary-precursor* (memo
       condition 2). GO is for the **instrument**, not the causal thesis (untestable by hand).
-- [ ] **NEXT (GO path): target-of-violation coding manual + inter-rater reliability check
-      FIRST** -- the whole instrument rests on this one code and the Archie-Bunker
-      "whose butt is it?" ambiguity shows it is genuinely contestable per-instance
-      (memo condition 3). Run a two-rater agreement check on a held-out sample before any
-      scaled prevalence computation.
+- [~] **NEXT (GO path): target-of-violation coding manual + inter-rater reliability check
+      FIRST** -- **PROTOCOL WRITTEN 2026-08-15:**
+      `evidence/planning/humour_epistemic_probe_coding_manual_pilot.md`. Paired held-out,
+      blind design: Arm A marijuana legalization (resolution/H1, Gallup midpoint ~2012-13)
+      tests **sensitivity** (does the blind code recover the target-flip?); Arm B personal
+      financial scarcity (persistence/H2) tests **specificity** (does it correctly report
+      NO flip?). Operational definitions for the four target codes + benign/taboo flag,
+      the inequality-exclusion unit-of-analysis rule, sampling frame (1995-2020, 5-yr bins,
+      ~100-150 dated instances), full blinding protocol, and three GO gates (kappa >=~0.6
+      with no dominant transgressor<->old-norm confusion; Arm A flip recovered; Arm B stays
+      flat/self). **Remaining to run:** assemble the dated sample from primary sources, hand
+      to two raters, compute kappa. Awaiting user's go-ahead to execute.
 - [ ] Source the independent opinion series (Gallup SSM + Gallup interracial-marriage +
       GSS FEFAM already anchored in the spike memo; add Pew acceptance-of-homosexuality,
       Eurobarometer cross-checks).
