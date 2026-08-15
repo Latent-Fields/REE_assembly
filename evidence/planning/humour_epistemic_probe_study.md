@@ -162,11 +162,31 @@ cheap-diagnostic-first discipline applied reflexively to the study itself.
 
 ## 10. Status / next steps
 
-- [ ] MVP spike (Section 9) -- 3-5 hand-picked conflicts, hand-coded. **Gate: do not scale
-      unless the pilot separates resolution- from taboo-death AND shows any curve relation.**
-- [ ] If pilot passes: specify the target-of-violation coding manual + inter-rater check.
-- [ ] Source the independent opinion series for the candidate conflicts (GSS/Gallup/Pew).
-- [ ] Only then: corpus assembly + topic modelling at scale.
+- [x] **MVP spike (Section 9) -- DONE 2026-08-15. Verdict: GO (qualified).** Full memo:
+      `evidence/planning/humour_epistemic_probe_mvp_spike_2026-08-15.md`. Four cases:
+      C1 homosexuality/SSM + C2 interracial-marriage (resolution/H1), C3 mortality
+      (persistence/H2), C4 nagging-wife jokes (adversarial). **Gate met on both arms:**
+      (i) the target-of-violation code separates resolution- from taboo-death non-trivially
+      (C1 anti-gay + C2 overt-racist forms taboo-died while old-norm forms rose; C4 the code
+      correctly reads taboo-death and *dissents* from the naive "vanished->resolved"
+      inference); (ii) humour target-flip relates to the independent opinion axis and
+      *leads* it in the two clean cases (C1 ~5-12y, C2 ~20y). **Two carried caveats:**
+      the lead-lag reading is contaminated by analyst hindsight and must be re-run on dated
+      primary sources (memo condition 1); and C4 is a partial counterexample to H1's strong
+      form -- a norm resolved (~1985, GSS FEFAM) with only a weak/late flip, so "resolution
+      is preceded by a target-flip" is *sufficient-signal*, not *necessary-precursor* (memo
+      condition 2). GO is for the **instrument**, not the causal thesis (untestable by hand).
+- [ ] **NEXT (GO path): target-of-violation coding manual + inter-rater reliability check
+      FIRST** -- the whole instrument rests on this one code and the Archie-Bunker
+      "whose butt is it?" ambiguity shows it is genuinely contestable per-instance
+      (memo condition 3). Run a two-rater agreement check on a held-out sample before any
+      scaled prevalence computation.
+- [ ] Source the independent opinion series (Gallup SSM + Gallup interracial-marriage +
+      GSS FEFAM already anchored in the spike memo; add Pew acceptance-of-homosexuality,
+      Eurobarometer cross-checks).
+- [ ] Only then: corpus assembly + topic modelling at scale -- with lead-lag **quarantined**
+      until it runs on dated primary sources, and the C4 "opinion-resolved-but-humour-taboo-died"
+      cell treated as a first-class outcome, not noise.
 
 This is a `/lit-pull` + design thread, not a `/queue-experiment` substrate run -- it does
 not belong in `ree-v3/experiment_queue.json`.
