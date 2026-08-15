@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-08-09T01:16:47Z
+Generated: 2026-08-15T04:46:17Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 98
+Docs resolved to a claim: 100
 
 ## Frontmatter drift -- HARD (0)
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (119)
+## Unresolved with a hand status line -- INFO (128)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -39,6 +39,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `astrocyte_regulatory_stack.md` -- "candidate"
 - `axiom_chain_adversarial_audit.md` -- "first pass (WS-13 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `bitter_lesson_position.md` -- "first pass (WS-6 of `evidence/planning/ree_ai_design_critique_plan.md`)"
+- `canonical_profile_admission_criteria.md` -- "design doctrine, 2026-08-12. Derived verbatim from"
 - `claim_phase_provenance.md` -- "design proposal + landed checker, 2026-06-09"
 - `cognifold_signed_coupling.md` -- "candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09 from the competitive-interactions thought inta"
 - `cognitive_architecture_graveyard.md` -- "first pass (WS-8 of `evidence/planning/ree_ai_design_critique_plan.md`)"
@@ -83,6 +84,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `jepa_e1e2_integration_contract.md` -- "stable"
 - `jepa_ree_hybrid_diagram_spec.md` -- "stable"
 - `l_space.md` -- "stable"
+- `landing_integration_worker_investigation.md` -- "investigated, decided — no dedicated worker; one narrow follow-on chipped"
 - `language.md` -- "stable"
 - `learned_cross_loop_arbitration.md` -- "IMPLEMENTED 2026-07-01. PROMOTES NOTHING. Behind a no-op-default flag, byte-identical OFF."
 - `mode_manager.md` -- "legacy"
@@ -114,8 +116,11 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_085_e3_reality_cost_weight.md` -- "PENDING"
 - `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
+- `sd_e3_scorer_completion.md` -- "IMPLEMENTED"
 - `sd_hazard_aware_policy_decomposition.md` -- "IMPLEMENTED 2026-08-01"
+- `sd_mech267_cem_selection_fix.md` -- "IMPLEMENTED"
 - `sd_mech267_horizon_depth_modulation.md` -- "IMPLEMENTED 2026-08-02"
+- `sd_mech303_threshold_sourcing.md` -- "IMPLEMENTED"
 - `sd_mech457_approach_extinction.md` -- "IMPLEMENTED"
 - `sd_mech457_bc_aux_schedule.md` -- "IMPLEMENTED (2026-07-18)"
 - `sd_mech457_competence_bootstrap_explorer.md` -- "IMPLEMENTED"
@@ -124,6 +129,9 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_mech457_retention_trajectory_probe.md` -- "IMPLEMENTED"
 - `sd_mel_consumer.md` -- "IMPLEMENTED"
 - `sd_mel_producer.md` -- "VALIDATED (V3-EXQ-798a, 2026-07-29; confirmed failure_autopsy_V3-EXQ-798a_2026-07-30)"
+- `sd_orienting_decision_scale.md` -- "IMPLEMENTED"
+- `sd_queue_seed_enforcement.md` -- "IMPLEMENTED"
+- `sd_residue_valence_bound.md` -- "IMPLEMENTED"
 - `sd_v4_loop_segregation.md` -- "IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving"
 - `self_attribution_per_stream.md` -- "Active roadmap document. Supersedes the narrow SD-003 counterfactual architecture."
 - `sensory_stream_tags.md` -- "provisional"
@@ -148,5 +156,6 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `valenced_hippocampal_map.md` -- "candidate"
 - `version_layering_doctrine.md` -- "architecture doctrine, 2026-06-17"
 - `vmPFC.md` -- "candidate"
+- `what_is_ree_made_of.md` -- "architecture note (whole-system presentation framing; not a registered falsifiable claim)"
 - `why_attention_must_be_fragmented.md` -- "provisional"
 

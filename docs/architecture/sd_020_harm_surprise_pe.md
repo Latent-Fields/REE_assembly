@@ -3,8 +3,8 @@ title: "SD-020: z_harm_a Encodes Affective Surprise (Precision-Weighted PE)"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 13
-status: stable
-status_asof: 2026-07-10
+status: provisional
+status_asof: 2026-08-15
 status_claim: SD-020
 ---
 
