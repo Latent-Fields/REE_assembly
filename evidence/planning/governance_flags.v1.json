@@ -534,6 +534,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0036",
+      "claim_ids": [
+        "SD-074",
+        "MECH-063"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-784 (SD-074 probe_warmup de-saturation sweep, PASS 2026-07-18) rests on a premise its own manifest states and that is FALSE: sd074_note asserts 'measure_action_mass is non-destructive ... so reading at one checkpoint leaves the agent bit-identical for continued training'. Measured on ree-cloud-5 2026-08-15: a probe read leaves 21 non-state_dict attributes changed, 17 of which survive agent.reset(); the load-bearing ones are agent._self/_world_experience_buffer, which warmup_train samples via agent.compute_prediction_loss(), so eval-rollout data enters the E1 training pool (buffers cap at 1000 and 784's reads are 1081-1401 env steps, i.e. full displacement). A controlled 2-seed replication of 784's ladder at its real config (budget-0 control cells bit-identical, as required) shows all six post-first-read cells differing by 0.011-0.146 on D_action_mass and TWO OF SIX flipping the saturation regime -- which is exactly the classification 784's informative_yield headline counts. Treat 784's informative_yield / target_met as provisional; full write-up and recommended fix in REE_assembly/evidence/planning/probe_warmup_nonbuffer_audit_2026-08-15.md.",
+      "raised_by_session": "metaworker-chip-20260815-probewarmup-nonbuffer-gap",
+      "raised_at": "2026-08-15T04:08:32Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
