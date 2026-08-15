@@ -1223,10 +1223,33 @@ def _completed_retest_coverage(
     contributory one. Whether the result was any GOOD is exactly the judgement
     being handed to /governance -- so the run_id, status and direction all go
     into the blocker string rather than being pre-filtered away here.
+
+    FM11b (2026-08-15): THE CUTOFF-DEFINING RUN IS ITSELF COVERAGE. The cutoff
+    is an UPPER bound taken from `failure_record[].run_id` (see
+    `_substrate_landing_cutoff`), and on this corpus that stamp is very often
+    the claim's OWN retest -- the same experiment validates the substrate and
+    tests the claim it unblocks. A plain `when <= cutoff` then makes that run
+    set the bar and fail it: the retest self-cancels, the claim renders `ready`,
+    and the auto-spawn stages it again. That is the FM11 incident exactly, one
+    mechanism over. Confirmed live 2026-08-15 on MECH-074d (SD-035.failure_record
+    == v3_exq_894c, the claim's newest evidence row), MECH-151 and MECH-152 (both
+    SD-016.failure_record == v3_exq_922) -- three of the four claims that reach
+    FM11 at all. Such a run PROVABLY postdates the landing (the substrate existed
+    before its own validation run), so it is counted. An equal-stamped run that
+    is NOT a cutoff-defining run stays excluded, which keeps the conservative
+    direction for a genuine timestamp collision.
     """
     cutoff, source = _substrate_landing_cutoff(claim_id, substrate_by_id)
     if cutoff is None:
         return None
+    cutoff_runs = {
+        str(rec.get("run_id") or "")
+        for sub in substrate_by_id.values()
+        if claim_id in (sub.get("unblocks_claims") or [])
+        for rec in (sub.get("failure_record") or [])
+        if isinstance(rec, dict)
+    }
+    cutoff_runs.discard("")
     best: dict | None = None
     best_ts: datetime | None = None
     for entry in _claim_evidence_entries():
@@ -1237,7 +1260,9 @@ def _completed_retest_coverage(
         if str(entry.get("source_type") or "") != "experimental":
             continue
         when = _parse_evidence_ts(entry.get("timestamp_utc"))
-        if when is None or when <= cutoff:
+        if when is None or when < cutoff:
+            continue
+        if when == cutoff and str(entry.get("run_id") or "") not in cutoff_runs:
             continue
         if best_ts is None or when > best_ts:
             best, best_ts = entry, when
@@ -2422,6 +2447,164 @@ def reconcile_spawned_task_assignments(
     return released
 
 
+def _retest_lane_evaluation(
+    cid: str,
+    substrate_by_id: dict[str, dict],
+    claims_meta: dict[str, dict],
+    proposal_blocked_by_claim: dict[str, dict],
+) -> dict:
+    """The full blocker chain for ONE `pending_retest_after_substrate` claim.
+
+    Extracted from build_workset's retest loop so the chain can be evaluated for
+    EVERY retest claim while the board still emits only a capped window.
+
+    FM11c (2026-08-15): FM11 WAS EVALUATED ONLY INSIDE THE EMISSION WINDOW. The
+    loop ran over `retest[:10]` -- a cap applied to an ALPHABETICALLY sorted list,
+    i.e. before any claim's status is known -- so the FM11 branch, which is last
+    in the chain, could only ever be reached by a claim in the alphabetically
+    first ten. On the 2026-08-15 corpus all four claims that reach FM11 at all
+    (MECH-074d, MECH-151, MECH-152 at indices 16/23/24 and Q-081 at 69) fell
+    outside that window, while the ten emitted claims were every one of them held
+    earlier in the chain. `summary.evidence_covered_retests` was therefore exactly
+    `{}` -- reading as "the mechanism is inert" when the mechanism was simply
+    never asked. Evaluating the whole lane makes the accounting complete and, more
+    to the point, makes the hold real for a claim the window happens to exclude.
+
+    The returned `status`/`blocker_strs`/`why_now` are byte-identical to what the
+    inline chain produced, so the emitted board is unchanged by the extraction.
+    """
+    blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
+    # FM5: a substrate_ceiling retest is genuinely awaiting substrate
+    # enrichment. It may render ready ONLY when its unblocking substrate is
+    # actually ready/landed (which fix 1 surfaces as an empty blocker list).
+    # If NO substrate_queue entry even targets the claim, we cannot confirm
+    # the enrichment landed, so keep it blocked rather than false-ready.
+    is_ceiling = _resolve_epistemic_category(claims_meta.get(cid)) == "substrate_ceiling"
+    if is_ceiling and not blocker_strs:
+        unblocking = [
+            e for e in substrate_by_id.values()
+            if cid in (e.get("unblocks_claims") or [])
+        ]
+        if not unblocking:
+            blocker_strs = [
+                f"substrate_ceiling -- awaiting substrate enrichment "
+                f"(no ready substrate_queue entry targets {cid})"
+            ]
+    # R5: hold a non-v3-testable retest target -- v3_pending, an untestable
+    # epistemic_category (substrate_ceiling / substrate_conditional /
+    # out_of_domain / derivational), or a non-candidate status. The
+    # governance V3-pending gate ignores such claims, so a headless
+    # /queue-experiment is a structural NO-OP. Keep it visible as `blocked`
+    # rather than `ready` (mirrors R1 in igw_routine_tick). A
+    # substrate_ceiling claim WITHOUT a ready substrate already carries the
+    # "awaiting enrichment" blocker set above; only add a reason when none
+    # exists yet (e.g. INV-074: substrate_ceiling WITH a ready substrate
+    # entry, which previously rendered `ready`).
+    testable, untest_reason = _claim_v3_testable(cid, claims_meta)
+    held_not_testable = not testable and not blocker_strs
+    if held_not_testable:
+        blocker_strs = [f"not v3-testable: {untest_reason}"]
+    # FM7: a prior /queue-experiment investigation may have already
+    # adjudicated this retest's backing proposal as blocked on OTHER
+    # CLAIMS (not a substrate_queue row), which _retest_blockers and the
+    # epistemic_category ceiling check above cannot see -- see
+    # _proposal_blocked_substrate_by_claim() docstring (confirmed
+    # incident: INV-089). Only fires when nothing above already blocked
+    # the item; if it did, that finding is already correctly `blocked`.
+    proposal_block = proposal_blocked_by_claim.get(cid)
+    held_proposal_blocked = bool(proposal_block) and not blocker_strs
+    if held_proposal_blocked:
+        pid = proposal_block.get("proposal_id") or "?"
+        blocked_by_list = proposal_block.get("blocked_by") or []
+        note = proposal_block.get("blocked_note") or ""
+        if blocked_by_list:
+            detail = ", ".join(str(x) for x in blocked_by_list)[:160]
+            blocker_strs = [
+                f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
+                f"blocked by {detail}"
+            ]
+        elif note:
+            blocker_strs = [
+                f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
+                f"{note[:160]}"
+            ]
+        else:
+            blocker_strs = [
+                f"experiment_proposals.v1.json {pid} status=blocked_substrate "
+                f"(backlog_id {proposal_block.get('backlog_id') or '?'}); see "
+                f"the proposal record for adjudication detail."
+            ]
+    # FM11: the retest may ALREADY HAVE RUN. `queued_coverage` only sees a
+    # retest that is still PENDING, and a completed run is removed from the
+    # queue outright -- so without this the item snaps back to `ready` the
+    # moment its own retest finishes and the auto-spawn routine re-stages a
+    # worktree for it every tick. See the FM11 block above `_parse_evidence_ts`
+    # for the confirmed ARC-045 3x re-stage incident and for why this HOLDS the
+    # item rather than suppressing it.
+    #
+    # Last in the chain on purpose: reaching here means nothing else blocked
+    # the item, which for the retest lane is precisely the statement that
+    # every substrate entry unblocking this claim is already resolved (that
+    # is what `_retest_blockers` returning empty means). So the cutoff below
+    # is being computed against LANDED substrate, not a build in progress.
+    evidence_cover = None
+    if not blocker_strs:
+        evidence_cover = _completed_retest_coverage(cid, substrate_by_id)
+    held_evidence_covered = bool(evidence_cover)
+    if held_evidence_covered:
+        blocker_strs = [
+            f"post-substrate evidence already exists: "
+            f"{evidence_cover['run_id']} "
+            f"[{evidence_cover['status']}/{evidence_cover['evidence_direction']}] "
+            f"ran {evidence_cover['timestamp_utc']}, after the substrate "
+            f"landing bound {evidence_cover['cutoff_utc']} "
+            f"({evidence_cover['cutoff_source']}). "
+            f"pending_retest_after_substrate is still true in claims.yaml -- "
+            f"/governance must adjudicate that run and either clear the flag "
+            f"or re-scope the retest."
+        ]
+    status = "blocked" if blocker_strs else "ready"
+    if status == "ready":
+        why_now = "claims.yaml pending_retest_after_substrate=true."
+    elif held_evidence_covered:
+        why_now = (
+            f"The retest has ALREADY RUN ({evidence_cover['run_id']}) -- do "
+            f"not re-queue it. The claims.yaml flag is still set, so this is "
+            f"a /governance disposition (clear the flag, or re-scope the "
+            f"retest), not /queue-experiment work. (FM11.)"
+        )
+    elif held_proposal_blocked:
+        why_now = (
+            f"A prior investigation already adjudicated the backing "
+            f"proposal as blocked_substrate -- see blocked_by. Do not "
+            f"re-investigate; re-run /queue-experiment once the named "
+            f"blocker(s) are built."
+        )
+    elif held_not_testable:
+        why_now = (
+            f"Held by the governance V3-pending gate ({untest_reason}) -- a "
+            f"/queue-experiment cannot yield contributory evidence. See "
+            f"blocked_by. (R5; mirrors R1.)"
+        )
+    elif is_ceiling:
+        why_now = (
+            f"substrate_ceiling -- awaiting substrate enrichment; blocked by "
+            f"{len(blocker_strs)} unresolved prerequisite(s). See blocked_by."
+        )
+    else:
+        why_now = (
+            f"Blocked by {len(blocker_strs)} unresolved substrate "
+            f"prerequisite(s) -- see blocked_by."
+        )
+    return {
+        "blocker_strs": blocker_strs,
+        "structured_blockers": structured_blockers,
+        "status": status,
+        "why_now": why_now,
+        "evidence_cover": evidence_cover,
+    }
+
+
 def build_workset() -> dict:
     generated = _utc_now()
     items: list[dict] = []
@@ -2627,134 +2810,30 @@ def build_workset() -> dict:
     }
     retest = [cid for cid in retest_all if cid not in queued_coverage]
     # FM11 accounting: claim_id -> the post-substrate run that held it (see the
-    # `held_evidence_covered` branch below). Reported in the summary so the
-    # suppression is auditable from the artifact rather than only from the code.
+    # `held_evidence_covered` branch in _retest_lane_evaluation). Reported in the
+    # summary so the suppression is auditable from the artifact rather than only
+    # from the code.
+    #
+    # FM11c (2026-08-15): evaluated for EVERY retest claim, not just the emitted
+    # window. The emission cap below is applied to an alphabetically sorted list,
+    # so evaluating inside it made FM11 -- last in the chain -- reachable only by
+    # an alphabetically early claim, and on the 2026-08-15 corpus that was none of
+    # them. See _retest_lane_evaluation's docstring.
     evidence_covered_retests: dict[str, str] = {}
+    retest_eval: dict[str, dict] = {}
+    for cid in retest:
+        retest_eval[cid] = _retest_lane_evaluation(
+            cid, substrate_by_id, claims_meta, proposal_blocked_by_claim
+        )
+        cover = retest_eval[cid]["evidence_cover"]
+        if cover:
+            evidence_covered_retests[cid] = cover["run_id"]
     for cid in retest[:10]:
-        blocker_strs, structured_blockers = _retest_blockers(cid, substrate_by_id)
-        # FM5: a substrate_ceiling retest is genuinely awaiting substrate
-        # enrichment. It may render ready ONLY when its unblocking substrate is
-        # actually ready/landed (which fix 1 surfaces as an empty blocker list).
-        # If NO substrate_queue entry even targets the claim, we cannot confirm
-        # the enrichment landed, so keep it blocked rather than false-ready.
-        is_ceiling = _resolve_epistemic_category(claims_meta.get(cid)) == "substrate_ceiling"
-        if is_ceiling and not blocker_strs:
-            unblocking = [
-                e for e in substrate_by_id.values()
-                if cid in (e.get("unblocks_claims") or [])
-            ]
-            if not unblocking:
-                blocker_strs = [
-                    f"substrate_ceiling -- awaiting substrate enrichment "
-                    f"(no ready substrate_queue entry targets {cid})"
-                ]
-        # R5: hold a non-v3-testable retest target -- v3_pending, an untestable
-        # epistemic_category (substrate_ceiling / substrate_conditional /
-        # out_of_domain / derivational), or a non-candidate status. The
-        # governance V3-pending gate ignores such claims, so a headless
-        # /queue-experiment is a structural NO-OP. Keep it visible as `blocked`
-        # rather than `ready` (mirrors R1 in igw_routine_tick). A
-        # substrate_ceiling claim WITHOUT a ready substrate already carries the
-        # "awaiting enrichment" blocker set above; only add a reason when none
-        # exists yet (e.g. INV-074: substrate_ceiling WITH a ready substrate
-        # entry, which previously rendered `ready`).
-        testable, untest_reason = _claim_v3_testable(cid, claims_meta)
-        held_not_testable = not testable and not blocker_strs
-        if held_not_testable:
-            blocker_strs = [f"not v3-testable: {untest_reason}"]
-        # FM7: a prior /queue-experiment investigation may have already
-        # adjudicated this retest's backing proposal as blocked on OTHER
-        # CLAIMS (not a substrate_queue row), which _retest_blockers and the
-        # epistemic_category ceiling check above cannot see -- see
-        # _proposal_blocked_substrate_by_claim() docstring (confirmed
-        # incident: INV-089). Only fires when nothing above already blocked
-        # the item; if it did, that finding is already correctly `blocked`.
-        proposal_block = proposal_blocked_by_claim.get(cid)
-        held_proposal_blocked = bool(proposal_block) and not blocker_strs
-        if held_proposal_blocked:
-            pid = proposal_block.get("proposal_id") or "?"
-            blocked_by_list = proposal_block.get("blocked_by") or []
-            note = proposal_block.get("blocked_note") or ""
-            if blocked_by_list:
-                detail = ", ".join(str(x) for x in blocked_by_list)[:160]
-                blocker_strs = [
-                    f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
-                    f"blocked by {detail}"
-                ]
-            elif note:
-                blocker_strs = [
-                    f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
-                    f"{note[:160]}"
-                ]
-            else:
-                blocker_strs = [
-                    f"experiment_proposals.v1.json {pid} status=blocked_substrate "
-                    f"(backlog_id {proposal_block.get('backlog_id') or '?'}); see "
-                    f"the proposal record for adjudication detail."
-                ]
-        # FM11: the retest may ALREADY HAVE RUN. `queued_coverage` above only
-        # sees a retest that is still PENDING, and a completed run is removed
-        # from the queue outright -- so without this the item snaps back to
-        # `ready` the moment its own retest finishes and the auto-spawn routine
-        # re-stages a worktree for it every tick. See the FM11 block above
-        # `_parse_evidence_ts` for the confirmed ARC-045 3x re-stage incident and
-        # for why this HOLDS the item rather than suppressing it.
-        #
-        # Last in the chain on purpose: reaching here means nothing else blocked
-        # the item, which for the retest lane is precisely the statement that
-        # every substrate entry unblocking this claim is already resolved (that
-        # is what `_retest_blockers` returning empty means). So the cutoff below
-        # is being computed against LANDED substrate, not a build in progress.
-        evidence_cover = None
-        if not blocker_strs:
-            evidence_cover = _completed_retest_coverage(cid, substrate_by_id)
-        held_evidence_covered = bool(evidence_cover)
-        if held_evidence_covered:
-            evidence_covered_retests[cid] = evidence_cover["run_id"]
-            blocker_strs = [
-                f"post-substrate evidence already exists: "
-                f"{evidence_cover['run_id']} "
-                f"[{evidence_cover['status']}/{evidence_cover['evidence_direction']}] "
-                f"ran {evidence_cover['timestamp_utc']}, after the substrate "
-                f"landing bound {evidence_cover['cutoff_utc']} "
-                f"({evidence_cover['cutoff_source']}). "
-                f"pending_retest_after_substrate is still true in claims.yaml -- "
-                f"/governance must adjudicate that run and either clear the flag "
-                f"or re-scope the retest."
-            ]
-        status = "blocked" if blocker_strs else "ready"
-        if status == "ready":
-            why_now = "claims.yaml pending_retest_after_substrate=true."
-        elif held_evidence_covered:
-            why_now = (
-                f"The retest has ALREADY RUN ({evidence_cover['run_id']}) -- do "
-                f"not re-queue it. The claims.yaml flag is still set, so this is "
-                f"a /governance disposition (clear the flag, or re-scope the "
-                f"retest), not /queue-experiment work. (FM11.)"
-            )
-        elif held_proposal_blocked:
-            why_now = (
-                f"A prior investigation already adjudicated the backing "
-                f"proposal as blocked_substrate -- see blocked_by. Do not "
-                f"re-investigate; re-run /queue-experiment once the named "
-                f"blocker(s) are built."
-            )
-        elif held_not_testable:
-            why_now = (
-                f"Held by the governance V3-pending gate ({untest_reason}) -- a "
-                f"/queue-experiment cannot yield contributory evidence. See "
-                f"blocked_by. (R5; mirrors R1.)"
-            )
-        elif is_ceiling:
-            why_now = (
-                f"substrate_ceiling -- awaiting substrate enrichment; blocked by "
-                f"{len(blocker_strs)} unresolved prerequisite(s). See blocked_by."
-            )
-        else:
-            why_now = (
-                f"Blocked by {len(blocker_strs)} unresolved substrate "
-                f"prerequisite(s) -- see blocked_by."
-            )
+        evaluation = retest_eval[cid]
+        blocker_strs = evaluation["blocker_strs"]
+        structured_blockers = evaluation["structured_blockers"]
+        status = evaluation["status"]
+        why_now = evaluation["why_now"]
         add(
             lane="experiment",
             skill="/queue-experiment",
