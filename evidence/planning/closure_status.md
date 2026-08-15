@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-13T19:53:49Z
+Generated: 2026-08-15T05:03:57Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **71.0%** across 92 non-deferred nodes in 16 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **33** nodes.
+- Weighted progress: **71.9%** across 94 non-deferred nodes in 17 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **32** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
 - Deferred (not required for v3 closure): 13 nodes.
-- Done: 59 nodes.
-- Status tally: assembling=10  blocked=10  blocked_pending_substrate=2  deferred=13  done=59  in_progress=10  open=8  partial=2  upstream_blocked=1
+- Done: 62 nodes.
+- Status tally: assembling=10  blocked=11  blocked_pending_substrate=2  deferred=13  done=62  in_progress=8  open=8  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -22,28 +22,27 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `mech303_safety_threshold_plan.md` | MECH-303 Safety-Threshold Sourcing | 1 | 0% | open:1 | 2026-08-13 |
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 0% | open:1 | 2026-08-13 |
+| `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 0% | open:1 | 2026-08-14 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 25% | blocked:1 done:1 in_progress:1 open:3 | 2026-08-13 |
-| `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
-| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 60% | done:1 in_progress:2 | 2026-07-31 |
+| `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-08-15 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-08-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 79% | assembling:1 deferred:3 done:5 in_progress:2 partial:1 | 2026-08-01 |
-| `sleep_substrate_plan.md` | Sleep Substrate | 11 | 81% | deferred:1 done:8 open:1 upstream_blocked:1 | 2026-08-12 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 87% | assembling:1 deferred:2 done:7 in_progress:2 | 2026-07-10 |
+| `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-12 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-05-30 |
+| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-12 |
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
 
-## Remaining work to close v3 (33)
+## Remaining work to close v3 (32)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A-precision-diagnostic` | Why is log10_precision_mean bit-identical across channel levels in 802? Harness  | in_progress | 0 | informational | V3-EXQ-848, V3-EXQ-848a, V3-EXQ-848b (recommende | depends_on: arc_005_control_plane_routing:GAP-A | 2026-08-03 |
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to  | in_progress | 1 | load-bearing | V3-EXQ-846 | depends_on: arc_005_control_plane_routing:GAP-A | 2026-07-31 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-1` | Pre-approach orienting/surveying mode (cue-triggered, narrow vector resolution) | blocked | 1 | high |  |  | 2026-08-13 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | open | 1 | high |  |  | 2026-08-13 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-23 |
@@ -55,17 +54,18 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P3` | Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lif | blocked | 3 | high |  | depends_on: sd_037_axis_b:P2 | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
+| self_attribution_plan.md | `self_attribution:GAP-6` | SD-031 z_world causal-footprint comparator: V3 discriminative validation | blocked | 6 | medium |  | Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the disc | 2026-08-15 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress |  | load-bearing |  | V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).  | 2026-08-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial |  | load-bearing |  | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-08-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-08-01 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
+| policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | open |  | load-bearing |  |  | 2026-08-14 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-08-12 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cr | 2026-07-10 |
 | mech303_safety_threshold_plan.md | `mech303_safety_threshold:BUILD` | Give MECH-303's contextual_safety_harm_threshold a dedicated proximity-anticipat | open |  | high |  |  | 2026-08-13 |
 | mech357_avoidance_efficacy_plan.md | `mech357_avoidance_efficacy:BUILD` | Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the d | open |  | high |  |  | 2026-08-13 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-13 |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-9` | Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sol | open |  | high |  |  | 2026-08-12 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial |  | medium |  | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-07-20 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate |  | medium |  | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-23 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress |  | medium |  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-19 |
@@ -108,12 +108,14 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | commitment_closure_plan.md | `commitment_closure:GAP-7` | MECH-091 phase-reset deferred (SD-006 phase 2) | deferred | ext: SD-006 phase 2 async heartbeat |
 | sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P3` | Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consume | deferred | SUPERSEDED by sd_037_axis_b:P3 -- do NOT resume in axis (a). The within-plan depends_on (P |
 | sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P4` | Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/O | deferred | SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The V3-EXQ-483f behavioural v |
-| self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
+| self_attribution_plan.md | `self_attribution:GAP-5` | SD-030 z_self materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (59)
+## Done (62)
 
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A` -- Does the control plane route at all? Channel-vs-content double dissociation over precision
+- `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A-precision-diagnostic` -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, no
+- `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-B` -- Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occup
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-D` -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias
@@ -172,12 +174,13 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-6` -- StepHarness audit: SWS / REM write paths vs canonical sense/update sequence
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
+- `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (0)
+## Plans WITHOUT closure_plan frontmatter (1)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-_None -- every plan doc is mapped._
+- `evidence/planning/preservation_snapshot_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 

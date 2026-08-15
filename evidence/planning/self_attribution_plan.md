@@ -3,7 +3,7 @@ closure_plan:
   id: self_attribution
   title: "Self-Attribution Comparator Loop"
   registered: 2026-05-08
-  last_updated: 2026-06-04
+  last_updated: 2026-08-15
   scope_claims: [SD-013, SD-029, SD-030, SD-031, ARC-033, ARC-058, MECH-256, MECH-257, MECH-258, MECH-260]
   sibling_plans: [behavioral_diversity_isolation, conversion_ceiling_campaign, sleep_substrate, goal_pipeline]
   nodes:
@@ -66,14 +66,29 @@ closure_plan:
       last_updated: 2026-05-17
       completion_note: "Lit-pull complete 2026-05-17. Two new entries written: (1) De Preter & Heinricher 2024 (Trends in Neurosciences, PMID 38749825) in targeted_review_connectome_mech_256 -- mixed 0.74 -- establishes that PAG/RVM implements CONTEXTUAL PRECISION-GATING via ON/OFF cells (behavioural-state gating, opioid-mediated), NOT efference-copy comparator. (2) Seymour 2019 (Neuron, PMID 30897355) in targeted_review_sd_029 -- mixed 0.61 -- frames pain as precision-weighted prediction-error signal for RL/control; computationally convergent with MECH-256 at Marr level 2 but distinct at implementation level. ARCHITECTURAL VERDICT: OPTION A applies (comparator-class behaviour confirmed on nociceptive streams). Existing Lalouni 2020 entry (SD-029 corpus) already established the behavioural evidence (40% self-pain attenuation). PAG/RVM is NOT the substrate for the efference-copy comparator -- it implements a parallel precision-gating layer (contextual, motivational). The MECH-256 per-step efference-copy comparator operates at spinal dorsal horn / somatosensory cortex level (corticospinal collateral corollary discharge). SD-029 inherits MECH-256's lit_conf. No separate design doc needed -- the comparator metaphor on z_harm_s is NOT over-specified, but an architectural note should distinguish E2_harm_s (efference-copy, spinal/cortical) from PAG/RVM contextual gain control (parallel, not competing). MECH-256 lit_conf post-pull: 0.867 (mixed entries push it down slightly from 0.87 baseline but the existing supports dominate). SD-029 lit_conf: 0.858."
     - id: "self_attribution:GAP-5"
-      title: "SD-030/SD-031 z_self / z_world materialisation (V4)"
+      title: "SD-030 z_self materialisation (V4)"
       phase: 5
       status: deferred
       severity: low
       owner_exq: null
-      unblocks_claims: [SD-030, SD-031]
+      unblocks_claims: [SD-030]
       depends_on: []
-      last_updated: 2026-05-08
+      cross_plan_link: ["self_model_v4:SELF-2"]
+      last_updated: 2026-08-15
+      governance_2026_08_15: "SPLIT: SD-031 REMOVED from this node into the new self_attribution:GAP-6 (plan-frontmatter only; NO claims.yaml change, NO experiment queued, no status change to any pre-existing node). This node was registered 2026-05-08 bundling SD-030 (z_self) and SD-031 (z_world) as one V4-deferred placeholder, and was the only node in this plan never revisited since registration. SD-031 was RESCOPED v4 -> v3 on 2026-06-06 (claims.yaml SD-031 notes: implementation_phase v3, v3_pending true; substrate E2WorldForward landed the same day) and this node was never updated to match, so the plan that OWNS SD-031 went on calling it V4-deferred for ten weeks while four other artefacts called it V3 -- see GAP-6's own note for the full reconciliation. SD-030 alone is correctly V4 and this node keeps it. Added cross_plan_link to self_model_v4:SELF-2 ('Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)'), which is the node that actually owns the SD-030 build; the edge previously existed only one-way (SELF-2 names SD-030 and this plan in prose, nothing pointed back), so the V3->V4 hand-off did not render as a map edge."
+    - id: "self_attribution:GAP-6"
+      title: "SD-031 z_world causal-footprint comparator: V3 discriminative validation"
+      phase: 6
+      status: blocked
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [SD-031]
+      depends_on: []
+      cross_plan_link: ["self_attribution:GAP-2", "conversion_ceiling_campaign:FULLSTACK", "multi_agent_ecology_v5:MAE-3", "self_model_v4:SELF-2"]
+      blocking_external: ["world_dim >= 128 in the validation config (E2WorldForward hard-asserts this; the dim=32 default yields a vacuous zero attribution gap)", "ARC-065 behavioural diversity active in the main agent path -- balanced agent-caused vs externally-caused world events; the SAME re-pointed diversity gate GAP-2 waits on (behavioral_diversity_isolation:GAP-A/GAP-I -> conversion_ceiling_campaign:FULLSTACK)"]
+      resume_condition: "Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the discriminative/attribution arm is queued: world_dim >= 128 AND behavioural diversity live in the main agent path. The claim registry states this as a prohibition, not a preference -- 'running before both halves are in place reproduces the dim=32 + monostrategy + (formerly) unbuilt-comparator confound' -- so this node is genuinely blocked and NOT an open queueable item, despite the substrate being built and the smoke being clean. Do NOT read the passing activation smoke as licence to queue: it was a single-config activation check, not the discriminative arm. The behavioural-diversity half is the same gate as GAP-2, so GAP-6 unblocks WITH GAP-2; the world_dim half is a config knob and is satisfiable the moment the diversity half lands."
+      last_updated: 2026-08-15
+      governance_2026_08_15: "NEW NODE, split out of GAP-5 (plan-frontmatter only; NO claims.yaml change, NO experiment queued, no pre-existing node's status changed). WHY: SD-031 is v3_pending V3 work whose ONLY owning closure node was GAP-5, and GAP-5 is `deferred` -- which generate_closure_snapshot.py DEFERRED_STATUSES excludes from the V3 progress denominator outright. A live V3 claim therefore had no V3 closure path and was invisible to the closure accounting: not counted done, not counted remaining, not visible as a gap. SIX artefacts were consulted and FIVE agree SD-031 is V3, against GAP-5 alone: (1) claims.yaml SD-031 -- implementation_phase v3, v3_pending true, live_status reading candidate/v3_pending, with an explicit rescope note dated 2026-06-06 ('Rescoped v4 -> v3 ... the implementation_phase field is a prediction, not a permission gate'); (2) self_model_v4_plan.md 'What this plan deliberately does NOT pull into V3' -- '**SD-031 (world-stream self-attribution) stays a V3 item.** It is the V3-tractable comparator and is NOT pulled into this V4 plan as work ... Only SD-030 (the z_self motor-proprioceptive stream) is V4'; (3) self_model_v4:SELF-2 readiness_gate -- 'V3 BEGINNING present: self-attribution on the z_world causal-footprint stream runs (SD-031, V3-pending)'; (4) multi_agent_ecology_v5:MAE-3 readiness_gate -- 'the self-vs-world comparator (SD-031 / MECH-256) is the V3 BEGINNING; the self-vs-OTHER comparator is the V5 extension'; (5) substrate_queue.json sd_id SD-031 -- status `implemented`, unblocks_claims [MECH-256, zworld-granularity-retest], i.e. a BUILT substrate awaiting a retest, which is not the shape of a V4 placeholder. SUBSTRATE STATE (not a design gap): E2WorldForward built 2026-06-06 at ree-v3/ree_core/predictors/e2_world.py, config LatentStackConfig.use_e2_world_forward (default False); activation smoke the same day at world_dim=128 gave world_forward_r2 0.969 with a correct attribution gap (self-caused residual ~2.0 vs externally-caused ~22.6); failure_autopsy_V3-EXQ-783_2026-07-18 then validated the instrument (diagnostic_no_direction/instrument_validated_cause_discriminated). What is missing is only the discriminative arm under the two-part gate above. CLOSURE EFFECT, stated because it is visible on the dashboard, and MEASURED by A/B regeneration of generate_closure_snapshot.py against origin/master with and without this split (not estimated): 72.6% -> 71.9%, remaining 31 -> 32, done unchanged at 62. This ADDS one blocked node (weight 0.1) to the V3 denominator. That is the point -- the previous figure was overstated by hiding a real V3 item inside a deferred V4 node, and surfacing it is a correction, not a regression. NOTE for anyone reconciling against the committed dashboard: docs/closure_dashboard.md was last generated 2026-08-13 and reads 71.0% / 92 non-deferred / 59 done; that baseline is stale (other plans have since landed work), which is why the A/B above was run rather than differencing against the committed number."
 ---
 # Self-Attribution Comparator Loop Plan
 
@@ -88,9 +103,29 @@ controller-gated), SD-013 (interventional training for E2_harm_s),
 ARC-033 (independent-per-stream E2_harm_s), ARC-058 (shared
 HarmForwardTrunk + per-stream HarmForwardHead, COMPETING with ARC-033),
 MECH-258 (precision-weighted pain PE, E2_harm_a forward), MECH-260 (dACC
-bias suppression, shared with the dACC bundle), and the V4-deferred
-per-stream successors SD-030 (z_self motor-proprioceptive) + SD-031
-(z_world causal-footprint).
+bias suppression, shared with the dACC bundle), SD-031 (z_world
+causal-footprint, **V3** since the 2026-06-06 rescope -- substrate built,
+validation gated), and the V4-deferred per-stream successor SD-030
+(z_self motor-proprioceptive).
+
+**Generation split (reconciled 2026-08-15).** Self-attribution spans three
+generations and each tier now has exactly one owning node:
+
+| Stream | Claim | Generation | Owning node |
+|---|---|---|---|
+| z_harm_s (harm) | SD-029 / MECH-256 | **V3** | `self_attribution:GAP-1/2/3` |
+| z_world (causal footprint) | SD-031 | **V3** | `self_attribution:GAP-6` |
+| z_self (motor-proprioceptive) | SD-030 | V4 | `self_attribution:GAP-5` -> `self_model_v4:SELF-2` |
+| self-vs-**OTHER** | MECH-095 / MECH-099 | V5 | `multi_agent_ecology_v5:MAE-3` |
+
+The V3 rows are **not** multi-agent-dependent: the comparator's contrast
+class is *self-caused vs environment-caused*, and the environment side is
+supplied by the scheduled-external-hazard curriculum, not by another agent.
+Only the fourth row -- attributing causation to a *structurally distinct
+other* -- needs a multi-agent substrate, and it is already held in the V5
+tier (`generation: v5`, out of the V3 closure percentage). See the
+[2026-08-15 decision-log entry](#2026-08-15---is-self-attribution-multi-agent-dependent-no-for-the-v3-tier-and-the-multi-agent-part-is-already-v5)
+for the adjudication.
 
 This plan is the durable resume-point for self-attribution work across
 sessions. When work pauses to handle adjacent paths (e.g. sleep
@@ -148,7 +183,7 @@ Provenance for every gap and decision in this plan:
 |---|---|
 | 2026-04-18 SD-003 supersession decision (claims.yaml SD-003 supersession_note) | Closes the two-pass counterfactual era; opens the single-pass comparator era; promotes MECH-256 + SD-029 |
 | 2026-04-18 three-pull literature synthesis | Frith 2000 + Shergill 2003 + Blakemore 1998 + Haggard 2017 (single-pass comparator); Mattar & Daw 2018 + Diba & Buzsaki 2007 + Dragoi & Tonegawa 2011 + Kay 2020 + Pezzulo 2014 + Shenhav 2013/2016 (dual-function single-substrate evaluator); Horing & Buchel 2022 (shared-trunk AIC unsigned aversive PE) |
-| [docs/architecture/self_attribution_per_stream.md](../../docs/architecture/self_attribution_per_stream.md) | Per-stream topology: SD-029 (V3 z_harm_s), SD-030 (V4 z_self), SD-031 (V4 z_world); MECH-256 stream-agnostic mechanism; MECH-257 dual-function gating |
+| [docs/architecture/self_attribution_per_stream.md](../../docs/architecture/self_attribution_per_stream.md) | Per-stream topology: SD-029 (V3 z_harm_s), SD-031 (**V3** z_world -- rescoped from V4 on 2026-06-06), SD-030 (V4 z_self); MECH-256 stream-agnostic mechanism; MECH-257 dual-function gating |
 | [docs/architecture/sd_013_e2_harm_s_interventional_training.md](../../docs/architecture/sd_013_e2_harm_s_interventional_training.md) | Interventional training spec for E2_harm_s |
 | [docs/architecture/sd_032_cingulate_integration_substrate.md](../../docs/architecture/sd_032_cingulate_integration_substrate.md) | dACC bundle consumer of MECH-258 precision-weighted PE; MECH-260 bias-suppression spec |
 | ree-v3 V3-EXQ-445 / 445a / 445b / 445c / 445h scripts | Three-arm ablation: dACC-OFF vs dACC-ON-independent (ARC-033) vs dACC-ON-shared-trunk (ARC-058) |
@@ -176,7 +211,8 @@ Wired and behaving correctly:
 
 ## Gap inventory
 
-Five gaps, ordered by leverage. Each is the basis for one row of the
+Six gaps, ordered by leverage (GAP-6 added 2026-08-15 by splitting SD-031
+out of GAP-5). Each is the basis for one row of the
 [Status table](#status-table) below.
 
 | Gap | Subject | Severity | Unblocks |
@@ -185,13 +221,14 @@ Five gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-2** | SD-029 single-pass C2/C3 unmeasurable while policy is monomodal (5 consecutive non_contributory: EXQ-433/433a/433b/470/433d/433f/537/537a/523b) | high | MECH-256 empirical promotion; SD-029 candidate -> provisional; INV-049/Q-041/Q-042 confidence on the comparator side |
 | **GAP-3** | MECH-257 dual-function controller-gated readout untestable under monomodal policy (EXQ-452 non_contributory) | high | MECH-257 falsification one way or the other; arbitrates "two substrates per stream" parameter doubling |
 | **GAP-4** | Q1: nociceptive-transfer caveat -- comparator literature evidences mechanism on sensorimotor / tactile / force streams; extension to nociceptive streams plausible (PAG/RVM descending modulation shares efference-copy structure) but not directly demonstrated; main mapping risk | medium | architectural confidence in MECH-256 generalisation across reafferent streams |
-| **GAP-5** | SD-030 (z_self) + SD-031 (z_world) are V4-deferred placeholders; per-stream topology is not testable until z_self / z_world become first-class latents with their own forward models | low (V4 deferred) | per-stream topology completeness; not in V3 scope |
+| **GAP-5** | SD-030 (z_self) is a V4-deferred placeholder; the motor-proprioceptive stream is not testable until z_self is a first-class latent with its own forward model | low (V4 deferred) | per-stream topology completeness; not in V3 scope |
+| **GAP-6** | SD-031 (z_world causal-footprint comparator) is **V3** and its substrate is BUILT (`E2WorldForward`, 2026-06-06) with a clean activation smoke, but the discriminative arm is un-run: it needs `world_dim >= 128` **and** balanced agent-vs-env world events, and the claim registry forbids running it before both hold | medium | SD-031 candidate -> provisional; completes the V3 half of the per-stream topology; supplies the "V3 BEGINNING" that `self_model_v4:SELF-2` and `multi_agent_ecology_v5:MAE-3` both build onto |
 
 ---
 
 ## Sequenced plan
 
-Five phases. Each phase is small, verifiable, and unblocks at least one
+Six phases. Each phase is small, verifiable, and unblocks at least one
 downstream claim. Phases are ordered by what each unblocks. Where work
 depends on adjacent non-self-attribution paths (sleep substrate Phase 1,
 goal pipeline dACC bundle, V_s monostrategy fix), that is called out
@@ -413,19 +450,86 @@ Deliverables:
 Phase 4 is **not gated** on substrate work -- it is a literature pull
 that can land in parallel with Phase 1 / Phase 2.
 
-### Phase 5: SD-030 + SD-031 V4 placeholder maintenance (GAP-5)
+### Phase 5: SD-030 V4 placeholder maintenance (GAP-5)
 
-SD-030 (z_self motor-proprioceptive comparator) and SD-031 (z_world
-causal-footprint comparator) are V4-deferred. No V3 evidence expected.
-Phase 5 is **passive** -- the plan-doc tracks them for completeness so
-that V4 work resumes from a known state.
+SD-030 (z_self motor-proprioceptive comparator) is V4-deferred. No V3
+evidence expected. Phase 5 is **passive** -- the plan-doc tracks it for
+completeness so that V4 work resumes from a known state.
 
-Deliverables (V4 only): when z_self and z_world become first-class
-latents with their own forward models, instantiate MECH-256 on each
-and run per-stream C1/C2/C3 acceptance. Until then, SD-030 / SD-031
-remain candidate / V4-deferred in claims.yaml.
+**Scope corrected 2026-08-15:** this phase previously also covered SD-031
+(z_world). It no longer does -- SD-031 was rescoped v4 -> v3 on 2026-06-06
+and now has its own V3 node, [Phase 6 / GAP-6](#phase-6-sd-031-z_world-comparator-v3-discriminative-validation-gap-6).
+Keeping SD-031 here was hiding a live V3 claim inside a `deferred` node,
+which the closure snapshot excludes from the V3 denominator entirely.
+
+Deliverables (V4 only): when z_self becomes a first-class latent with its
+own forward model, instantiate MECH-256 on it and run per-stream C1/C2/C3
+acceptance. Until then, SD-030 remains candidate / V4-deferred in
+claims.yaml. The build itself is owned by `self_model_v4:SELF-2`
+("Finish self-attribution: complete the per-stream comparator topology"),
+which this node now cross-links to; do not duplicate that work here.
 
 GAP-5 is intentionally NOT in the V3 scope of this plan.
+
+### Phase 6: SD-031 z_world comparator V3 discriminative validation (GAP-6)
+
+SD-031 is the z_world (causal-footprint) instantiation of MECH-256 --
+"I moved the block", "the door opened because of me". It is **V3**, not
+V4: rescoped 2026-06-06 on the ground that it is a named dependency of a
+V3-completion retest, with claims.yaml recording the general principle
+that "the `implementation_phase` field is a prediction, not a permission
+gate".
+
+**The substrate is already built** -- this is a validation gap, not a
+design or build gap:
+
+| Piece | State |
+|---|---|
+| `E2WorldForward` | Built 2026-06-06, `ree-v3/ree_core/predictors/e2_world.py` |
+| Config knob | `LatentStackConfig.use_e2_world_forward` (default `False`) |
+| Activation smoke (2026-06-06, `world_dim=128`) | `world_forward_r2` 0.969; self-caused residual ~2.0 vs externally-caused ~22.6 -- a correct attribution gap |
+| Instrument validity | `failure_autopsy_V3-EXQ-783_2026-07-18` -- `instrument_validated_cause_discriminated` |
+
+**Why it is nonetheless `blocked`, and why the clean smoke is not licence
+to queue.** The claims.yaml `evidence_quality_note` states a two-part gate
+as a prohibition: validation must run at `world_dim >= 128` **AND** with
+ARC-065 behavioural diversity active (balanced agent-caused vs
+externally-caused events), because "running before both halves are in
+place reproduces the dim=32 + monostrategy + (formerly) unbuilt-comparator
+confound". The smoke was a single-config activation check, not the
+discriminative arm.
+
+- The **`world_dim >= 128`** half is a config knob (`E2WorldForward`
+  hard-asserts it; at the dim=32 default the comparator yields a vacuous
+  zero attribution gap). Satisfiable on demand.
+- The **behavioural-diversity** half is the *same* re-pointed gate GAP-2
+  waits on: `behavioral_diversity_isolation:GAP-A`/`:GAP-I` ->
+  `conversion_ceiling_campaign:FULLSTACK`. Not satisfiable on demand.
+
+So GAP-6 unblocks **with GAP-2**, and the honest debt vocabulary is
+`complex (probe-gated)` on the diversity half, `complicated (buildable)`
+on the world_dim half.
+
+Deliverables:
+
+1. **Queue the discriminative/attribution arm** once FULLSTACK lands, at
+   `world_dim >= 128` with `use_e2_world_forward=True` and behavioural
+   diversity live. Co-schedule with the GAP-2 SD-029 retest where
+   practical -- both need the identical substrate stack and the identical
+   balanced-event precondition, so one run configuration serves both
+   streams.
+2. **Acceptance:** balanced agent-caused vs externally-caused world-event
+   counts (the C0-equivalent gate); `world_forward_r2 >= 0.9`; a
+   self-caused vs externally-caused residual gap that survives at
+   `world_dim >= 128` and is not reproducible at `world_dim = 32`
+   (the dim control is what separates a real comparator read from the
+   known granularity artefact).
+3. **Non-contributory bookkeeping:** if the retest still shows unbalanced
+   events, the verdict is `non_contributory`, not `weakens` -- same
+   substrate-ceiling-vs-falsification discipline as Phase 2.
+
+Do **not** queue this before both halves hold; the confound is documented
+and the run would be vacuous.
 
 ---
 
@@ -440,7 +544,8 @@ attribution work. See [Resume ritual](#resume-ritual) below.
 | GAP-2 | 2 | blocked | **GATE RE-POINTED — reconciled 2026-07-29 (docs-only), same correction as GAP-1: of the three gates named here, `sleep_substrate:GAP-1` and MECH-307 (= `goal_pipeline:GAP-1`) are both `done`, and the MECH-269 / SP-CEM one was satisfied 2026-05-17 yet proved insufficient.** Live gate per node record `governance_2026_06_23`: `conversion_ceiling_campaign:FULLSTACK` (`assembling`) demonstrating the conversion survives off the reef-bipartite env; `behavioral_diversity_isolation:GAP-A` is `done` but that alone does NOT unblock (the 2026-06-20 V3-EXQ-625e autopsy found the 569i conversion env-conditional). **Prior gate text (retained):** sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | Re-queue the SD-029 / MECH-256 retest **with the full stack enabled** (candidate_summary_source=e2_world_forward + SP-CEM + modulatory authority) once FULLSTACK lands — NOT before: a retest now would re-derive the known monostrategy non_contributory result. Do **not** "plumb SP-CEM harder"; it is already the default and is empirically insufficient. | none assignable until the FULLSTACK arm lands | 2026-07-29 (row reconcile; node record 2026-06-23) |
 | GAP-3 | 3 | blocked | `self_attribution:GAP-1` + `self_attribution:GAP-2` — both still blocked (on the re-pointed diversity/FULLSTACK gate above), so this row's gate is genuinely unmet and unchanged | After GAP-1 / GAP-2 clear, re-queue the MECH-257 dual-function 3-arm ablation. **Reconciled 2026-07-29 (docs-only): status and gate confirmed CORRECT — only the date was stale.** The node record was refreshed twice since (`governance_2026_06_04`, `governance_2026_06_25`), both stale-since-review acknowledgements: closure/residue-discharge autopsies (466b, then `failure_autopsy_V3-EXQ-466d_2026-06-24`) reclassified MECH-094 -> non_contributory and drop-tagged it from the scored set precisely to PROTECT its `stable` status (conf 0.868). **MECH-094 itself is unweakened** and neither reclassification changes GAP-3. | none assignable (blocked upstream) | 2026-07-29 (row reconcile; node record 2026-06-25) |
 | GAP-4 | 4 | done | (none) | Lit-pull complete: 2 entries written (De Preter & Heinricher 2024 Trends Neurosci; Seymour 2019 Neuron). Verdict: Option A -- MECH-256 generalises to z_harm_s; SD-029 inherits lit_conf; PAG/RVM implements parallel precision-gating (NOT efference-copy); no separate SD-029 design doc needed | n/a (lit-pull) | 2026-05-17 |
-| GAP-5 | 5 | deferred V4 | z_self / z_world materialisation in V4 | none in V3 | n/a | 2026-05-08 |
+| GAP-5 | 5 | deferred V4 | z_self materialisation in V4 | none in V3. **Scope corrected 2026-08-15: SD-031 split out to GAP-6** -- this row covered SD-030 *and* SD-031 from 2026-05-08 and was never updated when SD-031 was rescoped v4 -> v3 on 2026-06-06, so a live V3 claim sat inside a `deferred` node and was excluded from the V3 closure denominator. SD-030's build is owned by `self_model_v4:SELF-2`, now cross-linked | n/a | 2026-08-15 |
+| GAP-6 | 6 | blocked | **Two-part gate, per the claims.yaml SD-031 `evidence_quality_note`, which states it as a prohibition rather than a preference:** (a) `world_dim >= 128` -- a config knob, satisfiable on demand (`E2WorldForward` hard-asserts it; the dim=32 default yields a vacuous zero attribution gap); (b) ARC-065 behavioural diversity live in the main agent path (balanced agent-caused vs externally-caused world events) -- **the same re-pointed gate as GAP-2**, i.e. `behavioral_diversity_isolation:GAP-A`/`:GAP-I` -> `conversion_ceiling_campaign:FULLSTACK` (`assembling`). GAP-6 therefore unblocks WITH GAP-2. Substrate is NOT the blocker: `E2WorldForward` built 2026-06-06, activation smoke clean at world_dim=128 (`world_forward_r2` 0.969, self-caused residual ~2.0 vs externally-caused ~22.6), instrument validated by `failure_autopsy_V3-EXQ-783_2026-07-18` | Queue the discriminative arm once FULLSTACK lands, at `world_dim >= 128` + `use_e2_world_forward=True` + diversity live, with a `world_dim = 32` control arm to separate a real comparator read from the known granularity artefact. **Co-schedule with the GAP-2 SD-029 retest** -- identical substrate stack, identical balanced-event precondition. Do NOT queue before both halves hold: the confound is documented and the run would be vacuous, and the clean 2026-06-06 smoke is an activation check, not the discriminative arm | none assignable until the FULLSTACK arm lands | 2026-08-15 (node created) |
 
 Status values: `open`, `in-progress`, `blocked`, `paused`, `done`, `deferred`.
 A `paused` row carries a resume condition in the [Decision log](#decision-log).
@@ -455,7 +560,8 @@ A `paused` row carries a resume condition in the [Decision log](#decision-log).
 | GAP-2 / Phase 2 | SD-029 (priority=1, status=implemented), MECH-256 (new), MECH-204 (priority=1; **sleep upstream gate**) | SD-029, MECH-256, ARC-033, SD-013 | self_attribution_per_stream.md |
 | GAP-3 / Phase 3 | MECH-257 (new) | MECH-257, MECH-094 | self_attribution_per_stream.md, control_plane_heartbeat.md |
 | GAP-4 / Phase 4 | n/a (lit-pull only) | MECH-256, SD-029 | self_attribution_per_stream.md |
-| GAP-5 / Phase 5 | SD-030 (priority=3, V4), SD-031 (priority=3, V4) | SD-030, SD-031 | sd_030_e2_self_forward_model.md, sd_031_e2_world_forward_model.md |
+| GAP-5 / Phase 5 | SD-030 (priority=3, V4) | SD-030 | sd_030_e2_self_forward_model.md |
+| GAP-6 / Phase 6 | SD-031 (priority=3, **status=`implemented`**, `unblocks_claims: [MECH-256, zworld-granularity-retest]`) | SD-031 | sd_031_e2_world_forward_model.md |
 
 ### Cross-plan boundaries
 
@@ -489,6 +595,130 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-08-15 - Is self-attribution multi-agent-dependent? NO for the V3 tier -- and the multi-agent part is already V5. Split SD-031 out of the deferred V4 node.
+
+**Docs-only, this plan file only. No claims.yaml edit, no substrate_queue edit,
+no experiment queued, no manifest touched. No pre-existing node changed status.
+One node's scope narrowed (GAP-5) and one node created (GAP-6).**
+
+**The question.** Prompted by the 2026-08-15 morning digest, which flagged
+`self_attribution` as one of two V3-level plans "worth a look" among the worst
+plan-staling (72d, 3 blocked/high) while noting in the adjacent sentence that
+"most of the V5/V6 cluster is blocked behind the same missing multi-agent
+substrate". The question raised: is self-attribution *also* multi-agent-gated,
+and if so should it be recast to V4/V5 -- with whatever node splits keep the V3
+closure path intact?
+
+**Answer to the question as asked: NO, and the recast is already done.**
+
+1. **The V3 tier is not multi-agent-dependent.** The comparator's contrast class
+   is *self-caused vs environment-caused*, and the environment side is supplied
+   by the SD-029 scheduled-external-hazard curriculum -- an env schedule, not
+   another agent. The mechanism (MECH-256: `residual = z_x_observed -
+   E2_x(z_x_{t-1}, a_actual)`) is efference-copy vs reafference, a single-agent
+   sensorimotor computation, and its four canonical anchors (Frith 2000,
+   Shergill 2003, Blakemore 1998, Haggard 2017) are all single-agent paradigms.
+   Nothing in GAP-1/2/3's recorded blockers is social: all three are gated on the
+   monostrategy / behavioural-diversity stack (re-pointed to
+   `conversion_ceiling_campaign:FULLSTACK`), documented at length in the
+   2026-06-09, 2026-06-23 and 2026-07-29 entries.
+
+2. **The genuinely multi-agent part of self-attribution ALREADY sits in V5, and
+   is already tagged correctly.** `multi_agent_ecology_v5:MAE-3` ("Agency
+   detection with a structurally-distinct OTHER") states the boundary in its own
+   readiness_gate: *"the self-vs-world comparator (SD-031 / MECH-256) is the V3
+   BEGINNING; the self-vs-OTHER comparator is the V5 extension this node adds on
+   top of it."* That plan carries `generation: v5`, so those nodes are already
+   held out of the V3 closure percentage. Attributing causation to an identified
+   *other* needs a multi-agent substrate; distinguishing self from not-me does
+   not.
+
+3. **The V4 part is likewise already placed** -- `self_model_v4:SELF-2` ("Finish
+   self-attribution: complete the per-stream comparator topology (SD-030 z_self
+   stream)"), which that plan calls "the user-named 'finish self-attribution'
+   work".
+
+So the three-tier split the question asks for pre-exists and is correct. What
+was **missing was the back-edges**: both successors pointed at this plan, and
+nothing pointed forward, so the V3 -> V4 -> V5 hand-off did not render as map
+edges. GAP-5 and GAP-6 now carry `cross_plan_link` to `self_model_v4:SELF-2` and
+`multi_agent_ecology_v5:MAE-3`. (Same defect class, and same fix, as the
+2026-06-23 entry: "the operative gate lived only in `blocking_external`
+(non-rendering) ... so the convergence is drawn".)
+
+**`multi_agent_ecology_v5_plan.md` was deliberately NOT edited.** MAE-3's
+`cross_plan_link: ["self_attribution"]` is a whole-**plan** reference, which
+`check_closure_links.py` documents as a sanctioned, intentional pattern
+("or -- if it is a deliberate back-pointer ... an intentional whole-plan
+reference"), **not** a dangling node id. It looked like a defect worth
+narrowing to `self_attribution:GAP-6` now that a matching node exists; it is
+not one, and the forward edges added on this side already draw the
+relationship. Do not "fix" it.
+
+**The real defect found, running the OPPOSITE way to the hypothesis.** Checking
+the generation boundary surfaced a misfiling in the other direction:
+**SD-031 (z_world causal-footprint comparator) is a live V3 claim whose only
+owning closure node was `deferred` V4** -- so it was excluded from the V3
+progress denominator outright (`generate_closure_snapshot.py`
+`DEFERRED_STATUSES`) and was invisible to the closure accounting: not done, not
+remaining, not visible as a gap.
+
+Six artefacts were checked; five say V3, and only GAP-5 said V4:
+
+| Artefact | Reading |
+|---|---|
+| `claims.yaml` SD-031 | `implementation_phase: v3`, `v3_pending: true`, `candidate/v3_pending`; explicit **"Rescoped v4 -> v3 on 2026-06-06"** note |
+| `self_model_v4_plan.md` (deliberate-exclusions section) | "**SD-031 (world-stream self-attribution) stays a V3 item** ... Only SD-030 ... is V4" |
+| `self_model_v4:SELF-2` readiness_gate | "V3 BEGINNING present: self-attribution on the z_world ... stream runs (SD-031, V3-pending)" |
+| `multi_agent_ecology_v5:MAE-3` readiness_gate | "SD-031 / MECH-256 is the V3 BEGINNING" |
+| `substrate_queue.json` SD-031 | `status: implemented`; `unblocks_claims: [MECH-256, zworld-granularity-retest]` -- a built substrate awaiting a retest |
+| **`self_attribution:GAP-5`** | **"SD-030/SD-031 ... materialisation (V4)", `status: deferred`** |
+
+**Mechanism of the error, which is mundane and worth naming so it is not
+mistaken for a judgement call:** GAP-5 was registered 2026-05-08, when SD-031
+genuinely *was* V4. SD-031 was rescoped on 2026-06-06. GAP-5 was the **only node
+in this plan never revisited since registration** -- every other node carries at
+least one `governance_*` acknowledgement -- so the rescope never propagated to
+the node that owns it. The plan's own resume-ritual discipline touched the
+blocked nodes repeatedly and skipped the deferred one, which is exactly where a
+silently-stale generation tag can hide.
+
+**What changed.** GAP-5 narrowed to SD-030 only (still `deferred` V4, correctly).
+New `self_attribution:GAP-6` owns SD-031 as V3, `status: blocked`. GAP-6 is
+blocked, not open, on the claims.yaml gate stated as a prohibition: `world_dim >=
+128` **and** live behavioural diversity, since "running before both halves are in
+place reproduces the dim=32 + monostrategy + (formerly) unbuilt-comparator
+confound". The diversity half is the *same* gate as GAP-2, so **GAP-6 unblocks
+with GAP-2 and should be co-scheduled with the SD-029 retest** -- one substrate
+configuration serves both streams.
+
+**Closure effect, measured not estimated.** `generate_closure_snapshot.py` was
+regenerated against `origin/master` twice -- once with the plan file as-committed,
+once with this split -- on the same base, same run:
+
+| | overall | done | remaining | deferred |
+|---|---|---|---|---|
+| Baseline (no split) | 72.6% | 62 | 31 | 13 |
+| **With split** | **71.9%** | 62 | **32** | 13 |
+
+One added `blocked` node (weight 0.1) in the V3 denominator, so the headline goes
+*down* 0.7 pp. That is the correction, not a regression -- the previous figure was
+overstated by holding a real V3 item inside a deferred V4 node. Net effect on the
+actual question asked: **V3 closure is preserved and made honest**; no V3 work was
+pushed out to V4/V5, and nothing was pulled in from them.
+
+*Reconciliation warning:* the committed `docs/closure_dashboard.md` was generated
+2026-08-13 and reads 71.0% / 92 non-deferred / 59 done. That baseline is **stale**
+-- other plans landed work in the intervening two days -- so differencing against
+it gives the right *delta* by luck and the wrong *absolute*. Hence the A/B above.
+
+**Not done here, deliberately.** No claims.yaml edit (SD-031's metadata is
+already correct -- it was the plan that was wrong). No experiment queued (GAP-6
+is genuinely blocked). `MECH-099` is `implementation_phase: v3` while sitting in
+the v5 `MAE-3` node -- noted, not adjudicated: it is a `multi_agent_ecology_v5`
+question, and that plan's `generation: v5` already holds it out of the V3
+percentage, so nothing is mis-counted today.
 
 ### 2026-07-29 - Status-table reconcile: GAP-1/2/3 were listing gates that have since CLEARED; nodes stay blocked, on a re-pointed gate
 
@@ -700,8 +930,8 @@ Actions taken this session:
 Plan created in conversation with user. SD-003 supersession history
 (2026-04-18) treated as background context; this plan covers the
 successor layer (MECH-256 + SD-029 + MECH-257) and its competing
-architectural commitments (ARC-033 vs ARC-058). Five gaps surfaced and
-sequenced into five phases. Cross-plan boundaries with
+architectural commitments (ARC-033 vs ARC-058). Six gaps surfaced and
+sequenced into six phases (GAP-6 added 2026-08-15). Cross-plan boundaries with
 sleep_substrate_plan (consumer of writeback) and goal_pipeline_plan
 (provider of dACC PE input) made explicit.
 
