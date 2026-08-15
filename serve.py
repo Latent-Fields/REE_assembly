@@ -1700,6 +1700,15 @@ def _merge_by_canonical_machine(raw_map: dict, *tick_keys: str) -> dict:
     i.e. the one the current writer produces, so the winner is deterministic
     rather than alphabetical.
 
+    This PICKS A ROW, it does not combine fields -- despite the name, it returns
+    exactly ONE payload per canonical machine and DISCARDS the losing file's
+    payload wholesale. That is what `read_machines` wants (one row per box), but
+    a caller needing the UNION of a list-valued field (`completed`, `queue`, or
+    any future one) must union that field itself over the raw map; taking it from
+    this return value silently drops every entry the loser held. Worked example:
+    `read_merged_runner_status` uses this helper for LIVE STATE ONLY and unions
+    `completed`/`queue` over the raw files separately.
+
     The numbered cloud fleet does NOT collapse: `canonical_machine_name` is an
     allowlist (see machine_identity.SUFFIX_BLIND_BASES), so `ree-cloud-1` .. `-5`
     and `ree-worker-1` .. `-4` pass through untouched and keep one row each.
