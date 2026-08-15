@@ -33,7 +33,10 @@ closure_plan:
         per se); DV unconditional whole-episode over n >= 40 paired seeds with
         an A-A null control, per the shape V3-EXQ-919 proved decisive on this
         substrate. REFUSED V3-EXQ-816e and the whole low_vs_steps-gated design
-        class. Two ledger resolutions earned by existing data are handed to
+        class -- and 816e was NEVER MINTED (no queue entry in ree-v3 current or
+        historical, no script, no manifest; verified 2026-08-15), so it is a
+        refused DESIGN, never an owed successor this node is waiting on.
+        Two ledger resolutions earned by existing data are handed to
         /governance rather than written here. Diagnostic lineage; claim_ids=[].
         Full re-pose: evidence/planning/govdiag1_repose_mech321_chain_2026-08-12.md.
       diagnostic_recurrence_metabolized:
@@ -66,7 +69,10 @@ closure_plan:
           control); and makes the DV unconditional and whole-episode over n >= 40
           paired seeds with an A-A null control, the shape V3-EXQ-919 proved
           decisive on this substrate on 2026-08-11.
-          (2) REFUSED: V3-EXQ-816e and any fourth environment-axis escalation
+          (2) REFUSED: V3-EXQ-816e -- an id that was NEVER MINTED (no queue
+          entry current or historical, no script, no manifest; verified
+          2026-08-15), i.e. a refused DESIGN rather than an owed successor --
+          and any fourth environment-axis escalation
           (816 -> 816b -> 816d moved forward-PE 0.0080 -> 0.008594 -> 0.008675,
           under 0.0007 total, never reaching the 0.01 floor, with low_vs_steps=0
           at every dose); ALSO the broader design class of any re-queue carrying
