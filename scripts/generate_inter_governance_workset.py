@@ -1224,32 +1224,32 @@ def _completed_retest_coverage(
     being handed to /governance -- so the run_id, status and direction all go
     into the blocker string rather than being pre-filtered away here.
 
-    FM11b (2026-08-15): THE CUTOFF-DEFINING RUN IS ITSELF COVERAGE. The cutoff
-    is an UPPER bound taken from `failure_record[].run_id` (see
-    `_substrate_landing_cutoff`), and on this corpus that stamp is very often
-    the claim's OWN retest -- the same experiment validates the substrate and
-    tests the claim it unblocks. A plain `when <= cutoff` then makes that run
-    set the bar and fail it: the retest self-cancels, the claim renders `ready`,
-    and the auto-spawn stages it again. That is the FM11 incident exactly, one
-    mechanism over. Confirmed live 2026-08-15 on MECH-074d (SD-035.failure_record
-    == v3_exq_894c, the claim's newest evidence row), MECH-151 and MECH-152 (both
-    SD-016.failure_record == v3_exq_922) -- three of the four claims that reach
-    FM11 at all. Such a run PROVABLY postdates the landing (the substrate existed
-    before its own validation run), so it is counted. An equal-stamped run that
-    is NOT a cutoff-defining run stays excluded, which keeps the conservative
-    direction for a genuine timestamp collision.
+    OPEN QUESTION, deliberately NOT changed here -- THE SELF-CANCELLING CUTOFF
+    (found 2026-08-15; raised for a human call as
+    chip-20260815-igw-fm11-cutoff-boundary).
+    The cutoff is usually taken from `failure_record[].run_id`, and on this corpus
+    that stamp is very often the claim's OWN retest: the same experiment both
+    appears in the substrate's failure_record and is the claim's newest evidence
+    row. The `when <= cutoff` test below then makes that run set the bar and fail
+    it, so the claim renders `ready` and the auto-spawn may stage it again -- the
+    FM11 pathology, one mechanism over. Live on 2026-08-15 for MECH-074d
+    (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
+    SD-016.failure_record == v3_exq_922): THREE OF THE FOUR claims that reach FM11
+    at all. It is NOT changed here because the exclusion is deliberate --
+    `test_evidence_exactly_AT_the_cutoff_is_not_covered` asserts it, and the
+    SUB_ARC045 fixture comment records that the author met this exact boundary and
+    called it "a real one, not a contrived one". Counting the boundary run would
+    be right only if `failure_record` always held POST-build validation runs,
+    which is what `_substrate_landing_cutoff`'s docstring assumes; but the
+    substrate_queue `_schema_notes` describe a failure_record item as also holding
+    the run that CHARACTERISES an unaddressed gap, and such a run PREDATES the
+    build. Holding a retest on one of those would be a wrong hold -- the direction
+    this file consistently refuses. No live harm today: all three claims fall
+    outside the emitted window, so none is being staged.
     """
     cutoff, source = _substrate_landing_cutoff(claim_id, substrate_by_id)
     if cutoff is None:
         return None
-    cutoff_runs = {
-        str(rec.get("run_id") or "")
-        for sub in substrate_by_id.values()
-        if claim_id in (sub.get("unblocks_claims") or [])
-        for rec in (sub.get("failure_record") or [])
-        if isinstance(rec, dict)
-    }
-    cutoff_runs.discard("")
     best: dict | None = None
     best_ts: datetime | None = None
     for entry in _claim_evidence_entries():
@@ -1260,9 +1260,7 @@ def _completed_retest_coverage(
         if str(entry.get("source_type") or "") != "experimental":
             continue
         when = _parse_evidence_ts(entry.get("timestamp_utc"))
-        if when is None or when < cutoff:
-            continue
-        if when == cutoff and str(entry.get("run_id") or "") not in cutoff_runs:
+        if when is None or when <= cutoff:
             continue
         if best_ts is None or when > best_ts:
             best, best_ts = entry, when

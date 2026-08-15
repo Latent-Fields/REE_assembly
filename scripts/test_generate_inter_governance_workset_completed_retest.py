@@ -618,9 +618,111 @@ class EvidenceIndexReaderTest(unittest.TestCase):
         self.assertEqual("2026-08-04T07:15:41Z", hit[0]["timestamp_utc"])
 
 
+class SelfCancellingCutoffIsRecordedNotFixedTest(_WithEntries, unittest.TestCase):
+    """The cutoff-defining run is excluded from being its own coverage.
+
+    PINS CURRENT BEHAVIOUR ON PURPOSE, so that changing it is a deliberate act
+    rather than a side effect. `test_evidence_exactly_AT_the_cutoff_is_not_covered`
+    above already asserts the boundary rule; this test records the CONSEQUENCE
+    that was not visible when that rule was written, and which was measured live
+    on 2026-08-15: when a claim's ONLY post-substrate evidence is the very run
+    that defined the cutoff, the claim is not covered, renders `ready`, and can be
+    re-staged -- the FM11 pathology arriving by a different route. Live cases:
+    MECH-074d (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
+    SD-016.failure_record == v3_exq_922) -- three of the four claims that reach
+    FM11 at all.
+
+    Left unchanged because the two readings of `failure_record` disagree: the
+    generator's `_substrate_landing_cutoff` docstring treats those runs as
+    POST-build validation runs (which would make the boundary run genuine
+    coverage), while substrate_queue's own `_schema_notes` describe a
+    failure_record item as characterising an unaddressed gap (which would make it
+    PRE-build, and counting it a wrong hold). Raised for a human call as
+    chip-20260815-igw-fm11-cutoff-boundary.
+    """
+
+    def test_claim_whose_only_evidence_defined_the_cutoff_is_not_covered(self):
+        self._use([E_436C_ARC045])
+        self.assertIsNone(
+            G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID),
+            "behaviour change: if this is now covered, the boundary rule was "
+            "changed -- confirm that was intended and update "
+            "chip-20260815-igw-fm11-cutoff-boundary",
+        )
+
+    def test_a_strictly_later_run_still_covers(self):
+        """Negative control: the exclusion is about the boundary only, not a
+        general failure to see post-substrate evidence."""
+        self._use([E_436C_ARC045, E_436D_ARC045])
+        cover = G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID)
+        self.assertIsNotNone(cover)
+        self.assertEqual(E_436D_ARC045["run_id"], cover["run_id"])
+
+
+class RetestLaneEvaluationTest(unittest.TestCase):
+    """The chain extracted from build_workset's retest loop (FM11c).
+
+    Deterministic, fixture-driven: the live tests below prove the mechanism is
+    wired up, these prove it decides correctly.
+    """
+
+    def _eval(self, cid, entries, substrate=None, meta=None, proposals=None):
+        orig = G._claim_evidence_entries
+        G._claim_evidence_entries = lambda: entries
+        self.addCleanup(lambda: setattr(G, "_claim_evidence_entries", orig))
+        return G._retest_lane_evaluation(
+            cid, substrate if substrate is not None else SUBSTRATE_BY_ID,
+            meta or {}, proposals or {},
+        )
+
+    def test_completed_evidence_holds_the_item_and_names_the_run(self):
+        got = self._eval("ARC-045", INCIDENT_ENTRIES)
+        self.assertEqual("blocked", got["status"])
+        self.assertIsNotNone(got["evidence_cover"])
+        self.assertEqual(E_436D_ARC045["run_id"], got["evidence_cover"]["run_id"])
+        self.assertTrue(any("436d" in b for b in got["blocker_strs"]),
+                        "the blocker must name the run that already happened")
+        self.assertIn("ALREADY RUN", got["why_now"])
+
+    def test_no_post_substrate_evidence_stays_ready(self):
+        """NEGATIVE CONTROL: FM11 holds, it does not sweep the lane."""
+        got = self._eval("ARC-045", [E_436B_ARC045])
+        self.assertEqual("ready", got["status"])
+        self.assertIsNone(got["evidence_cover"])
+        self.assertEqual([], got["blocker_strs"])
+
+    def test_an_earlier_blocker_wins_and_fm11_is_not_consulted(self):
+        """FM11 is last in the chain on purpose -- reaching it is what proves the
+        cutoff is being computed against LANDED substrate."""
+        unresolved = dict(SUB_ARC045, status="proposed", ready=False)
+        got = self._eval("ARC-045", INCIDENT_ENTRIES,
+                         substrate={unresolved["sd_id"]: unresolved})
+        self.assertEqual("blocked", got["status"])
+        self.assertIsNone(got["evidence_cover"],
+                          "FM11 must not date a build that has not landed")
+
+
 class LiveIncidentReplayTest(unittest.TestCase):
     """End-to-end against the real repo inputs: the ARC-045 item must not be
-    `ready`, and must still be PRESENT (held, not suppressed)."""
+    `ready`, and must still be PRESENT (held, not suppressed).
+
+    RE-POINTED 2026-08-15. This class used to additionally assert that ARC-045's
+    blocker NAMED the completed run and that ARC-045 appeared in
+    `evidence_covered_retests` -- i.e. that FM11 specifically was what held it.
+    Both stopped being true for a CORPUS reason, not a code one: on 2026-08-08 the
+    MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION row read
+    `implemented_validation_failed_needs_followup_fix`, which `_status_resolved`
+    accepts, so ARC-045 had no substrate blocker and fell through to FM11.
+    Governance later moved that row to `implemented_pending_validation`, which
+    `_status_resolved` hard-vetoes on the "pending" substring (deliberately -- see
+    FM3 in the generator header), so ARC-045 is now held one step EARLIER in the
+    chain, by the substrate prerequisite. The hold that matters is unchanged and
+    is still asserted below; what moved is which mechanism supplies it.
+
+    The FM11-specific assertions now live in
+    `Fm11IsLiveOnTheRealCorpusTest`, keyed on the mechanism rather than on one
+    claim that can drift out from under it.
+    """
 
     def test_arc045_retest_is_blocked_not_ready_and_not_gone(self):
         data = G.build_workset()
@@ -633,9 +735,107 @@ class LiveIncidentReplayTest(unittest.TestCase):
             "igw_routine_tick stages `ready` items only -- `blocked` is what "
             "stops the worktree re-staging loop",
         )
-        self.assertTrue(any("436d" in b for b in item["blocked_by"]),
-                        "the blocker must name the run that already happened")
-        self.assertIn("ARC-045", data["summary"]["evidence_covered_retests"])
+        self.assertTrue(item["blocked_by"],
+                        "a blocked item must say what is holding it")
+
+    def test_arc045_fm11_coverage_is_still_computable_from_live_inputs(self):
+        """The ORIGINAL incident assertion, kept at the level that still holds.
+
+        ARC-045 is held by its substrate prerequisite today, so FM11 is not what
+        stops the re-staging for it right now. When that prerequisite resolves,
+        FM11 is what must take over -- and the three confirmed re-stages
+        (IGW-20260803-212 / -20260806-207 / -20260807-217) return if it cannot.
+        So assert the input side directly: a post-substrate run for ARC-045 is
+        findable in the live evidence index. This is the assertion that goes red
+        if claim_evidence.v1.json moves, is renamed, or loses its timestamps --
+        the failure mode the item-level test could no longer distinguish from an
+        ordinary corpus shift.
+        """
+        cover = G._completed_retest_coverage("ARC-045", G._substrate_by_id())
+        self.assertIsNotNone(
+            cover,
+            "FM11 cannot see ANY post-substrate run for ARC-045 -- if the "
+            "substrate blocker clears, the item goes `ready` and re-stages",
+        )
+        self.assertTrue(cover["run_id"].startswith("v3_exq_436"),
+                        f"unexpected covering run: {cover['run_id']}")
+
+
+class Fm11IsLiveOnTheRealCorpusTest(unittest.TestCase):
+    """THE ASSERTION THAT WOULD HAVE CAUGHT THIS (chip requirement 3).
+
+    `summary.evidence_covered_retests` was exactly `{}` on 2026-08-15 -- not one
+    claim drifting, the whole FM11 mechanism contributing nothing -- and nothing
+    said so. The only signal was an unrelated-looking failure in the class above,
+    which read as "the test needs updating". These tests are keyed on the
+    mechanism producing output at all, so inertness cannot be mistaken for drift.
+    """
+
+    def test_evidence_covered_retests_is_not_empty(self):
+        data = G.build_workset()
+        covered = data["summary"]["evidence_covered_retests"]
+        self.assertTrue(
+            covered,
+            "FM11 is INERT: no retest claim anywhere in the lane was held by "
+            "completed post-substrate evidence. Queue-keyed coverage is "
+            "transient by design (a finished run leaves the queue), so FM11 is "
+            "the only thing standing between a completed retest and the "
+            "auto-spawn re-staging it. Do NOT 'fix' this by relaxing the "
+            "assertion -- find out why the mechanism stopped contributing.",
+        )
+
+    def test_every_covered_claim_names_a_real_run(self):
+        data = G.build_workset()
+        for cid, run_id in data["summary"]["evidence_covered_retests"].items():
+            self.assertTrue(run_id and run_id != "?",
+                            f"{cid} held by an unnamed run")
+            rows = [e for e in G._claim_evidence_entries()
+                    if isinstance(e, dict) and e.get("claim_id") == cid
+                    and e.get("run_id") == run_id]
+            self.assertTrue(
+                rows, f"{cid} is held by {run_id}, which is not an evidence row")
+            self.assertEqual("experimental", rows[0].get("source_type"),
+                             f"{cid} held by a non-experimental row -- a lit "
+                             f"pull is not a retest")
+
+    def test_fm11_is_evaluated_for_every_retest_claim_not_just_the_board_window(self):
+        """FM11c regression, and the proximate cause of the empty accounting.
+
+        The retest loop emits a capped window (`retest[:10]`) of an
+        ALPHABETICALLY sorted list -- a cap applied before any claim's status is
+        known. FM11 is last in the blocker chain, so evaluating inside that window
+        made it reachable only by an alphabetically early claim. On the
+        2026-08-15 corpus all four claims that reach FM11 (MECH-074d, MECH-151,
+        MECH-152, Q-081 -- indices 16/23/24/69 of 82) fell outside it, and every
+        one of the ten emitted claims was held earlier in the chain. Hence `{}`.
+
+        Counting the calls rather than inspecting the output keeps this keyed on
+        the structure that broke, so it stays meaningful whatever the corpus does.
+        """
+        calls: list[str] = []
+        orig = G._retest_lane_evaluation
+        try:
+            def counting(cid, *a, **k):
+                calls.append(cid)
+                return orig(cid, *a, **k)
+            G._retest_lane_evaluation = counting
+            G.build_workset()
+        finally:
+            G._retest_lane_evaluation = orig
+        retest_all = sorted(G._claim_retest_ids())
+        self.assertGreater(len(retest_all), 10,
+                           "corpus too small for this test to mean anything")
+        self.assertGreater(
+            len(calls), 10,
+            f"FM11 was evaluated for only {len(calls)} claim(s) -- the emission "
+            f"cap is gating the blocker chain again, so a covered claim outside "
+            f"the alphabetically-first window is never asked and silently "
+            f"renders `ready`",
+        )
+        self.assertEqual(
+            sorted(calls), sorted(set(calls)),
+            "each retest claim must be evaluated exactly once",
+        )
 
     def test_no_completed_evidence_claims_are_still_ready_or_substrate_blocked(self):
         """NEGATIVE CONTROL at the whole-artifact level: FM11 must not have
