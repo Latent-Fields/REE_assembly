@@ -121,6 +121,33 @@ after (a), and they must not be mistaken for a fix to the current incident.
 
 ## 5. Content-loss audit — the discard is verified safe
 
+> **This section is the MANDATORY method, not a courtesy this session happened to perform.**
+> Before any sha is acknowledged with `safe_adopt_ref.py --allow-discard`, every unproven
+> commit must be audited **by content**, per-commit. A **shape** argument — "these are
+> `TASK_CHIPS`/`TASK_CLAIMS` bookkeeping, i.e. the known `ref_convergence` false-negative
+> shape, therefore they are content-safe" — is **not** a content check and must never stand
+> in for one. The inversion is the bug: the whole-file-JSON shape explains why route A
+> **cannot prove** a commit; it says nothing about whether that commit's content reached
+> origin.
+>
+> **This was measured, twice, with opposite results.** 2026-08-14 on the `ree-cloud-5`
+> umbrella: 42 of 46 ahead commits proved and all four refusals were verified false
+> negatives — zero stranded. 2026-08-15, same box, same repo: of 33 unproven, **15 (45%)
+> were genuinely absent from origin** (7 whole `TASK_CLAIMS` entries + their 8 open/close
+> commits, a chip resolution origin still showed `open`, and 50 of 53 lines of a
+> `WORKSPACE_STATE.md` block). The decision chip
+> `chip-20260815-cloud5-umbrella-reconverge-authorised` had asserted "all 32 are
+> content-safe to discard" on exactly the shape argument above; executed as written it would
+> have dropped those 15 permanently, the local branch being their only copy. A third,
+> earlier audit (2026-08-14T07:45Z, same backlog) had already found 3 of route A's 10
+> refusals stranded. **Treat a refusal as roughly a coin flip.** Full record:
+> `REE_Working` `WORKSPACE_STATE.md` 2026-08-15T19:46Z (`aa40abe94c`) and `CLAUDE.md`
+> Session Startup Protocol step 4.
+>
+> The audit is cheap — roughly 40 lines of python, minutes of wall clock, and on 2026-08-15
+> it separated 15 stranded commits from 18 false negatives. The recipe is at the end of this
+> section.
+
 Convergence discards the local ahead commits. Every one was checked, and **nothing of
 substance is lost**:
 
@@ -155,11 +182,67 @@ A backup branch preserving all of it already exists on the box and costs nothing
 
     backup/pre-converge-20260814T2015Z  =  31294d65
 
+### 5a. The audit recipe (reusable; this is what the §5 bullets above were produced by)
+
+For each unproven sha, compare what the commit **added** against origin's current copy of
+the same path. Compare **identity keys**, never the textual diff — a re-serialised whole-file
+JSON diff is noise, and the commit SUBJECT grepped against the file body is how one earlier
+session got this wrong.
+
+| Path | Identity key to compare |
+|---|---|
+| `TASK_CLAIMS.json` | `(session_id, claimed_at)` per entry |
+| `TASK_CHIPS.json` | `chip_ref` per entry |
+| `WORKSPACE_STATE.md`, `CLAUDE.md`, other prose | the set of **added lines** (`git show <sha>` `+` lines), stripped and compared as a set |
+| executable code | added-line set, then read the residue by hand — an "absent" line is often an earlier draft origin has since rewritten |
+
+The three revisions to read per sha are `git show <sha>^:<path>` (before), `git show <sha>:<path>`
+(after), and `git show origin/<default>:<path>` (origin now). The commit's contribution is the
+key-set difference between the first two; it is **upstream** iff every one of those keys is
+present in the third.
+
+```python
+# sketch: TASK_CLAIMS.json / TASK_CHIPS.json, run from the repo root
+import json, subprocess
+def show(rev, path):
+    return json.loads(subprocess.run(["git","show",f"{rev}:{path}"],
+                                     capture_output=True, text=True, check=True).stdout)
+def keys(doc, kind):
+    items = doc["claims"] if kind == "claims" else doc["chips"]
+    return {(i["session_id"], i["claimed_at"]) if kind == "claims" else i["chip_ref"]
+            for i in items}
+def verdict(sha, path, kind, default="origin/master"):
+    added = keys(show(sha, path), kind) - keys(show(sha + "^", path), kind)
+    missing = added - keys(show(default, path), kind)
+    return ("UPSTREAM" if not missing else "STRANDED"), sorted(missing)
+```
+
+Three outcomes, and the middle one is the trap:
+
+- **UPSTREAM** — every added key is on origin. Route-A false negative; safe to `--allow-discard`.
+- **DIFFERS but origin is NEWER / strictly AHEAD** — the key is there but the entry has moved on
+  (already closed with a real completion note, or deliberately unclaimed later). **Not stranded,
+  and re-landing it would REVERT origin.** `676903c6d0` (2026-08-14) is the worked example: route A
+  proved it, the content check flagged it, and re-applying it would have re-claimed a chip a later
+  origin commit had deliberately released. A flag must be diagnosed, never acted on directly.
+- **STRANDED** — genuinely absent. Land it before the move: `git cherry-pick -x` oldest-first from a
+  throwaway worktree at `origin/<default>`, resolving whole-file JSON conflicts by re-applying the
+  commit's **structural** intent (the added/changed entry) onto origin's current content, never by
+  taking a side. The `-x` backref then lets route B prove it, so convergence may clear by itself.
+
 ## 6. The repair (needs an authorised operator)
 
 Attempted this session and **blocked by the harness permission classifier** — correctly:
 discarding 233 local commits on a shared checkout is exactly the irreversible class that
 should need a human. Run from `/home/ree/REE_Working` on `ree-cloud-5`:
+
+> **PRECONDITION, not optional: §5's per-commit content audit must have been re-run against
+> the CURRENT `origin/<default>` before this command.** The `--allow-discard $(git rev-list ...)`
+> form below acknowledges every ahead sha in one shot, so it is only as safe as the audit
+> behind it — and on 2026-08-15 an unaudited version of exactly this command would have
+> destroyed 15 genuinely-stranded commits. Land the STRANDED ones first (§5a), then discard
+> only what the audit proved upstream or proved superseded-by-origin. If hours have passed
+> since the audit, re-run it: origin moves.
 
 ```bash
 BASE=/home/ree/REE_Working
