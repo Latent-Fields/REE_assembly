@@ -276,7 +276,8 @@ independently); the Zenodo/Software Heritage deposit flow.
 | Archive backends (Local + S3/Hetzner) + AES-GCM + content-addressing | **done + contract (9)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_archive.py` |
 | European-sovereign storage plan | **documented** | this doc, §"Storage & durability" |
 | Physical-token exporter (key + QR + gz record + README) | **done + contract (7)** | `ree_core/preservation/token.py`, `tests/contracts/test_preservation_token.py` |
-| Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) | — |
+| MultiArchive fan-out (>1 copy) + `s3_archive_from_env` + runbook | **done + contract (5)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_multi.py`, [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
+| Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) — see runbook | [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
 | Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
 | Increment 2 (mid-life snapshot/resume) | **scoped** (`complex (probe-gated)`); spike = `SuperOrdinalGoalMemory` | this doc, §"Increment 2" |
 | Memorial Fishtank (re-instantiate remnants) | aspiration; needs its own governance | — |
