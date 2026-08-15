@@ -106,7 +106,7 @@ and should land behind the full contract gate — a small, separate follow-on.
 
 ---
 
-## Increment 2 — mid-life snapshot/resume (SCOPED, not started)
+## Increment 2 — mid-life snapshot/resume (SPIKED 2026-08-15 → NO-GO on full rollout, narrow GO on demand)
 
 **Goal:** capture an organism's full live state at step N, restore it into a fresh process, and
 resume (or branch) bit-for-bit — the substrate for the perturbation / matched-branch experiments the
@@ -155,7 +155,7 @@ capture/restore ships with its own round-trip contract (save → mutate → rest
   migration story (or an explicit refuse-and-report). A branch is two resumes from one snapshot with
   divergent post-branch RNG.
 
-### De-risking spike (do this FIRST, then decide)
+### De-risking spike (RUN 2026-08-15 — results and the decision are in the next section)
 1. **`SuperOrdinalGoalMemory`** (`goal.py:355`, built `agent.py:3070`) — small, tensor-based, and it
    already ships **both** directions, so the spike is a cheap round-trip equality test that
    establishes the per-store pattern cost and forces the state-vs-telemetry fork on the smallest
@@ -167,6 +167,112 @@ capture/restore ships with its own round-trip contract (save → mutate → rest
    (every new substrate store needs a capture/restore + contract) against the concrete experiments
    that need mid-life resume. Proceed only if that reuse is real; otherwise birth-replay (Increment 1)
    already preserves the possibility of future reconstruction, which is the thought's actual ask.
+
+### De-risking spike — RESULT (2026-08-15, `chip-20260815-preserve-midlife-spike`)
+
+**Ran. Verdict: NO-GO on the full ~10-store rollout for now; GO on a narrow 3-store slice, and only
+once a specific experiment needs it.** Artifact: `ree-v3/tests/contracts/test_preservation_midlife_spike.py`
+(10 tests, green). The spike deliberately added **no** capture/restore code to the substrate — every
+restore helper is local to the test file — so the fleet carries zero new executable surface while the
+gate below is undecided, and the file can be promoted or deleted wholesale.
+
+**1. Cheapest store (`SuperOrdinalGoalMemory`) round-trips bit-identically — and that is the smaller
+half of the cost.** Wiring the existing `state_dict`/`load_state_dict` into a whole-organism walker is
+literally one line (S1, S5, confirmed through two real `REEAgent` instances). What the spike actually
+cost was the *fork decision*: the store has **19 instance attributes**, of which 6 are restored, 6 are
+config-derived, and 7 are telemetry. Nothing in the code marks which is which. So the reusable output
+is not the round-trip test but the **attribute census** (S2): the three sets are pinned, and a new
+attribute on the store fails the contract until someone classifies it. That is the pattern to copy
+per store, and it is ~40–80 lines of test against ~1–30 lines of capture/restore.
+
+**2. `centering` is the trap, and it is the finding that most changes the design.** It reads as
+config-derived (so `state_dict` correctly omits it) but it *gates the cue-key arithmetic*. Restoring a
+centered snapshot into a store built with centering OFF is accepted without complaint and returns a
+**different match for the same query** (S4, asserted). So "config-derived" does not license dropping:
+every store's restore needs a **config-identity check** alongside its round-trip, and the whole-organism
+loader needs to refuse (not warn) on a config mismatch. Cost: one shared mechanism, not per-store.
+
+**3. Worst case A — `residue_field` EWC anchor — is worse than "capture-only", and cheap to fix.**
+`snapshot_ewc_anchor()` does not return the anchor at all; it returns *telemetry* (`anchored`,
+`n_active_centers`, `fisher_sum`) and stores the three tensors plus a bool as **plain attributes on an
+`nn.Module`**. `state_dict()` therefore drops them **silently**: a naive save→load succeeds under
+`strict=True`, and the restored organism's `ewc_penalty()` returns exactly `0.0` because
+`_ewc_anchored` is False — i.e. it **loses its MECH-334 critical-period write-protection and keeps
+training, with no error, no warning, and a plausible loss curve** (S6, asserted). The restore is
+4 keys and two ~3-line helpers, proven bit-equal on the penalty itself, not just on fields (S7).
+Same field also drops `_harm_history` (a plain `List[Tensor]`) while the two registered buffers beside
+it survive — the asymmetry is invisible at the call site (S7b), which is exactly why the census
+(finding 1) rather than inspection is the method.
+
+**4. Worst case B — `gated_policy` crystallization — is the one that does not reduce to data.** Two
+distinct failure modes (S8, both asserted): the lazy `expansion` submodule makes a strict load fail
+**loudly** (`RuntimeError`, unexpected keys) *and* — force it through by rebuilding `expansion` first,
+the obvious fix — the `requires_grad=False` freeze is **not part of `state_dict` at all**, so the
+crystallized discrimination silently thaws and diversity gradient resumes overwriting it. Restoring
+this store is an **ordered procedure** (rebuild submodule → load tensors → re-apply the freeze →
+restore `_crystallized`), not a dict. Sizing note: the naive implementation of this store is silently
+wrong in the direction that *looks fine*, and no round-trip test on tensor equality would catch it —
+only a `requires_grad` assertion does.
+
+**5. Cost estimate (measured, not guessed).** Live-mutated instance attributes, counted statically per
+store (attributes assigned outside `__init__`, i.e. state that actually moves during a life):
+
+| | live-mutated attrs | save | load |
+|---|---|---|---|
+| `super_ordinal_goal_memory` | 13 | `state_dict` | `load_state_dict` |
+| `goal_state` | 7 | `state_dict` | `load_state_dict` |
+| `incentive_bank` | 2 | `state_dict` | `load_state_dict` |
+| `serotonin` | 5 | `get_state` | `load_state` |
+| `residue_field` | 13 | `snapshot_ewc_anchor` (partial) | — |
+| `gated_policy` | 9 | `get_state` (diagnostic) | — |
+| `visitation_counter` | 1 | — | — |
+| `anchor_set` | 2 | — | — |
+| `staleness_accumulator` | 2 | `snapshot` | — |
+| `ghost_goal_bank` | 1 | — | — |
+| **10 stores subtotal** | **55** | 4 of 10 have a loader | |
+| **env `CausalGridWorld`** | **113** | — | — |
+| **total** | **168** | | |
+
+Read that table's last two rows first: **the environment alone is twice the entire agent-side surface**
+(113 vs 55), has no serializer of any kind, and additionally carries two live `np.random.default_rng`
+bit-states. On the measured telemetry ratio from the one store that has been forked properly (7 of 13
+live-mutated attrs were telemetry, ~54%), ~77 of the 168 are plausibly load-bearing — but that ratio is
+extrapolated from a single store and is the least trustworthy number here.
+
+Extrapolating the spike's own effort at ~100 lines per store (≈70% of it contract): **~1000 lines for
+the 10 stores, plus 300–500 for the env, plus ~30 for RNG capture, plus ~20 optional analog modules
+that expose `get_state()` with no setter.** Call it a **1500–2000 line change, majority test, spread
+across ~12 files that no single contract currently covers.**
+
+**6. The maintenance tax is the real cost, and it is measurable.** Over the 60 days to 2026-08-15 the
+five store-bearing files took **24 commits** (`causal_grid_world.py` 13, `residue/field.py` 6,
+`goal.py` 4, `serotonin.py` 1, `gated_policy.py` 0), changing on **17 of 60 days (~28%)**. Every one of
+those is a potential new attribute needing a fork decision, and finding 3 establishes that getting it
+wrong fails **silently**. So the recurring cost is not "keep the tests passing" — it is a standing
+correctness obligation on the most actively-developed part of the substrate, at roughly a
+once-every-three-days cadence.
+
+### Decision gate — go/no-go
+
+**NO-GO on the full rollout as scoped.** Not because it is infeasible (every mechanism was proven in a
+day) but because the cost/reuse test in the original gate is not met: 1500–2000 lines and a standing
+28%-of-days correctness obligation, against **zero currently-queued experiment that requires mid-life
+resume**. Increment 1 (birth-replay) already discharges the owning thought's actual ask — preserving
+the possibility of future reconstruction — and does so with no per-store maintenance at all.
+
+**GO, narrowly, when a concrete experiment names it.** The perturbation / matched-branch design in the
+imaging thought is the only identified consumer. When it is queued, build **only** the slice it needs
+and stop: `super_ordinal_goal_memory` (free, one line), the `residue_field` EWC anchor (4 keys, proven),
+and the env + its two PRNGs (the expensive, unavoidable one). Skip `gated_policy` unless the experiment
+crystallizes, since it is the only store whose restore is a procedure rather than a dict.
+
+**Two things worth landing regardless of the gate, because they are cheap and prevent silent error:**
+(a) the **attribute-census contract pattern** (S2) on any store that acquires a loader; (b) a
+**config-identity check** in whatever loads a snapshot, per finding 2. Neither requires committing to
+Increment 2.
+
+**Unchanged from the original scoping, and re-confirmed by the spike:** there is no single seam giving
+full fidelity for free, and `agent.state_dict()` carries none of these stores (asserted in S5).
 
 ### Verification strategy (when built)
 Save at step N → restore into a fresh process → replay K steps → assert equivalence **within a
@@ -279,5 +385,6 @@ independently); the Zenodo/Software Heritage deposit flow.
 | MultiArchive fan-out (>1 copy) + `s3_archive_from_env` + runbook | **done + contract (5)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_multi.py`, [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
 | Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) — see runbook | [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
 | Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
-| Increment 2 (mid-life snapshot/resume) | **scoped** (`complex (probe-gated)`); spike = `SuperOrdinalGoalMemory` | this doc, §"Increment 2" |
+| Increment 2 de-risking spike | **done + contract (10)** | `tests/contracts/test_preservation_midlife_spike.py` |
+| Increment 2 (mid-life snapshot/resume) | **NO-GO on full rollout** (cost measured: ~1500-2000 LOC + 28%-of-days maintenance, no consumer queued); narrow GO when an experiment names it | this doc, §"De-risking spike — RESULT" |
 | Memorial Fishtank (re-instantiate remnants) | aspiration; needs its own governance | — |
