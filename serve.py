@@ -1435,26 +1435,46 @@ def read_merged_runner_status() -> dict:
 
     Falls back to the old monolithic runner_status.json if the per-machine
     directory doesn't exist yet (migration period).
+
+    Two files can denote ONE physical box (`DLAPTOP-4.local.json` written
+    before the identity fix, `DLAPTOP.json` after it), and the Phase-3 writer
+    never deletes the superseded one. Keying on the raw filename stem therefore
+    let a single box contribute two `current` entries -- the same in-flight
+    experiment rendered twice under two `_machine` labels. `completed` and
+    `queue` were always safe (both deduplicate by queue_id); `current` was not.
+
+    So live state (`current`, `idle`, `runner_pid`) is taken per CANONICAL
+    machine, freshest file winning, while `completed` and `queue` stay a UNION
+    over every file -- a superseded twin still holds real run history that the
+    box's fresh file does not carry, so dropping it outright would lose runs
+    from the merged view. This is why the whole map is not simply passed
+    through `_merge_by_canonical_machine`, as `/machines` does: that endpoint
+    wants one ROW per box, this function returns a UNION.
     """
-    machines = {}
+    raw_files = {}
 
     # Read per-machine files
     if STATUS_DIR.is_dir():
         for f in sorted(STATUS_DIR.glob("*.json")):
             try:
-                machines[f.stem] = json.loads(f.read_text())
+                raw_files[f.stem] = json.loads(f.read_text())
             except Exception:
                 pass
 
     # Fallback: read old monolithic file if no per-machine files found
-    if not machines and STATUS_FILE.exists():
+    if not raw_files and STATUS_FILE.exists():
         try:
             return json.loads(STATUS_FILE.read_text())
         except Exception:
             return {}
 
-    if not machines:
+    if not raw_files:
         return {}
+
+    # Freshest file per canonical machine. The numbered cloud fleet does NOT
+    # collapse -- `canonical_machine_name` is an allowlist, not a `-<digits>`
+    # regex, so ree-cloud-1..5 and ree-worker-1..4 keep one entry each.
+    machines = _merge_by_canonical_machine(raw_files, "last_updated")
 
     # Merge
     all_completed = []
@@ -1465,7 +1485,10 @@ def read_merged_runner_status() -> dict:
     merged_queue = []
     queue_ids_seen = set()
 
-    for machine_name, data in machines.items():
+    # History is a UNION over EVERY file, including a superseded identity twin:
+    # both lists deduplicate by queue_id, and the stale twin still holds real
+    # runs the box's current file no longer carries.
+    for data in raw_files.values():
         # Completed: deduplicate by queue_id, prefer non-ERROR
         for c in data.get("completed", []):
             qid = c.get("queue_id", "")
@@ -1480,16 +1503,6 @@ def read_merged_runner_status() -> dict:
                         for x in all_completed
                     ]
 
-        # Current: collect all running experiments
-        cur = data.get("current")
-        if cur:
-            cur["_machine"] = machine_name
-            current_list.append(cur)
-
-        # Running state
-        if not data.get("idle", True) and data.get("runner_pid"):
-            any_running = True
-
         # Queue: merge, deduplicate
         for qi in data.get("queue", []):
             qid = qi.get("queue_id", "")
@@ -1501,6 +1514,19 @@ def read_merged_runner_status() -> dict:
         lu = data.get("last_updated", "")
         if lu > latest_update:
             latest_update = lu
+
+    # Live state is per CANONICAL machine, so one physical box contributes
+    # exactly one `current` entry however many status files it owns.
+    for machine_name, data in machines.items():
+        # Current: collect all running experiments
+        cur = data.get("current")
+        if cur:
+            cur["_machine"] = machine_name
+            current_list.append(cur)
+
+        # Running state
+        if not data.get("idle", True) and data.get("runner_pid"):
+            any_running = True
 
     # Build merged result — same schema as old monolithic file
     merged = {

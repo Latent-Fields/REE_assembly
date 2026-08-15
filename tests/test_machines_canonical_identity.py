@@ -394,3 +394,308 @@ def test_vendored_machine_identity_is_byte_identical_to_ree_v3():
     assert vendored.read_bytes() == canonical.read_bytes(), (
         "re-vendor with: cp ree-v3/machine_identity.py "
         "REE_assembly/machine_identity.py  (canonical -> copy, never reverse)")
+
+
+# ---------------------------------------------------------------------------
+# read_merged_runner_status() -- the SECOND endpoint with the same defect.
+#
+# `/machines` was fixed first (81ee2c7066) and this function deliberately left
+# alone to keep that commit's scope. It builds a UNION view rather than one row
+# per box, and it keyed on the raw filename stem: `completed` and `queue` were
+# always safe (both deduplicate by queue_id) but `current` was not, so one box
+# owning two status files contributed the same in-flight experiment twice under
+# two `_machine` labels.
+#
+# LATENT, NOT LIVE when this was written: every status file on disk had
+# `current: null`, so `current_list` was empty and nothing duplicated. It fires
+# when a file is left holding a non-null `current` (runner killed mid-run) and
+# the box then restarts under a different identity spelling.
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def status_only(serve, tmp_path, monkeypatch):
+    """Point STATUS_DIR/STATUS_FILE at a tmp tree.
+
+    STATUS_FILE is redirected to a path that does not exist so the monolithic
+    fallback cannot fire from the real repo during the per-machine tests; the
+    fallback has its own tests below which create it explicitly.
+    """
+    st_dir = tmp_path / "runner_status"
+    monkeypatch.setattr(serve, "STATUS_DIR", st_dir)
+    monkeypatch.setattr(serve, "STATUS_FILE", tmp_path / "runner_status.json")
+    return st_dir
+
+
+def _status(now, *, minutes_ago, current=None, idle=True, pid=None,
+            completed=(), queue=()):
+    return {
+        "last_updated": _stamp(now, minutes_ago=minutes_ago),
+        "current": current,
+        "idle": idle,
+        "runner_pid": pid,
+        "completed": list(completed),
+        "queue": list(queue),
+    }
+
+
+def test_drifted_status_files_yield_one_current_entry(serve, status_only):
+    """THE DEFECT. Two files, one box, one in-flight experiment.
+
+    The stale file sorts FIRST alphabetically, so this also pins that the
+    survivor is chosen by tick and not by glob order.
+    """
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200, idle=False, pid=97092,
+        current={"queue_id": "V3-EXQ-930"}))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1, idle=False, pid=4242,
+        current={"queue_id": "V3-EXQ-931"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert len(merged["current"] and [merged["current"]]) == 1
+    assert merged["current"]["queue_id"] == "V3-EXQ-931", (
+        "the FRESHER file's in-flight experiment must win")
+    assert merged["current"]["_machine"] == "DLAPTOP", (
+        "the label must be the canonical identity, not the filename stem")
+    assert merged["current_all"] is None, (
+        "one physical box must not populate current_all -- that field means "
+        "'more than one machine is running', not 'more than one file exists'")
+
+
+def test_status_merge_follows_the_tick_not_the_filename(serve, status_only):
+    """Same two files, freshness reversed. Separates 'picks the fresher' from
+    'happens to pick whichever sorts last'."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=1, idle=False, pid=97092,
+        current={"queue_id": "V3-EXQ-932"}))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=200, idle=False, pid=4242,
+        current={"queue_id": "V3-EXQ-933"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert merged["current"]["queue_id"] == "V3-EXQ-932"
+    assert merged["current"]["_machine"] == "DLAPTOP"
+
+
+def test_single_drifted_file_is_relabelled_canonically(serve, status_only):
+    """Today's actual board: one `DLAPTOP-4.local.json`, no twin yet. Nothing
+    merges, but the label must still be canonical so a consumer cannot re-split
+    the box on `_machine` after the twin appears."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=5, idle=False, pid=97092,
+        current={"queue_id": "V3-EXQ-934"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert merged["current"]["_machine"] == "DLAPTOP"
+    assert list(merged["machines"]) == ["DLAPTOP"]
+
+
+def test_machines_submap_and_runner_pid_key_canonically(serve, status_only):
+    """Same defect class in two more fields. `running_machines` counted the two
+    files as two boxes, so the `len(...) == 1` backward-compat path -- which
+    exists to surface a single running machine's PID -- silently never fired
+    for a drifted laptop."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200, idle=False, pid=97092))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1, idle=False, pid=4242))
+
+    merged = serve.read_merged_runner_status()
+
+    assert list(merged["machines"]) == ["DLAPTOP"]
+    assert merged["machines"]["DLAPTOP"]["runner_pid"] == 4242
+    assert merged["runner_pid"] == 4242, (
+        "one box running one runner must expose that PID")
+
+
+def test_stale_twin_does_not_keep_the_box_looking_busy(serve, status_only):
+    """A superseded file is a ghost: the box's live state is the fresh file's.
+
+    Scope note: this is IDENTITY keying, not staleness -- see the companion
+    test below, which pins that a lone stale file is deliberately still
+    counted."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200, idle=False, pid=97092))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1, idle=True, pid=None))
+
+    merged = serve.read_merged_runner_status()
+
+    assert merged["idle"] is True
+
+
+def test_a_lone_stale_file_still_counts_as_running(serve, status_only):
+    """SCOPE GUARD, passes before and after. `runner_status/DLAPTOP-4.local.json`
+    has sat at `idle: false, runner_pid: 97092` since 2026-07-27 and still
+    feeds `any_running`. That is a STALENESS bug -- it happens with a single
+    file and has nothing to do with identity keying -- and it was deliberately
+    NOT fixed here. This pins the boundary so the omission reads as a decision
+    rather than an oversight."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=60 * 24 * 19, idle=False, pid=97092))
+
+    assert serve.read_merged_runner_status()["idle"] is False
+
+
+def test_history_is_a_union_across_both_drifted_files(serve, status_only):
+    """REGRESSION GUARD, passes before and after -- and the reason this function
+    is NOT simply passed through `_merge_by_canonical_machine` the way
+    /machines is.
+
+    That helper drops the losing payload entirely, which is right for an
+    endpoint rendering one ROW per box and wrong here: the superseded twin
+    holds real run history the fresh file does not carry (626 completed entries
+    in `DLAPTOP-4.local.json` when this was written). Live state collapses;
+    history unions."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200,
+        completed=[{"queue_id": "V3-EXQ-940", "result": "PASS"}],
+        queue=[{"queue_id": "V3-EXQ-942"}]))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1,
+        completed=[{"queue_id": "V3-EXQ-941", "result": "PASS"}],
+        queue=[{"queue_id": "V3-EXQ-943"}]))
+
+    merged = serve.read_merged_runner_status()
+
+    assert {c["queue_id"] for c in merged["completed"]} == {
+        "V3-EXQ-940", "V3-EXQ-941"}, "the stale twin's runs must not vanish"
+    assert {q["queue_id"] for q in merged["queue"]} == {
+        "V3-EXQ-942", "V3-EXQ-943"}
+
+
+def test_completed_dedup_still_prefers_non_error_across_drifted_files(
+        serve, status_only):
+    """The union must keep the existing ERROR-replacement rule, which now runs
+    across two files belonging to one box."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200,
+        completed=[{"queue_id": "V3-EXQ-944", "result": "ERROR"}]))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1,
+        completed=[{"queue_id": "V3-EXQ-944", "result": "PASS"}]))
+
+    merged = serve.read_merged_runner_status()
+
+    assert len(merged["completed"]) == 1
+    assert merged["completed"][0]["result"] == "PASS"
+
+
+# --- NEGATIVE CONTROLS: the numbered fleet must NOT collapse ----------------
+# This is the whole point. `machine_identity` is an allowlist, not a
+# `-<digits>` regex; without these a later session can widen the predicate and
+# turn a duplicate-row cosmetic bug into every machine's status overwriting
+# every other machine's.
+
+def test_cloud_fleet_each_keeps_its_own_current_entry(serve, status_only):
+    now = datetime.now(timezone.utc)
+    fleet_names = [
+        "ree-cloud-1", "ree-cloud-2", "ree-cloud-3", "ree-cloud-4",
+        "ree-cloud-5", "ree-worker-1", "ree-worker-2", "ree-worker-3",
+        "ree-worker-4",
+    ]
+    for i, name in enumerate(fleet_names):
+        _write(status_only, name, _status(
+            now, minutes_ago=1, idle=False, pid=1000 + i,
+            current={"queue_id": f"V3-EXQ-95{i}"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert sorted(merged["machines"]) == sorted(fleet_names)
+    assert merged["current_all"] is not None
+    got = {c["_machine"]: c["queue_id"] for c in merged["current_all"]}
+    assert got == {n: f"V3-EXQ-95{i}" for i, n in enumerate(fleet_names)}, (
+        "the numbered fleet are DISTINCT machines -- collapsing them would "
+        "hide every in-flight experiment but one")
+
+
+def test_fleet_and_drifted_laptop_coexist(serve, status_only):
+    """Neither behaviour may be bought at the other's expense, in one call."""
+    now = datetime.now(timezone.utc)
+    _write(status_only, "DLAPTOP-4.local", _status(
+        now, minutes_ago=200, idle=False, pid=97092,
+        current={"queue_id": "V3-EXQ-960"}))
+    _write(status_only, "DLAPTOP", _status(
+        now, minutes_ago=1, idle=False, pid=4242,
+        current={"queue_id": "V3-EXQ-961"}))
+    for i in (1, 2, 3):
+        _write(status_only, f"ree-cloud-{i}", _status(
+            now, minutes_ago=1, idle=False, pid=2000 + i,
+            current={"queue_id": f"V3-EXQ-97{i}"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert sorted(merged["machines"]) == [
+        "DLAPTOP", "ree-cloud-1", "ree-cloud-2", "ree-cloud-3"]
+    got = {c["_machine"]: c["queue_id"] for c in merged["current_all"]}
+    assert got == {
+        "DLAPTOP": "V3-EXQ-961",
+        "ree-cloud-1": "V3-EXQ-971",
+        "ree-cloud-2": "V3-EXQ-972",
+        "ree-cloud-3": "V3-EXQ-973",
+    }
+
+
+def test_an_unknown_numbered_host_is_not_collapsed_in_status(
+        serve, status_only):
+    now = datetime.now(timezone.utc)
+    for i in (7, 8):
+        _write(status_only, f"buildbox-{i}", _status(
+            now, minutes_ago=1, idle=False, pid=3000 + i,
+            current={"queue_id": f"V3-EXQ-98{i}"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert sorted(merged["machines"]) == ["buildbox-7", "buildbox-8"]
+
+
+# --- the monolithic fallback must be untouched ------------------------------
+
+def test_monolithic_fallback_fires_when_no_per_machine_files(
+        serve, tmp_path, monkeypatch):
+    """Migration-period behaviour: returned verbatim, not merged."""
+    monkeypatch.setattr(serve, "STATUS_DIR", tmp_path / "absent")
+    legacy = tmp_path / "runner_status.json"
+    legacy.write_text(json.dumps(
+        {"schema_version": "v1", "runner_pid": 55, "idle": False}))
+    monkeypatch.setattr(serve, "STATUS_FILE", legacy)
+
+    assert serve.read_merged_runner_status() == {
+        "schema_version": "v1", "runner_pid": 55, "idle": False}
+
+
+def test_monolithic_fallback_does_not_fire_when_per_machine_files_exist(
+        serve, tmp_path, monkeypatch):
+    now = datetime.now(timezone.utc)
+    st_dir = tmp_path / "runner_status"
+    monkeypatch.setattr(serve, "STATUS_DIR", st_dir)
+    legacy = tmp_path / "runner_status.json"
+    legacy.write_text(json.dumps({"runner_pid": 55, "idle": False}))
+    monkeypatch.setattr(serve, "STATUS_FILE", legacy)
+    _write(st_dir, "DLAPTOP", _status(
+        now, minutes_ago=1, idle=False, pid=4242,
+        current={"queue_id": "V3-EXQ-990"}))
+
+    merged = serve.read_merged_runner_status()
+
+    assert merged["runner_pid"] == 4242
+    assert merged["current"]["queue_id"] == "V3-EXQ-990"
+
+
+def test_empty_status_dir_and_no_legacy_file_returns_empty(
+        serve, tmp_path, monkeypatch):
+    monkeypatch.setattr(serve, "STATUS_DIR", tmp_path / "absent")
+    monkeypatch.setattr(serve, "STATUS_FILE", tmp_path / "also-absent.json")
+
+    assert serve.read_merged_runner_status() == {}
