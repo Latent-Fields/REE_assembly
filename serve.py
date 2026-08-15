@@ -64,6 +64,18 @@ from urllib.parse import urlparse
 import graceful_timeout
 subprocess = graceful_timeout.wrap(subprocess)
 
+# Every hostname this module keys coordination state on -- heartbeat/status
+# FILENAMES, the /machines aggregation key, the runner_commands filename -- is
+# resolved through here rather than compared raw. macOS re-suffixes this Mac's
+# LocalHostName on a Bonjour collision, so one physical laptop reported
+# `DLAPTOP-4.local` and `DLAPTOP-5.local` across Jul-Aug 2026; keyed raw, that
+# splits one box into two dashboard cards, the older of which ages into looking
+# like a dead machine. VENDORED byte-identical from ree-v3 (the canonical copy,
+# which carries the contract test) -- a cross-repo sys.path hop works on this Mac
+# and breaks on the hub and the cloud workers. Identity gate:
+# scripts/audit_vendored_copies.py --set machine_identity.
+import machine_identity
+
 try:
     import yaml as _yaml
     _YAML_OK = True
@@ -1608,6 +1620,10 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
                 "seconds_elapsed": m.get("seconds_elapsed"),
                 "seconds_remaining": m.get("seconds_remaining"),
             }
+        # The DB carries rows under every hostname a box has ever reported, so
+        # merge here rather than downstream -- this dict is CACHED, and caching
+        # raw keys would re-split the laptop on every cache hit.
+        out = _merge_by_canonical_machine(out, "last_tick_utc")
         fetch_ok = True
     except (urllib.error.URLError, OSError,
             json.JSONDecodeError, ValueError):
@@ -1631,6 +1647,68 @@ def _fetch_coordinator_machine_snapshots(cfg: dict) -> dict[str, dict]:
     return {}
 
 
+def _telemetry_tick(payload: dict, *keys: str) -> str:
+    """First non-empty timestamp among `keys`, or "" when the payload has none.
+
+    Fixed-width `%Y-%m-%dT%H:%M:%SZ`, so plain string ordering is chronological
+    and "" sorts below every real timestamp -- which is the behaviour wanted:
+    a telemetry file with no tick at all must never beat one that has ticked.
+    """
+    for key in keys:
+        val = payload.get(key)
+        if val:
+            return str(val)
+    return ""
+
+
+def _merge_by_canonical_machine(raw_map: dict, *tick_keys: str) -> dict:
+    """Re-key raw-hostname-keyed telemetry onto canonical machine identity.
+
+    Two files can denote ONE physical machine (`DLAPTOP-4.local.json` written
+    before the identity fix, `DLAPTOP.json` after it). They must MERGE to a
+    single row rather than overwrite by iteration order -- `sorted()` is
+    alphabetical, so a plain last-write-wins would hand the row to the stale
+    `DLAPTOP-4.local` and show the live laptop as hours-old.
+
+    Freshest tick wins. Ties go to the file whose own name is already canonical,
+    i.e. the one the current writer produces, so the winner is deterministic
+    rather than alphabetical.
+
+    The numbered cloud fleet does NOT collapse: `canonical_machine_name` is an
+    allowlist (see machine_identity.SUFFIX_BLIND_BASES), so `ree-cloud-1` .. `-5`
+    and `ree-worker-1` .. `-4` pass through untouched and keep one row each.
+    """
+    merged: dict = {}
+    rank: dict = {}
+    for raw_key in sorted(raw_map):
+        payload = raw_map[raw_key]
+        key = machine_identity.canonical_machine_name(raw_key) or raw_key
+        this = (_telemetry_tick(payload, *tick_keys), raw_key == key)
+        if key not in merged or this > rank[key]:
+            merged[key] = payload
+            rank[key] = this
+    return merged
+
+
+def _hostname_fields(hb: dict) -> dict:
+    """`hostname` resolved to canonical identity, raw preserved when it drifted.
+
+    Canonicalised so no downstream consumer can re-split a machine on this field
+    after /machines has already merged it. `hostname_reported` appears ONLY when
+    the box reported a drifted spelling -- that disagreement is exactly the
+    signal the Jul-Aug 2026 split was eventually noticed by, so it is surfaced
+    rather than silently normalised away.
+    """
+    raw = hb.get("hostname")
+    if not raw:
+        return {}
+    canon = machine_identity.canonical_machine_name(raw) or raw
+    out = {"hostname": canon}
+    if canon != raw:
+        out["hostname_reported"] = raw
+    return out
+
+
 def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
     """Copy rich display fields from the git mirror only.
 
@@ -1638,8 +1716,7 @@ def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
     those come from the coordinator when Phase 3 is live.
     """
     if hb:
-        if hb.get("hostname"):
-            entry["hostname"] = hb.get("hostname")
+        entry.update(_hostname_fields(hb))
         for key in (
             "current_exq_started_utc", "current_title", "current_claim_id",
             "current_description", "recent_lines", "queue_depth",
@@ -1665,7 +1742,11 @@ def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
 def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
                             fresh_window: int,
                             display_window: int) -> dict:
-    """One machines-row built solely from git-synced heartbeat/status files."""
+    """One machines-row built solely from git-synced heartbeat/status files.
+
+    `name` is already a CANONICAL identity -- read_machines() merges the raw
+    telemetry keys before calling here, so this never sees `DLAPTOP-5.local`.
+    """
     last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
     age_seconds = _utc_age_seconds(last_tick, now)
     fresh = (
@@ -1674,9 +1755,12 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
     display_fresh = (
         age_seconds is not None
         and 0 <= age_seconds <= display_window)
-    return {
+    entry = {
         "machine": name,
-        "hostname": hb.get("hostname"),
+        # Overwritten by _hostname_fields below whenever the heartbeat carries a
+        # hostname; the literal is what a status-only machine (no heartbeat)
+        # keeps.
+        "hostname": None,
         "last_tick_utc": last_tick,
         "age_seconds": age_seconds,
         "fresh": fresh,
@@ -1721,6 +1805,8 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
         "coordination_plane_paused": hb.get("coordination_plane_paused"),
         "last_cycle_note": hb.get("last_cycle_note"),
     }
+    entry.update(_hostname_fields(hb))
+    return entry
 
 
 def _entry_from_coordinator_snapshot(name: str, snap: dict, now,
@@ -1785,6 +1871,14 @@ def read_machines() -> dict:
     180s -- 3x the default --loop-interval=60s, so a missed tick is OK).
     `state` falls back to "unknown" when no heartbeat exists for a machine
     that does have a status file.
+
+    Rows are keyed by CANONICAL machine identity, never by the raw reported
+    hostname: telemetry filenames outlive the name the box reports (the Phase-3
+    writer materialises `runner_heartbeats/<machine>.json` from the coordinator
+    DB and never deletes a superseded one), so a laptop whose LocalHostName was
+    re-suffixed leaves a file behind under each spelling. Keyed raw, that is one
+    physical machine rendered as two cards -- the stale one ageing into a card
+    that reads as a dead box.
     """
     from datetime import datetime, timezone
 
@@ -1801,6 +1895,7 @@ def read_machines() -> dict:
                 heartbeats[key] = hb
             except Exception:
                 pass
+    heartbeats = _merge_by_canonical_machine(heartbeats, "last_tick_utc")
 
     statuses: dict[str, dict] = {}
     if STATUS_DIR.is_dir():
@@ -1809,6 +1904,7 @@ def read_machines() -> dict:
                 statuses[f.stem] = json.loads(f.read_text())
             except Exception:
                 pass
+    statuses = _merge_by_canonical_machine(statuses, "last_updated")
 
     all_machines = set(heartbeats.keys()) | set(statuses.keys())
     now = datetime.now(timezone.utc)
@@ -4363,7 +4459,13 @@ def _machine_safe_filename(machine: str) -> str:
 
 
 def _commands_file(machine: str) -> Path:
-    return COMMANDS_DIR / f"{_machine_safe_filename(machine)}.json"
+    # Canonicalised so a command issued against a drifted spelling still lands in
+    # the file the runner actually polls: runner_remote_control.get_machine_id()
+    # resolves the same way, so it reads `DLAPTOP.json` and would never see a
+    # command parked in `DLAPTOP-5.local.json`. Reads and writes both route
+    # through here, so the two stay consistent.
+    canon = machine_identity.canonical_machine_name(machine) or machine
+    return COMMANDS_DIR / f"{_machine_safe_filename(canon)}.json"
 
 
 def read_machine_commands(machine: str) -> dict:
@@ -5182,7 +5284,14 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
         python_exe = sys.executable  # fallback
 
     log_fh = open(RUNNER_LOG, "a")
-    machine_name = os.environ.get("REE_MACHINE_NAME") or socket.gethostname()
+    # Canonicalised because this value becomes BOTH the --status-file NAME and
+    # the runner's --machine. runner_remote_control.get_machine_id() already
+    # canonicalises the --machine it is handed, so a raw name here would write
+    # the heartbeat under the canonical identity and the status file under the
+    # drifted one -- half a split, created by this launcher rather than by the OS.
+    _raw_machine_name = os.environ.get("REE_MACHINE_NAME") or socket.gethostname()
+    machine_name = (machine_identity.canonical_machine_name(_raw_machine_name)
+                    or _raw_machine_name)
     STATUS_DIR.mkdir(parents=True, exist_ok=True)
     cmd = [python_exe, str(cfg["script"]),
            "--status-file", str(STATUS_DIR / f"{machine_name}.json"),
