@@ -8639,12 +8639,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_140",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-110",
+        "MECH-450",
+        "v4_loop_segregation"
+      ],
+      "blocked_note": "blocked_substrate via /queue-experiment guardrail (Step 2.5 substrate-readiness AND Step 2.5b re-derive brake, count=2: failure_autopsy_V3-EXQ-710_2026-07-03 + failure_autopsy_20260329-legacy-cluster_2026-08-08). MECH-140's SOLE experimental evidence (V3-EXQ-710) was WITHDRAWN 2026-08-10 (measurement_invalid: hold-weighted DV + rank-preserving A2 null that is analytically null), leaving MECH-140 strong-lit/untested (lit_conf 0.695). The 710_2026-07-03 autopsy routed the retest to soft-competitive settling running over SEGREGATED loops carrying DIFFERENTIATED value + a valid same-layer null, and REFUSED a same-claim single-arena re-queue. The substrate composes (soft-competitive settling runs over the arbitrated cross-loop field inside _segregated_loop_arbitrate, e3_selector.py ~L2233-2247) and ARC-110 ships the S2 in-layer same-layer null (_loop_inlayer_null) -- but ARC-110 loop segregation is candidate/substrate_conditional: V3-EXQ-707b proved the F-dominance conversion ceiling is INTRINSIC (loop segregation necessary-but-not-sufficient), because the cross-loop arbitration does not LEARN so F's static dominance persists in the combine. Until the segregated loops carry differentiated CONVERTED value, a MECH-140 settling retest would settle over an F-collapsed field and reproduce the 710 failure at a new locus. Route: /implement-substrate on the dopamine-gated cross-loop arbitration plasticity (v4_loop_segregation amend; MECH-448/449/ARC-107), NOT another /queue-experiment iteration. NOTE for governance: the 710_2026-07-03 artifact still carries recommended_epistemic_category substrate_ceiling (per140=None) despite the 2026-08-10 governance withdrawal that re-read MECH-140 as standard/measurement_invalid; per the artifact-not-rule fix principle it should carry recommended_epistemic_category_per_claim {MECH-140: standard} to match failure_autopsy_V3-EXQ-710_2026-07-20 -- but the blocked_substrate disposition is robust to this because Step 2.5 substrate-readiness independently blocks. (session metaworker-chip-proposal-exp-0532, headless dispatch chip chip-proposal-exp-0532, 2026-08-15T02:03:05Z)",
+      "blocked_at": "2026-08-15T02:03:05Z",
+      "release_condition": "ARC-110 loop segregation validated to produce DIFFERENTIATED CONVERTED per-loop value (currently candidate/substrate_conditional). V3-EXQ-707b (decisive, all 6 non-degeneracy gates live) showed committed-class entropy A1_LOOPS 0.838 BELOW A0_SINGLE_ARENA 0.914 -- the F-dominance conversion ceiling is INTRINSIC, not a single-arena artefact. Missing dependency: dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107); V3-EXQ-709 hit substrate_ceiling and its autopsy recommends action=amend on v4_loop_segregation. Route: /implement-substrate on that amend, NOT another /queue-experiment iteration."
     },
     {
       "acceptance_checks": [
