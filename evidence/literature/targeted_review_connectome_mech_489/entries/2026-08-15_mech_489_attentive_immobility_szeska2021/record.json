@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_489",
+  "entry_id": "2026-08-15_mech_489_attentive_immobility_szeska2021",
+  "timestamp_utc": "2026-08-15T19:16:05Z",
+  "claim_ids_tested": ["MECH-489"],
+  "source": {
+    "title": "Attentive immobility in the face of inevitable distal threat-Startle potentiation and fear bradycardia as an index of emotion and attention",
+    "authors": ["Szeska, Christoph", "Richter, Jan", "Wendt, Julia", "Weymar, Mathias", "Hamm, Alfons O."],
+    "year": 2021,
+    "venue": "Psychophysiology",
+    "doi": "10.1111/psyp.13812",
+    "pmid": "33759212",
+    "volume": "58",
+    "issue": "6",
+    "pages": "e13812"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Human psychophysiology with two convergent and mechanistically distinct indices (startle potentiation for defensive activation, fear bradycardia for attentive orienting), which were positively correlated with one another -- that convergence is what makes the 'immobility is an ATTENTIVE state' reading solid rather than inferential. Supports MECH-489's claim structure directly: the claim asserts freeze-arrest coupled to an orient/identify step, and this is evidence that biological defensive immobility is exactly such a coupled state rather than pure motor arrest. Mapping fidelity is good because the claim-level assertion (freeze co-occurs with active monitoring) is what was measured. Held at 0.72 rather than higher because the paradigm is conditioned distal threat in a laboratory, and because the study indexes attention physiologically rather than demonstrating that information is actually acquired and used.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An implementation in which the arrest state performs no sensory-sampling change, no active localisation and no belief update is not modelling attentive immobility -- it is modelling the motor-arrest half of a state whose defining property in the biology is that motor arrest and heightened sensory intake occur TOGETHER.",
+    "If the arrest is genuinely attentive, the organism's defensive sensitivity should be ELEVATED during immobility rather than merely held constant; a substrate whose arrest is a pure no-op predicts no such elevation."
+  ],
+  "tags": ["mech_489", "defensive_orienting", "attentive_immobility", "freezing", "fear_bradycardia", "startle_potentiation", "hypervigilance"],
+  "mapping": {
+    "source_claim_statement": "Under inevitable distal threat, humans enter attentive immobility: they remain motionless while monitoring the source of danger. Fear-conditioned cues evoked both potentiated startle (defensive hypervigilance) and stronger cardiac deceleration (fear bradycardia) relative to controls, and the learned bradycardia was positively correlated with conditioned startle potentiation. The state is one of simultaneous motor immobility and sensory hypervigilance.",
+    "ree_translation": "MECH-489 asserts a chain in which a phasic freeze-arrest is followed by an orient/identify step that resolves the triggering surprise. This paper is evidence that the freeze and the orienting are not sequential stages at all in the biology -- they are two aspects of one state. During defensive immobility the organism is maximally, not minimally, engaged in taking in information about the trigger. For REE this supports the claim's own design intent (arrest exists in order to enable identification) and sets a concrete expectation: whatever REE does during orienting_active should INCREASE information intake about the captured trigger location, not merely suspend action.",
+    "mapping_caveat": "This is conditioned, distal, inevitable threat in a laboratory paradigm -- an anticipatory state with a predictable cue -- whereas MECH-489's trigger is an unanticipated, unidentified sudden onset. Those are different points on the imminence continuum and the mapping across them is an assumption, not a finding. More importantly, the study indexes attention through autonomic and reflex physiology; it establishes that the organism is in a hypervigilant state, NOT that specific information about the threat is acquired, that identification actually occurs, or that acquired information is what terminates the state. Reading it as evidence for an epistemic-sufficiency release mechanism would be over-reach -- it supports the attentive character of the arrest, and stops there.",
+    "source_context": "Human, laboratory fear-conditioning with inevitable distal threat; startle-probe reflex modulation and cardiac (bradycardia) measures"
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality good: established human psychophysiology methods in a solid specialist venue, with two independent indices that converge and correlate. Mapping fidelity relatively high for this claim set because the proposition under test (defensive immobility is an attentive, information-taking state) is close to what was directly measured. Transfer risk comparatively low at 0.30 -- this is human data and the inference is about the functional character of a state rather than about a specific circuit -- but not zero, given the anticipatory-cue paradigm differs from MECH-489's unanticipated-onset trigger."
+  }
+}

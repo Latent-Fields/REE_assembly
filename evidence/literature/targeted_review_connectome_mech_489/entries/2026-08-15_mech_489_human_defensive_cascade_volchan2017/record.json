@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_489",
+  "entry_id": "2026-08-15_mech_489_human_defensive_cascade_volchan2017",
+  "timestamp_utc": "2026-08-15T19:16:05Z",
+  "claim_ids_tested": ["MECH-489"],
+  "source": {
+    "title": "Immobility reactions under threat: A contribution to human defensive cascade and PTSD",
+    "authors": ["Volchan, Eliane", "Rocha-Rego, Vanessa", "Bastos, Aline F.", "Oliveira, Jose M.", "Franklin, Camila", "Gleiser, Sonia", "Berger, William", "Souza, Gabriela G. L.", "Oliveira, Leticia", "David, Isabel A.", "Erthal, Fatima S.", "Pereira, Mirtes G.", "Figueira, Ivan"],
+    "year": 2017,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2017.01.025",
+    "pmid": "28131873",
+    "volume": "76",
+    "issue": "Pt A",
+    "pages": "29-38"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Review of human motor defensive reactions to violence-related threat using stabilometry, distinguishing three distinct immobility types within a defensive cascade, of which attentive immobility is one and peritraumatic tonic immobility -- strongly associated with PTSD severity -- is another. Supports MECH-489's registered boundary against MECH-279 with human data, which is a different and complementary line of support from the rodent circuit work in this directory. Confidence 0.68: the taxonomic distinction is well established and the human-clinical grounding is genuinely valuable for a claim about a PAG-subject mechanism, but the paper is a review, the stabilometry evidence base is comparatively small, and the immobility types are distinguished largely descriptively rather than by dissociating mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Collapsing distinct immobility types into a single freeze mechanism loses the clinically load-bearing distinction between an attentive, reversible, orienting immobility and a tonic, unresponsive peritraumatic immobility that predicts PTSD severity -- these have different triggers, different durations and different outcomes.",
+    "A phasic arrest whose duration is governed only by decay of the eliciting signal has no way to represent the transition into tonic immobility, which is not a longer version of the same state."
+  ],
+  "tags": ["mech_489", "mech_279", "defensive_orienting", "defensive_cascade", "attentive_immobility", "tonic_immobility", "ptsd", "human"],
+  "mapping": {
+    "source_claim_statement": "Human motor defensive reactions to violence-related threat, assessed with stabilometry, comprise three distinguishable immobility types within a defensive cascade. These are not interchangeable: attentive immobility is an oriented, reversible monitoring state, while tonic immobility is a peritraumatic response strongly associated with the severity of post-traumatic stress disorder.",
+    "ree_translation": "MECH-489 is registered as a PHASIC arrest, explicitly distinct from MECH-279's chronic accumulated-suffering freeze, and the V3-EXQ-910a autopsy examined and endorsed that boundary. This paper supports the boundary from human data: immobility under threat is not one thing, and the phasic oriented variety and the profound tonic variety are separated in the biology by more than duration. It also situates MECH-489's chain within a recognised defensive cascade, so the freeze-then-act sequencing the claim asserts is a real organising structure rather than an invention of the design brief.",
+    "mapping_caveat": "This is a review of human clinical and laboratory work on violence-related threat, including trauma-exposed populations, and the outcome variable of greatest interest to the authors is PTSD severity -- a construct with no REE analogue whatsoever. The three immobility types are distinguished largely descriptively, by posture, reversibility and autonomic profile, rather than by dissociating underlying mechanism, so this supports a TAXONOMIC boundary rather than a mechanistic one. The stabilometry evidence base is comparatively small. Nothing here speaks to MECH-489's trigger channel, its release rule, or its valence-gated decision; the support is confined to the claim's phasic-versus-chronic boundary and to the existence of a cascade structure.",
+    "source_context": "Human, review; stabilometry-based assessment of motor defensive reactions to violence-related threat cues, including trauma-exposed and PTSD populations"
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.28,
+    "notes": "Source quality 0.78: well-regarded review venue and a research programme with a coherent method, but reviewing a smaller primary evidence base than the rodent looming literature and resting substantially on the authors' own stabilometry work. Mapping fidelity 0.68 -- the phasic/tonic distinction maps cleanly onto the MECH-489/MECH-279 boundary, which is a narrow but real correspondence. Transfer risk lowest in this directory at 0.28 because this is human data, though the PTSD-severity outcome that anchors much of the clinical argument has no REE analogue."
+  }
+}

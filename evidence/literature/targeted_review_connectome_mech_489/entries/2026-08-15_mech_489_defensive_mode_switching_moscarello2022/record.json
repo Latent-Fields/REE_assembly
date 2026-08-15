@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_489",
+  "entry_id": "2026-08-15_mech_489_defensive_mode_switching_moscarello2022",
+  "timestamp_utc": "2026-08-15T19:16:05Z",
+  "claim_ids_tested": ["MECH-489"],
+  "source": {
+    "title": "The central nucleus of the amygdala and the construction of defensive modes across the threat-imminence continuum",
+    "authors": ["Moscarello, Justin M.", "Penzo, Mario A."],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-022-01130-5",
+    "pmid": "35915178",
+    "volume": "25",
+    "issue": "8",
+    "pages": "999-1008"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Authoritative synthesis in a top venue proposing that the central amygdala uses mutually inhibitory, winner-takes-all circuits to switch between discrete defensive modes organised along threat imminence. Supports two structural commitments MECH-489 makes: that post-arrest action selection is a selection among mutually exclusive defensive modes (approach / withdraw / resume) rather than a continuous adjustment, and that phasic and chronic defensive states are architecturally distinct (the MECH-489 vs MECH-279 boundary). Confidence is 0.70 rather than higher because this is a review/perspective rather than a single decisive experiment, and because the organising variable it proposes -- threat imminence, learned through association -- is not the variable MECH-489 gates on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If defensive modes are selected by mutually inhibitory winner-takes-all competition, a decision layer that resolves to the same mode on every single override event is not exhibiting selection at all -- a winner-takes-all circuit with a structurally biased input produces exactly that degenerate signature.",
+    "Defensive mode is organised by threat imminence and prior association; a mechanism that gates only on instantaneous onset magnitude has no representation of imminence and so cannot reproduce the mode ordering the biology shows."
+  ],
+  "tags": ["mech_489", "mech_279", "defensive_orienting", "central_amygdala", "threat_imminence", "defensive_modes", "winner_take_all", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Laboratory paradigms eliciting rodent defensive responses reveal brain mechanisms underlying distinct threat-related behavioural modes. The central nucleus of the amygdala employs mutually inhibitory circuits with a winner-takes-all strategy to facilitate transitions between defensive responses, which are organised along a continuum of threat imminence and shaped by learned threat associations.",
+    "ree_translation": "MECH-489's Components 4 and 5 resolve a post-arrest decision into approach, withdraw or resume by comparing harm and benefit channels. This paper supports the architectural shape of that: defensive action selection in the biology is discrete mode selection under mutual inhibition, not graded modulation, so a substrate that produces one of a small set of mutually exclusive behavioural modes is structurally right. It also supports MECH-489's registered boundary against MECH-279: modes at different points on the imminence continuum are constructed by different circuit configurations, which is what a phasic-arrest claim and a chronic-suffering-freeze claim being separate mechanisms would predict.",
+    "mapping_caveat": "The organising variable differs, and this matters. The biology arranges defensive modes along THREAT IMMINENCE -- how close in space and time the threat is -- learned through association over experience. MECH-489 gates on an instantaneous onset derivative and then resolves via a harm-versus-benefit comparison at the current location. REE has no imminence representation, so the mapping is to the competitive-selection ARCHITECTURE only, not to the variable that drives it. This is also a review rather than a primary result: the winner-takes-all proposal is the authors' synthesis of a literature, and inherits whatever is unsettled in it. Rodent throughout.",
+    "source_context": "Review and perspective synthesising rodent defensive-behaviour paradigms and central-amygdala circuit anatomy"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: Nature Neuroscience perspective by established investigators in the field, synthesising a large and reasonably convergent rodent literature. Mapping fidelity moderate at 0.62 -- the competitive-selection architecture transfers well, the imminence organising variable does not transfer at all since REE has no analogue of it. Transfer risk 0.35: rodent to abstract agent, but the inference concerns a computational strategy (mutual inhibition, winner-takes-all) which is the kind of thing that does transfer across substrates more readily than anatomy does."
+  }
+}

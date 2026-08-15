@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_489",
+  "entry_id": "2026-08-15_mech_489_looming_labeled_line_wang2021",
+  "timestamp_utc": "2026-08-15T19:16:05Z",
+  "claim_ids_tested": ["MECH-489"],
+  "source": {
+    "title": "OFF-transient alpha RGCs mediate looming triggered innate defensive response",
+    "authors": ["Wang, Fei", "Li, Erlin", "De, Lei", "Wu, Qingqing", "Zhang, Yifeng"],
+    "year": 2021,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2021.03.025",
+    "pmid": "33798432",
+    "volume": "31",
+    "issue": "11",
+    "pages": "2263-2273.e3"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "High source quality -- Current Biology, cell-type-specific (Kcnip2+) ablation AND selective optogenetic activation, i.e. both necessity and sufficiency for the behaviour, with recordings showing the cells encode looming size. The direction is genuinely mixed rather than a clean weakens because MECH-489's trigger is stated as a DISJUNCTION: unsigned prediction-error surprise OR sensory-discriminative harm. This paper weakens the first disjunct and supports the second. Confidence is held at 0.62 rather than higher because mapping fidelity is the binding constraint: REE has no retina and no visual looming feature, so the transfer is at the level of channel ARCHITECTURE (dedicated feature-specific line vs generic magnitude signal), not of the specific detector.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A defensive-orienting trigger built on a generic, modality-agnostic surprise magnitude will under-fire on ethologically specific threat events, because the biological system does not route those events through a generic salience channel at all -- it routes them through a dedicated feature-tuned line that is separable from novelty.",
+    "Ablating the dedicated channel abolishes the defensive response even though generic visual novelty and stimulus change remain intact, showing the two signals are dissociable and that novelty alone is not sufficient to elicit the response."
+  ],
+  "tags": ["mech_489", "defensive_orienting", "superior_colliculus", "looming", "labeled_line", "threat_detection", "retinal_ganglion_cell"],
+  "mapping": {
+    "source_claim_statement": "A single genetically identified retinal ganglion cell type -- OFF-transient alpha RGCs, marked by Kcnip2 -- detects looming objects and encodes looming size, and projects to the superior colliculus where terminal activation is sufficient to trigger escape. Ablation of this one cell type eliminates the looming-evoked innate defensive response. The authors conclude that ethologically significant visual information is encoded by a labeled-line strategy as early as the retina.",
+    "ree_translation": "MECH-489 gates its phasic defensive arrest on a positive-derivative onset in (a) residue_surprise, an unsigned prediction-error magnitude, and/or (b) a sensory-discriminative harm norm. This paper speaks directly to which of those two disjuncts the biology actually uses. It says the innate defensive response is driven by a dedicated, feature-tuned, threat-specific afferent line -- structurally closer to REE's z_harm_s (sensory-discriminative) channel than to residue_surprise (generic unsigned surprise). The architectural lesson for REE is that threat detection is a labeled line, not a threshold on a general-purpose surprise magnitude that happens to also carry every other kind of prediction error.",
+    "mapping_caveat": "The transfer is architectural, not mechanistic. REE has no visual system, no retina, and nothing corresponding to a looming feature detector, so this cannot be read as 'REE should build an OFF-transient alpha RGC analogue'. It is mouse, innate (not learned), single modality, and the escape response measured is a fast flight-to-shelter, which is one point on the defensive repertoire rather than the freeze-then-orient chain MECH-489 asserts. The paper also does not test a generic surprise signal head to head against the labeled line -- the dissociation is inferred from the fact that ablating one cell type abolishes the response while the rest of vision is intact, not from an explicit surprise-vs-threat contrast. Finally, a labeled line is a claim about AFFERENT organisation; MECH-489's trigger sits at a much later, already-abstracted stage of REE's pipeline, where the biological analogy is looser.",
+    "source_context": "Mouse, in vivo; cell-type-specific ablation and optogenetic activation of Kcnip2+ OFF-transient alpha retinal ganglion cells; retinal recordings plus looming-evoked defensive behaviour (escape to shelter)"
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high: cell-type-specific loss- and gain-of-function in the same paper is close to the strongest available causal design for an innate sensorimotor pathway, in a strong venue. Mapping fidelity moderate: the architectural point (dedicated threat line vs generic salience) transfers cleanly, but nothing below that level does. Transfer risk deliberately set high at 0.50: mouse retina to an abstract latent-space agent is a long jump, and the paper's own scope is innate visual escape, not the freeze-orient-identify-act chain."
+  }
+}

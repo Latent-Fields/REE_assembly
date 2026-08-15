@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_489",
+  "entry_id": "2026-08-15_mech_489_escape_habituation_circuit_liu2025",
+  "timestamp_utc": "2026-08-15T19:16:05Z",
+  "claim_ids_tested": ["MECH-489"],
+  "source": {
+    "title": "Neural circuit underlying individual differences in visual escape habituation",
+    "authors": ["Liu, Xuemei", "Lai, Jieyan", "Han, Chunhui", "Zhong, Hua", "Huang, Kang", "Liu, Yaning", "Zhu, Xutao", "Wei, Pengfei", "Tan, Liang", "Xu, Fuqiang", "Wang, Liping"],
+    "year": 2025,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2025.04.018",
+    "pmid": "40347942",
+    "volume": "113",
+    "issue": "14",
+    "pages": "2344-2357.e5"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Very strong source (Neuron, circuit dissection with identified parallel superior colliculus to basolateral amygdala routes, plus a behavioural-phenotype split). Direction is mixed and the reasoning matters: it SUPPORTS MECH-489's assertion that defensive-response termination is a governed process rather than a fixed schedule -- habituation here is an active, circuit-mediated, arousal-modulated computation with stable individual differences, not stimulus-response fatigue -- while simultaneously indicating that the governing variable is AROUSAL STATE rather than epistemic resolution, which is not what MECH-489's 'epistemic-sufficiency override' asserts. Confidence held to 0.58 by the binding mapping problem: this is habituation ACROSS repeated stimulus presentations, whereas MECH-489's release is WITHIN a single arrest episode. Those are different timescales and the paper does not bridge them.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Response decrement that is governed by arousal state and shows stable individual differences cannot be reproduced by a fixed decay constant applied uniformly -- a substrate whose release is a pure signal-decay timer predicts no between-individual variation in habituation rate and no arousal dependence, both of which are observed.",
+    "Two animals receiving identical stimulus sequences diverge into persistent-escape and rapid-habituation phenotypes, so the decrement cannot be a function of the stimulus history alone."
+  ],
+  "tags": ["mech_489", "defensive_orienting", "habituation", "superior_colliculus", "basolateral_amygdala", "arousal", "escape", "individual_differences"],
+  "mapping": {
+    "source_claim_statement": "Habituation of the visual escape response to repeated looming is mediated by parallel pathways from superior colliculus to basolateral amygdala, one routing via ventral tegmental area and one via mediodorsal thalamus, the latter integrating collicular and insular input to modulate arousal and defensive behaviour. Mice split into stable phenotypes: T1 animals show persistent escape with heightened arousal, T2 animals habituate rapidly with lower sustained arousal.",
+    "ree_translation": "MECH-489 releases its arrest via an 'epistemic-sufficiency override'. The confirmed autopsy on V3-EXQ-910a code-traced identification_confidence and found it to be a pure signal-decay/habituation tracker with zero epistemic content. This paper is the closest available biological check on whether that is a defect or a defensible simplification. Its answer is two-sided. Decrement of a defensive response IS a real, active, circuit-implemented process in the biology -- so building release as 'habituation' is not per se wrong. But the biological version is modulated by an arousal state carried on an identifiable pathway and varies systematically between individuals, so it is not a fixed decay constant; and the modulating variable is arousal, not resolution of what the stimulus was, which is what MECH-489 actually claims.",
+    "mapping_caveat": "The decisive limitation is timescale. This is habituation across repeated presentations over a session -- a learning-like process operating between trials -- whereas MECH-489's identification_confidence governs release within a single arrest episode. The paper offers no evidence about within-episode dynamics, and treating across-trial habituation as a model of within-episode release is an extrapolation the authors do not make and I cannot justify from the data. Additionally the behaviour is escape (flight), not freeze-then-orient, so the response whose decrement is being measured is not the response MECH-489 arrests. Mouse, innate visual threat, single modality. This entry should be read as constraining what a release mechanism can look like, not as evidence about what REE's release mechanism currently does.",
+    "source_context": "Mouse, in vivo circuit dissection (viral tracing, pathway-specific manipulation) with repeated looming presentation and escape-response behavioural readout; individual-difference phenotyping across animals"
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: Neuron, pathway-specific circuit dissection with a replicated behavioural phenotype split. Mapping fidelity is the weakest component in this directory at 0.45, entirely because of the across-trial versus within-episode timescale mismatch -- this is a real gap, not a hedge, and it is why the aggregate sits below the source quality by a wide margin. Transfer risk 0.45: mouse innate visual escape to an abstract agent's arrest-release rule."
+  }
+}
