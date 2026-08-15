@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_934_mech266_cap_sweep_mode_occupancy",
+  "run_id": "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-15T01:52:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "cap_recalibration_admits_mixed_regime",
+    "readiness_route": "cap_recalibration_admits_mixed_regime",
+    "route_reason": "graded_regime_reachable_on_symmetric_arm",
+    "hypothesis": "GOV-FANOUT-1 leg H1: some affinity_input_cap admits a mixed external_task occupancy regime (cap mis-calibration, not structural bang-bang).",
+    "null": "No cap value yields per-arm occupancy in (0.1, 0.9) on >= 2/3 seeds.",
+    "winning_cap_band_symmetric": [
+      0.75,
+      1.75
+    ],
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "kind": "readiness",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.",
+        "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "external_task_drive_engages",
+        "kind": "readiness",
+        "description": "the external_task drive must ENGAGE at SOME swept cap -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. This is the readiness form of the SAME arbitration signal the occupancy DV routes on: if the continuous margin is ~0 at every cap, the drive is not producing the signal (substrate/wiring not ready, e.g. a goal_state drop or dead drive), which must self-route to substrate_not_ready_requeue and NOT be read as structural discreteness (H2).",
+        "control": "fraction of guard-passing seeds whose best cell's continuous ext_margin_mean clears MARGIN_FLOOR.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "H1_symmetric_arm_graded_regime_reachable",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H1_symmetric_arm_graded_regime_reachable": true
+    },
+    "regime_gate": {
+      "definition": "per (seed, arm), OccupancyCell over the CAP_SWEEP; evaluate_regime_occupancy_gate(floor=0.1, ceiling=0.9). regime_shape in {unreachable, saturated_bimodal, graded}. graded == some cap yields occupancy strictly in (0.1, 0.9). Replaces the min()-across-the-sweep gate (the cluster autopsy's M1/M2 defect; H3 fix) with the shared primitive experiments/_lib/regime_occupancy_gate.py -- never a min-across-the-sweep statistic.",
+      "occupancy_floor": 0.1,
+      "occupancy_ceiling": 0.9,
+      "margin_floor": 0.05,
+      "cap_sweep": [
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75
+      ],
+      "primary_arm": "ARM_SYMMETRIC",
+      "min_fraction": 0.6666666666666666
+    },
+    "contact_guard": {
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f53db12dd0a7e00dcf351e3ba024c861173ac53d435d507d493288f8f138ddeb",
+  "substrate_commit": {
+    "commit": "6f46a703cbcd1e6badfef24d46a9c75ce5d0b177",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 173444,
+    "ticks_active": 173441,
+    "writer_calls": 5262,
+    "active_frac": 0.9999827033509375,
+    "writer_defect": false,
+    "n_agents": 33,
+    "goal_state_present": true
+  }
+}
