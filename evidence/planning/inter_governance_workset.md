@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-15T07:04:30Z`
+Generated: `2026-08-15T19:14:20Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -4559,11 +4559,10 @@ Instructions:
 
 </details>
 
-### IGW-20260815-200 -- Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate
+### IGW-20260815-200 -- Phase 4 (re-application) -- terminal behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate; NO EXQ i
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
+- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** sd_037_axis_b:P4
-- **Owner EXQ:** V3-EXQ-483f
 - **Blocked by:** sd_037_axis_b:P3 [blocked]
 - **Why now:** Plan gap blocked on sd_037_axis_b.
 
@@ -4571,18 +4570,16 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260815-200
-Title: Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate
-Lane: experiment | Skill: /queue-experiment
+Title: Phase 4 (re-application) -- terminal behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate; NO EXQ i
+Lane: plan | Skill: (plan reconcile)
 Status: blocked
 Gap(s): sd_037_axis_b:P4
-Owner EXQ: V3-EXQ-483f
 Claims: SD-037, MECH-280, MECH-281
 Blocked by: sd_037_axis_b:P3 [blocked]
 Why now: Plan gap blocked on sd_037_axis_b.
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Update plan-of-record doc and closure frontmatter when complete.
 - Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md
 - Workset: http://localhost:8000/workset
 ```
