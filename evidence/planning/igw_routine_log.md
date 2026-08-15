@@ -1739,5 +1739,44 @@ One line per hourly tick. ASCII only.
 2026-08-14T04:41:36Z no eligible item (skipped 249): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
 2026-08-14T05:42:28Z no eligible item (skipped 249): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
 2026-08-14T06:43:12Z no eligible item (skipped 249): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
-2026-08-15T00:28:57Z auto-defer 1b091db4ee61 hash=1b091db4ee61 for 48h (complete)
-2026-08-15T00:28:58Z complete 1b091db4ee61 staged->completed outcome=DUPLICATE: Released by chip-20260815-igw-workset-implemented-pending-validation-stale (FM3b
+2026-08-14T07:55:21Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
+2026-08-14T07:55:07Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T08:55:35Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T09:06:19Z complete IGW-20260812-215 staged->completed outcome=DUPLICATE: Substrate already landed independently: SD-MECH267-CEM-SELECTION-FIX implemented
+2026-08-14T09:06:23Z auto-defer IGW-20260812-216 hash=1b091db4ee61 for 48h (complete)
+2026-08-14T09:06:24Z complete IGW-20260812-216 staged->completed outcome=DUPLICATE: Substrate already landed independently: SD-MECH303-THRESHOLD-SOURCING implemente
+2026-08-14T09:06:41Z complete IGW-20260813-217 staged->completed outcome=DUPLICATE: Substrate already landed independently: SD-QUEUE-SEED-ENFORCEMENT implemented in
+2026-08-14T11:12:29Z GC removed worktree igw-215-substrate-ready-sd-mech267-cem-s (removed; branch deleted)
+2026-08-14T11:12:30Z GC removed worktree igw-216-substrate-ready-sd-mech303-thres (removed; branch deleted)
+2026-08-14T11:12:30Z GC removed worktree igw-217-substrate-ready-sd-queue-seed-en (removed; branch deleted)
+2026-08-14T11:12:25Z GC sweep removed 3 orphan worktree(s), kept 11
+2026-08-14T11:12:25Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T12:13:46Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
+2026-08-14T12:13:05Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T13:14:27Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
+2026-08-14T13:14:08Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T14:29:25Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T15:30:40Z workset committed (regen -- 247 items, 31 ready, 0 in flight)
+2026-08-14T15:30:08Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T16:30:59Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T17:31:39Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T18:32:24Z no eligible item (skipped 247): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T19:33:15Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-14T19:32:54Z no eligible item (skipped 248): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T20:34:04Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-14T20:33:38Z no eligible item (skipped 248): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T21:35:12Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-14T21:34:40Z no eligible item (skipped 248): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T22:53:41Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-14T22:52:49Z no eligible item (skipped 248): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-14T23:54:14Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-14T23:54:02Z no eligible item (skipped 248): IGW-20260814-001:skill /governance not allowed; IGW-20260814-002:skill /governance not allowed; IGW-20260814-003:skill /governance not allowed
+2026-08-15T00:54:43Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-15T00:54:28Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed
+2026-08-15T01:55:46Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-15T01:55:06Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed
+2026-08-15T02:56:19Z workset committed (regen -- 248 items, 32 ready, 0 in flight)
+2026-08-15T02:56:05Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed
+2026-08-15T03:56:35Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed
+2026-08-15T04:57:13Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed
+2026-08-15T06:00:04Z no eligible item (skipped 248): IGW-20260815-001:skill /governance not allowed; IGW-20260815-002:skill /governance not allowed; IGW-20260815-003:skill /governance not allowed

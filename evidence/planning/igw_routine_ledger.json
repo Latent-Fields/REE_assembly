@@ -2812,7 +2812,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-08-12T21:25:10Z",
       "staged_at": "2026-08-12T21:25:10Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-08-14T09:06:16Z",
+      "completion_summary": "Substrate already landed independently: SD-MECH267-CEM-SELECTION-FIX implemented in ree-v3 44fd045 (status implemented_pending_validation; V3-EXQ-927/928 validation already queued). No implementation launch needed.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Substrate already landed independently: SD-MECH267-CEM-SELECTION-FIX implemented in ree-v3 44fd045 (status implemented_pending_validation; V3-EXQ-927/928 validation already queued). No implementation launch needed."
     },
     {
       "igw_id": "IGW-20260812-216",
@@ -2836,10 +2840,10 @@
       "assigned_at": "2026-08-12T22:26:28Z",
       "staged_at": "2026-08-12T22:26:28Z",
       "status": "completed",
-      "completed_at": "2026-08-15T00:28:57Z",
-      "completion_summary": "Released by chip-20260815-igw-workset-implemented-pending-validation-stale (FM3b). Staged 2026-08-12T22:26Z as 'Substrate ready: SD-MECH303-THRESHOLD-SOURCING' and never launched; the substrate has since been built (substrate_queue status=implemented_pending_validation). No new work landed via this entry. The generator fix (REE_assembly 73cef55bd6) stops the item being re-offered, so this will not re-stage.",
+      "completed_at": "2026-08-14T09:06:19Z",
+      "completion_summary": "Substrate already landed independently: SD-MECH303-THRESHOLD-SOURCING implemented in ree-v3 b257e7a (status implemented_pending_validation; V3-EXQ-917 calibration battery exists). No implementation launch needed.",
       "outcome": "DUPLICATE",
-      "outcome_evidence": "Released by chip-20260815-igw-workset-implemented-pending-validation-stale (FM3b). Staged 2026-08-12T22:26Z as 'Substrate ready: SD-MECH303-THRESHOLD-SOURCING' and never launched; the substrate has since been built (substrate_queue status=implemented_pending_validation). No new work landed via this entry. The generator fix (REE_assembly 73cef55bd6) stops the item being re-offered, so this will not re-stage."
+      "outcome_evidence": "Substrate already landed independently: SD-MECH303-THRESHOLD-SOURCING implemented in ree-v3 b257e7a (status implemented_pending_validation; V3-EXQ-917 calibration battery exists). No implementation launch needed."
     },
     {
       "igw_id": "IGW-20260813-217",
@@ -2860,7 +2864,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-08-13T18:36:08Z",
       "staged_at": "2026-08-13T18:36:08Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-08-14T09:06:24Z",
+      "completion_summary": "Substrate already landed independently: SD-QUEUE-SEED-ENFORCEMENT implemented in ree-v3 b245444 (status implemented). No implementation launch needed.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Substrate already landed independently: SD-QUEUE-SEED-ENFORCEMENT implemented in ree-v3 b245444 (status implemented). No implementation launch needed."
     }
   ],
   "dispositions": [
@@ -3275,15 +3283,15 @@
     },
     {
       "stable_hash": "5c97197f94d5",
-      "igw_id_at_disposition": "IGW-20260810-208",
+      "igw_id_at_disposition": "IGW-20260813-217",
       "owner_exq": null,
       "claim_ids": [],
       "skill": "/implement-substrate",
       "title": "Substrate ready: SD-063",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-11T18:00:26Z",
-      "re_eligible_after": "2026-08-13T18:00:26Z"
+      "noted_at": "2026-08-14T09:06:40Z",
+      "re_eligible_after": "2026-08-16T09:06:40Z"
     },
     {
       "stable_hash": "62ccb43dcc08",
@@ -3652,7 +3660,7 @@
     },
     {
       "stable_hash": "be961fd75216",
-      "igw_id_at_disposition": "IGW-20260802-204",
+      "igw_id_at_disposition": "IGW-20260812-215",
       "owner_exq": null,
       "claim_ids": [
         "MECH-267"
@@ -3661,8 +3669,8 @@
       "title": "Substrate ready: SD-MECH267-HORIZON-DEPTH",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-02T14:01:06Z",
-      "re_eligible_after": "2026-08-04T14:01:06Z"
+      "noted_at": "2026-08-14T09:06:18Z",
+      "re_eligible_after": "2026-08-16T09:06:18Z"
     },
     {
       "stable_hash": "9d049a69d26c",
@@ -3904,8 +3912,8 @@
       "title": "Substrate ready: SD-MECH303-THRESHOLD-SOURCING",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-15T00:28:57Z",
-      "re_eligible_after": "2026-08-17T00:28:57Z"
+      "noted_at": "2026-08-14T09:06:23Z",
+      "re_eligible_after": "2026-08-16T09:06:23Z"
     }
   ]
 }
