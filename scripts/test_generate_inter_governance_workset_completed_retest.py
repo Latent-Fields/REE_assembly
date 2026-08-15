@@ -104,17 +104,37 @@ SUB_ARC045 = {
     "status": "implemented_validation_failed_needs_followup_fix",
     "implemented_utc": None,
     "unblocks_claims": ["MECH-180", "MECH-122", "SD-017", "ARC-045", "MECH-166"],
-    # The live row verbatim (2026-08-08). The third entry is what makes the
-    # cutoff 2026-08-02T22:16:21Z, and it is also 436c itself -- so the
-    # boundary case below ("evidence exactly AT the cutoff") is a real one, not
-    # a contrived one.
+    # The live row (2026-08-08), plus the `run_role` values the 2026-08-15 FM11d
+    # backfill wrote onto it. The entry's own implementation_note opens
+    # "IMPLEMENTED 2026-08-02", so 861 (2026-08-01T20:56) predates the build and
+    # the other two do not. The third entry is what makes the cutoff
+    # 2026-08-02T22:16:21Z, and it is also 436c itself -- so the boundary case
+    # below ("evidence exactly AT the cutoff") is a real one, not a contrived one.
     "failure_record": [
         {"run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation"
-                   "_decoupled_diversity_20260801T205600Z_v3"},
+                   "_decoupled_diversity_20260801T205600Z_v3",
+         "run_role": "pre_build"},
         {"run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection"
-                   "_validation_20260802T215005Z_v3"},
-        {"run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3"},
+                   "_validation_20260802T215005Z_v3",
+         "run_role": "post_build"},
+        {"run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
+         "run_role": "post_build"},
     ],
+}
+# The SAME row as it looked BEFORE the FM11d backfill -- no `run_role` anywhere.
+# Pins the default: an unmarked item is `unknown`, so it cannot supply a cutoff,
+# so nothing is covered. This is what protects the corpus from an item a future
+# session adds without the field.
+SUB_ARC045_UNMARKED = {
+    **SUB_ARC045,
+    "failure_record": [{"run_id": r["run_id"]} for r in SUB_ARC045["failure_record"]],
+}
+# Every failure_record run marked pre_build: the gap-characterisation shape. No
+# candidate at all, so no cutoff -- the wrong-HOLD exposure the fix removes.
+SUB_ARC045_ALL_PRE = {
+    **SUB_ARC045,
+    "failure_record": [dict(r, run_role="pre_build")
+                       for r in SUB_ARC045["failure_record"]],
 }
 # A row with an explicit landing stamp instead.
 SUB_STAMPED = {
@@ -221,36 +241,96 @@ class ParseEvidenceTsTest(unittest.TestCase):
 
 
 class SubstrateLandingCutoffTest(unittest.TestCase):
-    def test_latest_failure_record_run_wins(self):
-        cutoff, source = G._substrate_landing_cutoff("ARC-045", SUBSTRATE_BY_ID)
+    def test_latest_post_build_failure_record_run_wins(self):
+        cutoff, source, is_run = G._substrate_landing_cutoff(
+            "ARC-045", SUBSTRATE_BY_ID)
         self.assertEqual(_utc("2026-08-02T22:16:21Z"), cutoff)
         self.assertIn("MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION", source)
         self.assertIn("failure_record", source)
+        self.assertTrue(is_run, "a failure_record cutoff is a validation-run stamp")
 
     def test_explicit_implemented_utc_is_used(self):
-        cutoff, source = G._substrate_landing_cutoff("MECH-321", SUBSTRATE_BY_ID)
+        cutoff, source, is_run = G._substrate_landing_cutoff(
+            "MECH-321", SUBSTRATE_BY_ID)
         self.assertEqual(_utc("2026-08-01T00:00:00Z"), cutoff)
         self.assertIn("implemented_utc", source)
+        self.assertFalse(is_run, "a landing stamp is not a run, so it stays exclusive")
 
     def test_latest_of_both_sources_wins(self):
         entry = dict(SUB_ARC045, implemented_utc="2026-08-03T00:00:00Z")
-        cutoff, source = G._substrate_landing_cutoff("ARC-045", {"x": entry})
+        cutoff, source, is_run = G._substrate_landing_cutoff("ARC-045", {"x": entry})
         self.assertEqual(_utc("2026-08-03T00:00:00Z"), cutoff)
         self.assertIn("implemented_utc", source)
+        self.assertFalse(is_run)
 
     def test_undatable_substrate_returns_none(self):
-        self.assertEqual((None, ""),
+        self.assertEqual((None, "", False),
                          G._substrate_landing_cutoff("MECH-999", SUBSTRATE_BY_ID))
 
     def test_claim_with_no_substrate_entry_returns_none(self):
-        self.assertEqual((None, ""),
+        self.assertEqual((None, "", False),
                          G._substrate_landing_cutoff("NOPE-001", SUBSTRATE_BY_ID))
 
     def test_malformed_rows_do_not_raise(self):
         junk = {"a": {"unblocks_claims": ["ARC-045"], "failure_record": [None, "s", 3]},
                 "b": {"unblocks_claims": None},
                 "c": {}}
-        self.assertEqual((None, ""), G._substrate_landing_cutoff("ARC-045", junk))
+        self.assertEqual((None, "", False),
+                         G._substrate_landing_cutoff("ARC-045", junk))
+
+
+class RunRoleGatesTheCutoffTest(unittest.TestCase):
+    """FM11d: only `run_role: post_build` run stamps may date a landing.
+
+    The defect: `_substrate_landing_cutoff` read EVERY failure_record run stamp as a
+    post-build validation run. Measured on the live corpus 2026-08-15, 37 of the 97
+    items datable against their own entry's `implemented_utc` PREDATE it -- 38% are
+    gap-characterisation runs that motivated the build. When such an entry has no
+    `implemented_utc` (79 of 157 do not) that stamp became the cutoff, below the real
+    landing, so pre-substrate evidence satisfied "a retest has run since the
+    substrate landed": a wrong HOLD.
+    """
+
+    def test_pre_build_runs_never_date_a_landing(self):
+        cutoff, source, is_run = G._substrate_landing_cutoff(
+            "ARC-045", {"x": SUB_ARC045_ALL_PRE})
+        self.assertEqual((None, "", False), (cutoff, source, is_run),
+                         "a gap-characterisation run is a LOWER bound on the "
+                         "landing, not an upper one -- it must not set the bar")
+
+    def test_absent_run_role_reads_as_unknown_not_post_build(self):
+        """THE DEFAULT, and the whole safety property.
+
+        An item a future session adds without `run_role` -- or one this backfill
+        missed -- must not silently move the cutoff.
+        """
+        self.assertEqual(
+            (None, "", False),
+            G._substrate_landing_cutoff("ARC-045", {"x": SUB_ARC045_UNMARKED}),
+            "unmarked must read as `unknown`; reading it as post_build is exactly "
+            "the pre-2026-08-15 behaviour this fix removes",
+        )
+
+    def test_an_unparseable_run_role_is_unknown_not_a_crash(self):
+        entry = {**SUB_ARC045,
+                 "failure_record": [dict(r, run_role=v) for r, v in zip(
+                     SUB_ARC045["failure_record"], ["POST", 17, None])]}
+        self.assertEqual((None, "", False),
+                         G._substrate_landing_cutoff("ARC-045", {"x": entry}))
+
+    def test_run_role_is_case_and_whitespace_tolerant(self):
+        """The field is hand-written by /governance and /failure-autopsy too."""
+        self.assertEqual("post_build", G._failure_record_run_role(
+            {"run_role": "  POST_BUILD "}))
+
+    def test_implemented_utc_still_works_when_every_run_is_pre_build(self):
+        """NEGATIVE CONTROL: gating the run stamps must not disable the explicit
+        landing stamp, which is the signal that was never in doubt."""
+        entry = dict(SUB_ARC045_ALL_PRE, implemented_utc="2026-08-03T00:00:00Z")
+        cutoff, source, is_run = G._substrate_landing_cutoff("ARC-045", {"x": entry})
+        self.assertEqual(_utc("2026-08-03T00:00:00Z"), cutoff)
+        self.assertIn("implemented_utc", source)
+        self.assertFalse(is_run)
 
 
 class CompletedRetestCoverageTest(_WithEntries, unittest.TestCase):
@@ -303,18 +383,24 @@ class NoCompletedEvidenceStillSurfacesTest(_WithEntries, unittest.TestCase):
         self.assertIsNone(G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID))
 
     def test_claim_with_only_pre_substrate_evidence_is_not_covered(self):
-        self._use([E_436B_ARC045, E_436C_ARC045])
+        self._use([E_436B_ARC045])
         self.assertIsNone(
             G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID),
-            "436b/436c both predate the substrate landing bound -- they are "
+            "436b runs strictly before the substrate landing bound -- it is "
             "exactly the stale evidence the retest exists to replace",
         )
 
-    def test_evidence_exactly_AT_the_cutoff_is_not_covered(self):
-        """Strictly-after, not at-or-after: a run at the bound could have started
-        before the substrate landed."""
+    def test_evidence_exactly_AT_an_implemented_utc_cutoff_is_not_covered(self):
+        """Strictly-after for a LANDING STAMP: a run at the bound could have
+        started before the substrate landed.
+
+        RE-POINTED 2026-08-15 (FM11d). This assertion used to be unconditional --
+        `test_evidence_exactly_AT_the_cutoff_is_not_covered`. The boundary rule is
+        now source-dependent, and the sibling test below asserts the other half.
+        """
+        entry = dict(SUB_ARC045_ALL_PRE, implemented_utc="2026-08-02T22:16:21Z")
         self._use([E_436C_ARC045])
-        self.assertIsNone(G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID))
+        self.assertIsNone(G._completed_retest_coverage("ARC-045", {"x": entry}))
 
     def test_literature_after_the_cutoff_is_not_coverage(self):
         """A lit pull is not a retest. E_LIT_ARC045 is dated 2026-08-05, later
@@ -618,45 +704,61 @@ class EvidenceIndexReaderTest(unittest.TestCase):
         self.assertEqual("2026-08-04T07:15:41Z", hit[0]["timestamp_utc"])
 
 
-class SelfCancellingCutoffIsRecordedNotFixedTest(_WithEntries, unittest.TestCase):
-    """The cutoff-defining run is excluded from being its own coverage.
+class SelfCancellingCutoffIsFixedTest(_WithEntries, unittest.TestCase):
+    """FM11d, the second half: a POST-BUILD cutoff run is its own coverage.
 
-    PINS CURRENT BEHAVIOUR ON PURPOSE, so that changing it is a deliberate act
-    rather than a side effect. `test_evidence_exactly_AT_the_cutoff_is_not_covered`
-    above already asserts the boundary rule; this test records the CONSEQUENCE
-    that was not visible when that rule was written, and which was measured live
-    on 2026-08-15: when a claim's ONLY post-substrate evidence is the very run
-    that defined the cutoff, the claim is not covered, renders `ready`, and can be
-    re-staged -- the FM11 pathology arriving by a different route. Live cases:
-    MECH-074d (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
-    SD-016.failure_record == v3_exq_922) -- three of the four claims that reach
-    FM11 at all.
+    WAS `SelfCancellingCutoffIsRecordedNotFixedTest`, which pinned the opposite --
+    deliberately, so that changing it would be an act rather than a side effect.
+    This is that act (2026-08-15, user-approved option (b) from
+    chip-20260815-igw-fm11-cutoff-boundary).
 
-    Left unchanged because the two readings of `failure_record` disagree: the
-    generator's `_substrate_landing_cutoff` docstring treats those runs as
-    POST-build validation runs (which would make the boundary run genuine
-    coverage), while substrate_queue's own `_schema_notes` describe a
-    failure_record item as characterising an unaddressed gap (which would make it
-    PRE-build, and counting it a wrong hold). Raised for a human call as
-    chip-20260815-igw-fm11-cutoff-boundary.
+    The pathology it recorded: when a claim's ONLY post-substrate evidence is the
+    very run that defined the cutoff, `when <= cutoff` made that run set the bar and
+    fail it, so the claim rendered `ready` and the auto-spawn could stage it again --
+    FM11 arriving one mechanism over. Live on 2026-08-15 for MECH-074d
+    (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
+    SD-016.failure_record == v3_exq_922): three of the four claims that reached FM11
+    at all.
+
+    Why it could not be fixed by relaxing the comparison alone -- the chip's
+    explicit instruction, and the reason the two halves shipped together. With every
+    failure_record stamp read as post-build, `<` would have let a PRE-build stamp
+    both set the cutoff and satisfy it, making the wrong-HOLD exposure strictly
+    worse. Gating the cutoff on `run_role` is what makes the relaxed comparison
+    safe: an at-the-cutoff row can now only be a run that postdates a real landing.
     """
 
-    def test_claim_whose_only_evidence_defined_the_cutoff_is_not_covered(self):
+    def test_claim_whose_only_evidence_defined_the_cutoff_IS_covered(self):
         self._use([E_436C_ARC045])
-        self.assertIsNone(
-            G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID),
-            "behaviour change: if this is now covered, the boundary rule was "
-            "changed -- confirm that was intended and update "
-            "chip-20260815-igw-fm11-cutoff-boundary",
+        cover = G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID)
+        self.assertIsNotNone(
+            cover,
+            "FM11d regression: 436c is marked post_build on the substrate row, so "
+            "it ran against the landed substrate and IS the retest -- excluding it "
+            "makes the cutoff self-cancelling and the item re-stages",
         )
+        self.assertEqual(E_436C_ARC045["run_id"], cover["run_id"])
+        self.assertTrue(cover["cutoff_is_validation_run"])
 
-    def test_a_strictly_later_run_still_covers(self):
-        """Negative control: the exclusion is about the boundary only, not a
-        general failure to see post-substrate evidence."""
+    def test_a_strictly_later_run_still_wins(self):
+        """Negative control: the boundary run is coverage of last resort, not a
+        preferred answer -- the NEWEST qualifying run is still reported."""
         self._use([E_436C_ARC045, E_436D_ARC045])
         cover = G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID)
         self.assertIsNotNone(cover)
         self.assertEqual(E_436D_ARC045["run_id"], cover["run_id"])
+
+    def test_the_boundary_run_is_not_coverage_when_it_is_PRE_build(self):
+        """NEGATIVE CONTROL, and the exact hazard the chip warned against.
+
+        Relax `<=` to `<` WITHOUT the run_role gate and this is what you get: a
+        gap-characterisation run setting a cutoff below the real landing and then
+        satisfying it -- a wrong HOLD on evidence that predates the build. Here
+        every stamp is pre_build, so there is no cutoff and nothing is covered.
+        """
+        self._use([E_436C_ARC045, E_436D_ARC045])
+        self.assertIsNone(
+            G._completed_retest_coverage("ARC-045", {"x": SUB_ARC045_ALL_PRE}))
 
 
 class RetestLaneEvaluationTest(unittest.TestCase):

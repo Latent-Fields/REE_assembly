@@ -1162,44 +1162,117 @@ def _parse_evidence_ts(value: object) -> datetime | None:
     return None
 
 
+_RUN_ROLE_POST_BUILD = "post_build"
+_RUN_ROLE_PRE_BUILD = "pre_build"
+_RUN_ROLE_UNKNOWN = "unknown"
+
+
+def _failure_record_run_role(rec: dict) -> str:
+    """`failure_record[].run_role` for one item, normalised.
+
+    ABSENT READS AS `unknown`, NOT as `post_build`, and that default is the whole
+    safety property of FM11d: only an explicit `post_build` can raise the landing
+    cutoff, so an unbackfilled item (or one a future session adds without the
+    field) can never pull the cutoff earlier than a real landing. See
+    `_substrate_landing_cutoff` for the error-direction argument.
+    """
+    value = str(rec.get("run_role") or "").strip().lower()
+    if value in (_RUN_ROLE_POST_BUILD, _RUN_ROLE_PRE_BUILD, _RUN_ROLE_UNKNOWN):
+        return value
+    return _RUN_ROLE_UNKNOWN
+
+
 def _substrate_landing_cutoff(
     claim_id: str, substrate_by_id: dict[str, dict]
-) -> tuple[datetime | None, str]:
+) -> tuple[datetime | None, str, bool]:
     """Latest datable "this substrate existed by" instant across the entries that
-    unblock `claim_id`. Returns (cutoff, source_label); (None, "") when undatable.
+    unblock `claim_id`. Returns (cutoff, source_label, cutoff_is_a_validation_run);
+    (None, "", False) when undatable.
 
     Two signals, both read on every unblocking entry, latest wins:
 
-      * `implemented_utc` -- the explicit landing stamp. Populated on 75 of 145
-        substrate_queue entries (2026-08-08), so it cannot be the only source.
-      * the run stamps in `failure_record[].run_id` -- a validation experiment
-        that ran AGAINST this substrate. The substrate necessarily existed
-        before its own validation run, so this is an UPPER bound on the landing
-        instant, not a lower one. That is the safe direction: an upper bound
-        makes the cutoff LATER, which demands a later retest and therefore
-        UNDER-suppresses. A lower bound would do the opposite and could absorb
-        an item on pre-substrate evidence.
+      * `implemented_utc` -- the explicit landing stamp. Populated on 78 of 157
+        substrate_queue entries (2026-08-15), so it cannot be the only source.
+      * the run stamps in `failure_record[].run_id` -- but ONLY on items marked
+        `run_role: post_build`. Such a run executed AGAINST this substrate, so the
+        substrate necessarily existed before it and the stamp is an UPPER bound on
+        the landing instant.
 
-    Undatable -> (None, "") -> no coverage -> the item keeps its current status.
-    A generator that muted an item because it could not read a date would be a
-    worse failure than the re-staging it is fixing.
+    WHY `run_role` GATES THE SECOND SIGNAL (FM11d, 2026-08-15; user-approved
+    option (b) from chip-20260815-igw-fm11-cutoff-boundary).
+    This function used to read EVERY failure_record run stamp as a post-build
+    validation run. Measured on the live corpus: of the 97 items datable against
+    their own entry's `implemented_utc`, 37 (38%) PREDATE it -- they characterise
+    the gap that MOTIVATED the build. substrate_queue's own `_schema_notes`
+    describe a failure_record item that way, so the two readings of the same field
+    disagreed and the generator had picked the wrong one.
+
+    A pre-build stamp is a LOWER bound masquerading as an upper one. When an entry
+    has no `implemented_utc` (79 of 157) such a stamp is the ONLY candidate, so it
+    became the cutoff -- earlier than the true landing -- and stale pre-substrate
+    evidence then satisfied "a retest ran since the substrate landed". That is a
+    WRONG HOLD, the direction this file consistently refuses.
+
+    ERROR DIRECTION -- stated honestly in both directions, because it is NOT
+    one-sided and an earlier draft of this docstring got it backwards. The cutoff is
+    a MAX, so excluding a candidate moves it EARLIER or to ABSENT, never later:
+
+      * a genuine post-build run wrongly left `pre_build`/`unknown` -> cutoff too
+        EARLY -> an evidence row that predates the real landing can satisfy coverage
+        -> a WRONG HOLD. Bounded, and visible: FM11 renders `blocked` with the
+        covering run NAMED on /workset, so it stops the auto-spawn and hands a human
+        the exact run to adjudicate. It never suppresses the item.
+      * a gap-characterisation run wrongly marked `post_build` -> cutoff too LATE ->
+        UNDER-suppress -> the item stays `ready` and can be re-staged. That is the
+        original FM11 incident (ARC-045, three worktrees staged and GC-reaped
+        unused).
+
+    Neither default is free. The old always-post reading took the second error on
+    every one of the 157 pre-build items in the corpus, AND the first error wherever
+    a pre-build stamp was an entry's only candidate. Defaulting to `unknown` narrows
+    the bar to evidence that genuinely dates a landing: `implemented_utc`, or a run
+    explicitly recorded as having run against the build.
+
+    MEASURED on the live corpus at the backfill commit (246 claims reachable from
+    `unblocks_claims`): claims with a datable cutoff 207 -> 185, claims with
+    completed-retest coverage 56 -> 66, 17 gained, 7 lost, 0 whose covering run
+    changed identity. Backfilled by `scripts/backfill_failure_record_run_role.py`,
+    which records its derivation per item in `run_role_basis`.
+
+    THE THIRD RETURN VALUE closes the self-cancelling half of FM11. When the cutoff
+    IS a post-build validation run, that run is itself evidence that ran against the
+    landed substrate, so evidence AT the cutoff must count -- otherwise the run sets
+    the bar and then fails it, the claim renders `ready`, and the auto-spawn re-stages
+    it (live on 2026-08-15 for MECH-074d, MECH-151, MECH-152: three of the four
+    claims that reached FM11 at all). An `implemented_utc` cutoff stays EXCLUSIVE: a
+    run stamped at the landing instant could have started before it.
+
+    Undatable -> (None, "", False) -> no coverage -> the item keeps its current
+    status. A generator that muted an item because it could not read a date would be
+    a worse failure than the re-staging it is fixing.
     """
     best: datetime | None = None
     label = ""
+    from_validation_run = False
     for entry in substrate_by_id.values():
         if claim_id not in (entry.get("unblocks_claims") or []):
             continue
         sid = str(entry.get("sd_id") or "?")
-        candidates = [("implemented_utc", _parse_evidence_ts(entry.get("implemented_utc")))]
+        candidates = [
+            ("implemented_utc", _parse_evidence_ts(entry.get("implemented_utc")), False)
+        ]
         for rec in entry.get("failure_record") or []:
-            if isinstance(rec, dict):
-                candidates.append(
-                    ("failure_record", _parse_evidence_ts(rec.get("run_id")))
-                )
-        for field, when in candidates:
+            if not isinstance(rec, dict):
+                continue
+            if _failure_record_run_role(rec) != _RUN_ROLE_POST_BUILD:
+                continue
+            candidates.append(
+                ("failure_record", _parse_evidence_ts(rec.get("run_id")), True)
+            )
+        for field, when, is_run in candidates:
             if when is not None and (best is None or when > best):
-                best, label = when, f"{sid}.{field}"
-    return best, label
+                best, label, from_validation_run = when, f"{sid}.{field}", is_run
+    return best, label, from_validation_run
 
 
 def _completed_retest_coverage(
@@ -1224,30 +1297,33 @@ def _completed_retest_coverage(
     being handed to /governance -- so the run_id, status and direction all go
     into the blocker string rather than being pre-filtered away here.
 
-    OPEN QUESTION, deliberately NOT changed here -- THE SELF-CANCELLING CUTOFF
-    (found 2026-08-15; raised for a human call as
-    chip-20260815-igw-fm11-cutoff-boundary).
-    The cutoff is usually taken from `failure_record[].run_id`, and on this corpus
-    that stamp is very often the claim's OWN retest: the same experiment both
-    appears in the substrate's failure_record and is the claim's newest evidence
-    row. The `when <= cutoff` test below then makes that run set the bar and fail
-    it, so the claim renders `ready` and the auto-spawn may stage it again -- the
-    FM11 pathology, one mechanism over. Live on 2026-08-15 for MECH-074d
-    (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
-    SD-016.failure_record == v3_exq_922): THREE OF THE FOUR claims that reach FM11
-    at all. It is NOT changed here because the exclusion is deliberate --
-    `test_evidence_exactly_AT_the_cutoff_is_not_covered` asserts it, and the
-    SUB_ARC045 fixture comment records that the author met this exact boundary and
-    called it "a real one, not a contrived one". Counting the boundary run would
-    be right only if `failure_record` always held POST-build validation runs,
-    which is what `_substrate_landing_cutoff`'s docstring assumes; but the
-    substrate_queue `_schema_notes` describe a failure_record item as also holding
-    the run that CHARACTERISES an unaddressed gap, and such a run PREDATES the
-    build. Holding a retest on one of those would be a wrong hold -- the direction
-    this file consistently refuses. No live harm today: all three claims fall
-    outside the emitted window, so none is being staged.
+    THE BOUNDARY RULE IS SOURCE-DEPENDENT (FM11d, 2026-08-15 -- the resolution of
+    what this docstring used to record as an open question, user-approved option (b)
+    from chip-20260815-igw-fm11-cutoff-boundary).
+
+      * cutoff from `implemented_utc` -> STRICTLY after (`when > cutoff`). A run
+        stamped at the landing instant could have started before it, so excluding
+        it is the conservative direction.
+      * cutoff from a `run_role: post_build` failure_record stamp -> AT OR AFTER
+        (`when >= cutoff`). That stamp IS a run against the landed substrate, so
+        the run is genuine coverage. Excluding it made the cutoff SELF-CANCELLING:
+        the claim's own newest evidence set the bar and then failed it, the item
+        rendered `ready`, and the auto-spawn could stage it again -- the FM11
+        pathology arriving one mechanism over. Live on 2026-08-15 for MECH-074d
+        (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
+        SD-016.failure_record == v3_exq_922): three of the four claims that reached
+        FM11 at all.
+
+    The two halves had to move TOGETHER. Relaxing the comparison alone would have
+    fixed the self-cancelling case while making the wrong-hold case strictly worse,
+    because a PRE-build run could still be the cutoff -- the 38%-mislabelled reading
+    `_substrate_landing_cutoff` now rejects. Gating the cutoff on `run_role` is what
+    makes the relaxed comparison safe: an at-the-cutoff evidence row can now only be
+    a run that postdates a real landing.
     """
-    cutoff, source = _substrate_landing_cutoff(claim_id, substrate_by_id)
+    cutoff, source, cutoff_is_validation_run = _substrate_landing_cutoff(
+        claim_id, substrate_by_id
+    )
     if cutoff is None:
         return None
     best: dict | None = None
@@ -1260,7 +1336,9 @@ def _completed_retest_coverage(
         if str(entry.get("source_type") or "") != "experimental":
             continue
         when = _parse_evidence_ts(entry.get("timestamp_utc"))
-        if when is None or when <= cutoff:
+        if when is None:
+            continue
+        if when < cutoff or (when == cutoff and not cutoff_is_validation_run):
             continue
         if best_ts is None or when > best_ts:
             best, best_ts = entry, when
@@ -1273,6 +1351,9 @@ def _completed_retest_coverage(
         "evidence_direction": str(best.get("evidence_direction") or "?"),
         "cutoff_utc": cutoff.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "cutoff_source": source,
+        # Which boundary rule was applied, so a reader of /workset can tell an
+        # at-the-cutoff cover (the validation run itself) from a strictly-later one.
+        "cutoff_is_validation_run": cutoff_is_validation_run,
     }
 
 
