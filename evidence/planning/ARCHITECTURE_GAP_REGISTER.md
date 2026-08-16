@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-08-16T20:15:57.173402Z`
+Generated: `2026-08-16T20:21:11.612847Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -9,7 +9,7 @@ This register highlights claims under structural pressure and flags where the ev
 |---|---|---|---|---|---|---|---|---|---|
 | `AGR-0001` | `ARC-032` | `candidate` | 1 | 0.125 | 0.345 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0002` | `ARC-041` | `candidate` | 1 | 0 | 0.252 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0003` | `ARC-045` | `candidate` | 1 | 0 | 0.346 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0003` | `ARC-045` | `candidate` | 1 | 0 | 0.347 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0004` | `INV-088` | `candidate` | 1 | 0.5 | 0.255 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0005` | `INV-091` | `candidate` | 1 | 0.4 | 0.342 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0006` | `MECH-111` | `candidate` | 1 | 0 | 0.517 | 0 | no | no | `mandatory_decision_checkpoint` |
@@ -27,7 +27,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0018` | `MECH-321` | `candidate` | 0.889 | 0.286 | 0.244 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0019` | `MECH-457` | `candidate` | 0.878 | 0.273 | 0.202 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0020` | `MECH-074d` | `candidate` | 0.857 | 0.5 | 0.118 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0021` | `MECH-166` | `candidate` | 0.857 | 0 | 0.401 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0021` | `MECH-166` | `candidate` | 0.857 | 0 | 0.402 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0022` | `SD-005` | `implemented` | 0.846 | 0.5 | 0.386 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0023` | `MECH-075` | `candidate` | 0.833 | 0.583 | 0.226 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0024` | `MECH-295` | `candidate` | 0.833 | 0.167 | 0.393 | 0 | no | no | `monitor_and_collect_targeted_evidence` |

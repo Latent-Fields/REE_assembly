@@ -1,10 +1,9 @@
 # Literature Evidence Index
 
-Generated: `2026-08-16T11:25:47.046619Z`
+Generated: `2026-08-16T20:21:11.612847Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
-| `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_action_learning_bootstrap_class_choice` | [`2026-07-14_mech_457_striatal_start_stop_chunking_jin_costa2010`](targeted_review_action_learning_bootstrap_class_choice/entries/2026-07-14_mech_457_striatal_start_stop_chunking_jin_costa2010/record.json) | 12 | [`summary`](targeted_review_action_learning_bootstrap_class_choice/entries/2026-07-14_mech_457_striatal_start_stop_chunking_jin_costa2010/summary.md) |
 | `targeted_review_action_policy_decomposition` | [`2026-06-13_sd_045_sequence_chunk_start_stop_jin2010`](targeted_review_action_policy_decomposition/entries/2026-06-13_sd_045_sequence_chunk_start_stop_jin2010/record.json) | 7 | [`summary`](targeted_review_action_policy_decomposition/entries/2026-06-13_sd_045_sequence_chunk_start_stop_jin2010/summary.md) |
 | `targeted_review_active_inference_bridge` | [`2026-07-09_active_inference_bridge_textbook_parr2022`](targeted_review_active_inference_bridge/entries/2026-07-09_active_inference_bridge_textbook_parr2022/record.json) | 2 | [`summary`](targeted_review_active_inference_bridge/entries/2026-07-09_active_inference_bridge_textbook_parr2022/summary.md) |
