@@ -329,11 +329,42 @@ re-posed design rather than a repetition of the chain.
 
 ---
 
-## 7. Handed to `/governance` — two ledger resolutions already earned by existing data
+## 7. Two ledger resolutions already earned by existing data — `/governance` ratifies, `/failure-autopsy` writes
+
+> **ROUTING CORRECTED 2026-08-16 (session `github-write-access-setup-88d6ec`), and tracked as
+> [`GFLAG-0038`](governance_flags.v1.json) (`evidence_discrepancy`, ARC-070 + MECH-321,
+> REE_assembly `102fb5e69b`).** As first written, this section and §8 handed both resolutions to
+> `/governance` alone, and the parenthetical below said Step 9b writes "belong to
+> `/failure-autopsy` **and** `/governance`". **That is wrong, and it is very likely why nothing
+> happened for four days:** `/governance` is **derive-only** over
+> `hypothesis_space_registry.v1.json`. Its own Step 5c forbids a second writer in terms — *"Do
+> NOT patch the registry inline at the walk... The frozen ledger has a single producer —
+> `/failure-autopsy` Step 9b — and governance is derive-only over it"* — on the grounds that a
+> second producer doubles the frozen-set-invariant surface and reintroduces the retro-padding
+> the integrity audit exists to catch. Practice agrees: of ~72 commits ever touching that file,
+> ~47 are `failure-autopsy:`; the 2 `governance:`-prefixed ones predate the rule.
+>
+> **Correct division of labour:** `/governance` **ratifies** the two dispositions below (it is
+> the interactive decision body, and these are dispositions, not mechanical derivations); a
+> lightweight **`/failure-autopsy` Step 9b Mode-B** pass against V3-EXQ-816c / 816b / 816d
+> **appends** them to the registry. That is exactly the residual case Step 5c already names —
+> *"a leg whose adjudicating run is a clean PASS that clears inline with no autopsy: route a
+> lightweight `/failure-autopsy` (the skill accepts a flagged/PASS target) to append the Mode-B
+> `confirmed` resolution."*
+>
+> **Why this needed a flag rather than another inline report.** §8 below already reported it
+> inline on 2026-08-12 and it was still unapplied on 2026-08-16, because **nothing re-derives
+> it**: 816b/c/d are already autopsied, so they never appear in `pending_review.md`; and the
+> hypothesis-space integrity audit is *deliberately* silent here (Step 5c — an unresolved leg
+> *"simply keeps surviving in the count until Step 9b resolves it — a conservative under-count,
+> not a Goodhart move"*). `governance_flags.v1.json` is the one surface that persists by design
+> (Step 1a — *"an unresolved item keeps re-reporting rather than silently expiring"*) and is read
+> at the top of every cycle. It is still **not** a chip: both halves are `/governance` and
+> `/failure-autopsy` work, i.e. CLAUDE.md Session Land step 6 bucket 1a.
 
 Not written here (this document writes no resolution, and
 `hypothesis_space_registry.v1.json` is a high-contention exposed file whose Step 9b writes
-belong to `/failure-autopsy` and `/governance`). Both are supported by runs already in the
+belong to `/failure-autopsy`). Both are supported by runs already in the
 corpus; neither needs a new experiment.
 
 **(i) `policy_decomposition_discrimination` / `H-vs-proxy-saturation` → `confirmed`.**
@@ -382,8 +413,19 @@ frozen set that mixes the two cannot be resolved by any run.
   as `chip-20260814-mech321-pe-selectivity-repose`, whose STOP-CHECK requires that §7's
   ledger resolutions have been applied (or the re-pose otherwise ratified) first, so the
   build cannot race ahead of the governance call on legs that are still formally alive.
-- **`/governance`** — apply §7(i) and §7(ii); consider §3b. Reported inline per the
-  standing rule that governance work is not chipped.
+  **Status 2026-08-16: the STOP-CHECK was run and correctly BLOCKED** — all six hypotheses
+  under `policy_decomposition_discrimination` are still `resolution.state = alive`. The chip
+  was released back to `open` (`chip_ledger.py unclaim`, **not** resolved) and stays blocked
+  until §7 is applied. Its other two stop-checks passed: the queue is empty and no
+  `ARM_PE`/`ARM_YOKED` rate-matched driver exists anywhere in `ree-v3/experiments/`
+  (`v3_exq_904_arc070_decomposition_trigger_selectivity.py` is the V_s-forced trigger
+  diagnostic, not this design), and the stale sibling `chip-20260813-queueexp-mech321-r4`
+  had already been resolved `done` on 2026-08-14 on the 844/919 basis §8b sets out.
+- **`/governance` + `/failure-autopsy`** — ratify and apply §7(i) and §7(ii); consider §3b.
+  **Tracked as [`GFLAG-0038`](governance_flags.v1.json)** (raised 2026-08-16, still open),
+  because reporting it inline here demonstrably did not carry it — see the corrected routing
+  box at the head of §7 for why `/governance` cannot perform the registry write itself and
+  why no standing pipeline re-derives this item. Still not chipped: bucket 1a.
 - **Nothing else.** No substrate build is warranted by this document: the substrate fires
   the mechanism (904: 180 boundary fires → 180 decompositions; 839: 415 mid-execution
   evaluations), and the defect was in the question, not the code.
