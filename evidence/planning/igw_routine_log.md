@@ -1827,3 +1827,4 @@ One line per hourly tick. ASCII only.
 2026-08-16T18:05:17Z no eligible item (skipped 236): IGW-20260816-001:skill /governance not allowed; IGW-20260816-002:skill /governance not allowed; IGW-20260816-214:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
 2026-08-16T19:07:00Z skip: paused (.igw_routine_pause present)
 2026-08-16T20:07:01Z skip: paused (.igw_routine_pause present)
+2026-08-16T21:07:23Z workset committed (regen -- 235 items, 25 ready, 0 in flight)
