@@ -243,32 +243,92 @@ class LiveCorpusTest(unittest.TestCase):
         """The live cases the fix was approved for: MECH-074d
         (SD-035.failure_record == v3_exq_894c), MECH-151 and MECH-152 (both
         SD-016.failure_record == v3_exq_922). Each rendered `ready` before FM11d
-        because its own newest evidence defined the cutoff and was then excluded."""
+        because its own newest evidence defined the cutoff and was then excluded.
+
+        DOES NOT pin the covering run's IDENTITY to the cutoff-defining run. It
+        did until 2026-08-16 (`assertEqual(cutoff_utc, timestamp_utc)`), and that
+        went red the moment MECH-152 gained a genuinely newer retest
+        (`v3_exq_922a_sd016_mech152_softsel_ablation`, 2026-08-14T18:37:08Z)
+        against a 2026-08-12T03:51:19Z cutoff. `_completed_retest_coverage`
+        reports the NEWEST qualifying row by design, so newer evidence arriving is
+        the function working, not the fix regressing -- the old assertion pinned a
+        corpus SNAPSHOT and would go red again on the next retest of any of the
+        three. Nothing about the mechanism had changed: all three still carried a
+        row exactly AT the cutoff and still counted it.
+
+        What is pinned instead is the differential that actually separates fixed
+        from broken, isolated from any later run: the at-the-cutoff row exists,
+        and coverage computed over evidence restricted to AT OR BEFORE the cutoff
+        still finds it. Under the pre-FM11d strict `when > cutoff` rule that
+        restricted lookup returns None for all three -- which is the exact
+        self-cancelling shape, asserted in a form later evidence cannot satisfy
+        accidentally NOR falsify.
+        """
         substrate = G._substrate_by_id()
+        live_entries = G._claim_evidence_entries
+        self.addCleanup(setattr, G, "_claim_evidence_entries", live_entries)
         for claim in ("MECH-074d", "MECH-151", "MECH-152"):
+            G._claim_evidence_entries = live_entries
             cover = G._completed_retest_coverage(claim, substrate)
             self.assertIsNotNone(cover, f"{claim}: self-cancelling cutoff is back")
             self.assertTrue(cover["cutoff_is_validation_run"], claim)
+            self.assertIn("failure_record", cover["cutoff_source"], claim)
+            cutoff = G._parse_evidence_ts(cover["cutoff_utc"])
+            self.assertGreaterEqual(
+                G._parse_evidence_ts(cover["timestamp_utc"]), cutoff,
+                f"{claim}: coverage predates the landing cutoff",
+            )
+
+            # The self-cancelling shape on its own, with every later run hidden.
+            narrowed = [
+                e for e in live_entries()
+                if isinstance(e, dict)
+                and G._parse_evidence_ts(e.get("timestamp_utc")) is not None
+                and G._parse_evidence_ts(e.get("timestamp_utc")) <= cutoff
+            ]
+            G._claim_evidence_entries = lambda rows=narrowed: rows
+            at_cutoff = G._completed_retest_coverage(claim, substrate)
+            self.assertIsNotNone(
+                at_cutoff,
+                f"{claim}: the run that DEFINES the cutoff is not counted as "
+                "coverage -- the self-cancelling exclusion is back",
+            )
             self.assertEqual(
-                cover["cutoff_utc"], cover["timestamp_utc"],
+                at_cutoff["cutoff_utc"], at_cutoff["timestamp_utc"],
                 f"{claim}: the covering run IS the cutoff-defining run -- that is "
                 "the self-cancelling shape, and counting it is the fix",
             )
-            self.assertIn("failure_record", cover["cutoff_source"], claim)
 
     def test_no_claim_is_dated_by_a_pre_build_run(self):
-        """The whole point, asserted at the corpus level rather than per case."""
+        """The whole point, asserted at the corpus level rather than per case.
+
+        READS THE RAW COMMITTED `run_role` STRING, NOT `G._failure_record_run_role`.
+        It went through the generator's own normaliser until 2026-08-16, which made
+        it VACUOUS under precisely the regression it exists to catch: revert
+        `_failure_record_run_role` to the pre-FM11d always-`post_build` reading and
+        the `stamps` set it builds empties out, so every `assertNotIn` below passes
+        against nothing. Verified by injection -- with that revert forced, this test
+        and the FM11-claims test above BOTH stayed green. A test may not take its
+        oracle from the function under test; the committed corpus is the independent
+        oracle here, and `test_every_value_is_in_the_allowed_set` is what licenses
+        comparing its strings directly.
+        """
         substrate = G._substrate_by_id()
         stamps = {}
         for entry in substrate.values():
             for rec in entry.get("failure_record") or []:
                 if not isinstance(rec, dict):
                     continue
-                if G._failure_record_run_role(rec) == B.RUN_ROLE_POST:
+                if str(rec.get("run_role") or "").strip().lower() == B.RUN_ROLE_POST:
                     continue
                 when = G._parse_evidence_ts(rec.get("run_id"))
                 if when is not None:
                     stamps.setdefault(entry.get("sd_id"), set()).add(when)
+        self.assertTrue(
+            stamps,
+            "no non-post_build run stamps found in the corpus -- this test would "
+            "pass vacuously; check the backfill has not been reverted",
+        )
         claims = sorted({c for e in substrate.values()
                          for c in (e.get("unblocks_claims") or [])})
         for claim in claims:
