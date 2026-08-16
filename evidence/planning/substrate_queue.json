@@ -8125,8 +8125,8 @@
     {
       "sd_id": "mech357-avoidance-efficacy-eligibility-trace-imbalance",
       "title": "MECH-357 avoidance-efficacy eligibility trace: credit/decay imbalance underflows learned efficacy to zero",
-      "status": "pending_implementation",
-      "implementation_status": "not_implemented",
+      "status": "implemented",
+      "implementation_status": "implemented",
       "priority": 3,
       "severity": "degrading",
       "ready": true,
@@ -8154,7 +8154,10 @@
           "added_by": "governance 2026-08-16T19:11:21Z (cranky-driscoll-126a36) from failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16 / V3-EXQ-603u"
         }
       ],
-      "governance_amend_2026_08_16_rationale": "This entry (added 2026-08-14T06:55:01Z, status pending_implementation) currently carries failure_record: [] -- ZERO empirical entries. V3-EXQ-603u supplies the first, with numbers. THE BUILD ITSELF IS ALREADY IN FLIGHT AND MUST NOT BE DUPLICATED (see routing_note); what is owed here is the record, not the work."
+      "governance_amend_2026_08_16_rationale": "This entry (added 2026-08-14T06:55:01Z, status pending_implementation) currently carries failure_record: [] -- ZERO empirical entries. V3-EXQ-603u supplies the first, with numbers. THE BUILD ITSELF IS ALREADY IN FLIGHT AND MUST NOT BE DUPLICATED (see routing_note); what is owed here is the record, not the work.",
+      "implemented_utc": "2026-08-16T19:46:55Z",
+      "implemented_session": "closure-maps-correctness-807268",
+      "implementation_note_update": "Credit-eligibility windowing (candidate (a) from implementation_hint): freeze/no-op ticks no longer decay avoidance_efficacy, only genuine failed directed attempts do. Landed ree-v3 93d5d98b80. NOT yet verified against this entry's own failure_record target (a rerun of V3-EXQ-603u-shape scoring-window gate_live check on >= 2/3 INTACT seeds) -- that empirical re-validation is separate work and the failure_record below is deliberately left resolved=open until a real rerun confirms it against the measured 86:1-188:1 decay:credit ratios. Do not mark the failure_record resolved from this status flip alone."
     },
     {
       "sd_id": "contextmemory-write-path-addressing-degeneracy",
