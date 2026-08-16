@@ -1,2 +1,18 @@
+# PER-MACHINE artifacts -- deliberately not committed. See README.md "Wiring".
+#
+# reports/steward_report.json  regenerated in full on every run (~85KB), and
+#                              keyed by an absolute local path (`repo_root`).
+#                              Its only consumer is the run that just wrote it.
+# steward_state.json           the escalation ratchet. Its semantic effect is
+#                              SUPPRESSION, so a shared copy would let any run
+#                              anywhere silently consume a finding's one
+#                              fleet-wide escalation.
+# steward_ref_pins.json        D-102's ref pins, keyed by absolute repo path.
+#                              A cross-machine copy would compare this box's
+#                              refs against another box's checkout.
+#
+# state/steward_ledger.jsonl IS tracked and that is not inconsistent: it is an
+# append-only audit time series, not a suppression-bearing whole-file rewrite.
 reports/
 steward_state.json
+steward_ref_pins.json

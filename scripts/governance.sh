@@ -166,9 +166,37 @@ gov_claim_close() {
     || echo "WARNING: failed to close TASK_CLAIMS claim $GOV_CLAIM_SESSION_ID -- clear it by hand (it gates the runner heartbeat push)." >&2
 }
 
+# ---------------------------------------------------------------------------
+# Steward escalation verdict (Step 3m). Declared HERE, above the traps, for two
+# reasons: `set -u` would abort the exit trap on an unset variable, and the
+# verdict has to be printable from gov_on_exit so it survives an abort at one of
+# the later blocking gates (Step 4b, Step 9c).
+#
+# WHY IT PRINTS TWICE. The boolean is the entire point of the detector set -- it
+# decides whether a model is loaded at all -- and a governance regen emits several
+# hundred lines after Step 3m, so a single in-place line is a line nobody reads.
+# It is printed at the step (where it is attributable to the step that produced
+# it) and again from the exit trap, where it is the LAST thing on the screen on
+# every exit path.
+# ---------------------------------------------------------------------------
+STEWARD_REPORT="scripts/steward/reports/steward_report.json"
+STEWARD_RAN=0
+STEWARD_SUMMARY=""
+
+steward_print_summary() {
+  [ "$STEWARD_RAN" = "1" ] || return 0
+  echo ""
+  echo "================================ STEWARD ================================"
+  printf '%s\n' "$STEWARD_SUMMARY"
+  echo "========================================================================="
+}
+
 gov_on_exit() {
   local rc=$?
   gov_claim_close "$rc"
+  # Printed AFTER the claim release so the escalation verdict is the final thing
+  # on the screen, and so a failure in either cannot swallow the other.
+  steward_print_summary
   # Explicit: an `exit` inside an EXIT trap sets the final status and does not
   # re-enter the trap, so the caller still sees the pipeline's own status
   # rather than the claim helper's.
@@ -558,6 +586,104 @@ echo "--- Step 3l: Citation staleness scan (GFLAG-0010, warn-only) ---"
 # Warn-only, always exits 0 unless --exit-nonzero -- a human decides whether
 # a flagged citation needs fixing; this only surfaces the candidates.
 "$PYTHON" scripts/check_citation_staleness.py || true
+
+echo "--- Step 3m: Steward integrity detectors (warn-only) ---"
+# The NINTH standing scan, and the only one whose primary output is a single
+# BOOLEAN rather than a report a human reads. `escalate` is the gate that decides
+# whether a MODEL is loaded at all: detection here is deterministic and costs
+# ~0.6s of CPU, adjudication is what costs tokens. A cycle with nothing NEW must
+# produce `escalate: false` so the Steward skill never loads. Full design:
+# scripts/steward/README.md.
+#
+# WHY IT RUNS HERE. D-010 cross-checks its independent recomputation of the V3
+# closure denominator against evidence/planning/closure_status.md, which Step
+# 3c-bis regenerates -- run it before that and it audits a stale snapshot and
+# reports the staleness as a defect. Everything else it reads (claims.yaml, the
+# *_plan.md frontmatter, governance_flags.v1.json, git refs) is untouched by this
+# pipeline, so 3c-bis is the only ordering constraint.
+#
+# NO --exit-nonzero-on-escalate, DELIBERATELY. run_detectors.py exits 0 whether
+# or not findings exist and that flag is opt-in; turning a detector finding into
+# a FAILED governance regen would make detection expensive, which inverts the
+# whole design -- the point is that detection is free so it can run every cycle.
+# `|| true` on top of it so a crash inside a detector cannot abort a regen
+# either, matching every other warn-only scan above.
+#
+# NO --fix, DELIBERATELY. The T0 auto-fix lane is opt-in by stage-2 design: a
+# bare run edits nothing. It currently has 19 real repairs queued against plan
+# frontmatter, and applying those changes what the morning digest reports -- a
+# governance-visible action belonging to a session that runs `--fix` on purpose,
+# not to every regen. Flip it here only as a deliberate governance decision.
+#
+# THE REPORT AND THE RATCHET STATE ARE GITIGNORED, ON PURPOSE (2026-08-16). Both
+# are per-MACHINE artifacts, and the report is keyed by an absolute local path
+# (`repo_root`), as is state/steward_ref_pins.json. Committing the 85KB report
+# would rewrite it in full on every run of every box for zero cross-machine value
+# -- its only consumer is this pipeline, which just wrote it. Committing the
+# ratchet state is worse than churn: its semantic effect is SUPPRESSION, so any
+# run anywhere (including a hand-run test, which the README invites) would silently
+# consume a finding's one fleet-wide escalation. A per-machine ratchet
+# over-escalates at worst -- bounded, visible, recoverable -- where a shared one
+# fails by withholding silently, which is the failure the whole detector set
+# exists to prevent. state/steward_ledger.jsonl IS tracked and that is not
+# inconsistent: it is an append-only audit time series, not a suppression-bearing
+# whole-file rewrite. Full reasoning: scripts/steward/README.md "Wiring".
+STEWARD_RC=0
+"$PYTHON" scripts/steward/run_detectors.py || STEWARD_RC=$?
+STEWARD_RAN=1
+if [ "$STEWARD_RC" -ne 0 ]; then
+  STEWARD_SUMMARY="ERROR: run_detectors.py exited ${STEWARD_RC} -- escalation state UNKNOWN.
+  Re-run by hand: ${PYTHON} scripts/steward/run_detectors.py"
+else
+  STEWARD_SUMMARY="$("$PYTHON" - "$STEWARD_REPORT" <<'PYEOF' || true
+import json, sys
+
+try:
+    report = json.load(open(sys.argv[1], encoding="utf-8"))
+except Exception as exc:
+    print("ERROR: could not read %s (%s) -- escalation state UNKNOWN"
+          % (sys.argv[1], exc))
+    raise SystemExit(0)
+
+counts = report.get("counts") or {}
+by_id = {f.get("finding_id"): f for f in (report.get("findings") or [])}
+errored = sorted(s.get("detector") or "?"
+                 for s in (report.get("detectors") or []) if s.get("error"))
+
+if report.get("escalate"):
+    escalated = report.get("escalated") or []
+    print("ESCALATE = YES -- %d NEW finding(s) awaiting adjudication:"
+          % len(escalated))
+    for fid in escalated:
+        f = by_id.get(fid) or {}
+        print("    [%s %s conf=%.2f] %s"
+              % (f.get("severity", "?"), f.get("signal", "?"),
+                 float(f.get("confidence") or 0.0), f.get("title") or fid))
+    over = int(report.get("escalation_truncated") or 0)
+    if over:
+        print("    (+%d more candidate(s) over the escalation budget of %s --"
+              " five is NOT all of them)"
+              % (over, report.get("escalation_budget")))
+    print("  -> Load the Steward skill and adjudicate before closing this cycle.")
+else:
+    print("ESCALATE = no -- nothing NEW and unsuppressed. "
+          "The Steward skill should NOT load.")
+
+print("  totals: %d finding(s)  [new %d / recurring %d / resolved %d /"
+      " suppressed %d]"
+      % (counts.get("total", 0), counts.get("new", 0),
+         counts.get("recurring", 0), counts.get("resolved", 0),
+         counts.get("suppressed", 0)))
+if errored:
+    print("  DETECTOR ERROR(S): %s -- the totals above are INCOMPLETE"
+          % ", ".join(errored))
+print("  report: %s (gitignored -- per-machine, regenerate by re-running)"
+      % sys.argv[1])
+PYEOF
+)"
+  [ -n "$STEWARD_SUMMARY" ] || STEWARD_SUMMARY="ERROR: could not summarise ${STEWARD_REPORT} -- escalation state UNKNOWN."
+fi
+steward_print_summary
 
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py

@@ -540,7 +540,8 @@ governance, and the ledger is what calibrates it.
   edits nothing at all and is permanently T1.
 - **Nothing commits, pushes, or moves a ref.** The git lane is read-only by
   whitelist; the auto-fix lane leaves edits in the working tree for review.
-- **Not wired into `governance.sh`.** Runnable by hand first, `--fix` included.
+- **`--fix` is still not wired.** The runner is wired into `governance.sh`
+  (see "Wiring" below), but a bare run; the auto-fix lane stays opt-in.
 - **D-007's framing question was resolved by user sign-off 2026-08-16** and is
   now built -- see "Stage 4" above. The sign-off is a CONSTRAINT, not a default
   to improve on: it reports "the gate text is stale" and never "the node should
@@ -553,5 +554,68 @@ governance, and the ledger is what calibrates it.
 duration, per-detector totals). Its value is the time series.
 
 `state/steward_state.json` is absent until the first run, which is what makes that
-first run escalate everything. `reports/` is gitignored for stage 1; whether the
-report should be committed is a stage-2 wiring decision.
+first run escalate everything.
+
+## Wiring (2026-08-16)
+
+`scripts/governance.sh` **Step 3m**, a bare run, `|| true`, no
+`--exit-nonzero-on-escalate` and no `--fix`.
+
+**Placement is constrained by exactly one thing:** D-010 cross-checks its
+recomputed V3 denominator against `evidence/planning/closure_status.md`, which
+Step 3c-bis regenerates. Run earlier and it audits a stale snapshot and reports
+the staleness as a defect. Nothing else it reads is written by this pipeline.
+
+**No `--exit-nonzero-on-escalate`.** Turning a detector finding into a failed
+governance regen would make detection expensive, inverting the design: the whole
+argument for running this every cycle is that detection is free.
+
+**No `--fix`.** The T0 lane has 19 real repairs queued against plan frontmatter;
+applying them changes what the morning digest reports. That is a
+governance-visible action for a session running `--fix` on purpose.
+
+**The `escalate` boolean is printed twice** -- once at Step 3m, and again from
+`governance.sh`'s exit trap, so it is the last thing on the screen even when the
+regen aborts at a later blocking gate (Step 4b, Step 9c) and even though several
+hundred lines of regen output follow the step itself. A gate nobody reads is not
+a gate.
+
+### The report and the ratchet state stay gitignored -- and the two reasons differ
+
+`reports/steward_report.json` and `state/steward_state.json` were left
+gitignored, along with `state/steward_ref_pins.json` (which was neither tracked
+nor ignored -- a leak, since a governance regen would have left it `??` for a
+human to sweep into a landing commit).
+
+**The report: churn with no reader.** ~85KB rewritten in full on every run,
+carrying `generated_at`, `duration_s`, and `repo_root` -- an **absolute
+machine-local path**, so the file differs between every box by construction. Its
+only consumer is `governance.sh`, which wrote it moments earlier. `ref_pins` is
+worse: it is *keyed* by that absolute path, so a shared copy would compare this
+box's refs against another box's checkout.
+
+**The ratchet state: silent suppression, which is not the same failure at all.**
+Committing it would make the ratchet fleet-wide, so a finding escalates once
+across all boxes instead of once per box. That sounds strictly better and is not,
+because the state's semantic effect is **suppression**: any run anywhere advances
+it, including a hand-run test -- which this README explicitly invites ("runnable
+by hand"). A throwaway hand-run whose banner nobody read would consume a
+finding's one fleet-wide escalation, permanently and silently. The asymmetry
+decides it: a per-machine ratchet **over**-escalates at worst -- bounded (one
+extra per box), visible, and recoverable -- where a shared one fails by
+**withholding**, which is precisely the failure mode `d002`'s "a precision floor
+is illegitimate for a detector whose misses are silent" rules out everywhere
+else in this module. Concurrent whole-file rewrites of a shared JSON registry
+(CLAUDE.md "Read-modify-write contamination") are a second, independent reason,
+but the suppression argument is the load-bearing one.
+
+**`state/steward_ledger.jsonl` stays tracked, and that is not inconsistent.** It
+is an append-only audit time series -- it merges, it suppresses nothing, and its
+whole value is being fleet-wide and durable. The distinction being drawn is
+append-only audit (commit it) vs suppression-bearing whole-file rewrite (do not).
+
+**What this costs, stated plainly:** governance cannot read the findings without
+running the detectors. That is a real loss for a remote reader, and it is cheap
+to reverse if it ever bites -- the fix is a derived, machine-independent
+*summary* artifact (findings only, no `repo_root`, no timings), not committing
+this report.
