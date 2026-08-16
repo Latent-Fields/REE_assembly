@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-08.1 -->
+<!-- EXPLORER_VERSION: 2026-08-16.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8483,7 +8483,10 @@ END CONFLICT RESOLUTION`;
           if (box && box.style.display !== 'none') {
             const key = `${btn.dataset.detailScript}||${btn.dataset.detailQid}`;
             openDetailPanels[key] = {
-              text: box.textContent,
+              // innerHTML, not textContent: the panel now carries a rendered
+              // "Regions exercised" block with links, which textContent would
+              // flatten away on every 10s auto-refresh.
+              html: box.innerHTML,
               loaded: box.dataset.loaded === '1',
               scrollTop: box.scrollTop,
             };
@@ -8498,7 +8501,7 @@ END CONFLICT RESOLUTION`;
           if (!saved) return;
           const box = btn.parentElement.parentElement.querySelector('.exp-detail-box');
           if (!box) return;
-          box.textContent = saved.text;
+          box.innerHTML = saved.html;
           if (saved.loaded) box.dataset.loaded = '1';
           box.style.display = 'block';
           box.scrollTop = saved.scrollTop;
@@ -8535,6 +8538,42 @@ END CONFLICT RESOLUTION`;
         });
       });
 
+      // "Regions exercised" — the inverse of the /brain-map panel: this run's
+      // claim_ids_tested joined to brain_region_map.yaml subject_prefixes
+      // server-side (serve.py _regions_for_claim_ids). Appended below the plain
+      // manifest detail; omitted entirely when the run maps into no region, so
+      // an unavailable region map just means no block rather than a broken panel.
+      // Built with DOM APIs (not innerHTML) so run-supplied claim ids cannot
+      // reach the parser.
+      function renderExpRegions(box, regions) {
+        if (!Array.isArray(regions) || !regions.length) return;
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'margin-top:10px;padding-top:8px;border-top:1px solid var(--border);white-space:normal';
+        const hd = document.createElement('div');
+        hd.style.cssText = 'font-weight:600;margin-bottom:4px';
+        hd.textContent = 'Regions exercised (' + regions.length + ')';
+        wrap.appendChild(hd);
+        regions.forEach(r => {
+          const row = document.createElement('div');
+          row.style.cssText = 'padding:2px 0';
+          const a = document.createElement('a');
+          a.href = '/brain-map?region=' + encodeURIComponent(r.region_id || '');
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.style.color = 'var(--accent, #0070f3)';
+          a.textContent = r.label || r.region_id || '';
+          row.appendChild(a);
+          const meta = document.createElement('span');
+          meta.style.cssText = 'color:var(--muted);margin-left:6px';
+          const n = r.claim_count || (r.claim_ids || []).length;
+          meta.textContent = n + (n === 1 ? ' claim' : ' claims') +
+            ((r.claim_ids || []).length ? ' — ' + r.claim_ids.join(', ') : '');
+          row.appendChild(meta);
+          wrap.appendChild(row);
+        });
+        box.appendChild(wrap);
+      }
+
       // Wire Completed-card "Details" expanders — lazy-load the manifest detail
       // panel on first open, then just toggle visibility (no auto-refresh churn:
       // the panel content is fetched once and kept until the section re-renders).
@@ -8561,6 +8600,7 @@ END CONFLICT RESOLUTION`;
               box.textContent = j.found
                 ? j.detail
                 : (j.message || 'No manifest detail available for this experiment.');
+              if (j.found) renderExpRegions(box, j.regions);
             } catch (_) {
               box.textContent = 'Detail unavailable — is serve.py running?';
             }

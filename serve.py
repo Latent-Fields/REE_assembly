@@ -2298,6 +2298,243 @@ def _brain_conflict_snippets(region_docs: list[str]) -> list[str]:
     return snippets[:8]
 
 
+# ---------------------------------------------------------------------------
+# Region <-> experiment join (read-side only)
+# ---------------------------------------------------------------------------
+# Two panels, one index, both directions of the same join:
+#
+#   (A) /brain-map sidebar -- "which experiments recently touched this region"
+#   (B) /api/experiment/detail -- "which regions did this run exercise"
+#
+# Join path, entirely from data the governance pipeline already produces:
+#   claim_evidence.v1.json `entries` carry (claim_id, run_id, status, timestamp)
+#   -> claims.yaml gives each claim its `subject`, whose first dotted component
+#      is a subject prefix
+#   -> brain_region_map.yaml co-locates each region's `subject_prefixes` with
+#      that region's identity.
+#
+# Nothing here mutates a manifest, the region map, claim_evidence.v1.json or
+# claims.yaml, and nothing here is under sync_daemon's write ownership.
+
+_REGION_EXPERIMENTS_CACHE: dict = {"key": None, "index": None}
+
+# Rows kept per region in the /api/brain-map payload. ~40 nodes x this, so it is
+# a payload-size knob as much as a UI one; the sidebar renders the first 8 and
+# expands to the rest, and `recent_experiments_total` always reports the truth.
+_REGION_EXPERIMENTS_MAX_PER_REGION = 20
+
+_EMPTY_REGION_EXPERIMENT_INDEX: dict = {
+    "by_region": {},
+    "totals": {},
+    "claim_to_regions": {},
+    "region_labels": {},
+}
+
+
+def _region_experiment_readable_ts(compact: str) -> str:
+    """20260722T041239Z -> 2026-07-22T04:12:39Z. Passes anything else through."""
+    s = str(compact or "")
+    if len(s) == 16 and s[8] == "T" and s.endswith("Z"):
+        return f"{s[0:4]}-{s[4:6]}-{s[6:8]}T{s[9:11]}:{s[11:13]}:{s[13:15]}Z"
+    return s
+
+
+def _region_experiment_manifest_url(experiment_type: str, run_id: str) -> str:
+    """Served URL for a run's evidence manifest, or "" when it is not on disk.
+
+    The indexer's run-pack layout (evidence/experiments/<experiment_type>/runs/
+    <run_id>/manifest.json) resolves 1565/1565 of the experimental runs in
+    claim_evidence.v1.json as of 2026-08-16, so it is the only shape probed
+    here; a miss just drops the link rather than the row.
+    """
+    if not experiment_type or not run_id:
+        return ""
+    rel = f"evidence/experiments/{experiment_type}/runs/{run_id}/manifest.json"
+    try:
+        if not (SERVE_DIR / rel).is_file():
+            return ""
+    except OSError:
+        return ""
+    return "/" + rel
+
+
+def _region_experiment_index() -> dict:
+    """Both directions of the region <-> experiment join. READ-ONLY; shared.
+
+    Returns a dict with:
+      by_region        {region_id: [run row, newest first]}, capped per region
+      totals           {region_id: total runs before the cap}
+      claim_to_regions {claim_id: [region_id, ...]}
+      region_labels    {region_id: {"label": str, "bucket": str}}
+
+    Keyed on (mtime_ns, size) of brain_region_map.yaml, claim_evidence.v1.json
+    and claims.yaml -- not a TTL -- for the same reason as
+    _load_claim_evidence_claims(): a governance rebuild must be visible on the
+    very next request. The returned dict is SHARED; treat it as read-only.
+
+    Never raises. A missing region map, a missing or malformed
+    claim_evidence.v1.json, or an unavailable PyYAML all degrade to the empty
+    index, i.e. every panel renders as absent rather than breaking the page.
+    """
+    def _stat_key(p):
+        try:
+            st = p.stat()
+        except OSError:
+            return None
+        return (st.st_mtime_ns, st.st_size)
+
+    try:
+        key = (
+            _stat_key(BRAIN_REGION_MAP_FILE),
+            _stat_key(_TL_CLAIM_EVIDENCE),
+            _stat_key(_TL_CLAIMS_YAML),
+        )
+        if _REGION_EXPERIMENTS_CACHE["key"] == key and _REGION_EXPERIMENTS_CACHE["index"]:
+            return _REGION_EXPERIMENTS_CACHE["index"]
+
+        map_doc = _brain_load_region_map()
+        claims_list = _tl_load_claims()
+        if not map_doc or not claims_list:
+            return _EMPTY_REGION_EXPERIMENT_INDEX
+
+        prefix_to_node = _brain_prefix_index(map_doc)
+        region_labels: dict = {}
+        for bucket in ("regions", "engineering_nodes"):
+            for node in map_doc.get(bucket) or []:
+                nid = str(node.get("id") or "")
+                if nid:
+                    region_labels[nid] = {
+                        "label": str(node.get("label") or nid),
+                        "bucket": "region" if bucket == "regions" else "engineering",
+                    }
+
+        claim_to_regions: dict = {}
+        for c in claims_list:
+            cid = str(c.get("id") or "")
+            sub = str(c.get("subject") or "")
+            if not cid or not sub:
+                continue
+            nid = prefix_to_node.get(sub.split(".")[0])
+            if nid:
+                claim_to_regions[cid] = [nid]
+
+        # The `entries` list is not carried by the shared claim_evidence loader
+        # (which keeps only `claims`), so parse it here -- once per mtime change,
+        # and distilled straight into the index rather than retained.
+        try:
+            data = json.loads(_TL_CLAIM_EVIDENCE.read_text(encoding="utf-8"))
+            entries = data.get("entries") or []
+        except Exception:
+            entries = []
+        if not isinstance(entries, list):
+            entries = []
+
+        by_run: dict = {}
+        for e in entries:
+            if not isinstance(e, dict):
+                continue
+            if str(e.get("source_type") or "") != "experimental":
+                continue
+            run_id = str(e.get("run_id") or "")
+            cid = str(e.get("claim_id") or "")
+            if not run_id or not cid:
+                continue
+            rec = by_run.get(run_id)
+            if rec is None:
+                rec = by_run[run_id] = {
+                    "run_id": run_id,
+                    "experiment_type": str(e.get("experiment_type") or ""),
+                    "timestamp_utc": str(e.get("timestamp_utc") or ""),
+                    "outcome": str(e.get("status") or ""),
+                    "summary": "",
+                    "claim_ids": [],
+                }
+            if cid not in rec["claim_ids"]:
+                rec["claim_ids"].append(cid)
+            if not rec["outcome"]:
+                rec["outcome"] = str(e.get("status") or "")
+            if not rec["summary"]:
+                rec["summary"] = str(
+                    e.get("interpretation_label") or e.get("confidence_rationale") or ""
+                )[:160]
+
+        by_region: dict = {}
+        for rec in by_run.values():
+            per_region: dict = {}
+            for cid in rec["claim_ids"]:
+                for nid in claim_to_regions.get(cid) or ():
+                    per_region.setdefault(nid, []).append(cid)
+            for nid, cids in per_region.items():
+                by_region.setdefault(nid, []).append({
+                    "run_id": rec["run_id"],
+                    "experiment_type": rec["experiment_type"],
+                    "timestamp_utc": rec["timestamp_utc"],
+                    "completed_at": _region_experiment_readable_ts(rec["timestamp_utc"]),
+                    "outcome": rec["outcome"],
+                    "summary": rec["summary"],
+                    "claim_ids": sorted(cids),
+                })
+
+        totals: dict = {}
+        for nid, rows in by_region.items():
+            rows.sort(key=lambda r: (r.get("timestamp_utc") or "", r.get("run_id") or ""), reverse=True)
+            totals[nid] = len(rows)
+            del rows[_REGION_EXPERIMENTS_MAX_PER_REGION:]
+            for r in rows:
+                r["manifest_url"] = _region_experiment_manifest_url(
+                    r.get("experiment_type") or "", r.get("run_id") or ""
+                )
+
+        index = {
+            "by_region": by_region,
+            "totals": totals,
+            "claim_to_regions": claim_to_regions,
+            "region_labels": region_labels,
+        }
+        _REGION_EXPERIMENTS_CACHE["index"] = index
+        _REGION_EXPERIMENTS_CACHE["key"] = key
+        return index
+    except Exception:
+        return _EMPTY_REGION_EXPERIMENT_INDEX
+
+
+def _regions_for_claim_ids(claim_ids) -> list[dict]:
+    """Inverse join for panel (B): a run's claims -> the regions they map into.
+
+    Takes the claim ids straight off the run's own manifest (claim_ids_tested /
+    claim_ids), so a run too fresh to be in claim_evidence.v1.json still
+    resolves. Ordered by claim_count desc then region_id. Never raises."""
+    try:
+        idx = _region_experiment_index()
+        claim_to_regions = idx.get("claim_to_regions") or {}
+        region_labels = idx.get("region_labels") or {}
+        if not claim_to_regions:
+            return []
+        grouped: dict = {}
+        for cid in claim_ids or []:
+            cid = str(cid or "")
+            if not cid:
+                continue
+            for nid in claim_to_regions.get(cid) or ():
+                bucket = grouped.setdefault(nid, [])
+                if cid not in bucket:
+                    bucket.append(cid)
+        out = []
+        for nid, cids in grouped.items():
+            meta = region_labels.get(nid) or {}
+            out.append({
+                "region_id": nid,
+                "label": str(meta.get("label") or nid),
+                "bucket": str(meta.get("bucket") or ""),
+                "claim_ids": sorted(cids),
+                "claim_count": len(cids),
+            })
+        out.sort(key=lambda r: (-r["claim_count"], r["region_id"]))
+        return out
+    except Exception:
+        return []
+
+
 def read_brain_map() -> dict:
     """Aggregate brain-region stats for /api/brain-map."""
     generated_at = _utc_now_compact()
@@ -2317,6 +2554,9 @@ def read_brain_map() -> dict:
     evidence_by_id = _brain_load_claim_evidence()
     queued = _brain_queued_exqs()
     queued_claim_ids = {cid for q in queued for cid in q.get("claim_ids") or []}
+    region_exp = _region_experiment_index()
+    region_exp_by_region = region_exp.get("by_region") or {}
+    region_exp_totals = region_exp.get("totals") or {}
 
     claims_by_prefix: dict[str, list[dict]] = {}
     for c in claims_list:
@@ -2406,6 +2646,8 @@ def read_brain_map() -> dict:
             "queued_exqs": queued_here[:10],
             "conflict_refs": conflict_hits,
             "coverage_tier": coverage_tier,
+            "recent_experiments": list(region_exp_by_region.get(nid) or []),
+            "recent_experiments_total": int(region_exp_totals.get(nid) or 0),
         }
 
     regions = [enrich_node(n, "region") for n in (map_doc.get("regions") or [])]
@@ -6665,6 +6907,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 rel = str(mf.relative_to(SERVE_DIR))
             except ValueError:
                 rel = mf.name
+            # Inverse region join: this run's claims -> the brain-map regions they
+            # exercise. Read off the manifest itself (not claim_evidence.v1.json)
+            # so a run too fresh to be indexed still resolves. Empty on any failure.
+            m_claim_ids = [
+                str(x) for x in (m.get("claim_ids_tested") or m.get("claim_ids") or []) if x
+            ]
             body = json.dumps({
                 "found": True,
                 "queue_id": m.get("queue_id", queue_id),
@@ -6673,6 +6921,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 "timestamp": timestamp,
                 "evidence_direction": m.get("evidence_direction"),
                 "manifest_path": rel,
+                "claim_ids": m_claim_ids,
+                "regions": _regions_for_claim_ids(m_claim_ids),
                 "detail": build_manifest_detail(m),
             }, default=str).encode()
             self._json_response(body)
