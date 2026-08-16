@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-16T11:26:40Z`
+Generated: `2026-08-16T12:59:55Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,28 +11,30 @@ UI: http://localhost:8000/workset
 
 - Items: **240** (ready 29, in_flight 0, blocked 161)
 - By generation: clinical 11, meta 4, process 10, v3 76, v4 76, v5 38, v6 25
-- Pending review: **15**
-- Queue pending (unclaimed): **0**
+- Pending review: **14**
+- Queue pending (unclaimed): **1**
 
 - Live EXQs: V3-EXQ-906c
+
+- Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-935
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-074d -> v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3, MECH-151 -> v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
 ## Work packages
 
-### IGW-20260816-001 -- Complete governance review (15 pending)
+### IGW-20260816-001 -- Complete governance review (14 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 15 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 14 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260816-001
-Title: Complete governance review (15 pending)
+Title: Complete governance review (14 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 15 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 14 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -1215,7 +1217,7 @@ Instructions:
 
 </details>
 
-### IGW-20260816-216 -- Queue depth low (0 pending)
+### IGW-20260816-216 -- Queue depth low (1 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1224,7 +1226,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260816-216
-Title: Queue depth low (0 pending)
+Title: Queue depth low (1 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
