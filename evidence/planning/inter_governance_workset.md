@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-16T21:07:04Z`
+Generated: `2026-08-16T22:09:15Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,7 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **0**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-906c, V3-EXQ-935
+- Live EXQs: V3-EXQ-874b, V3-EXQ-906c, V3-EXQ-935
 
 - Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-935
 
