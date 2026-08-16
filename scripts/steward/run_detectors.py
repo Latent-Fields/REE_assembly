@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Steward detector runner -- stage 1.
+"""Steward detector runner -- stages 1-3.
 
 Runs every registered detector, diffs the result against the previous run, applies
 suppressions, and writes reports/steward_report.json carrying a single boolean:
@@ -399,7 +399,7 @@ def append_ledger(state_dir: Path, report: dict, now: str) -> None:
 
 def print_banner(report: dict) -> None:
     c = report["counts"]
-    print("Steward stage 1 -- %d finding(s) in %.2fs  [new %d / recurring %d / "
+    print("Steward -- %d finding(s) in %.2fs  [new %d / recurring %d / "
           "resolved %d / suppressed %d]"
           % (c["total"], report["duration_s"], c["new"], c["recurring"],
              c["resolved"], c["suppressed"]))
