@@ -1,0 +1,527 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T18:24:28Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_mode_note": "Steps 1-7 and 9 were run in full. Step 8 (interactive scientific-judgment gate) was SKIPPED -- this session has no user. Routing below is DRAFTED, not finalised, and must be confirmed by an interactive session or the next /governance walk. Step 9b was drafted-only: nothing was written to hypothesis_space_registry.v1.json or any hypothesis_space_* sibling; see hypothesis_space_ledger_pending. This session opened/closed no TASK_CLAIMS entry (the parent holds cranky-driscoll-126a36-batch), spawned no chip, and committed nothing.",
+  "companion_md": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_note": "scripts/check_dry_run_citations.py over both target run_ids: 0 dry cited, 0 dry in named families, 0 ambiguous, 2 clean, 0 unknown, exit 0. Run BEFORE any metric was read. No dry manifest is cited anywhere in this artifact and no population statistic here includes one. Neither target's driver reduction block is in scope, since neither run is dry.",
+  "already_done_check": "Performed by CONTENT over targets[].run_id across every failure_autopsy_*.json in evidence/planning/ (not a filename glob). Zero confirmed or draft artifacts cover either run_id.",
+  "recording_provenance": {
+    "validate_recording": "2 manifests checked: 2 complete, 0 always-core gaps, 0 thin-pack provenance drops, 0 schema warnings.",
+    "recording_gap_present": false,
+    "note": "Neither adjudication is blocked by a missing readout, so neither routes to the recording-gap pathway. Both manifests carry substrate_stable_across_run: false from a single process_snapshot_drift record (recorded hash != on-disk hash at manifest-write time), but per_cell_hashes_disagree is false on both -- the runs each executed against one identified substrate and the drift is post-run disk movement on the worker. Recorded, not treated as invalidating."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
+      "queue_id": "V3-EXQ-436f",
+      "supersedes": "V3-EXQ-436e",
+      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "insufficient_occupancy_for_c1",
+      "failed_criterion": "readiness_precondition",
+      "failed_criterion_note": "Neither a discrimination criterion nor a negative control. P0 gate sufficient_occupancy_for_c1 measured 2.0 scoreable seeds against a floor of 3.0; the other FIVE P0 checks all cleared, including the new sd016_arming_engaged (pooled applied ctxdiv loss 25796.28 vs a 1e-9 floor). C1 (n_seeds_passed 1, required 3) carries scored:false and C4 (4/5) carries scored:false -- neither is evidence in either direction. NOTE: the driver's own INTERPRETATION GRID pre-registered exactly this joint reading (sd016_arming_engaged MET + insufficient_occupancy_for_c1 UNMET) as the diagnostic signal to route to a WRITE-path successor, so this is a successful pre-registered read/write discrimination, not a bare precondition failure.",
+      "key_facts": {
+        "machine": "ree-cloud-4",
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "elapsed_seconds": 1328.5,
+        "seeds": [42, 7, 13, 100, 200],
+        "substrate_hash": "bcfa771e56826280327bfeaea43b1bdadd730a1c8ba726b9fe271673e91e2aca",
+        "non_degenerate": true,
+        "p0_gates_met": 5,
+        "p0_gates_total": 6,
+        "occupied_slots_of_16_per_seed_waking_vs_sws": {"42": [11, 10], "7": [1, 1], "13": [1, 1], "100": [1, 1], "200": [14, 15]},
+        "n_scoreable_seeds": 2,
+        "n_scoreable_seeds_required": 3,
+        "occupancy_identical_to_436e": true,
+        "c1_directional_on_scoreable_seeds": "1 of 2 (seed 42 0.99809 -> 0.99697 passes; seed 200 0.95391 -> 0.98744 FAILS, direction reversed vs 436e)",
+        "c1_directional_in_436e": "2 of 2 -- did NOT survive this single config change; do not carry the n=2 read forward as partial support"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- a P0 readiness failure upstream of the C1 comparison. Weighs on SD-017 / ARC-045 / MECH-166 in NEITHER direction.",
+        "biological_reference": "clear -- SWS hippocampus-to-neocortex schema installation plus REM-direction attribution filling (Diekelmann & Born 2010; Sanders/Wilson/Gershman 2020 hidden-state prior). Not a formal-definition import; lit_status present; no /lit-pull owed. The failure matches a missing pattern-separation dependency: dentate/CA3 separation upstream of the write is exactly what stops a near-identical input stream collapsing onto one engram, and REE has no separation stage on the write address.",
+        "prerequisites": "missing -- a non-degenerate write-address selection mechanism does not exist. SD-016's landed remedies (908 annealed Gumbel selection, 907 ctxdiv loss) are all read-side or on a separate tagger MLP. This is now a BUILD gap; at 436e it was still (correctly) read as a configuration gap.",
+        "implementation": "partial -- ContextMemory.read() addresses by softmax over query_proj(query) @ key_proj(memory).T (e1_deep.py:124-133), while ContextMemory.write() addresses by a hard scores.mean(0).argmin() (e1_deep.py:144). Symbol of the mechanism (16-slot bank, 2837-4903 write calls per arm) without its functional role (1 occupied slot on 3/5 seeds).",
+        "environment": "too sparse (known) -- z_world cross-context cosine 0.998, recorded on the SD-016 substrate_queue entry since 2026-04-28. The SD-070 encoder recipe that lifts it 2.7-4.0x was not applied here.",
+        "measurement": "adequate -- 436e's repaired instrument re-confirmed: occupancy-masked DV tracking write()'s own min_idx; similarity and occupancy reported separately; untouched-bank null re-derived at run time (n=500, mean 1.92e-05, sd 7.79e-03); NO_WRITES negative control at max |z| = 1.670 against a 4.0-sigma tolerance.",
+        "integration": "partially coupled -- sleep writes and the ContextMemory readout are correctly coupled; the SD-016 cue conditioning is coupled to the read path only, exactly as the driver's own docstring caveat predicted in advance.",
+        "scale": "adequate -- 16 slots is not the binding constraint; the write path fans out to 10-15 of them on the two seeds with adequate query variance."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM + ENVIRONMENT. NOT chargeable to REE. Implementation reads partial and Environment reads too sparse; only Measurement reads adequate, so the REE FAILED bucket is unreachable. The comparison was never computable on 3 of 5 seeds."
+      },
+      "failure_location_convention_note": "Recorded under the skill's LITERAL Step 5 rule: a bucket is `established` iff its corresponding four-layer row reads adequate/complete, which is what makes `ree: true` (all three established) self-consistent. NOTE that failure_autopsy_V3-EXQ-436e_2026-08-13 used the INVERSE convention on its `measures` field (set not_established while its prose said the measurement row read `adequate`). Both artifacts reach the same prose verdict, so nothing downstream turns on it here, but the two are not field-comparable. Flagged for a governance decision.",
+      "biological_reference": {
+        "closest_mechanism": "SWS hippocampus-to-neocortex schema installation followed by REM-direction attribution filling; context slot formation as a learned hidden-state prior, with dentate/CA3-style pattern separation upstream of the write",
+        "dependencies": [
+          "cue-distinguishable context representations (z_world cross-context separation)",
+          "a write path that addresses distinct substrates for distinct contexts (pattern separation)",
+          "offline replay passes"
+        ],
+        "is_formal_import": false,
+        "divergence": "none in translation fidelity. The divergence is architectural asymmetry: the read path is soft/distributed and the write path is a hard argmin with a deterministic fixed point. Biology separates on the write side; REE does not.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_per_claim": {
+        "SD-017": "substrate_ceiling",
+        "ARC-045": "substrate_ceiling",
+        "MECH-166": "substrate_ceiling"
+      },
+      "recommended_epistemic_category_note": "FLIPS the 436e reading, and the flip is the load-bearing judgment of this target -- surface it at the gate. failure_autopsy_V3-EXQ-436e_2026-08-13 stamped `standard` on an EXPLICIT stated condition: 'substrate_ceiling asserts the claim's answer is gated on substrate work; here the substrate shipped 2026-08-11 and merely needs switching on.' V3-EXQ-436f is the run that TESTS that condition and FALSIFIES it -- the substrate that shipped (ree-v3 110a2785b6) is the SD-016 READ path; 436f armed it in full, the arming engaged (25,796 pooled applied ctxdiv loss against a 1e-9 floor), and write-path occupancy moved by exactly zero seeds. The WRITE-path selection mechanism does not exist and must be built, so the claims' answer IS now gated on substrate work, which is precisely what substrate_ceiling asserts. This is the Step 5 'conditionally-stamped category whose re-check trigger has fired' case. CONSEQUENCE TO ACCEPT KNOWINGLY: substrate_ceiling puts all three claims in _EPI_SUPPRESS_PROPOSAL (out of GOV-GRAN-1 surfacing) and makes them not-v3-testable (_claim_v3_testable), which is accurate -- C1 cannot be tested until the write-path build lands -- but it removes three claims from the v3 experiment lane. The failure MODE (precondition_unmet / occupancy collapse) is recorded in the note fields, never in the category field, per the standing rule.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-017": "non_contributory",
+        "ARC-045": "non_contributory",
+        "MECH-166": "non_contributory"
+      },
+      "interpretable_signal": "Stated explicitly before recommending non_contributory, per the standing rule. (1) A PRE-REGISTERED discrimination resolved: the driver's own interpretation grid named `sd016_arming_engaged MET + insufficient_occupancy_for_c1 UNMET` in advance as the signal that the read-path fix does not lift write-path occupancy, and exactly that reading occurred. (2) A durable, cross-consumer substrate property is now established with a quantitative before/after: arming the full SD-016 production combination changes write-path slot occupancy by zero seeds (2/5 -> 2/5, same three seeds at exactly 1 of 16 slots). (3) The 436e instrument is independently re-confirmed sound on a second run. (4) A negative methodological result: 436e's '2/2 directional' partial signal is not stable (now 1/2). The run is non_contributory TO THE CLAIMS specifically, not uninformative.",
+      "recommended_evidence_quality_note": "[2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "SD-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-SD-016-armed to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays stable"
+        },
+        "ARC-045": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-166": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "per_claim_recommendation_note": "Emitted so GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py, governance.sh Step 3h) can mechanically see whether this recommendation was ever APPLIED once the run leaves pending_review.md. `change` deliberately ends on a value claims.yaml actually STORES (`-> substrate_ceiling`, an epistemic_category) rather than on an evidence_direction, which is stored on 0 of 1006 claims and could therefore only clear via the provenance stamp.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "contextmemory-write-path-addressing-degeneracy",
+        "title": "ContextMemory.write() hard-argmin addressing has a deterministic single-slot fixed point under a low-variance query stream -- give the WRITE path the non-degenerate selection the READ path already has",
+        "implementation_hint": "ContextMemory.read() (ree_core/predictors/e1_deep.py:124-133) addresses by softmax over query_proj(query) @ key_proj(memory).T, but ContextMemory.write() (lines 135-147) addresses by a hard scores.mean(0).argmin(), which under a near-constant query stream is a deterministic single-slot fixed point -- established at 436e by a closed-form sign discriminator q . (write_signal - memory[argmin]) that predicted lock-vs-rotate 5/5. Primary build: apply the annealed Gumbel-softmax selection that V3-EXQ-908 ALREADY CONFIRMED works (3/3, genuine context-conditioned sparsification) to the WRITE address, or add an occupancy/usage-balancing term so the fixed point cannot form. Note compute_diversification_loss() already acts on self.memory but the write update runs under torch.no_grad() and is unaffected by it. Secondary/complementary lever (NOT this entry): raise z_world entropy via the SD-070 encoder recipe so the query stream stops being near-constant. This is the WRITE-side sibling of substrate_queue SD-016, which is scoped to cue-indexed RETRIEVAL and is already `implemented`; an amend there would misfile it.",
+        "unblocks_claims": ["SD-017", "ARC-045", "MECH-166"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "priority_rationale": "One fresh failure record (V3-EXQ-436f), and it blocks 3 claims -- either arm of the governance Step 6a-ii.6 rule gives priority 1.",
+        "severity": "corrupting",
+        "severity_rationale": "Every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank while write() returns normally and thousands of calls are logged. Nothing errors, the readout is well-formed, and the resulting null looks like a genuine 'sleep has no effect' finding. That is the definition of `corrupting` -- evidence that LOOKS valid but is not -- and it has now produced exactly that artefact twice (436e, 436f). Classified by what the defect does to evidence quality, not by fix difficulty.",
+        "substrate_paths": ["ree_core/predictors/e1_deep.py"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
+          "experiment_type": "v3_exq_436f_sd017_mech166_sd016_armed_retest",
+          "metric": "n_occupied_slots = 1 of 16 in BOTH arms on 3/5 seeds (7, 13, 100) despite 2,837-4,903 ContextMemory.write() calls per arm, giving n_scoreable_seeds = 2 against a registered floor of 3 -- IDENTICAL to predecessor V3-EXQ-436e, with the full SD-016 production combination ARMED and confirmed engaged (sd016_arming_engaged: pooled applied ctxdiv loss 25,796.28 vs a 1e-9 floor). The read-path fix (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922 ctxdiv training-loop wiring) changes write-path occupancy by ZERO seeds.",
+          "target": ">= 2 occupied slots in both arms on >= 3/5 seeds, under a non-degenerate write-address selection mechanism",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
+            "on_entry": "SD-016",
+            "resolved": "superseded",
+            "resolved_note": "The 436e autopsy amended substrate_queue SD-016 with an occupancy failure record whose stated target was '>= 2 occupied slots in both arms on >= 3/5 seeds, under sd016_cue_slot_tagger=True / selection=gumbel / sd016_context_divergence_weight=0.5'. V3-EXQ-436f ran exactly that configuration and the target was NOT met -- 2/5, unchanged. The item is SUPERSEDED (a more specific run replaced its read; nothing was fixed): the SD-016 read-path arming is not the remedy for write-path occupancy, so the item's remedy hypothesis is retired and moves to the new write-path entry above. Do NOT mark it `resolved`."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_rescope_note": "Re-scoped a THIRD time: 'after-substrate' (pre-2026-08-07) -> 'after-DV-repair' (2026-08-07 methodology check) -> 'after-SD-016-armed' (2026-08-13, 436e autopsy) -> 'after-WRITE-PATH-ADDRESSING-BUILD' (2026-08-16, this autopsy). The sleep_substrate:GAP-2 closure node still describes the blocker in the original pre-2026-08-07 framing and has now not tracked three successive re-scopings.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "counts_under_r1_r3_before_this_autopsy": {"SD-017": 2, "ARC-045": 0, "MECH-166": 0},
+        "counts_under_r1_r3_including_this_autopsy": {"SD-017": 3, "ARC-045": 1, "MECH-166": 1},
+        "fires_for_claims": ["SD-017"],
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-538a_2026-07-10",
+          "failure_autopsy_grandfathered-sleep-cluster_2026-08-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "refusal_note": "A same-claim test re-queue is REFUSED. No V3-EXQ-436g may be queued that re-poses the C1 slot-differentiation question against the current ContextMemory.write() addressing -- not another read-path letter, not a seed-count bump, not a lowered occupancy floor. Seven generations (436, 436a-436f) have circled this question and the last three failed at the same P0 occupancy gate. The exemption the 436e autopsy invoked ('the substrate IS genuinely being enriched between letters') NO LONGER APPLIES: 436f is precisely the letter that showed the enrichment does not reach the write path. A redesign of a DIFFERENT mechanism (new EXQ number, different claim_ids) remains permitted, as does a commitment-free read; the C1 retest is permitted only AFTER the write-path build lands. Note the brake and the correct routing AGREE here, unlike at 436e where stamping a ceiling would have refused the then-correct re-queue.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "contextmemory-write-path-addressing-degeneracy (proposed; see recommended_substrate_queue_entry)",
+        "counting_note": "R1 the unit is the RUN (no break; per-target fallback key); R2 latest adjudication supersedes, never adds; R3 only substrate_ceiling counts, non_contributory alone does not; per-claim category wins over the blanket one; confirmed artifacts only. ARC-045 and MECH-166 go to 1 each, below threshold, so the brake does not fire on them.",
+        "count_caveat_for_governance": "One place a human could legitimately move the SD-017 count, FLAGGED but deliberately NOT applied here. Under the peripheral-co-tag rule (2026-07-21), failure_autopsy_V3-EXQ-538a_2026-07-10 tags FIVE claims (SD-049, SD-015, SD-017, MECH-229, MECH-230) and its SD-017 claim_alignment reads 'unclear (untested)'; SD-017's own claims.yaml note about that run says its per-claim SD-017 support 'was SWS/REM-write liveness only -- vacuous, NOT counted'. That reads like a peripheral co-tag. This autopsy has NOT re-attributed it, because the binding rule is that the fix direction is the ARTIFACT and re-attribution requires the 538a artifact's own prose to say peripheral/not-exercised -- and a staging session may not edit a confirmed artifact. If governance amends 538a with recommended_epistemic_category_per_claim, SD-017 drops to 2 and this brake does not fire. The ROUTING is unchanged either way; only the formal refusal turns on it."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_counts": {
+          "SD-017": {"targets": 15, "files": 8},
+          "ARC-045": {"targets": 6, "files": 6},
+          "MECH-166": {"targets": 6, "files": 6}
+        },
+        "alignment_distribution": {
+          "SD-017": "unclear=9, intact=2, untested=2, weakened=2",
+          "ARC-045": "unclear=3, untested=2, intact=1, weakened=1",
+          "MECH-166": "unclear=3, untested=2, intact=1, weakened=1"
+        },
+        "tagging_targets_cited": [
+          "failure_autopsy_2026-08-05_pending_review_batch | v3_exq_436d_... | weakens/standard | unclear",
+          "failure_autopsy_V3-EXQ-436b_2026-08-02 | v3_exq_436b_... | non_contributory/measurement_gap | unclear",
+          "failure_autopsy_V3-EXQ-436c_2026-08-03 | v3_exq_436c_... | weakens/measurement_test_design_defect | WEAKENED",
+          "failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07 | v3_exq_436d_... | non_contributory/measurement_test_design_defect | untested",
+          "failure_autopsy_V3-EXQ-436e_2026-08-13 | v3_exq_436e_... | non_contributory/standard | untested",
+          "failure_autopsy_V3-EXQ-538a_2026-07-10 | v3_exq_538a_... | non_contributory/substrate_ceiling | unclear",
+          "failure_autopsy_grandfathered-sleep-cluster_2026-08-08 | v3_exq_418d_... | weakens/substrate_ceiling | WEAKENED",
+          "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08 | v3_exq_242_... | non_contributory/precondition_unmet | intact"
+        ],
+        "reason": "Numeric precondition met and a `weakened` target exists, so the count alone would fire it -- but the structural test does not. The two SD-017 weakened targets are 436c (measurement_test_design_defect, explicitly REVERSED by the 2026-08-07 methodology check, which found the whole DV confounded) and 418d (substrate_ceiling, the SD-016 write-path modes comparison -- the SAME write-path defect this autopsy diagnoses, i.e. CONVERGENT, not a distinct facet). The differing signatures across the 436 lineage (recording gap -> write-gate payload defect -> metric confound -> occupancy collapse -> read-path arming insufficient) are successive defects in ONE apparatus being debugged layer by layer on ONE question, not several claims hiding inside a coarse one. Routing /claim-synthesis would inflate the believed tail on what is measurement, configuration and now substrate debt. Same conclusion as the 436e autopsy, reached independently.",
+        "counted_by": "granularity_debt_cluster.py (targets whose own claim_ids name the claim), not a filename grep"
+      },
+      "fanout_recommendation": null,
+      "fanout_recommendation_note": "Omitted deliberately. The bottleneck routes to ONE unambiguous build with a component already proven in-repo (the V3-EXQ-908 annealed Gumbel selection, applied to the write address), which is the skill's stated exemption. The complementary z_world-entropy lever (SD-070 encoder recipe) is not a rival hypothesis about the cause -- the cause is established by a closed-form discriminator -- but a separate, larger programme addressing the same degeneracy upstream. Node class: complicated (buildable).",
+      "learning_extracted": [
+        "The SD-016 READ-path fix does not lift WRITE-path occupancy, and this was a PRE-REGISTERED discrimination that resolved: the 436f driver's own INTERPRETATION GRID names the joint reading (sd016_arming_engaged MET + insufficient_occupancy_for_c1 UNMET) in advance as the signal to route to a write-path successor. 436f is therefore a successful read/write discrimination, not a bare precondition failure.",
+        "The named build: ContextMemory.read() addresses by softmax (e1_deep.py:124-133) while ContextMemory.write() addresses by a hard scores.mean(0).argmin() (line 144). The write side needs the annealed Gumbel-softmax selection V3-EXQ-908 already CONFIRMED (3/3), or an occupancy/usage-balancing term on the address.",
+        "A durable, cross-consumer substrate property: every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank while write() returns normally and thousands of calls are logged. Nothing errors and the resulting null looks like a genuine no-effect finding -- a `corrupting` defect, not a `degrading` one.",
+        "436e's '2/2 directional on the scoreable seeds' partial signal did NOT survive one config change (now 1/2; seed 200 reversed). An n=2 directional read must not be carried forward as partial support.",
+        "Sharpening of 436e's learning: a substrate can be recorded as landed-and-unblocking-claim-X, be ARMED IN FULL, and still not reach the failing path. unblocks_claims is not mechanically connected to any experiment's config (436e's finding) -- and not to the failing MECHANISM either (436f's). SD-016's addendum named SD-017 unblocked; the remedy is read-side; the block is write-side.",
+        "Cross-target methodological lesson (shared with V3-EXQ-603u): liveness/engagement preconditions built from EVENT COUNTERS cannot see a MAGNITUDE collapse. 3,000-4,900 write calls certified the write path as engaged while the bank held 1 occupied slot."
+      ],
+      "routing": "implement-substrate",
+      "routing_not_taken": {
+        "lit-pull": "Biological reference is clear and already grounded; not a formal-definition import. Nothing owed.",
+        "queue-experiment": "REFUSED for the same question by the fired re-derive brake. Permitted only after the write-path build lands.",
+        "claim-synthesis": "See granularity_debt_trigger -- measurement, configuration and substrate debt on one apparatus, not granularity debt.",
+        "governance-demotion": "The demotion threshold requires the claim to have been tested fairly; C1 has never been computed on a majority of seeds."
+      }
+    },
+    {
+      "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
+      "queue_id": "V3-EXQ-603u",
+      "supersedes": null,
+      "predecessor_queue_id": "V3-EXQ-603s",
+      "claim_ids": ["MECH-357"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "pressure_insufficient_lesion_ceiling_requeue",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "The load-bearing ABSOLUTE criterion G_H_INTACT_clears_2of3 PASSED (g_h_intact_frac 1.0); the load-bearing DISCRIMINATION criterion G_H_INTACT_beats_LESION FAILED because g_h_lesion_frac is ALSO 1.0. Proximate cause is the unmet readiness precondition discriminative_headroom_below_lesion_fails_gate (measured 0.0 = 1 - G_H_LESION_frac, against a 0.3333 floor). The other four readiness checks all cleared.",
+      "key_facts": {
+        "machine": "ree-worker-1 (hub)",
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "elapsed_seconds": 69133.0,
+        "elapsed_hours": 19.2,
+        "seeds": [42, 43, 44],
+        "arms": ["ARM_LESION_midline_pag_no_gate_combined_fix", "ARM_INTACT_midline_pag_gate_combined_fix", "ARM_POSCTRL_reefspawn_pag_gate_combined_fix"],
+        "substrate_hash": "dcab912f6cbe95666cc0b73cc3ff7b19cc33af5f9db896a7f02228c946c0886b",
+        "g_h_intact_frac": 1.0,
+        "g_h_lesion_frac": 1.0,
+        "g_h_posctrl_frac": 1.0,
+        "pressure_config": {"env_drift_interval": 1, "env_drift_prob": 0.6, "hazard_agent_pursuit": 0.9, "num_hazards": 4, "proximity_harm_scale": 0.1, "survival_gate_steps": 75},
+        "dv_saturation": "hazard_stage_median_last_window reads exactly 200.0 (the episode cap) in 7 of 9 arm-seeds; the two exceptions are 103 and 102, both still clearing the 75-step floor. Per-episode lengths are strongly BIMODAL (exactly 200, or 3-6) with little mass between, so a median-of-10 against a 75 floor discards nearly all available information.",
+        "gate_extinction_final_avoidance_efficacy": {"INTACT_42": 5.71e-120, "INTACT_43": 4.58e-118, "INTACT_44": 2.12e-123, "POSCTRL_42": 3.96e-111, "POSCTRL_43": 5.13e-111, "POSCTRL_44": 6.5e-125},
+        "gate_decay_to_credit_ratio": {"INTACT_42": "34761:405 (86:1)", "INTACT_43": "31943:170 (188:1)", "INTACT_44": "34209:285 (120:1)", "POSCTRL_42": "33765:482 (70:1)", "POSCTRL_43": "31031:208 (149:1)", "POSCTRL_44": "35143:359 (98:1)"},
+        "scaffold_floor_anneal": "0.8 -> 0.0; the gate consumes max(avoidance_efficacy, scaffold_floor), so the anneal unmasks the underflow exactly as the scoring window opens",
+        "n_freeze_suppressed_saturates_mid_run": "INTACT seed 42: 202 at episode 36 and 202 at the end -- no further suppression events in the final episodes",
+        "incidental": "g1_transfer_intact_frac 0.6667 vs g1_transfer_lesion_frac 1.0 -- the gated arm did marginally worse on the P1 transfer leg. With n=3 and an extinct gate this is not interpretable; recorded so a later session does not rediscover it as a surprise."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- readiness precondition R4 (discriminative headroom) unmet, AND the gate was numerically extinct in the scoring window. MECH-357 is neither confirmed nor falsified; this is the sixth consecutive run of which that is true.",
+        "biological_reference": "clear -- infralimbic-PFC suppression of PAG-mediated Pavlovian freezing to permit instrumental active avoidance (Moscarello & LeDoux 2013), with an eligibility-trace efficacy learner as the acquisition mechanism. Not a formal-definition import; lit_status present; no /lit-pull owed.",
+        "prerequisites": "present -- PAG freeze (MECH-279) commits 152-198 times per seed; the SD-059/MECH-358 escape-affordance bridge and the harm-pathway training amend are both on for every arm and were separately validated (603q, re-confirmed by the 866b regression check).",
+        "implementation": "partial -- the gate is built, wires up, engages and suppresses freeze. But its eligibility trace decays 70-188x more often than it credits and underflows to ~1e-120 by mid-Stage-H, so the mechanism is present at the START of the run and absent at the MEASUREMENT.",
+        "environment": "wrong pressures -- four hazards drifting every step at p=0.6 with pursuit 0.9 still leave the UNGATED LESION control surviving to the 200-step cap in 3/3 seeds. The paradigm's own precondition is that freezing must be COSTLY; here it is not, so there is no Pavlovian-instrumental conflict for the ilPFC analogue to arbitrate.",
+        "measurement": "misleading -- median(last 10 episode lengths) >= 75 against a 200-step cap over a strongly bimodal distribution. It saturates at 1.0 for all three arms and destroys the graded information that IS in the recorded data.",
+        "integration": "coupled but unstable -- gate, PAG, escape bridge and harm pathway are all coupled; the scaffold-floor anneal (0.8 -> 0.0) unmasks the trace decay exactly as the scoring window opens.",
+        "scale": "adequate -- 40 Stage-H episodes and 31,000-35,000 gate updates per arm-seed. Budget is not the constraint."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM + MEASURES + ENVIRONMENT. NOT chargeable to REE. All three buckets read inadequate independently: the mechanism was extinct in the scoring window, the ruler was saturated at its maximum, and the pressure was absent. This is the least chargeable-to-REE shape available."
+      },
+      "failure_location_convention_note": "Same literal Step 5 convention as Target 1 -- established iff the corresponding row reads adequate/complete. All three rows read inadequate here, so the classification is unambiguous under either convention.",
+      "biological_reference": {
+        "closest_mechanism": "infralimbic PFC suppression of PAG-mediated Pavlovian freezing to permit instrumental active avoidance (Moscarello & LeDoux 2013), with eligibility-trace efficacy learning as the acquisition mechanism",
+        "dependencies": [
+          "a genuine Pavlovian-instrumental conflict -- freezing must be COSTLY (the shuttle-box precondition)",
+          "a PAG-analog freeze reaction to suppress (MECH-279)",
+          "a directed escape affordance to substitute for the freeze (SD-059/MECH-358)",
+          "an eligibility-trace credit rule whose decay reflects UNREINFORCED EMISSION, not mere non-occurrence"
+        ],
+        "is_formal_import": false,
+        "divergence": "LOAD-BEARING, on the credit rule specifically. Standard extinction theory requires an unreinforced EMISSION of the response to weaken it, not its mere non-occurrence. Charging decay on every freeze/no-op tick -- which under sustained threat vastly outnumber directed attempts (70-188:1 measured here) -- is not extinction, it is a tick-count artefact. The environment/pressure shortfall, by contrast, is a divergence of the TEST BED from the reference paradigm, not of the mechanism's translation.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"MECH-357": "standard"},
+      "recommended_epistemic_category_note": "STAYS standard, deliberately NOT substrate_ceiling, and the alternative was live. FOR substrate_ceiling: the answer genuinely is gated on the eligibility-trace build. AGAINST, and decisive: that build is ALREADY IN FLIGHT (see routing_note) and its landing makes MECH-357 immediately retestable, so stamping substrate_ceiling would mark the claim not-v3-testable (_claim_v3_testable) and suppress it from GOV-GRAN-1 (_EPI_SUPPRESS_PROPOSAL) at exactly the moment it needs an experiment lane -- the wrong consequence. It would also add a first ceiling hit for no analytic gain, since the brake does not fire at 1. The failure MODE (measurement saturation + precondition_unmet + a partial implementation) is recorded in the note fields per the standing rule that a failure-mode diagnosis is not an epistemic_category. Consistent with the 603s and 603t adjudications, which also stamped standard.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-357": "non_contributory"},
+      "interpretable_signal": "Stated explicitly before recommending non_contributory. (1) A probe-gated question is DISCHARGED with a negative answer: agent-directed hazard pursuit does NOT produce discriminative headroom, which is what substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask. All four named pressure designs are now exhausted. (2) A previously-unquantified substrate defect is quantified for the first time: the eligibility trace's decay:credit ratio (70-188:1) and its underflow to ~1e-120 by the scoring window, with n_freeze_suppressed saturating mid-run. (3) A generalisable methodological finding: whole-run readiness aggregates certified a mechanism as live while it was extinct in the window the DV measures. (4) A measurement-design finding: the DV is saturated at its cap in 7 of 9 arm-seeds on a bimodal distribution. The run is non_contributory TO THE CLAIM specifically, not uninformative.",
+      "recommended_evidence_quality_note": "[2026-08-16 governance, V3-EXQ-603u, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-603s/603t]: sixth consecutive inconclusive Stage-H run (603h/k/r/s/t/u), fourth distinct pressure design, 19.2 h hub compute. Readiness 4/5 MET (PAG freeze on LESION 1.0; gate engages AND suppresses freeze on INTACT 1.0; Stage-0 z_goal 0.667 at floor; POSCTRL survivability 1.0). The load-bearing ABSOLUTE criterion G_H_INTACT_clears_2of3 PASSED (1.0); the load-bearing DISCRIMINATION criterion G_H_INTACT_beats_LESION FAILED because G_H_LESION_frac = 1.0 as well -- agent-directed hazard pursuit (hazard_agent_pursuit=0.9 on top of 603s's every-step drift at p=0.6) did NOT reintroduce the Pavlovian-instrumental conflict. This DISCHARGES, with a negative answer, the probe-gated question that substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask; that entry's status implemented_pending_validation is now stale. All four named pressure designs are exhausted. TWO INDEPENDENT vacuities, only one of which the self-route names. (1) DV SATURATION: hazard_stage_median_last_window = exactly 200.0 (the episode cap) in 7 of 9 arm-seeds, on a strongly bimodal (200 or 3-6) distribution, measured through a median-of-10 against a 75-step floor -- the ruler is pegged for all three arms. (2) GATE EXTINCTION IN THE SCORING WINDOW: mech357_avoidance_efficacy underflows to 5.7e-120 / 4.6e-118 / 2.1e-123 on the INTACT seeds, with decay:credit ratios of 86:1 / 188:1 / 120:1 and n_freeze_suppressed SATURATING mid-run, while mech357_scaffold_floor anneals 0.8 -> 0.0 and unmasks it -- so the INTACT arm was functionally LESIONED inside the very window the DV measures. The gate_engaged / gate_suppresses readiness checks are whole-run aggregates and cannot see this. epistemic_category STAYS standard (deliberately NOT substrate_ceiling: the unblocking eligibility-trace build is already in flight and the claim must keep its v3 experiment lane). non_contributory: neither confirmed nor falsified; the mechanism was extinct, the ruler saturated and the pressure absent, simultaneously. Failure-location MIXED across mechanism+measures+environment, NOT chargeable to REE. The manifest's own self-route ('re-calibrate UP') is REJECTED: a 7th same-question pressure recalibration is refused, since a pressure increase cannot fix the efficacy underflow and the cheapest live hypothesis (a graded re-read of the ALREADY-RECORDED 603s/603t/603u per-episode trajectories) costs zero compute. pending_retest_after_substrate stays true, scoped to after-the-eligibility-trace-fix AND a graded, scoring-window-scoped DV. PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "MECH-357": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-a-discriminating-pressure to after-the-eligibility-trace-fix-AND-a-graded-scoring-window-scoped-DV; epistemic_category STANDS at standard (explicitly re-affirmed against a live substrate_ceiling alternative -- see recommended_epistemic_category_note) -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate / v3_pending"
+        }
+      },
+      "per_claim_recommendation_note": "Emitted for GOV-APPLY-1. `change` is deliberately NOT the bare string STANDS (which the scan skips outright): the DIRECTION stands, but the evidence_quality_note append and the pending_retest re-scoping are both unapplied work that would otherwise be invisible once this run leaves pending_review.md. The string ends on `-> standard`, an epistemic_category, which claims.yaml actually stores, so the hit can clear by value as well as by provenance.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech357-freeze-incompatible-pressure-mechanism",
+        "amend_rationale": "This is the entry V3-EXQ-603u was run to validate. Its status reads implemented_pending_validation; 603u IS the validation and the probe-gated answer is NEGATIVE, so the status is now stale and the entry needs a 4th failure record. No severity or substrate_paths change proposed on THIS entry (the wiring is not defective -- it worked; the pressure it delivers is simply insufficient), so leave its existing severity: degrading and substrate_paths as governance already has them.",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Status correction: implemented_pending_validation -> validated_negative (or governance's equivalent). The agent-directed-pursuit wiring landed and ran; the question it was opened to ask is answered NO. All four named pressure designs (static field, undirected mobile drift, scheduled discrete adjacency, agent-directed pursuit) are exhausted. Do NOT open a fifth pressure MECHANISM without first running the zero-compute H2 reanalysis in fanout_recommendation.",
+        "unblocks_claims": ["MECH-357"],
+        "depends_on_unresolved": ["mech357-avoidance-efficacy-eligibility-trace-imbalance"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
+          "experiment_type": "v3_exq_603u_instrumental_avoidance_agent_pursuit",
+          "metric": "G_H_LESION_frac = 1.0 (full ceiling, 3/3 seeds) under agent-directed pursuit (hazard_agent_pursuit=0.9 on top of env_drift_interval=1 / prob=0.6, 4 hazards), so discriminative_headroom_below measured 0.0 against a 0.3333 floor and G_H_INTACT_beats_LESION could not pass (1.0 vs 1.0). hazard_stage_median_last_window = exactly 200.0 (the episode cap) in 7 of 9 arm-seeds. 19.2 h of hub compute. The last named pressure-mechanism candidate is exhausted.",
+          "target": "G_H_LESION_frac < 0.667 (headroom from below) with G_H_POSCTRL_frac >= 0.667 (survivability above), measured on a GRADED, non-saturating survival DV",
+          "resolved": "open"
+        },
+        "additional_amend_entries": [
+          {
+            "target_sd_id": "mech357-avoidance-efficacy-eligibility-trace-imbalance",
+            "amend_rationale": "This entry (added 2026-08-14T06:55:01Z, status pending_implementation) currently carries failure_record: [] -- ZERO empirical entries. V3-EXQ-603u supplies the first, with numbers. THE BUILD ITSELF IS ALREADY IN FLIGHT AND MUST NOT BE DUPLICATED (see routing_note); what is owed here is the record, not the work.",
+            "proposed_severity_change": "degrading -> corrupting",
+            "proposed_severity_rationale": "PUT THIS TO THE HUMAN AT THE GATE -- it has a real consequence. Justification for the upgrade: the defect produced a run in which EVERY readiness check certified the gate as live (gate_engaged 1.0, gate_suppresses 1.0) while the gate was numerically extinct (~1e-120) in the scoring window, i.e. evidence that LOOKS valid and is not -- the definition of corrupting. Consequence: /queue-experiment Step 2.5c would then BLOCK new unrelated experiments touching ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py until the entry closes. The fix is in flight so the block should be short-lived, but it is a real gate.",
+            "substrate_paths": ["ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"],
+            "failure_record_entry": {
+              "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
+              "experiment_type": "v3_exq_603u_instrumental_avoidance_agent_pursuit",
+              "metric": "mech357_avoidance_efficacy underflows to 5.71e-120 / 4.58e-118 / 2.12e-123 on the three INTACT seeds (3.96e-111 / 5.13e-111 / 6.50e-125 on POSCTRL) by the end of the 40-episode Stage-H window. Decay:credit ratios 86:1 / 188:1 / 120:1 (INTACT) and 70:1 / 149:1 / 98:1 (POSCTRL) over 31,000-35,000 updates per arm-seed. The trajectory is healthy early (0.07-0.79 in episodes 0-5) and below 1e-17 by episodes 36-39. n_freeze_suppressed SATURATES mid-run (INTACT seed 42: 202 at episode 36 and 202 at the end). mech357_scaffold_floor anneals 0.8 -> 0.0 and the gate consumes max(avoidance_efficacy, scaffold_floor), so the underflow is unmasked exactly as the scoring window opens -- the INTACT arm is functionally LESIONED where the DV measures it, while whole-run readiness aggregates report the gate as engaged and suppressing at 1.0.",
+              "target": "avoidance_efficacy > 0 (non-underflowed, ideally within an order of magnitude of its early-episode range) across the LAST 10 Stage-H episodes on >= 2/3 INTACT seeds, verified by a scoring-window-scoped `gate_live` readiness check rather than a whole-run aggregate",
+              "resolved": "open"
+            }
+          }
+        ]
+      },
+      "in_flight_work_do_not_duplicate": {
+        "task_claims_session_id": "closure-maps-correctness-807268",
+        "session_label": "implement-substrate: MECH-357 avoidance-efficacy eligibility trace",
+        "resource": "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py",
+        "evidence_of_progress": "The shared ree-v3 working tree carries that file as ` M` (uncommitted) with a change dated 2026-08-16: 'MECH-357 credit-eligibility windowing: a freeze/no-op tick does not decay avoidance_efficacy', plus a new _n_freeze_noop counter. Its rationale matches this autopsy's independent biological reading exactly (extinction requires an unreinforced EMISSION, not mere non-occurrence; charging decay on freeze ticks is a tick-count artefact).",
+        "what_this_autopsy_did": "Read the file to diagnose. Did NOT edit it, did NOT recommend building it, and recommends NO substrate work that duplicates it. This autopsy's contribution to that entry is the empirical failure record it was missing (failure_record was []), plus the proposed severity upgrade.",
+        "read_before_drafting": "REE_assembly/evidence/planning/mech357_avoidance_efficacy_plan.md (read in full; its BUILD node's registered_note already names this exact eligibility-trace defect as needing its own substrate_queue line item, which is the entry added 2026-08-14)."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_rescope_note": "Re-scoped from 'after a discriminating Stage-H pressure' to 'after the eligibility-trace credit/decay fix lands AND the survival DV is re-specified as graded and scoring-window-scoped'. Both conditions are now required -- fixing either alone leaves the other vacuity intact.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "counts_under_r1_r3_before_this_autopsy": {"MECH-357": 0},
+        "counts_under_r1_r3_including_this_autopsy": {"MECH-357": 0},
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech357-avoidance-efficacy-eligibility-trace-imbalance (already in flight -- see in_flight_work_do_not_duplicate)",
+        "note": "The brake does NOT fire under R1-R3: the three prior MECH-357 targets carry measurement_test_design_defect (603r), standard (603s) and standard (603t), all correctly excluded by R3, and this autopsy recommends standard, so the count stays 0. BUT THE BRAKE'S SPIRIT IS LOUDLY ENGAGED AND THE LETTER MUST NOT HIDE IT: V3-EXQ-603u is the SIXTH consecutive inconclusive Stage-H run for MECH-357 (603h/k/r/s/t/u), the fourth distinct pressure design, at 19.2 h of hub compute. `refused_requeue` is therefore set TRUE on ROUTING grounds rather than by the brake: this autopsy REJECTS the manifest's own self-route ('re-calibrate UP: raise env_drift_prob / num_hazards') and refuses a 7th same-question pressure recalibration, because (a) mech357_avoidance_efficacy_plan.md already records config-only pressure levers as exhausted across three designs and 603u exhausts the fourth and last named candidate, (b) a pressure increase cannot fix the independent efficacy-underflow vacuity, so a 7th run would repeat a 19-hour measurement with the INTACT arm still extinct in the scoring window, and (c) the cheapest live hypothesis (H2, below) needs no new compute at all. The self-route is a hypothesis, never a verdict."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_counts": {"MECH-357": {"targets": 3, "files": 3}},
+        "alignment_distribution": {"MECH-357": "unclear=3"},
+        "tagging_targets_cited": [
+          "failure_autopsy_V3-EXQ-603r_2026-08-09 | v3_exq_603r_... | non_contributory/measurement_test_design_defect | unclear",
+          "failure_autopsy_V3-EXQ-603s_2026-08-10 | v3_exq_603s_... | non_contributory/standard | unclear",
+          "failure_autopsy_V3-EXQ-603t_2026-08-13 | v3_exq_603t_... | non_contributory/standard | unclear"
+        ],
+        "reason": "NO target reads `weakened`. Per the binding rule, a cluster in which no target reads weakened is measurement or implementation debt, NOT granularity debt, however many autopsies exist. This is exactly that case, and 603u makes it four. Routing /claim-synthesis would inflate the believed tail on what is a test-bed and instrumentation problem.",
+        "counted_by": "granularity_debt_cluster.py (targets whose own claim_ids name the claim), not a filename grep"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: the Stage-H pressure is genuinely insufficient in MAGNITUDE (all four pressure MECHANISMS are exhausted, so only scale remains) -- no operating point of the current env yields two-sided headroom",
+          "H2: the survival DV SATURATES and destroys a discrimination that is already present in the recorded data (median-of-10 against a 75 floor, on a 200-capped bimodal distribution, pegged at 1.0 for every arm)",
+          "H3: the ilPFC gate is NUMERICALLY EXTINCT in the scoring window (avoidance_efficacy ~1e-120 once scaffold_floor anneals to 0), so INTACT == LESION regardless of any pressure"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H2",
+            "axis": "measurement",
+            "sketch": "RUN THIS FIRST -- reanalysis only, ZERO new compute. Re-read the ALREADY-RECORDED per-episode trajectories of 603s / 603t / 603u with a GRADED survival DV (mean episode length, survival fraction, time-to-first-death, hazard-contact rate) instead of median-of-10-against-75, and check whether INTACT separates from LESION on any of them.",
+            "declared_null": "graded DVs also show INTACT ~= LESION across all three runs -> the ceiling was not the obstruction, and H1/H3 carry the weight",
+            "node_class": "mystery (known data) -- the data exists and the frame is wrong; do NOT gather more"
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "instrumentation",
+            "sketch": "After the in-flight credit-eligibility windowing fix lands, re-run 603u UNCHANGED and check avoidance_efficacy across the LAST 10 Stage-H episodes, with a new SCORING-WINDOW-SCOPED gate_live readiness check added alongside the existing whole-run gate_engaged / gate_suppresses aggregates.",
+            "declared_null": "efficacy still underflows post-fix -> the imbalance is not the freeze-tick accounting and needs its own diagnosis",
+            "node_class": "complicated (buildable) -- the build is already in flight; the probe is the retest it unblocks"
+          },
+          {
+            "hypothesis": "H1",
+            "axis": "world",
+            "sketch": "Short titration sweep over num_hazards / proximity_harm_scale on the LESION ARM ONLY, scoring the graded DV from H2, to find whether ANY operating point yields G_H_LESION < 2/3 while POSCTRL still clears. LESION-only keeps it cheap and is uncontaminated by the gate's state.",
+            "declared_null": "no operating point yields two-sided headroom -> the Stage-H env cannot host this paradigm at all; redesign the test bed rather than re-tuning it",
+            "node_class": "complex (probe-gated) / puzzle (known rules)"
+          }
+        ],
+        "ordering_constraint": "Run H2 FIRST. It is free, it is mystery (known data), and its result determines whether H1 is worth 19 hours of hub compute at all. H3 is gated on the in-flight build landing.",
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (measurement / instrumentation / world axes, each leg declaring its null; design-audit coverage + verdict-aliasing before queuing) instead of one more sequential pressure re-pose. Emitted because the remaining question is a genuine discrimination among 3 live hypotheses, not one named build -- routing a single sequential re-pose would inherit the same confound for a SEVENTH time, and the failure mode is not lost time but a confident-but-wrong verdict on a laundered artifact. Deliberately NOT a power-bump of the braked design."
+      },
+      "learning_extracted": [
+        "Agent-directed hazard pursuit does NOT produce discriminative headroom. This DISCHARGES, with a negative answer, the probe-gated question that substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask; that entry's implemented_pending_validation status is now stale. All four named pressure designs -- static field, undirected mobile drift, scheduled discrete adjacency, agent-directed pursuit -- are exhausted.",
+        "The survival DV saturates and is the strongest remaining suspect: 7 of 9 arm-seeds sit at exactly the 200-step cap on a bimodal distribution, measured through a median-of-10 against a 75-step floor. The design has been asking a saturated binary of a graded phenomenon for six runs, and the graded data is ALREADY RECORDED for 603s/603t/603u.",
+        "The eligibility trace underflows to ~1e-120 by the scoring window (decay:credit 70:1 to 188:1), so the INTACT arm was functionally LESIONED when it was measured. Quantified here for the first time; the substrate_queue entry for it had failure_record: [].",
+        "GENERALISABLE METHODOLOGICAL LESSON: any readiness check certifying a mechanism is LIVE must be evaluated over the SCORING WINDOW, not the whole run. gate_engaged and gate_suppresses both read 1.0 on the strength of the early scaffold-supported episodes and could not see the late-window extinction. Same failure shape as V3-EXQ-436f's event-counter certification of a magnitude collapse.",
+        "The biology names the fix and the fix has already landed (uncommitted, 2026-08-16): extinction requires an unreinforced EMISSION of the response, not its mere non-occurrence, so a freeze/no-op tick must not decay the trace. This is a load-bearing biology-to-implementation divergence, recorded as such even though the repair is in flight."
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "implement-substrate is named because the BLOCKING node is the eligibility-trace credit/decay fix, which must land before any MECH-357 retest is non-vacuous. But that build is ALREADY IN FLIGHT under active claim closure-maps-correctness-807268 and MUST NOT be duplicated -- this autopsy's own new work is (a) the two substrate_queue amends above, including the first empirical failure record for an entry that had none, and (b) the ZERO-COMPUTE H2 reanalysis in fanout_recommendation, which should run before any further Stage-H compute is spent.",
+      "routing_not_taken": {
+        "lit-pull": "Biological reference is clear and already grounded; not a formal-definition import. The extinction-theory point is a divergence RECORDED AS LOAD-BEARING, not a literature gap.",
+        "queue-experiment": "REFUSED for a 7th same-question pressure recalibration (see re_derive_brake.note). A re-run after the trace fix, with a graded scoring-window-scoped DV, is the eventual /queue-experiment work, but it is blocked on the in-flight build and on H2.",
+        "claim-synthesis": "See granularity_debt_trigger -- no target reads weakened; this is test-bed and instrumentation debt.",
+        "governance-demotion": "The claim has never been tested fairly; six consecutive runs failed upstream of the comparison."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "An absolute / readiness / negative-control criterion passes while the DISCRIMINATION criterion fails, with an unmet occupancy or headroom precondition as the proximate cause.",
+    "is_independent_bugs": true,
+    "parent_grouping_verdict": "PARTLY CONFIRMED. The surface fingerprint the parent session grouped on is real and correctly observed. But the proximate causes are TWO INDEPENDENT BUGS sitting at OPPOSITE ENDS of the measurement pipeline, over ONE shared structural property at the substrate layer. They are NOT one structural property at the level of proximate cause, and a fix for either does nothing for the other.",
+    "why_two_bugs_not_one": "V3-EXQ-436f's occupancy shortfall is a collapse of the INDEPENDENT VARIABLE -- the manipulation had nothing to act on and the discrimination statistic was mathematically UNDEFINED on 3 of 5 seeds. V3-EXQ-603u's headroom shortfall is a saturation of the DEPENDENT VARIABLE -- the manipulation may well have acted, the statistic WAS computed, but the ruler had no range left (7 of 9 arm-seeds pegged at the 200-step cap). One is 'nothing to measure'; the other is 'the ruler is pegged'. They need two independent builds with no shared component: a write-address selection mechanism in ree_core/predictors/e1_deep.py, and an eligibility-trace credit/decay rebalance in ree_core/pfc/infralimbic_avoidance_gate.py (already in flight).",
+    "substrate_ceiling_fingerprint_applies_to": "V3-EXQ-603u ONLY. The skill's 'negative control passes, discrimination fails' tell fits 603u cleanly (LESION passed at 1.0, the discrimination failed). It does NOT fit V3-EXQ-436f, where the discrimination was never COMPUTABLE, not computed-and-null. Reading 436f through that fingerprint would misdescribe it -- which is why 436f's failed_criterion is recorded as readiness_precondition and 603u's as discrimination.",
+    "structural_property": "In BOTH cases the REE substrate instantiates the mechanism's STRUCTURE while failing to sustain the DYNAMIC RANGE the mechanism's readout requires. ContextMemory has 16 slots and 2,837-4,903 write calls per arm and occupies 1. The ilPFC gate logs 31,000-35,000 updates and 405 credit events and holds an efficacy of 1e-120. Both pass every liveness/engagement check that counts EVENTS; both are functionally absent on the MAGNITUDE that matters. This is 'symbol of the mechanism, not its functional role' specifically at the level of magnitude, and it is invisible to any readiness check built from counters.",
+    "second_shared_property_positive": "Both drivers carried a PRE-REGISTERED two-sided guard (436f: sd016_arming_engaged vs sufficient_occupancy_for_c1; 603u: LESION-below plus POSCTRL-above), and in both cases the guard fired correctly and REFUSED to score a vacuous comparison rather than emitting a false claim-layer verdict. Both FAILs are informative refusals. This is a methodological maturity signal in the lineages and is the reason both runs are non_contributory rather than spurious `weakens`.",
+    "planning_decision_forced": "Do NOT treat these as one gap with one fix. Two independent builds are required. The one thing they DO share is a cheap, generalisable methodological repair worth adopting across the corpus: liveness/engagement preconditions must be evaluated over the SCORING WINDOW and on MAGNITUDES, not as whole-run EVENT COUNTS. Both runs would have self-reported their true state one gate earlier had they done so.",
+    "readings": ["independent_bugs_at_proximate_cause", "shared_dynamic_range_collapse_at_substrate_layer", "pre_registered_guards_correctly_refused_vacuous_scoring"]
+  },
+  "hypothesis_space_ledger_pending": {
+    "staging_mode_note": "STAGING MODE -- nothing was written to hypothesis_space_registry.v1.json, hypothesis_space.v1.json, hypothesis_space_timeseries.v1.jsonl or hypothesis_space_integrity.md by this session, and build_hypothesis_space.py / check_hypothesis_space_integrity.py were NOT run. The confirming interactive session or the next /governance walk applies the block below, re-reading the registry immediately before editing (concurrency) and running the derive + audit afterwards.",
+    "applies_to_target_436f": {
+      "applies": false,
+      "reason": "V3-EXQ-436f emits no fanout_recommendation (the bottleneck routes to one unambiguous build with an already-proven component), and its adjudication resolves no pre-registered leg -- no question in the registry carries a hypothesis whose adjudicating_runs name V3-EXQ-436f. Skip cleanly, exactly as the 436e autopsy did."
+    },
+    "applies_to_target_603u": {
+      "applies": true,
+      "mode": "A (pre-register) -- the three legs' adjudicating runs have NOT yet run",
+      "growth_restriction_check": "MUST BE RUN BY THE CONFIRMING SESSION BEFORE APPENDING. Read the target question's top-level growth_restriction verbatim. If a matching MECH-357 / instrumental-avoidance question already exists in the registry AND carries a non-empty growth_restriction, this is a STOP for silent registration: do NOT append, carry the restriction text VERBATIM into the interactive gate, and either (a) obtain a sanctioned exception and cite it in the growth event's note, or (b) redirect to a NEW qid naming the restricted qid for lineage. A staging session cannot resolve this -- it has no user. If the fan-out opens a question not already registered (match by claims + theme), the New-question branch of Mode A applies and no restriction can exist.",
+      "proposed_question_if_new": {
+        "qid": "mech357_stageh_discrimination_bottleneck",
+        "title": "Why does the MECH-357 Stage-H INTACT-vs-LESION comparison fail to discriminate across six consecutive runs?",
+        "short_title": "MECH-357 Stage-H discrimination",
+        "claims": ["MECH-357"],
+        "registered_utc": "<date -u at the confirming session>",
+        "fanout_sources": ["failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"],
+        "is_hero": false,
+        "initial_frozen_count": 3,
+        "initial_frozen_count_at_registration": 3,
+        "synthesis": null,
+        "decision": {
+          "decision_question": "Is the MECH-357 ilPFC freeze-suppression gate's survival benefit measurable in the Stage-H test bed at all?",
+          "live_gate": "G_H_INTACT_frac > G_H_LESION_frac on a graded, non-saturating, scoring-window-scoped survival DV, with G_H_LESION below and G_H_POSCTRL above the floor",
+          "decidable": false,
+          "decision_log_ref": null,
+          "distance_phrase": "blocked on two independent repairs -- the eligibility-trace credit/decay fix (in flight) and a graded scoring-window-scoped DV",
+          "observation_bottleneck": "The current DV (median of last 10 episode lengths >= 75, against a 200-step cap on a bimodal distribution) saturates at 1.0 for all three arms, and the gate's efficacy underflows to ~1e-120 inside the scoring window. Two independent observation bottlenecks, either sufficient alone to make the comparison uninformative."
+        }
+      },
+      "proposed_hypotheses": [
+        {
+          "hid": "H-pressure-magnitude",
+          "label": "Pressure insufficient in magnitude",
+          "desc": "All four pressure MECHANISMS are exhausted; only scale (num_hazards, proximity_harm_scale) remains untried, and no operating point of the current Stage-H env yields two-sided headroom.",
+          "axis": "world",
+          "axis_family_proposed": "world",
+          "basis": "603u's LESION arm survived to the 200-step cap in 3/3 seeds under the strongest pressure mechanism available (pursuit 0.9 + every-step drift at p=0.6).",
+          "pre_registered_utc": "<now at the confirming session>",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": ["<future queue_id -- LESION-only graded titration sweep>"],
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        },
+        {
+          "hid": "H-dv-saturation",
+          "label": "Survival DV saturates and hides an existing discrimination",
+          "desc": "median(last 10 episode lengths) >= 75 against a 200-step cap on a bimodal (200 or 3-6) distribution is pegged at 1.0 for every arm; a graded DV over the ALREADY-RECORDED 603s/603t/603u trajectories may separate INTACT from LESION.",
+          "axis": "measurement",
+          "axis_family_proposed": "instrumentation",
+          "basis": "7 of 9 arm-seeds read exactly 200.0 (the cap) in 603u; the per-episode distribution is strongly bimodal, so a median-of-10 discards nearly all available information.",
+          "pre_registered_utc": "<now at the confirming session>",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": ["<reanalysis -- zero new compute>"],
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        },
+        {
+          "hid": "H-gate-extinct-in-window",
+          "label": "Gate numerically extinct in the scoring window",
+          "desc": "avoidance_efficacy underflows to ~1e-120 once scaffold_floor anneals to 0, so the INTACT arm is functionally lesioned where the DV measures it, regardless of pressure.",
+          "axis": "instrumentation",
+          "axis_family_proposed": "instrumentation",
+          "basis": "Measured in 603u: decay:credit 70:1 to 188:1 over 31,000-35,000 updates; efficacy below 1e-17 by episodes 36-39 of 40; n_freeze_suppressed saturating mid-run.",
+          "pre_registered_utc": "<now at the confirming session>",
+          "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
+          "adjudicating_runs": ["<future queue_id -- 603u re-run unchanged after the in-flight credit-eligibility windowing fix>"],
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        }
+      ],
+      "axis_family_map_additions_required": "If `world`, `measurement` or `instrumentation` is not already a row in the registry's human-owned axis_families.map, add the mapping in the SAME edit -- an unmapped axis label forces the question's convergence_class to `indeterminate` and is never silently bucketed.",
+      "fanout_growth_note_if_existing_question": "If these legs are appended to an EXISTING question rather than a new one, record in the fanout_growth_events[] note that MECH-357's campaign has accumulated six inconclusive runs across four pressure designs without converging -- a question accumulating fan-out events is one whose campaign has not converged, and the advisory section must be read as that signal, not as an all-clear."
+    }
+  },
+  "gate_questions_for_the_human": [
+    "1. V3-EXQ-436f: flip SD-017 / ARC-045 / MECH-166 from epistemic_category `standard` to `substrate_ceiling`? FOR: 436e's `standard` was stamped on the explicit, now-falsified condition that the substrate 'shipped and merely needs switching on'; the write path is genuinely unbuilt. AGAINST: it moves all three claims out of the v3-testable pool and into _EPI_SUPPRESS_PROPOSAL, and the run is still formally a precondition failure (the family that maps to `standard` by default). Recommendation: substrate_ceiling. The consequence is real and should be accepted knowingly.",
+    "2. Confirm the SD-017 re-derive brake firing at 3 and its REFUSAL of a V3-EXQ-436g same-question re-queue. Note the routing is implement-substrate regardless of whether the brake fires.",
+    "3. Should failure_autopsy_V3-EXQ-538a_2026-07-10's SD-017 tag be re-attributed as PERIPHERAL via recommended_epistemic_category_per_claim? SD-017's own claims.yaml note calls that run's SD-017 support 'vacuous, NOT counted'. If governance amends that artifact, SD-017 drops to 2 and the brake does not fire. NOT applied here -- a staging session may not edit a confirmed artifact.",
+    "4. failure_location convention drift: this artifact uses the skill's LITERAL rule (established iff the row reads adequate/complete); failure_autopsy_V3-EXQ-436e used the INVERSE on its `measures` field. Worth one governance decision so the corpus is field-comparable.",
+    "5. V3-EXQ-603u: upgrade substrate_queue mech357-avoidance-efficacy-eligibility-trace-imbalance from severity `degrading` to `corrupting`? It produced a run in which every readiness check certified the gate as live while it was extinct in the scoring window. Consequence: /queue-experiment Step 2.5c would BLOCK new unrelated experiments touching ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py until it closes. The fix is in flight so the block should be short-lived, but it is a real gate.",
+    "6. Confirm this autopsy's REJECTION of 603u's own self-route ('re-calibrate UP'). No 7th pressure recalibration; and confirm that H2 (zero-compute reanalysis of the already-recorded 603s/603t/603u trajectories) runs before any new Stage-H compute is spent.",
+    "7. Nothing is chipped from this session. /governance chips the follow-on after Step 2b ratifies it -- and must first check evidence/planning/igw_routine_ledger.json and igw_assignments.json, plus the open chip chip-20260813-implsub-mech357-hazard-pursuit, so it does not duplicate work already staged or in flight."
+  ],
+  "provenance": {
+    "session_role": "spawned staging-mode subagent of the cluster-batch parent",
+    "task_claims": "This session opened and closed NO TASK_CLAIMS entry. The parent holds claim cranky-driscoll-126a36-batch covering both output paths. No autopsy-pause claim was opened either -- the parent owns coordination-plane scope for this batch.",
+    "files_written": [
+      "REE_assembly/evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.md",
+      "REE_assembly/evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"
+    ],
+    "files_deliberately_not_written": [
+      "docs/claims/claims.yaml",
+      "evidence/experiments/**/*.json (any manifest)",
+      "evidence/experiments/review_tracker.json",
+      "evidence/planning/substrate_queue.json",
+      "evidence/planning/hypothesis_space_registry.v1.json and all hypothesis_space_* siblings",
+      "TASK_CLAIMS.json",
+      "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py (read only -- held by an active rival claim, with uncommitted in-flight work present)"
+    ],
+    "not_committed": "Nothing was committed or pushed. The parent commits both files serially.",
+    "gates_run": [
+      "already-done check by CONTENT over targets[].run_id across all failure_autopsy_*.json -- 0 covered",
+      "scripts/check_dry_run_citations.py (both run_ids) -- 0 dry cited, 0 dry in families, 0 ambiguous, 2 clean, 0 unknown, exit 0",
+      "ree-v3/validate_recording.py --paths (both manifests) -- 2 complete, 0 always-core gaps",
+      "scripts/granularity_debt_cluster.py -- SD-017, ARC-045, MECH-166, MECH-357",
+      "re-derive brake count under the R1-R3 convention for all four tagged claims"
+    ],
+    "sources_read_in_full": [
+      ".claude/skills/failure-autopsy/SKILL.md (683 lines)",
+      "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json",
+      "REE_assembly/evidence/planning/mech357_avoidance_efficacy_plan.md",
+      "both target manifests, both drivers' docstrings + INTERPRETATION GRID blocks",
+      "claims.yaml entries for SD-017, ARC-045, MECH-166, MECH-357",
+      "substrate_queue.json entries SD-016, scaffolded_sd054_onboarding, escape-affordance-bridge, mech357-freeze-incompatible-pressure-mechanism, mech357-avoidance-efficacy-eligibility-trace-imbalance",
+      "ree-v3/ree_core/predictors/e1_deep.py ContextMemory.read/write, ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py update rule"
+    ],
+    "queue_entries_note": "Neither V3-EXQ-436f nor V3-EXQ-603u remains in ree-v3/experiment_queue.json -- both FAILed, and a FAIL removes the entry from the queue immediately (expected, per CLAUDE.md 'Queue completion behaviour'). Queue-entry facts (supersedes, experiment_purpose, predecessor) were taken from the manifests, which record them."
+  }
+}

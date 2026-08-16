@@ -1,0 +1,241 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T18:25:54Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_note": "Headless staging run: Steps 1-7 and 9 executed in full; Step 8 (interactive gate) SKIPPED -- no user present. Routing is DRAFTED, not finalised. Step 9b was drafted only: hypothesis_space_registry.v1.json and its derive-only siblings were NOT written; the intended disposition is under hypothesis_space_ledger_pending. No TASK_CLAIMS entry was opened or closed by this session (the parent holds cranky-driscoll-126a36-batch); nothing was committed or pushed; claims.yaml, manifests, review_tracker.json and substrate_queue.json were NOT edited; no chip was spawned.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_output": "scripts/check_dry_run_citations.py: 0 dry cited, 0 dry in named families, 0 ambiguous, 1 clean, 0 unknown (exit 0). Target is a real full-budget run (150 ticks/cell, not the 20-tick dry path).",
+  "already_done_check": "Content scan of every evidence/planning/failure_autopsy_*.json for a target with this run_id: 0 hits. No prior autopsy covers V3-EXQ-930.",
+  "targets": [
+    {
+      "run_id": "v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3",
+      "queue_id": "V3-EXQ-930",
+      "claim_ids": ["MECH-303"],
+      "experiment_purpose": "diagnostic",
+      "manifest_outcome": "PASS",
+      "manifest_self_stamped_evidence_direction": "supports",
+      "self_route_label": "mech303_dedicated_signal_discriminates_zharma_does_not",
+      "failed_criterion": "none -- overall PASS. The only failing criterion is C2, which the driver's own combination_rule declares NOT load-bearing and expected to fail (a reported control reproducing V3-EXQ-917).",
+      "criteria_location_note": "The interpretation block carries NO criteria[] array (only label, preconditions[2], criteria_non_degenerate). The criteria[] array sits at TOP LEVEL alongside an explicit combination_rule. The PASS is gated by C1 ALONE: overall_pass = bool(c1) where c1 = (analysis['dedicated_proximity']['recommended'] is not None), i.e. some tau clears reach>=0.15 AND AUC>=0.75, downstream of readiness_met = apparatus_met AND spread_met.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "partial",
+        "measurement": "under-instrumented",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "four_layer_notes": {
+        "claim_alignment": "The claim was not tested. MECH-303 asserts a contextual safety STORE whose output lowers background vigilance; this run measured the separability of two candidate INPUT scalars to that store's write gate, with the store switched off. Verified in source: _cfg_kwargs() never sets use_contextual_safety_terrain (default False, config.py:3286) nor contextual_safety_gate_source (default 'z_harm_a', config.py:3330), so the accumulate_safety block at agent.py:5166-5212 never executed. Neither 'weakened' nor 'strengthened' -- orthogonal.",
+        "biological_reference": "Anticipatory exteroceptive hazard-proximity vs interoceptive tissue-damage is a genuine mammalian dissociation (threat-imminence continuum; PAG/hypothalamic/amygdalar distance-to-threat circuitry vs a separate spinothalamic->insula/S1 nociceptive route). Contextual safety learning in brains is driven by exteroceptive predictors of harm, NOT by damage afferents. So the damage-sourced null is what biology PREDICTS, retrospectively vindicating the 2026-08-12 user-adjudicated option (a) routing. Aligns with SD-011's dual-stream separation.",
+        "prerequisites": "SD-MECH303-THRESHOLD-SOURCING landed 2026-08-14 (ree-v3 b257e7ad14). depends_on SD-011, SD-012, ARC-007, MECH-304 all implemented.",
+        "implementation": "The CHANNEL is complete and validated end to end (finite reading on 7500/7500 ticks through obs_dict -> _sense() -> agent.sense(obs_safety_proximity=...)). The GATE was never enabled, so the implementation of the mechanism under test is unexercised.",
+        "environment": "The 0/1/2/4/8 density battery is adequate for the channel question. For the C2 half it is unknown: 150 random-walk ticks at heal_rate=0.4 may generate little damage, and NO manipulation check records whether the damage pathway was driven at all.",
+        "measurement": "Adequate for C1 (though the criterion is near-unfailable given correct wiring). NOT adequate for C2: an absolute-threshold sweep on an unnormalised norm whose per-seed init offset (between-seed sd of cell means 6.4e-2) exceeds the within-run modulation (~1e-3) by ~60x; no per-seed standardisation computed; no per-tick series recorded; no damage-exposure readout.",
+        "integration": "Two scalars measured off a live pipeline in isolation; the gate -> terrain -> accumulate_safety -> evaluate_safety -> beta-gate-release chain is untouched.",
+        "scale": "Untrained agent (no backward/optimizer/.step() anywhere in the driver; fresh REEAgent + reset() per cell), 150 ticks, random walk. Sufficient for a wiring check; silent about a trained agent's harm representation."
+      },
+      "pass_is_real_or_degenerate": {
+        "verdict": "REAL, not degenerate -- but NEAR-ANALYTIC; its information content is apparatus-level, not mechanism-level.",
+        "non_degeneracy_is_genuine": "Signal spans 0.000000 to 0.999520 with real within-seed variance (mean within-seed std 0.098 -> 0.225 across densities) and real between-seed variance at intermediate densities (0.031/0.049/0.016). criteria_non_degenerate.dedicated_auc_computation_nondegenerate uses a permissive any(safe OR unsafe) over 18 thresholds, but is corroborated by thresholds where the STRICTER both-sides condition holds (tau=0.05 AUC 0.99875; tau=0.30 AUC 1.0).",
+        "why_near_analytic": [
+          "safety_proximity_harm is a DETERMINISTIC env-computed EMA of hazard proximity at the agent; its coupling to num_hazards is definitional. The driver's own docstring predicts 'safe(nh=0) ~0.0 vs unsafe(nh=8) ~0.87 BY CONSTRUCTION -> AUC ~0.95+'.",
+          "At num_hazards=0 the channel is IDENTICALLY 0.0 (mean 0, std 0, max 0, all 10 seeds). Since SAFE_GROUP contains that arm, every seed there has fire-rate 1.0 for ANY tau>0, so reachability >= 0.5 is guaranteed across the whole sweep -- the REACH_FLOOR=0.15 sub-condition is unfailable given a wired channel. Monotonicity then supplies the AUC sub-condition.",
+          "The criterion can only fail on a wiring defect, which is exactly what the driver says it is for (a flat signal self-routes substrate_not_ready_requeue, never a substrate verdict)."
+        ],
+        "residual_empirical_content": [
+          "The dedicated channel is emitted and survives the obs_dict -> _sense() -> agent.sense() path, finite on 7500/7500 ticks under limb_damage_enabled=True.",
+          "It is monotone 0 -> 8 hazards with a clean EXACT-ZERO floor (the legacy proximity_ema_sourced channel measured by V3-EXQ-917 sat at 0.464 at nh=0, so the zero floor is a property of the NEW channel, not of proximity signals generally).",
+          "The shipped default contextual_safety_proximity_threshold=0.25 sits INSIDE the qualifying band (reach 0.648, AUC 1.0), and the 0.84 acceptance target is exceeded (best AUC 1.0)."
+        ]
+      },
+      "precondition_threshold_audit": {
+        "precondition": "dedicated_signal_varies_with_density",
+        "measured": 0.33112425460957284,
+        "threshold": 0.001,
+        "can_it_meaningfully_fail": "NO -- it is effectively a test of NON-ZERO, not a test of adequacy. It fails only if the channel is flat, i.e. wired off / None / misconfigured.",
+        "does_it_license_the_label": "NO. Discrimination is licensed by C1's AUC against the pre-registered AUC_BAR=0.75, a separate and genuinely stronger statistic. The precondition is honestly scoped by the driver (it explicitly self-routes substrate_not_ready_requeue on failure, never a substrate verdict). The hazard is only that a reader treats 0.331 >> 0.001 as the discrimination evidence.",
+        "same_for_the_other_precondition": "both_signals_apparatus_reachable (1.0 vs 0.99) requires only z_harm_a > 1e-9 and finite -- which a constant untrained-encoder bias satisfies trivially. 'Reachable' is not 'exercised'."
+      },
+      "dissociation_assessment": {
+        "label_is_a_double_claim": true,
+        "half_A_dedicated_discriminates": {
+          "supported": true,
+          "load_bearing": true,
+          "evidence": "AUC 1.0 at tau=0.08 (reach 0.5263); every tau 0.02-0.30 qualifies; best_auc_any_threshold 1.0; meets_acceptance_target true (>= 0.84).",
+          "caveat": "Near-analytic -- a wiring/calibration result (see pass_is_real_or_degenerate)."
+        },
+        "half_B_zharma_does_not": {
+          "supported_as_stated": false,
+          "load_bearing": false,
+          "is_a_measured_negative_not_a_mere_absence": true,
+          "power_basis": {
+            "formal_power_against_the_bar": "AUC computed on n1=20 SAFE vs n2=20 UNSAFE per-seed scores (2 densities x 10 seeds). Null SE of a rank-biserial AUC = sqrt((n1+n2+1)/(12*n1*n2)) = sqrt(41/4800) = 0.0924. Observed best AUC 0.52 = +0.22 SE above chance; AUC_BAR 0.75 = +2.71 SE. By the null-SE approximation, ~77-80% power at alpha=0.05 two-sided to detect a bar-clearing effect. So the negative is REASONABLY POWERED against its own bar -- but only against that bar, and it would miss one ~20% of the time.",
+            "same_run_internal_positive_control_STRONGER": "The identical 7500 ticks, same 50 cells, same density manipulation drove the dedicated channel 0.000 -> 0.867 (density_spread_std 0.33112) while z_harm_a moved 0.441964 -> 0.441814 (density_spread_std 6.96e-05). The manipulation is demonstrably effective; the control's response is ~4760x smaller. This is a measured INVARIANCE, not an underpowered null.",
+            "independent_reproduction": "V3-EXQ-917's damage_sourced arm recorded 0.442/0.442/0.442/0.442/0.442 flat to the 3rd decimal, AUC pinned at 0.500 at all 18 thresholds (mech303_contextual_safety_threshold_reachability.md:122). 930 reproduces this on a different substrate commit. The frozen ledger question q086-zharma-calibration-vs-ecological has ALREADY adjudicated it (H-calibration-pathology confirmed, H-faithful-ecological eliminated, resolved 2026-08-02 off V3-EXQ-857a, lineage back to V3-EXQ-664). Half B is the fourth observation of a settled regularity, not a new finding."
+          },
+          "confounds": [
+            "(i) NOT LOAD-BEARING BY THE RUN'S OWN DESIGN. combination_rule: C2 is a 'REPORTED control, NOT load-bearing ... a surprising C2 PASS is a context note, not a run failure.' A result the design declares non-load-bearing cannot be promoted to half of a headline dissociation by the self-route.",
+            "(ii) UNTRAINED AGENT, READOUT DOMINATED BY A PER-SEED INIT CONSTANT. No training loop anywhere in the driver. z_harm_a is an unconditional forward pass through a randomly-initialised encoder. Between-seed sd of cell means is 6.4e-2 at EVERY density while within-seed std is ~1e-3 -- the norm is pinned by a seed-dependent bias ~60x larger than any within-run modulation, and the global range 0.343-0.547 IS that init spread. An absolute-threshold sweep on an unnormalised norm cannot discriminate regardless of information content. That is a property of the READOUT, not of damage-sourcing.",
+            "(iii) z_harm_a DEMONSTRABLY RESPONDS TO DENSITY IN THIS VERY RUN -- the effect is swamped. Mean within-seed std rises monotonically 9.83e-04, 1.19e-03, 1.07e-03, 1.76e-03, 2.06e-03 (2.1x from nh=0 to nh=8). No per-seed-standardised statistic was computed and no per-tick series was recorded, so the STRONG form ('z_harm_a carries no context information') is NOT established -- only the weak form ('an absolute-threshold gate on the raw norm cannot use it').",
+            "(iv) NO MANIPULATION CHECK THAT THE DAMAGE PATHWAY WAS EXERCISED. Nothing records damage events, harm_obs_a magnitude, or heal dynamics; heal_rate=0.4 over 150 random-walk ticks may have generated little damage. The intended reading ('z_harm_a is spatially decoupled', which is SD-022's design intent and therefore the least surprising outcome) cannot be separated from 'the damage channel was barely driven'."
+          ],
+          "verdict": "The dissociation is HALF-SUPPORTED and the label OVERSTATES. Defensible restatement: under limb_damage_enabled=True the dedicated proximity channel is monotone in hazard density and separable at a threshold band containing the shipped default; in the same ticks the damage-sourced z_harm_a norm is invariant to hazard density (spread 7e-05 vs 0.331), reproducing V3-EXQ-917 -- as SD-022's decoupling predicts by construction, and confounded by an untrained encoder, an absolute-threshold readout dominated by a ~60x-larger per-seed init offset, and no recorded check that the damage pathway was exercised."
+        }
+      },
+      "z_goal_stream_state": {
+        "classification": "PRESENT-and-null (nothing measured, goal machinery OFF at config) -- NOT the writer_defect, and NOT absent",
+        "recorded_block": {"ticks_total": 0, "ticks_active": 0, "writer_calls": 0, "active_frac": null, "writer_defect": null, "goal_state_present": false, "n_agents": 50},
+        "basis": "Per experiments/_lib/z_goal_stream.py: the block is omitted entirely when no counter-bearing agent is supplied (50 were, so it is PRESENT). writer_defect is True ONLY when ticks_total>0 AND writer_calls==0; here ticks_total==0, so the module writes writer_defect: null and active_frac: null (explicitly NOT 0.0, because 0.0 would be a false reading rather than a weak one). goal_state_present:false is the module's own disambiguator: GoalState is constructed only when config.goal.z_goal_enabled is set, so ticks_total==0 means z_goal is DISABLED AT CONFIG, not that agents were never stepped.",
+        "writer_calls_zero_is_literally_true_but_is_not_the_defect": true,
+        "do_this_runs_criteria_depend_on_a_live_z_goal": false,
+        "criteria_dependency_basis": "C1 reads an environment observation channel; C2 reads latent.z_harm_a.norm(). Neither the readiness gate nor either criterion touches z_goal, GoalState, or any listed consumer. A genuine goal-OFF apparatus battery; the dead stream costs it nothing.",
+        "minor_nit": "The driver's inline comment calls it a 'genuine goal-OFF measured-zero', but the recorded value is null, not zero -- the module deliberately distinguishes 'nothing measured' from 'measured zero'. Wording only; no defect."
+      },
+      "recording_provenance": {
+        "validate_recording_verdict": "OK / complete -- 0 always-core gaps, 0 thin-pack provenance drops, 0 schema warnings",
+        "substrate_hash": "f8b70b727fe09d87fe2cfd377636ca03155945bed34e5e776ce2e45b54d1147b",
+        "substrate_commit": "13f7ee538f87b05a1544da788586537c4399c85d (clean, branch main, stable across run)",
+        "machine": "ree-cloud-2",
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "note": "A substrate-level reading is falsifiable here, unlike the no-substrate_hash case the skill warns about."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Contextual safety learning in mammals: IL required for safety EXPRESSION not acquisition (Kreutzmann 2020); vHipp->PL for safety-cue inhibition (Meyer 2019); standard safety signal -> vmPFC + hippocampus, dissociated from conditioned inhibitors -> dorsal striatum (Laing 2022). The signal-sourcing question maps onto the threat-imminence continuum: anticipatory EXTEROCEPTIVE distance-to-threat (PAG/hypothalamic/amygdalar) vs INTEROCEPTIVE tissue-damage afferents (spinothalamic -> insula/S1).",
+        "dependencies": ["exteroceptive anticipatory harm-predictor channel", "contextual store (vHipp->PL analogue)", "IL-equivalent expression gate", "MECH-304 cue-specific sister pathway", "SD-011 dual-stream harm separation", "SD-022 body-damage sourcing"],
+        "is_formal_import": false,
+        "divergence": "NONE -- this is a faithful translation, and that is the strongest positive finding of the autopsy. Brains do not compute 'this place is safe' from tissue-damage afferents. An agent that did would be unable to feel safe in an unfamiliar-but-benign environment and unable to feel unsafe while undamaged -- exactly the pathology V3-EXQ-917 measured (AUC 0.52) and 930 reproduces (AUC 0.52, spread 7e-05). The failure of the damage-sourced route is what biology PREDICTS, which vindicates the 2026-08-12 user-adjudicated routing (option (a) dedicated signal; option (b) threshold retune rejected).",
+        "lit_status": "partial",
+        "lit_status_note": "MECH-303 itself has a targeted review (evidence/literature/targeted_review_connectome_mech_303/) and SD-011's dual-stream note carries the general separation. There is NO targeted lit entry specifically on anticipatory threat-proximity vs tissue-damage sourcing for contextual safety ACQUISITION. A small, non-blocking /lit-pull opportunity -- nothing is gated on it, since the build already matches the biology. Recorded, not routed."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED / NOT-A-FAILURE. This target is a PASS, so no bucket is established as a failure location. Applying the GOV-FAILLOC-1 prose rule (reach REE FAILED only when Implementation, Measurement and Environment each independently read adequate/complete): Implementation is partial (channel complete, gate unexercised), Measurement is under-instrumented for the disputed half of the label, Environment is partial (damage exposure unverified) -- so REE FAILED is unreachable by three independent routes. For the one proposition that is NOT supported (the label's negative half), the limiting buckets are MEASUREMENT (readout design) and ENVIRONMENT (damage-exposure adequacy). Nothing here is chargeable to REE, to the mechanism, or to the claim."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "DELIBERATE. The failure-mode diagnosis is 'apparatus-layer validation, mechanism untested' -- a measurement/scope finding, which per the enum discipline belongs in the note fields, not in the category. `standard` preserves today's GOV-GRAN-1 surfacing and v3-testability exactly. substrate_ceiling / substrate_conditional / out_of_domain / derivational would each mark MECH-303 NOT v3-testable and starve it of experiment lanes at precisely the moment its substrate blocker was cleared -- the opposite of the true state. MECH-303 currently carries NO epistemic_category at all in claims.yaml, so this would be a first stamp, not a change.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Overrides the manifest's self-stamped `supports`. The interpretable signal IS stated (the skill's precondition for ever recommending non_contributory): the dedicated channel is live, monotone, separable, and the shipped default threshold 0.25 is inside the qualifying band -- all facts about a substrate build, none about MECH-303's mechanism. The claim had no opportunity to express itself: the store was off, the agent untrained, and no vigilance/avoidance readout exists.",
+      "recommended_evidence_quality_note": "[/failure-autopsy 2026-08-16, V3-EXQ-930, failure_autopsy_V3-EXQ-930_2026-08-16]: SUBSTRATE-READINESS VALIDATION, NOT MECHANISM EVIDENCE -- the manifest's self-stamped evidence_direction 'supports' is NOT applied to MECH-303. The run validates SD-MECH303-THRESHOLD-SOURCING (landed 2026-08-14, ree-v3 b257e7ad14) at the SIGNAL layer: under the production scenario limb_damage_enabled=True, the dedicated obs_dict['safety_proximity_harm'] channel is monotone across hazard density (per-density means 0.000/0.283/0.536/0.840/0.867, spread 0.331) and separable safe-vs-unsafe at every threshold from 0.02 to 0.30, best AUC 1.0 at tau=0.08 (reach 0.526), exceeding the 0.84 acceptance target; the SHIPPED default contextual_safety_proximity_threshold=0.25 sits inside that band (reach 0.648, AUC 1.0). But the MECH-303 gate itself was NEVER ENABLED (use_contextual_safety_terrain default False; contextual_safety_gate_source default 'z_harm_a'; the accumulate_safety block at agent.py:5166-5212 did not execute), the agent was UNTRAINED (fresh REEAgent per cell, no training loop), and no vigilance/avoidance readout was taken -- so the claim could not express itself and this run is non_contributory to it. The load-bearing criterion C1 is REAL and non-degenerate but NEAR-ANALYTIC: the channel is a deterministic env-computed hazard-proximity EMA, it is identically 0.0 at num_hazards=0, so reachability >= 0.5 is guaranteed for any tau>0 and the criterion can only fail on a wiring defect (which is what the driver says it is for). The self-routed label 'mech303_dedicated_signal_discriminates_zharma_does_not' asserts a DISSOCIATION but only its first half is load-bearing: the driver's own combination_rule declares the z_harm_a control NOT load-bearing and expected to fail. That negative half is a genuine measured invariance (per-density means 0.441964-0.441966, spread 6.96e-05 vs the same-run positive control's 0.331, ~4760x; best AUC 0.52; ~77-80% power against the 0.75 bar at n=20 vs 20) and reproduces V3-EXQ-917 and the already-adjudicated q086 ledger question -- but it is CONFOUNDED and does not establish that damage-sourced z_harm_a carries no context information: the encoder is untrained and its per-seed init offset (between-seed sd 6.4e-02) exceeds the within-run modulation (~1e-03) by ~60x, so an absolute-threshold sweep on the raw norm cannot discriminate whatever the signal carries; the within-seed std in fact rises MONOTONICALLY with hazard density (9.83e-04 -> 2.06e-03); and no manipulation check records that the damage pathway was exercised at all. Recording gap: the per-tick z_harm_a series and a damage-exposure readout existed at run time and were discarded, so a per-seed-standardised discrimination cannot be computed post hoc -- fold both into the recording spec of the owed retest per experimental_recording_standard_2026-07-12.md, do not re-run blind. BIOLOGY IS LOAD-BEARING AND SUPPORTIVE: anticipatory exteroceptive threat-proximity vs interoceptive tissue-damage is a genuine mammalian dissociation, so the damage-sourced null is what biology predicts and the 2026-08-12 option-(a) routing is vindicated. Status STAYS provisional; pending_retest_after_substrate STAYS true -- its stated condition ('once the dedicated signal lands') is now MET, so the owed MECH-303 behavioural retest is UNBLOCKED and remains unqueued. Re-derive brake does NOT fire (MECH-303 substrate_ceiling count 0 under R1-R3); granularity-debt trigger does NOT fire (0 tagging targets).",
+      "per_claim_recommendation": {
+        "MECH-303": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Do NOT apply the manifest's self-stamped evidence_direction 'supports' -- V3-EXQ-930 is a substrate-readiness validation that never enabled the MECH-303 gate; record the evidence_quality_note above, keep status provisional and pending_retest_after_substrate true, and stamp the claim's currently-absent epistemic_category -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_epistemic_category_per_claim": {
+        "MECH-303": "standard"
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-MECH303-THRESHOLD-SOURCING",
+        "title": "Give MECH-303's contextual_safety_harm_threshold a DEDICATED proximity-anticipatory harm signal, decoupled from SD-022 damage-sourced z_harm_a",
+        "implementation_hint": "No new build. The entry is status 'implemented_pending_validation' / status_phase 'validation_owed' / ready false, and names V3-EXQ-930 as its validation_experiment with acceptance 'safe-vs-unsafe AUC >=~0.84'. 930 MET that target (best AUC 1.0, reach 0.526 at tau=0.08; qualifying band tau 0.02-0.30; shipped default 0.25 inside it at reach 0.648 / AUC 1.0). Recommended: resolve the prior 917 failure_record item and flip status_phase validation_owed -> validated (and ready -> true at governance's discretion), subject to the caveat below.",
+        "unblocks_claims": ["MECH-303"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "severity_change_note": "UNCHANGED. This occurrence does not change the classification, and substrate_paths are unchanged -- leave both as governance already has them.",
+        "substrate_paths": ["ree_core/utils/config.py", "ree_core/environment/causal_grid_world.py", "ree_core/agent.py"],
+        "failure_record_entry": null,
+        "failure_record_entry_note": "No NEW failure_record item is owed: nothing failed. This autopsy's substrate-side contribution is the RESOLUTION of the existing item, below.",
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "The item's target was 'a threshold value and/or sourcing convention under which the live MECH-303 gate is both reachable and discriminates safe from hazardous contexts (AUC notably >0.5) under the PRODUCTION sourcing convention'. V3-EXQ-930 supplies exactly that under limb_damage_enabled=True: qualifying band tau 0.02-0.30, best AUC 1.0 at tau=0.08 (reach 0.526), shipped default 0.25 inside the band (reach 0.648, AUC 1.0), acceptance target 0.84 exceeded. CAVEAT TO RECORD WITH THE RESOLUTION: 930 established this at the SIGNAL layer with use_contextual_safety_terrain OFF; the gate-layer evidence is the build's own e2e smoke recorded in the entry's implementation_note ('proximity gate fires 150/150 safe vs 6/150 unsafe'), which is a build smoke rather than a scored manifest. The residual gate-layer validation is discharged by the owed MECH-303 behavioural retest, not by another substrate item."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "conditional_disposition_check": {
+        "prior_conditionally_stamped_epistemic_category": "NONE -- MECH-303 carries no epistemic_category key at all (docs/claims/claims.yaml:46173-46382). The specific hazard (a category stamped conditional on a future run, going stale on its own terms while GOV-CAT-1 stays silent because the field is PRESENT) does not apply in that exact form here.",
+        "a_conditional_disposition_DOES_exist_elsewhere": "pending_retest_after_substrate: true, set by the 2026-08-12 governance application of failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12 and explicitly conditioned: 'the behavioural retest is owed once the dedicated signal lands'.",
+        "condition_status": "MET -- the dedicated signal landed 2026-08-14 (ree-v3 b257e7ad14). The owed behavioural retest is therefore UNBLOCKED and actionable, but has NOT been run; V3-EXQ-930 is not it (the gate was never enabled). pending_retest_after_substrate must STAY true. This is the item to put in front of the human.",
+        "claim_tagging_note": "The 916-cluster autopsy's V3-EXQ-917 target carries claim_ids ['SD-011'], NOT MECH-303, even though its entire finding is about MECH-303's gate; governance applied it to MECH-303's evidence_quality_note by hand. That is why MECH-303's autopsy-target count is 0 despite a substantial autopsy history. Not an error to fix retroactively, but a reader reconstructing MECH-303's history from targets[].claim_ids alone will under-count it."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count_for_MECH_303": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "counting_note": "R1 (unit = the RUN): zero confirmed autopsy targets list MECH-303 in their own targets[].claim_ids, so there is nothing to count at run granularity. R2 (latest supersedes): vacuous. R3 (substrate_ceiling only): vacuous, and this autopsy is NOT heading to a substrate_ceiling reading, so it adds 0 -- the count stays 0 after this artifact lands. 20 files under evidence/planning/ mention MECH-303, but per the binding convention that is the claim's topical neighbourhood, not its recurrence cluster."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "tagging_targets": 0,
+        "files": 0,
+        "claim_alignment_distribution": "n/a -- granularity_debt_cluster.py MECH-303 reports 0 targets across 0 files, so there is no distribution to read and no target reading `weakened`. Both necessary conditions absent. MECH-303 is not showing granularity debt; it is a claim whose first fair mechanism test has not yet been run."
+      },
+      "learning_extracted": [
+        "A diagnostic can PASS non-degenerately on a criterion that is NEAR-UNFAILABLE given correct wiring. criteria_non_degenerate was honestly true and the PASS is honestly real; neither fact makes the result mechanism-evidence. The discriminator is not 'did the metric vary' but 'could this criterion have failed for any reason other than a wiring defect?' Here: no.",
+        "A claim_ids tag on a substrate-readiness validation is a ROUTING POINTER, not an evidence tag. The manifest self-stamped evidence_direction 'supports' for MECH-303 from a run in which MECH-303's gate was never enabled; left unadjudicated it would have entered the registry as a mechanism support.",
+        "A self-routed interpretation.label may assert MORE than the design's own combination_rule licenses. Here the label names a dissociation while the combination rule names one of its two halves an explicitly non-load-bearing reported control. Reading combination_rule against interpretation.label is a cheap, general check for this class.",
+        "An absolute-threshold criterion on an UNTRAINED encoder's norm is structurally unable to discriminate when the per-seed initialisation offset (6.4e-02) exceeds the within-run modulation (~1e-03) by ~60x -- while the modulation itself rises monotonically with the manipulation. Such a null is real about the READOUT and silent about the SIGNAL.",
+        "A control precondition can be trivially satisfiable: 'both_signals_apparatus_reachable' requires only z_harm_a > 1e-9 and finite, which a constant bias meets. 'The signal is reachable' is not 'the signal was exercised'; a pathway-exercise manipulation check is a different -- and here absent -- instrument.",
+        "POSITIVE and load-bearing for the substrate: the shipped default contextual_safety_proximity_threshold=0.25 is inside the qualifying band (reach 0.648, AUC 1.0) and the 0.84 acceptance target is exceeded (best AUC 1.0). The build's calibration choice is validated at the signal layer.",
+        "RECORDING-DEBT vs MEASUREMENT-DEBT are BOTH present on the C2 half. Recording-debt: the per-tick z_harm_a series and a damage-exposure readout existed at run time and were discarded, so a per-seed-standardised discrimination cannot be computed post hoc -- the repair is RECORDING them (experimental_recording_standard_2026-07-12.md 3b/3c), not re-running blind. Measurement-debt: even recorded, an absolute threshold on an unnormalised norm is the wrong instrument. Neither justifies a dedicated re-run (C2 is not load-bearing and q086 has already adjudicated the question) -- fold both into the recording spec of the owed behavioural retest."
+      ],
+      "work_graph_node_class": "complex (probe-gated) / puzzle (known rules)",
+      "work_graph_note": "The substrate is `complicated (buildable)` and ALREADY BUILT. The remaining MECH-303 question is well-posed with known rules and a specific missing FACT (does context-safety accumulation lower background vigilance?) -> a spike, i.e. /queue-experiment. NOT /implement-substrate: there is nothing left to build.",
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "primary": "/queue-experiment -- the owed MECH-303 behavioural retest, now unblocked by the landed substrate. NEW EXQ number (different scientific question from 930, which was an apparatus validation), not an alphabetic suffix.",
+        "spec_sketch": [
+          "Enable the mechanism: use_contextual_safety_terrain=True, contextual_safety_gate_source='proximity_signal', contextual_safety_proximity_threshold=0.25, safety_proximity_signal_enabled=True.",
+          "Score MECH-303's own stated falsifiable prediction, not the input channel: background vigilance / avoidance-commitment level falls in repeatedly-safe contexts relative to a MECH-303-ablated arm; and context-conditioned safety extinguishes more slowly than MECH-304 cue-conditioned safety.",
+          "TRAIN the agent -- an untrained-encoder run cannot adjudicate a store that forms by accumulation.",
+          "Recording spec (closes the C2 recording-debt at no extra compute): per-tick z_harm_a series or a per-seed-standardised summary; a damage-exposure manipulation check (damage events / harm_obs_a magnitude / heal dynamics); stamp_recording_core(...) per experimental_recording_standard_2026-07-12.md 3b/3c."
+        ],
+        "secondary_administrative": "Amend SD-MECH303-THRESHOLD-SOURCING per recommended_substrate_queue_entry (resolve the 917 failure_record item; flip the validation phase).",
+        "explicitly_not_recommended": [
+          "Any substrate_ceiling reading -- nothing ceilinged; the substrate performed as designed.",
+          "Any demotion -- the claim was not tested.",
+          "A dedicated re-run of the C2 question -- already adjudicated at q086, and not load-bearing here.",
+          "A chip for the follow-on -- per the 2026-07-30 rule an autopsy does not spawn_task its own routing; /governance chips it once ratified, after first checking igw_routine_ledger.json / igw_assignments.json for an auto-discovered duplicate."
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "registry_written": false,
+    "reason_not_written": "STAGING MODE -- hypothesis_space_registry.v1.json and its derive-only siblings (hypothesis_space.v1.json, hypothesis_space_timeseries.v1.jsonl, hypothesis_space_integrity.md) were NOT modified, per the skill's staging-mode rule and the parent's hard constraint.",
+    "recommended_action": "NONE -- no ledger mutation is recommended, and a confirming session should NOT feel obliged to append one.",
+    "rationale": [
+      "No MECH-303 question exists among the 34 registered qids, and this run does not warrant opening one: it is an apparatus validation, not a discrimination among rival hypotheses. Registering a question whose single 'hypothesis' is near-analytic would inflate the Dimension-3 denominator without narrowing anything.",
+      "q086-zharma-calibration-vs-ecological is already FULLY ADJUDICATED (H-calibration-pathology confirmed, H-faithful-ecological eliminated, both resolved 2026-08-02 off V3-EXQ-857a). 930's C2 is a corroborating observation on an already-resolved leg, not a new adjudication. Appending a hypothesis to an already-adjudicated question is exactly what growth invariant 3 forbids absent a labelled fan-out (3a) or discovery (3b) event, and neither applies here.",
+      "The target's recommended_evidence_direction is non_contributory AND does not discriminate any leg -- which by the Step 9b state-mapping table is the 'leave alive / nothing to register' row. There is no pre-registered leg to leave alive.",
+      "Growth-restriction check: NOT APPLICABLE -- no leg is being attached to any existing question."
+    ],
+    "optional_cosmetic_corroboration": {
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "hid": "H-calibration-pathology",
+      "suggested": "A confirming session MAY add 'V3-EXQ-930' to resolution.resolving_runs as corroboration (930 reproduces the flat ~0.442 / AUC 0.52 signature on a different substrate commit under limb_damage_enabled=True). This is cosmetic, does not move initial_frozen_count or initial_frozen_count_at_registration, does not change the resolution state, and is NOT required.",
+      "required": false
+    }
+  },
+  "items_for_human_confirmation_gate": [
+    "Confirm the DIRECTION OVERRIDE. The manifest self-stamps evidence_direction 'supports' for MECH-303; this autopsy recommends non_contributory. The whole disposition turns on accepting that a run which never enabled use_contextual_safety_terrain is not mechanism evidence.",
+    "Confirm the DISSOCIATION LABEL IS HALF-SUPPORTED. Record it as overstated (recommended), or accept the C2 reproduction as sufficient given the independent q086 adjudication? The autopsy's position: the regularity is real and thrice-reproduced, but it is not this run's finding, it is not load-bearing here, and it is confounded by an untrained encoder and an unverified damage manipulation.",
+    "Confirm the SUBSTRATE-QUEUE AMEND and how far to go: resolve 917's failure_record item and flip status_phase/ready on SIGNAL-layer evidence plus the build's own e2e smoke, or hold ready:false until the gate-layer behavioural retest scores? The autopsy leans to resolving the failure record with the caveat recorded, and leaving the ready flip to governance's judgement.",
+    "The OWED MECH-303 BEHAVIOURAL RETEST IS NOW UNBLOCKED AND UNQUEUED -- its precondition ('once the dedicated signal lands') was met 2026-08-14. Per the 2026-07-30 rule this autopsy does NOT chip it; /governance chips it once the routing is ratified, after checking igw_routine_ledger.json / igw_assignments.json for an auto-discovered duplicate.",
+    "OPTIONAL, non-blocking: a small /lit-pull on anticipatory threat-proximity vs tissue-damage sourcing for contextual safety acquisition (lit_status partial for that specific dissociation). Nothing is gated on it -- the build already matches the biology."
+  ]
+}

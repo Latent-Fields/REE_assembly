@@ -1,0 +1,357 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T18:26:47Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_note": "Headless staging run: Steps 1-7 and 9 executed in full; Step 8 (interactive scientific-judgment gate) SKIPPED (no user). Routing below is a DRAFT. Step 9b drafted only -- hypothesis_space_registry.v1.json was NOT written; the intended append is carried in hypothesis_space_ledger_pending. No TASK_CLAIMS entry opened or closed (parent holds cranky-driscoll-126a36-batch); nothing committed or pushed; claims.yaml, manifests, review_tracker.json and substrate_queue.json untouched.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_detail": {
+    "command": "scripts/check_dry_run_citations.py v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3",
+    "result": "0 dry cited, 0 dry in named families, 0 ambiguous, 1 clean, 0 unknown (exit 0)",
+    "run_ids_checked": [
+      {"run_id": "v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3", "dry_run": false, "role": "target"},
+      {"run_id": "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3", "dry_run": false, "role": "prior-autopsy context only; not a population member"}
+    ],
+    "criterion_reachability_lint": "validate_experiments.py --checks dry_run_unreachable_criterion fires on 11 drivers, ALL in the v3_exq_543 lineage (b through l). SILENT on v3_exq_922a_sd016_mech152_softsel_ablation.py. With no dry manifest in scope the driver-side truncation trap cannot apply here."
+  },
+  "recording_provenance": {
+    "validate_recording": "OK -- 1 complete, 0 always-core gaps, 0 thin-pack provenance drops, 0 schema warnings",
+    "recording_schema": "rec/v1",
+    "substrate_hash": "de92958c23468cf3c7d4e754bbabe7342f998d2d8ac3541e7697f6459cfece88",
+    "substrate_stable_across_run": true,
+    "machine": "ree-worker-3",
+    "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+    "elapsed_seconds": 79.50452542599999,
+    "seeds": [42, 43, 44],
+    "recording_debt": "NONE -- the opposite. The optional per-cell readouts w_harm_std / w_goal_std / hazard_std / final_terrain_loss, which NO scored criterion consumes, are the entire basis of this adjudication. This run's optional-field discipline should be the family default."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3",
+      "queue_id": "V3-EXQ-922a",
+      "experiment_purpose": "diagnostic",
+      "recorded_outcome": "PASS",
+      "recorded_evidence_direction": "mixed",
+      "self_route_label": "selection_hardness_partial_recovery",
+      "claim_ids": ["MECH-152"],
+      "claim_ids_accuracy": "correct, not inherited -- the queue entry justifies the single tag explicitly and the run directly exercises the MECH-152 terrain pathway. MECH-151 recorded as informative context only (correctly unscored); ARC-041 informed downstream (correctly untagged).",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "The two SCORED load-bearing criteria (a2_retrieval_selective_premise, a2_terrain_nondegenerate_premise) are premises and both PASSED, which is why the outcome is PASS. The MECH-152 DISCRIMINATION criteria (C1 r_w_harm>0.5, C2 r_w_goal<-0.3) are evaluated in acceptance_checks, are NOT criteria[] entries, and FAIL in every arm: A2_SOFTSEL 0/3 and 1/3, A1_PRODUCTION 0/3 and 0/3. The negative control A0_OFF is not merely passing but OUTPERFORMS both experimental arms (r_w_harm 0.356, r_w_goal -0.355, clearing C2 on 2/3 seeds). That is not the substrate-ceiling fingerprint (control passes, discrimination fails) -- it is an INSTRUMENT-INVALID fingerprint (control wins, discrimination fails everywhere).",
+      "precondition_direction_finding": {
+        "precondition": "a2_softsel_retrieval_entropy_selective",
+        "declared_direction": "upper",
+        "verdict": "CEILING, explicitly declared by the driver. The indexer's _precondition_direction default-to-floor path is never taken, so the run did NOT escape a precondition_unmet flag by omission or by an indexer default. Measured 2.457597 < threshold 2.500 is correctly MET. This sharp edge is CLEAN.",
+        "margin_absolute": 0.042403,
+        "margin_pct": 1.7,
+        "per_seed_values": [2.3474, 2.5662, 2.4576],
+        "across_seed_sd": 0.10941,
+        "margin_in_sd": 0.39,
+        "seeds_passing": "2 of 3 -- seed 43 measures 2.5662, ABOVE the 2.5 ceiling, and FAILS",
+        "reported_measured_is": "the majority-order statistic (median, seed 44), not the mean",
+        "survives_seed_scatter": false,
+        "scatter_verdict": "NO. The margin (0.0424) is ~2.6x SMALLER than the across-seed SD (0.1094), and one third of the sample is on the wrong side of the bound. For a criterion marked load_bearing on n=3 this is too thin to carry the interpretation the run hangs on it.",
+        "dynamic_range_finding": "uniform_reference = ln(16) = 2.772589 (the saddle, reproduced by A0_OFF to 5 dp on all seeds); full selectivity = 0 (reached by A1_PRODUCTION at 1.1e-08). The C1 'selective' ceiling of 2.5 sits only 9.8% of the way off the saddle; the C2 'certified degenerate' floor of 2.65 sits at 4.4%; A2's median clears at 11.4%. A2's retrieval is far closer to the degenerate control than to genuine selection, and the failing seed lands in the 4.4%-9.8% no-man's land between 'certified degenerate' and 'selective'."
+      },
+      "premises_only_finding": {
+        "load_bearing_criteria_are_all_premises": true,
+        "scored_mechanism_criterion_exists": false,
+        "pass_is_vacuous_as_a_mechanism_verdict": true,
+        "detail": "criteria[] contains exactly a2_retrieval_selective_premise and a2_terrain_nondegenerate_premise, both load_bearing, both passed. Neither is a finding about MECH-152. The driver states the convention deliberately ('A diagnostic PASS/FAIL is about whether the probe RAN meaningfully; the scientific reading lives in the label'), which is honest and defensible -- but it moves the entire epistemic load onto interpretation.label.",
+        "label_decision_rule_defect": "The label is computed from exactly three inputs (a1p, a2p, subst = A2-vs-A1 recovery). The control arm A0_OFF NEVER enters the label decision -- the driver excludes it on purpose ('reported in acceptance_checks as CONTEXT, not as adjudication-gating preconditions'). Consequently there is NO branch for 'the OFF control outperforms both selection arms', which is exactly what occurred. The five pre-registered branches cover A2-vs-A1 exhaustively and the control not at all, so the one outcome that actually happened is unrepresentable in the label vocabulary.",
+        "verdict": "The PASS is not vacuous in the degenerate-gate-clears-itself sense (the premises are real and the 1-knob A1->A2 contrast is a genuine measurement). It IS vacuous as a MECH-152 verdict: it certifies that the probe ran, delegates the science to a label whose decision rule structurally excludes the arm that inverts its reading, and no scored criterion touches the claim."
+      },
+      "partial_recovery_quantified": {
+        "harm_recovery_A2_minus_A1": 0.18395,
+        "goal_recovery_A1_minus_A2": 0.17351,
+        "recovery_margin_threshold": 0.15,
+        "substantial_recovery_as_reported": true,
+        "vs_194a_bar": {
+          "r_w_harm": {"A1": 0.00131, "A2": 0.18525, "bar": 0.5, "pct_of_bar": 37.1, "shortfall": 0.31475},
+          "r_w_goal": {"A1": -0.00768, "A2": -0.18119, "bar": -0.3, "pct_of_bar": 60.4, "shortfall": 0.11881}
+        },
+        "vs_this_run_control_A0_OFF": {
+          "A0_r_w_harm": 0.35590,
+          "A0_r_w_goal": -0.35480,
+          "A2_is_a_regression_on_harm": -0.17065,
+          "A2_is_a_regression_on_goal_magnitude": -0.17361,
+          "note": "Against the run's own control, A2 is not a recovery but a regression of almost exactly the same size as its gain over A1 -- because the three arms sit on a monotone ladder."
+        },
+        "vs_own_noise": {
+          "A2_r_w_harm_across_seed_sd": 0.19318,
+          "A2_r_w_goal_across_seed_sd": 0.19339,
+          "harm_recovery_below_sd": true,
+          "goal_recovery_below_sd": true,
+          "verdict": "BOTH 'substantial' recoveries are SMALLER than the across-seed SD of A2's own statistic on n=3. A2's per-seed r_w_harm is 0.3824 / 0.1771 / -0.0037 -- one strong seed, one middling, one null. RECOVERY_MARGIN=0.15 was calibrated from V3-EXQ-922's ~0.35 A0-vs-A1 gap, i.e. from the arm this run shows to be the LEAST functionally modulated of the three; it was never a noise-referenced bar and does not clear one."
+        },
+        "does_a_recovery_metric_gate_the_outcome": false,
+        "gating_note": "The recovery block is not a criterion and not a precondition. It selects a label string and nothing else."
+      },
+      "unscored_readout_finding": {
+        "headline": "The manifest's own unscored readouts overturn the reading. Pearson r is scale-invariant and therefore blind to the modulation DEPTH that IS the claim.",
+        "claim_asserted_swing": 0.6,
+        "claim_basis": "MECH-152 claim text ('hazard-gradient context -> w_harm > 0.8, w_goal < 0.5') and the driver's own training target compute_terrain_loss (w_harm_target = 0.8 if hazard_max > 0.3 else 0.2; w_goal_target = 0.8 if hazard_max < 0.33 else 0.2).",
+        "observed_terrain_weight_std": {
+          "A0_OFF": [3.75e-07, 1.385e-06, 6.803e-07],
+          "A1_PRODUCTION": [2.465e-03, 1.942e-03, 7.077e-03],
+          "A2_SOFTSEL": [1.530e-03, 1.720e-04, 1.031e-02]
+        },
+        "orders_of_magnitude_below_claim": "A0_OFF ~5.6 to 6.2; A1_PRODUCTION ~1.9 to 2.5; A2_SOFTSEL ~1.8 to 3.5. NO arm modulates within two orders of magnitude of what the claim asserts, and the winning arm misses by six.",
+        "dv_inversion": "Across all three arms and both components the DV is MONOTONICALLY DECREASING in cue-indexed retrieval selectivity: A0_OFF (no cue-indexing, sel_ctx_div 0.000117) r_w_harm 0.3559 > A2_SOFTSEL (11.4% off saddle, sel_ctx_div 0.566) 0.1853 > A1_PRODUCTION (one-hot, sel_ctx_div 1.06) 0.0013. MECH-152 asserts a CUE-INDEXED driver; whatever generates r_w=0.356 in A0_OFF cannot be the MECH-152 pathway, because in that arm the pathway's input barely varies with context.",
+        "non_degeneracy_guard_defect": "terrain_weight_std_floor = 1e-9. A0_OFF clears it by ~375x while sitting ~1.6 million times below the claim's asserted swing -- the guard is roughly six orders of magnitude too permissive to be a functional non-degeneracy test. criteria_non_degenerate reporting true on all three entries is technically accurate and substantively empty.",
+        "target_near_constancy": {
+          "method": "final_terrain_loss is the mean over the collection series of ((w_harm - target)^2 + (w_goal - target)^2)/2 with targets in {0.2, 0.8}. For an effectively-constant output (independently established by the w_*_std figures above), the best achievable MSE is the target's own variance p(1-p)*0.36 where p is the target switch rate. Inverting the observed losses bounds p.",
+          "observed_final_terrain_loss": {"A0_OFF": [8.09e-04, 7.21e-03, 7.10e-04], "A1_PRODUCTION": [1.03e-05, 4.31e-03, 7.55e-05], "A2_SOFTSEL": [1.30e-05, 4.30e-03, 1.07e-04]},
+          "implied_bound": "Across all nine cells the terrain-precision target switched state on at most ~2.1% of collection steps, and in the tightest cells (A1/A2 seed 42) on roughly 3 steps in 100,000.",
+          "consequence": "hazard_std is 0.19-0.25, so hazard genuinely varies -- but it essentially never crosses the 0.3/0.33 thresholds that turn hazard variation into a TARGET contrast. The terrain head faced a near-constant target, learned the constant (which is why the loss is tiny AND the output is flat -- the same fact twice), and had no gradient pressure to differentiate by context. The driver's docstring already flagged the neighbouring version of this: it 'corrected' EXQ-194's inherited 0.1 threshold, which 'nearly never fires at this env's hazard-field floor of ~0.22'. The correction moved the target from almost-never-firing to almost-always-firing; it did not make it bimodal.",
+          "scope_caveat": "The bound is derived from the COLLECTION series, which is exactly the series r_w is computed over, so the measurement conclusion is direct. Extending it to the P0a/P1 TRAINING series is an inference (same env, same thresholds, same compute_terrain_loss), corroborated by the terminal near-zero w_*_std. A redesign should measure training-side target balance rather than inherit this inference."
+        },
+        "verdict": "MECH-152 was never given the opportunity to express itself in this run -- or in V3-EXQ-922, which shares the machinery."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- untested. The claim asserts a 0.6-magnitude contextual swing in terrain_weight; the run presented the target contrast on <=2% of steps and scored the result with a scale-invariant statistic that discards magnitude. Neither supported nor weakened.",
+        "biological_reference": "clear. vmPFC/OFC contextual precision scaling of harm-benefit evaluation (Bechara 1994/1999 Iowa Gambling Task; Kanashiro 2017 gain modulation controls SNR not only magnitude). Faithful biological translation, NOT a formal-definition import. Lit present. The failure matches the missing-experiential-contrast dependency signature exactly: a vmPFC gain mechanism in an organism that met essentially one terrain context would present as a flat weight with intact machinery.",
+        "prerequisites": "missing. The reference mechanism's experiential prerequisite (both terrain contexts actually encountered, at the operating threshold) is absent from the collection and training distribution. Upstream, MECH-150 / SD-016 retrieval selectivity is itself only 11.4% off the uniform saddle in A2.",
+        "implementation": "partial. The pathway is wired end-to-end and produces a live output (extract_cue_context -> terrain_weight, trained through compute_terrain_loss), but it was never exercised under contrasting targets, so its functional role is unestablished. Symbol of mechanism present; functional role untested.",
+        "environment": "wrong pressures. hazard_std 0.19-0.25 is real variation, but it essentially never crosses the 0.3/0.33 target thresholds. The environment supplies hazard variance without supplying terrain-TARGET contrast -- precisely the pressure the mechanism handles.",
+        "measurement": "misleading. Pearson r is scale-invariant and therefore blind to the modulation depth that IS the claim; in this run it ranks the three arms in inverse order of their actual modulation. The non-degeneracy floor (1e-9) is ~6 orders too permissive. The claim's own stated discriminator (precision gain = variance reduction, vs magnitude scaling) is not measured at all.",
+        "integration": "partially coupled. The 1-knob A1->A2 selection swap does move the DV, so E1 retrieval and the terrain head are genuinely coupled; but the sign of that coupling relative to selectivity is inverted across the full three-arm ladder, which no current reading explains.",
+        "scale": "unknown. Not addressable -- with a near-constant target, capacity was never taxed."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASUREMENT + ENVIRONMENT dominant. NOT chargeable to REE, and NOT chargeable to MECH-152. Bucket semantics per GOV-FAILLOC-1: a bucket is `established` when its underlying row reads adequate/complete, i.e. when that component is sound enough that the failure could fairly be charged to it. Here Measurement adequacy reads `misleading` and Environment adequacy reads `wrong pressures`, so both are not_established (they ARE the failing components); Implementation completeness reads `partial`, so MECHANISM cannot be charged either. REE FAILED requires all three established and is therefore not reachable. Nothing in this run licenses the statement that REE failed to implement contextual precision modulation; what it licenses is that the test could not have detected it if REE had."
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC / OFC contextual precision scaling of harm-benefit terrain evaluation -- the Iowa Gambling Task deficit as a specifically CONTEXTUAL precision-scaling failure rather than an absence of harm knowledge (Bechara et al. 1994; Bechara 1999 anticipatory vmF). Gain-control linkage: Kanashiro et al. 2017 -- gain modulation controls signal-to-noise ratio, not just magnitude.",
+        "dependencies": [
+          "amygdala/BLA-mediated cue-outcome association (Lichtenberg 2017)",
+          "a cue-indexed context representation (MECH-150 / SD-016 ContextMemory)",
+          "an interoceptive / somatic-marker value signal",
+          "an experiential regime that actually presents BOTH terrain context types -- the dependency that is absent here"
+        ],
+        "is_formal_import": false,
+        "divergence": "None load-bearing. This is a faithful translation of a documented neural gain-control pathway, not a Pearl/Shannon/optimal-control import dressed as a mechanism, so the SD-003 formal-import failure mode does not apply. The divergence that DOES matter is experimental, not conceptual: the biology's own decisive discriminator (does high w_harm REDUCE harm-evaluation variability, or only scale its mean?) is written into MECH-152's what_would_answer and has never been measured by any run in the 194 / 194a / 922 / 922a family.",
+        "lit_status": "present",
+        "lit_entries": [
+          "evidence/literature/targeted_review_sd_016/entries/2026-04-23_sd_016_anticipatory_vmf_bechara1999",
+          "evidence/literature/targeted_review_sd_016/entries/2026-04-23_sd_016_bla_ofc_cue_expectation_lichtenberg2017",
+          "evidence/literature/targeted_review_arc_041/entries/2026-04-02_arc_041_vmpfc_cognitive_map_value_2025",
+          "evidence/literature/targeted_review_arc_041/entries/2026-04-02_arc_041_ofc_vmpfc_representational_spaces_2024",
+          "evidence/literature/targeted_review_striatal_gain_control_bounding"
+        ],
+        "lit_pull_commission_owed": false,
+        "missing_dependency_signature": "YES -- the FAIL is a discovered prerequisite (contrastive terrain-context exposure at the operating threshold), not a falsification. The IGT is only diagnostic because the subject meets both advantageous and disadvantageous decks; this run presented one deck ~98-100% of the time."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "The failure MODE is a measurement / test-design defect compounded by an environment target-contrast defect. That is a diagnosis, not an epistemic_category. Per the skill, the behaviour-preserving mapping for 'this run told us nothing about the claim' is `standard`: it keeps MECH-152 outside _EPI_SUPPRESS_PROPOSAL (GOV-GRAN-1 surfacing preserved) and keeps it v3-testable, which is correct -- the claim IS v3-testable, with a redesigned DV and a fixed target distribution. Reaching for substrate_ceiling or substrate_conditional would assert the answer is gated on substrate work, which this diagnosis explicitly denies (no substrate build is owed).",
+      "recommended_evidence_direction": "non_contributory",
+      "interpretable_signal_before_non_contributory": "REQUIRED STATEMENT (the direction is non_contributory only with respect to the CLAIM; the run is richly contributory at other layers). Interpretable signals produced: (1) MEASUREMENT -- Pearson r is scale-invariant and ranks the three arms in exact inverse order of their modulation depth, so it cannot adjudicate MECH-152's magnitude assertion; (2) ENVIRONMENT -- final_terrain_loss against a {0.2,0.8} target bounds the terrain-target switch rate at <=2% of collection steps, so the mechanism was never under pressure to modulate; (3) INSTRUMENT DESIGN -- a 1e-9 non-degeneracy floor cannot catch functional flatness on a [0,1] output; (4) VERDICT DESIGN -- a label branch set that excludes the control arm cannot express the outcome that occurred; (5) INTEGRATION -- the clean 1-knob A1->A2 swap does move the DV by 0.18, so E1 retrieval and the terrain head are genuinely coupled, with an unexplained inverted sign across the full ladder.",
+      "recommended_evidence_quality_note": "[2026-08-16 /failure-autopsy, V3-EXQ-922a, awaiting confirmation]: non_contributory. The owed soft-selection ablation ran and its self-routed selection_hardness_partial_recovery does NOT survive adjudication. A2_SOFTSEL fails both 194a criteria (C1 0/3, C2 1/3); the A2-vs-A1 'recovery' (harm +0.184, goal +0.174) is smaller than A2's own across-seed SD (0.193 / 0.193) on n=3 and reaches only 37% / 60% of the bar. Decisively, the run's tagger-OFF control A0_OFF -- with no cue-indexing and sel_context_divergence 0.000117 -- scores HIGHEST (r_w_harm 0.356, r_w_goal -0.355, clearing C2 on 2/3 seeds), so the DV is monotonically DECREASING in cue-indexed retrieval selectivity across all three arms, which is incompatible with it measuring a cue-indexed pathway. Cause, from the manifest's own unscored readouts: terrain_weight std is 3.8e-7 to 1.0e-2 against the claim's asserted 0.6 swing (2 to 6 orders of magnitude low), the non-degeneracy floor is 1e-9 and therefore ~6 orders too permissive to catch it, and final_terrain_loss (1.0e-5 to 7.2e-3 against targets in {0.2,0.8}) bounds the terrain-target switch rate at <=2% of collection steps -- the terrain head faced a near-constant target and had no pressure to modulate. Pearson r is scale-invariant and cannot adjudicate a magnitude claim. THIS CUTS BOTH WAYS: EXQ-194's r_w_harm=0.70 (the promotion basis) and V3-EXQ-922's does_not_support come from the same DV and the same machinery, so the single conflicting entry driving conflict_ratio 0.667 is not diagnostic either. The 2026-08-16 HELD demotion should NOT be applied -- not because 922a rescues MECH-152 (it does not), but because MECH-152 has never been tested at the magnitude it asserts, in either direction. Route: /queue-experiment, NEW EXQ number -- score modulation DEPTH (between-context mean difference against the claim's own w_harm>0.8 / w_goal<0.5 band), gate on a terrain_target_balance precondition (both target states >=25% of steps), raise the non-degeneracy floor to ~0.05, score the OFF control on the mechanism criteria, and add the precision-gain-vs-magnitude-scaling discriminator this claim's own what_would_answer has named since 2026-04-02 and which no run in the 194/194a/922/922a family has ever measured. pending_retest_after_substrate retained but re-scoped: what is owed is a measurement redesign, not a substrate build. epistemic_category standard. PROMOTES NOTHING and DEMOTES NOTHING.",
+      "per_claim_recommendation": {
+        "MECH-152": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "DO NOT APPLY the 2026-08-16 HELD demote_to_candidate. 922a neither rescues nor weakens MECH-152: its 'partial recovery' is below A2's own across-seed SD, is a regression against this run's own control, and occurs at a terrain_weight modulation depth 2-6 orders of magnitude below the 0.6 swing the claim asserts. Decisively, 922a shows the Pearson-r DV behind conflict_ratio 0.667 ranks the cue-indexing-OFF control HIGHEST and the fully-selective production arm LOWEST -- incompatible with it measuring a cue-indexed pathway -- and the same DV and machinery produced EXQ-194's supporting r_w_harm=0.70, so the supporting evidence is disqualified symmetrically with the conflicting entry. Governance action: refresh evidence_quality_note with this adjudication (text supplied), RETAIN pending_retest_after_substrate but re-scope it in the note to a MEASUREMENT redesign rather than a substrate build (no substrate work is owed), record that the automated demotion should stop being re-proposed on the same single non-diagnostic entry, keep status provisional, and keep epistemic_category -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional",
+          "decisiveness": "DECISIVE. This is the adjudication the 2026-08-16 cycle held for. The hold recorded the condition as 'discharged in FACT but not yet in EVIDENCE'; it is now discharged in evidence, and the evidence points where neither side of the hold expected: not to rescue, not to falsification, but to instrument inadequacy that disqualifies the whole existing evidence base in both directions.",
+          "explicit_warning_to_governance": "Do NOT read this autopsy as support for MECH-152. It is not a defence of the claim. MECH-152 has never been tested at the magnitude it asserts. The correct reading is 'provisional pending its FIRST VALID measurement', not 'provisional pending more of the same'.",
+          "illusory_conflict_resolution_check": "RUN, per the skill's mandatory pairing rule. The remaining supports are narrow and single-pathway: EXQ-194 (MIXED; C1 r_w_harm=0.70 measured with a target threshold of 0.1 the driver's own docstring calls broken) and EXQ-194a, both from the same experiment family and the same scale-invariant DV as the conflicting V3-EXQ-922. The instrument critique therefore disqualifies the supports exactly as much as the weakens -- no conflict is resolved in the claim's favour, and pending_retest_after_substrate is retained accordingly."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Routing is /queue-experiment, NOT /implement-substrate. No substrate build is owed: the E1 terrain pathway is wired and functional (it trains, it emits, and the 1-knob selection swap moves it). The defects are (a) the DV, and (b) the environment's terrain-target contrast frequency -- both experiment-design fixes in the driver, not substrate work. Recording action: none, so governance's standard Step 6a sweep need do nothing here. Deliberately NOT filing a substrate entry, so the IGW workset does not surface a phantom 'implement substrate' blocker for MECH-152.",
+        "severity": null,
+        "severity_note": "Left unset deliberately per the skill: the driver-level defects surfaced here (scale-invariant primary DV; 1e-9 non-degeneracy floor; label branch set that excludes the control arm; recovery margin not referenced to the run's own scatter) live in this experiment family's drivers, not in shared ree_core substrate, so there is nothing for the /queue-experiment Step 2.5c gate to protect an unrelated experiment from.",
+        "substrate_paths": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-152's supporting evidence is single-pathway: EXQ-194 and EXQ-194a, one experiment family, one scale-invariant DV -- the same DV this autopsy shows to be non-diagnostic. Flagged per the skill's requirement that any non_contributory recommendation be paired with an explicit check of whether the remaining supports are narrow.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count_under_R1_R3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "counting_note": "Only one confirmed autopsy target names MECH-152 -- failure_autopsy_V3-EXQ-922_2026-08-13, run v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3 -- and its recommended_epistemic_category is `standard`, not `substrate_ceiling`, so R3 excludes it (R3: only substrate_ceiling counts; non_contributory alone does not). This autopsy is also not a substrate_ceiling reading and adds no hit. Count 0 of threshold 2: the brake does NOT fire, no re-queue refusal is owed, and the recommended redesign would be exempt in any case as a different question with a different DV."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_size_targets": 1,
+        "cluster_size_files": 1,
+        "tagging_targets": [
+          "failure_autopsy_V3-EXQ-922_2026-08-13 [single] run=v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3 claim_ids=[MECH-150, MECH-151, MECH-152, ARC-041] direction=mixed category=standard"
+        ],
+        "alignment_distribution": {"other": 1, "weakened": 0},
+        "basis": "granularity_debt_cluster.py MECH-152 reports 1 target across 1 file, alignment distribution other=1 (free-text). The reader correctly declines to assert a clear on free text, so the string was read: it asserts 'aligned -- the run's design maps 1:1 onto each claim's stated mechanism at each claim's own pre-registered granularity', i.e. alignment, NOT weakening. NO target reads `weakened`, which per the skill's own rule is decisive regardless of count: a cluster with no weakened target is measurement or implementation debt, not granularity debt -- exactly this autopsy's conclusion. This is the second autopsy circling MECH-152 and the second signature differs structurally (922: clean falsification under the production combo; 922a: instrument inadequacy), but the second signature is itself measurement debt and this autopsy's own claim_alignment reads `unclear -- untested`, not `weakened`. /claim-synthesis is NOT recommended."
+      },
+      "node_classification": "complex (probe-gated) / mystery (known data)",
+      "node_classification_basis": "The data that settles what went wrong is already in the manifest -- w_harm_std, w_goal_std and final_terrain_loss are unambiguous. The frame (Pearson r over a near-constant target) is what is wrong. More runs of the same design settle nothing; the repair is a re-operationalisation of the DV plus a fix to the target distribution.",
+      "learning_extracted": [
+        "A scale-invariant DV cannot adjudicate a magnitude claim. Pearson r discards exactly what MECH-152 asserts. Whenever a claim states a target band (here w_harm > 0.8, w_goal < 0.5), the primary criterion must be stated on that band, not on a correlation with it.",
+        "A non-degeneracy floor is only a guard if it is referenced to the claim's own asserted magnitude. A 1e-9 floor on a [0,1] sigmoid output passed a signal ~1.6 million times below the claimed swing while reporting criteria_non_degenerate: true. Floors set to catch arithmetic degeneracy (pearson_r()=0 artifacts) do not catch functional degeneracy, and the manifest field name does not distinguish them.",
+        "Verdict-label branch sets must include the control arm. Declaring a control 'context, not adjudication-gating' is defensible for refusing to VACATE a contrast, but it also means no branch can fire when the control INVERTS the reading. 922a's five pre-registered branches cover A2-vs-A1 exhaustively and the control not at all, so the one outcome that actually occurred is unrepresentable.",
+        "A load-bearing premise cleared by a majority-order statistic should report its scatter. The reported `measured` was the median; the mean, the SD and the fact that 1 of 3 seeds violated the bound were all recoverable but none surfaced at the precondition. A load-bearing precondition whose margin is 0.39 SD is indistinguishable in the manifest from one whose margin is 5 SD.",
+        "A recovery margin calibrated from a PRIOR run's arm gap inherits that arm's validity. RECOVERY_MARGIN=0.15 was grounded in V3-EXQ-922's ~0.35 A0-vs-A1 gap -- the arm now shown to be the least functionally modulated of the three. Recovery margins should be referenced to the CURRENT run's across-seed scatter, which here would have refused the label (0.184 < 0.193).",
+        "A 'diagnostic PASS = the probe ran' convention needs the label to be trustworthy. The convention is honest and worth keeping, but it moves the entire epistemic load onto interpretation.label; when the label's decision rule omits an arm that inverts it, the PASS becomes a certificate of readiness attached to an unsound verdict, and nothing in the indexer's flag vocabulary catches that.",
+        "A threshold 'correction' can move a target from almost-never-firing to almost-always-firing without ever making it bimodal. EXQ-194's 0.1 threshold 'nearly never fires'; 194a's 0.3/0.33 correction now fires ~98-100% of the time. Target thresholds inherited as absolute constants should be replaced by thresholds derived from the run's own distribution, and gated by an explicit target-balance precondition.",
+        "Recording optional readouts that no criterion consumes is what made this adjudication possible. w_harm_std / w_goal_std / hazard_std / final_terrain_loss are the entire evidentiary basis of this autopsy and none of them is scored. This is the positive counterpart of recording-debt and should be the family default (Experimental Recording Standard, family-keyed payload)."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "new_exq_number_not_a_letter": true,
+        "reason": "The scientific question changes -- from 'does terrain_weight CORRELATE with hazard' to 'does terrain_weight MODULATE at the claimed depth, and is the modulation precision gain or magnitude scaling'. A 922b letter would signal a same-question implementation fix, which this is not. ID allocation is left to /queue-experiment, not assigned here.",
+        "redesign_spec": [
+          "1. Fix the target contrast first and GATE on it: add a `terrain_target_balance` load-bearing precondition requiring both target states on >=25% of steps each, in the TRAINING and the COLLECTION series. Prefer deriving the 0.3/0.33 thresholds from the run's own hazard distribution (e.g. a median split) over absolute constants inherited from 194/194a, which have now been on the wrong side twice in opposite directions.",
+          "2. Score modulation DEPTH as the primary DV: E[w_harm | hazard-gradient] - E[w_harm | resource-proximate], with the claim's own band as the bar (w_harm > 0.8 in hazard context, < 0.5 in resource context). Demote Pearson r to a descriptive secondary readout.",
+          "3. Raise the non-degeneracy floor to something functional -- tie it to the asserted swing, e.g. terrain_weight_std >= 0.05 (one tenth of the 0.6 band) instead of 1e-9.",
+          "4. Add the precision-gain discriminator MECH-152's own what_would_answer names and no run has ever executed: does high w_harm measurably REDUCE harm-evaluation variability, or only scale its mean? This is the MECH-152-vs-ARC-016 discriminator (both subsumed by ARC-044) and is arguably higher-value than re-testing the correlation.",
+          "5. Keep A0_OFF and SCORE it on the mechanism criteria, and carry a verdict branch for 'control outperforms the experimental arms' -- currently a shape the pre-registered branch set cannot express.",
+          "6. Keep recording w_harm_std / w_goal_std / final_terrain_loss / hazard_std per cell."
+        ],
+        "no_fanout_recommendation_reason": "GOV-FANOUT-1 exemption: the bottleneck routes to a single unambiguous redesign, not to a discrimination among >=2 live rivals on different design axes. The two live readings (mechanism modulates once given contrastive pressure vs it does not) are the two OUTCOMES of one experiment, not two probes.",
+        "chip_suppression_note": "Per CLAUDE.md Session Land Protocol step 6 and this skill's Step 8: a /failure-autopsy session does NOT spawn_task follow-on that depends on its own not-yet-governance-reviewed routing. The redesign above is REPORTED, not chipped. /governance chips it once Step 2b/4/6a ratifies the disposition, after first checking igw_routine_ledger.json / igw_assignments.json for a duplicate."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "cluster_pattern_note": "Single scope. The only other confirmed autopsy tagging MECH-152 is failure_autopsy_V3-EXQ-922_2026-08-13, which this run is the designated follow-on to and explicitly does not supersede. Sibling SD-016 work (V3-EXQ-898, V3-EXQ-908, sd016_selection_fanout_portfolio_scope_staged_20260809.md) concerns retrieval SELECTIVITY, a different DV. Cluster scope would be manufactured; Step 6 does not apply.",
+  "held_governance_decision_addressed": {
+    "decision": "MECH-152 demote_to_candidate, HELD by the 2026-08-16 /governance cycle (recorded `discussing`) on the grounds that 'MECH-152's owed ablation 922a has run but is unscored and unadjudicated'.",
+    "this_autopsy_is_that_adjudication": true,
+    "verdict": "DO NOT DEMOTE. MECH-152 stays provisional.",
+    "verdict_basis": "922a is non-contributory to the mechanism question in BOTH directions, and additionally shows that the Pearson-r DV behind the demotion's single conflicting entry (V3-EXQ-922) is non-diagnostic: it ranks the cue-indexing-OFF control highest and the fully-selective production arm lowest. The same DV and machinery produced EXQ-194's supporting r_w_harm=0.70, so the supports are disqualified symmetrically. The hold is discharged; the demotion should be withdrawn rather than re-proposed on the same entry.",
+    "what_this_verdict_is_NOT": "It is NOT a rescue of MECH-152 and must not be recorded as one. The claim has never been tested at the magnitude it asserts.",
+    "bearing_on_prior_runs": "This autopsy does NOT formally re-adjudicate V3-EXQ-922 (it is not its target, and R2 supersession is not invoked). But the instrument finding bears directly on 922's does_not_support and on EXQ-194's supporting result. Governance may note the bearing without reopening them, or commission a re-adjudication -- flagged at the Step 8 gate rather than decided here."
+  },
+  "hypothesis_space_ledger_pending": {
+    "staging_note": "DRAFTED ONLY -- hypothesis_space_registry.v1.json was NOT written, per staging mode and the parent's explicit constraint. The confirming interactive session (or the next /governance walk) applies this append, then runs build_hypothesis_space.py and check_hypothesis_space_integrity.py and clears any flag on this question before committing.",
+    "mode": "Mode B -- new question, pre-registered and partly resolved in the same edit. pre_registered_utc is set to the run's own completion date (2026-08-14), never later than the run it adjudicates, satisfying invariant 2.",
+    "growth_restriction_check": "NOT OWED. No leg attaches to an already-registered question -- a question being registered in this edit cannot carry a restriction. Checked the nearest existing question, sd016_retrieval_selectivity_mechanism (claims [SD-016], growth_restriction: ''), and deliberately did NOT attach: its subject is retrieval selectivity, a different claim and a different DV from MECH-152 terrain modulation depth.",
+    "axis_family_map_additions_needed": "NONE -- all four axis labels (selection, intrinsic-architecture, measurement, environment) already exist in axis_families.map, mapping to process / constitution / instrumentation / world respectively.",
+    "question": {
+      "qid": "mech152_terrain_modulation_depth",
+      "title": "Does MECH-152's cue-indexed terrain_weight pathway modulate at the depth the claim asserts (w_harm 0.8 vs 0.2), and can a scale-invariant Pearson-r DV over a near-constant terrain target ever answer that?",
+      "short_title": "MECH-152 terrain modulation depth",
+      "claims": ["MECH-152"],
+      "registered_utc": "2026-08-16T18:26:47Z",
+      "fanout_sources": ["failure_autopsy_V3-EXQ-922a_2026-08-16.json"],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is MECH-152's contextual precision modulation present at the asserted magnitude, absent, or merely unmeasured?",
+        "live_gate": "A run that presents both terrain-target states on >=25% of steps each AND scores the between-context mean difference in terrain_weight against the claim's own w_harm>0.8 / w_goal<0.5 band.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One redesigned experiment away -- the DV and the target distribution both need fixing before any verdict on the mechanism is possible.",
+        "observation_bottleneck": "The terrain-precision target switched state on at most ~2% of collection steps in every cell of V3-EXQ-922a, and the scoring statistic (Pearson r) is scale-invariant. Both must be repaired before the mechanism question is observable at all."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-selection-hardness-suppression",
+          "label": "Hard-Gumbel selection suppresses the terrain-precision signal; softening selection recovers it",
+          "desc": "The V3-EXQ-922 MECH-152 collapse under the production combo is specific to the hard (near-one-hot) selection operator, and soft selection restores terrain content-tracking.",
+          "axis": "selection",
+          "basis": "The clean 1-knob A1->A2 ablation does move the DV by +0.184 (harm) and +0.174 (goal). The coupling is real.",
+          "pre_registered_utc": "2026-08-14",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": ["V3-EXQ-922a"],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": "selection_hardness_partial_recovery",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Neither eliminated nor confirmed. The recovery is real in sign but falls below A2's own across-seed SD (0.184 vs 0.193 harm; 0.174 vs 0.193 goal) on n=3, reaches only 37% / 60% of the 194a bar, and is rank-inverted by the tagger-OFF control (A0_OFF r_w_harm 0.356 at w_harm_std ~1e-6). An uninformative run narrows nothing; it surfaces the observation bottleneck recorded on this question."
+          }
+        },
+        {
+          "hid": "H-mechanism-absent-at-claimed-depth",
+          "label": "The terrain pathway does not modulate at the depth MECH-152 asserts, regardless of selection operator",
+          "desc": "The cue-indexed E1 -> terrain_weight pathway is architecturally incapable of (or has not learned) the 0.6-magnitude contextual swing the claim specifies, so no selection operator will recover it.",
+          "axis": "intrinsic-architecture",
+          "basis": "Observed terrain_weight std is 3.8e-7 to 1.0e-2 across all nine cells against a claimed swing of 0.6 -- 2 to 6 orders of magnitude low, in every arm.",
+          "pre_registered_utc": "2026-08-14",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": ["V3-EXQ-922a"],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": "selection_hardness_partial_recovery",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Directionally suggested by the universal flatness but NOT adjudicable: the terrain target was near-constant (switch rate <=2%), so the pathway was never given the contrastive pressure that would distinguish 'cannot modulate' from 'was never asked to'. Cannot be eliminated or confirmed on this run."
+          }
+        },
+        {
+          "hid": "H-dv-scale-blind",
+          "label": "The scoring DV (Pearson r between hazard and terrain_weight) is scale-invariant and therefore cannot adjudicate MECH-152's magnitude assertion",
+          "desc": "Pearson r normalises out amplitude, which is precisely the quantity MECH-152 claims. A correlation over a functionally-constant terrain_weight is arithmetically real and substantively empty.",
+          "axis": "measurement",
+          "basis": "Established directly by this run's own data: across all three arms the DV is monotonically DECREASING in cue-indexed retrieval selectivity (A0_OFF 0.356 at w_std ~1e-6 > A2 0.185 > A1 0.001), i.e. it ranks the arms in exact inverse order of modulation depth. The non-degeneracy floor of 1e-9 is ~6 orders too permissive to catch this.",
+          "pre_registered_utc": "2026-08-14",
+          "discovery_note": "Surfaced by this run's own analysis, on a NEW question, so Mode B's same-edit register-and-resolve applies; no discovery_growth_events entry is owed (that path is for growth of an EXISTING question).",
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": ["V3-EXQ-922a"],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "selection_hardness_partial_recovery",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-14",
+            "basis": "Confirmed but necessary-not-sufficient (met_elimination_bar false): the three-arm rank inversion against modulation depth demonstrates the DV cannot measure a cue-indexed magnitude claim, but confirming the instrument defect does not by itself close the question about the mechanism."
+          }
+        },
+        {
+          "hid": "H-terrain-target-near-constant",
+          "label": "The collection and training distribution almost never crosses the terrain-target thresholds, so the mechanism was never under pressure to modulate",
+          "desc": "hazard varies (std 0.19-0.25) but essentially never crosses the 0.3 / 0.33 thresholds that convert hazard variation into a terrain-TARGET contrast, so the terrain head learned a constant.",
+          "axis": "environment",
+          "basis": "final_terrain_loss of 1.0e-5 to 7.2e-3 against targets in {0.2, 0.8}, with an effectively-constant output (independently established by w_*_std), bounds the target switch rate at <=2.1% of collection steps in every cell and at ~0.003% in the tightest. The tiny loss and the flat output are the same fact.",
+          "pre_registered_utc": "2026-08-14",
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": ["V3-EXQ-922a"],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "selection_hardness_partial_recovery",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-14",
+            "basis": "Confirmed but necessary-not-sufficient. Directly derived for the collection series (the series r_w is computed over); extension to the P0a/P1 training series is an inference from the same env, same thresholds and same compute_terrain_loss, corroborated by terminal near-zero w_*_std. A redesign should measure training-side target balance rather than inherit the inference."
+          }
+        }
+      ],
+      "fanout_growth_events": [],
+      "discovery_growth_events": [],
+      "fanout_growth_note": "New question registered at 4; no growth on an existing question, so invariants 3a/3b are not engaged."
+    },
+    "cross_finding_for_governance": "The existing ledger question sd016_retrieval_selectivity_mechanism carries H1-drive-context-divergence as `confirmed`. The strongest in-run corroboration available here -- V3-EXQ-922a's A2_SOFTSEL, ctxdiv 0.566 with sel_entropy 2.4576 -- clears its own selectivity bar by only 0.39 SD with 1 of 3 seeds violating, and sits just 11.4% off the uniform saddle. This does not overturn H1 (which rests on other runs) but is worth a look during the next /governance walk. Recorded here as a NOTE; no ledger edit is proposed for that question."
+  },
+  "human_confirmation_gate_items": [
+    "Ratify or reject the decisive read on the HELD MECH-152 demotion: do not demote, on instrument-inadequacy grounds rather than claim-strength grounds -- AND confirm the framing that this is NOT a defence of MECH-152.",
+    "Decide pending_retest_after_substrate: retained true here on the skill's illusory-conflict-resolution pairing rule, but the retest owed is a MEASUREMENT redesign, not a substrate build. Clearing the flag and carrying the obligation in the note is a legitimate alternative.",
+    "Confirm the redesign is a NEW EXQ number, not a 922b letter (the scientific question changes).",
+    "Confirm the scope of the instrument critique: it bears on V3-EXQ-922 and EXQ-194/194a, which this autopsy does not formally re-adjudicate. Governance may note the bearing without reopening them, or commission a re-adjudication.",
+    "Optional: the sd016_retrieval_selectivity_mechanism ledger question carries H1-drive-context-divergence as `confirmed`; 922a's A2 clears its selectivity bar by 0.39 SD with 1/3 seeds violating, at 11.4% off the uniform saddle. Worth a look, not a reversal."
+  ]
+}

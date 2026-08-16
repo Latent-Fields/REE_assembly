@@ -1,0 +1,356 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T18:25:45Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_mode_note": "Steps 1-7 and 9 run fully. Step 8 (interactive gate) SKIPPED -- no user present; routing below is DRAFT and must not be applied until confirmed. Step 9b drafted into hypothesis_space_ledger_pending and NOT written to hypothesis_space_registry.v1.json (no hypothesis_space_* file was opened for write). Step 10 not run -- the parent session commits. No TASK_CLAIMS entry opened or closed by this session (parent holds cranky-driscoll-126a36-batch). claims.yaml, manifests, review_tracker.json, substrate_queue.json, pending_review.md and the experiment index were neither modified nor regenerated.",
+  "companion_md": "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_note": "scripts/check_dry_run_citations.py run BEFORE any metric was read, over both run_ids: '0 dry cited, 0 dry in named families, 0 ambiguous, 2 clean, 0 unknown' (exit 0). 931 stamps top-level dry_run=false explicitly; 932 omits the field. No cluster member, replicate or population statistic in this artifact draws on a smoke.",
+
+  "targets": [
+    {
+      "run_id": "v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3",
+      "queue_id": "V3-EXQ-931",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "wanting_scoring_lacks_selection_authority_at_operating_weight",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C_AUTH_operating_weight_has_authority (load_bearing: true) -- ARM_W05 (wanting_weight=0.5) selection_flip_rate > 0 required in >= 3/5 seeds; measured 0/5 (c_auth_seed_fraction 0.0). All four non-load-bearing gates PASSED, including the negative control P0_ablated_flip_rate_zero (0.0 exactly, arithmetic identity) and the positive control P3_instrument_can_detect_authority (1.0 vs a 0.6 bar; ARM_W5000 flipped an argmin in 5/5 seeds). The instrument is therefore positively demonstrated capable IN-RUN with the shipped predicate -- this is a clean, well-powered NEGATIVE, not a null of unknown power.",
+
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: [] by deliberate design (the driver's own WHY NO CLAIM TAG section: the DV measures an instrument/admissibility fact, not a hypothesis about the organism). GOV-FAILLOC-1 claim-free branch applies.",
+        "biological_reference": "partial -- mesolimbic incentive salience (Berridge wanting/liking dissociation) is a close and directly relevant reference; the failure matches a missing EFFECTOR dependency rather than a wrong mechanism. Adjacent literature exists (wanting_liking_sleep_consolidation_synthesis.md, targeted_review_hippocampal_dopamine_gain); no targeted review of incentive salience as a SELECTION mechanism.",
+        "prerequisites": "present -- all five wiring conditions live (update_residue every tick, update_benefit_salience, tonic_5ht_enabled, use_proxy_fields + info['benefit_exposure'], forced update_z_goal held constant across arms). P1_wanting_field_live 1.0 vs 0.8 and P2_formation_matched 0.0 vs 0.05 both pass, so signal FORMATION is isolated from the scoring weight.",
+        "implementation": "partial -- the term exists and is arithmetically correct (P0 and P3 jointly prove it), but wanting_authority_ratio ~= 0.0037 in every arm: the wanting term's cross-candidate spread is ~0.37% of the terrain term's, so it acts as a near-uniform offset (the V3-EXQ-604c uniform-broadcast hazard) and cannot move an argmin until scaled ~100x. Additionally the shipped default HippocampalConfig.wanting_weight = 0.0 (config.py:2055), so the pathway is OFF in the stock production configuration. Symbol of the mechanism without its functional role.",
+        "environment": "partial / too sparse -- NUM_HAZARDS=1 is the only probed setting yielding both harm accumulation and benefit contact (0 gives no harm, 2 gives no benefit contact); early death on 3/5 probed seeds; contact_rate at this env's foraging competence ceiling (carried forward from V3-EXQ-914); E1/E2 untrained throughout by design.",
+        "measurement": "adequate for the load-bearing criterion; under-instrumented for the reported one. C_AUTH is an argmin/rank DV with an arithmetic negative control, an in-run empirical positive control at 5/5 seeds, and a genuine-refit denominator (gated on ticks['e3_tick'], with n_latched_ticks reported, removing the ~10x cadence-latching inflation of the readiness probe). C_BEHAV is a single per-step proximity magnitude at the competence ceiling -- explicitly non-gating, and correctly so.",
+        "integration": "partially coupled -- THE HEADLINE. ARM_W5000 flips the CEM elite-selection argmin on 80.3% of genuine refits (43/104 and 96/98 in the Step-4 engagement check) while mean_resource_proximity stays BIT-IDENTICAL to ARM_W0 at 0.6229773644254133. The hippocampal CEM elite pick has no behavioural throughput: REEAgent.select_action (ree_core/agent.py:5815) re-scores the candidate pool with self.e3.last_scores, independently of _score_trajectory.",
+        "scale": "likely insufficient -- 10 episodes x 40 steps, untrained substrate, 429 pooled genuine refit ticks per arm; adequate for the argmin DV, thin for any behavioural DV."
+      },
+
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM + ENVIRONMENT, NOT chargeable to REE. Implementation reads partial (a scoring term ~270x below authority at the documented operating weight, absent at the shipped default, and behaviourally disconnected downstream); Environment reads partial (untrained, early-death-limited, competence-ceilinged). The MEASURES bucket is explicitly NOT established -- the in-run positive control fired at 5/5 seeds -- and that is precisely what makes this negative load-bearing rather than vacuous. REE FAILED is not reached and must not be written."
+      },
+
+      "biological_reference": {
+        "closest_mechanism": "Mesolimbic incentive salience -- dopaminergic 'wanting' as a motivational (not hedonic) signal; Berridge's wanting/liking dissociation, and Smith/Berridge/Aldridge 2011 incentive sensitization (already cited as the design basis of the sd014-decouple-wanting-liking-writepath substrate entry).",
+        "dependencies": [
+          "an effector pathway by which incentive salience biases action selection (in mammals wanting invigorates and DIRECTS approach -- it is not an epiphenomenal correlate)",
+          "reward learning / benefit-contact history to build the salience map (present here: the residue field is built by the agent's own harm/benefit contact)",
+          "body-state / drive regulation gating the salience signal (present: drive_weight=2.0, forced drive 0.9)",
+          "a selection stage that actually reads the biased score and propagates it to the committed action (ABSENT -- this is what the run shows)"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not a formal-definition import, so the SD-003 formal-import failure mode does not apply. The divergence is at the EFFECTOR link: REE reproduces the correlational signature of incentive salience (a live, non-degenerate, behaviour-predictive wanting channel) with none of its motivational authority -- the scoring pathway that would confer authority is ~270x sub-threshold at the documented weight, off at the shipped default, and behaviourally inert even when forced to full authority. Biology does NOT say the mechanism is wrong; it says the translation is missing a dependency.",
+        "lit_status": "partial"
+      },
+
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "standard = 'no epistemic suppression asserted', which is the correct stamp for a claim-free diagnostic (per the skill's explicit rule that 'no category applies' is spelled standard, never n/a). Deliberately NOT substrate_ceiling: this run does not assert that any claim's answer is gated on substrate work -- it establishes an instrument/admissibility fact about one pathway, and stamping a suppressing category would starve unrelated claims of experiment lanes via _EPI_SUPPRESS_PROPOSAL and _claim_v3_testable for no evidential reason. The failure-mode description lives in the four_layer_diagnosis and the quality note, not in this field.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "non_contributory in the SCORING sense only -- the run weights no claim because it is claim-free BY DESIGN (claim_ids: []), which is also the overwhelming corpus convention for claim-free diagnostics (92 of 116 such targets). It is NOT uninformative, and per the skill's rule the interpretable signals are stated explicitly: (1) a complete dose-response locating the authority threshold at w~50-500 against a documented operating value of 0.5; (2) wanting_authority_ratio ~= 0.0037 as the mechanism of the null and a reusable readiness statistic; (3) the decoupling finding -- 80% argmin flips with bit-identical behaviour; (4) a fourth convergent instance of the modulatory-bias-selection-authority bottleneck at a new call site; (5) supersession of failure_autopsy_V3-EXQ-914-914a_2026-08-13's second learning that 'the existing lever (wanting_weight) already covers it'.",
+
+      "recommended_evidence_quality_note": "Claim-free diagnostic (claim_ids: []); weights no claim. Clean, well-powered NEGATIVE for the hippocampal-CEM wanting scoring pathway: selection_flip_rate = 0.0 in 5/5 seeds at the documented operating weight (0.5), with the in-run positive control (w=5000) flipping an argmin in 5/5 seeds and the ablation arm at exactly 0.0 -- so the instrument is demonstrated capable and the null is not vacuous. Mechanism: wanting_authority_ratio ~= 0.0037 (the wanting term's cross-candidate spread is ~0.37% of the terrain term's), the V3-EXQ-604c uniform-broadcast hazard; first flips appear at w~50, 5/5 seeds only at w~500. Second, stronger finding (reported, non-gating): at w=5000 the CEM argmin flips on 80% of genuine refits while mean_resource_proximity stays bit-identical to ablation (0.6229773644254133), so the hippocampal CEM elite pick has no behavioural throughput -- REEAgent.select_action re-scores downstream. Fourth convergent instance of the modulatory-bias-selection-authority bottleneck, at a call site one layer upstream of E3.select that the implemented fix does not reach (predicted by failure_autopsy_V3-EXQ-914-914a_2026-08-13, which this run supersedes on the point that 'wanting_weight already covers it'). Failure-location: MIXED (MECHANISM+ENVIRONMENT), not chargeable to REE. Note the shipped HippocampalConfig.wanting_weight default is 0.0, so ARM_W0 is the production configuration and ARM_W05 is the documented recommended value.",
+
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "EMPTY BY CONSTRUCTION, not by omission. claim_ids is [] , so there is no claim key to write and no claims.yaml disposition to apply. Recorded explicitly so a later reader -- and GOV-APPLY-1, which can read only this field -- can distinguish 'no claim exists' from 'the producer forgot'. Governance should apply recommended_evidence_quality_note to the MANIFEST, not to any claim. Claims the finding is reported INTO but which this autopsy does not weigh: MECH-236 (evidence_quality_note), MECH-203 (via the mech203-valence-pool-admissibility substrate item -- this run is its untrained-substrate probe for the WANTING half only and does not discharge the trained-substrate half), SD-014, GFLAG-0033.",
+
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "amend_rationale": "The entry's implementation_hint already frames this exact bottleneck ('scoring-layer signals do not reach the committed argmax') across three prior instances -- MECH-314 curiosity bias, MECH-320 vigor penalty, MECH-341 within-class temperature -- plus a 2026-06-10 amendment extending it to 'range must be ROUTED into the modulatory bias, not merely exist'. V3-EXQ-931 is a FOURTH instance at a NEW call site one layer UPSTREAM of E3.select, inside the hippocampal CEM's own elite selection, which failure_autopsy_V3-EXQ-914-914a_2026-08-13 explicitly flagged the implemented E3.select fix does not reach ('flagged for a future session if this call site recurs'). It has now recurred, with a dose-response and a positive control. Creating a parallel entry would fragment one bottleneck across two records.",
+        "implementation_hint_addendum": "EXTEND the authority fix UPSTREAM of E3.select to HippocampalModule._score_trajectory's elite selection, and -- separately and more importantly -- give that stage behavioural THROUGHPUT. V3-EXQ-931 shows the two are independent failures: (a) AUTHORITY -- wanting_authority_ratio ~= 0.0037 means the wanting term is ~270x too small to move the CEM argmin at the documented operating weight (first flips w~50, 5/5 seeds w~500); (b) THROUGHPUT -- even at w=5000 with 80% of argmins flipped, mean_resource_proximity is BIT-IDENTICAL to ablation, because REEAgent.select_action (agent.py:5815) re-scores the pool with self.e3.last_scores independently of the CEM's elite pick. Fixing (a) alone buys flipped picks and no behavioural change. The build must either propagate the CEM elite pick into E3's committed selection, or document the CEM elite stage as advisory-only so no future experiment reads a behavioural DV off it. Add a standing readiness assertion generalising the 2026-06-10 amendment by one step: a scoring-layer lever must report the ratio of its own cross-candidate spread to the dominant term's, and that ratio must be COMPETITIVE (not merely nonzero) before any behavioural falsifier is queued.",
+        "sd_id_suggested": null,
+        "title": null,
+        "unblocks_claims": [],
+        "unblocks_claims_note": "No new claim ids proposed. The existing entry's unblocks_claims list is not modified by this recommendation; MECH-236 could reasonably be added at the gate, but this autopsy does not assert it.",
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "priority_rationale": "One fresh failure record (this run) on an entry that already blocks 18 listed claims; per the governance Step 6a-ii.6 rule (>=1 fresh failure record OR blocks >=3 claims = priority 1).",
+        "severity": "corrupting",
+        "severity_is_a_gate_question": true,
+        "severity_note": "DRAFT, and explicitly flagged for the human gate rather than settled here. Argument FOR corrupting: a behavioural DV read downstream of any hippocampal-CEM scoring manipulation returns a STRUCTURAL null that looks like a valid substrate or claim finding -- which is exactly what invalidated V3-EXQ-914/914a and cost that lineage two runs. That is the textbook 'produces evidence that LOOKS valid but isn't' definition. Argument AGAINST: severity=corrupting arms the /queue-experiment Step 2.5c BLOCK on substrate_paths, and these are hot paths, so a wide stamp could block substantial unrelated work. Mitigation already applied: substrate_paths below is scoped to two named functions rather than whole files. The gate should confirm corrupting or downgrade to degrading (WARN, not BLOCK). The existing entry's severity is currently UNSET, so either choice is a change.",
+        "substrate_paths": [
+          "ree_core/hippocampal/module.py::HippocampalModule._score_trajectory",
+          "ree_core/agent.py::REEAgent.select_action"
+        ],
+        "substrate_paths_note": "Deliberately narrowed to two functions rather than the whole files, to bound the Step 2.5c block radius. _score_trajectory is where the sub-threshold authority lives (the wanting_weight * mean(VALENCE_WANTING) term, module.py:1573-1581); select_action is where the throughput is lost (independent re-score via self.e3.last_scores). A caller-level fix touching only one of the two does not close the defect.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3",
+          "experiment_type": "v3_exq_931_cem_wanting_weight_selection_authority",
+          "metric": "selection_flip_rate = 0.0 in 5/5 seeds at the documented operating weight wanting_weight=0.5 (wanting_authority_ratio 0.0037; first flips w=50, 5/5 seeds w=500, 0.80 at w=5000) AND mean_resource_proximity bit-identical between ARM_W0 and ARM_W5000 (0.6229773644254133) despite an 80% argmin flip rate",
+          "target": "a working implementation must show (a) selection_flip_rate > 0 at the documented operating weight with a competitive cross-candidate spread ratio, AND (b) a nonzero behavioural gap vs ablation in an arm whose CEM argmin demonstrably flips",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+
+      "pending_retest_after_substrate": true,
+      "pending_retest_after_substrate_note": "The retest is of the SUBSTRATE PATHWAY, not of a claim -- there is no claim to retest. Once the authority + throughput fix lands, V3-EXQ-931's own arm structure is the ready-made validator: rerun the dose-response and require a nonzero behavioural gap in an arm with a nonzero flip rate.",
+      "narrow_supports_flag": false,
+
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "modulatory-bias-selection-authority",
+        "note": "The brake CANNOT fire and is not being suppressed: the R1-R3 counting convention counts, per claim in targets[].claim_ids, the distinct run_ids whose latest adjudication recommends substrate_ceiling. This target's claim_ids is [], so there is no claim to count against and no per-claim ceiling total exists. This autopsy also does not recommend substrate_ceiling for anything (recommended_epistemic_category is standard), so it contributes 0 to every claim's count. The routing to implement-substrate is reached on the merits of the structural finding, not by the brake, and no same-claim re-queue is refused because there is no claim. Partially related lineage context, recorded for auditability but NOT counted: failure_autopsy_V3-EXQ-914-914a_2026-08-13 (MECH-236, recommended_epistemic_category standard for both targets, so it is not a ceiling hit either)."
+      },
+
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "applies_to_cluster": true,
+        "question": "If residue_wanting has no selection authority at the operating weight AND the hippocampal-CEM pick has no behavioural throughput even at full authority, WHY does residue_wanting predict locomotion at t+1 (r=0.373, partial|z_goal +0.432, all 3 seeds)?",
+        "live_hypotheses": [
+          "H1 SHARED-SITUATION: no causal path from wanting to action -- both residue_wanting and locomotion are driven by the same situational/bodily state (residue-field geometry built by the agent's own harm/benefit contact, proximity, drive level), so the lagged correlation is a common-cause signature. Currently the best-supported reading, since 931 excludes the CEM route at two independent points.",
+          "H2 ALTERNATIVE-EFFECTOR: a genuine causal path exists but is NOT the pathway 931 ablated -- wanting reaches behaviour via the serotonergic benefit-salience path, drive coupling, or a modulatory channel at E3.select rather than via the hippocampal CEM scoring term. 931 ablated exactly one route and would not see this.",
+          "H3 REVERSE / CO-DETERMINATION: the arrow runs the other way within the lag window -- locomotion changes proximity, which changes benefit_exposure, which update_benefit_salience writes into VALENCE_WANTING on the same per-tick cadence, so wanting[t] -> moved[t+1] is partly an artifact of the writer's own update timing rather than a forward-predictive relation."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H2",
+            "axis": "process",
+            "sketch": "CHEAPEST AND MOST DECISIVE -- 931's own arm structure already contains the discriminator it did not measure. Run 932's coupling instrument INSIDE 931's ARM_W0 vs ARM_W5000 contrast and compare the wanting->moved(t+1) coupling. Declared null: the coupling is statistically indistinguishable between wanting_weight=0 and wanting_weight=5000, which excludes the CEM scoring route directly and leaves H1 and H3. A DIFFERENCE would falsify the current reading and establish an authority-dependent behavioural path.",
+            "declared_null": "coupling_wanting_t_to_moved_t1 identical (overlapping CIs) at wanting_weight 0 vs 5000"
+          },
+          {
+            "hypothesis": "H1",
+            "axis": "measurement",
+            "sketch": "Condition the coupling on matched situations: partial out the situational drivers (resource/hazard proximity, drive level, active-center count, z_harm_norm) as well as z_goal, and report the within-situation-stratum coupling. Declared null: the wanting->moved coupling vanishes once situation is controlled, confirming common-cause.",
+            "declared_null": "partial r(wanting, moved | proximity, drive, z_harm, z_goal) < 0.15"
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "measurement",
+            "sketch": "Cross-lagged panel on the already-recorded per-step data: compare wanting[t] -> moved[t+1] against moved[t] -> wanting[t+1] with the writer cadence explicitly modelled. Declared null: the two directions are symmetric, indicating co-determination by the writer's own update timing rather than forward prediction. NOTE this leg needs NO new compute -- it is computable from the committed 932 episode log.",
+            "declared_null": "r(wanting[t], moved[t+1]) approximately equals r(moved[t], wanting[t+1])"
+          }
+        ],
+        "note": "GOV-FANOUT-1: DRAFTED ONLY, NOT REGISTERED (staging mode -- see hypothesis_space_ledger_pending). Three legs on three distinct design axes (process / measurement / measurement-with-different-estimand), each with a declared null; none is a power-bump of the braked design. Two of the three (H2, H3) are cheap: H3 needs no new compute at all, and H2 reuses 931's existing arm structure. Design-audit for coverage and verdict-aliasing before queuing -- H1 and H3 can both produce an attenuated coupling for different reasons and must be distinguished by which covariate does the attenuating."
+      },
+
+      "learning_extracted": [
+        "A signal can be live, non-degenerate and behaviourally predictive while having ZERO selection authority. Measuring coupling and measuring authority are different experiments; a PASS on the former says nothing about the latter.",
+        "SELECTION AUTHORITY DOES NOT IMPLY BEHAVIOURAL THROUGHPUT. ARM_W5000 flips 80% of CEM argmins with bit-identical resource proximity. Any future experiment manipulating a hippocampal-CEM scoring knob and reading a behavioural DV will return a structural null that LOOKS like a substrate or claim finding. This is the most reusable finding in the cluster.",
+        "wanting_authority_ratio (cross-candidate spread of the manipulated term / spread of the dominant term) is a reusable READINESS statistic: ~0.0037 predicts the null directly. This generalises the 2026-06-10 modulatory-bias-selection-authority amendment ('assert cross-candidate range exists') by one step -- assert the range is COMPETITIVE, not merely nonzero, before queuing a behavioural falsifier.",
+        "The shipped HippocampalConfig.wanting_weight default is 0.0 (config.py:2055), not 0.5. 'Operating weight' in this lineage means the DOCUMENTED RECOMMENDED value; the stock production configuration runs with this pathway absent, i.e. ARM_W0 IS production.",
+        "Multi-arm manifests collapse enabled_default_off_flags LAST-WINS (experiments/_lib/manifest_core.py::enabled_default_off_flags_for_agents, a limitation its own docstring states). 931's top-level block therefore reports hippocampal.wanting_weight = 5000.0 -- the positive-control arm -- for the very field the run manipulates. Ground truth is recoverable from per_arm[*].wanting_weight, so this is a legibility hazard, not an adjudication blocker; but any dose-response driver over a default-off field has it.",
+        "This run SUPERSEDES failure_autopsy_V3-EXQ-914-914a_2026-08-13's second learning that 'the existing lever (wanting_weight) already covers it' -- the lever does not cover it, because the lever's authority does not propagate to the committed action."
+      ],
+      "routing": "implement-substrate"
+    },
+
+    {
+      "run_id": "v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3",
+      "queue_id": "V3-EXQ-932",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "wanting_behaviour_coupling_detected",
+      "failed_criterion": "none -- all three load_bearing criteria passed; the adjudication is of the REPORTED, NON-GATING coupling narrative",
+      "failed_criterion_detail": "The driver's combination_rule states explicitly that the PASS 'gates MEASUREMENT VALIDITY, not coupling detection'. All three load-bearing criteria (residue_wanting_measurable, z_goal_measurable, couplings_adequately_powered) passed and that PASS STANDS: residue_wanting is genuinely live for the first time in the 906/916 lineage (nonzero on 100% of 1013 steps, chan_max_std 0.568), confirming the V3-EXQ-916a writer fix. What this autopsy adjudicates is the self-route label, which is a hypothesis about the reported half -- and there the eight-channel 'all powered' presentation conceals two zero-variance DVs, two rare-event DVs, two single-seed artifacts, and an absent partialling step.",
+
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: [] by deliberate design ('promotes nothing, weights no governance'). GOV-FAILLOC-1 claim-free branch applies.",
+        "biological_reference": "partial -- the surviving coupling (wanting -> locomotion at t+1) is the closest real mesolimbic signature the run recovers: incentive salience invigorating locomotor output. No targeted review of it exists; adjacent lit does.",
+        "prerequisites": "present for the wanting half, MISSING for the z_goal half. residue_wanting: nonzero on 100% of 1013 steps, std 0.56 -- the 916a writer fix is confirmed live. z_goal: identically ZERO in seeds 0 and 1 (0 nonzero across 827 steps); all 97 active ticks are in seed 2 (z_goal_stream.active_frac 0.0087). Under emergent, unforced conditions z_goal formation does not reliably occur.",
+        "implementation": "partial -- the writer path is repaired and demonstrably live; z_goal formation is not reliably produced without the forced update_z_goal(0.5, 0.9) that V3-EXQ-931 applies every tick (931 active_frac 0.996 vs 932's 0.0087 -- the two runs are in radically different z_goal regimes and their z_goal readings are not directly comparable).",
+        "environment": "wrong pressures -- harm-saturated. Behavioural mode over 1013 pooled steps: shelter 618, avoid 218, freeze 176, explore 1, approach 0. This is what makes the approach DV unreachable and harm_signal>0 a 0.59% event (6/1013).",
+        "measurement": "under-instrumented / misleading. (i) TWO DVs HAVE ZERO VARIANCE: approach mode fires 0/1013 times, so both *_to_approach_t1 couplings return exactly 0.0 from _pearson_r/_spearman_r's documented degenerate-input branch, and are reported in the summary table as 'near-null' -- a structurally unsettable criterion presented as a measured null. (ii) The power gate is on n only (n>=200); it certifies pair count, not variance or base rate -- zgoal_t_to_benefit_t1t3 has 6 positives and wanting_t_to_reefexit_t1 has 10, both marked powered: true. (iii) NO PARTIAL CORRELATIONS ANYWHERE, despite the same manifest reporting r(residue_wanting, z_goal) = 0.653. (iv) Pooling across seeds with no seed factor, while one seed differs structurally in BOTH variables. (v) The chan_max_std non-degeneracy predicate is a MAX across seeds (driver line 1432), so 1 of 3 seeds certifies a channel.",
+        "integration": "partially coupled -- wanting tracks subsequent locomotion; the causal seam to selection is separately and affirmatively shown absent by V3-EXQ-931.",
+        "scale": "adequate for the wanting channel (1013 pooled steps, 103 'moved' positives support the surviving coupling); insufficient for z_goal (97 active ticks in a single seed cannot support the two z_goal couplings the manifest flags non-trivial)."
+      },
+
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES (coupling-read validity) + ENVIRONMENT (harm-saturated regime), NOT chargeable to REE. Stated precisely because this is a PASS: the GATED measurement-validity PASS stands and is correct on its own terms. What does not stand is the REPORTED, non-gating coupling narrative -- of the four couplings flagged NON-TRIVIAL, one survives autopsy scrutiny, one is unestablished, and two are single-seed artifacts; two further channels are vacuous. REE FAILED is not reached and must not be written."
+      },
+
+      "biological_reference": {
+        "closest_mechanism": "Mesolimbic incentive salience (Berridge). The one surviving coupling -- residue_wanting[t] -> locomotion[t+1] -- corresponds to the locomotor-invigoration component of incentive salience, which is a genuine mesolimbic signature rather than an artifact of the measurement.",
+        "dependencies": [
+          "a benefit/reward-contact history to build the salience map (present post-916a; residue_wanting nonzero on 100% of steps)",
+          "a frontal goal-attractor for the z_goal half (ABSENT in 2 of 3 seeds under emergent conditions)",
+          "an environment presenting appetitive as well as aversive pressure (ABSENT -- the run is harm-saturated: shelter/avoid/freeze account for 1012 of 1013 steps, and the approach mode never occurs)"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not a formal import. The biologically interesting result is that the wanting -> locomotion association SURVIVES partialling on z_goal and strengthens (+0.373 -> +0.432), replicating in all three seeds -- i.e. the residue-field wanting channel, not the frontal goal attractor, is what tracks locomotor output here. Read together with V3-EXQ-931, this is a signal with the correlational signature of incentive salience and none of its motivational authority.",
+        "lit_status": "partial"
+      },
+
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "standard = 'no epistemic suppression asserted' -- correct for a claim-free observational diagnostic, per the skill's rule that 'no category applies' is spelled standard, never n/a. The measurement defects are recorded in four_layer_diagnosis and the quality note, since a failure-mode diagnosis is not an epistemic_category.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "The manifest already carries evidence_direction: non_contributory and this autopsy CONFIRMS it rather than changing it -- the run weights no claim because it is claim-free by design. Per the skill's rule, the interpretable signals are stated explicitly and they are substantial: (1) FIRST confirmation on live data that residue_wanting varies post-916a (nonzero on 100% of steps), validating that writer fix; (2) ONE robust behavioural coupling, wanting -> moved(t+1), r=+0.373, partial|z_goal +0.432, replicated in 3/3 seeds; (3) the affirmative finding that z_goal does NOT reliably form under emergent conditions (flat in 2/3 seeds); (4) four generalisable instrument defects (zero-variance DVs reported as nulls, power-without-variance gating, absent partialling, MAX-across-seeds certification). 'mixed' was considered and rejected: with claim_ids empty, no direction can attach anywhere, and the corpus convention for claim-free diagnostics is non_contributory (92 of 116).",
+
+      "recommended_evidence_quality_note": "Claim-free observational diagnostic (claim_ids: []); weights no claim. Its PASS gates MEASUREMENT VALIDITY only, by the driver's own combination_rule, and that PASS stands: residue_wanting is genuinely live for the first time in the 906/916 lineage (nonzero on 100% of 1013 steps, std 0.56), confirming the V3-EXQ-916a writer fix. The reported, non-gating coupling narrative does NOT stand in full. Of the four couplings flagged non-trivial, only wanting -> moved(t+1) survives autopsy re-analysis of the committed episode log: r=+0.373, partial r|z_goal = +0.432 (it STRENGTHENS under partialling), replicated in all 3 seeds (0.28/0.55/0.28, 103 positives). wanting -> benefit_exposure collapses under partialling (+0.151 -> +0.044) and its Spearman rho (0.086) was already below the pre-registered floor. Both z_goal couplings (zgoal -> benefitexp +0.180; wanting <-> zgoal contemporaneous +0.653) are BETWEEN-SEED ARTIFACTS: z_goal is identically zero in seeds 0 and 1 (all 97 active ticks in seed 2, active_frac 0.0087), the within-seed r is undefined for two of three seeds, and the chan_max_std non-degeneracy predicate is a MAX across seeds so one seed certified the channel. Both *_to_approach_t1 couplings are STRUCTURALLY UNSETTABLE rather than near-null: approach mode fires 0/1013 times under a harm-saturated affect-precedence chain (shelter 618 / avoid 218 / freeze 176), and the estimator returns exactly 0.0 on zero-variance input by design -- their powered: true flag certifies n, not variance. Two further DVs sit at rare-event base rates the n>=200 gate cannot see (harm_signal>0: 6/1013; reef_exit: 10/1013). Failure-location: MEASURES (coupling-read validity) + ENVIRONMENT, MIXED, not chargeable to REE. Re-instrument as V3-EXQ-932a; the partialling and per-seed corrections need NO re-run (they are recoverable from the committed episode log).",
+
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "EMPTY BY CONSTRUCTION, not by omission -- claim_ids is []. See the same field on the V3-EXQ-931 target for the full rationale. Governance should apply recommended_evidence_quality_note to the MANIFEST, not to any claim.",
+
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Routing is queue-experiment (instrument re-design), not implement-substrate, so no substrate_queue write is owed for this target. The z_goal-formation-under-emergent-conditions finding is deliberately NOT filed as substrate work: it is a probe-gated open FACT ('under what conditions does z_goal form at all without forcing?'), not a named build, and filing it as a build would be exactly the complicated-vs-complex misclassification the work-graph vocabulary warns about. It is carried as leg-adjacent context in the fan-out draft and in learning_extracted instead."
+      },
+
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "Cannot fire: claim_ids is [], so the R1-R3 convention has no claim to count against, and this autopsy recommends standard rather than substrate_ceiling so it contributes 0 to every claim's count. The V3-EXQ-932a re-queue recommended below is an INSTRUMENT-DEFECT repair (shape (b) in the re-adjudication table -- an instrument defect correctly permits repair), not another letter circling a substrate ceiling, and it is scoped to changes no re-analysis can supply."
+      },
+
+      "learning_extracted": [
+        "'POWERED' IS NOT 'NON-DEGENERATE'. 932 gates every coupling on n >= 200 and reports eight channels powered: true, while two of the eight have a zero-variance DV (approach: 0/1013) and two more sit at 0.6% / 1.0% base rates. A coupling gate needs a POSITIVE-RATE FLOOR on the dependent variable, not just a pair count -- otherwise a degenerate-input 0.0 is published as a measured null.",
+        "A MAX-ACROSS-SEEDS non-degeneracy predicate lets 1 of N seeds certify a channel. chan_max_std_z_goal (0.078) passed on seed 2 alone while seeds 0 and 1 were identically zero, and every pooled z_goal statistic in the manifest inherits that. For a channel that GATES a coupling read, the predicate should be MIN across seeds, or per-seed reporting with an explicit N-of-M rule.",
+        "REPORT A PARTIAL whenever two candidate drivers are measured in the same run. 932 reports r(residue_wanting, z_goal) = 0.653 in the same manifest as the wanting couplings and partials nothing. The partials cost nothing -- they were recomputed from the committed episode log in minutes, and they changed the reading of three of the four flagged couplings.",
+        "GOOD RECORDING CONVERTED A WOULD-BE RE-RUN INTO A RE-ANALYSIS. Because 932 committed a full 1013-step per-step episode log, the partial and per-seed corrections required zero compute. This is the Experimental Recording Standard paying off, and it is why V3-EXQ-932a must not re-run to obtain them -- a blind re-run would reproduce the same blind spot at the same compute cost.",
+        "An affect-precedence mode classifier can make a DV structurally unreachable in a saturated regime. approach sits fifth in the chain (freeze > assert > shelter > avoid > approach) and the run is harm-saturated, so it never fires. Same defect CLASS as the dry-run 'structurally unsettable criterion' trap, reached by a different route -- worth a standing check on any precedence-ordered categorical DV, not just on truncated smokes.",
+        "931 and 932 sit in radically different z_goal regimes (active_frac 0.996 forced vs 0.0087 emergent). Any cross-run comparison of a z_goal quantity between these two lineages is invalid unless the formation regime is matched."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "successor": "V3-EXQ-932a",
+        "successor_kind": "alphabetic suffix -- same scientific question, broken instrumentation (EXQ versioning policy)",
+        "required_changes": [
+          "1. DROP OR REDEFINE the approach DV -- unreachable under this env's affect-precedence chain (0/1013). If retained for 906c comparability it must be reported as 'unsettable', never 'near-null'.",
+          "2. ADD A NON-DEGENERACY GATE on every DV -- a positive-rate floor (e.g. >= 5% and >= 20 positives) alongside the existing pair-count floor. zgoal_t_to_benefit_t1t3 (6 positives) and wanting_t_to_reefexit_t1 (10) fail any such floor today.",
+          "3. CHANGE z_goal non-degeneracy from MAX-across-seeds to PER-SEED, and report per-seed couplings plus a within-seed pooled estimate beside every pooled figure.",
+          "4. REPORT PARTIAL CORRELATIONS against z_goal for every wanting coupling, and vice versa.",
+          "5. ADDRESS THE z_goal REGIME -- either adopt 931's forced-formation configuration (making the z_goal half comparable to both 931 and 906c) or split the emergent-regime question out as its own probe."
+        ],
+        "do_not_rerun_for": "Items 3 and 4 are already recoverable from the committed episode log (demonstrated in the companion .md Section 2c). 932a's compute is justified by items 1, 2 and 5 ONLY. Re-running to obtain a partial correlation that the existing recording already supports would be wasted compute."
+      }
+    }
+  ],
+
+  "cluster_pattern": {
+    "shape": "COMPLEMENTARY PAIR, apparent tension resolved -- a causal-necessity ablation (931, FAIL) and an observational coupling measurement (932, PASS) on the SAME signal (residue_wanting / VALENCE_WANTING), run on the same machine class two hours apart, reaching opposite-sounding conclusions that in fact compose into one mechanism.",
+    "is_independent_bugs": false,
+    "structural_property": "residue_wanting is a live, shared UPSTREAM STATE CORRELATE, not a selection input -- and on this substrate nothing at the hippocampal-CEM scoring layer is. Three measured facts must hold simultaneously: (1) at the documented operating weight (0.5) the wanting term never changes the CEM argmin (0/5 seeds), and at the SHIPPED DEFAULT (0.0) the pathway is absent entirely; (2) even forced to full authority (w=5000, 80% argmin flips) executed behaviour is BIT-IDENTICAL to ablation, so the CEM elite pick has no behavioural throughput at all; (3) residue_wanting nonetheless predicts locomotion at t+1 (r=+0.373, partial|z_goal +0.432, all 3 seeds). Fact 2 is decisive: the correlation in fact 3 CANNOT flow through the pathway ablated in fact 1, because that pathway is shown to have no throughput even at 10^4x its documented weight. The causal route is AFFIRMATIVELY EXCLUDED at two independent points, not merely unobserved. Separately, 931 is a FOURTH convergent instance of the already-registered modulatory-bias-selection-authority bottleneck ('scoring-layer signals do not reach the committed argmax'), at a call site one layer UPSTREAM of E3.select that failure_autopsy_V3-EXQ-914-914a_2026-08-13 flagged the implemented fix does not reach. 932's instrument defects are a SEPARATE, independent matter and are not part of the structural property.",
+    "readings": [
+      "correlation_without_selection_authority (BEST SUPPORTED)",
+      "alternative_effector_pathway_not_yet_excluded",
+      "reverse_or_co_determination_via_writer_cadence"
+    ],
+    "reconciliation_verdict": "NOT a contradiction. 931 and 932 are consistent and jointly identify the mechanism. The parent's three candidate readings are adjudicated as follows. (A) 'Correlation without selection authority' -- BEST SUPPORTED, and now with the causal route affirmatively excluded rather than merely unobserved. (B) '932's couplings are confounded by a common driver (e.g. z_goal)' -- TESTED HERE, since the driver computes no partials at all. REJECTED for the load-bearing coupling: wanting -> moved STRENGTHENS under partialling on z_goal (+0.373 -> +0.432) and replicates within every seed. CONFIRMED for the z_goal couplings themselves, which are between-seed artifacts resting on the single seed where z_goal varied at all. The confound hypothesis is right about the wrong channels. (C) '931's operating weight simply sits below the authority threshold' -- TRUE AND NOW QUANTIFIED (wanting_authority_ratio 0.0037; first flips w~50; 5/5 seeds only at w~500) but NOT A DEFEATER, because buying authority buys argmin flips and nothing else: at w=5000, 80% of picks flip and mean_resource_proximity is bit-identical to ablation. Raising the operating weight would change what the CEM picks and not what the organism does.",
+    "partialling_answer": "NO -- 932's couplings are NOT partialled against z_goal, or against anything else. The driver computes no partial correlations anywhere (verified by source read; every coupling is bivariate), despite reporting r(residue_wanting, z_goal) = 0.653 in the same manifest. This autopsy computed the partials from the committed episode log; they are recorded in the companion .md Section 2(c) and summarised in each target's quality note.",
+    "planning_decision_forced": "Two, and they are independent. (1) The hippocampal-CEM scoring layer needs BOTH an authority fix AND a throughput fix, and fixing authority alone is provably useless -- amend modulatory-bias-selection-authority rather than opening a parallel record. (2) 932's coupling instrument needs a non-degeneracy gate, per-seed reporting and partialling before ANY future coupling read from this family can be trusted; without it, an eight-channel 'all powered' table can present two vacuous zeros and two single-seed artifacts as findings."
+  },
+
+  "hypothesis_space_ledger_pending": {
+    "staging_note": "DRAFTED ONLY -- NOT WRITTEN. Per the parent's hard constraint and the skill's staging-mode rule, no hypothesis_space_registry.v1.json or any hypothesis_space_* file was opened for write or modified by this session. The confirming interactive session (or the next /governance walk) applies the block below after the Step 8 gate.",
+    "mode": "A (pre-register) + B (same-cycle resolve on a NEW question)",
+    "growth_restriction_check": "NOT APPLICABLE -- this drafts a NEW questions[] entry, and a question being registered in this edit cannot carry a growth_restriction. Checked against the live registry (35 questions): no existing qid covers wanting selection-authority vs behavioural coupling. The nearest neighbour, sd014_wanting_liking_representational_separability (claims: [SD-014], 1 hypothesis, growth_restriction absent), is about REPRESENTATIONAL separability of wanting from liking -- a different question from whether the wanting signal has SELECTION AUTHORITY over action. If the confirming session judges them the same question, the growth-restriction check must be re-run against that qid before attaching (it is currently empty, so growth would be permitted, but the check is mandatory and was not performed for it here).",
+    "proposed_question": {
+      "qid": "wanting_authority_vs_behavioural_coupling",
+      "title": "Why does residue_wanting predict behaviour if it has no selection authority?",
+      "short_title": "wanting: authority vs coupling",
+      "claims": [],
+      "claims_note": "Deliberately empty -- both source runs are claim-free diagnostics. Related but NOT weighed: MECH-236, SD-014, MECH-203. The confirming session may attach claims if it judges the question claim-bearing; this autopsy does not assert it.",
+      "registered_utc": "<set to `date -u` at apply time>",
+      "fanout_sources": ["failure_autopsy_931-932-wanting-authority-cluster_2026-08-16.json"],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "decision": {
+        "decision_question": "Is residue_wanting a motivational signal with a causal path to action, or a shared upstream state correlate?",
+        "live_gate": "a coupling measured under an explicit ablation of each candidate effector pathway",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one cheap discriminator away -- 931's existing ARM_W0 vs ARM_W5000 contrast instrumented with 932's coupling readout",
+        "observation_bottleneck": "no run to date has measured a wanting->behaviour coupling and a wanting-pathway ablation in the SAME run; 931 ablated without measuring coupling, 932 measured coupling without ablating."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-cem-scoring-authority",
+          "label": "The hippocampal-CEM wanting scoring term has selection authority at the operating weight",
+          "desc": "wanting_weight * mean(VALENCE_WANTING) in HippocampalModule._score_trajectory changes which candidate the CEM elite selection picks at the documented operating value 0.5.",
+          "axis": "process",
+          "basis": "the documented purpose of the config field ('Set ~0.3-0.5 for goal-directed navigation')",
+          "pre_registered_utc": "2026-08-14 (V3-EXQ-931's own completion date -- the criterion was pre-registered in the driver before the run)",
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": ["V3-EXQ-931"],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "wanting_scoring_lacks_selection_authority_at_operating_weight",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-14",
+            "basis": "selection_flip_rate 0.0 in 5/5 seeds at w=0.5, with the in-run positive control (w=5000) flipping in 5/5 seeds and the arithmetic negative control (w=0) at exactly 0.0. A discriminating negative with both controls passing and criteria_non_degenerate true on all five criteria -- the full elimination bar."
+          }
+        },
+        {
+          "hid": "H-shared-situation",
+          "label": "SHARED-SITUATION: no causal path; wanting and locomotion are co-driven by the same situational state",
+          "desc": "residue-field geometry, proximity, drive level and harm history drive both residue_wanting and locomotion, so the lagged correlation is a common-cause signature with no wanting->action arrow.",
+          "axis": "world",
+          "basis": "931 excludes the CEM route at two independent points (no authority at operating weight; no behavioural throughput at 10^4x), while 932's wanting->moved coupling survives partialling on z_goal -- so a real association exists whose route is not the ablated one.",
+          "pre_registered_utc": "<apply-time `date -u`>",
+          "pre_registration_source": "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16.json",
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        },
+        {
+          "hid": "H-alternative-effector",
+          "label": "ALTERNATIVE-EFFECTOR: a causal path exists but is not the pathway 931 ablated",
+          "desc": "wanting reaches behaviour via the serotonergic benefit-salience path, drive coupling, or a modulatory channel at E3.select rather than via the hippocampal CEM scoring term.",
+          "axis": "process",
+          "basis": "931 ablated exactly one route and would not observe another; the wanting->moved coupling is robust and requires an explanation.",
+          "pre_registered_utc": "<apply-time `date -u`>",
+          "pre_registration_source": "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16.json",
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        },
+        {
+          "hid": "H-reverse-writer-cadence",
+          "label": "REVERSE / CO-DETERMINATION via the writer's own update cadence",
+          "desc": "locomotion changes proximity, which changes benefit_exposure, which update_benefit_salience writes into VALENCE_WANTING on the same per-tick cadence -- so wanting[t] -> moved[t+1] is partly an artifact of write timing rather than forward prediction.",
+          "axis": "instrumentation",
+          "basis": "the writer is called once per tick from the agent's own contact, so wanting[t] already encodes contact at t; the lag-1 direction has never been checked against its reverse.",
+          "pre_registered_utc": "<apply-time `date -u`>",
+          "pre_registration_source": "failure_autopsy_931-932-wanting-authority-cluster_2026-08-16.json",
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        }
+      ],
+      "axis_families_rows_needed": [
+        {"axis": "process", "family": "process", "note": "already present in the map"},
+        {"axis": "world", "family": "world", "note": "already present in the map"},
+        {"axis": "instrumentation", "family": "instrumentation", "note": "already present in the map"}
+      ],
+      "fanout_growth_note": "New question, registered with 4 legs of which 1 is born resolved (H-cem-scoring-authority, eliminated by V3-EXQ-931 whose pre-registration genuinely precedes its own run). initial_frozen_count == len(hypotheses) == 4; initial_frozen_count_at_registration preserved at 4. No growth event is required because nothing is being appended to an already-adjudicated question. The confirming session must set the three placeholder timestamps from `date -u` at apply time, and must ensure H-cem-scoring-authority's pre_registered_utc (2026-08-14) is <= its resolved_utc (2026-08-14) -- it is, by equality on the run's own completion date."
+    },
+    "post_apply_verification": "After applying, run scripts/build_hypothesis_space.py then scripts/check_hypothesis_space_integrity.py and clear any (a)/(b)/(c)/(d) flag on this qid before committing. Expected: no flags -- this is a new-question registration (invariant 6's first sanctioned growth path), not denominator growth on an existing question."
+  },
+
+  "gate_questions_for_human": [
+    "SEVERITY on the modulatory-bias-selection-authority amendment: confirm 'corrupting' (arms the /queue-experiment Step 2.5c BLOCK on two named hot-path functions) or downgrade to 'degrading' (WARN only). The entry's severity is currently UNSET, so either choice is a change. Argument for corrupting: a behavioural DV downstream of a hippocampal-CEM scoring manipulation returns a structural null that reads as a real finding -- which is what invalidated V3-EXQ-914/914a. Argument against: block radius on hot paths.",
+    "WORDING: record 931 as 'no authority at the documented operating weight (0.5)', or more strongly as 'the pathway is absent in the stock configuration (shipped default 0.0) AND has no authority at the documented value'? The second is what config.py:2055 actually says, and it changes how MECH-236's note reads.",
+    "Is 'residue_wanting -> locomotion' (the one coupling surviving partialling and 3/3-seed replication, with a clear mesolimbic reference) worth a claim? It currently attaches to nothing. That is a /claim-synthesis judgement this autopsy does not make.",
+    "Commission a /lit-pull on incentive salience as a SELECTION/effector mechanism? Lit status is 'partial', not 'absent' (wanting_liking_sleep_consolidation_synthesis.md, targeted_review_hippocampal_dopamine_gain exist), and no formal-import divergence is in play -- so this is useful-but-secondary to the substrate build, and is NOT routed here.",
+    "The hypothesis_space_ledger_pending block proposes a NEW qid rather than attaching to sd014_wanting_liking_representational_separability. If the confirming session judges them the same question, the growth-restriction check MUST be re-run against that qid before attaching -- it was not performed for it here."
+  ],
+
+  "no_ree_failed_read": "Neither target reaches REE FAILED under GOV-FAILLOC-1, and no prose in either artifact may be paraphrased as evidence that REE itself failed. 931 is MIXED (MECHANISM+ENVIRONMENT); 932 is MIXED (MEASURES+ENVIRONMENT). The accurate summary is that the wanting signal is live and behaviourally predictive, and the scoring pathway that would confer authority on it is sub-threshold, off by default, and behaviourally disconnected."
+}

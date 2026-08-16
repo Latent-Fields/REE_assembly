@@ -1,0 +1,255 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T18:27:57Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_mode_note": "Steps 1-7 and 9 run in full. Step 8 (interactive gate) SKIPPED -- headless session, no user. Routing in `routing` / `routing_followons` is DRAFT and not finalised. Step 9b drafted only: hypothesis_space_registry.v1.json was NOT opened or written; the intended action is recorded under `hypothesis_space_ledger_pending`. No TASK_CLAIMS entry opened or closed (parent session holds cranky-driscoll-126a36-batch). Nothing committed or pushed. No chip spawned. No index or pending_review.md regeneration.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_note": "scripts/check_dry_run_citations.py on the target run_id: 0 dry cited, 0 dry in named families, 0 ambiguous, 1 clean, 0 unknown (exit 0). Target manifest has no truthy top-level `dry_run`. No cluster members and no population statistics, so no further ids needed checking.",
+  "already_done_check": {
+    "method": "full-run_id content match across every REE_assembly/evidence/planning/failure_autopsy_*.json targets[].run_id",
+    "result": "not covered -- 0 confirmed artifacts name v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3",
+    "note": "A stem or filename-glob check would have WRONGLY reported COVERED: the confirmed cluster artifact failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json covers the DIFFERENT run v3_exq_920_..._20260811T210906Z_v3, which shares the identical run_id stem. See the identifier finding in learning_extracted."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3",
+      "queue_id": "V3-EXQ-920a",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "single_life_uncensored_survival_distribution_obtained",
+      "indexer_adjudication": "verified",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate_for_the_dv_inadequate_for_a_competence_read",
+        "measurement": "adequate_for_the_primary_dv_under_instrumented_for_mechanism",
+        "integration": "coupled",
+        "scale": "adequate_and_oversized"
+      },
+      "four_layer_diagnosis_notes": {
+        "claim_alignment": "claim_ids: []. No claim tested, supported or weakened; nothing to align.",
+        "biological_reference": "No mechanism claim under test. The DESIGN (one unbroken life, no respawn, death terminal) is a faithful organism-lifespan translation and is the point of the run. Observed dose-stereotypy resembles a cumulative-injury/wear mortality process rather than constant-hazard -- a resemblance at n=8, not a reference triage.",
+        "prerequisites": "SD-FISHTANK-MAX-EPISODE-STEPS landed (ree-v3 9d3d148ff8) and verified live by the driver's own substrate-readiness read; harm pathway trained 96883 steps; all 72 default-off flags for the 906b tier enabled.",
+        "implementation": "The single-life design executed exactly as specified (8/8 lives, one segment each, no respawn, unambiguous done_cause). But the organism observed is incomplete in ways the design makes structural: NO consolidation of any kind occurs within a life (0 sleep cycles), the eval is observational so there is no within-life learning, and vigor sits at floor (chan_mean 2.6e-05).",
+        "environment": "Did exactly what it was built to do -- 8/8 genuine deaths, zero censoring. But resource_respawn_on_consume=false with 5 non-renewing resources on a 12x12 grid, plus scheduled limb damage (interval 50, p 0.5), scheduled external hazards (interval 50, p 0.5), and world-rule shift every 250 steps, makes this strictly attritional. Confirmed in substrate: the only reachable _respawn_resource() path at these settings is a diagnostic-only branch gated on dual_cue_replace_on_early_consume, and env drift moves hazards only. The reef is a zero-harm zone with no food. Death is eventually CERTAIN for any policy.",
+        "measurement": "done_cause and realized_steps exact, unambiguous, complete on all 8 lives; validate_recording.py reports 0 always-core gaps. No within-life hazard/health time series in the manifest, so the memorylessness question is not answerable from the manifest alone -- but per-step traces for all 8 lives ARE durably committed in the 34.8 MB episode log. NOT a recording gap; routes to reanalysis, never a re-run.",
+        "integration": "Full 906b stack live; z_goal stream 33879 writer calls, active_frac 0.99995, writer_defect false. No isolation or coupling instability.",
+        "scale": "The 20000-step ceiling was over-provisioned ~8x: longest life 2527 = 12.6% of cap; 13718 of 160000 budgeted steps realised. Good for the censoring question, expensive at 6.3 h wall clock."
+      },
+      "biological_reference": {
+        "closest_mechanism": null,
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- the 8/8 mortality observation is chargeable to the ENVIRONMENT BY CONSTRUCTION, not to REE. resource_respawn_on_consume=false with non-renewing resources makes death certain for any policy, so survival time measures how long a finite budget was stretched against a fixed harm-encounter rate, not a competence. Implementation reads `partial` (no within-life consolidation, no within-life learning, vigor at floor) and Environment reads `partial` (adequate to elicit death, inadequate to license a competence read), so REE FAILED is not reachable and is not asserted anywhere in this artifact. Positive framing: no observation in this run is chargeable to REE in EITHER direction -- the run neither demonstrates nor fails to demonstrate a competence."
+      },
+      "failure_location_scope_note": "GOV-FAILLOC-1 claim-free branch. This is exactly the case it was written for: a claim-free diagnostic whose organism-level observation ('REE died in every one of 8 lives, median 1831 steps') prose could easily render as evidence REE itself failed to survive. MEASURES reads `established` for the primary DV (WHEN death occurred) only; the WHY is under-instrumented in the manifest but answerable from committed data.",
+      "pass_is_real_not_degenerate": {
+        "verdict": "real",
+        "reasons": [
+          "The load-bearing gate has a DEMONSTRATED failure mode in this very lineage: sufficient_uncensored_deaths (>=4) is exactly the criterion the 08-11 sibling FAILED (1 vs 4), on the same driver and byte-identical config, three days earlier.",
+          "The core-channel gate cleared with 3 to 4.4 orders of magnitude of headroom, not marginally: STD_FLOOR=1e-4 vs chan_max_std z_harm_a 2.638, drive 0.334, z_goal 0.126, z_harm_un 0.099.",
+          "The DV was nowhere near its own instrument ceiling: longest life used 12.6% of the 20000-step cap, so '0% censored' is not a boundary artefact."
+        ],
+        "why_indexer_did_not_flag_vacuous_pass": "The vacuous_pass check fires when a PASS carries any `false` in criteria_non_degenerate{} after exclusions. Here ALL 13 keys are `true`, so the check never engages and the flag path is not reached at all. Worth stating exactly because the run's shape (3 load-bearing gates, 11 informational channel reports) is the broad-report/narrow-gate pattern that historically produced spurious vacuous_pass on this exact 906/665/664 lineage and required the 2026-08-09 aggregate-scope exclusion in build_experiment_indexes.py. That exclusion WAS available and correctly licenses the informational excess -- core_channels_non_degenerate is load_bearing:true, passed:true, and its name ends in `_non_degenerate`, which is precisely the licence condition -- but it did no work here. Contrast the 08-11 sibling, whose channel_vigor read `false`; had that run been a PASS the exclusion would have been load-bearing.",
+        "honest_degeneracy_caveats": [
+          "freeze_not_locked = (total_freeze == 0) or (total_freeze < total_steps): with 0 freeze fires the first disjunct is trivially true, so the criterion CANNOT fail when the mechanism it monitors never fires. load_bearing:false, licenses nothing, but it has no reachable failing branch in this run.",
+          "channel_vigor passed at chan_max_std 0.00233 against a 1e-4 floor with chan_mean 2.6e-05 -- technically non-degenerate, functionally floor-level. Informational, not core. Do not cite vigor from this run as an active channel.",
+          "chan_max_std is a MAX ACROSS SEEDS, so every channel criterion is monotonically easier to pass as seed count rises. channel_vigor read `false` at n=1 (08-11) and `true` at n=8 (08-14) with no relevant substrate change. The core channels clear by 3-4 orders of magnitude either way so the gate is unaffected, but the informational channel criteria are NOT seed-invariant and such a flip is never evidence of a substrate change."
+        ]
+      },
+      "survival_distribution_usability": {
+        "n_lives": 8,
+        "n_uncensored_deaths": 8,
+        "n_right_censored": 0,
+        "pct_right_censored_pooled": 0.0,
+        "survival_times_steps": [628, 1008, 1432, 1816, 1846, 1944, 2517, 2527],
+        "min": 628,
+        "median": 1831,
+        "mean": 1714.75,
+        "max": 2527,
+        "sd": 670.2,
+        "cv": 0.391,
+        "se_of_mean": 236.9,
+        "approx_95pct_interval_on_mean": [1154, 2275],
+        "ceiling_utilisation_pct": 12.6,
+        "pre_registered_floor": 4,
+        "usable": true,
+        "usable_note": "Usable for the question it was built to answer, and the censoring question is SETTLED rather than merely improved: pct_right_censored_pooled = 0.000 exactly. There is no censored observation to model around, no survival-analysis machinery required, and no estimator sensitivity to a censoring assumption -- the empirical distribution IS the 8 draws. The pre-registered adequacy bar (MIN_UNCENSORED_DEATHS_TOTAL=4) cleared at 2x.",
+        "supports": [
+          "A firm qualitative answer: on this ecology tier an unbroken single life reliably ends in genuine health_depleted death well inside 3000 steps (8/8).",
+          "A crude central tendency: mean 1715, median 1831, approx 95% interval on the mean 1154-2275. Quote the interval, never the point estimate alone.",
+          "A decisive refutation of the run's OWN imported calibration assumption: the driver extrapolated V3-EXQ-912's segment hazard (p ~= 4/60 = 6.7% per 500 steps) as approximately memoryless, predicting mean death ~7500 steps and ~6.2% censoring per seed. Observed mean 1715 -- 4.4x earlier -- with 0% censoring. Hazard RISES with within-life time: a wear process. Consistent with 912 rather than contradicting it, since every 912 segment began with a fresh body and its estimate was therefore a fresh-body hazard, structurally blind to the wear term.",
+          "A demonstration that 912's death-time distribution was a TRUNCATION ARTEFACT: 912 spanned 261-487 steps (mean 382), 920a spans 628-2527. The two ranges are DISJOINT with no overlap -- every single-life death here occurred later than the longest death 912 was structurally able to observe. 912's figure was a conditional-on-dying-within-500-steps distribution and must not be cited as an organism survival distribution.",
+          "A dose-vs-time result, the strongest scientific content in the run: harm-event counts reconstructed EXACTLY from lifetime_affective_occupancy (frac_harm_event x n_lived_steps_measured recovers integers exactly) are 93, 88, 81, 72, 98, 57, 94, 73 -- mean 82.0, sd 14.0, CV 0.170, max/min 1.72. Against survival TIME at CV 0.391 and max/min 4.02, cumulative harm dose at death is 2.3x MORE STEREOTYPED than time to death. Spearman(harm-event rate, survival steps) = -0.881. Natural reading: death occurs at an approximately fixed harm tolerance and survival time is that budget divided by encounter rate -- a harm-dose distribution wearing the clothes of a survival distribution. Descriptive at n=8, not a claim."
+        ],
+        "does_not_support": [
+          "No distributional shape. 8 points cannot distinguish lognormal from Weibull from gamma and cannot estimate a hazard function. The wear-vs-memoryless call is a gross-magnitude argument (4.4x), not a fitted comparison.",
+          "No between-condition inference. There is one arm; nothing is compared to anything.",
+          "No competence inference in either direction -- the environment makes death eventually certain (see failure_location).",
+          "The harm-dose result is n=8 and reconstructed from a summary statistic. A hypothesis worth one cheap reanalysis, not a finding to build on.",
+          "No pooling with the 08-11 run or with V3-EXQ-912 (different substrate, different design).",
+          "The seed-3 anomaly is unexplained and must not be smoothed over: seed 3 spent 91.9% of its life in the zero-harm reef yet carried the second-highest harm-event RATE (0.0714) and died second-earliest (1008 steps). Reef occupancy across seeds is essentially uncorrelated with survival (Spearman +0.095). Sheltering did not buy life. Answerable from the already-committed episode log."
+        ]
+      },
+      "supersession_analysis": {
+        "prior_run_id": "v3_exq_920_uncensored_survival_single_life_fishtank_20260811T210906Z_v3",
+        "prior_queue_id": "V3-EXQ-920",
+        "prior_outcome": "FAIL",
+        "prior_autopsy": "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12.json (confirmed, Target 4)",
+        "relationship": "fix-validation, and a functional supersession that is NOWHERE DECLARED",
+        "what_changed": {
+          "seeds": "[0] -> [0,1,2,3,4,5,6,7]",
+          "substrate_commit": "fc0fb4ce5c7b -> bf769fb3a445 (+114 commits)",
+          "substrate_hash": "1aea107827fd... -> ac1f6486e271...",
+          "machine": "ree-worker-1 -> ree-cloud-2 (same machine_class linux-x86_64-py3.10-torch2.12.0+cpu)",
+          "elapsed_seconds": "930 -> 22773",
+          "driver_file": "UNCHANGED between the two runs",
+          "config": "BYTE-IDENTICAL (all 33 keys)",
+          "enabled_default_off_flags": "BYTE-IDENTICAL (all 72 keys)"
+        },
+        "classification": "Fix-validation of an INFRASTRUCTURE defect. The queue entry that produced it (ree-v3 8fc8bd3) states it verbatim: 'V3-EXQ-920a: multi-seed re-run of 920 (explicit --seeds 0..7; workaround for runner seeds-not-in-CLI defect, per 916/920 autopsy Target 4; smoke PASS)'. That is a direct, named consumption of the confirmed 2026-08-12 cluster autopsy's Target-4 routing (routing: queue-experiment), whose diagnosis was that the 08-11 FAIL was not a scientific finding at all -- the queue declared seeds:8 but experiment_runner.run_experiment() builds subprocess CLI args only from the item's `args` field, so the driver's own --seeds default [0] silently governed.",
+        "supersedes_declared_anywhere": false,
+        "supersedes_finding": "Under the EXQ versioning policy a lettered iteration supersedes its predecessor, and the predecessor's evidence should not continue weighting governance where the bug invalidated its result. That condition is squarely met -- the 08-11 result was invalidated by an execution defect and 920a is the corrected iteration of the identical question on byte-identical config. Yet: neither manifest carries `supersedes`; the 920a queue entry carries no `supersedes`; the 08-11 manifest's evidence_direction was never set to `superseded`; and the driver-generated summary_markdown -- IDENTICAL text in both runs -- says only 'Supersedes V3-EXQ-912's segment-count-scaling workaround', a METHODOLOGICAL statement about a DIFFERENT experiment. A reader of the 08-14 artifact alone has no way to learn a failed predecessor exists. Practical governance exposure is limited rather than absent: the 08-11 run was already adjudicated non_contributory + standard by the confirmed cluster artifact, so it is not silently weighting anything. What is lost is the MECHANICAL link -- the indexer's supersession path (evidence_direction: 'superseded' -> inactive) is never engaged, and the two runs remain separable only by timestamp.",
+        "do_not_pool": "The 08-11 single life (seed 0, 1475 steps, health_depleted) falls inside the 08-14 distribution, which is a pleasing independent cross-machine consistency check -- but it is NOT a ninth data point. The substrate hash differs across 114 commits and seed 0 itself realised 1475 steps on the old substrate versus 1944 on the new, a 32% shift on a FIXED seed, so the two runs are not bit-comparable and the drift demonstrably changed the trajectory. n stays 8; any later citation must quote n=8, never n=9."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "'No category applies' is spelled `standard`, never n/a. `standard` is the behaviour-preserving stamp for a claim-free diagnostic: it asserts no epistemic suppression, keeps the target outside _EPI_SUPPRESS_PROPOSAL, and is the same stamp the confirmed 2026-08-12 cluster artifact used for its two claim-free showcase targets (V3-EXQ-916, V3-EXQ-916a). The failure-mode/design observations belong in the note fields, not in this enum field.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Matches the manifest's own self-stamp and the precedent for claim-free showcase runs in the 2026-08-12 cluster. It means 'contributes no claim-weighting evidence', which is exactly true given claim_ids: []. It emphatically does NOT mean the run was uninformative -- ten learnings are extracted below.",
+      "recommended_evidence_quality_note": "V3-EXQ-920a (v3_exq_920_..._20260814T223432Z_v3) is a claim-free diagnostic characterization PASS and does not weight governance. It is the corrected iteration of V3-EXQ-920 (..._20260811T210906Z_v3), whose FAIL was an infrastructure defect (1 of 8 declared seeds executed) adjudicated in failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12; 920a functionally supersedes it, though neither manifest declares `supersedes`. Result: 8 of 8 single continuous lives ended in genuine health_depleted death, pct_right_censored_pooled = 0.000, survival 628-2527 steps (median 1831, mean 1715, sd 670). The PASS is real, not degenerate -- its load-bearing sufficient_uncensored_deaths gate demonstrably failed on the 08-11 sibling three days earlier, and the gated core channels clear STD_FLOOR by 3-4 orders of magnitude. Two results are load-bearing for future design: V3-EXQ-912's reported death-time range (261-487) is a 500-step-cap truncation artefact, disjoint from and entirely below this run's; and the memoryless hazard extrapolated from 912 is refuted by 4.4x (predicted mean ~7500 steps, observed 1715), indicating an accumulating-damage process. Do NOT read the 8/8 mortality as evidence REE failed to survive: resource_respawn_on_consume is false with 5 non-renewing resources, so death is certain for any policy and the observation is chargeable to the environment by construction (GOV-FAILLOC-1 net classification: MIXED, not chargeable to REE; Implementation reads partial and Environment partial). The manifest's SLEEP-CADENCE note asserting within-life sleep is structurally impossible is STALE against this run's own substrate (use_within_life_sleep_trigger landed in 5f14036/c38e083, ancestors of bf769fb3a445, and is merely default-off). No substrate entry, no re-run, and no claim disposition is owed; the outstanding value is a zero-compute reanalysis of the committed 34.8 MB episode log.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "EMPTY BY NECESSITY, NOT BY OMISSION. claim_ids is [] -- there is no claim_id to key on, and inventing one would be worse than leaving it empty. GOV-APPLY-1 has nothing to check here because there is no claim disposition to apply. Recorded explicitly so a later reader does not treat the empty object as an authoring lapse.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "recommended_substrate_queue_entry_note": "No substrate gap. The prerequisite this run consumed (SD-FISHTANK-MAX-EPISODE-STEPS) is landed and verified, and the within-life sleep trigger surfaced in learning 8 is ALSO already landed (default-off) with a designated validation driver already authored -- so neither is a substrate need. The four follow-ons are analysis, a driver/runner fix, a docstring correction, and infrastructure hygiene; none is substrate work.",
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "Not applicable. claim_ids: [] -- there is no claim to count substrate_ceiling readings against, and this autopsy recommends `standard`, not `substrate_ceiling`, so it contributes nothing to any claim's count under R1-R3."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "Does not fire. No claim is tagged, so granularity_debt_cluster.py has no target and no claim_alignment distribution to read. Recorded explicitly so GOV-GRAN-1's standing corpus sweep sees an honest stamp rather than an absent one."
+      },
+      "learning_extracted": [
+        "TRUE single-continuous-life observation on the 906b ecology tier yields 8/8 uncensored health_depleted deaths with pct_right_censored_pooled = 0.000, at 628-2527 steps (median 1831). The censoring problem that dominated V3-EXQ-912 (93.3%) is fully solved by the max_episode_steps route, at LESS THAN HALF 912's eval-step cost (13718 vs 29529) for TWICE the uncensored deaths (8 vs 4).",
+        "V3-EXQ-912's reported death-time distribution (261-487 steps, mean 382) is a 500-step-cap TRUNCATION ARTEFACT: it is disjoint from and entirely below 920a's (628-2527), so every single-life death observed here occurred later than the longest death 912 was structurally able to see. Do not cite 912 as an organism survival distribution.",
+        "The memoryless hazard calibration imported from 912 is refuted by 4.4x (predicted mean ~7500 steps, observed 1715). Hazard rises with within-life time -- an accumulating-damage/wear process. 912 could not have seen this: each of its segments began with a fresh body, so its estimate was a fresh-body hazard by construction.",
+        "Cumulative harm dose at death (mean 82.0 events, sd 14.0, CV 0.170, max/min 1.72) is 2.3x MORE STEREOTYPED than time to death (CV 0.391, max/min 4.02), and harm-event rate anti-correlates with survival at Spearman -0.881. The survival distribution is plausibly a harm-dose distribution divided by an encounter rate. n=8, descriptive, one cheap reanalysis from settled.",
+        "Reef (zero-harm safe zone) occupancy does not buy survival: Spearman(frac_in_reef, survival steps) = +0.095, and the 91.9%-reef seed died second-earliest with the second-highest harm rate. Unexplained; answerable from the committed episode log.",
+        "A LETTERED queue_id whose run_id OMITS the letter defeats stem-keyed de-duplication and coverage checks. Measured corpus-wide over evidence/experiments/*.json: 733 manifests carry both ids; 376 have a lettered queue_id; 17 of those (4.5%) have a run_id omitting the letter; and 10 distinct run_id STEMS are shared by 2+ queue_ids. Of the 17, 8 are the SD-068 family whose run_ids never encode the number but DO separate variants by descriptive slug (only 778b/778c actually collide), and 9 are genuine letter-drops (612c, 612d, 737a, 737b, 742a, 742b, 766a, 914a, 920a). Of the 10 stem collisions, 6 are the letter-drop shape, spanning 6 unrelated families from 2026-05 to 2026-08. HONEST SCALE: rare (1.4% of manifests, 2.4% of lettered ids) but RECURRING and UNFIXED -- not systemic, and not historical either. No evidence has been lost, since the fully-timestamped run_id IS unique corpus-wide; the exposure is that stem-keyed consumers silently under-report, which is exactly how this session's parent nearly re-autopsied an already-covered run. ROOT CAUSE IS STRUCTURAL, not an authoring slip: EXPERIMENT_TYPE is a module-level constant (driver line 271) and the driver has no access to its runner-supplied queue_id, so any same-driver-different-arguments re-queue reproduces it. Two independent fixes: consumers key on the FULL run_id or (queue_id, run_id) never the stem; producers thread queue_id into the run-pack key.",
+        "`all_seeds_completed` is structurally blind to the defect its own description names. Its description reads 'no early crash/truncation silently shrinking n' but its implementation (driver line 504) is n_seeds_total == len(seeds), where `seeds` is the list THE PROCESS WAS INVOKED WITH. On the 08-11 run it reported measured 1.0 / threshold 1.0 / met:true -- a clean pass -- while 7 of the 8 queue-DECLARED seeds never executed. A criterion that checks a run against its own arguments cannot detect that the arguments were wrong. This is the driver-side complement to the 2026-08-12 Target-4 runner-side finding (experiment_runner builds CLI args only from `args`, never from the declarative `seeds` count).",
+        "A manifest's interpretive note can go STALE against its own substrate. Both interpretation.note and summary.md tell a future reader -- naming /failure-autopsy explicitly -- that 0 sleep cycles is EXPECTED because 'a TRUE single unbroken life can NEVER sleep during that life, no matter how long it runs'. That structural claim was true for the 08-11 substrate and is FALSE for the target's: 5f14036 (sleep_substrate:GAP-9 v1 ceiling arm, within-life sleep trigger) and c38e083 (MELConsumer.need_crossed() + notify_waking_step wiring, registering the flag) are ANCESTORS of bf769fb3a445 and NOT of fc0fb4ce5c7b. The knob is use_within_life_sleep_trigger: bool = False (ree_core/utils/config.py:5426) and it is absent from this run's enabled_default_off_flags. The outcome value is right; the RECORDED REASON is wrong, and wrong in the direction that misdirects -- a reader following the note would conclude substrate work is still owed when it has landed. Standing 'claim status is not the flag default -- check the knob first' pattern, arriving inside a manifest's own prose. Consequence: 920a's design is the only bed in the corpus that can exercise a within-life sleep trigger (only run with a continuous unbroken life), and the designated validation v3_exq_931_sleep_gap9_need_arm is authored with no runs recorded.",
+        "chan_max_std is a MAX ACROSS SEEDS, so channel non-degeneracy criteria are NOT seed-invariant -- they become monotonically easier to pass as seed count rises. channel_vigor read `false` at n=1 (08-11) and `true` at n=8 (08-14) with no relevant substrate change. Never read such a flip as evidence of a substrate change.",
+        "An undeclared supersession: 920a is a fix-validation of an infrastructure defect diagnosed in a confirmed autopsy and functionally supersedes the 08-11 run under the EXQ versioning policy, yet `supersedes` is null on both manifests and absent from the queue entry, and the driver-generated summary mentions only the methodological supersession of a DIFFERENT experiment (912).",
+        "Corroborating identifier-hygiene observation, recorded but deliberately not investigated (scope discipline): two DIFFERENT drivers both carry queue_id V3-EXQ-931 -- v3_exq_931_cem_wanting_weight_selection_authority (ran 2026-08-14) and v3_exq_931_sleep_gap9_need_arm (authored ree-v3 c38e083, no runs recorded). A queue-id collision rather than a run_id collision: same identifier-hygiene family, opposite direction."
+      ],
+      "routing": "none (characterization succeeded on its own pre-registered terms; no substrate gap, no measurement redesign, no re-run and no claim disposition owed -- four follow-ons reported below for /governance to ratify and chip)",
+      "routing_followons": [
+        {
+          "item": "Reanalyse the committed 34.8 MB episode log (all 8 lives hold full per-step traces)",
+          "debt_class": "complicated (buildable)",
+          "route": "analysis -- explicitly NOT /queue-experiment",
+          "note": "Zero new compute. Answers three open questions: the empirical within-life hazard function (does the wear reading hold up), the harm-dose-at-death hypothesis against per-step health rather than a reconstructed summary, and the seed-3 reef anomaly. Highest value-per-unit-cost item this run generates."
+        },
+        {
+          "item": "Fix all_seeds_completed to compare against the DECLARED seed count",
+          "debt_class": "complicated (buildable)",
+          "route": "implement-substrate or driver fix",
+          "note": "Requires the runner to pass the declared count through to the driver; pairs with the 2026-08-12 Target-4 runner-side finding. Small, and closes the driver-side half of a defect that has already cost one run."
+        },
+        {
+          "item": "Correct or annotate the stale SLEEP-CADENCE note; consider 920a's design as the bed for the within-life sleep trigger",
+          "debt_class": "complicated (buildable)",
+          "route": "driver docstring correction; CHECK v3_exq_931_sleep_gap9_need_arm BEFORE queuing anything",
+          "note": "The stale note is in a LANDED manifest and must not be retro-edited; the correction belongs in the driver docstring and in any successor. v3_exq_931_sleep_gap9_need_arm is the designated GAP-9 validation, is already authored, and has recorded no runs -- a new experiment would duplicate it."
+        },
+        {
+          "item": "Identifier hygiene: run_id stem collisions and the V3-EXQ-931 queue-id collision",
+          "debt_class": "complicated (buildable)",
+          "route": "infrastructure",
+          "note": "Consumers key on the full run_id or (queue_id, run_id); producers thread queue_id into the run-pack key. Low priority (rare, no evidence lost) but do NOT close as fixed -- it recurs across six families over three months."
+        }
+      ],
+      "explicitly_not_recommended": "A re-run at more seeds. The pre-registered adequacy bar cleared at 2x and the censoring question is settled at 0.000; a larger n would buy distributional shape, which nothing currently needs. If a successor is ever queued for a DIFFERENT question, cut EVAL_STEPS from 20000 to ~6000 (longest observed life used 12.6% of the ceiling) for roughly a 3x wall-clock saving on a 6.3 h run.",
+      "chip_policy_note": "Per the 2026-07-30 user-instructed rule, a /failure-autopsy session does NOT spawn_task the follow-on its own recommendation names -- /governance Step 2b/4/6a ratifies first, and a chip spawned off an unratified routing risks building against a superseded recommendation. The four items above are REPORTED, not chipped. No spawn_task or chip_ledger call was made by this session."
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "staging_mode_deferred": true,
+    "registry_written": false,
+    "note": "STAGING MODE -- hypothesis_space_registry.v1.json was NOT opened or written, per the skill's staging-mode rule. The confirming interactive session (or the next /governance walk) should apply the block below, re-reading the registry immediately before editing, then run scripts/build_hypothesis_space.py and scripts/check_hypothesis_space_integrity.py and clear any (a)/(b)/(c)/(d) flag on the affected question before committing.",
+    "applicable": "MARGINAL -- recommend NO ledger append; see reasoning. Recorded rather than silently skipped so the confirming session can overrule.",
+    "reasoning": "Step 9b applies when the autopsy either (i) emits a fanout_recommendation or (ii) adjudicates a leg (a target with a recommended_evidence_direction). No fanout_recommendation is emitted -- there is no discrimination bottleneck, the run answered its own question, and the outstanding items are buildable analyses rather than rival hypotheses needing a portfolio. Condition (ii) is met only in the thinnest formal sense: this target carries recommended_evidence_direction: non_contributory, but with claim_ids: [] it adjudicates no pre-registered LEG of any registered question, and no existing qid names this run's adjudicating queue_id. Appending would therefore mean OPENING A NEW QUESTION whose single hypothesis is born already resolved -- and that is not what Mode C is for (Mode C is a genuinely unanticipated rival surfacing on an EXISTING question, and it attaches to an existing qid by construction). Registering a one-hypothesis question purely to record a successful characterization would inflate total_initial with a leg that narrowed no rival set, which is exactly the denominator-inflation the frozen-set invariants exist to police.",
+    "if_the_confirming_session_disagrees": {
+      "mode": "A then B in the same edit (new question), per the Mode B same-cycle shortcut for a NEW question only",
+      "candidate_qid": "single_life_survival_is_dose_or_time_determined",
+      "candidate_title": "Is single-continuous-life mortality on the 906b ecology tier dose-determined (fixed harm tolerance) or time-determined (constant hazard)?",
+      "claims": [],
+      "candidate_hypotheses": [
+        {
+          "hid": "H-memoryless-hazard",
+          "label": "Constant hazard (memoryless)",
+          "desc": "Within-life death hazard is approximately constant, as extrapolated from V3-EXQ-912's fresh-body segment hazard (p ~= 6.7% per 500 steps), predicting mean death ~7500 steps and ~6.2% censoring per seed.",
+          "axis": "world",
+          "basis": "The driver's own STEP-BUDGET CALIBRATION imported this assumption explicitly and pre-registered this run as its correct test.",
+          "proposed_resolution_state": "eliminated",
+          "proposed_bar": "control_passed true (harm_pathway_trained and core_channels_non_degenerate both cleared), non_degenerate true (all 13 criteria_non_degenerate keys true), met_elimination_bar true",
+          "proposed_basis": "Observed mean 1715 steps vs ~7500 predicted (4.4x earlier) with 0.000 censoring vs 6.2% predicted. Hazard rises with within-life time."
+        },
+        {
+          "hid": "H-fixed-harm-dose",
+          "label": "Fixed harm-tolerance budget",
+          "desc": "Death occurs at an approximately fixed cumulative harm dose; survival TIME is that budget divided by the seed's harm-encounter rate.",
+          "axis": "world",
+          "basis": "Harm dose at death CV 0.170 vs survival time CV 0.391 (2.3x more stereotyped); Spearman(harm rate, survival) = -0.881.",
+          "proposed_resolution_state": "alive",
+          "proposed_bar": "NOT met -- n=8, reconstructed from a summary statistic, and no per-step health series has yet been analysed. Record resolving_runs and basis, leave state alive.",
+          "proposed_basis": "Suggestive at n=8; the discriminating analysis (per-step health vs cumulative harm from the committed episode log) has not been run. An uninformative-so-far leg narrows nothing."
+        }
+      ],
+      "warning": "If this IS appended, it must be as a NEW question (Mode A + the Mode B same-cycle shortcut, pre_registered_utc <= resolved_utc = the run's completion date 2026-08-14). It must NOT be attached to an existing qid -- that would be denominator growth requiring a growth-restriction check plus a labelled fanout_growth_events or discovery_growth_events entry. Set initial_frozen_count = len(hypotheses) = 2 and initial_frozen_count_at_registration = 2 in the same edit."
+    }
+  },
+  "constraints_observed": {
+    "step_8_interactive_gate": "SKIPPED (staging mode, no user)",
+    "step_9b_registry_write": "NOT PERFORMED (drafted under hypothesis_space_ledger_pending)",
+    "task_claims_touched": false,
+    "committed_or_pushed": false,
+    "claims_yaml_edited": false,
+    "manifests_edited": false,
+    "review_tracker_edited": false,
+    "substrate_queue_edited": false,
+    "spawn_task_or_chip_ledger_called": false,
+    "session_land_run": false,
+    "pending_review_regenerated": false,
+    "experiment_index_rebuilt": false
+  },
+  "for_the_human_at_the_confirmation_gate": [
+    "Confirm non_contributory + standard for a claim-free diagnostic PASS, matching the 2026-08-12 precedent -- or say whether a claim-free characterization that genuinely answered its question deserves different treatment. This is a live governance question beyond this run.",
+    "Confirm the supersession reading: should the 08-11 manifest's evidence_direction be set to `superseded`, or is its existing non_contributory adjudication sufficient? This artifact recommends NO manifest edit (the record is already correct; only the mechanical link is missing), but the call is governance's.",
+    "Ratify the four follow-ons for chipping -- especially item 1 (zero-compute reanalysis of the committed episode log) and item 3 (check v3_exq_931_sleep_gap9_need_arm BEFORE queuing anything sleep-related, to avoid duplicating an already-authored validation).",
+    "Decide the hypothesis_space_ledger_pending question: this artifact recommends NO ledger append (appending would open a one-hypothesis question that narrowed no rival set, inflating total_initial). A candidate two-hypothesis new question is drafted if you disagree."
+  ]
+}
