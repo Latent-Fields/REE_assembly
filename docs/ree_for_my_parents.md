@@ -328,11 +328,11 @@ still un-named, still loved.
 <!-- CAMPAIGN_STATE:START -->
 ### The campaign so far
 
-*The under-mountain map is **71%** lit. Of the gates that matter for this stretch, **59** stand open and **33** are still shut.*
+*The under-mountain map is **72%** lit. Of the gates that matter for this stretch, **62** stand open and **32** are still shut.*
 
-*Gates the goblin has closed for good: Goal Pipeline, SD-033 Governance, SD-037 Axis (a): Consumer-Input-Threshold Recalibration.*
+*Gates the goblin has closed for good: ARC-005 Control-Plane Routing, Goal Pipeline, SD-033 Governance, SD-037 Axis (a): Consumer-Input-Threshold Recalibration.*
 
-*Nearest to opening: Infant Substrate Expansion (91%). The gate of the council is still being rewritten; the goblin is still at the table, the lantern still tied to the blade.*
+*Nearest to opening: Sleep Substrate (91%). The gate of the council is still being rewritten; the goblin is still at the table, the lantern still tied to the blade.*
 
 <sub>Refreshed automatically from the closure map. The only part of the tale a machine is allowed to write -- it does not name the soul.</sub>
 
