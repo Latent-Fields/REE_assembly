@@ -516,9 +516,9 @@
       "summary": "V3-EXQ-926 crashed (crash-before-manifest); its synthetic ERROR record v3_v3_exq_926_runner_error_20260813T045041Z_v3 is still evidence_direction 'non_contributory' (claim_ids []). /diagnose-errors 2026-08-14 root-caused a hardcoded Mac-only EVIDENCE_DIR absolute path (/Users/dgolden/...) absent on ree-cloud-2 (/home/ree/...), so write_flat_manifest() crashed at the final step (science ran to completion, ~2.25s); queued successor V3-EXQ-926a (supersedes V3-EXQ-926, one-line __file__-relative path fix, now live in the coordinator queue). FOLLOW-ON OWED: once V3-EXQ-926a's run lands, set that ERROR manifest's evidence_direction to 'superseded' with a note naming V3-EXQ-926a, and rebuild the index. Nothing else is owed.",
       "raised_by_session": "metaworker-chip-20260813-exq926a-evidence-dir-fix",
       "raised_at": "2026-08-14T17:09:55Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-16T20:14:45Z",
+      "resolution_note": "APPLIED AND DISCHARGED (governance cycle 2026-08-16, cranky-driscoll-126a36). This flag named exactly one owed follow-on, conditional on V3-EXQ-926a landing -- it landed 2026-08-14T17:10:50Z terminal PASS/supports (v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3), so the condition is met and the action is done: the synthetic ERROR record v3_v3_exq_926_runner_error_20260813T045041Z_v3 is now evidence_direction 'superseded' with superseded_by naming 926a, and the experiment index was rebuilt. The record carried claim_ids [] and so weighted neither MECH-449 nor ARC-107 in either direction -- this is corpus bookkeeping, not a claim disposition, and no claim status changed. Root cause for the record: a hardcoded Mac-only EVIDENCE_DIR absolute path (/Users/dgolden/...) absent on ree-cloud-2 (/home/ree/...), so write_flat_manifest() crashed at the final step after the science had run to completion in ~2.25s; the one-line __file__-relative fix shipped as 926a. 'Nothing else is owed' per the flag's own text."
     },
     {
       "flag_id": "GFLAG-0035",
