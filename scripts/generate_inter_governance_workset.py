@@ -1239,6 +1239,40 @@ def _substrate_landing_cutoff(
     changed identity. Backfilled by `scripts/backfill_failure_record_run_role.py`,
     which records its derivation per item in `run_role_basis`.
 
+    HELD-OUT VERIFICATION (GOV-HELDOUT-1, 2026-08-16, chip-20260815-fm11-cutoff-
+    schema-backfill). The premise re-measured unchanged on the live corpus: 97 items
+    datable against their own `implemented_utc`, 37 (38%) predating it. Re-derived
+    old-vs-new across all 246 reachable claims: 21 differ (13 gained, 8 lost, 0
+    covering runs changed identity; the at-commit figures above have drifted only
+    because new evidence has landed since). Adjudicated on four shapes DISTINCT from
+    the motivating MECH-074d/151/152 boundary case, which counts as one:
+
+      * cutoff SOURCE ENTRY moves (MECH-090) -- an `unknown` stamp, basis R5 ("entry
+        claims a build but nothing dates it"), was the LATEST candidate and set the
+        cutoff to 2026-08-02, suppressing everything before it. Now rejected; the
+        cutoff falls back to an explicit post_build stamp at 2026-06-19 and coverage
+        is found. Dating a landing from a stamp the classifier could not date is the
+        under-suppress error, caught here in the wild.
+      * all-`pre_build` entry, no `implemented_utc` (ARC-046, INV-074) -> undatable
+        -> no coverage. Previously a gap-characterisation run set the cutoff and
+        next-day evidence "covered" it: the WRONG HOLD, and the fix's whole point.
+      * all-`unknown` on an UNBUILT entry (MECH-324, whose SD-083 reads
+        `proposed_GATED..._DO_NOT_BUILD_YET`; MECH-456) -> undatable. The old
+        reading dated a landing for substrate that explicitly does not exist yet.
+      * multi-entry, mixed roles, one entry `pending_implementation` (MECH-357) ->
+        undatable rather than dated from a `pre_build` stamp.
+
+    All 8 lost cases resolve to cutoff `None` -- every loss is the fail-open
+    direction, never a suppression. Two AUDIT NOTES, neither live-affecting: 9 items
+    are `post_build` yet predate their entry's `implemented_utc` (all R3, 8 self-
+    flagged `same_day -- audit`; the run is real and the bookkeeping stamp is later).
+    They are INERT -- the cutoff is a MAX and each entry's own `implemented_utc` is
+    strictly later, verified as 0 claims dated by any of them. And commit c57cbbad21's
+    MESSAGE states the split as 68/157/56, while the committed corpus is 152
+    post_build / 73 pre_build / 56 unknown -- which is what the classifier re-derives
+    (`test_the_backfill_is_stable_on_the_committed_corpus`). The message figure is
+    garbled; the data and this docstring are correct.
+
     THE THIRD RETURN VALUE closes the self-cancelling half of FM11. When the cutoff
     IS a post-build validation run, that run is itself evidence that ran against the
     landed substrate, so evidence AT the cutoff must count -- otherwise the run sets
