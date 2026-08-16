@@ -1828,3 +1828,4 @@ One line per hourly tick. ASCII only.
 2026-08-16T19:07:00Z skip: paused (.igw_routine_pause present)
 2026-08-16T20:07:01Z skip: paused (.igw_routine_pause present)
 2026-08-16T21:07:23Z workset committed (regen -- 235 items, 25 ready, 0 in flight)
+2026-08-16T21:07:02Z STAGE IGW-20260816-210 skill=/implement-substrate prio=25 worktree=igw-210-substrate-ready-mech091-salient (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
