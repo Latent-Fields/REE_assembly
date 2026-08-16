@@ -330,9 +330,15 @@ No `/claim-synthesis` routing is owed.
    later, across a `substrate_hash` change carrying no `ree_core/` delta, reproduced every
    metric to the last decimal. Useful reproducibility evidence for this harness.
 8. **`substrate_hash` moved on a `CLAUDE.md` + queue-snapshot + driver-rename change with
-   no `ree_core/` delta.** Not investigated here (out of scope), but noted: if the hash is
-   that sensitive, arm-reuse fingerprint matching may be missing legitimately reusable
-   cells. Flagged for whoever owns GOV-REUSE-1, not routed from this autopsy.
+   no `ree_core/` delta — CHECKED, and this is BY DESIGN, not a defect.**
+   `experiments/_lib/arm_fingerprint.compute_substrate_hash` hashes file *content*, and the
+   driver script is folded into the hash by default (`include_driver_script_in_hash=True`,
+   per CLAUDE.md's arm-reuse block: default True "folds the driver into the hash -> never
+   reusable cross-driver"). The 927 -> 928 rename changed 14 lines of the driver, so the
+   hash legitimately moved. **No arm-reuse defect, and no follow-on is owed** — recorded
+   explicitly because the raw observation ("different substrate_hash, identical results")
+   reads as alarming and would otherwise invite a re-investigation that has already been
+   done here and closed.
 
 ---
 

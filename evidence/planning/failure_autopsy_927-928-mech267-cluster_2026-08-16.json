@@ -107,7 +107,7 @@
         "A burned queue id re-run under a new id should stamp `supersedes` on the new manifest. Absent it the indexer double-counts one measurement -- here 927 + 928 both appear as diagnostic runs against MECH-267.",
         "A no-op-default facet is not a delivered fix: validating H3 changes no production behaviour while mode_partitioned_cem defaults False (reference_claim_status_vs_default_off_flag).",
         "Incidental positive control: a deterministic seeded probe re-executed 10 minutes later, across a substrate_hash change carrying no ree_core/ delta, reproduced every metric to the last decimal.",
-        "OBSERVATION, not routed from this autopsy: substrate_hash moved on a CLAUDE.md + queue-snapshot + driver-rename change with no ree_core/ delta. If the hash is that sensitive, arm-reuse fingerprint matching may be missing legitimately reusable cells -- flagged for whoever owns GOV-REUSE-1."
+        "CHECKED AND CLOSED, no follow-on owed: substrate_hash moved on a CLAUDE.md + queue-snapshot + driver-rename change with no ree_core/ delta, which is BY DESIGN -- experiments/_lib/arm_fingerprint.compute_substrate_hash hashes file CONTENT and the driver script is folded in by default (include_driver_script_in_hash=True), so the 14-line rename legitimately moved the hash. No arm-reuse defect. Recorded because the raw observation ('different substrate_hash, identical results') reads as alarming and would otherwise invite a re-investigation already done here."
       ],
       "routing": "implement-substrate"
     },
