@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-16T09:07:28Z",
+  "generated_at": "2026-08-16T09:30:44Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6878,6 +6878,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "routed to decision chip chip-20260816-igw219-mech357-avoidance-efficacy-implement (metaworker-dispatch cycle 2284, ree-cloud-5, human-gated /implement-substrate item, awaiting user consent)",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: mech357-avoidance-efficacy-eligibility-trace-imbalance",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-357"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260816T093040Z-1e2d523a-spawned_task",
+      "stable_hash": "1e2d523aad5c",
+      "igw_id_at_assign": "IGW-20260815-219",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-16T09:30:40Z",
+      "released_at": "2026-08-16T09:30:40Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260816T090728Z-1e2d523a-spawned_task",
       "note": "routed to decision chip chip-20260816-igw219-mech357-avoidance-efficacy-implement (metaworker-dispatch cycle 2284, ree-cloud-5, human-gated /implement-substrate item, awaiting user consent)",
       "item_snapshot": {
         "skill": "/implement-substrate",
