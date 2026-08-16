@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-16T11:59:30Z`  
+Generated: `2026-08-16T18:56:00Z`  
 Last review: `2026-08-16T11:25:59Z`  
-Pending: **14** item(s) -- 9 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 10 diagnostic run(s) with no confirmed autopsy; 2 run(s) with a DEAD z_goal stream
+Pending: **14** item(s) -- 9 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 2 run(s) with a DEAD z_goal stream
 
 ## FAIL (action required)
 
@@ -36,23 +36,6 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 |--------|--------|------------------|--------------|
 | `v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3` | PASS | fix_effective::H3+BOTH | **vacuous_pass** |
 | `v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3` | PASS | fix_effective::H3+BOTH | **vacuous_pass** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3` | PASS | fix_effective::H3+BOTH |
-| `v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3` | PASS | fix_effective::H3+BOTH |
-| `v3_exq_929_sleep_gap9_within_life_trigger_20260814T081606Z_v3` | PASS | within_life_trigger_validated |
-| `v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3` | PASS | mech303_dedicated_signal_discriminates_zharma_does_not |
-| `v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3` | FAIL | wanting_scoring_lacks_selection_authority_at_operating_weight |
-| `v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3` | PASS | wanting_behaviour_coupling_detected |
-| `v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3` | PASS | need_arm_validated |
-| `v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3` | PASS | selection_hardness_partial_recovery |
-| `v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3` | PASS | single_life_uncensored_survival_distribution_obtained |
-| `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` | PASS | cap_recalibration_admits_mixed_regime |
 
 ## Dead z_goal stream (interpret before trusting a z_goal readout)
 

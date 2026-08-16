@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-16T11:26:53Z
+Generated: 2026-08-16T18:56:35Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -212,7 +212,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-074a | `v3_exq_659_mech074a_bla_encoding_gain_replay_bias_20260609T200751Z_v3` | `v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3` |
 | MECH-074b | `_none_` | `decision:MECH-074b@2026-08-08T08:30:48.470619Z` |
 | MECH-074c | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` | `v3_exq_895_mech074c_cea_fast_prime_dynamics_20260808T012422Z_v3` |
-| MECH-074d | `failure_autopsy_V3-EXQ-906a_894b_2026-08-09` | `failure_autopsy_V3-EXQ-894c_2026-08-11` |
+| MECH-074d | `failure_autopsy_V3-EXQ-894c_2026-08-11` | `failure_autopsy_V3-EXQ-894c_2026-08-11` |
 | MECH-075 | `decision:MECH-075@2026-04-03T22:00:00Z` | `failure_autopsy_mech075-second-cluster_2026-08-10#V3-EXQ-905a` |
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
 | Q-021 | `failure_autopsy_V3-EXQ-866c_2026-08-08` | `failure_autopsy_V3-EXQ-899_2026-08-09` |

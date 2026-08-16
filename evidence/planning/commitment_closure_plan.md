@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -39,13 +38,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -58,13 +56,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -78,13 +75,12 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -125,13 +121,12 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -150,13 +145,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -169,13 +163,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -187,13 +180,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -207,13 +199,12 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -241,13 +232,12 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -260,13 +250,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -280,13 +269,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-13"
-        from: "failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e"
+        as_of: "2026-08-16"
+        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
         verdict: "non_contributory/standard"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
