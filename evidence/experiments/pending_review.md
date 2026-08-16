@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-16T11:25:59Z`  
-Last review: `2026-08-13T20:30:17Z`  
-Pending: **15** item(s) -- 10 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 10 diagnostic run(s) with no confirmed autopsy; 2 run(s) with a DEAD z_goal stream
+Generated: `2026-08-16T11:59:30Z`  
+Last review: `2026-08-16T11:25:59Z`  
+Pending: **14** item(s) -- 9 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 10 diagnostic run(s) with no confirmed autopsy; 2 run(s) with a DEAD z_goal stream
 
 ## FAIL (action required)
 
@@ -24,7 +24,6 @@ Pending: **15** item(s) -- 10 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke),
 | `v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3` | 2026-08-14T09:24 | MECH-303 |
 | `v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3` | 2026-08-14T15:54 | (no claim tags) |
 | `v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3` | 2026-08-14T15:58 | (no claim tags) |
-| `v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3` | 2026-08-14T17:10 | ARC-107, MECH-449 |
 | `v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3` | 2026-08-14T18:37 | MECH-152 |
 | `v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3` | 2026-08-14T22:34 | (no claim tags) |
 | `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` | 2026-08-15T01:52 | MECH-266, SD-032a |

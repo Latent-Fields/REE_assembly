@@ -9374,15 +9374,15 @@
   claim_type: mechanism_hypothesis
   subject: amygdala.bla_pe_remap_with_attribution
   polarity: asserts
-  status: provisional
+  status: candidate
   live_status:
-    reading: provisional
-    as_of: 2026-08-08
+    reading: candidate
+    as_of: 2026-08-16
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-906a_894b_2026-08-09"
-      as_of: 2026-08-09
-      verdict: FAIL/weakens -- trainability-alone refuted, loss-term balance (entropy_weight vs MSE) now the load-bearing open question
+      from: "failure_autopsy_V3-EXQ-894c_2026-08-11"
+      as_of: 2026-08-11
+      verdict: FAIL/weakens -- loss-balance refuted; four consecutive negative results, demoted provisional -> candidate 2026-08-16
   epistemic_category: standard
   implementation_phase: v3
   pending_retest_after_substrate: true  # SD-035 substrate_queue entry amended 894a/894b/894c; context-representation fix owed before next retest
@@ -9505,6 +9505,20 @@
     superseded; the fix owed is a context-DISCRIMINATING input signal to the attribution head (or a
     loss FORMULATION change), NOT a further scalar retune -- that route is now closed by measurement.
     Stays provisional / pending_retest_after_substrate.
+
+    [/governance 2026-08-16, DEMOTION APPLIED provisional -> candidate]: the 2026-08-08 hold is
+    DISCHARGED and its condition is spent. That hold was explicitly "pending V3-EXQ-894a
+    (recalibrated PE-sigma threshold) rather than applied immediately"; 894a, 894b and 894c have
+    all since run and returned weakens / weakens / mixed -- 4 experimental entries, 0 pass_runs,
+    conflict_ratio 0.80, exp_conf 0.456. Each successor closed one candidate explanation in turn
+    (dilution -> trainability-alone -> loss-term balance), so this is a NARROWED diagnosis rather
+    than an instrument artifact, and the 894c autopsy itself moved epistemic_category
+    substrate_conditional -> standard precisely to expose the claim to this pass and recorded that
+    it "is worth an explicit demotion look next cycle". Demoting now records what the evidence
+    already shows and removes false certainty from downstream roadmap references; it does NOT
+    falsify the claim. pending_retest_after_substrate stays true -- the owed fix is a
+    context-DISCRIMINATING input signal to the attribution head (or a loss FORMULATION change),
+    per the SD-035 substrate_queue entry, and a successful retest is the route back to provisional.
 - id: MECH-075
   title: "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics."
   claim_type: mechanism_hypothesis
@@ -15938,6 +15952,23 @@
     MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION): re-source the novelty signal from something
     MEL-correlated (e.g. the E3/E2 prediction-error signal that already drives MEL) instead of the
     self-referential recency buffer. pending_retest_after_substrate=true.
+
+    [/governance 2026-08-16, DEMOTION RECOMMENDATION HELD -- deliberately, not missed]: the automated
+    queue recommends demote_to_candidate (conflict_ratio 0.667, exp_conf 0.372, 4 supports / 2
+    weakens). HELD at provisional this cycle because the demotion rests entirely on UNADJUDICATED
+    evidence. Both of this claim's experimental entries are weakens and both are 861-lineage:
+    V3-EXQ-861a (already autopsied above as weakens/measurement_test_design_defect -- an
+    operationalization gap, explicitly NOT evidence against the biology) and V3-EXQ-861d
+    (v3_exq_861d_..._20260815T005853Z_v3, this cycle's pending_review set, NO confirmed autopsy).
+    861d additionally carries the DEAD z_goal writer defect -- z_goal_stream.writer_defect true,
+    writer_calls 0 across 38,346 ticks, so REEAgent.update_z_goal was never called and every z_goal
+    consumer silently no-opped for the whole run -- and it self-routes mel_control_degenerate having
+    FAILED its own C2_consumer_not_env_causes_variation control. A demotion driven by two runs, one
+    already diagnosed as a test-design defect and the other of doubtful validity on grounds visible
+    from its own manifest, would be applying the conflict ratio to evidence the autopsy has not yet
+    accepted. Route: V3-EXQ-861c/861d cluster to /failure-autopsy (shared C1b spindle-density
+    criterion, shared writer defect); re-run this demotion look next cycle once adjudicated.
+    PROMOTES NOTHING; status stays provisional.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: this claim bundles two distinct mechanisms and
     each needs its own gate.
@@ -19199,6 +19230,22 @@
     ctxdiv-ON ablation this note flags as owed is the discriminator between those two
     readings and should run before any further disposition change. epistemic_category
     standard.
+
+    [/governance 2026-08-16, DEMOTION RECOMMENDATION HELD -- the owed ablation HAS RUN but is not
+    yet adjudicable]: the automated queue again recommends demote_to_candidate (conflict_ratio
+    0.667, exp_conf 0.315) on the SAME single experimental entry (V3-EXQ-922, weakens) that the
+    2026-08-13 cycle already declined to demote on. The discriminating ablation that note flagged as
+    owed -- soft-selection + ctxdiv-ON -- has since RUN: V3-EXQ-922a
+    (v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3), PASS, self-routing
+    selection_hardness_partial_recovery, which is on its face the A0_OFF-closer-to-threshold reading
+    the 922 autopsy identified as the live lead rather than mechanism absence. It is NOT yet
+    scored into claim_evidence (latest indexed entry is still 922, 2026-08-12) and, being
+    experiment_purpose diagnostic, it requires a CONFIRMED /diagnostic-autopsy before it may drive
+    any governance action -- it is in this cycle's pending set with no autopsy. So the hold
+    condition is discharged in FACT but not yet in EVIDENCE, and demoting now would apply a
+    conflict ratio computed over exactly the one run the successor was designed to reinterpret.
+    HELD at provisional. Route: V3-EXQ-922a to /failure-autopsy (accepts a PASS target); re-run
+    this disposition once confirmed. PROMOTES NOTHING.
   what_would_answer: |
     CURRENT EVIDENCE STATE: MIXED (EXQ-194/194a, 2026-04-01) -- the HARM
     pathway is validated (C1 PASS 3/3, r_w_harm=0.70: harm-context
@@ -71551,12 +71598,12 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-08-16
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-699_2026-07-20
-      as_of: 2026-07-20
-      verdict: non_contributory/measurement_test_design_defect
+      from: v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3
+      as_of: 2026-08-14
+      verdict: supports/PASS -- perseveration axis converts, but only at a non-default envelope floor (0.10 vs stock 0.30)
   epistemic_category: standard
   # Assembly-state companion fields (MOVE-4 claims-layer follow-on). Worked
   # example of the explicit-override path: the Go/No-Go component is built but the
@@ -71648,6 +71695,31 @@
     composition. Until it lands, "the levers compound" and "the levers are safe to co-arm" must
     not be restated in EITHER direction: the corrected sign is UNKNOWN, and V3-EXQ-699's own
     CANCEL branch was never ruled out by an uncontaminated measurement either.
+
+    [/governance 2026-08-16, V3-EXQ-926a PASS -- supports, WITH A NON-DEFAULT-CONFIG CAVEAT that the
+    evidence stamp did not carry]: 926a is the selection-face falsifier for the ONE axis of the built
+    constitution 689g left untested -- perseveration, consuming a live MECH-260 dACC recency-suppression
+    vector via real record_action() history rather than an injected tensor. It PASSES cleanly: C1
+    conversion 0.969/0.969/1.000 across seeds 42/43/44 (floor 0.5, 3/3 clearing), C2 content
+    specificity gap 0.979 (constitution 0.979 vs shuffled control 0.000), C3 safety fail-open 0
+    empty-eligible; all three readiness preconditions met; all three criteria declared
+    non-degenerate; combination rule verified in the driver source as a plain AND (not the V3-EXQ-846
+    OR-shape); thresholds are module constants never derived from run statistics.
+    THE CAVEAT, recorded here because the manifest stamps evidence_direction supports with a NULL
+    evidence_direction_note and the caveat otherwise lives only in free-text notes: the run sets
+    ENVELOPE_FLOOR = 0.10, against the substrate's stock f_eligibility_envelope_floor of 0.30. At the
+    STOCK default the identical mechanism converted 1/16 -- the MECH-448 F-eligibility envelope
+    collapses to a single survivor and the gng_protect_min_eligible fail-open guard then correctly
+    refuses to drop it, so the perseveration axis is STRUCTURALLY unable to fire (driver's own
+    authoring measurement: floor 0.30 -> median envelope 1, soft_applied 6/16; floor 0.10 -> median
+    envelope 2, soft_applied 15/16). So this supports "the perseveration axis CAN act", conditional on
+    a wider envelope than ships by default; it is not a demonstration at default configuration. Per
+    reference_claim_status_vs_default_off_flag, check the knob before citing this as unconditional
+    support. The interaction itself (perseveration No-Go is structurally gated by envelope width) is
+    documented in NEITHER the MECH-449 build notes NOR V3-EXQ-689g -- a substrate-documentation gap.
+    MECH-260 is deliberately untagged on this run (its own falsifier is behavioural, blocked on the
+    MECH-457 competence floor and vacuous there; MECH-260 is ceiling_decision exhausted under
+    GOV-CEIL-1) -- correct, and not to be "fixed" by adding the tag. Status stays provisional.
   depends_on:
     - ARC-107    # the BG-constitution umbrella this is the core eligibility-governance leg of (the unbuilt substrate it is conditional on)
     - MECH-439   # the F-dominance ceiling it is proposed to resolve
@@ -73248,16 +73320,42 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-08-16
     needs_review: false
     evidence:
-      from: v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3
-      as_of: 2026-06-21
-      verdict: supports/PASS
+      from: v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3
+      as_of: 2026-08-14
+      verdict: supports/PASS -- last untested No-Go axis converts, at a non-default envelope floor (0.10 vs stock 0.30)
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
   registered_utc: "2026-06-20"
+  evidence_quality_note: >
+    [/governance 2026-08-16, V3-EXQ-926a PASS -- first evidence_quality_note on this claim]:
+    V3-EXQ-926a is the selection-face perseveration falsifier for the built MECH-449 Go/No-Go
+    constitution, and it closes the LAST untested axis of that constitution -- V3-EXQ-689g exercised
+    only safety and staleness, both as injected constructed tensors, and states at its own injection
+    site that perseveration was left to the live agent loop. 926a supplies that vector from a real
+    DACCAdaptiveControl history (record_action() + _suppression_penalty()). PASS on all three
+    criteria (C1 conversion 0.969/0.969/1.000 over seeds 42/43/44 against floor 0.5; C2 content
+    specificity gap 0.979 against a shuffled control at exactly 0.000; C3 safety fail-open 0), all
+    three readiness preconditions met, all three criteria non-degenerate, combination rule verified
+    in source as a plain AND. ARC-107 now stands at 7 supports / 0 weakens (2 experimental, 5
+    literature), overall confidence 0.833, quadrant confirmed_established.
+    CAVEAT THAT GATES ACTING ON THIS, carried here because the manifest stamps supports with a null
+    evidence_direction_note: the run uses ENVELOPE_FLOOR = 0.10 against the substrate's stock
+    f_eligibility_envelope_floor of 0.30, and at the stock default the identical mechanism converted
+    1/16 (the MECH-448 envelope collapses to one survivor and the gng_protect_min_eligible fail-open
+    guard correctly refuses to drop it, so the No-Go axis cannot fire at all). The demonstration is
+    therefore "the axis CAN act, given a wider envelope than ships by default", not a
+    default-configuration result -- see reference_claim_status_vs_default_off_flag.
+    DISPOSITION: promotion candidate -> provisional was CONSIDERED this cycle and DEFERRED to the
+    ordinary promotion/demotion pass rather than applied on this single run, so the decision is made
+    against the pipeline's own thresholds. The gating open item is a stock-default demonstration (or
+    an explicit decision that the wider envelope is the intended production setting). Note also that
+    three ARC-107 depends_on entries are still flagged MISSING PIECE (ARC-108 unified dopamine
+    substrate, ARC-109 D1/D2 population split, MECH-450 recurrent settling step), so the
+    constitution remains incomplete regardless of this axis result.
   depends_on:
     - ARC-106    # brain-like construction constraint: this IS the first major worked application -- a BG-like selector grounded at the level of FUNCTION, load-bearing not decorative
     - MECH-439   # the F-dominance conversion ceiling this constitution is proposed to resolve

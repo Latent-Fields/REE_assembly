@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-13T20:30:17Z",
+  "last_review_utc": "2026-08-16T11:25:59Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1158,7 +1158,8 @@
     "v3_exq_467e_mech266_mode_stickiness_behavioural",
     "v3_exq_464e_mech266_competing_goals_behavioural",
     "v3_exq_861b_inv050_mech180_independent_seed_replication",
-    "v3_v3_exq_926_runner_error_20260813T045041Z_v3"
+    "v3_v3_exq_926_runner_error_20260813T045041Z_v3",
+    "v3_exq_926a_mech449_perseveration_nogo_falsifier"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3976,7 +3977,8 @@
     "v3_exq_436e_sd017_mech166_occupied_slot_retest_20260812T221724Z_v3",
     "v3_exq_467e_mech266_mode_stickiness_behavioural_20260813T001847Z_v3",
     "v3_exq_464e_mech266_competing_goals_behavioural_20260813T020141Z_v3",
-    "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3"
+    "v3_exq_861b_inv050_mech180_independent_seed_replication_20260813T113330Z_v3",
+    "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6269,6 +6271,36 @@
         "v3_v3_exq_926_runner_error_20260813T045041Z_v3 (V3-EXQ-926, MECH-449) -- non-zero exit code 1, no runner sentinel; unchanged since last cycle, routes to /diagnose-errors, not autopsy"
       ],
       "notes": "Single pending FAIL this cycle: V3-EXQ-861b (INV-050/MECH-180 GFLAG-0002 independent-seed replication), already autopsied and user-confirmed in this same worktree's prior /failure-autopsy session ~1h before this cycle started (failure_autopsy_V3-EXQ-861b_2026-08-13, confirmed). Applied to claims.yaml: both claims evidence_direction non_contributory, epistemic_category UNCHANGED (standard), GFLAG-0002 remains unresolved (C1 replicated cleanly on 3 disjoint seeds; C2 failed 2/3 seeds but traced to a calibration-noise artifact in the driver's mel_reference denominator, not an absence of coupling). Routed to /queue-experiment for same-question letter 861c (calibration redesign), not yet chipped (autopsy-recommended routing chips only after governance ratification per 2026-07-30 rule). Promotion/demotion agenda (9 pending_user items): MECH-152's demote_to_candidate recommendation is STALE relative to today's earlier V3-EXQ-922 autopsy, which explicitly held provisional pending an owed soft-selection+ctxdiv-ON ablation -- formally recorded via record_decision.py (hold_provisional_pending_ablation, applied) rather than demoting, matching the prior cycle's same-day judgment. Remaining 8 pending_user items (MECH-142/143/236/289/357, SD-009/027/033e) are standing recurring holds with unchanged underlying gates -- reaffirmed as-is, formally recorded via record_decision.py (applied) so the decision_status reflects in the next regen. Claim contention noted: this cycle's governance-pause claim opened --allow-overlap against an active igw-auto-igw-217 implement-substrate claim on claims.yaml (staged, not launched, no live process) -- proceeded per user direction; genuinely different task, no edit collision observed."
+    },
+    {
+      "timestamp_utc": "2026-08-16T11:25:59Z",
+      "session_label": "governance cycle (cranky-driscoll-126a36, worktree)",
+      "reviewed_run_ids": [
+        "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_926a_mech449_perseveration_nogo_falsifier"
+      ],
+      "left_pending_needs_autopsy": [
+        "v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3 (V3-EXQ-931, no claim tags, diagnostic FAIL) -- cluster A",
+        "v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3 (V3-EXQ-927, MECH-267, diagnostic PASS, vacuous_pass flag) -- cluster A",
+        "v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3 (V3-EXQ-928, MECH-267, diagnostic PASS, vacuous_pass flag) -- cluster A",
+        "v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3 (V3-EXQ-932, no claim tags, diagnostic PASS) -- cluster A",
+        "v3_exq_861c_inv050_mech180_calibration_fixed_replication_20260814T231404Z_v3 (V3-EXQ-861c, INV-050/MECH-180, evidence FAIL, DEAD z_goal writer_calls=0) -- cluster B",
+        "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3 (V3-EXQ-861d, MECH-180/MECH-122, evidence FAIL, DEAD z_goal writer_calls=0) -- cluster B; blocks the MECH-122 demotion decision",
+        "v3_exq_929_sleep_gap9_within_life_trigger_20260814T081606Z_v3 (V3-EXQ-929, no claim tags, diagnostic PASS) -- cluster C",
+        "v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3 (V3-EXQ-933, no claim tags, diagnostic PASS) -- cluster C",
+        "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3 (V3-EXQ-436f, SD-017/ARC-045/MECH-166, evidence FAIL, supersedes 436e; GFLAG-0035 contests its premise)",
+        "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3 (V3-EXQ-603u, MECH-357, evidence FAIL)",
+        "v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3 (V3-EXQ-930, MECH-303, diagnostic PASS, control criterion C2 FAILED)",
+        "v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3 (V3-EXQ-922a, MECH-152, diagnostic PASS) -- IS the ablation the 2026-08-13 cycle held MECH-152 for; blocks the MECH-152 demotion decision",
+        "v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3 (V3-EXQ-920a, no claim tags, diagnostic PASS)",
+        "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3 (V3-EXQ-934, MECH-266/SD-032a, diagnostic PASS)"
+      ],
+      "driver_skim_log": [
+        "v3_exq_926a_mech449_perseveration_nogo_falsifier -- FINDING. Mandatory non-outcome-findings driver skim (Step 2b) on the cycle's only claim-tagged evidence PASS. CLEAN on three checks: combination rule is a genuine plain AND in source (`elif c1 and c2 and c3`), NOT the V3-EXQ-846 OR-shape; all thresholds are module constants never derived from run statistics; control arms are deliberately not scored against the conversion floor, with the reasoning written at the site. FOUND: the driver sets ENVELOPE_FLOOR = 0.10 against the substrate's stock f_eligibility_envelope_floor of 0.30, and at the stock default the identical mechanism converted 1/16 (envelope collapses to one survivor, gng_protect_min_eligible fail-open guard correctly refuses to drop it, axis structurally cannot fire). Disclosed honestly in the driver comments and manifest notes, but the manifest stamps evidence_direction=supports with evidence_direction_note=null, so the machine-readable evidence carried no caveat. Recorded as evidence_quality_note on MECH-449 and ARC-107 (reference_claim_status_vs_default_off_flag shape). Secondary: the envelope-width interaction is documented in neither the MECH-449 build notes nor V3-EXQ-689g -- substrate-documentation gap."
+      ],
+      "notes": "Route B cycle (user-selected at Step 1.5): 15 pending items, 14 needed a /failure-autopsy before anything could be applied, so only 1 was reviewable. No dry-run contamination (all 15 checked via check_dry_run_citations.py). No confirmed autopsy existed for ANY pending run and none was in flight. REVIEWED: V3-EXQ-926a only (MECH-449/ARC-107, evidence PASS, supports) -- see driver_skim_log for the non-default-envelope-floor caveat now recorded on both claims. LEFT PENDING: 14 items, clustered for autopsy as A (927/928/931/932 CEM wanting selection authority), B (861c/861d MEL sleep, both DEAD z_goal writer defect, both failing the same C1b criterion), C (929/933 sleep GAP-9), plus 6 singletons -- ~9 autopsies. AGENDA: 5 pending_user items dispositioned. MECH-074d DEMOTED provisional -> candidate (2026-08-08 hold was explicitly pending V3-EXQ-894a; 894a/894b/894c have all since run weakens/weakens/mixed, 4 exp entries 0 pass_runs, and the 894c autopsy itself recorded it 'worth an explicit demotion look next cycle'); pending_retest_after_substrate stays true. MECH-122 and MECH-152 demotion recommendations HELD deliberately -- both rest on unadjudicated evidence: MECH-122's only two exp entries are 861a (already autopsied as a test-design defect) and 861d (no autopsy, dead z_goal, failed its own C2 control); MECH-152's owed soft-selection+ctxdiv-ON ablation HAS run as V3-EXQ-922a (PASS, selection_hardness_partial_recovery) but is unscored and unadjudicated, so the hold is discharged in fact but not in evidence. Both recorded via record_decision.py as discussing so the hold is legible as deliberate, not missed. MECH-316/317 re-affirmed applied (re-affirm of the 2026-08-15 joint adjudication by orphan-v3-claims-adjudicate-6f88bd, which required NO claims.yaml change). MECH-467 held at candidate (3 fresh lit entries landed 2026-08-16T06:11Z; genuinely probe-gated, needs a discriminating run not more literature). STANDING AUDITS ALL CLEAN: closure drift 0 drifted / 0 stale; GOV-FROZEN-1 hypothesis-space integrity 0 flags across 34 questions, 16 git-witnessed pre-registrations, 0 fan-out-recurrence overlays; GOV-DIAG-1 0 actionable (24 hits metabolized across 6 work-streams); GOV-CEIL-1 0 exhausted / 0 orphaned; GOV-DRY-1 and GOV-SUBPATH-1 0 actionable. ONE actionable ceiling item: ARC-030 ceiling-may-have-lifted (unblocking substrate MECH-307 now implemented, pending_retest_after_substrate still true, retest never queued) -- chipped to /queue-experiment."
     }
   ]
 }
