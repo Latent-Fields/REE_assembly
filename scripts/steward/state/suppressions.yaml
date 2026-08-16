@@ -1,0 +1,49 @@
+# Steward detector suppressions.
+#
+# A suppression stops a finding ESCALATING. It never removes it from the report:
+# a suppressed finding still appears in reports/steward_report.json with
+# `"suppressed": true` and its reason attached, so nothing is hidden -- only
+# de-prioritised. That distinction is the point. A suppression is a recorded
+# DISPOSITION ("we looked, this is not a defect"), not a mute button.
+#
+# `finding_id` is `<detector>:<subject>` and may be an fnmatch pattern, so a
+# whole class can be covered by one line (e.g. `D-001:*` or `*:MECH-099`).
+# Always state a `reason` -- an unexplained suppression is how a real defect
+# gets buried, and the runner reports entries that lack one.
+#
+# Seeded from DETECTORS.md. Two of the three seeds are FORWARD-DECLARED for
+# detectors that stage 1 does not build; they match nothing today and are inert.
+# They are kept here rather than dropped so the disposition is not lost when the
+# owning detector lands.
+
+suppressions:
+  - finding_id: "D-001:MECH-099"
+    reason: >-
+      MECH-099 v3-in-v5, noted but not adjudicated. The claim declares
+      implementation_phase v3 while its only owning node
+      multi_agent_ecology_v5:MAE-3 lives in a generation:v5 plan. Known and
+      recorded; no governance decision has been taken on which side is stale, so
+      it should not consume escalation budget every cycle until one is.
+    added: "2026-08-16"
+    added_by: "chip-20260815-steward-stage1-detectors"
+    review_after: "2026-11-16"
+
+  - finding_id: "*:multi_agent_ecology_v5:MAE-3"
+    reason: >-
+      MAE-3 whole-plan back-pointer. A v5 roadmap plan back-pointing at v3 claims
+      is a forward reference, not a defect. FORWARD-DECLARED: stage 1 builds no
+      node-subject detector, so this pattern matches nothing today. It becomes
+      live when a node-level detector lands.
+    added: "2026-08-16"
+    added_by: "chip-20260815-steward-stage1-detectors"
+    forward_declared: true
+
+  - finding_id: "*:V3-EXQ-732b"
+    reason: >-
+      V3-EXQ-732b is a deliberate refusal, not an omission -- the queue entry was
+      declined on purpose and must not be re-surfaced as missing work.
+      FORWARD-DECLARED: stage 1 builds no experiment-subject detector, so this
+      matches nothing today.
+    added: "2026-08-16"
+    added_by: "chip-20260815-steward-stage1-detectors"
+    forward_declared: true
