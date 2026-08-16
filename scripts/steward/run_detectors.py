@@ -46,6 +46,7 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import json
+import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -55,7 +56,7 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
 
-from detectors import DETECTORS  # noqa: E402
+from detectors import DETECTORS, FIXABLE  # noqa: E402
 from detectors._common import (  # noqa: E402
     Context,
     load_context,
@@ -76,6 +77,7 @@ STATE_FILE = "steward_state.json"
 SUPPRESSIONS_FILE = "suppressions.yaml"
 LEDGER_FILE = "steward_ledger.jsonl"
 REPORT_FILE = "steward_report.json"
+REF_PINS_FILE = "steward_ref_pins.json"
 
 
 def _utc_now() -> str:
@@ -237,6 +239,111 @@ def build_report(ctx: Context, state_dir: Path, now: str,
     }
 
 
+# --------------------------------------------------------------------------
+# Autofix lane (stage 2)
+# --------------------------------------------------------------------------
+
+def _dirty_paths(repo_root: Path, paths: list[str]) -> list[str]:
+    """Repo-relative paths with UNCOMMITTED working-tree changes.
+
+    CLAUDE.md's own cheap up-front warning: ` M` on a shared file means another
+    session may have it open. An autofix is a read-modify-write, so applying one
+    on top of someone's in-flight edit is the read-modify-write contamination
+    hazard -- our commit would land their uncommitted work under our message.
+    Refusing is free; the fix is still there next run.
+
+    Returns [] when git is unavailable or this is not a repo -- unknown is not
+    the same as dirty, and a fixture in a tmpdir must still be fixable.
+    """
+    if not paths:
+        return []
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(repo_root), "status", "--porcelain", "--", *paths],
+            capture_output=True, text=True)
+    except OSError:
+        return []
+    if proc.returncode != 0:
+        return []
+    dirty = []
+    for line in proc.stdout.splitlines():
+        if len(line) > 3 and line[1] in ("M", "D", "U"):
+            dirty.append(line[3:].strip())
+    return dirty
+
+
+def apply_fixes(ctx: Context, now: str, dry_run: bool) -> list[dict]:
+    """Apply every available T0 repair, or preview them under dry_run.
+
+    Two-pass per detector on purpose: enumerate first (dry run), check the
+    target paths are clean, then apply. A detector's fix() is all-or-nothing
+    over its own paths, so the guard has to happen between the two.
+
+    NOTHING HERE COMMITS. The edits land in the working tree and a human
+    reviews the diff and lands it. That is what makes the lane safe to run
+    unattended on a shared checkout -- an unreviewed automatic commit to
+    evidence/planning/ is precisely the class of writer this repo spends most
+    of its concurrency rules defending against.
+    """
+    records: list[dict] = []
+    for mod in FIXABLE:
+        det = getattr(mod, "DETECTOR_ID", mod.__name__)
+        try:
+            planned = mod.fix(ctx, now, dry_run=True)
+        except Exception as exc:
+            records.append({"action": "autofix", "detector": det,
+                            "error": "%s: %s" % (type(exc).__name__, exc),
+                            "applied": False, "dry_run": True})
+            continue
+        if not planned:
+            continue
+
+        targets = sorted({r["path"] for r in planned if r.get("path")})
+        dirty = _dirty_paths(ctx.repo_root, targets)
+        if dirty:
+            for r in planned:
+                r.update({"applied": False,
+                          "skipped": "target has uncommitted changes (%s) -- "
+                                     "refusing to write over another session's "
+                                     "in-flight edit" % ", ".join(dirty)})
+            records.extend(planned)
+            continue
+
+        if dry_run:
+            for r in planned:
+                r["applied"] = False
+            records.extend(planned)
+            continue
+
+        try:
+            done = mod.fix(ctx, now, dry_run=False)
+        except Exception as exc:
+            records.append({"action": "autofix", "detector": det,
+                            "error": "%s: %s" % (type(exc).__name__, exc),
+                            "applied": False, "dry_run": False})
+            continue
+        for r in done:
+            r["applied"] = True
+            r["dry_run"] = False
+        records.extend(done)
+    return records
+
+
+def load_ref_pins(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def write_ref_pins(path: Path, pins: dict) -> None:
+    path.write_text(json.dumps(pins, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8")
+
+
 def write_state(state_dir: Path, report: dict, now: str) -> None:
     findings = report["findings"]
     state = {
@@ -269,6 +376,7 @@ def append_ledger(state_dir: Path, report: dict, now: str) -> None:
     """
     entry = {
         "ts": now,
+        "action": "run",
         "escalate": report["escalate"],
         "escalated": report["escalated"],
         "counts": report["counts"],
@@ -276,8 +384,17 @@ def append_ledger(state_dir: Path, report: dict, now: str) -> None:
         "by_detector": {s.get("detector"): s.get("n_findings", 0)
                         for s in report["detectors"]},
     }
+    lines = [json.dumps(entry, sort_keys=True)]
+    # One line per autofix, carrying the reverse operation. The ledger is the
+    # audit trail for anything the runner changed on its own initiative, so an
+    # unattended edit is never something you have to reconstruct from a diff.
+    for rec in report.get("autofixes") or []:
+        rec = dict(rec)
+        rec["ts"] = now
+        rec.setdefault("action", "autofix")
+        lines.append(json.dumps(rec, sort_keys=True))
     with (state_dir / LEDGER_FILE).open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(entry, sort_keys=True) + "\n")
+        fh.write("\n".join(lines) + "\n")
 
 
 def print_banner(report: dict) -> None:
@@ -293,6 +410,28 @@ def print_banner(report: dict) -> None:
             print("  %-7s %3d finding(s)  %.2fs  %s"
                   % (s.get("detector", "?"), s.get("n_findings", 0),
                      s.get("duration_s", 0.0), s.get("title", "")))
+    fixes = report.get("autofixes") or []
+    if fixes:
+        applied = [f for f in fixes if f.get("applied")]
+        skipped = [f for f in fixes if f.get("skipped")]
+        errored = [f for f in fixes if f.get("error")]
+        print("  AUTOFIX (%s): %d applied / %d previewed / %d skipped / %d error"
+              % (report.get("fix_mode", "?"), len(applied),
+                 len(fixes) - len(applied) - len(skipped) - len(errored),
+                 len(skipped), len(errored)))
+        for f in fixes:
+            if f.get("error"):
+                print("    [%s] ERROR %s" % (f.get("detector", "?"), f["error"]))
+                continue
+            mark = "applied" if f.get("applied") else (
+                "SKIPPED" if f.get("skipped") else "would fix")
+            print("    [%s] %-9s %s" % (f.get("detector", "?"), mark,
+                                        f.get("change", "")))
+            if f.get("skipped"):
+                print("               %s" % f["skipped"])
+    elif report.get("fix_mode") not in (None, "off"):
+        print("  AUTOFIX (%s): nothing to fix." % report["fix_mode"])
+
     if report["resolved"]:
         print("  RESOLVED since last run:")
         for r in report["resolved"]:
@@ -319,6 +458,14 @@ def main(argv=None) -> int:
     ap.add_argument("--report", default=None, help="override report path")
     ap.add_argument("--no-write", action="store_true",
                     help="do not write state, ledger or report")
+    ap.add_argument("--fix", action="store_true",
+                    help="apply T0 auto-fixes (opt-in; never commits)")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="write nothing at all; with --fix, print the repairs "
+                         "that would be applied. Implies --no-write.")
+    ap.add_argument("--git-repo", action="append", default=None,
+                    metavar="PATH",
+                    help="repo for the git lane (repeatable; default: repo root)")
     ap.add_argument("--json", action="store_true",
                     help="print the report JSON to stdout")
     ap.add_argument("--exit-nonzero-on-escalate", action="store_true",
@@ -333,19 +480,39 @@ def main(argv=None) -> int:
         else _HERE / REPORT_DIRNAME / REPORT_FILE
 
     state_dir.mkdir(parents=True, exist_ok=True)
+    no_write = args.no_write or args.dry_run
 
     t0 = time.time()
     now = _utc_now()
     ctx = load_context(repo_root)
+    ctx.git_repos = [Path(p).resolve() for p in (args.git_repo or [])] \
+        or [repo_root]
+    ctx.prior_ref_pins = load_ref_pins(state_dir / REF_PINS_FILE)
+
     report = build_report(ctx, state_dir, now, 0.0)
+
+    # Fixes run AFTER detection, so the report records the pre-fix state and
+    # the repaired findings show up as RESOLVED on the next run -- the ratchet.
+    if args.fix and not args.dry_run:
+        fix_mode = "apply"
+    elif args.fix or args.dry_run:
+        fix_mode = "dry-run"
+    else:
+        fix_mode = "off"
+    report["fix_mode"] = fix_mode
+    report["autofixes"] = ([] if fix_mode == "off"
+                           else apply_fixes(ctx, now,
+                                            dry_run=(fix_mode != "apply")))
     report["duration_s"] = round(time.time() - t0, 3)
 
-    if not args.no_write:
+    if not no_write:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         append_ledger(state_dir, report, now)
         write_state(state_dir, report, now)
+        if ctx.ref_pins_out:
+            write_ref_pins(state_dir / REF_PINS_FILE, ctx.ref_pins_out)
 
     if args.json:
         print(json.dumps(report, indent=2, sort_keys=True))

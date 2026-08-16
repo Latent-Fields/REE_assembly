@@ -121,6 +121,20 @@ class Context:
     owners: dict[str, list[Node]]      # claim id -> nodes whose unblocks_claims name it
     parse_errors: list[str]
 
+    # --- git lane (stage 3). Defaulted so every existing construction of
+    # Context keeps working unchanged. ---
+    # Repos the git lane inspects. Empty means "just repo_root".
+    git_repos: list[Path] = field(default_factory=list)
+    # Pins persisted by the PREVIOUS run, loaded by the runner. This is what
+    # makes "has origin moved since you last looked?" answerable at all.
+    prior_ref_pins: dict = field(default_factory=dict)
+    # Pins a git-lane detector computed its verdict against, published for
+    # D-102 to re-verify at end of run (the tail window).
+    ref_pins: dict = field(default_factory=dict)
+    # Pins to persist for the next run. Written by the runner, not by a
+    # detector -- detectors stay read-only with respect to state.
+    ref_pins_out: dict = field(default_factory=dict)
+
     def v3_owners(self, claim_id: str) -> list[Node]:
         return [n for n in self.owners.get(claim_id, [])
                 if n.generation == DEFAULT_GENERATION]
@@ -230,6 +244,8 @@ def finding(
     escalate: bool = True,
     evidence: dict | None = None,
     route: str = "/governance",
+    tier: str = "T2",
+    autofix: bool = False,
 ) -> dict:
     """Build one finding.
 
@@ -240,10 +256,23 @@ def finding(
     `escalate` is the detector's own assertion that this finding is worth waking
     a model for. It is not a confidence threshold: severity and confidence RANK
     findings when the escalation budget is contended, they never withhold one.
+
+    `tier` records who can repair this: T0 = mechanically auto-fixable by the
+    runner, T1 = needs a human/model decision, T2 = reported for action taken
+    elsewhere (the git lane). `autofix` is the per-finding assertion that this
+    specific instance is repairable now -- a T0 DETECTOR can still emit a T1
+    finding when the particular case turns out ambiguous, which is the
+    "demote rather than guess" rule made explicit in the schema.
     """
     if severity not in SEVERITY_RANK:
         raise ValueError("bad severity %r" % severity)
+    if tier not in ("T0", "T1", "T2"):
+        raise ValueError("bad tier %r" % tier)
+    if autofix and tier != "T0":
+        raise ValueError("autofix=True requires tier T0 (got %r)" % tier)
     return {
+        "tier": tier,
+        "autofix": bool(autofix),
         "finding_id": "%s:%s" % (detector, subject),
         "detector": detector,
         "subject": subject,
