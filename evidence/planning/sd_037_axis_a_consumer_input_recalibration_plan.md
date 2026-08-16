@@ -29,7 +29,7 @@ closure_plan:
       last_updated: 2026-06-01
       completion_note: "sd_037_axis_a_phase2_recalibration_block.md (2026-06-01): the override block was computed but is INERT -- every input distribution was zero, so no threshold could be lowered to admit an upper tail that does not exist. Verdict: axis (a) empirically unmeetable on fishtank baseline. Routed to axis (b) sustained-threat curriculum (sd_037_axis_b_sustained_threat_curriculum_plan.md)."
     - id: "sd_037_axis_a:P3"
-      title: "Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consumer outputs above zero (acceptance gate for queuing V3-EXQ-483f)"
+      title: "Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consumer outputs above zero (acceptance gate for the Phase-4 behavioural validation; see P4 -- the id V3-EXQ-483f used for it in earlier prose was NEVER MINTED)"
       phase: 3
       status: deferred
       severity: high
@@ -41,17 +41,17 @@ closure_plan:
       resume_condition: "SUPERSEDED by sd_037_axis_b:P3 -- do NOT resume in axis (a). The within-plan depends_on (P2) is DONE, but axis (a) is empirically closed: P2 (sd_037_axis_a_phase2_recalibration_block.md, 2026-06-01) found every consumer-input distribution identically zero on fishtank baseline, so no threshold could be recalibrated and the override block was inert -> axis (a) ruled empirically unmeetable. The verification work is NOT deferred-awaiting-resumption here; it relocated to the axis (b) sustained-threat env curriculum and is tracked under sd_037_axis_b:P3 (currently blocked behind sd_037_axis_b:P1b). This node stays status:deferred (excluded from V3-closure %) rather than done because the verification it represents is still pending -- under axis (b), not axis (a)."
       completion_note: "Never reached -- axis (a) was abandoned at Phase 2 (inert override block). Deferred; the verification work re-applies on the axis (b) substrate (sd_037_axis_b:P3)."
     - id: "sd_037_axis_a:P4"
-      title: "Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/ON_ON on recalibrated substrate)"
+      title: "Phase 4 -- terminal behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/ON_ON on recalibrated substrate); NO EXQ id minted yet -- the id V3-EXQ-483f used in earlier prose was NEVER MINTED"
       phase: 4
       status: deferred
       severity: high
-      owner_exq: "V3-EXQ-483f"
+      owner_exq: null
       unblocks_claims: [SD-037, MECH-280, MECH-281]
       depends_on: ["sd_037_axis_a:P3"]
       cross_plan_link: ["sd_037_axis_b:P4"]
       last_updated: 2026-06-16
-      resume_condition: "SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The V3-EXQ-483f behavioural validation is the SAME run shared with axis (b) Phase 4; it now sits behind the axis (b) substrate-readiness chain (sd_037_axis_b:P1b/P2/P3, currently blocked). A PASS there clears SD-037/MECH-280/MECH-281 pending_retest_after_substrate. Stays status:deferred (excluded from V3-closure %) rather than done because the validation is still pending under axis (b), not complete."
-      completion_note: "Deferred with Phase 3. A PASS would clear SD-037/MECH-280/MECH-281 pending_retest_after_substrate. The behavioural validation is shared with axis (b) Phase 4 and now sits behind the axis (b) substrate-readiness chain."
+      resume_condition: "SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The Phase-4 behavioural validation (called V3-EXQ-483f in earlier prose here, an id that was in fact NEVER MINTED -- see the completion_note) is the SAME run shared with axis (b) Phase 4; it now sits behind the axis (b) substrate-readiness chain (sd_037_axis_b:P1b/P2/P3, currently blocked). A PASS there clears SD-037/MECH-280/MECH-281 pending_retest_after_substrate. Stays status:deferred (excluded from V3-closure %) rather than done because the validation is still pending under axis (b), not complete."
+      completion_note: "Deferred with Phase 3. A PASS would clear SD-037/MECH-280/MECH-281 pending_retest_after_substrate. The behavioural validation is shared with axis (b) Phase 4 and now sits behind the axis (b) substrate-readiness chain. ID PROVENANCE (recorded 2026-08-16, docs-only; mirrors the sibling declaration on sd_037_axis_b:P4 landed 2026-08-15 in REE_assembly db9d123e9b): this node and its axis-(b) twin have named the Phase-4 run V3-EXQ-483f in prose since 2026-05-31, but that id was NEVER MINTED -- no queue entry in ree-v3 current or historical (re-verified 2026-08-16: every `git log -S` hit on the string is a reference inside some OTHER entry's title/note, never a queue_id -- the four hits resolve to V3-EXQ-625d's and V3-EXQ-620's note fields), no script under ree-v3/experiments/, no manifest under evidence/experiments/. It was a pre-allocated placeholder, not deferred work already created, so owner_exq is null like the sibling P2/P3 nodes rather than carrying a phantom id. The Phase-4 WORK is still genuinely owed and blocked (superseded into axis (b), behind sd_037_axis_b:P3 -> P2 -> P1b); when that chain clears, /queue-experiment mints a FRESH id for it -- do NOT re-queue or search for 483f."
 ---
 
 # SD-037 Axis (a): Consumer-Input-Threshold Recalibration Plan
@@ -101,12 +101,12 @@ The dACC case is slightly different from the other three: there is no single nam
 
 ## 3. Plan structure
 
-Four phases. Phase 1 and Phase 3 are **substrate-readiness diagnostics** (claim_ids=[], `experiment_purpose=diagnostic`). Phase 2 is a deterministic recalibration rule that runs on the Phase-1 manifest. Phase 4 is the behavioural validation (V3-EXQ-483f), queued only if Phase 3 passes its acceptance gate.
+Four phases. Phase 1 and Phase 3 are **substrate-readiness diagnostics** (claim_ids=[], `experiment_purpose=diagnostic`). Phase 2 is a deterministic recalibration rule that runs on the Phase-1 manifest. Phase 4 is the behavioural validation (called `V3-EXQ-483f` throughout this document — an id that was **never minted**; see §7), queued only if Phase 3 passes its acceptance gate.
 
 ```
 Phase 1 (diagnostic)      Phase 2 (analysis)       Phase 3 (diagnostic)        Phase 4 (validation)
 +-------------------+     +-------------------+    +-----------------------+   +-------------------+
-| Log raw consumer- |     | Compute p70 per   |    | Re-run baseline with  |   | V3-EXQ-483f       |
+| Log raw consumer- |     | Compute p70 per   |    | Re-run baseline with  |   | Phase-4 run       |
 | input distribs    | --> | knob; emit per-   | -> | recalibrated knobs    |-> | (queued via       |
 | over fishtank     |     | experiment config |    | + verify consumer     |   |  /queue-experiment|
 | baseline run      |     | override block    |    | output peaks > 0      |   |  AFTER Phase 3    |
@@ -203,7 +203,7 @@ Rationale per user direction: a percentile that "admits the upper tail" — high
 - `beta_release_count`
 - plus the Phase 1 distribution snapshot for direct before/after comparison
 
-**Acceptance gate for queuing V3-EXQ-483f:**
+**Acceptance gate for queuing the Phase-4 behavioural validation** (called `V3-EXQ-483f` here; that id was **never minted** — see §7, and note the gate itself relocated to axis (b) Phase 3)**:**
 
 All four of:
 - `bla_encoding_gain_peak > 0` in >= 2/3 seeds.
@@ -222,7 +222,21 @@ The 2-of-3-seeds floor (rather than 3-of-3) absorbs natural between-seed varianc
 
 ---
 
-## 7. Phase 4 — V3-EXQ-483f (deferred; out of scope for this session)
+## 7. Phase 4 — terminal behavioural validation (deferred; out of scope for this session)
+
+> **Id provenance — `V3-EXQ-483f` was NEVER MINTED (recorded 2026-08-16, docs-only).** This
+> section and its axis-(b) twin (§4.3 of `sd_037_axis_b_sustained_threat_curriculum_plan.md`, which
+> carries the same declaration from 2026-08-15) have named the Phase-4 run `V3-EXQ-483f` since
+> 2026-05-31, but no such experiment was ever created: no queue entry in `ree-v3` current or
+> historical (re-verified 2026-08-16 — every `git log -S"V3-EXQ-483f"` hit on
+> `experiment_queue.json` is a reference inside some *other* entry's `title`/`note`, never a
+> `queue_id`; the four hits resolve to `V3-EXQ-625d`'s and `V3-EXQ-620`'s `note` fields), no script
+> under `ree-v3/experiments/`, no manifest under `evidence/experiments/`.
+> It is a **pre-allocated placeholder, not an owed successor that someone dropped**. The Phase-4
+> *work* is still genuinely owed and correctly blocked — superseded into axis (b), behind
+> `sd_037_axis_b:P3 -> P2 -> P1b`; when that chain clears, `/queue-experiment` mints a **fresh id**
+> for it. Do not re-queue or go looking for 483f.
+> Read every "483f" in this document as "the Phase-4 run".
 
 Queued only if Phase 3 passes its acceptance gate. Out of scope for this planning session beyond stating its acceptance contract.
 
@@ -258,7 +272,7 @@ Axis (b) plan would be authored in a separate /implement-substrate session if ax
 ## 9. Out-of-scope for this plan
 
 - No ree-v3 code edits in this session.
-- No queue entry for V3-EXQ-483f. The diagnostic Phase 1 script + queue entry go through /queue-experiment in a separate session.
+- No queue entry for V3-EXQ-483f. The diagnostic Phase 1 script + queue entry go through /queue-experiment in a separate session. (As of 2026-08-16 this is permanent, not pending: 483f was **never minted** at all — see §7. The Phase-4 work relocated to axis (b) and takes a fresh id when its chain clears.)
 - No claims.yaml edits. SD-037 / MECH-280 / MECH-281 already correctly carry `pending_retest_after_substrate=true` and `epistemic_category=substrate_ceiling` from the 2026-05-31 governance pass.
 - No default-flip on `BLAConfig.arousal_threshold_on` / `CeAConfig.fast_route_threshold` / `PAGFreezeGateConfig.theta_freeze` / `duration_input_threshold` / `DACCConfig.dacc_precision_scale`. Phase 2 sets per-experiment overrides only. Default flips wait for Phase 4 behavioural validation.
 - Lateral PFC (`LateralPFCAnalog`) is excluded from recalibration. It is the only consumer that responded at all in 483e (1.08-1.18x) because its `eff_eta = update_eta * (1 + override_eta_gain * override_signal)` path does not have an input-side threshold — the rule_state EMA accelerates under any non-zero source. No recalibration target.
