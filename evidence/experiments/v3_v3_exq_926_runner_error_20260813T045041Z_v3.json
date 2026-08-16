@@ -1,1 +1,25 @@
-{"run_id": "v3_v3_exq_926_runner_error_20260813T045041Z_v3", "queue_id": "V3-EXQ-926", "experiment_type": "v3_exq_926_mech449_perseveration_nogo_falsifier", "machine": "ree-cloud-2", "outcome": "ERROR", "result": "ERROR", "evidence_direction": "non_contributory", "evidence_direction_note": "Synthetic runner ERROR record for a crash-before-manifest (script exited non-zero with no sentinel and no manifest). Scoring-neutral; routes to /diagnose-errors.", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "dry_run": false, "error_record": true, "crash_before_manifest": true, "exit_code": 1, "has_sentinel": false, "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on crash)", "started_at": "2026-08-13T04:50:39.550243+00:00", "completed_at": "2026-08-13T04:50:41.874460+00:00", "timestamp_utc": "2026-08-13T04:50:41Z", "script": "experiments/v3_exq_926_mech449_perseveration_nogo_falsifier.py", "title": "MECH-449/ARC-107 perseveration-axis conversion falsifier (untested leg of 689g; live MECH-260 dACC vector)"}
+{
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "completed_at": "2026-08-13T04:50:41.874460+00:00",
+  "crash_before_manifest": true,
+  "dry_run": false,
+  "error_record": true,
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Synthetic runner ERROR record for a crash-before-manifest (script exited non-zero with no sentinel and no manifest). Scoring-neutral; routes to /diagnose-errors.  2026-08-16 governance (GFLAG-0034, cycle cranky-driscoll-126a36): SUPERSEDED by V3-EXQ-926a. V3-EXQ-926 was a crash-before-manifest ERROR whose science actually ran to completion in ~2.25s; /diagnose-errors 2026-08-14 root-caused it to a hardcoded Mac-only EVIDENCE_DIR absolute path (/Users/dgolden/...) absent on ree-cloud-2 (/home/ree/...), so write_flat_manifest() crashed at the final step. The one-line __file__-relative fix shipped as V3-EXQ-926a, which LANDED 2026-08-14T17:10:50Z terminal PASS/supports. This synthetic ERROR record is therefore retired so it stops sitting in the corpus as a live non_contributory entry for a run that has been superseded. It carried claim_ids [] and so weighted no claim either way; this stamp is bookkeeping, not a claim disposition. GFLAG-0034 stated this as the only follow-on owed once 926a landed -- it has, so the flag is discharged.",
+  "exit_code": 1,
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_926_mech449_perseveration_nogo_falsifier",
+  "has_sentinel": false,
+  "machine": "ree-cloud-2",
+  "outcome": "ERROR",
+  "queue_id": "V3-EXQ-926",
+  "result": "ERROR",
+  "result_summary": "Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on crash)",
+  "run_id": "v3_v3_exq_926_runner_error_20260813T045041Z_v3",
+  "script": "experiments/v3_exq_926_mech449_perseveration_nogo_falsifier.py",
+  "started_at": "2026-08-13T04:50:39.550243+00:00",
+  "superseded_by": "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3",
+  "timestamp_utc": "2026-08-13T04:50:41Z",
+  "title": "MECH-449/ARC-107 perseveration-axis conversion falsifier (untested leg of 689g; live MECH-260 dACC vector)"
+}

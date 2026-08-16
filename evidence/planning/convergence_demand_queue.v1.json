@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-08-12T18:24:49Z",
+  "last_updated_utc": "2026-08-16T19:13:43Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -315,7 +315,10 @@
       "completion_criterion": {
         "kind": "design_resolved",
         "detail": "A costed decision between H2 (explicit mode-dependent term in the CEM elite-selection VALUE FUNCTION) and H3 (hard-partitioned per-operating_mode CEM candidate pools) as the locus of the MECH-267 mode-content wash-out, sufficient to scope substrate_queue entry SD-MECH267-CEM-SELECTION-FIX for build.",
-        "satisfied": false
+        "satisfied": true,
+        "satisfied_utc": "2026-08-16T19:13:43Z",
+        "satisfied_by": "failure_autopsy_927-928-mech267-cluster_2026-08-16 (confirmed), applied by /governance cycle cranky-driscoll-126a36",
+        "satisfied_note": "DISCHARGED EMPIRICALLY, not by convergence intake -- recorded so the row is not mined for an external source it no longer needs. V3-EXQ-928 (4 arms x 30 shared seeds, manipulation confirmed on 480/480 cells) localises the wash-out to H3: mode_partitioned_cem - OFF = +0.0167 paired, t=+4.34, 24/30 seeds positive; BOTH - OFF = +0.0142, t=+4.02. H2 (mode_value_weight) is a CLEAN NULL at +0.0015, t=+0.48. That is exactly the costed H2-vs-H3 decision this criterion named, and substrate_queue SD-MECH267-CEM-SELECTION-FIX has been re-scoped accordingly this cycle (locus TBD -> resolved; next buildable step is flipping the mode_partitioned_cem default at ree_core/utils/config.py:2177). TWO caveats deliberately carried forward rather than closed with the row: (1) H3 restores the EXTREME-PAIR breadth separation only -- the predicted monotone four-mode gradient is NOT restored in any arm (all adjacent gaps sub-floor; internal_replay->offline_consolidation actually inverts), so the residual ordered-gradient question is live and is recorded on the substrate entry, not here. (2) The third external source listed on this row (CEM planners with structured/multimodal proposal distributions -- whether vanilla-CEM elite collapse is a GENERIC property rather than a MECH-267-specific defect) remains genuinely unmined and is the one angle 928 does NOT answer; if that generality question is ever wanted, it warrants its own row rather than reopening this one."
       },
       "target_nodes": [
         "commitment_closure:GAP-4"

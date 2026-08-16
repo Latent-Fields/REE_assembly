@@ -1,1 +1,1262 @@
-{"run_id": "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3", "experiment_type": "v3_exq_934_mech266_cap_sweep_mode_occupancy", "queue_id": "V3-EXQ-934", "claim_ids": ["MECH-266", "SD-032a"], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "env_seed_base": null, "timestamp_utc": "20260815T015216Z", "outcome": "PASS", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"MECH-266": "non_contributory", "SD-032a": "supports"}, "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (full curriculum; 603n config) + SalienceCoordinator (SD-032a) + mode-governance-engagement external_task drive (use_external_task_drive=True) + GAP-3 dual_cue competing-goal env + goal_state clone fix + salience_affinity_input_cap (trained at 2.0, EVAL cap swept in [0.75,1.0,1.25,1.5,1.75] on clones). use_closure_operator OFF.", "condition": "CURRICULUM_BUILT_CAP_SWEEP", "predecessor": "V3-EXQ-464e / V3-EXQ-467e (successor-in-spirit; NOT a supersede)", "gov_fanout": "GOV-FANOUT-1 leg H1 of the pre-registered frozen-ledger question mech266_mode_arbitration_saturation (failure_autopsy_mech266-464e-467e-cluster_2026-08-13).", "method_note": "Sweeps affinity_input_cap at EVAL time on clones of a single trained curriculum agent per seed (the cap is read live at SalienceCoordinator.tick(), so no retraining is needed -- the same train-once/sweep-on-clones pattern 467e uses for its ratio sweep). Training cap held at 2.0 (464e construction) for comparability with the banked 464e/467e reference. Instruments both the discrete committed-mode occupancy AND the continuous pre-argmax operating_mode['external_task'] margin (probe / H2 recommendation), plus mode-conditioned dwell in external_task (fixes 464e's mode-agnostic dwell). Non-vacuity via experiments/_lib/regime_occupancy_gate.py (per-arm, any-reachable, regime-shape-conditioned) -- NEVER min-across-the-sweep, the M1/M2 defect the cluster autopsy identified.", "pre_registered_thresholds": {"cap_sweep": [0.75, 1.0, 1.25, 1.5, 1.75], "affinity_input_cap_train": 2.0, "occupancy_floor": 0.1, "occupancy_ceiling": 0.9, "margin_floor": 0.05, "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0, "sticky_exit": 0.05, "loose_exit": 0.9}, "config": {"cap_sweep": [0.75, 1.0, 1.25, 1.5, 1.75], "affinity_input_cap_train": 2.0, "occupancy_floor": 0.1, "occupancy_ceiling": 0.9, "margin_floor": 0.05, "arms": ["ARM_SYMMETRIC", "ARM_ASYM_STICKY_TASK"], "sticky_exit": 0.05, "loose_exit": 0.9, "mode_eval_episodes_per_cell": 15, "train_steps": 200, "seeds": [42, 43, 44], "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "hazard_stage_budget": 40, "p1_budget": 50, "p2_budget": 15, "n_resource_types": 3, "config_basis": "V3-EXQ-603n"}}, "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "acceptance": {"contact_non_vacuity_met": true, "guard_fraction": 1.0, "n_guard_passing_seeds": 3, "margin_ready_met": true, "margin_ready_fraction": 1.0, "sym_graded_fraction": 0.6666666666666666, "any_graded_fraction": 0.6666666666666666, "h1_supported": true, "winning_cap_band_symmetric": [0.75, 1.75], "occupancy_varies_across_caps": true, "margin_varies_across_caps": true, "manipulation_landed": true, "route_reason": "graded_regime_reachable_on_symmetric_arm", "per_seed_guard_pass": [true, true, true], "per_seed_sym_graded": [true, true, false]}, "interpretation": {"label": "cap_recalibration_admits_mixed_regime", "readiness_route": "cap_recalibration_admits_mixed_regime", "route_reason": "graded_regime_reachable_on_symmetric_arm", "hypothesis": "GOV-FANOUT-1 leg H1: some affinity_input_cap admits a mixed external_task occupancy regime (cap mis-calibration, not structural bang-bang).", "null": "No cap value yields per-arm occupancy in (0.1, 0.9) on >= 2/3 seeds.", "winning_cap_band_symmetric": [0.75, 1.75], "preconditions": [{"name": "foraging_contact_guard", "kind": "readiness", "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.", "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4.", "measured": 1.0, "threshold": 0.6666666666666666, "direction": "lower", "met": true}, {"name": "external_task_drive_engages", "kind": "readiness", "description": "the external_task drive must ENGAGE at SOME swept cap -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. This is the readiness form of the SAME arbitration signal the occupancy DV routes on: if the continuous margin is ~0 at every cap, the drive is not producing the signal (substrate/wiring not ready, e.g. a goal_state drop or dead drive), which must self-route to substrate_not_ready_requeue and NOT be read as structural discreteness (H2).", "control": "fraction of guard-passing seeds whose best cell's continuous ext_margin_mean clears MARGIN_FLOOR.", "measured": 1.0, "threshold": 0.6666666666666666, "direction": "lower", "met": true}], "criteria": [{"name": "H1_symmetric_arm_graded_regime_reachable", "load_bearing": true, "passed": true}], "criteria_non_degenerate": {"H1_symmetric_arm_graded_regime_reachable": true}, "regime_gate": {"definition": "per (seed, arm), OccupancyCell over the CAP_SWEEP; evaluate_regime_occupancy_gate(floor=0.1, ceiling=0.9). regime_shape in {unreachable, saturated_bimodal, graded}. graded == some cap yields occupancy strictly in (0.1, 0.9). Replaces the min()-across-the-sweep gate (the cluster autopsy's M1/M2 defect; H3 fix) with the shared primitive experiments/_lib/regime_occupancy_gate.py -- never a min-across-the-sweep statistic.", "occupancy_floor": 0.1, "occupancy_ceiling": 0.9, "margin_floor": 0.05, "cap_sweep": [0.75, 1.0, 1.25, 1.5, 1.75], "primary_arm": "ARM_SYMMETRIC", "min_fraction": 0.6666666666666666}, "contact_guard": {"definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.", "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0}}, "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.46372494101524353, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.2514851485148515, "p2_z_goal_norm_at_contact_peak": 0.49198657274246216, "p2_num_contact_events": 107, "cells": [{"cap": 0.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.5606, "ext_margin_mean": 0.3373, "ext_margin_p10": 0.3037, "ext_margin_p50": 0.3434, "ext_margin_p90": 0.3618, "ext_margin_max": 0.3737, "n_switches": 19, "mean_dwell": 54.059, "ext_dwell_mean": 43.208, "n_ext_runs": 24, "mode_step_counts": {"external_task": 1022, "internal_planning": 801, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1823, "coord_n_ticks": 376, "n_episodes": 15}, {"cap": 0.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.3356, "ext_margin_p10": 0.2997, "ext_margin_p50": 0.3416, "ext_margin_p90": 0.3609, "ext_margin_max": 0.3737, "n_switches": 0, "mean_dwell": 148.733, "ext_dwell_mean": 148.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2216, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2216, "coord_n_ticks": 456, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.0317, "ext_margin_mean": 0.3038, "ext_margin_p10": 0.2705, "ext_margin_p50": 0.3099, "ext_margin_p90": 0.327, "ext_margin_max": 0.337, "n_switches": 12, "mean_dwell": 68.222, "ext_dwell_mean": 4.867, "n_ext_runs": 15, "mode_step_counts": {"external_task": 58, "internal_planning": 1769, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1827, "coord_n_ticks": 378, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.303, "ext_margin_p10": 0.2729, "ext_margin_p50": 0.3082, "ext_margin_p90": 0.3245, "ext_margin_max": 0.337, "n_switches": 0, "mean_dwell": 148.733, "ext_dwell_mean": 148.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2216, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2216, "coord_n_ticks": 456, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.0, "ext_margin_mean": 0.2653, "ext_margin_p10": 0.2297, "ext_margin_p50": 0.2718, "ext_margin_p90": 0.2894, "ext_margin_max": 0.3002, "n_switches": 15, "mean_dwell": 48.133, "ext_dwell_mean": 1.0, "n_ext_runs": 15, "mode_step_counts": {"external_task": 0, "internal_planning": 1429, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1429, "coord_n_ticks": 297, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.263, "ext_margin_p10": 0.2298, "ext_margin_p50": 0.2691, "ext_margin_p90": 0.2877, "ext_margin_max": 0.3002, "n_switches": 0, "mean_dwell": 109.733, "ext_dwell_mean": 109.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 1631, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1631, "coord_n_ticks": 338, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.0, "ext_margin_mean": 0.2359, "ext_margin_p10": 0.2091, "ext_margin_p50": 0.2405, "ext_margin_p90": 0.2539, "ext_margin_max": 0.2642, "n_switches": 15, "mean_dwell": 54.8, "ext_dwell_mean": 1.0, "n_ext_runs": 15, "mode_step_counts": {"external_task": 0, "internal_planning": 1629, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1629, "coord_n_ticks": 338, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.2269, "ext_margin_p10": 0.1873, "ext_margin_p50": 0.234, "ext_margin_p90": 0.2534, "ext_margin_max": 0.2642, "n_switches": 0, "mean_dwell": 109.6, "ext_dwell_mean": 109.6, "n_ext_runs": 15, "mode_step_counts": {"external_task": 1629, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1629, "coord_n_ticks": 338, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.0, "ext_margin_mean": 0.1997, "ext_margin_p10": 0.1732, "ext_margin_p50": 0.2039, "ext_margin_p90": 0.2184, "ext_margin_max": 0.2296, "n_switches": 15, "mean_dwell": 61.2, "ext_dwell_mean": 1.0, "n_ext_runs": 15, "mode_step_counts": {"external_task": 0, "internal_planning": 1821, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1821, "coord_n_ticks": 375, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.1983, "ext_margin_p10": 0.1708, "ext_margin_p50": 0.2029, "ext_margin_p90": 0.2183, "ext_margin_max": 0.2296, "n_switches": 0, "mean_dwell": 148.933, "ext_dwell_mean": 148.933, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2219, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2219, "coord_n_ticks": 457, "n_episodes": 15}], "regime_by_arm": {"ARM_SYMMETRIC": {"reachable": true, "regime_shape": "graded", "route_reason": null, "cells": [{"label": "cap=0.75", "fraction": 0.5606, "reachable": true}, {"label": "cap=1.0", "fraction": 0.0317, "reachable": false}, {"label": "cap=1.25", "fraction": 0.0, "reachable": false}, {"label": "cap=1.5", "fraction": 0.0, "reachable": false}, {"label": "cap=1.75", "fraction": 0.0, "reachable": false}], "max_fraction": 0.5606, "min_fraction": 0.0, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_SYMMETRIC", "mixed_band_caps": [0.75], "graded": true}, "ARM_ASYM_STICKY_TASK": {"reachable": true, "regime_shape": "saturated_bimodal", "route_reason": "external_task_mode_saturated_no_mixed_regime", "cells": [{"label": "cap=0.75", "fraction": 1.0, "reachable": true}, {"label": "cap=1.0", "fraction": 1.0, "reachable": true}, {"label": "cap=1.25", "fraction": 1.0, "reachable": true}, {"label": "cap=1.5", "fraction": 1.0, "reachable": true}, {"label": "cap=1.75", "fraction": 1.0, "reachable": true}], "max_fraction": 1.0, "min_fraction": 1.0, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_ASYM_STICKY_TASK", "mixed_band_caps": [], "graded": false}}, "max_margin_mean": 0.3373, "margin_engaged": true, "sym_graded": true, "any_graded": true}, {"seed": 43, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.4190235733985901, "p1_survival_pass": true, "hazard_stage_survival_pass": false, "p2_contact_rate": 0.2570480928689884, "p2_z_goal_norm_at_contact_peak": 0.432980477809906, "p2_num_contact_events": 139, "cells": [{"cap": 0.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7681, "ext_margin_p10": 0.7571, "ext_margin_p50": 0.7621, "ext_margin_p90": 0.7758, "ext_margin_max": 0.8494, "n_switches": 0, "mean_dwell": 148.6, "ext_dwell_mean": 148.6, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2214, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2214, "coord_n_ticks": 136, "n_episodes": 15}, {"cap": 0.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7705, "ext_margin_p10": 0.7592, "ext_margin_p50": 0.7634, "ext_margin_p90": 0.779, "ext_margin_max": 0.8494, "n_switches": 0, "mean_dwell": 148.733, "ext_dwell_mean": 148.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2216, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2216, "coord_n_ticks": 136, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7392, "ext_margin_p10": 0.7019, "ext_margin_p50": 0.7088, "ext_margin_p90": 0.8523, "ext_margin_max": 0.8625, "n_switches": 0, "mean_dwell": 44.667, "ext_dwell_mean": 44.667, "n_ext_runs": 15, "mode_step_counts": {"external_task": 655, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 655, "coord_n_ticks": 48, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7259, "ext_margin_p10": 0.7031, "ext_margin_p50": 0.7106, "ext_margin_p90": 0.7651, "ext_margin_max": 0.8635, "n_switches": 0, "mean_dwell": 122.667, "ext_dwell_mean": 122.667, "n_ext_runs": 15, "mode_step_counts": {"external_task": 1825, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1825, "coord_n_ticks": 114, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.637, "ext_margin_p10": 0.6065, "ext_margin_p50": 0.6141, "ext_margin_p90": 0.6755, "ext_margin_max": 0.8419, "n_switches": 0, "mean_dwell": 135.533, "ext_dwell_mean": 135.533, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2018, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2018, "coord_n_ticks": 125, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.639, "ext_margin_p10": 0.6053, "ext_margin_p50": 0.6175, "ext_margin_p90": 0.6959, "ext_margin_max": 0.8442, "n_switches": 0, "mean_dwell": 148.667, "ext_dwell_mean": 148.667, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2215, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2215, "coord_n_ticks": 136, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.562, "ext_margin_p10": 0.5037, "ext_margin_p50": 0.5235, "ext_margin_p90": 0.6611, "ext_margin_max": 0.8205, "n_switches": 0, "mean_dwell": 135.533, "ext_dwell_mean": 135.533, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2018, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2018, "coord_n_ticks": 125, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.5578, "ext_margin_p10": 0.4994, "ext_margin_p50": 0.5168, "ext_margin_p90": 0.669, "ext_margin_max": 0.8139, "n_switches": 0, "mean_dwell": 122.667, "ext_dwell_mean": 122.667, "n_ext_runs": 15, "mode_step_counts": {"external_task": 1825, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1825, "coord_n_ticks": 114, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.4447, "ext_margin_mean": 0.4852, "ext_margin_p10": 0.3947, "ext_margin_p50": 0.4349, "ext_margin_p90": 0.6293, "ext_margin_max": 0.7906, "n_switches": 18, "mean_dwell": 79.576, "ext_dwell_mean": 53.455, "n_ext_runs": 22, "mode_step_counts": {"external_task": 1161, "internal_planning": 1450, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2611, "coord_n_ticks": 158, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.4978, "ext_margin_p10": 0.3993, "ext_margin_p50": 0.4822, "ext_margin_p90": 0.5882, "ext_margin_max": 0.789, "n_switches": 0, "mean_dwell": 161.8, "ext_dwell_mean": 161.8, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2412, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2412, "coord_n_ticks": 147, "n_episodes": 15}], "regime_by_arm": {"ARM_SYMMETRIC": {"reachable": true, "regime_shape": "graded", "route_reason": null, "cells": [{"label": "cap=0.75", "fraction": 1.0, "reachable": true}, {"label": "cap=1.0", "fraction": 1.0, "reachable": true}, {"label": "cap=1.25", "fraction": 1.0, "reachable": true}, {"label": "cap=1.5", "fraction": 1.0, "reachable": true}, {"label": "cap=1.75", "fraction": 0.4447, "reachable": true}], "max_fraction": 1.0, "min_fraction": 0.4447, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_SYMMETRIC", "mixed_band_caps": [1.75], "graded": true}, "ARM_ASYM_STICKY_TASK": {"reachable": true, "regime_shape": "saturated_bimodal", "route_reason": "external_task_mode_saturated_no_mixed_regime", "cells": [{"label": "cap=0.75", "fraction": 1.0, "reachable": true}, {"label": "cap=1.0", "fraction": 1.0, "reachable": true}, {"label": "cap=1.25", "fraction": 1.0, "reachable": true}, {"label": "cap=1.5", "fraction": 1.0, "reachable": true}, {"label": "cap=1.75", "fraction": 1.0, "reachable": true}], "max_fraction": 1.0, "min_fraction": 1.0, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_ASYM_STICKY_TASK", "mixed_band_caps": [], "graded": false}}, "max_margin_mean": 0.7705, "margin_engaged": true, "sym_graded": true, "any_graded": true}, {"seed": 44, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.42056745290756226, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.30643564356435643, "p2_z_goal_norm_at_contact_peak": 0.44140616059303284, "p2_num_contact_events": 138, "cells": [{"cap": 0.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.785, "ext_margin_p10": 0.7734, "ext_margin_p50": 0.7792, "ext_margin_p90": 0.8028, "ext_margin_max": 0.8494, "n_switches": 0, "mean_dwell": 122.533, "ext_dwell_mean": 122.533, "n_ext_runs": 15, "mode_step_counts": {"external_task": 1823, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1823, "coord_n_ticks": 118, "n_episodes": 15}, {"cap": 0.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7811, "ext_margin_p10": 0.7786, "ext_margin_p50": 0.7792, "ext_margin_p90": 0.7793, "ext_margin_max": 0.8494, "n_switches": 0, "mean_dwell": 148.867, "ext_dwell_mean": 148.867, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2218, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2218, "coord_n_ticks": 142, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7581, "ext_margin_p10": 0.7132, "ext_margin_p50": 0.7609, "ext_margin_p90": 0.8065, "ext_margin_max": 0.8668, "n_switches": 0, "mean_dwell": 135.733, "ext_dwell_mean": 135.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2021, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2021, "coord_n_ticks": 131, "n_episodes": 15}, {"cap": 1.0, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7665, "ext_margin_p10": 0.7324, "ext_margin_p50": 0.7637, "ext_margin_p90": 0.7986, "ext_margin_max": 0.8675, "n_switches": 0, "mean_dwell": 161.867, "ext_dwell_mean": 161.867, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2413, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2413, "coord_n_ticks": 150, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7142, "ext_margin_p10": 0.6668, "ext_margin_p50": 0.7051, "ext_margin_p90": 0.7607, "ext_margin_max": 0.8467, "n_switches": 0, "mean_dwell": 174.8, "ext_dwell_mean": 174.8, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2607, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2607, "coord_n_ticks": 164, "n_episodes": 15}, {"cap": 1.25, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.7102, "ext_margin_p10": 0.6663, "ext_margin_p50": 0.6872, "ext_margin_p90": 0.7907, "ext_margin_max": 0.8465, "n_switches": 0, "mean_dwell": 135.667, "ext_dwell_mean": 135.667, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2020, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2020, "coord_n_ticks": 130, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.6411, "ext_margin_p10": 0.5706, "ext_margin_p50": 0.5919, "ext_margin_p90": 0.7635, "ext_margin_max": 0.8222, "n_switches": 0, "mean_dwell": 174.8, "ext_dwell_mean": 174.8, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2607, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2607, "coord_n_ticks": 163, "n_episodes": 15}, {"cap": 1.5, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.6494, "ext_margin_p10": 0.5771, "ext_margin_p50": 0.6434, "ext_margin_p90": 0.7589, "ext_margin_max": 0.8214, "n_switches": 0, "mean_dwell": 201.0, "ext_dwell_mean": 201.0, "n_ext_runs": 15, "mode_step_counts": {"external_task": 3000, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 3000, "coord_n_ticks": 185, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_SYMMETRIC", "fraction_in_external_task": 0.9002, "ext_margin_mean": 0.5732, "ext_margin_p10": 0.4658, "ext_margin_p50": 0.5593, "ext_margin_p90": 0.6888, "ext_margin_max": 0.7926, "n_switches": 8, "mean_dwell": 71.652, "ext_dwell_mean": 78.158, "n_ext_runs": 19, "mode_step_counts": {"external_task": 1470, "internal_planning": 163, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 1633, "coord_n_ticks": 109, "n_episodes": 15}, {"cap": 1.75, "arm": "ARM_ASYM_STICKY_TASK", "fraction_in_external_task": 1.0, "ext_margin_mean": 0.5642, "ext_margin_p10": 0.4645, "ext_margin_p50": 0.5527, "ext_margin_p90": 0.6853, "ext_margin_max": 0.793, "n_switches": 0, "mean_dwell": 161.733, "ext_dwell_mean": 161.733, "n_ext_runs": 15, "mode_step_counts": {"external_task": 2411, "internal_planning": 0, "internal_replay": 0, "offline_consolidation": 0}, "other_mode_steps": 0, "total_steps": 2411, "coord_n_ticks": 150, "n_episodes": 15}], "regime_by_arm": {"ARM_SYMMETRIC": {"reachable": true, "regime_shape": "saturated_bimodal", "route_reason": "external_task_mode_saturated_no_mixed_regime", "cells": [{"label": "cap=0.75", "fraction": 1.0, "reachable": true}, {"label": "cap=1.0", "fraction": 1.0, "reachable": true}, {"label": "cap=1.25", "fraction": 1.0, "reachable": true}, {"label": "cap=1.5", "fraction": 1.0, "reachable": true}, {"label": "cap=1.75", "fraction": 0.9002, "reachable": true}], "max_fraction": 1.0, "min_fraction": 0.9002, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_SYMMETRIC", "mixed_band_caps": [], "graded": false}, "ARM_ASYM_STICKY_TASK": {"reachable": true, "regime_shape": "saturated_bimodal", "route_reason": "external_task_mode_saturated_no_mixed_regime", "cells": [{"label": "cap=0.75", "fraction": 1.0, "reachable": true}, {"label": "cap=1.0", "fraction": 1.0, "reachable": true}, {"label": "cap=1.25", "fraction": 1.0, "reachable": true}, {"label": "cap=1.5", "fraction": 1.0, "reachable": true}, {"label": "cap=1.75", "fraction": 1.0, "reachable": true}], "max_fraction": 1.0, "min_fraction": 1.0, "floor": 0.1, "ceiling": 0.9, "arm": "ARM_ASYM_STICKY_TASK", "mixed_band_caps": [], "graded": false}}, "max_margin_mean": 0.785, "margin_engaged": true, "sym_graded": false, "any_graded": false}], "recording_schema": "rec/v1", "substrate_hash": "f53db12dd0a7e00dcf351e3ba024c861173ac53d435d507d493288f8f138ddeb", "substrate_commit": {"commit": "6f46a703cbcd1e6badfef24d46a9c75ce5d0b177", "dirty": false, "branch": "main"}, "substrate_stable_across_run": true, "substrate_identity": {"source": "manifest_write_disk_read", "resolved_at_utc": "2026-08-15T01:52:16Z", "commit_source": "manifest_write_disk_read", "commit_resolved_at_utc": "2026-08-15T01:52:16Z", "stamped_at_utc": "2026-08-15T01:52:16Z", "lag_seconds": 0, "stability_snapshots": 1, "drifted_since_resolved": false}, "z_goal_stream": {"ticks_total": 173444, "ticks_active": 173441, "writer_calls": 5262, "active_frac": 0.9999827033509375, "writer_defect": false, "n_agents": 33, "goal_state_present": true}, "machine": "ree-worker-3", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "elapsed_seconds": 23800.853358367, "seeds": [42, 43, 44]}
+{
+  "acceptance": {
+    "any_graded_fraction": 0.6666666666666666,
+    "contact_non_vacuity_met": true,
+    "guard_fraction": 1.0,
+    "h1_supported": true,
+    "manipulation_landed": true,
+    "margin_ready_fraction": 1.0,
+    "margin_ready_met": true,
+    "margin_varies_across_caps": true,
+    "n_guard_passing_seeds": 3,
+    "occupancy_varies_across_caps": true,
+    "per_seed_guard_pass": [
+      true,
+      true,
+      true
+    ],
+    "per_seed_sym_graded": [
+      true,
+      true,
+      false
+    ],
+    "route_reason": "graded_regime_reachable_on_symmetric_arm",
+    "sym_graded_fraction": 0.6666666666666666,
+    "winning_cap_band_symmetric": [
+      0.75,
+      1.75
+    ]
+  },
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "condition": "CURRICULUM_BUILT_CAP_SWEEP",
+  "config": {
+    "affinity_input_cap_train": 2.0,
+    "arms": [
+      "ARM_SYMMETRIC",
+      "ARM_ASYM_STICKY_TASK"
+    ],
+    "cap_sweep": [
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "contact_gate": 0.0,
+    "loose_exit": 0.9,
+    "margin_floor": 0.05,
+    "min_fraction": 0.6666666666666666,
+    "mode_eval_episodes_per_cell": 15,
+    "occupancy_ceiling": 0.9,
+    "occupancy_floor": 0.1,
+    "p2_zgoal_gate": 0.4,
+    "scaffold_curriculum": {
+      "config_basis": "V3-EXQ-603n",
+      "hazard_stage_budget": 40,
+      "n_resource_types": 3,
+      "p0_budget": 100,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "stage0_budget": 20,
+      "stage0b_budget": 10
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "sticky_exit": 0.05,
+    "train_steps": 200
+  },
+  "elapsed_seconds": 23800.853358367,
+  "env_seed_base": null,
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "2026-08-16 governance (confirmed failure_autopsy_V3-EXQ-934_2026-08-16): SPLIT per-claim. MECH-266 non_contributory -- PERIPHERAL, not exercised: its manipulation arm sat at fraction_in_external_task 1.0 with n_switches 0 in all 15 cells, and the load-bearing criterion was evaluated on the symmetric arm, which contains no MECH-266 mechanism; no substrate_ceiling attribution accrues. SD-032a supports (NARROW, diagnostic): genuine discrete alternation where the argmax crossing sits (18-19 switches, mode-conditioned dwell 43-54 steps) -- the first alternating occupancy in a lineage that previously read 0.0 or 1.0 everywhere. READ NARROWLY: the passing criterion is an EXISTENTIAL over a 5-point cap grid evaluated per seed, the two passing seeds sit at OPPOSITE ends, no single cap grades on more than 1 of 3 seeds, and H2 (structurally bang-bang) is NOT eliminated. TWICE NON-PRODUCTION: salience_affinity_input_cap defaults None and use_external_task_drive defaults False.",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "experiment_type": "v3_exq_934_mech266_cap_sweep_mode_occupancy",
+  "gov_fanout": "GOV-FANOUT-1 leg H1 of the pre-registered frozen-ledger question mech266_mode_arbitration_saturation (failure_autopsy_mech266-464e-467e-cluster_2026-08-13).",
+  "interpretation": {
+    "contact_guard": {
+      "contact_gate": 0.0,
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4
+    },
+    "criteria": [
+      {
+        "load_bearing": true,
+        "name": "H1_symmetric_arm_graded_regime_reachable",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H1_symmetric_arm_graded_regime_reachable": true
+    },
+    "hypothesis": "GOV-FANOUT-1 leg H1: some affinity_input_cap admits a mixed external_task occupancy regime (cap mis-calibration, not structural bang-bang).",
+    "label": "cap_recalibration_admits_mixed_regime",
+    "null": "No cap value yields per-arm occupancy in (0.1, 0.9) on >= 2/3 seeds.",
+    "preconditions": [
+      {
+        "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4.",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "foraging_contact_guard",
+        "threshold": 0.6666666666666666
+      },
+      {
+        "control": "fraction of guard-passing seeds whose best cell's continuous ext_margin_mean clears MARGIN_FLOOR.",
+        "description": "the external_task drive must ENGAGE at SOME swept cap -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. This is the readiness form of the SAME arbitration signal the occupancy DV routes on: if the continuous margin is ~0 at every cap, the drive is not producing the signal (substrate/wiring not ready, e.g. a goal_state drop or dead drive), which must self-route to substrate_not_ready_requeue and NOT be read as structural discreteness (H2).",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "external_task_drive_engages",
+        "threshold": 0.6666666666666666
+      }
+    ],
+    "readiness_route": "cap_recalibration_admits_mixed_regime",
+    "regime_gate": {
+      "cap_sweep": [
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75
+      ],
+      "definition": "per (seed, arm), OccupancyCell over the CAP_SWEEP; evaluate_regime_occupancy_gate(floor=0.1, ceiling=0.9). regime_shape in {unreachable, saturated_bimodal, graded}. graded == some cap yields occupancy strictly in (0.1, 0.9). Replaces the min()-across-the-sweep gate (the cluster autopsy's M1/M2 defect; H3 fix) with the shared primitive experiments/_lib/regime_occupancy_gate.py -- never a min-across-the-sweep statistic.",
+      "margin_floor": 0.05,
+      "min_fraction": 0.6666666666666666,
+      "occupancy_ceiling": 0.9,
+      "occupancy_floor": 0.1,
+      "primary_arm": "ARM_SYMMETRIC"
+    },
+    "route_reason": "graded_regime_reachable_on_symmetric_arm",
+    "winning_cap_band_symmetric": [
+      0.75,
+      1.75
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "method_note": "Sweeps affinity_input_cap at EVAL time on clones of a single trained curriculum agent per seed (the cap is read live at SalienceCoordinator.tick(), so no retraining is needed -- the same train-once/sweep-on-clones pattern 467e uses for its ratio sweep). Training cap held at 2.0 (464e construction) for comparability with the banked 464e/467e reference. Instruments both the discrete committed-mode occupancy AND the continuous pre-argmax operating_mode['external_task'] margin (probe / H2 recommendation), plus mode-conditioned dwell in external_task (fixes 464e's mode-agnostic dwell). Non-vacuity via experiments/_lib/regime_occupancy_gate.py (per-arm, any-reachable, regime-shape-conditioned) -- NEVER min-across-the-sweep, the M1/M2 defect the cluster autopsy identified.",
+  "outcome": "PASS",
+  "per_seed": [
+    {
+      "abort_reason": "",
+      "aborted_at": null,
+      "any_graded": true,
+      "cells": [
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 0.75,
+          "coord_n_ticks": 376,
+          "ext_dwell_mean": 43.208,
+          "ext_margin_max": 0.3737,
+          "ext_margin_mean": 0.3373,
+          "ext_margin_p10": 0.3037,
+          "ext_margin_p50": 0.3434,
+          "ext_margin_p90": 0.3618,
+          "fraction_in_external_task": 0.5606,
+          "mean_dwell": 54.059,
+          "mode_step_counts": {
+            "external_task": 1022,
+            "internal_planning": 801,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 24,
+          "n_switches": 19,
+          "other_mode_steps": 0,
+          "total_steps": 1823
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 0.75,
+          "coord_n_ticks": 456,
+          "ext_dwell_mean": 148.733,
+          "ext_margin_max": 0.3737,
+          "ext_margin_mean": 0.3356,
+          "ext_margin_p10": 0.2997,
+          "ext_margin_p50": 0.3416,
+          "ext_margin_p90": 0.3609,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.733,
+          "mode_step_counts": {
+            "external_task": 2216,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2216
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.0,
+          "coord_n_ticks": 378,
+          "ext_dwell_mean": 4.867,
+          "ext_margin_max": 0.337,
+          "ext_margin_mean": 0.3038,
+          "ext_margin_p10": 0.2705,
+          "ext_margin_p50": 0.3099,
+          "ext_margin_p90": 0.327,
+          "fraction_in_external_task": 0.0317,
+          "mean_dwell": 68.222,
+          "mode_step_counts": {
+            "external_task": 58,
+            "internal_planning": 1769,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 12,
+          "other_mode_steps": 0,
+          "total_steps": 1827
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.0,
+          "coord_n_ticks": 456,
+          "ext_dwell_mean": 148.733,
+          "ext_margin_max": 0.337,
+          "ext_margin_mean": 0.303,
+          "ext_margin_p10": 0.2729,
+          "ext_margin_p50": 0.3082,
+          "ext_margin_p90": 0.3245,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.733,
+          "mode_step_counts": {
+            "external_task": 2216,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2216
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.25,
+          "coord_n_ticks": 297,
+          "ext_dwell_mean": 1.0,
+          "ext_margin_max": 0.3002,
+          "ext_margin_mean": 0.2653,
+          "ext_margin_p10": 0.2297,
+          "ext_margin_p50": 0.2718,
+          "ext_margin_p90": 0.2894,
+          "fraction_in_external_task": 0.0,
+          "mean_dwell": 48.133,
+          "mode_step_counts": {
+            "external_task": 0,
+            "internal_planning": 1429,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 15,
+          "other_mode_steps": 0,
+          "total_steps": 1429
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.25,
+          "coord_n_ticks": 338,
+          "ext_dwell_mean": 109.733,
+          "ext_margin_max": 0.3002,
+          "ext_margin_mean": 0.263,
+          "ext_margin_p10": 0.2298,
+          "ext_margin_p50": 0.2691,
+          "ext_margin_p90": 0.2877,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 109.733,
+          "mode_step_counts": {
+            "external_task": 1631,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 1631
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.5,
+          "coord_n_ticks": 338,
+          "ext_dwell_mean": 1.0,
+          "ext_margin_max": 0.2642,
+          "ext_margin_mean": 0.2359,
+          "ext_margin_p10": 0.2091,
+          "ext_margin_p50": 0.2405,
+          "ext_margin_p90": 0.2539,
+          "fraction_in_external_task": 0.0,
+          "mean_dwell": 54.8,
+          "mode_step_counts": {
+            "external_task": 0,
+            "internal_planning": 1629,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 15,
+          "other_mode_steps": 0,
+          "total_steps": 1629
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.5,
+          "coord_n_ticks": 338,
+          "ext_dwell_mean": 109.6,
+          "ext_margin_max": 0.2642,
+          "ext_margin_mean": 0.2269,
+          "ext_margin_p10": 0.1873,
+          "ext_margin_p50": 0.234,
+          "ext_margin_p90": 0.2534,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 109.6,
+          "mode_step_counts": {
+            "external_task": 1629,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 1629
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.75,
+          "coord_n_ticks": 375,
+          "ext_dwell_mean": 1.0,
+          "ext_margin_max": 0.2296,
+          "ext_margin_mean": 0.1997,
+          "ext_margin_p10": 0.1732,
+          "ext_margin_p50": 0.2039,
+          "ext_margin_p90": 0.2184,
+          "fraction_in_external_task": 0.0,
+          "mean_dwell": 61.2,
+          "mode_step_counts": {
+            "external_task": 0,
+            "internal_planning": 1821,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 15,
+          "other_mode_steps": 0,
+          "total_steps": 1821
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.75,
+          "coord_n_ticks": 457,
+          "ext_dwell_mean": 148.933,
+          "ext_margin_max": 0.2296,
+          "ext_margin_mean": 0.1983,
+          "ext_margin_p10": 0.1708,
+          "ext_margin_p50": 0.2029,
+          "ext_margin_p90": 0.2183,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.933,
+          "mode_step_counts": {
+            "external_task": 2219,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2219
+        }
+      ],
+      "guard_pass": true,
+      "hazard_stage_survival_pass": true,
+      "margin_engaged": true,
+      "max_margin_mean": 0.3373,
+      "p1_survival_pass": true,
+      "p2_contact_rate": 0.2514851485148515,
+      "p2_num_contact_events": 107,
+      "p2_z_goal_norm_at_contact_peak": 0.49198657274246216,
+      "regime_by_arm": {
+        "ARM_ASYM_STICKY_TASK": {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 1.0,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.0",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.25",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.5",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.75",
+              "reachable": true
+            }
+          ],
+          "floor": 0.1,
+          "graded": false,
+          "max_fraction": 1.0,
+          "min_fraction": 1.0,
+          "mixed_band_caps": [],
+          "reachable": true,
+          "regime_shape": "saturated_bimodal",
+          "route_reason": "external_task_mode_saturated_no_mixed_regime"
+        },
+        "ARM_SYMMETRIC": {
+          "arm": "ARM_SYMMETRIC",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 0.5606,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 0.0317,
+              "label": "cap=1.0",
+              "reachable": false
+            },
+            {
+              "fraction": 0.0,
+              "label": "cap=1.25",
+              "reachable": false
+            },
+            {
+              "fraction": 0.0,
+              "label": "cap=1.5",
+              "reachable": false
+            },
+            {
+              "fraction": 0.0,
+              "label": "cap=1.75",
+              "reachable": false
+            }
+          ],
+          "floor": 0.1,
+          "graded": true,
+          "max_fraction": 0.5606,
+          "min_fraction": 0.0,
+          "mixed_band_caps": [
+            0.75
+          ],
+          "reachable": true,
+          "regime_shape": "graded",
+          "route_reason": null
+        }
+      },
+      "seed": 42,
+      "stage0_z_goal_norm_peak": 0.46372494101524353,
+      "sym_graded": true
+    },
+    {
+      "abort_reason": "",
+      "aborted_at": null,
+      "any_graded": true,
+      "cells": [
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 0.75,
+          "coord_n_ticks": 136,
+          "ext_dwell_mean": 148.6,
+          "ext_margin_max": 0.8494,
+          "ext_margin_mean": 0.7681,
+          "ext_margin_p10": 0.7571,
+          "ext_margin_p50": 0.7621,
+          "ext_margin_p90": 0.7758,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.6,
+          "mode_step_counts": {
+            "external_task": 2214,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2214
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 0.75,
+          "coord_n_ticks": 136,
+          "ext_dwell_mean": 148.733,
+          "ext_margin_max": 0.8494,
+          "ext_margin_mean": 0.7705,
+          "ext_margin_p10": 0.7592,
+          "ext_margin_p50": 0.7634,
+          "ext_margin_p90": 0.779,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.733,
+          "mode_step_counts": {
+            "external_task": 2216,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2216
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.0,
+          "coord_n_ticks": 48,
+          "ext_dwell_mean": 44.667,
+          "ext_margin_max": 0.8625,
+          "ext_margin_mean": 0.7392,
+          "ext_margin_p10": 0.7019,
+          "ext_margin_p50": 0.7088,
+          "ext_margin_p90": 0.8523,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 44.667,
+          "mode_step_counts": {
+            "external_task": 655,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 655
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.0,
+          "coord_n_ticks": 114,
+          "ext_dwell_mean": 122.667,
+          "ext_margin_max": 0.8635,
+          "ext_margin_mean": 0.7259,
+          "ext_margin_p10": 0.7031,
+          "ext_margin_p50": 0.7106,
+          "ext_margin_p90": 0.7651,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 122.667,
+          "mode_step_counts": {
+            "external_task": 1825,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 1825
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.25,
+          "coord_n_ticks": 125,
+          "ext_dwell_mean": 135.533,
+          "ext_margin_max": 0.8419,
+          "ext_margin_mean": 0.637,
+          "ext_margin_p10": 0.6065,
+          "ext_margin_p50": 0.6141,
+          "ext_margin_p90": 0.6755,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 135.533,
+          "mode_step_counts": {
+            "external_task": 2018,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2018
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.25,
+          "coord_n_ticks": 136,
+          "ext_dwell_mean": 148.667,
+          "ext_margin_max": 0.8442,
+          "ext_margin_mean": 0.639,
+          "ext_margin_p10": 0.6053,
+          "ext_margin_p50": 0.6175,
+          "ext_margin_p90": 0.6959,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.667,
+          "mode_step_counts": {
+            "external_task": 2215,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2215
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.5,
+          "coord_n_ticks": 125,
+          "ext_dwell_mean": 135.533,
+          "ext_margin_max": 0.8205,
+          "ext_margin_mean": 0.562,
+          "ext_margin_p10": 0.5037,
+          "ext_margin_p50": 0.5235,
+          "ext_margin_p90": 0.6611,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 135.533,
+          "mode_step_counts": {
+            "external_task": 2018,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2018
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.5,
+          "coord_n_ticks": 114,
+          "ext_dwell_mean": 122.667,
+          "ext_margin_max": 0.8139,
+          "ext_margin_mean": 0.5578,
+          "ext_margin_p10": 0.4994,
+          "ext_margin_p50": 0.5168,
+          "ext_margin_p90": 0.669,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 122.667,
+          "mode_step_counts": {
+            "external_task": 1825,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 1825
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.75,
+          "coord_n_ticks": 158,
+          "ext_dwell_mean": 53.455,
+          "ext_margin_max": 0.7906,
+          "ext_margin_mean": 0.4852,
+          "ext_margin_p10": 0.3947,
+          "ext_margin_p50": 0.4349,
+          "ext_margin_p90": 0.6293,
+          "fraction_in_external_task": 0.4447,
+          "mean_dwell": 79.576,
+          "mode_step_counts": {
+            "external_task": 1161,
+            "internal_planning": 1450,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 22,
+          "n_switches": 18,
+          "other_mode_steps": 0,
+          "total_steps": 2611
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.75,
+          "coord_n_ticks": 147,
+          "ext_dwell_mean": 161.8,
+          "ext_margin_max": 0.789,
+          "ext_margin_mean": 0.4978,
+          "ext_margin_p10": 0.3993,
+          "ext_margin_p50": 0.4822,
+          "ext_margin_p90": 0.5882,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 161.8,
+          "mode_step_counts": {
+            "external_task": 2412,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2412
+        }
+      ],
+      "guard_pass": true,
+      "hazard_stage_survival_pass": false,
+      "margin_engaged": true,
+      "max_margin_mean": 0.7705,
+      "p1_survival_pass": true,
+      "p2_contact_rate": 0.2570480928689884,
+      "p2_num_contact_events": 139,
+      "p2_z_goal_norm_at_contact_peak": 0.432980477809906,
+      "regime_by_arm": {
+        "ARM_ASYM_STICKY_TASK": {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 1.0,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.0",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.25",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.5",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.75",
+              "reachable": true
+            }
+          ],
+          "floor": 0.1,
+          "graded": false,
+          "max_fraction": 1.0,
+          "min_fraction": 1.0,
+          "mixed_band_caps": [],
+          "reachable": true,
+          "regime_shape": "saturated_bimodal",
+          "route_reason": "external_task_mode_saturated_no_mixed_regime"
+        },
+        "ARM_SYMMETRIC": {
+          "arm": "ARM_SYMMETRIC",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 1.0,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.0",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.25",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.5",
+              "reachable": true
+            },
+            {
+              "fraction": 0.4447,
+              "label": "cap=1.75",
+              "reachable": true
+            }
+          ],
+          "floor": 0.1,
+          "graded": true,
+          "max_fraction": 1.0,
+          "min_fraction": 0.4447,
+          "mixed_band_caps": [
+            1.75
+          ],
+          "reachable": true,
+          "regime_shape": "graded",
+          "route_reason": null
+        }
+      },
+      "seed": 43,
+      "stage0_z_goal_norm_peak": 0.4190235733985901,
+      "sym_graded": true
+    },
+    {
+      "abort_reason": "",
+      "aborted_at": null,
+      "any_graded": false,
+      "cells": [
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 0.75,
+          "coord_n_ticks": 118,
+          "ext_dwell_mean": 122.533,
+          "ext_margin_max": 0.8494,
+          "ext_margin_mean": 0.785,
+          "ext_margin_p10": 0.7734,
+          "ext_margin_p50": 0.7792,
+          "ext_margin_p90": 0.8028,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 122.533,
+          "mode_step_counts": {
+            "external_task": 1823,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 1823
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 0.75,
+          "coord_n_ticks": 142,
+          "ext_dwell_mean": 148.867,
+          "ext_margin_max": 0.8494,
+          "ext_margin_mean": 0.7811,
+          "ext_margin_p10": 0.7786,
+          "ext_margin_p50": 0.7792,
+          "ext_margin_p90": 0.7793,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 148.867,
+          "mode_step_counts": {
+            "external_task": 2218,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2218
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.0,
+          "coord_n_ticks": 131,
+          "ext_dwell_mean": 135.733,
+          "ext_margin_max": 0.8668,
+          "ext_margin_mean": 0.7581,
+          "ext_margin_p10": 0.7132,
+          "ext_margin_p50": 0.7609,
+          "ext_margin_p90": 0.8065,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 135.733,
+          "mode_step_counts": {
+            "external_task": 2021,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2021
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.0,
+          "coord_n_ticks": 150,
+          "ext_dwell_mean": 161.867,
+          "ext_margin_max": 0.8675,
+          "ext_margin_mean": 0.7665,
+          "ext_margin_p10": 0.7324,
+          "ext_margin_p50": 0.7637,
+          "ext_margin_p90": 0.7986,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 161.867,
+          "mode_step_counts": {
+            "external_task": 2413,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2413
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.25,
+          "coord_n_ticks": 164,
+          "ext_dwell_mean": 174.8,
+          "ext_margin_max": 0.8467,
+          "ext_margin_mean": 0.7142,
+          "ext_margin_p10": 0.6668,
+          "ext_margin_p50": 0.7051,
+          "ext_margin_p90": 0.7607,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 174.8,
+          "mode_step_counts": {
+            "external_task": 2607,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2607
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.25,
+          "coord_n_ticks": 130,
+          "ext_dwell_mean": 135.667,
+          "ext_margin_max": 0.8465,
+          "ext_margin_mean": 0.7102,
+          "ext_margin_p10": 0.6663,
+          "ext_margin_p50": 0.6872,
+          "ext_margin_p90": 0.7907,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 135.667,
+          "mode_step_counts": {
+            "external_task": 2020,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2020
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.5,
+          "coord_n_ticks": 163,
+          "ext_dwell_mean": 174.8,
+          "ext_margin_max": 0.8222,
+          "ext_margin_mean": 0.6411,
+          "ext_margin_p10": 0.5706,
+          "ext_margin_p50": 0.5919,
+          "ext_margin_p90": 0.7635,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 174.8,
+          "mode_step_counts": {
+            "external_task": 2607,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2607
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.5,
+          "coord_n_ticks": 185,
+          "ext_dwell_mean": 201.0,
+          "ext_margin_max": 0.8214,
+          "ext_margin_mean": 0.6494,
+          "ext_margin_p10": 0.5771,
+          "ext_margin_p50": 0.6434,
+          "ext_margin_p90": 0.7589,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 201.0,
+          "mode_step_counts": {
+            "external_task": 3000,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 3000
+        },
+        {
+          "arm": "ARM_SYMMETRIC",
+          "cap": 1.75,
+          "coord_n_ticks": 109,
+          "ext_dwell_mean": 78.158,
+          "ext_margin_max": 0.7926,
+          "ext_margin_mean": 0.5732,
+          "ext_margin_p10": 0.4658,
+          "ext_margin_p50": 0.5593,
+          "ext_margin_p90": 0.6888,
+          "fraction_in_external_task": 0.9002,
+          "mean_dwell": 71.652,
+          "mode_step_counts": {
+            "external_task": 1470,
+            "internal_planning": 163,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 19,
+          "n_switches": 8,
+          "other_mode_steps": 0,
+          "total_steps": 1633
+        },
+        {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "cap": 1.75,
+          "coord_n_ticks": 150,
+          "ext_dwell_mean": 161.733,
+          "ext_margin_max": 0.793,
+          "ext_margin_mean": 0.5642,
+          "ext_margin_p10": 0.4645,
+          "ext_margin_p50": 0.5527,
+          "ext_margin_p90": 0.6853,
+          "fraction_in_external_task": 1.0,
+          "mean_dwell": 161.733,
+          "mode_step_counts": {
+            "external_task": 2411,
+            "internal_planning": 0,
+            "internal_replay": 0,
+            "offline_consolidation": 0
+          },
+          "n_episodes": 15,
+          "n_ext_runs": 15,
+          "n_switches": 0,
+          "other_mode_steps": 0,
+          "total_steps": 2411
+        }
+      ],
+      "guard_pass": true,
+      "hazard_stage_survival_pass": true,
+      "margin_engaged": true,
+      "max_margin_mean": 0.785,
+      "p1_survival_pass": true,
+      "p2_contact_rate": 0.30643564356435643,
+      "p2_num_contact_events": 138,
+      "p2_z_goal_norm_at_contact_peak": 0.44140616059303284,
+      "regime_by_arm": {
+        "ARM_ASYM_STICKY_TASK": {
+          "arm": "ARM_ASYM_STICKY_TASK",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 1.0,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.0",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.25",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.5",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.75",
+              "reachable": true
+            }
+          ],
+          "floor": 0.1,
+          "graded": false,
+          "max_fraction": 1.0,
+          "min_fraction": 1.0,
+          "mixed_band_caps": [],
+          "reachable": true,
+          "regime_shape": "saturated_bimodal",
+          "route_reason": "external_task_mode_saturated_no_mixed_regime"
+        },
+        "ARM_SYMMETRIC": {
+          "arm": "ARM_SYMMETRIC",
+          "ceiling": 0.9,
+          "cells": [
+            {
+              "fraction": 1.0,
+              "label": "cap=0.75",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.0",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.25",
+              "reachable": true
+            },
+            {
+              "fraction": 1.0,
+              "label": "cap=1.5",
+              "reachable": true
+            },
+            {
+              "fraction": 0.9002,
+              "label": "cap=1.75",
+              "reachable": true
+            }
+          ],
+          "floor": 0.1,
+          "graded": false,
+          "max_fraction": 1.0,
+          "min_fraction": 0.9002,
+          "mixed_band_caps": [],
+          "reachable": true,
+          "regime_shape": "saturated_bimodal",
+          "route_reason": "external_task_mode_saturated_no_mixed_regime"
+        }
+      },
+      "seed": 44,
+      "stage0_z_goal_norm_peak": 0.42056745290756226,
+      "sym_graded": false
+    }
+  ],
+  "pre_registered_thresholds": {
+    "affinity_input_cap_train": 2.0,
+    "cap_sweep": [
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "contact_gate": 0.0,
+    "loose_exit": 0.9,
+    "margin_floor": 0.05,
+    "min_fraction": 0.6666666666666666,
+    "occupancy_ceiling": 0.9,
+    "occupancy_floor": 0.1,
+    "p2_zgoal_gate": 0.4,
+    "sticky_exit": 0.05
+  },
+  "predecessor": "V3-EXQ-464e / V3-EXQ-467e (successor-in-spirit; NOT a supersede)",
+  "queue_id": "V3-EXQ-934",
+  "recording_schema": "rec/v1",
+  "run_id": "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "stage_plan": [
+    {
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival",
+      "method": "run_stage0_nursery",
+      "name": "nursery_forced_feed",
+      "stage": "0"
+    },
+    {
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up",
+      "method": "run_p0",
+      "name": "guided_low_conflict",
+      "stage": "1"
+    },
+    {
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins",
+      "method": "run_p1 (early anneal)",
+      "name": "easy_foraging",
+      "stage": "2"
+    },
+    {
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target",
+      "method": "run_p1 (late anneal)",
+      "name": "guarded_hazard",
+      "stage": "3"
+    },
+    {
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated",
+      "method": "run_p2",
+      "name": "mature_test",
+      "stage": "4"
+    }
+  ],
+  "substrate": "scaffolded_sd054_onboarding (full curriculum; 603n config) + SalienceCoordinator (SD-032a) + mode-governance-engagement external_task drive (use_external_task_drive=True) + GAP-3 dual_cue competing-goal env + goal_state clone fix + salience_affinity_input_cap (trained at 2.0, EVAL cap swept in [0.75,1.0,1.25,1.5,1.75] on clones). use_closure_operator OFF.",
+  "substrate_commit": {
+    "branch": "main",
+    "commit": "6f46a703cbcd1e6badfef24d46a9c75ce5d0b177",
+    "dirty": false
+  },
+  "substrate_hash": "f53db12dd0a7e00dcf351e3ba024c861173ac53d435d507d493288f8f138ddeb",
+  "substrate_identity": {
+    "commit_resolved_at_utc": "2026-08-15T01:52:16Z",
+    "commit_source": "manifest_write_disk_read",
+    "drifted_since_resolved": false,
+    "lag_seconds": 0,
+    "resolved_at_utc": "2026-08-15T01:52:16Z",
+    "source": "manifest_write_disk_read",
+    "stability_snapshots": 1,
+    "stamped_at_utc": "2026-08-15T01:52:16Z"
+  },
+  "substrate_stable_across_run": true,
+  "timestamp_utc": "20260815T015216Z",
+  "z_goal_stream": {
+    "active_frac": 0.9999827033509375,
+    "goal_state_present": true,
+    "n_agents": 33,
+    "ticks_active": 173441,
+    "ticks_total": 173444,
+    "writer_calls": 5262,
+    "writer_defect": false
+  }
+}

@@ -11,7 +11,7 @@ closure_plan:
   nodes:
     - id: "mech303_safety_threshold:BUILD"
       title: "Give MECH-303's contextual_safety_harm_threshold a dedicated proximity-anticipatory harm signal, decoupled from SD-022 damage-sourced z_harm_a"
-      status: open
+      status: done
       severity: high
       join:
         bears_on: []
@@ -19,7 +19,8 @@ closure_plan:
       unblocks_claims: [MECH-303]
       depends_on: []
       cross_plan_link: ["behavioral_diversity_isolation:GAP-C"]
-      last_updated: 2026-08-13
+      last_updated: 2026-08-16
+      completion_note: "CLOSED 2026-08-16 (/governance cycle cranky-driscoll-126a36) on confirmed failure_autopsy_V3-EXQ-930_2026-08-16. The build LANDED 2026-08-14 (ree-v3 b257e7ad14) and V3-EXQ-930 validated it at the SIGNAL layer under the production scenario limb_damage_enabled=True: the dedicated obs_dict['safety_proximity_harm'] channel is monotone across hazard density (per-density means 0.000/0.283/0.536/0.840/0.867, spread 0.331) and separable safe-vs-unsafe at every threshold from 0.02 to 0.30, best AUC 1.0 at tau=0.08 -- exceeding the 0.84 acceptance target this node registered from V3-EXQ-917, and the SHIPPED default contextual_safety_proximity_threshold=0.25 sits inside that band (reach 0.648, AUC 1.0). The decoupling from damage-sourced z_harm_a also reproduced (z_harm_a per-density spread 6.96e-05 vs the same-run positive control's 0.331, ~4760x; best AUC 0.52), and biology is load-bearing and supportive -- anticipatory exteroceptive threat-proximity vs interoceptive tissue-damage is a genuine mammalian dissociation, so the damage-sourced null is what biology predicts and the 2026-08-12 option-(a) routing is vindicated. THIS NODE'S SCOPE (build the dedicated signal and calibrate a threshold into the reachable+discriminating band) IS DELIVERED. What is NOT delivered, and is deliberately NOT this node's debt: the MECH-303 BEHAVIOURAL falsifier. V3-EXQ-930 never enabled the MECH-303 gate itself (use_contextual_safety_terrain default False; contextual_safety_gate_source default 'z_harm_a'; the accumulate_safety block at agent.py:5166-5212 did not execute), the agent was untrained, and no vigilance/avoidance readout was taken -- so 930 is non_contributory TO THE CLAIM and MECH-303 keeps status provisional + pending_retest_after_substrate true. That retest's stated condition ('once the dedicated signal lands') is now MET, so it is UNBLOCKED and owed; it is tracked on the claim and chipped to /queue-experiment, not held open here. Recording caveat carried forward to that retest: the per-tick z_harm_a series and a damage-exposure readout existed at run time and were DISCARDED, so a per-seed-standardised discrimination cannot be computed post hoc -- fold both into its recording spec per experimental_recording_standard_2026-07-12.md rather than re-running blind."
       registered_note: "V3-EXQ-917 measured the legacy proximity_ema_sourced signal (limb_damage_enabled=False) at AUC 0.84-0.97 with reachability 0.23-0.98 across thresholds 0.4-0.8 -- the target band for the new dedicated signal. Implementation must audit which production drivers (764, 520, 916/916a, and any future use_contextual_safety_terrain driver) consume which signal, and calibrate a threshold into the reachable+discriminating band 917 established. Substrate paths: ree_core/utils/config.py, ree_core/environment/causal_grid_world.py, ree_core/agent.py. Once built, MECH-303's promote-to-active behavioural falsifier (context-safety lowers background vigilance/avoidance-commitment level) becomes runnable for the first time on a non-vacuous gate. Open chips: chip-20260812-mech303-threshold-sourcing, chip-igw-20260812-216."
 ---
 

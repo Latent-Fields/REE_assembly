@@ -46,13 +46,13 @@
       "timestamp_utc": "2026-04-03T22:00:00Z"
     },
     "ARC-023": {
-      "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-cycle-2026-08-16-cranky-driscoll-126a36",
+      "decision_needed": "Whether ARC-023 is V3 work given SD-006 phase 2 routed to V4 (GFLAG-0037)",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Heartbeat architecture claim, V3-scoped by design. No V2 experiment can test multi-rate loop execution.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361127Z"
+      "rationale": "ARC-023 stays honestly phase-2-gated and is therefore NOT V3: its non-degeneracy precondition is specifically that rate separation survive REAL asynchronous load, which no phase-1 time-multiplexed test can supply. This is the deliberate asymmetry in the GFLAG-0037 split -- MECH-091 un-parks to V3 because its mechanism is already built and firing, ARC-023 does not because its blocker is genuine. It carries ZERO experimental entries since registration, consistent with the block rather than evidence against the claim. Also resolves a three-way documentation inconsistency (v3_v4_transition_boundary.md:57 and claims.yaml MECH-030 call SD-006 a satisfied V3 prerequisite with no phase-2 caveat; roadmap.md:4386 calls phase 2 undecided and not-yet-designed, now stale; commitment_closure_plan lines 409/647/666 say deferred-V4 conditionally and about the GAP). No status change.",
+      "recommendation": "correct_implementation_phase_v3_to_v4",
+      "selected_option": "Correct implementation_phase v3 -> v4",
+      "timestamp_utc": "2026-08-16T19:59:02.842281Z"
     },
     "ARC-024": {
       "actor": "user",
@@ -703,13 +703,13 @@
       "timestamp_utc": "2026-08-08T08:30:48.470619Z"
     },
     "MECH-074d": {
-      "actor": "governance-cycle-2026-08-16",
-      "decision_needed": "Demotion review: provisional -> candidate",
+      "actor": "governance-cycle-2026-08-16-cranky-driscoll-126a36",
+      "decision_needed": "Conflict resolution before promotion (re-flagged at the new candidate status)",
       "decision_status": "applied",
-      "rationale": "2026-08-08 hold condition DISCHARGED and spent: it was explicitly pending V3-EXQ-894a; 894a/894b/894c have all since run (weakens/weakens/mixed), 4 exp entries, 0 pass_runs, conflict_ratio 0.80. Successors closed dilution -> trainability-alone -> loss-term balance in turn (narrowed diagnosis, not instrument artifact); the 894c autopsy itself moved epistemic_category to standard to expose this claim to the pass and recorded it 'worth an explicit demotion look next cycle'. pending_retest_after_substrate stays true.",
-      "recommendation": "demote_to_candidate",
-      "selected_option": "Demote now",
-      "timestamp_utc": "2026-08-16T11:57:15.983997Z"
+      "rationale": "HOLD RECORDED so this stops re-flagging pending_user every cycle. The 2026-08-16T11:57Z demote_to_candidate WAS applied -- claims.yaml now reads status candidate -- and the pending_user re-flag is purely mechanical: the recommendation CHANGED at the new status (promote/demote review -> hold_candidate_resolve_conflict), which the generator reports as 'Prior decision exists but recommendation changed; needs fresh review'. It is not an unapplied decision. Substance of the hold: conflict_ratio 0.80 on 4 exp entries with 0 pass_runs (supports 2 / weakens 3 / mixed 3), and the 894a/894b/894c successors already closed dilution -> trainability-alone -> loss-term balance in turn, so the diagnosis narrowed rather than revealing an instrument artifact. What the claim now waits on is its SUBSTRATE retest (pending_retest_after_substrate stays true), not another governance look -- so a further demotion this cycle would be acting on the same evidence twice. No claims.yaml change; status stays candidate.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-08-16T19:17:23.744792Z"
     },
     "MECH-075": {
       "actor": "user",
@@ -757,13 +757,13 @@
       "timestamp_utc": "2026-03-16T18:20:19.361144Z"
     },
     "MECH-091": {
-      "actor": "orphan-v3-claims-adjudicate-6f88bd",
-      "decision_needed": "Orphan V3 claim: owning node commitment_closure:GAP-7 is deferred",
-      "decision_status": "proposed",
-      "rationale": "The one case of the four that does not resolve cleanly -- a `puzzle (known rules)`, where the missing fact is the generation of SD-006 phase 2, not a buildable fix. claims.yaml MECH-091 has implementation_phase v3 but NO v3_pending key (weakest possible V3 assertion). SD-006 reads status `implemented` but its status_note scopes that to phase 1 time-multiplexed; phase 2 async -- the thing MECH-091 actually needs -- has ZERO substrate_queue entries and no generation label anywhere. MECHANISM: a deferral keyed to an external substrate that was never scoped, so no scoping pass or /implement-substrate route can ever see it and the deferral became permanent by omission. Both EXQ-133 runs were reclassified non_contributory for exactly this substrate gap, twice. Two signals contradict the status: live-block next=routing=implement-substrate (2026-08-13), and needs_review TRUE with reason newest_forward_predates_later_decision_event(s) -- the only node in this batch already flagged by the repo's own staleness machinery, unacted on. claims.yaml correction is PROPOSED, NOT APPLIED.",
-      "recommendation": "decide_blocker_generation_then_route",
-      "selected_option": "DECIDE the generation of SD-006 phase 2 first; then either queue it + un-defer, or keep deferred and correct claims.yaml implementation_phase v3 -> v4",
-      "timestamp_utc": "2026-08-15T06:38:09.000000Z"
+      "actor": "governance-cycle-2026-08-16-cranky-driscoll-126a36",
+      "decision_needed": "Generation of SD-006 phase 2, and whether MECH-091 is genuinely blocked on it (GFLAG-0037)",
+      "decision_status": "applied",
+      "rationale": "SPLIT adopted rather than the V3-or-V4 pick GFLAG-0037 posed, because both branches as posed inherit a FALSE PREMISE. MECH-091's phase_reset() is BUILT (clock.py:182), WIRED (agent.py:9903) and MEASURED 2026-08-01 as the dominant driver of E3 tick cadence over a 53,063-step rollout -- so the 2026-05-08 deferral rationale is contradicted by direct measurement. 'Phase 2' is also not one thing: the spec recommends HTA (option 3), whose MECH-089 ThetaBuffer is already built, while clock.py:32 fuses it with the spec-disfavoured threading option, and every downstream 'blocked on phase 2' inherited the fused definition. MECH-091's real gap is 2 of 3 salient-event triggers unwired -- complicated (buildable), both events already present in the substrate. Registered as substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING; commitment_closure:GAP-7 deferred -> blocked (measured closure effect 71.9%/94 -> 71.3%/95, remaining 32 -> 33, done unchanged at 62); needs_review cleared after 3+ months. No status change to the claim -- this is routing, not evidence. One puzzle-grade check owed before building (is the what_would_answer DV observable on phase 1, or absorbed by the EXQ-131 E3-freeze artifact); if it fails the V4 branch is the fallback.",
+      "recommendation": "route_to_v3_small_buildable",
+      "selected_option": "Adopt the brief's split: MECH-091 -> V3, SD-006 phase 2 true concurrency -> V4",
+      "timestamp_utc": "2026-08-16T19:59:02.782003Z"
     },
     "MECH-092": {
       "actor": "governance",
@@ -2710,7 +2710,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-08-16T17:20:51.856323Z",
+  "generated_at_utc": "2026-08-16T20:15:57.173402Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

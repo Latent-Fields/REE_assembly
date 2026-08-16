@@ -1,1 +1,2112 @@
-{"run_id": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3", "experiment_type": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation", "queue_id": "V3-EXQ-861d", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-180", "MECH-122"], "experiment_purpose": "evidence", "supersedes": "V3-EXQ-861a", "compares_against_run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3", "sleep_driver_pattern": "manual-cycle-loop (force_cycle() once per cycle in a MEAS_CYCLES wake-sleep loop; MEL consumer engages via SleepLoopManager, novelty knob is SD-MEL-PRODUCER world_rule_shift, not env_drift; UNCHANGED from V3-EXQ-861/845)", "timestamp_utc": "20260815T005853Z", "seeds": [42, 123, 456], "outcome": "FAIL", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"MECH-180": "non_contributory", "MECH-122": "weakens"}, "interpretation": {"label": "mel_control_degenerate", "preconditions": [{"name": "world_forward_converged_frozen_probe", "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds -- the world model must be trained for MEL to live at a meaningful scale (R1).", "measured": 1.0, "threshold": 0.6666666666666666, "direction": "lower", "met": true}, {"name": "ecological_novelty_mel_gradient_present_this_config", "description": "measured mean_mel is non-degenerately graded (mel[HIGH] >= mel[NONE]*(1+MIN_MEL_SPREAD)) across the 4 ON arms, on >= 2/3 seeds -- re-confirms the V3-EXQ-798a/845 novelty->MEL link under THIS run's full agent config. Below-floor => the ecological link does not survive in this config (not-ready), NOT a MECH-180 falsification (R2).", "measured": 1.0, "threshold": 0.6666666666666666, "direction": "lower", "met": true}], "criteria_non_degenerate": {"C1_measured_mel_gradient_present": true, "C1_dv_spread_nonzero": true, "C2_off_control_present": true}, "per_dv_seed_pass_fraction": {"sws_power": 0.6666666666666666, "spindle_density": 0.0, "replay_rate": 1.0}, "per_dv_pass": {"sws_power": true, "spindle_density": false, "replay_rate": true}, "redesign_note": "spindle_density (C1b/C2) reads mean_sws_new_slot_diversity, the SAME write-count-decoupled statistic V3-EXQ-861 introduced (unchanged readout code). This run SUPERSEDES V3-EXQ-861a; its ONLY change from 861a is mech122_novelty_reference_mode='mel_pe' (ree-v3 6aa97ca), re-sourcing the spindle content-selection novelty reference from the SD-MEL PE channel so DV3 selection is coupled to the graded MEL axis. Tests whether that fix closes 861a's 0/3-seed spindle_density gap; use_mech122_spindle_content_selection stays True (uniform across every arm), as in 861a.", "mech122_content_packaging_note": "MECH-122's per-claim direction (evidence_direction_per_claim below) is read off spindle_density's own seed-pass fraction (C1b), not this label -- see module docstring 'MECH-122 per-claim direction'. A PASS/mixed/FAIL label here reflects the FULL MECH-180 three-DV grid, which MECH-122's content-packaging half alone does not determine (C1a/C1c and C2's non-spindle legs are untouched by this run's substrate change)."}, "criteria": [{"name": "C1a_sws_power_monotone_in_measured_mel", "load_bearing": true, "passed": true}, {"name": "C1b_spindle_density_decoupled_monotone_in_measured_mel", "load_bearing": true, "passed": false}, {"name": "C1c_replay_rate_monotone_in_measured_mel", "load_bearing": true, "passed": true}, {"name": "C2_consumer_not_env_causes_variation", "load_bearing": false, "passed": false}], "readiness_ok": true, "readiness_frac": 1.0, "r1_frac": 1.0, "r2_frac": 1.0, "c1_all_pass": false, "c1_frac": 0.0, "c2_pass": false, "c2_frac": 0.0, "per_dv_pass": {"sws_power": true, "spindle_density": false, "replay_rate": true}, "per_dv_frac": {"sws_power": 0.6666666666666666, "spindle_density": 0.0, "replay_rate": 1.0}, "per_seed": [{"seed": 42, "ready": true, "readiness_detail": {"r1_ok": true, "r2_ok": true, "ready": true}, "c1": {"arm_order_by_measured_mel": ["ARM_1_LOW_ON", "ARM_0_NONE_ON", "ARM_3_HIGH_ON", "ARM_2_MED_ON"], "mel_by_measured_order": [1.794165676290638e-05, 2.588769361296773e-05, 2.738569504434579e-05, 2.8842332541991356e-05], "c1a_sws_power": {"monotone_ok": false, "spread_ok": true, "pass_": false, "values": [18.0, 28.0, 27.0, 28.0]}, "c1b_spindle_density_decoupled": {"monotone_ok": false, "spread_ok": false, "pass_": false, "values": [0.02891484492768844, 0.02261370715374748, 0.02171095817660292, 0.02377499306264023]}, "c1c_replay_rate": {"monotone_ok": true, "spread_ok": true, "pass_": true, "values": [40.0, 55.0, 55.0, 58.0]}, "c1_n_sub_pass": 1, "c1_all_pass": false, "c1_zero_pass": false}, "c2": {"pinned_ok": true, "on_gt_off": false, "c2_pass": false, "off_diversity_variance_reported_only": 0.0001376094020051665, "off_diversity_variance_wholebank_legacy_reported_only": 0.12245970568263004}}, {"seed": 123, "ready": true, "readiness_detail": {"r1_ok": true, "r2_ok": true, "ready": true}, "c1": {"arm_order_by_measured_mel": ["ARM_0_NONE_ON", "ARM_1_LOW_ON", "ARM_2_MED_ON", "ARM_3_HIGH_ON"], "mel_by_measured_order": [2.3257858134512682e-05, 3.014312478721249e-05, 3.0989705343999236e-05, 3.45676032074948e-05], "c1a_sws_power": {"monotone_ok": true, "spread_ok": true, "pass_": true, "values": [48.0, 64.0, 64.0, 72.0]}, "c1b_spindle_density_decoupled": {"monotone_ok": false, "spread_ok": false, "pass_": false, "values": [0.01535046100616455, 0.01583525538444519, 0.0, 0.015037775039672852]}, "c1c_replay_rate": {"monotone_ok": true, "spread_ok": true, "pass_": true, "values": [97.0, 125.0, 125.0, 144.0]}, "c1_n_sub_pass": 2, "c1_all_pass": false, "c1_zero_pass": false}, "c2": {"pinned_ok": true, "on_gt_off": false, "c2_pass": false, "off_diversity_variance_reported_only": 7.743101182455803e-08, "off_diversity_variance_wholebank_legacy_reported_only": 7.555273418377893e-05}}, {"seed": 456, "ready": true, "readiness_detail": {"r1_ok": true, "r2_ok": true, "ready": true}, "c1": {"arm_order_by_measured_mel": ["ARM_0_NONE_ON", "ARM_1_LOW_ON", "ARM_2_MED_ON", "ARM_3_HIGH_ON"], "mel_by_measured_order": [3.102608749509531e-05, 3.571776970104364e-05, 3.745147426939086e-05, 5.638220715721283e-05], "c1a_sws_power": {"monotone_ok": true, "spread_ok": true, "pass_": true, "values": [32.0, 37.0, 37.0, 56.0]}, "c1b_spindle_density_decoupled": {"monotone_ok": false, "spread_ok": false, "pass_": false, "values": [0.0194600912121435, 0.01894203177653253, 0.01749157253652811, 0.011980140620532135]}, "c1c_replay_rate": {"monotone_ok": true, "spread_ok": true, "pass_": true, "values": [62.0, 72.0, 75.0, 113.0]}, "c1_n_sub_pass": 2, "c1_all_pass": false, "c1_zero_pass": false}, "c2": {"pinned_ok": true, "on_gt_off": false, "c2_pass": false, "off_diversity_variance_reported_only": 9.358333238399967e-05, "off_diversity_variance_wholebank_legacy_reported_only": 0.09273081433317755}}], "arm_results": [{"arm_id": "ARM_0_NONE_ON", "level": 0, "mel_on": true, "world_rule_shift_interval": 0, "seed": 42, "conv_rel_drop": 0.9747263764273494, "probe_pe_init": 0.006833308274508454, "probe_pe_final": 0.00017270246108580523, "mel_reference": 2.992979543748087e-05, "mean_mel": 2.588769361296773e-05, "mean_duration_factor": 0.9094811022341179, "cumulative_sws_writes": 28.0, "cumulative_rem_rollouts": 55.0, "mean_sws_new_slot_diversity": 0.02261370715374748, "per_cycle_new_diversity": [0.03206181526184082, 0.032264869660139084, 0.0332554392516613, 0.02241731993854046, 0.007670623250305653, 0.008012175559997559], "per_cycle_n_touched_slots": [2, 4, 6, 7, 6, 3], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 0.00012203286599294059, "mean_sws_slot_diversity_wholebank_legacy": 0.3946763227383296, "per_cycle_diversity_wholebank_legacy": [0.9812108874320984, 0.8641929030418396, 0.46149742603302, 0.028594762086868286, 0.018775496631860733, 0.01378646120429039], "diversity_variance_wholebank_legacy": 0.16488798355698095, "per_cycle_sws": [2.0, 4.0, 6.0, 7.0, 6.0, 3.0], "per_cycle_rem": [5.0, 7.0, 13.0, 13.0, 12.0, 5.0], "per_cycle_mel": [6.967559331816137e-06, 2.1155895303258552e-05, 3.745348724689703e-05, 3.9270340573262105e-05, 3.4592038624079734e-05, 1.5886840598492804e-05], "per_cycle_factor": [0.5, 0.7068506481258864, 1.2513779897070159, 1.3120818234555702, 1.15577263788313, 0.5308035142331051], "sws_count_variance": 3.222222222222222, "rem_count_variance": 12.805555555555557, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.12621854517668013, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.008367776870727539, 0.004517480731010437, 0.2579175631205241, 0.317561856337956, 0.16074774662653604, 0.00819884737332662], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "1bcc7a0ca8087614db1babdbba0e694f7c89dbb3afc92a9f825407b68fefcc22", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_1_LOW_ON", "level": 1, "mel_on": true, "world_rule_shift_interval": 60, "seed": 42, "conv_rel_drop": 0.9747263764273494, "probe_pe_init": 0.006833308274508454, "probe_pe_final": 0.00017270246108580523, "mel_reference": 2.992979543748087e-05, "mean_mel": 1.794165676290638e-05, "mean_duration_factor": 0.6519209857248686, "cumulative_sws_writes": 18.0, "cumulative_rem_rollouts": 40.0, "mean_sws_new_slot_diversity": 0.02891484492768844, "per_cycle_new_diversity": [0.024801254272460938, 0.03199823200702667, 0.03329634666442871, 0.03453968092799187, 0.031229376792907715, 0.017624178901314735], "per_cycle_n_touched_slots": [2, 5, 2, 4, 2, 3], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 3.501690642223287e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.5061868792399764, "per_cycle_diversity_wholebank_legacy": [0.983700156211853, 0.8251637816429138, 0.6962520480155945, 0.36253419518470764, 0.13977912068367004, 0.029691973701119423], "diversity_variance_wholebank_legacy": 0.12463801608395352, "per_cycle_sws": [2.0, 5.0, 2.0, 4.0, 2.0, 3.0], "per_cycle_rem": [5.0, 10.0, 5.0, 8.0, 5.0, 7.0], "per_cycle_mel": [1.018835786110184e-05, 2.9039360257835747e-05, 1.1401224845272106e-05, 2.2600172688827218e-05, 1.3883880562408445e-05, 2.0536944361992937e-05], "per_cycle_factor": [0.5, 0.9702492059624959, 0.5, 0.7551061528648199, 0.5, 0.6861705555218953], "sws_count_variance": 1.3333333333333333, "rem_count_variance": 3.5555555555555554, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.008679037623935276, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.007383018732070923, 0.01047627329826355, 0.01102900505065918, 0.007732555270195007, 0.010153785347938538, 0.005299588044484456], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "59b000e735f3108f1bb7d17e8a32954efbff87d150fa9f86d4f493f464fec2af", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_2_MED_ON", "level": 2, "mel_on": true, "world_rule_shift_interval": 25, "seed": 42, "conv_rel_drop": 0.9747263764273494, "probe_pe_init": 0.006833308274508454, "probe_pe_final": 0.00017270246108580523, "mel_reference": 2.992979543748087e-05, "mean_mel": 2.8842332541991356e-05, "mean_duration_factor": 0.9636662102231512, "cumulative_sws_writes": 28.0, "cumulative_rem_rollouts": 58.0, "mean_sws_new_slot_diversity": 0.02377499306264023, "per_cycle_new_diversity": [0.03123462200164795, 0.0310846958309412, 0.03322611376643181, 0.03213660418987274, 0.007292985916137695, 0.007674936670809984], "per_cycle_n_touched_slots": [3, 3, 3, 7, 6, 6], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 0.00013319773617779322, "mean_sws_slot_diversity_wholebank_legacy": 0.4316237182356417, "per_cycle_diversity_wholebank_legacy": [0.9589046239852905, 0.8642413020133972, 0.6963058114051819, 0.032663993537425995, 0.023493271321058273, 0.01413330715149641], "diversity_variance_wholebank_legacy": 0.17254621746394413, "per_cycle_sws": [3.0, 3.0, 3.0, 7.0, 6.0, 6.0], "per_cycle_rem": [6.0, 7.0, 7.0, 15.0, 11.0, 12.0], "per_cycle_mel": [1.7941475677792352e-05, 1.979048485623025e-05, 1.981791047948415e-05, 4.482596733623723e-05, 3.353345050527423e-05, 3.7144706396929905e-05], "per_cycle_factor": [0.5994519981023448, 0.6612302077897521, 0.6621465395873145, 1.4977037657966077, 1.120403598324649, 1.241061151738239], "sws_count_variance": 2.888888888888889, "rem_count_variance": 10.555555555555555, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.15058801441438613, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.006481170654296875, 0.006899436314900716, 0.008132865031560263, 0.5052886179515294, 0.12707116703192392, 0.2496548295021057], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a8a8e7dcde777960ccc21dd786c4b2c441b6b936b352d11ef5ee2b7aea493405", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_3_HIGH_ON", "level": 3, "mel_on": true, "world_rule_shift_interval": 10, "seed": 42, "conv_rel_drop": 0.9747263764273494, "probe_pe_init": 0.006833308274508454, "probe_pe_final": 0.00017270246108580523, "mel_reference": 2.992979543748087e-05, "mean_mel": 2.738569504434579e-05, "mean_duration_factor": 0.9149977353353669, "cumulative_sws_writes": 27.0, "cumulative_rem_rollouts": 55.0, "mean_sws_new_slot_diversity": 0.02171095817660292, "per_cycle_new_diversity": [0.028548141941428185, 0.03434975817799568, 0.03358248621225357, 0.017840752378106117, 0.007417798042297363, 0.008526812307536602], "per_cycle_n_touched_slots": [3, 3, 8, 5, 4, 4], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 0.0001234190245091456, "mean_sws_slot_diversity_wholebank_legacy": 0.3590126329412063, "per_cycle_diversity_wholebank_legacy": [0.9680096507072449, 0.8642364144325256, 0.25567466020584106, 0.02844303287565708, 0.022226786240935326, 0.015485253185033798], "diversity_variance_wholebank_legacy": 0.16291986688477156, "per_cycle_sws": [3.0, 3.0, 8.0, 5.0, 4.0, 4.0], "per_cycle_rem": [6.0, 6.0, 16.0, 9.0, 9.0, 9.0], "per_cycle_mel": [1.8033645153294894e-05, 1.7772250668981617e-05, 4.7913967159356766e-05, 2.8377707508298045e-05, 2.659365584902942e-05, 2.5622943927114e-05], "per_cycle_factor": [0.6025315205031936, 0.59379793310333, 1.6008785378918575, 0.9481423809786833, 0.8885345008314481, 0.8561015387036882], "sws_count_variance": 2.9166666666666665, "rem_count_variance": 11.138888888888886, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.1076788228419092, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.006881316502888997, 0.00837366779645284, 0.6089126393198967, 0.00794263482093811, 0.0038094371557235718, 0.010153241455554962], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "4b74ece47de84f9b1a4562989255efe8c1389ae30d69f795a51fac926e58d1ce", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_4_HIGH_OFF", "level": 3, "mel_on": false, "world_rule_shift_interval": 10, "seed": 42, "conv_rel_drop": 0.9747263764273494, "probe_pe_init": 0.006833308274508454, "probe_pe_final": 0.00017270246108580523, "mel_reference": 0.00017270246108580523, "mean_mel": 0.0, "mean_duration_factor": 1.0, "cumulative_sws_writes": 30.0, "cumulative_rem_rollouts": 60.0, "mean_sws_new_slot_diversity": 0.020928818344449002, "per_cycle_new_diversity": [0.029703205451369286, 0.036377545446157455, 0.03092249669134617, 0.013162344694137573, 0.007735034916549921, 0.007672282867133617], "per_cycle_n_touched_slots": [5, 5, 5, 5, 5, 5], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 0.0001376094020051665, "mean_sws_slot_diversity_wholebank_legacy": 0.28794895267734927, "per_cycle_diversity_wholebank_legacy": [0.9048464298248291, 0.6267168521881104, 0.13977542519569397, 0.026839466765522957, 0.01873556710779667, 0.010779974982142448], "diversity_variance_wholebank_legacy": 0.12245970568263004, "per_cycle_sws": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0], "per_cycle_rem": [10.0, 10.0, 10.0, 10.0, 10.0, 10.0], "per_cycle_mel": [], "per_cycle_factor": [], "sws_count_variance": 0.0, "rem_count_variance": 0.0, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.007759689291318258, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.0063236415386199955, 0.007227694988250733, 0.009109121561050416, 0.005247378349304199, 0.006838744878768921, 0.011811554431915283], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "9d0c0d9194add205d4e44d60d28938729f2f190cf22b2c71a6679d07b3116f93", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_0_NONE_ON", "level": 0, "mel_on": true, "world_rule_shift_interval": 0, "seed": 123, "conv_rel_drop": 0.9769007047732814, "probe_pe_init": 0.0060131804857519455, "probe_pe_final": 0.0001389002312919274, "mel_reference": 1.4332001180599419e-05, "mean_mel": 2.3257858134512682e-05, "mean_duration_factor": 1.6227920889370144, "cumulative_sws_writes": 48.0, "cumulative_rem_rollouts": 97.0, "mean_sws_new_slot_diversity": 0.01535046100616455, "per_cycle_new_diversity": [0.0, 0.01535046100616455, 0.0, 0.0, 0.0, 0.0], "per_cycle_n_touched_slots": [1, 2, 1, 1, 1, 1], "n_cycles_insufficient_touched_slots": 5, "new_diversity_variance": 0.0, "mean_sws_slot_diversity_wholebank_legacy": 1.0022544662157695, "per_cycle_diversity_wholebank_legacy": [1.0072004795074463, 1.0012716054916382, 1.0012662410736084, 1.0012638568878174, 1.0012636184692383, 1.0012609958648682], "diversity_variance_wholebank_legacy": 4.8926201752724155e-06, "per_cycle_sws": [9.0, 12.0, 7.0, 6.0, 6.0, 8.0], "per_cycle_rem": [17.0, 24.0, 15.0, 13.0, 11.0, 17.0], "per_cycle_mel": [2.480655051328995e-05, 3.426458705885749e-05, 2.1452530335720537e-05, 1.8473954910672654e-05, 1.628039578457602e-05, 2.4269130203959465e-05], "per_cycle_factor": [1.7308504374720157, 2.3907747862343123, 1.4968272794143958, 1.2890003760033184, 1.1359471423023644, 1.6933525121956792], "sws_count_variance": 4.333333333333333, "rem_count_variance": 16.805555555555554, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.5608402649876932, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.7354497644636366, 1.0, 0.5007949301174709, 0.29170424739519757, 0.1397321174542109, 0.6973605304956436], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8874b9818de8b9fd7da69d9f06844197e955abb2daee33ce955e2de0b32f2b8c", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 123, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_1_LOW_ON", "level": 1, "mel_on": true, "world_rule_shift_interval": 60, "seed": 123, "conv_rel_drop": 0.9769007047732814, "probe_pe_init": 0.0060131804857519455, "probe_pe_final": 0.0001389002312919274, "mel_reference": 1.4332001180599419e-05, "mean_mel": 3.014312478721249e-05, "mean_duration_factor": 2.103204179749572, "cumulative_sws_writes": 64.0, "cumulative_rem_rollouts": 125.0, "mean_sws_new_slot_diversity": 0.01583525538444519, "per_cycle_new_diversity": [0.0, 0.0, 0.019247353076934814, 0.012423157691955566, 0.0, 0.0], "per_cycle_n_touched_slots": [1, 1, 3, 3, 1, 1], "n_cycles_insufficient_touched_slots": 4, "new_diversity_variance": 1.1642410663093017e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.9827132225036621, "per_cycle_diversity_wholebank_legacy": [1.0072004795074463, 1.0071570873260498, 0.9878471493721008, 0.9646932482719421, 0.964691162109375, 0.9646902084350586], "diversity_variance_wholebank_legacy": 0.0003663047760665468, "per_cycle_sws": [9.0, 10.0, 12.0, 14.0, 8.0, 11.0], "per_cycle_rem": [17.0, 19.0, 23.0, 29.0, 15.0, 22.0], "per_cycle_mel": [2.480655051328995e-05, 2.7804232926978568e-05, 3.308999969113525e-05, 4.145190952333276e-05, 2.1503124279977623e-05, 3.220293178856082e-05], "per_cycle_factor": [1.7308504374720157, 1.9400105105081835, 2.3088192133229577, 2.8922624971203836, 1.5003574175730203, 2.24692500250087], "sws_count_variance": 3.888888888888889, "rem_count_variance": 20.805555555555557, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.8638792890365478, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.7354497644636366, 0.9437273383140564, 1.0, 1.0, 0.5040986314415932, 1.0], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8d5642d9a3ceb02f6981f0fba1a2a3e8008b5bab90a64336891e9c59bcac885a", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 123, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_2_MED_ON", "level": 2, "mel_on": true, "world_rule_shift_interval": 25, "seed": 123, "conv_rel_drop": 0.9769007047732814, "probe_pe_init": 0.0060131804857519455, "probe_pe_final": 0.0001389002312919274, "mel_reference": 1.4332001180599419e-05, "mean_mel": 3.0989705343999236e-05, "mean_duration_factor": 2.09762768985939, "cumulative_sws_writes": 64.0, "cumulative_rem_rollouts": 125.0, "mean_sws_new_slot_diversity": 0.0, "per_cycle_new_diversity": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "per_cycle_n_touched_slots": [1, 1, 1, 1, 1, 1], "n_cycles_insufficient_touched_slots": 6, "new_diversity_variance": 0.0, "mean_sws_slot_diversity_wholebank_legacy": 1.0071534315745037, "per_cycle_diversity_wholebank_legacy": [1.0072004795074463, 1.0071548223495483, 1.0071479082107544, 1.0071406364440918, 1.0071377754211426, 1.007138967514038], "diversity_variance_wholebank_legacy": 4.773315569966346e-10, "per_cycle_sws": [9.0, 10.0, 9.0, 14.0, 7.0, 15.0], "per_cycle_rem": [17.0, 19.0, 18.0, 28.0, 13.0, 30.0], "per_cycle_mel": [2.480655051328995e-05, 2.7667247801825095e-05, 2.5757109845223816e-05, 4.0324698678859446e-05, 1.8827604784140324e-05, 4.8555020440656795e-05], "per_cycle_factor": [1.7308504374720157, 1.9304525204252003, 1.797174694633018, 2.8136125702700308, 1.3136759163560774, 3.0], "sws_count_variance": 8.222222222222221, "rem_count_variance": 37.13888888888889, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.7987073537533877, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.7354497644636366, 0.9367576122283936, 0.8019223544332716, 1.0, 0.3181143913950239, 1.0], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "aeffaf955747c6747a0822f1795b1ce4c17150c9e332eb4217652eb7730b5a18", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 123, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_3_HIGH_ON", "level": 3, "mel_on": true, "world_rule_shift_interval": 10, "seed": 123, "conv_rel_drop": 0.9769007047732814, "probe_pe_init": 0.0060131804857519455, "probe_pe_final": 0.0001389002312919274, "mel_reference": 1.4332001180599419e-05, "mean_mel": 3.45676032074948e-05, "mean_duration_factor": 2.4047028756257953, "cumulative_sws_writes": 72.0, "cumulative_rem_rollouts": 144.0, "mean_sws_new_slot_diversity": 0.015037775039672852, "per_cycle_new_diversity": [0.0, 0.0, 0.0, 0.01528465747833252, 0.014790892601013184, 0.0], "per_cycle_n_touched_slots": [1, 1, 1, 2, 2, 1], "n_cycles_insufficient_touched_slots": 4, "new_diversity_variance": 6.095093851854472e-08, "mean_sws_slot_diversity_wholebank_legacy": 0.9997405906518301, "per_cycle_diversity_wholebank_legacy": [1.0072004795074463, 1.0071536302566528, 1.007147192955017, 1.001260757446289, 0.9878402352333069, 0.9878412485122681], "diversity_variance_wholebank_legacy": 7.516409418714983e-05, "per_cycle_sws": [9.0, 10.0, 10.0, 15.0, 14.0, 14.0], "per_cycle_rem": [17.0, 20.0, 21.0, 30.0, 28.0, 28.0], "per_cycle_mel": [2.480655051328995e-05, 2.919088165874521e-05, 2.9492801887600865e-05, 4.361639607200881e-05, 4.014005946159801e-05, 4.0158929651725986e-05], "per_cycle_factor": [1.7308504374720157, 2.03676243749265, 2.0578285974134536, 3.0, 2.800729567056818, 2.8020462143198337], "sws_count_variance": 5.666666666666667, "rem_count_variance": 23.666666666666668, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.9559082940772727, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.7354497644636366, 1.0, 1.0, 1.0, 1.0, 1.0], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e50b36bc6f651c97ca42f17baca1824910f10ba241599cfb2e333b61997361ee", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 123, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_4_HIGH_OFF", "level": 3, "mel_on": false, "world_rule_shift_interval": 10, "seed": 123, "conv_rel_drop": 0.9769007047732814, "probe_pe_init": 0.0060131804857519455, "probe_pe_final": 0.0001389002312919274, "mel_reference": 0.0001389002312919274, "mean_mel": 0.0, "mean_duration_factor": 1.0, "cumulative_sws_writes": 30.0, "cumulative_rem_rollouts": 60.0, "mean_sws_new_slot_diversity": 0.015066295862197876, "per_cycle_new_diversity": [0.0, 0.0, 0.0, 0.015344560146331787, 0.014788031578063965, 0.0], "per_cycle_n_touched_slots": [1, 1, 1, 2, 2, 1], "n_cycles_insufficient_touched_slots": 4, "new_diversity_variance": 7.743101182455803e-08, "mean_sws_slot_diversity_wholebank_legacy": 0.9997600217660269, "per_cycle_diversity_wholebank_legacy": [1.007272481918335, 1.0071889162063599, 1.0071632862091064, 1.0012730360031128, 0.9878329038619995, 0.9878295063972473], "diversity_variance_wholebank_legacy": 7.555273418377893e-05, "per_cycle_sws": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0], "per_cycle_rem": [10.0, 10.0, 10.0, 10.0, 10.0, 10.0], "per_cycle_mel": [], "per_cycle_factor": [], "sws_count_variance": 0.0, "rem_count_variance": 0.0, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.003950247168540955, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.005442816019058228, 0.0030125856399536135, 0.0047597050666809086, 0.004952007532119751, 0.002141350507736206, 0.0033930182456970216], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8b20dbf3231549b8cbb0dbca5dd2dd157e5e9e4fdb8a513ec15b4dd66328f9e1", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 123, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_0_NONE_ON", "level": 0, "mel_on": true, "world_rule_shift_interval": 0, "seed": 456, "conv_rel_drop": 0.9829203176797223, "probe_pe_init": 0.0072741594558465295, "probe_pe_final": 0.0001242403326529029, "mel_reference": 3.0201043468228556e-05, "mean_mel": 3.102608749509531e-05, "mean_duration_factor": 1.0273183947347613, "cumulative_sws_writes": 32.0, "cumulative_rem_rollouts": 62.0, "mean_sws_new_slot_diversity": 0.0194600912121435, "per_cycle_new_diversity": [0.024813106283545494, 0.02581058070063591, 0.028025919571518898, 0.018215367570519447, 0.012678523547947407, 0.007217049598693848], "per_cycle_n_touched_slots": [4, 5, 5, 4, 9, 4], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 5.663132790952285e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.4106651465408504, "per_cycle_diversity_wholebank_legacy": [0.9478674530982971, 0.7738222479820251, 0.47698214650154114, 0.23945070803165436, 0.01607486605644226, 0.009793457575142384], "diversity_variance_wholebank_legacy": 0.12843022123376424, "per_cycle_sws": [5.0, 5.0, 5.0, 4.0, 9.0, 4.0], "per_cycle_rem": [10.0, 10.0, 9.0, 8.0, 17.0, 8.0], "per_cycle_mel": [2.9078376529570152e-05, 2.9209137058690732e-05, 2.724740897974698e-05, 2.4089594340434164e-05, 5.180418450306336e-05, 2.472782355906646e-05], "per_cycle_factor": [0.9628268824605531, 0.967156551707185, 0.902200912641022, 0.7976411267304845, 1.7153110804784368, 0.8187738143908864], "sws_count_variance": 2.8888888888888893, "rem_count_variance": 9.555555555555555, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.1234447723461522, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.00485907793045044, 0.004428690671920777, 0.00499536395072937, 0.0036492347717285156, 0.7181769212086996, 0.004559345543384552], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "67dbbe73c9d1aabacb20574548563154c635608a9d215c9c8ce70e03389f126c", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 456, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_1_LOW_ON", "level": 1, "mel_on": true, "world_rule_shift_interval": 60, "seed": 456, "conv_rel_drop": 0.9829203176797223, "probe_pe_init": 0.0072741594558465295, "probe_pe_final": 0.0001242403326529029, "mel_reference": 3.0201043468228556e-05, "mean_mel": 3.571776970104364e-05, "mean_duration_factor": 1.1826667425785695, "cumulative_sws_writes": 37.0, "cumulative_rem_rollouts": 72.0, "mean_sws_new_slot_diversity": 0.01894203177653253, "per_cycle_new_diversity": [0.024813106283545494, 0.02581058070063591, 0.028025919571518898, 0.012095853686332703, 0.017784491181373596, 0.005122239235788584], "per_cycle_n_touched_slots": [4, 5, 5, 8, 5, 9], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 6.722670303382943e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.4095244455772142, "per_cycle_diversity_wholebank_legacy": [0.9478674530982971, 0.7738222479820251, 0.47698214650154114, 0.23508046567440033, 0.01599901169538498, 0.007395348511636257], "diversity_variance_wholebank_legacy": 0.12901290065680127, "per_cycle_sws": [5.0, 5.0, 5.0, 8.0, 5.0, 9.0], "per_cycle_rem": [10.0, 10.0, 9.0, 16.0, 9.0, 18.0], "per_cycle_mel": [2.9078376529570152e-05, 2.9209137058690732e-05, 2.724740897974698e-05, 4.7729874600358577e-05, 2.720215926589075e-05, 5.3839661772004685e-05], "per_cycle_factor": [0.9628268824605531, 0.967156551707185, 0.902200912641022, 1.5804048178193022, 0.9007026295136913, 1.7827086613296628], "sws_count_variance": 2.805555555555556, "rem_count_variance": 13.0, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.23168552266778772, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.00485907793045044, 0.004428690671920777, 0.00499536395072937, 0.5858192816376686, 0.004459697008132935, 0.785551024807824], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "ab1d4b6a23953b33f2f5900e72184efb1de94af2f5d034036978e86bdf48cea7", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 456, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_2_MED_ON", "level": 2, "mel_on": true, "world_rule_shift_interval": 25, "seed": 456, "conv_rel_drop": 0.9829203176797223, "probe_pe_init": 0.0072741594558465295, "probe_pe_final": 0.0001242403326529029, "mel_reference": 3.0201043468228556e-05, "mean_mel": 3.745147426939086e-05, "mean_duration_factor": 1.2400721951474867, "cumulative_sws_writes": 37.0, "cumulative_rem_rollouts": 75.0, "mean_sws_new_slot_diversity": 0.01749157253652811, "per_cycle_new_diversity": [0.024813106283545494, 0.027834245935082436, 0.024815363809466362, 0.0113829355686903, 0.011914068832993507, 0.004189714789390564], "per_cycle_n_touched_slots": [4, 6, 7, 6, 5, 8], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 7.659618012338405e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.34282138276224333, "per_cycle_diversity_wholebank_legacy": [0.9478674530982971, 0.7118673324584961, 0.24051907658576965, 0.13359147310256958, 0.014394614845514297, 0.008688346482813358], "diversity_variance_wholebank_legacy": 0.12933793416317838, "per_cycle_sws": [5.0, 6.0, 7.0, 6.0, 5.0, 8.0], "per_cycle_rem": [10.0, 12.0, 14.0, 12.0, 10.0, 17.0], "per_cycle_mel": [2.9078376529570152e-05, 3.6734072605683866e-05, 4.259867207358845e-05, 3.6643253584454374e-05, 2.923763109720312e-05, 5.041683972584516e-05], "per_cycle_factor": [0.9628268824605531, 1.2163179939238868, 1.4105033198075483, 1.2133108454680717, 0.9681000303171993, 1.6693740989076613], "sws_count_variance": 1.1388888888888888, "rem_count_variance": 5.916666666666667, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.2553113626818808, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.00485907793045044, 0.21985267102718353, 0.41176982862608774, 0.21744159857432047, 0.00457991361618042, 0.6733650863170624], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e0507afdc26d995d28e2a9b8a5e98d8975bf457611ebd775163f4a35b79dc18f", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 456, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_3_HIGH_ON", "level": 3, "mel_on": true, "world_rule_shift_interval": 10, "seed": 456, "conv_rel_drop": 0.9829203176797223, "probe_pe_init": 0.0072741594558465295, "probe_pe_final": 0.0001242403326529029, "mel_reference": 3.0201043468228556e-05, "mean_mel": 5.638220715721283e-05, "mean_duration_factor": 1.8668959970382086, "cumulative_sws_writes": 56.0, "cumulative_rem_rollouts": 113.0, "mean_sws_new_slot_diversity": 0.011980140620532135, "per_cycle_new_diversity": [0.02310481294989586, 0.02350427396595478, 0.010920451954007149, 0.008299771696329117, 0.003981424029916525, 0.0020701091270893812], "per_cycle_n_touched_slots": [8, 9, 7, 9, 8, 13], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 7.223670509750174e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.19366975609833995, "per_cycle_diversity_wholebank_legacy": [0.7738403081893921, 0.2401854544878006, 0.13163861632347107, 0.009207830764353275, 0.00469084782525897, 0.002455478999763727], "diversity_variance_wholebank_legacy": 0.07481859524140047, "per_cycle_sws": [10.0, 9.0, 7.0, 9.0, 8.0, 13.0], "per_cycle_rem": [20.0, 17.0, 14.0, 18.0, 17.0, 27.0], "per_cycle_mel": [6.019561510584026e-05, 5.2149236478663655e-05, 4.25252236608584e-05, 5.3301079166582595e-05, 4.986397660104558e-05, 8.025811193028647e-05], "per_cycle_factor": [1.9931634206336593, 1.7267362478228463, 1.4080713371905464, 1.7648754163959677, 1.6510680054317457, 2.657461554754486], "sws_count_variance": 3.5555555555555554, "rem_count_variance": 16.47222222222222, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.7612053510176127, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.9978873789310455, 0.7309413486056857, 0.41233156834329876, 0.7708835403124491, 0.6551882699131966, 1.0], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "1c0170c629fe1813d2830e0e43a50434d1bbcfcecf782e6ccc21afb5ec2be8f9", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 456, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}, {"arm_id": "ARM_4_HIGH_OFF", "level": 3, "mel_on": false, "world_rule_shift_interval": 10, "seed": 456, "conv_rel_drop": 0.9829203176797223, "probe_pe_init": 0.0072741594558465295, "probe_pe_final": 0.0001242403326529029, "mel_reference": 0.0001242403326529029, "mean_mel": 0.0, "mean_duration_factor": 1.0, "cumulative_sws_writes": 30.0, "cumulative_rem_rollouts": 60.0, "mean_sws_new_slot_diversity": 0.0186645428960522, "per_cycle_new_diversity": [0.024784812703728676, 0.025691896677017212, 0.03284604847431183, 0.011607077904045582, 0.00550666730850935, 0.011550754308700562], "per_cycle_n_touched_slots": [4, 5, 5, 5, 5, 5], "n_cycles_insufficient_touched_slots": 0, "new_diversity_variance": 9.358333238399967e-05, "mean_sws_slot_diversity_wholebank_legacy": 0.44779227922360104, "per_cycle_diversity_wholebank_legacy": [0.9478565454483032, 0.7738211154937744, 0.3686818480491638, 0.23705531656742096, 0.2324783056974411, 0.12686054408550262], "diversity_variance_wholebank_legacy": 0.09273081433317755, "per_cycle_sws": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0], "per_cycle_rem": [10.0, 10.0, 10.0, 10.0, 10.0, 10.0], "per_cycle_mel": [], "per_cycle_factor": [], "sws_count_variance": 0.0, "rem_count_variance": 0.0, "meas_cycles": 6, "mean_spindle_selection_applied": 1.0, "mean_spindle_selection_weight": 0.003775520126024882, "per_cycle_spindle_selection_applied": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0], "per_cycle_spindle_selection_mean_weight": [0.004910016059875488, 0.00197145938873291, 0.0031194806098937987, 0.005553239583969116, 0.003622591495513916, 0.0034763336181640623], "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "1ea8d7f3c64f6ed8694823e71973c5114d5c16acc0a93b4d53f8a5eedc04088b", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_n_files": 197, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 456, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-08-14T22:47:27Z"}}], "thresholds": {"MIN_REL_CONV_DROP": 0.1, "SEED_PASS_FRAC": 0.6666666666666666, "MIN_MEL_SPREAD": 0.15, "MIN_REL_DV_SPREAD": 0.15, "MONO_TOL": 0.05, "PINNED_ABS_VAR_ATOL": 1e-06, "MEL_GAIN": 1.0, "FACTOR_MIN": 0.5, "FACTOR_MAX": 3.0, "MEL_RELATIVE_FLOOR": 1e-06, "TOUCHED_SLOT_L2_EPS": 1e-06}, "recording_schema": "rec/v1", "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb", "substrate_commit": {"commit": "8a688456a134fb3997a2629da3ad103c6726a024", "dirty": false, "branch": "main"}, "substrate_stable_across_run": true, "substrate_identity": {"source": "per_cell_fingerprint_hoist", "resolved_at_utc": "2026-08-14T22:47:27Z", "commit_source": "manifest_write_disk_read", "commit_resolved_at_utc": "2026-08-15T00:58:53Z", "stamped_at_utc": "2026-08-15T00:58:53Z", "lag_seconds": 7886, "stability_snapshots": 1, "drifted_since_resolved": false}, "z_goal_stream": {"ticks_total": 38346, "ticks_active": 0, "writer_calls": 0, "active_frac": 0.0, "writer_defect": true, "n_agents": 15, "goal_state_present": true}, "machine": "ree-cloud-2", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "elapsed_seconds": 8520.484305818998, "config": {"env_base": {"size": 12, "num_hazards": 4, "num_resources": 5, "hazard_harm": 0.05, "proximity_harm_scale": 0.1, "proximity_benefit_scale": 0.05, "proximity_approach_threshold": 0.2, "hazard_field_decay": 0.5, "resource_respawn_on_consume": true, "toroidal": false, "harm_history_len": 10, "use_proxy_fields": true}, "arms": [{"arm_id": "ARM_0_NONE_ON", "level": 0, "interval": 0, "mel_on": true}, {"arm_id": "ARM_1_LOW_ON", "level": 1, "interval": 60, "mel_on": true}, {"arm_id": "ARM_2_MED_ON", "level": 2, "interval": 25, "mel_on": true}, {"arm_id": "ARM_3_HIGH_ON", "level": 3, "interval": 10, "mel_on": true}, {"arm_id": "ARM_4_HIGH_OFF", "level": 3, "interval": 10, "mel_on": false}], "world_rule_shift_depth": 2, "conv_episodes": 60, "calib_episodes": 3, "meas_cycles": 6, "wake_episodes_per_cycle": 2, "steps_per_episode": 90, "sws_steps": 5, "rem_steps": 10, "mel_gain": 1.0, "factor_min": 0.5, "factor_max": 3.0, "mel_relative_floor": 1e-06, "touched_slot_l2_eps": 1e-06, "use_mech122_spindle_content_selection": true, "mech122_spindle_selection_gain": 1.0, "mech122_novelty_reference_mode": "mel_pe"}}
+{
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "arm_results": [
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "1bcc7a0ca8087614db1babdbba0e694f7c89dbb3afc92a9f825407b68fefcc22",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 42,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_0_NONE_ON",
+      "conv_rel_drop": 0.9747263764273494,
+      "cumulative_rem_rollouts": 55.0,
+      "cumulative_sws_writes": 28.0,
+      "diversity_variance_wholebank_legacy": 0.16488798355698095,
+      "level": 0,
+      "mean_duration_factor": 0.9094811022341179,
+      "mean_mel": 2.588769361296773e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.12621854517668013,
+      "mean_sws_new_slot_diversity": 0.02261370715374748,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.3946763227383296,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 2.992979543748087e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 0.00012203286599294059,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9812108874320984,
+        0.8641929030418396,
+        0.46149742603302,
+        0.028594762086868286,
+        0.018775496631860733,
+        0.01378646120429039
+      ],
+      "per_cycle_factor": [
+        0.5,
+        0.7068506481258864,
+        1.2513779897070159,
+        1.3120818234555702,
+        1.15577263788313,
+        0.5308035142331051
+      ],
+      "per_cycle_mel": [
+        6.967559331816137e-06,
+        2.1155895303258552e-05,
+        3.745348724689703e-05,
+        3.9270340573262105e-05,
+        3.4592038624079734e-05,
+        1.5886840598492804e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        2,
+        4,
+        6,
+        7,
+        6,
+        3
+      ],
+      "per_cycle_new_diversity": [
+        0.03206181526184082,
+        0.032264869660139084,
+        0.0332554392516613,
+        0.02241731993854046,
+        0.007670623250305653,
+        0.008012175559997559
+      ],
+      "per_cycle_rem": [
+        5.0,
+        7.0,
+        13.0,
+        13.0,
+        12.0,
+        5.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.008367776870727539,
+        0.004517480731010437,
+        0.2579175631205241,
+        0.317561856337956,
+        0.16074774662653604,
+        0.00819884737332662
+      ],
+      "per_cycle_sws": [
+        2.0,
+        4.0,
+        6.0,
+        7.0,
+        6.0,
+        3.0
+      ],
+      "probe_pe_final": 0.00017270246108580523,
+      "probe_pe_init": 0.006833308274508454,
+      "rem_count_variance": 12.805555555555557,
+      "seed": 42,
+      "sws_count_variance": 3.222222222222222,
+      "world_rule_shift_interval": 0
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "59b000e735f3108f1bb7d17e8a32954efbff87d150fa9f86d4f493f464fec2af",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 42,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_1_LOW_ON",
+      "conv_rel_drop": 0.9747263764273494,
+      "cumulative_rem_rollouts": 40.0,
+      "cumulative_sws_writes": 18.0,
+      "diversity_variance_wholebank_legacy": 0.12463801608395352,
+      "level": 1,
+      "mean_duration_factor": 0.6519209857248686,
+      "mean_mel": 1.794165676290638e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.008679037623935276,
+      "mean_sws_new_slot_diversity": 0.02891484492768844,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.5061868792399764,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 2.992979543748087e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 3.501690642223287e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.983700156211853,
+        0.8251637816429138,
+        0.6962520480155945,
+        0.36253419518470764,
+        0.13977912068367004,
+        0.029691973701119423
+      ],
+      "per_cycle_factor": [
+        0.5,
+        0.9702492059624959,
+        0.5,
+        0.7551061528648199,
+        0.5,
+        0.6861705555218953
+      ],
+      "per_cycle_mel": [
+        1.018835786110184e-05,
+        2.9039360257835747e-05,
+        1.1401224845272106e-05,
+        2.2600172688827218e-05,
+        1.3883880562408445e-05,
+        2.0536944361992937e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        2,
+        5,
+        2,
+        4,
+        2,
+        3
+      ],
+      "per_cycle_new_diversity": [
+        0.024801254272460938,
+        0.03199823200702667,
+        0.03329634666442871,
+        0.03453968092799187,
+        0.031229376792907715,
+        0.017624178901314735
+      ],
+      "per_cycle_rem": [
+        5.0,
+        10.0,
+        5.0,
+        8.0,
+        5.0,
+        7.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.007383018732070923,
+        0.01047627329826355,
+        0.01102900505065918,
+        0.007732555270195007,
+        0.010153785347938538,
+        0.005299588044484456
+      ],
+      "per_cycle_sws": [
+        2.0,
+        5.0,
+        2.0,
+        4.0,
+        2.0,
+        3.0
+      ],
+      "probe_pe_final": 0.00017270246108580523,
+      "probe_pe_init": 0.006833308274508454,
+      "rem_count_variance": 3.5555555555555554,
+      "seed": 42,
+      "sws_count_variance": 1.3333333333333333,
+      "world_rule_shift_interval": 60
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "a8a8e7dcde777960ccc21dd786c4b2c441b6b936b352d11ef5ee2b7aea493405",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 42,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_2_MED_ON",
+      "conv_rel_drop": 0.9747263764273494,
+      "cumulative_rem_rollouts": 58.0,
+      "cumulative_sws_writes": 28.0,
+      "diversity_variance_wholebank_legacy": 0.17254621746394413,
+      "level": 2,
+      "mean_duration_factor": 0.9636662102231512,
+      "mean_mel": 2.8842332541991356e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.15058801441438613,
+      "mean_sws_new_slot_diversity": 0.02377499306264023,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.4316237182356417,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 2.992979543748087e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 0.00013319773617779322,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9589046239852905,
+        0.8642413020133972,
+        0.6963058114051819,
+        0.032663993537425995,
+        0.023493271321058273,
+        0.01413330715149641
+      ],
+      "per_cycle_factor": [
+        0.5994519981023448,
+        0.6612302077897521,
+        0.6621465395873145,
+        1.4977037657966077,
+        1.120403598324649,
+        1.241061151738239
+      ],
+      "per_cycle_mel": [
+        1.7941475677792352e-05,
+        1.979048485623025e-05,
+        1.981791047948415e-05,
+        4.482596733623723e-05,
+        3.353345050527423e-05,
+        3.7144706396929905e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        3,
+        3,
+        3,
+        7,
+        6,
+        6
+      ],
+      "per_cycle_new_diversity": [
+        0.03123462200164795,
+        0.0310846958309412,
+        0.03322611376643181,
+        0.03213660418987274,
+        0.007292985916137695,
+        0.007674936670809984
+      ],
+      "per_cycle_rem": [
+        6.0,
+        7.0,
+        7.0,
+        15.0,
+        11.0,
+        12.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.006481170654296875,
+        0.006899436314900716,
+        0.008132865031560263,
+        0.5052886179515294,
+        0.12707116703192392,
+        0.2496548295021057
+      ],
+      "per_cycle_sws": [
+        3.0,
+        3.0,
+        3.0,
+        7.0,
+        6.0,
+        6.0
+      ],
+      "probe_pe_final": 0.00017270246108580523,
+      "probe_pe_init": 0.006833308274508454,
+      "rem_count_variance": 10.555555555555555,
+      "seed": 42,
+      "sws_count_variance": 2.888888888888889,
+      "world_rule_shift_interval": 25
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "4b74ece47de84f9b1a4562989255efe8c1389ae30d69f795a51fac926e58d1ce",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 42,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_3_HIGH_ON",
+      "conv_rel_drop": 0.9747263764273494,
+      "cumulative_rem_rollouts": 55.0,
+      "cumulative_sws_writes": 27.0,
+      "diversity_variance_wholebank_legacy": 0.16291986688477156,
+      "level": 3,
+      "mean_duration_factor": 0.9149977353353669,
+      "mean_mel": 2.738569504434579e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.1076788228419092,
+      "mean_sws_new_slot_diversity": 0.02171095817660292,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.3590126329412063,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 2.992979543748087e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 0.0001234190245091456,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9680096507072449,
+        0.8642364144325256,
+        0.25567466020584106,
+        0.02844303287565708,
+        0.022226786240935326,
+        0.015485253185033798
+      ],
+      "per_cycle_factor": [
+        0.6025315205031936,
+        0.59379793310333,
+        1.6008785378918575,
+        0.9481423809786833,
+        0.8885345008314481,
+        0.8561015387036882
+      ],
+      "per_cycle_mel": [
+        1.8033645153294894e-05,
+        1.7772250668981617e-05,
+        4.7913967159356766e-05,
+        2.8377707508298045e-05,
+        2.659365584902942e-05,
+        2.5622943927114e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        3,
+        3,
+        8,
+        5,
+        4,
+        4
+      ],
+      "per_cycle_new_diversity": [
+        0.028548141941428185,
+        0.03434975817799568,
+        0.03358248621225357,
+        0.017840752378106117,
+        0.007417798042297363,
+        0.008526812307536602
+      ],
+      "per_cycle_rem": [
+        6.0,
+        6.0,
+        16.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.006881316502888997,
+        0.00837366779645284,
+        0.6089126393198967,
+        0.00794263482093811,
+        0.0038094371557235718,
+        0.010153241455554962
+      ],
+      "per_cycle_sws": [
+        3.0,
+        3.0,
+        8.0,
+        5.0,
+        4.0,
+        4.0
+      ],
+      "probe_pe_final": 0.00017270246108580523,
+      "probe_pe_init": 0.006833308274508454,
+      "rem_count_variance": 11.138888888888886,
+      "seed": 42,
+      "sws_count_variance": 2.9166666666666665,
+      "world_rule_shift_interval": 10
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "9d0c0d9194add205d4e44d60d28938729f2f190cf22b2c71a6679d07b3116f93",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 42,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_4_HIGH_OFF",
+      "conv_rel_drop": 0.9747263764273494,
+      "cumulative_rem_rollouts": 60.0,
+      "cumulative_sws_writes": 30.0,
+      "diversity_variance_wholebank_legacy": 0.12245970568263004,
+      "level": 3,
+      "mean_duration_factor": 1.0,
+      "mean_mel": 0.0,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.007759689291318258,
+      "mean_sws_new_slot_diversity": 0.020928818344449002,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.28794895267734927,
+      "meas_cycles": 6,
+      "mel_on": false,
+      "mel_reference": 0.00017270246108580523,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 0.0001376094020051665,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9048464298248291,
+        0.6267168521881104,
+        0.13977542519569397,
+        0.026839466765522957,
+        0.01873556710779667,
+        0.010779974982142448
+      ],
+      "per_cycle_factor": [],
+      "per_cycle_mel": [],
+      "per_cycle_n_touched_slots": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "per_cycle_new_diversity": [
+        0.029703205451369286,
+        0.036377545446157455,
+        0.03092249669134617,
+        0.013162344694137573,
+        0.007735034916549921,
+        0.007672282867133617
+      ],
+      "per_cycle_rem": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.0063236415386199955,
+        0.007227694988250733,
+        0.009109121561050416,
+        0.005247378349304199,
+        0.006838744878768921,
+        0.011811554431915283
+      ],
+      "per_cycle_sws": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "probe_pe_final": 0.00017270246108580523,
+      "probe_pe_init": 0.006833308274508454,
+      "rem_count_variance": 0.0,
+      "seed": 42,
+      "sws_count_variance": 0.0,
+      "world_rule_shift_interval": 10
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "8874b9818de8b9fd7da69d9f06844197e955abb2daee33ce955e2de0b32f2b8c",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 123,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_0_NONE_ON",
+      "conv_rel_drop": 0.9769007047732814,
+      "cumulative_rem_rollouts": 97.0,
+      "cumulative_sws_writes": 48.0,
+      "diversity_variance_wholebank_legacy": 4.8926201752724155e-06,
+      "level": 0,
+      "mean_duration_factor": 1.6227920889370144,
+      "mean_mel": 2.3257858134512682e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.5608402649876932,
+      "mean_sws_new_slot_diversity": 0.01535046100616455,
+      "mean_sws_slot_diversity_wholebank_legacy": 1.0022544662157695,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 1.4332001180599419e-05,
+      "n_cycles_insufficient_touched_slots": 5,
+      "new_diversity_variance": 0.0,
+      "per_cycle_diversity_wholebank_legacy": [
+        1.0072004795074463,
+        1.0012716054916382,
+        1.0012662410736084,
+        1.0012638568878174,
+        1.0012636184692383,
+        1.0012609958648682
+      ],
+      "per_cycle_factor": [
+        1.7308504374720157,
+        2.3907747862343123,
+        1.4968272794143958,
+        1.2890003760033184,
+        1.1359471423023644,
+        1.6933525121956792
+      ],
+      "per_cycle_mel": [
+        2.480655051328995e-05,
+        3.426458705885749e-05,
+        2.1452530335720537e-05,
+        1.8473954910672654e-05,
+        1.628039578457602e-05,
+        2.4269130203959465e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "per_cycle_new_diversity": [
+        0.0,
+        0.01535046100616455,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_cycle_rem": [
+        17.0,
+        24.0,
+        15.0,
+        13.0,
+        11.0,
+        17.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.7354497644636366,
+        1.0,
+        0.5007949301174709,
+        0.29170424739519757,
+        0.1397321174542109,
+        0.6973605304956436
+      ],
+      "per_cycle_sws": [
+        9.0,
+        12.0,
+        7.0,
+        6.0,
+        6.0,
+        8.0
+      ],
+      "probe_pe_final": 0.0001389002312919274,
+      "probe_pe_init": 0.0060131804857519455,
+      "rem_count_variance": 16.805555555555554,
+      "seed": 123,
+      "sws_count_variance": 4.333333333333333,
+      "world_rule_shift_interval": 0
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "8d5642d9a3ceb02f6981f0fba1a2a3e8008b5bab90a64336891e9c59bcac885a",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 123,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_1_LOW_ON",
+      "conv_rel_drop": 0.9769007047732814,
+      "cumulative_rem_rollouts": 125.0,
+      "cumulative_sws_writes": 64.0,
+      "diversity_variance_wholebank_legacy": 0.0003663047760665468,
+      "level": 1,
+      "mean_duration_factor": 2.103204179749572,
+      "mean_mel": 3.014312478721249e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.8638792890365478,
+      "mean_sws_new_slot_diversity": 0.01583525538444519,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.9827132225036621,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 1.4332001180599419e-05,
+      "n_cycles_insufficient_touched_slots": 4,
+      "new_diversity_variance": 1.1642410663093017e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        1.0072004795074463,
+        1.0071570873260498,
+        0.9878471493721008,
+        0.9646932482719421,
+        0.964691162109375,
+        0.9646902084350586
+      ],
+      "per_cycle_factor": [
+        1.7308504374720157,
+        1.9400105105081835,
+        2.3088192133229577,
+        2.8922624971203836,
+        1.5003574175730203,
+        2.24692500250087
+      ],
+      "per_cycle_mel": [
+        2.480655051328995e-05,
+        2.7804232926978568e-05,
+        3.308999969113525e-05,
+        4.145190952333276e-05,
+        2.1503124279977623e-05,
+        3.220293178856082e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        1,
+        1,
+        3,
+        3,
+        1,
+        1
+      ],
+      "per_cycle_new_diversity": [
+        0.0,
+        0.0,
+        0.019247353076934814,
+        0.012423157691955566,
+        0.0,
+        0.0
+      ],
+      "per_cycle_rem": [
+        17.0,
+        19.0,
+        23.0,
+        29.0,
+        15.0,
+        22.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.7354497644636366,
+        0.9437273383140564,
+        1.0,
+        1.0,
+        0.5040986314415932,
+        1.0
+      ],
+      "per_cycle_sws": [
+        9.0,
+        10.0,
+        12.0,
+        14.0,
+        8.0,
+        11.0
+      ],
+      "probe_pe_final": 0.0001389002312919274,
+      "probe_pe_init": 0.0060131804857519455,
+      "rem_count_variance": 20.805555555555557,
+      "seed": 123,
+      "sws_count_variance": 3.888888888888889,
+      "world_rule_shift_interval": 60
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "aeffaf955747c6747a0822f1795b1ce4c17150c9e332eb4217652eb7730b5a18",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 123,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_2_MED_ON",
+      "conv_rel_drop": 0.9769007047732814,
+      "cumulative_rem_rollouts": 125.0,
+      "cumulative_sws_writes": 64.0,
+      "diversity_variance_wholebank_legacy": 4.773315569966346e-10,
+      "level": 2,
+      "mean_duration_factor": 2.09762768985939,
+      "mean_mel": 3.0989705343999236e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.7987073537533877,
+      "mean_sws_new_slot_diversity": 0.0,
+      "mean_sws_slot_diversity_wholebank_legacy": 1.0071534315745037,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 1.4332001180599419e-05,
+      "n_cycles_insufficient_touched_slots": 6,
+      "new_diversity_variance": 0.0,
+      "per_cycle_diversity_wholebank_legacy": [
+        1.0072004795074463,
+        1.0071548223495483,
+        1.0071479082107544,
+        1.0071406364440918,
+        1.0071377754211426,
+        1.007138967514038
+      ],
+      "per_cycle_factor": [
+        1.7308504374720157,
+        1.9304525204252003,
+        1.797174694633018,
+        2.8136125702700308,
+        1.3136759163560774,
+        3.0
+      ],
+      "per_cycle_mel": [
+        2.480655051328995e-05,
+        2.7667247801825095e-05,
+        2.5757109845223816e-05,
+        4.0324698678859446e-05,
+        1.8827604784140324e-05,
+        4.8555020440656795e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "per_cycle_new_diversity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "per_cycle_rem": [
+        17.0,
+        19.0,
+        18.0,
+        28.0,
+        13.0,
+        30.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.7354497644636366,
+        0.9367576122283936,
+        0.8019223544332716,
+        1.0,
+        0.3181143913950239,
+        1.0
+      ],
+      "per_cycle_sws": [
+        9.0,
+        10.0,
+        9.0,
+        14.0,
+        7.0,
+        15.0
+      ],
+      "probe_pe_final": 0.0001389002312919274,
+      "probe_pe_init": 0.0060131804857519455,
+      "rem_count_variance": 37.13888888888889,
+      "seed": 123,
+      "sws_count_variance": 8.222222222222221,
+      "world_rule_shift_interval": 25
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "e50b36bc6f651c97ca42f17baca1824910f10ba241599cfb2e333b61997361ee",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 123,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_3_HIGH_ON",
+      "conv_rel_drop": 0.9769007047732814,
+      "cumulative_rem_rollouts": 144.0,
+      "cumulative_sws_writes": 72.0,
+      "diversity_variance_wholebank_legacy": 7.516409418714983e-05,
+      "level": 3,
+      "mean_duration_factor": 2.4047028756257953,
+      "mean_mel": 3.45676032074948e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.9559082940772727,
+      "mean_sws_new_slot_diversity": 0.015037775039672852,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.9997405906518301,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 1.4332001180599419e-05,
+      "n_cycles_insufficient_touched_slots": 4,
+      "new_diversity_variance": 6.095093851854472e-08,
+      "per_cycle_diversity_wholebank_legacy": [
+        1.0072004795074463,
+        1.0071536302566528,
+        1.007147192955017,
+        1.001260757446289,
+        0.9878402352333069,
+        0.9878412485122681
+      ],
+      "per_cycle_factor": [
+        1.7308504374720157,
+        2.03676243749265,
+        2.0578285974134536,
+        3.0,
+        2.800729567056818,
+        2.8020462143198337
+      ],
+      "per_cycle_mel": [
+        2.480655051328995e-05,
+        2.919088165874521e-05,
+        2.9492801887600865e-05,
+        4.361639607200881e-05,
+        4.014005946159801e-05,
+        4.0158929651725986e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1
+      ],
+      "per_cycle_new_diversity": [
+        0.0,
+        0.0,
+        0.0,
+        0.01528465747833252,
+        0.014790892601013184,
+        0.0
+      ],
+      "per_cycle_rem": [
+        17.0,
+        20.0,
+        21.0,
+        30.0,
+        28.0,
+        28.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.7354497644636366,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_sws": [
+        9.0,
+        10.0,
+        10.0,
+        15.0,
+        14.0,
+        14.0
+      ],
+      "probe_pe_final": 0.0001389002312919274,
+      "probe_pe_init": 0.0060131804857519455,
+      "rem_count_variance": 23.666666666666668,
+      "seed": 123,
+      "sws_count_variance": 5.666666666666667,
+      "world_rule_shift_interval": 10
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "8b20dbf3231549b8cbb0dbca5dd2dd157e5e9e4fdb8a513ec15b4dd66328f9e1",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 123,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_4_HIGH_OFF",
+      "conv_rel_drop": 0.9769007047732814,
+      "cumulative_rem_rollouts": 60.0,
+      "cumulative_sws_writes": 30.0,
+      "diversity_variance_wholebank_legacy": 7.555273418377893e-05,
+      "level": 3,
+      "mean_duration_factor": 1.0,
+      "mean_mel": 0.0,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.003950247168540955,
+      "mean_sws_new_slot_diversity": 0.015066295862197876,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.9997600217660269,
+      "meas_cycles": 6,
+      "mel_on": false,
+      "mel_reference": 0.0001389002312919274,
+      "n_cycles_insufficient_touched_slots": 4,
+      "new_diversity_variance": 7.743101182455803e-08,
+      "per_cycle_diversity_wholebank_legacy": [
+        1.007272481918335,
+        1.0071889162063599,
+        1.0071632862091064,
+        1.0012730360031128,
+        0.9878329038619995,
+        0.9878295063972473
+      ],
+      "per_cycle_factor": [],
+      "per_cycle_mel": [],
+      "per_cycle_n_touched_slots": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1
+      ],
+      "per_cycle_new_diversity": [
+        0.0,
+        0.0,
+        0.0,
+        0.015344560146331787,
+        0.014788031578063965,
+        0.0
+      ],
+      "per_cycle_rem": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.005442816019058228,
+        0.0030125856399536135,
+        0.0047597050666809086,
+        0.004952007532119751,
+        0.002141350507736206,
+        0.0033930182456970216
+      ],
+      "per_cycle_sws": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "probe_pe_final": 0.0001389002312919274,
+      "probe_pe_init": 0.0060131804857519455,
+      "rem_count_variance": 0.0,
+      "seed": 123,
+      "sws_count_variance": 0.0,
+      "world_rule_shift_interval": 10
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "67dbbe73c9d1aabacb20574548563154c635608a9d215c9c8ce70e03389f126c",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 456,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_0_NONE_ON",
+      "conv_rel_drop": 0.9829203176797223,
+      "cumulative_rem_rollouts": 62.0,
+      "cumulative_sws_writes": 32.0,
+      "diversity_variance_wholebank_legacy": 0.12843022123376424,
+      "level": 0,
+      "mean_duration_factor": 1.0273183947347613,
+      "mean_mel": 3.102608749509531e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.1234447723461522,
+      "mean_sws_new_slot_diversity": 0.0194600912121435,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.4106651465408504,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 3.0201043468228556e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 5.663132790952285e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9478674530982971,
+        0.7738222479820251,
+        0.47698214650154114,
+        0.23945070803165436,
+        0.01607486605644226,
+        0.009793457575142384
+      ],
+      "per_cycle_factor": [
+        0.9628268824605531,
+        0.967156551707185,
+        0.902200912641022,
+        0.7976411267304845,
+        1.7153110804784368,
+        0.8187738143908864
+      ],
+      "per_cycle_mel": [
+        2.9078376529570152e-05,
+        2.9209137058690732e-05,
+        2.724740897974698e-05,
+        2.4089594340434164e-05,
+        5.180418450306336e-05,
+        2.472782355906646e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        4,
+        5,
+        5,
+        4,
+        9,
+        4
+      ],
+      "per_cycle_new_diversity": [
+        0.024813106283545494,
+        0.02581058070063591,
+        0.028025919571518898,
+        0.018215367570519447,
+        0.012678523547947407,
+        0.007217049598693848
+      ],
+      "per_cycle_rem": [
+        10.0,
+        10.0,
+        9.0,
+        8.0,
+        17.0,
+        8.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.00485907793045044,
+        0.004428690671920777,
+        0.00499536395072937,
+        0.0036492347717285156,
+        0.7181769212086996,
+        0.004559345543384552
+      ],
+      "per_cycle_sws": [
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        9.0,
+        4.0
+      ],
+      "probe_pe_final": 0.0001242403326529029,
+      "probe_pe_init": 0.0072741594558465295,
+      "rem_count_variance": 9.555555555555555,
+      "seed": 456,
+      "sws_count_variance": 2.8888888888888893,
+      "world_rule_shift_interval": 0
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "ab1d4b6a23953b33f2f5900e72184efb1de94af2f5d034036978e86bdf48cea7",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 456,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_1_LOW_ON",
+      "conv_rel_drop": 0.9829203176797223,
+      "cumulative_rem_rollouts": 72.0,
+      "cumulative_sws_writes": 37.0,
+      "diversity_variance_wholebank_legacy": 0.12901290065680127,
+      "level": 1,
+      "mean_duration_factor": 1.1826667425785695,
+      "mean_mel": 3.571776970104364e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.23168552266778772,
+      "mean_sws_new_slot_diversity": 0.01894203177653253,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.4095244455772142,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 3.0201043468228556e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 6.722670303382943e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9478674530982971,
+        0.7738222479820251,
+        0.47698214650154114,
+        0.23508046567440033,
+        0.01599901169538498,
+        0.007395348511636257
+      ],
+      "per_cycle_factor": [
+        0.9628268824605531,
+        0.967156551707185,
+        0.902200912641022,
+        1.5804048178193022,
+        0.9007026295136913,
+        1.7827086613296628
+      ],
+      "per_cycle_mel": [
+        2.9078376529570152e-05,
+        2.9209137058690732e-05,
+        2.724740897974698e-05,
+        4.7729874600358577e-05,
+        2.720215926589075e-05,
+        5.3839661772004685e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        4,
+        5,
+        5,
+        8,
+        5,
+        9
+      ],
+      "per_cycle_new_diversity": [
+        0.024813106283545494,
+        0.02581058070063591,
+        0.028025919571518898,
+        0.012095853686332703,
+        0.017784491181373596,
+        0.005122239235788584
+      ],
+      "per_cycle_rem": [
+        10.0,
+        10.0,
+        9.0,
+        16.0,
+        9.0,
+        18.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.00485907793045044,
+        0.004428690671920777,
+        0.00499536395072937,
+        0.5858192816376686,
+        0.004459697008132935,
+        0.785551024807824
+      ],
+      "per_cycle_sws": [
+        5.0,
+        5.0,
+        5.0,
+        8.0,
+        5.0,
+        9.0
+      ],
+      "probe_pe_final": 0.0001242403326529029,
+      "probe_pe_init": 0.0072741594558465295,
+      "rem_count_variance": 13.0,
+      "seed": 456,
+      "sws_count_variance": 2.805555555555556,
+      "world_rule_shift_interval": 60
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "e0507afdc26d995d28e2a9b8a5e98d8975bf457611ebd775163f4a35b79dc18f",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 456,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_2_MED_ON",
+      "conv_rel_drop": 0.9829203176797223,
+      "cumulative_rem_rollouts": 75.0,
+      "cumulative_sws_writes": 37.0,
+      "diversity_variance_wholebank_legacy": 0.12933793416317838,
+      "level": 2,
+      "mean_duration_factor": 1.2400721951474867,
+      "mean_mel": 3.745147426939086e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.2553113626818808,
+      "mean_sws_new_slot_diversity": 0.01749157253652811,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.34282138276224333,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 3.0201043468228556e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 7.659618012338405e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9478674530982971,
+        0.7118673324584961,
+        0.24051907658576965,
+        0.13359147310256958,
+        0.014394614845514297,
+        0.008688346482813358
+      ],
+      "per_cycle_factor": [
+        0.9628268824605531,
+        1.2163179939238868,
+        1.4105033198075483,
+        1.2133108454680717,
+        0.9681000303171993,
+        1.6693740989076613
+      ],
+      "per_cycle_mel": [
+        2.9078376529570152e-05,
+        3.6734072605683866e-05,
+        4.259867207358845e-05,
+        3.6643253584454374e-05,
+        2.923763109720312e-05,
+        5.041683972584516e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        4,
+        6,
+        7,
+        6,
+        5,
+        8
+      ],
+      "per_cycle_new_diversity": [
+        0.024813106283545494,
+        0.027834245935082436,
+        0.024815363809466362,
+        0.0113829355686903,
+        0.011914068832993507,
+        0.004189714789390564
+      ],
+      "per_cycle_rem": [
+        10.0,
+        12.0,
+        14.0,
+        12.0,
+        10.0,
+        17.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.00485907793045044,
+        0.21985267102718353,
+        0.41176982862608774,
+        0.21744159857432047,
+        0.00457991361618042,
+        0.6733650863170624
+      ],
+      "per_cycle_sws": [
+        5.0,
+        6.0,
+        7.0,
+        6.0,
+        5.0,
+        8.0
+      ],
+      "probe_pe_final": 0.0001242403326529029,
+      "probe_pe_init": 0.0072741594558465295,
+      "rem_count_variance": 5.916666666666667,
+      "seed": 456,
+      "sws_count_variance": 1.1388888888888888,
+      "world_rule_shift_interval": 25
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "1c0170c629fe1813d2830e0e43a50434d1bbcfcecf782e6ccc21afb5ec2be8f9",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 456,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_3_HIGH_ON",
+      "conv_rel_drop": 0.9829203176797223,
+      "cumulative_rem_rollouts": 113.0,
+      "cumulative_sws_writes": 56.0,
+      "diversity_variance_wholebank_legacy": 0.07481859524140047,
+      "level": 3,
+      "mean_duration_factor": 1.8668959970382086,
+      "mean_mel": 5.638220715721283e-05,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.7612053510176127,
+      "mean_sws_new_slot_diversity": 0.011980140620532135,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.19366975609833995,
+      "meas_cycles": 6,
+      "mel_on": true,
+      "mel_reference": 3.0201043468228556e-05,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 7.223670509750174e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.7738403081893921,
+        0.2401854544878006,
+        0.13163861632347107,
+        0.009207830764353275,
+        0.00469084782525897,
+        0.002455478999763727
+      ],
+      "per_cycle_factor": [
+        1.9931634206336593,
+        1.7267362478228463,
+        1.4080713371905464,
+        1.7648754163959677,
+        1.6510680054317457,
+        2.657461554754486
+      ],
+      "per_cycle_mel": [
+        6.019561510584026e-05,
+        5.2149236478663655e-05,
+        4.25252236608584e-05,
+        5.3301079166582595e-05,
+        4.986397660104558e-05,
+        8.025811193028647e-05
+      ],
+      "per_cycle_n_touched_slots": [
+        8,
+        9,
+        7,
+        9,
+        8,
+        13
+      ],
+      "per_cycle_new_diversity": [
+        0.02310481294989586,
+        0.02350427396595478,
+        0.010920451954007149,
+        0.008299771696329117,
+        0.003981424029916525,
+        0.0020701091270893812
+      ],
+      "per_cycle_rem": [
+        20.0,
+        17.0,
+        14.0,
+        18.0,
+        17.0,
+        27.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.9978873789310455,
+        0.7309413486056857,
+        0.41233156834329876,
+        0.7708835403124491,
+        0.6551882699131966,
+        1.0
+      ],
+      "per_cycle_sws": [
+        10.0,
+        9.0,
+        7.0,
+        9.0,
+        8.0,
+        13.0
+      ],
+      "probe_pe_final": 0.0001242403326529029,
+      "probe_pe_init": 0.0072741594558465295,
+      "rem_count_variance": 16.47222222222222,
+      "seed": 456,
+      "sws_count_variance": 3.5555555555555554,
+      "world_rule_shift_interval": 10
+    },
+    {
+      "arm_fingerprint": {
+        "arm_fingerprint": "1ea8d7f3c64f6ed8694823e71973c5114d5c16acc0a93b4d53f8a5eedc04088b",
+        "config_slice_declared": false,
+        "driver_script_hash": "c9a7ec3f41724863cdb84426b3fddb0c2ed596f38cac3758648d63737caf20c3",
+        "driver_script_in_substrate_hash": true,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "regime": "A",
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "schema": "arm_fp/v1",
+        "seed": 456,
+        "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+        "substrate_identity_resolved_at": "2026-08-14T22:47:27Z",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_n_files": 197,
+        "substrate_scope": null,
+        "substrate_scope_declared": false,
+        "torch_version": "2.12.0+cpu"
+      },
+      "arm_id": "ARM_4_HIGH_OFF",
+      "conv_rel_drop": 0.9829203176797223,
+      "cumulative_rem_rollouts": 60.0,
+      "cumulative_sws_writes": 30.0,
+      "diversity_variance_wholebank_legacy": 0.09273081433317755,
+      "level": 3,
+      "mean_duration_factor": 1.0,
+      "mean_mel": 0.0,
+      "mean_spindle_selection_applied": 1.0,
+      "mean_spindle_selection_weight": 0.003775520126024882,
+      "mean_sws_new_slot_diversity": 0.0186645428960522,
+      "mean_sws_slot_diversity_wholebank_legacy": 0.44779227922360104,
+      "meas_cycles": 6,
+      "mel_on": false,
+      "mel_reference": 0.0001242403326529029,
+      "n_cycles_insufficient_touched_slots": 0,
+      "new_diversity_variance": 9.358333238399967e-05,
+      "per_cycle_diversity_wholebank_legacy": [
+        0.9478565454483032,
+        0.7738211154937744,
+        0.3686818480491638,
+        0.23705531656742096,
+        0.2324783056974411,
+        0.12686054408550262
+      ],
+      "per_cycle_factor": [],
+      "per_cycle_mel": [],
+      "per_cycle_n_touched_slots": [
+        4,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "per_cycle_new_diversity": [
+        0.024784812703728676,
+        0.025691896677017212,
+        0.03284604847431183,
+        0.011607077904045582,
+        0.00550666730850935,
+        0.011550754308700562
+      ],
+      "per_cycle_rem": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "per_cycle_spindle_selection_applied": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "per_cycle_spindle_selection_mean_weight": [
+        0.004910016059875488,
+        0.00197145938873291,
+        0.0031194806098937987,
+        0.005553239583969116,
+        0.003622591495513916,
+        0.0034763336181640623
+      ],
+      "per_cycle_sws": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "probe_pe_final": 0.0001242403326529029,
+      "probe_pe_init": 0.0072741594558465295,
+      "rem_count_variance": 0.0,
+      "seed": 456,
+      "sws_count_variance": 0.0,
+      "world_rule_shift_interval": 10
+    }
+  ],
+  "c1_all_pass": false,
+  "c1_frac": 0.0,
+  "c2_frac": 0.0,
+  "c2_pass": false,
+  "claim_ids": [
+    "MECH-180",
+    "MECH-122"
+  ],
+  "compares_against_run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3",
+  "config": {
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE_ON",
+        "interval": 0,
+        "level": 0,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_1_LOW_ON",
+        "interval": 60,
+        "level": 1,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_2_MED_ON",
+        "interval": 25,
+        "level": 2,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_3_HIGH_ON",
+        "interval": 10,
+        "level": 3,
+        "mel_on": true
+      },
+      {
+        "arm_id": "ARM_4_HIGH_OFF",
+        "interval": 10,
+        "level": 3,
+        "mel_on": false
+      }
+    ],
+    "calib_episodes": 3,
+    "conv_episodes": 60,
+    "env_base": {
+      "harm_history_len": 10,
+      "hazard_field_decay": 0.5,
+      "hazard_harm": 0.05,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "proximity_approach_threshold": 0.2,
+      "proximity_benefit_scale": 0.05,
+      "proximity_harm_scale": 0.1,
+      "resource_respawn_on_consume": true,
+      "size": 12,
+      "toroidal": false,
+      "use_proxy_fields": true
+    },
+    "factor_max": 3.0,
+    "factor_min": 0.5,
+    "meas_cycles": 6,
+    "mech122_novelty_reference_mode": "mel_pe",
+    "mech122_spindle_selection_gain": 1.0,
+    "mel_gain": 1.0,
+    "mel_relative_floor": 1e-06,
+    "rem_steps": 10,
+    "steps_per_episode": 90,
+    "sws_steps": 5,
+    "touched_slot_l2_eps": 1e-06,
+    "use_mech122_spindle_content_selection": true,
+    "wake_episodes_per_cycle": 2,
+    "world_rule_shift_depth": 2
+  },
+  "criteria": [
+    {
+      "load_bearing": true,
+      "name": "C1a_sws_power_monotone_in_measured_mel",
+      "passed": true
+    },
+    {
+      "load_bearing": true,
+      "name": "C1b_spindle_density_decoupled_monotone_in_measured_mel",
+      "passed": false
+    },
+    {
+      "load_bearing": true,
+      "name": "C1c_replay_rate_monotone_in_measured_mel",
+      "passed": true
+    },
+    {
+      "load_bearing": false,
+      "name": "C2_consumer_not_env_causes_variation",
+      "passed": false
+    }
+  ],
+  "elapsed_seconds": 8520.484305818998,
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "2026-08-16 governance (confirmed failure_autopsy_861c-861d-mech180-cluster_2026-08-16): the manifest's self-routed 'weakens' on MECH-122 is OVERRIDDEN to non_contributory -- the claim was not fairly tested. The landed fix (ree-v3 6aa97ca) is confirmed working at its own layer (selection weight now spans ~100x and tracks measured MEL), but the clamp(mel/ref-1,0,1) novelty gate was DEAD on seed 42 and SATURATED on seed 123, so C1b required 2/3 seeds while the mechanism could not vary on 2/3. The distinct V3-EXQ-436c ContextMemory.write_gate bias-over-content defect remains open downstream and is the leading candidate explanation. NOTE this run also carries the dead z_goal writer defect (writer_calls 0 over 38,346 ticks).",
+  "evidence_direction_per_claim": {
+    "MECH-122": "non_contributory",
+    "MECH-180": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "experiment_type": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation",
+  "interpretation": {
+    "criteria_non_degenerate": {
+      "C1_dv_spread_nonzero": true,
+      "C1_measured_mel_gradient_present": true,
+      "C2_off_control_present": true
+    },
+    "label": "mel_control_degenerate",
+    "mech122_content_packaging_note": "MECH-122's per-claim direction (evidence_direction_per_claim below) is read off spindle_density's own seed-pass fraction (C1b), not this label -- see module docstring 'MECH-122 per-claim direction'. A PASS/mixed/FAIL label here reflects the FULL MECH-180 three-DV grid, which MECH-122's content-packaging half alone does not determine (C1a/C1c and C2's non-spindle legs are untouched by this run's substrate change).",
+    "per_dv_pass": {
+      "replay_rate": true,
+      "spindle_density": false,
+      "sws_power": true
+    },
+    "per_dv_seed_pass_fraction": {
+      "replay_rate": 1.0,
+      "spindle_density": 0.0,
+      "sws_power": 0.6666666666666666
+    },
+    "preconditions": [
+      {
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds -- the world model must be trained for MEL to live at a meaningful scale (R1).",
+        "direction": "lower",
+        "measured": 1.0,
+        "met": true,
+        "name": "world_forward_converged_frozen_probe",
+        "threshold": 0.6666666666666666
+      },
+      {
+        "description": "measured mean_mel is non-degenerately graded (mel[HIGH] >= mel[NONE]*(1+MIN_MEL_SPREAD)) across the 4 ON arms, on >= 2/3 seeds -- re-confirms the V3-EXQ-798a/845 novelty->MEL link under THIS run's full agent config. Below-floor => the ecological link does not survive in this config (not-ready), NOT a MECH-180 falsification (R2).",
+        "direction": "lower",
+        "measured": 1.0,
+        "met": true,
+        "name": "ecological_novelty_mel_gradient_present_this_config",
+        "threshold": 0.6666666666666666
+      }
+    ],
+    "redesign_note": "spindle_density (C1b/C2) reads mean_sws_new_slot_diversity, the SAME write-count-decoupled statistic V3-EXQ-861 introduced (unchanged readout code). This run SUPERSEDES V3-EXQ-861a; its ONLY change from 861a is mech122_novelty_reference_mode='mel_pe' (ree-v3 6aa97ca), re-sourcing the spindle content-selection novelty reference from the SD-MEL PE channel so DV3 selection is coupled to the graded MEL axis. Tests whether that fix closes 861a's 0/3-seed spindle_density gap; use_mech122_spindle_content_selection stays True (uniform across every arm), as in 861a."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "outcome": "FAIL",
+  "per_dv_frac": {
+    "replay_rate": 1.0,
+    "spindle_density": 0.0,
+    "sws_power": 0.6666666666666666
+  },
+  "per_dv_pass": {
+    "replay_rate": true,
+    "spindle_density": false,
+    "sws_power": true
+  },
+  "per_seed": [
+    {
+      "c1": {
+        "arm_order_by_measured_mel": [
+          "ARM_1_LOW_ON",
+          "ARM_0_NONE_ON",
+          "ARM_3_HIGH_ON",
+          "ARM_2_MED_ON"
+        ],
+        "c1_all_pass": false,
+        "c1_n_sub_pass": 1,
+        "c1_zero_pass": false,
+        "c1a_sws_power": {
+          "monotone_ok": false,
+          "pass_": false,
+          "spread_ok": true,
+          "values": [
+            18.0,
+            28.0,
+            27.0,
+            28.0
+          ]
+        },
+        "c1b_spindle_density_decoupled": {
+          "monotone_ok": false,
+          "pass_": false,
+          "spread_ok": false,
+          "values": [
+            0.02891484492768844,
+            0.02261370715374748,
+            0.02171095817660292,
+            0.02377499306264023
+          ]
+        },
+        "c1c_replay_rate": {
+          "monotone_ok": true,
+          "pass_": true,
+          "spread_ok": true,
+          "values": [
+            40.0,
+            55.0,
+            55.0,
+            58.0
+          ]
+        },
+        "mel_by_measured_order": [
+          1.794165676290638e-05,
+          2.588769361296773e-05,
+          2.738569504434579e-05,
+          2.8842332541991356e-05
+        ]
+      },
+      "c2": {
+        "c2_pass": false,
+        "off_diversity_variance_reported_only": 0.0001376094020051665,
+        "off_diversity_variance_wholebank_legacy_reported_only": 0.12245970568263004,
+        "on_gt_off": false,
+        "pinned_ok": true
+      },
+      "readiness_detail": {
+        "r1_ok": true,
+        "r2_ok": true,
+        "ready": true
+      },
+      "ready": true,
+      "seed": 42
+    },
+    {
+      "c1": {
+        "arm_order_by_measured_mel": [
+          "ARM_0_NONE_ON",
+          "ARM_1_LOW_ON",
+          "ARM_2_MED_ON",
+          "ARM_3_HIGH_ON"
+        ],
+        "c1_all_pass": false,
+        "c1_n_sub_pass": 2,
+        "c1_zero_pass": false,
+        "c1a_sws_power": {
+          "monotone_ok": true,
+          "pass_": true,
+          "spread_ok": true,
+          "values": [
+            48.0,
+            64.0,
+            64.0,
+            72.0
+          ]
+        },
+        "c1b_spindle_density_decoupled": {
+          "monotone_ok": false,
+          "pass_": false,
+          "spread_ok": false,
+          "values": [
+            0.01535046100616455,
+            0.01583525538444519,
+            0.0,
+            0.015037775039672852
+          ]
+        },
+        "c1c_replay_rate": {
+          "monotone_ok": true,
+          "pass_": true,
+          "spread_ok": true,
+          "values": [
+            97.0,
+            125.0,
+            125.0,
+            144.0
+          ]
+        },
+        "mel_by_measured_order": [
+          2.3257858134512682e-05,
+          3.014312478721249e-05,
+          3.0989705343999236e-05,
+          3.45676032074948e-05
+        ]
+      },
+      "c2": {
+        "c2_pass": false,
+        "off_diversity_variance_reported_only": 7.743101182455803e-08,
+        "off_diversity_variance_wholebank_legacy_reported_only": 7.555273418377893e-05,
+        "on_gt_off": false,
+        "pinned_ok": true
+      },
+      "readiness_detail": {
+        "r1_ok": true,
+        "r2_ok": true,
+        "ready": true
+      },
+      "ready": true,
+      "seed": 123
+    },
+    {
+      "c1": {
+        "arm_order_by_measured_mel": [
+          "ARM_0_NONE_ON",
+          "ARM_1_LOW_ON",
+          "ARM_2_MED_ON",
+          "ARM_3_HIGH_ON"
+        ],
+        "c1_all_pass": false,
+        "c1_n_sub_pass": 2,
+        "c1_zero_pass": false,
+        "c1a_sws_power": {
+          "monotone_ok": true,
+          "pass_": true,
+          "spread_ok": true,
+          "values": [
+            32.0,
+            37.0,
+            37.0,
+            56.0
+          ]
+        },
+        "c1b_spindle_density_decoupled": {
+          "monotone_ok": false,
+          "pass_": false,
+          "spread_ok": false,
+          "values": [
+            0.0194600912121435,
+            0.01894203177653253,
+            0.01749157253652811,
+            0.011980140620532135
+          ]
+        },
+        "c1c_replay_rate": {
+          "monotone_ok": true,
+          "pass_": true,
+          "spread_ok": true,
+          "values": [
+            62.0,
+            72.0,
+            75.0,
+            113.0
+          ]
+        },
+        "mel_by_measured_order": [
+          3.102608749509531e-05,
+          3.571776970104364e-05,
+          3.745147426939086e-05,
+          5.638220715721283e-05
+        ]
+      },
+      "c2": {
+        "c2_pass": false,
+        "off_diversity_variance_reported_only": 9.358333238399967e-05,
+        "off_diversity_variance_wholebank_legacy_reported_only": 0.09273081433317755,
+        "on_gt_off": false,
+        "pinned_ok": true
+      },
+      "readiness_detail": {
+        "r1_ok": true,
+        "r2_ok": true,
+        "ready": true
+      },
+      "ready": true,
+      "seed": 456
+    }
+  ],
+  "queue_id": "V3-EXQ-861d",
+  "r1_frac": 1.0,
+  "r2_frac": 1.0,
+  "readiness_frac": 1.0,
+  "readiness_ok": true,
+  "recording_schema": "rec/v1",
+  "run_id": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "sleep_driver_pattern": "manual-cycle-loop (force_cycle() once per cycle in a MEAS_CYCLES wake-sleep loop; MEL consumer engages via SleepLoopManager, novelty knob is SD-MEL-PRODUCER world_rule_shift, not env_drift; UNCHANGED from V3-EXQ-861/845)",
+  "substrate_commit": {
+    "branch": "main",
+    "commit": "8a688456a134fb3997a2629da3ad103c6726a024",
+    "dirty": false
+  },
+  "substrate_hash": "9e1ba5218e62e8a3b1522de46d18a4198e2a9d09b076b71edaf046a6475960cb",
+  "substrate_identity": {
+    "commit_resolved_at_utc": "2026-08-15T00:58:53Z",
+    "commit_source": "manifest_write_disk_read",
+    "drifted_since_resolved": false,
+    "lag_seconds": 7886,
+    "resolved_at_utc": "2026-08-14T22:47:27Z",
+    "source": "per_cell_fingerprint_hoist",
+    "stability_snapshots": 1,
+    "stamped_at_utc": "2026-08-15T00:58:53Z"
+  },
+  "substrate_stable_across_run": true,
+  "supersedes": "V3-EXQ-861a",
+  "thresholds": {
+    "FACTOR_MAX": 3.0,
+    "FACTOR_MIN": 0.5,
+    "MEL_GAIN": 1.0,
+    "MEL_RELATIVE_FLOOR": 1e-06,
+    "MIN_MEL_SPREAD": 0.15,
+    "MIN_REL_CONV_DROP": 0.1,
+    "MIN_REL_DV_SPREAD": 0.15,
+    "MONO_TOL": 0.05,
+    "PINNED_ABS_VAR_ATOL": 1e-06,
+    "SEED_PASS_FRAC": 0.6666666666666666,
+    "TOUCHED_SLOT_L2_EPS": 1e-06
+  },
+  "timestamp_utc": "20260815T005853Z",
+  "z_goal_stream": {
+    "active_frac": 0.0,
+    "goal_state_present": true,
+    "n_agents": 15,
+    "ticks_active": 0,
+    "ticks_total": 38346,
+    "writer_calls": 0,
+    "writer_defect": true
+  }
+}
