@@ -525,6 +525,9 @@
   // a region no experiment has tested, and for any server that could not build
   // the index -- in both cases the panel is simply omitted.
   const EXP_ROWS_COLLAPSED = 8;
+  // Region ids whose row list the user expanded. load() re-renders the sidebar
+  // every 60s, so without this the "Show N more" click is undone on the next poll.
+  const expExpanded = new Set();
 
   function outcomeClass(o) {
     const s = String(o || "").toUpperCase();
@@ -539,10 +542,12 @@
     if (!rows.length) return "";
     const total = node.recent_experiments_total || rows.length;
     const shown = total > rows.length ? rows.length + " most recent of " + total : total;
+    const expanded = expExpanded.has(node.id);
     let html = '<p class="meta"><b>Recent experiments</b> (' + esc(String(shown)) + ")</p>";
     html += '<ul class="exp-list">';
     rows.forEach((r, i) => {
-      const hidden = i >= EXP_ROWS_COLLAPSED ? ' class="exp-extra" style="display:none"' : "";
+      const hidden = (!expanded && i >= EXP_ROWS_COLLAPSED)
+        ? ' class="exp-extra" style="display:none"' : "";
       const label = esc(r.run_id || "");
       const link = r.manifest_url
         ? '<a href="' + esc(r.manifest_url) + '" target="_blank" rel="noopener">' + label + "</a>"
@@ -555,9 +560,9 @@
       html += "</li>";
     });
     html += "</ul>";
-    if (rows.length > EXP_ROWS_COLLAPSED) {
-      html += '<button class="exp-more" type="button" id="expMoreBtn">Show ' +
-        (rows.length - EXP_ROWS_COLLAPSED) + " more</button>";
+    if (!expanded && rows.length > EXP_ROWS_COLLAPSED) {
+      html += '<button class="exp-more" type="button" id="expMoreBtn" data-region="' +
+        esc(node.id) + '">Show ' + (rows.length - EXP_ROWS_COLLAPSED) + " more</button>";
     }
     return html;
   }
@@ -566,6 +571,7 @@
     const btn = $("expMoreBtn");
     if (!btn) return;
     btn.addEventListener("click", () => {
+      expExpanded.add(btn.getAttribute("data-region"));
       $("sidebar").querySelectorAll(".exp-extra").forEach((el) => { el.style.display = ""; });
       btn.remove();
     });
