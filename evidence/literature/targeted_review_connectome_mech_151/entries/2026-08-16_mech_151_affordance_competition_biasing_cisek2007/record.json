@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "MECH-151"
+  ],
+  "source": {
+    "title": "Cortical mechanisms of action selection: the affordance competition hypothesis.",
+    "authors": [
+      "Paul Cisek"
+    ],
+    "year": 2007,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2007.2054",
+    "pmid": "17428779",
+    "pmc": "PMC2440773",
+    "volume": "362",
+    "issue": "1485",
+    "pages": "1585-1599"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Canonical, heavily-replicated architectural proposal whose insertion point for top-down influence is close to one-to-one with MECH-151's. Cisek argues that several potential actions are specified in PARALLEL in fronto-parietal cortex and then compete, with prefrontal regions and the basal ganglia supplying biasing influences into that competition before a single response is selected. MECH-151 asserts exactly this ordering: E2.action_object() specifies the affordance manifold, E1's cue-indexed context adds an action_bias to it, and only then does HippocampalModule search and E3 select. Held back from higher confidence because this is a hypothesis-plus-simulation paper rather than new data, and because Cisek's action space is parameterised motor directions whereas REE's is a learned compressed world-effect embedding.",
+  "failure_signatures": [
+    "If action selection were strictly serial -- construct a full world representation first, then compute a single action plan -- there would be no pre-selection manifold of candidate actions for a bias to act on, and MECH-151's insertion point (bias added to E2.action_object outputs BEFORE HippocampalModule search) would be architecturally misplaced rather than merely mistuned.",
+    "Cisek locates biasing influences in prefrontal cortex AND the basal ganglia jointly. MECH-151 routes the entire bias through a single E1 cue-context projection with no basal-ganglia-analogue gate, so if the biological arrangement requires a gating stage downstream of the cortical bias, a purely additive cortical projection may under-express the effect."
+  ],
+  "tags": [
+    "mech_151",
+    "affordance_competition",
+    "action_selection",
+    "top_down_bias",
+    "premotor",
+    "frontoparietal"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain processes sensory information to specify, in parallel, several potential actions that are currently available; these compete against each other for further processing while information is collected to bias the competition until a single response is selected. The dorsal visual system specifies actions that compete within fronto-parietal cortex, while a variety of biasing influences are provided by prefrontal regions and the basal ganglia.",
+    "ree_translation": "REE reads Cisek's 'specification' stage as E2.action_object(z_world, action) -> o_t, the manifold of currently-available action-objects; the 'biasing influences from prefrontal regions' as MECH-151's action_bias = E1.cue_action_proj(cue_context); and the 'competition until a single response is selected' as HippocampalModule search followed by E3 selection. The claim's central architectural bet -- that top-down context should shape the affordance manifold BEFORE search rather than veto the output afterwards -- is the same bet Cisek's hypothesis makes.",
+    "mapping_caveat": "Two boundaries. (1) Cisek's potential actions are parameterised movements (reach directions) represented in a spatially organised sensorimotor map; REE's action-objects are learned compressed predictions of an action's world-effect, and nothing guarantees an additive bias vector is the right operation in that latent geometry the way it is in a topographic map. (2) The paper is a framework paper: it establishes that pre-selection biasing is the right shape of architecture, not that any particular projection implements it additively.",
+    "source_context": "Theoretical review synthesising primate premotor/parietal electrophysiology, with a computational model simulating neural and behavioural phenomena."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "Weighted toward mapping_fidelity because MECH-151 is an architectural claim and this paper is architectural evidence. Source quality is high for a framework paper (Phil Trans B, canonical, extensively cited) but it contributes no new measurement."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_151",
+  "entry_id": "2026-08-16_mech_151_affordance_competition_biasing_cisek2007",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "source": {
+    "title": "Introspective awareness of oculomotor attentional capture.",
+    "authors": [
+      "Owen J. Adams",
+      "Nicholas Gaspelin"
+    ],
+    "year": 2021,
+    "venue": "Journal of Experimental Psychology: Human Perception and Performance",
+    "doi": "10.1037/xhp0000898",
+    "pmid": "33492165",
+    "pmc": null,
+    "volume": "47",
+    "issue": "3",
+    "pages": "442-459"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "About as close as the human literature gets to a direct measurement of MECH-467's leg 3. Participants hold an intact, reportable task set -- find the target shape, ignore the salient distractor -- and their FIRST EYE MOVEMENT still goes to the distractor on a substantial fraction of trials. Overt action selection is captured while the rule is intact, which is the failure rule-state protection cannot catch. The awareness manipulation strengthens it: participants can often report that they were just captured, and reporting it does not prevent the next capture, so the failure is not a rule-knowledge failure at any level. Held at 0.66 because task-set integrity is assumed from instruction rather than measured trial-by-trial.",
+  "failure_signatures": [
+    "If overt capture occurred only on trials where the task set had also degraded, legs 2 and 3 would be one failure mode and MECH-467's three-way dissociation would reduce to two. The paradigm does not observe that -- capture occurs while the task set is intact and even introspectively monitored -- but it never independently measures task-set integrity per trial, so it constrains the alternative rather than eliminating it.",
+    "Awareness of having been captured did not prevent subsequent capture. Any REE mechanism that proposes to close leg 3 by DETECTING wrong-target selection and feeding that back into rule maintenance is predicted by this result to be insufficient: the detection signal exists in humans and does not fix the behaviour."
+  ],
+  "tags": [
+    "mech_467",
+    "oculomotor_capture",
+    "behavioural_capture",
+    "first_saccade",
+    "task_set_intact",
+    "metacognition",
+    "wrong_target_selection"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants attempted to locate a target shape and ignore a salient distractor. On half of trials they were then asked to classify whether their first eye movement had been misdirected to the singleton distractor. Oculomotor capture effects were much larger on 'capture' report trials than on 'no capture' report trials, demonstrating some introspective awareness of capture. There was no evidence that awareness of oculomotor capture prevented subsequent capture by salient items.",
+    "ree_translation": "The first-saccade measure is the human analogue of MECH-467's wrong-target selection rate, and the instructed search set is the analogue of an intact rule. The two co-occur: the system knows what it is looking for and its overt selection goes elsewhere. That is leg 3, measured. The awareness result maps onto a design question for REE -- a monitoring signal that detects wrong-target selection is demonstrably available in humans and demonstrably does not close the loop, so leg 3 is not a detection problem.",
+    "mapping_caveat": "Task-set integrity is inferred from instruction and from overall task performance, not measured on each trial, so the paradigm cannot fully exclude that captured trials were trials where the search template had momentarily degraded -- which is precisely the leg-2 confound Duncan's goal-neglect account raises. A second boundary: oculomotor capture is a sub-200ms reflexive selection in a static display, whereas MECH-467's leg 3 concerns action selection over an extended sequential task, and it is not established that the same dissociation holds at that timescale.",
+    "source_context": "Healthy human adults; visual search for a shape target with a colour-singleton distractor; eye-tracked first-saccade destination as the capture measure, with trial-by-trial introspective capture reports on half of trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "JEP:HPP, clean eye-tracking with an informative metacognitive manipulation; single paradigm and single laboratory. Mapping fidelity is the best of the three MECH-467 entries for leg 3 specifically, because the dependent measure IS a wrong-target selection rate."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_467",
+  "entry_id": "2026-08-16_mech_467_oculomotor_capture_awareness_adams2021",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

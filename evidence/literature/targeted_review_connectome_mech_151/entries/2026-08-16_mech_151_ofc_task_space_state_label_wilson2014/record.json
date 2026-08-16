@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-151",
+    "MECH-150"
+  ],
+  "source": {
+    "title": "Orbitofrontal cortex as a cognitive map of task space.",
+    "authors": [
+      "Robert C. Wilson",
+      "Yuji K. Takahashi",
+      "Geoffrey Schoenbaum",
+      "Yael Niv"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.11.005",
+    "pmid": "24462094",
+    "pmc": "PMC4001869",
+    "volume": "81",
+    "issue": "2",
+    "pages": "267-279"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly evidences the PREMISE MECH-151 inherits from MECH-150 -- that a frontal region computes a compact label for the current task state, including unobservable components held in working memory, and that this label is consumed by learning and decision machinery ELSEWHERE in the brain. That 'consumed elsewhere' clause is the projection premise MECH-151 builds on. It is not evidence for the action_bias projection specifically, so mapping fidelity for MECH-151 proper is moderate and the confidence reflects that rather than any weakness in the paper.",
+  "failure_signatures": [
+    "If the frontal state abstraction were consumed only locally -- used within OFC for valuation and never exported -- then MECH-151's premise that a cue-indexed context vector is broadcast to downstream action machinery would lose its biological warrant, and the E1 -> action_bias projection would be an engineering choice with no analogue rather than a modelled one.",
+    "Wilson et al. require the state label to include UNOBSERVABLE task components (working-memory contents), not just current sensory input. A cue_context vector computed purely from present sensory features would be a strictly weaker object than the one this theory describes, and would fail on exactly the partially-observable tasks the theory was built to explain."
+  ],
+  "tags": [
+    "mech_151",
+    "mech_150",
+    "orbitofrontal",
+    "task_space",
+    "state_representation",
+    "context_vector",
+    "partial_observability"
+  ],
+  "mapping": {
+    "source_claim_statement": "OFC provides an abstraction of currently available information in the form of a labelling of the current task state, which is used for reinforcement learning elsewhere in the brain. This function is especially critical when task states include unobservable information, for instance from working memory. The framework explains reversal learning, delayed alternation, extinction and devaluation findings, and the effect of OFC lesions on VTA dopaminergic firing.",
+    "ree_translation": "REE reads the OFC task-state label as the biological analogue of the E1 cue-indexed context vector that MECH-150 posits and MECH-151 consumes. The theory's central structural claim -- that this label is computed in one place and USED in another -- is the projection premise MECH-151 depends on. The emphasis on unobservable state components also motivates why the context vector must be z_world-indexed and cue-driven rather than a function of the immediate observation alone.",
+    "mapping_caveat": "The consumer in Wilson et al. is reinforcement learning -- specifically the dopaminergic prediction-error machinery -- not action-affordance biasing. So this paper evidences that a frontal state label exists and is exported; it does NOT evidence that it is exported to the action-specification stage, which is the whole of MECH-151's novelty. Tagged to MECH-150 as well because the state-abstraction content is squarely MECH-150's, and it would be misleading to bank it entirely against MECH-151.",
+    "source_context": "Unifying theoretical account with a reinforcement-learning model, reconciling rodent and primate OFC lesion, single-unit and dopamine-recording literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Influential, well-specified theory with a broad explanatory sweep and explicit testable predictions. Mapping fidelity is the binding constraint: it lands on MECH-151's premise rather than on MECH-151's own assertion."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_151",
+  "entry_id": "2026-08-16_mech_151_ofc_task_space_state_label_wilson2014",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_614_mech341_p3_behavioural_falsifier_3arm
 
-Generated: `2026-08-14T03:48:41.647128Z`
+Generated: `2026-08-16T06:13:01.190364Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-08-14T03:48:41.647128Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` | `2026-05-29T19:13:18Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/summary.md) / [`manifest`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/manifest.json) / [`metrics`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/metrics.json) |
+| `v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` | `20260529T191318Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/summary.md) / [`manifest`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/manifest.json) / [`metrics`](runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3/metrics.json) |

@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "source": {
+    "title": "Goal neglect and Spearman's g: competing parts of a complex task.",
+    "authors": [
+      "John Duncan",
+      "Alice Parr",
+      "Alexandra Woolgar",
+      "Russell Thompson",
+      "Peter Bright",
+      "Sally Cox",
+      "Sonia Bishop",
+      "Ian Nimmo-Smith"
+    ],
+    "year": 2008,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/0096-3445.137.1.131",
+    "pmid": "18248133",
+    "pmc": null,
+    "volume": "137",
+    "issue": "1",
+    "pages": "131-148"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Goal neglect is defined as ignoring a task requirement while remaining able to describe it -- which is MECH-467's leg 3 (behavioural capture with the rule intact) as an established, replicated human phenomenon with a fifty-year literature and a tight relationship to psychometric g. That makes the dissociability the claim asserts a documented fact rather than a conjecture, which is the strongest thing literature can do for a claim of this shape. Held below 0.8 because Duncan's own mechanistic account complicates rather than confirms MECH-467's three-way carve-up: he attributes neglect to task-model components being LOST under representational competition, which is closer to rule corruption than to the rule-survives-but-action-is-captured reading MECH-467 gives leg 3.",
+  "failure_signatures": [
+    "MECH-467's PASS criterion is rule drift at floor while wrong-target selection is elevated. Duncan's account predicts this exact pattern can arise from plain rule corruption whenever the drift measure reads a STORED or reportable rule rather than the representation actually driving selection -- neglect is defined by the gap between describable and operative. So a battery that instruments rule state at a storage site rather than at the point of action selection cannot distinguish leg 2 from leg 3, and a PASS would be uninterpretable.",
+    "Neglect is driven by the complexity of the task model, and increasing the real-time demands of one component does NOT promote neglect of another. A distractor battery that manipulates moment-to-moment perceptual load while holding the rule set small may therefore fail to elicit behavioural capture at all, and return a floor result that is a property of the design rather than of the substrate."
+  ],
+  "tags": [
+    "mech_467",
+    "goal_neglect",
+    "behavioural_capture",
+    "rule_representation",
+    "task_model",
+    "executive_function",
+    "dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "In goal neglect, a person ignores some task requirement though being able to describe it. The critical determinant is not the real-time demand of competing components -- increasing the demand of one component does not promote neglect of another -- but the complexity of the whole body of knowledge specified in the task instructions. As the task model grows in complexity, different components compete for representation and vulnerable components may be lost. Construction of effective task models is closely linked to g.",
+    "ree_translation": "Goal neglect is the human instance of MECH-467's leg 3: the rule is intact by the reportability test, and action nonetheless fails to follow it. Its existence establishes that a system can pass a rule-integrity probe and still fail behaviourally, which is the claim's central assertion. Duncan's mechanism additionally tells REE where the claim's own falsifier is fragile: if the rule that can be reported and the rule that steers selection are different representations, then 'rule intact' is ambiguous, and REE's rule-drift metric must be read off the representation in the selection path.",
+    "mapping_caveat": "Duncan does not endorse a three-way failure taxonomy, and his account of neglect -- task components lost from an over-complex task model -- is arguably MECH-467's leg 2 (rule corruption) inspected at a finer grain, distinguished from leg 3 only by which representation you choose to call 'the rule'. That is a real threat to the claim's dissociability rather than a technicality, and it is why this entry is scored as support for the PHENOMENON with an explicit warning about the TAXONOMY. Separately, goal neglect is elicited by instruction complexity, not by distractors, so the paradigm is adjacent to rather than inside MECH-467's distractor-battery setting.",
+    "source_context": "Healthy human adults across a wide age range, plus individual-differences analysis against fluid intelligence measures; letter-monitoring and related instruction-following tasks with systematic manipulation of task-model complexity and component real-time demand."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "JEP:General, large well-powered series with a converging individual-differences result (the link to g), from the lab that defined the phenomenon. Mapping fidelity is good on the existence question and weaker on the taxonomy question; transfer risk is moderate because the elicitor is instruction complexity rather than distraction."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_467",
+  "entry_id": "2026-08-16_mech_467_goal_neglect_rule_reportable_duncan2008",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

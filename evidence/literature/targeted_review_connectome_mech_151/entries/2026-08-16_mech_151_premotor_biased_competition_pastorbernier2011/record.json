@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "MECH-151"
+  ],
+  "source": {
+    "title": "Neural correlates of biased competition in premotor cortex.",
+    "authors": [
+      "Alexandre Pastor-Bernier",
+      "Paul Cisek"
+    ],
+    "year": 2011,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.5681-10.2011",
+    "pmid": "21562270",
+    "pmc": "PMC6703218",
+    "volume": "31",
+    "issue": "19",
+    "pages": "7083-7088"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Strong single-unit evidence that a biasing signal really is applied to premotor representations of candidate actions before selection -- which supports MECH-151's architecture -- but the measured form of that bias contradicts MECH-151's stated functional form. In the one-target task, directionally tuned PMd delay activity showed NO value modulation; modulation appeared only in the two-target task and was always RELATIVE to the competing option's value. MECH-151 posits an unconditional additive bias (o_t_biased = o_t + action_bias), which predicts modulation in the single-option case too. Direction is therefore mixed rather than supports. Confidence is held at 0.66 by good source quality against a real content mismatch: the biasing variable here is reward value, not cue-indexed context.",
+  "failure_signatures": [
+    "MECH-151's additive form predicts a non-zero action_bias contribution even when only one action-object is viable. PMd showed no value modulation of directionally tuned delay activity in the one-target task, so the biological analogue implements a relative, competition-conditioned bias rather than an absolute additive one. If REE's instrumented mean_cue_action_bias_norm is non-zero in single-affordance situations, that is a divergence from the primate data -- and if it is measured only in single-affordance situations, the primate data predict it will read at floor for reasons that have nothing to do with the projection being broken.",
+    "Relative-value modulation appeared MUCH LATER than directional tuning. A bias that is applied simultaneously with affordance specification, rather than as a later second wave, would not reproduce this timing -- so an implementation that folds the bias into E2.action_object's own forward pass, rather than adding it to the output, would diverge."
+  ],
+  "tags": [
+    "mech_151",
+    "premotor",
+    "biased_competition",
+    "single_unit",
+    "relative_value",
+    "action_selection",
+    "additive_bias_form"
+  ],
+  "mapping": {
+    "source_claim_statement": "In dorsal premotor cortex, directionally tuned delay activity showed no modulation with reward value when a single target was presented. With two targets, the same neurons showed strong effects of the value associated with their preferred target, always in relation to the value of the other target. Competition was strongest when targets were furthest apart; the angular-distance effect appeared as soon as cells became tuned, whereas modulation by relative value appeared much later.",
+    "ree_translation": "REE reads PMd's directionally tuned delay activity as the analogue of E2's action-object manifold and the value modulation as the analogue of MECH-151's action_bias. The architecture survives -- a bias really is written onto candidate-action representations before selection, and it arrives as a distinct later wave, matching MECH-151's ordering. The functional FORM does not: the biological bias is normalised against the alternatives and is silent when there is no competition, whereas o_t_biased = o_t + action_bias is unconditional and option-independent.",
+    "mapping_caveat": "The biasing variable in this experiment is expected reward value, not cue-indexed sensory context. MECH-151's bias source is a context vector that indexes which action-objects are situationally appropriate, which is a different quantity even if it enters at the same point. So the paper constrains the SHAPE of the biasing operation much more strongly than it evidences the specific cue-context pathway. A second caveat: absence of value modulation in the one-target condition is a null result on ~a delay period in one task variant, and nulls in single-unit work are weaker than positives.",
+    "source_context": "Single-unit recording in dorsal premotor cortex of one macaque performing two delayed centre-out reaching tasks (one-target and two-target), with reward value cued by target border style."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Well-controlled within-neuron comparison across one- and two-target tasks, which is exactly the contrast that discriminates additive from relative biasing -- that design property is why this entry is worth more than its n=1 monkey would otherwise justify. Mapping fidelity is docked because the biasing content is value, not context."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_151",
+  "entry_id": "2026-08-16_mech_151_premotor_biased_competition_pastorbernier2011",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

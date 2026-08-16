@@ -13,7 +13,7 @@
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T044809Z_v3` at `2026-06-12T04:48:09Z` signatures: none
-- `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3` at `2026-06-12T03:32:46Z` signatures: none
+- `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3` at `20260612T033246Z` signatures: none
 - `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3` at `2026-06-12T03:22:33Z` signatures: none
 
 Recurring signatures:

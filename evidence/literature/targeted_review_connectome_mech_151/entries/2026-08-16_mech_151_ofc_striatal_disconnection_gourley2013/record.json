@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-151"
+  ],
+  "source": {
+    "title": "The orbitofrontal cortex regulates outcome-based decision-making via the lateral striatum.",
+    "authors": [
+      "Shannon L. Gourley",
+      "Anastasia Olevska",
+      "Kelsey S. Zimmermann",
+      "Kerry J. Ressler",
+      "Ralph J. Dileone",
+      "Jane R. Taylor"
+    ],
+    "year": 2013,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.12239",
+    "pmid": "23651226",
+    "pmc": "PMC3864662",
+    "volume": "38",
+    "issue": "3",
+    "pages": "2382-2388"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Causal, not merely correlational: asymmetric unilateral lesions surgically DISCONNECT orbitofrontal cortex from ventrolateral striatum and abolish sensitivity to outcome-predictive relationships, with symmetric-lesion animals sparing one intact network as controls. That is direct evidence the frontal-to-striatal projection MECH-151 cites as its biological analogue carries action-outcome information into action selection rather than only valuation. Confidence is nonetheless modest: the readout is instrumental contingency sensitivity in mice, several inferential steps away from a graded bias applied to an affordance manifold, and a disconnection cannot distinguish a graded bias from an all-or-none gate.",
+  "failure_signatures": [
+    "Disconnection abolishes outcome sensitivity outright rather than flattening a graded preference, so this design cannot discriminate MECH-151's additive-bias account from an all-or-none gating account of the frontal-to-striatal contribution. Both predict the same lesion result, which means a positive finding here does not favour MECH-151 over its nearest architectural rival.",
+    "The pathway that carries the effect is orbitofrontal, and the compartment is VENTROlateral striatum, with the authors explicitly contrasting it against a dorsolateral compartment subserving stimulus-response habit. If REE's action_bias is functionally a stimulus-response shortcut rather than an outcome-model-dependent reweighting, it is the wrong compartment's analogue and the anatomical warrant in MECH-151's notes does not transfer."
+  ],
+  "tags": [
+    "mech_151",
+    "orbitofrontal",
+    "striatum",
+    "disconnection_lesion",
+    "action_outcome",
+    "contingency_degradation",
+    "causal_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Surgical disconnection of orbitofrontal cortex from ventrolateral striatum, using unilateral asymmetric lesions in mice, blocked sensitivity to outcome-predictive relationships in both food-reinforced and cocaine-associated settings; bilateral Bdnf knockdown in oPFC reproduced the deficit and altered downstream striatal BDNF expression. The authors argue for functional compartmentalisation within the lateral striatum, with a dorsal compartment subserving stimulus-response habit and a ventral compartment coordinating outcome-based decision-making via oPFC interactions.",
+    "ree_translation": "MECH-151's notes justify the E1 -> action_bias projection by pointing at direct frontal-to-striatal anatomy: 'not just evaluation input but action gate modulation'. This study is the causal version of that assertion. Disconnecting the projection does not merely distort valuation; it removes the animal's sensitivity to what its actions produce -- which is exactly the quantity E2.action_object(z_world, action) encodes, the compressed world-effect of an action. So the frontal-to-striatal pathway carries information into action-object space, and that traffic is necessary for behaviour to track it.",
+    "mapping_caveat": "Substantial. The behavioural readout is instrumental contingency degradation in mice, which is a coarse aggregate over many trials, whereas MECH-151 asserts a per-timestep vector addition prior to a search step. Nothing in this design observes a bias, its sign, or its magnitude; it observes the consequence of removing an entire pathway. Additionally the manipulation is a permanent lesion, so compensation and developmental effects cannot be excluded, and the Bdnf arm demonstrates the pathway's trophic dependence rather than its moment-to-moment signalling role.",
+    "source_context": "Mice; unilateral asymmetric oPFC/ventrolateral-striatum lesions with symmetric-lesion controls; bilateral oPFC Bdnf knockdown; instrumental food-reinforced and cocaine-associated response tasks with contingency manipulations; striatal BDNF and c-Fos measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Good causal design with an internal control (symmetric lesions sparing one network) and a converging molecular manipulation, from a single lab in mice. Transfer risk is the largest component: rodent instrumental contingency sensitivity is a long way from a latent-space bias vector, and the inference runs through a claim about what the pathway CARRIES rather than about how the carried signal is applied."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_151",
+  "entry_id": "2026-08-16_mech_151_ofc_striatal_disconnection_gourley2013",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}

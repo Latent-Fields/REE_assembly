@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "source": {
+    "title": "The Role of Inhibition in Avoiding Distraction by Salient Stimuli.",
+    "authors": [
+      "Nicholas Gaspelin",
+      "Steven J. Luck"
+    ],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.11.001",
+    "pmid": "29191511",
+    "pmc": "PMC5742040",
+    "volume": "22",
+    "issue": "1",
+    "pages": "79-92"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.64,
+  "confidence_rationale": "Supports MECH-467's separation of sensory capture from downstream failure modes -- capture is not obligatory, and a salient distractor can be suppressed BEFORE it captures -- with converging psychophysics, eye-tracking and ERP evidence. But the same finding undermines MECH-467's non-degeneracy guard, which infers 'the distractor was never registered' from a floor sensory-capture rate. Registered-then-suppressed and never-encoded yield the same floor at the behavioural level and are separable only with an encoding-side index. Direction is therefore mixed. Confidence 0.64: a strong review whose bearing on the claim is half supportive and half corrective.",
+  "failure_signatures": [
+    "MECH-467's non-degeneracy guard requires a non-zero sensory-capture rate in at least one arm and self-routes substrate_not_ready otherwise, on the reasoning that a distractor the agent never encodes tests nothing. The suppression literature shows a distractor can be fully encoded and then actively suppressed below baseline, producing the same floor capture rate. The guard can therefore discard a battery in which the distractor WAS registered and the substrate handled it correctly -- a false substrate_not_ready, and the most expensive kind of error because it looks like a clean self-route.",
+    "Suppression efficacy varies with task demands and with lapses of cognitive control. A battery reporting a single aggregate sensory-capture rate across a block will average over trials where the distractor was suppressed and trials where it captured, and may report a mid-range value that describes no trial that actually occurred."
+  ],
+  "tags": [
+    "mech_467",
+    "attentional_capture",
+    "distractor_suppression",
+    "signal_suppression",
+    "sensory_capture",
+    "non_degeneracy_guard",
+    "erp_pd"
+  ],
+  "mapping": {
+    "source_claim_statement": "Salient stimuli naturally attempt to capture attention, but capture can be avoided if the salient stimulus is suppressed before it captures attention. The suppression process can be more or less effective as a result of changing task demands or lapses in cognitive control. Converging evidence comes from psychophysics, eye-tracking and event-related potentials.",
+    "ree_translation": "REE reads this as evidence that leg 1 (sensory capture) is a genuinely separate stage with its own control mechanism, rather than an automatic precursor to the downstream legs -- which is what MECH-467 needs for a three-way dissociation to be coherent. It also supplies a measurement lesson: 'did the distractor enter the active representation' and 'did the distractor influence behaviour' come apart at an encoding-versus-suppression boundary, so the battery needs an index of ENCODING, not only of consequence.",
+    "mapping_caveat": "The human evidence for the encoding-side index is the Pd ERP component, which has no clean REE analogue -- REE would need some direct read of whether the distractor's features entered the active representation at all, independent of whether it altered selection. Until such a read exists, MECH-467's leg-1 measurement and its non-degeneracy guard are measuring the same confounded quantity. Additionally this is visual-search work with singleton distractors in static displays; REE's distractors are embedded in an ongoing sequential task, where 'before it captures' may not be a well-defined interval.",
+    "source_context": "Review of human visual-search experiments: psychophysical probe-detection, eye-tracking first-saccade measures, and ERP components (N2pc, Pd) indexing attentional allocation and suppression."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "TiCS review synthesising three converging methodologies, from a lab central to the capture-versus-suppression debate; the authors are appropriately explicit that the mechanism's nature and limits remain open. Mapping fidelity is docked because the load-bearing measurement (Pd) has no REE analogue yet."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_467",
+  "entry_id": "2026-08-16_mech_467_salient_distractor_suppression_gaspelin2017",
+  "timestamp_utc": "2026-08-16T06:11:49Z",
+  "summary_path": "summary.md"
+}
