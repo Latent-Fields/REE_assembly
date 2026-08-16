@@ -154,11 +154,17 @@ CLEARED_STATUSES = {"done"}
 # write `behavioral_diversity_isolation:GAP-A/GAP-B` as one gate naming two
 # nodes). Plan ids are lowercase snake_case throughout the corpus; node ids are
 # alnum with - and _ separators (GAP-1, GAP-I-absorption, GAP-C-build, SELF-2,
-# MAE-3, P1b, FULLSTACK). The regex is deliberately loose because the REAL
-# filter is resolution against the parsed plans -- an unknown plan id or node id
-# is skipped and counted, never guessed at.
+# MAE-3, P1b, FULLSTACK).
+#
+# NO MINIMUM LENGTH ON THE PLAN ID, deliberately. An earlier revision required
+# 3+ characters to cut prose noise; that is a SILENT MISS waiting for the first
+# short plan id, and it buys nothing, because the real filter is membership in
+# the set of parsed plan ids (see run()). A loose regex plus an exact
+# resolution step fails safe; a tight regex plus an exact resolution step just
+# fails quietly. Tokens that match the shape but name no known plan are
+# discarded and counted as `non_plan_tokens_ignored`.
 _GATE_RE = re.compile(
-    r"\b([a-z][a-z0-9_]{2,}):"
+    r"\b([a-z][a-z0-9_]*):"
     r"([A-Za-z][A-Za-z0-9]*(?:[-_][A-Za-z0-9]+)*)"
     r"((?:/[A-Za-z][A-Za-z0-9]*(?:[-_][A-Za-z0-9]+)*)*)"
 )
@@ -244,7 +250,14 @@ def _prose_tokens(text: str) -> tuple[list[tuple[str, str]], int]:
         toks = _tokens_in(clause)
         if not toks:
             continue
-        low = clause.lower()
+        # THE CUE MUST COME FROM THE SURROUNDING PROSE, NOT FROM THE REFERENCE
+        # ITSELF. Node and plan ids routinely contain cue words -- the live
+        # corpus has `global_workspace_jlens:GATE-B` -- so testing cues against
+        # the raw clause lets a reference satisfy its own gate test and turns
+        # every passing mention of that node into a gate. Blank the matched
+        # tokens out first; what remains is the prose making (or not making) the
+        # gate claim.
+        low = _GATE_RE.sub(" ", clause).lower()
         if any(c in low for c in _CITATION_CUES):
             vetoed += len(toks)
             continue

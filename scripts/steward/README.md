@@ -1,4 +1,4 @@
-# Steward -- integrity detectors (stages 1-3)
+# Steward -- integrity detectors (stages 1-4)
 
 Deterministic integrity checks over `docs/claims/claims.yaml`, the
 `closure_plan` frontmatter of every `evidence/planning/*_plan.md`, the
@@ -11,7 +11,7 @@ governance-flag registry, and the git divergence state of the checkout.
 /opt/local/bin/python3 scripts/steward/run_detectors.py --no-write  # report only
 /opt/local/bin/python3 scripts/steward/run_detectors.py --fix --dry-run  # preview repairs
 /opt/local/bin/python3 scripts/steward/run_detectors.py --fix       # apply T0 repairs
-/opt/local/bin/python3 -m pytest scripts/steward/ -q                # 103 tests
+/opt/local/bin/python3 -m pytest scripts/steward/ -q                # 170 tests
 ```
 
 ## Why this exists
@@ -56,6 +56,7 @@ of them".
 | **D-002** | T1 | Orphan V3 claim: claim reads as live V3, every owning closure node is `deferred` -> invisible to closure accounting. The SD-031 class. | yes -- precision 4/4 |
 | **D-001** | T1 | Claim `implementation_phase` disagrees with the `generation` of every plan that owns it. Same denominator-invisibility harm, reached along the generation axis. | no |
 | **D-006** | T0 | Duplicate entries in `governance_flags.v1.json` (same claims + type + day). Auto-fixable when they are byte-identical re-writes of one raise. | yes -- 0 FP on the live registry |
+| **D-007** | T1 | Stale gate reference: a node's `blocking_external` / `resume_condition` names a closure node that is now `done`. Reports that the gate TEXT is stale -- never that the node should open. | yes -- 3/3, small sample |
 | **D-008** | T0 | Plan-level `last_updated` older than its newest node's, inflating the morning digest's staleness figure. | yes -- 19 real, 0 FP |
 | **D-010** | T2 | Guards the accounting itself: recomputes the V3 denominator independently and reports every way it differs from what a reader would assume. | n/a (structural) |
 | **D-101** | T2 | Classifies an ahead/behind divergence by CONTENT: which ahead commits are already upstream, and which are real local work. | yes -- on the live 23-commit divergence |
@@ -92,6 +93,7 @@ detectors take a shared `Context` instead of re-reading.
 | D-002 | **4** -- MECH-316, MECH-317 (P0/strong), MECH-091, MECH-314a (P1/weak) |
 | D-001 | 27 |
 | D-006 | **0** -- both duplicate groups fully dispositioned (the correct result) |
+| D-007 | **3** -- self_attribution GAP-1 (P1), GAP-2 (P2), GAP-6 (P2); all 3 hand-audited genuine |
 | D-008 | **19** -- all T0-fixable, largest drift 68d (`infant_substrate` 2026-05-30 -> 2026-07-21) |
 | D-010 | 1 (silent-exclusion surface: 10 `assembling` nodes) |
 | D-101 | 1 -- `unique_work_present` on a live `[ahead 23, behind 41]` |
@@ -269,6 +271,183 @@ A plan-level date *newer* than every node is **not** drift and is deliberately
 not flagged (`drives_motivation_v4_plan.md`): plan-level edits legitimately
 touch the plan without touching a node.
 
+## Stage 4 -- D-007, and the framing that is the whole detector
+
+**D-007 is a DOCUMENTATION-ACCURACY detector, never an UNBLOCK-DETECTION one.**
+
+> It reports "the gate text is stale."
+> It is FORBIDDEN from concluding "the node should be open."
+
+That distinction is not a caveat on the detector; it *is* the detector. A
+cleared gate is not an unblocked node, and this repo has three recorded
+instances to prove it -- every one ended with the node correctly staying
+`blocked` on a **re-pointed** gate:
+
+| when | what cleared | what actually happened |
+|---|---|---|
+| 2026-06-09 | `sleep_substrate:GAP-1` done; `goal_pipeline:GAP-1` done; MECH-269 satisfied 2026-05-17, **one day after the gate was written** | Insufficient anyway -- 543l / 598b / 614e show the candidate pool collapses at the z_world layer *upstream* of SP-CEM, so stratified sampling has nothing to stratify. Status stays blocked, gate re-pointed. |
+| 2026-06-23 | `behavioral_diversity_isolation:GAP-A` done on the V3-EXQ-569i PASS | The 2026-06-20 V3-EXQ-625e autopsy showed the conversion is ENV-CONDITIONAL and does not propagate to a threat-engaged candidate pool. The node record names the naive reading by name: *"a naive 'GAP-A done -> unblock GAP-2' read is the same env-conditional trap the axis_b autopsy caught."* |
+| 2026-07-29 | `sleep_substrate:GAP-1` and `goal_pipeline:GAP-1` both done | Node stayed blocked on a re-pointed third gate. |
+
+A detector emitting "node should open" would have been **wrong all three times**,
+and the cost is not noise: the self_attribution plan states that re-queuing on a
+falsely-cleared gate re-derives the known `non_contributory` result and burns a
+runner session.
+
+### The framing is enforced structurally, not by comment
+
+`assert_no_status_proposal()` runs over every finding before `run()` returns and
+**raises** if one carries `tier != "T1"`, `autofix=True`, or any key from
+`FORBIDDEN_KEYS` (`proposed_status`, `unblock`, `should_open`, `fix`, `patch`,
+...) at any depth. The acceptance criterion asked for a contract test asserting
+on the *schema* rather than on prose, and this is that assertion moved one step
+earlier -- to the point of production, in the same spirit as `finding()`'s
+autofix/tier guard. Prose in `detail` can and does say "NOT AN UNBLOCK SIGNAL";
+what matters is that the **structure** offers a consumer no field to read a
+transition out of.
+
+`depends_on` is deliberately **not read**, even though it is the most
+gate-shaped field on a node. It is the structured, map-rendered dependency edge,
+and "every `depends_on` is done therefore the node should open" is exactly the
+inference D-007 exists not to make. Reading it would import the trap through the
+back door. `test_depends_on_is_never_read` pins it, with a positive control on
+the identical fixture so the silence cannot be the fixture failing to reach the
+detector.
+
+### Severity is ranking only
+
+**P2** some named gates cleared, others outstanding. **P1** *all* named gates
+cleared -- the node's stated rationale is now entirely vacuous, so the
+re-adjudication is overdue. Both tiers report stale text; **neither asserts a
+status change**. As with D-002, severity ranks findings under a contended
+escalation budget and never withholds one.
+
+### The suppression key is (node, gate-set)
+
+`finding_id` is `D-007:<node>@cleared=<...>;named=<...>`. A node adjudicated
+"still blocked, gate re-pointed" must not re-fire every run, but **must** re-fire
+when the gate set changes -- too sticky and a genuine new stale gate is
+swallowed, too loose and every run re-escalates a settled adjudication. Encoding
+both the named set and the cleared subset gets all three cases right: a settled
+finding is stable, a re-pointed gate is new, and a *second* gate clearing is new
+(that is the P2 -> P1 transition, which is precisely the news the tier ranks).
+Only the cleared/outstanding **partition** is folded in, never a raw status, so a
+gate moving `open` -> `in_progress` does not churn the key.
+
+### A precision floor applies here -- and it does NOT contradict D-002
+
+D-002's docstring says a precision floor is illegitimate for a detector whose
+**misses are silent**. That is the correct rule and D-007 is the other side of
+it: stale plans already surface in the morning digest staleness table, so a
+D-007 miss is recoverable rather than invisible, and trading recall for
+precision is legitimate. Below `PRECISION_FLOOR` (0.6) the detector goes
+**list-only** -- `escalate=False`, so it stops waking a model while still
+reporting every finding. Withholding a finding from the report would be the
+failure D-002 refutes; withholding an *escalation* is the budget working.
+
+`MEASURED_PRECISION` is evidence, not a target. **Re-measure and rewrite it**
+when the detector changes; do not inherit it.
+
+### The measurement, with its weaknesses stated
+
+3 findings on the live tree at `f7ab285529`, all 3 hand-audited genuine --
+**3/3**. Two of the three are corroborated by governance records written months
+before this detector existed, which is what makes the number evidence rather
+than self-assessment: the 2026-07-29 reconcile says of GAP-1 *"Two of the three
+gates named below HAVE CLEARED"*, and `governance_2026_06_23` says of GAP-2's
+gate that GAP-A *"has PARTIALLY fired ... is now status=done"*. The third
+(GAP-6, a node created 2026-08-15) rests on this session's reading.
+
+Against that: **n=3 is a small sample**, it was **not** an independent
+adjudication chip the way D-002's 4/4 was, and all three sit in **one plan**
+(`self_attribution`), so it says little about other plans' prose conventions.
+Above the floor, not comfortably above it.
+
+That all three are still live is itself the finding: the 2026-06-09 gate text
+has been stale for over two months and no cycle removed it, because every cycle
+correctly re-pointed the gate in a governance **note** and left the original
+`blocking_external` list standing.
+
+### The historical replay is the primary test, and it really is historical
+
+`test_d007_stale_gate_reference.py` materialises `evidence/planning/` at
+`43ba39ca9e^` (2026-06-09), `fb11650188` (2026-06-23) and `7e60b8a675`
+(2026-07-29) into a tmpdir and runs the ordinary `load_context` path over the
+real frontmatter -- real prose, not a paraphrase. Unlike the stage-3 git-lane
+replay (which needed a range living only in the Mac's reflog), `REE_assembly`'s
+history reaches back to 2026-02, so **these ran**. Results:
+
+| revision | finding | severity |
+|---|---|---|
+| 2026-06-09 (pre) | `self_attribution:GAP-1` names `sleep_substrate:GAP-1` (done) | P1 |
+| 2026-06-23 | `self_attribution:GAP-2` names `GAP-A` (done) + `GAP-B` (partial) | **P2** |
+| 2026-07-29 | `self_attribution:GAP-1`, every named gate cleared | **P1** |
+
+with **zero** findings proposing a status change at any revision. The P2/P1
+split is the acceptance criterion, and it falls out of the data rather than
+being asserted into it.
+
+Those tests skip if the history is unreachable (a shallow clone). To stop that
+degrading into a vacuous pass the same three incidents are **also** pinned as
+synthetic fixtures that always run, carrying the real gate strings verbatim.
+
+**One honest gap in the replay.** The 2026-06-09 incident is detected through
+`GAP-1`, not through the `GAP-2` half the write-up leads with. GAP-2's gate that
+day was `MECH-269 V_s monostrategy landing` -- a **claim** id, not a `plan:NODE`
+reference, and D-007 resolves plan-node gates only. That is a deliberate miss
+under the "prefer a miss over a false positive" rule, not an oversight; the
+incident is still caught, because the joint re-adjudication's GAP-1 half names a
+plan node and is machine-resolvable.
+
+### Parsing prose conservatively
+
+`blocking_external` is a declared gate list, so every `plan:NODE` token in it is
+a gate. `resume_condition` is free text that names gates inline *and* cites
+unrelated nodes as evidence, so a token there counts only in a clause that reads
+as a gate and does not read as a citation -- and **the citation veto beats the
+gate cue**. That ordering is load-bearing: GAP-2's real `resume_condition`
+contains *"Empirical proof of insufficiency: sleep_substrate:GAP-2 records
+'...'"* (citation `records`, gate cue `after`) and *"See the 2026-06-09
+re-adjudication note + sleep_substrate:GAP-2 (identical gate)"* (citation `see`,
+gate cue `gate`). Both are cross-references, and both would be false positives
+if the gate cue won.
+
+**Cues are tested against the clause with the matched tokens blanked out**, so a
+reference cannot satisfy its own gate test. This was found by a test, not by
+inspection: the corpus contains `global_workspace_jlens:GATE-B`, and any node id
+containing a cue word would otherwise make every passing mention of it read as a
+gate.
+
+Skipped tokens are **counted**, never silently dropped -- `prose_tokens_vetoed`,
+`non_plan_tokens_ignored` (the corpus really does write `generation:v4` and
+`status:deferred`, which match the token shape), `dangling_gate_refs` (a real
+plan naming a node that does not exist -- a different defect, belonging to the
+closure-link checker) and `self_references_skipped`. A miss should be a number
+someone can look at.
+
+Known recall limit, stated rather than hidden: bare node ids (`GAP-B`) and
+abbreviated prefixes (`arc_062:GAP-B`, where the plan's real id is
+`arc_062_rule_apprehension`) are **not** resolved. Resolving them needs a guess
+about which plan is meant, which is the false positive the conservatism rule
+forbids.
+
+### The volume prediction did not hold, and that is worth recording
+
+D-007 was sequenced last on the expectation that it would be "the highest
+escalation volume" detector in the set. It produced **3** findings against
+D-001's 27 and D-008's 19, and runs in under 10ms. The conservatism is why: the
+`plan:NODE`-only resolution and the citation veto keep it narrow. If a later
+revision loosens either, expect that prediction to start being right -- and
+re-measure the precision before it does.
+
+### D-004 was NOT built, deliberately
+
+`phantom_owner_exq` was **retired 2026-08-16**: both the one-time fix
+(REE_assembly `4fa9f8199b`) and the recurrence rule (REE_Working `67ce615f`, the
+morning-digest Step 7c DECLARED-not-owed exemption) have landed. Building it
+here would give one defect class two separate suppression states -- the "partial
+fix reads as complete" failure that let V3-EXQ-631 recur in the first place.
+
 ## Stage 3 -- the git lane
 
 **It reports and classifies. It never acts.** That is enforced structurally, not
@@ -351,20 +530,22 @@ systematic back-pointer patterns rather than 13 independent defects. Collapsing
 them is a *disposition*, which stage 1 has no authority to make; it belongs to
 governance, and the ledger is what calibrates it.
 
-## Scope -- what stages 1-3 deliberately do not do
+## Scope -- what stages 1-4 deliberately do not do
 
 - **No edit to `claims.yaml`**, no node status change, nothing queued. The only
   files any auto-fix touches are `governance_flags.v1.json` (one status field
-  per row) and plan frontmatter (one date line per plan).
+  per row) and plan frontmatter (one date line per plan). D-007 in particular
+  edits nothing at all and is permanently T1.
 - **Nothing commits, pushes, or moves a ref.** The git lane is read-only by
   whitelist; the auto-fix lane leaves edits in the working tree for review.
 - **Not wired into `governance.sh`.** Runnable by hand first, `--fix` included.
-- **D-004 and D-007 are NOT built here** (stage 4). D-007 in particular carries
-  an unresolved framing question flagged 2026-08-15 and needs user sign-off:
-  it must report "the gate text is stale" and never "the node should be open".
-  Both self_attribution incidents ended with the node correctly **still
-  blocked** on a re-pointed gate, and the naive reading is exactly the
-  "GAP-A done -> unblock GAP-2" trap the V3-EXQ-625e autopsy caught.
+- **D-007's framing question was resolved by user sign-off 2026-08-16** and is
+  now built -- see "Stage 4" above. The sign-off is a CONSTRAINT, not a default
+  to improve on: it reports "the gate text is stale" and never "the node should
+  be open".
+- **D-004 (`phantom_owner_exq`) is NOT built, and should not be.** Retired
+  2026-08-16 -- both the one-time fix and the recurrence rule have landed, and
+  duplicating it would give one defect class two suppression states.
 
 `state/steward_ledger.jsonl` gets one line per run (counts, escalated ids,
 duration, per-detector totals). Its value is the time series.

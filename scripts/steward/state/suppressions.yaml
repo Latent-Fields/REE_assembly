@@ -11,10 +11,15 @@
 # Always state a `reason` -- an unexplained suppression is how a real defect
 # gets buried, and the runner reports entries that lack one.
 #
-# Seeded from DETECTORS.md. Two of the three seeds are FORWARD-DECLARED for
-# detectors that stage 1 does not build; they match nothing today and are inert.
-# They are kept here rather than dropped so the disposition is not lost when the
-# owning detector lands.
+# Seeded from DETECTORS.md. Two of the three seeds were FORWARD-DECLARED for
+# detectors stage 1 did not build. Both are still inert at stage 4, but for
+# DIFFERENT reasons now -- see each entry.
+#
+# Keeping this file honest matters more than usual, because it is the Steward's
+# own config and a stale disposition here is exactly the defect class D-007
+# detects. When a detector lands, re-read the forward-declared entries and say
+# plainly whether they became live: "becomes live when X lands" left standing
+# after X has landed IS stale gate text.
 
 suppressions:
   - finding_id: "D-001:MECH-099"
@@ -31,11 +36,18 @@ suppressions:
   - finding_id: "*:multi_agent_ecology_v5:MAE-3"
     reason: >-
       MAE-3 whole-plan back-pointer. A v5 roadmap plan back-pointing at v3 claims
-      is a forward reference, not a defect. FORWARD-DECLARED: stage 1 builds no
-      node-subject detector, so this pattern matches nothing today. It becomes
-      live when a node-level detector lands.
+      is a forward reference, not a defect. STATUS 2026-08-16 (stage 4): D-007 is
+      now a node-subject detector, so the "becomes live when a node-level
+      detector lands" condition has been met -- but this pattern still matches
+      nothing, because a D-007 subject carries a `@cleared=...;named=...` suffix
+      and this entry has no trailing wildcard. That is left DELIBERATELY as-is:
+      the disposition recorded here is about a back-POINTER, and a stale GATE on
+      MAE-3 would be a different question that should escalate on its own merits.
+      Widen to "*:multi_agent_ecology_v5:MAE-3*" only if that second question is
+      also dispositioned.
     added: "2026-08-16"
     added_by: "chip-20260815-steward-stage1-detectors"
+    reviewed: "2026-08-16 (chip-20260816-steward-d007-stale-gate-reference)"
     forward_declared: true
 
   - finding_id: "*:V3-EXQ-732b"
@@ -43,7 +55,14 @@ suppressions:
       V3-EXQ-732b is a deliberate refusal, not an omission -- the queue entry was
       declined on purpose and must not be re-surfaced as missing work.
       FORWARD-DECLARED: stage 1 builds no experiment-subject detector, so this
-      matches nothing today.
+      matches nothing today. STATUS 2026-08-16 (stage 4): its intended owner was
+      D-004 (phantom_owner_exq), which was RETIRED 2026-08-16 rather than built
+      -- both the one-time fix (REE_assembly 4fa9f8199b) and the recurrence rule
+      (REE_Working 67ce615f, morning-digest Step 7c DECLARED-not-owed exemption)
+      landed instead. So this entry is now inert with no owner pending, not
+      merely waiting. Kept because the underlying disposition (732b is a
+      deliberate refusal) remains true and is worth not losing.
     added: "2026-08-16"
     added_by: "chip-20260815-steward-stage1-detectors"
+    reviewed: "2026-08-16 (chip-20260816-steward-d007-stale-gate-reference)"
     forward_declared: true
