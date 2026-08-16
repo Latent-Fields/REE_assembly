@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-16T06:15:10.345808Z`
+Generated: `2026-08-16T11:25:47.046619Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -167,7 +167,7 @@ Generated: `2026-08-16T06:15:10.345808Z`
 | `targeted_review_connectome_mech_490` | [`2026-08-11_mech_490_nrem2_finger_tapping_walker2002`](targeted_review_connectome_mech_490/entries/2026-08-11_mech_490_nrem2_finger_tapping_walker2002/record.json) | 4 | [`summary`](targeted_review_connectome_mech_490/entries/2026-08-11_mech_490_nrem2_finger_tapping_walker2002/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
-| `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |
+| `targeted_review_connectome_sd_005` | [`2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026`](targeted_review_connectome_sd_005/entries/2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026/record.json) | 5 | [`summary`](targeted_review_connectome_sd_005/entries/2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026/summary.md) |
 | `targeted_review_connectome_sd_010` | [`2026-03-29_sd_010_nociceptive_pathway_willis1997`](targeted_review_connectome_sd_010/entries/2026-03-29_sd_010_nociceptive_pathway_willis1997/record.json) | 3 | [`summary`](targeted_review_connectome_sd_010/entries/2026-03-29_sd_010_nociceptive_pathway_willis1997/summary.md) |
 | `targeted_review_connectome_sd_011` | [`2026-04-08_sd_011_predictive_coding_pain_chen2023`](targeted_review_connectome_sd_011/entries/2026-04-08_sd_011_predictive_coding_pain_chen2023/record.json) | 12 | [`summary`](targeted_review_connectome_sd_011/entries/2026-04-08_sd_011_predictive_coding_pain_chen2023/summary.md) |
 | `targeted_review_connectome_sd_020` | [`2026-04-09_sd_020_pain_matrix_salience_iannetti2010`](targeted_review_connectome_sd_020/entries/2026-04-09_sd_020_pain_matrix_salience_iannetti2010/record.json) | 4 | [`summary`](targeted_review_connectome_sd_020/entries/2026-04-09_sd_020_pain_matrix_salience_iannetti2010/summary.md) |

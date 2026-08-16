@@ -1,12 +1,12 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-13T19:53:58Z
+Generated: 2026-08-16T11:26:53Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1006
+Claims in registry: 1012
 
 ## Reading drift -- HARD (115)
 
@@ -130,7 +130,7 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | SD-097 | `candidate/v3_pending/substrate_conditional` | `candidate/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/substrate_conditional' |
 | SD-098 | `candidate/v3_pending/substrate_conditional` | `candidate/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/substrate_conditional' |
 
-## Unstamped -- SOFT (7)
+## Unstamped -- SOFT (8)
 
 Registered claims with no `live_status` block. Run `scripts/apply_live_status.py`.
 
@@ -143,6 +143,7 @@ Registered claims with no `live_status` block. Run `scripts/apply_live_status.py
 | MECH-491 | `candidate/substrate_conditional` |
 | ARC-127 | `candidate/substrate_conditional` |
 | SD-100 | `candidate/substrate_conditional` |
+| MECH-492 | `candidate` |
 
 ## Internal inconsistency -- REVIEW (1)
 
@@ -152,7 +153,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 |-------|-----------------|-----|
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (264)
+## Event-provenance drift -- SOFT (271)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -218,9 +219,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
 | ARC-023 | `_none_` | `decision:ARC-023@2026-03-16T18:20:19.361127Z` |
 | MECH-089 | `decision:MECH-089@2026-03-19T19:52:00Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
-| ... | | (+204 more) |
+| ... | | (+211 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (985 of 1006)
+## Never reviewed (no `last_reviewed`) -- INFO (991 of 1012)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

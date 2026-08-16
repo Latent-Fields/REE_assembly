@@ -161,6 +161,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-B`
 
@@ -319,6 +322,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-C`
 
@@ -477,6 +483,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-D`
 
@@ -635,6 +644,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-E`
 
@@ -793,6 +805,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-F`
 
@@ -951,6 +966,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-G`
 
@@ -1109,6 +1127,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-H`
 
@@ -1267,6 +1288,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-I`
 
@@ -1425,6 +1449,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-I-absorption`
 
@@ -1583,6 +1610,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-J`
 
@@ -1741,6 +1771,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-K`
 
@@ -1899,6 +1932,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 
 ## `arc_062_rule_apprehension:GAP-L`
 
@@ -2057,4 +2093,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-demotion
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08.json) :: autopsy non_contributory/substrate_ceiling routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only **<- live head**
+- `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-316@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L430`](../../../../evidence/decisions/decision_log.v1.jsonl#L430) :: decision undefer_owning_node (proposed)
+- `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 

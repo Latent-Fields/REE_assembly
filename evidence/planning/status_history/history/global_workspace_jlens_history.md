@@ -27,6 +27,7 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-08-08T19:22Z` [autopsy] `failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only **<- live head**
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_gap routing=governance-note-only **<- live head**
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
 
 ## `global_workspace_jlens:GATE-B`
 
@@ -51,6 +52,7 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-08-08T19:22Z` [autopsy] `failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only **<- live head**
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_gap routing=governance-note-only **<- live head**
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
 
 ## `global_workspace_jlens:B`
 
@@ -75,6 +77,7 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-08-08T19:22Z` [autopsy] `failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only **<- live head**
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_gap routing=governance-note-only **<- live head**
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
 
 ## `global_workspace_jlens:MECH-191`
 
@@ -99,4 +102,5 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-08-08T19:22Z` [autopsy] `failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy weakens/standard routing=governance-note-only **<- live head**
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_gap routing=governance-note-only **<- live head**
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
 

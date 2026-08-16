@@ -9,54 +9,70 @@ Source plan: `evidence/planning/goal_deliberation_v4_plan.md`
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-2`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-3`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-4`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-5`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-6`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-7`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `goal_deliberation_v4:GDL-8`
 
 - `2026-04-25T15:42Z` [decision] `decision:MECH-264@2026-04-25T15:42:09.107844Z` -> [`evidence/decisions/decision_log.v1.jsonl#L167`](../../../../evidence/decisions/decision_log.v1.jsonl#L167) :: decision hold_pending_v3_substrate (applied)
 - `2026-04-25T15:42Z` [decision] `decision:MECH-265@2026-04-25T15:42:09.107846Z` -> [`evidence/decisions/decision_log.v1.jsonl#L168`](../../../../evidence/decisions/decision_log.v1.jsonl#L168) :: decision hold_pending_v3_substrate (applied)
 - `2026-06-06T07:53Z` [decision] `decision:MECH-264@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L278`](../../../../evidence/decisions/decision_log.v1.jsonl#L278) :: decision held_v4_by_architectural_commitment (applied)
-- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-265@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L279`](../../../../evidence/decisions/decision_log.v1.jsonl#L279) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-027@2026-08-13T20:29:48.050555Z` -> [`evidence/decisions/decision_log.v1.jsonl#L428`](../../../../evidence/decisions/decision_log.v1.jsonl#L428) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-13T20:29Z` [decision] `decision:SD-033e@2026-08-13T20:29:48.082765Z` -> [`evidence/decisions/decision_log.v1.jsonl#L429`](../../../../evidence/decisions/decision_log.v1.jsonl#L429) :: decision hold_pending_v3_substrate (applied) **<- live head**
 

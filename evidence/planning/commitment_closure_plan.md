@@ -18,7 +18,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -45,7 +45,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -64,7 +64,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -84,7 +84,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -131,7 +131,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -156,7 +156,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -175,7 +175,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -193,7 +193,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -213,7 +213,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -247,7 +247,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -266,7 +266,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -286,7 +286,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]

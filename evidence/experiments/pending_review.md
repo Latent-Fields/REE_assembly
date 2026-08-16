@@ -1,16 +1,74 @@
 # Pending Experiment Review
 
-Generated: `2026-08-13T20:32:15Z`  
+Generated: `2026-08-16T11:25:59Z`  
 Last review: `2026-08-13T20:30:17Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **15** item(s) -- 10 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 10 diagnostic run(s) with no confirmed autopsy; 2 run(s) with a DEAD z_goal stream
 
-## Needs diagnosis (ERROR manifests -> /diagnose-errors)
+## FAIL (action required)
 
-These are durable ERROR-class result manifests on disk -- most commonly a runner-synthesized record for a crash-before-manifest (a script that exited non-zero before writing any manifest; incident V3-EXQ-654e). They are scoring-neutral (no claim tags) so they never weight claim confidence, but each is a real code crash that needs `/diagnose-errors` and a re-queue under a NEW letter. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs`.
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3` | 2026-08-14T12:39 | (no claim tags) | — |
+| `v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3` | 2026-08-14T19:43 | ARC-045, MECH-166, SD-017 | — |
+| `v3_exq_861c_inv050_mech180_calibration_fixed_replication_20260814T231404Z_v3` | 2026-08-14T23:14 | INV-050, MECH-180 | — |
+| `v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3` | 2026-08-15T00:58 | MECH-122, MECH-180 | — |
+| `v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3` | 2026-08-15T02:06 | MECH-357 | — |
 
-| Outcome | Manifest stem | Queue ID | Machine | Summary |
-|---------|---------------|----------|---------|---------|
-| ERROR | `v3_v3_exq_926_runner_error_20260813T045041Z_v3` | V3-EXQ-926 | ree-cloud-2 | Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on c |
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3` | 2026-08-14T01:24 | MECH-267 |
+| `v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3` | 2026-08-14T01:34 | MECH-267 |
+| `v3_exq_929_sleep_gap9_within_life_trigger_20260814T081606Z_v3` | 2026-08-14T08:16 | (no claim tags) |
+| `v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3` | 2026-08-14T09:24 | MECH-303 |
+| `v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3` | 2026-08-14T15:54 | (no claim tags) |
+| `v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3` | 2026-08-14T15:58 | (no claim tags) |
+| `v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3` | 2026-08-14T17:10 | ARC-107, MECH-449 |
+| `v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3` | 2026-08-14T18:37 | MECH-152 |
+| `v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3` | 2026-08-14T22:34 | (no claim tags) |
+| `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` | 2026-08-15T01:52 | MECH-266, SD-032a |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3` | PASS | fix_effective::H3+BOTH | **vacuous_pass** |
+| `v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3` | PASS | fix_effective::H3+BOTH | **vacuous_pass** |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3` | PASS | fix_effective::H3+BOTH |
+| `v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3` | PASS | fix_effective::H3+BOTH |
+| `v3_exq_929_sleep_gap9_within_life_trigger_20260814T081606Z_v3` | PASS | within_life_trigger_validated |
+| `v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3` | PASS | mech303_dedicated_signal_discriminates_zharma_does_not |
+| `v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3` | FAIL | wanting_scoring_lacks_selection_authority_at_operating_weight |
+| `v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3` | PASS | wanting_behaviour_coupling_detected |
+| `v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3` | PASS | need_arm_validated |
+| `v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3` | PASS | selection_hardness_partial_recovery |
+| `v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3` | PASS | single_life_uncensored_survival_distribution_obtained |
+| `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` | PASS | cap_recalibration_admits_mixed_regime |
+
+## Dead z_goal stream (interpret before trusting a z_goal readout)
+
+**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
+
+Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
+
+**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
+
+**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
+
+| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
+|--------|--------|-------|--------------|-------------|-----------|
+| `v3_exq_861c_inv050_mech180_calibration_fixed_replication_20260814T231404Z_v3` | FAIL | 57863 | **0** | 0.000 | live |
+| `v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3` | FAIL | 38346 | **0** | 0.000 | live |
 
 ---
 

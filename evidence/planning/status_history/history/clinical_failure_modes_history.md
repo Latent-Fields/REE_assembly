@@ -155,6 +155,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:CATATONIA-II`
 
@@ -307,6 +308,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:OCD-THREE-LAYER`
 
@@ -459,6 +461,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:PTSD-HYPERAROUSAL-INSOMNIA`
 
@@ -611,6 +614,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:DREAM-PHENOMENOLOGY`
 
@@ -763,6 +767,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:SEROTONERGIC-CROSS-STATE`
 
@@ -915,6 +920,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:FRAME-TAG`
 
@@ -1067,6 +1073,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:SELF-MODEL-DEGRADATION`
 
@@ -1219,6 +1226,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:NARCOLEPSY-CATAPLEXY`
 
@@ -1371,6 +1379,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:PROPOSAL-ENTROPY`
 
@@ -1523,6 +1532,7 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
 ## `clinical_failure_modes:PHARMACOLOGICAL-PREDICTIONS`
 
@@ -1675,4 +1685,5 @@ Source plan: `evidence/planning/psychiatric_failure_modes_plan.md`
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/precondition_unmet routing=governance-note-only
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-464e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-08-13T04:16Z` [autopsy] `failure_autopsy_mech266-464e-467e-cluster_2026-08-13#V3-EXQ-467e` -> [`evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_mech266-464e-467e-cluster_2026-08-13.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-08-15T01:52Z` [manifest] `v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3` -> [`evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json`](../../../../evidence/experiments/v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3.json) :: PASS manifest non_contributory
 
