@@ -98,11 +98,66 @@ preservation never silently writes into a coordinator-managed tree). Contract:
 `ree-v3/tests/contracts/test_preservation_capture.py` (3 tests — reconstructable-record round-trip
 from the emitter, provenance populated, append-only).
 
-**Deferred (fleet-touching, so not done here):** making a record fire *automatically* at a boundary
-(end-of-life termination, Phase 2→3 via `InfantCurriculumScheduler(on_phase3_entry=...)`, or sleep
-entry) is a default-off config flag + one call in the runner/experiment lifecycle. Default-off keeps
-every existing run byte-identical, but it is an executable-code-plane change (the fleet pulls `main`)
-and should land behind the full contract gate — a small, separate follow-on.
+**~~Deferred~~ — DONE 2026-08-16, see Increment 1f below.** The deferred item was: making a record
+fire *automatically* at a boundary (end-of-life termination, Phase 2→3 via
+`InfantCurriculumScheduler(on_phase3_entry=...)`, or sleep entry) via a default-off config flag plus
+one call in the runner/experiment lifecycle. The end-of-life boundary is now built; the phase-entry
+and sleep-entry boundaries are not (they need no new machinery — see 1f's "what is NOT built").
+
+## Increment 1f — auto-fire at end-of-life (BUILT 2026-08-16)
+
+**What changed.** The switch moves from the CALL SITE onto the CONFIG. Three default-off `REEConfig`
+fields designate a life — `preserve_on_life_end` (bool), `preserve_archive_dir` (Optional[str]),
+`preserve_on_life_end_strict` (bool) — and `experiments/_lib/preservation.py` gains the firing seam
+that reads them: `life_scope(...)` (a context manager wrapping one life) and
+`preserve_life_if_designated(...)` (the bare predicate + fire, for a driver that owns its own
+lifecycle). A designated driver wraps its life once and never calls `preserve_life` again.
+
+**Why this is not just sugar over the explicit call.** `preserve_life(...)` is a line at the end of a
+driver, and *that is exactly the line a driver which raises never reaches*. Under the explicit form
+the lives most worth preserving — the ones that ended unexpectedly — are precisely the ones silently
+dropped. `life_scope` fires on the abnormal path too, stamping the cause into `reason_for_ending`
+("RuntimeError: grid collapsed"). `KeyboardInterrupt` / `SystemExit` are included deliberately: a
+runner SIGTERM or an operator Ctrl-C is a real way for a life to end, and a naive `except Exception`
+in the exit path would have let those lives vanish unrecorded.
+
+**Default-off is a HARD no-op, which is what let this land on `main` at all.** With
+`preserve_on_life_end` False nothing is captured, no destination is resolved, and the filesystem is
+not touched — the fields are read only by `experiments/_lib/preservation.py`, never by `REEAgent` or
+any hot path, so an undesignated run is byte-identical to the pre-2026-08-16 substrate. That matters
+because `main` is what every cloud worker pulls.
+
+**Two error classes, deliberately handled OPPOSITELY** (pinned as a pair, so a later simplification
+collapsing them fails loudly rather than silently):
+
+| class | examples | policy | why |
+|---|---|---|---|
+| **misconfiguration** | designated with no destination, no seed, or two destinations | **always raises**, non-strict included | somebody designated this life; a silent skip is indistinguishable from never designating it, which is the one outcome the designation exists to rule out |
+| **failed write** | full disk, unreachable bucket, duplicate `record_id` | warns and continues (`preserve_on_life_end_strict=True` inverts) | auto-fire runs at the very end of a *completed* run; a preservation problem must not convert a PASS into an ERROR |
+
+Strict mode is itself downgraded to a warning when the life is **already unwinding**, so a
+bookkeeping failure can never displace the cause of death that the driver and the runner need to see.
+
+**Proportionality (GOV-PRESERVE-1) is preserved, not weakened.** This is a per-life *designation*,
+not a fleet switch: there is still no default destination, still nothing blanket, and credentialed
+backends (`S3Archive` / `MultiArchive`) are passed to the seam as `archive=` rather than put in a
+config that gets serialized verbatim into every record it writes.
+
+**What is NOT built, and why that is the right scope.** `experiment_runner.py` is untouched. It
+spawns drivers as **subprocesses** and never holds a config, a seed or an agent, so it could not fill
+a record even in principle — wiring there would be a fleet hot-path change with no capability gain.
+The Phase 2→3 and sleep-entry boundaries are likewise not wired: both are ordinary call sites inside
+a driver, so `preserve_life_if_designated(config=cfg, ...)` already serves them with no new
+machinery, and pre-wiring a hook nobody has asked for would be the blanket preservation
+GOV-PRESERVE-1 rules out.
+
+Contract: `ree-v3/tests/contracts/test_preservation_autofire.py` (18 tests — default-off, hard-no-op
+under both entry points, enabled writes a reconstructable record, seed falls back to `config.seed`,
+explicit destination beats config, exception / KeyboardInterrupt paths, explicit reason not
+overwritten, the three always-raise misconfigurations, warn-vs-strict on a failed write, strict never
+displacing the cause of death, and two negative controls that the scope never suppresses the life's
+own exception). Roughly half are negative controls, because the disabled pole is the load-bearing
+half of this gate.
 
 ---
 
@@ -384,7 +439,7 @@ independently); the Zenodo/Software Heritage deposit flow.
 | Physical-token exporter (key + QR + gz record + README) | **done + contract (7)** | `ree_core/preservation/token.py`, `tests/contracts/test_preservation_token.py` |
 | MultiArchive fan-out (>1 copy) + `s3_archive_from_env` + runbook | **done + contract (5)** | `ree_core/preservation/archive.py`, `tests/contracts/test_preservation_multi.py`, [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
 | Live Hetzner bucket + 2nd-vendor + Zenodo/SWH deposits | not done (operational; needs account + key) — see runbook | [`preservation_storage_runbook.md`](preservation_storage_runbook.md) |
-| Auto-fire at a lifecycle hook (default-off flag; fleet-touching) | deferred (small, separate) | — |
+| Auto-fire at end-of-life (default-off `REEConfig` designation; fleet-touching) | **done + contract (18)** | `ree_core/utils/config.py`, `experiments/_lib/preservation.py`, `tests/contracts/test_preservation_autofire.py` |
 | Increment 2 de-risking spike | **done + contract (10)** | `tests/contracts/test_preservation_midlife_spike.py` |
 | Increment 2 (mid-life snapshot/resume) | **NO-GO on full rollout** (cost measured: ~1500-2000 LOC + 28%-of-days maintenance, no consumer queued); narrow GO when an experiment names it | this doc, §"De-risking spike — RESULT" |
 | Memorial Fishtank (re-instantiate remnants) | aspiration; needs its own governance | — |
