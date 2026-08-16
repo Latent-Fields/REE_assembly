@@ -1,0 +1,224 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T17:10:38Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "cranky-driscoll-126a36",
+  "companion_md": "failure_autopsy_861c-861d-mech180-cluster_2026-08-16.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_861c_inv050_mech180_calibration_fixed_replication_20260814T231404Z_v3",
+      "queue_id": "V3-EXQ-861c",
+      "claim_ids": ["INV-050", "MECH-180"],
+      "self_route_label": "mel_coupling_below_calibration_noise_floor",
+      "failed_criterion": "absolute",
+      "failed_criterion_name": "C2_on_factor_clears_calibration_noise_floor",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim not fairly tested; DV1/DV2 track measured MEL 3/3 seeds",
+        "biological_reference": "clear -- sleep-pressure homeostat scaling consolidation with waking learning load; translation partial",
+        "prerequisites": "present -- R1 world-forward convergence and R2 ecological MEL gradient both met at 1.0",
+        "implementation": "complete -- consumer functional, duration factor monotone in measured MEL",
+        "environment": "partial -- world_rule_shift producer failed to raise HIGH-arm MEL above the no-shift base on seed 7",
+        "measurement": "under-instrumented -- mel_reference estimated from CALIB_DRAWS=5 at rel_sd 0.15-0.28, i.e. calibration scatter is the same magnitude as the effect",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, dominantly MEASURES -- not chargeable to REE alone"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep-pressure regulation scaling SWS depth/duration with prior waking learning load (process-S analog)",
+        "dependencies": ["graded waking novelty producing measurable prediction-error load", "a stable homeostatic baseline against which load is compared"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; the REE consumer is a faithful class translation. The gap is instrumental -- the 'stable baseline' is estimated empirically per seed with insufficient precision.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement/calibration under-power, NOT substrate_ceiling. Consistent with the lineage's own prior adjudications (701c 'measurement_calibration_not_substrate_ceiling'; 718a 'NOT substrate_ceiling at the consumer'). Stamping substrate_ceiling here would fire the re-derive brake and forbid the re-run that settles the question.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-861c (confirmed failure_autopsy_861c-861d-mech180-cluster_2026-08-16) -> non_contributory, status and v3_pending UNCHANGED. Both readiness gates met and DV1 (sws_power) / DV2 (replay_rate) track measured MEL 3/3 seeds -- the consumer is functional. The load-bearing C2 failure is mel_reference calibration under-power, not a substrate ceiling: on_factor == mel_HIGH/mel_reference exactly, the reference is estimated from 5 draws at rel_sd 0.15-0.28, and at n=10 draws C2 flips to 2/3 PASS (seed 271 misses by 0.5% at n=5). Seed 7 is a genuine link-(i) producer failure (HIGH-arm MEL 3.04e-5 below the no-shift base 3.64e-5). Route: /queue-experiment V3-EXQ-861e (raise calibration draws + pre-registered operating-point precondition).",
+      "per_claim_recommendation": {
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note updated with the 861c calibration-under-power diagnosis; v3_pending STAYS; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note updated with the 861c calibration-under-power diagnosis; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The blocking defect is driver-side (CALIB_DRAWS lives in the driver's own thresholds block), so it routes to /queue-experiment rather than a substrate build. Substrate-side hardening of MELConsumer.relative_novelty is recorded on the MECH122 entry below but is not the blocking path for 861e."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08",
+          "failure_autopsy_V3-EXQ-701b_2026-06-29",
+          "failure_autopsy_V3-EXQ-701c_2026-06-30"
+        ],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Prior ceiling hits under R1-R3: MECH-180 = 2, INV-050 = 3. This autopsy recommends `standard`, not `substrate_ceiling`, so neither count advances and the brake does not fire. Per R3 a broken instrument is not evidence of a ceiling; the dominant blocker here is a quantified, buildable calibration defect (n=10 draws flips C2 to PASS)."
+      },
+      "learning_extracted": [
+        "A consumer reading a ratio against an empirically calibrated reference inherits that reference's sampling error; here rel_sd 0.15-0.28 over 5 draws matched the size of the effect being detected.",
+        "on_factor == mel_HIGH/mel_reference exactly -- the C2 criterion is a pure function of the calibration, so calibration precision is the experiment's resolving power.",
+        "Seed 7's HIGH-arm MEL below the no-shift base is a genuine producer (link-i) failure and is NOT fixed by better calibration -- the C2 failure is mixed, not uniformly instrumental."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3",
+      "queue_id": "V3-EXQ-861d",
+      "claim_ids": ["MECH-180", "MECH-122"],
+      "self_route_label": "mel_control_degenerate",
+      "failed_criterion": "discrimination",
+      "failed_criterion_name": "C1b_spindle_density_decoupled_monotone_in_measured_mel",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim not fairly tested; the criterion could not vary on 2/3 seeds",
+        "biological_reference": "clear -- sleep-spindle-mediated selective content packaging into cortical schema; translation partial (V3 proxy covers content packaging only, sensory gating has zero V3 code)",
+        "prerequisites": "present at the tested layer (R1/R2 met, fix armed and firing); MISSING downstream -- the V3-EXQ-436c ContextMemory.write_gate bias-over-content defect is open and untested",
+        "implementation": "complete at the tested layer -- mean_spindle_selection_weight spans ~100x and tracks measured MEL, resolving the 861a flat-weight defect; a distinct sibling write-path defect remains open",
+        "environment": "partial -- same world_rule_shift producer instability as 861c",
+        "measurement": "misleading -- the clamp(mel/ref-1,0,1) gate was DEAD on seed 42 (all four ON arms below reference) and SATURATED on seed 123 (3/4 arms at 1.0); seed 123 also shows 4-6 cycles of insufficient touched slots, ~0 variance and one arm at exactly 0",
+        "integration": "partially coupled -- selection weight live and graded, downstream DV unresponsive",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, dominantly MEASURES -- not chargeable to REE alone"
+      },
+      "biological_reference": {
+        "closest_mechanism": "thalamocortical sleep spindles gating selective reactivation and schema installation during SWS",
+        "dependencies": ["a novelty/salience signal available at consolidation time", "a write path that preserves content differences rather than collapsing them"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; the failure is instrumental (gate operating point) plus a known open downstream write-path defect.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-180": "standard",
+        "MECH-122": "standard"
+      },
+      "recommended_epistemic_category_note": "Not substrate_ceiling. The tested mechanism is BUILT and demonstrably firing; the criterion was vacuous because the gate's operating point was dead or saturated on 2/3 seeds. Recording this as a ceiling would suppress GOV-GRAN-1 surfacing and mark MECH-122 not-v3-testable on the strength of a criterion that could not vary.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-180": "non_contributory",
+        "MECH-122": "non_contributory"
+      },
+      "overrides_manifest_direction": {
+        "claim": "MECH-122",
+        "manifest_value": "weakens",
+        "autopsy_value": "non_contributory",
+        "basis": "The manifest self-routed `weakens` off a 0/3 C1b. The gate clamp(mel/ref-1,0,1) was DEAD on seed 42 (mel/ref-1 = -0.135,-0.401,-0.036,-0.085, all clamp to 0, so the mel_pe fix contributed nothing and the run silently reverted to the legacy `recency` path 861a already showed flat) and SATURATED on seed 123 (+0.623,+1.103,+1.162,+1.412 -> 3/4 arms clamp to 1.0, plus an independently degenerate DV). Only seed 456 spanned a usable range. The criterion required 2/3 seeds while the mechanism was structurally unable to vary on 2/3, so the 0/3 is vacuous rather than a negative result. An implementation/measurement gap must not demote the claim.",
+        "confirmed_by_user_at_gate": true
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-861d (confirmed failure_autopsy_861c-861d-mech180-cluster_2026-08-16) -> non_contributory for BOTH claims; MECH-122 status UNCHANGED at provisional. The manifest's self-routed `weakens` on MECH-122 is OVERRIDDEN. The landed follow-up fix (ree-v3 6aa97ca) is confirmed working at its own layer -- mean_spindle_selection_weight now spans ~100x (0.009-0.956 vs 861a's flat ~0.004-0.01), tracks measured MEL, and collapses to ~0.004 on the MEL-OFF control, resolving the 861a flat-weight defect. But the clamp(mel/ref-1,0,1) novelty gate was DEAD on seed 42 and SATURATED on seed 123, so C1b required 2/3 seeds while the mechanism could not vary on 2/3. Seed 123 additionally had 4-6 cycles of insufficient touched slots and a degenerate DV (one arm exactly 0). On the single graded seed (456) the DV moved INVERSELY to selection weight -- flagged as an anomaly to test, not a result. The distinct V3-EXQ-436c ContextMemory.write_gate bias-over-content defect remains open downstream and is the leading candidate explanation.",
+      "per_claim_recommendation": {
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note updated -- conjunctive gate vetoed by a criterion that could not vary; v3_pending STAYS; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-122": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "OVERRIDE manifest-recommended weakens -> non_contributory; claim not fairly tested (gate dead/saturated on 2/3 seeds, distinct write_gate defect open); status unchanged -> provisional",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/sleep/mel_consumer.py::relative_novelty",
+          "ree_core/agent.py::run_sws_schema_pass"
+        ],
+        "severity_note": "Classified `corrupting` because the defect produces evidence that LOOKS valid but is not: a clamped gate that is dead or saturated yields a clean-looking 0/3 criterion failure indistinguishable from a real negative result. Any future experiment consuming relative_novelty can silently produce vacuous arms unless it pre-registers an operating-point check. Paths are scoped to the two functions rather than whole files to bound the Step 2.5c gate.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation_20260815T005853Z_v3",
+          "experiment_type": "v3_exq_861d_mech180_mech122_spindle_content_selection_dv3_revalidation",
+          "metric": "DV3 revalidation VACUOUS on 2/3 seeds: relative_novelty gate = clamp(mel/ref-1,0,1) was DEAD on seed 42 (gate range [0.000,0.000]) and SATURATED on seed 123 (3/4 ON arms at 1.0, plus 4-6 cycles insufficient touched slots and one arm DV exactly 0). Only seed 456 spanned a usable range [0.027,0.867]. C1b 0/3 is therefore not evidence about the mechanism. On seed 456 the DV moved inversely to selection weight (wt 0.123->0.761 vs DV 0.0195->0.0120) -- anomaly flagged, leading candidate is the still-open V3-EXQ-436c write_gate bias-over-content defect.",
+          "target": "A re-run must pre-register an operating-point precondition (gate spans a usable band, excluding both all-clamped-0 and all-clamped-1 regimes) and score DV3 only on seeds meeting it, plus a DV-validity gate on n_cycles_insufficient_touched_slots.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "The 861a defect was a uniformly flat selection_weight (~0.004-0.01) traced to ThetaBuffer.consolidation_summary() being self-referentially decoupled from the MEL axis. The named follow-up fix landed as ree-v3 6aa97ca (mech122_novelty_reference_mode='mel_pe') and V3-EXQ-861d CONFIRMS it at its own layer: mean_spindle_selection_weight now spans ~100x (0.009-0.956), tracks measured MEL, and collapses to ~0.004 on the MEL-OFF control. The flat-weight failure mode is closed; the residual blocker is the distinct gate-operating-point and write_gate issues recorded in the new entry above."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08"
+        ],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "MECH-122 has 0 prior ceiling hits; MECH-180 has 2. This autopsy recommends `standard` for both, so no count advances and the brake does not fire."
+      },
+      "learning_extracted": [
+        "A clamp(x,0,1) gate fails in two opposite directions that both present as a clean negative: DEAD (all-zero, mechanism inert) and SATURATED (all-one, mechanism non-discriminating). Neither is visible from the criterion's pass/fail alone.",
+        "A gated mechanism needs a pre-registered operating-point precondition proving the gate spans a usable range on a seed BEFORE that seed's criterion is scored -- the calibration analogue of the dry-run unreachable-criterion trap.",
+        "A validated fix can be masked by an independently-known downstream defect: 861d confirmed its own fix while its manifest self-routed `weakens` against the claim, so the positive result was invisible in the headline direction.",
+        "Scoring-policy drift across sibling letters (DV3 excluded in 861c, load-bearing in 861d) was legitimate here because the substrate changed between them, but establishing that required a git-history walk -- the manifest should record which substrate state justified the change."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two structurally distinct load-bearing failures at opposite ends of one measurement chain, with a PROVEN middle. 861c fails at the producer/consumer normalisation (C2 calibration noise floor); 861d fails at the selection/write path (C1b spindle_density). In both runs the intermediate stages -- measured MEL, duration factor monotone in measured MEL, selection weight monotone in measured MEL -- are demonstrably working.",
+    "is_independent_bugs": false,
+    "structural_property": "Both failures are the SAME shared normalisation `mel / mel_reference`. Verified: 861c's on_factor equals mel_HIGH/mel_reference exactly (0.8366, 1.2146, 1.8846), and 861d's novelty gate is clamp(mel/ref-1,0,1). The reference is estimated per seed from CALIB_DRAWS=5 at rel_sd 0.15-0.28 and is not reliably positioned below the ecological MEL distribution, so whichever consumer reads it inherits an operating point that is dead, saturated, or graded as a function of seed. This is one buildable calibration defect expressed at two consumption points, NOT a substrate ceiling and NOT two independent bugs.",
+    "readings": ["calibration_under_power", "gate_operating_point_unverified"],
+    "complementary_not_redundant": true,
+    "lineage_wide_condition": {
+      "name": "z_goal_stream.writer_defect",
+      "runs": ["861", "861a", "861b", "861c", "861d"],
+      "writer_calls": 0,
+      "read": "Common-mode across every arm and every run in the lineage, including runs whose DVs passed. MEL derives from e3 prediction_error against z_world (agent.py:9753-9761) and does not read z_goal, so this cannot explain the spindle-specific failure. Recorded as a real driver defect to fix in the re-run, not as the cause of either failure."
+    }
+  },
+  "hypothesis_space_ledger": {
+    "action": "skipped",
+    "reason": "Neither Step 9b trigger holds: no fanout_recommendation is emitted (the bottleneck routes to one unambiguous buildable fix plus a re-run, not a discrimination among >=2 live rival hypotheses), and no pre-registered leg covers MECH-180 / MECH-122 / INV-050. The nearest registered question, sd017_arc045_mech166_slot_differentiation_sleep, tags a different claim set and carries no growth_restriction. Registry and its derive-only siblings untouched.",
+    "growth_restriction_checked": true,
+    "confirmed_by_user_at_gate": true
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "basis": "granularity_debt_cluster.py: MECH-180 7 targets (unclear=4, strengthened=2, other=1); INV-050 7 targets (unclear=4, intact=3); MECH-122 1 target (other=1). NO target reads `weakened` in any of the three, so this is measurement/implementation debt, not granularity debt, regardless of count."
+  },
+  "fanout_recommendation": null
+}
