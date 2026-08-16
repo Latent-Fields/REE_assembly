@@ -350,8 +350,10 @@ when the detector changes; do not inherit it.
 
 ### The measurement, with its weaknesses stated
 
-3 findings on the live tree at `f7ab285529`, all 3 hand-audited genuine --
-**3/3**. Two of the three are corroborated by governance records written months
+3 findings on the live tree at `origin/master` `8603a6d186`, all 3 hand-audited
+genuine -- **3/3**. (Measured twice: once on a checkout 61 commits behind, then
+re-run at the tip and found identical -- same nodes, same severities, same veto
+counts.) Two of the three are corroborated by governance records written months
 before this detector existed, which is what makes the number evidence rather
 than self-assessment: the 2026-07-29 reconcile says of GAP-1 *"Two of the three
 gates named below HAVE CLEARED"*, and `governance_2026_06_23` says of GAP-2's

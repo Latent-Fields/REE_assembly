@@ -97,8 +97,12 @@ TIER = "T1"
 # returned -- it is evidence, not a target, and it must be re-measured (and
 # re-written here) rather than inherited when the detector changes.
 #
-# 2026-08-16, REE_assembly at f7ab285529: 3 findings, all 3 hand-audited against
-# the plan frontmatter -- precision 3/3.
+# 2026-08-16, REE_assembly at origin/master 8603a6d186: 3 findings, all 3
+# hand-audited against the plan frontmatter -- precision 3/3. (First measured on
+# a checkout 61 commits behind, at f7ab285529, then re-run at the tip above and
+# found IDENTICAL -- same 3 nodes, same severities, same veto counts. The public
+# sha is the one to reproduce against; the local one is recorded only so the two
+# numbers in this file's history are traceable to the same measurement.)
 #
 #   self_attribution:GAP-1  names sleep_substrate:GAP-1, `done`.
 #   self_attribution:GAP-2  names behavioral_diversity_isolation:GAP-A, `done`.
@@ -127,8 +131,8 @@ TIER = "T1"
 # original blocking_external list standing.
 PRECISION_FLOOR = 0.6
 MEASURED_PRECISION: float | None = 1.0
-MEASURED_AT = ("2026-08-16 / REE_assembly f7ab285529 / n=3, 3 genuine "
-               "(2 corroborated by pre-existing governance notes)")
+MEASURED_AT = ("2026-08-16 / REE_assembly origin/master 8603a6d186 / n=3, "
+               "3 genuine (2 corroborated by pre-existing governance notes)")
 
 # Only the two fields the framing names. See SCOPE in the module docstring for
 # why depends_on is deliberately absent.
