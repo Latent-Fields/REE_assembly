@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-16T18:24:43Z",
   "scope": "cluster",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "staging_mode": true,
   "staging_mode_note": "Steps 1-7 and 9 run in full; Step 8 (interactive gate) SKIPPED -- no user present. Routing is DRAFTED, not finalised. Step 9b drafted only: hypothesis_space_registry.v1.json and its three derive-only siblings were NOT written or read for modification. No TASK_CLAIMS entry opened or closed by this session (parent holds cranky-driscoll-126a36-batch). Nothing committed or pushed. claims.yaml / manifests / review_tracker.json / substrate_queue.json NOT edited. pending_review.md and the experiment index NOT regenerated.",
   "companion_md": "evidence/planning/failure_autopsy_929-933-sleep-gap9-cluster_2026-08-16.md",
@@ -31,8 +31,24 @@
   },
   "z_goal_stream_determination": {
     "state": "present_with_zero_but_NOT_the_writer_defect",
-    "recorded_block_929": {"ticks_total": 0, "ticks_active": 0, "writer_calls": 0, "active_frac": null, "writer_defect": null, "goal_state_present": false, "n_agents": 6},
-    "recorded_block_933": {"ticks_total": 0, "ticks_active": 0, "writer_calls": 0, "active_frac": null, "writer_defect": null, "goal_state_present": false, "n_agents": 9},
+    "recorded_block_929": {
+      "ticks_total": 0,
+      "ticks_active": 0,
+      "writer_calls": 0,
+      "active_frac": null,
+      "writer_defect": null,
+      "goal_state_present": false,
+      "n_agents": 6
+    },
+    "recorded_block_933": {
+      "ticks_total": 0,
+      "ticks_active": 0,
+      "writer_calls": 0,
+      "active_frac": null,
+      "writer_defect": null,
+      "goal_state_present": false,
+      "n_agents": 9
+    },
     "interpretation": "The block is PRESENT (both drivers wire ZGoalStreamAccumulator and pass z_goal_stream_stats to write_flat_manifest), so this is NOT the 'absent / unmeasured' state. It is equally NOT the pending_review 'Dead z_goal stream' writer defect: per experiments/_lib/z_goal_stream.py, writer_defect is true ONLY when ticks_total > 0 and writer_calls == 0; here ticks_total is 0 so the module records writer_defect: null -- explicitly 'nothing measured', not 'the writer was skipped'. Correspondingly active_frac is null, not 0.0, and the module states plainly that null means nothing was measured; active_frac is NOT the signal. goal_state_present: false is the disambiguator the module provides: GoalState is constructed only when config.goal.z_goal_enabled is set, so z_goal is OFF in these configs -- the zero is 'disabled', not 'stepped without a writer'. Neither run appears in pending_review.md's 'Dead z_goal stream' section, consistent with this.",
     "over_determination_note": "ticks_total == 0 is over-determined here and must NOT be read as 'the agent was never stepped'. The counter is incremented ONLY inside REEAgent.select_action (ree_core/agent.py:5839, itself gated on goal_state is not None), and BOTH drivers bypass select_action entirely -- they call agent.sense(), hand-set agent._last_action, env.step(), agent.update_residue(). So the counter would read 0 even with z_goal enabled. The agents WERE stepped (120 waking steps each, n_agents 6 and 9 observed post-cell).",
     "do_criteria_depend_on_a_live_z_goal": false,
@@ -51,9 +67,27 @@
       "failed_criterion_note": "No criterion failed -- this is a clean unflagged diagnostic PASS, autopsied under the 2026-08-07 mandatory-for-diagnostics rule. The adjudicated question is whether the PASS holds for a real or a degenerate reason.",
       "pass_is_real_or_degenerate": "REAL but THIN -- carried by exactly one of three load-bearing criteria",
       "criterion_informativeness": [
-        {"criterion": "c1_off_silent", "load_bearing": true, "passed": true, "could_have_failed": "near-entailed", "reasoning": "The precondition off_arm_trigger_not_wired reads the FLAG; c1 reads the BEHAVIOUR (0 cycles). Residual content is real but small: it would catch a second, unexpected firing path. With no agent.reset() in the loop and sleep_loop_episodes_K = 1e7, notify_episode_end is unreachable, so that residual is thin."},
-        {"criterion": "c2_on_fires", "load_bearing": true, "passed": true, "could_have_failed": "yes", "reasoning": "GENUINE and load-bearing. A wired flag whose notify_waking_step is never invoked from update_residue, or whose _run_cycle early-returns, yields 0 fires with every precondition still met. This is the actual GAP-9 question -- structural reachability of a sleep cycle inside a single continuous life -- and it is what the run establishes."},
-        {"criterion": "c3_on_ceiling_arm", "load_bearing": true, "passed": true, "could_have_failed": "no", "reasoning": "STRUCTURALLY UNFAILABLE. 929's substrate (817ae377) has the need arm hardcoded off and configures no mel_consumer, so within_life_trigger_arm_need can only be 0.0 and the ceiling fraction can only be 1.0. Its stated purpose is forward-compatibility with a future need-arm run, which is legitimate -- but it is declared load_bearing: true while being incapable of failing, which inflates the apparent strength of the 3-of-3 pass."}
+        {
+          "criterion": "c1_off_silent",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "near-entailed",
+          "reasoning": "The precondition off_arm_trigger_not_wired reads the FLAG; c1 reads the BEHAVIOUR (0 cycles). Residual content is real but small: it would catch a second, unexpected firing path. With no agent.reset() in the loop and sleep_loop_episodes_K = 1e7, notify_episode_end is unreachable, so that residual is thin."
+        },
+        {
+          "criterion": "c2_on_fires",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "yes",
+          "reasoning": "GENUINE and load-bearing. A wired flag whose notify_waking_step is never invoked from update_residue, or whose _run_cycle early-returns, yields 0 fires with every precondition still met. This is the actual GAP-9 question -- structural reachability of a sleep cycle inside a single continuous life -- and it is what the run establishes."
+        },
+        {
+          "criterion": "c3_on_ceiling_arm",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "no",
+          "reasoning": "STRUCTURALLY UNFAILABLE. 929's substrate (817ae377) has the need arm hardcoded off and configures no mel_consumer, so within_life_trigger_arm_need can only be 0.0 and the ceiling fraction can only be 1.0. Its stated purpose is forward-compatibility with a future need-arm run, which is legitimate -- but it is declared load_bearing: true while being incapable of failing, which inflates the apparent strength of the 3-of-3 pass."
+        }
       ],
       "vacuous_precondition": {
         "name": "life_exceeds_step_ceiling",
@@ -74,7 +108,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "Homeostatic sleep-pressure backstop -- the anti-starvation half of Borbely's two-process model; in Saper 2010's architecture, the sharp bistable VLPO/monoaminergic flip-flop that the trigger must be able to throw at all.",
-        "dependencies": ["Process S time-integrating pressure accumulator (design (b), absent here by construction)", "external stabiliser holding the switch after it flips (orexin analog = MECH-286, deliberately OFF)", "an environment that sustains genuine learning load (parked -- GAP-5b / V3-EXQ-718a: measured CausalGridWorldV2 MEL is noise-level ~1e-5)"],
+        "dependencies": [
+          "Process S time-integrating pressure accumulator (design (b), absent here by construction)",
+          "external stabiliser holding the switch after it flips (orexin analog = MECH-286, deliberately OFF)",
+          "an environment that sustains genuine learning load (parked -- GAP-5b / V3-EXQ-718a: measured CausalGridWorldV2 MEL is noise-level ~1e-5)"
+        ],
         "is_formal_import": false,
         "divergence": "None at this target's own scope. A fixed step-count ceiling is a faithful translation of the anti-starvation backstop role the synthesis assigns design (a); the literature's objection is only to using a ceiling as the PRIMARY trigger, which this run does not do and explicitly disclaims.",
         "lit_status": "present"
@@ -93,7 +131,9 @@
       "recommended_evidence_quality_note": "No claim exists to carry an evidence_quality_note (claim_ids: []). The equivalent durable text belongs on the sleep_substrate_plan.md GAP-9 node and is drafted here for governance: 'V3-EXQ-929 establishes design (a) only -- that a sleep cycle is structurally reachable from within a single continuous life via SleepLoopManager.notify_waking_step. Of its three load-bearing criteria only c2_on_fires could have failed: c3_on_ceiling_arm is structurally unfailable in a substrate with the need arm hardcoded off, and the life_exceeds_step_ceiling precondition compares two module constants (120 vs 25) on every execution path. The run does not speak to sleep TIMING and does not measure whether the fired cycle performed any consolidation work.'",
       "per_claim_recommendation": {},
       "per_claim_recommendation_note": "EMPTY BY CONSTRUCTION, not by omission. claim_ids is [] -- there is no claim to key on, and inventing one would be worse than an empty map. GOV-APPLY-1 reads this field to ask whether a confirmed recommendation was applied; with no claim there is no claims.yaml write for it to track. The applicable disposition instead targets the sleep_substrate_plan.md GAP-9 node (see Section 8 of the .md) and the substrate_queue entry recommended on the 933 target.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "recommended_substrate_queue_entry_note": "The substrate work surfaced by this cluster is common to both targets and is filled once, on the V3-EXQ-933 target, to avoid a duplicate entry. This target's own routing is a recording-gap re-run.",
       "recording_gap": {
         "is_recording_debt_not_measurement_debt": true,
@@ -135,10 +175,34 @@
       "failed_criterion_note": "No criterion failed. Clean unflagged diagnostic PASS; the adjudicated question is whether it holds for a real or degenerate reason.",
       "pass_is_real_or_degenerate": "REAL for the question the acceptance rule asks (is the need arm wired and does it gate on threshold), but the label `need_arm_validated` OVERSTATES it: what was validated is a level detector with no refractory, not the Process-S demand accumulator the design brief specified.",
       "criterion_informativeness": [
-        {"criterion": "c1_need_fires_and_carries", "load_bearing": true, "passed": true, "could_have_failed": "near-entailed", "reasoning": "'fires >= 1' is real content; 'need_arm_fraction == 1.0' is entailed by arm geometry -- NEED_HIGH's ceiling is 100000 in a 120-step life, so no fire CAN be ceiling-attributed. Further, the readiness precondition stimulus_crossed_threshold itself requires sleep_cycles_fired >= 1 on this same arm, so c1 substantially restates its own precondition."},
-        {"criterion": "c2_demand_sooner", "load_bearing": true, "passed": true, "could_have_failed": "weakly; confounded but conservatively", "reasoning": "Injecting a constant 1.0 against threshold 0.5 makes need_crossed() true at step 1 by arithmetic, so 'first fire 1 < 25' is close to a restatement of the injection design. CONFOUND: NEED_HIGH differs from CEILING in ceiling (100000 vs 25) as well as in MEL, so the arms differ in two ways. The confound is conservative -- a higher ceiling can only DELAY a ceiling-arm fire, never manufacture 'sooner' -- so it does not manufacture the result, but the criterion carries little information beyond what c1 already carries."},
-        {"criterion": "c3_threshold_gates", "load_bearing": true, "passed": true, "could_have_failed": "yes", "reasoning": "The ONLY magnitude-discriminating criterion in the whole cluster. NEED_SUB has identical wiring to NEED_HIGH and differs only in injected magnitude (0.1 vs 0.5 threshold). It discriminates between two candidate crossing statistics: under a SUM/integral, 0.1/step crosses 0.5 by step 5 and c3 FAILS; under a MEAN it never crosses. It passed -- establishing the implementation is a mean. See biological_reference.divergence for why that same result reads as a negative result under the design's own cited literature."},
-        {"criterion": "c4_ceiling_baseline", "load_bearing": true, "passed": true, "could_have_failed": "no", "reasoning": "STRUCTURALLY UNFAILABLE. use_mel_entry=False makes MELConsumer.need_crossed() return False unconditionally (mel_consumer.py:233-234), so need_arm_fraction 0.0 / ceiling_arm_fraction 1.0 is forced. It is also a re-run of 929's c3 on a later substrate -- the same unfailable assertion stated twice across the cluster."}
+        {
+          "criterion": "c1_need_fires_and_carries",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "near-entailed",
+          "reasoning": "'fires >= 1' is real content; 'need_arm_fraction == 1.0' is entailed by arm geometry -- NEED_HIGH's ceiling is 100000 in a 120-step life, so no fire CAN be ceiling-attributed. Further, the readiness precondition stimulus_crossed_threshold itself requires sleep_cycles_fired >= 1 on this same arm, so c1 substantially restates its own precondition."
+        },
+        {
+          "criterion": "c2_demand_sooner",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "weakly; confounded but conservatively",
+          "reasoning": "Injecting a constant 1.0 against threshold 0.5 makes need_crossed() true at step 1 by arithmetic, so 'first fire 1 < 25' is close to a restatement of the injection design. CONFOUND: NEED_HIGH differs from CEILING in ceiling (100000 vs 25) as well as in MEL, so the arms differ in two ways. The confound is conservative -- a higher ceiling can only DELAY a ceiling-arm fire, never manufacture 'sooner' -- so it does not manufacture the result, but the criterion carries little information beyond what c1 already carries."
+        },
+        {
+          "criterion": "c3_threshold_gates",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "yes",
+          "reasoning": "The ONLY magnitude-discriminating criterion in the whole cluster. NEED_SUB has identical wiring to NEED_HIGH and differs only in injected magnitude (0.1 vs 0.5 threshold). It discriminates between two candidate crossing statistics: under a SUM/integral, 0.1/step crosses 0.5 by step 5 and c3 FAILS; under a MEAN it never crosses. It passed -- establishing the implementation is a mean. See biological_reference.divergence for why that same result reads as a negative result under the design's own cited literature."
+        },
+        {
+          "criterion": "c4_ceiling_baseline",
+          "load_bearing": true,
+          "passed": true,
+          "could_have_failed": "no",
+          "reasoning": "STRUCTURALLY UNFAILABLE. use_mel_entry=False makes MELConsumer.need_crossed() return False unconditionally (mel_consumer.py:233-234), so need_arm_fraction 0.0 / ceiling_arm_fraction 1.0 is forced. It is also a re-run of 929's c3 on a later substrate -- the same unfailable assertion stated twice across the cluster."
+        }
       ],
       "degenerate_regime_finding": {
         "observation": "NEED_HIGH fired a sleep cycle on 120 of 120 waking steps, all three seeds, first fire at step 1.",
@@ -158,7 +222,12 @@
       },
       "biological_reference": {
         "closest_mechanism": "Borbely's Process S -- a homeostatic sleep-pressure accumulator that GROWS with time awake and is DISCHARGED by sleep -- composed with Saper 2010's bistable sleep-wake flip-flop held in place by an external stabiliser (orexin).",
-        "dependencies": ["time-integrating pressure term (Process S proper)", "post-fire refractory / hysteresis", "external stabiliser (MECH-286 orexin analog, deliberately OFF)", "an ecological producer of sustained learning load (parked -- GAP-5b)"],
+        "dependencies": [
+          "time-integrating pressure term (Process S proper)",
+          "post-fire refractory / hysteresis",
+          "external stabiliser (MECH-286 orexin analog, deliberately OFF)",
+          "an ecological producer of sustained learning load (parked -- GAP-5b)"
+        ],
         "is_formal_import": false,
         "divergence": "LOAD-BEARING, on two axes. (1) PROCESS S vs LEVEL DETECTOR. need_crossed() compares current_mel() -- MELConsumer.current_mel() == accumulator.mean(), the MEAN per-step waking PE since the last cycle -- against a fixed threshold. WakingMELAccumulator's own docstring makes the invariance deliberate: 'MEL is the MEAN per-step prediction error ... so the window length does not bias the load estimate.' Time-invariance is the RIGHT property for the role the statistic was built for (GAP-5b duration scaling: how hard was this wake window, independent of its length) and the WRONG property for the role it was reused in. Process S's defining behaviour is that constant sub-threshold demand EVENTUALLY crosses, because pressure integrates over time awake; a mean never does. The reuse route is visible in the source: need_crossed() was factored out of entry_permitted() so the GAP-9 step trigger could 'reuse the exact same crossing predicate', and the duration-consumer's scale-free semantics travelled with it into an entry-timing role where scale-freeness inverts the intended dynamic. The synthesis is explicit that design (b) IS Process S ('(b) is Process S / INV-050's third drive, and it is the best-grounded of the three'). (2) SWITCH WITHOUT STABILISER -- see degenerate_regime_finding.biological_reading.",
         "divergence_is_undetectable_by_this_design": "Both runs' results are exactly what a level detector predicts and neither could have detected the divergence. NEED_HIGH (constant 1.0) crosses on step 1 and again after every reset; NEED_SUB (constant 0.1) never crosses across 120 steps. c3_threshold_gates is the SAME measurement under two opposite framings: pre-registered as 'sub-threshold demand does not spuriously fire the need arm' it PASSES; read against the design's own Process S basis -- 'does accumulated waking demand eventually reach the entry threshold?' -- the identical measurement is a NEGATIVE result (120 steps of continuous non-zero learning demand produced zero demand-driven sleep). The acceptance rule encodes only the first framing, so the run cannot arbitrate.",
@@ -186,7 +255,10 @@
         "implementation_hint": "The GAP-9 need arm (design (b)) currently fires on MELConsumer.need_crossed(), which thresholds current_mel() == accumulator.mean() -- a deliberately time-invariant statistic built for GAP-5b DURATION scaling, where scale-freeness is correct. Reused for ENTRY TIMING it inverts the intended dynamic: constant sub-threshold demand never crosses however long the agent stays awake (V3-EXQ-933 NEED_SUB: 0 need-arm fires in 120 steps), while supra-threshold demand crosses on step 1 and on every step thereafter (NEED_HIGH: 120/120 fires, no refractory). Build two things, keeping the duration statistic untouched: (i) a SEPARATE time-integrating sleep-pressure term for the entry decision (Borbely Process S -- grows with time awake, discharged by on_cycle_complete), leaving current_mel() as the duration input; (ii) a post-fire refractory / hysteresis so the bistable switch cannot chatter. The 2026-08-14 lit synthesis already names the preferred shape for the graded half (Section 5.3: route the term into MELConsumer.scale_steps()'s continuous duration factor rather than a boolean permit, degrading to current behaviour at factor 1.0). Both are `complicated (buildable)` -- no open question, no spike needed.",
         "unblocks_claims": [],
         "unblocks_note": "No claims.yaml claims -- GAP-9 is a plan node. What this unblocks is the sleep_substrate_plan.md GAP-9 successor and any downstream experiment intending to use demand-sensitive sleep entry (INV-050 / MECH-180 sleep-timing work, and GAP-5b's parked ecological producer leg).",
-        "depends_on_unresolved": ["MECH-286 sleep-onset gate re-shaping (synthesis Section 5.3 step 2 -- currently OFF because its threat term reads a chance-level place-safety signal per V3-EXQ-917)", "GAP-5b ecological MEL producer (parked -- CausalGridWorldV2 MEL is noise-level, so any ecological validation of this build is gated on it)"],
+        "depends_on_unresolved": [
+          "MECH-286 sleep-onset gate re-shaping (synthesis Section 5.3 step 2 -- currently OFF because its threat term reads a chance-level place-safety signal per V3-EXQ-917)",
+          "GAP-5b ecological MEL producer (parked -- CausalGridWorldV2 MEL is noise-level, so any ecological validation of this build is gated on it)"
+        ],
         "priority_suggested": 2,
         "priority_reasoning": "One fresh failure record and zero claims blocked (claim-free plan node), so not a 1 under governance Step 6a-ii.6's rule; but it is a named, cheap build on a substrate whose plan node is currently marked done, which argues against 3.",
         "severity": "degrading",
@@ -236,7 +308,10 @@
     "is_independent_bugs": false,
     "one_mechanism_or_two_validations": "ONE MECHANISM VALIDATED TWICE -- explicitly not two independent validations. 929 exercises design (a) (ceiling backstop); 933 exercises design (b) (need arm) and REPRODUCES design (a) as its CEILING baseline on a later substrate that strictly contains 929's (817ae377 -> 1ba76825). 933's CEILING arm returns numerically identical results to 929's ON arm (4 fires, first fire step 25, ceiling_arm_fraction 1.0), and 929's c3 and 933's c4 are the same structurally-unfailable assertion stated twice.",
     "structural_property": "The cluster's 7 load-bearing criteria reduce to 2 that could have failed (929 c2_on_fires, 933 c3_threshold_gates), 3 near-entailed by their own preconditions or arm geometry (929 c1, 933 c1, 933 c2) and 2 structurally unfailable (929 c3, 933 c4). Both PASSes are REAL, not vacuous -- but far thinner than '3 of 3' and '4 of 4 load-bearing criteria passed' reads. The convergent property is that the composed trigger has been validated twice against the CONNECTIVITY half of its specification and never once against the DYNAMICS half -- inter-cycle interval, time-to-cross under sustained demand, demand-proportionality of onset -- which is precisely the half that distinguishes the Process-S accumulator the design brief specified from the level detector that was built.",
-    "readings": ["instrumentation_gap_named_buildable_prerequisites", "specification_divergence_gap9_done_overstates_design_b"],
+    "readings": [
+      "instrumentation_gap_named_buildable_prerequisites",
+      "specification_divergence_gap9_done_overstates_design_b"
+    ],
     "readings_note": "Reading 1 (favoured): the trigger is correctly wired and the mechanism class is right; what is missing is a time-integrating pressure term and a stabiliser -- cheap, named builds, `complicated (buildable)`. Reading 2: current_mel()'s mean semantics were a deliberate choice for the duration consumer and are simply the wrong statistic for entry timing, so the PRIMARY arm does not implement design (b) as the synthesis defined it and GAP-9's `done` status overstates what was built. The readings are NOT exclusive and both force the same next action, which is why no fanout_recommendation is emitted.",
     "planning_decision_forced": "Whether sleep_substrate:GAP-9 stays `done`. This autopsy supports `done` for design (a) -- 929's c2 is real and within-life reachability is genuinely established, which was structurally impossible before the build. It does NOT support `done` for design (b) as specified. Options for the gate: leave `done` with a scope caveat; split the plan row into (a) done / (b) partial; or open a GAP-9 successor node.",
     "fanout_recommendation_omitted_because": "GOV-FANOUT-1 applies to a DISCRIMINATION bottleneck among >=2 live rival hypotheses. Here the bottleneck routes to ONE unambiguous build: both candidate statistics are readable in the source (mel_consumer.py:119 and 219), the design brief already names the preferred shape (synthesis Section 5.3), and no fact is missing. The skill lists this case as exempt. Do NOT queue a spike to re-confirm what is already known how to build."
@@ -264,8 +339,20 @@
       "claims": [],
       "claims_note": "Claim-free; the owning node is sleep_substrate:GAP-9 in sleep_substrate_plan.md.",
       "would_be_hypotheses": [
-        {"hid": "H-level-detector", "label": "Instantaneous level detector", "desc": "Entry fires iff the MEAN per-step waking PE since the last cycle exceeds a fixed threshold, so time awake is irrelevant to onset.", "axis": "instrumentation", "basis": "Directly evidenced by V3-EXQ-933: NEED_SUB 0 need-arm fires over 120 steps at constant 0.1; NEED_HIGH fires at step 1 and on every step thereafter. Consistent with MELConsumer.current_mel() == accumulator.mean() and WakingMELAccumulator's stated time-invariance."},
-        {"hid": "H-process-s", "label": "Process-S accumulator", "desc": "Entry pressure integrates over time awake and is discharged by sleep, so sustained sub-threshold demand eventually crosses and onset latency is demand-proportional.", "axis": "process", "basis": "The design's own literature basis -- the 2026-08-14 synthesis states '(b) is Process S / INV-050's third drive, and it is the best-grounded of the three' (Borbely 1982/2016)."}
+        {
+          "hid": "H-level-detector",
+          "label": "Instantaneous level detector",
+          "desc": "Entry fires iff the MEAN per-step waking PE since the last cycle exceeds a fixed threshold, so time awake is irrelevant to onset.",
+          "axis": "instrumentation",
+          "basis": "Directly evidenced by V3-EXQ-933: NEED_SUB 0 need-arm fires over 120 steps at constant 0.1; NEED_HIGH fires at step 1 and on every step thereafter. Consistent with MELConsumer.current_mel() == accumulator.mean() and WakingMELAccumulator's stated time-invariance."
+        },
+        {
+          "hid": "H-process-s",
+          "label": "Process-S accumulator",
+          "desc": "Entry pressure integrates over time awake and is discharged by sleep, so sustained sub-threshold demand eventually crosses and onset latency is demand-proportional.",
+          "axis": "process",
+          "basis": "The design's own literature basis -- the 2026-08-14 synthesis states '(b) is Process S / INV-050's third drive, and it is the best-grounded of the three' (Borbely 1982/2016)."
+        }
       ],
       "axis_family_map_additions_required": "`instrumentation` and `process` are existing families; no new axis label is introduced, so no axis_families.map row would need adding. Verify against the live registry before any append.",
       "decision_block_sketch": {
@@ -286,5 +373,16 @@
     "Note for the /governance walk: entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the identical level-detector semantics even though this cluster only exercised the within-life path. Any prior sleep result relying on MEL-gated entry timing shares the divergence."
   ],
   "chips_spawned": [],
-  "chips_spawned_note": "None, deliberately. Per the 2026-07-30 user-instructed rule, a /failure-autopsy session does NOT spawn_task follow-on that its OWN not-yet-governance-reviewed routing names -- /governance Step 2b re-confirms the routing before Step 4/6a applies it. The follow-on is reported here and in the closing note instead. Governance must additionally check evidence/planning/igw_routine_ledger.json and igw_assignments.json for an already-staged identical build before chipping."
+  "chips_spawned_note": "None, deliberately. Per the 2026-07-30 user-instructed rule, a /failure-autopsy session does NOT spawn_task follow-on that its OWN not-yet-governance-reviewed routing names -- /governance Step 2b re-confirms the routing before Step 4/6a applies it. The follow-on is reported here and in the closing note instead. Governance must additionally check evidence/planning/igw_routine_ledger.json and igw_assignments.json for an already-staged identical build before chipping.",
+  "human_gate": {
+    "confirmed_utc": "2026-08-16T18:41:10Z",
+    "gate": "Step 8 interactive gate, run by the parent session cranky-driscoll-126a36 over the whole 7-artifact batch",
+    "decisions": [
+      "SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.",
+      "MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.",
+      "GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.",
+      "CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit."
+    ],
+    "note": "Written headless in STAGING MODE, then confirmed at a consolidated interactive gate. Routing as drafted except where a decision above overrides it."
+  }
 }

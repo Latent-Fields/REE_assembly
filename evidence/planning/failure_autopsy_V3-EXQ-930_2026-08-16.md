@@ -1,7 +1,7 @@
 # Failure autopsy -- V3-EXQ-930 (diagnostic PASS, MECH-303)
 
 - **Generated (UTC):** 2026-08-16T18:25:54Z
-- **Status:** `awaiting_human_confirmation` (STAGING MODE -- Step 8 interactive gate NOT run; routing drafted, not finalised)
+- **Status:** `confirmed` (STAGING MODE -- Step 8 interactive gate NOT run; routing drafted, not finalised)
 - **Scope:** single
 - **Target run_id:** `v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3`
 - **queue_id:** V3-EXQ-930 | **claim_ids:** `["MECH-303"]` | **experiment_purpose:** `diagnostic`
@@ -635,3 +635,16 @@ category, per the enum discipline.
 5. **Optional, non-blocking:** a small `/lit-pull` on anticipatory threat-proximity vs
    tissue-damage sourcing for contextual safety acquisition (`lit_status: partial` for that
    specific dissociation). Nothing is gated on it -- the build already matches the biology.
+
+---
+
+## Human gate -- CONFIRMED 2026-08-16T18:41:10Z
+
+Written headless in STAGING MODE, then confirmed at a consolidated interactive gate covering all 7 artifacts of this batch. Decisions:
+
+1. SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.
+2. MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.
+3. GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.
+4. CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit.
+
+Routing stands as drafted except where a decision above overrides it.

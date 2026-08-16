@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-16T18:26:35Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "staging_mode_note": "STAGING MODE: Steps 1-7 and 9 run in full; Step 8 (interactive gate) SKIPPED -- no user present. Routing is drafted, not finalised. Step 9b was drafted only: hypothesis_space_registry.v1.json was READ but NOT written; the intended append is under hypothesis_space_ledger_pending. No TASK_CLAIMS entry opened or closed (parent holds cranky-driscoll-126a36-batch). Nothing committed or pushed. claims.yaml, manifests, review_tracker.json and substrate_queue.json untouched. pending_review.md and the experiment index NOT regenerated.",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
@@ -12,7 +12,10 @@
     {
       "run_id": "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3",
       "queue_id": "V3-EXQ-934",
-      "claim_ids": ["MECH-266", "SD-032a"],
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
       "experiment_purpose": "diagnostic",
       "outcome": "PASS",
       "self_route_label": "cap_recalibration_admits_mixed_regime",
@@ -24,11 +27,45 @@
         "threshold": "min_fraction = 0.6667 of guard-passing seeds; occupancy_floor 0.1, occupancy_ceiling 0.9",
         "measured": "sym_graded_fraction = 0.6667 (2 of 3 seeds) -- exactly at the bar",
         "per_seed_symmetric_arm_occupancy": {
-          "seed_42": {"0.75": 0.5606, "1.0": 0.0317, "1.25": 0.0, "1.5": 0.0, "1.75": 0.0, "mixed_band_caps": [0.75], "graded": true},
-          "seed_43": {"0.75": 1.0, "1.0": 1.0, "1.25": 1.0, "1.5": 1.0, "1.75": 0.4447, "mixed_band_caps": [1.75], "graded": true},
-          "seed_44": {"0.75": 1.0, "1.0": 1.0, "1.25": 1.0, "1.5": 1.0, "1.75": 0.9002, "mixed_band_caps": [], "graded": false}
+          "seed_42": {
+            "0.75": 0.5606,
+            "1.0": 0.0317,
+            "1.25": 0.0,
+            "1.5": 0.0,
+            "1.75": 0.0,
+            "mixed_band_caps": [
+              0.75
+            ],
+            "graded": true
+          },
+          "seed_43": {
+            "0.75": 1.0,
+            "1.0": 1.0,
+            "1.25": 1.0,
+            "1.5": 1.0,
+            "1.75": 0.4447,
+            "mixed_band_caps": [
+              1.75
+            ],
+            "graded": true
+          },
+          "seed_44": {
+            "0.75": 1.0,
+            "1.0": 1.0,
+            "1.25": 1.0,
+            "1.5": 1.0,
+            "1.75": 0.9002,
+            "mixed_band_caps": [],
+            "graded": false
+          }
         },
-        "per_cap_cross_seed_graded_count": {"0.75": "1/3", "1.0": "0/3", "1.25": "0/3", "1.5": "0/3", "1.75": "1/3"},
+        "per_cap_cross_seed_graded_count": {
+          "0.75": "1/3",
+          "1.0": "0/3",
+          "1.25": "0/3",
+          "1.5": "0/3",
+          "1.75": "1/3"
+        },
         "label_overstates": true,
         "label_overstatement_grounds": [
           "'recalibration' implies a settable value: NO single cap grades on more than 1 of 3 seeds. The two winning caps are at OPPOSITE ENDS of the sweep (0.75 vs 1.75, 2.33x apart) and the third seed grades at none. Under a common-cap criterion the run reads 1/3 at every cap -- a clean FAIL of the same 2/3 bar.",
@@ -39,15 +76,52 @@
       },
       "preconditions_audit": {
         "verdict": "Both are genuinely MEASURED outcomes, not constants that cannot fail -- but they differ sharply in how binding they are.",
-        "foraging_contact_guard": {"measured": 1.0, "threshold": 0.6667, "per_seed_contact_rate": [0.2515, 0.2570, 0.3064], "per_seed_z_goal_at_contact_peak": [0.4920, 0.4330, 0.4414], "gate": 0.4, "headroom": "8-23% above the z_goal gate -- discriminating, genuinely capable of failing", "binding": true},
-        "external_task_drive_engages": {"measured": 1.0, "threshold": 0.6667, "per_seed_max_ext_margin_mean": [0.3373, 0.7705, 0.7850], "floor": 0.05, "headroom": "7-16x the floor -- a liveness check, effectively non-binding; can only fail on a dead drive", "binding": false}
+        "foraging_contact_guard": {
+          "measured": 1.0,
+          "threshold": 0.6667,
+          "per_seed_contact_rate": [
+            0.2515,
+            0.257,
+            0.3064
+          ],
+          "per_seed_z_goal_at_contact_peak": [
+            0.492,
+            0.433,
+            0.4414
+          ],
+          "gate": 0.4,
+          "headroom": "8-23% above the z_goal gate -- discriminating, genuinely capable of failing",
+          "binding": true
+        },
+        "external_task_drive_engages": {
+          "measured": 1.0,
+          "threshold": 0.6667,
+          "per_seed_max_ext_margin_mean": [
+            0.3373,
+            0.7705,
+            0.785
+          ],
+          "floor": 0.05,
+          "headroom": "7-16x the floor -- a liveness check, effectively non-binding; can only fail on a dead drive",
+          "binding": false
+        }
       },
       "production_configuration_audit": {
         "is_finding_conditional_on_non_production_config": true,
         "enabled_default_off_flags_field": null,
         "knobs": [
-          {"knob": "REEConfig.salience_affinity_input_cap", "production_default": "None (no clamp at all)", "source": "ree_core/utils/config.py:3055 -- 'None (default) = bit-identical to the pre-2026-08-12 substrate (no clamp; matches every landed V3-EXQ-464/467 manifest)'", "this_run": "2.0 at TRAIN, swept 0.75-1.75 at EVAL"},
-          {"knob": "REEConfig.use_external_task_drive", "production_default": "False (opt-in)", "source": "ree_core/agent.py:2393 and :6933 getattr(..., False); claims.yaml SD-032a governance_note_2026_06_13 'still default=False / opt-in'", "this_run": "True"}
+          {
+            "knob": "REEConfig.salience_affinity_input_cap",
+            "production_default": "None (no clamp at all)",
+            "source": "ree_core/utils/config.py:3055 -- 'None (default) = bit-identical to the pre-2026-08-12 substrate (no clamp; matches every landed V3-EXQ-464/467 manifest)'",
+            "this_run": "2.0 at TRAIN, swept 0.75-1.75 at EVAL"
+          },
+          {
+            "knob": "REEConfig.use_external_task_drive",
+            "production_default": "False (opt-in)",
+            "source": "ree_core/agent.py:2393 and :6933 getattr(..., False); claims.yaml SD-032a governance_note_2026_06_13 'still default=False / opt-in'",
+            "this_run": "True"
+          }
         ],
         "training_cap_outside_sweep": "AFFINITY_INPUT_CAP_TRAIN = 2.0 is one grid step ABOVE the top of CAP_SWEEP and is never evaluated.",
         "production_point_known_degenerate": "The driver's own pre-authoring probe recorded operating_mode['external_task'] = 0.0 at cap=None / dacc_pe=16 -- i.e. at the production default the external_task signal collapses entirely.",
@@ -97,7 +171,11 @@
         "machine": "ree-worker-3",
         "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
         "elapsed_seconds": 23800.853358367,
-        "seeds": [42, 43, 44],
+        "seeds": [
+          42,
+          43,
+          44
+        ],
         "z_goal_stream": "live -- writer_calls 5262, ticks_active 173441/173444 (active_frac 0.99998), writer_defect false, goal_state_present true, 33 agents",
         "recording_gap": "MINOR but on-point: enabled_default_off_flags is null, yet the entire finding is conditional on two default-off knobs. use_external_task_drive appears only inside a prose 'substrate' string; affinity_input_cap_train is in config but the production default (None) is nowhere in the manifest. This is a RECORDING gap, not a measurement gap -- the values existed at run time and were simply not written machine-readably. Repair per experimental_recording_standard_2026-07-12.md is to record them, not to re-run blind. It is NOT adjudication-blocking here (the substrate was readable), so it does not by itself route a re-run."
       },
@@ -134,8 +212,13 @@
         "target_sd_id": "mode-governance-engagement",
         "title": "Replace the hard affinity-input box clamp with a saturating/normalizing bounding operator; grade the commitment term; decide the production default",
         "implementation_hint": "Three coupled items. (1) BOUNDING OPERATOR: replace max(-cap, min(cap, value)) in SalienceCoordinator.tick() with a saturating transform (e.g. cap * tanh(value / cap)) or divisive normalization across the affinity-input set, grounded in canonical normalization / graded lateral inhibition. A box clamp's discontinuous derivative is what produces the observed <= 1-grid-step crossing; a saturating operator widens it, which is the precondition MECH-266's hysteresis needs to express. Keep the existing clamp reachable behind a mode selector so the V3-EXQ-934 baseline stays reproducible. (2) COMMITMENT TERM: ree_core/agent.py:6944 _et_commit = commit_w * float(beta_gate.is_elevated) is a boolean latch and a cap-INDEPENDENT discreteness source that entangles H1 and H2; replace with a graded commitment strength (vigour / eligibility). (3) PRODUCTION DEFAULT: salience_affinity_input_cap = None and use_external_task_drive = False mean this whole lineage is inert in production. Unlike the sibling MECH-267 case this is not a simple default flip, because no single cap value works across seeds -- the deliverable is either a normalised rule (pending V3-EXQ-935) or an explicit documented decision that the facet stays opt-in, with the reason recorded on the claim.",
-        "unblocks_claims": ["MECH-266", "SD-032a"],
-        "depends_on_unresolved": ["V3-EXQ-935 (claimed 2026-08-16T13:01Z) -- whether a margin-normalised cap rule generalises out-of-sample; determines whether item (3) is a rule or a documented opt-in"],
+        "unblocks_claims": [
+          "MECH-266",
+          "SD-032a"
+        ],
+        "depends_on_unresolved": [
+          "V3-EXQ-935 (claimed 2026-08-16T13:01Z) -- whether a margin-normalised cap rule generalises out-of-sample; determines whether item (3) is a rule or a documented opt-in"
+        ],
         "priority_suggested": 1,
         "severity": "corrupting",
         "severity_note": "UNCHANGED at corrupting, but for a SUCCESSOR reason. The entry's existing corrupting classification was for the min()-across-arms non-vacuity gate, which experiments/_lib/regime_occupancy_gate.py resolved. This autopsy identifies a successor defect in that same replacement file: the per-seed EXISTENTIAL 'graded' predicate plus the [min, max] 'band' summary produce a reading that looks valid and is not -- the run routes cap_recalibration_admits_mixed_regime from data in which no cap recalibrates more than one of three seeds. That is the corrupting definition exactly (evidence that LOOKS valid but isn't), so a new experiment inheriting this gate pattern would again route substrate work on a false premise.",
@@ -161,7 +244,10 @@
         "fired": true,
         "fired_by": "inherited -- already fired at failure_autopsy_mech266-464e-467e-cluster_2026-08-13 (count_at_fire 6); this target adds 0",
         "threshold": 2,
-        "count_at_this_autopsy": {"MECH-266": 6, "SD-032a": 6},
+        "count_at_this_autopsy": {
+          "MECH-266": 6,
+          "SD-032a": 6
+        },
         "prior_substrate_ceiling_autopsies": [
           "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
           "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
@@ -229,10 +315,18 @@
         "resolution": {
           "state": "split",
           "children": [
-            {"label": "H1a-per-seed-cap-admits-mixed: a seed-specific cap admits a mixed external_task occupancy at the argmax crossing", "state": "confirmed"},
-            {"label": "H1b-common-cap-operating-point: a single cap (or a rule yielding one) admits a mixed regime on >= 2/3 seeds, i.e. the recalibration is shippable", "state": "alive"}
+            {
+              "label": "H1a-per-seed-cap-admits-mixed: a seed-specific cap admits a mixed external_task occupancy at the argmax crossing",
+              "state": "confirmed"
+            },
+            {
+              "label": "H1b-common-cap-operating-point: a single cap (or a rule yielding one) admits a mixed regime on >= 2/3 seeds, i.e. the recalibration is shippable",
+              "state": "alive"
+            }
           ],
-          "resolving_runs": ["V3-EXQ-934"],
+          "resolving_runs": [
+            "V3-EXQ-934"
+          ],
           "evidence_direction": "non_contributory",
           "epistemic_category": "standard",
           "self_route_label": "cap_recalibration_admits_mixed_regime",
@@ -247,9 +341,28 @@
       }
     ],
     "legs_left_untouched": [
-      {"hid": "H2-structural-bang-bang", "state": "alive", "why": "This run does NOT eliminate H2. A knife-edge crossing at most one grid step wide is exactly what a structurally-discrete arbiter looks like on a coarse grid, and the clamp is a no-op on external_task_drive at every cap >= 1.0 so most of the sweep never tested the drive's own gradability at all. Recording H2 as eliminated on the strength of this PASS would be the central error this autopsy exists to prevent."},
-      {"hid": "H3-instrument-illposed", "state": "alive", "why": "Not adjudicated here. H3 called for re-scoring the BANKED 464e/467e data with a regime-conditioned gate; experiments/_lib/regime_occupancy_gate.py was built and V3-EXQ-934 CONSUMES it, but this run is new data, not the banked re-score, so it does not resolve H3. Note also that this autopsy identifies a successor instrument defect IN that replacement gate (the per-seed existential predicate), which is arguably H3-favourable and should be considered when H3 is finally adjudicated."}
+      {
+        "hid": "H2-structural-bang-bang",
+        "state": "alive",
+        "why": "This run does NOT eliminate H2. A knife-edge crossing at most one grid step wide is exactly what a structurally-discrete arbiter looks like on a coarse grid, and the clamp is a no-op on external_task_drive at every cap >= 1.0 so most of the sweep never tested the drive's own gradability at all. Recording H2 as eliminated on the strength of this PASS would be the central error this autopsy exists to prevent."
+      },
+      {
+        "hid": "H3-instrument-illposed",
+        "state": "alive",
+        "why": "Not adjudicated here. H3 called for re-scoring the BANKED 464e/467e data with a regime-conditioned gate; experiments/_lib/regime_occupancy_gate.py was built and V3-EXQ-934 CONSUMES it, but this run is new data, not the banked re-score, so it does not resolve H3. Note also that this autopsy identifies a successor instrument defect IN that replacement gate (the per-seed existential predicate), which is arguably H3-favourable and should be considered when H3 is finally adjudicated."
+      }
     ],
     "framing_note_for_the_question": "The portfolio was posed as an exclusive three-way choice. The boolean commit latch (ree_core/agent.py:6944) is a cap-INDEPENDENT discreteness source, so H1 and H2 are not mutually exclusive on this substrate -- the mode-governance-engagement substrate entry already recorded this on 2026-08-13. Whoever applies this append should consider recording that on the question's decision block rather than silently resolving legs against a framing the substrate has outgrown."
+  },
+  "human_gate": {
+    "confirmed_utc": "2026-08-16T18:41:10Z",
+    "gate": "Step 8 interactive gate, run by the parent session cranky-driscoll-126a36 over the whole 7-artifact batch",
+    "decisions": [
+      "SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.",
+      "MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.",
+      "GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.",
+      "CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit."
+    ],
+    "note": "Written headless in STAGING MODE, then confirmed at a consolidated interactive gate. Routing as drafted except where a decision above overrides it."
   }
 }

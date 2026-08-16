@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-16T18:27:57Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "staging_mode": true,
   "staging_mode_note": "Steps 1-7 and 9 run in full. Step 8 (interactive gate) SKIPPED -- headless session, no user. Routing in `routing` / `routing_followons` is DRAFT and not finalised. Step 9b drafted only: hypothesis_space_registry.v1.json was NOT opened or written; the intended action is recorded under `hypothesis_space_ledger_pending`. No TASK_CLAIMS entry opened or closed (parent session holds cranky-driscoll-126a36-batch). Nothing committed or pushed. No chip spawned. No index or pending_review.md regeneration.",
   "dry_run_checked": true,
@@ -77,7 +77,16 @@
         "n_uncensored_deaths": 8,
         "n_right_censored": 0,
         "pct_right_censored_pooled": 0.0,
-        "survival_times_steps": [628, 1008, 1432, 1816, 1846, 1944, 2517, 2527],
+        "survival_times_steps": [
+          628,
+          1008,
+          1432,
+          1816,
+          1846,
+          1944,
+          2517,
+          2527
+        ],
         "min": 628,
         "median": 1831,
         "mean": 1714.75,
@@ -85,7 +94,10 @@
         "sd": 670.2,
         "cv": 0.391,
         "se_of_mean": 236.9,
-        "approx_95pct_interval_on_mean": [1154, 2275],
+        "approx_95pct_interval_on_mean": [
+          1154,
+          2275
+        ],
         "ceiling_utilisation_pct": 12.6,
         "pre_registered_floor": 4,
         "usable": true,
@@ -251,5 +263,16 @@
     "Confirm the supersession reading: should the 08-11 manifest's evidence_direction be set to `superseded`, or is its existing non_contributory adjudication sufficient? This artifact recommends NO manifest edit (the record is already correct; only the mechanical link is missing), but the call is governance's.",
     "Ratify the four follow-ons for chipping -- especially item 1 (zero-compute reanalysis of the committed episode log) and item 3 (check v3_exq_931_sleep_gap9_need_arm BEFORE queuing anything sleep-related, to avoid duplicating an already-authored validation).",
     "Decide the hypothesis_space_ledger_pending question: this artifact recommends NO ledger append (appending would open a one-hypothesis question that narrowed no rival set, inflating total_initial). A candidate two-hypothesis new question is drafted if you disagree."
-  ]
+  ],
+  "human_gate": {
+    "confirmed_utc": "2026-08-16T18:41:10Z",
+    "gate": "Step 8 interactive gate, run by the parent session cranky-driscoll-126a36 over the whole 7-artifact batch",
+    "decisions": [
+      "SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.",
+      "MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.",
+      "GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.",
+      "CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit."
+    ],
+    "note": "Written headless in STAGING MODE, then confirmed at a consolidated interactive gate. Routing as drafted except where a decision above overrides it."
+  }
 }

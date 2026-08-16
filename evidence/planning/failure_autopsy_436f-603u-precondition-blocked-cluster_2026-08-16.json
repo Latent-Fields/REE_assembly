@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-16T18:24:28Z",
   "scope": "cluster",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "staging_mode": true,
   "staging_mode_note": "Steps 1-7 and 9 were run in full. Step 8 (interactive scientific-judgment gate) was SKIPPED -- this session has no user. Routing below is DRAFTED, not finalised, and must be confirmed by an interactive session or the next /governance walk. Step 9b was drafted-only: nothing was written to hypothesis_space_registry.v1.json or any hypothesis_space_* sibling; see hypothesis_space_ledger_pending. This session opened/closed no TASK_CLAIMS entry (the parent holds cranky-driscoll-126a36-batch), spawned no chip, and committed nothing.",
   "companion_md": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.md",
@@ -20,7 +20,11 @@
       "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
       "queue_id": "V3-EXQ-436f",
       "supersedes": "V3-EXQ-436e",
-      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "claim_ids": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
       "experiment_purpose": "evidence",
       "self_route_label": "insufficient_occupancy_for_c1",
       "failed_criterion": "readiness_precondition",
@@ -29,12 +33,39 @@
         "machine": "ree-cloud-4",
         "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
         "elapsed_seconds": 1328.5,
-        "seeds": [42, 7, 13, 100, 200],
+        "seeds": [
+          42,
+          7,
+          13,
+          100,
+          200
+        ],
         "substrate_hash": "bcfa771e56826280327bfeaea43b1bdadd730a1c8ba726b9fe271673e91e2aca",
         "non_degenerate": true,
         "p0_gates_met": 5,
         "p0_gates_total": 6,
-        "occupied_slots_of_16_per_seed_waking_vs_sws": {"42": [11, 10], "7": [1, 1], "13": [1, 1], "100": [1, 1], "200": [14, 15]},
+        "occupied_slots_of_16_per_seed_waking_vs_sws": {
+          "42": [
+            11,
+            10
+          ],
+          "7": [
+            1,
+            1
+          ],
+          "13": [
+            1,
+            1
+          ],
+          "100": [
+            1,
+            1
+          ],
+          "200": [
+            14,
+            15
+          ]
+        },
         "n_scoreable_seeds": 2,
         "n_scoreable_seeds_required": 3,
         "occupancy_identical_to_436e": true,
@@ -115,13 +146,19 @@
         "sd_id_suggested": "contextmemory-write-path-addressing-degeneracy",
         "title": "ContextMemory.write() hard-argmin addressing has a deterministic single-slot fixed point under a low-variance query stream -- give the WRITE path the non-degenerate selection the READ path already has",
         "implementation_hint": "ContextMemory.read() (ree_core/predictors/e1_deep.py:124-133) addresses by softmax over query_proj(query) @ key_proj(memory).T, but ContextMemory.write() (lines 135-147) addresses by a hard scores.mean(0).argmin(), which under a near-constant query stream is a deterministic single-slot fixed point -- established at 436e by a closed-form sign discriminator q . (write_signal - memory[argmin]) that predicted lock-vs-rotate 5/5. Primary build: apply the annealed Gumbel-softmax selection that V3-EXQ-908 ALREADY CONFIRMED works (3/3, genuine context-conditioned sparsification) to the WRITE address, or add an occupancy/usage-balancing term so the fixed point cannot form. Note compute_diversification_loss() already acts on self.memory but the write update runs under torch.no_grad() and is unaffected by it. Secondary/complementary lever (NOT this entry): raise z_world entropy via the SD-070 encoder recipe so the query stream stops being near-constant. This is the WRITE-side sibling of substrate_queue SD-016, which is scoped to cue-indexed RETRIEVAL and is already `implemented`; an amend there would misfile it.",
-        "unblocks_claims": ["SD-017", "ARC-045", "MECH-166"],
+        "unblocks_claims": [
+          "SD-017",
+          "ARC-045",
+          "MECH-166"
+        ],
         "depends_on_unresolved": [],
         "priority_suggested": 1,
         "priority_rationale": "One fresh failure record (V3-EXQ-436f), and it blocks 3 claims -- either arm of the governance Step 6a-ii.6 rule gives priority 1.",
         "severity": "corrupting",
         "severity_rationale": "Every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank while write() returns normally and thousands of calls are logged. Nothing errors, the readout is well-formed, and the resulting null looks like a genuine 'sleep has no effect' finding. That is the definition of `corrupting` -- evidence that LOOKS valid but is not -- and it has now produced exactly that artefact twice (436e, 436f). Classified by what the defect does to evidence quality, not by fix difficulty.",
-        "substrate_paths": ["ree_core/predictors/e1_deep.py"],
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py"
+        ],
         "failure_record_entry": {
           "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
           "experiment_type": "v3_exq_436f_sd017_mech166_sd016_armed_retest",
@@ -144,9 +181,19 @@
       "re_derive_brake": {
         "fired": true,
         "threshold": 2,
-        "counts_under_r1_r3_before_this_autopsy": {"SD-017": 2, "ARC-045": 0, "MECH-166": 0},
-        "counts_under_r1_r3_including_this_autopsy": {"SD-017": 3, "ARC-045": 1, "MECH-166": 1},
-        "fires_for_claims": ["SD-017"],
+        "counts_under_r1_r3_before_this_autopsy": {
+          "SD-017": 2,
+          "ARC-045": 0,
+          "MECH-166": 0
+        },
+        "counts_under_r1_r3_including_this_autopsy": {
+          "SD-017": 3,
+          "ARC-045": 1,
+          "MECH-166": 1
+        },
+        "fires_for_claims": [
+          "SD-017"
+        ],
         "prior_substrate_ceiling_autopsies": [
           "failure_autopsy_V3-EXQ-538a_2026-07-10",
           "failure_autopsy_grandfathered-sleep-cluster_2026-08-08"
@@ -162,9 +209,18 @@
       "granularity_debt_trigger": {
         "fires": false,
         "cluster_counts": {
-          "SD-017": {"targets": 15, "files": 8},
-          "ARC-045": {"targets": 6, "files": 6},
-          "MECH-166": {"targets": 6, "files": 6}
+          "SD-017": {
+            "targets": 15,
+            "files": 8
+          },
+          "ARC-045": {
+            "targets": 6,
+            "files": 6
+          },
+          "MECH-166": {
+            "targets": 6,
+            "files": 6
+          }
         },
         "alignment_distribution": {
           "SD-017": "unclear=9, intact=2, untested=2, weakened=2",
@@ -207,7 +263,9 @@
       "queue_id": "V3-EXQ-603u",
       "supersedes": null,
       "predecessor_queue_id": "V3-EXQ-603s",
-      "claim_ids": ["MECH-357"],
+      "claim_ids": [
+        "MECH-357"
+      ],
       "experiment_purpose": "evidence",
       "self_route_label": "pressure_insufficient_lesion_ceiling_requeue",
       "failed_criterion": "discrimination",
@@ -217,16 +275,45 @@
         "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
         "elapsed_seconds": 69133.0,
         "elapsed_hours": 19.2,
-        "seeds": [42, 43, 44],
-        "arms": ["ARM_LESION_midline_pag_no_gate_combined_fix", "ARM_INTACT_midline_pag_gate_combined_fix", "ARM_POSCTRL_reefspawn_pag_gate_combined_fix"],
+        "seeds": [
+          42,
+          43,
+          44
+        ],
+        "arms": [
+          "ARM_LESION_midline_pag_no_gate_combined_fix",
+          "ARM_INTACT_midline_pag_gate_combined_fix",
+          "ARM_POSCTRL_reefspawn_pag_gate_combined_fix"
+        ],
         "substrate_hash": "dcab912f6cbe95666cc0b73cc3ff7b19cc33af5f9db896a7f02228c946c0886b",
         "g_h_intact_frac": 1.0,
         "g_h_lesion_frac": 1.0,
         "g_h_posctrl_frac": 1.0,
-        "pressure_config": {"env_drift_interval": 1, "env_drift_prob": 0.6, "hazard_agent_pursuit": 0.9, "num_hazards": 4, "proximity_harm_scale": 0.1, "survival_gate_steps": 75},
+        "pressure_config": {
+          "env_drift_interval": 1,
+          "env_drift_prob": 0.6,
+          "hazard_agent_pursuit": 0.9,
+          "num_hazards": 4,
+          "proximity_harm_scale": 0.1,
+          "survival_gate_steps": 75
+        },
         "dv_saturation": "hazard_stage_median_last_window reads exactly 200.0 (the episode cap) in 7 of 9 arm-seeds; the two exceptions are 103 and 102, both still clearing the 75-step floor. Per-episode lengths are strongly BIMODAL (exactly 200, or 3-6) with little mass between, so a median-of-10 against a 75 floor discards nearly all available information.",
-        "gate_extinction_final_avoidance_efficacy": {"INTACT_42": 5.71e-120, "INTACT_43": 4.58e-118, "INTACT_44": 2.12e-123, "POSCTRL_42": 3.96e-111, "POSCTRL_43": 5.13e-111, "POSCTRL_44": 6.5e-125},
-        "gate_decay_to_credit_ratio": {"INTACT_42": "34761:405 (86:1)", "INTACT_43": "31943:170 (188:1)", "INTACT_44": "34209:285 (120:1)", "POSCTRL_42": "33765:482 (70:1)", "POSCTRL_43": "31031:208 (149:1)", "POSCTRL_44": "35143:359 (98:1)"},
+        "gate_extinction_final_avoidance_efficacy": {
+          "INTACT_42": 5.71e-120,
+          "INTACT_43": 4.58e-118,
+          "INTACT_44": 2.12e-123,
+          "POSCTRL_42": 3.96e-111,
+          "POSCTRL_43": 5.13e-111,
+          "POSCTRL_44": 6.5e-125
+        },
+        "gate_decay_to_credit_ratio": {
+          "INTACT_42": "34761:405 (86:1)",
+          "INTACT_43": "31943:170 (188:1)",
+          "INTACT_44": "34209:285 (120:1)",
+          "POSCTRL_42": "33765:482 (70:1)",
+          "POSCTRL_43": "31031:208 (149:1)",
+          "POSCTRL_44": "35143:359 (98:1)"
+        },
         "scaffold_floor_anneal": "0.8 -> 0.0; the gate consumes max(avoidance_efficacy, scaffold_floor), so the anneal unmasks the underflow exactly as the scoring window opens",
         "n_freeze_suppressed_saturates_mid_run": "INTACT seed 42: 202 at episode 36 and 202 at the end -- no further suppression events in the final episodes",
         "incidental": "g1_transfer_intact_frac 0.6667 vs g1_transfer_lesion_frac 1.0 -- the gated arm did marginally worse on the P1 transfer leg. With n=3 and an extinct gate this is not interpretable; recorded so a later session does not rediscover it as a surprise."
@@ -262,10 +349,14 @@
         "lit_status": "present"
       },
       "recommended_epistemic_category": "standard",
-      "recommended_epistemic_category_per_claim": {"MECH-357": "standard"},
+      "recommended_epistemic_category_per_claim": {
+        "MECH-357": "standard"
+      },
       "recommended_epistemic_category_note": "STAYS standard, deliberately NOT substrate_ceiling, and the alternative was live. FOR substrate_ceiling: the answer genuinely is gated on the eligibility-trace build. AGAINST, and decisive: that build is ALREADY IN FLIGHT (see routing_note) and its landing makes MECH-357 immediately retestable, so stamping substrate_ceiling would mark the claim not-v3-testable (_claim_v3_testable) and suppress it from GOV-GRAN-1 (_EPI_SUPPRESS_PROPOSAL) at exactly the moment it needs an experiment lane -- the wrong consequence. It would also add a first ceiling hit for no analytic gain, since the brake does not fire at 1. The failure MODE (measurement saturation + precondition_unmet + a partial implementation) is recorded in the note fields per the standing rule that a failure-mode diagnosis is not an epistemic_category. Consistent with the 603s and 603t adjudications, which also stamped standard.",
       "recommended_evidence_direction": "non_contributory",
-      "recommended_evidence_direction_per_claim": {"MECH-357": "non_contributory"},
+      "recommended_evidence_direction_per_claim": {
+        "MECH-357": "non_contributory"
+      },
       "interpretable_signal": "Stated explicitly before recommending non_contributory. (1) A probe-gated question is DISCHARGED with a negative answer: agent-directed hazard pursuit does NOT produce discriminative headroom, which is what substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask. All four named pressure designs are now exhausted. (2) A previously-unquantified substrate defect is quantified for the first time: the eligibility trace's decay:credit ratio (70-188:1) and its underflow to ~1e-120 by the scoring window, with n_freeze_suppressed saturating mid-run. (3) A generalisable methodological finding: whole-run readiness aggregates certified a mechanism as live while it was extinct in the window the DV measures. (4) A measurement-design finding: the DV is saturated at its cap in 7 of 9 arm-seeds on a bimodal distribution. The run is non_contributory TO THE CLAIM specifically, not uninformative.",
       "recommended_evidence_quality_note": "[2026-08-16 governance, V3-EXQ-603u, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-603s/603t]: sixth consecutive inconclusive Stage-H run (603h/k/r/s/t/u), fourth distinct pressure design, 19.2 h hub compute. Readiness 4/5 MET (PAG freeze on LESION 1.0; gate engages AND suppresses freeze on INTACT 1.0; Stage-0 z_goal 0.667 at floor; POSCTRL survivability 1.0). The load-bearing ABSOLUTE criterion G_H_INTACT_clears_2of3 PASSED (1.0); the load-bearing DISCRIMINATION criterion G_H_INTACT_beats_LESION FAILED because G_H_LESION_frac = 1.0 as well -- agent-directed hazard pursuit (hazard_agent_pursuit=0.9 on top of 603s's every-step drift at p=0.6) did NOT reintroduce the Pavlovian-instrumental conflict. This DISCHARGES, with a negative answer, the probe-gated question that substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask; that entry's status implemented_pending_validation is now stale. All four named pressure designs are exhausted. TWO INDEPENDENT vacuities, only one of which the self-route names. (1) DV SATURATION: hazard_stage_median_last_window = exactly 200.0 (the episode cap) in 7 of 9 arm-seeds, on a strongly bimodal (200 or 3-6) distribution, measured through a median-of-10 against a 75-step floor -- the ruler is pegged for all three arms. (2) GATE EXTINCTION IN THE SCORING WINDOW: mech357_avoidance_efficacy underflows to 5.7e-120 / 4.6e-118 / 2.1e-123 on the INTACT seeds, with decay:credit ratios of 86:1 / 188:1 / 120:1 and n_freeze_suppressed SATURATING mid-run, while mech357_scaffold_floor anneals 0.8 -> 0.0 and unmasks it -- so the INTACT arm was functionally LESIONED inside the very window the DV measures. The gate_engaged / gate_suppresses readiness checks are whole-run aggregates and cannot see this. epistemic_category STAYS standard (deliberately NOT substrate_ceiling: the unblocking eligibility-trace build is already in flight and the claim must keep its v3 experiment lane). non_contributory: neither confirmed nor falsified; the mechanism was extinct, the ruler saturated and the pressure absent, simultaneously. Failure-location MIXED across mechanism+measures+environment, NOT chargeable to REE. The manifest's own self-route ('re-calibrate UP') is REJECTED: a 7th same-question pressure recalibration is refused, since a pressure increase cannot fix the efficacy underflow and the cheapest live hypothesis (a graded re-read of the ALREADY-RECORDED 603s/603t/603u per-episode trajectories) costs zero compute. pending_retest_after_substrate stays true, scoped to after-the-eligibility-trace-fix AND a graded, scoring-window-scoped DV. PROMOTES/DEMOTES NOTHING this cycle.",
       "per_claim_recommendation": {
@@ -285,8 +376,12 @@
         "sd_id_suggested": null,
         "title": null,
         "implementation_hint": "Status correction: implemented_pending_validation -> validated_negative (or governance's equivalent). The agent-directed-pursuit wiring landed and ran; the question it was opened to ask is answered NO. All four named pressure designs (static field, undirected mobile drift, scheduled discrete adjacency, agent-directed pursuit) are exhausted. Do NOT open a fifth pressure MECHANISM without first running the zero-compute H2 reanalysis in fanout_recommendation.",
-        "unblocks_claims": ["MECH-357"],
-        "depends_on_unresolved": ["mech357-avoidance-efficacy-eligibility-trace-imbalance"],
+        "unblocks_claims": [
+          "MECH-357"
+        ],
+        "depends_on_unresolved": [
+          "mech357-avoidance-efficacy-eligibility-trace-imbalance"
+        ],
         "priority_suggested": 2,
         "failure_record_entry": {
           "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
@@ -301,7 +396,9 @@
             "amend_rationale": "This entry (added 2026-08-14T06:55:01Z, status pending_implementation) currently carries failure_record: [] -- ZERO empirical entries. V3-EXQ-603u supplies the first, with numbers. THE BUILD ITSELF IS ALREADY IN FLIGHT AND MUST NOT BE DUPLICATED (see routing_note); what is owed here is the record, not the work.",
             "proposed_severity_change": "degrading -> corrupting",
             "proposed_severity_rationale": "PUT THIS TO THE HUMAN AT THE GATE -- it has a real consequence. Justification for the upgrade: the defect produced a run in which EVERY readiness check certified the gate as live (gate_engaged 1.0, gate_suppresses 1.0) while the gate was numerically extinct (~1e-120) in the scoring window, i.e. evidence that LOOKS valid and is not -- the definition of corrupting. Consequence: /queue-experiment Step 2.5c would then BLOCK new unrelated experiments touching ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py until the entry closes. The fix is in flight so the block should be short-lived, but it is a real gate.",
-            "substrate_paths": ["ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"],
+            "substrate_paths": [
+              "ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py"
+            ],
             "failure_record_entry": {
               "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
               "experiment_type": "v3_exq_603u_instrumental_avoidance_agent_pursuit",
@@ -326,8 +423,12 @@
       "re_derive_brake": {
         "fired": false,
         "threshold": 2,
-        "counts_under_r1_r3_before_this_autopsy": {"MECH-357": 0},
-        "counts_under_r1_r3_including_this_autopsy": {"MECH-357": 0},
+        "counts_under_r1_r3_before_this_autopsy": {
+          "MECH-357": 0
+        },
+        "counts_under_r1_r3_including_this_autopsy": {
+          "MECH-357": 0
+        },
         "prior_substrate_ceiling_autopsies": [],
         "supersedes_autopsy": null,
         "refused_requeue": true,
@@ -337,8 +438,15 @@
       },
       "granularity_debt_trigger": {
         "fires": false,
-        "cluster_counts": {"MECH-357": {"targets": 3, "files": 3}},
-        "alignment_distribution": {"MECH-357": "unclear=3"},
+        "cluster_counts": {
+          "MECH-357": {
+            "targets": 3,
+            "files": 3
+          }
+        },
+        "alignment_distribution": {
+          "MECH-357": "unclear=3"
+        },
         "tagging_targets_cited": [
           "failure_autopsy_V3-EXQ-603r_2026-08-09 | v3_exq_603r_... | non_contributory/measurement_test_design_defect | unclear",
           "failure_autopsy_V3-EXQ-603s_2026-08-10 | v3_exq_603s_... | non_contributory/standard | unclear",
@@ -406,7 +514,11 @@
     "structural_property": "In BOTH cases the REE substrate instantiates the mechanism's STRUCTURE while failing to sustain the DYNAMIC RANGE the mechanism's readout requires. ContextMemory has 16 slots and 2,837-4,903 write calls per arm and occupies 1. The ilPFC gate logs 31,000-35,000 updates and 405 credit events and holds an efficacy of 1e-120. Both pass every liveness/engagement check that counts EVENTS; both are functionally absent on the MAGNITUDE that matters. This is 'symbol of the mechanism, not its functional role' specifically at the level of magnitude, and it is invisible to any readiness check built from counters.",
     "second_shared_property_positive": "Both drivers carried a PRE-REGISTERED two-sided guard (436f: sd016_arming_engaged vs sufficient_occupancy_for_c1; 603u: LESION-below plus POSCTRL-above), and in both cases the guard fired correctly and REFUSED to score a vacuous comparison rather than emitting a false claim-layer verdict. Both FAILs are informative refusals. This is a methodological maturity signal in the lineages and is the reason both runs are non_contributory rather than spurious `weakens`.",
     "planning_decision_forced": "Do NOT treat these as one gap with one fix. Two independent builds are required. The one thing they DO share is a cheap, generalisable methodological repair worth adopting across the corpus: liveness/engagement preconditions must be evaluated over the SCORING WINDOW and on MAGNITUDES, not as whole-run EVENT COUNTS. Both runs would have self-reported their true state one gate earlier had they done so.",
-    "readings": ["independent_bugs_at_proximate_cause", "shared_dynamic_range_collapse_at_substrate_layer", "pre_registered_guards_correctly_refused_vacuous_scoring"]
+    "readings": [
+      "independent_bugs_at_proximate_cause",
+      "shared_dynamic_range_collapse_at_substrate_layer",
+      "pre_registered_guards_correctly_refused_vacuous_scoring"
+    ]
   },
   "hypothesis_space_ledger_pending": {
     "staging_mode_note": "STAGING MODE -- nothing was written to hypothesis_space_registry.v1.json, hypothesis_space.v1.json, hypothesis_space_timeseries.v1.jsonl or hypothesis_space_integrity.md by this session, and build_hypothesis_space.py / check_hypothesis_space_integrity.py were NOT run. The confirming interactive session or the next /governance walk applies the block below, re-reading the registry immediately before editing (concurrency) and running the derive + audit afterwards.",
@@ -422,9 +534,13 @@
         "qid": "mech357_stageh_discrimination_bottleneck",
         "title": "Why does the MECH-357 Stage-H INTACT-vs-LESION comparison fail to discriminate across six consecutive runs?",
         "short_title": "MECH-357 Stage-H discrimination",
-        "claims": ["MECH-357"],
+        "claims": [
+          "MECH-357"
+        ],
         "registered_utc": "<date -u at the confirming session>",
-        "fanout_sources": ["failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"],
+        "fanout_sources": [
+          "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json"
+        ],
         "is_hero": false,
         "initial_frozen_count": 3,
         "initial_frozen_count_at_registration": 3,
@@ -448,8 +564,18 @@
           "basis": "603u's LESION arm survived to the 200-step cap in 3/3 seeds under the strongest pressure mechanism available (pursuit 0.9 + every-step drift at p=0.6).",
           "pre_registered_utc": "<now at the confirming session>",
           "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
-          "adjudicating_runs": ["<future queue_id -- LESION-only graded titration sweep>"],
-          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+          "adjudicating_runs": [
+            "<future queue_id -- LESION-only graded titration sweep>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
         },
         {
           "hid": "H-dv-saturation",
@@ -460,8 +586,18 @@
           "basis": "7 of 9 arm-seeds read exactly 200.0 (the cap) in 603u; the per-episode distribution is strongly bimodal, so a median-of-10 discards nearly all available information.",
           "pre_registered_utc": "<now at the confirming session>",
           "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
-          "adjudicating_runs": ["<reanalysis -- zero new compute>"],
-          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+          "adjudicating_runs": [
+            "<reanalysis -- zero new compute>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
         },
         {
           "hid": "H-gate-extinct-in-window",
@@ -472,8 +608,18 @@
           "basis": "Measured in 603u: decay:credit 70:1 to 188:1 over 31,000-35,000 updates; efficacy below 1e-17 by episodes 36-39 of 40; n_freeze_suppressed saturating mid-run.",
           "pre_registered_utc": "<now at the confirming session>",
           "pre_registration_source": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json",
-          "adjudicating_runs": ["<future queue_id -- 603u re-run unchanged after the in-flight credit-eligibility windowing fix>"],
-          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+          "adjudicating_runs": [
+            "<future queue_id -- 603u re-run unchanged after the in-flight credit-eligibility windowing fix>"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
         }
       ],
       "axis_family_map_additions_required": "If `world`, `measurement` or `instrumentation` is not already a row in the registry's human-owned axis_families.map, add the mapping in the SAME edit -- an unmapped axis label forces the question's convergence_class to `indeterminate` and is never silently bucketed.",
@@ -523,5 +669,16 @@
       "ree-v3/ree_core/predictors/e1_deep.py ContextMemory.read/write, ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py update rule"
     ],
     "queue_entries_note": "Neither V3-EXQ-436f nor V3-EXQ-603u remains in ree-v3/experiment_queue.json -- both FAILed, and a FAIL removes the entry from the queue immediately (expected, per CLAUDE.md 'Queue completion behaviour'). Queue-entry facts (supersedes, experiment_purpose, predecessor) were taken from the manifests, which record them."
+  },
+  "human_gate": {
+    "confirmed_utc": "2026-08-16T18:41:10Z",
+    "gate": "Step 8 interactive gate, run by the parent session cranky-driscoll-126a36 over the whole 7-artifact batch",
+    "decisions": [
+      "SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.",
+      "MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.",
+      "GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.",
+      "CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit."
+    ],
+    "note": "Written headless in STAGING MODE, then confirmed at a consolidated interactive gate. Routing as drafted except where a decision above overrides it."
   }
 }

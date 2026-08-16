@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-16T18:25:54Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "staging_mode": true,
   "staging_note": "Headless staging run: Steps 1-7 and 9 executed in full; Step 8 (interactive gate) SKIPPED -- no user present. Routing is DRAFTED, not finalised. Step 9b was drafted only: hypothesis_space_registry.v1.json and its derive-only siblings were NOT written; the intended disposition is under hypothesis_space_ledger_pending. No TASK_CLAIMS entry was opened or closed by this session (the parent holds cranky-driscoll-126a36-batch); nothing was committed or pushed; claims.yaml, manifests, review_tracker.json and substrate_queue.json were NOT edited; no chip was spawned.",
   "dry_run_checked": true,
@@ -13,7 +13,9 @@
     {
       "run_id": "v3_exq_930_mech303_dedicated_proximity_signal_validation_20260814T092437Z_v3",
       "queue_id": "V3-EXQ-930",
-      "claim_ids": ["MECH-303"],
+      "claim_ids": [
+        "MECH-303"
+      ],
       "experiment_purpose": "diagnostic",
       "manifest_outcome": "PASS",
       "manifest_self_stamped_evidence_direction": "supports",
@@ -90,7 +92,15 @@
       },
       "z_goal_stream_state": {
         "classification": "PRESENT-and-null (nothing measured, goal machinery OFF at config) -- NOT the writer_defect, and NOT absent",
-        "recorded_block": {"ticks_total": 0, "ticks_active": 0, "writer_calls": 0, "active_frac": null, "writer_defect": null, "goal_state_present": false, "n_agents": 50},
+        "recorded_block": {
+          "ticks_total": 0,
+          "ticks_active": 0,
+          "writer_calls": 0,
+          "active_frac": null,
+          "writer_defect": null,
+          "goal_state_present": false,
+          "n_agents": 50
+        },
         "basis": "Per experiments/_lib/z_goal_stream.py: the block is omitted entirely when no counter-bearing agent is supplied (50 were, so it is PRESENT). writer_defect is True ONLY when ticks_total>0 AND writer_calls==0; here ticks_total==0, so the module writes writer_defect: null and active_frac: null (explicitly NOT 0.0, because 0.0 would be a false reading rather than a weak one). goal_state_present:false is the module's own disambiguator: GoalState is constructed only when config.goal.z_goal_enabled is set, so ticks_total==0 means z_goal is DISABLED AT CONFIG, not that agents were never stepped.",
         "writer_calls_zero_is_literally_true_but_is_not_the_defect": true,
         "do_this_runs_criteria_depend_on_a_live_z_goal": false,
@@ -107,7 +117,14 @@
       },
       "biological_reference": {
         "closest_mechanism": "Contextual safety learning in mammals: IL required for safety EXPRESSION not acquisition (Kreutzmann 2020); vHipp->PL for safety-cue inhibition (Meyer 2019); standard safety signal -> vmPFC + hippocampus, dissociated from conditioned inhibitors -> dorsal striatum (Laing 2022). The signal-sourcing question maps onto the threat-imminence continuum: anticipatory EXTEROCEPTIVE distance-to-threat (PAG/hypothalamic/amygdalar) vs INTEROCEPTIVE tissue-damage afferents (spinothalamic -> insula/S1).",
-        "dependencies": ["exteroceptive anticipatory harm-predictor channel", "contextual store (vHipp->PL analogue)", "IL-equivalent expression gate", "MECH-304 cue-specific sister pathway", "SD-011 dual-stream harm separation", "SD-022 body-damage sourcing"],
+        "dependencies": [
+          "exteroceptive anticipatory harm-predictor channel",
+          "contextual store (vHipp->PL analogue)",
+          "IL-equivalent expression gate",
+          "MECH-304 cue-specific sister pathway",
+          "SD-011 dual-stream harm separation",
+          "SD-022 body-damage sourcing"
+        ],
         "is_formal_import": false,
         "divergence": "NONE -- this is a faithful translation, and that is the strongest positive finding of the autopsy. Brains do not compute 'this place is safe' from tissue-damage afferents. An agent that did would be unable to feel safe in an unfamiliar-but-benign environment and unable to feel unsafe while undamaged -- exactly the pathology V3-EXQ-917 measured (AUC 0.52) and 930 reproduces (AUC 0.52, spread 7e-05). The failure of the damage-sourced route is what biology PREDICTS, which vindicates the 2026-08-12 user-adjudicated routing (option (a) dedicated signal; option (b) threshold retune rejected).",
         "lit_status": "partial",
@@ -142,12 +159,18 @@
         "target_sd_id": "SD-MECH303-THRESHOLD-SOURCING",
         "title": "Give MECH-303's contextual_safety_harm_threshold a DEDICATED proximity-anticipatory harm signal, decoupled from SD-022 damage-sourced z_harm_a",
         "implementation_hint": "No new build. The entry is status 'implemented_pending_validation' / status_phase 'validation_owed' / ready false, and names V3-EXQ-930 as its validation_experiment with acceptance 'safe-vs-unsafe AUC >=~0.84'. 930 MET that target (best AUC 1.0, reach 0.526 at tau=0.08; qualifying band tau 0.02-0.30; shipped default 0.25 inside it at reach 0.648 / AUC 1.0). Recommended: resolve the prior 917 failure_record item and flip status_phase validation_owed -> validated (and ready -> true at governance's discretion), subject to the caveat below.",
-        "unblocks_claims": ["MECH-303"],
+        "unblocks_claims": [
+          "MECH-303"
+        ],
         "depends_on_unresolved": [],
         "priority_suggested": 2,
         "severity": "degrading",
         "severity_change_note": "UNCHANGED. This occurrence does not change the classification, and substrate_paths are unchanged -- leave both as governance already has them.",
-        "substrate_paths": ["ree_core/utils/config.py", "ree_core/environment/causal_grid_world.py", "ree_core/agent.py"],
+        "substrate_paths": [
+          "ree_core/utils/config.py",
+          "ree_core/environment/causal_grid_world.py",
+          "ree_core/agent.py"
+        ],
         "failure_record_entry": null,
         "failure_record_entry_note": "No NEW failure_record item is owed: nothing failed. This autopsy's substrate-side contribution is the RESOLUTION of the existing item, below.",
         "resolves_prior_failure_record": [
@@ -237,5 +260,16 @@
     "Confirm the SUBSTRATE-QUEUE AMEND and how far to go: resolve 917's failure_record item and flip status_phase/ready on SIGNAL-layer evidence plus the build's own e2e smoke, or hold ready:false until the gate-layer behavioural retest scores? The autopsy leans to resolving the failure record with the caveat recorded, and leaving the ready flip to governance's judgement.",
     "The OWED MECH-303 BEHAVIOURAL RETEST IS NOW UNBLOCKED AND UNQUEUED -- its precondition ('once the dedicated signal lands') was met 2026-08-14. Per the 2026-07-30 rule this autopsy does NOT chip it; /governance chips it once the routing is ratified, after checking igw_routine_ledger.json / igw_assignments.json for an auto-discovered duplicate.",
     "OPTIONAL, non-blocking: a small /lit-pull on anticipatory threat-proximity vs tissue-damage sourcing for contextual safety acquisition (lit_status partial for that specific dissociation). Nothing is gated on it -- the build already matches the biology."
-  ]
+  ],
+  "human_gate": {
+    "confirmed_utc": "2026-08-16T18:41:10Z",
+    "gate": "Step 8 interactive gate, run by the parent session cranky-driscoll-126a36 over the whole 7-artifact batch",
+    "decisions": [
+      "SD-017/ARC-045/MECH-166: ACCEPTED the 436e 'standard' -> substrate_ceiling flip AND the re-derive brake refusal of a V3-EXQ-436g (SD-017 count 2 -> 3). Removes the three claims from the v3-testable pool. Rationale: 436e's 'standard' was stamped on the explicit condition 'substrate shipped, merely needs switching on', and 436f is that condition's re-check trigger and falsifies it. The 538a peripheral-co-tag off-ramp was offered and NOT taken.",
+      "MECH-152: the HELD demotion is REFUSED and the claim stays 'provisional' -- on INSTRUMENT grounds, not claim strength. Governance must NOT read 922a as support. The same Pearson-r critique disqualifies EXQ-194's r=0.70 support symmetrically, so 194 and 922 are to be RE-ADJUDICATED. Route a NEW EXQ scoring modulation depth against the claim's own band.",
+      "GAP-9: sleep_substrate_plan.md's 2026-08-14 'done (both arms)' is CORRECTED -- done for design (a) only; arm (b) REOPENED (a level detector shipped where the brief specifies Process S). SD-SLEEP-ENTRY-PRESSURE to be created, severity degrading. Note entry_permitted() delegates to the same need_crossed(), so the boundary-path K-cadence trigger inherits the divergence untested.",
+      "CROSS-CLUSTER: four independent instances of a mechanism tested in a NON-PRODUCTION configuration (927/928 mode_partitioned_cem False; 930 use_contextual_safety_terrain False; 934 salience_affinity_input_cap None + use_external_task_drive False; 931 HippocampalConfig.wanting_weight ships 0.0 not 0.5). AUTHORISED: chip a warn-only authoring lint plus a corpus audit."
+    ],
+    "note": "Written headless in STAGING MODE, then confirmed at a consolidated interactive gate. Routing as drafted except where a decision above overrides it."
+  }
 }
