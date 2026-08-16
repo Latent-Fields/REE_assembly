@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-16T21:31:23Z",
+  "last_tick_utc": "2026-08-16T21:46:30Z",
   "state": "running",
   "current_exq": "V3-EXQ-874b",
   "current_exq_started_utc": "2026-08-16T21:30:37.410724+00:00",
@@ -9,17 +9,26 @@
   "current_claim_id": "MECH-467",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / P0_SIMPLE",
-    "runs_done": 0,
+    "run_label": "Seed 42 / P0_COMPLEX",
+    "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 60,
-    "overall_pct": 0.0
+    "overall_pct": 30.6
   },
-  "seconds_elapsed": 45,
-  "seconds_remaining": 12000,
+  "seconds_elapsed": 951,
+  "seconds_remaining": 334,
   "recent_lines": [
-    "Seed 42 Condition P0_SIMPLE"
+    "Seed 42 Condition P0_SIMPLE",
+    "[P0 probe] ep 40/60  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 probe] ep 60/60  rv=0.00000  threshold=0.4  converging=True",
+    "[train] SIMPLE seed=42 ep 60/60 converged=True aborted=False rv=0.00000",
+    "Seed 42 Condition ARM_PRECOMMIT_SIMPLE",
+    "verdict: FAIL events=1 excess=-0.6364 fidelity=0.9980 drift=0.3843 enc=0.0314 (min_events_pooled=15)",
+    "Seed 42 Condition ARM_REPLAY_SIMPLE",
+    "verdict: FAIL events=0 excess=0.0000 fidelity=1.0000 drift=0.0722 enc=0.0222 (min_events_pooled=15)",
+    "Seed 42 Condition P0_COMPLEX",
+    "[P0 probe] ep 40/60  rv=0.00000  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
