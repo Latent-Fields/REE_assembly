@@ -1,4 +1,6 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry). No coordinator code was changed.**
+**Status: RECOMMENDATION ACCEPTED AND DEPLOYED (2026-08-16T12:24:02Z). The section 6 "Do" rows landed as `ree-v3` `f675427d` and are live on the hub -- see the Deployment record at the end of this file. Nothing in this file has been written to claims.yaml (or whichever registry); the "Don't" rows remain NOT done, deliberately.**
+
+*(Original header, superseded: "Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry). No coordinator code was changed.")*
 
 # Coordinator canonical machine identity -- scoping investigation
 
@@ -220,3 +222,25 @@ If it is wanted later, it is its own chip, with its own held-out check against t
 **Estimated size:** small -- roughly a one-line resolution at ~11 ingest points plus one `_affinity_ok` change, one `serve.py` line, and a new coordinator contract test. The investigation, not the patch, was the hard part.
 
 **This session deliberately did not implement it.** The chip asked for a human decision before behaviour change; being headless, that decision is carried by chip `chip-20260816-coordinator-identity-ingest-decision`.
+
+---
+
+## 7. Deployment record (added 2026-08-16 by `chip-20260816-coordinator-canonical-identity-deploy`)
+
+The decision was taken and the ingest-boundary change landed on `ree-v3` `origin/main` as **`f675427d`** ("coordinator: canonicalise machine identity at the ingest boundary"), 11 `_canon(` call sites in `coordinator/app.py`. This session deployed it.
+
+**Section 6's ordering advice was honoured**: the coordinator was canonicalised *before* the Mac's next runner restart, so both sides already agree when that restart happens. The Mac's runner has still not restarted (`DLAPTOP-4.local` `last_seen 2026-08-09T19:49:28Z` at deploy time), which is the clean case the sequencing note argued for.
+
+| Step | Result |
+|---|---|
+| Hub `ree-v3` pull | Already at `f675427d`, `0/0` vs `origin/main`; both hub trees (`ree-v3`, `REE_assembly`) clean, so no pull was needed and none was forced. |
+| `sudo systemctl restart ree-coordinator` | `ActiveEnterTimestamp` `2026-07-30 19:35:13 UTC` -> **`2026-08-16 12:24:02 UTC`**, `MainPID=512964`. Startup log clean: `mode=coordinator listening on 10.8.0.1:8787 ... tokens=6`, no traceback. |
+| `GET /health` | `200`, `{"ok": true, "mode": "coordinator"}`. |
+| `GET /shadow/status` | `200`, all **5** machines still listed; `ree-cloud-1` heartbeat landed post-restart at `12:24:32Z`, so ingest is live. |
+| `coordinator/phase3_preflight.py` (from the Mac) | Run **before and after**. Check outcomes **byte-identical**: same 8 PASS, same 2 FAIL. **No new blocking check.** |
+
+**Both preflight FAILs are pre-existing and are not regressions.**
+- `fleet/fleet_lifecycle: steady-state policy violated: DLAPTOP=stale` -- the known one; the Mac's runner has not heartbeated since 2026-08-09 and this clears on its next start. Note the preflight already reports the *canonical* `DLAPTOP` spelling, since `phase3_preflight.py:39` has resolved through `machine_identity` since `f0c21d1e`.
+- `hub/hub_sync_mode_safe: hub already SYNC_MODE=authoritative` -- a *pre-cutover* gate. Phase 3 cut over on 2026-05-29, so this check is expected to fail in steady state; its verdict line ("Do NOT run `phase3_cutover.sh`") is correct advice, not a fault.
+
+**Expected residue, deliberately left alone.** On the Mac's first post-deploy heartbeat a new `DLAPTOP` row appears and the `DLAPTOP-4.local` row stops reporting, leaving a stale `runner_heartbeats/DLAPTOP-4.local.json` beside a new `DLAPTOP.json`. Those files are materialised from the DB by the phase3 heartbeat writer, so hand-renaming or deleting one is reverted on the next tick. Let the pair age out, or delete the DB row once it holds nothing under the old name. Per section 6, `results.machine` / `claim_log.machine` were **not** touched (append-only provenance) and **no** `EXACT_ALIASES` entry was added.
