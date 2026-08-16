@@ -1,0 +1,337 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_874b_mech467_distractor_three_leg_battery",
+  "run_id": "v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-16T22:29:00.409942Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-467": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "combination_rule": "PASS = dissociability in >= 1 GREEN arm, where an arm dissociates iff (storage-site rule drift < RULE_DRIFT_FLOOR) AND (selection-path operative_rule_fidelity >= OPERATIVE_RULE_FIDELITY_FLOOR) AND (wrong_target_rate among both-reads-intact events MINUS the measured chance baseline >= WRONG_TARGET_EXCESS_MIN). An arm's gate being RED excludes it from scoring but NEVER vacates a green arm (aggregate non_degenerate = ANY arm green).",
+    "preconditions": [
+      {
+        "name": "ARM_PRECOMMIT_SIMPLE::leg_c_event_floor",
+        "precondition": "leg_c_event_floor",
+        "arm": "ARM_PRECOMMIT_SIMPLE",
+        "kind": "readiness",
+        "description": "pooled target-consumption events (correct OR incorrect) in this arm. V3-EXQ-874 had 0/0 in all 6 cells and scored a 0.000 rate; the claim's own guard checked leg (a) only and had no event floor for leg (c). This is that floor.",
+        "control": "consumption events counted from the env's own sd049_consumed_type_tag_this_tick, pooled across seeds within the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 15.0,
+        "met": false
+      },
+      {
+        "name": "ARM_PRECOMMIT_SIMPLE::distractor_encoded_in_active_representation",
+        "precondition": "distractor_encoded_in_active_representation",
+        "arm": "ARM_PRECOMMIT_SIMPLE",
+        "kind": "readiness",
+        "description": "encoding-side registration: ||z_world_full - z_world_distractor_ablated|| / ||z_world_full|| on ticks where a distractor is proximal. Replaces the 874 proximity proxy, which cannot separate registered-then-suppressed from never-encoded (Gaspelin & Luck 2018).",
+        "control": "same observation re-encoded with the SD-049 distractor field block(s) zeroed; probe-measured 0.000-0.706 on this substrate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026881,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_SIMPLE::selection_path_rule_read_live",
+        "precondition": "selection_path_rule_read_live",
+        "arm": "ARM_PRECOMMIT_SIMPLE",
+        "kind": "readiness",
+        "description": "number of genuine E3 selections at which the per-candidate goal-score vector could be scored under both the current and the reference z_goal. Zero means the selection-path rule read never ran, so leg (b)'s load-bearing measure is absent and leg (c) cannot be conditioned on it.",
+        "control": "ticks where ticks['e3_tick'] is True and z_goal is live",
+        "direction": "lower",
+        "applies": true,
+        "measured": 248.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_SIMPLE::operative_rule_fidelity_instrument_sensitive",
+        "precondition": "operative_rule_fidelity_instrument_sensitive",
+        "arm": "ARM_PRECOMMIT_SIMPLE",
+        "kind": "readiness",
+        "description": "mean Spearman rho of the per-candidate goal-score ranking under the CURRENT z_goal against a RANDOMISED reference z_goal -- the same statistic the load-bearing leg-(b) criterion routes on, measured on a control where it must be LOW. A --dry-run smoke read the real fidelity at 0.9994-1.0000, which is correct when z_goal has barely left its warmup value but is indistinguishable from a ranking insensitive to rule content. If the control is ALSO near 1.0, 'operative rule intact' carries no information and no dissociation may be scored off it.",
+        "control": "randomised z_goal of comparable scale, scored over the identical candidate set at the identical tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": -0.395161,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_SIMPLE::chance_baseline_not_saturated",
+        "precondition": "chance_baseline_not_saturated",
+        "arm": "ARM_PRECOMMIT_SIMPLE",
+        "kind": "readiness",
+        "description": "mean live-distractor share of live resource cells at event time. At a saturated baseline the wrong-target rate is forced by the spawn composition and the leg-(c) DV is an arithmetic identity, not a measurement.",
+        "control": "env _resource_type_grid composition read at each consumption event",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.636364,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_SIMPLE::leg_c_event_floor",
+        "precondition": "leg_c_event_floor",
+        "arm": "ARM_REPLAY_SIMPLE",
+        "kind": "readiness",
+        "description": "pooled target-consumption events (correct OR incorrect) in this arm. V3-EXQ-874 had 0/0 in all 6 cells and scored a 0.000 rate; the claim's own guard checked leg (a) only and had no event floor for leg (c). This is that floor.",
+        "control": "consumption events counted from the env's own sd049_consumed_type_tag_this_tick, pooled across seeds within the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 15.0,
+        "met": false
+      },
+      {
+        "name": "ARM_REPLAY_SIMPLE::distractor_encoded_in_active_representation",
+        "precondition": "distractor_encoded_in_active_representation",
+        "arm": "ARM_REPLAY_SIMPLE",
+        "kind": "readiness",
+        "description": "encoding-side registration: ||z_world_full - z_world_distractor_ablated|| / ||z_world_full|| on ticks where a distractor is proximal. Replaces the 874 proximity proxy, which cannot separate registered-then-suppressed from never-encoded (Gaspelin & Luck 2018).",
+        "control": "same observation re-encoded with the SD-049 distractor field block(s) zeroed; probe-measured 0.000-0.706 on this substrate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.022061,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_SIMPLE::selection_path_rule_read_live",
+        "precondition": "selection_path_rule_read_live",
+        "arm": "ARM_REPLAY_SIMPLE",
+        "kind": "readiness",
+        "description": "number of genuine E3 selections at which the per-candidate goal-score vector could be scored under both the current and the reference z_goal. Zero means the selection-path rule read never ran, so leg (b)'s load-bearing measure is absent and leg (c) cannot be conditioned on it.",
+        "control": "ticks where ticks['e3_tick'] is True and z_goal is live",
+        "direction": "lower",
+        "applies": true,
+        "measured": 220.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_SIMPLE::operative_rule_fidelity_instrument_sensitive",
+        "precondition": "operative_rule_fidelity_instrument_sensitive",
+        "arm": "ARM_REPLAY_SIMPLE",
+        "kind": "readiness",
+        "description": "mean Spearman rho of the per-candidate goal-score ranking under the CURRENT z_goal against a RANDOMISED reference z_goal -- the same statistic the load-bearing leg-(b) criterion routes on, measured on a control where it must be LOW. A --dry-run smoke read the real fidelity at 0.9994-1.0000, which is correct when z_goal has barely left its warmup value but is indistinguishable from a ranking insensitive to rule content. If the control is ALSO near 1.0, 'operative rule intact' carries no information and no dissociation may be scored off it.",
+        "control": "randomised z_goal of comparable scale, scored over the identical candidate set at the identical tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": -0.08581,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_SIMPLE::chance_baseline_not_saturated",
+        "precondition": "chance_baseline_not_saturated",
+        "arm": "ARM_REPLAY_SIMPLE",
+        "kind": "readiness",
+        "description": "mean live-distractor share of live resource cells at event time. At a saturated baseline the wrong-target rate is forced by the spawn composition and the leg-(c) DV is an arithmetic identity, not a measurement.",
+        "control": "env _resource_type_grid composition read at each consumption event",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.318518,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_COMPLEX::leg_c_event_floor",
+        "precondition": "leg_c_event_floor",
+        "arm": "ARM_PRECOMMIT_COMPLEX",
+        "kind": "readiness",
+        "description": "pooled target-consumption events (correct OR incorrect) in this arm. V3-EXQ-874 had 0/0 in all 6 cells and scored a 0.000 rate; the claim's own guard checked leg (a) only and had no event floor for leg (c). This is that floor.",
+        "control": "consumption events counted from the env's own sd049_consumed_type_tag_this_tick, pooled across seeds within the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.0,
+        "threshold": 15.0,
+        "met": false
+      },
+      {
+        "name": "ARM_PRECOMMIT_COMPLEX::distractor_encoded_in_active_representation",
+        "precondition": "distractor_encoded_in_active_representation",
+        "arm": "ARM_PRECOMMIT_COMPLEX",
+        "kind": "readiness",
+        "description": "encoding-side registration: ||z_world_full - z_world_distractor_ablated|| / ||z_world_full|| on ticks where a distractor is proximal. Replaces the 874 proximity proxy, which cannot separate registered-then-suppressed from never-encoded (Gaspelin & Luck 2018).",
+        "control": "same observation re-encoded with the SD-049 distractor field block(s) zeroed; probe-measured 0.000-0.706 on this substrate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.031616,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_COMPLEX::selection_path_rule_read_live",
+        "precondition": "selection_path_rule_read_live",
+        "arm": "ARM_PRECOMMIT_COMPLEX",
+        "kind": "readiness",
+        "description": "number of genuine E3 selections at which the per-candidate goal-score vector could be scored under both the current and the reference z_goal. Zero means the selection-path rule read never ran, so leg (b)'s load-bearing measure is absent and leg (c) cannot be conditioned on it.",
+        "control": "ticks where ticks['e3_tick'] is True and z_goal is live",
+        "direction": "lower",
+        "applies": true,
+        "measured": 141.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_COMPLEX::operative_rule_fidelity_instrument_sensitive",
+        "precondition": "operative_rule_fidelity_instrument_sensitive",
+        "arm": "ARM_PRECOMMIT_COMPLEX",
+        "kind": "readiness",
+        "description": "mean Spearman rho of the per-candidate goal-score ranking under the CURRENT z_goal against a RANDOMISED reference z_goal -- the same statistic the load-bearing leg-(b) criterion routes on, measured on a control where it must be LOW. A --dry-run smoke read the real fidelity at 0.9994-1.0000, which is correct when z_goal has barely left its warmup value but is indistinguishable from a ranking insensitive to rule content. If the control is ALSO near 1.0, 'operative rule intact' carries no information and no dissociation may be scored off it.",
+        "control": "randomised z_goal of comparable scale, scored over the identical candidate set at the identical tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.043013,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT_COMPLEX::chance_baseline_not_saturated",
+        "precondition": "chance_baseline_not_saturated",
+        "arm": "ARM_PRECOMMIT_COMPLEX",
+        "kind": "readiness",
+        "description": "mean live-distractor share of live resource cells at event time. At a saturated baseline the wrong-target rate is forced by the spawn composition and the leg-(c) DV is an arithmetic identity, not a measurement.",
+        "control": "env _resource_type_grid composition read at each consumption event",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.609028,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_COMPLEX::leg_c_event_floor",
+        "precondition": "leg_c_event_floor",
+        "arm": "ARM_REPLAY_COMPLEX",
+        "kind": "readiness",
+        "description": "pooled target-consumption events (correct OR incorrect) in this arm. V3-EXQ-874 had 0/0 in all 6 cells and scored a 0.000 rate; the claim's own guard checked leg (a) only and had no event floor for leg (c). This is that floor.",
+        "control": "consumption events counted from the env's own sd049_consumed_type_tag_this_tick, pooled across seeds within the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 15.0,
+        "met": false
+      },
+      {
+        "name": "ARM_REPLAY_COMPLEX::distractor_encoded_in_active_representation",
+        "precondition": "distractor_encoded_in_active_representation",
+        "arm": "ARM_REPLAY_COMPLEX",
+        "kind": "readiness",
+        "description": "encoding-side registration: ||z_world_full - z_world_distractor_ablated|| / ||z_world_full|| on ticks where a distractor is proximal. Replaces the 874 proximity proxy, which cannot separate registered-then-suppressed from never-encoded (Gaspelin & Luck 2018).",
+        "control": "same observation re-encoded with the SD-049 distractor field block(s) zeroed; probe-measured 0.000-0.706 on this substrate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.03047,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_COMPLEX::selection_path_rule_read_live",
+        "precondition": "selection_path_rule_read_live",
+        "arm": "ARM_REPLAY_COMPLEX",
+        "kind": "readiness",
+        "description": "number of genuine E3 selections at which the per-candidate goal-score vector could be scored under both the current and the reference z_goal. Zero means the selection-path rule read never ran, so leg (b)'s load-bearing measure is absent and leg (c) cannot be conditioned on it.",
+        "control": "ticks where ticks['e3_tick'] is True and z_goal is live",
+        "direction": "lower",
+        "applies": true,
+        "measured": 135.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_COMPLEX::operative_rule_fidelity_instrument_sensitive",
+        "precondition": "operative_rule_fidelity_instrument_sensitive",
+        "arm": "ARM_REPLAY_COMPLEX",
+        "kind": "readiness",
+        "description": "mean Spearman rho of the per-candidate goal-score ranking under the CURRENT z_goal against a RANDOMISED reference z_goal -- the same statistic the load-bearing leg-(b) criterion routes on, measured on a control where it must be LOW. A --dry-run smoke read the real fidelity at 0.9994-1.0000, which is correct when z_goal has barely left its warmup value but is indistinguishable from a ranking insensitive to rule content. If the control is ALSO near 1.0, 'operative rule intact' carries no information and no dissociation may be scored off it.",
+        "control": "randomised z_goal of comparable scale, scored over the identical candidate set at the identical tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.013829,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_COMPLEX::chance_baseline_not_saturated",
+        "precondition": "chance_baseline_not_saturated",
+        "arm": "ARM_REPLAY_COMPLEX",
+        "kind": "readiness",
+        "description": "mean live-distractor share of live resource cells at event time. At a saturated baseline the wrong-target rate is forced by the spawn composition and the leg-(c) DV is an arithmetic identity, not a measurement.",
+        "control": "env _resource_type_grid composition read at each consumption event",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.95,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "ARM_PRECOMMIT_SIMPLE::dissociation": false,
+      "ARM_REPLAY_SIMPLE::dissociation": false,
+      "ARM_PRECOMMIT_COMPLEX::dissociation": false,
+      "ARM_REPLAY_COMPLEX::dissociation": false
+    },
+    "dissociating_arms": []
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "a191a7b13b689626cece10459ff8d0d889227c8c645aa1dc01cb5a7cfea7fb15",
+  "substrate_commit": {
+    "commit": "ed468648b535c8ff1be790d54ba4b72d0f65de20",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 28674,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
