@@ -1,0 +1,198 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-16T17:20:29Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3",
+      "queue_id": "V3-EXQ-928",
+      "claim_ids": ["MECH-267"],
+      "self_route_label": "fix_effective::H3+BOTH",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + MECHANISM) -- not chargeable to REE. Environment reads adequate, but Implementation reads partial (validated facet is default-OFF; only the endpoint contrast is restored, not the ordered gradient) and Measurement reads under-instrumented (absolute floor 0.01 is smaller than the per-seed SD 0.011-0.018 of the gated quantity). REE FAILED requires all three to read adequate/complete independently; two do not."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Mode/state-dependent hippocampal replay content and prioritized memory access -- forward replay biased toward goal-relevant content, with look-ahead breadth/distance modulated by behavioural state.",
+        "dependencies": ["hippocampal proposal generation", "state/mode signal available at proposal time", "downstream selection that does not discard the mode-conditioned breadth"],
+        "is_formal_import": false,
+        "divergence": "The CEM elite-refit is an engineering substrate with no biological counterpart -- real hippocampal proposal breadth is not re-derived from a mode-blind elite spread each iteration. The wash-out is therefore an artifact of the optimiser, not a divergence from the biology the claim rests on. This run confirms the optimiser (refit breadth, H3) as the locus and exonerates the scoring criterion (H2).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure-mode diagnosis is measurement/test-design defect (under-powered absolute-floor gate) PLUS competence/implementation gap (validated facet default-OFF; endpoint-only restoration). Deliberately NOT substrate_ceiling or substrate_conditional: the substrate for this locus exists and works, and the outstanding item is a default flag flip -- buildable, not a ceiling. `standard` is the behaviour-preserving mapping (keeps the claim inside GOV-GRAN-1 surfacing and v3-testability). NOTE: the two prior MECH-267 autopsies (869, 869a) carry `competence_implementation_gap`, which is OUT of the eight-value enum in validate_claims.py:VALID_EPISTEMIC_CATEGORIES; that value is deliberately not propagated here.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-928 (superseding burned-id V3-EXQ-927; identical measurement) localised the MECH-267 mode-content wash-out at production num_cem_iterations=3 to the CEM refit breadth, not the elite-selection value function. Four arms x 30 shared seeds: H3 (mode_partitioned_cem) - OFF = +0.0167 paired, t=+4.34, 24/30 seeds positive; BOTH - OFF = +0.0142, t=+4.02; H2 (mode_value_weight) - OFF = +0.0015, t=+0.48, a clean null. Manipulation confirmed on 480/480 cells. The run's own acceptance gate (across-seed mean vs absolute FLOOR_PRODUCTION=0.01) is under-powered -- per-seed SD 0.011-0.018 exceeds the floor, giving t=+1.09 (H3) and t=+0.36 (BOTH) against it -- so the self-routed label `fix_effective::H3+BOTH` is correct on the paired vs-control contrast rather than on the gate it cleared. The indexer's `vacuous_pass` flag is adjudicated CLEARED as a criteria-tagging artifact: the declared combination rule is a disjunction ('>=1 fix arm clears') while all three per-arm criteria were tagged load_bearing:true; H2's sub-floor result is the informative half of the localisation, not a gate cleared on nothing. NARROWING: H3 restores the extreme-pair (broad-tight) breadth separation only -- the predicted monotone four-mode gradient is NOT restored in any arm (all adjacent gaps sub-floor; internal_replay->offline_consolidation inverts). Both facets default OFF (mode_partitioned_cem=False, mode_value_weight={}), so MECH-267 mode-conditioning remains washed out in production until the default flips. Diagnostic -- excluded from confidence and conflict scoring; pending_retest_after_substrate remains true, now gated on the default flip rather than on a build.",
+      "per_claim_recommendation": {
+        "MECH-267": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Diagnostic localisation only; direction stays non_contributory. Apply the new evidence_quality_note (locus resolved to H3 refit breadth; H2 a confirmed null; gate under-powered; restoration endpoint-only; facets default-OFF) and keep pending_retest_after_substrate true, now gated on the mode_partitioned_cem default flip rather than on a build. epistemic_category -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-MECH267-CEM-SELECTION-FIX",
+        "implementation_hint": "Locus TBD is RESOLVED: the wash-out is structural to the shared CEM elite-refit BREADTH (H3, mode_partitioned_cem), not the elite-selection value function (H2, mode_value_weight -- a confirmed null, H2-OFF paired +0.0015, t=+0.48). Next buildable step is flipping the `mode_partitioned_cem` default from False to True in ree_core/utils/config.py:2177 (and deciding whether to retire mode_value_weight, currently default {} and inert). Until that flip lands the validated fix is a no-op and MECH-267 mode-conditioning stays washed out for every other experiment touching HippocampalModule.propose_trajectories. Residual after the flip: the ordered four-mode gradient is still NOT restored (all adjacent gaps sub-floor; internal_replay->offline_consolidation inverts), so the flip closes the endpoint contrast only.",
+        "unblocks_claims": ["MECH-267"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/hippocampal/module.py",
+          "ree_core/utils/config.py"
+        ],
+        "severity_note": "Unchanged at `degrading`: the defect weakens confidence in any MECH-267 mode-conditioning readout taken at production defaults, but does not produce evidence that looks valid when it is not -- the wash-out is visible in the readout rather than hidden by it. substrate_paths EXTENDED to add ree_core/utils/config.py, which carries the two default declarations (mode_partitioned_cem line 2177, mode_value_weight line 2163) that this autopsy shows are the operative remaining defect.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3",
+          "experiment_type": "v3_exq_928_mech267_cem_selection_fix_validation",
+          "metric": "Ordered four-mode gradient NOT restored by the validated H3 facet: per_arm_all_adjacent_gaps_clear_floor is false in ALL four arms. H3 adjacent gaps +0.00729 / +0.00750 / -0.00116 -- first two directionally correct but sub-floor, third INVERTED. Only the extreme-pair broad-minus-tight contrast is rescued.",
+          "target": "All three adjacent predicted-order gaps >= FLOOR_PRODUCTION 0.01 at num_cem_iterations=3, with no inverted step.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "The wash-out this item named (mean pairwise raw_std gaps at production iteration counts falling below FLOOR_PRODUCTION regardless of iteration count) is closed at num_cem_iterations=3 by the H3 mode_partitioned_cem facet, on a paired same-seed vs-control contrast of H3-OFF = +0.0167, t=+4.34, 24/30 seeds positive, with the OFF control washed out as predicted and the manipulation confirmed on 480/480 cells. Closure is for the extreme-pair breadth readout only; the ordered-gradient residual is carried forward as the new failure_record item on this same entry."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-MECH267-CEM-SELECTION-FIX",
+        "note": "Ceiling hits for MECH-267 = 0 under the binding R1-R3 convention. The three prior tagging targets carry `competence_implementation_gap` (869), `competence_implementation_gap` (869a) and `standard` (923) -- none is `substrate_ceiling`, so none counts under R3. The driver header asserted a count of 2 and declared the brake RELEASED on substrate-now-built grounds; the release was correct but the count was not. Recorded so the number does not diverge again."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "tagging_targets": [
+          "failure_autopsy_V3-EXQ-869_2026-08-02 | v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3 | non_contributory | claim_alignment=other",
+          "failure_autopsy_V3-EXQ-869a_2026-08-03 | v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3 | non_contributory | claim_alignment=unclear",
+          "failure_autopsy_V3-EXQ-923_2026-08-12 | v3_exq_923_mech267_gov_fanout1_h1_iteration_count_20260812T045513Z_v3 | non_contributory | claim_alignment=intact"
+        ],
+        "alignment_distribution": {"intact": 1, "other": 1, "unclear": 1, "weakened": 0},
+        "note": "3 targets across 3 files. NO target reads `weakened`, so this is measurement/implementation debt, not granularity debt, per the standing rule. The single `other` was read directly (869: 'only 1 of >=2 claimed mechanisms was implemented') and is implementation debt, confirming the read. No /claim-synthesis routing owed.",
+        "routing": null
+      },
+      "learning_extracted": [
+        "A disjunctive (M-of-N) acceptance rule must not tag its per-member criteria load_bearing:true -- doing so makes the indexer's aggregation-vacuity rule (3b) fire on the very member whose failure is the informative result. Tag the AGGREGATE criterion load-bearing and the members not, as this driver already does correctly for its OFF control arm. Fix direction is the driver, never the indexer rule.",
+        "A PASS gate on an absolute floor is invalid when the per-seed SD exceeds the floor: here sd 0.011-0.018 against floor 0.010, giving t=+1.09 (H3) and t=+0.36 (BOTH) against the floor. Gates need an SD-of-delta term alongside the absolute floor (feedback_effect_size_pass_gate_margin).",
+        "A single-seed smoke must not calibrate a floor. The parent smoke read OFF ~2.1e-6; the 30-seed distribution is mean -0.0031 with sd 0.0113. Floor calibration needs a dispersion estimate, not a point estimate.",
+        "Prefer the paired same-seed contrast against the control arm as the GATED quantity when the design already shares seeds across arms. This design supported t=+4.34; only the choice of gated statistic wasted it.",
+        "A burned queue id re-run under a new id should stamp `supersedes` on the new manifest. Absent it the indexer double-counts one measurement -- here 927 + 928 both appear as diagnostic runs against MECH-267.",
+        "A no-op-default facet is not a delivered fix: validating H3 changes no production behaviour while mode_partitioned_cem defaults False (reference_claim_status_vs_default_off_flag).",
+        "Incidental positive control: a deterministic seeded probe re-executed 10 minutes later, across a substrate_hash change carrying no ree_core/ delta, reproduced every metric to the last decimal.",
+        "OBSERVATION, not routed from this autopsy: substrate_hash moved on a CLAUDE.md + queue-snapshot + driver-rename change with no ree_core/ delta. If the hash is that sensitive, arm-reuse fingerprint matching may be missing legitimately reusable cells -- flagged for whoever owns GOV-REUSE-1."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_927_mech267_cem_selection_fix_validation_20260814T012404Z_v3",
+      "queue_id": "V3-EXQ-927",
+      "claim_ids": ["MECH-267"],
+      "self_route_label": "fix_effective::H3+BOTH",
+      "failed_criterion": "discrimination",
+      "superseded_by": "v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + MECHANISM) -- identical to V3-EXQ-928, of which this is a byte-identical predecessor measurement under a burned queue id."
+      },
+      "biological_reference": {
+        "closest_mechanism": "As V3-EXQ-928 -- same driver, same measurement.",
+        "dependencies": ["hippocampal proposal generation", "state/mode signal available at proposal time", "downstream selection that does not discard the mode-conditioned breadth"],
+        "is_formal_import": false,
+        "divergence": "As V3-EXQ-928.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Superseded duplicate. Category stamped for corpus completeness (an unstamped target is invisible to R3 and to GOV-CEIL-1); the substantive adjudication lives on the V3-EXQ-928 target.",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "SUPERSEDED by V3-EXQ-928. V3-EXQ-927 is a BURNED QUEUE ID: ree-v3 commit 73f07e4 ('V3-EXQ-928: rename MECH-267 CEM-fix validation from burned id 927') renamed the single driver file, and only one driver exists in experiments/. The two manifests are bit-identical on every numeric field (per_arm_mean_broad_minus_tight_gap, per_arm_n_seeds_positive_gap, per_arm_mode_mean_raw_std, per_arm_adjacent_mean_gaps, per_arm_seed_broad_minus_tight_gaps). The differing substrate_hash / substrate_commit (8aa975e9cc -> fed315c702) covers only CLAUDE.md, a phase3 queue snapshot, and the driver's own id strings -- git diff --stat shows NO ree_core/ change -- so the substrate under test was byte-identical and the identical results are the correct deterministic outcome, not a defect. Governance should set evidence_direction: superseded on this manifest with supersedes: v3_exq_928_... so the indexer stops counting one measurement twice.",
+      "per_claim_recommendation": {
+        "MECH-267": {
+          "recommended_evidence_direction": "superseded",
+          "recommended_epistemic_category": "standard",
+          "change": "Mark this manifest inactive as a burned-id duplicate of V3-EXQ-928 so it stops double-counting in MECH-267 population statistics: set evidence_direction -> superseded",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Superseded duplicate -- the substrate amendment is carried on the V3-EXQ-928 target."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-MECH267-CEM-SELECTION-FIX"
+      },
+      "learning_extracted": [
+        "A burned queue id re-run under a new id must stamp `supersedes` on the successor manifest, or the indexer counts one measurement twice."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two manifests, ONE measurement. V3-EXQ-927 is a burned queue id; V3-EXQ-928 is the same single driver file re-run ~10 minutes later after a rename (ree-v3 73f07e4). Every numeric field is bit-identical; the substrate delta between the two runs contains no ree_core/ change.",
+    "is_independent_bugs": false,
+    "structural_property": "This is NOT a convergent multi-claim failure pattern -- it is a duplicate-manifest artifact of a burned-id rename, compounded by neither manifest declaring `supersedes`. The scientifically load-bearing content is a single four-arm localisation: the MECH-267 mode-content wash-out at production num_cem_iterations=3 is structural to the shared CEM elite-refit BREADTH (H3), not to the mode-independence of the elite-selection VALUE FUNCTION (H2). Incidentally, the pair is an exact-reproducibility positive control for this harness.",
+    "readings": ["burned_id_duplicate_manifest", "locus_localisation_confirmed_h3", "underpowered_absolute_floor_gate", "endpoint_contrast_only_gradient_not_restored", "validated_fix_inert_by_default"]
+  },
+  "hypothesis_space_ledger_applied": {
+    "qid": "mech267_content_persistence_cem_refit",
+    "mode": "B (resolve only -- no growth, no growth_restriction on this qid)",
+    "growth_restriction_checked": true,
+    "growth_restriction_value": null,
+    "resolved": [
+      {"hid": "H-mech267-mode-aware-scoring", "from": "alive", "to": "eliminated"},
+      {"hid": "H-mech267-partitioned-pools", "from": "alive", "to": "confirmed"}
+    ],
+    "initial_frozen_count_before": 5,
+    "initial_frozen_count_after": 5,
+    "surviving_alive_after": 0,
+    "decidable_set_true": true
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-16T11:26:45Z",
+  "generated_at": "2026-08-16T17:36:44Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,14 +31,14 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 60,
+      "total_surviving": 59,
       "total_initial": 109,
       "total_initial_at_registration": 89,
       "total_fanout_added": 20,
-      "total_resolved_out": 45,
-      "total_confirmed": 23,
-      "reduction_pct_vs_current": 41.3,
-      "net_narrowing_pct": 32.6,
+      "total_resolved_out": 46,
+      "total_confirmed": 24,
+      "reduction_pct_vs_current": 42.2,
+      "net_narrowing_pct": 33.7,
       "convergence_classes": {
         "narrowing": 16,
         "static": 13,
@@ -47,12 +47,12 @@
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "60 alive against 89 originally enumerated, and against 109 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "59 alive against 89 originally enumerated, and against 109 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 34
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 15,
+      "ready": 16,
       "open_questions": 34
     }
   },
@@ -190,8 +190,14 @@
       "build_pct": 84.1
     },
     {
+      "date": "2026-08-14",
+      "surviving": 63,
+      "closure_pct": 71.9,
+      "build_pct": 84.1
+    },
+    {
       "date": "2026-08-16",
-      "surviving": 60,
+      "surviving": 59,
       "closure_pct": 71.9,
       "build_pct": 84.1
     }
@@ -2578,12 +2584,15 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.6,
-      "bits_removed_vs_registration": 1.32,
+      "net_narrowing_ratio": 0.8,
+      "bits_removed_vs_registration": 2.32,
       "convergence": {
         "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 2 families",
-        "families_closed": [],
+        "reason": "no fan-out growth; eliminations in 2 families, 2 fully closed",
+        "families_closed": [
+          "process",
+          "representation"
+        ],
         "families_touched": [
           "process",
           "representation"
@@ -2592,13 +2601,13 @@
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 2,
-      "alive": 2,
-      "resolved_out": 3,
-      "confirmed": 0,
-      "reduction_numerator": 3,
-      "reduction_ratio": 0.6,
-      "bits_removed": 1.32,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 4,
+      "confirmed": 1,
+      "reduction_numerator": 4,
+      "reduction_ratio": 0.8,
+      "bits_removed": 2.32,
       "synthesis": null,
       "hypotheses": [
         {
@@ -2645,30 +2654,34 @@
           "label": "elite-selection value function needs an explicit mode-dependent term",
           "desc": "Windowing an already mode-independent score (horizon-depth's actual mechanism) is insufficient; the CEM elite-selection value function itself must carry an explicit mode-dependent term to survive refit",
           "axis": "representation",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Untested -- both built mechanisms perturb CEM refit inputs (variance, scoring window), neither perturbs the decision rule (value function) that ranks and retains elites. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H2.",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-928"
+          ],
+          "basis": "V3-EXQ-928 (4 arms x 30 shared seeds, production num_cem_iterations=3) built this leg as the mode_value_weight facet: a per-trajectory mode-dependent term subtracted from the CEM elite-selection score, so the ranking stays mode-differentiated on every refit iteration. The facet ENGAGED on all 480/480 cells (manipulation check) and produced nothing: H2 arm mean broad-minus-tight gap -0.00162 (sub-floor, floor 0.01), and the paired same-seed contrast H2 - OFF = +0.00147, t=+0.48, 14/30 seeds positive -- a clean null. Discriminating non_contributory: sub-floor against a PASSING reference band in the same run (H3 +0.01363 / BOTH +0.01112, H3-OFF t=+4.34) with the OFF negative control washed out as predicted (-0.00309). An explicit mode-dependent term in the elite-selection value function is NOT the locus. Confirmed autopsy failure_autopsy_927-928-mech267-cluster_2026-08-16.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-mech267-partitioned-pools",
           "label": "mode-independence is structural to shared elite-refit",
           "desc": "Cross-mode elite mixing during refit is itself the wash-out mechanism; hard-partitioning candidate pools per mode (no shared elite set) would preserve differentiation",
           "axis": "algorithm",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Untested -- the most structurally different of the three legs, changing CEM's own architecture rather than any input to it. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H3.",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-928"
+          ],
+          "basis": "V3-EXQ-928 (4 arms x 30 shared seeds, production num_cem_iterations=3) confirms the LOCUS this leg names: the shared elite-refit is what discards mode-conditioned proposal breadth. The mode_partitioned_cem facet rescues the broad-minus-tight raw_std gap at production settings -- arm mean +0.01363, and decisively on the paired same-seed contrast H3 - OFF = +0.01672, t=+4.34, 24/30 seeds positive (BOTH - OFF = +0.01420, t=+4.02), with the OFF control washed out (-0.00309) and the manipulation confirmed on 480/480 cells. TWO reasons met_elimination_bar is false. (1) Restoration is PARTIAL: only the extreme-pair contrast is rescued; per_arm_all_adjacent_gaps_clear_floor is false in ALL four arms, H3's adjacent gaps being +0.00729 / +0.00750 / -0.00116 -- first two directionally right but sub-floor, third INVERTED -- so the predicted monotone four-mode gradient is not restored. (2) The intervention tested is WEAKER than this leg's literal text: mode_partitioned_cem does NOT hard-partition candidate pools (no separate elite sets); it keeps the shared elite set and re-applies the mode-conditioned noise scale to the freshly-refit ao_std once per CEM iteration. So the refit-breadth locus is confirmed, but 'cross-mode elite MIXING per se is the mechanism' remains untested. Separately, the run's own acceptance gate is under-powered (per-seed SD 0.011-0.018 exceeds the 0.01 floor; t vs floor is only +1.09 for H3 and +0.36 for BOTH) -- the confirmation rests on the paired vs-control contrast, not on the floor-clearing. Confirmed autopsy failure_autopsy_927-928-mech267-cluster_2026-08-16.",
           "children": [],
           "met_elimination_bar": false
         }
       ],
       "decision": {
-        "readiness_state": "discriminative_ready",
-        "evidence_decile": 7,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "Does the currently-implemented CEM-based hippocampal proposal pipeline preserve MECH-267's mode-conditioned content through production-settings elite-refit, and if not, which locus (iteration count / scoring criterion / pool architecture) fixes it?",
-        "distance_phrase": "3 of 3 tested upstream mechanisms/loci eliminated (noise-scale alone; noise-scale+horizon-depth together; iteration-count) -- all wash out identically at production settings or intermediate iteration counts. 2 untested loci remain, on 2 distinct design axes (representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out.",
-        "live_gate": "H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- two untested loci remain (iteration-count eliminated 2026-08-12), not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the two should precede queuing per GOV-FANOUT-1 Step 2.5b. A substrate_queue entry (SD-MECH267-CEM-SELECTION-FIX) was created unscoped between the two per failure_autopsy_V3-EXQ-923_2026-08-12.",
+        "distance_phrase": "5 of 5 pre-registered legs adjudicated; 0 surviving. Locus identified as the shared CEM elite-refit breadth (H3), with the elite-selection value function (H2) a confirmed null. Decidable now. Two residuals, neither a discrimination: the validated facet is default-OFF so production behaviour is unchanged, and only the extreme-pair breadth contrast is restored -- the ordered four-mode gradient is not.",
+        "live_gate": "RESOLVED. All 5 pre-registered legs are adjudicated (0 alive): noise-scale-only, noise-scale+horizon-depth, and iteration-count eliminated 2026-08-02/03/12; mode-aware scoring (H2) eliminated and shared-refit breadth (H3) confirmed by V3-EXQ-928, 2026-08-14. The locus is the shared CEM elite-refit breadth. Remaining work is a BUILD, not a discrimination: flip mode_partitioned_cem from its False default (ree_core/utils/config.py:2177), which is currently a no-op so the wash-out persists in production. decision_log_ref is human-owned and unset.",
         "observation_bottleneck": null
       }
     },
@@ -3713,6 +3726,20 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-928",
+      "all_runs": [
+        "V3-EXQ-928"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-928 (4 arms x 30 shared seeds, production num_cem_iterations=3) built this leg as the mode_value_weight facet: a per-trajectory mode-dependent term subtracted from the CEM elite-selection score, so the ranking stays mode-differentiated on every refit iteration. The facet ENGAGED on all 480/480 cells (manipulation check) and produced nothing: H2 arm mean broad-minus-tight gap -0.00162 (sub-floor, floor 0.01), and the paired same-seed contrast H2 - OFF = +0.00147, t=+0.48, 14/30 seeds positive -- a clean null. Discriminating non_contributory: sub-floor against a PASSING reference band in the same run (H3 +0.01363 / BOTH +0.01112, H3-OFF t=+4.34) with the OFF negative control washed out as predicted (-0.00309). An explicit mode-dependent term in the elite-selection value function is NOT the locus. Confirmed autopsy failure_autopsy_927-928-mech267-cluster_2026-08-16.",
+      "resolved_utc": "2026-08-14T01:34:34Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
       "all_runs": [
