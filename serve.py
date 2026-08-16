@@ -4599,6 +4599,18 @@ def _coordinator_issue_command(
         return (False, False, "coordinator not configured")
     import urllib.error
     import urllib.request
+    # Resolve before posting, matching what the git fallback already does via
+    # _commands_file(). Without it the PRIMARY channel was the unresolved one
+    # and the deprecated fallback the resolved one -- the asymmetry the wrong
+    # way round. The runner polls GET /commands under its CANONICAL name
+    # (experiment_runner._get_machine_name canonicalises), so a command issued
+    # from a machine card still labelled `DLAPTOP-4.local` would sit pending
+    # forever with no error anywhere. The coordinator canonicalises this same
+    # value at ingest too (coordinator/app.py `_canon`); resolving here as
+    # well keeps the explorer's own echo/logging honest about where the
+    # command actually went. `ree-cloud-N` names pass through untouched --
+    # canonical_machine_name is an allowlist, not a `-<digits>` strip.
+    machine = machine_identity.canonical_machine_name(machine) or machine
     body = json.dumps({
         "machine": machine, "kind": kind,
         "args": args or {}, "issued_by": issued_by,
