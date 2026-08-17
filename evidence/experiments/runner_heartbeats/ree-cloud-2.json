@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-17T04:26:32Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-935",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-924",
-      "result": "PASS",
-      "completed_at": "2026-08-12T05:11:15.484735+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-929",
-      "result": "PASS",
-      "completed_at": "2026-08-14T08:16:06.932285+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-930",
-      "result": "PASS",
-      "completed_at": "2026-08-14T09:24:38.089566+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-933",
-      "result": "PASS",
-      "completed_at": "2026-08-14T15:58:45.461389+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-920a",
-      "result": "PASS",
-      "completed_at": "2026-08-14T22:34:34.528052+00:00"
-    }
+  "last_tick_utc": "2026-08-17T04:38:13Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-936",
+  "current_exq_started_utc": "2026-08-17T04:35:36.806126+00:00",
+  "current_title": "MECH-439: does the CONVERTING MECH-448 F->eligibility demotion actually REDUCE F's committed-selection variance share? (the claim's own pre-registered falsifier, never measured)",
+  "current_claim_id": "MECH-439",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_OFF",
+    "runs_done": 0,
+    "runs_total": 8,
+    "episodes_done": 20,
+    "episodes_total": 100,
+    "overall_pct": 2.5
+  },
+  "seconds_elapsed": 155,
+  "seconds_remaining": 25821,
+  "recent_lines": [
+    "Seed 42 Condition ARM_OFF",
+    "[train] arm=ARM_OFF seed=42 phase=P0 ep 1/100 fresh=0/200",
+    "[train] arm=ARM_OFF seed=42 phase=P0 ep 10/100 fresh=0/200",
+    "[train] arm=ARM_OFF seed=42 phase=P0 ep 20/100 fresh=0/200"
   ],
-  "runner_pid": 5295,
-  "runner_version": "r5239 f5837e9 2026-08-17",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 842,
+  "runner_version": "r5241 67eecb8 2026-08-17",
   "gpu": {
     "available": false
   },
