@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_092",
+  "entry_id": "2026-08-17_q_092_exceeding_chance_level_by_chance_combrisson2015",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "Q-092"
+  ],
+  "source": {
+    "title": "Exceeding chance level by chance: The caveat of theoretical chance levels in brain signal classification and statistical assessment of decoding accuracy",
+    "authors": [
+      "Etienne Combrisson",
+      "Karim Jerbi"
+    ],
+    "year": 2015,
+    "venue": "Journal of Neuroscience Methods",
+    "doi": "10.1016/j.jneumeth.2015.01.010",
+    "pmid": "25596422",
+    "pmc": null,
+    "volume": "250",
+    "pages": "126-136"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "Directly validates the single most important design choice in Q-092's confirming signature -- that held-out accuracy must be tested against an EMPIRICAL PERMUTATION NULL rather than a theoretical 50% chance level. The demonstration is quantitative and adversarial (random Gaussian signals reaching 70%+ two-class accuracy at small n), so it constrains Q-092's episode budget as well as its statistics. High confidence: the result is methodological and machine-independent, so domain transfer risk is nearly nil.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If Q-092 is run with a small number of held-out episodes, an accuracy well above 50% is expected under the null and reporting it against theoretical chance would manufacture a false PASS.",
+    "The permutation null controls for small-sample inflation but NOT for a genuine confound shared by the two conditions -- clearing this null is necessary and explicitly insufficient for Q-092's verdict."
+  ],
+  "tags": [
+    "q-092",
+    "permutation_test",
+    "classifier_significance",
+    "chance_level",
+    "held_out_validation",
+    "methodology",
+    "measurement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Classification of pure random (Gaussian) signals yields decoding accuracies of up to 70% or higher in two-class problems with small sample sets, because the variance of the observed correct-classification rate scales inversely with sample size; valid inference therefore requires binomial or permutation-based p-values that account for sample size rather than comparison against a theoretical chance level.",
+    "ree_translation": "Q-092's confirming signature requires held-out classification of reef-ON vs reef-OFF to exceed a LABEL-PERMUTATION NULL at p<0.05, not to exceed 50%. This paper is the methodological warrant for that choice, and it converts the requirement from a stylistic preference into a hard precondition: with the episode counts typical of REE runs, a theoretical-chance comparison would be actively misleading. It also implies an episode-budget constraint on the experiment design that Q-092's what_would_answer does not yet state numerically.",
+    "mapping_caveat": "The paper is about brain-signal classification; Q-092 classifies behavioural trajectory-segment features from a simulated agent. The statistical argument is domain-general (it concerns the sampling distribution of accuracy, not neural data), so transfer is safe -- but the paper says nothing about the OTHER two guards Q-092 specifies (matched untrained-policy control, orthogonal-perturbation specificity), and must not be read as validating the design as a whole.",
+    "source_context": "Simulation study on random Gaussian signals plus EEG/MEG decoding examples; two-class and multi-class, varying sample size."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.08,
+    "notes": "Transfer risk near zero: this is a statement about the sampling distribution of a classification accuracy, which is indifferent to whether the features are neural or behavioural. Mapping fidelity high but not 1.0 because it validates one of Q-092's three guards, not the composite design."
+  }
+}

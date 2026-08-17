@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_053",
+  "entry_id": "2026-08-17_mech_053_negative_motivational_value_lhb_matsumoto2009",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "MECH-053"
+  ],
+  "source": {
+    "title": "Representation of negative motivational value in the primate lateral habenula",
+    "authors": [
+      "Masayuki Matsumoto",
+      "Okihide Hikosaka"
+    ],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2233",
+    "pmid": "19043410",
+    "pmc": "PMC2737828",
+    "volume": "12",
+    "issue": "1",
+    "pages": "77-84"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical primate single-unit study establishing that LHb encodes negative motivational value as a context-relative signal, not merely reward omission. Source quality is high (Nat Neurosci, monkey electrophysiology, replicated repeatedly since). Mapping fidelity is good for the 'aversive channel is distinct and asymmetric' half of MECH-053 but only indirect for the 'suppresses commitment' half -- this is a Pavlovian recording study, not an action-veto manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The LHb signal here is context-relative (excited by the most unpleasant event WITHIN each context), so a REE gate keying on an absolute harm-PE magnitude would not reproduce the primate signal.",
+    "The paper is correlational: it shows LHb represents negative value, not that LHb activity vetoes an already-forming commitment."
+  ],
+  "tags": [
+    "mech-053",
+    "habenula",
+    "aversive_prediction_error",
+    "negative_motivational_value",
+    "primate_electrophysiology",
+    "control_plane"
+  ],
+  "mapping": {
+    "source_claim_statement": "LHb neurons are most strongly excited by the conditioned stimulus associated with the most unpleasant event available in each context, are excited by punishment itself and inhibited by reward itself (especially when less predictable), positioning LHb to control both reward-seeking and punishment-avoidance via dopaminergic and serotonergic projections.",
+    "ree_translation": "MECH-053's aversive PE gate has a biological analogue that is genuinely a SEPARATE signed channel rather than the negative tail of a reward scalar: the same population is excited by aversive events and inhibited by appetitive ones, and its excitation tracks predicted negative value. This supports MECH-053's structural insistence that aversive salience not be absorbed into a single reward-like precision term (and the sibling MECH-054 separation).",
+    "mapping_caveat": "The strongest and most-cited part of this result is REPRESENTATIONAL, not causal-on-action. MECH-053 asserts a gate that suppresses or vetoes COMMITMENT; this paper shows the signal exists and is appropriately signed, and only infers behavioural control from LHb's known projections. Treating it as evidence for the veto function itself over-reads it. Additionally the context-relative normalisation is a real structural difference from a fixed-threshold gate.",
+    "source_context": "Two macaques, Pavlovian conditioning with separate appetitive and aversive contexts, single-unit recording in lateral habenula."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Transfer risk moderate rather than low: primate-to-REE is a favourable direction for a control-plane claim, but the gap between 'encodes negative value' and 'gates commitment' is the actual load-bearing step and this paper does not close it."
+  }
+}

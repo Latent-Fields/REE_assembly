@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_092",
+  "entry_id": "2026-08-17_q_092_permutation_tests_for_classifier_performance_ojala2010",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "Q-092"
+  ],
+  "source": {
+    "title": "Permutation Tests for Studying Classifier Performance",
+    "authors": [
+      "Markus Ojala",
+      "Gemma C. Garriga"
+    ],
+    "year": 2010,
+    "venue": "Journal of Machine Learning Research",
+    "doi": null,
+    "pmid": null,
+    "volume": "11",
+    "issue": "62",
+    "pages": "1833-1863",
+    "url": "https://www.jmlr.org/papers/v11/ojala10a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Supplies the formal framework Q-092's design is an instance of, and adds a distinction Q-092 does not currently make: a label permutation tests whether ANY class structure was found, whereas a restricted within-class FEATURE permutation tests whether the classifier is exploiting feature DEPENDENCY. Q-092's multivariate trajectory-segment signature makes that second test directly applicable and currently unspecified. Foundational, widely-cited, domain-general.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A label-permutation p-value alone cannot distinguish a classifier exploiting the multivariate DEPENDENCY structure of the trajectory signature from one riding a single dominant marginal feature (e.g. refuge occupancy alone) -- Q-092's Stage-1 claim to a 'multivariate signature' is not established by the test it currently specifies.",
+    "Under the label-permutation null the class marginals are preserved, so a strongly imbalanced or degenerate feature set can still yield a misleadingly interpretable result that the null does not flag."
+  ],
+  "tags": [
+    "q-092",
+    "permutation_test",
+    "classifier_significance",
+    "feature_dependency",
+    "multivariate",
+    "methodology",
+    "measurement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Two complementary permutation tests assess classifier performance: permuting class labels estimates a null for whether the classifier found real class structure; permuting features within classes (a restricted randomisation) estimates a null for whether the classifier exploits dependency between features.",
+    "ree_translation": "Q-092 specifies the first test. Its scientific claim, however, is about a MULTIVARIATE trajectory-segment feature signature (refuge occupancy, excursion structure, hazard relationships, transitions, spatial distribution) -- i.e. it wants to claim that behavioural differentiation lives in the joint structure, not in one marginal. Ojala & Garriga's second test is the instrument that separates those, and adding it would let Q-092 distinguish 'reef-ON and reef-OFF differ' from 'reef-ON and reef-OFF differ in the multivariate way the claim asserts'.",
+    "mapping_caveat": "This is a general ML methodology paper with no ecological, behavioural or RL content; it constrains how Q-092 should be ANALYSED and says nothing about whether the reef phenotype exists. It also cannot arbitrate Q-092's matched-control guard, which addresses a confound (environment geometry) rather than a null-hypothesis choice. Adding the feature-permutation test is a refinement to Stage 1, not a substitute for Stage 2's interpretation gate.",
+    "source_context": "Machine-learning methodology; synthetic and real datasets including computational-biology applications; classifier-agnostic."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.1,
+    "notes": "JMLR, heavily cited, classifier-agnostic and domain-general, so transfer risk is minimal. Source quality 0.85 rather than higher only because it is a methods framework whose applicability depends on design choices Q-092 has not yet fixed."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_053",
+  "entry_id": "2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "MECH-053"
+  ],
+  "source": {
+    "title": "The lateral habenula and its input to the rostromedial tegmental nucleus mediates outcome-specific conditioned inhibition",
+    "authors": [
+      "Vincent Laurent",
+      "Fiona L. Wong",
+      "Bernard W. Balleine"
+    ],
+    "year": 2017,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3415-16.2017",
+    "pmid": "28986462",
+    "pmc": null,
+    "volume": "37",
+    "issue": "45",
+    "pages": "10932-10942"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "The causal complement to the recording studies: LHb lesions AND selective ablation of the LHb->RMTg projection both abolish the ability of a negative predictor to bias choice AWAY from an action, while leaving positive predictors intact. That asymmetry -- critical for negative predictors, not positive ones -- is precisely the channel separation MECH-053 asserts, and it is demonstrated causally rather than inferred. Held at 0.80 by rodent-to-REE transfer and by the fact that the DV is instrumental choice bias, not commitment interruption.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The demonstrated function is OUTCOME-SPECIFIC inhibition learned over training, not a fast general-purpose interrupt; a REE gate that suppresses commitment indiscriminately on any harm-PE spike would be a different mechanism from the one shown here.",
+    "Lesion/ablation methods show necessity for the behavioural effect but cannot establish the timing or the pre-consolidation position MECH-053 asserts."
+  ],
+  "tags": [
+    "mech-053",
+    "habenula",
+    "rmtg",
+    "conditioned_inhibition",
+    "causal_lesion",
+    "choice_bias",
+    "control_plane"
+  ],
+  "mapping": {
+    "source_claim_statement": "In rats, an outcome-specific conditioned inhibitor biases choice away from actions delivering that outcome and toward actions earning other outcomes; this bias is abolished by LHb lesions and by selective ablation of LHb neurons projecting to RMTg, indicating the LHb is critical for negative predictors -- but not positive predictors -- to affect choice.",
+    "ree_translation": "MECH-053 posits a dedicated aversive gate whose removal should selectively impair the suppression of action under negative expectation while leaving appetitive control intact. This study performs exactly that ablation and reports exactly that dissociation, which is the strongest available causal evidence that the aversive-suppression pathway is architecturally separate rather than the negative half of a shared valuation channel.",
+    "mapping_caveat": "The inhibition demonstrated is learned and OUTCOME-SPECIFIC -- the animal has acquired that a particular cue predicts the absence of a particular outcome, and choice is biased accordingly. MECH-053 describes a faster, more generic gate keyed on harm-PE magnitude that interrupts commitment before deep evaluation. These are not the same mechanism, and the specificity here may reflect a slower learned pathway that happens to share the LHb->RMTg substrate. Treat as strong evidence for architectural separation, weaker evidence for the fast-interrupt function.",
+    "source_context": "Female and male rats, instrumental choice with Pavlovian conditioned inhibitors; LHb excitotoxic lesions and pathway-selective ablation of LHb->RMTg projection neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: pathway-selective ablation with a within-subject behavioural dissociation and both sexes. Transfer risk 0.35 -- rodent instrumental choice is several steps from REE commitment gating, and the learned/outcome-specific character of the effect is the main mapping hazard."
+  }
+}

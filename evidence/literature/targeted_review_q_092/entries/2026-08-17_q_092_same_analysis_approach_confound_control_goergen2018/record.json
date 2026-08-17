@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_092",
+  "entry_id": "2026-08-17_q_092_same_analysis_approach_confound_control_goergen2018",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "Q-092"
+  ],
+  "source": {
+    "title": "The same analysis approach: Practical protection against the pitfalls of novel neuroimaging analysis methods",
+    "authors": [
+      "Kai Görgen",
+      "Martin N. Hebart",
+      "Carsten Allefeld",
+      "John-Dylan Haynes"
+    ],
+    "year": 2018,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2017.12.083",
+    "pmid": "29288130",
+    "pmc": null,
+    "volume": "180",
+    "issue": "Pt A",
+    "pages": "19-30"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "This is the methodological principle behind Q-092's matched untrained-policy control and its orthogonal-perturbation check, stated in general form: run the SAME analysis pipeline on simulated confounds, null data and control data, because a novel pipeline's failure modes are not predictable from the design alone. Q-092 independently arrived at two instances of this. High confidence; the demonstrated error classes (counterbalancing/cross-validation mismatch, linear decoding of a variance difference) are directly reachable by Q-092's design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A trajectory classifier can separate conditions on a DIFFERENCE IN VARIANCE rather than in mean structure -- Görgen et al. show a linear decoder doing exactly this for a nonlinear effect. Reef-OFF episodes plausibly have higher trajectory variance than reef-ON, which would yield real, replicable, permutation-clearing discriminability that means only 'one condition is more variable'.",
+    "Mismatch between how episodes are counterbalanced/blocked and how cross-validation folds are cut can produce systematically BELOW-chance accuracy, which a one-sided reading of Q-092's falsifying signature would misclassify as a clean null result rather than as a broken pipeline."
+  ],
+  "tags": [
+    "q-092",
+    "confound_control",
+    "same_analysis_approach",
+    "cross_validation",
+    "decoding_pitfalls",
+    "matched_control",
+    "methodology",
+    "measurement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Novel analysis methods carry failure modes that are not predictable from the experimental design; the Same Analysis Approach applies the identical analysis pipeline to design variables, simulated confounds, null data and control data, and this reveals errors including systematic below-chance accuracies from a counterbalancing/cross-validation mismatch and apparent decoding driven by a difference in variance rather than a difference in means.",
+    "ree_translation": "Q-092's matched untrained/random-policy control and its orthogonal nuisance-perturbation check are two independent instances of the Same Analysis Approach: both run the identical pipeline on data where the effect of interest is absent or displaced, to see what the pipeline reports anyway. This paper is the general warrant for that design and shows it catching real errors. It also prescribes a third instance Q-092 lacks -- running the pipeline on the DESIGN VARIABLES and on null data -- which would catch the below-chance/fold-structure failure the claim's current falsifying signature would silently absorb.",
+    "mapping_caveat": "Written for fMRI multivariate decoding, where the specific confounds (scanner drift, run structure, trial counterbalancing) do not transfer literally. What transfers is the PRINCIPLE and two concrete error classes -- variance-difference decoding and cross-validation/fold-structure mismatch -- both of which are reachable in a trajectory-segment classifier over episodes. Do not read the paper's fMRI-specific recommendations as directly executable in the REE setting.",
+    "source_context": "fMRI multivariate decoding methodology; worked examples on simulated and real neuroimaging data."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.2,
+    "notes": "Transfer risk 0.20: the principle and the two named error classes transfer cleanly to an episode-level behavioural classifier, while the fMRI-specific confound catalogue does not. Mapping fidelity 0.80 -- it warrants two of Q-092's three guards and prescribes a third the claim does not yet have."
+  }
+}

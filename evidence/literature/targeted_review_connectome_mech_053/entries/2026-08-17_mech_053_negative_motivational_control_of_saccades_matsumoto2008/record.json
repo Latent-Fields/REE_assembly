@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_053",
+  "entry_id": "2026-08-17_mech_053_negative_motivational_control_of_saccades_matsumoto2008",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "MECH-053"
+  ],
+  "source": {
+    "title": "Negative motivational control of saccadic eye movement by the lateral habenula",
+    "authors": [
+      "Masayuki Matsumoto",
+      "Okihide Hikosaka"
+    ],
+    "year": 2008,
+    "venue": "Progress in Brain Research",
+    "doi": "10.1016/S0079-6123(08)00658-4",
+    "pmid": "18718332",
+    "pmc": "PMC2735791",
+    "volume": "171",
+    "pages": "399-402"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "On-point for MECH-053's action-suppression function -- LHb is described as suppressing less-rewarding saccades by inhibiting dopamine neurons, which is the closest the primate literature comes to a motor-commitment veto. But it is a short conference-proceedings review (4 pages) rather than a primary report, and the suppression it describes is of LESS-REWARDING actions rather than aversively-gated ones. Confidence deliberately low.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The suppression described is of less-rewarding saccades -- an appetitive-value comparison -- not suppression triggered by an aversive prediction-error spike. Reading it as direct evidence for a harm-PE veto conflates reward-magnitude gating with aversive gating, which is exactly the collapse MECH-053 exists to prevent.",
+    "Four-page review in a proceedings volume; primary data are reported elsewhere and this entry should not be weighted as an independent empirical source."
+  ],
+  "tags": [
+    "mech-053",
+    "habenula",
+    "saccade",
+    "action_suppression",
+    "dopamine",
+    "oculomotor",
+    "control_plane",
+    "source_quality:review_proceedings"
+  ],
+  "mapping": {
+    "source_claim_statement": "The lateral habenula transmits reward-related signals to dopamine neurons, especially to inhibit them, and thereby suppresses less-rewarding saccadic eye movements.",
+    "ree_translation": "This is the clearest statement in the primate literature that LHb output terminates in the SUPPRESSION OF A SPECIFIC MOTOR COMMITMENT rather than in a diffuse motivational state -- the LHb->DA->oculomotor chain reaches all the way to whether a particular saccade is executed. MECH-053's gate is asserted to bias control-plane readiness and veto thresholds for specific candidate actions, and this is the biological existence proof that an LHb-type signal can act at that granularity.",
+    "mapping_caveat": "Two problems, and both matter. The suppression here is driven by LOW REWARD, not by aversive prediction error -- so it evidences that the LHb->DA pathway can veto a specific action, but not that harm-PE is what drives the veto. And it is a brief review, not primary data. I have weighted it as corroborating the action-granularity of LHb output only, and explicitly not as evidence about the aversive trigger.",
+    "source_context": "Review of macaque oculomotor work; biased-reward saccade tasks with LHb recording and stimulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.32,
+    "notes": "Source quality deliberately low (0.55): 4-page proceedings review, not primary. Included because it is the only source in this pull speaking to the ACTION-GRANULARITY of LHb output; excluded from carrying any weight on the aversive-trigger question."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_053",
+  "entry_id": "2026-08-17_mech_053_human_habenula_punishment_behavioural_suppression_lawson2014",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "MECH-053"
+  ],
+  "source": {
+    "title": "The habenula encodes negative motivational value associated with primary punishment in humans",
+    "authors": [
+      "Rebecca P. Lawson",
+      "Ben Seymour",
+      "Eleanor Loh",
+      "Antoine Lutti",
+      "Raymond J. Dolan",
+      "Peter Dayan",
+      "Nikolaus Weiskopf",
+      "Jonathan P. Roiser"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1323586111",
+    "pmid": "25071182",
+    "pmc": "PMC4136587",
+    "volume": "111",
+    "issue": "32",
+    "pages": "11858-11863"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "The single most on-point result in this pull for MECH-053's commitment-suppression function: habenula responses to dynamically updated shock-cue values PREDICT behavioural suppression of responding, and the reward-side response predicts invigoration. Human data removes species transfer risk entirely. Confidence held below 0.85 by the resolution problem -- the habenula is a very small structure for fMRI, the paper cannot cleanly separate lateral from medial habenula, and BOLD cannot deliver the 'fast' in MECH-053's fast gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "fMRI at habenula scale cannot dissociate lateral from medial habenula, so the anatomical specificity MECH-053 inherits from the LHb literature is not established by this study.",
+    "BOLD timing cannot evidence the FAST, pre-consolidation interrupt that MECH-053 requires; the result is compatible with a slow value-tracking signal that biases responding over trials."
+  ],
+  "tags": [
+    "mech-053",
+    "habenula",
+    "human_fmri",
+    "aversive_learning",
+    "behavioural_suppression",
+    "computational_model",
+    "control_plane"
+  ],
+  "mapping": {
+    "source_claim_statement": "High-resolution fMRI with computational RL modelling shows positive habenula responses to the dynamically changing values of cues signalling painful electric shocks, and those responses predict behavioural suppression of responses to those cues; negative habenula responses to monetary reward cue values predict behavioural invigoration.",
+    "ree_translation": "This is the closest available human evidence for MECH-053's actual functional assertion -- that an aversive prediction-error signal SUPPRESSES action rather than merely registering badness. The signed bidirectionality (suppression on the aversive side, invigoration on the appetitive side) also supports the MECH-053/MECH-054 insistence on separate signed channels feeding commitment gating.",
+    "mapping_caveat": "'Behavioural suppression of responses' in a human aversive-learning task is response-rate suppression across trials, not the interruption of an in-flight commitment before trajectory consolidation. MECH-053's distinctive content is the TIMING -- a fast interrupt upstream of deep evaluation -- and no fMRI study can evidence that. Read this as support for the direction and sign of the gate's effect on action, not for its position in the commitment pipeline.",
+    "source_context": "Healthy human adults, high-resolution fMRI of habenula, trial-by-trial aversive (electric shock) and appetitive (monetary) reinforcement learning with computational value modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.18,
+    "notes": "Transfer risk is the lowest in this pull (human, and the DV is behaviour rather than a proxy). The confidence ceiling comes from spatial resolution and from BOLD's inability to speak to the fast-interrupt timing that is MECH-053's distinctive commitment."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_053",
+  "entry_id": "2026-08-17_mech_053_learning_shapes_aversion_and_reward_responses_wang2017",
+  "timestamp_utc": "2026-08-17T06:06:44Z",
+  "claim_ids_tested": [
+    "MECH-053"
+  ],
+  "source": {
+    "title": "Learning shapes the aversion and reward responses of lateral habenula neurons",
+    "authors": [
+      "Dongye Wang",
+      "Yi Li",
+      "Qiru Feng",
+      "Qingchun Guo",
+      "Jingfeng Zhou",
+      "Minmin Luo"
+    ],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.23045",
+    "pmid": "28561735",
+    "pmc": "PMC5469615",
+    "volume": "6",
+    "pages": "e23045"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Genuinely two-directional for MECH-053. It supports the FAST half strongly -- aversive-cue responses emerge within a few trials, whereas reward-cue inhibition needs prolonged conditioning and high reward probability, which is an asymmetry favouring a fast dedicated aversive gate. But it also shows LHb neurons process aversive AND reward signals bidirectionally in the same population, which complicates any reading of MECH-053's channel separation as anatomical segregation rather than functional asymmetry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LHb neurons here are bidirectional -- excited by aversive events and inhibited by reward -- so 'separate aversive channel' cannot mean an anatomically distinct population carrying only harm-PE. A REE implementation that instantiates two disjoint channels would diverge from this substrate.",
+    "The reward-side response requires prolonged conditioning and high reward probability to appear, so a REE gate assuming symmetric acquisition rates for appetitive and aversive learning would mispredict the biology."
+  ],
+  "tags": [
+    "mech-053",
+    "habenula",
+    "fiber_photometry",
+    "aversive_learning",
+    "learning_asymmetry",
+    "channel_separation",
+    "control_plane"
+  ],
+  "mapping": {
+    "source_claim_statement": "In freely-behaving mice, bitterness, pain and social attack intensively excite LHb neurons; aversive conditioning induces activation by aversion-predicting cues within a few trials, whereas sucrose reward inhibits LHb neurons and it requires prolonged conditioning and high reward probability to induce inhibition by reward-predicting cues. LHb neurons therefore bidirectionally process aversive and reward signals shaped by experience.",
+    "ree_translation": "Two distinct bearings on MECH-053. SUPPORTING: the acquisition asymmetry -- aversive cue responses in a few trials versus prolonged conditioning for reward -- is direct evidence for the FAST in MECH-053's 'fast aversive prediction-error gate', and for aversive signals being privileged for speed over appetitive ones. WEAKENING/COMPLICATING: the same neurons carry both valences, so MECH-053's separation of aversive salience from reward-like precision weighting must be read as FUNCTIONAL asymmetry within a shared signed channel, not as two anatomically disjoint pathways.",
+    "mapping_caveat": "MECH-053's wording ('keeps aversive salience distinct from reward-like precision weighting') is ambiguous between an implementation-level separation (two channels) and a representational one (one signed channel, asymmetric dynamics). This paper is compatible with the second and hard to reconcile with a strict reading of the first. The claim should be disambiguated before this entry is used to adjudicate it -- otherwise the same result reads as support or as weakening depending on which reading the reader brought.",
+    "source_context": "Freely-behaving mice; fiber photometry and electrophysiology; aversive stimuli (quinine, pain, social defeat) and sucrose reward with Pavlovian conditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.34,
+    "notes": "Mapping fidelity capped at 0.68 by a genuine ambiguity in the CLAIM rather than a weakness in the paper -- MECH-053 does not say whether its channel separation is architectural or functional, and this result bears oppositely on the two readings."
+  }
+}
