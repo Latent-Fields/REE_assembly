@@ -165,6 +165,15 @@ The storage-site rule vector drifts substantially while the rule actually steeri
 
 **Mandatory in any successor, independent of which leg wins:** record `done_cause` and a per-cell truncation flag; add a window-completeness precondition; hold benefit-bearing resource *count* (not total resource count) constant across the ruleset axis; observe the stepping clones in `zg_acc`; and align `selection_path_rule_read_live`'s code with its stated control.
 
+### 8a. Overlap with an already-open chip — check before queuing
+
+`chip-20260816-substrate-navigation-immobility-probe` is **open and unstarted** (`TASK_CHIPS.json`), spawned from the *same* 874b pre-authoring probe. It owns the substrate-wide scoping spike for exactly the immobility this autopsy re-encountered: *"a P0-trained agent moved on 14/300 ticks, 9-11 unique cells, 0 consumption events… any experiment whose DV depends on the agent REACHING something inherits this as a silent denominator problem."*
+
+**Two consequences, both for whoever ratifies the routing:**
+
+1. **The fan-out's `H-commitment` and `H-cadence` legs overlap that chip substantially.** Do not queue them as MECH-467-specific probes without first checking whether the scoping spike has run — if it has, it may already answer them at the substrate level, and the portfolio should shrink to `H-energy` + `H-denominator` (the two legs genuinely specific to this battery's design). Queuing all four blind would duplicate an open, owned item — the failure mode Phase 3 rule 2 exists to prevent.
+2. **This autopsy materially strengthens that chip's premise, and the chip does not know it yet.** Its evidence is the 10×10 / 5-resource / 300-tick probe. V3-EXQ-874b now shows the immobility **survives the fix**: at 6×6 with 12 resources over a 900-tick window — the exact geometry change the probe itself recommended — the event rate got *worse* (0.00117/tick vs the probe's 0.0100), and 7 of 12 cells starved to death. The scoping spike should be re-read with that in hand; "shrink the arena" is now a tested and failed remedy, not an untried one.
+
 **Separately routed (confirmed at the gate):** a guard in `experiments/_lib/z_goal_stream.py` so a driver observing a non-eval-stepped agent is caught rather than publishing a false `writer_defect`. Classified `degrading` — it does not invalidate 874b's verdict (the vacuity stands on the event floor alone) but it corrupts a standing cross-run record.
 
 ## 9. Draft `evidence_quality_note` for governance

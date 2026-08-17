@@ -151,6 +151,13 @@
           "observe the stepping clones in zg_acc, not the P0 base agent",
           "align selection_path_rule_read_live's code with its stated control (it claims to test z_goal liveness and does not)"
         ],
+        "overlaps_open_chip": {
+          "chip_ref": "chip-20260816-substrate-navigation-immobility-probe",
+          "status_at_autopsy": "open (unstarted)",
+          "overlapping_legs": ["H-commitment", "H-cadence"],
+          "instruction_to_ratifier": "Check whether that scoping spike has run BEFORE queuing these two legs. It owns the substrate-wide immobility question (spawned from the SAME 874b pre-authoring probe) and may answer them at the substrate level; if so the portfolio shrinks to H-energy + H-denominator, the two legs genuinely specific to this battery's design. Queuing all four blind duplicates an open, owned item.",
+          "this_autopsy_strengthens_it": "That chip's evidence is the 10x10 / 5-resource / 300-tick probe. V3-EXQ-874b shows the immobility SURVIVES the remedy the probe itself recommended: at 6x6 with 12 resources over 900 ticks the event rate got WORSE (0.00117/tick vs 0.0100) and 7 of 12 cells starved to death. 'Shrink the arena' is now a tested and failed remedy, not an untried one."
+        },
         "note": "GOV-FANOUT-1: fan out a diverse portfolio, each leg on a distinct axis family with a declared null, design-audited for coverage and verdict-aliasing before queuing. Explicitly NOT another lettered re-pose of the 874/874b design -- that design has now failed twice for two different reasons (0/0 denominator, then an unreachable floor)."
       },
       "learning_extracted": [
