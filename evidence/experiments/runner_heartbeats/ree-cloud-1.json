@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-17T06:24:05Z",
+  "last_tick_utc": "2026-08-17T06:39:11Z",
   "state": "running",
   "current_exq": "V3-EXQ-935",
   "current_exq_started_utc": "2026-08-16T13:01:18.451360+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 46 / CURRICULUM_BUILT_NORMALISED_CAP_RULE",
     "runs_done": 4,
     "runs_total": 5,
-    "episodes_done": 170,
+    "episodes_done": 220,
     "episodes_total": 340,
-    "overall_pct": 90.0
+    "overall_pct": 92.9
   },
-  "seconds_elapsed": 62567,
-  "seconds_remaining": 4028,
+  "seconds_elapsed": 63473,
+  "seconds_remaining": 2843,
   "recent_lines": [
     "[v3_exq_935_mech266_margin_normalised_cap_rule] starting (dry_run=False, env_seed_base=None)",
     "Seed 42 Condition CURRICULUM_BUILT_NORMALISED_CAP_RULE",
@@ -88,7 +88,8 @@
     "[train] stage0_nursery seed=46 ep 20/340 z_goal_peak=0.4611 formed=True",
     "[train] stage0b_consolidate seed=46 ep 30/340 retention=0.952 gate=pass",
     "[train] p0_guided seed=46 ep 130/340 mean_len=198.1 rv=0.03373",
-    "[train] hazard_avoidance seed=46 ep 170/340 median_last=6.5 survival_gate=FAIL"
+    "[train] hazard_avoidance seed=46 ep 170/340 median_last=6.5 survival_gate=FAIL",
+    "[train] p1_foraging seed=46 ep 220/340 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
