@@ -1,0 +1,192 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_935_mech266_margin_normalised_cap_rule",
+  "run_id": "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-17T07:57:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "cap_recalibration_is_seed_idiosyncratic",
+    "readiness_route": "cap_recalibration_is_seed_idiosyncratic",
+    "route_reason": "no_common_normalised_rule_outperformed_the_best_absolute_cap",
+    "hypothesis": "H-RULE: a SINGLE pre-registered r, applied per-seed as cap = r * baseline_margin(seed), yields a graded external_task occupancy regime on >= 2/3 of seeds simultaneously -- i.e. the V3-EXQ-934 cap recalibration is a shippable RULE, not per-seed hand-tuning.",
+    "null": "H-IDIO: no single normalised r grades on more seeds than the best single absolute cap (1.75, which graded 1/3 in 934). The required cap is seed-idiosyncratic and there is no rule to ship.",
+    "aliasing_control": "H-KNIFE (the rule is right but the graded r window is too narrow for any fixed r to be robust) is separated from H-IDIO by the R_SWEEP: graded_at_some_r_fraction and the per-seed graded_r_values report the window, so a narrow C1 miss is distinguishable from a wrong rule. Those readouts are INFORMATION ONLY and deliberately not load-bearing -- scoring on each seed's own best r would reproduce exactly the per-seed best-point weakness this run exists to correct.",
+    "combination_rule": "PASS iff C1_rule_grades_at_r_star AND C3_beats_best_absolute_cap AND (C2_rule_generalises_out_of_sample OR C2 scoped out for want of a testable out-of-sample seed). Plain AND -- recorded explicitly so the gate is never inferred from the per-criterion booleans alone.",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "kind": "readiness",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.",
+        "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4. Cleared 3/3 by V3-EXQ-934 on this exact curriculum.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "external_task_drive_engages",
+        "kind": "readiness",
+        "description": "the external_task drive must ENGAGE at SOME cell -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. If the margin is ~0 everywhere the drive is not producing the signal at all (substrate/wiring), which must self-route to substrate_not_ready_requeue and NOT be read as a structural or idiosyncratic finding.",
+        "control": "fraction of guard-passing seeds whose best cell's ext_margin_mean clears MARGIN_FLOOR. V3-EXQ-934 measured 0.337-0.785 on this substrate against a 0.05 floor.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "calibration_statistic_alive",
+        "kind": "readiness",
+        "description": "the calibration cell at CAP_REF must yield a live baseline margin (m_seed > MARGIN_FLOOR) on >= 2/3 guard-passing seeds. This is the readiness form of the SAME quantity the load-bearing C1 criterion routes on: C1 reads occupancy under cap = R_STAR * m_seed, so a dead m_seed makes the cap ~0 for every r and STARVES C1 rather than falsifying it. Below floor self-routes substrate_not_ready_requeue, never cap_recalibration_is_seed_idiosyncratic.",
+        "control": "the calibration cell is a known-non-degenerate positive control: it is the SAME cap (0.75) and SAME symmetric rails at which V3-EXQ-934 measured m = 0.3373 / 0.7681 / 0.7850 on seeds 42/43/44, all ~7-16x the 0.05 floor.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "r_star_cell_measured",
+        "kind": "readiness",
+        "description": "the R_STAR cell must EXIST on every guard-passing seed. C1 -- the load-bearing criterion -- is evaluated ONLY at R_STAR, so a missing cell means C1 was never measured at all. This is an INSTRUMENT invariant, not a statistical one, which is why the threshold is 1.0 rather than MIN_FRACTION. Below it the run self-routes substrate_not_ready_requeue; it must NEVER be allowed to read as 'did not grade' and feed the cap_recalibration_is_seed_idiosyncratic verdict.",
+        "control": "R_STAR is a member of R_SWEEP by construction and the dry-run r subset is built by _r_values() to always contain it, so this is satisfiable by construction and can only fail on a real instrument fault. Added after the first smoke of this script evaluated C1 on an absent cell.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_rule_grades_at_r_star",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_rule_generalises_out_of_sample",
+        "load_bearing": true,
+        "passed": true,
+        "scoped_out": false,
+        "scope_note": ""
+      },
+      {
+        "name": "C3_beats_best_absolute_cap",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rule_grades_at_r_star": true,
+      "C2_rule_generalises_out_of_sample": true,
+      "C3_beats_best_absolute_cap": true
+    },
+    "circularity": {
+      "statement": "R_STAR = 2.25 was derived from V3-EXQ-934's banked seeds 42/43/44 (mean of the observed graded r values 2.224 / 2.278 / 2.229 = 2.244, rounded). Scoring the rule on those same seeds is partly circular.",
+      "control": "C2 is scored on seeds 45/46 ALONE, which were not used to derive R_STAR. C2 is load-bearing whenever at least one of them is testable.",
+      "derivation_seeds": [
+        42,
+        43,
+        44
+      ],
+      "out_of_sample_seeds": [
+        45,
+        46
+      ]
+    },
+    "dv_symmetry": {
+      "dv": "fraction_in_external_task -- a function of argmax(operating_mode).",
+      "symmetry_group": "invariant under (i) a constant added to ALL mode logits and (ii) any strictly monotone transform applied identically to all mode logits.",
+      "ARM_NORM": "NOT INVARIANT. The manipulation is a symmetric clamp of each affinity input to [-cap, +cap] with cap = r * m_seed, applied BEFORE per-mode weighting, while external_task_bias is added afterwards and is never clamped -- so it changes logit DIFFERENCES, not a common offset, and a clamp is not a monotone transform of the logits. Empirically non-invariant on this exact DV: V3-EXQ-934 seed 42 moved 0.5606 -> 0.0317 -> 0.0 across caps.",
+      "ARM_ABS": "NOT INVARIANT. Identical manipulation type at a fixed cap; same argument, and likewise empirically non-invariant (V3-EXQ-934 seed 43: 1.0 -> 0.4447)."
+    },
+    "structural_satisfiability": {
+      "checked": "on paper before queuing, against values V3-EXQ-934 measured on this exact substrate.",
+      "foraging_contact_guard": "3/3 measured vs a 2/3 floor -- satisfiable.",
+      "external_task_drive_engages": "0.337-0.785 measured vs a 0.05 floor -- satisfiable.",
+      "calibration_statistic_alive": "0.3373 / 0.7681 / 0.7850 measured at exactly CAP_REF on exactly symmetric rails vs a 0.05 floor -- satisfiable.",
+      "C1": "satisfiable but NOT trivially so -- 2 of the 3 derivation seeds graded at r ~ 2.2 in the banked data.",
+      "C3": "the control is not a straw man and not structurally vacuous -- ARM_ABS at cap 1.75 genuinely graded on 1/3 seeds in 934, so it CAN grade and C3 requires strictly beating it.",
+      "no_arm_structurally_vacuous": true
+    },
+    "regime_gate": {
+      "definition": "occupancy is 'graded' iff strictly inside (OCCUPANCY_FLOOR, OCCUPANCY_CEILING). The primary criteria evaluate this at the SINGLE pre-registered R_STAR -- a common-rule test. The shared primitive experiments/_lib/regime_occupancy_gate.py is applied over the r axis for the INFORMATION-ONLY window shape; never a min-across-the-sweep statistic, and never as the load-bearing read.",
+      "occupancy_floor": 0.1,
+      "occupancy_ceiling": 0.9,
+      "margin_floor": 0.05,
+      "cap_ref": 0.75,
+      "r_sweep": [
+        1.85,
+        2.05,
+        2.25,
+        2.45,
+        2.65
+      ],
+      "r_star": 2.25,
+      "cap_abs_control": 1.75,
+      "min_fraction": 0.6666666666666666,
+      "oos_min_fraction": 0.5
+    },
+    "contact_guard": {
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "921d0af6b6b6c54b12baafb090984edd9fcc2c3f5bf4ed2ba84d36f6c040b99b",
+  "substrate_commit": {
+    "commit": "d85ac805085df428c8efb80e9554ac4e340bcf3b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 253834,
+    "ticks_active": 253829,
+    "writer_calls": 10643,
+    "active_frac": 0.9999803020871908,
+    "writer_defect": false,
+    "n_agents": 40,
+    "goal_state_present": true
+  }
+}
