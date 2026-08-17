@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-17T05:53:40Z",
+  "last_tick_utc": "2026-08-17T06:03:46Z",
   "state": "running",
   "current_exq": "V3-EXQ-936",
   "current_exq_started_utc": "2026-08-17T04:35:36.806126+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-439",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_DEMOTION",
-    "runs_done": 5,
+    "run_label": "Seed 45 / ARM_DEMOTION",
+    "runs_done": 6,
     "runs_total": 8,
-    "episodes_done": 40,
+    "episodes_done": 20,
     "episodes_total": 100,
-    "overall_pct": 67.5
+    "overall_pct": 77.5
   },
-  "seconds_elapsed": 4682,
-  "seconds_remaining": 1671,
+  "seconds_elapsed": 5288,
+  "seconds_remaining": 1767,
   "recent_lines": [
     "Seed 42 Condition ARM_OFF",
     "[train] arm=ARM_OFF seed=42 phase=P0 ep 1/100 fresh=0/200",
@@ -77,7 +77,15 @@
     "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 10/100 fresh=0/200",
     "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 20/100 fresh=0/200",
     "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 30/100 fresh=0/200",
-    "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 40/100 fresh=0/200"
+    "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 40/100 fresh=0/200",
+    "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 50/100 fresh=0/200",
+    "[train] arm=ARM_DEMOTION seed=43 phase=P0 ep 60/100 fresh=0/200",
+    "[p1-done] arm=ARM_DEMOTION seed=43 fresh=213 after 7 P1 episode(s)",
+    "verdict: PASS",
+    "Seed 45 Condition ARM_DEMOTION",
+    "[train] arm=ARM_DEMOTION seed=45 phase=P0 ep 1/100 fresh=0/200",
+    "[train] arm=ARM_DEMOTION seed=45 phase=P0 ep 10/100 fresh=0/200",
+    "[train] arm=ARM_DEMOTION seed=45 phase=P0 ep 20/100 fresh=0/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
