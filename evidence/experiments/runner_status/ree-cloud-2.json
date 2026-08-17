@@ -1,18 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 840,
-  "runner_started_at": "2026-08-14T15:56:40.686971+00:00",
-  "last_updated": "2026-08-14T22:34:34.529939+00:00",
+  "runner_pid": 842,
+  "runner_started_at": "2026-08-17T04:35:36.786613+00:00",
+  "last_updated": "2026-08-17T06:20:39.335851+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-603u",
+      "queue_id": "V3-EXQ-935",
       "backlog_id": "",
-      "claim_id": "MECH-357",
-      "title": "MECH-357 agent-directed hazard pursuit Stage-H retest (6th pressure candidate; 603s+directedness)",
+      "claim_id": "MECH-266",
+      "title": "MECH-266/SD-032a: is the external_task cap recalibration a shippable RULE or seed-idiosyncratic? (margin-normalised cap vs best absolute cap)",
       "description": "",
-      "estimated_minutes": 282.0,
+      "estimated_minutes": 226.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3512,6 +3512,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 22774.8
+    },
+    {
+      "queue_id": "V3-EXQ-936",
+      "backlog_id": "EVB-0618",
+      "claim_id": "MECH-439",
+      "title": "MECH-439: does the CONVERTING MECH-448 F->eligibility demotion actually REDUCE F's committed-selection variance share? (the claim's own pre-registered falsifier, never measured)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS (label=conversion_without_f_share_reduction_falsifies_monopoly, evidence_direction=weakens) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-936 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-936.json",
+      "started_at": "2026-08-17T04:35:36.806126+00:00",
+      "completed_at": "2026-08-17T06:20:39.334934+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 6301.1
     }
   ]
 }
