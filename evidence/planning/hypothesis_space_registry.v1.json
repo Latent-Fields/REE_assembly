@@ -4268,6 +4268,109 @@
       "fanout_growth_events": [],
       "discovery_growth_events": [],
       "fanout_growth_note": "New question registered at 4; no growth on an existing question, so invariants 3a/3b are not engaged."
+    },
+    {
+      "qid": "mech467_legc_event_denominator_cause",
+      "title": "Why does MECH-467's leg (c) have no target-consumption event denominator?",
+      "short_title": "leg (c) event denominator",
+      "claims": [
+        "MECH-467"
+      ],
+      "registered_utc": "2026-08-17T14:46:54Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-874b_2026-08-17.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "hypotheses": [
+        {
+          "hid": "H-commitment",
+          "label": "H-commitment",
+          "desc": "the agent cannot sustain a multi-step approach long enough to complete a consume",
+          "axis": "process",
+          "basis": "The V3-EXQ-874 autopsy named this first; V3-EXQ-874b set it aside on a geometry probe whose result did not transfer, so it is live again.",
+          "pre_registered_utc": "2026-08-17T14:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-energy",
+          "label": "H-energy",
+          "desc": "the homeostatic economy kills the agent before the pre-registered window elapses",
+          "axis": "environment",
+          "basis": "7 of 12 V3-EXQ-874b cells terminated on health_depleted; only 63.1% of the intended exposure window was realised.",
+          "pre_registered_utc": "2026-08-17T14:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-denominator",
+          "label": "H-denominator",
+          "desc": "events are not absent but mis-decomposed -- never-approached and approached-but-failed-to-arrive are pooled into one zero",
+          "axis": "measurement",
+          "basis": "No movement or approach-initiation counter exists in the 874/874b design, so a zero cannot be attributed.",
+          "pre_registered_utc": "2026-08-17T14:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        },
+        {
+          "hid": "H-cadence",
+          "label": "H-cadence",
+          "desc": "the genuine-E3-tick fraction bounds the achievable selection rate and therefore the event rate",
+          "axis": "selection",
+          "basis": "Genuine E3 selections were 0.091-0.126 of ticks in every V3-EXQ-874b cell.",
+          "pre_registered_utc": "2026-08-17T14:46:54Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Which constraint must be lifted before MECH-467 leg (c) can be tested at all?",
+        "live_gate": ">=15 pooled target-consumption events in at least one arm, over a fully-realised exposure window",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "4 legs pre-registered, none yet run",
+        "observation_bottleneck": "leg (c) has produced no usable denominator in two consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks)"
+      },
+      "notes": "Opened by the V3-EXQ-874b autopsy. H-geometry (arena size / resource density is the binding constraint) was the hypothesis V3-EXQ-874b itself tested and REFUTED -- 6x6 at 2x the probe density produced 8.5x fewer events per tick than the probe -- and is deliberately NOT registered as a live leg."
     }
   ]
 }

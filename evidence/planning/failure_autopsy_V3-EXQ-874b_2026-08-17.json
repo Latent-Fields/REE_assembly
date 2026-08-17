@@ -1,0 +1,187 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-17T14:46:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3",
+      "queue_id": "V3-EXQ-874b",
+      "claim_ids": ["MECH-467"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_upheld": true,
+      "supersedes_run": "v3_exq_874_mech467_distractor_resistance_20260802T222132Z_v3",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "leg_c_event_floor RED in all 4 arms: 1/3/4/0 pooled consumption events vs a pre-registered floor of 15. Every other precondition passed in every arm. non_degenerate=false; no arm scored.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- leg (c) never fired, so the claim was never given conditions in which it could express itself; nothing weighs against MECH-467",
+        "biological_reference": "clear -- Gaspelin & Luck (registered-then-suppressed vs never-encoded), Duncan 2008 (goal neglect: describable rule != operative rule), Adams & Gaspelin 2021; targeted_review_mech_467 exists; faithful translation, not a formal-definition import",
+        "prerequisites": "missing -- sustained multi-step commitment (the V3-EXQ-874 autopsy's hypothesis, re-implicated) and a survivable energy economy under pinned internal operating modes",
+        "implementation": "partial -- eval loop breaks on `done` with no record; z_goal accumulator observes the P0 base agents not the stepping clones; selection_path_rule_read_live's stated control does not match its code",
+        "environment": "wrong pressures -- 6x6 / 12 resources / 0 hazards still starves the agent in 7/12 cells, and the ruleset-complexity axis is confounded with nutritive density (SIMPLE 6/12 vs COMPLEX 4/12 benefit-bearing)",
+        "measurement": "under-instrumented -- no movement/approach counters, no done_cause, no window-completeness precondition; distractor_proximity_rate is 1.0 in every cell so leg (a)'s encoding index has no contrast (0.018-0.047 vs the probe's 0.000-0.706); the fidelity-sensitivity control is pooled, masking ARM_REPLAY_COMPLEX s43 at 0.715 > the 0.70 ceiling",
+        "integration": "coupled but unstable -- the battery must bootstrap through its own dependent variable (events -> benefit exposure -> z_goal live -> goal-directed selection -> events), a circularity the driver names itself",
+        "scale": "likely insufficient -- 8380-17200 ticks/arm needed at observed rates vs 2700 budgeted"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- dominantly ENVIRONMENT + MEASURES; not chargeable to REE. Implementation, measurement and environment each independently read inadequate, so the REE FAILED bucket is not reachable."
+      },
+      "biological_reference": {
+        "closest_mechanism": "attentional-capture / goal-neglect dissociation in primate frontoparietal control: distractor registration (Pd component), operative task-model maintenance under representational competition, and behavioural capture with the rule reportable",
+        "dependencies": ["sustained approach commitment", "energy/homeostatic economy permitting extended foraging", "goal representation live enough to steer selection"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the redesign is explicitly lit-driven (Gaspelin & Luck 2017/2018, Duncan 2008, Adams & Gaspelin 2021) and its encoding-side and selection-path instruments are direct translations of the human paradigms",
+        "lit_status": "present"
+      },
+      "key_measurements": {
+        "events_per_tick_run": 0.00117,
+        "events_per_tick_preauthoring_probe": 0.0100,
+        "probe_to_run_shortfall_x": 8.5,
+        "total_events": 8,
+        "realised_ticks": 6817,
+        "intended_ticks": 10800,
+        "window_realised_frac": 0.631,
+        "truncated_cells": "7/12 (60, 107, 133, 139, 382, 676, 820 ticks vs 900)",
+        "truncation_cause": "done = _health_depleted or _step_cap_reached; warmup+eval (980) < max_episode_steps (1500), so every truncation is health_depleted (agent starvation). p0_aborted false in all 12 cells.",
+        "simple_window_realised_frac": 0.85,
+        "complex_window_realised_frac": 0.41,
+        "simple_events_per_tick": 0.00087,
+        "complex_events_per_tick": 0.00179,
+        "nutritive_share_simple": 0.500,
+        "nutritive_share_complex": 0.333,
+        "e3_tick_fraction_range": "0.091-0.126",
+        "ticks_needed_per_arm_for_floor": "8380 (COMPLEX rate) to 17200 (SIMPLE rate) vs 2700 budgeted",
+        "storage_drift_range_live_cells": "0.004-0.384",
+        "selection_path_fidelity_range_live_cells": "0.985-1.000",
+        "dissociating_live_cells": "6/9"
+      },
+      "z_goal_writer_defect_adjudication": {
+        "manifest_flag": true,
+        "verdict": "FALSE POSITIVE",
+        "basis": "zg_acc.observe(agent) observes the P0 base agent at the end of the per-ruleset loop in run_seed, while every cell steps a clone from clone_trained_agent; n_agents=6 = 2 rulesets x 3 seeds base agents, not the 12 stepping clones. The base agents accumulated z_goal_ticks_total during P0 training, where update_z_goal is legitimately never called. Independent proof the writer ran: goal_live_at_warmup_end is true in 9/12 cells, and GoalState.is_active() is true iff _z_goal.abs().sum() > 1e-6 with update_z_goal the sole writer.",
+        "consequence": "pending_review.md currently lists this run under 'Dead z_goal stream'. That record is wrong and should not be read as a real defect.",
+        "generalizable_gap": "experiments/_lib/z_goal_stream.py documents 'writer_calls == 0 with ticks_total > 0 -> the defect', an inference that is unsafe for a training-phase agent."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is measurement + environment test-design defect (unflagged window truncation, density-confounded complexity axis, unreachable event floor). Deliberately NOT substrate_ceiling: no ceiling was demonstrated, and stamping one would both start the re-derive brake at 1 and suppress the claim from GOV-GRAN-1 surfacing and v3-testability. 'standard' preserves current behaviour exactly.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-17 governance, V3-EXQ-874b, confirmed failure_autopsy_V3-EXQ-874b_2026-08-17, second experimental test]: the leg-(c) redesign FAILED to produce a denominator -- 1/3/4/0 pooled consumption events per arm against a pre-registered floor of 15, all four arms gate-RED, non_degenerate false. Nothing weighs against the claim. The redesign's own hypothesis is REFUTED and that is the informative result: 874b took the arena to 6x6 at ~3x resource density on a probe measuring 0.0100 events/tick, and realised 0.00117 events/tick -- 8.5x worse at double the density. Arena geometry was not the binding constraint, and the V3-EXQ-874 autopsy's commitment-deficit hypothesis is re-implicated. Three defects the manifest does not report: (1) 7 of 12 cells terminated early on health_depleted, so only 63.1% of the pre-registered exposure window was realised and no cell records it; (2) the rule-set-complexity axis is confounded with nutritive density (SIMPLE 6/12 benefit-bearing, COMPLEX 4/12), so COMPLEX realised 41% of its window vs SIMPLE's 85%; (3) z_goal_stream.writer_defect true is a FALSE POSITIVE -- the accumulator observed the P0 base agents, not the 12 stepping clones, and goal_live_at_warmup_end is true in 9/12 cells. At observed rates the floor needs 8380-17200 ticks/arm vs 2700 budgeted, so lengthening the window alone cannot rescue this design. non_contributory / standard (measurement + environment test-design defect). Failure-location MIXED, not chargeable to REE. Route: /queue-experiment as a GOV-FANOUT-1 4-leg portfolio (process / environment / measurement / selection) -- NOT another lettered re-pose of the same design. SEPARATE FINDING, recorded on MECH-262 as well: in the 9 live-z_goal cells, storage-site rule drift (0.004-0.384) and selection-path operative-rule fidelity (0.985-1.000) DISSOCIATE in 6/9, so a storage-site rule read does not track the operative rule on this substrate.",
+      "per_claim_recommendation": {
+        "MECH-467": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note appended (second experimental test; leg (c) denominator still unreachable, geometry hypothesis refuted); epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "cross_claim_recommendation": {
+        "MECH-262": {
+          "kind": "evidence_quality_note_only",
+          "is_re_adjudication": false,
+          "recommended_evidence_quality_note": "[2026-08-17, from confirmed failure_autopsy_V3-EXQ-874b_2026-08-17, cross-claim exposure -- NOT a re-adjudication]: V3-EXQ-874b instrumented rule state at TWO sites simultaneously and they dissociate. In the 9 cells where z_goal was live, storage-site rule_state drift ranged 0.004-0.384 while selection-path operative_rule_fidelity (Spearman rank correlation of per-candidate goal scores under the current vs the warmup-established z_goal) ranged 0.985-1.000; 6 of 9 cells show storage NOT intact (drift > 0.05) while selection IS intact (fidelity >= 0.90). This is Duncan 2008's goal-neglect distinction -- describable rule vs operative rule -- reproduced on REE's substrate. MECH-262 owns rule corruption and its evidence (V3-EXQ-484 and successors) is read at the STORAGE SITE, so that evidence may not license conclusions about the rule actually steering action. Flagged as an exposure to examine on the next MECH-262 cycle. Caveats: not a scored criterion (all arms gate-RED); n = 9 cells / 3 seeds; the fidelity-sensitivity control exceeds its 0.70 ceiling in one live cell (ARM_REPLAY_COMPLEX seed 43, 0.715). No prior run was re-adjudicated by this autopsy.",
+          "basis": "confirmed by the user at the 2026-08-17 interactive gate (option: record on both)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null,
+        "note": "Deliberately none. Four live hypotheses explain the missing denominator; naming a substrate build now would pick one before the discrimination has been run, which is the error GOV-FANOUT-1 exists to prevent. The fan-out below decides which (if any) substrate gap is real."
+      },
+      "separately_routed_defect": {
+        "path": "experiments/_lib/z_goal_stream.py",
+        "severity": "degrading",
+        "description": "The documented inference 'writer_calls == 0 with ticks_total > 0 -> the defect' is unsafe for a training-phase agent, which is stepped but legitimately never written. A driver observing a base/training agent instead of its eval clones publishes a false writer_defect into the manifest and thence into pending_review.md's standing 'Dead z_goal stream' record.",
+        "severity_basis": "Does NOT invalidate V3-EXQ-874b's verdict (vacuity stands on the event floor alone), so not 'corrupting'; but it corrupts a standing cross-run record, so not 'cosmetic'. WARN, do not block.",
+        "recommended_fix": "Guard in the lib so a non-eval-stepped agent is detected rather than reported as a defect (confirmed at the gate: lib, not per-driver).",
+        "affected_runs_known": ["v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3"]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "ceiling_hits_under_r1_r3": 0,
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "MECH-467 has exactly one prior confirmed autopsy target (failure_autopsy_V3-EXQ-874_2026-08-03), stamped measurement_test_design_defect, which R3 excludes. Ceiling hits = 0. This autopsy stamps 'standard', so it adds none. The brake does not fire and no same-claim re-queue is refused."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_targets": 1,
+        "cluster_files": 1,
+        "alignment_distribution": {"unclear": 1},
+        "basis": "granularity_debt_cluster.py MECH-467: no target reads `weakened`, so this is measurement or implementation debt, not granularity debt -- the recurrence count (this makes 2) is not sufficient on its own.",
+        "routing": null
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-commitment: the agent cannot sustain a multi-step approach long enough to complete a consume (the V3-EXQ-874 autopsy's hypothesis, re-implicated now that geometry is refuted)",
+          "H-energy: the homeostatic economy kills the agent before the window elapses, so the exposure budget is a fraction of the pre-registered one (7/12 cells died on health_depleted)",
+          "H-denominator: events are not absent but unmeasured/mis-decomposed -- 'never approached' and 'approached and failed to arrive' are pooled into one zero",
+          "H-cadence: the ~10% genuine-E3-tick fraction (0.091-0.126) bounds the achievable selection rate and therefore the event rate"
+        ],
+        "eliminated_this_cycle": [
+          "H-geometry: arena size / resource density was the binding constraint -- REFUTED by this run (6x6 at 2x the probe's density produced 8.5x FEWER events per tick than the probe)"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-commitment", "axis": "process", "sketch": "measure approach-run length directly -- consecutive ticks moving toward one target -- rather than inferring commitment from the event count", "null": "approach runs are as long as a successful consume requires; commitment is not the constraint"},
+          {"hypothesis": "H-energy", "axis": "environment", "sketch": "decouple survival from the measurement window (health decay disabled or satiety clamped) at identical geometry", "null": "event rate per realised tick is unchanged; starvation shortened the window but did not suppress eating"},
+          {"hypothesis": "H-denominator", "axis": "measurement", "sketch": "decompose '0 events' into never-approached vs approached-and-failed-to-arrive, with movement and approach-initiation counters, done_cause, and a window-completeness precondition", "null": "the decomposition is uninformative because approaches are initiated and complete at the observed rate"},
+          {"hypothesis": "H-cadence", "axis": "selection", "sketch": "test whether the genuine-E3-tick fraction bounds the achievable event rate", "null": "events do not cluster on E3 ticks; cadence does not bound the rate"}
+        ],
+        "mandatory_in_any_successor": [
+          "record done_cause and a per-cell truncation flag",
+          "add a window-completeness precondition so a 60-tick and a 900-tick cell cannot enter one pooled denominator indistinguishably",
+          "hold benefit-bearing resource COUNT constant across the ruleset axis, not total resource count",
+          "observe the stepping clones in zg_acc, not the P0 base agent",
+          "align selection_path_rule_read_live's code with its stated control (it claims to test z_goal liveness and does not)"
+        ],
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio, each leg on a distinct axis family with a declared null, design-audited for coverage and verdict-aliasing before queuing. Explicitly NOT another lettered re-pose of the 874/874b design -- that design has now failed twice for two different reasons (0/0 denominator, then an unreachable floor)."
+      },
+      "learning_extracted": [
+        "Arena geometry was not the binding constraint on leg (c): the 6x6 / 3x-density redesign produced 0.00117 events/tick against the pre-authoring probe's 0.0100 -- 8.5x worse at 2x the density. The hypothesis is refuted, and one redesign cycle bought that elimination.",
+        "The V3-EXQ-874 autopsy's original commitment-deficit hypothesis is back in play, having been set aside by 874b's probe on evidence that did not transfer to the full run.",
+        "A pre-authoring probe measured on a differently-configured agent does not transfer: the probe pinned the operating mode from tick 0 on a P0-trained agent, while the run inserts an 80-step unpinned warmup, uses distractor-bearing envs, and clones the agent per cell. Probe-to-run transfer needs its own check, not an assumption.",
+        "An eval loop that breaks on `done` silently converts agent death into a shorter measurement window; any pooled denominator over such a loop is a denominator over an unrecorded, cell-varying budget.",
+        "Adding resource TYPES at fixed num_resources removes food (SIMPLE 6/12 benefit-bearing vs COMPLEX 4/12), so a complexity axis built this way is confounded with survival.",
+        "z_goal_stream's writer inference is unsafe for training-phase agents, and observing a base agent instead of the stepping clone publishes a false writer_defect into pending_review.md -- a defect record that looks exactly like the real thing.",
+        "Storage-site and selection-path rule reads DISSOCIATE in 6 of 9 live-z_goal cells, reproducing Duncan 2008's describable-vs-operative distinction on REE's substrate, with the consequence that storage-site rule-drift evidence may not license conclusions about the operative rule.",
+        "A precondition's prose control and its code can disagree (selection_path_rule_read_live claims to test z_goal liveness and does not), which matters because the prose is what a later reader adjudicates against."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger": {
+    "mode": "A",
+    "action": "register_new_question",
+    "qid": "mech467_legc_event_denominator_cause",
+    "growth_restriction_check": "N/A -- no existing question names MECH-467; a question registered in this edit cannot carry a restriction",
+    "new_axis_family_rows_needed": []
+  },
+  "still_owed": [
+    {
+      "run_id": "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+      "queue_id": "V3-EXQ-935",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "reason": "experiment_purpose diagnostic + FAIL -- a mandatory /failure-autopsy trigger in its own right",
+      "why_not_clustered": "shares no failure shape with V3-EXQ-874b: all readiness gates green (5/5 seeds), z_goal healthy (active_frac 0.99998), and it genuinely adjudicated its pre-registered hypothesis (H-RULE rejected for the H-IDIO null, C1 2/5 vs a 0.667 floor). A clean adjudication needing a verdict, not a starved run.",
+      "note": "reported inline per the /failure-autopsy carve-out in CLAUDE.md Session Land Protocol step 6, not chipped"
+    }
+  ]
+}

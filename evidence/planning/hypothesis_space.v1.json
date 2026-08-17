@@ -1,204 +1,204 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-16T18:56:26Z",
+  "generated_at": "2026-08-17T17:27:19Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 157,
+      "total_modules": 160,
       "built_modules": 132,
-      "fraction_built": 0.8408,
+      "fraction_built": 0.825,
       "state_counts": {
-        "proposed": 25,
-        "implemented": 90,
-        "implemented_pending_validation": 27,
-        "validated": 15
+        "proposed": 28,
+        "implemented": 91,
+        "implemented_pending_validation": 25,
+        "validated": 16
       },
-      "build_proof_gap": 117,
-      "build_proof_gap_note": "132 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 116,
+      "build_proof_gap_note": "132 modules built, 116 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 71.9,
-      "node_total": 94,
-      "node_done_weighted": 67.6,
+      "closure_pct": 72.3,
+      "node_total": 95,
+      "node_done_weighted": 68.7,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 64,
-      "total_initial": 117,
-      "total_initial_at_registration": 97,
+      "total_surviving": 68,
+      "total_initial": 121,
+      "total_initial_at_registration": 101,
       "total_fanout_added": 20,
       "total_resolved_out": 47,
       "total_confirmed": 26,
-      "reduction_pct_vs_current": 40.2,
-      "net_narrowing_pct": 34.0,
+      "reduction_pct_vs_current": 38.8,
+      "net_narrowing_pct": 32.7,
       "convergence_classes": {
         "narrowing": 17,
-        "static": 15,
+        "static": 16,
         "circling": 3,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "64 alive against 97 originally enumerated, and against 117 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 36
+      "honest_pair_note": "68 alive against 101 originally enumerated, and against 121 including 20 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 37
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 16,
-      "open_questions": 36
+      "open_questions": 37
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 116,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 120,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-11",
-      "surviving": 115,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 119,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-13",
-      "surviving": 113,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 117,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-15",
-      "surviving": 109,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 113,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-16",
-      "surviving": 108,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 112,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-17",
-      "surviving": 105,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 109,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-18",
-      "surviving": 99,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 103,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-19",
-      "surviving": 95,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 99,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-20",
-      "surviving": 94,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 98,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-24",
-      "surviving": 93,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 97,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-27",
-      "surviving": 91,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 95,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-29",
-      "surviving": 90,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 94,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-07-31",
-      "surviving": 89,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 93,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-01",
-      "surviving": 87,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 91,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-02",
-      "surviving": 81,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 85,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-04",
-      "surviving": 80,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 84,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-06",
-      "surviving": 79,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 83,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-08",
-      "surviving": 77,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 81,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-09",
-      "surviving": 75,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 79,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-10",
-      "surviving": 74,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 78,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-11",
-      "surviving": 73,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 77,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-12",
-      "surviving": 72,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 76,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
       "date": "2026-08-14",
-      "surviving": 70,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "surviving": 74,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     },
     {
-      "date": "2026-08-16",
-      "surviving": 64,
-      "closure_pct": 71.9,
-      "build_pct": 84.1
+      "date": "2026-08-17",
+      "surviving": 68,
+      "closure_pct": 72.3,
+      "build_pct": 82.5
     }
   ],
   "questions": [
@@ -3915,6 +3915,97 @@
         "distance_phrase": "One redesigned experiment away -- the DV and the target distribution both need fixing before any verdict on the mechanism is possible.",
         "live_gate": "A run that presents both terrain-target states on >=25% of steps each AND scores the between-context mean difference in terrain_weight against the claim's own w_harm>0.8 / w_goal<0.5 band.",
         "observation_bottleneck": "The terrain-precision target switched state on at most ~2% of collection steps in every cell of V3-EXQ-922a, and the scoring statistic (Pearson r) is scale-invariant. Both must be repaired before the mechanism question is observable at all."
+      }
+    },
+    {
+      "qid": "mech467_legc_event_denominator_cause",
+      "title": "Why does MECH-467's leg (c) have no target-consumption event denominator?",
+      "short_title": "leg (c) event denominator",
+      "claims": [
+        "MECH-467"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation",
+          "process",
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 4,
+      "alive": 4,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-commitment",
+          "label": "H-commitment",
+          "desc": "the agent cannot sustain a multi-step approach long enough to complete a consume",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-energy",
+          "label": "H-energy",
+          "desc": "the homeostatic economy kills the agent before the pre-registered window elapses",
+          "axis": "environment",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-denominator",
+          "label": "H-denominator",
+          "desc": "events are not absent but mis-decomposed -- never-approached and approached-but-failed-to-arrive are pooled into one zero",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-cadence",
+          "label": "H-cadence",
+          "desc": "the genuine-E3-tick fraction bounds the achievable selection rate and therefore the event rate",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Which constraint must be lifted before MECH-467 leg (c) can be tested at all?",
+        "distance_phrase": "4 legs pre-registered, none yet run",
+        "live_gate": ">=15 pooled target-consumption events in at least one arm, over a fully-realised exposure window",
+        "observation_bottleneck": "leg (c) has produced no usable denominator in two consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks)"
       }
     }
   ],
