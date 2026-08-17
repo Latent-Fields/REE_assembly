@@ -4,7 +4,7 @@ closure_plan:
   generation: meta
   title: "REE AI-Design Critique (cross-cutting workstream roadmap)"
   registered: 2026-07-09
-  last_updated: 2026-07-10
+  last_updated: 2026-08-01
   owner: strategic
   summary: >
     A durable, resume-across-sessions roadmap for the "REE as an AI design"

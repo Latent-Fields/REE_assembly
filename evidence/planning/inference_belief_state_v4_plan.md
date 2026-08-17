@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Inference / belief-state affordance layer (the inference pipeline)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-16
   scope_claims: [ARC-004, ARC-007, ARC-018, MECH-022, MECH-033, ARC-062, ARC-063, SD-057, SD-059, MECH-358, Q-044, INV-035, INV-036]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >

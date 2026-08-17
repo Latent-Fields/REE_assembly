@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Autobiographical Memory (V4 forward roadmap): unified event store, provenance, write-authority, imagination-learning constraints"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-06-16
   scope_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361, MECH-252, MECH-253, MECH-261, Q-060, Q-062, MECH-429, MECH-430, MECH-431]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >

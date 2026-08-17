@@ -31,7 +31,7 @@ closure_plan:
   generation: clinical
   title: "Psychiatric Failure Modes as Architectural States"
   registered: 2026-07-30
-  last_updated: 2026-07-30
+  last_updated: 2026-08-01
   source_doc: docs/architecture/psychiatric_failure_modes.md
   scope_claims: [INV-053, INV-054, MECH-186, MECH-187, MECH-188, Q-034,
                  INV-061, MECH-200, MECH-201, MECH-202,

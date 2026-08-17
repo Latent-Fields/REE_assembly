@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Candidate-differentiated affect, expression-as-action-geometry, anti-collapse, compulsion-risk (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-16
   scope_claims: [MECH-359, MECH-360, MECH-361, MECH-364, MECH-355, ARC-088, MECH-369, MECH-370, MECH-362, SD-045, Q-059, Q-063]
   sibling_plans: [behavioral_diversity_isolation, goal_pipeline, arc_062_rule_apprehension, sleep_substrate]
   roadmap_note: >

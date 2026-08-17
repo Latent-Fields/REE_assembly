@@ -7,7 +7,7 @@ closure_plan:
   generation: process
   title: "Substrate Stability + Claim-Drift Detection (freeze substrate per run; detect when it has moved since a claim's evidence was recorded)"
   registered: 2026-08-03
-  last_updated: 2026-08-03
+  last_updated: 2026-08-07
   scope_claims: []
   sibling_plans:
     - arm_reuse_fingerprint_plan.md

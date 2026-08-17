@@ -4,7 +4,7 @@ closure_plan:
   id: sd_037_axis_b
   title: "SD-037 Axis (b): Sustained-Threat Env Curriculum"
   registered: 2026-06-01
-  last_updated: 2026-06-05
+  last_updated: 2026-06-23
   scope_claims: [SD-037, MECH-280, MECH-281]
   sibling_plans: [sd_037_axis_a]
   nodes:

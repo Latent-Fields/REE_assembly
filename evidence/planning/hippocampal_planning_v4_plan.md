@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Hippocampal dorsal/ventral planning + multi-step planning depth (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-07-24
   scope_claims: [ARC-040, INV-039, MECH-147, MECH-148, MECH-149, MECH-163, MECH-207, MECH-241, MECH-242, MECH-243]
   sibling_plans: [goal_pipeline, object_representation_v4, sleep_substrate]
   roadmap_note: >

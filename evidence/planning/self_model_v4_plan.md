@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Self-Model Integration (finish self-attribution; self-as-object cutover)"
   registered: 2026-06-10
-  last_updated: 2026-07-01
+  last_updated: 2026-08-10
   scope_claims: [ARC-081, MECH-214, MECH-215, SD-030, INV-064]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >

@@ -3,7 +3,7 @@ closure_plan:
   id: sleep_substrate
   title: "Sleep Substrate"
   registered: 2026-05-08
-  last_updated: 2026-08-12
+  last_updated: 2026-08-14
   scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, INV-050, MECH-180, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
   nodes:
     - id: "sleep_substrate:GAP-1"

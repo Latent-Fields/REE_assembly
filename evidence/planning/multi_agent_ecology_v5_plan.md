@@ -4,7 +4,7 @@ closure_plan:
   generation: v5
   title: "Multi-agent ecology (agents acting causally on each other)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-07-12
   scope_claims: [INV-005, INV-028, ARC-010, MECH-095, MECH-099, MECH-102, Q-028, Q-029, ARC-047]
   sibling_plans: [object_representation_v4, self_model_v4, goal_pipeline]
   roadmap_note: >

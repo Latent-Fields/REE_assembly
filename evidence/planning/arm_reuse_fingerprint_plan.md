@@ -8,7 +8,7 @@ closure_plan:
   generation: process
   title: "Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-15
   # Infrastructure / tooling plan -- owns no scientific claims directly. It only
   # touches the INV-074 (610 crystallization) and modulatory-authority (643)
   # OFF-baseline lineages via the canonical baseline modules it mints from.

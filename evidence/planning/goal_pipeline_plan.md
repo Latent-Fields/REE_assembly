@@ -3,7 +3,7 @@ closure_plan:
   id: goal_pipeline
   title: "Goal Pipeline (wanting / liking / drive cascade)"
   registered: 2026-05-08
-  last_updated: 2026-06-12
+  last_updated: 2026-06-15
   scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-306, MECH-307, MECH-455, ARC-030, ARC-032, ARC-036, ARC-051]
   related_threads:
     - thread: goal_maintenance_feedback

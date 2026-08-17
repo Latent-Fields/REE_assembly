@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Object Representation (V4 PILLAR roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-06-16
   scope_claims: [ARC-080, ARC-081, ARC-082, ARC-083, ARC-006, MECH-045, MECH-278]
   sibling_plans: [goal_pipeline]
   roadmap_note: >
