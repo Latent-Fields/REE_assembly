@@ -239,14 +239,18 @@
       "priority": "high",
       "proposal_id": "EXP-0033",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_489",
       "target_repo": "ree-v3",
       "why_now": [
         "directional_conflict_alert",
         "low_exp_conf",
         "mandatory_decision_checkpoint"
-      ]
+      ],
+      "gated_at_utc": "2026-08-17T03:28:54Z",
+      "gated_by_session": "metaworker-chip-proposal-exp-0033",
+      "gating_reason": "SD-ORIENTING-DECISION-SCALE amend (decision_counts logging defect, severity=degrading) has not landed: substrate_queue entry is still implemented_pending_validation and its decision_counts failure_record is resolved=open. claims.yaml MECH-489 carries pending_retest_after_substrate: true, and failure_autopsy_V3-EXQ-910a_2026-08-11 explicitly declined to route a fresh discriminating experiment until the corrected measurement is available. Root cause pinned (ree-v3 HEAD f5837e9) in evidence/planning/mech489_decision_counts_defect_staged_20260817.md: the orienting decision block sits downstream of select_action's non-E3-tick early return (agent.py:6509) so its 5-tick window spans ~50 env steps at e3_steps_per_tick=10, while the driver reads _orienting_decision once per env step -- predicting decision_counts/n_overrides ~ 5, matching 910's observed 206/42 = 4.90. Independently, a 'resume' decision sets ticks_remaining=0 and is excluded by the reset gate (agent.py:8226-8231), so it can never be cleared -- a leak that fires only once the fix starts working, i.e. exactly in the branch the retest exists to detect.",
+      "release_condition": "SD-ORIENTING-DECISION-SCALE amend landed (substrate: reachable _orienting_decision clear for 'resume' and on gate-miss ticks; driver: count the decision at the override tick only + emit n_latched_ticks), then re-queue the MECH-489 valence-gating retest."
     },
     {
       "backlog_id": "EVB-0578",
