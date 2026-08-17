@@ -14,6 +14,17 @@ governance-flag registry, and the git divergence state of the checkout.
 /opt/local/bin/python3 -m pytest scripts/steward/ -q                # 170 tests
 ```
 
+> **Design of record: `docs/`** (added 2026-08-17). The original `SKILL.md`
+> (skill contract, tiers, ratchet, budgets), `DETECTORS.md` (the full
+> 13-detector catalogue, build order and seed suppressions) and the 2026-08-15
+> git-lane field notes lived only in an untracked directory on the Mac until
+> then, which is why the stage-1 build had to reconstruct detector semantics
+> from other evidence when it ran on a cloud worker. **This file is
+> authoritative for what exists; `docs/` is authoritative for what was
+> intended**, and `docs/README.md` maps the two against each other -- including
+> the four unbuilt detectors, the one retired one, and four open items that have
+> no other home.
+
 ## Why this exists
 
 On 2026-08-15 SD-031 was found to be live V3 work (`implementation_phase: v3`,
@@ -521,7 +532,7 @@ removes it from the report (`"suppressed": true` plus the reason stays attached)
 It is a recorded disposition, not a mute button. `finding_id` may be an fnmatch
 pattern, so a whole class can be covered by one line.
 
-Seeded with the three entries from `DETECTORS.md`. Two are **forward-declared**
+Seeded with the three entries from `docs/DETECTORS.md`. Two are **forward-declared**
 for detectors stage 1 does not build (`MAE-3` whole-plan back-pointer,
 `V3-EXQ-732b` deliberate refusal); they match nothing today and are kept so the
 disposition is not lost when the owning detector lands.
