@@ -36,6 +36,15 @@ suppress the IMPLEMENT lane only, leaving retest-blocker semantics
 `RetestBlockerSemanticsUnchangedTest`, which is what stops a later session
 "simplifying" the two predicates into one.
 
+Vacuity audit (2026-08-18, chip-20260816-igw-test-oracle-vacuity-audit): the
+fixture classes here carry literal oracles and are immune by construction --
+`ConfirmedIncidentReplayTest`'s negative control asserts an exact expected list,
+so over-suppression goes red. `LiveSubstrateQueueTest` did NOT: it built its
+oracle from `_substrate_ready_items()` over the live corpus with no guard, and
+was verified GREEN-while-asserting-nothing under four separate corpus failures.
+See that class's docstring; do not re-derive its oracle from a predicate under
+test.
+
 Time-independent: no clock, no network, no git. Temp files only.
 
 Run: /opt/local/bin/python3 scripts/test_generate_inter_governance_workset_substrate_staleness.py
@@ -413,30 +422,157 @@ class NoSubstrateChangeWarrantedTerminalTest(_TempSubstrateQueue):
 
 
 class LiveSubstrateQueueTest(unittest.TestCase):
-    """Against the real file on disk -- the incident items must be gone."""
+    """Against the real file on disk -- the incident items must be gone.
+
+    NON-VACUITY GUARDS (added 2026-08-18 by the IGW test-oracle vacuity audit,
+    chip-20260816-igw-test-oracle-vacuity-audit). Every assertion in this class
+    is an `assertNotIn` against a set built BY THE FUNCTIONS UNDER TEST, over a
+    LIVE corpus -- the same shape as the confirmed FM11d defect in
+    test_backfill_failure_record_run_role.py (REE_assembly 48bae8be81), where
+    the oracle came from the function whose revert the test was supposed to
+    catch, so the set emptied and every assertion passed against nothing.
+
+    Here the emptying route is `_load_substrate_queue()`, which fails OPEN --
+    returning [] on a missing, renamed or unparseable file. That is correct for
+    the generator (a broken input must not wedge the workset) and fatal for a
+    test that reads its output as an oracle. Verified by injection: with the
+    queue file missing, empty, unparseable, or with the five incident ids
+    stripped out, BOTH tests below were GREEN while asserting nothing at all.
+
+    The guards therefore read the RAW committed JSON directly and compare
+    against LITERAL status strings, calling no generator predicate -- so the
+    oracle cannot be emptied by the same defect the assertions exist to catch.
+    """
+
+    #: Build-landed status vocabulary, as literal strings. Deliberately NOT
+    #: derived from `_status_implementation_complete()`: that is the predicate
+    #: under test, and sourcing the oracle from it is precisely the FM11d bug.
+    #: A new build-landed token must be added here by hand -- the resulting
+    #: failure is the intended, visible outcome.
+    BUILD_LANDED_STATUSES = frozenset(
+        {"implemented", "implemented_pending_validation"}
+    )
+
+    #: The four confirmed FM3 incident items plus SD-094. Each must be present
+    #: in the live corpus AND carry a build-landed status, or `assertNotIn`
+    #: below is asserting nothing.
+    INCIDENT_IDS = (
+        "SD-091",
+        "SD-092",
+        "SD-094",
+        "SD-modulatory-channel-route-decomp-gate-fix",
+        "mech090-arc071-attick-persistent-handle-fix",
+    )
+
+    SCAFFOLDED_ID = "scaffolded-curriculum-hazard-rebalance"
+
+    #: FM4 adjudication marker, matched on the status HEAD only -- the live
+    #: status carries a long prose tail that will keep being edited.
+    SCAFFOLDED_STATUS_HEAD = "diagnosis_done_NO_SUBSTRATE_CHANGE_WARRANTED"
+
+    @classmethod
+    def setUpClass(cls):
+        """Parse the live queue RAW -- no generator helper, so a parse failure
+        surfaces as a failure rather than as an empty oracle."""
+        cls._raw_path = Path(GEN.SUBSTRATE_QUEUE)
+        cls._raw_error = None
+        cls._raw = {}
+        try:
+            payload = json.loads(cls._raw_path.read_text(encoding="utf-8"))
+            cls._raw = {
+                e["sd_id"]: e
+                for e in (payload.get("queue") or [])
+                if isinstance(e, dict) and e.get("sd_id")
+            }
+        except Exception as exc:  # reported below, never swallowed
+            cls._raw_error = "%s: %s" % (type(exc).__name__, exc)
+
+    def _assert_corpus_loaded(self):
+        """An empty oracle is a FAILURE in this class, never a quiet pass."""
+        self.assertIsNone(
+            self._raw_error,
+            "live substrate_queue at %s did not parse (%s) -- every assertion "
+            "in this class would otherwise pass against an empty set"
+            % (self._raw_path, self._raw_error),
+        )
+        self.assertTrue(
+            self._raw,
+            "live substrate_queue at %s holds no entries -- this class asserts "
+            "over the live corpus and is now vacuous; re-point it at a fixture "
+            "corpus rather than letting it pass quietly" % (self._raw_path,),
+        )
+
+    def test_the_live_corpus_is_actually_loaded(self):
+        """Standalone non-vacuity check, so the failure names the real cause
+        instead of surfacing as a confusing pass elsewhere."""
+        self._assert_corpus_loaded()
+        self.assertEqual(
+            len(self._raw),
+            len(GEN._substrate_by_id()),
+            "a raw read of %s and the generator's own loader disagree on entry "
+            "count -- one of them is dropping entries silently"
+            % (self._raw_path,),
+        )
 
     def test_no_landed_incident_item_is_ready(self):
+        self._assert_corpus_loaded()
         ready = {it.get("sd_id") for it in GEN._substrate_ready_items()}
-        for sd in (
-            "SD-091",
-            "SD-092",
-            "SD-094",
-            "SD-modulatory-channel-route-decomp-gate-fix",
-            "mech090-arc071-attick-persistent-handle-fix",
-        ):
+        for sd in self.INCIDENT_IDS:
             with self.subTest(sd_id=sd):
+                # Independent oracle: presence and status read from the raw
+                # file and compared to literals -- no predicate under test.
+                self.assertIn(
+                    sd,
+                    self._raw,
+                    "%s is no longer in the live substrate_queue -- the "
+                    "assertion below would pass against nothing; re-point this "
+                    "test at a fixture corpus rather than deleting it" % (sd,),
+                )
+                raw_status = (self._raw[sd].get("status") or "").strip()
+                self.assertIn(
+                    raw_status,
+                    self.BUILD_LANDED_STATUSES,
+                    "%s's committed status is %r, which is not in the "
+                    "build-landed vocabulary. This test asserts the item is "
+                    "suppressed BECAUSE its build landed, so a status outside "
+                    "that vocabulary invalidates the premise -- update "
+                    "BUILD_LANDED_STATUSES or re-point the test" % (sd, raw_status),
+                )
                 self.assertNotIn(sd, ready)
 
     def test_scaffolded_curriculum_rebalance_is_resolved(self):
         """FM4 incident item: adjudicated no-substrate-change-warranted, must no
-        longer surface as an /implement-substrate task."""
-        by_id = GEN._substrate_by_id()
-        entry = by_id.get("scaffolded-curriculum-hazard-rebalance")
-        if entry is None:
-            self.skipTest("entry not present in live queue")
+        longer surface as an /implement-substrate task.
+
+        The absence branch was `skipTest` until the 2026-08-18 audit. A skip is
+        a silent stand-down, and the corpus quietly ceasing to contain the item
+        is indistinguishable from the fix having been reverted -- so it is now
+        a loud failure carrying the re-point instruction.
+        """
+        self._assert_corpus_loaded()
+        self.assertIn(
+            self.SCAFFOLDED_ID,
+            self._raw,
+            "%s is no longer in the live substrate_queue -- this test can no "
+            "longer verify the FM4 adjudication; re-point it at a fixture "
+            "corpus rather than skipping" % (self.SCAFFOLDED_ID,),
+        )
+        raw_status = (self._raw[self.SCAFFOLDED_ID].get("status") or "").strip()
+        self.assertTrue(
+            raw_status.startswith(self.SCAFFOLDED_STATUS_HEAD),
+            "%s's committed status head is %r, expected it to start with %r -- "
+            "the FM4 adjudication this test asserts on is no longer recorded"
+            % (self.SCAFFOLDED_ID, raw_status[:80], self.SCAFFOLDED_STATUS_HEAD),
+        )
+        entry = GEN._substrate_by_id().get(self.SCAFFOLDED_ID)
+        self.assertIsNotNone(
+            entry,
+            "%s is in the raw file but the generator's loader dropped it"
+            % (self.SCAFFOLDED_ID,),
+        )
         self.assertTrue(GEN._substrate_resolved(entry))
         ready = {it.get("sd_id") for it in GEN._substrate_ready_items()}
-        self.assertNotIn("scaffolded-curriculum-hazard-rebalance", ready)
+        self.assertNotIn(self.SCAFFOLDED_ID, ready)
 
 
 if __name__ == "__main__":
