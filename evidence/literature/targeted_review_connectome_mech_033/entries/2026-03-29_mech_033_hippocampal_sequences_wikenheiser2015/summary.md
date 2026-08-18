@@ -2,12 +2,12 @@
 
 **Entry ID:** 2026-03-29_mech_033_hippocampal_sequences_wikenheiser2015
 **Claim tested:** MECH-033 (E2 forward-prediction kernels seed hippocampal rollouts)
-**Evidence direction:** supports | **Confidence:** 0.78
+**Evidence direction:** supports | **Confidence:** 0.74
 
 ---
 
-> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`).**
-> `source.title` and `source.doi` were repaired. The record previously declared the title
+> **PROVENANCE NOTE (2026-08-14, chip `chip-20260814-lit-unrecoverable-identifiers`, and 2026-08-18, chip `chip-20260816-lit-provenance-quarantine`).**
+> `source.title` and `source.doi` were repaired on 2026-08-14. The record previously declared the title
 > *"Decoupled traversals of the hippocampal sequence reflect decisions about the future"* and
 > the DOI `10.1038/nn.3945`. No paper with that title exists (Crossref bibliographic search
 > returns nothing resembling it), and `10.1038/nn.3945` is Zhang et al., *"Dopaminergic and
@@ -17,39 +17,35 @@
 > Nat Neurosci 18(2):289-294, DOI `10.1038/nn.3909`. Declared authors, year and venue all already
 > matched that paper, so only the title and DOI were wrong.
 >
-> **UNRESOLVED, flagged for governance (GFLAG-0028): the "What the paper did" section below does
-> not describe nn.3909.** That study used a circular-track delay-discounting foraging task (three
-> feeder sites, fixed per-session delays, rats free to wait or skip) and its result is that theta
-> look-ahead extends farther on journeys to more distant goals and predicts the destination. The
-> text below instead describes a T-maze with probabilistic reward and vicarious-trial-and-error
-> head-scanning at a stationary choice point — the paradigm of Johnson & Redish (2007), not of the
-> cited paper. The prose was deliberately left unedited pending governance, exactly as for
-> GFLAG-0027; `confidence`, `evidence_direction` and `mapping` were not touched.
+> **RESOLVED 2026-08-18 (GFLAG-0028, quarantine-pending-re-extraction, governance cycle 2026-08-16).**
+> The "What the paper did" section below previously described a T-maze with probabilistic reward and
+> vicarious-trial-and-error head-scanning at a stationary choice point — the paradigm of Johnson &
+> Redish (2007), not of the cited nn.3909 paper. It has now been rewritten against the actual paper:
+> a circular-track delay-based foraging task (three feeder sites, rat chooses to wait or move on), whose
+> result is that theta look-ahead extends farther on journeys to more distant goals, predicts the
+> destination, and does not depend on distance already travelled. Abstract via Europe PMC
+> (EXT_ID:25559082); task-structure detail corroborated via secondary sources since PMC full text
+> (PMC4428659) sits behind a bot check. `confidence`, `evidence_direction` and `mapping` were re-derived
+> against the correct paper (see `record.json`).
 
 ---
 
 ## What the paper did
 
-Wikenheiser and Redish recorded from hippocampal place cells in rats navigating a T-maze with probabilistic reward at the two arms. Their key innovation was to analyse hippocampal activity during deliberation pauses at the choice point -- moments when the animal stands at the junction and makes head-scanning movements (vicarious trial and error, VTE). Using a Bayesian decoder, they reconstructed the animal's "represented position" from population place-cell activity at each moment. They found that during VTE episodes, the decoded position frequently decoupled from the animal's true location and swept ahead along one of the upcoming arms. These prospective sweeps were predictive of the animal's subsequent choice: sweeps toward arm A were more likely when the animal eventually chose arm A.
+Wikenheiser and Redish recorded from hippocampal place cells (CA1) in rats trained to forage on a circular track containing three feeder sites. At each site the rat faced a foraging decision: wait an assigned delay to collect reward there, or move on to the next site — moving on is optimal when the current site's remaining wait exceeds what the next site would require. This is a continuous, repeated foraging task rather than a discrete two-alternative choice point. Using a Bayesian decoder applied within individual theta cycles, the authors reconstructed the "represented position" encoded by the population of active place cells at each moment and asked how far ahead of the animal's true position that represented location extended, and how that look-ahead distance related to the animal's current goal (its intended next feeder).
 
-## Key findings
+## Key findings relevant to MECH-033
 
-The central result is the demonstration that hippocampal sequences project *ahead of the animal* during decision deliberation, not just behind or alongside. This "decoupled traversal" is not simply a slower movement replay -- it occurs while the animal is stationary and the decoded position moves at a rate faster than locomotion. The sequences are prospective (forward in the direction of anticipated travel) rather than retrospective (backward replay of the path just traveled). Critically, they are behaviorally significant: the direction of the sweep correlates with the direction of the subsequent choice, suggesting these are genuine "mental simulations" of future paths used for decision evaluation, not epiphenomenal noise.
+Theta-cycle look-ahead distance was not fixed — it varied moment-by-moment with the rat's goal. Look-ahead extended significantly farther on journeys toward more distant goals than on journeys toward nearer ones, and the extent of look-ahead was predictive of which site the animal was actually heading to. Critically, the authors also tested the reverse relationship: on arrival at a goal, look-ahead distance was similar regardless of how far the animal had just travelled to get there — that is, the scaling was specifically with prospective (upcoming) goal distance, not retrospective (already-covered) distance. This dissociation is the paper's central result: hippocampal theta sequences encode a forward-looking, goal-referenced representation of the path ahead, not a generic trace of recent locomotion.
 
-## REE translation
+## Translation to REE
 
-This paper provides the most direct behavioral evidence for the kind of rollout process that MECH-033 posits. In REE's framework, the hippocampal rollout is a sequence of predicted future states (z_{t+1}, z_{t+2}, ...) generated to support trajectory evaluation before a choice is committed. Wikenheiser & Redish document exactly this phenotype: at a decision point, the hippocampus runs a prospective sequence that represents the upcoming path under consideration, and this sequence predicts the choice that follows.
-
-The E2 connection is the next inferential step. E2 is the fast forward transition model: given z_t and a proposed action a_t, it predicts z_{t+1}. The hippocampal sequence in this paper is precisely an iterated application of such a transition: each step in the decoded trajectory corresponds to a z_{t+k} that would need to be predicted by a forward model applied to the previous state. E2, as the REE forward kernel, is the computational mechanism that would generate each transition in the sequence. The hippocampus provides the map structure; E2 provides the dynamics that propagate the state through the map.
-
-The behavioral correlation (sweep direction predicts choice) is also consistent with the E3 evaluation architecture: E3 would evaluate the harm and goal profiles of the E2-generated rollout and gate commitment accordingly. The VTE phenomenon -- deliberation, forward sweep, choice -- maps cleanly onto the E2-seeded rollout evaluated by E3.
+MECH-033 claims that E2, the fast forward-transition kernel, seeds hippocampal rollouts by iterated application: given z_t and a candidate action, E2 predicts z_{t+1}, and the rollout is built by chaining this prediction forward. A rollout generated this way should, in principle, have a length that reflects how far ahead the evaluation needs to reach — closer goals need fewer forward-kernel applications, distant goals need more. Wikenheiser & Redish's central finding — that theta-sequence look-ahead distance scales specifically with distance to the prospective goal, not with the distance already travelled — is a close behavioural analog of exactly this property. It is stronger and more specific evidence for a kernel-chaining-style rollout mechanism than a generic "the hippocampus projects forward" result would be, because it shows the length of the forward projection is itself goal-distance-calibrated, which is what an iterated forward model matched to a target would need to produce. The destination-predictive property of the sequence is also consistent with the E3-evaluation-of-E2-rollouts framing: the endpoint of the projected sequence carries information about the choice being evaluated.
 
 ## Limitations and caveats
 
-The paper documents the *output* of the hippocampal forward process (the decoded prospective sequence) but does not identify the *input* that seeds it. Whether a fast cerebellar-analogue predictor (E2 in REE) provides the one-step kernel, or whether the sequence emerges from intrinsic hippocampal attractor dynamics, or whether it is driven by prefrontal top-down signals, is not resolved. This is a significant gap: MECH-033 makes a specific mechanistic claim about E2's role, and the paper is consistent with but does not distinguish E2-seeding from these alternatives.
-
-The task is spatial T-maze navigation, where the "state space" is a two-dimensional Euclidean environment with explicit paths. REE's z_world is an abstract conceptual latent space, not a spatial map. The degree to which prospective hippocampal sequences generalize to abstract state spaces remains an open question, though there is suggestive evidence from human fMRI studies showing hippocampal prospective coding in abstract decision tasks.
+The paper documents the *output* of the hippocampal forward process (goal-distance-scaled theta look-ahead) but, as with the previous mis-cited description, does not identify the *circuit input* that seeds or sets the scaling of the sequence. Whether a fast forward-predictor analogous to E2 generates each step, or whether the scaling emerges from intrinsic hippocampal attractor dynamics or a cortical top-down signal, is not resolved by this paper. MECH-033 makes a specific mechanistic claim about E2's role; this paper is consistent with but does not distinguish E2-seeding from these alternatives. The task is continuous delay-based foraging on a circular track (rodent), with no discrete T-junction choice point — a different behavioural structure from multi-step abstract planning, and REE's z_world is an abstract conceptual latent space, not a spatial map.
 
 ## Confidence reasoning
 
-Source quality is high: in-vivo single-unit recording during active deliberation, published in Nature Neuroscience, with a clear behavioral correlate. This is not a synthetic or purely theoretical result. Mapping fidelity is good: the prospective hippocampal sweep is the empirical phenomenon that MECH-033's rollout seeding is designed to explain. The gap is the missing mechanistic link to E2 specifically. Transfer risk is moderate: spatial vs abstract state space, rodent vs architecture. Overall confidence 0.78 -- the strongest empirical support in this set for the existence of hippocampal forward rollouts, with moderate confidence in the E2-seeding interpretation.
+Source quality is high: in-vivo tetrode recording during active foraging, published in Nature Neuroscience, with a clean and quantitative prospective/retrospective dissociation rather than a qualitative description. Mapping fidelity is good-to-moderate: the goal-distance scaling of look-ahead is a specific, falsifiable signature that a forward-kernel-chaining rollout would need to produce, which is a tighter mapping than a generic "prospective sequence" result — but the source does not identify a discrete forward-predictor circuit, so the E2-specific attribution remains an REE-side inference. Transfer risk is moderate: continuous circular-track foraging vs multi-step abstract planning, rodent vs architecture. Overall confidence 0.74 — solid empirical support for goal-distance-scaled hippocampal forward rollouts, now correctly grounded in the paper this record actually cites, with the same category of mechanistic gap (seeding circuit unidentified) as the previous description carried.

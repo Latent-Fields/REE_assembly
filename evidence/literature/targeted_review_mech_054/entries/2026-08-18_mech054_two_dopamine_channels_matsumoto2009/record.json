@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_054",
+  "entry_id": "2026-08-18_mech054_two_dopamine_channels_matsumoto2009",
+  "timestamp_utc": "2026-08-18T21:26:43Z",
+  "claim_ids_tested": ["MECH-054"],
+  "source": {
+    "title": "Two types of dopamine neuron distinctly convey positive and negative motivational signals",
+    "authors": ["Masayuki Matsumoto", "Okihide Hikosaka"],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08028",
+    "pmid": "19448610",
+    "volume": "459",
+    "issue": "7248",
+    "pages": "837-841"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Direct primate electrophysiology showing that midbrain dopamine neurons split into two functionally and anatomically distinct populations during a Pavlovian task with both appetitive (reward) and aversive (airpuff) outcomes: a minority 'value-coding' group excited by reward-predicting cues and inhibited by airpuff-predicting cues (a signed channel), and a majority 'salience-coding' group excited by both (an unsigned/motivational-salience channel). The two groups are anatomically segregated (dorsolateral vs ventromedial SNc/VTA). This is the most direct primate evidence this corpus holds that a signed valence channel and a non-signed salience channel are computed by separable dopaminergic populations rather than one blended signal -- the specific structural claim MECH-054 makes about signed harm/benefit precision channels remaining distinct. Confidence is not higher because (a) the paper's 'signed' population is the minority, not the majority, of recorded neurons, complicating a direct 'this IS the MECH-054 channel' identification, and (b) the task uses simple Pavlovian cue-outcome pairs (liquid reward vs airpuff), not the graded, harm-vs-benefit residue-field valence structure REE models.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The anatomically-segregated 'value-coding' dopamine population is a minority of recorded neurons; most dopamine neurons in this dataset are salience-coding (excited by both reward- and aversive-predicting cues), so a strict 'dopamine = signed valence' reading is not what the paper shows -- it shows a mixture, with signed coding as one identifiable component",
+    "Anatomical segregation (dorsolateral vs ventromedial SNc/VTA) is correlational with response type in this dataset; the paper does not causally manipulate one population to show it alone carries signed information",
+    "The aversive stimulus (airpuff) is a low-level noxious/startle stimulus, not the graded, contextual harm signal REE's harm stream represents -- transfer from 'airpuff' to 'harm residue field' is an inferential step"
+  ],
+  "tags": ["mech_054", "dopamine", "lateral_habenula", "signed_prediction_error", "value_coding", "salience_coding", "precision_channels", "matsumoto", "hikosaka"],
+  "mapping": {
+    "source_claim_statement": "In monkeys performing a Pavlovian task with reward (liquid) and aversive (airpuff) outcomes, a subset of dopamine neurons was excited by reward-predicting cues and inhibited by airpuff-predicting cues (signed, value-coding), while a larger subset was excited by both reward- and airpuff-predicting cues (unsigned, salience-coding). The two response types were found in anatomically distinct locations -- value-coding neurons more ventromedial (including VTA), salience-coding neurons more dorsolateral (SNc).",
+    "ree_translation": "MECH-054 claims that signed harm and benefit prediction-error precision channels remain computationally distinct rather than collapsing into one blended valence signal. Matsumoto & Hikosaka's anatomical and functional dissociation of a signed (value-coding) dopamine population from an unsigned (salience-coding) one is direct primate evidence that the brain implements at least two separable channels at the dopaminergic output stage, one of which specifically preserves sign. This supports MECH-054's structural claim that signed and unsigned (or oppositely-signed) precision-weighted error channels are not merged by the time they reach downstream valuation circuits.",
+    "mapping_caveat": "The paper's 'signed' population is a minority of recorded dopamine neurons, so the mapping is 'a signed channel exists and is anatomically separable' rather than 'dopamine output is predominantly signed' -- MECH-054 does not require the latter, but a reader should not over-read this as showing dopamine is generally a clean signed-PE signal. The stimuli (liquid reward, airpuff) are simple unconditioned outcomes, not the graded contextual harm/benefit residue fields REE models, so the 'precision' component of MECH-054 (channel reliability/weighting, not just sign) is not directly tested here -- this paper evidences the sign-separation half of the claim, not the precision-weighting half.",
+    "source_context": "Primate (rhesus macaque), Pavlovian conditioning with liquid reward and airpuff-to-face aversive outcomes, in-vivo single-unit recording from substantia nigra pars compacta and ventral tegmental area dopamine neurons, anatomical localisation of recording sites."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high: Nature, primate single-unit recording, anatomically localised, from the same group (Matsumoto & Hikosaka) whose lateral habenula work already anchors this corpus's MECH-053/054 coverage. Mapping fidelity moderate: strong for the 'sign-separable channels exist' half of MECH-054, weaker for the 'precision' (reliability-weighting) half, which this paper does not address. Transfer risk moderate: simple Pavlovian outcomes vs REE's graded residue-field valence."
+  }
+}

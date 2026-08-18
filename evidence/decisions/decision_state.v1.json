@@ -1818,6 +1818,15 @@
       "selected_option": "Accept all holds",
       "timestamp_utc": "2026-06-18T05:15:01.358022Z"
     },
+    "MECH-439": {
+      "actor": "governance-cycle-2026-08-18",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "HOLD at candidate. The conflict_ratio 0.667 rests on exp_entries=1, and that single genuine experimental entry is V3-EXQ-936's weakens -- which this cycle's mandatory driver skim showed is UNMEASURABLE, not falsifying: F variance exceeds NON-F by 15-40 orders of magnitude across cells (6.4e18 to 4.1e72 vs 9.4e4 to 5.1e32), so f_variance_share saturates at 1.0 by float64 resolution and C2's observed paired range (~2e-7) is five orders below its own 0.05 bar. C2 could not have passed regardless of the demotion lever, so the C1-true/C2-false falsifying signature carries no information about monopoly. The driver's nonf_variance_nondegenerate guard names exactly this hazard but tests an ABSOLUTE floor (1e-9) against a RELATIVE condition, and criteria_non_degenerate[C2] = readiness_all_met and c1_pass inherits from it. V3-EXQ-936 is therefore ROUTED to /failure-autopsy and left PENDING this cycle with no governance-written evidence_direction; the conflict-resolution this row asks for IS that autopsy. No status change.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-08-18T14:09:26.999025Z"
+    },
     "MECH-440": {
       "actor": "governance-cycle-20260629T1933Z",
       "decision_needed": "MECH-440 NoisyNet learned-parametric-weight-noise LC-NE exploration floor: promotion gate",
@@ -2358,6 +2367,24 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-08-08T08:30:48.734448Z"
     },
+    "Q-092": {
+      "actor": "governance-cycle-2026-08-18",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "HOLD recorded so this stops re-flagging pending_user every cycle. Open question, implementation_phase=v3, ZERO V3 experimental runs -- all current directions are literature-only, so there is nothing experimental to promote or demote on. Work-graph debt: gated on an upstream complicated (buildable) substrate node, not on a reducible unknown at this node. No claims.yaml change; status stays open.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold pending V3 substrate",
+      "timestamp_utc": "2026-08-18T14:09:36.356267Z"
+    },
+    "Q-093": {
+      "actor": "governance-cycle-2026-08-18",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "HOLD recorded so this stops re-flagging pending_user every cycle. Open question, implementation_phase=v3, ZERO V3 experimental runs -- all current directions are literature-only, so there is nothing experimental to promote or demote on. Work-graph debt: gated on an upstream complicated (buildable) substrate node, not on a reducible unknown at this node. No claims.yaml change; status stays open.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold pending V3 substrate",
+      "timestamp_utc": "2026-08-18T14:09:36.414501Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -2710,7 +2737,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-08-16T20:15:57.173402Z",
+  "generated_at_utc": "2026-08-18T21:27:48.347186Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
