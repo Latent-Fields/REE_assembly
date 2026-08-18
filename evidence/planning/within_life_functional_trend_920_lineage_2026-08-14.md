@@ -2,15 +2,19 @@
 
 **Generated:** 2026-08-14T16:16:08Z
 **Chip:** `chip-20260812-exq920-multiseed-degradation-retrospective`
-**Status:** LIVE analysis of the single existing n=1 trajectory + a pre-registered multi-seed
-pipeline. **Nothing here is scoring evidence.** All trend readings are `n=1`,
-hypothesis-generating, per the organism-review framing (Fishtank visual/single-run observations
+**Status:** COMPLETE (2026-08-18). Sections 3-5 are the original `n=1` template; Section 6's
+pipeline has now been RUN verbatim over V3-EXQ-920a's 8 seeds and appended as **Section 7**.
+**Nothing here is scoring evidence.** Sections 3-5 are `n=1`; Section 7 is `N=8`, and N=8 is
+explicitly NOT a reliability claim -- no p-value is computed anywhere in this document. All readings
+are hypothesis-generating, per the organism-review framing (Fishtank visual/single-run observations
 are explicitly not treated as governance evidence). No claim is tagged, no `claims.yaml` edit is
 made or implied.
 
-This document is addendum-friendly: when V3-EXQ-920a lands (2-8 independent within-life
-trajectories), a follow-on session re-runs Section 6's pipeline verbatim and appends its output as
-a Section 7 addendum. It does **not** rewrite Sections 1-5.
+The addendum did **not** rewrite Sections 1-5. Where the multi-seed pass *corrects* an n=1 reading
+(Sections 3a/3c/4 in particular), Section 7 says so explicitly and the original text is left standing
+so the revision is auditable. The one exception is **Section 5**, whose two recommendation bullets
+exist to be consumed by `chip-20260814-queue-causal-sleep-matched-arm`; a superseding block was
+appended there in place, with the n=1 bullets left above it.
 
 ---
 
@@ -222,6 +226,54 @@ duplicate that design. Its contribution to that chip:
   not yet starving). Placing it in B or C would confound the sleep effect with dying. The multi-seed
   920a data should set T per-seed relative to each seed's own exhaustion point, not an absolute step.
 
+**UPDATED 2026-08-18 with the V3-EXQ-920a multi-seed evidence (Section 7).** The two bullets above
+were written from n=1 and are superseded by the following; they are left in place so the revision is
+auditable. The changes are driven by Section 7.3 (most n=1 "trends" are one deterministic energy
+clock in different units) and Section 7.4 (`z_block` is not universally acute).
+
+- **DV set for the matched-arm follow-up (revised).**
+  - **Primary:** `surprise` (proxy) -- 8/8 monotone up in Regime A *and* seed-varying by an order of
+    magnitude, the only channel that is both consistent and informative. **Drop `excite`**:
+    `r(surprise, excite) = 0.985 .. 1.0000`, it is the same signal.
+  - **Primary:** `z_block` -- **promoted** from "acute-impairment marker" to a primary DV. It is the
+    only channel in the corpus showing a plausibly **irreversible** within-life change (persistent to
+    death in 2/8 seeds, acute-and-resolving in 3/8), which is precisely the acute-vs-accumulated
+    contrast the matched-arm design exists to adjudicate. Record it **with** `action_blocked`, since
+    3/8 seeds had blocked actions with `z_block` never crossing 0.05.
+  - **Primary:** mode-run length / mode-switch rate **and** dominant-mode identity -- seed 1's
+    persistent `z_block` co-occurs with an `assert` mode-lock (longest run 745 steps), so the lock is
+    the behavioural readout of the impairment and must be recorded alongside it.
+  - **Secondary:** `liking` (8/8 up, wide cross-seed spread, but `r(liking, energy) = -0.76 .. -0.96`).
+  - **Secondary:** cumulative-distinct-cells + revisit rate -- **downgraded** from the n=1 claim that
+    this was "robust to the exhaustion confound". At N=8 new-cell acquisition stops mid-life in 5/8
+    seeds and whole-life coverage spans 6.9%..48.6% of the grid. Report it, do not lean on it.
+  - **DROP `drive` outright.** `max |drive - (1 - energy)| = 0.0015` (one step of drain) in 8/8 seeds:
+    it is perfectly collinear with the energy covariate and adds a spurious "8/8 consistent" line to
+    any table it appears in.
+  - **`z_goal` only as a manipulation check, not as an outcome.** `r(z_goal, energy) = 0.9235` to four
+    decimal places in 7/8 seeds. Its decline is a readout of the homeostatic clock; treating it as a
+    functioning DV would guarantee a "significant" within-life trend that means nothing.
+  - **Covariates to record (mandatory):** `energy`, resource count, **and `health`**. Health is the
+    addition -- it is the one state variable that genuinely diverges across seeds (0.04 .. 0.85 at
+    t=600) while energy does not, so it is what makes seeds distinguishable at all. Health remains
+    **excluded as a functioning DV** (Section 4: it is the outcome, tautological with death).
+  - **Still excluded:** `residue_wanting` (0.0 in 8/8 seeds -- the 916a recording gap, unmeasurable
+    without the `use_proxy_fields=True` + `info`-dict fix), `orienting_active` (0 fires in 8/8),
+    `vigor` (0.0 in 7/8, max 0.026 in seed 5). `is_committed` is False at all 13718 steps across all
+    seeds, so commitment cannot be a DV in a single-episode design at all.
+- **Sleep-cadence placement T (revised, and now SIMPLER than the n=1 recommendation).** The n=1 pass
+  recommended setting T per-seed relative to each seed's own exhaustion point. **That is unnecessary
+  and should not be implemented:** in 920a the pre-registered resource-exhaustion boundary fires in
+  **0/8** seeds, and the energy ramp is bit-identical across seeds (0.0015/step, reaching 0 at
+  t=666), so "each seed's own boundary" is the same absolute step in every seed. **Use an absolute
+  T ~= 400**, and state the reasoning rather than the number: at t=400 median energy is 0.398 (well
+  clear of collapse), median `z_goal` has already fallen from 0.366 to 0.063 (so the homeostatic
+  decay to be perturbed is underway), and **all 8/8 seeds are still alive** -- the shortest life was
+  628 steps, so T=400 is inside every seed's life with ~228 steps of margin. T=450-500 would still
+  clear the shortest seed but with much less margin; T<250 lands before `z_goal` has moved. Verify
+  liveness against the run's own minimum survival before fixing T, and if the matched-arm run's
+  substrate changes the energy drain rate, re-derive t=666 rather than copying it.
+
 ---
 
 ## 6. Pre-registered multi-seed analysis pipeline (turnkey for the 920a follow-on)
@@ -249,16 +301,219 @@ hypothesis-generating only.
    (Regime-A monotone, confound-flagged) vs injury (confirm still driven-only: cross-check every
    harm-channel excursion against the injection/rule-shift schedule).
 
-Reference implementation of steps 1-4 (the exact script used for the n=1 pass) is in this chip's
-scratchpad; the follow-on should re-derive it against the 920a `episode_log`s (do not depend on the
-scratchpad surviving).
+Reference implementation: the n=1 pass's script was left in a session scratchpad and did NOT survive,
+exactly as warned here. The 920a follow-on therefore re-derived it and landed it as a TRACKED file --
+`evidence/planning/within_life_functional_trend_920a_pipeline.py` (REE_assembly `9878275d30`). Any
+further re-run should start from that file, not from a scratchpad.
 
 ---
 
-## 7. Multi-seed addendum (PENDING -- filled by the 920a follow-on)
+## 7. Multi-seed addendum (V3-EXQ-920a, N=8) -- FILLED 2026-08-18
 
-*Awaiting V3-EXQ-920a results. To be appended by
-`chip-20260814-analyse-920a-multiseed-within-life-trends` once >=2 seeds' `episode_log`s land.*
+**Appended by** `chip-20260814-analyse-920a-multiseed-within-life-trends` (session
+`metaworker-chip-20260814-analyse-920a-multiseed-within-life-trends`), running Section 6's
+pre-registered pipeline **verbatim** over the 8 per-seed `episode_log`s of
+`v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3`.
+**Reference implementation, now TRACKED** (the n=1 pass's script was left in a scratchpad and did
+not survive, as Section 6 warned): `evidence/planning/within_life_functional_trend_920a_pipeline.py`,
+REE_assembly `9878275d30`. Re-running it reproduces every number below.
+
+**Nothing here is scoring evidence.** N=8 is not a reliability claim; no p-value is computed
+anywhere. Sections 1-5 are not rewritten -- where this addendum *corrects* an n=1 reading, it says so
+explicitly rather than editing the earlier text.
+
+### 7.0 Provenance, and one comparability caveat that must be read first
+
+- 8/8 seeds ran (the `--seeds` workaround of Section 1 worked); **8/8 died uncensored**
+  (`done_cause=health_depleted`, `pct_right_censored_pooled=0`). Survival: min 628, median 1831,
+  mean 1714.75, max 2527 steps.
+- **`total_sleep_cycles_fired = 0.0`** -- the GAP-9 premise of Section 5 holds for 920a exactly as it
+  did for 920. No sleep opportunity fired inside any life.
+- `env_config` is **byte-identical** between 920 and 920a.
+- **CAVEAT: 920a is not a pure seed-count re-run of 920.** The substrate moved **114 commits**
+  between them (`fc0fb4ce5c` -> `bf769fb3a4`), including `sleep_substrate:GAP-9 (v1 ceiling arm):
+  within-life sleep trigger`, a `MECH-303` proximity-anticipatory harm-signal change and a
+  `MECH-267` CEM-selection change. Concretely, **seed 0 does not reproduce**: 920 seed 0 died at
+  1475 steps having consumed its resources to 0 by t~=600; 920a seed 0 died at 1944 steps and never
+  dropped below 1 resource. So Section 3's n=1 numbers are **not** a within-lineage baseline for the
+  numbers here -- treat Section 3 as a methods template that was applied, not as seed 0 of this N=8.
+
+### 7.1 Step 1 -- per-seed regime boundaries (and a pre-registration failure worth stating)
+
+**The pre-registered PRIMARY boundary did not fire in any seed.** Section 6 step 1(a) defines Regime
+A by "first sustained `resources==0`". In 920a resources are **never** sustained-0 in **0/8** seeds
+(per-seed min resource count 1,1,2,5,1,1,1,4). The pipeline therefore fell through to boundary (b),
+first `energy<=0`, and for seed 5 (which died first) to whole-life.
+
+| seed | life (steps) | (a) resource-exh | (b) energy<=0 | health<0.5 | health<0.1 | res start/min/end | Regime-A end |
+|---|---|---|---|---|---|---|---|
+| 0 | 1944 | never | 666 | 676 | 1887 | 5/1/1 | 666 |
+| 1 | 1432 | never | 666 | 639 | 1295 | 5/1/1 | 666 |
+| 2 | 1846 | never | 666 | 1066 | 1807 | 5/2/2 | 666 |
+| 3 | 1008 | never | 666 | 558 | 709 | 5/5/5 | 666 |
+| 4 | 2527 | never | 666 | 1069 | 2503 | 5/1/1 | 666 |
+| 5 | 628 | never | never (died first) | 403 | 546 | 5/1/1 | 628 (whole life) |
+| 6 | 2517 | never | 666 | 2235 | 2513 | 5/1/1 | 666 |
+| 7 | 1816 | never | 666 | 1436 | 1765 | 5/4/4 | 666 |
+
+**`t=666` is a clock, not an event.** Energy drains at a fixed 0.0015/step from 0.9985, so it reaches
+0 at t=666 **by arithmetic**, in every seed, independent of anything the organism does. Verified
+directly: the energy trace over t<666 is **bit-identical to seed 0's in 7 of 8 seeds** (seed 5 is the
+only exception, and only because it died at 628). Health, by contrast, genuinely diverges across
+seeds (at t=600: 0.04 .. 0.85). So Regime A here is a fixed 666-step interval shared by all seeds --
+which is convenient for the matched-arm design (Section 7.6) and **fatal to the naive reading of the
+consistency table** (Section 7.3).
+
+### 7.2 Steps 2-5 -- Regime-A windowed descriptives (median [Q1,Q3])
+
+Full per-seed tables are reproduced by the tracked script. Compressed here as the **range of the 8
+per-seed window medians**, which is the quantity that matters for judging cross-seed consistency:
+
+| DV | early | mid | late-preExh | POST-exh |
+|---|---|---|---|---|
+| `z_goal` | 0.237 .. 0.295 | 0.078 .. 0.098 | 0.026 .. 0.034 | 0.000 .. 0.008 |
+| `drive` | 0.156 .. 0.166 | 0.470 .. 0.499 | 0.784 .. 0.832 | 0.775 .. 1.000 |
+| `energy` (covariate) | 0.833 .. 0.842 | 0.500 .. 0.529 | 0.167 .. 0.215 | 0.000 .. 0.225 |
+| `n_resources` (benefit covariate) | 2.0 .. 5.0 | 1.0 .. 5.0 | 1.0 .. 5.0 | 1.0 .. 5.0 |
+| `surprise` (proxy) | 0.000 .. 0.605 | 0.057 .. 1.782 | 0.144 .. 2.708 | 0.597 .. 3.982 |
+| `excite` | 0.000 .. 0.459 | 0.057 .. 1.705 | 0.132 .. 2.505 | 0.579 .. 3.831 |
+| `liking` | 0.000 .. 4.062 | 0.625 .. 19.049 | 12.798 .. 32.777 | 9.716 .. 31.240 |
+| `override` | 0.579 .. 0.652 | 0.667 .. 0.725 | 0.726 .. 0.786 | 0.746 .. 0.818 |
+| `dread` | 0.000 .. 0.127 | 0.000 .. 0.164 | 0.001 .. 0.256 | 0.017 .. 0.297 |
+| `z_harm_a` | 1.319 .. 5.711 | 1.080 .. 6.025 | 0.439 .. 6.620 | 0.507 .. 9.177 |
+
+**Read the spread, not just the direction.** `z_goal`/`drive`/`energy`/`override` have cross-seed
+spreads far narrower than their within-life change; `surprise`/`excite`/`liking` vary by an order of
+magnitude across seeds while still moving the same way. That distinction is the whole content of
+Section 7.3.
+
+**Familiarity (step 3)** -- cumulative distinct cells, NEW cells per window, revisit rate:
+
+| seed | new cells early/mid/late/POST | distinct cells by end of Regime A | over whole life | grid coverage | revisit rate early/mid/late |
+|---|---|---|---|---|---|
+| 0 | 23/0/10/37 | 33 | 70 | 48.6% | 0.896/1.000/0.955 |
+| 1 | 7/20/11/20 | 38 | 58 | 40.3% | 0.968/0.910/0.950 |
+| 2 | 8/0/4/55 | 12 | 67 | 46.5% | 0.964/1.000/0.982 |
+| 3 | 7/3/0/0 | 10 | 10 | 6.9% | 0.968/0.986/1.000 |
+| 4 | 5/9/0/51 | 14 | 65 | 45.1% | 0.977/0.959/1.000 |
+| 5 | 26/9/0/-- | 35 | 35 | 24.3% | 0.876/0.957/1.000 |
+| 6 | 14/2/0/42 | 16 | 58 | 40.3% | 0.937/0.991/1.000 |
+| 7 | 5/5/0/31 | 10 | 41 | 28.5% | 0.977/0.977/1.000 |
+
+New-cell acquisition falls to **zero in the late-preExh window in 5/8 seeds**, and revisit rate
+reaches 1.000 in 5/8 -- i.e. spatial coverage **saturates before the energy clock runs out**. But
+displacement rate (fraction of steps where position changed) has **no consistent direction** across
+seeds (seed 1 rises 0.027 -> 0.365 -> 0.243; seed 3 collapses 0.706 -> 0.063 -> 0.000), so this is
+coverage saturation, not a demonstrated loss of locomotion, and it is not separable from the energy
+clock. **This corrects the n=1 reading in Section 3c**, which called monotone familiarity growth "the
+one trend robust to the exhaustion confound": at N=8, growth *stops* mid-life in most seeds, and the
+whole-life spread is enormous (10 to 70 distinct cells, 6.9% to 48.6% of the 12x12 grid).
+
+**Coherence (step 4)** -- `is_committed` is **False at every step of every seed** (0/13718 steps),
+confirming Section 3d's n=1 observation as a structural property of the single-episode design, not a
+seed accident. Mode-run length has no consistent direction (up-monotone in 3/8, non-monotone in 5/8);
+dominant mode differs wildly by seed (`neutral` in 0/2/4, `assert` in 1, `shelter` in 3/7, `avoid` in
+5/6), so "mode-lock" is a per-seed phenomenon, not a life-stage one.
+
+### 7.3 The degeneracy finding -- 8/8 monotone is NOT 8 independent replications
+
+This is the most important result of the multi-seed pass, and it **downgrades** the n=1 candidate
+trends rather than confirming them.
+
+- **`drive` is an algebraic restatement of `energy`.** `max |drive - (1 - energy)| = 0.0015` -- exactly
+  one step of drain -- in **all 8 seeds** across all of Regime A. `drive` carries **zero** information
+  beyond `energy` and must not be counted as a second confirming DV.
+- **`energy` is the same deterministic ramp in every seed** (7/8 bit-identical, Section 7.1). Its
+  "8/8 monotone decline" is one curve counted eight times.
+- **`z_goal` is a near-deterministic function of that same ramp.** `r(z_goal, energy)` over Regime A
+  is **0.9235 in 7 of 8 seeds -- identical to four decimal places** (seed 5: 0.9306, and only because
+  its window is shorter). A correlation that agrees to 4 dp across independent RNG streams is not
+  eight independent measurements of a relationship; it is one relationship re-instantiated.
+- **`surprise` and `excite` are near-duplicate channels**: `r(surprise, excite) = 0.985 .. 1.0000`
+  across seeds. Reporting both as separate DVs double-counts one signal.
+
+So of Section 3a's seven "candidate within-life trends", the cross-seed data supports **at most
+two independent ones**:
+
+| DV | k/N monotone in Regime A | independent? | verdict |
+|---|---|---|---|
+| `z_goal` | 8/8 down | **no** -- r with energy fixed at 0.9235 | homeostatic clock readout |
+| `drive` | 8/8 up | **no** -- identically `1 - energy` | drop as a DV |
+| `energy` | 8/8 down | **no** -- deterministic ramp | covariate, never a DV |
+| `override` | 8/8 up | doubtful -- narrow spread, r(override,energy) = -0.78 .. -0.87 | clock-coupled |
+| `surprise` (proxy) | 8/8 up | **partly** -- magnitudes span 0.000 .. 2.708, r with energy varies -0.82 .. -0.98 | candidate |
+| `excite` | 8/8 up | **no** -- duplicate of `surprise` | fold into `surprise` |
+| `liking` | 8/8 up | **partly** -- wide spread, but r(liking,energy) = -0.76 .. -0.96 | weak candidate |
+| `dread` | 5/8 up, 3/8 non-monotone | -- | not consistent |
+| `z_block` | 0/8 monotone (8/8 non-monotone) | -- | not a trend (see 7.4) |
+| `z_harm_a` | 4/8 down, 2/8 up, 2/8 non-monotone | -- | not consistent |
+| `n_resources` | 0/8 monotone | -- | not consistent |
+| revisit rate | 3/8 up, 5/8 non-monotone | -- | not consistent |
+| mode-run length | 3/8 up, 5/8 non-monotone | -- | not consistent |
+
+**The honest summary: the only channels that both move consistently and carry seed-specific
+information are `surprise` (with `excite` folded in) and, more weakly, `liking` -- and both remain
+strongly energy-coupled, so neither is separable from the homeostatic ramp on this design.** N=8 does
+not rescue the Section 3a candidates; it shows most of them were the energy clock in different units.
+
+### 7.4 Step 7 -- the three-way separation, restated per seed
+
+**Injury: still driven-only, now confirmed across all 8 seeds.** Every one of the 136 limb-damage and
+122 external-hazard injections lands exactly on a multiple of 50, every one of the 557 blocked-action
+steps on a multiple of 10, and every world-rule shift on the fixed 250-step cadence (sole inter-shift
+gap = 250 in all seeds) -- **0 off-grid events in 8/8 seeds**, matching the declared
+`scheduled_*_interval` config exactly. The emergent `harm_event` channel (656 events, ~99% off-grid,
+i.e. proximity-driven rather than injected) shows **no consistent within-life direction**: its rate
+rises late in seeds 1 and 3, falls in seeds 0 and 2, peaks mid-life in seed 5. **There is no
+accumulating, self-sustaining injury signal in any seed.** Section 4's finding survives N=8 intact,
+and it is the one part of the n=1 read that strengthens.
+
+**Acute vs accumulated: the n=1 read was WRONG about acuteness, and this is a genuine correction.**
+Section 4 called the `z_block` spike "acute / reversible ... a transient blocked-agency episode".
+At N=8 that generalisation fails. Fraction of steps with `z_block > 0.05`, per window:
+
+| seed | early | mid | late-preExh | POST-exh | pattern |
+|---|---|---|---|---|---|
+| 0 | 0.10 | 0.00 | 0.00 | 0.00 | acute, resolves (matches the n=1 read) |
+| 4 | 0.00 | 0.22 | 0.00 | 0.00 | acute, resolves |
+| 2 | 0.00 | 0.14 | 0.10 | 0.00 | mild, resolves |
+| 3, 5, 6 | 0.00 | 0.00 | 0.00 | 0.00 | `z_block` never exceeds 0.05 (though `action_blocked` did fire 47/28/97 times) |
+| **1** | 0.00 | **0.41** | **0.95** | **0.99** | **onsets mid-life and NEVER resolves -- to death** |
+| **7** | 0.00 | 0.00 | **0.52** | 0.31 | **onsets late and persists past the clock** |
+
+So blocked-agency is **acute and reversible in 3/8, never registered above threshold in 3/8, and persistent-to-death in 2/8**.
+In seed 1 it co-occurs with a mode-lock into `assert` (1052/1432 steps; POST-exh mean mode-run 127.7,
+longest run 745) -- an organism stuck in one mode with agency blocked for the last two-thirds of its
+life. **This is the closest thing in the dataset to a non-reversible within-life functional change,
+and it is exactly the kind of thing the n=1 pass could not see.** It is reported as
+hypothesis-generating: with 2/8 it is equally consistent with a rare bistable trap as with a
+prolonged-wake effect, and the design cannot distinguish those (Section 7.5).
+
+**Dead channels, re-checked at N=8:** `residue_wanting` is 0.0 at every step of every seed (the 916a
+recording gap, unchanged -- still **unmeasurable**, not "measured zero"); `orienting_active` fires 0
+times in 8/8 seeds; `vigor` is 0.0 in 7/8 seeds and reaches a negligible 0.026 in seed 5, so
+Section 3's "flat throughout" is very slightly overstated but the DV-exclusion stands.
+
+### 7.5 What did NOT change: the causal limit
+
+Everything in Section 5 about causality holds unchanged, and N=8 does not weaken it:
+
+- Still **no matched sleeping-arm control**; `total_sleep_cycles_fired = 0` in 8/8 seeds. Any trend
+  above is prolonged-wake-**associated** at best.
+- The dominant driver of the Regime-A trends is now demonstrably **the deterministic energy ramp**,
+  which is a *stronger* confound statement than the n=1 pass could make: it is not merely that
+  starvation co-varies with time, it is that `drive` and `z_goal` are near-algebraic functions of a
+  clock every seed shares.
+- N=8 with 8/8 agreement on a clock-driven channel is **not** evidence of reliability. Reporting it
+  as such would be the exact degeneracy Section 8 forbids.
+
+### 7.6 Updated inputs for the matched-arm causal follow-up
+
+Section 5 is updated in place with the multi-seed evidence; the substantive changes are: `drive` and
+`excite` dropped as redundant, `z_block` promoted (it is the only channel showing a plausibly
+irreversible per-seed change), health added as a divergence covariate, and cadence T re-specified as
+an absolute step because the energy clock is seed-invariant. See Section 5 for the recommendation
+that `chip-20260814-queue-causal-sleep-matched-arm` should consume.
 
 ---
 
