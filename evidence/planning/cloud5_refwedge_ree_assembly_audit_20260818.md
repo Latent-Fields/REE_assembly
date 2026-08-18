@@ -1,29 +1,32 @@
-# ree-cloud-5 REE_assembly `master` ref-wedge -- content audit and partial resolution
+# ree-cloud-5 REE_assembly `master` ref-wedge -- content audit and resolution
 
-**Status: AWAITING OPERATOR ACTION -- the audit is complete and the one genuinely-stranded
-piece of content has been recovered and landed, but the ref move itself is BLOCKED (see
-section 6). The checkout remains wedged.**
+**Status: RESOLVED 2026-08-18T10:46Z. The checkout is converged
+(`ref_convergence.py --check` exits 0, "no refusal state; converging normally").
+No operator action outstanding.** Two follow-ups are noted in section 7 for a human to
+weigh; neither blocks anything.
 
 - Session: `metaworker-chip-refwedge-ree-cloud-5-ree-assembly-master-since-2026-08-18t05-20-27z`
 - Chip: `chip-refwedge-ree-cloud-5-ree-assembly-master-since-2026-08-18t05-20-27z`
 - Box: `ree-cloud-5` -- checkout `/home/ree/REE_Working/REE_assembly`
-- Audited: 2026-08-18T10:20Z - 10:37Z
+- Audited and resolved: 2026-08-18T10:20Z - 10:47Z
 - Worked example followed: `evidence/planning/cloud5_stale_scripts_wedge_staged_20260814.md` sections 5-6
 
 ## 1. The wedge
 
-`scripts/ref_convergence.py` has been refusing to converge `master` onto `origin/master`
-since 2026-08-18T05:20:27Z. **The refusal is correct and was not relaxed.** No heuristic
+`scripts/ref_convergence.py` had been refusing to converge `master` onto `origin/master`
+since 2026-08-18T05:20:27Z. **The refusal was correct and was not relaxed.** No heuristic
 third proof route was added (`ref_convergence.py`'s docstring explains why reverse-apply
-was designed and deliberately not shipped).
+was designed and deliberately not shipped). The refusal was cleared by doing the operator
+work it exists to demand -- a per-commit content audit, then an explicitly acknowledged
+adoption -- not by weakening the predicate.
 
 At audit start: `[ahead 269, behind 215]`, 56 proven upstream, **213 unproven**.
-By the end of the session it had drifted to `[ahead 272, behind 216]` -- the drift is
-entirely `phase3-heartbeats:` ticks (see section 3), which is why this cannot be cleared
-by waiting.
+By the time of the move it had drifted to `[ahead 272, behind 216]` -- the drift is
+entirely `phase3-heartbeats:` ticks (section 3), which is why this could never clear by
+waiting.
 
-This is the **third** wedge of this shape on this box: `backup/refwedge-20260815-master`
-and `backup/refwedge-20260816-master` are the prior two. It recurs.
+This was the **third** wedge of this shape on this box: `backup/refwedge-20260815-master`
+and `backup/refwedge-20260816-master` are the prior two. It recurs -- see section 7.
 
 ## 2. Audit method
 
@@ -48,16 +51,17 @@ of current-state fields, fully overwritten on each tick by
 `/home/ree/REE_Working/scripts/ree_metaworker_heartbeat.py` -- there is no accumulating
 array, so no intermediate value is uniquely held by history.
 
-Content check, local tip vs origin tip:
+Content check, local tip vs origin tip at audit time:
 
 - local  `cycles_completed: 2796`, `last_tick_utc: 2026-08-18T10:20:08Z`
 - origin `cycles_completed: 2580`, `last_tick_utc: 2026-08-17T13:21:07Z`
 
-Origin is ~21h stale **because** this checkout is wedged and cannot push. This is the same
-derived-materialisation class CLAUDE.md describes for the phase3 queue writer: the
+Origin was ~21h stale **because** this checkout was wedged and could not push. This is the
+same derived-materialisation class CLAUDE.md describes for the phase3 queue writer: the
 authoritative state is the live orchestrator, the git file is a materialisation, and the
-next tick (cadence ~3-6 min, measured) rewrites it. Adopting origin therefore **fixes**
-the staleness rather than causing it. Nothing durable is lost.
+next tick (cadence ~3-6 min, measured) rewrites it. Adopting origin therefore **fixed**
+the staleness rather than causing it -- confirmed after the move, with the writer committing
+normally again. Nothing durable was lost.
 
 ## 4. Group B -- GFLAG-0038 pair (net zero)
 
@@ -73,9 +77,9 @@ behind-origin checkout.
 The underlying work is verified present on origin: `a843ee6ebb`
 (`failure-autopsy: MECH-321/ARC-070 Step 9b Mode-B ...`) is an ancestor of `origin/master`,
 and both `evidence/planning/failure_autopsy_mech321-hypothesis-legs-modeb_2026-08-18.{md,json}`
-are on origin. Origin also already shows GFLAG-0038 `status: resolved` (governance cycle
-2026-08-16T20:15:21Z, `cranky-driscoll-126a36`), whereas **local tip shows it `open`** --
-so adopting origin is a strict improvement here, not a loss.
+are on origin. Origin also already showed GFLAG-0038 `status: resolved` (governance cycle
+2026-08-16T20:15:21Z, `cranky-driscoll-126a36`), whereas **local tip showed it `open`** --
+so adopting origin was a strict improvement here, not a loss.
 
 **Residual worth a human's attention (not blocking):** origin's `resolution_note` is the
 *ratification* note ("Chipped as chip-20260816-mech321-hypothesis-legs-mode-b"), written
@@ -104,7 +108,7 @@ Per-item content audit against origin for `sd_id: mech357-avoidance-efficacy-eli
 
 A `git cherry-pick -x b6cfbfaed3` onto `origin/master` **conflicts** -- origin had already
 changed the same two status lines. This is exactly the "stranded by a conflicting push-retry
-cherry-pick" mechanism the chip describes, and why nothing will ever prove this commit.
+cherry-pick" mechanism the chip describes, and why nothing would ever have proven this commit.
 
 **Resolution:** applied as a narrow structural insert instead of a conflicting cherry-pick.
 `implementation_note` added alongside origin's `implementation_note_update` -- both keys are
@@ -114,62 +118,85 @@ established convention in this file (30 vs 19 occurrences) and
 
 **Landed on `origin/master` as `5c2078903c`.**
 
-## 6. What remains -- OPERATOR ACTION REQUIRED
+## 6. The move, and the skew repair that followed
 
-The audit is complete. Every commit in the ahead range has been content-audited and is
-either already upstream, net-zero, derived telemetry regenerated on the next tick, or
-(for the single true positive) recovered and landed. **The ref move is the only step left**,
-and it is **blocked by the Claude Code auto-mode classifier** on this headless box: the
-identical command passes with `--dry-run` and is refused without it. This is a permission
-boundary, not a tooling defect and not a safety finding -- it was not worked around.
-
-Dry-run confirmed clean immediately before the block:
-
-```
-safe_adopt_ref: dry run -- would move refs/heads/master from f5b44d3afa to 5c2078903c (origin/master)
-```
-
-Run this on a box (or under a permission mode) that permits the move:
+With every ahead commit content-audited, the adoption was performed with an explicit
+acknowledgement of the full discard set, so `safe_adopt_ref.py`'s independent recomputation
+stayed the gate:
 
 ```bash
-R=/home/ree/REE_Working/REE_assembly
-git -C "$R" branch "backup/pre-refconverge-$(date -u +%Y%m%dT%H%M%SZ)" master   # backup first
 git -C "$R" rev-list origin/master..master > /tmp/discard_shas.txt
 /opt/local/bin/python3 /home/ree/REE_Working/scripts/safe_adopt_ref.py \
   --repo REE_assembly --branch master --allow-discard $(cat /tmp/discard_shas.txt)
 ```
 
-The list must be regenerated **immediately** before the move: the heartbeat writer adds a
-commit every ~3-6 minutes, and `safe_adopt_ref.py` independently recomputes the discard set
-and exits 3 on anything unacknowledged. That refusal is the backstop working -- just
-regenerate and re-run. Re-running is safe and idempotent.
+Backup taken first: `backup/pre-refconverge-20260818T102515Z` -> `56dccd4e1e` (local to
+`ree-cloud-5`; `enforce-single-branch.yml` deletes non-default branches on push, so it
+cannot be pushed). `git reflog show master` recovers the discarded range.
 
-Confirm with:
+**The move succeeded but its built-in skew repair was cut off partway** (the invocation hit
+a 2-minute tool timeout while materialising a 216-commit adoption). The ref had already
+moved -- `master == origin/master` -- so the residue was a half-finished repair, which is
+precisely the state CLAUDE.md's HEAD/worktree-skew section is written for. It was completed
+by hand, reading the status **codes** rather than a dirty-file count:
 
-```bash
-/opt/local/bin/python3 /home/ree/REE_Working/scripts/ref_convergence.py --repo REE_assembly --check
-# exit 0 = clear, 4 = still wedged
+- **29 `M ` staged reverts** -- each verified byte-identical to the pre-move HEAD
+  (`fe53d6fba7`) before touching it, per the rule that an `M ` restore is *not*
+  unconditionally safe. All 29 matched -> stale adoption lag, nothing local to lose ->
+  restored with `git checkout HEAD -- <paths>`. Never `git checkout -- .`.
+- **2 `A ` staged re-adds** -- the deletion-direction analogue, and the one variant the
+  documented detector does not name.
+  `evidence/literature/neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/`
+  was **deliberately deleted upstream** by `734a9eab1a` ("governance 2026-08-16: remove
+  placeholder habenula/DA literature entry (GFLAG-0031)"); index and worktree still held it,
+  so adopting the deletion surfaced it as a staged addition -- a staged revert of an upstream
+  *deletion*. Both files verified byte-identical to pre-move HEAD, then removed with
+  `git rm -f`, adopting the governance decision.
+- **1 `MM`** (`scripts/steward/state/steward_ledger.jsonl`) -- staged revert *plus* an
+  unstaged edit on top. Content check against pre-move HEAD **differed**, i.e. a live
+  session's uncommitted work. **Not restored** -- `git checkout HEAD --` would have destroyed
+  it. Only the staged revert was cleared, index-only: `git reset -q -- <path>`.
+- **1 ` M`** (`evidence/planning/cloud5_stale_scripts_wedge_staged_20260814.md`, held under
+  an active claim by `metaworker-chip-20260814-cloud5-stale-scripts-disabled-orphan-guard-b`)
+  -- another session's live work, deliberately untouched.
+
+Final state: `## master...origin/master` with no ahead/behind, and the working tree carrying
+only the two ` M` files that belonged to other sessions before this session started.
+
+**Confirmation:**
+
+```
+$ /opt/local/bin/python3 scripts/ref_convergence.py --repo REE_assembly --check
+ref_convergence --check: /home/ree/REE_Working/REE_assembly -- no refusal state; converging normally
+EXIT=0
 ```
 
-**Backup:** `backup/pre-refconverge-20260818T102515Z` -> `56dccd4e1e` (local to `ree-cloud-5`;
-`enforce-single-branch.yml` deletes non-default branches on push, so it cannot be pushed).
-Commits after that point are heartbeat ticks only, and `git reflog show master` recovers them.
+The tracked tree is current again -- `scripts/`, skills and contracts are at origin, so
+guards landed since the strand are deployed on this box rather than silently frozen.
 
-## 7. Why this matters, and why it recurs
+## 7. Why it recurs -- three observations, none fixed here
 
 While wedged, the checkout cannot adopt origin, so its tracked tree -- `scripts/`, skills,
 contracts -- is **frozen**, and every guard landed on origin since the strand is silently
 undeployed on the box that runs headless chip sessions. That is the 2026-08-14 `ree-cloud-5`
-outage shape.
-
-Two structural contributors, both already tracked, neither fixed here:
+outage shape. This box has now wedged three times in four days, so the mechanism matters
+more than this instance:
 
 1. `ree_commit.py`'s cherry-pick faithfulness gate cannot key `governance_flags.v1.json`
    (no `ID_FIELDS` member is present-and-scalar on a flag entry), so governance-flag pushes
    from this box refuse and the commits strand locally --
-   `chip-20260816-reecommit-idfields-registry-keys`.
+   `chip-20260816-reecommit-idfields-registry-keys`. This is what produced the group-B pair
+   and, one revert later, the unprovable strand that pinned the whole ref.
 2. The `phase3-heartbeats:` writer commits every ~3-6 min against a checkout that cannot
-   push, so the ahead count grows ~10-20/hour indefinitely. It is harmless content but it
-   makes every convergence attempt a moving target and inflates the discard list. Worth
-   considering whether the orchestrator heartbeat should short-circuit its commit while its
-   own checkout is known-wedged.
+   push, so the ahead count grows ~10-20/hour indefinitely. The content is harmless, but it
+   makes every convergence attempt a moving target, inflates the discard list, and buries the
+   two or three commits that actually need auditing under 210 that do not. Worth considering
+   whether the orchestrator heartbeat should short-circuit its commit while its own checkout
+   is known-wedged (`ref_convergence.py --check` already answers that question cheaply, and
+   is already the routine-tick entry point).
+3. `safe_adopt_ref.py`'s post-move skew repair is not restartable and leaves no marker that
+   it was interrupted. On a large adoption it can exceed a caller's timeout; the ref has
+   moved by then, so the operation *looks* done while a half-repaired index sits armed with
+   staged reverts that a bare `git commit` would land. The repair is idempotent in effect, so
+   simply re-running `safe_adopt_ref.py` finishes it -- worth saying somewhere a session will
+   read before hand-rolling the repair, as this one did.
