@@ -49,6 +49,66 @@ that owns its closure node (plan-level `generation`, defaulting to `v3`).
 *Incident:* SD-031 — `implementation_phase: v3` owned by a node in a plan whose
 only home for it was flagged V4. **Detects the SD-031 class directly.**
 
+#### Cycle-1 adjudication — 2026-08-18 · **verdict `refine`** · **DEMOTED TO LIST-ONLY**
+
+All 27 findings on base `b3b95d7938` adjudicated per claim:
+**3 confirmed, 24 false positive → precision 3/27 = 0.11**, below the 0.6 floor.
+Under the most generous defensible reading (also counting SD-036 and MECH-286,
+which have live V3 experiments, as real denominator holes) it is 5/27 = 0.19 —
+still well below. Demoted to list-only via `LIST_ONLY_ESCALATE` in
+`detectors/d001_phase_generation_mismatch.py`: every finding is still
+**reported**, none consumes escalation budget.
+
+The floor is appropriate here for the reason SKILL.md gives, and the brief for
+this adjudication independently reached it: **D-001's misses are not silent.**
+An unowned v3 claim still appears in the registry. That is the opposite of
+D-002, whose orphans are invisible by construction — which is why D-002 escalates
+unconditionally and this one does not.
+
+**Correction to a premise worth recording**, because it changes how the finding
+set reads: D-001 does **not** fire on claims with no closure node. The detector
+opens with `if not owners: continue`. Every one of the 27 *is* owned — just never
+by a `generation: v3` plan. The population is therefore far sharper than
+"unowned v3 claims", and the dominant failure mode is not absence of a plan but
+**deliberate cross-generation ownership**.
+
+| verdict | n | class |
+|---|---|---|
+| confirmed | 3 | ARC-053, ARC-054 (`deferred_by_commitment:DEF-1`), MECH-270 (`DEF-2`) |
+| false positive | 13 | clinical lane, cross-generation **by construction** |
+| false positive | 2 | owning node's own text explicitly refutes it (MECH-163, MECH-308) |
+| false positive | 9 | forward-roadmap back-pointer (incl. the pre-suppressed MECH-099) |
+
+**The 3 confirmed are a half-finished reassignment**, and two independent signals
+agree. The co-listed siblings were moved and these were not — ARC-055 and
+MECH-225/226/228 now read `implementation_phase: v4`, while ARC-053/054/270 still
+read `v3`. And both node notes name the drift outright: DEF-1 says *"NOTE
+phase-tag drift: ARC-053/ARC-054 currently read implementation_phase: v3 …
+reconcile in the held-reassignment batch"*, DEF-2 *"MECH-270 currently reads
+implementation_phase: v3 (drift, same note as DEF-1)"*. That batch never ran.
+The fix is a claims.yaml edit → **proposed to /governance**, not applied:
+`evidence/planning/d001_adjudication_staged_20260818.md`. Neither is suppressed.
+
+**Why the predicate was not tightened instead.** A sharper structural rule was
+*measured*, not assumed: fire only when a sibling claim co-listed in the same
+owning node has already been reassigned off v3 ("partial reconcile"). That cuts
+**27 → 9**, keeps all 3 confirmed, and drops all 13 clinical plus MECH-163 and
+MECH-308 — but precision only reaches **3/9 = 0.33**, still under the floor,
+because inside a v4 plan most co-listed claims are v4 anyway. Tightening past
+that means fitting the predicate to the same 3 cases it would be validated on,
+which `GOV-HELDOUT-1` exists to forbid. The disposition therefore lives in
+`state/suppressions.yaml` — per-claim, reasoned, reversible — and the detector
+keeps honest recall.
+
+**No plan frontmatter was edited and no closure number moved**, so no A/B
+regeneration of `generate_closure_snapshot.py` was required. Every false
+positive resolved to "the existing arrangement is correct", and the confirmed
+three are claims.yaml work outside this adjudication's authority.
+
+*Resume condition:* restore escalation once governance dispositions the three,
+**and** one full cycle has run with the suppressions live, **if** the
+unsuppressed residue then measures ≥ 0.6. One constant to flip.
+
 ### D-002 · `orphan_v3_claim` · P0 · T1
 A claim with `implementation_phase: v3` / `v3_pending: true` whose **only**
 owning closure node has a status in `DEFERRED_STATUSES` — therefore excluded
