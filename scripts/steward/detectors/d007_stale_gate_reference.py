@@ -117,22 +117,72 @@ TIER = "T1"
 # is now status=done". The third (GAP-6, a node created 2026-08-15) has no
 # independent record and rests on this session's reading.
 #
+# INDEPENDENTLY RE-ADJUDICATED 2026-08-18 (chip
+# chip-20260816-steward-d007-precision-adjudicate, a session distinct from the
+# one that built the detector and hand-audited the original 3/3). Method: read
+# each node's pre-fix blocking_external / resume_condition against
+# evidence/planning/self_attribution_plan.md at b289311feb^, then independently
+# confirmed the CURRENT status of every gate node the parser resolves --
+# sleep_substrate:GAP-1, goal_pipeline:GAP-1 and
+# behavioral_diversity_isolation:GAP-A all read status=done directly from their
+# own plan frontmatter -- cross-checked against the pre-existing
+# governance_2026_06_09 / governance_2026_06_23 notes quoted above (written
+# months before this detector existed, so they cannot be the detector's own
+# reasoning circling back). Verdict unchanged: 3/3 genuine, no false positives,
+# nothing added to suppressions.yaml. By the time of this re-adjudication all
+# three had ALREADY been resolved -- gates re-pointed, both nodes staying
+# `blocked`, by a separate chip (chip-20260817-d007-selfattr-stale-gates,
+# REE_assembly b289311feb + b3e0391230) that ran between the original
+# measurement and this one. That resolution is itself corroborating: a false
+# positive would have had nothing to re-point. D-007 now reports 0 live
+# findings on the current tree (verified via run_detectors.py --json), which is
+# the expected post-fix state, not a regression.
+#
+# Broadening beyond self_attribution was ATTEMPTED, not skipped: every other
+# gate-bearing node in the live tree was enumerated (9 total; see
+# scripts/steward/README.md) and all currently name only outstanding gates
+# (true negatives, no stale text). `git log --grep` was also run across
+# evidence/planning/*.md for the same re-point pattern in other plans; the
+# candidates found (e.g. commitment_closure:GAP-4, sleep_substrate:GAP-2) name
+# their gates via V3-EXQ ids or free prose, not `plan_id:NODE` tokens, so none
+# are additional D-007-parseable historical instances. No new sample was found
+# within this session's search.
+#
 # STATE THE WEAKNESSES PLAINLY rather than letting 3/3 read as validation:
-#   * n=3 is a SMALL SAMPLE. It is above the floor, not comfortably above it.
-#   * Unlike D-002's 4/4, this was NOT an independent adjudication chip.
-#   * All three sit in ONE plan (self_attribution), so the sample says little
-#     about how the parser behaves on other plans' prose conventions.
+#   * n=3 is STILL a SMALL SAMPLE. It is above the floor, not comfortably above
+#     it, and this re-adjudication did not grow n.
+#   * The 2026-08-18 pass above IS an independent adjudication (a different
+#     session, re-deriving the verdict from primary sources rather than
+#     inheriting the docstring's claim) -- so this weakness is now addressed,
+#     unlike D-002's original gap.
+#   * All three still sit in ONE plan (self_attribution); a search for a second
+#     plan's instance came up empty, so this weakness is unresolved, not
+#     merely unaddressed.
 # RE-MEASURE and rewrite these constants when the detector changes or when a
 # governance cycle adjudicates a batch. Do not inherit the figure.
 #
-# That all three findings are STILL LIVE is itself the point: the 2026-06-09
-# gate text has been stale for over two months and no cycle removed it, because
-# every cycle correctly re-pointed the gate in a governance NOTE and left the
-# original blocking_external list standing.
+# The 2026-06-09 gate text sat stale for over two months before this: every
+# governance cycle in between correctly re-pointed the gate in a NOTE and left
+# the original blocking_external list standing, which is exactly the
+# documentation-accuracy gap D-007 exists to close. The 2026-08-18 fix finally
+# corrected the frontmatter itself (see chip-20260817-d007-selfattr-stale-gates
+# above) -- so "still live" is no longer the state on this tree, and a future
+# re-measurement should expect n=0 live findings here until a new instance
+# appears elsewhere.
 PRECISION_FLOOR = 0.6
 MEASURED_PRECISION: float | None = 1.0
-MEASURED_AT = ("2026-08-16 / REE_assembly origin/master 8603a6d186 / n=3, "
-               "3 genuine (2 corroborated by pre-existing governance notes)")
+MEASURED_AT = (
+    "2026-08-16 / REE_assembly origin/master 8603a6d186 / n=3, 3 genuine (2 "
+    "corroborated by pre-existing governance notes); INDEPENDENTLY "
+    "RE-ADJUDICATED 2026-08-18 by a separate session "
+    "(chip-20260816-steward-d007-precision-adjudicate) against the live "
+    "gate-node statuses and the same pre-existing governance notes -- still "
+    "3/3, no false positives. All three were resolved in the interim (gates "
+    "re-pointed, nodes stay blocked) by chip-20260817-d007-selfattr-stale-gates "
+    "(REE_assembly b289311feb + b3e0391230); D-007 now reports 0 live findings "
+    "on this tree. n=3 all-in-one-plan weakness stands -- a search for a "
+    "second plan's instance found none."
+)
 
 # Only the two fields the framing names. See SCOPE in the module docstring for
 # why depends_on is deliberately absent.

@@ -67,7 +67,7 @@ of them".
 | **D-002** | T1 | Orphan V3 claim: claim reads as live V3, every owning closure node is `deferred` -> invisible to closure accounting. The SD-031 class. | yes -- precision 4/4 |
 | **D-001** | T1 | Claim `implementation_phase` disagrees with the `generation` of every plan that owns it. Same denominator-invisibility harm, reached along the generation axis. | no |
 | **D-006** | T0 | Duplicate entries in `governance_flags.v1.json` (same claims + type + day). Auto-fixable when they are byte-identical re-writes of one raise. | yes -- 0 FP on the live registry |
-| **D-007** | T1 | Stale gate reference: a node's `blocking_external` / `resume_condition` names a closure node that is now `done`. Reports that the gate TEXT is stale -- never that the node should open. | yes -- 3/3, small sample |
+| **D-007** | T1 | Stale gate reference: a node's `blocking_external` / `resume_condition` names a closure node that is now `done`. Reports that the gate TEXT is stale -- never that the node should open. | yes -- 3/3, independently re-adjudicated, small/one-plan sample |
 | **D-008** | T0 | Plan-level `last_updated` older than its newest node's, inflating the morning digest's staleness figure. | yes -- 19 real, 0 FP |
 | **D-010** | T2 | Guards the accounting itself: recomputes the V3 denominator independently and reports every way it differs from what a reader would assume. | n/a (structural) |
 | **D-101** | T2 | Classifies an ahead/behind divergence by CONTENT: which ahead commits are already upstream, and which are real local work. | yes -- on the live 23-commit divergence |
@@ -380,6 +380,40 @@ That all three are still live is itself the finding: the 2026-06-09 gate text
 has been stale for over two months and no cycle removed it, because every cycle
 correctly re-pointed the gate in a governance **note** and left the original
 `blocking_external` list standing.
+
+**Independently re-adjudicated 2026-08-18** by a separate session
+(`chip-20260816-steward-d007-precision-adjudicate`), addressing the "not an
+independent adjudication chip" weakness above. Method: read each node's pre-fix
+`blocking_external` / `resume_condition` at `b289311feb^`, then independently
+confirmed the *current* status of every gate node the parser resolves --
+`sleep_substrate:GAP-1`, `goal_pipeline:GAP-1` and
+`behavioral_diversity_isolation:GAP-A` all read `status: done` straight from
+their own plan frontmatter -- cross-checked against the pre-existing
+`governance_2026_06_09` / `governance_2026_06_23` notes (written months before
+the detector existed, so they cannot be the detector reasoning circling back).
+**Verdict unchanged: 3/3 genuine, zero false positives**, nothing added to
+`suppressions.yaml`.
+
+By the time of this re-adjudication all three had *already* been resolved --
+gates re-pointed, both nodes staying `blocked` -- by a separate chip
+(`chip-20260817-d007-selfattr-stale-gates`, REE_assembly `b289311feb` +
+`b3e0391230`) that landed between the original measurement and this one. That
+resolution is itself corroborating: a false positive would have had nothing to
+re-point. **D-007 now reports 0 live findings on the current tree** (verified
+via `run_detectors.py --json`), which is the expected post-fix state, not a
+regression -- a future re-measurement on this tree should expect `n=0` here
+until a new instance appears.
+
+Broadening beyond `self_attribution` was **attempted, not skipped**: all 9
+gate-bearing nodes currently in the live tree were enumerated and every one
+names only outstanding (non-`done`) gates -- true negatives, no additional
+stale text. `git log --grep` was also run across `evidence/planning/*.md` for
+the same re-point pattern in other plans; the candidates it surfaced (e.g.
+`commitment_closure:GAP-4`, `sleep_substrate:GAP-2`) name their gates via
+V3-EXQ ids or free prose, not `plan_id:NODE` tokens, so none are additional
+D-007-parseable historical instances. **No second-plan sample was found within
+this session's search** -- the "all one plan" weakness is confirmed to still
+hold, not merely left unexamined.
 
 ### The historical replay is the primary test, and it really is historical
 
