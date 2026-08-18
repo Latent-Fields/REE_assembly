@@ -8,14 +8,14 @@ This experiment asks whether the MECH-245 hallucination pathway is reproduced wh
 
 ## Claim Under Test
 
-Authoritative claim wording: "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding." The claim notes specify that hallucination is a perceptual generation failure in which E1 top-down predictions propagate forward as if they were received sensory signals, bypassing or overwhelming the bottom-up mismatch check. Sources: `REE_assembly/docs/claims/claims.yaml:23855-23896`.
+Authoritative claim wording: "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding." The claim notes specify that hallucination is a perceptual generation failure in which E1 top-down predictions propagate forward as if they were received sensory signals, bypassing or overwhelming the bottom-up mismatch check. Sources: `REE_assembly/docs/claims/claims.yaml:34340-34389`.
 
 ## Competing Explanations
 
-- MECH-094 is documented as confabulation, a memory write-gate or source-monitoring failure, not the percept-generation pathway tested here. Sources: `ree-v3/experiments/v3_exq_825_mech245_generative_dominance_deafferentation.py:9-19`; `REE_assembly/docs/claims/claims.yaml:6566-6601`.
-- MECH-244 is documented as a precision-weighting or belief-updating failure where bottom-up evidence is present but resisted. Sources: `ree-v3/experiments/v3_exq_825_mech245_generative_dominance_deafferentation.py:9-19`; `REE_assembly/docs/claims/claims.yaml:23855-23896`.
-- MECH-246 is documented as signal-degradation or pareidolia: bottom-up input is present but too degraded, sparse, or ambiguous to constrain inference. Sources: `REE_assembly/docs/claims/claims.yaml:23897-23932`.
-- MECH-247 is documented as trauma-shaped hypervigilant priors: pathological prior structure generates strong top-down predictions from minimal threat-relevant signals. Sources: `REE_assembly/docs/claims/claims.yaml:23933-23969`.
+- MECH-094 is documented as confabulation, a memory write-gate or source-monitoring failure, not the percept-generation pathway tested here. Sources: `ree-v3/experiments/v3_exq_825_mech245_generative_dominance_deafferentation.py:9-19`; `REE_assembly/docs/claims/claims.yaml:10509-10544`.
+- MECH-244 is documented as a precision-weighting or belief-updating failure where bottom-up evidence is present but resisted. Sources: `ree-v3/experiments/v3_exq_825_mech245_generative_dominance_deafferentation.py:9-19`; `REE_assembly/docs/claims/claims.yaml:34340-34389`.
+- MECH-246 is documented as signal-degradation or pareidolia: bottom-up input is present but too degraded, sparse, or ambiguous to constrain inference. Sources: `REE_assembly/docs/claims/claims.yaml:34390-34425`.
+- MECH-247 is documented as trauma-shaped hypervigilant priors: pathological prior structure generates strong top-down predictions from minimal threat-relevant signals. Sources: `REE_assembly/docs/claims/claims.yaml:34426-34462`.
 
 ## Experimental Design
 
@@ -49,7 +49,7 @@ The archived run records `outcome=PASS`, `result=PASS`, `evidence_direction=supp
 
 ## Interpretation
 
-The manifest summary states that PASS maps to `evidence_direction=supports`: PRIMARY sensory absence raised variance from the grounded operating point, while ABLATION sustained false confidence when the generative prediction was substituted for missing bottom-up input. This profile does not mark the run reviewed; `pending_review.md` still lists the run under PASS verify-and-close. Sources: `REE_assembly/evidence/experiments/v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3.json:1`; `REE_assembly/evidence/experiments/pending_review.md:29-34`.
+The manifest summary states that PASS maps to `evidence_direction=supports`: PRIMARY sensory absence raised variance from the grounded operating point, while ABLATION sustained false confidence when the generative prediction was substituted for missing bottom-up input. This profile does not perform review itself; `review_tracker.json` records the run as reviewed. Sources: `REE_assembly/evidence/experiments/v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3.json:1`; `REE_assembly/evidence/experiments/review_tracker.json:3830`.
 
 ## Limitations
 
@@ -80,7 +80,7 @@ Dry-run smoke command, documented by the same source, is available for path vali
 
 ## Provenance
 
-The experiment proposal records backlog EVB-0122 as executed by V3-EXQ-825, with objective `Reduce uncertainty for MECH-245 via targeted experiment runs.` Sources: `REE_assembly/evidence/planning/experiment_proposals.v1.json:13679-13705`.
+The experiment proposal records backlog EVB-0122 as executed by V3-EXQ-825, with objective `Reduce uncertainty for MECH-245 via targeted experiment runs.` Sources: `REE_assembly/evidence/planning/experiment_proposals.v1.json:8678-8704`.
 
 | Item | Value | Source |
 |---|---|---|

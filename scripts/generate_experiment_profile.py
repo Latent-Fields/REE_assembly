@@ -223,6 +223,14 @@ def find_claim(claim_id: str) -> dict[str, Any]:
     raise ProfileError(f"claim missing: {claim_id}")
 
 
+def load_reviewed_run_ids(review_tracker_path: Path) -> set[str]:
+    data = read_json(review_tracker_path)
+    ids = data.get("reviewed_run_ids") if isinstance(data, dict) else None
+    if not isinstance(ids, list):
+        raise ProfileError("review_tracker.json missing reviewed_run_ids list")
+    return set(ids)
+
+
 def find_proposal(queue_id: str, claim_id: str) -> dict[str, Any]:
     path = ROOT / "evidence" / "planning" / "experiment_proposals.v1.json"
     data = read_json(path)
@@ -239,11 +247,28 @@ def find_proposal(queue_id: str, claim_id: str) -> dict[str, Any]:
     raise ProfileError(f"proposal missing for {queue_id} / {claim_id}")
 
 
-def section_sources(target: Target) -> dict[str, str]:
+def section_sources(target: Target, reviewed: bool) -> dict[str, str]:
     claims_path = ROOT / "docs" / "claims" / "claims.yaml"
     proposal_path = ROOT / "evidence" / "planning" / "experiment_proposals.v1.json"
     pending_path = ROOT / "evidence" / "experiments" / "pending_review.md"
+    review_tracker_path = ROOT / "evidence" / "experiments" / "review_tracker.json"
     default_mode = ROOT / "docs" / "architecture" / "default_mode.md"
+
+    # pending_review.md is a generated, transient worklist: a governance cycle
+    # drops each run's entry the moment it is reviewed, so a marker sourced
+    # from it stops resolving as soon as that happens. review_tracker.json's
+    # reviewed_run_ids list is append-only, so once a run is reviewed it cites
+    # that instead -- a source that will not disappear again.
+    if reviewed:
+        pending_source = source_ref(
+            review_tracker_path,
+            line_range_between(review_tracker_path, f'"{target.run_id}"'),
+        )
+    else:
+        pending_source = source_ref(
+            pending_path,
+            line_range_between(pending_path, f"`{target.run_id}`", "## Diagnostic"),
+        )
 
     return {
         "claim": source_ref(
@@ -311,10 +336,7 @@ def section_sources(target: Target) -> dict[str, str]:
             proposal_path,
             line_range_between(proposal_path, '"backlog_id": "EVB-0122"', '"why_now"'),
         ),
-        "pending": source_ref(
-            pending_path,
-            line_range_between(pending_path, f"`{target.run_id}`", "## Diagnostic"),
-        ),
+        "pending": pending_source,
         "template": source_ref(TEMPLATE_PATH),
         "generator": source_ref(Path(__file__)),
     }
@@ -417,7 +439,10 @@ def build_profile_data(target: Target) -> tuple[dict[str, str], list[dict[str, s
     if not flat.get("evidence_direction"):
         raise ProfileError("evidence direction missing from flat manifest")
 
-    sources = section_sources(target)
+    review_tracker_path = ROOT / "evidence" / "experiments" / "review_tracker.json"
+    reviewed = target.run_id in load_reviewed_run_ids(review_tracker_path)
+
+    sources = section_sources(target, reviewed)
 
     source_rel = "experiments/v3_exq_825_mech245_generative_dominance_deafferentation.py"
     flat_rel = (
@@ -649,13 +674,21 @@ def build_profile_data(target: Target) -> tuple[dict[str, str], list[dict[str, s
         f"{metric_table(metrics, criteria, sources)}"
     )
 
+    review_status_text = (
+        "This profile does not perform review itself; `review_tracker.json` "
+        "records the run as reviewed."
+        if reviewed
+        else (
+            "This profile does not mark the run reviewed; "
+            "`pending_review.md` still lists the run under PASS verify-and-close."
+        )
+    )
     interpretation = (
         "The manifest summary states that PASS maps to "
         "`evidence_direction=supports`: PRIMARY sensory absence raised variance "
         "from the grounded operating point, while ABLATION sustained false "
         "confidence when the generative prediction was substituted for missing "
-        "bottom-up input. This profile does not mark the run reviewed; "
-        "`pending_review.md` still lists the run under PASS verify-and-close. "
+        f"bottom-up input. {review_status_text} "
         f"Sources: {sources['flat_manifest']}; {sources['pending']}."
     )
 

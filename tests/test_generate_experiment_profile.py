@@ -20,6 +20,13 @@ def load_module():
 
 
 def test_v3_exq_825_profile_renders_required_sections(tmp_path):
+    # generate_experiment_profile.py used to source its "pending" section
+    # marker from pending_review.md, a generated/transient worklist that
+    # drops each run's entry once governance reviews it -- so this test broke
+    # on trunk the moment V3-EXQ-825 was reviewed (2026-08-16). The generator
+    # now falls back to the append-only review_tracker.json once a run is
+    # reviewed, so this drives the real post-review code path rather than
+    # pinning a source that was always going to disappear.
     mod = load_module()
     target = mod.TARGETS["V3-EXQ-825"]
     profile_path, report_path = mod.write_outputs(target, tmp_path)
