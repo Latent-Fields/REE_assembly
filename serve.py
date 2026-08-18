@@ -1774,6 +1774,13 @@ def _enrich_machine_from_git(entry: dict, hb: dict, st: dict) -> None:
         entry["has_status"] = True
 
 
+
+# See the ROLE-AWARE FRESHNESS note below: a metaworker box ticks every 5
+# minutes and its heartbeat arrives here via git commit + push + pull, so the
+# runner-sized 180s window would render a healthy orchestrator permanently
+# STALE -- telemetry that reads as broken when the machine is fine.
+ORCHESTRATOR_FRESH_WINDOW_SECONDS = 1200
+
 def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
                             fresh_window: int,
                             display_window: int) -> dict:
@@ -1784,6 +1791,23 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
     """
     last_tick = hb.get("last_tick_utc") or st.get("last_updated") or ""
     age_seconds = _utc_age_seconds(last_tick, now)
+
+    # ROLE-AWARE FRESHNESS. The default windows are sized for a RUNNER, which
+    # ticks every 60s (180s = 3 missed ticks). A metaworker box ticks every 5
+    # MINUTES, and its heartbeat only reaches this checkout via a git commit +
+    # push + pull -- so a perfectly healthy orchestrator is essentially never
+    # under 180s old, and would render permanently STALE. That is the failure
+    # mode this codebase already warns about elsewhere: telemetry that reads as
+    # broken when the machine is fine trains people to ignore the panel.
+    #
+    # 20 min covers 3 missed 5-minute dispatch ticks plus git propagation; it is
+    # deliberately far tighter than cloud-scaler.py's ORCHESTRATOR_FRESH_MIN
+    # (50), because that number gates POWERING OFF A BOX and must tolerate the
+    # writer's 30-minute liveness floor, whereas this one only colours a dot.
+    if (hb.get("role") or "runner") == "orchestrator":
+        fresh_window = max(fresh_window, ORCHESTRATOR_FRESH_WINDOW_SECONDS)
+        display_window = max(display_window, ORCHESTRATOR_FRESH_WINDOW_SECONDS)
+
     fresh = (
         age_seconds is not None
         and 0 <= age_seconds <= fresh_window)
@@ -6637,6 +6661,62 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/workset":
             body = json.dumps(read_workset(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
+        if path == "/api/fleet/summary":
+            # Compact workload readout for the corner dock: what is queued, and
+            # what durable work is outstanding. Replaces the Claude-usage panel,
+            # which was a documented dead end -- the real plan-limit % is only
+            # in API response headers at request time and is not exposed to any
+            # local API or file, so that panel could never show the number
+            # anyone actually wanted.
+            #
+            # Reads the three files directly rather than shelling out to the
+            # audit scripts (/api/workspace/health does that, with a 20s
+            # subprocess and a 60s cache). This is a 60s-poll dock panel; it
+            # must be cheap and must never block on a slow audit.
+            summary = {"ok": True}
+            try:
+                q = read_queue("v3") or {}
+                items = q.get("items") or []
+                by_status = {}
+                for it in items:
+                    st = it.get("status") or "?"
+                    by_status[st] = by_status.get(st, 0) + 1
+                summary["queue"] = {
+                    "total": len(items),
+                    "pending": by_status.get("pending", 0),
+                    "claimed": by_status.get("claimed", 0),
+                }
+            except Exception as exc:  # noqa: BLE001
+                summary["queue"] = {"error": str(exc)}
+            try:
+                chips = (read_chips() or {}).get("chips") or []
+                open_chips = [c for c in chips if c.get("status") == "open"]
+                summary["chips"] = {
+                    "open": len(open_chips),
+                    "open_work": sum(1 for c in open_chips
+                                     if c.get("kind") == "work"),
+                    "open_decision": sum(1 for c in open_chips
+                                         if c.get("kind") == "decision"),
+                    # A claimed-but-open chip is being worked right now; that is
+                    # distinct from status, which only records resolution.
+                    "claimed": sum(1 for c in open_chips if c.get("claimed_by")),
+                }
+            except Exception as exc:  # noqa: BLE001
+                summary["chips"] = {"error": str(exc)}
+            try:
+                cf = UMBRELLA_DIR / "TASK_CLAIMS.json"
+                cdata = json.loads(cf.read_text(encoding="utf-8"))
+                claims = cdata.get("claims") or cdata.get("items") or []
+                summary["claims"] = {
+                    "active": sum(1 for c in claims
+                                  if c.get("status") == "active"),
+                    "total": len(claims),
+                }
+            except Exception as exc:  # noqa: BLE001
+                summary["claims"] = {"error": str(exc)}
+            body = json.dumps(summary, indent=2, default=str).encode()
             self._json_response(body)
             return
         if path == "/api/chips":

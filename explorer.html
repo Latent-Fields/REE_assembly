@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-16.1 -->
+<!-- EXPLORER_VERSION: 2026-08-18.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -9463,24 +9463,19 @@ END CONFLICT RESOLUTION`;
   </style>
   <div id="cornerDock">
 
-  <!-- Claude usage panel: LOCAL activity only, from ~/.claude/projects
-       transcripts on this device (serve.py /api/usage). Shows the 5h block,
-       a fixed-anchor weekly window (reset calibrated to the Claude app), today,
-       and a per-model breakdown.
+  <!-- Workload panel: experiment queue depth + durable ledger backlog, from
+       serve.py /api/fleet/summary. Three numbers, one cheap read each.
 
-       KNOWN LIMITATION (dead-end as of 2026-06-23): this panel CANNOT show the
-       real plan-limit % (e.g. "weekly 86% used"). Those live session/weekly
-       utilisation figures are returned only in API response headers at request
-       time and are not exposed by any API nor persisted anywhere under
-       ~/.claude (verified). So the authoritative limit % lives ONLY in the
-       Claude app > Settings > Usage screen. This view deliberately does not
-       fabricate a "% of plan" -- it reports local volume + notional cost and
-       points to the app. Revisit if Anthropic ever exposes usage data to a
-       local API / file. -->
+       REPLACED the Claude-usage panel on 2026-08-18. That panel was a
+       documented dead end: the real plan-limit % lives only in API response
+       headers at request time and is exposed by no local API or file, so it
+       could never show the figure anyone actually wanted, and local token
+       volume is not a decision-relevant number. Queue depth and open ledger
+       work are -- they are what the fleet is sized against. -->
   <div id="usageCard" class="dock-card">
     <div class="dock-head" id="usageHead">
       <span class="dock-caret">&#9662;</span>
-      <strong>Claude usage</strong>
+      <strong>Workload</strong>
       <span id="usageHeadMeta" class="dock-head-meta"></span>
     </div>
     <div class="dock-body" id="usageBody" style="padding:8px 10px;">
@@ -9579,158 +9574,64 @@ END CONFLICT RESOLUTION`;
   </script>
 
   <script>
-  // Claude usage panel: polls /api/usage (served from ~/.claude/projects
-  // transcripts by serve.py). Degrades gracefully if the endpoint is absent
-  // (parser is landed in a follow-up session). Self-contained.
+  // Workload panel: polls /api/fleet/summary. Self-contained; degrades to a
+  // muted note if the endpoint is missing (older serve.py still running).
   (function () {
     function $(id){ return document.getElementById(id); }
-    function fmtUsd(n){
-      if (n == null || isNaN(n)) return "$0.00";
-      if (n >= 100) return "$" + n.toFixed(0);
-      return "$" + n.toFixed(2);
+    function row(lbl, val, title){
+      return '<div class="usage-row"' + (title ? ' title="' + title + '"' : '')
+        + '><span class="lbl">' + lbl + '</span>'
+        + '<span class="val">' + val + '</span></div>';
     }
-    function fmtTok(n){
-      if (n == null || isNaN(n)) return "0";
-      if (n >= 1e9) return (n/1e9).toFixed(2) + "B";
-      if (n >= 1e6) return (n/1e6).toFixed(2) + "M";
-      if (n >= 1e3) return (n/1e3).toFixed(1) + "k";
-      return String(Math.round(n));
-    }
-    function fmtDur(sec){
-      if (sec == null || isNaN(sec) || sec < 0) return "--";
-      var h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60);
-      if (h > 0) return h + "h " + m + "m";
-      if (m > 0) return m + "m";
-      return Math.max(0, Math.round(sec)) + "s";
-    }
-    function row(lbl, val){
-      return '<div class="usage-row"><span class="lbl">' + lbl +
-             '</span><span class="val">' + val + '</span></div>';
-    }
-    function tokTotal(t){ return t && t.total != null ? t.total : 0; }
-    function usd(n){ return fmtUsd(n) + '<span style="color:#aaa;' +
-      'font-weight:400;font-size:9px;"> notional</span>'; }
-
     function render(d){
+      var q = d.queue || {}, c = d.chips || {}, k = d.claims || {};
       var parts = [];
-
-      // Plan + scope framing: every number below is read against this. The
-      // scrape only sees local transcripts, so it undercounts the account.
-      var plan = d.plan || "";
-      var scope = d.device_scope || "this device only";
-      if (plan) {
-        parts.push('<div style="font-size:10px;color:#888;margin:-2px 0 6px;">' +
-                   '<span style="font-weight:600;color:#555;">' + plan + '</span>' +
-                   ' &middot; ' + scope + '</div>');
-      }
-
-      var b = d.block_5h || {};
       parts.push('<div class="usage-section">');
-      parts.push('<div class="usage-row"><span class="lbl">Session block (5h)</span>' +
-                 '<span class="val">' + usd(b.cost_usd) + '</span></div>');
-      // Gauge = this block's tokens vs your busiest recent 5h block (self-
-      // calibrating; NOT a fabricated "% of plan limit"). Falls back to the
-      // time-through-window fill when there is no peak yet.
-      var cur = tokTotal(b.tokens);
-      var peak = b.peak_total_tokens || 0;
-      var isPeak = peak > 0 && cur >= peak;
-      var gauge = peak > 0 ? Math.max(0, Math.min(1, cur / peak))
-                           : Math.max(0, Math.min(1, b.elapsed_frac || 0));
-      parts.push('<div class="usage-bar"><span style="width:' +
-                 (gauge*100).toFixed(1) + '%"></span></div>');
-      if (b.active === false) {
-        parts.push('<div class="usage-muted" style="font-size:11px;">no activity in last 5h</div>');
-      } else {
-        var caption = peak <= 0
-          ? Math.round((b.elapsed_frac || 0) * 100) + '% through the 5h window'
-          : (isPeak ? 'busiest 5h block in the last 7d'
-                    : Math.round(gauge * 100) + '% of your busiest recent 5h block');
-        parts.push('<div class="usage-muted" style="font-size:10px;margin:1px 0 2px;">' +
-                   caption + '</div>');
-        parts.push('<div class="usage-row" style="font-size:11px;">' +
-                   '<span class="lbl">' + fmtTok(cur) + ' tok &middot; ' +
-                   (b.messages || 0) + ' msg</span>' +
-                   '<span class="val" style="font-weight:400;color:#555;">resets in ' +
-                   fmtDur(b.seconds_to_reset) + '</span></div>');
+      parts.push(row("Experiment queue", (q.error ? "?" : q.total),
+                     "items in ree-v3/experiment_queue.json"));
+      if (!q.error) {
+        parts.push('<div class="usage-models"><div><span>pending</span>'
+          + '<span>' + (q.pending || 0) + '</span></div>'
+          + '<div><span>claimed</span><span>' + (q.claimed || 0)
+          + '</span></div></div>');
       }
       parts.push('</div>');
-
-      // This week: a real fixed-anchor window (how the Max weekly limit
-      // resets), with a countdown. NO usage bar here on purpose -- a local
-      // token sum has no plan cap to divide by, and a time-elapsed bar reads
-      // as a usage gauge (it showed "27%" while the app's real weekly limit
-      // was at 86% -- a dangerous false-reassurance). The real % lives in the
-      // Claude app's Usage screen; we just report local volume + the reset.
-      var w = d.weekly_window || {};
       parts.push('<div class="usage-section">');
-      parts.push('<div class="usage-row"><span class="lbl">This week ' +
-                 '<span style="color:#aaa;font-weight:400;font-size:9px;">' +
-                 '(local)</span></span>' +
-                 '<span class="val">' + usd(w.cost_usd) + '</span></div>');
-      parts.push('<div class="usage-row" style="font-size:11px;">' +
-                 '<span class="lbl">' + fmtTok(tokTotal(w.tokens)) + ' tok &middot; ' +
-                 (w.messages || 0) + ' msg</span><span class="val" ' +
-                 'style="font-weight:400;color:#555;">resets in ' +
-                 fmtDur(w.seconds_to_reset) + '</span></div>');
-      parts.push('<div class="usage-muted" style="font-size:9px;margin-top:2px;">' +
-                 'Plan limit % &rarr; Claude app &rsaquo; Usage</div>');
-      parts.push('</div>');
-
-      var t = d.today || {};
-      parts.push('<div class="usage-section">');
-      parts.push('<div class="usage-row"><span class="lbl">Today</span>' +
-                 '<span class="val">' + usd(t.cost_usd) + '</span></div>');
-      parts.push('<div class="usage-row" style="font-size:11px;">' +
-                 '<span class="lbl">' + fmtTok(tokTotal(t.tokens)) + ' tok &middot; ' +
-                 (t.messages || 0) + ' msg</span><span class="val"></span></div>');
-      parts.push('</div>');
-
-      var models = (d.by_model || []).slice(0, 4);
-      if (models.length) {
-        parts.push('<div class="usage-section"><div class="lbl" ' +
-                   'style="font-size:10px;text-transform:uppercase;' +
-                   'letter-spacing:.04em;color:#999;">By model (7d)</div>');
-        parts.push('<div class="usage-models">');
-        models.forEach(function (m) {
-          var name = (m.model || "?").replace(/^claude-/, "");
-          parts.push('<div><span>' + name + '</span><span>' +
-                     fmtUsd(m.cost_usd) + '</span></div>');
-        });
-        parts.push('</div></div>');
+      parts.push(row("Ledger open", (c.error ? "?" : c.open),
+                     "open chips in TASK_CHIPS.json (durable task ledger)"));
+      if (!c.error) {
+        parts.push('<div class="usage-models"><div><span>work</span>'
+          + '<span>' + (c.open_work || 0) + '</span></div>'
+          + '<div><span>decision</span><span>' + (c.open_decision || 0)
+          + '</span></div>'
+          + '<div><span>claimed (in progress)</span><span>'
+          + (c.claimed || 0) + '</span></div></div>');
       }
-
-      parts.push('<div class="usage-muted" style="font-size:9px;margin-top:8px;' +
-                 'border-top:1px solid #eee;padding-top:5px;line-height:1.35;">' +
-                 '<b>Local activity only</b> (this device) &mdash; excludes ' +
-                 'claude.ai &amp; other machines. Cost is API-equivalent, not ' +
-                 'billed on ' + (d.plan || "Max") + '.<br>' +
-                 'Cannot show real plan-limit % &mdash; that data is not exposed ' +
-                 'by any API or stored locally. For the authoritative session / ' +
-                 'weekly % see <b>Claude app &rsaquo; Settings &rsaquo; Usage</b>.' +
-                 '</div>');
-
+      parts.push('</div>');
+      parts.push('<div class="usage-section">');
+      parts.push(row("Active claims", (k.error ? "?" : k.active),
+                     "status=active entries in TASK_CLAIMS.json"));
+      parts.push('</div>');
       $("usageContent").className = "";
       $("usageContent").innerHTML = parts.join("");
-      var meta = fmtUsd(b.cost_usd) + " &middot; " + fmtDur(b.seconds_to_reset) + " left";
-      $("usageHeadMeta").innerHTML = meta;
+      var head = [];
+      if (!q.error) head.push("q " + q.total);
+      if (!c.error) head.push("chips " + c.open);
+      $("usageHeadMeta").textContent = head.join("  ");
     }
-
     function poll(){
-      fetch("/api/usage?t=" + Date.now())
+      fetch("/api/fleet/summary?t=" + Date.now())
         .then(function (r){
           if (!r.ok) throw new Error("HTTP " + r.status);
           return r.json();
         })
-        .then(function (d){
-          if (d && d.ok === false) throw new Error(d.error || "unavailable");
-          render(d);
-        })
+        .then(render)
         .catch(function (err){
           $("usageContent").className = "usage-muted";
           $("usageContent").innerHTML =
-            "Usage endpoint not available yet.<br>" +
-            "<span style=\"font-size:10px;\">(serve.py /api/usage pending &mdash; " +
-            String(err && err.message || err) + ")</span>";
+            "Workload endpoint not available.<br>"
+            + "<span style=\"font-size:10px;\">(serve.py /api/fleet/summary "
+            + "&mdash; " + String(err && err.message || err) + ")</span>";
           $("usageHeadMeta").textContent = "";
         });
     }
@@ -9744,6 +9645,44 @@ END CONFLICT RESOLUTION`;
     var COLORS = {green:"#2e7d32", amber:"#b8860b", red:"#c62828",
                   grey:"#777"};
     function $(id){ return document.getElementById(id); }
+    // Orchestrator (metaworker-dispatch) boxes. These are INVISIBLE to
+    // /api/shadow/status: that endpoint is the coordinator DB, which only knows
+    // machines that POST runner heartbeats. A metaworker box runs no runner, so
+    // ree-cloud-5 never appeared here at all, and ree-cloud-4 showed only its
+    // idle RUNNER while its dispatcher was busy -- reading as "(idle)" when the
+    // box was doing real work. /api/machines is the surface that carries
+    // role=="orchestrator" (serve.py read_machines), so it is polled alongside.
+    var ORCH = [];
+    function pollOrchestrators(){
+      fetch("/api/machines?t=" + Date.now())
+        .then(function (r){ return r.ok ? r.json() : null; })
+        .then(function (d){
+          var list = (d && d.machines) || [];
+          ORCH = list.filter(function (m){ return m.role === "orchestrator"; });
+        })
+        .catch(function (){ /* leave the last snapshot; never blank the panel */ });
+    }
+    pollOrchestrators();
+    setInterval(pollOrchestrators, 60000);
+
+    function orchFor(machineName){
+      // A dual-role box heartbeats as "<machine>" (runner) and
+      // "<machine>-metaworker" (orchestrator) -- deliberately separate, because
+      // read_machines() merges rows by canonical machine and one name for both
+      // roles would collapse into a single card flip-flopping between schemas.
+      for (var i = 0; i < ORCH.length; i++) {
+        if (ORCH[i].machine === machineName + "-metaworker") return ORCH[i];
+      }
+      return null;
+    }
+    function orchSummary(o){
+      var bits = [];
+      if (o.in_flight_dispatches != null)
+        bits.push(o.in_flight_dispatches + " in flight");
+      if (o.chips_open_work != null) bits.push(o.chips_open_work + " open");
+      return bits.join(", ");
+    }
+
     function renderStatus(s) {
       $("shadowDot").style.background = COLORS[s.color] || "#777";
       $("shadowVerdict").textContent = s.verdict || "?";
@@ -9818,10 +9757,37 @@ END CONFLICT RESOLUTION`;
              + '<div style="font-size:10px;color:#666;">'
              + pct.toFixed(1) + '%' + runTxt + timeTxt + '</div>')
           : "";
+        // "(idle)" here means the RUNNER has no experiment -- it does NOT mean
+        // the box is idle. Say which, when a metaworker is also running on it.
+        var sib = orchFor(m.machine||"");
+        var whatItIsDoing = m.current_exq
+          ? m.current_exq
+          : (sib ? '(runner idle &middot; metaworker: ' + orchSummary(sib) + ')'
+                 : "(idle)");
         html += '<div style="margin-bottom:6px;">'
           + '<div>[' + tag + '] <b>' + (m.machine||"?") + '</b> '
           + age + '  ' + (m.state||"") + '  '
-          + (m.current_exq||"(idle)") + '</div>' + bar + '</div>';
+          + whatItIsDoing + '</div>' + bar + '</div>';
+      });
+      // Standalone metaworker boxes -- ones with no runner of their own, so
+      // they appear nowhere above. ree-cloud-5 is the canonical case.
+      var runnerNames = (s.machines||[]).map(function (m){ return m.machine; });
+      ORCH.forEach(function (o){
+        var base = String(o.machine||"").replace(/-metaworker$/, "");
+        if (runnerNames.indexOf(base) !== -1) return;  // already annotated above
+        var otag = o.fresh === false ? "STALE" : "FRESH";
+        var st = o.state || "?";
+        var extra = orchSummary(o);
+        var cyc = (o.cycles_completed != null)
+          ? (' &middot; cycle ' + o.cycles_completed) : '';
+        html += '<div style="margin-bottom:6px;">'
+          + '<div>[' + otag + '] <b>' + (o.machine||"?") + '</b> '
+          + (o.age_seconds != null
+              ? (o.age_seconds < 120 ? o.age_seconds + 's'
+                                     : Math.round(o.age_seconds/60) + 'm')
+              : '?')
+          + '  metaworker  ' + st
+          + (extra ? ('  (' + extra + ')') : '') + cyc + '</div></div>';
       });
       $("shadowMachines").innerHTML = html ||
         '<span>(no machines reporting)</span>';
