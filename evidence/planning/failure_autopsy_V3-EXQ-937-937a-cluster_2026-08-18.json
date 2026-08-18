@@ -1,0 +1,193 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-18T07:33:15Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over both run_ids and both queue_ids: 0 dry cited, 0 dry in named families, 0 ambiguous, 2 clean, 0 unknown. Neither manifest carries a truthy top-level dry_run. Real-run denominators throughout.",
+  "targets": [
+    {
+      "run_id": "v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3",
+      "queue_id": "V3-EXQ-937a",
+      "claim_ids": ["MECH-449", "ARC-107"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "envelope_width_gates_perseveration_conversion",
+      "failed_criterion": "none_gated",
+      "failed_criterion_note": "Both gated criteria (C1 load-bearing, C3) PASSED. The two reported-not-gated criteria (C2 monotonicity, C4 inertness-reached) FAILED, and both failures are artifacts of the analysis layer rather than of the substrate.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "likely insufficient for generality -- at K_CANDIDATES=4 with integer protect_min=1 the graded MECH-448 envelope realizes only 4 states and the MECH-449 leg's authority is binary; generality in K untested"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES FAILED (single bucket) -- implementation complete (verified by source read AND 4,224-bank re-measurement) and environment adequate for the question asked, so not chargeable to the mechanism, the environment, or REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia direct/indirect pathway opponency at the pallidal permission-to-commit gate",
+        "dependencies": ["MECH-448 F->eligibility envelope (striatal/pallidal shortlist)", "MECH-260 dACC suppression signal", "ARC-107 selector constitution"],
+        "is_formal_import": false,
+        "divergence": "gng_protect_min_eligible is a faithful functional analog of the anti-akinesia constraint that a minimum of channels stays released (complete indirect-pathway dominance produces freezing/avolition). Measured structural inertness at one surviving channel is exactly what that analog predicts. One translation-fidelity observation: the biological gate is graded (population pallidal firing rates) whereas at K=4 with integer protect_min the realized relation is a hard step -- a discretisation caricature, not a divergence in kind.",
+        "lit_status": "present",
+        "lit_pull_owed": false
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Measurement / test-design family. `standard` is the behaviour-preserving mapping: it asserts no epistemic suppression, keeps both claims outside _EPI_SUPPRESS_PROPOSAL and preserves v3-testability. Nothing here asserts either claim's answer is gated on substrate work, so substrate_ceiling / substrate_conditional would be wrong. The failure-mode diagnosis (cell-median aggregation of a per-unit deterministic mediator) belongs in the note fields, not in this enum field.",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {"MECH-449": "supports", "ARC-107": "supports"},
+      "recommended_epistemic_category_per_claim": {"MECH-449": "standard", "ARC-107": "standard"},
+      "recommended_evidence_quality_note": "2026-08-18 (failure_autopsy_V3-EXQ-937-937a-cluster CONFIRMED): V3-EXQ-937a PASS / supports STANDS, with its BASIS CORRECTED. The manifest's stated basis is wrong in two halves and must not be cited: it reports (a) a graded dose-response of conversion on envelope width and (b) that no inert regime was reached on the ladder. The autopsy recovered the per-bank (pre-No-Go envelope size, converted) joint that the driver computes at v3_exq_937a...py:536-549 and discards, over 11 floors x 3 seeds x 128 banks = 4,224 banks: conversion is a DETERMINISTIC STEP FUNCTION of per-bank envelope size -- envelope 1 -> 0/1277 conversions (rate 0.000000), envelope 2/3/4 -> 1196/1196, 1062/1062, 689/689 (rate 1.000000) -- stepping exactly where gng_protect_min_eligible=1 predicts (n_can_drop = 1-1 = 0 at envelope 1; e3_selector.py:1664-1679). Consequently manifest_conversion(floor) == 1 - P(envelope collapses to 1 | floor) to 0.000000 at ALL 11 doses, i.e. the reported curve is the mediator's own distribution and carries no independent information about the outcome given the mediator. So (a) is a binning artifact of cell-median aggregation, and (b) is REFUTED by the run's own discarded data -- an inert regime was reached and is perfectly inert, which CONFIRMS rather than refutes V3-EXQ-926a's 'structurally gated by envelope width' finding of record. The corrected basis supports MECH-449 and ARC-107 MORE strongly than the manifest claims: the No-Go leg fires deterministically whenever it has room (envelope >= 2) with perfect content specificity (ARM_SHUFFLED 0/4224 at every envelope size), and the gng_protect_min_eligible fail-open behaves exactly as specified. ANSWERS THE ARC-107 BUILD-CONFIGURATION QUESTION: the knee is realized envelope 2 exactly (zero variance), and at the shipped f_eligibility_envelope_floor=0.30 the leg is NOT inert but IS silenced on 31.5% of decisions (121/384 banks collapse to envelope 1) by the fail-open guard. THREE CAVEATS THAT GATE ACTING ON THIS. (1) Selection-face synthetic probe, no training (reuse_ineligible_reasons: selection_face_synthetic_no_training) and no agent loop: this confirms the constitution's arithmetic, not any behavioural competence; purpose=diagnostic, so it scores nothing and PROMOTES NOTHING. (2) At K_CANDIDATES=4 with integer protect_min=1, MECH-448's deliberately GRADED envelope realizes only 4 states and the MECH-449 leg's authority is BINARY -- the step shape may be an artifact of small K and generality in K is untested. (3) conversion==1 at envelope >= 2 is a construction property: the incumbent is both the F-argmin and the sole suppression target. Failure-location (GOV-FAILLOC-1): MEASURES FAILED, single bucket -- mechanism and environment each independently adequate, so this is not chargeable to REE or to the mechanism. epistemic_category standard (measurement/test-design family; behaviour-preserving). Routed /queue-experiment V3-EXQ-937b, recording-only. Re-derive brake NOT fired (MECH-449=0, ARC-107=0).",
+      "per_claim_recommendation": {
+        "MECH-449": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note REPLACED -- manifest basis (graded dose-response; no inert regime reached) withdrawn as a cell-median binning artifact and replaced with the per-bank deterministic step; direction supports and status provisional both unchanged; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        },
+        "ARC-107": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note APPENDED with the corrected basis and the K=4 binarity caveat; the 2026-08-16 V3-EXQ-926a caveat about the stock floor is now ANSWERED (leg not inert at 0.30, but silenced on 31.5% of decisions); direction supports and status candidate both unchanged; epistemic_category is ABSENT on this claim today and this is a real write -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate gap was found. The substrate does exactly what MECH-449 and gng_protect_min_eligible specify, verified independently by source read (e3_selector.py:1483-1575, :1596-1690) and by 4,224-bank re-measurement. severity and substrate_paths are deliberately left unset: there is no substrate defect for /queue-experiment Step 2.5c to protect other experiments from."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "The supports is narrow by construction, not by accident: a synthetic selection-face probe with no training and no agent loop, at K=4, in which conversion==1 at envelope>=2 follows from the incumbent being both the F-argmin and the sole suppression target. It confirms the constitution's arithmetic, not behavioural competence.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "counts_r1_r3": {"MECH-449": 0, "ARC-107": 0},
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Zero substrate_ceiling hits on either claim under the R1-R3 convention (run-unit, latest-adjudication-wins, substrate_ceiling only). MECH-449 has 2 tagging targets, both measurement_test_design_defect; ARC-107 has 0. The driver header asserted the same counts and is confirmed."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "reason": "MECH-449: 2 tagging targets, alignment distribution intact=1 unclear=1 -- NO target reads `weakened`, which is the condition rather than the count. ARC-107: 0 tagging targets, cannot fire.",
+        "pattern_recorded_instead": "With this cluster, 3 of 3 MECH-449 autopsy targets are measurement / test-design defects. That is MEASUREMENT-debt recurrence, not granularity debt -- the claim is not coarse, it keeps being tested with instruments that break. /claim-synthesis is NOT the right route.",
+        "routing": null
+      },
+      "learning_extracted": [
+        "A cell-level rate over a per-unit deterministic mediator measures the mediator's distribution, not the outcome -- here exactly, to 0.000000, at all 11 doses.",
+        "A structural prediction stated in a driver header ('conversion is 0 BY CONSTRUCTION at envelope 1') is a testable assertion and must be asserted, not assumed; this one was exactly right and was never evaluated.",
+        "Recording-debt, not measurement-debt: the deciding readout existed in the same loop iteration and was two lines from the manifest. Recoverable here only because the probe re-runs in seconds; on a trained substrate the identical omission forces a full re-run.",
+        "A criterion whose verdict and whose reported statistic are keyed to different axes is a distinct defect class -- C4's boolean was envelope-keyed and correct while its `measured` field was floor-keyed and pointed at the fold-back point.",
+        "An honest limit recorded in the driver docstring but omitted from the manifest is not recorded -- ARM_OFF's tautology is stated plainly in the docstring and absent from interpretation.dv_symmetry_declaration, which is what governance reads.",
+        "MECH-448's 'graded' envelope is functionally BINARY for the MECH-449 leg at K=4; whether the gradation is real at larger K is untested and must not be assumed from these runs.",
+        "The convergent-shape cluster inverted both per-run readings: 937 alone reads as tuning noise, 937a alone as a clean graded measurement, and neither is right."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "RECORDING GAP -> same-question re-run with an alphabetic suffix (V3-EXQ-937b) whose ONLY change is to RECORD the readout that already existed, per REE_assembly/evidence/planning/experimental_recording_standard_2026-07-12.md Sections 3b/3c. The re-run must: emit the per-bank (pre_No-Go envelope size, converted) cross-tab per cell rather than only the cell median and the conversion count; re-key C1, C2 and C4 to that cross-tab (C4's `measured` field included, not only its verdict); call experiments/_lib/manifest_core.stamp_recording_core(...) and close the missing elapsed_seconds always-core gap; and carry the ARM_OFF tautology limit from the driver docstring into interpretation.dv_symmetry_declaration. A BLIND re-run would reproduce the same blind spot at the same compute cost. The finding does not depend on 937b running -- the recovered table and its recipe are complete in the .md."
+    },
+    {
+      "run_id": "v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3",
+      "queue_id": "V3-EXQ-937",
+      "claim_ids": ["MECH-449", "ARC-107"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "conversion_independent_of_envelope_width",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "C1 (load-bearing) failed 0/3 seeds against a 0.40 bar calibrated on a V3-EXQ-926a anchor that did not replicate. C2 passed but is stamped criteria_non_degenerate=false, so its pass supported nothing.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "same K=4 binarity limit as V3-EXQ-937a"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES FAILED (single bucket) -- identical to V3-EXQ-937a and by the identical root cause"
+      },
+      "biological_reference": {
+        "closest_mechanism": "as V3-EXQ-937a -- BG pallidal permission gate",
+        "dependencies": ["MECH-448", "MECH-260", "ARC-107"],
+        "is_formal_import": false,
+        "divergence": "none additional",
+        "lit_status": "present",
+        "lit_pull_owed": false
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-449": "non_contributory", "ARC-107": "non_contributory"},
+      "recommended_epistemic_category_per_claim": {"MECH-449": "standard", "ARC-107": "standard"},
+      "recommended_evidence_quality_note": "2026-08-18 (failure_autopsy_V3-EXQ-937-937a-cluster CONFIRMED): V3-EXQ-937 FAIL / non_contributory STANDS, and its SELF-ROUTE LABEL IS WITHDRAWN AS FALSE. The manifest emits interpretation.label = conversion_independent_of_envelope_width; per bank, conversion is a DETERMINISTIC function of envelope width (see the sibling note on V3-EXQ-937a). The label was already contradicted by 937's own C2, which passed with a clean monotone rise, and 937's C2 is additionally stamped criteria_non_degenerate=false, so it never supported anything either. non_contributory is retained because 937's criteria measured the wrong statistic -- its C1 lift (0.344/0.273/0.320 vs a 0.40 bar calibrated on a V3-EXQ-926a anchor that did not replicate) is the same cell-median mixing proportion as 937a's, over a narrower window -- not because the run yielded no interpretable information. Its underlying data, re-analysed per-bank, is consistent with the confirmed step and with 937a. Same root cause, same cluster, one structural property rather than two independent bugs. epistemic_category standard. Re-derive brake NOT fired.",
+      "per_claim_recommendation": {
+        "MECH-449": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note APPENDED -- self-route label conversion_independent_of_envelope_width withdrawn as false; non_contributory retained on measured-the-wrong-statistic grounds rather than no-information grounds; status and epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays provisional"
+        },
+        "ARC-107": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note APPENDED with the same label withdrawal; status unchanged; epistemic_category ABSENT today, real write -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Same as V3-EXQ-937a: no substrate gap."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "counts_r1_r3": {"MECH-449": 0, "ARC-107": 0},
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment"
+      },
+      "learning_extracted": [
+        "937's routing-label defect has two independent causes, not one: the label was contradicted by its own passing C2 (already noted in 937a's header), AND it is flatly false about the mechanism.",
+        "A criterion bar calibrated by arithmetic on a prior run's authoring-time scratch anchor (926a's 1/16) inherits that anchor's non-replication; 937a's refusal to lower the bar and its choice to re-derive it instead was the correct response and should be the pattern."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Subsumed by the V3-EXQ-937b recording-only re-run recommended on the primary target. 937 needs no re-run of its own -- 937b's ladder covers 937's window and then some. NOT recommended as `superseded`: 937's evidence stays active per its own driver's statement, and its data is consistent with the confirmed finding."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both runs estimate the distribution of realized pre-No-Go envelope size as a function of the swept f_eligibility_envelope_floor, and both label that distribution as a property of the OUTCOME (conversion). The shared root is a single analysis choice: binning a per-unit deterministic mediator at cell-summary granularity while the per-unit joint is computed in the same loop iteration and discarded.",
+    "is_independent_bugs": false,
+    "structural_property": "Conversion is a deterministic step function of per-bank envelope size (0.000000 at envelope 1 over 1277 banks; 1.000000 at envelope 2/3/4 over 2947 banks), stepping exactly where gng_protect_min_eligible=1 predicts. Every cell-level conversion rate in both manifests is therefore identically 1 - P(collapse to envelope 1), verified to 0.000000 at all 11 doses. Everything that differs between the two runs -- 937's C1 failing and 937a's passing, 937's C2 passing and 937a's failing -- follows from the ladder window each happened to sample, not from any difference in the substrate or the mechanism.",
+    "readings": ["measurement_aggregation_artifact", "mechanism_confirmed_at_per_unit_resolution"],
+    "planning_decision_forced": "Any future ARC-107 / MECH-448 / MECH-449 readout keyed to a cell-level conversion rate over a discrete eligibility envelope is measuring the envelope-size distribution, not the gating. Key such criteria to the per-unit mediator and record the per-unit joint.",
+    "why_the_cluster_is_load_bearing": "Per-run, 937a's PASS looks like a clean graded measurement and 937's FAIL looks like tuning noise against a mis-calibrated bar. The two live readings before this autopsy -- 'graded dose-response' and 'conversion independent of envelope width' -- are both wrong, and in opposite directions. Only the pair plus the recovered joint shows why."
+  },
+  "hypothesis_space_ledger": {
+    "applies": false,
+    "reason": "No questions[] entry in hypothesis_space_registry.v1.json names MECH-449, ARC-107 or MECH-448 (37 questions checked), and this autopsy emits no fanout_recommendation. Nothing to pre-register (Mode A), no pre-registered leg to resolve (Mode B), no discovery leg attached to an existing question (Mode C). No growth-restriction check applies. The registry and its derive-only siblings are NOT touched by this autopsy."
+  },
+  "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "GOV-FANOUT-1 not applicable. Two live readings existed before the autopsy and the recovered per-bank joint settles them outright with zero residual variance. The remaining work is a single unambiguous change (record the joint), which is the documented exemption."
+  }
+}
