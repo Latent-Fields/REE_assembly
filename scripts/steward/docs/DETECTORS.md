@@ -345,6 +345,94 @@ This guards the accounting itself rather than its inputs. Fails loud.
 > `T0-assert`. See D-002 above and `README.md` -> "Two corrections to the
 > stage-1 spec".
 
+#### Cycle-1 adjudication — 2026-08-18 · **verdict `refine`** · both standing findings
+
+Both of D-010's standing findings adjudicated on base `e0c9901eac`
+(`origin/master`). **1 confirmed, 1 false positive. No suppression was added**, and
+that is the substantive finding rather than an omission — see below.
+
+| finding | verdict | disposition |
+|---|---|---|
+| `silent_exclusion_surface` (10 `assembling` nodes) | **false positive** | check now *measures* the label it was asserting |
+| `snapshot_denominator_mismatch` (94 vs 95) | **confirmed — regen lag** | check now discriminates lag from rule divergence |
+
+**Check 2 was asserting a property it never measured.** Its detail read "the
+exclusion is unlabelled", and for `assembling` that has not been true since the
+snapshot grew its Assembly-frontier block. `closure_status.md` states it two lines
+under the percentage — *"Assembly frontier (required, under construction — a
+SEPARATE axis, not counted in the % above and not a stalled backlog): **10**
+nodes"* — and again as a dedicated section listing all ten. The finding was
+correct that the *general* surface is where the next SD-031 comes from; it was
+wrong that this instance is on it.
+
+**Why a suppression was rejected, and this is the load-bearing part.** The brief
+required that any suppression be keyed so it re-fires should a NON-`assembling`
+status ever start leaving the denominator. **`subject` was a constant**
+(`silent_exclusion_surface`), and the suppression key is `<detector>:<subject>`
+— so *no* suppression narrow enough to be honest was writable. Any entry that
+silenced today's finding would equally silence `parked`, `parked_indefinite`,
+`closed`, `deferred_v5` and `open_by_design`, every one of which really would be
+excluded with nothing said about it. That is the blanket the brief forbade, and
+it is a blanket over the exact defect class this detector exists for.
+
+So the **identity was refined instead**, following D-007's `(node, gate-set)`
+precedent: the subject now carries the status set
+(`silent_exclusion_surface@statuses=parked`), and `EXCLUSION_LABELS` maps an
+excluded status to the marker text the snapshot uses. A status counts as labelled
+only when that marker is present in the **Overall** block *and* the count it
+states matches. Absent marker, renamed marker, stale count, label further down
+the file, or an unreadable snapshot all read as **unlabelled** — the failure
+direction is loud. Labelled exclusions do not vanish from the report along with
+the finding; they are carried in the detector summary as `labelled_exclusions`.
+
+`EXCLUSION_LABELS` deliberately maps `assembling` **and** `open_by_design` to one
+marker, because `generate_closure_snapshot.ASSEMBLING_STATUSES` reports them as a
+single number; the count is checked against their sum. Splitting them would have
+fired spuriously the first time an `open_by_design` node appeared.
+
+**Check 5 was confirmed, and it is regen lag — proved, not assumed.** It does not
+reproduce on the `ree-cloud-5` shared checkout at all (`[behind 187]`, where
+94 == 94); on `origin/master` the committed snapshot says **94 / 71.9%** and the
+recomputation says **95**. A clean `generate_closure_snapshot.py` run moved the
+snapshot to **95 / 72.3%**, which settles it.
+
+**The snapshot discriminates itself, exactly, with no dates and no git.** It
+commits its own per-status tally, and that tally separates two failures with
+opposite urgency that the old single finding_id conflated:
+
+- tally **differs** from the recomputation → different *inputs* → **regen lag**.
+  `lag=explained`, P2, `escalate: false`. Self-heals at `governance.sh` Step
+  3c-bis. The specific statuses that moved are named
+  (`blocked 11→12; deferred 13→12; done 62→63; open 8→7`).
+- tally **identical** but denominator differs → same inputs, different *answer* →
+  the denominator **rule** has diverged from the producer. `lag=unexplained`, P1,
+  `escalate: true`. Regenerating will not fix it. This is the accounting
+  breaking, and under the old flat P2 it was buried behind the common case.
+- no parseable tally line → `lag=unknown`, P1, `escalate: true`. Undecidable is
+  treated as the loud branch on purpose.
+
+A date-based discriminator (snapshot `Generated:` vs newest plan `last_updated`)
+was considered and dropped: `D-008` exists precisely because those date bumps are
+often skipped, so it would have called real lag "unexplained" routinely. The
+tally is exact.
+
+**Nothing outside `scripts/steward/` was touched.** The stale snapshot was *not*
+regenerated and committed here — `evidence/planning/` is governance's, and the
+pipeline rebuilds it at Step 3c-bis. No plan frontmatter, no `claims.yaml`, no
+closure number moved.
+
+*Tests:* `test_d010_denominator_integrity.py`, 18, time-independent, synthetic
+trees. Nine are **negative controls** asserting the checks still fire — label
+absent, label renamed, stale count, label outside the Overall block, absent
+snapshot, a new unlabelled status arriving beside a labelled one, identical
+tally, unparseable tally — because both halves of this refinement make the
+detector emit *less*, and a bug in either would silence the guard on the closure
+accounting without any symptom.
+
+*Resume condition:* re-measure at cycle 2. Check 2 firing for a status other than
+`assembling`/`open_by_design` is the ratchet working, not a regression. A
+`lag=unexplained` is a P1 that regeneration will not clear.
+
 ---
 
 ## Git lane

@@ -425,6 +425,11 @@ def test_d010_denominator_excludes_every_weight_none_status(tmp_path):
 
 
 def test_d010_reports_the_silent_exclusion_surface(tmp_path):
+    """These fixtures write no closure_status.md, so nothing is labelled.
+
+    The subject carries the status set as of the 2026-08-18 refinement -- see
+    test_d010_denominator_integrity.py for the labelled/silent partition itself.
+    """
     repo = make_repo(
         tmp_path / "repo", [],
         {"alpha": plan("alpha", [node("alpha:1", "done"),
@@ -432,7 +437,8 @@ def test_d010_reports_the_silent_exclusion_surface(tmp_path):
                                  node("alpha:3", "deferred")])})
     r = run_once(repo, tmp_path / "state")
     f = next(x for x in r["findings"]
-             if x["finding_id"] == "D-010:silent_exclusion_surface")
+             if x["finding_id"]
+             == "D-010:silent_exclusion_surface@statuses=assembling")
     assert f["evidence"]["by_status"] == {"assembling": ["alpha:2"]}, \
         "deferred is labelled; assembling is the unlabelled exclusion"
 
@@ -476,10 +482,14 @@ def test_d010_flags_a_snapshot_denominator_mismatch(tmp_path):
         "- Weighted progress: **50.0%** across 99 non-deferred nodes in 1 plan(s).\n",
         encoding="utf-8")
     r = run_once(repo, tmp_path / "state")
+    # No `Status tally:` line in this fixture, so lag is undecidable and the
+    # 2026-08-18 refinement takes the loud branch rather than assuming lag.
     f = next(x for x in r["findings"]
-             if x["finding_id"] == "D-010:snapshot_denominator_mismatch")
+             if x["finding_id"]
+             == "D-010:snapshot_denominator_mismatch@lag=unknown")
     assert f["evidence"]["committed_denominator"] == 99
     assert f["evidence"]["recomputed_denominator"] == 1
+    assert f["escalate"] is True
 
 
 def test_d010_quiet_when_snapshot_agrees(tmp_path):
@@ -490,7 +500,8 @@ def test_d010_quiet_when_snapshot_agrees(tmp_path):
         "- Weighted progress: **100.0%** across 1 non-deferred nodes in 1 plan(s).\n",
         encoding="utf-8")
     r = run_once(repo, tmp_path / "state")
-    assert "D-010:snapshot_denominator_mismatch" not in ids(r)
+    assert not [i for i in ids(r)
+                if i.startswith("D-010:snapshot_denominator_mismatch")]
 
 
 # ---------------------------------------------------------------------------
