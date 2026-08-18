@@ -304,7 +304,11 @@ A sign test with no minimum effect size on n=3. Under the null of no effect,
 (A0 0.0305, A1 0.0509) and one seed inverts. This does not meet the repo's own standing
 effect-size-gate practice (scale on the SD of the delta plus an absolute floor).
 
-### 5b. The DV is guaranteed by the training objective
+### 5b. The DV is ENTAILED BY FITTING a z_world-dependent target -- but the driver anticipated the adjacent objection, and A0 controls for it
+
+**CORRECTED 2026-08-18 after a full re-read of `failure_autopsy_V3-EXQ-922_2026-08-13` and the
+922 driver. The first version of this section overstated the finding; what follows is the
+version that survives.**
 
 Verified in `experiments/v3_exq_922_sd016_mech151_152_arc041_production_combo.py`:
 
@@ -323,21 +327,32 @@ def _action_bias_divergence(agent, z_safe, z_dang) -> float:
     return float((ab_safe.mean(dim=0) - ab_dang.mean(dim=0)).norm().item())
 ```
 
-`cue_action_proj` is trained by **direct MSE regression onto `action_object(z_world, action)`**,
-and `action_bias = cue_action_proj(cat([cue_context, z_world]))` (`e1_deep.py`). The regression
-target is itself a function of `z_world`. A well-fitted regressor must therefore produce
-different outputs on the safe vs dangerous `z_world` distributions **through the z_world half of
-its input alone**, with no cue-indexing involved.
+`cue_action_proj` is trained by MSE regression onto `action_object(z_world, action)`, and
+`action_bias = cue_action_proj(cat([cue_context, z_world]))`. Because the regression target is a
+function of `z_world`, a well-fitted regressor produces different mean outputs on the safe and
+dangerous `z_world` batches -- through the `z_world` half of its input, with no cue-indexing
+required.
 
-This makes GFLAG-0039's central inference -- *"the surviving action_bias variation is
-attributable to the concatenated raw z_world rather than to cue indexing"* -- **entailed by the
-driver's own objective**, not merely a plausible consequence of the slot-bank degeneracy. That
-is a strictly stronger and more robust footing than the flag claims for itself, and it does not
-depend on the contested ContextMemory premise.
+**What the driver already says about this, and why it is right.** Lines 290-300 carry an explicit
+honesty caveat: `cue_action_loss` "trains `action_bias` toward `E2.action_object()`, a per-sample
+target, **not toward context-divergence itself**", and it correctly designates
+`sel_context_divergence` (C1b) as the confirmatory-of-drive-taking readout while naming the
+*held-out, not-directly-optimised* ones as the free discriminators. That is accurate. The
+distinction this section draws is narrower than "the objective optimises the DV": the divergence
+is **entailed by fitting**, not directly optimised.
 
-The A0_OFF arm is a *real* control (it holds the same training and varies only
-`cue_slot_tagger` / `selection` / `ctxdiv_weight`), so the design is the right shape. What it
-cannot survive is the combination of a 50%-null criterion and overlapping arm means.
+**And the A0_OFF control does address it structurally.** A0 runs the SAME `cue_action_loss`
+training and varies only `cue_slot_tagger` / `selection` / `ctxdiv_weight`, so the z_world-driven
+route is present in both arms and the paired contrast isolates the read-path shaping. **The
+design is the right shape.** An earlier draft of this autopsy claimed GFLAG-0039's inference was
+"entailed... independent of the contested ContextMemory premise" and therefore stronger than the
+flag's own argument. **That claim is WITHDRAWN**: the entailment is real but the control is built
+for it, so it does not by itself carry the finding.
+
+**What does carry the finding is the power, not the mechanism** -- see 5a. A bare sign test on 3
+seeds with no effect-size margin has a null false-positive rate of exactly 0.5, the arm means
+overlap (A0 0.0305 / A1 0.0509), and one seed inverts. That is arithmetic and is untouched by
+anything in this section.
 
 ### 5c. Correction to GFLAG-0039's stated mechanism: the write path was OFF
 
@@ -348,27 +363,50 @@ The flag argues 922 ran "against a 1-of-16-occupied ContextMemory slot bank". Th
 sd016_writepath_mode = "off"
 ```
 
-`ContextMemory.write()` was **disabled in both arms**. 922 did not run against a degenerate slot
-bank; it wrote no cue-indexed associations at all. **The conclusion is unchanged and if anything
-strengthened** -- `cue_context` cannot carry learned cue-indexed content that was never written
--- but the operative confound for 922 specifically is *not* the
-`contextmemory-write-path-addressing-degeneracy` entry. That distinction matters for routing:
-implementing that substrate item does **not** by itself make 922's reading recoverable.
+Both agent-side write hooks are gated on that field (`agent.py:4849` per-tick sensory write,
+`agent.py:10020` training-time write, valid modes `off | train_only | sense_only | both`), so
+`ContextMemory.write()` was **never called** in either arm. 922 therefore did **not** run against
+a degenerate slot bank, and the `contextmemory-write-path-addressing-degeneracy` substrate entry
+is **not the operative confound for this run** -- implementing it does not retroactively rescue
+922's reading. That much is solid, and it is a genuine correction to the flag's stated mechanism.
 
-### 5d. The read-side statistic is aliased (bears on MECH-150, flagged not adjudicated)
+**CORRECTION (2026-08-18): "write path off" does NOT mean the slot contents were untrained, and
+an earlier draft of this autopsy wrongly said it did.** `ContextMemory.memory` is
+`nn.Parameter(torch.randn(num_slots, memory_dim) * 0.01)` (`e1_deep.py:46`) and 922 optimises
+`agent.e1.parameters()` (`driver:819`), so gradient from `terrain_loss` and `cue_action_loss` can
+shape the slot vectors through the differentiable read even with `write()` disabled. The claim
+"no cue-indexed associations were ever written **and MECH-150's retrieval had no learned content
+to index**" is half right: the first clause holds, the second does not. Nothing in this autopsy
+now rests on the second clause, and everything that did has been withdrawn (see 5d).
 
-`per_arm_summaries.sel_entropy_mean_mean`: A0_OFF **2.7725860** (= ln 16 = 2.7725887, the
-`uniform_reference`, i.e. exactly uniform); A1_PRODUCTION **1.0969e-08** -- a fully deterministic
-single-slot read. MECH-150's C1 (`sel_entropy < 2.5`) passed on that.
+Note also that `sd016_context_divergence_weight` (which 922 sets to 0.5) and
+`sd016_diversification_weight` (which 922 does not set, so 0.0) are **different knobs**: the
+former trains the *tagger* to make safe/dangerous slot-selection distributions diverge
+(`e1_deep.py:595-634`); only the latter would apply orthogonality pressure to slot *contents*.
 
-Sharp cue-indexed retrieval and degenerate collapse onto one slot produce the **same** entropy
-reading, and 922 recorded no occupancy statistic (`n_occupied_slots` and every near-synonym are
-absent from the manifest) to break the tie. This is the identical aliasing shape as 936's C2 --
-a criterion a degeneracy satisfies as well as the mechanism does.
+### 5d. WITHDRAWN -- the read-side aliasing concern does not survive checking
 
-MECH-150 is outside this autopsy's target scope (its adjudication belongs to the confirmed
-`failure_autopsy_V3-EXQ-922_2026-08-13`). **Flagged for governance, not adjudicated here.**
+An earlier draft of this autopsy flagged MECH-150's C1 entropy criterion as aliased, on the
+grounds that sharp cue-indexed retrieval and a degenerate collapse onto one slot produce the same
+near-zero entropy reading (A1 `sel_entropy_mean_mean` = 1.097e-08 against the uniform reference
+ln 16 = 2.7726), with no occupancy statistic recorded to break the tie.
 
+**That concern is withdrawn on checking, and the 922 autopsy's MECH-150 reading is left
+undisturbed.** Two independent reasons:
+
+1. **C1b refutes the collapse branch.** `sel_context_divergence_mean` is 1.0625 in A1 against
+   0.000117 in A0 -- the selected slot demonstrably *varies with context*. A tagger collapsed
+   onto a single fixed slot would show near-zero divergence. Sharp AND context-varying is the
+   signature MECH-150 predicts, and the two criteria together do discriminate it from collapse.
+2. **The driver already designates the free readout correctly.** Its lines 290-300 state that
+   `compute_context_divergence_loss` "is DESIGNED to move `sel_context_divergence`", so a C1b
+   pass is "confirmatory of the drive taking, not surprising on its own", and that C1 -- measured
+   on a held-out eval batch and not directly optimised -- "is the free discriminating readout".
+   An earlier draft of this autopsy was about to report that C1b-is-the-optimised-quantity
+   observation as a new finding. It is not new; the driver states it, and states it correctly.
+
+Recorded here rather than deleted because the withdrawal is itself the useful record: a later
+session tempted by the same reading should know it was checked and did not hold.
 ### 5e. GFLAG-0043's structural finding, independently verified
 
 `grep -c "action_object\|action_bias" ree_core/predictors/e3_selector.py` -> **0**. E3 has no
@@ -380,6 +418,48 @@ MECH-151's asserted "elevate which action-objects rank highly, E3 still selects"
 -- and per GFLAG-0043, ARC-007 STRICT ("HippocampalModule generates VALUE-FLAT proposals ... E3
 introduces ALL weighting") forbids the obvious repair in `_score_trajectory`, so the claim as
 stated may be incompatible with ARC-007 as stated.
+
+### 5f. READ-ACROSS to ARC-041 -- withdrawing MECH-151's leg removes the dissociation premise
+
+**Recorded as a bears-on note, NOT adjudicated here.** ARC-041 (dual-pathway frontal
+cue-weighting circuit, MECH-150 -> MECH-151 + MECH-152) is not in this autopsy's target scope and
+gets no `per_claim_recommendation`. But the consequence below is mechanical, so leaving it
+implicit would hand governance a MECH-151 withdrawal without the one thing that withdrawal
+directly moves.
+
+`failure_autopsy_V3-EXQ-922_2026-08-13` Section 7 records ARC-041 as **HELD** at its own Step 8
+gate: *"the user explicitly declined to finalize the dual-pathway falsification write-up this
+cycle. Per its own pre-registered signature the dissociation IS met (MECH-151 survives, MECH-152
+fails), but since that reading rests on MECH-152's own not-yet-fully-resolved result (the A0_OFF
+interpretive lead above), disposition stays open."* `epistemic_category` was deliberately left at
+`substrate_conditional`, not downgraded to `standard`, and its apply-checklist item reads **"Do
+NOT change ARC-041's disposition or epistemic_category this cycle."**
+
+The dissociation signature is *exactly one pathway surviving*. This autopsy withdraws the
+surviving one. So:
+
+- The dissociation is **no longer established** -- not refuted, *unestablished*. Both legs are now
+  open: MECH-151 to `non_contributory` (this autopsy), and MECH-152 to the soft-selection +
+  ctxdiv-ON ablation the 922 autopsy already queued for it.
+- The 2026-08-13 HOLD was correct, and now has a **second, independent** reason beyond the one
+  recorded (the A0_OFF interpretive lead on MECH-152). Governance should keep the hold and keep
+  `epistemic_category: substrate_conditional`.
+- **No ARC-041 write is recommended by this autopsy.** Its apply-checklist item from 2026-08-13
+  stands unchanged; this note only supplies an additional reason it should.
+
+**Explicitly NOT claimed.** The 922 autopsy's Section 4 records *"Failure-location (GOV-FAILLOC-1),
+for MECH-152/ARC-041 specifically: REE FAILED -- implementation, measurement, environment all
+independently established as adequate."* An earlier draft of this autopsy was going to challenge
+that verdict on the grounds that MECH-152's DV (`terrain_weight = sigmoid(cue_terrain_proj(
+cue_context))`, `e1_deep.py:495`) is downstream of a never-written store, so its measurement row
+could not be "established". **That challenge is withdrawn along with the untrained-slots premise
+it rested on** (see 5c): the slots are a trainable `nn.Parameter` and 922 optimises
+`agent.e1.parameters()`, so the DV is not obviously starved and this autopsy has no sound basis
+to overturn a confirmed REE-FAILED verdict. Note also the 922 driver's own line 296 asserts
+`r_w_harm`/`r_w_goal` are **NOT** directly optimised by any P1 loss -- a real asymmetry with
+MECH-151's DV that is worth preserving rather than flattening: MECH-152's criterion is honest in
+a way MECH-151's power is not. Anyone revisiting this should start from the MECH-152 ablation the
+922 autopsy queued, not from here.
 
 ## 6. Four-layer diagnosis
 
@@ -407,10 +487,10 @@ requires all three adequate -> **not reached**.
 |---|---|---|
 | Claim alignment | **unclear** | 922 tested a projection's output variability, not the claim's asserted ranking modulation. Neither supports nor weakens. |
 | Biological reference | **partial (divergence, load-bearing)** | vmPFC->striatum/premotor projections (Haber & Behrens 2014) are the stated analog; the 2026-08-16 Pastor-Bernier & Cisek 2011 entry describes **competition-conditioned relative** valuation. MECH-151's additive, candidate-independent form is structurally incapable of that. The 922 autopsy already recorded MECH-151's lit as "thin -- no dedicated targeted review". |
-| Prerequisites | **missing** | `sd016_writepath_mode="off"`; MECH-150's own retrieval content never written. |
+| Prerequisites | **partial** | `sd016_writepath_mode="off"` in both arms, so `ContextMemory.write()` was never called (5c). CORRECTED: this does NOT mean the slots were untrained -- they are a trainable `nn.Parameter` and 922 optimises `agent.e1.parameters()`, so gradient can shape them through the read. What is missing is a *write-installed* associative store, not necessarily learned content. |
 | Implementation completeness | **stub** | The projection exists and trains; the *ranking* half it asserts has no site (0 references in `e3_selector.py`). |
 | Environment adequacy | **adequate** | Env-entropy precondition resolved by the SD-070 P0a recipe (readiness gates passed 6/6). |
-| Measurement adequacy | **misleading** | DV guaranteed by the training objective through the z_world route; bare sign test, null FPR 0.5; no occupancy control. |
+| Measurement adequacy | **under-instrumented** | The load-bearing criterion is a bare sign test on 3 seeds with no effect-size margin (null FPR exactly 0.5), arm means overlapping, one seed inverted. The DV is additionally *entailed by fitting* a z_world-dependent target -- though the A0_OFF control is built for that route, so it is a caveat rather than the finding (5b, CORRECTED). No `n_cue_action_bias_present` or occupancy control recorded. |
 | Integration adequacy | **isolated** | `action_bias_divergence` is computed on `extract_cue_context()` output with zero calls into HippocampalModule, E2 rollout or E3.select. |
 | Scale / capacity | **unknown** | Not reached. |
 
@@ -423,26 +503,37 @@ Environment `established`. Not a falsification of MECH-151 and not support for i
 | Target | Claim | Absolute / negative-control criterion | Discrimination criterion | Read |
 |---|---|---|---|---|
 | V3-EXQ-936 | MECH-439 | P1-P4 readiness all met; C1 conversion PASS 3/4 | **C2 share reduction -- arithmetically unreachable (needs 1e14-1e43x more non-F variance)** | Criterion satisfied-or-refuted identically by a substrate degeneracy |
-| V3-EXQ-922 | MECH-151 | MECH-150 gate PASS 3/3; `n_cue_action_bias_present` control absent | **`action_bias_div(A1) > A0` -- guaranteed by the training objective, null FPR 0.5** | Same |
+| V3-EXQ-922 | MECH-151 | MECH-150 gate PASS 3/3; `n_cue_action_bias_present` control absent | **`action_bias_div(A1) > A0` -- bare sign test, null FPR exactly 0.5, no effect-size margin; measures a pathway with no ranking site** | Weaker commonality -- see below |
 
-**These are NOT two independent bugs. They are one structural property, at two sites:**
+**CORRECTED 2026-08-18.** The first version of this section claimed these were "NOT two
+independent bugs" but "one structural property, at two sites" -- a criterion whose satisfaction
+and refutation are both produced by an upstream substrate degeneracy. **That claim does not
+survive the full re-read of the 922 autopsy and driver** (see 5b/5c/5d): only V3-EXQ-936's
+criterion is degeneracy-driven. V3-EXQ-922's fails for different reasons -- inadequate power and
+an unimplemented ranking half -- and its degeneracy premise (an untrained slot bank) was mine and
+is withdrawn.
 
-> A pre-registered criterion whose *satisfaction* and whose *refutation* are both produced by an
-> upstream substrate degeneracy, on a run whose readiness preconditions all report met -- because
-> the readiness statistic is measured in different units (absolute) from the statistic the
-> criterion routes on (relative/aliased).
+**What survives is weaker but real, and is stated at the strength it can carry:**
 
-Both runs recorded the readout that would have broken the tie *nowhere*: 936 discarded the
-rollout magnitude, 922 discarded slot occupancy. Both readouts existed at run time. This is a
-**recording-debt** pattern, not a measurement-design pattern -- the instruments could see it,
-the manifests did not carry it.
+> In both runs the load-bearing criterion could not discriminate the claim it was registered
+> against, and in both the manifest omitted the one readout that would have shown this on first
+> read.
+
+936 discarded the rollout magnitude (so a saturated ratio is indistinguishable from a strong true
+reading); 922 recorded neither `n_cue_action_bias_present` nor any slot-occupancy statistic. Both
+readouts existed at run time, so **the recording-debt half of the original claim does hold** --
+the instruments could see it, the manifests did not carry it. The *shared-mechanism* half does
+not, and the two targets are reported together because they were adjudicated together, not
+because one structural property explains both.
 
 Two live readings, and this autopsy does not choose between them:
 - **`instrument_starvation`** -- the DVs are fine and the substrate is degenerate; fix the
   substrate and re-measure. (Favoured for 936: the fix is named and one line.)
 - **`criterion_aliasing`** -- the DVs cannot in principle discriminate the mechanism from its
-  degenerate look-alike, whatever the substrate does; they need redesign. (Favoured for 151:
-  even a healthy ContextMemory leaves `action_bias_divergence` guaranteed by the objective.)
+  degenerate look-alike, whatever the substrate does; they need redesign. (CORRECTED: originally
+  "favoured for 151, since even a healthy ContextMemory leaves `action_bias_divergence` guaranteed
+  by the objective" -- that justification is withdrawn per 5b. 151's criterion fails for a
+  different reason: 50% null FPR, and a pathway with no ranking site.)
 
 ## 8. Learning extracted
 
@@ -462,10 +553,22 @@ Two live readings, and this autopsy does not choose between them:
 5. **A bare sign test on 3 seeds has a 50% null false-positive rate.** MECH-151's only support
    entry rests on one, with no effect-size margin. Standing practice already requires a
    delta-SD-scaled gate plus an absolute floor.
-6. **"The DV moved" is not evidence when the training objective moves it.** 922 regressed
-   `action_bias` onto a z_world-derived target and then measured whether `action_bias` varies
-   with z_world. This is the DV-symmetry failure class, arriving one layer upstream of where
-   `/queue-experiment`'s existing check looks.
+6. **CORRECTED -- "the DV moved" IS weakened when the training objective entails it, but a
+   paired control can carry that.** 922 regresses `action_bias` onto a z_world-derived target and
+   then measures whether `action_bias` varies with z_world; the divergence is entailed by
+   fitting. But A0_OFF runs the same training, so the paired contrast is built for exactly that
+   route, and the driver's own lines 290-300 already distinguish directly-optimised from free
+   readouts and get it right. The original version of this item claimed the objective *guarantees*
+   the DV and that this defeated the design -- **withdrawn**. The transferable lesson is narrower:
+   when a DV is entailed by fitting, say so and point at the control that absorbs it, rather than
+   treating entailment alone as disqualifying.
+7. **Read the whole prior artifact before superseding one of its claims.** This autopsy
+   re-adjudicated MECH-151 from `failure_autopsy_V3-EXQ-922_2026-08-13` having read that
+   artifact's JSON and only the opening of its `.md`. The full read (prompted by the user, after
+   this artifact had already landed) overturned two of this autopsy's own supporting arguments,
+   surfaced that the driver had already documented a third, and revealed that the withdrawal
+   mechanically moves ARC-041's dissociation premise -- which the first version did not mention at
+   all. The load-bearing findings survived; the reasoning offered for them did not.
 7. **An unapplied withdrawal decays into a positive claim.** MECH-151's `live_status` is its
    first-ever evidence entry and reads `supports`; left alone it hardens. Recorded in
    `per_claim_recommendation` so GOV-APPLY-1 can see it.
@@ -523,8 +626,11 @@ Two live readings, and this autopsy does not choose between them:
   (paired ON/OFF `action_bias` ablation at matched state, measuring *selection authority* rather
   than bias norm). Two additions from this autopsy: an `n_occupied_slots >= 2` readiness
   precondition **and** a `sd016_writepath_mode != "off"` precondition (Section 5c -- the existing
-  design doc names the first but not the second, and 922 shows the second is the one that
-  actually bit).
+  design doc names the first but not the second, and 922 had the write path off entirely, so a
+  successor must assert it is on rather than assume it). CORRECTED: an earlier draft said the
+  write-path precondition "is the one that actually bit"; that overstates it, since gradient can
+  shape slot contents without `write()` (5c). Both preconditions are warranted; neither is
+  established as the operative one for 922.
 - **Secondary, for governance to adjudicate rather than this autopsy:** GFLAG-0043's ARC-007
   contradiction. MECH-151 needs a ranking site; ARC-007 STRICT forbids one in `_score_trajectory`;
   `e3_selector.py` has no action-object channel. That is a **framing** problem
