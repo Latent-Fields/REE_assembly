@@ -68,3 +68,403 @@ suppressions:
     added_by: "chip-20260815-steward-stage1-detectors"
     reviewed: "2026-08-16 (chip-20260816-steward-d007-stale-gate-reference)"
     forward_declared: true
+
+  # ---------------------------------------------------------------------------
+  # D-001 CYCLE-1 ADJUDICATION -- 2026-08-18, chip-20260817-d001-unowned-v3-claims
+  #
+  # All 27 D-001 findings on base b3b95d7938 were adjudicated per claim. Verdict:
+  # 3 confirmed, 24 false positive -> precision 0.11, below the SKILL.md 0.6 floor,
+  # so D-001 is additionally demoted to list-only (see detectors/d001_*.py).
+  #
+  # The 24 below are suppressed because a DISPOSITION exists, not because the
+  # finding is uninteresting. They fall in three groups, each corroborated by text
+  # the owning plan already carries. The 3 CONFIRMED findings (ARC-053, ARC-054,
+  # MECH-270) are deliberately NOT suppressed -- they are real phase-tag drift and
+  # are proposed to /governance in
+  # evidence/planning/d001_adjudication_staged_20260818.md.
+  #
+  # GROUP 1 -- clinical lane, cross-generation BY CONSTRUCTION (13).
+  # psychiatric_failure_modes_plan.md's own header: "a syndrome is not a version.
+  # Its claims are scattered ACROSS generations by construction ... filing the
+  # programme under any single version splits every syndrome in half." A v3 claim
+  # owned by a generation:clinical node is therefore the designed arrangement, not
+  # drift. Reinforced by a recorded USER DECISION of 2026-08-06 in the
+  # MOTIVATIONAL-TAXONOMY completion_note, which was asked exactly D-001's question
+  # for MECH-186/187/188 and answered that the v3 phase label is CORRECT while the
+  # claims stay in this clinical plan. Re-escalating these re-litigates a settled
+  # decision.
+  # ---------------------------------------------------------------------------
+
+  - finding_id: "D-001:INV-062"
+    reason: >-
+      Clinical lane, cross-generation by construction. INV-062 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if INV-062 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-186"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-186 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-186 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-187"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-187 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-187 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-188"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-188 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-188 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-203"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-203 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-203 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-206"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-206 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-206 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-208"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-208 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-208 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-209"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-209 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-209 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-210"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-210 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-210 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-286"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-286 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-286 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-343"
+    reason: >-
+      Clinical lane, cross-generation by construction. MECH-343 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if MECH-343 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:Q-056"
+    reason: >-
+      Clinical lane, cross-generation by construction. Q-056 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if Q-056 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:SD-036"
+    reason: >-
+      Clinical lane, cross-generation by construction. SD-036 is owned only by a
+      node in psychiatric_failure_modes_plan.md (generation: clinical), a lane
+      whose stated design is to hold claims from several generations at once
+      while staying out of the V3 closure percentage, exactly as the governance
+      and process lanes do. Neither side is stale: the v3 phase label and the
+      clinical generation are both correct and deliberate.
+    resume_condition: >-
+      Re-escalate if psychiatric_failure_modes_plan.md is re-homed to a
+      versioned generation, or if SD-036 gains an owning node in a
+      generation:v3 plan (at which point the finding disappears anyway).
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  # ---------------------------------------------------------------------------
+  # GROUP 2 -- the owning node's own text EXPLICITLY refutes the finding (2).
+  # In both cases a human already considered reassigning the phase label and
+  # wrote down the decision not to. These are the strongest false positives in
+  # the set: the answer to "which side is stale" is recorded in the very node
+  # the detector read to construct the finding.
+  # ---------------------------------------------------------------------------
+
+  - finding_id: "D-001:MECH-163"
+    reason: >-
+      Explicitly adjudicated in the owning node's own text. hippocampal_planning_v4:HPL-1 says
+      verbatim: "This is the ONLY node whose claim is implementation_phase: v3. It is the gate, not a V4 step: every V4 node below depends on it." The v3 phase label is deliberate and the node is a
+      documented back-pointer/entry-gate, not a claim of V4 delivery.
+    resume_condition: >-
+      Re-escalate only if that node text is removed or reversed.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-308"
+    reason: >-
+      Explicitly adjudicated in the owning node's own text. language_emergence_bootstrap_v6:LANG-7 says
+      verbatim: "MECH-308 stays implementation_phase v3/v3_pending in claims.yaml (NOT reassigned here)." The v3 phase label is deliberate and the node is a
+      documented back-pointer/entry-gate, not a claim of V4 delivery.
+    resume_condition: >-
+      Re-escalate only if that node text is removed or reversed.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  # ---------------------------------------------------------------------------
+  # GROUP 3 -- forward-roadmap back-pointer, no V3 delivery asserted (8 new;
+  # D-001:MECH-099 above is the pre-existing member of this same class).
+  # The v4/v5/v6 roadmap plans list V3-era prerequisites on purpose --
+  # goal_deliberation_v4_plan.md's header: "Each node's readiness_gate lists the
+  # V3-era prerequisites (claims/tracks) that must land before the V4 substrate
+  # step is honest to build." A roadmap node naming a v3 claim in unblocks_claims
+  # is that forward reference. d001's own docstring already calls this pattern
+  # benign; its `phase in gens` filter simply cannot see it when the v3 claim
+  # happens to have no v3 closure node of its own. Six of the owning nodes are
+  # status: done literature-grounding nodes that explicitly "PROMOTE NOTHING".
+  # Reasoning follows the accepted D-001:MECH-099 precedent verbatim: the owning
+  # plan's non-v3 generation already holds the claim out of the V3 percentage,
+  # so nothing is mis-counted today.
+  # ---------------------------------------------------------------------------
+
+  - finding_id: "D-001:ARC-088"
+    reason: >-
+      Forward-roadmap back-pointer. ARC-088 is owned only by affect_expression_v4:AE-2/AE-9, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on ARC-088, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if ARC-088 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:ARC-106"
+    reason: >-
+      Forward-roadmap back-pointer. ARC-106 is owned only by biology_grounding_convergence_v4:BG-1, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on ARC-106, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if ARC-106 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-124"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-124 is owned only by memory_lifecycle_v4:MEM-5, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-124, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-124 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-261"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-261 is owned only by autobiographical_memory_v4:ABM-8 + memory_lifecycle_v4:MEM-1/MEM-7, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-261, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-261 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-264"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-264 is owned only by goal_deliberation_v4:GDL-3/GDL-8, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-264, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-264 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-333"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-333 is owned only by plasticity_neuromodulation_v4:PLW-1, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-333, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-333 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-384"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-384 is owned only by developmental_dmn_v4:DMN-1, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-384, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-384 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"
+
+  - finding_id: "D-001:MECH-436"
+    reason: >-
+      Forward-roadmap back-pointer. MECH-436 is owned only by biology_grounding_convergence_v4:BG-4, whose plan is
+      a forward roadmap that lists V3-era prerequisites by design. The node
+      asserts a dependency on MECH-436, not that later-generation work delivers it.
+      Same disposition as the accepted D-001:MECH-099 precedent: the owning
+      plan's generation already holds it out of the V3 percentage, so nothing is
+      mis-counted today.
+    resume_condition: >-
+      Re-escalate if that node gains an owner_exq (roadmap -> closure-tracked),
+      or if MECH-436 is pulled into a generation:v3 plan node.
+    added: "2026-08-18"
+    added_by: "chip-20260817-d001-unowned-v3-claims"
+    review_after: "2027-02-18"

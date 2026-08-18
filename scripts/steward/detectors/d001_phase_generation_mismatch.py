@@ -42,6 +42,45 @@ from ._common import DEFAULT_GENERATION, Context, finding
 DETECTOR_ID = "D-001"
 DETECTOR_TITLE = "Claim phase vs owning plan generation mismatch"
 
+# LIST-ONLY DEMOTION -- 2026-08-18, chip-20260817-d001-unowned-v3-claims.
+#
+# All 27 findings on base b3b95d7938 were adjudicated per claim: 3 confirmed
+# (ARC-053, ARC-054, MECH-270 -- real phase-tag drift, see below), 24 false
+# positive. Precision 3/27 = 0.11, below the SKILL.md 0.6 floor, so this
+# detector is demoted to list-only: it still REPORTS every finding, it just
+# never consumes escalation budget. That is the floor's own remedy ("reported,
+# never escalated, until refined"), and it is appropriate here for the reason
+# SKILL.md gives -- D-001's misses are NOT silent. An unowned v3 claim still
+# appears in the registry, unlike D-002's orphans, which are invisible by
+# construction. So a floor is safe here and is NOT safe for D-002.
+#
+# WHY THE PREDICATE ITSELF WAS NOT TIGHTENED. The dominant false-positive mode
+# is a DELIBERATE cross-generation arrangement that the owning plan documents in
+# prose -- the clinical lane holding one syndrome's claims across several
+# generations at once, and v4/v5/v6 roadmap nodes naming their V3-era
+# prerequisites. None of that is legible to frontmatter alone, so no sharper
+# structural predicate separates it. One was measured rather than assumed: a
+# "partial reconcile" rule (fire only when a SIBLING claim co-listed in the same
+# owning node has already been reassigned off v3) cuts 27 -> 9 and keeps all 3
+# confirmed, but precision only reaches 3/9 = 0.33 -- still under the floor.
+# Tightening further would mean fitting the predicate to the same 3 cases it was
+# just validated on, which GOV-HELDOUT-1 exists to forbid. So the disposition
+# lives in state/suppressions.yaml, where it is per-claim, reasoned, and
+# reversible, and the detector keeps its honest recall.
+#
+# THE 3 CONFIRMED FINDINGS ARE REAL AND ARE NOT SUPPRESSED. ARC-053/ARC-054
+# (deferred_by_commitment:DEF-1) and MECH-270 (DEF-2) are a half-finished
+# reassignment: their co-listed siblings ARC-055 and MECH-225/226/228 were moved
+# to implementation_phase v4 and these were not, and BOTH node notes name the
+# drift and point at a "held-reassignment batch" that never ran. Fixing them is
+# a claims.yaml edit, which is governance's to make -- proposed in
+# evidence/planning/d001_adjudication_staged_20260818.md.
+#
+# RESUME CONDITION. Restore escalation once those 3 are dispositioned by
+# governance AND one full cycle has run with the suppressions live, if the
+# unsuppressed residue then measures >= 0.6 precision. Flip this one constant.
+LIST_ONLY_ESCALATE = False
+
 
 def run(ctx: Context) -> tuple[list[dict], dict]:
     findings: list[dict] = []
@@ -120,7 +159,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
             severity=severity,
             confidence=confidence,
             signal=signal,
-            escalate=True,
+            escalate=LIST_ONLY_ESCALATE,
             evidence={
                 "implementation_phase": phase,
                 "v3_pending": claim.get("v3_pending"),
