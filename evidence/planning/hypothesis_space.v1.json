@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-18T01:39:19Z",
+  "generated_at": "2026-08-18T05:19:18Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -23,30 +23,30 @@
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 72.3,
-      "node_total": 95,
-      "node_done_weighted": 68.7,
-      "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
-      "authoritative_view": "/closure"
+      "closure_pct": null,
+      "node_total": null,
+      "node_done_weighted": null,
+      "unavailable_reason": "AttributeError",
+      "source": "serve.read_closure() (read-only mirror)"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 68,
+      "total_surviving": 67,
       "total_initial": 122,
       "total_initial_at_registration": 101,
       "total_fanout_added": 21,
       "total_resolved_out": 48,
-      "total_confirmed": 26,
+      "total_confirmed": 27,
       "reduction_pct_vs_current": 39.3,
-      "net_narrowing_pct": 32.7,
+      "net_narrowing_pct": 33.7,
       "convergence_classes": {
         "narrowing": 17,
         "static": 15,
         "circling": 4,
-        "scattering": 1
+        "refining": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "68 alive against 101 originally enumerated, and against 122 including 21 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "67 alive against 101 originally enumerated, and against 122 including 21 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 37
     },
     "decide": {
@@ -59,151 +59,151 @@
     {
       "date": "2026-05-06",
       "surviving": 121,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-11",
       "surviving": 120,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-13",
       "surviving": 118,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-15",
       "surviving": 114,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-16",
       "surviving": 113,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-17",
       "surviving": 110,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-18",
       "surviving": 104,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-19",
       "surviving": 100,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-20",
       "surviving": 99,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-24",
       "surviving": 98,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-27",
       "surviving": 96,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-29",
       "surviving": 95,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-07-31",
       "surviving": 94,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-01",
       "surviving": 92,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-02",
       "surviving": 86,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-04",
       "surviving": 85,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-06",
       "surviving": 84,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-08",
       "surviving": 82,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-09",
       "surviving": 80,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-10",
       "surviving": 79,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-11",
       "surviving": 78,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-12",
       "surviving": 77,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-14",
       "surviving": 75,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-17",
       "surviving": 74,
-      "closure_pct": 72.3,
+      "closure_pct": null,
       "build_pct": 82.5
     },
     {
       "date": "2026-08-18",
-      "surviving": 68,
-      "closure_pct": 72.3,
+      "surviving": 67,
+      "closure_pct": null,
       "build_pct": 82.5
     }
   ],
@@ -1872,15 +1872,16 @@
         }
       ],
       "fanout_growth_note": "This question has now accumulated fan-out growth after 3 same-axis (environment) attempts failed to converge -- the campaign has not yet converged; read the growth as a non-convergence signal, not just added coverage.",
-      "net_narrowing_ratio": -0.5,
-      "bits_removed_vs_registration": -0.58,
+      "net_narrowing_ratio": -0.25,
+      "bits_removed_vs_registration": -0.32,
       "convergence": {
-        "convergence_class": "scattering",
-        "reason": "legs added across families but no family has been closed out",
-        "families_closed": [],
+        "convergence_class": "refining",
+        "reason": "1 family closed out; the latest growth opened fresh territory",
+        "families_closed": [
+          "instrumentation"
+        ],
         "families_touched": [],
         "families_fresh": [
-          "instrumentation",
           "process",
           "representation",
           "world"
@@ -1906,13 +1907,13 @@
           }
         ]
       },
-      "surviving": 6,
-      "alive": 6,
+      "surviving": 5,
+      "alive": 5,
       "resolved_out": 0,
-      "confirmed": 0,
+      "confirmed": 1,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "bits_removed": 0.26,
       "synthesis": null,
       "hypotheses": [
         {
@@ -1950,9 +1951,10 @@
           "state": "alive",
           "evidence_runs": [
             "V3-EXQ-816b",
-            "V3-EXQ-816d"
+            "V3-EXQ-816d",
+            "V3-EXQ-816c"
           ],
-          "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
+          "basis": "RATIFIED DISPOSITION 2026-08-16 (governance cycle, GFLAG-0038; recommended by govdiag1_repose_mech321_chain_2026-08-12.md section 7(ii)): this leg is SUPERSEDED / MOOT -- no longer load-bearing for this question whatever its truth value. Reason: section 7(i)'s companion leg H-vs-proxy-saturation is now CONFIRMED (V3-EXQ-816c: region-V_s saturated at 0.9338 and decoupled from forward-PE, spearman 0.083 against a 0.2 coupled floor), so raising forward-PE CANNOT lower region-V_s and even a successful future harshening would not restore the V_s readout this leg exists to rescue. STATE DELIBERATELY LEFT `alive`, AND THIS IS A SCHEMA-VOCABULARY LIMIT, NOT A SCIENTIFIC HEDGE. The registry's derived state vocabulary has exactly three buckets -- ALIVE_STATES {alive, untested}, RESOLVED_OUT_STATES {eliminated, split}, and `confirmed` (build_hypothesis_space.py) -- and has no `superseded` member; writing the ratified word as a literal state would be silently uncounted by build_hypothesis_space.py's surviving/resolved_out/confirmed arithmetic and would stop this question's `environment` axis family ever being marked closed. The only in-vocabulary out-state, `eliminated`, requires met_elimination_bar true, and section 7(ii) EXPLICITLY declines to recommend it: 816b's and 816d's own pre-registered elimination branch was 'forward-PE elevated but V_s flat', and neither run took it -- both recorded pe_elevated false (off_pe_mean_worst 0.008594 and 0.008675 against the 0.01 discrimination floor), so on the LITERAL pre-registered null the runs read 'dose insufficient, direction correct'. Section 7(ii) surfaces the stronger reading (V_s did not move a little, it did not move at all -- low_vs_produced false and lowvs_worst_arm1 0 at every dose -- while PE did move) as available and defensible but as stretching a pre-registered floor after the fact, and therefore recommends `superseded` over `eliminated`. Asserting met_elimination_bar true here would be the over-counting Goodhart direction GOV-FROZEN-1 exists to prevent, so this leg keeps the conservative under-count that /governance Step 5c explicitly blesses ('an unresolved leg simply keeps surviving in the count until Step 9b resolves it -- a conservative under-count, not a Goodhart move'). READ THIS LEG AS MOOT, NOT AS OPEN: it must not be re-queued for a fourth environment-axis dose escalation. The residual -- add a `superseded` state to the registry vocabulary and both derive scripts, or ratify `eliminated` -- is raised for governance as its own flag and as the decision chip chip-20260818-hypothesis-registry-superseded-state. V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1961,11 +1963,13 @@
           "label": "region-V_s (latent-stability) is decoupled from forward-PE and saturates in a trained encoder",
           "desc": "region V_s is a '1 - relative-latent-change' stability proxy that saturates near 1.0 once the encoder is trained, decoupled from forward-model PE; if so no env manipulation lowers it and the R1 V_s-drop trigger cannot fire in a competent agent, and MECH-321's trigger must be reframed toward its own forward-model-disagreement alternative",
           "axis": "measurement",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-816c"
+            "V3-EXQ-816c",
+            "V3-EXQ-816b",
+            "V3-EXQ-816d"
           ],
-          "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization).",
+          "basis": "CONFIRMED 2026-08-18 (Mode B, lightweight /failure-autopsy per /governance Step 5c; disposition ratified by the 2026-08-16 governance cycle as GFLAG-0038, recommended by govdiag1_repose_mech321_chain_2026-08-12.md section 7(i)). V3-EXQ-816c (2026-07-26, experiment_purpose diagnostic) returned outcome PASS on its single load-bearing criterion C_DECOUPLING with every positive control green: vs_tracking_live true (worst-cell 3 streams tracked, so region_vs is NOT the degenerate constant-1.0 fallback and the 'V_s flat' reading is not an artefact), pe_control_ok, forward_pe_varies (2.2e-08 worst / 8.6e-07 best against a 1e-09 floor), forward_pe_bounded, enough_paired_steps 1654 > 30. The pre-registered null was 'forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled', and the run took exactly that branch: pe_heterogeneous true / vs_heterogeneous false, decoupled true, not_saturated false, region_vs_min_over_cells 0.9338 with region_vs_var_best 0.000275, total_low_vs_steps 0 of 1654, spearman_unc_vs_pe_mean_over_cells 0.0832 against a spearman_coupled_floor of 0.2, and pe_trigger_fires_total 13 vs vs_trigger_fires_total 0 with cofire_total 0. The 2026-07-26 adjudication (failure_autopsy_816c-822_2026-07-26.json, hypothesis_space_ledger_pending, mode B-narrow) deliberately left this leg ALIVE on one stated condition -- that V3-EXQ-816b might yet show a harsher environment can drive region-V_s into a low band, which would keep the proxy usable. That condition has since been tested at TWO doses and failed both times: 816b (low_vs_produced false, region_vs_min_over_cells_arm1 0.9347) and 816d (harshened_env_v2, low_vs_produced false, region_vs_min_over_cells_arm1 0.9340). The deferral's own trigger has therefore fired and the leg clears. met_elimination_bar stays false -- a confirmation is not an elimination (invariant 4); control_passed true is what invariant 5 requires. resolved_utc is 816d's completion (the last run discharging the deferral condition), which is >= this leg's pre_registered_utc. CONSEQUENCE: MECH-321's R1 trigger must be reframed off the region-V_s readout toward forward-model disagreement -- see the PE-selectivity re-pose in govdiag1 section 5.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1996,9 +2000,9 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
-        "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable",
+        "distance_phrase": "needs the R1 trigger re-operationalized onto forward-model disagreement (rank-based top-q% forward-PE, ARM_PE vs rate-matched ARM_YOKED, unconditional whole-episode DV, n >= 40 -- govdiag1_repose_mech321_chain_2026-08-12.md section 5) before R1's behavioural effect is measurable at all; a fourth environment-axis dose escalation is refused (816/816b/816d converged, and 816c explains why)",
         "live_gate": null,
-        "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised"
+        "observation_bottleneck": "RESOLVED AS TO CAUSE 2026-08-18, still blocking as to effect. The bottleneck is no longer 'the env never produced low-V_s states' (an open question about dose) but 'region-V_s CANNOT produce them' (a settled property of the readout): V3-EXQ-816c confirms region-V_s is a saturating 1-minus-relative-latent-change stability proxy (0.9338 floor, 0 of 1654 low-V_s steps) decoupled from forward-PE (spearman 0.083 vs a 0.2 coupled floor), while forward-PE itself IS heterogeneous and its trigger fires (13 fires vs 0 for the V_s trigger, 0 cofires). Three environment-axis doses (816, 816b, 816d) converging within 0.0001 of each other are explained by this, not by insufficient harshening. The two science legs (H-r1-reduces-lowvs-pe, H-r1-r5-dissociable) therefore remain unmeasured and must be RE-OPERATIONALIZED off the V_s readout rather than retried on it."
       }
     },
     {
@@ -4540,6 +4544,7 @@
     {
       "run": "V3-EXQ-816d",
       "all_runs": [
+        "V3-EXQ-816c",
         "V3-EXQ-816b",
         "V3-EXQ-816d"
       ],
@@ -4549,7 +4554,24 @@
         "ARC-070",
         "MECH-321"
       ],
-      "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
+      "moved": "CONFIRMED 2026-08-18 (Mode B, lightweight /failure-autopsy per /governance Step 5c; disposition ratified by the 2026-08-16 governance cycle as GFLAG-0038, recommended by govdiag1_repose_mech321_chain_2026-08-12.md section 7(i)). V3-EXQ-816c (2026-07-26, experiment_purpose diagnostic) returned outcome PASS on its single load-bearing criterion C_DECOUPLING with every positive control green: vs_tracking_live true (worst-cell 3 streams tracked, so region_vs is NOT the degenerate constant-1.0 fallback and the 'V_s flat' reading is not an artefact), pe_control_ok, forward_pe_varies (2.2e-08 worst / 8.6e-07 best against a 1e-09 floor), forward_pe_bounded, enough_paired_steps 1654 > 30. The pre-registered null was 'forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled', and the run took exactly that branch: pe_heterogeneous true / vs_heterogeneous false, decoupled true, not_saturated false, region_vs_min_over_cells 0.9338 with region_vs_var_best 0.000275, total_low_vs_steps 0 of 1654, spearman_unc_vs_pe_mean_over_cells 0.0832 against a spearman_coupled_floor of 0.2, and pe_trigger_fires_total 13 vs vs_trigger_fires_total 0 with cofire_total 0. The 2026-07-26 adjudication (failure_autopsy_816c-822_2026-07-26.json, hypothesis_space_ledger_pending, mode B-narrow) deliberately left this leg ALIVE on one stated condition -- that V3-EXQ-816b might yet show a harsher environment can drive region-V_s into a low band, which would keep the proxy usable. That condition has since been tested at TWO doses and failed both times: 816b (low_vs_produced false, region_vs_min_over_cells_arm1 0.9347) and 816d (harshened_env_v2, low_vs_produced false, region_vs_min_over_cells_arm1 0.9340). The deferral's own trigger has therefore fired and the leg clears. met_elimination_bar stays false -- a confirmation is not an elimination (invariant 4); control_passed true is what invariant 5 requires. resolved_utc is 816d's completion (the last run discharging the deferral condition), which is >= this leg's pre_registered_utc. CONSEQUENCE: MECH-321's R1 trigger must be reframed off the region-V_s readout toward forward-model disagreement -- see the PE-selectivity re-pose in govdiag1 section 5.",
+      "resolved_utc": "2026-07-26T18:50:06Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-816c",
+      "all_runs": [
+        "V3-EXQ-816b",
+        "V3-EXQ-816d",
+        "V3-EXQ-816c"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "RATIFIED DISPOSITION 2026-08-16 (governance cycle, GFLAG-0038; recommended by govdiag1_repose_mech321_chain_2026-08-12.md section 7(ii)): this leg is SUPERSEDED / MOOT -- no longer load-bearing for this question whatever its truth value. Reason: section 7(i)'s companion leg H-vs-proxy-saturation is now CONFIRMED (V3-EXQ-816c: region-V_s saturated at 0.9338 and decoupled from forward-PE, spearman 0.083 against a 0.2 coupled floor), so raising forward-PE CANNOT lower region-V_s and even a successful future harshening would not restore the V_s readout this leg exists to rescue. STATE DELIBERATELY LEFT `alive`, AND THIS IS A SCHEMA-VOCABULARY LIMIT, NOT A SCIENTIFIC HEDGE. The registry's derived state vocabulary has exactly three buckets -- ALIVE_STATES {alive, untested}, RESOLVED_OUT_STATES {eliminated, split}, and `confirmed` (build_hypothesis_space.py) -- and has no `superseded` member; writing the ratified word as a literal state would be silently uncounted by build_hypothesis_space.py's surviving/resolved_out/confirmed arithmetic and would stop this question's `environment` axis family ever being marked closed. The only in-vocabulary out-state, `eliminated`, requires met_elimination_bar true, and section 7(ii) EXPLICITLY declines to recommend it: 816b's and 816d's own pre-registered elimination branch was 'forward-PE elevated but V_s flat', and neither run took it -- both recorded pe_elevated false (off_pe_mean_worst 0.008594 and 0.008675 against the 0.01 discrimination floor), so on the LITERAL pre-registered null the runs read 'dose insufficient, direction correct'. Section 7(ii) surfaces the stronger reading (V_s did not move a little, it did not move at all -- low_vs_produced false and lowvs_worst_arm1 0 at every dose -- while PE did move) as available and defensible but as stretching a pre-registered floor after the fact, and therefore recommends `superseded` over `eliminated`. Asserting met_elimination_bar true here would be the over-counting Goodhart direction GOV-FROZEN-1 exists to prevent, so this leg keeps the conservative under-count that /governance Step 5c explicitly blesses ('an unresolved leg simply keeps surviving in the count until Step 9b resolves it -- a conservative under-count, not a Goodhart move'). READ THIS LEG AS MOOT, NOT AS OPEN: it must not be re-queued for a fourth environment-axis dose escalation. The residual -- add a `superseded` state to the registry vocabulary and both derive scripts, or ratify `eliminated` -- is raised for governance as its own flag and as the decision chip chip-20260818-hypothesis-registry-superseded-state. V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
       "resolved_utc": "2026-07-26T12:32:16Z",
       "evidence_direction": "non_contributory"
     },

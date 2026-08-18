@@ -1,0 +1,166 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-18T05:18:17Z",
+  "scope": "lightweight /failure-autopsy Step 9b Mode-B pass (no new experiment); registry append of two dispositions ratified by the 2026-08-16 governance cycle (GFLAG-0038)",
+  "status": "confirmed",
+  "confirmation_basis": "dispositions ratified upstream by /governance 2026-08-16 (GFLAG-0038, recommended by govdiag1_repose_mech321_chain_2026-08-12.md section 7); this pass writes, it does not adjudicate",
+  "chip_ref": "chip-20260816-mech321-hypothesis-legs-mode-b",
+  "governance_flag": "GFLAG-0038",
+  "staging_mode_override": {
+    "applied": true,
+    "reason": "Headless sessions normally stage Step 9b under hypothesis_space_ledger_pending. Overridden: (1) the staging rule guards UNRATIFIED adjudications and these were ratified by a human governance cycle before this session existed; (2) staging again would reproduce the exact failure GFLAG-0038 was raised to fix -- failure_autopsy_816c-822_2026-07-26.json staged this same block and it sat unapplied for three weeks because nothing re-derives it."
+  },
+  "targets": [
+    {
+      "queue_id": "V3-EXQ-816c",
+      "run_id": "v3_exq_816c_mech321_vs_pe_decoupling_comparator_20260726T105608Z_v3",
+      "outcome": "PASS",
+      "experiment_purpose": "diagnostic",
+      "non_degenerate": true,
+      "self_route_label": "vs_pe_decoupled_proxy_saturation",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_epistemic_category": "measurement_saturation",
+      "failed_criterion": "none",
+      "role": "adjudicating run for H-vs-proxy-saturation"
+    },
+    {
+      "queue_id": "V3-EXQ-816b",
+      "run_id": "v3_exq_816b_mech321_policy_decomposition_harshened_env_20260726T123216Z_v3",
+      "outcome": "FAIL",
+      "experiment_purpose": "diagnostic",
+      "non_degenerate": true,
+      "self_route_label": "env_still_underdrives_uncertainty",
+      "recommended_evidence_direction": "non_contributory",
+      "role": "discharges the 2026-07-26 deferral condition (low_vs_produced false)"
+    },
+    {
+      "queue_id": "V3-EXQ-816d",
+      "run_id": "v3_exq_816d_mech321_policy_decomposition_harshened_env_v2_20260726T185006Z_v3",
+      "outcome": "FAIL",
+      "experiment_purpose": "diagnostic",
+      "non_degenerate": true,
+      "self_route_label": "env_still_underdrives_uncertainty",
+      "recommended_evidence_direction": "non_contributory",
+      "role": "second dose; discharges the deferral condition (low_vs_produced false)"
+    }
+  ],
+  "hypothesis_space_ledger_applied": {
+    "question_qid": "policy_decomposition_discrimination",
+    "mode": "B",
+    "legs": [
+      {
+        "hid": "H-vs-proxy-saturation",
+        "state": "confirmed",
+        "resolving_runs": [
+          "V3-EXQ-816c",
+          "V3-EXQ-816b",
+          "V3-EXQ-816d"
+        ],
+        "evidence_direction": "non_contributory",
+        "epistemic_category": "measurement_saturation",
+        "self_route_label": "vs_pe_decoupled_proxy_saturation",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": false,
+        "resolved_utc": "2026-07-26T18:50:06Z",
+        "key_metrics": {
+          "region_vs_min_over_cells": 0.9338,
+          "region_vs_var_best": 0.000275,
+          "total_low_vs_steps": 0,
+          "total_paired_steps": 1654,
+          "spearman_unc_vs_pe_mean_over_cells": 0.0832,
+          "spearman_coupled_floor": 0.2,
+          "pe_trigger_fires_total": 13,
+          "vs_trigger_fires_total": 0,
+          "cofire_total": 0
+        }
+      },
+      {
+        "hid": "H-env-underdrives-uncertainty",
+        "ratified_disposition": "superseded / moot",
+        "state_written": "alive",
+        "state_written_reason": "SCHEMA-VOCABULARY LIMIT, NOT A SCIENTIFIC HEDGE. build_hypothesis_space.py recognises only ALIVE_STATES {alive, untested}, RESOLVED_OUT_STATES {eliminated, split} and 'confirmed'; a literal 'superseded' state is silently uncounted in every rollup and would stop the environment axis family ever closing. The only in-vocabulary out-state, 'eliminated', requires met_elimination_bar true, which govdiag1 section 7(ii) explicitly declines to recommend because 816b/816d never took their pre-registered elimination branch (pe_elevated false, 0.008594 / 0.008675 against the 0.01 floor). Writing 'eliminated' would over-count narrowing -- the GOV-FROZEN-1 Goodhart direction. Full disposition written into resolution.basis instead.",
+        "resolving_runs": [
+          "V3-EXQ-816b",
+          "V3-EXQ-816d",
+          "V3-EXQ-816c"
+        ],
+        "must_not": "re-queue a fourth environment-axis dose escalation"
+      }
+    ],
+    "decision_block": {
+      "prose_refreshed": [
+        "observation_bottleneck",
+        "distance_phrase"
+      ],
+      "untouched": [
+        "decidable",
+        "live_gate",
+        "decision_log_ref"
+      ],
+      "reason": "invariant 7 -- the human owns `decided`; the old prose was directly contradicted by the confirmed leg"
+    },
+    "frozen_set_invariants": {
+      "initial_frozen_count": 6,
+      "initial_frozen_count_at_registration": 4,
+      "hypotheses_added": 0,
+      "pre_registered_utc_touched": false,
+      "growth_restriction_present": false
+    },
+    "delta": {
+      "alive": [
+        6,
+        5
+      ],
+      "confirmed": [
+        0,
+        1
+      ],
+      "surviving": [
+        6,
+        5
+      ],
+      "convergence_class": [
+        "scattering",
+        "refining"
+      ],
+      "net_narrowing_ratio": [
+        -0.5,
+        -0.25
+      ],
+      "integrity_flags": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 0
+      }
+    }
+  },
+  "residual_escalations": [
+    {
+      "kind": "schema_gap",
+      "summary": "hypothesis_space_registry.v1.json has no `superseded` resolution state; a ratified superseded/moot disposition cannot be written faithfully. Either add the state to the vocabulary and to both derive scripts (build_hypothesis_space.py counting + family closure; check_hypothesis_space_integrity.py must NOT demand the elimination bar for it), or ratify `eliminated` for this leg.",
+      "carried_by": [
+        "governance_flags.v1.json",
+        "chip-20260818-hypothesis-registry-superseded-state"
+      ],
+      "current_cost": "the dashboard reports policy_decomposition_discrimination as 5 surviving where the ratified reading is 4"
+    },
+    {
+      "kind": "structural",
+      "summary": "govdiag1 section 3b (split the question; move instrument hypotheses to a readiness spike) -- weighed, NOT applied: passed on rather than ratified, and GOV-FROZEN-1 has no split operation. Partial evidence against its strong form: an instrument leg (measurement axis) has now been cleanly resolved BY a run, closing the instrumentation family. Its weaker form stands -- the two science legs remain unmeasured and no environment-axis run can measure them.",
+      "carried_by": [
+        "this artifact",
+        "GFLAG-0038 resolution note"
+      ]
+    }
+  ],
+  "routing": {
+    "unblocks": "chip-20260814-mech321-pe-selectivity-repose (STOP-CHECK (a) stops only if BOTH legs are still alive; H-vs-proxy-saturation is now confirmed)",
+    "refuses": "a fourth environment-axis dose escalation (816e or equivalent) -- 816/816b/816d converged within 0.0001 and 816c explains why",
+    "to_governance": [
+      "the superseded-state schema gap",
+      "govdiag1 section 3b weaker form"
+    ]
+  }
+}
