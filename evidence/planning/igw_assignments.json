@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-16T09:30:44Z",
+  "generated_at": "2026-08-18T19:15:49Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6909,6 +6909,52 @@
         "priority": 25,
         "claim_ids": [
           "MECH-357"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260818T191549Z-6c59ead9-spawned_task",
+      "stable_hash": "6c59ead9d2f6",
+      "igw_id_at_assign": "IGW-20260818-214",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-18T19:15:49Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Duplicate of already-open chip chip-20260816-implsub-contextmemory-writepath-degeneracy (kind=work, origin=headless, /implement-substrate, human-consent-gated by metaworker-dispatch Step 4c condition 5). Assigning to stop re-staging; no new work created.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: contextmemory-write-path-addressing-degeneracy",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "SD-017",
+          "ARC-045",
+          "MECH-166"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260818T191549Z-aaeee143-spawned_task",
+      "stable_hash": "aaeee143dc36",
+      "igw_id_at_assign": "IGW-20260818-215",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-18T19:15:49Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Already landed: ree-v3 origin/main 6293b2395248 (MECH-091 phase_reset wiring), 2026-08-17T06:07:23Z. Re-verified live (dispatch cycle 2898, 2026-08-18): multiple clock.phase_reset() call sites now present in ree_core/agent.py, confirming the write-path landed and is not a stale-generator artifact this time either. Prior decision chip chip-igw-20260816-210 already resolved done on the same finding on 2026-08-17; this is the workset generator re-surfacing the same already-done item under a new id/stable_hash. Assigning to suppress further re-staging.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH091-SALIENT-EVENT-TRIGGER-WIRING",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-091"
         ]
       }
     }
