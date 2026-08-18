@@ -247,9 +247,11 @@ clock in different units) and Section 7.4 (`z_block` is not universally acute).
   - **Secondary:** cumulative-distinct-cells + revisit rate -- **downgraded** from the n=1 claim that
     this was "robust to the exhaustion confound". At N=8 new-cell acquisition stops mid-life in 5/8
     seeds and whole-life coverage spans 6.9%..48.6% of the grid. Report it, do not lean on it.
-  - **DROP `drive` outright.** `max |drive - (1 - energy)| = 0.0015` (one step of drain) in 8/8 seeds:
-    it is perfectly collinear with the energy covariate and adds a spurious "8/8 consistent" line to
-    any table it appears in.
+  - **DROP `drive` outright.** `max |drive - (1 - energy)| = 0.0015` (one step of drain) in 8/8 seeds,
+    and this is **definitional** -- `ree-v3/ree_core/agent.py:10951` (SD-012): `drive_level = 1.0 -
+    energy`. It is perfectly collinear with the energy covariate by construction and adds a spurious
+    "8/8 consistent" line to any table it appears in. Nothing to file against the substrate; this is
+    an analysis-side constraint only.
   - **`z_goal` only as a manipulation check, not as an outcome.** `r(z_goal, energy) = 0.9235` to four
     decimal places in 7/8 seeds. Its decline is a readout of the homeostatic clock; treating it as a
     functioning DV would guarantee a "significant" within-life trend that means nothing.
@@ -420,9 +422,13 @@ dominant mode differs wildly by seed (`neutral` in 0/2/4, `assert` in 1, `shelte
 This is the most important result of the multi-seed pass, and it **downgrades** the n=1 candidate
 trends rather than confirming them.
 
-- **`drive` is an algebraic restatement of `energy`.** `max |drive - (1 - energy)| = 0.0015` -- exactly
-  one step of drain -- in **all 8 seeds** across all of Regime A. `drive` carries **zero** information
-  beyond `energy` and must not be counted as a second confirming DV.
+- **`drive` is an algebraic restatement of `energy` -- BY DESIGN, not by accident.**
+  `max |drive - (1 - energy)| = 0.0015` -- exactly one step of drain -- in **all 8 seeds** across all
+  of Regime A, and the substrate confirms this is definitional: `ree-v3/ree_core/agent.py:10951`
+  (SD-012) states `drive_level = 1.0 - energy (obs_body[3])`. So this is not a substrate defect to
+  file; it is an **analysis** constraint. `drive` carries **zero** information beyond `energy` and
+  must never be counted as a second confirming DV -- doing so adds a free "8/8 consistent" row to any
+  table it appears in, which is exactly what Section 3a did at n=1.
 - **`energy` is the same deterministic ramp in every seed** (7/8 bit-identical, Section 7.1). Its
   "8/8 monotone decline" is one curve counted eight times.
 - **`z_goal` is a near-deterministic function of that same ramp.** `r(z_goal, energy)` over Regime A
