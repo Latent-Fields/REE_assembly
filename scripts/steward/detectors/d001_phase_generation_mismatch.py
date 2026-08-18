@@ -28,7 +28,9 @@ KNOWN CLUSTERING, and why it is not pre-suppressed here. Of the 27 findings on
 the 2026-08-16 tree, 10 come from a single `generation: clinical` plan
 (psychiatric_failure_modes_plan.md) and 3 from a single `generation: deferred`
 plan -- systematic whole-plan back-pointer patterns rather than 13 independent
-defects. Collapsing those is a DISPOSITION, which stage 1 has no authority to
+defects. (Re-measured 2026-08-18 on base b3b95d7938: the clinical cluster is now
+**13**, not 10, of the same 27 -- the total held while the clustering tightened.
+Both clusters were adjudicated that day; see the LIST-ONLY DEMOTION note below.) Collapsing those is a DISPOSITION, which stage 1 has no authority to
 make; the right home is a whole-plan entry in state/suppressions.yaml added by
 governance. The ledger this detector feeds is what calibrates that.
 
