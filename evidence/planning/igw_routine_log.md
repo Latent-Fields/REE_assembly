@@ -1876,3 +1876,14 @@ One line per hourly tick. ASCII only.
 2026-08-18T06:36:36Z no eligible item (skipped 238): IGW-20260818-001:skill /governance not allowed; IGW-20260818-002:skill /governance not allowed; IGW-20260818-216:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
 2026-08-18T07:40:01Z workset committed (regen -- 238 items, 26 ready, 0 in flight)
 2026-08-18T07:38:50Z no eligible item (skipped 238): IGW-20260818-001:skill /governance not allowed; IGW-20260818-002:skill /governance not allowed; IGW-20260818-216:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
+2026-08-18T08:40:49Z skip: paused (.igw_routine_pause present)
+2026-08-18T09:40:49Z skip: paused (.igw_routine_pause present)
+2026-08-18T10:40:50Z skip: paused (.igw_routine_pause present)
+2026-08-18T11:40:51Z skip: paused (.igw_routine_pause present)
+2026-08-18T12:40:52Z skip: paused (.igw_routine_pause present)
+2026-08-18T13:40:52Z skip: paused (.igw_routine_pause present)
+2026-08-18T14:40:53Z skip: paused (.igw_routine_pause present)
+2026-08-18T15:40:53Z skip: paused (.igw_routine_pause present)
+2026-08-18T16:40:54Z skip: paused (.igw_routine_pause present)
+2026-08-18T17:41:17Z workset committed (regen -- 239 items, 26 ready, 0 in flight)
+2026-08-18T17:40:55Z no eligible item (skipped 239): IGW-20260818-001:skill /governance not allowed; IGW-20260818-002:skill /governance not allowed; IGW-20260818-218:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
