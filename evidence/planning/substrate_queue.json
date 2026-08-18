@@ -8242,8 +8242,7 @@
       "sd_id": "MECH091-SALIENT-EVENT-TRIGGER-WIRING",
       "title": "Wire the two unwired MECH-091 salient-event triggers (task completion, commitment-boundary crossing) into HeartbeatClock.phase_reset()",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented",
       "ready": true,
       "design_doc": "evidence/planning/sd006_phase2_generation_brief.md",
       "depends_on_unresolved": [],
@@ -8262,7 +8261,8 @@
       "added_session": "cranky-driscoll-126a36",
       "last_seen_session": "cranky-driscoll-126a36",
       "added_utc": "2026-08-16T19:56:35Z",
-      "created_by": "governance 2026-08-16T19:56:35Z (cranky-driscoll-126a36) applying the GFLAG-0037 SPLIT decision: MECH-091 routed to V3 as a small buildable, SD-006 phase 2 true-concurrency routed to V4. This entry exists because the deferral it replaces was permanent BY OMISSION -- commitment_closure:GAP-7 was registered 2026-05-08 blocking_external on SD-006 phase 2 async heartbeat, phase 2 never reached substrate_queue.json, and so no scoping pass, no IGW auto-discovery and no /implement-substrate route could ever see it."
+      "created_by": "governance 2026-08-16T19:56:35Z (cranky-driscoll-126a36) applying the GFLAG-0037 SPLIT decision: MECH-091 routed to V3 as a small buildable, SD-006 phase 2 true-concurrency routed to V4. This entry exists because the deferral it replaces was permanent BY OMISSION -- commitment_closure:GAP-7 was registered 2026-05-08 blocking_external on SD-006 phase 2 async heartbeat, phase 2 never reached substrate_queue.json, and so no scoping pass, no IGW auto-discovery and no /implement-substrate route could ever see it.",
+      "implementation_log": "LANDED ree-v3 origin/main 6293b2395248 (2026-08-17T07:07:23+0100): wired task-completion and commitment-boundary-crossing triggers into phase_reset(). 5 new contract tests pass. Landed via IGW-20260816-210 (igw_routine_ledger.json stable_hash aaeee143dc36, status completed, AUTO_DEFER re_eligible_after 2026-08-19T06:08:44Z). Filed downstream follow-on chip-20260817-q081-boundary-pin-shift-mech091 for a test-pin drift the landing caused. Corrected here by metaworker-dispatch cycle 2881 (ree-cloud-5) after the inter_governance_workset regen re-staged this sd_id as IGW-20260818-213 \"ready\" -- the workset derives status from this field, which was stale at pending_implementation."
     },
     {
       "sd_id": "mech151-action-bias-has-no-e3-ranking-channel",
