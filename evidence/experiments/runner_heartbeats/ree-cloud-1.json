@@ -1,48 +1,40 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-18T07:25:22Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-921",
-      "result": "PASS",
-      "completed_at": "2026-08-12T15:25:40.823679+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-927",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:24:04.778072+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-928",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:34:35.222316+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937",
-      "result": "FAIL",
-      "completed_at": "2026-08-18T01:39:55.041877+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937a",
-      "result": "PASS",
-      "completed_at": "2026-08-18T01:58:59.389993+00:00"
-    }
+  "last_tick_utc": "2026-08-18T08:15:53Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-938",
+  "current_exq_started_utc": "2026-08-18T08:11:42.933274+00:00",
+  "current_title": "ARC-070/MECH-321 prediction-failure SELECTIVITY: rank-based top-20% forward-PE trigger vs rate-matched yoked control, unconditional whole-episode DV (n=40)",
+  "current_claim_id": "ARC-070",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / ARM_OFF",
+    "runs_done": 0,
+    "runs_total": 132,
+    "episodes_done": 9,
+    "episodes_total": 12,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 250,
+  "seconds_remaining": 105762,
+  "recent_lines": [
+    "Seed 11 Condition ARM_OFF",
+    "[train] rollout seed=11 arm=ARM_OFF ep 1/12 ticks=60 forced=0 multi_commits=33",
+    "[train] rollout seed=11 arm=ARM_OFF ep 2/12 ticks=120 forced=0 multi_commits=73",
+    "[train] rollout seed=11 arm=ARM_OFF ep 3/12 ticks=180 forced=0 multi_commits=119",
+    "[train] rollout seed=11 arm=ARM_OFF ep 4/12 ticks=240 forced=0 multi_commits=179",
+    "[train] rollout seed=11 arm=ARM_OFF ep 5/12 ticks=300 forced=0 multi_commits=218",
+    "[train] rollout seed=11 arm=ARM_OFF ep 6/12 ticks=360 forced=0 multi_commits=278",
+    "[train] rollout seed=11 arm=ARM_OFF ep 7/12 ticks=420 forced=0 multi_commits=324",
+    "[train] rollout seed=11 arm=ARM_OFF ep 8/12 ticks=480 forced=0 multi_commits=372",
+    "[train] rollout seed=11 arm=ARM_OFF ep 9/12 ticks=540 forced=0 multi_commits=414"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5254 d28d73d 2026-08-18",
+  "runner_version": "r5258 ccb5c89 2026-08-18 (running r5254 d28d73d)",
   "gpu": {
     "available": false
   },
