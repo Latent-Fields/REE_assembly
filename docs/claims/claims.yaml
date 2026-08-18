@@ -35987,6 +35987,18 @@
     [2026-08-16 governance apply | V3-EXQ-934 -> SD-032a | failure_autopsy_V3-EXQ-934_2026-08-16] DISPOSITION: evidence_direction non_contributory. Narrow diagnostic support only. Where the argmax crossing sits, the SD-032a mode register produced genuine discrete alternation (seed 42 @ cap 0.75: 19 switches, ext_dwell_mean 43.2; seed 43 @ cap 1.75: 18 switches, ext_dwell_mean 53.5) with the MECH-259 switch trigger firing -- the first alternating occupancy in this lineage, which previously read 0.0 or 1.0 everywhere. Note SD-032a's own functional_restatement specifies that mode transitions ARE discrete, not graded, so the bang-bang shape reported by 464e/467e is SD-032a behaving as written and is NOT evidence against it; what remains unresolved is whether a contested-occupancy window wide enough for MECH-266's hysteresis to express is obtainable, which is V3-EXQ-935's question. Add the scoping evidence_quality_note above -> standard
 
     V3-EXQ-934 (diagnostic, excluded from confidence scoring; GOV-FANOUT-1 leg H1 of frozen-ledger question mech266_mode_arbitration_saturation). Both readiness preconditions cleared on measured, non-vacuous values (contact guard 3/3 seeds, contact rates 0.25-0.31, z_goal peaks 0.433-0.492 against a 0.4 gate; margin guard 3/3, though at 7-16x its floor it is a liveness check rather than a strong control). On the primary ARM_SYMMETRIC the single load-bearing criterion passed at exactly the 2/3 minimum. READ IT NARROWLY. The criterion is an EXISTENTIAL over the 5-point cap grid evaluated PER SEED, and the two passing seeds' mixed cells sit at OPPOSITE ENDS of the sweep (seed 42 only at cap 0.75, occupancy 0.5606; seed 43 only at cap 1.75, occupancy 0.4447; seed 44 never, minimum 0.9002 against a 0.9 ceiling). NO single cap grades on more than 1 of 3 seeds (0.75 -> 1/3; 1.0/1.25/1.5 -> 0/3; 1.75 -> 1/3), so winning_cap_band_symmetric = [0.75, 1.75] is the min/max of two disjoint singletons, not a band, and no common operating point was demonstrated. The mixed cells ARE non-degenerate (18-19 switches, mode-conditioned external_task dwell 43-54 steps), so the SD-032a mode register does genuinely alternate where the argmax crossing sits -- but that crossing is at most one grid step (0.25 cap units) wide in every seed showing it, and its location differs by >= 1.0 cap units across seeds, so an existential on a 5-point grid detects a CROSSING and cannot discriminate H1 (graded arbitration) from H2 (structurally bang-bang). H2 is NOT eliminated by this run. TWICE NON-PRODUCTION: salience_affinity_input_cap defaults to None (no clamp) and use_external_task_drive defaults to False, so the swept configuration is not production; training was held at cap 2.0, itself outside the swept range; and the driver's own pre-authoring probe recorded operating_mode['external_task'] = 0.0 at the production default cap=None. Mechanistically the clamp is a no-op on external_task_drive at every cap >= 1.0 (that signal is already bounded to [0,1] at agent.py:6958), so 4 of the 5 swept cells manipulate only the competing unbounded affinity inputs; and _et_commit = commit_weight * float(beta_gate.is_elevated) (agent.py:6944) is a boolean latch -- a second, cap-INDEPENDENT discreteness source no cap can grade. Failure-location (GOV-FAILLOC-1): MIXED (MECHANISM + MEASURES); environment adequate, implementation partial, measurement under-instrumented; not chargeable to REE. Successor V3-EXQ-935 (claimed 2026-08-16T13:01Z) already tests the common-operating-point question via a margin-normalised cap rule on 5 seeds.
+
+    2026-08-18 (governance apply, V3-EXQ-935, confirmed
+    failure_autopsy_V3-EXQ-935_2026-08-18): direction CORRECTED weakens -> supports (narrow,
+    diagnostic; excluded from confidence scoring). The driver stamped weakens from the same
+    else-branch that emitted a factually false route_reason ("no common normalised rule
+    outperformed the best absolute cap") while c3_beats_best_absolute_cap was TRUE. On the
+    data the SD-032a mode register produced graded, non-degenerate occupancy spanning
+    0.124-0.925 with 15-26 genuine switches per cell on 4 of 5 seeds across a monotone dose-
+    response -- its best performance in this lineage -- and alternates at R_STAR=2.25 as
+    well, so the correction does not rest on the post-hoc r. Consistent with the V3-EXQ-934
+    autopsy, which already recommended supports for SD-032a on narrower grounds. Status
+    stays stable.
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/salience_coordinator.py
     (SalienceCoordinator, SalienceCoordinatorConfig, DEFAULT_MODE_NAMES,
@@ -38867,6 +38879,15 @@
     reading; MECH-309 monomodal collapse is the active failure mode).
     V3-EXQ-598b therefore registers as MECH-262=non_contributory rather
     than weakens. Retest after rule-creator substrate lands.
+
+    2026-08-18 (governance apply, SEPARATE FINDING carried from confirmed
+    failure_autopsy_V3-EXQ-874b_2026-08-17, which records it on MECH-262 as well as on
+    MECH-467): in the 9 V3-EXQ-874b cells with a live z_goal, storage-site rule drift
+    (0.004-0.384) and selection-path operative-rule fidelity (0.985-1.000) DISSOCIATE in 6
+    of 9 cells -- so a storage-site rule read does NOT track the operative rule on this
+    substrate. No status, direction or category change: MECH-262 stays candidate /
+    substrate_ceiling with pending_retest_after_substrate true. Recorded so that a future
+    rule-read instrument is not built on the assumption that the two agree.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/entries/2026-04-19_pfc_cluster_abstract_rules_mansouri2020/summary.md
 - id: MECH-263
   title: "OFC-analog state-space and specific-outcome representation: SD-033b represents both a structured cognitive map of the current task state space and the specific outcomes expected from actions in each state. Value signals ride on top of this structured representation rather than being stored in it directly."
@@ -39600,6 +39621,15 @@
     [2026-08-16 governance apply | V3-EXQ-934 -> MECH-266 | failure_autopsy_V3-EXQ-934_2026-08-16] DISPOSITION: evidence_direction non_contributory. PERIPHERAL / not exercised in V3-EXQ-934: the MECH-266 manipulation arm (ARM_ASYM_STICKY_TASK sticky exit rail) sat at fraction_in_external_task = 1.0 with n_switches = 0 in all 15 cells (3 seeds x 5 caps) -- the intended manipulation, not a dose-response -- and the load-bearing criterion was evaluated on the symmetric arm, which contains no MECH-266 mechanism. The run establishes a measurement precondition for a future MECH-266 test and weighs nothing for or against the claim. No substrate_ceiling attribution accrues to MECH-266 from this run and its brake count is unchanged at 6. Add the per-claim evidence_quality_note above and keep pending_retest_after_substrate -> standard
 
     V3-EXQ-934 (diagnostic, excluded from confidence scoring; GOV-FANOUT-1 leg H1 of frozen-ledger question mech266_mode_arbitration_saturation). Both readiness preconditions cleared on measured, non-vacuous values (contact guard 3/3 seeds, contact rates 0.25-0.31, z_goal peaks 0.433-0.492 against a 0.4 gate; margin guard 3/3, though at 7-16x its floor it is a liveness check rather than a strong control). On the primary ARM_SYMMETRIC the single load-bearing criterion passed at exactly the 2/3 minimum. READ IT NARROWLY. The criterion is an EXISTENTIAL over the 5-point cap grid evaluated PER SEED, and the two passing seeds' mixed cells sit at OPPOSITE ENDS of the sweep (seed 42 only at cap 0.75, occupancy 0.5606; seed 43 only at cap 1.75, occupancy 0.4447; seed 44 never, minimum 0.9002 against a 0.9 ceiling). NO single cap grades on more than 1 of 3 seeds (0.75 -> 1/3; 1.0/1.25/1.5 -> 0/3; 1.75 -> 1/3), so winning_cap_band_symmetric = [0.75, 1.75] is the min/max of two disjoint singletons, not a band, and no common operating point was demonstrated. The mixed cells ARE non-degenerate (18-19 switches, mode-conditioned external_task dwell 43-54 steps), so the SD-032a mode register does genuinely alternate where the argmax crossing sits -- but that crossing is at most one grid step (0.25 cap units) wide in every seed showing it, and its location differs by >= 1.0 cap units across seeds, so an existential on a 5-point grid detects a CROSSING and cannot discriminate H1 (graded arbitration) from H2 (structurally bang-bang). H2 is NOT eliminated by this run. TWICE NON-PRODUCTION: salience_affinity_input_cap defaults to None (no clamp) and use_external_task_drive defaults to False, so the swept configuration is not production; training was held at cap 2.0, itself outside the swept range; and the driver's own pre-authoring probe recorded operating_mode['external_task'] = 0.0 at the production default cap=None. Mechanistically the clamp is a no-op on external_task_drive at every cap >= 1.0 (that signal is already bounded to [0,1] at agent.py:6958), so 4 of the 5 swept cells manipulate only the competing unbounded affinity inputs; and _et_commit = commit_weight * float(beta_gate.is_elevated) (agent.py:6944) is a boolean latch -- a second, cap-INDEPENDENT discreteness source no cap can grade. Failure-location (GOV-FAILLOC-1): MIXED (MECHANISM + MEASURES); environment adequate, implementation partial, measurement under-instrumented; not chargeable to REE. Successor V3-EXQ-935 (claimed 2026-08-16T13:01Z) already tests the common-operating-point question via a margin-normalised cap rule on 5 seeds.
+
+    2026-08-18 (governance apply, V3-EXQ-935, confirmed
+    failure_autopsy_V3-EXQ-935_2026-08-18): non_contributory / standard, UPHELD as stamped.
+    PERIPHERAL / NOT EXERCISED: V3-EXQ-935 sweeps a single symmetric affinity_input_cap and
+    contains no asymmetric-threshold arm, so MECH-266's Schmitt trigger (exit_threshold <
+    enter_threshold) was never instantiated and the claim could not express itself on this
+    run. It is a calibration step UPSTREAM of any MECH-266 test, not a test of it. No
+    substrate_ceiling attribution accrues from this run and the re-derive brake count stays
+    at 6. pending_retest_after_substrate stays true. Status stays provisional.
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-267
   title: "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection."
@@ -71786,6 +71816,52 @@
     MECH-260 is deliberately untagged on this run (its own falsifier is behavioural, blocked on the
     MECH-457 competence floor and vacuous there; MECH-260 is ceiling_decision exhausted under
     GOV-CEIL-1) -- correct, and not to be "fixed" by adding the tag. Status stays provisional.
+
+    2026-08-18 (governance apply, V3-EXQ-937a + V3-EXQ-937, confirmed
+    failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18). V3-EXQ-937a PASS / supports STANDS,
+    with its BASIS CORRECTED -- the manifest's stated basis is wrong in both halves and must
+    NOT be cited. It reports (a) a graded dose-response of conversion on envelope width and
+    (b) that no inert regime was reached on the ladder. The autopsy recovered the per-bank
+    (pre-No-Go envelope size, converted) joint that the driver computes at
+    v3_exq_937a...py:536-549 and DISCARDS, over 11 floors x 3 seeds x 128 banks = 4,224
+    banks: conversion is a DETERMINISTIC STEP FUNCTION of per-bank envelope size -- envelope
+    1 -> 0/1277 conversions (rate 0.000000), envelope 2/3/4 -> 1196/1196, 1062/1062, 689/689
+    (rate 1.000000) -- stepping exactly where gng_protect_min_eligible=1 predicts
+    (n_can_drop = 1-1 = 0 at envelope 1; e3_selector.py:1664-1679). Consequently
+    manifest_conversion(floor) == 1 - P(envelope collapses to 1 | floor) to 0.000000 at all
+    11 doses, i.e. the reported curve is the mediator's OWN distribution and carries no
+    independent information about the outcome given the mediator. So (a) is a binning
+    artifact of cell-median aggregation, and (b) is REFUTED by the run's own discarded data
+    -- an inert regime WAS reached and is perfectly inert, which CONFIRMS rather than
+    refutes V3-EXQ-926a's "structurally gated by envelope width" finding of record. The
+    corrected basis supports MECH-449 MORE strongly than the manifest claims: the No-Go leg
+    fires deterministically whenever it has room (envelope >= 2) with perfect content
+    specificity (ARM_SHUFFLED 0/4224 at every envelope size), and gng_protect_min_eligible
+    fail-open behaves exactly as specified. THREE CAVEATS GATE ACTING ON THIS: (1)
+    selection-face synthetic probe, no training and no agent loop (reuse_ineligible_reasons:
+    selection_face_synthetic_no_training), so this confirms the constitution's ARITHMETIC
+    and no behavioural competence -- purpose=diagnostic, it scores nothing and PROMOTES
+    NOTHING; (2) at K_CANDIDATES=4 with integer protect_min=1, MECH-448's deliberately
+    GRADED envelope realizes only 4 states and this leg's authority is BINARY, so the step
+    shape may be an artifact of small K and generality in K is untested; (3) conversion==1
+    at envelope >= 2 is partly a construction property, since the incumbent is both the
+    F-argmin and the sole suppression target. SEPARATELY, V3-EXQ-937 FAIL / non_contributory
+    STANDS and its SELF-ROUTE LABEL conversion_independent_of_envelope_width IS WITHDRAWN AS
+    FALSE: per bank, conversion is a deterministic function of envelope width. The label was
+    already contradicted by 937's own C2, which passed with a clean monotone rise, and that
+    C2 is additionally stamped criteria_non_degenerate=false, so it never supported anything
+    either. non_contributory is RETAINED because 937's criteria measured the WRONG STATISTIC
+    -- its C1 lift (0.344/0.273/0.320 against a 0.40 bar calibrated on a V3-EXQ-926a anchor
+    that did not replicate) is the same cell-median mixing proportion as 937a's over a
+    narrower window -- not because the run yielded no interpretable information; its
+    underlying data, re-analysed per bank, is consistent with the confirmed step and with
+    937a. Same root cause, same cluster, one structural property rather than two independent
+    bugs. Failure-location MEASURES FAILED, single bucket -- mechanism and environment each
+    independently adequate, so not chargeable to REE or to the mechanism. No substrate gap
+    was found (severity and substrate_paths deliberately left unset: there is no substrate
+    defect for /queue-experiment Step 2.5c to protect other experiments from). Re-derive
+    brake NOT fired (MECH-449=0). Routed /queue-experiment V3-EXQ-937b, recording-only.
+    Status stays provisional.
   depends_on:
     - ARC-107    # the BG-constitution umbrella this is the core eligibility-governance leg of (the unbuilt substrate it is conditional on)
     - MECH-439   # the F-dominance ceiling it is proposed to resolve
@@ -73392,6 +73468,7 @@
       from: v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3
       as_of: 2026-08-14
       verdict: supports/PASS -- last untested No-Go axis converts, at a non-default envelope floor (0.10 vs stock 0.30)
+  epistemic_category: standard
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
@@ -73422,6 +73499,24 @@
     three ARC-107 depends_on entries are still flagged MISSING PIECE (ARC-108 unified dopamine
     substrate, ARC-109 D1/D2 population split, MECH-450 recurrent settling step), so the
     constitution remains incomplete regardless of this axis result.
+
+    2026-08-18 (governance apply, V3-EXQ-937a + V3-EXQ-937, confirmed
+    failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18): supports (937a) / non_contributory
+    (937). The corrected per-bank basis is recorded in full on MECH-449; in short,
+    conversion is a DETERMINISTIC STEP FUNCTION of per-bank envelope size (envelope 1 ->
+    rate 0.000000; envelope >= 2 -> rate 1.000000) stepping exactly where
+    gng_protect_min_eligible=1 predicts, so 937a's manifest basis (a graded dose-response,
+    and no inert regime reached) is withdrawn as a cell-median binning artifact. ANSWERS THE
+    ARC-107 BUILD-CONFIGURATION QUESTION left open by the 2026-08-16 V3-EXQ-926a caveat
+    about the stock floor: the knee is realized envelope 2 exactly (zero variance), and at
+    the shipped f_eligibility_envelope_floor=0.30 the No-Go leg is NOT inert but IS silenced
+    on 31.5% of decisions (121/384 banks collapse to envelope 1) by the fail-open guard.
+    CAVEAT carried from the cluster: at K_CANDIDATES=4 with integer protect_min=1 the leg's
+    authority is BINARY, so the step shape may be an artifact of small K and generality in K
+    is untested. V3-EXQ-937's self-route label conversion_independent_of_envelope_width is
+    WITHDRAWN AS FALSE. Both runs are purpose=diagnostic, score nothing and PROMOTE NOTHING;
+    status stays candidate. epistemic_category standard is written onto this claim in this
+    cycle -- it was ABSENT before, so this is a real write rather than a restatement.
   depends_on:
     - ARC-106    # brain-like construction constraint: this IS the first major worked application -- a BG-like selector grounded at the level of FUNCTION, load-bearing not decorative
     - MECH-439   # the F-dominance conversion ceiling this constitution is proposed to resolve
@@ -76656,6 +76751,29 @@
     attention substrate is justified only if an experiment exposes a SPECIFIC failure")
     already disclaims needing MECH-254's v4 boundary-gate implementation; V3-EXQ-874
     tested legs (a)/(b) without it.
+
+    2026-08-18 (governance apply, V3-EXQ-874b, confirmed
+    failure_autopsy_V3-EXQ-874b_2026-08-17, second experimental test): non_contributory /
+    standard. The leg-(c) redesign FAILED to produce a denominator -- 1/3/4/0 pooled
+    consumption events per arm against a pre-registered floor of 15, all four arms gate-RED,
+    non_degenerate false. Nothing weighs against the claim. The redesign's OWN hypothesis is
+    REFUTED and that is the informative result: 874b took the arena to 6x6 at ~3x resource
+    density on a probe measuring 0.0100 events/tick and realised 0.00117 -- 8.5x worse at
+    double the density -- so arena geometry was NOT the binding constraint and the
+    V3-EXQ-874 commitment-deficit hypothesis is re-implicated. Three defects the manifest
+    does not report: (1) 7 of 12 cells terminated early on health_depleted, so only 63.1% of
+    the pre-registered exposure window was realised and no cell records it; (2) the rule-
+    set-complexity axis is confounded with nutritive density (COMPLEX realised 41% of its
+    window vs SIMPLE's 85%); (3) z_goal_stream.writer_defect true is a FALSE POSITIVE -- the
+    accumulator observed the P0 base agents, not the 12 stepping clones, and
+    goal_live_at_warmup_end is true in 9/12 cells. At observed rates the floor needs
+    8380-17200 ticks/arm against 2700 budgeted, so lengthening the window alone cannot
+    rescue this design. Failure-location MIXED, not chargeable to REE. No substrate_queue
+    entry was minted, deliberately: four live hypotheses explain the missing denominator and
+    naming a build now would pick one before the discrimination has been run, which is the
+    error GOV-FANOUT-1 exists to prevent. Routed /queue-experiment as a GOV-FANOUT-1 4-leg
+    portfolio (process / environment / measurement / selection), NOT another lettered re-
+    pose of the same design. Status stays candidate.
 
 - id: INV-092
   title: "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost."

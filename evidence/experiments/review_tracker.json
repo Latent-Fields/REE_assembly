@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-16T19:07:14Z",
+  "last_review_utc": "2026-08-18T14:10:37Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1164,7 +1164,11 @@
     "v3_exq_931_cem_wanting_weight_selection_authority_20260814T123949Z_v3",
     "v3_exq_932_zgoal_wanting_coupling_reinstrument_20260814T155424Z_v3",
     "v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3",
-    "v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3"
+    "v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3",
+    "v3_exq_874b_mech467_distractor_three_leg_battery",
+    "v3_exq_935_mech266_margin_normalised_cap_rule",
+    "v3_exq_937_mech449_envelope_width_dose_response",
+    "v3_exq_937a_mech449_envelope_inertness_point"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3997,7 +4001,11 @@
     "v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3",
     "v3_exq_920_uncensored_survival_single_life_fishtank_20260814T223432Z_v3",
     "v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3",
-    "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3"
+    "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3",
+    "v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3",
+    "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+    "v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3",
+    "v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6352,6 +6360,30 @@
         "No claim-tagged EVIDENCE-purpose PASS in this batch: every PASS is experiment_purpose=diagnostic and carries a CONFIRMED /failure-autopsy target, which subsumes the mandatory driver skim. The mandatory-skim rule therefore had no applicable target this cycle -- recorded explicitly rather than silently skipped."
       ],
       "notes": "All 14 pending runs cleared in ONE pass: every one was already covered by a confirmed failure_autopsy artifact from this session own 18:45Z batch (7 artifacts / 10 runs) plus the 861c/861d, 436f/603u and 927/928 clusters. needs-autopsy set was EMPTY at Step 1.5, so no route-B pending debt was carried forward. 13 of 14 runs adjudicated non_contributory -- NOT ONE FAIL WEAKENS ITS CLAIM; every failure was a PRECONDITION failure upstream of the comparison. THREE manifest self-stamps OVERRIDDEN on autopsy authority: V3-EXQ-930 supports->non_contributory (MECH-303 gate never enabled -- use_contextual_safety_terrain default False), V3-EXQ-861d weakens->non_contributory on MECH-122 (novelty gate dead/saturated on 2/3 seeds), V3-EXQ-922a mixed->non_contributory on MECH-152. V3-EXQ-927 -> superseded as a burned-id duplicate of 928 (bit-identical numerics, no ree_core change) so it stops double-counting. epistemic_category standard->substrate_ceiling on SD-017/ARC-045/MECH-166 (the 436e stamp of standard was conditioned on the substrate having shipped and merely needing switching on; 436f tested that condition and falsified it). epistemic_category STAMPED standard on MECH-267 and MECH-303 (both previously absent). MECH-357 epistemic_category deliberately KEPT standard against a live substrate_ceiling alternative. SD-032a is the single supports in the batch (narrow, diagnostic): first alternating mode occupancy in a lineage that previously read 0.0 or 1.0 everywhere. MECH-152 DECISIVE: the 2026-08-16 HELD demote_to_candidate is NOT applied -- 922a shows the Pearson-r DV ranks the cue-indexing-OFF control HIGHEST and the fully-selective arm LOWEST, so the instrument disqualifies the supporting EXQ-194 entry SYMMETRICALLY with the conflicting V3-EXQ-922 one; the claim has never been tested at the magnitude it asserts, in either direction. pending_retest re-scoped to a MEASUREMENT redesign, not a substrate build. Diagnostic adjudication flags on 927/928 (vacuous_pass) CLEARED by the 927-928 autopsy as a criteria-tagging artifact (declared combination_rule is a disjunction while all three per-arm criteria were tagged load_bearing). Dead z_goal writer defect recorded on 861c/861d (writer_calls 0 over 57,863 / 38,346 ticks). 0 dry-run citations across all 14 (checked); all 7 autopsies carry dry_run_checked true."
+    },
+    {
+      "cycle": "governance-cycle-2026-08-18",
+      "session_id": "governance-paused-bb6e76",
+      "utc": "2026-08-18T14:10:37Z",
+      "reviewed_run_ids": [
+        "v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3",
+        "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+        "v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3",
+        "v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_874b_mech467_distractor_three_leg_battery",
+        "v3_exq_935_mech266_margin_normalised_cap_rule",
+        "v3_exq_937_mech449_envelope_width_dose_response",
+        "v3_exq_937a_mech449_envelope_inertness_point"
+      ],
+      "left_pending_needs_autopsy": [
+        "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+      ],
+      "driver_skim_log": [
+        "V3-EXQ-936 (MECH-439, the ONLY claim-tagged evidence-purpose PASS this cycle) -- SKIM FOUND A DEFECT. The run is stamped PASS/weakens on MECH-439's registered falsifying signature (C1 converts true, C2 reduces-F-share false). That signature is VACUOUS here. Per-cell f_variance_abs runs 6.4e18 / 4.1e72 / 9.8e65 / 1.0e53 against nonf_variance_abs 9.4e4 / 5.1e32 / 1.1e28 / 2.9e19 -- F exceeds NON-F by 15-40 orders of magnitude, so f_variance_share saturates at exactly 1.0 by float64 resolution on 3 of 4 seeds. Observed paired reductions were -1.97e-07 / 0.0 / 0.0 / 1.74e-13 against a 0.05 bar: C2's entire dynamic range in this run is ~2e-7, five orders below its own threshold, so C2 COULD NOT HAVE PASSED regardless of what the demotion lever did. The driver HAS a guard for exactly this -- nonf_variance_nondegenerate, whose own description says 'if these are flat, f_variance_share is ~1.0 by STARVATION and the falsifier is unmeasurable, not confirmed' -- but it tests MIN_NONF_VARIANCE = 1e-9, an ABSOLUTE floor, against a RELATIVE hazard, and criteria_non_degenerate['C2'] = readiness_all_met and c1_pass inherits entirely from it. Secondary flag: f_variance_abs of 1e53-1e72 implies F component values of order 1e26-1e36, not a physically meaningful score magnitude, so a possible unbounded-F-growth substrate issue sits underneath. ROUTED to /failure-autopsy per Step 2b (a PASS whose skim surfaces an actual defect routes like any other flagged result); run left PENDING with NO governance-written evidence_direction. NOTE THE RESIDUAL: the manifest's own weakens stamp is already counted (MECH-439 genuine_exp_direction_counts = {weakens: 1}, exp_conf 0.303) and governance did NOT strip it, because removing it is an adjudication the walk may not make alone -- so MECH-439 continues to carry a suspect weakens until the autopsy lands."
+      ],
+      "notes": "5 pending at Step 1.5; 4 cleared, 1 deliberately left pending. FOUR runs cleared on CONFIRMED autopsies (all dry_run_checked true; all 5 pending runs verified non-dry via check_dry_run_citations.py, 0 dry cited): V3-EXQ-874b (MECH-467), V3-EXQ-935 (MECH-266/SD-032a), and the V3-EXQ-937+937a cluster (MECH-449/ARC-107). NOT ONE FAIL WEAKENS ITS CLAIM -- 874b and 935 both failed UPSTREAM of the comparison (874b produced 1/3/4/0 consumption events against a floor of 15; 935 never instantiated MECH-266's Schmitt trigger at all). TWO manifest self-stamps OVERRIDDEN on autopsy authority: SD-032a weakens->supports (the driver stamped weakens from an else-branch that simultaneously emitted a factually false route_reason while c3_beats_best_absolute_cap was true), and V3-EXQ-937's self-route label conversion_independent_of_envelope_width WITHDRAWN AS FALSE (per bank, conversion is a deterministic step function of envelope width). The 937/937a cluster's headline is that the driver COMPUTES AND DISCARDS the per-bank joint that answers the question: over 4,224 banks, conversion is 0.000000 at envelope 1 and 1.000000 at envelope >=2, stepping exactly where gng_protect_min_eligible=1 predicts -- so 937a's reported dose-response is the mediator's own distribution, its 'no inert regime reached' is refuted by its own discarded data, and the corrected basis supports MECH-449/ARC-107 MORE strongly than the manifest claimed. That also ANSWERS the ARC-107 build-configuration question: knee at realized envelope 2 exactly, and at the shipped floor 0.30 the No-Go leg is not inert but IS silenced on 31.5% of decisions. epistemic_category STAMPED standard on ARC-107 (previously absent -- a real write). Separate finding carried onto MECH-262 from the 874b autopsy: storage-site rule drift and selection-path operative-rule fidelity DISSOCIATE in 6 of 9 live-z_goal cells, so a storage-site rule read does not track the operative rule. The pending_review z_goal writer_defect flag on 874b is a FALSE POSITIVE (accumulator watched the P0 base agents, not the 12 stepping clones; goal_live_at_warmup_end true in 9/12). V3-EXQ-936 LEFT PENDING and routed to /failure-autopsy on the mandatory driver skim -- see driver_skim_log. No promotions, no demotions, no status changes anywhere this cycle."
     }
   ]
 }

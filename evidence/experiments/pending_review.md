@@ -1,37 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-08-18T08:23:23Z`  
-Last review: `2026-08-16T19:07:14Z`  
-Pending: **5** item(s) -- 2 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3` | 2026-08-16T22:29 | MECH-467 | — |
-| `v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3` | 2026-08-17T07:57 | MECH-266, SD-032a | — |
-| `v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3` | 2026-08-18T01:39 | ARC-107, MECH-449 | — |
+Generated: `2026-08-18T14:11:02Z`  
+Last review: `2026-08-18T14:10:37Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` | 2026-08-17T06:20 | MECH-439 |
-| `v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3` | 2026-08-18T01:58 | ARC-107, MECH-449 |
-
-## Dead z_goal stream (interpret before trusting a z_goal readout)
-
-**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
-
-Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
-
-**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
-
-**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
-
-| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
-|--------|--------|-------|--------------|-------------|-----------|
-| `v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3` | FAIL | 28674 | **0** | 0.000 | live |
 
 ---
 
