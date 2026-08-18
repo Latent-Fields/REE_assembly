@@ -1,0 +1,274 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_938_arc070_mech321_pe_selectivity_yoked_wholeepisode",
+  "run_id": "v3_exq_938_arc070_mech321_pe_selectivity_yoked_wholeepisode_20260818T215558Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-18T21:55:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-070",
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-070": "weakens",
+    "MECH-321": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "pe_selectivity_refuted_rate_matched_wholeepisode",
+    "preconditions": [
+      {
+        "name": "ARM_OFF::decomposition_inert_every_cell",
+        "precondition": "decomposition_inert_every_cell",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "ARM_OFF carries no decomposition at all: decomp_n_decomposed_total must be EXACTLY 0 on every OFF cell. This is the structural zero the DV-symmetry declaration requires of the arm carrying no manipulation.",
+        "control": "WORST (maximum) ARM_OFF cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_OFF::forward_pe_varies",
+        "precondition": "forward_pe_varies",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "Positive control on the RANKING SIGNAL ITSELF, and the same statistic the trigger routes on: the forward-PE population the within-run quantile is computed over must have non-zero variance. A degenerate (constant) PE stream would make the top-q% selection arbitrary rather than PE-informative, which would make ARM_PE a second yoked arm and the load-bearing contrast vacuous.",
+        "control": "WORST cell of the arm (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.012989178303645e-08,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_OFF::forward_pe_bounded",
+        "precondition": "forward_pe_bounded",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "Positive control: forward PE is bounded (the online forward model has not diverged). Mirrors 816/839/844/867/919's identical precondition.",
+        "control": "WORST cell of the arm (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.009189563177319036,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PE::forced_trigger_engages_every_cell",
+        "precondition": "forced_trigger_engages_every_cell",
+        "arm": "ARM_PE",
+        "kind": "readiness",
+        "description": "The injected trigger actually fires on EVERY measurement cell of a decomposition-ON arm (forced_fires_total > 0). This is the TRIVIAL EXISTENTIAL the design permits -- it asserts the instrument is connected, NOT that any particular occupancy level was reached. Per-cell, not aggregate.",
+        "control": "WORST (minimum) cell of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 91.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PE::forward_pe_varies",
+        "precondition": "forward_pe_varies",
+        "arm": "ARM_PE",
+        "kind": "readiness",
+        "description": "Positive control on the RANKING SIGNAL ITSELF, and the same statistic the trigger routes on: the forward-PE population the within-run quantile is computed over must have non-zero variance. A degenerate (constant) PE stream would make the top-q% selection arbitrary rather than PE-informative, which would make ARM_PE a second yoked arm and the load-bearing contrast vacuous.",
+        "control": "WORST cell of the arm (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.4133723741217705e-08,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_PE::forward_pe_bounded",
+        "precondition": "forward_pe_bounded",
+        "arm": "ARM_PE",
+        "kind": "readiness",
+        "description": "Positive control: forward PE is bounded (the online forward model has not diverged). Mirrors 816/839/844/867/919's identical precondition.",
+        "control": "WORST cell of the arm (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.009618709449811528,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_YOKED::forced_trigger_engages_every_cell",
+        "precondition": "forced_trigger_engages_every_cell",
+        "arm": "ARM_YOKED",
+        "kind": "readiness",
+        "description": "The injected trigger actually fires on EVERY measurement cell of a decomposition-ON arm (forced_fires_total > 0). This is the TRIVIAL EXISTENTIAL the design permits -- it asserts the instrument is connected, NOT that any particular occupancy level was reached. Per-cell, not aggregate.",
+        "control": "WORST (minimum) cell of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 91.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_YOKED::forward_pe_varies",
+        "precondition": "forward_pe_varies",
+        "arm": "ARM_YOKED",
+        "kind": "readiness",
+        "description": "Positive control on the RANKING SIGNAL ITSELF, and the same statistic the trigger routes on: the forward-PE population the within-run quantile is computed over must have non-zero variance. A degenerate (constant) PE stream would make the top-q% selection arbitrary rather than PE-informative, which would make ARM_PE a second yoked arm and the load-bearing contrast vacuous.",
+        "control": "WORST cell of the arm (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.978908841035348e-08,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_YOKED::forward_pe_bounded",
+        "precondition": "forward_pe_bounded",
+        "arm": "ARM_YOKED",
+        "kind": "readiness",
+        "description": "Positive control: forward PE is bounded (the online forward model has not diverged). Mirrors 816/839/844/867/919's identical precondition.",
+        "control": "WORST cell of the arm (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.009518563123937283,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_51",
+        "kind": "readiness",
+        "description": "A-A null control on ARM_PE (same seed, all replicates through arm_cell with full RNG reset) must be bit-identical: max |delta| EXACTLY 0.0 and every action sequence equal. Run on ARM_PE rather than the inert OFF arm because ARM_PE is the arm that exercises the new PE-history + expanding-window-quantile + injected-actuator instrumentation, so it is the path whose determinism actually needs proving.",
+        "control": "A-A replicate set, seed 51",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_57",
+        "kind": "readiness",
+        "description": "A-A null control on ARM_PE (same seed, all replicates through arm_cell with full RNG reset) must be bit-identical: max |delta| EXACTLY 0.0 and every action sequence equal. Run on ARM_PE rather than the inert OFF arm because ARM_PE is the arm that exercises the new PE-history + expanding-window-quantile + injected-actuator instrumentation, so it is the path whose determinism actually needs proving.",
+        "control": "A-A replicate set, seed 57",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_63",
+        "kind": "readiness",
+        "description": "A-A null control on ARM_PE (same seed, all replicates through arm_cell with full RNG reset) must be bit-identical: max |delta| EXACTLY 0.0 and every action sequence equal. Run on ARM_PE rather than the inert OFF arm because ARM_PE is the arm that exercises the new PE-history + expanding-window-quantile + injected-actuator instrumentation, so it is the path whose determinism actually needs proving.",
+        "control": "A-A replicate set, seed 63",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "aa_control_bit_identical_seed_69",
+        "kind": "readiness",
+        "description": "A-A null control on ARM_PE (same seed, all replicates through arm_cell with full RNG reset) must be bit-identical: max |delta| EXACTLY 0.0 and every action sequence equal. Run on ARM_PE rather than the inert OFF arm because ARM_PE is the arm that exercises the new PE-history + expanding-window-quantile + injected-actuator instrumentation, so it is the path whose determinism actually needs proving.",
+        "control": "A-A replicate set, seed 69",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "pe_yoked_realised_rate_matched",
+        "kind": "readiness",
+        "description": "ARM_YOKED is given ARM_PE's per-episode forced-locus count EXACTLY by construction; the REALISED decomposition rate is a measured quantity (the R1 trigger is an OR, so the live MECH-288 boundary path contributes in both arms, and a forced locus only reaches evaluate() where a chunk candidate is under consideration). This checks the two arms genuinely carry the SAME AMOUNT of decomposition, which is what makes the contrast a selectivity test rather than a dose comparison.",
+        "control": "ARM-LEVEL mean realised decomposition rate, ARM_PE vs ARM_YOKED over 40 paired seed(s); per-seed gaps reported separately (worst seed 33 at 0.1957, 0 seed(s) outside tolerance)",
+        "measured": 0.018537161106675533,
+        "threshold": 0.25,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 33
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_PE_SELECTIVITY_IMPROVES_OUTCOME",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.001338403354171251,
+        "threshold": 0.0,
+        "statement": "LOAD-BEARING. Over ALL measured seeds (no screen, no tiering, no post-hoc selection, no occupancy gate), the unconditional whole-episode mean harm signal is LESS harmful under decomposition placed at top-20% forward-PE loci (ARM_PE) than under the SAME per-episode amount of decomposition placed at PE-uninformative loci (ARM_YOKED), by an effect exceeding 1.0 x SE over >= 40 paired seeds. PRE-DECLARED NULL: a delta <= 0 within that bound REFUTES ARC-070's prediction-failure-selectivity leg at this grain. Both directions are verdicts."
+      },
+      {
+        "name": "C2_DECOMPOSITION_PER_SE_VS_OFF",
+        "load_bearing": false,
+        "passed": false,
+        "measured": -0.03681186421799164,
+        "threshold": 0.0,
+        "statement": "NON-LOAD-BEARING context: ARM_PE vs the ARM_OFF structural zero -- decomposition PER SE, which is the comparison the six prior chain runs were posed on. Retained only for cross-reading; it cannot separate selectivity from decomposition per se, which is why it is not load-bearing here."
+      }
+    ],
+    "combination_rule": "PASS iff C1 alone passes (plain single-criterion gate, no OR/AND combination). C2 is contextual and never contributes to the outcome.",
+    "criteria_non_degenerate": {
+      "C1_PE_SELECTIVITY_IMPROVES_OUTCOME": true,
+      "C2_DECOMPOSITION_PER_SE_VS_OFF": true
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3a9826d00c27271fe63b6335941b52cf693b2629b651529082b8ca192dc5904f",
+  "substrate_commit": {
+    "commit": "839ffe03d66f1a04ca9ed2d2fc6858e761ebf2ff",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 95040,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 132,
+    "goal_state_present": false
+  }
+}
