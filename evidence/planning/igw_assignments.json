@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-18T19:15:49Z",
+  "generated_at": "2026-08-18T20:02:09Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6947,6 +6947,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "Already landed: ree-v3 origin/main 6293b2395248 (MECH-091 phase_reset wiring), 2026-08-17T06:07:23Z. Re-verified live (dispatch cycle 2898, 2026-08-18): multiple clock.phase_reset() call sites now present in ree_core/agent.py, confirming the write-path landed and is not a stale-generator artifact this time either. Prior decision chip chip-igw-20260816-210 already resolved done on the same finding on 2026-08-17; this is the workset generator re-surfacing the same already-done item under a new id/stable_hash. Assigning to suppress further re-staging.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH091-SALIENT-EVENT-TRIGGER-WIRING",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-091"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260818T200159Z-aaeee143-spawned_task",
+      "stable_hash": "aaeee143dc36",
+      "igw_id_at_assign": "IGW-20260818-215",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-18T20:01:59Z",
+      "released_at": "2026-08-18T20:01:59Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260818T191549Z-aaeee143-spawned_task",
       "note": "Already landed: ree-v3 origin/main 6293b2395248 (MECH-091 phase_reset wiring), 2026-08-17T06:07:23Z. Re-verified live (dispatch cycle 2898, 2026-08-18): multiple clock.phase_reset() call sites now present in ree_core/agent.py, confirming the write-path landed and is not a stale-generator artifact this time either. Prior decision chip chip-igw-20260816-210 already resolved done on the same finding on 2026-08-17; this is the workset generator re-surfacing the same already-done item under a new id/stable_hash. Assigning to suppress further re-staging.",
       "item_snapshot": {
         "skill": "/implement-substrate",
