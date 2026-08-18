@@ -1,0 +1,111 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_937a_mech449_envelope_inertness_point",
+  "run_id": "v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-18T01:58:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449",
+    "ARC-107"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-449": "supports",
+    "ARC-107": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "envelope_width_gates_perseveration_conversion",
+    "preconditions": [
+      {
+        "name": "suppression_cross_candidate_range_supra_floor",
+        "kind": "readiness",
+        "description": "live dACC MECH-260 suppression varies ACROSS candidates (max - min), the statistic the perseveration threshold crossing the conversion criterion depends on",
+        "control": "positive control: an 8-deep recency ring dominated by one action class, built via real record_action() calls",
+        "measured": 0.75,
+        "threshold": 0.25,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "envelope_size_dose_separation",
+        "kind": "readiness",
+        "description": "the swept f_eligibility_envelope_floor actually changes how many candidates survive into the No-Go: spread of mean pre-No-Go envelope size across the dose ladder",
+        "control": "positive control: the ladder endpoints, stock floor 0.60 vs widest 0.05, on ARM_CONSTITUTION cells",
+        "measured": 3.0,
+        "threshold": 1.0,
+        "note": "the floor -> envelope map is non-monotone (measured: 0.60 -> 4, 0.40 -> 1, 0.30 -> 2), so this asserts the LADDER REALIZED a spread of envelope sizes, not that the floor ordering did",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "envelope_floor_config_plumbing_live",
+        "kind": "readiness",
+        "description": "REEConfig.from_dims plumbs use_go_nogo_constitution, gng_perseveration_floor AND the swept f_eligibility_envelope_floor onto config.e3 (guards the documented from_dims silent-kwarg-swallow failure mode)",
+        "control": "direct from_dims construction with a non-default floor",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C2_conversion_monotone_in_envelope_width": true,
+      "C1_envelope_width_dose_response": true,
+      "C3_safety_failopen": true,
+      "C4_inert_regime_reached_on_ladder": true
+    },
+    "dv_symmetry_declaration": {
+      "ARM_CONSTITUTION": "manipulation = lowering f_eligibility_envelope_floor widens the F-eligible SET (a change of the argmin's DOMAIN), and the No-Go then removes a candidate from that set. DV = committed argmin identity, aggregated to a conversion rate. Argmin's symmetry group is {uniform additive constant, monotone rescaling, tie permutation}; changing set MEMBERSHIP is in none of them. NOT invariant.",
+      "ARM_SHUFFLED": "same domain manipulation, recency mass on a NON-incumbent. Same argument, NOT invariant. Near-zero conversion here is the specificity control working, not a measured null.",
+      "ARM_OFF": "no No-Go manipulation, but the envelope floor still varies (it is the swept knob), so ARM_OFF runs at EVERY dose. Without that, a dose-dependent conversion rise would be aliased between the No-Go acting and the widened envelope alone moving the baseline committed pick."
+    },
+    "anchor_reachability": {
+      "anchor_name": "suppression_cross_candidate_range_supra_floor",
+      "reachable": true,
+      "control_worst_range": 0.75,
+      "threshold": 0.25,
+      "margin": 0.5,
+      "reference_source": "deterministic: an 8-deep recency ring with DOMINANT_REPEATS=6, replayed through real DACCAdaptiveControl.record_action() + _suppression_penalty() for every dominant class"
+    },
+    "scoped_out_preconditions": {
+      "pre_nogo_eligible_set_admits_alternative": "V3-EXQ-926a's per-cell 'envelope >= 2' readiness gate is DELIBERATELY NOT carried over. In this design a collapsed envelope at the stock floor is the PHENOMENON UNDER STUDY, not a substrate failure, so a whole-run all(...) gate over per-cell envelope size would fail on the stock-floor dose and vacate the wide-envelope doses that ran cleanly -- the V3-EXQ-785 defect exactly. Replaced by envelope_size_dose_separation, which asserts the property this design actually needs. Per-cell envelope size is still recorded on every cell as a non-gating diagnostic."
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c5b6fecbab6df57648a424746d17217efc21028d07637723519a8e32a55de998",
+  "substrate_commit": {
+    "commit": "60369024121e234151d1520b2f2d5638818ed030",
+    "dirty": false,
+    "branch": "main"
+  }
+}
