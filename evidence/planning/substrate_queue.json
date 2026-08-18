@@ -8127,6 +8127,7 @@
       "title": "MECH-357 avoidance-efficacy eligibility trace: credit/decay imbalance underflows learned efficacy to zero",
       "status": "implemented",
       "implementation_status": "implemented",
+      "implementation_note": "IMPLEMENTED 2026-08-16 (ree-v3 93d5d98b80, landed on origin/main). Candidate (a), credit-eligibility windowing: freeze/no-op ticks under threat no longer decay avoidance_efficacy in infralimbic_avoidance_gate.py update_efficacy() (adds mech357_n_freeze_noop diagnostic counter). Approved via chip-20260816-igw219-mech357-avoidance-efficacy-implement (resolved done). Corpus-drift follow-on filed separately as chip-20260816-frozen-zgoal-family-935-drift. This entry's IGW workset item (IGW-20260816-215, generated 2026-08-16T12:59:55Z, before the fix landed) was stale as of cycle 2438 -- status corrected here so it stops re-surfacing as ready. [Provenance: recovered from ree-cloud-5 stranded commit b6cfbfaed3 during the 2026-08-18 ref-convergence audit; the status flip itself had already landed independently via 019a1120a1, and the fuller caveat lives in implementation_note_update -- which is authoritative where the two differ.]",
       "priority": 3,
       "severity": "degrading",
       "ready": true,
