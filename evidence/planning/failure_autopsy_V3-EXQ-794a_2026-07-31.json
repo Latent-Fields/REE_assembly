@@ -2,8 +2,8 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-07-31T21:53:02Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
-  "staging_mode": true,
+  "status": "confirmed",
+  "staging_mode": false,
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "dry_run_citation_check": "scripts/check_dry_run_citations.py v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3 v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2_20260721T113848Z_v3 -> 0 dry cited, 2 clean, exit 0",
@@ -14,11 +14,13 @@
     {
       "run_id": "v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3",
       "queue_id": "V3-EXQ-794a",
-      "claim_ids": ["MECH-204", "SD-076"],
+      "claim_ids": [
+        "MECH-204",
+        "SD-076"
+      ],
       "failed_criterion": "discrimination",
       "self_route_label": "drift_source_insufficient_dv_still_tautological",
-      "self_route_adjudication": "PARTIALLY CONFIRMED, PARTIALLY REVISED. 'drift_source_insufficient' is well-supported: C1 fails non-degenerately at BOTH asymmetry levels (0/6 seed-arm combos overconfident vs a minimum of 2), with a real, dose-ordered, sub-threshold effect (C5 passes: LO score -0.041 -> HI score -0.023). 'dv_still_tautological' is NOT well-supported as stated: the SD-076 headroom repair's own validation smoke (recorded in substrate_queue.json's sd_waking_confidence_inflation_headroom entry) showed the SAME repaired mechanism reaching rv_final 0.0025377 (LO) / 0.0021031 (HI) -- both flagged 'genuinely overconfident' by that smoke -- at this EXACT measured error scale (true_error_ref ~0.0037). The full behavioural run (794a) only reached rv_final 0.003998 (LO) / 0.003870 (HI), roughly HALF the reduction from baseline (0.005420) that the smoke demonstrated is achievable. A DV that is tautological BY CONSTRUCTION (774's defect) cannot be pushed into the target regime by any input; this one demonstrably can be, in the isolated-mechanism smoke, at the identical scale. The correct framing is a full-loop-vs-isolated-mechanism discrepancy (see learning_extracted / fanout_recommendation), not a residual construction tautology. Recommend REVISING the label to 'drift_source_subthreshold_at_full_loop_exposure_gap_vs_smoke_unexplained' or similar when this leg is next referenced."
-      ,
+      "self_route_adjudication": "PARTIALLY CONFIRMED, PARTIALLY REVISED. 'drift_source_insufficient' is well-supported: C1 fails non-degenerately at BOTH asymmetry levels (0/6 seed-arm combos overconfident vs a minimum of 2), with a real, dose-ordered, sub-threshold effect (C5 passes: LO score -0.041 -> HI score -0.023). 'dv_still_tautological' is NOT well-supported as stated: the SD-076 headroom repair's own validation smoke (recorded in substrate_queue.json's sd_waking_confidence_inflation_headroom entry) showed the SAME repaired mechanism reaching rv_final 0.0025377 (LO) / 0.0021031 (HI) -- both flagged 'genuinely overconfident' by that smoke -- at this EXACT measured error scale (true_error_ref ~0.0037). The full behavioural run (794a) only reached rv_final 0.003998 (LO) / 0.003870 (HI), roughly HALF the reduction from baseline (0.005420) that the smoke demonstrated is achievable. A DV that is tautological BY CONSTRUCTION (774's defect) cannot be pushed into the target regime by any input; this one demonstrably can be, in the isolated-mechanism smoke, at the identical scale. The correct framing is a full-loop-vs-isolated-mechanism discrepancy (see learning_extracted / fanout_recommendation), not a residual construction tautology. Recommend REVISING the label to 'drift_source_subthreshold_at_full_loop_exposure_gap_vs_smoke_unexplained' or similar when this leg is next referenced.",
       "four_layer_diagnosis": {
         "claim_alignment": "unclear (both) -- SD-076's mechanism shows a real, dose-ordered, non-degenerate but sub-threshold effect in the full loop, while its own repair-validation smoke shows the same mechanism reaching a much larger, threshold-clearing effect in isolation at the identical error scale; the claim was not tested under conditions that isolate whether it CAN express itself (an F1-interaction and/or exposure-budget confound is live). MECH-204's correction (C2/C3) remains untested for a second consecutive run because C1 never establishes an operative drift level -- the coupling documented in 794's autopsy persists unchanged.",
         "biological_reference": "partial -- unchanged from 794's autopsy. Closest mechanism: REM-dependent precision recalibration (MECH-204) correcting waking metacognitive overconfidence drift under fatigue/sleep deprivation (SD-076). The asymmetric-EMA implementation of the drift source is a formal/statistical import (is_formal_import: true); no dedicated biology lit-pull has quantified the expected MAGNITUDE of such drift, which is exactly the missing fact that would let us judge whether the observed sub-threshold effect is biologically plausible (real but modest) or an implementation artifact (interaction-damped or exposure-starved).",
@@ -40,10 +42,10 @@
         "divergence": "unchanged from 794's autopsy: running_variance as a precision proxy, and an asymmetric EMA as a model of waking confidence drift, are statistical imports without a dedicated literature grounding for expected magnitude. This autopsy adds a mechanistic candidate explanation for the observed shortfall (F1-recalibration damping) that is itself untested and would, if correct, be a positive finding (evidence FOR the coupling between MECH-204's corrective process and SD-076's drift source, not evidence against either mechanism).",
         "lit_status": "partial -- unchanged; a targeted review of expected magnitude/timescale of waking overconfidence drift under sleep deprivation would let governance judge whether the observed small effect (log-ratio swing of only ~0.02 between LO and HI) is itself biologically plausible, independent of the smoke-vs-full-loop discrepancy."
       },
-      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category": "standard",
       "recommended_epistemic_category_per_claim": {
-        "MECH-204": "measurement_test_design_defect",
-        "SD-076": "measurement_test_design_defect"
+        "MECH-204": "standard",
+        "SD-076": "standard"
       },
       "recommended_evidence_direction": "inconclusive",
       "recommended_evidence_direction_per_claim": {
@@ -75,11 +77,62 @@
           "H3 (the driver's own pre-registered hypothesis, module docstring lines 108-111): the asymmetric-EMA form is the wrong drift source and a structurally different SD-076 mechanism is owed. WEAKEST-supported of the three given the smoke evidence above -- the same mechanism form demonstrably CAN reach the target regime in isolation at this scale -- but not ruled out until H1/H2 are isolated."
         ],
         "suggested_probes": [
-          {"hypothesis": "H1", "axis": "integration/interaction", "sketch": "Re-run the INFL-only arms (no broadcast) with use_rem_precision_recalibration disabled (F1 OFF) at the same LO/HI asymmetry doses and same training budget; if rv_final approaches the smoke's 0.0025/0.0021 range with F1 off, H1 is confirmed and MECH-204's correction should be evaluated on a version of the design where F1's own recalibration strength is a controlled variable rather than fixed at 0.25 in every arm."},
-          {"hypothesis": "H2", "axis": "scale/exposure", "sketch": "Re-run ARM_INFL_LO/HI only (broadcast held OFF, F1 held ON as in 794a) with N_TRAIN_EPS increased substantially (e.g. 3x) at identical doses; if rv_final moves further toward the smoke's demonstrated range with more exposure and no other change, H2 is confirmed and the fix is a training-budget adjustment, not a mechanism redesign."},
-          {"hypothesis": "H3", "axis": "measurement/lit-grounding", "sketch": "Commission a targeted /lit-pull on expected magnitude and timescale of waking metacognitive overconfidence drift under sleep deprivation/fatigue in the human/mammalian literature, to judge whether the asymmetric-EMA form -- if H1/H2 are ruled out -- is even the right FUNCTIONAL FORM, independent of parameter tuning."}
+          {
+            "hypothesis": "H1",
+            "axis": "integration/interaction",
+            "sketch": "Re-run the INFL-only arms (no broadcast) with use_rem_precision_recalibration disabled (F1 OFF) at the same LO/HI asymmetry doses and same training budget; if rv_final approaches the smoke's 0.0025/0.0021 range with F1 off, H1 is confirmed and MECH-204's correction should be evaluated on a version of the design where F1's own recalibration strength is a controlled variable rather than fixed at 0.25 in every arm."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "scale/exposure",
+            "sketch": "Re-run ARM_INFL_LO/HI only (broadcast held OFF, F1 held ON as in 794a) with N_TRAIN_EPS increased substantially (e.g. 3x) at identical doses; if rv_final moves further toward the smoke's demonstrated range with more exposure and no other change, H2 is confirmed and the fix is a training-budget adjustment, not a mechanism redesign."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "measurement/lit-grounding",
+            "sketch": "Commission a targeted /lit-pull on expected magnitude and timescale of waking metacognitive overconfidence drift under sleep deprivation/fatigue in the human/mammalian literature, to judge whether the asymmetric-EMA form -- if H1/H2 are ruled out -- is even the right FUNCTIONAL FORM, independent of parameter tuning."
+          }
         ],
-        "note": "GOV-FANOUT-1: H1 and H2 are cheap, mechanistic, single-axis re-runs that can be queued immediately and run in parallel (different design axis each: integration vs exposure); H3 is a lit-pull, not an experiment, and should not block H1/H2 from being queued. Do NOT queue a single re-pose of 794a with 'more asymmetry' (a power-bump of the braked design) -- the driver's own docstring already pre-registers that a both-levels-fail should not be read as 'sweep higher', and HI=0.8 is stated to be at the edge of the defensible optimism-bias band; a higher dose would not discriminate among H1/H2/H3 and would risk leaving the biologically-defensible parameter range."
+        "note": "GOV-FANOUT-1: H1 and H2 are cheap, mechanistic, single-axis re-runs that can be queued immediately and run in parallel (different design axis each: integration vs exposure); H3 is a lit-pull, not an experiment, and should not block H1/H2 from being queued. Do NOT queue a single re-pose of 794a with 'more asymmetry' (a power-bump of the braked design) -- the driver's own docstring already pre-registers that a both-levels-fail should not be read as 'sweep higher', and HI=0.8 is stated to be at the edge of the defensible optimism-bias band; a higher dose would not discriminate among H1/H2/H3 and would risk leaving the biologically-defensible parameter range.",
+        "status": "discharged",
+        "discharged_utc": "2026-08-18T08:00:19Z",
+        "do_not_requeue": true,
+        "discharge_note": "DISCHARGED -- do NOT chip or re-queue these probes. This portfolio was pre-registered 2026-07-31 and EXECUTED 2026-08-01, the day after the draft was written. The block is retained verbatim as the historical pre-registration (hypothesis_space_registry.v1.json's question `mech204-sd076-calibration-loop-drift-source-exposure-gap` cites this artifact as its sole fanout_source), NOT as live routing. Governance should read the successor findings below instead of re-queuing.",
+        "successor_runs": [
+          {
+            "hypothesis": "H1",
+            "queue_id": "V3-EXQ-850",
+            "run_id": "v3_exq_850_mech204_sd076_h1_f1_damping_probe_20260801T000749Z_v3",
+            "autopsy": "failure_autopsy_V3-EXQ-850_2026-08-01",
+            "direction": "inconclusive",
+            "finding": "Real, small, directionally-consistent F1-damping signal (14-23% gap closure) underneath a failed readiness gate. H1 neither confirmed nor eliminated -- stays alive."
+          },
+          {
+            "hypothesis": "H2",
+            "queue_id": "V3-EXQ-853",
+            "run_id": "v3_exq_850_mech204_sd076_h2_exposure_budget_probe_20260801T005937Z_v3",
+            "autopsy": "failure_autopsy_V3-EXQ-853_2026-08-01",
+            "direction": "weakens",
+            "finding": "MORE training produced LESS dose separation, monotonically across three points (smoke/794a/853) -- opposite to H2's prediction. N_TRAIN_EPS is a confounded manipulation (raises waking exposure AND F1 firing count together)."
+          },
+          {
+            "hypothesis": "H2",
+            "queue_id": "V3-EXQ-860",
+            "run_id": "v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3",
+            "autopsy": "failure_autopsy_V3-EXQ-860_2026-08-01",
+            "direction": "weakens",
+            "finding": "DECISIVE for the portfolio: a confound-decoupled comparison (matched total exposure, F1-firing count held fixed) collapsed 853's 12-22% closure to 2.5-2.9%, attributing the signal to F1-firing count (H1's integration axis) rather than raw exposure duration (H2's world axis)."
+          },
+          {
+            "hypothesis": "follow-on",
+            "queue_id": "V3-EXQ-864",
+            "run_id": "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3",
+            "autopsy": "failure_autopsy_V3-EXQ-864_2026-08-01",
+            "direction": "non_contributory",
+            "finding": "Did not test its intended manipulation -- CausalGridWorldV3's own termination condition (agent_health<=0 or steps>=500) silently overrode the driver's steps_per_ep exposure sweep. 860's wrong-signed inflation_lowers_rv puzzle remains open."
+          }
+        ],
+        "net_reading": "This autopsy's newly-surfaced H1 dependency (F1/REM recalibration damping SD-076's waking drift) is the SURVIVING explanation and was substantially borne out: 860's confound-decoupled run pins the signal to F1-firing count. H2 (exposure budget) is weakened from two independent directions. H3 (wrong mechanism form) was already weakened here by the smoke comparison and is untouched by the cascade. The draft's central diagnosis was therefore CORRECT."
       },
       "learning_extracted": [
         "A 'confirmed' status on a failure_autopsy_*.json artifact does not guarantee the skill's full four-layer depth was applied -- the 2026-07-24 batch backlog entry covering this run carries status:'confirmed' with only single-word four-layer fields and no biological triage, learning_extracted, re_derive_brake, or granularity_debt_trigger content. Worth a standing check (out of scope for this staging-mode run to build) for artifacts whose target objects are missing the schema's optional-but-expected substructure despite a confirmed status.",
@@ -88,7 +141,32 @@
         "A self-route label generated by the same interpretation-grid code path across a lettered sequence (794 -> 794a) can carry forward wording ('still_tautological') that was accurate for the PREDECESSOR's specific defect (a hard clamp) but is no longer accurate once that defect is repaired -- the label describes the SHAPE of the criteria failure (C1 fails, C2/C3 degenerate) rather than its cause, and the cause changed materially between runs.",
         "Recording-completeness gap (minor, non-blocking): validate_recording.py flags one always-core gap (missing top-level substrate_commit). Separately, the manifest's `config` summary dict omits the SD-076 headroom-repair-specific knobs (waking_confidence_rv_floor_relative_frac/_mode/_softness) even though the driver applies them and the results are only fully interpretable by cross-referencing substrate_queue.json's separate implementation_note -- a successor script should fold these into the recorded config."
       ],
-      "routing": "queue-experiment"
+      "routing": "queue-experiment (DISCHARGED 2026-08-01 -- see fanout_recommendation.successor_runs; do not re-chip)",
+      "recommended_epistemic_category_prior_draft_value": "measurement_test_design_defect",
+      "recommended_epistemic_category_note": "FAILURE MODE = measurement / test-design defect (the self-route label's 'dv_still_tautological' framing overstates a construction defect the repair's own validation smoke contradicts). That is the DIAGNOSIS, not an epistemic_category. The staged draft placed it in the category field, where it is out-of-enum (VALID_EPISTEMIC_CATEGORIES in REE_assembly/scripts/validate_claims.py) and would have been written into claims.yaml verbatim by governance, erroring under --strict. Corrected to `standard` at the confirmation gate: behaviour-preserving (both MECH-204 and SD-076 already store `standard`), preserves GOV-GRAN-1 granularity surfacing and v3-testability, and asserts no epistemic suppression -- which is the correct verdict for a run that told us nothing decisive about either claim. Explicitly NOT substrate_ceiling/substrate_conditional: the headroom repair works as designed; the open question is a design discrimination, not a substrate gate.",
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- not chargeable to REE alone. Implementation reads `complete` (the headroom repair landed and is exercised; dose levels separate), so the mechanism layer is established. But Measurement reads `misleading` (the auto-generated self-route label overreaches) and Environment/scale reads `likely insufficient` (the full loop reaches ~half the drift magnitude the isolated smoke demonstrated achievable at the identical error scale). Two of the three gate layers are therefore NOT independently adequate, so the REE-FAILED bucket is not reachable on this run. Any prose describing 794a as evidence that REE's calibration loop itself failed would be unsupported."
+      },
+      "per_claim_recommendation": {
+        "MECH-204": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note to cite 794a (currently cites the 541 series only); MECH-204's correction (C2/C3) remains untested for a second consecutive run because C1 never establishes an operative drift level; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "SD-076": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "withdraw the manifest's SD-076 `does_not_support` self-tag (same class of reason 794's confirmed autopsy withdrew its predecessor); evidence_quality_note to cite 794a rather than the predecessor 794; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      }
     }
   ],
   "cluster_pattern": null,
@@ -103,9 +181,14 @@
       "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
       "title": "Does SD-076's asymmetric-EMA waking-confidence-inflation mechanism create absolute overconfidence expressible by MECH-204's broadcast correction, once the headroom-clamp defect is repaired?",
       "short_title": "SD-076 drift-source magnitude gap (full-loop vs smoke)",
-      "claims": ["MECH-204", "SD-076"],
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
       "registered_utc": "2026-07-31T21:53:02Z",
-      "fanout_sources": ["failure_autopsy_V3-EXQ-794a_2026-07-31.json"],
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-794a_2026-07-31.json"
+      ],
       "is_hero": false,
       "initial_frozen_count": 3,
       "hypotheses": [
@@ -176,7 +259,63 @@
         "distance_phrase": "two cheap, parallel, single-axis diagnostic re-runs away from a first discrimination pass; a full EVB-0454 decision additionally needs the H3 lit-pull.",
         "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline for SD-076 is close relative to the H1/H2 probe + review turnaround; flagging this timing risk for governance rather than resolving it here."
       }
-    }
+    },
+    "applied": true,
+    "applied_note": "APPLIED -- verified 2026-08-18 at the confirmation gate. hypothesis_space_registry.v1.json already carries question `mech204-sd076-calibration-loop-drift-source-exposure-gap` with initial_frozen_count 3, hypotheses H1-f1-recalibration-damping / H2-insufficient-training-exposure / H3-wrong-mechanism-form, and fanout_sources naming this artifact as its sole source. Step 9b Mode A is therefore a NO-OP for this confirming session -- re-appending would double-register. check_hypothesis_space_integrity.py reports 0 flags (a=0 b=0 c=0 d=0)."
   },
-  "gov_frozen_1_compliance_note": "Step 9b run in DRAFT-ONLY staging mode per skill instructions -- hypothesis_space_registry.v1.json was NOT written. The question/hypotheses block above is a proposal for a human/governance session to append via Mode A (pre-register) at the same fidelity, honouring GOV-FROZEN-1 invariants (initial_frozen_count == len(hypotheses) == 3, all three hypotheses' pre_registered_utc set to this autopsy's generated_utc, no resolution filled)."
+  "gov_frozen_1_compliance_note": "Step 9b run in DRAFT-ONLY staging mode per skill instructions -- hypothesis_space_registry.v1.json was NOT written. The question/hypotheses block above is a proposal for a human/governance session to append via Mode A (pre-register) at the same fidelity, honouring GOV-FROZEN-1 invariants (initial_frozen_count == len(hypotheses) == 3, all three hypotheses' pre_registered_utc set to this autopsy's generated_utc, no resolution filled).",
+  "confirmed_utc": "2026-08-18T08:00:19Z",
+  "confirming_session": "pending-task-009a3a",
+  "user_gate": {
+    "presented_utc": "2026-08-18T08:00:19Z",
+    "gate_type": "interactive_confirmation_of_staged_draft",
+    "user_choices": {
+      "epistemic_category": "Map to `standard` (behaviour-preserving; out-of-enum value corrected)",
+      "hypothesis_space_legs": "Flag only, do not resolve (downstream autopsies own their own legs)",
+      "discharged_fanout": "Mark discharged, cite successors (do not re-chip)"
+    },
+    "note": "Draft was written 2026-07-31 in staging mode and confirmed 2026-08-18, 18 days later. All load-bearing facts re-verified against the manifest and substrate_queue.json before confirmation; all held. Three corrections applied at the gate -- see confirmation_corrections."
+  },
+  "ledger_resolution_gap": {
+    "flagged_utc": "2026-08-18T08:00:19Z",
+    "severity": "advisory -- inflates the Dimension-3 surviving-hypothesis denominator",
+    "observation": "All three legs of question `mech204-sd076-calibration-loop-drift-source-exposure-gap` still read resolution.state == 'alive' in hypothesis_space_registry.v1.json, although V3-EXQ-850/853/860 (all status `confirmed`, all generated 2026-08-01) adjudicated them. H2 in particular has clean discriminating evidence against it from 860's confound-decoupled comparison (closure collapsed to 2.5-2.9%).",
+    "why_not_resolved_here": "Deliberate, user-confirmed at the 2026-08-18 gate. Step 9b Mode B scopes leg resolution to legs THIS autopsy adjudicated; 794a is the fan-out SOURCE, not the adjudicator of any probe. Resolving them here would adjudicate three legs on evidence this autopsy did not produce. Additionally 850 explicitly records H1 as 'neither confirmed nor eliminated', and 860 carries non_degenerate=false, which complicates the Step 9b elimination bar (met_elimination_bar + control_passed + non_degenerate all true).",
+    "owed_by": [
+      "failure_autopsy_V3-EXQ-850_2026-08-01",
+      "failure_autopsy_V3-EXQ-853_2026-08-01",
+      "failure_autopsy_V3-EXQ-860_2026-08-01"
+    ],
+    "routing": "governance -- reconcile the three legs against the 2026-08-01 cascade, or route back to the owning autopsies"
+  },
+  "evb_0454_status": {
+    "checked_utc": "2026-08-18T08:00:19Z",
+    "draft_concern": "Draft flagged a timing risk against an EVB-0454 decision deadline of 2026-08-03 for SD-076.",
+    "resolution": "SUPERSEDED -- no action owed. (1) EVB-0454 was GATED 2026-08-02 by session determined-ritchie-55a3a6, with executed_by recording 'V3-EXQ-794/794a (original design, executed); superseded by GOV-FANOUT-1 cascade V3-EXQ-850/853/860/864/864a' and SD-076's retain/hybridize/retire decision deliberately left open pending that cascade, per user instruction. (2) The deadline was never a fixed commitment: decision_deadline_utc is COMPUTED as generated_at_dt + 72h on every regeneration of experiment_proposals.v1.json (build_experiment_indexes.py:5107-5111), so every cited timestamp was a snapshot of a rolling value. This was independently established in failure_autopsy_V3-EXQ-864_2026-08-01's governance-apply addendum."
+  },
+  "confirmation_corrections": [
+    "BLOCKING (schema): recommended_epistemic_category was `measurement_test_design_defect`, outside the eight-value enum governance writes into claims.yaml verbatim. Corrected to `standard`; failure-mode diagnosis moved to recommended_epistemic_category_note. Blanket + per-claim map both corrected.",
+    "STALE ROUTING: the H1/H2 fan-out was executed 2026-08-01 (V3-EXQ-850/853/860/864). Marked discharged with successor run_ids and findings so governance does not chip already-completed work.",
+    "MISSING FIELD (GOV-FAILLOC-1, rule postdates the draft): added failure_location -- net MIXED, REE-FAILED not reachable (measurement misleading, scale likely insufficient).",
+    "MISSING FIELD (GOV-APPLY-1): added per_claim_recommendation, the only machine-readable field check_unapplied_autopsy_recommendations.py can read. Without it this confirmed disposition would be invisible to the standing scan -- and 794a is already in review_tracker.reviewed_run_ids, so it never re-surfaces in pending_review.md either.",
+    "EVB-0454 timing concern resolved as superseded (gated 2026-08-02; deadline was a rolling computed value).",
+    "FLAGGED, not fixed: three ledger legs still `alive` despite the 2026-08-01 cascade adjudicating them."
+  ],
+  "facts_reverified_at_confirmation": {
+    "verified_utc": "2026-08-18T08:00:19Z",
+    "method": "Independent re-read of the 794a manifest, substrate_queue.json, claims.yaml, and the registry.",
+    "all_held": true,
+    "checks": [
+      "arm_rv_final: OFF_OFF 0.0054196216927127755, INFL_LO 0.003997733405264173, INFL_HI 0.003870367272153275 -- match the draft's 0.005420 / 0.003998 / 0.003870.",
+      "Repair smoke (substrate_queue.json, sd_waking_confidence_inflation_headroom): 'rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident' -- exact match. Reductions 53%/61% (smoke) vs 26%/29% (full loop) confirm the '~half' claim.",
+      "per_arm_gate.all_green == true, red_arms == [], structurally_vacuous_arms == [] -- draft's 'all green' correct.",
+      "C2 degeneracy: aggregates.deltas.d_broadcast_under_drift_at_operative.per_seed == [] -- confirmed.",
+      "C1 n_seeds_overconfident 0 vs min_required 2; C4 -0.19212288776540318; C5 LO -0.04107870854172046 -> HI -0.02272394703390973 -- all match.",
+      "dose_levels_separated measured 0.0001273661331108976 vs 0.0001 floor (~27% margin) -- confirmed fragile as stated.",
+      "dry_run absent/falsy on both 794a and predecessor 794 -- neither is a smoke.",
+      "Re-derive brake re-run under R1-R3 at confirmation time: MECH-204 0 ceiling hits / 8 tagging targets; SD-076 0 / 6. Brake does NOT fire -- draft's conclusion stands (its target COUNTS were 6 and 2, now grown by the 2026-08-01 cascade, but the ceiling count is still 0).",
+      "Granularity-debt trigger re-run: MECH-204 7 targets / 5 files (intact=2, strengthened=2, untested=1, unclear=2); SD-076 6 targets / 6 files (all unclear/untested). NO target reads `weakened` in either cluster, so the trigger does NOT fire -- draft's conclusion stands.",
+      "claims.yaml: MECH-204 and SD-076 both status=candidate, epistemic_category=standard. SD-076's evidence_quality_note still cites the predecessor 794 -- the draft's claim that governance never applied a 794a-specific disposition is confirmed."
+    ]
+  }
 }
