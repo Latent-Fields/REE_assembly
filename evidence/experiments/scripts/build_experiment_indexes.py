@@ -34,6 +34,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import unicodedata
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -804,6 +805,140 @@ def _recorded_precondition_findings(interpretation: Any) -> list[dict]:
     return findings
 
 
+# --------------------------------------------------------------------------
+# Literature per-paper identity, for duplicate-entry deduplication (GFLAG-0032).
+#
+# Mirrors, byte-for-byte, three functions that already exist elsewhere in the
+# repo: REE_assembly/scripts/verify_literature_identifiers.normalise_doi,
+# REE_assembly/scripts/audit_literature_duplicate_entries.normalise_pmid, and
+# REE_assembly/scripts/audit_literature_bibliographic_accuracy.norm_title (via
+# its strip_accents helper). Reimplemented LOCALLY rather than imported
+# cross-directory: those three modules pull in urllib/network-capable code
+# paths (live DOI/PubMed identifier resolution) that this indexer -- stdlib
+# only per the module docstring, run on every commit and by several
+# concurrent writers -- must not depend on. test_build_experiment_indexes.py
+# pins these three functions byte-identical against the canonical
+# implementations so the copies cannot silently drift; if the canonical
+# DOI/title normalisation rules ever change, update both sides.
+
+
+def _lit_normalise_doi(doi: Any) -> str | None:
+    """Comparison form for a DOI. Never used to rewrite a record's field."""
+    if not doi:
+        return None
+    text = str(doi).strip().lower()
+    text = re.sub(r"^https?://(dx\.)?doi\.org/", "", text)
+    text = re.sub(r"^doi:\s*", "", text)
+    text = re.sub(r"/{2,}", "/", text)
+    return text.rstrip(". ") or None
+
+
+def _lit_normalise_pmid(pmid: Any) -> str | None:
+    """Comparison form for a PMID. Never used to rewrite a record's field."""
+    if pmid is None:
+        return None
+    text = str(pmid).strip().lower()
+    text = text.replace("pmid:", "").strip()
+    text = text.lstrip("0") or text
+    return text or None
+
+
+def _lit_norm_title(title: Any) -> str:
+    """Accent-, markup- and punctuation-normalised title, for EXACT equality only.
+
+    Fuzzy title matching is deliberately NOT reproduced here -- see
+    _group_literature_by_paper below for why.
+    """
+    if not isinstance(title, str):
+        return ""
+    stripped = "".join(
+        c for c in unicodedata.normalize("NFKD", title) if not unicodedata.combining(c)
+    )
+    t = stripped.lower()
+    t = re.sub(r"<[^>]+>", " ", t)  # crossref titles carry markup
+    t = re.sub(r"[^a-z0-9]+", " ", t)
+    return " ".join(t.split())
+
+
+class _LiteratureUnionFind:
+    """Union-find that remembers which route(s) merged each group.
+
+    Mirrors audit_literature_duplicate_entries.py's Union class in spirit --
+    a group merged only by an identical DOI/PMID/title is auditable back to
+    that fact via `routes()`.
+    """
+
+    def __init__(self, n: int) -> None:
+        self.parent = list(range(n))
+        self._edge_routes: dict[int, set[str]] = defaultdict(set)
+
+    def find(self, i: int) -> int:
+        while self.parent[i] != i:
+            self.parent[i] = self.parent[self.parent[i]]
+            i = self.parent[i]
+        return i
+
+    def union(self, i: int, j: int, route: str) -> None:
+        ri, rj = self.find(i), self.find(j)
+        if ri != rj:
+            self.parent[rj] = ri
+            ri = self.find(ri)
+        self._edge_routes[ri].add(route)
+
+    def routes(self) -> dict[int, list[str]]:
+        merged: dict[int, set[str]] = defaultdict(set)
+        for root, routes in self._edge_routes.items():
+            merged[self.find(root)] |= routes
+        return {root: sorted(routes) for root, routes in merged.items()}
+
+
+def _group_literature_by_paper(
+    lit_entries: "list[LiteratureRecord]",
+) -> "tuple[dict[tuple[str, str], int], dict[int, list[str]]]":
+    """Union-find grouping of literature records that name the SAME PAPER.
+
+    Same three EXACT routes as audit_literature_duplicate_entries.py's
+    GROUPING_KEYS: normalised DOI, normalised PMID, exact normalised title.
+    Fuzzy title matching is deliberately excluded -- measured over this
+    corpus (evidence/planning/literature_duplicate_entries_2026-08-14.md),
+    7 of 9 fuzzy-title pairs were DIFFERENT papers by the same author (e.g.
+    Craig 2002 "How do you feel?..." vs Craig 2003 "Interoception:..."), so a
+    fuzzy route here would silently merge two independent studies and make
+    one of them vanish from a claim's scored evidence -- the opposite of
+    what this fix exists to prevent. Exact-title matching measured clean
+    over the same corpus.
+
+    A record with no doi/pmid/title in common with any other record is its
+    own singleton group and can never be deduplicated against anything --
+    this is the safe default for the ~un-identified tail of the corpus.
+
+    Returns (group_of, routes_by_group):
+      group_of[(literature_type, entry_id)] -> union-find root index.
+      routes_by_group[root] -> sorted routes ("doi"/"pmid"/"title") that
+      connected that group, for the `duplicate_route` audit field. Absent
+      for singleton groups (nothing ever unioned).
+    """
+    n = len(lit_entries)
+    uf = _LiteratureUnionFind(n)
+
+    for field_name, route in (("doi", "doi"), ("pmid", "pmid"), ("title_norm", "title")):
+        seen: dict[str, int] = {}
+        for i, lit in enumerate(lit_entries):
+            value = getattr(lit, field_name)
+            if not value:
+                continue
+            if value in seen:
+                uf.union(seen[value], i, route)
+            else:
+                seen[value] = i
+
+    group_of = {
+        (lit.literature_type, lit.entry_id): uf.find(i)
+        for i, lit in enumerate(lit_entries)
+    }
+    return group_of, uf.routes()
+
+
 @dataclass
 class LiteratureRecord:
     literature_type: str
@@ -823,6 +958,10 @@ class LiteratureRecord:
     confidence: float = 0.5
     confidence_rationale: str = ""
     failure_signatures: list[str] = field(default_factory=list)
+    # Per-paper identity (GFLAG-0032 dedup), normalised at scan time.
+    doi: str | None = None
+    pmid: str | None = None
+    title_norm: str = ""
 
 
 @dataclass
@@ -1819,6 +1958,16 @@ def _scan_literature(
         summary_rel = str(record.get("summary_path", "summary.md"))
         summary_path = entry_dir / summary_rel
 
+        # Per-paper identity for duplicate-entry deduplication (GFLAG-0032).
+        # Only `source`'s own doi/pmid/title are read -- nothing here is ever
+        # written back to a record.
+        source = record.get("source")
+        if not isinstance(source, dict):
+            source = {}
+        doi = _lit_normalise_doi(source.get("doi"))
+        pmid = _lit_normalise_pmid(source.get("pmid"))
+        title_norm = _lit_norm_title(source.get("title"))
+
         by_literature[literature_type].append(
             LiteratureRecord(
                 literature_type=literature_type,
@@ -1835,6 +1984,9 @@ def _scan_literature(
                 confidence=confidence,
                 confidence_rationale=confidence_rationale,
                 failure_signatures=[str(x) for x in signatures],
+                doi=doi,
+                pmid=pmid,
+                title_norm=title_norm,
             )
         )
 
@@ -3231,6 +3383,24 @@ def _write_claim_evidence_matrix(
               f"{_ADJ_CONVENTION_DATE} convention (fix those). Legacy runs are "
               f"immutable -- see the retrospective self-route audit.")
 
+    # Per-paper duplicate detection (GFLAG-0032 / GFLAG-0030). Grouped once,
+    # up front, over every literature record regardless of claim -- a paper
+    # legitimately cited for two DIFFERENT claims must still count once PER
+    # CLAIM, so the exclusion below is keyed on (claim_id, paper_group), not
+    # on paper_group alone. See _group_literature_by_paper for the routes.
+    literature_paper_group, literature_paper_routes = _group_literature_by_paper(lit_entries)
+    # (claim_id, paper_group) -> "literature_type/entry_id" of the entry kept.
+    # lit_entries is already sorted (timestamp, literature_type, entry_id)
+    # above, so "first seen" here is deterministically the EARLIEST review of
+    # that paper for that claim -- matching the framing already used in
+    # evidence/planning/literature_duplicate_entries_2026-08-14.md ("a
+    # surplus evidence item is one entry BEYOND THE FIRST"). Nothing about
+    # any entry's own recorded confidence/evidence_direction is overwritten
+    # or averaged -- every entry keeps exactly what it says; only whether it
+    # counts toward claim_to_entries (and therefore confidence/conflict)
+    # changes.
+    _seen_claim_paper: dict[tuple[str, int], str] = {}
+
     for lit in lit_entries:
         if not lit.claim_ids_tested:
             matrix["unlinked_runs"].append(
@@ -3243,6 +3413,8 @@ def _write_claim_evidence_matrix(
                 }
             )
             continue
+
+        paper_group = literature_paper_group.get((lit.literature_type, lit.entry_id))
 
         for claim_id in lit.claim_ids_tested:
             entry = {
@@ -3264,7 +3436,26 @@ def _write_claim_evidence_matrix(
                 entry["architecture_epoch"] = lit.architecture_epoch
             matrix["entries"].append(entry)
 
-            # Literature entries are not epoch-filtered or excluded for now.
+            # Literature entries are not epoch-filtered, but ARE deduplicated
+            # per (claim, paper) here -- GFLAG-0032. A duplicate is not a
+            # defect in either record (both can be legitimate, independently
+            # authored reviews); the double-count is a property of how
+            # claim_to_entries is assembled, not of the corpus, so the fix
+            # lives at this join point rather than editing records. The
+            # excluded entry stays in matrix["entries"] (full audit log,
+            # above) with its own confidence/direction untouched -- only its
+            # contribution to this claim's scored evidence is withheld.
+            dup_key = (claim_id, paper_group)
+            if paper_group is not None and dup_key in _seen_claim_paper:
+                entry["scoring_excluded"] = "duplicate_literature_entry"
+                entry["duplicate_of"] = _seen_claim_paper[dup_key]
+                routes = literature_paper_routes.get(paper_group)
+                if routes:
+                    entry["duplicate_route"] = routes
+                continue
+            if paper_group is not None:
+                _seen_claim_paper[dup_key] = f"{lit.literature_type}/{lit.entry_id}"
+
             claim_to_entries[claim_id].append(entry)
 
     now = _parse_timestamp_only(generated_at)

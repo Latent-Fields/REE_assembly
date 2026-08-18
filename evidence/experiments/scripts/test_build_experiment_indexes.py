@@ -2863,3 +2863,297 @@ def test_literature_schema_declares_per_claim_direction():
     assert set(spec["additionalProperties"]["enum"]) == \
         set(schema["properties"]["evidence_direction"]["enum"]), \
         "per-claim enum must track the entry-level enum"
+
+
+# --- literature per-paper duplicate deduplication (GFLAG-0032, 2026-08-18) --
+#
+# 48 duplicate groups in the real corpus double-count 78 literature evidence
+# items across 35 claims (evidence/planning/literature_duplicate_entries_
+# 2026-08-14.md). The fix lives at the claim_to_entries JOIN POINT in
+# _write_claim_evidence_matrix, not in the corpus: a duplicate is not a
+# defect in either record (two independently-authored reviews of the same
+# paper are both legitimate curation work), so nothing is ever merged,
+# deleted or rewritten -- only whether a later entry for the SAME
+# (claim, paper) counts toward that claim's scored evidence.
+#
+# ROUGHLY HALF OF THESE ARE NEGATIVE CONTROLS, and that is the point (same
+# framing as test_audit_literature_duplicate_entries.py, which this fix
+# reuses the grouping design from): the mandatory negative control is that
+# two GENUINELY DIFFERENT papers cited for the same claim must still count
+# twice -- see test_claim_evidence_no_dedup_different_papers_same_claim.
+
+_SCRIPTS_DIR_LIT = Path(__file__).resolve().parents[3] / "scripts"
+
+
+def _lit_rec(entry_id, claims, *, doi=None, pmid=None, title_norm="",
+             confidence=0.7, direction="supports",
+             timestamp_raw="2026-05-04T00:00:00Z",
+             literature_type="targeted_review_x"):
+    """Build a LiteratureRecord directly (no disk I/O) for the union-find /
+    join-point tests below. `timestamp_raw` also drives ordering, since
+    "first seen" (the entry kept) is defined by (timestamp, literature_type,
+    entry_id) sort order, exactly as _write_claim_evidence_matrix sorts
+    lit_entries before grouping."""
+    ts = datetime.fromisoformat(timestamp_raw.replace("Z", "+00:00"))
+    return b.LiteratureRecord(
+        literature_type=literature_type,
+        entry_id=entry_id,
+        timestamp_raw=timestamp_raw,
+        timestamp=ts,
+        record_path=Path("/dev/null"),
+        summary_path=Path("/dev/null"),
+        claim_ids_tested=list(claims),
+        evidence_direction=direction,
+        confidence=confidence,
+        doi=doi,
+        pmid=pmid,
+        title_norm=title_norm,
+    )
+
+
+# --- _lit_normalise_doi / _lit_normalise_pmid / _lit_norm_title: drift pin --
+# These three functions are DELIBERATELY reimplemented locally (see the
+# module-level comment above _lit_normalise_doi in build_experiment_indexes.py)
+# rather than imported cross-directory from REE_assembly/scripts, because
+# those modules pull in urllib/network-capable code this stdlib-only indexer
+# must not depend on. That means nothing enforces the two copies stay in
+# sync except this test: it loads the CANONICAL originals by path and
+# asserts byte-identical output over the same case battery.
+
+def _load_canonical_lit_modules():
+    import importlib.util
+    sys.path.insert(0, str(_SCRIPTS_DIR_LIT))
+    modules = {}
+    for name in ("verify_literature_identifiers",
+                 "audit_literature_bibliographic_accuracy",
+                 "audit_literature_duplicate_entries"):
+        if name in sys.modules:
+            modules[name] = sys.modules[name]
+            continue
+        spec = importlib.util.spec_from_file_location(
+            name, _SCRIPTS_DIR_LIT / f"{name}.py")
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[name] = mod
+        spec.loader.exec_module(mod)
+        modules[name] = mod
+    return modules
+
+
+def test_lit_normalise_doi_matches_canonical():
+    canon = _load_canonical_lit_modules()["verify_literature_identifiers"]
+    cases = [
+        None, "", "10.1163/156853995X00649",
+        "https://doi.org/10.1163/156853995X00649",
+        "http://dx.doi.org/10.1163/156853995X00649",
+        "DOI:10.1163/156853995X00649",
+        "10.1037//0022-006x.64.2.295",       # legacy APA double-slash
+        "10.1037/0022-006X.64.2.295",
+        "  10.48550/arXiv.2006.07733 . ",
+    ]
+    for case in cases:
+        assert b._lit_normalise_doi(case) == canon.normalise_doi(case), case
+
+
+def test_lit_normalise_pmid_matches_canonical():
+    canon = _load_canonical_lit_modules()["audit_literature_duplicate_entries"]
+    cases = [None, "", "0012345", "PMID:12345", " 12345 ", "12345"]
+    for case in cases:
+        assert b._lit_normalise_pmid(case) == canon.normalise_pmid(case), case
+
+
+def test_lit_norm_title_matches_canonical():
+    canon = _load_canonical_lit_modules()["audit_literature_bibliographic_accuracy"]
+    cases = [
+        None, "", "Play Signals as Punctuation: the Structure of Social Play in Canids",
+        "How do you feel? Interoception: <i>the sense</i> of the physiological condition",
+        "Critical  Learning--Periods",
+        "Função cognitiva",   # accented text
+    ]
+    for case in cases:
+        assert b._lit_norm_title(case) == canon.norm_title(case), case
+
+
+# --- _group_literature_by_paper ---------------------------------------------
+
+def test_group_by_doi_merges_two_records():
+    a = _lit_rec("e1", ["MECH-1"], doi="10.1/x")
+    b_ = _lit_rec("e2", ["MECH-1"], doi="10.1/x")
+    group_of, routes = b._group_literature_by_paper([a, b_])
+    assert group_of[("targeted_review_x", "e1")] == group_of[("targeted_review_x", "e2")]
+    root = group_of[("targeted_review_x", "e1")]
+    assert routes[root] == ["doi"]
+
+
+def test_group_by_pmid_merges_when_doi_absent():
+    a = _lit_rec("e1", ["MECH-1"], doi=None, pmid="12345")
+    c = _lit_rec("e2", ["MECH-1"], doi=None, pmid="12345")
+    group_of, routes = b._group_literature_by_paper([a, c])
+    assert group_of[("targeted_review_x", "e1")] == group_of[("targeted_review_x", "e2")]
+    assert routes[group_of[("targeted_review_x", "e1")]] == ["pmid"]
+
+
+def test_group_by_exact_title_merges_when_no_shared_doi_pmid():
+    """The arXiv-preprint-vs-published-version case: different DOIs, same
+    normalised title."""
+    a = _lit_rec("e1", ["MECH-1"], doi="10.48550/arxiv.1", title_norm="critical learning periods")
+    c = _lit_rec("e2", ["MECH-1"], doi="10.1/published", title_norm="critical learning periods")
+    group_of, routes = b._group_literature_by_paper([a, c])
+    assert group_of[("targeted_review_x", "e1")] == group_of[("targeted_review_x", "e2")]
+    assert routes[group_of[("targeted_review_x", "e1")]] == ["title"]
+
+
+def test_group_union_transitively_across_routes():
+    """A null-DOI record and a good-DOI record sharing only a PMID, unioned
+    with a third record sharing that DOI -- one group via the UNION, not
+    three half-findings. Mirrors audit_literature_duplicate_entries.py's own
+    'the union matters' framing."""
+    a = _lit_rec("e1", ["MECH-1"], doi=None, pmid="999")
+    c = _lit_rec("e2", ["MECH-1"], doi="10.1/x", pmid="999")
+    d = _lit_rec("e3", ["MECH-1"], doi="10.1/x", pmid=None)
+    group_of, _routes = b._group_literature_by_paper([a, c, d])
+    roots = {group_of[("targeted_review_x", eid)] for eid in ("e1", "e2", "e3")}
+    assert len(roots) == 1
+
+
+def test_group_no_shared_identity_stays_singleton():
+    """Negative control: two records with no doi/pmid/title in common are
+    never merged, even when they tag the same claim."""
+    a = _lit_rec("e1", ["MECH-1"], doi="10.1/x")
+    c = _lit_rec("e2", ["MECH-1"], doi="10.2/y")
+    group_of, routes = b._group_literature_by_paper([a, c])
+    assert group_of[("targeted_review_x", "e1")] != group_of[("targeted_review_x", "e2")]
+    assert routes == {}
+
+
+def test_group_no_fuzzy_title_merge():
+    """Negative control mirroring the Craig 2002/2003 false positive measured
+    in audit_literature_duplicate_entries.py: titles that agree under fuzzy
+    containment/ratio matching but NOT exact normalised equality must stay
+    ungrouped -- fuzzy title matching is deliberately not reproduced here."""
+    a = _lit_rec("e1", ["MECH-1"],
+                 title_norm="how do you feel interoception the sense of the physiological condition of the body")
+    c = _lit_rec("e2", ["MECH-1"],
+                 title_norm="interoception the sense of the physiological condition of the body")
+    group_of, routes = b._group_literature_by_paper([a, c])
+    assert group_of[("targeted_review_x", "e1")] != group_of[("targeted_review_x", "e2")]
+    assert routes == {}
+
+
+# --- end-to-end: claim_to_entries dedup (the actual fix) -------------------
+
+def _lit_matrix(entries):
+    with tempfile.TemporaryDirectory() as td:
+        by_lit = {}
+        for rec in entries:
+            by_lit.setdefault(rec.literature_type, []).append(rec)
+        return b._write_claim_evidence_matrix(Path(td), {}, by_lit, "2026-08-18T00:00:00Z")
+
+
+def test_claim_evidence_dedup_excludes_second_entry_same_claim_same_paper():
+    """The Bekoff-pair shape (GFLAG-0030): one paper, two records, same
+    claim -- only the first (by timestamp) counts toward scoring."""
+    entries = [
+        _lit_rec("bekoff_a", ["ARC-049"], doi="10.1163/156853995x00649",
+                 confidence=0.72, timestamp_raw="2026-05-16T00:00:00Z"),
+        _lit_rec("bekoff_b", ["ARC-049"], doi="10.1163/156853995x00649",
+                 confidence=0.88, timestamp_raw="2026-05-16T01:00:00Z"),
+    ]
+    matrix = _lit_matrix(entries)
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "ARC-049"]
+    assert len(claim_entries) == 2, "both records must still appear in the audit log"
+    scored = [e for e in claim_entries if "scoring_excluded" not in e]
+    excluded = [e for e in claim_entries if "scoring_excluded" in e]
+    assert len(scored) == 1 and len(excluded) == 1
+    assert scored[0]["run_id"] == "bekoff_a", "earliest entry must be the one kept"
+    assert excluded[0]["run_id"] == "bekoff_b"
+    assert excluded[0]["scoring_excluded"] == "duplicate_literature_entry"
+    assert excluded[0]["duplicate_of"] == "targeted_review_x/bekoff_a"
+    assert excluded[0]["duplicate_route"] == ["doi"]
+    # Nothing is silently merged: the excluded entry keeps ITS OWN recorded
+    # confidence (0.88), not the kept entry's (0.72) or an average.
+    assert excluded[0]["confidence"] == 0.88
+    assert scored[0]["confidence"] == 0.72
+
+
+def test_claim_evidence_dedup_group_of_four_keeps_only_first():
+    """The MECH-058 shape: one paper, four records, one claim, identical
+    confidence -- 3 of 4 are surplus."""
+    entries = [
+        _lit_rec(f"byol_{i}", ["MECH-058"], doi="10.48550/arxiv.2006.07733",
+                  confidence=0.78, timestamp_raw=f"2026-02-{14 + i:02d}T00:00:00Z")
+        for i in range(4)
+    ]
+    matrix = _lit_matrix(entries)
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "MECH-058"]
+    assert len(claim_entries) == 4
+    scored = [e for e in claim_entries if "scoring_excluded" not in e]
+    assert len(scored) == 1
+    assert scored[0]["run_id"] == "byol_0"
+
+
+def test_claim_evidence_no_dedup_across_different_claims():
+    """A paper legitimately supporting two DIFFERENT claims must still count
+    once PER CLAIM -- dedup is keyed on (claim_id, paper_group), not on
+    paper_group alone."""
+    entries = [
+        _lit_rec("shared_a", ["MECH-1"], doi="10.1/shared"),
+        _lit_rec("shared_b", ["MECH-2"], doi="10.1/shared"),
+    ]
+    matrix = _lit_matrix(entries)
+    for claim_id in ("MECH-1", "MECH-2"):
+        claim_entries = [e for e in matrix["entries"] if e["claim_id"] == claim_id]
+        assert len(claim_entries) == 1
+        assert "scoring_excluded" not in claim_entries[0]
+
+
+def test_claim_evidence_no_dedup_different_papers_same_claim():
+    """MANDATORY NEGATIVE CONTROL: two GENUINELY DIFFERENT papers (disjoint
+    doi/pmid/title) cited for the SAME claim must both count -- this is
+    ordinary, correct multi-source evidence, not a duplicate."""
+    entries = [
+        _lit_rec("paper_a", ["MECH-3"], doi="10.1/paper-a", title_norm="paper a title"),
+        _lit_rec("paper_b", ["MECH-3"], doi="10.2/paper-b", title_norm="paper b title"),
+    ]
+    matrix = _lit_matrix(entries)
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "MECH-3"]
+    assert len(claim_entries) == 2
+    assert all("scoring_excluded" not in e for e in claim_entries)
+
+
+def test_claim_evidence_dedup_no_identity_never_merges():
+    """Negative control: literature records with no doi/pmid/title at all
+    (a legacy corpus record with only free-text `source`) must never be
+    deduplicated against each other."""
+    entries = [
+        _lit_rec("bare_a", ["MECH-4"]),
+        _lit_rec("bare_b", ["MECH-4"]),
+    ]
+    matrix = _lit_matrix(entries)
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "MECH-4"]
+    assert len(claim_entries) == 2
+    assert all("scoring_excluded" not in e for e in claim_entries)
+
+
+def test_claim_evidence_dedup_end_to_end_from_disk():
+    """Full pipeline: record.json with a real `source.doi` on disk ->
+    _scan_literature -> _write_claim_evidence_matrix, matching how the real
+    corpus is actually read (the unit tests above build LiteratureRecord
+    directly and never exercise the disk-parsing -> normalise path)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp) / "literature"
+        rec_a = _lit_record("dup_a", ["ARC-TEST"], direction="supports")
+        rec_a["source"]["doi"] = "10.1000/dup"
+        rec_a["timestamp_utc"] = "2026-05-04T00:00:00Z"
+        rec_b = _lit_record("dup_b", ["ARC-TEST"], direction="supports")
+        rec_b["source"]["doi"] = "10.1000/DUP"  # case-insensitive DOI match
+        rec_b["timestamp_utc"] = "2026-05-04T01:00:00Z"
+        _write_lit_entry(root, "targeted_review_x", "dup_a", rec_a)
+        _write_lit_entry(root, "targeted_review_x", "dup_b", rec_b)
+        by_lit = b._scan_literature(root, {})
+        matrix = b._write_claim_evidence_matrix(Path(tmp), {}, by_lit, "2026-08-18T00:00:00Z")
+
+    claim_entries = [e for e in matrix["entries"] if e["claim_id"] == "ARC-TEST"]
+    assert len(claim_entries) == 2
+    scored = [e for e in claim_entries if "scoring_excluded" not in e]
+    assert len(scored) == 1
+    assert scored[0]["run_id"] == "dup_a"
