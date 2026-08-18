@@ -81,9 +81,11 @@ Four tests, weakest to strongest, run per stash per file. Tests 1-3 compare agai
 3. **Symbol containment** -- every `def`/`class` name and every dataclass field defined in
    the stashed file must exist in `origin/main`'s version. Catches the case where main has
    moved textually but is a strict functional superset.
-4. **Ancestor containment** -- for every line the stash blob *adds* over the tip, is that
-   line present verbatim in some commit **reachable from `origin/main`**? Run this when
-   tests 1-3 have all failed, *before* concluding the entry is orphaned.
+4. **Ancestor containment** -- for every line the stash's *own* diff adds
+   (`git diff 'stash@{N}^' 'stash@{N}' -- <path>`, **not** the blob-vs-tip delta -- see
+   trap 2 below), is that line present verbatim in some commit **reachable from
+   `origin/main`**? Run this when tests 1-3 have all failed, *before* concluding the entry
+   is orphaned.
 
 Test 2 is **conservative in one direction only**: a clean reverse-apply is proof of
 containment, but a failure is *not* proof of loss -- it fires whenever main's context lines
@@ -110,10 +112,10 @@ minutes of it, not days:
 cd /Users/dgolden/REE_Working/ree-v3
 git log -1 --format=%ci 'stash@{N}'                       # when the tree was parked
 git log --oneline --since=<that time -1h> -- <path>       # candidate finishing commits
-git diff 'origin/main:<path>' 'stash@{N}:<path>'          # what the stash adds over the tip
+git diff 'stash@{N}^' 'stash@{N}' -- <path>               # what the SESSION added -- NOT blob-vs-tip (trap 2 below)
 # then, per candidate: are ALL those added lines in it?
-cand=$(mktemp); git show <candidate>:<path> > "$cand"
-git diff 'origin/main:<path>' 'stash@{N}:<path>' | grep '^+[^+]' | \
+cand=$(mktemp); git cat-file blob "$(git rev-parse '<candidate>:<path>')" > "$cand"   # not `git show` (trap 1 below)
+git diff 'stash@{N}^' 'stash@{N}' -- <path> | grep '^+[^+]' | \
   while IFS= read -r l; do grep -qxF -- "${l#+}" "$cand" || echo "ABSENT: ${l#+}"; done
 ```
 
@@ -139,6 +141,53 @@ time the runner ticks.
   **internally broken** and must never be applied. Compare both ways:
   `git diff <ancestor>:<path> 'stash@{N}:<path>'`, and read the added-line count as well as
   the removed one.
+
+### Two mechanical traps the recipe above used to walk straight into (added 2026-08-18)
+
+Both were surfaced grading umbrella stash `93c953009a`, and **both produce a false
+GENUINELY-ORPHANED verdict** -- that is, both push the triager toward *restoring* content that
+is already on trunk. Worked example with the full measured numbers:
+`evidence/planning/umbrella_stash_triage_20260812_93c95300.md`. (That entry was hand-taken
+rather than an `autostash`; the traps are properties of the stash object and of the diff being
+asked for, so they apply to either.)
+
+**Trap 1 -- a stash is a MERGE COMMIT, so `git show <stash>` hands you the commit, not the
+blob.** `git stash push -u` writes an *octopus* merge -- three parents: HEAD, the index commit,
+the untracked commit (the 2026-08-18 entry's were `0f76618e`, `ebcf374f`, `8ac1bd87`). Every
+pathspec form -- `git show <stash>`, `git show <stash> -- <path>`, `git show <stash> <path>` --
+prints the commit header plus a combined `diff --cc` and **exits 0**, so a redirect captures
+commit text and every downstream line count, containment check and diff is silently wrong.
+Measured: **1088 "lines" captured for a 3407-line file**. The `-- <path>` does not narrow the
+output to the file; it only filters which paths the combined diff covers.
+
+Use the two-step form, which cannot resolve to anything but a blob:
+
+```bash
+git cat-file blob "$(git rev-parse 'stash@{N}:<path>')" > /tmp/stash_blob
+```
+
+Reproduced 2026-08-18 on git 2.34.1 against a synthetic `git stash push -u`: the pathspec forms
+return the commit (3414 lines for a 3400-line file), `rev-parse` + `cat-file blob` returns 3400.
+On that version the *colon* form `git show 'stash@{N}:<path>'` does resolve correctly, whereas
+the 2026-08-18 triage recorded the colon form as failing -- so do not assume either is safe on
+your git. `rev-parse` + `cat-file blob` is unambiguous on both.
+
+Same family, also measured that day: `git diff '<rev>:<path>' '<stash-sha>'` -- a blob spec on
+one side and a bare commit on the other -- is a **usage error, exit 129**, not a diff. Both
+sides need the `:<path>`.
+
+**Trap 2 -- test 4 is applied to the session's OWN added lines, never to the blob-vs-tip
+delta.** Test 4 asks "for every line the stash *adds*, is it on trunk?". Computing that set as
+`git diff 'origin/main:<path>' 'stash@{N}:<path>'` answers a different question once trunk has
+moved: the stash blob is an *older base* plus a small edit, so the diff is dominated by trunk's
+own evolution, and pre-existing code that trunk has since restructured is reported as
+"added by the stash" (and trunk's new code as "deleted by it"). Measured on
+`scripts/igw_routine_tick.py` in the 2026-08-18 entry: blob-vs-tip reported **82 insertions /
+794 deletions**, with **54 of the 82 added lines absent from `origin/master`** -- which reads as
+major loss and is entirely an artifact of trunk growing 3360 -> 4119 lines in the six days since
+the stash was taken. The stash's own diff, `git diff 'stash@{N}^' 'stash@{N}' -- <path>`, yields
+the 58 lines the session actually wrote, of which **0 were absent**: fully contained. `<stash>^`
+is the first parent, i.e. the commit the working tree was parked on top of.
 
 ---
 
