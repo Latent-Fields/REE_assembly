@@ -232,3 +232,67 @@ of being an undifferentiated wedge.
 
 Tests at landing: `scripts/test_ref_convergence_route_c.py` 22 + `scripts/test_ref_convergence.py`
 71 = **93 passed**, no regressions.
+
+## 9. JSONL registries (2026-08-18b) -- built, and RECOMMENDATION_LOG.jsonl left uncovered
+
+Follow-on chip `chip-20260818-routec-jsonl-recommendation-log`, picking up finding 2 of section 8.
+
+**What shipped.** `REGISTRY_SPECS` now carries a `kind` (`"json"` / `"jsonl"`) and
+`_load_registry` dispatches on it (`_parse_json_registry` / `_parse_jsonl_registry`). The jsonl
+shape is one JSON object per line, no top-level document, no `array_key`, and no envelope --
+there is no non-item field for an envelope check to catch, so `_parse_jsonl_registry` returns a
+fixed `None` sentinel and the identical-envelope comparison in `registry_net_contained()` is
+trivially satisfied without that function needing to know the kind. Refuse semantics are
+unchanged in kind, re-scoped to lines: unreadable, an unparseable line, a non-dict line, a null
+key component, or a duplicate key all refuse. A blank line is skipped, and (unlike the JSON
+shape) an empty file is a valid empty registry rather than a refusal, since a zero-byte JSONL log
+is a legitimate state and a zero-byte JSON document is not.
+
+**RECOMMENDATION_LOG.jsonl -- investigated, NOT added.** It is the only tracked `.jsonl` file in
+the umbrella repo and the file this extension was built for, so it was the obvious first
+candidate. Its writer (`scripts/record_recommendation_outcome.py`) stamps `session_id`
+(defaulting to the literal string `"unknown"` outside a worktree) and `timestamp_utc` (second
+resolution) but declares no id field, and its own docstring documents that a failed commit can be
+blindly re-run into a duplicate record -- the writer promises no uniqueness. Measured directly
+against the live file 2026-08-18 (138 lines, 129 distinct `(session_id, timestamp_utc)` stamps):
+**9 of the 129 stamps collide**, every one of them under `session_id="unknown"`, from a
+multi-question batch landing within the same wall-clock second (worked example: two distinct
+questions, headers `MECH-074d` and `INV-051`, both stamped `2026-08-08T16:39:11Z`). A field
+combination that happens to be unique on today's 138 lines (e.g. adding `header`) is not a
+structural guarantee the writer makes, and declaring one would repeat the reverse-apply-heuristic
+mistake this module's docstring already rejects twice for a different shape -- a false
+containment proof here is a silently dropped commit. Declaring the file with the one field pair
+the writer actually stamps would not "cover" it either: those 9 collisions are already permanent
+history, so `_load_registry` would refuse on every future revision reachable through them,
+forever -- a perpetually-refusing entry, not coverage. Left out of `REGISTRY_SPECS`, undeclared,
+per the chip brief's own framing: an unkeyable registry is a correct exclusion, not a gap to
+paper over. A commit touching only that path still needs route A or B, exactly as before this
+change -- pinned by `TestRecommendationLogNotCovered` in the test file below.
+
+**Held-out check (GOV-HELDOUT-1), reported honestly: zero non-degenerate cases.** The check asks
+for >=3 historical cases where the old wording (no jsonl support in route C) and the new wording
+give different answers. There are none, and the reason is structural rather than a search
+failure: `RECOMMENDATION_LOG.jsonl` is the only real jsonl file in the repo, it was investigated
+and found unkeyable, and an unkeyable path is excluded from `REGISTRY_SPECS` either way -- so
+`classify()`/`converge()` return the identical verdict, before and after this change, for every
+commit that has ever touched that file (still needs route A or B; the section 8 backlog's 3
+unproven commits touching it are unchanged by this ship). Per GOV-HELDOUT-1's own instruction --
+"if you cannot find 3 such cases, that is itself the finding" -- this ships stated explicitly as
+scoped, currently-inert infrastructure: the generic jsonl mechanism is validated by a dedicated
+synthetic-fixture test suite (`TestJSONLRouteCProves`, `TestJSONLRouteCRefuses`,
+`TestParseJsonlRegistryDirect`), not by any historical case, and it changes no outcome for a
+currently-tracked file. It earns its place for the NEXT properly-keyed jsonl registry, not this
+one.
+
+**Cost.** Parsing is not the bottleneck for either shape -- git object I/O is (see section 6).
+Measured 2026-08-18: `RECOMMENDATION_LOG.jsonl` (100,907 bytes, 138 lines) parses in ~2.2ms,
+against TASK_CHIPS.json's (5.5 MB) ~0.12s per revision end-to-end including the `git show`.
+`MAX_UPSTREAM_SCAN_COMMITS`'s safety bound (section 6) is unaffected by adding a jsonl-shaped
+file to the allowlist in the future -- per-revision cost stays dominated by `git show`, not by
+which parser runs on the result.
+
+Tests at landing: `scripts/test_ref_convergence_route_c.py` grew from 22 to 44 (+22: 3
+`TestJSONLRouteCProves`, 6 `TestJSONLRouteCRefuses`, 9 `TestParseJsonlRegistryDirect`, 2
+`TestRecommendationLogFinding`, 1 `TestRecommendationLogNotCovered`, 1
+`TestJSONLScanCostStaysWithinCapBudget`) + `scripts/test_ref_convergence.py` 71 unchanged =
+**115 passed**, no regressions.
