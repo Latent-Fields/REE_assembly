@@ -102,6 +102,56 @@ supply the SD-056-trained `e2.world_forward` + ARC-065 GAP-A
 `candidate_summary_source=e2_world_forward` divergent pool + a modulatory channel,
 else self-route `substrate_not_ready_requeue`).
 
+### Envelope-width gating of the SOFT axes (V3-EXQ-926a, 2026-08-16)
+
+The `gng_protect_min_eligible` fail-open and the MECH-448 envelope compose into an
+**operating-point constraint that is invisible from either lever alone**, and it is
+the single most important thing to know before reading a Go/No-Go result.
+
+A **soft** No-Go (`staleness` / `perseveration` / low `viability`) is *applied* only
+while the eligible set holds **more than** `gng_protect_min_eligible` members. At the
+default `protect_min = 1` that means a soft axis is **structurally inert on a
+one-survivor envelope** -- and a decisive F-winner is precisely the case the MECH-448
+envelope is *designed* to narrow. So the two defaults interact: the more decisively F
+discriminates, the less the soft opponency leg can act.
+
+At the shipped `f_eligibility_envelope_floor = 0.30` with `K = 4` candidates this is
+the common case, not a corner. Measured while authoring **V3-EXQ-926a**
+(`v3_exq_926a_mech449_perseveration_nogo_falsifier`):
+
+| `f_eligibility_envelope_floor` | median envelope size | soft No-Go applied |
+|---|---|---|
+| `0.30` (shipped default) | 1 | **6 / 16** banks |
+| `0.10` (what 926a runs at) | 2 | **15 / 16** banks |
+
+The identical mechanism converted **1/16** at the default floor. **926a's PASS is
+therefore recorded at floor 0.10 and carries no evidence about the perseveration axis
+at the shipped default** -- the caveat governance recorded as `evidence_quality_note`
+on MECH-449 and ARC-107 on 2026-08-16 (`REE_assembly` `288c1c7b98`).
+
+**Diagnostic signature.** `go_nogo_n_soft_requested > 0` together with
+`go_nogo_n_soft_applied == 0`: the axis fired and the fail-open refused it. A run
+whose soft axis looks dead should be checked against this pair before the *mechanism*
+is doubted -- an inert axis and a refused axis are indistinguishable from the
+conversion rate alone.
+
+**Scope** (verified against `_go_nogo_eligibility_gate`, not inferred from the run):
+
+- Applies to **all three** soft axes, which share this guard -- not to `perseveration`
+  alone. 926a happens to be the axis that exposed it.
+- `safety` is **exempt**: it is applied to the eligible mask *above* the guard and is
+  never overridden, so the safety leg is live at any envelope width.
+- `use_f_eligibility_adaptive_floor` (the MECH-448 channel-adaptive amend) does **not**
+  lift it. A mean-relative floor also admits a single survivor on a decisive field, so
+  it is not a workaround for this.
+
+**This is lawful composition, not a defect.** On a one-survivor envelope F has already
+decided, and dropping the last candidate is exactly the catatonia / avolition pole the
+fail-open exists to prevent (see *Psychiatric failure mode* below). Whether `0.30` is
+the right production default *given* that it leaves the soft axes near-inert at `K = 4`
+is a separate design question that needs its own evidence and a governance call. **Do
+not move a default to make an axis fire.**
+
 ## MECH-094
 
 Waking committed-selection path only (pure-arithmetic gate over per-candidate
@@ -131,6 +181,23 @@ MECH-448 achieves (over-specification if it does not). Pre-registered: a
 built-but-no-conversion result is `non_contributory` / does-not-promote, **not**
 an ARC-107 falsification; non-vacuity self-route `substrate_not_ready_requeue` if
 the candidate pool is not divergent or Go/No-Go variables do not vary.
+
+**V3-EXQ-689g** (`..._go_nogo_conversion_falsifier`, PASS 2026-06-21) is the
+single-decision conversion falsifier of the built gate. It exercises the `safety`
+and `staleness` axes and leaves `perseveration` untested. **V3-EXQ-926a**
+(`..._perseveration_nogo_falsifier`, PASS 2026-08-14; C1 conversion
+0.969 / 0.969 / 1.000 across three seeds) closes that axis -- but read it **only**
+together with the envelope-width gating above: it runs at `ENVELOPE_FLOOR = 0.10`,
+not the shipped `0.30`, and its driver asserts that precondition (`P3`, median
+eligible-set size >= 2) rather than assuming it.
+
+That pairing also explains why the gating went unobserved for two months. 689g runs
+at the **default** floor and its conversion is carried by the `safety` axis, which is
+exempt from the fail-open -- so it passes at an envelope width where the soft axes
+cannot act. Its `staleness` axis was subject to the same guard, and 689g captures
+neither `go_nogo_n_soft_requested` nor `go_nogo_n_soft_applied`, so whether that axis
+was applied or fail-open-refused is **not recoverable from that run's manifest**.
+Any new Go/No-Go falsifier should record both counters.
 
 ## See
 

@@ -240,3 +240,24 @@ substrates (the arc_062 bank that no-opped in 654h + the OFC/foraging bank) with
 SAME global adaptive config (no per-channel hand-tuning); bit-identical OFF as the
 negative control; `substrate_not_ready_requeue` if the adaptive floor still no-ops on
 any channel.
+
+## Downstream: the envelope width gates MECH-449's soft No-Go axes (V3-EXQ-926a)
+
+The envelope floor is not only a MECH-448 knob. Because MECH-449's fail-open guard
+(`gng_protect_min_eligible`, default 1) refuses to drop the last eligible candidate, a
+**soft** No-Go axis (`staleness` / `perseveration` / low `viability`) can act **only**
+while the envelope holds more than one survivor. A narrow envelope -- exactly what this
+lever produces on a decisive F-winner -- therefore makes those axes structurally inert.
+
+Measured for V3-EXQ-926a at `K = 4`: floor `0.30` (the shipped default) -> median
+envelope 1, soft No-Go applied 6/16 banks; floor `0.10` -> median envelope 2, applied
+15/16. `use_f_eligibility_adaptive_floor` does **not** change this -- a mean-relative
+floor also admits a single survivor on a decisive field. `safety` is exempt (applied
+above the guard).
+
+So a change to `f_eligibility_envelope_floor` or
+`f_eligibility_adaptive_mean_factor` silently changes how often the MECH-449 soft
+opponency leg can fire. Full treatment, including the diagnostic signature and why
+this is lawful composition rather than a defect:
+`docs/architecture/mech_449_go_nogo_constitution.md` -> *Envelope-width gating of the
+SOFT axes*.
