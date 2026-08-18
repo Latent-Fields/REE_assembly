@@ -614,9 +614,9 @@
       "summary": "PROPOSED UN-DEFER of arc_062_rule_apprehension:GAP-I-absorption, adjudicated but not surfaced anywhere /governance reads. The 2026-08-15 D-002 adjudication (chip-20260815-orphan-v3-claims-adjudicate, landed REE_assembly 7478ffe8ad) found the node's `deferred` status WRONG -- 4 of 5 artefacts say MECH-316/317 are live V3 -- and PROPOSED un-deferring it, correctly declining to apply a status change outside its authority. The proposal was recorded only as a `governance_2026_08_15` field on the node itself; it appears in NO promotion_demotion_recommendations.md row, NO prior governance flag, and NO GOVERNANCE_AGENDA entry, so a normal governance walk would not see it. While these claims sit under a deferred node they are excluded from the V3 progress denominator outright (generate_closure_snapshot.py DEFERRED_STATUSES) -- the same invisibility that hid SD-031 for ten weeks. Closure effect MEASURED by A/B regeneration, not estimated: 71.9%/94 nodes -> 70.0%/97 for this and the sibling GAP-G proposal together. Raised by Steward D-002 follow-up purely to make the standing proposal discoverable; no status changed here.",
       "raised_by_session": "selfattr-multiagent-adjudication-20260815",
       "raised_at": "2026-08-18T06:56:03Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-18T15:01:56Z",
+      "resolution_note": "APPLIED by /governance cycle 2026-08-18 (session governance-paused-bb6e76). The 2026-08-15 D-002 adjudication's PROPOSED un-defer was reviewed and ACCEPTED IN FULL, without revision: arc_062_rule_apprehension:GAP-I-absorption status deferred -> blocked_pending_substrate (matching parent GAP-I), severity stays low, unblocks_claims stays [MECH-316, MECH-317], no new node split out, last_updated bumped to 2026-08-18, and a governance_2026_08_18 field recording the decision. NO claims.yaml change -- the registry was already correct (MECH-316/317 candidate + implementation_phase v3 + v3_pending true). MECH-316/317 are back in the V3 progress denominator after ~7.7 weeks of exclusion by a half-applied reclassification whose own stated precondition never held. Closure effect, measured jointly with GAP-G and commitment_closure:GAP-7: 71.9%/94 non-deferred nodes -> 70.0%/97. See evidence/planning/arc_062_rule_apprehension_plan.md."
     },
     {
       "flag_id": "GFLAG-0042",
