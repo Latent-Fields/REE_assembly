@@ -7,7 +7,7 @@ closure_plan:
   generation: process
   title: "Substrate Stability + Claim-Drift Detection (freeze substrate per run; detect when it has moved since a claim's evidence was recorded)"
   registered: 2026-08-03
-  last_updated: 2026-08-07
+  last_updated: 2026-08-18
   scope_claims: []
   sibling_plans:
     - arm_reuse_fingerprint_plan.md
@@ -61,13 +61,13 @@ closure_plan:
       last_updated: 2026-08-03
       completion_note: "check_substrate_staleness_candidates.py extended with: (1) _eval_flag_formula now recognises getattr(obj, \"name\", default) as a flag reference (previously only direct attribute access) -- a real, valuable, retroactive fix to Phase 1b itself, not just P1d, since this is the dominant gate idiom in ree_core (622 occurrences measured). (2) build_function_index() (name -> every FunctionDef/AsyncFunctionDef across the current substrate scope, built once per report run), _has_disqualifying_side_effect() (scope-respecting -- found and fixed a real bug during testing: a naive ast.walk-based nested-function exclusion only skips the FunctionDef node itself, not its descendants, since ast.walk flattens across scope boundaries; fixed with a proper ast.iter_child_nodes recursion that never descends into a nested def/lambda/class), _guard_clause_confirms_inert() (a callee's own first-statement `if <formula>: return <cheap>` confirmed to always fire), _function_is_one_hop_inert(), and one_hop_inert_line_ranges(), unioned with Phase 1b's existing if-body ranges. 25 new unit tests including the ACTUAL real-world shape (notify_subgoal_attainment calling credit_subgoal_attainment across files) as a positive control -- confirmed working IN ISOLATION. 87 tests total in the suite. REAL corpus run: STILL 0 pairs filtered for either pilot -- but for a THIRD, deeper root cause than P1/P1b's, not a repeat: traced (not guessed) via direct debugging that use_hierarchical_goal_credit resolves as Unknown, not confirmed-False, for MECH-471's driver, because default_off_drift_guard.py's parse_knobs() ONLY parses ree_core/utils/config.py -- and GoalConfig (which declares that flag) is defined in ree_core/goal.py, a different file, imported in as a nested REEConfig field. Confirmed exactly 2 of 10 nested config classes (GoalConfig, SerotoninConfig) live outside config.py and are therefore invisible to parse_knobs() entirely -- this is a real, bounded, well-scoped gap in default_off_drift_guard.py itself, one layer below everything built this session, and P1c's own runtime-introspection recording (enabled_default_off_flags(), which walks the LIVE dataclass structure regardless of which file declares each nested class) does NOT share this limitation -- confirming the asymmetry is specific to the AST-based knob-name approach Phase 1b/1d both depend on. Also confirmed even accounting for this, 183 of 236 changed lines in ree_core/agent.py for the MECH-471 candidate remain uncovered (use_coalition_controller DID resolve correctly, confirmed False, since it lives in config.py directly) -- other gating idioms (e.g. a cached state check like `if self.coalition is not None:`, which is a derived-at-init-time proxy for a flag rather than a direct flag reference) are not recognised by any analysis built this session and would need actual data-flow tracking to close. See section 7.4 for the full writeup. Not fixed here -- extending parse_knobs() to cover nested-config classes declared outside config.py is a well-scoped, separate follow-on, flagged not built."
     - id: "substrate_stability:ISO-design"
-      title: "Structural isolation design (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; not built."
+      title: "Structural isolation (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; option A2 BUILT and landed 2026-08-18."
       phase: 0
-      status: open
+      status: done
       severity: medium
       owner_exq: null
-      last_updated: 2026-08-03
-      completion_note: ""
+      last_updated: 2026-08-18
+      completion_note: "Option A2 (pause-the-puller mutex) built and landed on ree-v3 main as d28d73d4, behind REE_SUBSTRATE_FREEZE (default OFF, so an unflagged fleet is unchanged). New ree-v3/substrate_freeze.py holds a worker-scoped local mutex in the checkout's GIT DIR -- resolved through both .git shapes, since in a worktree .git is a FILE and a freeze written under a mis-resolved git dir would be invisible to the puller reading the correct one (the same trap remote_pytest.sh hit on 2026-07-31). experiment_runner.py wires both halves: the acquiring half wraps the run_experiment() call in main(), the puller half sits in _pull_ree_v3 beside _ree_v3_pull_blocked. THREE design decisions worth knowing before touching it. (1) It fails OPEN in every uncertain direction -- unreadable lock dir, corrupt record, git failure -- which is DELIBERATELY OPPOSITE to the fail-closed _ree_v3_pull_blocked immediately beside it. The asymmetry is not an oversight: the harm this guard prevents is already self-reported after the fact by arm_fingerprint.substrate_stability_report() (that is how V3-EXQ-875 was caught with none of this built), so a missed defer degrades loudly to the status quo ante; whereas this guard sits in front of the ONLY path that pulls ree-v3, and experiment_queue.json lives in ree-v3, so a stuck-closed guard stalls the queue and blinds a worker to new work -- the exact wedge _ree_v3_pull_blocked names as its reason for rejecting a claim-only gate. (2) It defers only pulls whose INCOMING commits actually touch substrate paths (git fetch, then diff HEAD..@{u} against SUBSTRATE_PREFIXES). Deferring every pull for a freeze's whole life would stall the queue for the length of a 20h run, which would make the feature unusable in practice; fetch is safe under a freeze because it writes only the object store and remote-tracking refs, never the working tree. (3) Stale holders self-heal -- pid liveness (meaningful precisely because the lock is LOCAL to the checkout) plus a TTL backstop of 26h, chosen to exceed V3-EXQ-875's own 20.5h, since expiring a freeze under a still-running experiment silently reintroduces the drift it prevents. 41 contract tests in ree-v3/tests/contracts/test_substrate_freeze.py, time-independent, real git repos in a tempdir; roughly half are NEGATIVE CONTROLS, including an end-to-end pair asserting the substrate file BYTES do not move under a held freeze and DO move without one. Mutation-checked rather than assumed: unwrapping the run_experiment call, dropping the puller-side guard call, and making SUBSTRATE_PREFIXES too narrow OR too broad each turn a specific test red. Full suite run on the hub at the landed tree: 4454 passed, 22 skipped, 207 subtests, 3 failed -- and those same 3 (test_frozen_z_goal_scaffold_family, test_q081_pair_reach_check, test_q081_pair_reach_check_stream) fail IDENTICALLY on clean origin/main a067d6ee with none of this code, so they are pre-existing trunk breakage, measured rather than assumed, and are chipped separately. NOT built: option A1 (pinned git worktree per run), which the plan reserves for experiments an author explicitly flags as expensive or claim-decisive, and which remains open; A3 (rsync snapshot) stays rejected. Also NOT built, and deliberately: a per-queue-entry needs_stable_substrate field. A2 is the plan's recommended DEFAULT, so the feature flag alone controls it; adding a queue field would have meant touching the queue schema and validate_queue.py in the same change, widening the blast radius of an executable-code-plane edit for no isolation gain. That per-entry opt-out is the natural next increment if the fleet ever wants one."
     - id: "substrate_stability:parse-knobs-file-coverage"
       title: "Teach REE_assembly/scripts/default_off_drift_guard.py's parse_knobs() to follow each REEConfig field(default_factory=XConfig) reference to wherever XConfig is actually declared (an import resolution, not a hardcoded second/third file path), so nested config classes declared outside ree_core/utils/config.py (confirmed: GoalConfig, SerotoninConfig) are no longer invisible to it. Discovered as the real blocker behind P1d's still-0 real-corpus result (section 7.4), not built this session -- a separate, well-scoped follow-on one layer below everything else in this plan."
       phase: 1
@@ -130,7 +130,9 @@ confirmed-False, and the knob set goes 316 -> 330 -- but the corpus numbers do n
 0/0 filtered, 258 pairs remaining), because the newly-inert ranges do not intersect the changed
 lines; the cached-state-check pattern is now the sole remaining blocker for the pilots. The
 guard's own 9 gating findings are unchanged, i.e. no new drift was hiding behind the gap. The structural-isolation problem
-(section 3) is designed but **not built** this session. Phase 2 (section 4.4) remains held
+(section 3) was designed but not built in the design session; **option A2 is now BUILT and
+landed** (section 3.1, `ree-v3` `d28d73d4`, 2026-08-18) behind a default-OFF flag, with option
+A1 still open. Phase 2 (section 4.4) remains held
 pending a human decision: land P1c into `/queue-experiment` so new
 drivers start accumulating coverage, pursue P1d, or accept Phase-0's whole-tree ceiling.
 **Created:** 2026-08-03T16:56Z
@@ -208,7 +210,7 @@ that substrate moved in a way relevant to a specific claim and hand-edit the fla
 That is the actual, confirmed gap this plan's section 4 fills -- a *producer* for fields whose
 *consumer* is already built, tested, and live.
 
-## 3. Problem 1 -- structural isolation (designed, not built this session)
+## 3. Problem 1 -- structural isolation (designed 2026-08-03; option A2 BUILT 2026-08-18)
 
 | Option | Mechanism | Isolation strength | Cost |
 |---|---|---|---|
@@ -221,12 +223,59 @@ should match that), reserving A1 for experiments an author explicitly flags as e
 critical (long wall-clock, claim-decisive). A3 should not be built -- it is strictly dominated
 by A1 for this use case.
 
-**Why this section is not built this session**: it requires a change to
+**Why this section was not built in the design session**: it requires a change to
 `ree-v3/experiment_runner.py`'s pull step, which is executable-code-plane infrastructure shared
 by every worker and the hub, and per this repo's own git policy that class of change should be
 staged (an `integration/<slug>` branch, tested on a cloud worker, before merging to `main`) --
 not a same-session drive-by edit. Left as an open node (`substrate_stability:ISO-design`) for a
 dedicated follow-on.
+
+### 3.1 A2 built and landed (2026-08-18, chip `chip-20260817-substrate-iso-design-pause-puller-mutex`)
+
+That dedicated follow-on ran. **Option A2 is built**, on `ree-v3` `main` as `d28d73d4`, staged
+through an `integration/*` branch and gated on the full suite run on the hub, exactly as this
+section required. `ree-v3/substrate_freeze.py` is the mutex; `experiment_runner.py` carries both
+halves (acquire around the `run_experiment()` call, defer inside `_pull_ree_v3`). It is behind
+`REE_SUBSTRATE_FREEZE`, **default OFF**, so an unflagged fleet is unchanged.
+
+Three properties are load-bearing and are the ones to re-read before touching it:
+
+- **It fails OPEN in every uncertain direction, deliberately opposite to the fail-CLOSED
+  `_ree_v3_pull_blocked` sitting immediately beside it.** That guard protects a session's
+  uncommitted work, where a swept autostash is silent and unrecoverable, so deferring is the
+  cheap error. This one protects a run's substrate, where the harm is **already self-reported
+  after the fact** by `arm_fingerprint.substrate_stability_report()` -- that is precisely how
+  V3-EXQ-875 was caught with none of this built -- so a missed defer degrades loudly to the
+  status quo ante. Meanwhile this guard sits in front of the **only** path that pulls `ree-v3`,
+  and `experiment_queue.json` lives in `ree-v3`, so a stuck-closed bug here stalls the queue and
+  blinds a worker to new work: the same wedge `_ree_v3_pull_blocked` names as its own reason for
+  rejecting a claim-only gate. Do not "harden" this by inverting a failure direction.
+- **It defers only pulls that actually move substrate.** A freeze fetches and diffs `HEAD..@{u}`
+  against the guarded prefixes; a queue snapshot or a docs commit pulls normally. Deferring
+  everything for a freeze's whole life would stall the queue for the length of a 20h run, which
+  would make the feature unusable in practice rather than merely expensive.
+- **Stale freezes self-heal.** pid liveness (sound because the lock is *local* to the checkout,
+  so the holder is always on this machine) plus a 26h TTL backstop, chosen to exceed
+  V3-EXQ-875's own 20.5h -- expiring a freeze under a still-running experiment would silently
+  reintroduce the drift it exists to prevent.
+
+**What is still open, stated rather than implied by the `done`:**
+
+- **Option A1 (pinned worktree per run) is NOT built** and remains the right tool for the
+  experiments this section reserves it for -- author-flagged expensive or claim-decisive runs,
+  and the one case A2 structurally cannot cover: substrate already **uncommitted and dirty** in
+  the checkout at run start. A2 blocks *new* drift only.
+- **A2 has never run against a real experiment.** The flag is off everywhere. The honest next
+  step is enabling it on one worker and confirming a run reports
+  `substrate_stable_across_run: true` across a pull that would otherwise have moved `ree_core/`.
+  41 contract tests (roughly half negative controls, including an end-to-end pair asserting the
+  substrate file *bytes* do not move under a freeze and do move without one) are evidence the
+  mechanism works; they are not evidence the fleet wants it on.
+- **No per-entry `needs_stable_substrate` field.** A2 is this plan's recommended *default*, so
+  the feature flag alone controls it. Adding a queue field would have meant touching the queue
+  schema and `validate_queue.py` inside the same executable-code-plane change, widening the blast
+  radius for no isolation gain. That is the natural next increment if a per-entry opt-out is
+  ever wanted.
 
 ## 4. Problem 2 -- claim-drift detection (Phase 0 landed this session)
 
@@ -868,4 +917,4 @@ and its **9 gating FAIL findings are unchanged**, re-run and diffed. 195 green a
 | P1f-more-gate-idioms | 1 | closed | -- | **will not build.** none. Measured 2026-08-07: 71 of 84 evaluable pairs carry 100+ genuinely-live changed lines and none is within 5 lines of filtering, so a further inertness idiom cannot move the corpus number. Re-run section 7.6's near-miss decomposition before re-proposing | null | 2026-08-07 |
 | P2-governance-surface | 2 | open -- **recommended to PROCEED, reframed** | A user/`/governance` decision on the reframing, not on more tooling | The hold was premised on "269 pairs are mostly noise". Measured 2026-08-07: 84 are TRUE positives (100+ live lines each) and 185 simply have no `substrate_commit` to diff. Ship the surface as (i) 84 real candidates ranked by live-line count and (ii) a standing unassessable-pair count -- not as a filter. See section 7.6 | null | 2026-08-07 |
 | substrate-commit-coverage | 1 | open | Nothing -- this is now the LARGEST single effect, bigger than every static-analysis phase combined | 185 of 269 remaining pairs (69%) record a `substrate_hash` but no `substrate_commit.commit`, so no diff exists and no filter can ever assess them. Retroactively unfixable; the prospective fix is the same class as P1c. Quantify how many recent drivers still omit it, then close it in the recording standard | null | 2026-08-07 |
-| ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |
+| ISO-design | 0 | done (A2) | -- | none for A2; landed 2026-08-18 as ree-v3 `d28d73d4`, behind `REE_SUBSTRATE_FREEZE` (default OFF). Next real step is a decision to ENABLE it on a worker and confirm a run reports `substrate_stable_across_run: true` across a live pull -- the flag is untested against a real experiment. Option **A1** (pinned worktree per run, for author-flagged expensive/claim-decisive runs) remains open and unbuilt; see section 3 | null | 2026-08-18 |
