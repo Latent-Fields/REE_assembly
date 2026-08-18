@@ -1,6 +1,6 @@
 {
   "schema_version": "governance_flags/v1",
-  "generated_at_utc": "2026-08-07T16:46:37Z",
+  "generated_at_utc": "2026-08-18T06:56:03Z",
   "purpose": "Structured, mechanically-discoverable registry of 'GOVERNANCE FLAG'-style callouts raised inline in claims.yaml prose (what_would_answer / evidence_quality_note / digestion_note) or in WORKSPACE_STATE.md Recent Work, most often by /thought-digestion sessions honouring the standing rule 'flag for /governance review, do not promote or resolve yourself mid-digestion'. Before this file existed, such flags were discoverable only by a human or agent noticing distinctive wording while reading a long, ever-growing WORKSPACE_STATE.md during /governance's own Session Startup Protocol orientation step -- which works only if the flag is recent enough to still be near the top. Confirmed staleness this caused: the ARC-033 promotion flag (GFLAG-0001, raised 2026-08-06) was still unactioned a full day later; the SD-014 discrepancy flag (GFLAG-0003, raised 2026-08-06) had already been resolved by an experiment run on 2026-08-04 that a LATER session had to independently re-discover from scratch because nothing pointed it at the open flag.",
   "authority": "This file is a derive-only, human/agent-adjudicated INPUT, exactly like sibling evidence/planning/*.v1.json files (see hypothesis_space_registry.v1.json's own authority note for the pattern). It never mutates claims.yaml, closure weights, or claim status by itself -- raising or resolving a flag here is bookkeeping, not a governance decision. /governance's own interactive review (see .claude/skills/governance/SKILL.md) is where a flag's substance actually gets acted on; this registry only guarantees the flag surfaces there instead of depending on luck.",
   "flag_types": [
@@ -600,6 +600,33 @@
       "summary": "hypothesis_space_registry.v1.json has NO `superseded` resolution state, so a ratified superseded/moot disposition cannot be written faithfully -- one is currently parked in prose. Context: the 2026-08-16 cycle (GFLAG-0038) ratified policy_decomposition_discrimination / H-env-underdrives-uncertainty -> superseded/moot, per govdiag1_repose_mech321_chain_2026-08-12.md section 7(ii), which EXPLICITLY recommends `superseded` over `eliminated` because 816b/816d never took their pre-registered elimination branch (pe_elevated false: 0.008594 and 0.008675 against the 0.01 discrimination floor), so calling it eliminated stretches a pre-registered floor after the fact. Neither in-vocabulary option is honest: (1) writing the literal string `superseded` as resolution.state is SILENTLY UNCOUNTED -- build_hypothesis_space.py recognises only ALIVE_STATES {alive, untested}, RESOLVED_OUT_STATES {eliminated, split} and `confirmed`, so the leg would vanish from the surviving/resolved_out/confirmed arithmetic (6 legs, 5 accounted) and the question's environment axis family could never be marked closed, with NO flag firing because check_hypothesis_space_integrity.py only polices the confirmed and eliminated/split rules; (2) writing `eliminated` requires asserting met_elimination_bar true, which is the over-counting Goodhart direction GOV-FROZEN-1 exists to prevent and which governance deliberately declined to endorse. APPLIED INSTEAD (REE_assembly a843ee6ebb, 2026-08-18): the leg keeps state `alive` with the full ratified disposition written into resolution.basis, opening 'RATIFIED DISPOSITION ... SUPERSEDED / MOOT' and stating in terms that the alive state is a schema-vocabulary limit rather than a scientific hedge and that the leg must NOT be re-queued for a fourth environment-axis dose escalation. That is the conservative under-count /governance Step 5c blesses, but it costs accuracy: the dashboard reports this question as 5 surviving where the ratified reading is 4. DECISION NEEDED, one of two: (a) add a `superseded` state to the registry vocabulary AND to both derive scripts -- build_hypothesis_space.py must count it out of `surviving` and allow family closure, while check_hypothesis_space_integrity.py must NOT demand the elimination bar for it (do not simply add it to RESOLVED_OUT_STATES, that set is shared with the bar check); or (b) ratify `eliminated` for this leg, accepting the pre-registered-floor stretch. Full reasoning and the ledger delta: evidence/planning/failure_autopsy_mech321-hypothesis-legs-modeb_2026-08-18.md section 3. Also carried as decision chip chip-20260818-hypothesis-registry-superseded-state.",
       "raised_by_session": "metaworker-chip-20260816-mech321-hypothesis-legs-mode-b",
       "raised_at": "2026-08-18T05:20:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0041",
+      "claim_ids": [
+        "MECH-316",
+        "MECH-317"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "PROPOSED UN-DEFER of arc_062_rule_apprehension:GAP-I-absorption, adjudicated but not surfaced anywhere /governance reads. The 2026-08-15 D-002 adjudication (chip-20260815-orphan-v3-claims-adjudicate, landed REE_assembly 7478ffe8ad) found the node's `deferred` status WRONG -- 4 of 5 artefacts say MECH-316/317 are live V3 -- and PROPOSED un-deferring it, correctly declining to apply a status change outside its authority. The proposal was recorded only as a `governance_2026_08_15` field on the node itself; it appears in NO promotion_demotion_recommendations.md row, NO prior governance flag, and NO GOVERNANCE_AGENDA entry, so a normal governance walk would not see it. While these claims sit under a deferred node they are excluded from the V3 progress denominator outright (generate_closure_snapshot.py DEFERRED_STATUSES) -- the same invisibility that hid SD-031 for ten weeks. Closure effect MEASURED by A/B regeneration, not estimated: 71.9%/94 nodes -> 70.0%/97 for this and the sibling GAP-G proposal together. Raised by Steward D-002 follow-up purely to make the standing proposal discoverable; no status changed here.",
+      "raised_by_session": "selfattr-multiagent-adjudication-20260815",
+      "raised_at": "2026-08-18T06:56:03Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0042",
+      "claim_ids": [
+        "MECH-314a"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "PROPOSED UN-DEFER of behavioral_diversity_isolation:GAP-G, adjudicated but not surfaced anywhere /governance reads. Same 2026-08-15 D-002 adjudication and same authority split as the sibling GAP-I-absorption flag: recorded only as a `governance_2026_08_15` node field, absent from promotion_demotion_recommendations.md, the flag registry and GOVERNANCE_AGENDA. VERDICT was node STALE, not merely mis-scoped: MECH-314a is `provisional` with `v3_pending` lifted after a PASS and 8 manifests, and its falsifier ran 17 days AFTER the node's last_updated. Note the adjudication explicitly DISAGREED with the detector's own P2/weak, confidence-0.45 grading and found the signal strong -- that disagreement is what retired the detector's signal-strength escalation gate (D-002 ratchet cycle 2, precision 4/4). Raised to make the standing proposal discoverable; no status changed here.",
+      "raised_by_session": "selfattr-multiagent-adjudication-20260815",
+      "raised_at": "2026-08-18T06:56:03Z",
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
