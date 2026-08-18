@@ -193,3 +193,42 @@ they are the negative controls that bound the change):**
 It is what produced the `removed locally, still upstream` clause (case 2 would otherwise have
 been silently permitted) and the decision to keep `WORKSPACE_STATE.md` out of the allowlist
 despite it being the third file in every bookkeeping commit's diff.
+
+## 8. Live `--audit` on the shipped code, and two things it immediately surfaced
+
+Run against the shared checkout at 2026-08-18T08:0xZ, by then `[ahead 15, behind 13]` (a fifth
+accumulation, ~35 minutes after the fourth clearing). Route B proved 5; 9 remained unproven.
+The audit's whole output for the registry side was four named items:
+
+```
+  3 unproven commit(s) touch non-registry paths -- route C does not apply to them:
+      889327c576 / 5f0b6106b1 / f431aaf508   RECOMMENDATION_LOG.jsonl
+
+  Registry items NOT present upstream (4):
+      TASK_CLAIMS.json :: ('cranky-driscoll-126a36', '2026-08-18T07:23:16Z'): tip value not present upstream
+      TASK_CLAIMS.json :: ('igw-auto-igw-210-...', '2026-08-16T21:07:43Z'): removed locally, still upstream
+      TASK_CLAIMS.json :: ('closure-maps-correctness-807268', '2026-08-17T05:33:19Z'): removed locally, still upstream
+      TASK_CLAIMS.json :: ('lit-pull-am-20260817-mech053-q092', '2026-08-17T06:02:50Z'): removed locally, still upstream
+```
+
+Two findings, neither of them anticipated when route C was written:
+
+1. **`prune_task_claims_done.py` is a routine, expected source of refusal.** All three
+   `removed locally, still upstream` items come from one commit, `a39d02500b`
+   "TASK_CLAIMS.json: prune done entries older than 24h". That prune runs at every
+   `/session-land`, so between the prune and its push landing upstream, route C correctly
+   refuses. This is **held-out case 2 reproducing live**, and it is the right call -- a prune
+   origin has not adopted is a real contribution -- but it means route C will refuse for a
+   window after every close, and that window is only as short as the prune's own push.
+2. **`RECOMMENDATION_LOG.jsonl` is a third append-only registry that route C cannot cover**,
+   because it is JSONL rather than a JSON document with an item array, so `REGISTRY_SPECS`
+   has no shape to declare. Three of the nine unproven commits here are that file alone.
+   Extending route C to a JSONL shape (one object per line, keyed) is the obvious next
+   increment and is not attempted here.
+
+Both reinforce section 4's framing rather than undermining it: route C removes the *dominant*
+unprovable shape, and the residual is now small, named, and individually addressable instead
+of being an undifferentiated wedge.
+
+Tests at landing: `scripts/test_ref_convergence_route_c.py` 22 + `scripts/test_ref_convergence.py`
+71 = **93 passed**, no regressions.
