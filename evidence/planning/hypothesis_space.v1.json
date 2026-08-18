@@ -1,43 +1,43 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-18T08:24:00Z",
+  "generated_at": "2026-08-18T19:03:08Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 160,
-      "built_modules": 132,
-      "fraction_built": 0.825,
+      "total_modules": 161,
+      "built_modules": 133,
+      "fraction_built": 0.8261,
       "state_counts": {
         "proposed": 28,
-        "implemented": 91,
+        "implemented": 92,
         "implemented_pending_validation": 25,
         "validated": 16
       },
-      "build_proof_gap": 116,
-      "build_proof_gap_note": "132 modules built, 116 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 117,
+      "build_proof_gap_note": "133 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 72.3,
-      "node_total": 95,
-      "node_done_weighted": 68.7,
+      "closure_pct": 71.0,
+      "node_total": 97,
+      "node_done_weighted": 68.9,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
       "total_surviving": 67,
-      "total_initial": 122,
+      "total_initial": 123,
       "total_initial_at_registration": 101,
-      "total_fanout_added": 21,
+      "total_fanout_added": 22,
       "total_resolved_out": 48,
-      "total_confirmed": 27,
-      "reduction_pct_vs_current": 39.3,
+      "total_confirmed": 28,
+      "reduction_pct_vs_current": 39.0,
       "net_narrowing_pct": 33.7,
       "convergence_classes": {
         "narrowing": 17,
@@ -46,7 +46,7 @@
         "refining": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "67 alive against 101 originally enumerated, and against 122 including 21 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "67 alive against 101 originally enumerated, and against 123 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 37
     },
     "decide": {
@@ -58,153 +58,153 @@
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 121,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 122,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-11",
-      "surviving": 120,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 121,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-13",
-      "surviving": 118,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 119,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-15",
-      "surviving": 114,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 115,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-16",
-      "surviving": 113,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 114,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-17",
-      "surviving": 110,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 111,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-18",
-      "surviving": 104,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 105,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-19",
-      "surviving": 100,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 101,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-20",
-      "surviving": 99,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 100,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-24",
-      "surviving": 98,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 99,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-27",
-      "surviving": 96,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 97,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-29",
-      "surviving": 95,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 96,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-07-31",
-      "surviving": 94,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 95,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-01",
-      "surviving": 92,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 93,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-02",
-      "surviving": 86,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 87,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-04",
-      "surviving": 85,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 86,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-06",
-      "surviving": 84,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 85,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-08",
-      "surviving": 82,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 83,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-09",
-      "surviving": 80,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 81,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-10",
-      "surviving": 79,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 80,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-11",
-      "surviving": 78,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 79,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-12",
-      "surviving": 77,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 78,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-14",
-      "surviving": 75,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 76,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-17",
-      "surviving": 74,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "surviving": 75,
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     },
     {
       "date": "2026-08-18",
       "surviving": 67,
-      "closure_pct": 72.3,
-      "build_pct": 82.5
+      "closure_pct": 71.0,
+      "build_pct": 82.6
     }
   ],
   "questions": [
@@ -3543,17 +3543,18 @@
         "ARC-062"
       ],
       "is_hero": false,
-      "initial_frozen_count": 5,
+      "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
-      "fanout_added": 1,
+      "fanout_added": 2,
       "fanout_growth_events": [],
-      "fanout_growth_note": null,
+      "fanout_growth_note": "Denominator has now grown twice by Mode C discovery (H0 2026-08-12, H5 2026-08-18), both from runs that instrumented the selector rather than re-posing H1-H4. Read this as NON-CONVERGENCE: after five pre-registered legs, the two things actually learned are both about the measurement regime (is the selector committed? is the score scale controlled?) rather than about which channel holds authority. H1-H4 all remain alive and none has yet been tested in a regime where it could express itself.",
       "net_narrowing_ratio": -0.25,
       "bits_removed_vs_registration": -0.32,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
         "families_closed": [
+          "constitution",
           "instrumentation"
         ],
         "families_touched": [],
@@ -3567,10 +3568,10 @@
       "surviving": 5,
       "alive": 4,
       "resolved_out": 0,
-      "confirmed": 1,
+      "confirmed": 2,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "bits_removed": 0.26,
       "synthesis": {
         "surviving_label": "H0 selector-regime/scale confound (discovered) -- dominates the observed pattern; H1-H4 remain undetermined pending a regime-matched re-test",
         "text": "None of H1, H2, or H4 were eliminated or confirmed by V3-EXQ-925 (2026-08-12): C1's F-lesion moved the score distribution but with no consistent direction, and eligibility toggling almost never changed the winner. H3 was a near-miss (competitor influence 0.086 factual / 0.096 F-lesioned, both just outside the driver's own 0.05 threshold on either side), qualitatively favoured by the biological-reference reading (weak, only-partially-differentiated candidate evidence is expected to produce near-uniform choice) but not confirmed. The dominant finding instead is H0: at this substrate's default configuration, the selector essentially never engages committed selection (committed_fraction=0.000, entropy 0.998), so this run may not have been a fair test of any of H1-H4 as MECH-439's own committed-selection-authority framing poses them. User-confirmed routing: a /queue-experiment redesign that engages committed selection (use_gap_scaled_commit_temperature or an extended-training wider-score-range configuration) before re-testing H1-H4. A candidate note bearing on MECH-439's own evidence_quality_note was drafted for /governance review (not applied by this autopsy)."
@@ -3638,6 +3639,19 @@
             "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
           ],
           "basis": "Directly measured: committed_fraction=0.000 (exact), selection_entropy_normalised_mean=0.99820, replay reconstruction validated to 7.87e-09 vs the selector's own recorded distribution (so the near-uniform reading is not a replay-arithmetic artifact), degeneracy check passed (non_degenerate=true). This was not a rival explanation considered when H1-H4 were framed (2026-08-12, ree-v3 commit dcd4b6639a) -- it was revealed only once the counterfactual-replay bug (reproducing the live selection ~2.5% of the time, chance at K=32) was fixed during this session's authoring and the replay began perturbing the REAL captured score vector.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H5-score-scale-uncontrolled",
+          "label": "uncontrolled score scale (new, discovered)",
+          "desc": "Neither pre-registered hypothesis nor H0: E3's apparent F-authority is an artefact of an UNCONTROLLED ABSOLUTE SCALE in the score sum, not of any channel's causal role. F (compute_reality_cost) is the SQUARED z_world step norm over the E2 imagination rollout, while every modulatory channel is at most linear in latent scale, so var(F) ~ var(non-F)^2 -- measured on V3-EXQ-936's own 8 cells, OLS slope 2.020 (R^2 0.978) over 54 orders of magnitude, against a predicted 2.000. The rollout is unbounded by default (e2_rollout_output_norm_clamp_enabled=False), so the same substrate can sit at either extreme: V3-EXQ-925 measured a regime so FLAT that no channel steers anything (normalised entropy 0.998, committed_fraction 0.000 -- that is H0), while V3-EXQ-936 measured one so STEEP that std(non-F)/std(F) falls below float32 eps in 7 of 8 cells and the entire modulatory stack is ADDITIVELY ANNIHILATED in the score sum. Under H5, 'F's variance share' is not a stable architectural property at all, and MECH-439's own stated remedy ('rebalance F's variance share') is unreachable by re-weighting any channel -- a 1e20 magnitude gap cannot be offset by a coefficient. DISTINCT FROM H0: H0 says no channel has meaningful ABSOLUTE authority at the small-scale end; H5 says the scale itself is uncontrolled in BOTH directions and is what determines apparent authority.",
+          "axis": "substrate",
+          "state": "confirmed",
+          "evidence_runs": [
+            "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+          ],
+          "basis": "Established by arithmetic on the run's own recorded per-cell variances, needing no external control: OLS of log10 var(F) on log10 var(non-F) across all 8 cells gives slope 2.020, R^2 0.978 (OFF arm alone 1.951; DEMOTION arm alone 2.149) against the quadratic-vs-linear prediction of 2.000; and std(non-F)/std(F) sits below float32 eps (1.192e-07) in 7 of 8 cells, down to 4.6e-23. The run's OWN P3 non-degeneracy precondition is the passing control that makes this a magnitude effect rather than dead channels: the modulatory components DO carry variance (worst cell 1394.44 absolute, threshold 1e-9), so their absence from the committed score is purely relative scale. criteria_non_degenerate true for both C1 and C2. Not a rival considered when H1-H4 were framed (2026-08-12) nor when H0 was added: all five concern which channel has authority, or whether any does at this scale -- none anticipated that the scale is itself an uncontrolled free variable spanning 54 orders of magnitude across seeds of one run. It was surfaced only by V3-EXQ-936's variance decomposition, the first instrumentation in this lineage to record the component magnitudes rather than a rank statistic. NOTE what this does NOT establish: that the missing SD-056 rollout-norm clamp is the CAUSE. That is the V3-EXQ-936a A/B and has not been run.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -4069,6 +4083,21 @@
     }
   ],
   "momentum": [
+    {
+      "run": "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
+      "all_runs": [
+        "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "e3_fdominance_causal_discrimination",
+      "claims": [
+        "MECH-439",
+        "ARC-062"
+      ],
+      "moved": "Established by arithmetic on the run's own recorded per-cell variances, needing no external control: OLS of log10 var(F) on log10 var(non-F) across all 8 cells gives slope 2.020, R^2 0.978 (OFF arm alone 1.951; DEMOTION arm alone 2.149) against the quadratic-vs-linear prediction of 2.000; and std(non-F)/std(F) sits below float32 eps (1.192e-07) in 7 of 8 cells, down to 4.6e-23. The run's OWN P3 non-degeneracy precondition is the passing control that makes this a magnitude effect rather than dead channels: the modulatory components DO carry variance (worst cell 1394.44 absolute, threshold 1e-9), so their absence from the committed score is purely relative scale. criteria_non_degenerate true for both C1 and C2. Not a rival considered when H1-H4 were framed (2026-08-12) nor when H0 was added: all five concern which channel has authority, or whether any does at this scale -- none anticipated that the scale is itself an uncontrolled free variable spanning 54 orders of magnitude across seeds of one run. It was surfaced only by V3-EXQ-936's variance decomposition, the first instrumentation in this lineage to record the component magnitudes rather than a rank statistic. NOTE what this does NOT establish: that the missing SD-056 rollout-norm clamp is the CAUSE. That is the V3-EXQ-936a A/B and has not been run.",
+      "resolved_utc": "2026-08-17T06:20:38Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-928",
       "all_runs": [

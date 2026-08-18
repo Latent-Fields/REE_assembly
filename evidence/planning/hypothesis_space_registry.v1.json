@@ -3788,7 +3788,7 @@
         "failure_autopsy_V3-EXQ-925_2026-08-12.json"
       ],
       "is_hero": false,
-      "initial_frozen_count": 5,
+      "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
       "fanout_growth_events": [],
       "discovery_growth_events": [
@@ -3800,6 +3800,15 @@
           ],
           "delta": 1,
           "rationale": "H0 draws on an independent, established mechanism -- accumulator/drift-diffusion decision models, where near-uniform choice under a low signal-to-noise ratio (small score range relative to decision temperature/noise) is a textbook signature of weak evidence, not intuition applied after the fact. It was genuinely unconsidered when H1-H4 were pre-registered (ree-v3 commit dcd4b6639a, 2026-08-12T06:44:40Z): all four concern WHICH channel has causal authority, none anticipated that NO channel would have meaningful absolute authority at this scale regardless of identity. The run's own instrumentation is what surfaces it -- fixing the counterfactual-replay reconstruction bug (previously reproducing the live selection only ~2.5% of the time, chance at K=32) exposed committed=False on every observed tick and normalised entropy 0.998, a finding that did not exist as such before the replay arithmetic was corrected during this session's authoring."
+        },
+        {
+          "recorded_utc": "2026-08-18T19:03:03Z",
+          "discovery_source": "failure_autopsy_V3-EXQ-936_2026-08-18.json",
+          "added_hids": [
+            "H5-score-scale-uncontrolled"
+          ],
+          "delta": 1,
+          "rationale": "H5 draws on an independent, established property of the substrate's own numerics rather than on intuition applied after the fact: F is a squared latent-transition norm and the modulatory channels are piecewise-linear head outputs, so the quadratic-vs-linear scaling relation is derivable a priori -- and V3-EXQ-936's data confirms it at slope 2.020, R^2 0.978, over 54 orders of magnitude. It was genuinely unconsidered when H1-H4 were pre-registered (2026-08-12T06:44:40Z) and when H0 was discovered later that day: every one of those five asks WHICH channel has causal authority, or whether any does at the observed scale; none asks whether the scale is a controlled quantity at all. The run's OWN data is what surfaces it -- V3-EXQ-936 is the first experiment in this lineage to record the E3 score COMPONENT MAGNITUDES rather than a rank/entropy statistic (rank statistics are invariant under monotone transforms and structurally cannot see a scale change, which the driver's own docstring notes as a plausible reason the lineage kept reading 'no conversion'). It is born resolved because the evidence that reveals it is the same arithmetic that settles it; there is no future adjudicating run to await for the hypothesis as stated. The separate CAUSAL question -- whether the unbounded rollout is due to the unarmed SD-056 clamp -- is a distinct proposition and is NOT claimed here; it is the V3-EXQ-936a A/B."
         }
       ],
       "hypotheses": [
@@ -3923,6 +3932,31 @@
             "resolved_utc": "2026-08-12T09:01:42Z",
             "basis": "Directly measured: committed_fraction=0.000 (exact), selection_entropy_normalised_mean=0.99820, replay reconstruction validated to 7.87e-09 vs the selector's own recorded distribution (so the near-uniform reading is not a replay-arithmetic artifact), degeneracy check passed (non_degenerate=true). This was not a rival explanation considered when H1-H4 were framed (2026-08-12, ree-v3 commit dcd4b6639a) -- it was revealed only once the counterfactual-replay bug (reproducing the live selection ~2.5% of the time, chance at K=32) was fixed during this session's authoring and the replay began perturbing the REAL captured score vector."
           }
+        },
+        {
+          "hid": "H5-score-scale-uncontrolled",
+          "label": "uncontrolled score scale (new, discovered)",
+          "desc": "Neither pre-registered hypothesis nor H0: E3's apparent F-authority is an artefact of an UNCONTROLLED ABSOLUTE SCALE in the score sum, not of any channel's causal role. F (compute_reality_cost) is the SQUARED z_world step norm over the E2 imagination rollout, while every modulatory channel is at most linear in latent scale, so var(F) ~ var(non-F)^2 -- measured on V3-EXQ-936's own 8 cells, OLS slope 2.020 (R^2 0.978) over 54 orders of magnitude, against a predicted 2.000. The rollout is unbounded by default (e2_rollout_output_norm_clamp_enabled=False), so the same substrate can sit at either extreme: V3-EXQ-925 measured a regime so FLAT that no channel steers anything (normalised entropy 0.998, committed_fraction 0.000 -- that is H0), while V3-EXQ-936 measured one so STEEP that std(non-F)/std(F) falls below float32 eps in 7 of 8 cells and the entire modulatory stack is ADDITIVELY ANNIHILATED in the score sum. Under H5, 'F's variance share' is not a stable architectural property at all, and MECH-439's own stated remedy ('rebalance F's variance share') is unreachable by re-weighting any channel -- a 1e20 magnitude gap cannot be offset by a coefficient. DISTINCT FROM H0: H0 says no channel has meaningful ABSOLUTE authority at the small-scale end; H5 says the scale itself is uncontrolled in BOTH directions and is what determines apparent authority.",
+          "axis": "substrate",
+          "pre_registered_utc": "2026-08-17T06:20:38Z",
+          "discovery_source": "failure_autopsy_V3-EXQ-936_2026-08-18.json",
+          "adjudicating_runs": [
+            "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "conversion_without_f_share_reduction_falsifies_monopoly",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-17T06:20:38Z",
+            "basis": "Established by arithmetic on the run's own recorded per-cell variances, needing no external control: OLS of log10 var(F) on log10 var(non-F) across all 8 cells gives slope 2.020, R^2 0.978 (OFF arm alone 1.951; DEMOTION arm alone 2.149) against the quadratic-vs-linear prediction of 2.000; and std(non-F)/std(F) sits below float32 eps (1.192e-07) in 7 of 8 cells, down to 4.6e-23. The run's OWN P3 non-degeneracy precondition is the passing control that makes this a magnitude effect rather than dead channels: the modulatory components DO carry variance (worst cell 1394.44 absolute, threshold 1e-9), so their absence from the committed score is purely relative scale. criteria_non_degenerate true for both C1 and C2. Not a rival considered when H1-H4 were framed (2026-08-12) nor when H0 was added: all five concern which channel has authority, or whether any does at this scale -- none anticipated that the scale is itself an uncontrolled free variable spanning 54 orders of magnitude across seeds of one run. It was surfaced only by V3-EXQ-936's variance decomposition, the first instrumentation in this lineage to record the component magnitudes rather than a rank statistic. NOTE what this does NOT establish: that the missing SD-056 rollout-norm clamp is the CAUSE. That is the V3-EXQ-936a A/B and has not been run."
+          }
         }
       ],
       "synthesis": {
@@ -3936,7 +3970,8 @@
         "decision_log_ref": null,
         "distance_phrase": "One regime-matched re-test away from a clean H1-H4 discrimination; the current evidence rules out none of H1/H2/H4 and leaves H3 a near-miss.",
         "observation_bottleneck": "Selector never engaged committed (argmin) selection in this run (committed_fraction=0.000); H1-H4 as framed presume committed selection."
-      }
+      },
+      "fanout_growth_note": "Denominator has now grown twice by Mode C discovery (H0 2026-08-12, H5 2026-08-18), both from runs that instrumented the selector rather than re-posing H1-H4. Read this as NON-CONVERGENCE: after five pre-registered legs, the two things actually learned are both about the measurement regime (is the selector committed? is the score scale controlled?) rather than about which channel holds authority. H1-H4 all remain alive and none has yet been tested in a regime where it could express itself."
     },
     {
       "qid": "mech266_mode_arbitration_saturation",

@@ -1,0 +1,193 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-18T18:48:59Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session": "pending-task-009a3a",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
+      "queue_id": "V3-EXQ-936",
+      "claim_ids": ["MECH-439"],
+      "self_route_label": "conversion_without_f_share_reduction_falsifies_monopoly",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-439 could not express itself. The load-bearing C2 statistic (f_variance_share) is pinned at 1.0 to float64 resolution in all 8 cells; the >=0.05 paired reduction it requires would need var(non-F) to rise by 3.7e14 to 2.5e43 times. Two cells' paired delta is exactly 0.0. Neither supported nor weakened.",
+        "biological_reference": "partial -- divergence, load-bearing. F is a formal coherence proxy (squared z_world transition smoothness), not a biological import. No biological valuation system permits one cost channel to exceed competitors by 20+ orders of magnitude; divisive normalisation / canonical gain control over competing value signals is ubiquitous. The absence of ANY normalisation on the E3 additive score sum is a formal-import divergence with no targeted_review covering it.",
+        "prerequisites": "missing -- the run uses SD-056 contrastive training but does not arm SD-056's own rollout-stability lever (b), the per-step z_world output norm clamp.",
+        "implementation": "partial -- the guard exists (e2_fast.py:694-747), is validated (V3-EXQ-617 substrate-readiness PASS 2026-05-31), defaults OFF (config.py:564), and IS armed by this run's declared parity ancestor V3-EXQ-689i (lines 467-468). experiments/_lib/baselines/mech439_f_variance_share.py contains zero occurrences of the flag.",
+        "environment": "adequate -- GAP-A reef-bipartite foraging substrate, 689i-derived, size 12, 4 hazards, 5 resources.",
+        "measurement": "misleading -- a [0,1]-bounded ratio computed over an unbounded quantity, saturating by construction. The P3 readiness precondition states the starvation hazard verbatim and then guards it with an ABSOLUTE floor (MIN_NONF_VARIANCE=1e-9, passed at 1394.44) against a RELATIVE criterion.",
+        "integration": "coupled but unstable -- the E2 imagination rollout to E3 scorer coupling is numerically unbounded end to end.",
+        "scale": "the defect -- inferred rollout magnitude ||dz_world|| up to 1.42e18; std(non-F)/std(F) below float32 eps in 7 of 8 cells, so the entire modulatory stack is additively annihilated in the score sum."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES + MECHANISM. Not chargeable to REE alone: the measurement could not discriminate and the substrate guard was unarmed, so the REE FAILED bar (all three independently adequate) is not reached."
+      },
+      "biological_reference": {
+        "closest_mechanism": "divisive normalisation / canonical gain control over competing value signals in action selection (Carandini & Heeger canonical-computation line); basal-ganglia value competition operates on normalised, comparable magnitudes",
+        "dependencies": ["bounded latent dynamics in forward simulation", "normalisation of competing cost channels prior to comparison"],
+        "is_formal_import": true,
+        "divergence": "E3 sums an unnormalised quadratic coherence cost with linear modulatory channels at an implicit coefficient of 1.0 (SD-085 records that F alone has no weight field). Biology normalises before comparing; REE does not, so relative authority becomes a function of absolute latent scale.",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Deliberately NOT substrate_ceiling. MECH-439 carries 9 counted ceiling hits under R1-R3; this run measured nothing about the claim, and a broken instrument is not evidence of a ceiling -- counting it would invert the brake's purpose (R3). `standard` also preserves current GOV-GRAN-1 surfacing and v3-testability. The failure-mode diagnosis (measurement degeneracy from an upstream rollout divergence) is recorded in four_layer_diagnosis and the evidence_quality_note, not in the category field.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18]: V3-EXQ-936's manifest direction `weakens` should be changed to `non_contributory`. The load-bearing C2 criterion (per-seed paired reduction of f_variance_share >= 0.05) was ARITHMETICALLY UNREACHABLE, not merely unmet: the share is 1.0 to float64 resolution in all 8 cells (exactly 1.0, paired delta exactly 0.0, in 2 of 4 ARM_DEMOTION seeds), and firing C2 would have required var(non-F) to be 3.7e14 to 2.5e43 times larger. Cause: an unbounded E2 imagination rollout. F = compute_reality_cost is the SQUARED z_world step norm while every modulatory channel is at most linear in latent scale, so var(F) ~ var(non-F)^2 -- measured across the run's own 8 cells, OLS slope 2.020, R^2 0.978 over 54 orders of magnitude, against a predicted 2.000. Back-solved rollout magnitude reaches ||dz_world|| ~ 1.42e18, inside the 1e16-1e18 band V3-EXQ-569e measured on 2026-05-31 for this identical code path (SD-056 substrate_queue failure_record; clean ARM_0 baseline there was 0.39-0.77). The repair was BUILT for that incident (SD-056 amend lever (b), per-step rollout output norm clamp, e2_fast.py:694-747, validated V3-EXQ-617 PASS) and ships default-OFF; this run's declared parity ancestor V3-EXQ-689i arms it (True, ratio 2.0) and this lineage's baseline module contains zero occurrences of the flag. In float32 the consequence is stronger than dominance: std(non-F)/std(F) is below float32 eps in 7 of 8 cells, so the harm/residue/benefit/novelty/goal terms are ADDITIVELY ANNIHILATED in the score sum -- C1's conversion result survives only because MECH-448 acts on eligibility rather than on the additive sum. The claim was not tested; MECH-439 is neither supported nor weakened by this run. Status unchanged (candidate); epistemic_category standard (NOT substrate_ceiling -- see the autopsy's Section 9 for why a null instrument must not be counted as a ceiling hit).",
+      "per_claim_recommendation": {
+        "MECH-439": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "manifest evidence_direction weakens -> non_contributory (C2 arithmetically unreachable, not unmet); apply the evidence_quality_note above; epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-056",
+        "implementation_hint": "The rollout-stability guard is BUILT and VALIDATED; the residual gap is that it is default-OFF and silently omitted. Add a WARN-only corpus lint `validate_experiments.py --checks sd056_training_without_rollout_clamp` flagging any driver that calls world_forward_contrastive_loss with no reachable e2_rollout_output_norm_clamp_enabled setting (in the driver or an imported experiments/_lib/baselines module). Measured 2026-08-18: 20 of 117 such drivers, of which 5 (v3_exq_569a-e) legitimately predate the 2026-05-31 amend and 1 (613) is the pre-amend readiness probe. Follow the repo's existing advisory-lint convention: always exit 0, name the driver and the missing flag, offer an explicit exemption constant. Do NOT flip the config default to True -- that changes bit-identity for every run relying on the default, including completed runs being reproduced (user decision, Step 8 gate 2026-08-18); register the default flip separately if governance wants it.",
+        "unblocks_claims": ["MECH-439", "ARC-065", "MECH-341", "MECH-309"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e2_fast.py::rollout_with_world",
+          "ree_core/predictors/e3_selector.py::compute_reality_cost",
+          "ree_core/utils/config.py"
+        ],
+        "severity_rationale": "corrupting rather than degrading: nothing errors, no NaN is emitted, every readiness precondition reports met, and the resulting statistic is well-formed and in range (1.0 of a [0,1] share). The run then self-routes to a definite scientific direction (`weakens`, MECH-439's own registered falsifying signature) off a criterion that could not have fired. That is evidence which LOOKS valid and is not.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
+          "experiment_type": "v3_exq_936_mech439_f_variance_share_under_f_demotion",
+          "queue_id": "V3-EXQ-936",
+          "metric": "E2 rollout divergence under SD-056 contrastive training with lever (b) unarmed. var(F) reaches 4.07e72 (ARM_OFF/43) and 5.66e72 (ARM_DEMOTION/43); back-solved ||dz_world|| ~1.42e18, matching V3-EXQ-569e's measured 1e16-1e18 overflow band on the same code path. Consequence: f_variance_share saturates to 1.0 in all 8 cells (exactly 1.0 in 4), destroying the load-bearing C2 criterion; std(non-F)/std(F) falls below float32 eps in 7 of 8 cells, additively annihilating the entire modulatory stack in the E3 score sum.",
+          "target": "With e2_rollout_output_norm_clamp_enabled=True (ratio 2.0, V3-EXQ-689i parity), rollout magnitudes within 2x of the clamp anchor and var(non-F)/var(F) >= a pre-registered epsilon comfortably above float32 eps, so f_variance_share carries dynamic range.",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "count_at_this_autopsy": 9,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711-713_2026-07-20"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "requeue_exemption": "EXEMPT, user-confirmed at the Step 8 interactive gate 2026-08-18. The brake refuses another letter circling the SAME ceiling against the SAME substrate. V3-EXQ-936a runs against a materially changed config in which an identified, instrument-destroying defect is repaired (e2_rollout_output_norm_clamp_enabled=True, 689i parity restored), so it is the FIRST MEASURABLE instance of this DV rather than a re-pose of an exhausted question. This autopsy contributes NO new ceiling hit -- it recommends `standard`, so the count stays 9.",
+        "route_to": "queue-experiment",
+        "upstream_substrate": "SD-056"
+      },
+      "learning_extracted": [
+        "A ratio-valued DV needs a ratio-valued readiness floor. This run's P3 precondition states the starvation hazard verbatim ('if these are flat, f_variance_share is ~1.0 by STARVATION and the falsifier is unmeasurable, not confirmed') and then guards it with an absolute variance floor, which passed at 1394.44 while the ratio was 1.4e-14. Satisfying /queue-experiment's 'same statistic' rule in name (a variance) is not satisfying it in substance (a ratio).",
+        "A bounded statistic computed over an unbounded quantity is not a measurement. f_variance_share is in [0,1] by construction, so its pathological value (1.0) is indistinguishable from a strong true reading; the pathology is visible only in magnitudes the manifest did not record.",
+        "Record one scale anchor per run (mean/max ||z_world||, or the raw E3 score range). A single such field converts a multi-hour forensic back-solve into a first-read observation.",
+        "A default-OFF guard is adoption-dependent, and 'parity with X' stated in a comment is not parity. 97 of 117 SD-056-training drivers arm the clamp; the omission here is in a module whose CONFIG_FLAGS block is labelled '689i parity' and which copies 689i's adjacent lines verbatim while dropping the two clamp lines.",
+        "F is quadratic in latent scale where the modulatory channels are linear (var(F) ~ var(non-F)^2, measured slope 2.020, R^2 0.978, n=8, over 54 orders of magnitude). So F's 'variance share' is not a stable architectural property at all -- above latent scale ~1 it is a function of rollout divergence, and no re-weighting of any channel can offset a 1e20 magnitude gap. This bears directly on MECH-439's stated remedy ('rebalance F's variance share'), which is unreachable by weight tuning and requires bounding the rollout instead.",
+        "The one lever in this lineage that converts (MECH-448 F->eligibility demotion, C1 PASS 3/4) is the one whose channel bypasses the additive score sum. In 7 of 8 cells every additive modulatory channel is below float32 eps relative to F and is annihilated in the sum, which is a coherent numerical explanation for the lineage's long history of additive diversity levers failing while the eligibility lever converts."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3",
+      "queue_id": "V3-EXQ-922",
+      "governance_flags": ["GFLAG-0039", "GFLAG-0043"],
+      "claim_ids": ["MECH-151"],
+      "self_route_label": "sd016_combo_dissociation_mech151_only",
+      "failed_criterion": "discrimination",
+      "readjudication_of": "failure_autopsy_V3-EXQ-922_2026-08-13",
+      "readjudication_scope": "MECH-151 ONLY. MECH-150, MECH-152 and ARC-041 are NOT re-adjudicated here; the 2026-08-13 artifact's dispositions for those three stand.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- V3-EXQ-922 measured whether a trained projection's output varies between two z_world distributions. MECH-151 asserts that the resulting action_bias elevates/suppresses which action-objects rank highly prior to HippocampalModule search. These are different propositions and the run tested only the first. Neither supports nor weakens the claim.",
+        "biological_reference": "partial -- divergence, load-bearing. Stated analog is vmPFC->striatum/premotor projection (Haber & Behrens 2014). The 2026-08-16 Pastor-Bernier & Cisek 2011 entry describes COMPETITION-CONDITIONED relative valuation; MECH-151's additive, candidate-independent form (the same vector added to every candidate at every horizon step) is structurally incapable of it. The 2026-08-13 autopsy already recorded MECH-151's lit as 'thin -- no dedicated targeted review'.",
+        "prerequisites": "missing -- sd016_writepath_mode='off' in BOTH arms (driver line 429, manifest params). ContextMemory.write() was disabled, so no cue-indexed associations were ever written and MECH-150's retrieval had no learned content to index.",
+        "implementation": "stub -- the projection exists and trains, but the RANKING half MECH-151 asserts has no implementation site. `grep -c 'action_object|action_bias' ree_core/predictors/e3_selector.py` returns 0; verified independently and contract-pinned at ree-v3/tests/contracts/test_exp0155_action_bias_no_scoring_authority.py. Unimplemented, not merely untrained.",
+        "environment": "adequate -- the long-standing env-entropy precondition was resolved by the SD-070 P0a recipe; all 12 readiness anchors (world_encoder_weights_moved, z_world_spread_lift) passed across 6 cells.",
+        "measurement": "misleading -- the load-bearing criterion is a bare sign test on 3 seeds with no effect-size margin (null false-positive rate exactly 0.5), on a DV the driver's own training objective guarantees: compute_cue_action_loss regresses action_bias onto action_object(z_world, action).detach(), and action_bias = cue_action_proj(cat([cue_context, z_world])), so divergence between safe and dangerous z_world distributions follows through the z_world half alone. No occupancy or write-path control was recorded.",
+        "integration": "isolated -- _action_bias_divergence (driver lines 523-527) is computed directly on extract_cue_context() output with zero calls into HippocampalModule, E2 rollout or E3.select.",
+        "scale": "unknown -- not reached."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES + MECHANISM. Not chargeable to REE alone, and specifically NOT a falsification of MECH-151: the claim's asserted ranking mechanism has no implementation site, so the run could not have tested it."
+      },
+      "biological_reference": {
+        "closest_mechanism": "vmPFC/OFC -> striatum and premotor projections shaping action affordances (Haber & Behrens 2014); competition-conditioned relative valuation in premotor affordance competition (Pastor-Bernier & Cisek 2011)",
+        "dependencies": ["a written, cue-indexed associative store", "a site at which the bias can differentially weight competing candidates"],
+        "is_formal_import": false,
+        "divergence": "MECH-151's additive form adds one candidate-independent vector to every action-object, so it cannot express the competition-conditioned relative weighting the biology shows. This is a property of the stated design, not a gap an experiment needs to discover.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"MECH-151": "standard"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18, re-adjudication of V3-EXQ-922 for MECH-151 only; SUPERSEDES the MECH-151 disposition in failure_autopsy_V3-EXQ-922_2026-08-13]: GFLAG-0039 CONFIRMED, on a stronger basis than the flag states. MECH-151's `supports` reading is WITHDRAWN to non_contributory. (1) The entire support is ONE criterion, `action_bias_div_beats_off_control`: a bare sign test, 2 of 3 seeds, with NO effect-size threshold -- under the null P(>=2 of 3) is exactly 0.5, and the arm means overlap (A0 0.0305, A1 0.0509) with seed 42 inverted. (2) The DV is guaranteed by the driver's own training objective: compute_cue_action_loss (driver:491) regresses action_bias onto agent.e2.action_object(z_world, action).detach() while action_bias = cue_action_proj(cat([cue_context, z_world])), so a well-fitted regressor MUST differ between safe and dangerous z_world distributions through the z_world half alone -- making GFLAG-0039's 'attributable to the concatenated raw z_world rather than to cue indexing' entailed rather than inferred, and independent of the contested ContextMemory premise. (3) CORRECTION to GFLAG-0039: the manifest params and driver line 429 both record sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() was disabled and 922 wrote no cue-indexed associations at all -- it did not run against a 1-of-16-occupied bank. The conclusion is unchanged and strengthened, but implementing `contextmemory-write-path-addressing-degeneracy` does NOT by itself make 922's reading recoverable. (4) GFLAG-0043's structural finding independently verified: e3_selector.py contains ZERO references to action_object/action_bias, so MECH-151's asserted elevate/suppress ranking is UNIMPLEMENTED, not untrained. This is NOT a demotion -- the demotion bar (tested fairly + biology supports the mechanism + still fails) is not met, because the claim was not tested fairly. Status unchanged (candidate); epistemic_category unchanged (standard); pending_retest_after_substrate stays true. Separately FLAGGED for governance, not adjudicated here: MECH-150's C1 entropy criterion is aliased -- A1_PRODUCTION slot-selection entropy is 1.097e-08 against a uniform reference of ln 16 = 2.7726, and sharp cue-indexing and degenerate single-slot collapse give the same reading, with no occupancy statistic recorded to break the tie.",
+      "per_claim_recommendation": {
+        "MECH-151": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "WITHDRAW the live_status `supports -- narrow context-conditioning mechanism confirmed (V3-EXQ-922, 2/3 seeds)` to a non-contributory reading and apply the evidence_quality_note above; supersedes failure_autopsy_V3-EXQ-922_2026-08-13's MECH-151 per-claim recommendation; status and epistemic_category unchanged -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The relevant substrate items already exist and are correctly stamped: `contextmemory-write-path-addressing-degeneracy` (status build_owed, severity corrupting, chipped as chip-20260816-implsub-contextmemory-writepath-degeneracy) and `mech151-action-bias-has-no-e3-ranking-channel`. This autopsy adds no new substrate entry. Note for whoever picks up the first of those: per this autopsy's Section 5c it is NOT the operative confound for V3-EXQ-922 specifically (that run had the write path off entirely), so implementing it does not retroactively rescue 922's reading."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count_at_this_autopsy": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": "failure_autopsy_V3-EXQ-922_2026-08-13",
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A bare sign test on 3 seeds with no effect-size margin has a 50% false-positive rate under the null. MECH-151's first-ever and only evidence entry rests on one. Standing practice already requires a delta-SD-scaled gate plus an absolute floor.",
+        "'The DV moved' is not evidence when the training objective is what moves it. 922 regressed action_bias onto a z_world-derived target and then measured whether action_bias varies with z_world. This is the DV-symmetry failure class arriving one layer upstream of where /queue-experiment's existing check looks -- at the training objective rather than at the manipulation.",
+        "An unapplied withdrawal decays into a positive claim. MECH-151's live_status is its first-ever evidence entry and reads `supports`; recorded in per_claim_recommendation so GOV-APPLY-1 can see it, since a run already in reviewed_run_ids never returns to pending_review.md.",
+        "A governance flag can be right for a reason weaker than the one available. GFLAG-0039 argued from a contested substrate premise (1-of-16 slot occupancy) that turns out not to apply to this run at all (write path off); the driver's own training objective supplies the same conclusion unconditionally. Check whether a flag's conclusion has a stronger footing than its stated argument before resolving it."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "A pre-registered load-bearing criterion whose satisfaction AND whose refutation are both produced by an upstream substrate degeneracy, on a run whose readiness preconditions all report met -- because the readiness statistic is measured in different units (absolute, or an aliased proxy) from the statistic the criterion actually routes on (a ratio, or a quantity the training objective guarantees).",
+    "is_independent_bugs": false,
+    "structural_property": "Both runs discarded the one readout that would have broken the tie, and both readouts existed at run time: V3-EXQ-936 recorded no rollout magnitude (so a saturated ratio is indistinguishable from a strong true reading), V3-EXQ-922 recorded no ContextMemory slot occupancy or write-path state (so a degenerate single-slot read is indistinguishable from sharp cue-indexing). This is recording-debt, not measurement-design debt: the instruments could see it, the manifests did not carry it.",
+    "readings": ["instrument_starvation", "criterion_aliasing"],
+    "reading_note": "Not adjudicated between. `instrument_starvation` (the DVs are sound and the substrate is degenerate; fix the substrate and re-measure) is favoured for V3-EXQ-936, where the fix is named and one line. `criterion_aliasing` (the DVs cannot in principle discriminate the mechanism from its degenerate look-alike, whatever the substrate does) is favoured for V3-EXQ-922, since even a healthy ContextMemory leaves action_bias_divergence guaranteed by the training objective."
+  },
+  "hypothesis_space_ledger_applied": {
+    "qid": "e3_fdominance_causal_discrimination",
+    "mode": "C",
+    "added_hids": ["H5-score-scale-uncontrolled"],
+    "growth_restriction_checked": true,
+    "growth_restriction_value": null
+  }
+}
