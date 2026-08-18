@@ -2804,6 +2804,16 @@ class TestReportOnlyKinds(FixtureCase):
     def test_report_only_kinds_covers_every_report_only_check(self):
         targets = self._firing_targets()
         resolver = self.fx.resolver()
+        # NON-VACUITY GUARD (oracle-vacuity audit 2026-08-18). The loop below
+        # iterates a registry defined by the module under test, so emptying
+        # CHECKS_REPORT_ONLY runs the body zero times and this test passes
+        # against nothing -- measured GREEN under `CHECKS_REPORT_ONLY -> []`.
+        # Same guard TestWaivers.test_every_waiver_states_a_reason already uses
+        # for V.WAIVERS. Raise the floor when a report-only check is added.
+        self.assertGreaterEqual(
+            len(V.CHECKS_REPORT_ONLY), 2,
+            "CHECKS_REPORT_ONLY holds %d check(s); this test asserts nothing "
+            "on an empty registry" % len(V.CHECKS_REPORT_ONLY))
         for check in V.CHECKS_REPORT_ONLY:
             self.assertIn(check, targets,
                           "%s has no firing fixture here -- add one"
@@ -2819,6 +2829,19 @@ class TestReportOnlyKinds(FixtureCase):
     def test_no_gating_check_emits_a_report_only_kind(self):
         # The other direction: a gating verdict whose kind landed in this set
         # would be printed as advisory by the sweep.
+        #
+        # NON-VACUITY GUARD (oracle-vacuity audit 2026-08-18): this is an
+        # assertNotIn over two registries owned by the module under test, so it
+        # passes vacuously if EITHER side empties -- measured GREEN under both
+        # `CHECKS_REPORT_ONLY -> []` and `CHECKS_NETWORKED/OFFLINE -> []`.
+        self.assertGreaterEqual(
+            len(V.CHECKS_REPORT_ONLY), 2,
+            "CHECKS_REPORT_ONLY is empty; the assertNotIn below is vacuous")
+        self.assertTrue(
+            V.CHECKS_NETWORKED and V.CHECKS_OFFLINE,
+            "a gating registry is empty (networked=%d offline=%d); the "
+            "assertNotIn below is vacuous"
+            % (len(V.CHECKS_NETWORKED), len(V.CHECKS_OFFLINE)))
         self.assertNotIn(V.check_doi_crosswalk, V.CHECKS_NETWORKED)
         for check in V.CHECKS_NETWORKED + V.CHECKS_OFFLINE:
             self.assertNotIn(check, V.CHECKS_REPORT_ONLY)

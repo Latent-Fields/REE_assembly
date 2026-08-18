@@ -16,6 +16,7 @@ Run: /opt/local/bin/python3 scripts/test_validate_literature.py
 import importlib.util
 import io
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -535,11 +536,20 @@ class DegradedValidatorTest(unittest.TestCase):
 
 
 class LiveCorpusTest(unittest.TestCase):
-    """One smoke test against the REAL corpus -- it must run, not that it is clean.
+    """One smoke test against the REAL corpus -- it must RUN, not that it is clean.
 
     Asserting a finding COUNT here would fail on every legitimate literature pull,
     which is how a check gets deleted. The baseline belongs in the commit message
     and the report, not in a test.
+
+    NON-VACUITY (oracle-vacuity audit 2026-08-18). "It must run" is only
+    meaningful if it ran over SOMETHING. The prior shape asserted `rc == 0` and
+    that the output contained "validate_literature:", both of which hold on an
+    EMPTY corpus -- measured GREEN under `iter_record_paths -> []` and
+    `collect_findings -> ([], 0)`, i.e. it could not tell 2213 records from 0.
+    The guard below therefore asserts the record COUNT is non-zero, which is a
+    statement about coverage and NOT about cleanliness -- it stays true after
+    every legitimate literature pull, however many findings that pull produces.
     """
 
     def test_runs_over_the_real_corpus_and_exits_zero(self):
@@ -549,8 +559,35 @@ class LiveCorpusTest(unittest.TestCase):
             rc = V.main(["--repo", str(REPO_ROOT)])
         finally:
             sys.stdout = saved
+        text = out.getvalue()
         self.assertEqual(rc, 0, "default mode must exit 0 even with findings")
-        self.assertIn("validate_literature:", out.getvalue())
+        self.assertIn("validate_literature:", text)
+
+        # Non-vacuity guard. Both report branches name the record count:
+        #   "OK (N records checked, 0 findings)"
+        #   "K finding(s) in M of N record(s), ..."
+        m = re.search(r"\((\d+) records checked", text) or \
+            re.search(r"of (\d+) record\(s\)", text)
+        self.assertIsNotNone(
+            m, "could not read a record count out of the report; if the report "
+               "format changed, re-point this guard rather than deleting it:\n%s"
+               % text)
+        self.assertGreater(
+            int(m.group(1)), 0,
+            "the live literature corpus resolved to ZERO records, so this smoke "
+            "test asserted nothing. Either the tree moved or iter_record_paths "
+            "stopped finding it -- do not soften this guard.")
+
+    def test_the_live_corpus_is_actually_reachable(self):
+        """Standalone coverage check, independent of the CLI's output format.
+
+        Reads the count straight from collect_findings so a report-format change
+        cannot silently disarm the guard above.
+        """
+        _findings, n_records = V.collect_findings(REPO_ROOT)
+        self.assertGreater(
+            n_records, 0,
+            "collect_findings saw zero records under %s" % REPO_ROOT)
 
 
 if __name__ == "__main__":

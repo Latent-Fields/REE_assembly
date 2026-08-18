@@ -583,37 +583,110 @@ class TestAsciiOutput(unittest.TestCase):
 
 class TestLiveCorpusSmoke(unittest.TestCase):
     """Runs the real audit against the actual REE_assembly corpus and asserts it
-    does not crash and reproduces the known-folded patterns as already-codified,
-    not as fresh candidates. Skips (never fails) if the corpus is absent."""
+    reproduces the known-folded seed-44 pattern as already-codified, never as a
+    fresh candidate.
 
-    def test_live_corpus_runs_clean_and_known_patterns_are_codified(self):
-        if not m.DEFAULT_AUTOPSY_DIR.is_dir():
-            self.skipTest("evidence/planning/ not present in this checkout")
-        hits: list[dict] = []
+    ORACLE INDEPENDENCE (oracle-vacuity audit 2026-08-18). Every guard below is
+    read from the FILESYSTEM or is a LITERAL. Nothing that decides whether this
+    test asserts anything is computed by `audit()` / `already_codified()`, which
+    are the functions under test.
+
+    The prior shape built its oracle by filtering `audit()`'s OWN
+    `excluded_already_codified` output for the seed-44 artifacts, then asserted
+    that set did not intersect the candidates. Reverting `already_codified` to
+    never-fire emptied `excluded_already_codified`, which emptied the oracle,
+    and the intersection assertion passed against nothing. Measured: the test
+    stayed GREEN under all of `already_codified -> (False, None)`,
+    `cluster_qualifies -> (False, ...)`, `cluster_hits -> []`,
+    `scan_autopsy_file -> []` and `scan_review_tracker -> []`. This is the
+    FM11d shape (REE_assembly `48bae8be81`).
+
+    An absent corpus is a FAILURE here, never a skip -- a silent stand-down is
+    indistinguishable from the fix having been reverted.
+    """
+
+    # Independent oracle: the two autopsy artifacts whose shared pattern (seed-44
+    # truncation) was folded into the queue-experiment skill on 2026-08-01. These
+    # are LITERALS, checked against the filesystem, never derived from audit().
+    SEED44_ARTIFACTS = frozenset({
+        "failure_autopsy_EXQ-539-540_MECH307_2026-05-17",
+        "failure_autopsy_V3-EXQ-538a_2026-07-10",
+    })
+
+    def _live_inputs(self):
+        """Collect the corpus, failing loudly if it cannot support an assertion."""
+        self.assertTrue(
+            m.DEFAULT_AUTOPSY_DIR.is_dir(),
+            "evidence/planning/ is absent, so this test cannot assert anything. "
+            "Do not soften this to a skip -- either restore the corpus or "
+            "re-point this class at a fixture corpus.")
+
+        # Non-vacuity guard, read straight from disk: the two artifacts the
+        # oracle names must still BE in the corpus.
+        on_disk = {p.stem for p in m.DEFAULT_AUTOPSY_DIR.glob("failure_autopsy_*.json")}
+        missing = sorted(self.SEED44_ARTIFACTS - on_disk)
+        self.assertEqual(
+            [], missing,
+            "the seed-44 oracle artifacts %s are no longer in evidence/planning/. "
+            "This test's oracle is gone; re-point it at a fixture corpus rather "
+            "than deleting the assertion." % missing)
+
+        hits = []
         for fp in sorted(m.DEFAULT_AUTOPSY_DIR.glob("failure_autopsy_*.json")):
             hits.extend(m.scan_autopsy_file(fp))
         if m.DEFAULT_REVIEW_TRACKER.exists():
             hits.extend(m.scan_review_tracker(m.DEFAULT_REVIEW_TRACKER))
-        if not hits:
-            self.skipTest("no self-flagged hits in this checkout's corpus")
+        self.assertTrue(hits, "no self-flagged hits scanned from the live corpus")
+
         skill_lines = m.load_skill_lines(m.DEFAULT_SKILLS_DIRS)
-        if not skill_lines:
-            self.skipTest("skill files not present in this checkout")
+        self.assertTrue(skill_lines, "no skill lines loaded from the live corpus")
+        return hits, skill_lines
+
+    def test_the_live_corpus_is_actually_loaded(self):
+        """Standalone non-vacuity check, so the guards fail on their own line.
+
+        Without this, a corpus that stopped supporting the assertions below
+        would surface as a confusing failure inside the invariant test rather
+        than as 'the corpus is gone'.
+        """
+        hits, skill_lines = self._live_inputs()
+        # The seed-44 hits must survive scanning -- i.e. the SCANNERS still see
+        # them, independently of what audit() later decides to do with them.
+        scanned = {h.get("artifact") for h in hits}
+        missing = sorted(self.SEED44_ARTIFACTS - scanned)
+        self.assertEqual(
+            [], missing,
+            "the seed-44 artifacts %s are on disk but produced no self-flagged "
+            "hit; scan_autopsy_file no longer sees them" % missing)
+
+    def test_live_corpus_runs_clean_and_known_patterns_are_codified(self):
+        hits, skill_lines = self._live_inputs()
         result = m.audit(hits, skill_lines)
-        # Must not raise, and every bucket must be a list.
         for key in ("checklist_candidates", "excluded_already_codified", "sub_threshold"):
             self.assertIsInstance(result[key], list)
-        # The seed-44-truncation pattern (folded into queue-experiment 2026-08-01)
-        # must be recognized as already codified, never re-surfaced as a fresh
-        # candidate -- this is the entire point of the already-codified check.
-        codified_artifacts = {a for r in result["excluded_already_codified"]
-                              for a in r["artifacts"]}
-        seed44_files = {a for a in codified_artifacts if "539-540" in a or "538a" in a}
-        if seed44_files:
-            self.assertTrue(len(seed44_files) >= 1)
-        candidate_artifacts = {a for r in result["checklist_candidates"] for a in r["artifacts"]}
-        self.assertFalse(candidate_artifacts & seed44_files,
-                         "a known-folded pattern must not also appear as a fresh candidate")
+
+        buckets = {k: {a for r in result[k] for a in r["artifacts"]}
+                   for k in ("checklist_candidates", "excluded_already_codified",
+                             "sub_threshold")}
+
+        # POSITIVE direction, over the LITERAL oracle rather than over audit()'s
+        # own output. This is what goes RED when already_codified is reverted to
+        # never-fire; the old intersection test did not.
+        not_excluded = sorted(self.SEED44_ARTIFACTS - buckets["excluded_already_codified"])
+        self.assertEqual(
+            [], not_excluded,
+            "the seed-44 pattern %s must be recognised as ALREADY CODIFIED "
+            "(folded into queue-experiment 2026-08-01). Buckets: candidates=%s "
+            "sub_threshold=%s" % (not_excluded,
+                                  sorted(self.SEED44_ARTIFACTS & buckets["checklist_candidates"]),
+                                  sorted(self.SEED44_ARTIFACTS & buckets["sub_threshold"])))
+
+        # NEGATIVE direction, retained unweakened: a known-folded pattern must
+        # not ALSO surface as fresh work.
+        self.assertFalse(
+            self.SEED44_ARTIFACTS & buckets["checklist_candidates"],
+            "a known-folded pattern must not also appear as a fresh candidate: %s"
+            % sorted(self.SEED44_ARTIFACTS & buckets["checklist_candidates"]))
 
 
 if __name__ == "__main__":
