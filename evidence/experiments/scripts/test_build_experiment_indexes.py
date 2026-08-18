@@ -2082,6 +2082,47 @@ def test_old_record_not_duplicated_when_fresh_item_matches_via_either_key():
     assert already_covered is True  # matched via the shared "EXP-0384" key
 
 
+# --- blocked_substrate reason wiped on regen (2026-08-18) -------------------
+#
+# Regression target: chip-20260817-blocked-note-not-carried-forward. The
+# /queue-experiment skill's Step 2.5 / 2.5b stop-gates instruct an author to
+# record "status": "blocked_substrate" plus "blocked_by" / "blocked_note" in
+# experiment_proposals.v1.json -- but neither field was in the carry-forward
+# whitelist, so the very next regen reset the item to a bare "blocked_substrate"
+# with no recorded reason. Confirmed live: 43 items were already
+# status=blocked_substrate with the reason already gone (e.g. EVB-0579).
+
+def test_carry_forward_fields_include_blocked_reason():
+    """Pin the real module constant (not a test-local field list) so a future
+    edit to the whitelist tuple in build_experiment_indexes.py cannot drop
+    blocked_by/blocked_note again without failing here."""
+    assert "blocked_by" in b._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS
+    assert "blocked_note" in b._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS
+
+
+def test_blocked_substrate_reason_survives_regen():
+    """End-to-end shape of the confirmed defect: an author stops an
+    experiment via the skill's prescribed blocked_substrate fields; a regen
+    must carry both the ownership list and the free-text reason forward onto
+    the freshly-regenerated proposal, using the module's real whitelist."""
+    old_record = {
+        "proposal_id": "EXP-0579",
+        "status": "blocked_substrate",
+        "blocked_by": ["SD-071"],
+        "blocked_note": "SD-071 not yet implemented in ree-v3 substrate",
+    }
+    existing_status_by_key = _index_by_all_keys(
+        old_record, b._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS
+    )
+    fresh_item = {"proposal_id": "EXP-0579", "backlog_id": "EVB-0579", "status": "proposed"}
+
+    matched = _carry_forward(fresh_item, existing_status_by_key)
+    assert matched is True
+    assert fresh_item["status"] == "blocked_substrate"
+    assert fresh_item["blocked_by"] == ["SD-071"]
+    assert fresh_item["blocked_note"] == "SD-071 not yet implemented in ree-v3 substrate"
+
+
 # --- ERROR-as-PASS miscategorization (2026-08-02) --------------------------
 #
 # Regression cover for the confirmed V3-EXQ-870 defect: a crash-before-manifest

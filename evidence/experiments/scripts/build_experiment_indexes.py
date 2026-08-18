@@ -5309,6 +5309,33 @@ def _proposal_identity_keys(item: dict[str, Any]) -> list[str]:
     return keys
 
 
+# Status-family fields carried forward from an existing (pre-regen) resolved
+# proposal onto its freshly-regenerated counterpart (and written back onto
+# manual_proposals.v1.json -- both sites in main() share this same set via
+# _existing_proposal_status). Generated proposals always start "proposed";
+# any manual resolution -- executed, gated, superseded, or a Step 2.5
+# blocked_substrate stop with its reason -- must be in this tuple or it is
+# silently wiped on the next regen. blocked_by/blocked_note added
+# 2026-08-18 (chip-20260817-blocked-note-not-carried-forward): the
+# /queue-experiment skill instructs authors to write both on a
+# blocked_substrate stop, but neither field survived a regen, so 43 live
+# blocked_substrate proposals had already lost their reason by the time this
+# was found.
+_PROPOSAL_STATUS_CARRY_FORWARD_FIELDS = (
+    "status",
+    "executed_by",
+    "executed_queue_id",
+    "gated_at_utc",
+    "gated_by_session",
+    "gating_reason",
+    "predecessor_disposition",
+    "release_condition",
+    "superseded_by",
+    "blocked_by",
+    "blocked_note",
+)
+
+
 def _reserve_manual_proposal_backlog_ids(
     manual_doc: dict[str, Any], used_numeric_ids: set[int]
 ) -> None:
@@ -6470,17 +6497,7 @@ def _write_planning_outputs(
                 if _ep_keys and _ep.get("status", "proposed") != "proposed":
                     _ep_status = {
                         k: _ep[k]
-                        for k in (
-                            "status",
-                            "executed_by",
-                            "executed_queue_id",
-                            "gated_at_utc",
-                            "gated_by_session",
-                            "gating_reason",
-                            "predecessor_disposition",
-                            "release_condition",
-                            "superseded_by",
-                        )
+                        for k in _PROPOSAL_STATUS_CARRY_FORWARD_FIELDS
                         if k in _ep
                     }
                     # Register under EVERY identity key this OLD record carries
