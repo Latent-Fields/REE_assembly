@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
   "runner_pid": 3973580,
-  "runner_started_at": "2026-08-14T01:23:31.474581+00:00",
-  "last_updated": "2026-08-14T01:34:35.223225+00:00",
+  "runner_started_at": "2026-08-17T08:00:13.956582+00:00",
+  "last_updated": "2026-08-18T01:58:59.392102+00:00",
   "idle": false,
   "current": null,
   "queue": [],
@@ -3836,6 +3836,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_928_mech267_cem_selection_fix_validation/v3_exq_928_mech267_cem_selection_fix_validation_20260814T013434Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 21.4
+    },
+    {
+      "queue_id": "V3-EXQ-937",
+      "backlog_id": "",
+      "claim_id": "MECH-449",
+      "title": "MECH-449/ARC-107: envelope-width dose response for the perseveration No-Go -- where is the knee, and is the leg inert at the SHIPPED f_eligibility_envelope_floor of 0.30? (V3-EXQ-926a's stated finding of record, never characterised)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | [937] outcome=FAIL label=conversion_independent_of_envelope_width lift={'42': 0.34375, '43': 0.2734375, '44': 0.3203125} knee=0.3 env_sep=1.000 empty_eligible=0 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3.json | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-937 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-937.json",
+      "started_at": "2026-08-18T01:39:26.303710+00:00",
+      "completed_at": "2026-08-18T01:39:55.041877+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 28.7
+    },
+    {
+      "queue_id": "V3-EXQ-937a",
+      "backlog_id": "",
+      "claim_id": "MECH-449",
+      "title": "MECH-449/ARC-107: where does the perseveration No-Go actually go INERT? Keyed to REALIZED envelope size after finding the floor->envelope map is non-monotone (V3-EXQ-937 successor)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [937a] outcome=PASS label=envelope_width_gates_perseveration_conversion lift={'42': 0.5322916666666666, '43': 0.5088541666666666, '44': 0.490625} knee=0.6 env_sep=3.000 empty_eligible=0 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-937a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-937a.json",
+      "started_at": "2026-08-18T01:58:08.566487+00:00",
+      "completed_at": "2026-08-18T01:58:59.389993+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 50.8
     }
   ]
 }
