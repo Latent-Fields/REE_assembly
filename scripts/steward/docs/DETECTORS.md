@@ -193,6 +193,34 @@ way (correct the claims, not the node). It did not — the node was wrong. The
 catalogue entry had flagged this as an open question rather than asserting it,
 which is what let the adjudication go where the artefacts pointed.
 
+**MECH-091 — resolved 2026-08-16, closing the one `undetermined` cell above.**
+`/governance` cycle `cranky-driscoll-126a36` (GFLAG-0037, decision-ready brief
+`evidence/planning/sd006_phase2_generation_brief.md`) decided the generation
+question with a **SPLIT**: MECH-091 → V3 as a small buildable (its
+`phase_reset()` is built, wired, and was measured as the dominant driver of E3
+tick cadence — the deferral rationale was stale, not the mechanism), SD-006
+phase 2 true concurrency → V4 (that's ARC-023's real blocker, not MECH-091's).
+`commitment_closure:GAP-7` moved `deferred` → `blocked`,
+`MECH091-SALIENT-EVENT-TRIGGER-WIRING` was registered to `substrate_queue.json`
+(the artefact whose total absence was *why* this cell couldn't be settled
+inline), and `needs_review` cleared. Work has since progressed on it
+(V3-EXQ-935 ran and was autopsied 2026-08-18). Full chain:
+`evidence/decisions/decision_log.v1.jsonl` 2026-08-16T19:59:02Z (both the
+MECH-091 and ARC-023 entries) and the GFLAG-0037 `resolved` record in
+`evidence/planning/governance_flags.v1.json`.
+
+**Signal-quality read: `weak` (no `v3_pending` key) was NOT a false-positive
+tell.** MECH-091 is now the second `weak`-graded finding (with MECH-314a) to
+resolve as a genuine orphan rather than noise — cycle 2 already overturned the
+signal-strength gate on precision (4/4 via three distinct mechanisms, `weak`
+included); this closure adds that `weak` also doesn't predict *ease* of
+resolution. MECH-091 took a dedicated decision brief and a governance SPLIT
+where MECH-314a/MECH-316/317 resolved same-cycle — but the node was wrong in
+both cases, `weak` only tracked how much scaffolding (a `v3_pending` flag) the
+claim carried, not whether the underlying orphan was real. Net: `signal`
+stays ranking metadata only (per point 1 above), now with two-for-two evidence
+that downgrading or gating on it would have suppressed real findings.
+
 ### D-003 · `never_revisited_node` · P1 · T1
 A non-`done` node carrying no `governance_*` key and no `last_updated` movement
 since the plan's `registered` date.
