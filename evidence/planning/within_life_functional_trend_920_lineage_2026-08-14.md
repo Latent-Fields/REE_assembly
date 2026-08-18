@@ -4,7 +4,10 @@
 **Chip:** `chip-20260812-exq920-multiseed-degradation-retrospective`
 **Status:** COMPLETE (2026-08-18). Sections 3-5 are the original `n=1` template; Section 6's
 pipeline has now been RUN verbatim over V3-EXQ-920a's 8 seeds and appended as **Section 7**.
-**Nothing here is scoring evidence.** Sections 3-5 are `n=1`; Section 7 is `N=8`, and N=8 is
+**Section 8** answers the three follow-on questions
+`failure_autopsy_V3-EXQ-920a_2026-08-16.md` Section 11 item 1 named as a zero-compute reanalysis
+(empirical hazard function / wear reading, harm-dose-at-death hypothesis, seed-3 reef anomaly).
+**Nothing here is scoring evidence.** Sections 3-5 are `n=1`; Sections 7-8 are `N=8`, and N=8 is
 explicitly NOT a reliability claim -- no p-value is computed anywhere in this document. All readings
 are hypothesis-generating, per the organism-review framing (Fishtank visual/single-run observations
 are explicitly not treated as governance evidence). No claim is tagged, no `claims.yaml` edit is
@@ -511,7 +514,7 @@ Everything in Section 5 about causality holds unchanged, and N=8 does not weaken
   starvation co-varies with time, it is that `drive` and `z_goal` are near-algebraic functions of a
   clock every seed shares.
 - N=8 with 8/8 agreement on a clock-driven channel is **not** evidence of reliability. Reporting it
-  as such would be the exact degeneracy Section 8 forbids.
+  as such would be the exact degeneracy Section 9 forbids.
 
 ### 7.6 Updated inputs for the matched-arm causal follow-up
 
@@ -523,7 +526,191 @@ that `chip-20260814-queue-causal-sleep-matched-arm` should consume.
 
 ---
 
-## 8. Non-degeneracy / what this document is careful NOT to do
+## 8. Zero-compute reanalysis: the three follow-on questions (2026-08-18)
+
+**Appended by** `chip-20260816-920a-episode-log-reanalysis`, answering the three questions
+`failure_autopsy_V3-EXQ-920a_2026-08-16.md` Section 11 item 1 names as "answerable with zero new
+compute" from the already-committed 34.8 MB per-step episode log (8 seeds, all `health_depleted`).
+Reference implementation, tracked:
+`evidence/planning/within_life_functional_trend_920a_reanalysis_pipeline.py`. Re-running it
+reproduces every number below.
+
+**Nothing here is scoring evidence.** N=8, descriptive, no p-values -- same discipline as Sections 0
+and 7. This section answers the autopsy's three named questions only; it does not otherwise revise
+the DV/methodology recommendations of Sections 5/7.6.
+
+### 8.1 Q1 -- does the "wear" (accumulating-damage) reading hold up?
+
+**Yes, on three independent readings of the same 8 survival times (628, 1008, 1432, 1816, 1846, 1944,
+2517, 2527), none of which require fitting a distribution** (autopsy Section 6c is right that n=8
+cannot do that -- these are model-free checks, not a fitted comparison).
+
+1. **Coefficient of variation is a distribution-free memorylessness test.** Any constant-hazard
+   (homogeneous-Poisson) death process forces i.i.d. Exponential survival times, whose CV is exactly
+   1 regardless of the rate. Observed: mean 1714.75, sd 670.17, **CV = 0.391** -- well below 1, which
+   is inconsistent with constant hazard and consistent with an increasing (wear-out / IFR) hazard.
+2. **Discrete-time hazard rises with age.** Pooling all 8 lives into 500-step bins (912's own segment
+   scale) and computing deaths-in-bin / at-risk-at-bin-start:
+
+   | bin | at risk | deaths | hazard |
+   |---|---|---|---|
+   | 0-500 | 8 | 0 | 0.000 |
+   | 500-1000 | 8 | 1 | 0.125 |
+   | 1000-1500 | 7 | 2 | 0.286 |
+   | 1500-2000 | 5 | 3 | **0.600** |
+   | 2000-2500 | 2 | 0 | 0.000 |
+   | 2500-3000 | 2 | 2 | 1.000 |
+
+   Hazard climbs monotonically 0 -> 0.125 -> 0.286 -> 0.600 through the informative range (0-2000,
+   where at-risk is still >=5). The last two bins are a small-n edge artifact, not a genuine
+   dip-then-spike: only 2 seeds remain, and both die at 2517/2527 -- just past the 2500 boundary --
+   so the 2000-2500 zero is an artifact of where that boundary happens to fall, not evidence hazard
+   fell. Read the table as "rises through 2000, then n=2 is too small to resolve further."
+3. **A self-referential memoryless null (fit to this run's own mean, no import from 912) shows the
+   classic IFR crossing pattern.** Rate `lambda = 1/1714.75 = 0.000583/step`:
+
+   | t | predicted P(survive) | observed fraction alive |
+   |---|---|---|
+   | 666 (energy clock zero) | 0.678 | **0.875** (7/8) |
+   | 1000 | 0.558 | **0.875** (7/8) |
+   | 1500 | 0.417 | **0.625** (5/8) |
+   | 2000 | 0.312 | **0.250** (2/8) |
+   | 2500 | 0.233 | 0.250 (2/8) |
+
+   Observed survival is ABOVE the memoryless prediction early (more alive than a constant hazard at
+   this average rate would predict) and falls BELOW it late (t=2000) -- the curves cross once, from
+   above to below. That crossing is the textbook signature of an increasing hazard: fewer early
+   deaths than memorylessness predicts, then a late-life cluster it does not predict.
+
+**Cross-check against the imported 912 calibration** (autopsy Section 6b, reproduced here from the
+run's own numbers): 912's per-500-step hazard `p=4/60=0.0667` implies a memoryless mean of `500/0.0667
+= 7500` steps. Observed mean 1714.75 is **4.37x** earlier -- matches the autopsy's "4.4x" (rounding).
+
+**Verdict: the wear reading holds up under all three checks, and two of the three (CV, the crossing
+pattern) do not depend on 912 at all.** As the autopsy already states, 912 could not have seen this:
+every 912 segment began with a fresh body, so 912 measured a fresh-body (low, roughly flat) hazard by
+construction, and a fresh-body hazard is exactly what the 500-1500 range of the bin table above still
+looks like -- the wear term only becomes visible past ~1500 steps, which no 912 segment (261-487 max)
+ever reached.
+
+### 8.2 Q2 -- the harm-dose-at-death hypothesis, verified against per-step `harm_event`/`health`
+
+**Confirmed exactly, by direct recount from the raw per-step boolean, with no discrepancy from the
+autopsy's summary-stat reconstruction.**
+
+| seed | survival | harm_total (direct count) | harm_rate |
+|---|---|---|---|
+| 0 | 1944 | 93 | 0.0478 |
+| 1 | 1432 | 88 | 0.0615 |
+| 2 | 1846 | 81 | 0.0439 |
+| 3 | 1008 | 72 | 0.0714 |
+| 4 | 2527 | 98 | 0.0388 |
+| 5 | 628 | 57 | 0.0908 |
+| 6 | 2517 | 94 | 0.0373 |
+| 7 | 1816 | 73 | 0.0402 |
+
+Counting `harm_event == True` directly over each seed's per-step trace reproduces `[57, 72, 73, 81,
+88, 93, 94, 98]` -- **byte-identical to the autopsy's reconstruction** from
+`lifetime_affective_occupancy` (`frac_harm_event x n_lived_steps_measured`). The reconstruction was
+lossless; this section is not a correction of Section 6b, it is an independent confirmation of it.
+
+- **Stereotypy:** harm-dose mean 82.00, sd 13.96, **CV 0.170**; survival mean 1714.75, sd 670.17, CV
+  0.391. Ratio **2.30x** -- matches the autopsy's "2.3x more stereotyped" exactly.
+- **Rate anti-correlates with survival:** Spearman(harm_rate, survival) = **-0.881** -- exact match.
+- **Raw total count is NOT anti-correlated with survival** (Spearman(harm_total, survival) = **+0.929**)
+  -- stated explicitly because it could otherwise look like a contradiction. It is not: a longer life
+  gives more opportunities to encounter harm even at a lower per-step rate, so total count rises with
+  duration almost mechanically (seed 4: 2527 steps, rate 0.0388, total 98; seed 5: 628 steps, rate
+  0.0908, total 57). The informative quantity is the RATE, and the fact that the total stays within a
+  narrow 57-98 band (max/min 1.72) despite a 4.02x range in survival time.
+- **New finding: health is not monotonic, and the anomaly is resource-gated.** Net lifetime health
+  change is exactly `-1.0` in 7 of 8 seeds (seed 3: `-0.9901`, matching its own non-unit starting
+  health), but every seed except seed 3 shows 1-4 discrete UPWARD health jumps over its life (total
+  "healing" 0.15-0.60, e.g. seed 1 and seed 4 both show exactly 4 jumps). Seed 3 shows **zero**. The
+  jump count tracks resources consumed per seed closely (seed 3: 0 consumed / 0 jumps, the single
+  cleanest case; seed 1 and seed 4: 4 consumed / 4 jumps, exact matches elsewhere), consistent with
+  health regeneration being gated on successful resource consumption. This is a genuinely new
+  observation (not named in the autopsy) and feeds directly into 8.3.
+- **A secondary, hedged figure -- do not lean on it.** "Mean health-drop per harm event"
+  (total negative health delta / harm_total) is 0.0166 +/- 0.0026 across seeds (CV 0.158), close to
+  but not identical to the naive `1/mean(harm_total) = 0.0122` implied by a flat 1.0-unit budget spread
+  evenly over ~82 hits. This is **not a clean per-event attribution**: ~2.5% of health-decrementing
+  steps in a sampled seed carry no `harm_event` flag at all (likely continuous `harm_signal` exposure
+  or injection-driven decrements not gated by the discrete marker), and the regen jumps above partly
+  offset losses in the same sum. Report as compatible with, not independent confirmation of, the dose
+  story.
+
+**Verdict: the harm-dose-at-death hypothesis survives this direct per-step check unchanged.** The
+mechanism reading in the autopsy -- death occurs at an approximately fixed harm-tolerance budget, and
+survival time is that budget divided by encounter rate -- is coherent with 8.1's wear-out finding:
+the "damage" driving the rising hazard is, to first approximation, integrated harm exposure, and
+seeds that happen to encounter harm less often survive longer to reach the same roughly-fixed dose
+ceiling. Still n=8, still descriptive, still not distinguishing this from other dose-accumulation
+mechanisms that would produce the same aggregate signature.
+
+### 8.3 Q3 -- the seed-3 reef anomaly, explained
+
+**A concrete, well-evidenced mechanism, built from several independent facts in the committed log --
+not merely "unexplained" as the autopsy left it.**
+
+| seed | survival | frac_reef | harm_tot | harm_rate | rate_in_reef | rate_out_reef | transitions | trans_rate | resources s/min/end | hazards_in_reef | health<0.5 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | 1944 | 0.268 | 93 | 0.0478 | 0.0864 | 0.0337 | 27 | 0.0139 | 5/1/1 | 3/4 | 676 |
+| 1 | 1432 | 0.224 | 88 | 0.0615 | 0.0654 | 0.0603 | 22 | 0.0154 | 5/1/1 | 0/4 | 639 |
+| 2 | 1846 | 0.236 | 81 | 0.0439 | 0.0321 | 0.0475 | 20 | 0.0108 | 5/2/2 | 1/4 | 1066 |
+| **3** | **1008** | **0.919** | 72 | 0.0714 | **0.0551** | **0.2561** | **39** | **0.0387** | **5/5/5** | **3/4** | **558** |
+| 4 | 2527 | 0.302 | 98 | 0.0388 | 0.0537 | 0.0323 | 44 | 0.0174 | 5/1/1 | 1/4 | 1069 |
+| 5 | 628 | 0.072 | 57 | 0.0908 | 0.1111 | 0.0892 | 20 | 0.0318 | 5/1/1 | 0/4 | 403 |
+| 6 | 2517 | 0.158 | 94 | 0.0373 | 0.1357 | 0.0189 | 14 | 0.0056 | 5/1/1 | 1/4 | 2235 |
+| 7 | 1816 | 0.478 | 73 | 0.0402 | 0.0484 | 0.0327 | 9 | 0.0050 | 5/4/4 | 3/4 | 1436 |
+
+Spearman(frac_in_reef, survival) = **+0.095** -- exact match to the autopsy. Confirmed: reef time
+alone predicts nothing across the cohort (seed 6 has low reef time and long survival; seed 7 has high
+reef time and long survival; reef occupancy is not the load-bearing variable). Seed 3 is explained by
+a specific combination, not by "reef time" as a scalar:
+
+1. **The reef is structurally foodless, corpus-wide.** 0 of 16 resources spawned across all 8 seeds
+   ever land inside a reef cell -- 0 in every individual seed, not just seed 3. This is a geometric
+   property of the reef/resource placement, not a seed accident.
+2. **Seed 3 uniquely never ate.** `resources s/min/end = 5/5/5` -- the only seed of 8 whose resource
+   count never moved. Given fact 1, this is the direct, mechanical consequence of spending 91.9% of a
+   1008-step life inside a zone that cannot contain food: seed 3 rarely left long enough to forage.
+3. **The reef is not harm-free.** `harm_event` fires while `in_reef` in all 8 seeds (14-54 events per
+   seed), and in 3 of 8 (seeds 0, 5, 6) the in-reef rate exceeds the out-of-reef rate -- "shelter" is
+   not generically protective in this corpus. For seed 3 specifically the reef WAS partially
+   protective per-step (0.0551 in-reef vs 0.2561 out-of-reef, a 4.6x reduction), but that in-reef rate
+   is still nonzero, and combined with 91.9% occupancy it still produced 51 of seed 3's 72 total harm
+   events (71%) from inside the "safe" zone.
+4. **Seed 3 drew an unusually hazardous reef layout and then stayed in it.** 3 of seed 3's 4 initial
+   hazards spawn inside its own reef cells -- tied for the corpus maximum (also 3/4 for seeds 0 and 7)
+   -- but seeds 0 and 7 occupied their reefs only 26.8% and 47.8% of the time, versus seed 3's 91.9%,
+   so seed 3 is exposed to its hazard-dense draw far more than the other two seeds that drew the same
+   count.
+5. **Seed 3's excursions out of the reef were unusually costly and unusually frequent.** Its
+   boundary-transition rate (39 crossings / 1008 steps = 0.0387/step) is the highest of all 8 seeds,
+   and its out-of-reef harm rate (0.2561/step) exceeds every OTHER seed's overall (whole-life) harm
+   rate -- the next-highest overall rate anywhere in the corpus is seed 5's 0.0908. So the margin it
+   crossed into repeatedly was worse than any seed's typical environment.
+6. **The fatal decline is harm-driven, not the post-exhaustion starvation pattern.** Health drops
+   below 0.5 at t=558, before the shared energy-clock boundary at t=666 (Section 7.1) -- i.e. before
+   the point the n=1 template (Section 2/4) associates with starvation-driven terminal decline. Seed
+   3's death is not a starvation cascade in that sense.
+7. **Seed 3 is the only seed that received zero within-life healing** (8.2's new finding): every
+   other seed shows 1-4 discrete health-regen jumps, gated (imperfectly but consistently) on resource
+   consumption; seed 3, having eaten nothing, got none.
+
+**Verdict: the anomaly is a specific, identifiable combination of a foodless-by-construction reef, a
+personally hazard-dense reef draw, an unusually costly and unusually frequent set of excursions, and
+a consequent total loss of within-life healing -- not a generic property of "spending time in the
+reef."** The other 7 seeds' reef occupancy (7.2%-47.8%) shows no consistent harm or benefit, which is
+exactly the null cohort-level correlation (+0.095) predicts. This is a single well-evidenced case
+study built from one seed's specific hazard-layout draw, not independently replicated (no other seed
+combines high occupancy with a hazard-dense draw), so it explains what happened to seed 3 without
+generalizing to a claim about reefs, shelter, or safe zones more broadly.
+
+---
+
+## 9. Non-degeneracy / what this document is careful NOT to do
 
 - Does not tag any claim, edit `claims.yaml`, or mint/AMEND a `substrate_queue` entry. Pure
   hypothesis-generating retrospective.
