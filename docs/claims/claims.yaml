@@ -5550,6 +5550,42 @@
   location: docs/architecture/control_plane.md#mech-053
   source:
     - docs/thoughts/2026-02-11_habenula_signed_pe.md
+  notes: >
+    WORDING DISAMBIGUATION (2026-08-18): the claim's "keeps aversive salience distinct from
+    reward-like precision weighting" was ambiguous between an ARCHITECTURAL reading (two
+    disjoint channels; a harm-PE pathway carrying no appetitive information at all) and a
+    FUNCTIONAL reading (one signed channel, asymmetric dynamics and downstream consequences,
+    not folded into a symmetric scalar). Resolved to the FUNCTIONAL reading;
+    control_plane.md#mech-053 reworded accordingly. This does NOT change status/confidence --
+    a wording-clarity edit only. Distinguish from MECH-054, which is the narrower,
+    ARCHITECTURAL claim (separate precision-weighted forward models for harm vs benefit, each
+    with its own independently-tracked precision/variance state) -- the two claims sit at
+    different levels and this disambiguation does not collapse them into restatements of each
+    other; MECH-054's own notes already document that its stronger architectural bar is
+    currently unmet on the benefit side (2026-08-08 digestion pass).
+
+    Literature basis (2026-08-17 targeted connectome pull,
+    evidence/literature/targeted_review_connectome_mech_053/, 5 entries): the LHb evidence
+    favours the functional reading over the architectural one. Wang et al. 2017 (eLife,
+    PMID 28561735) and Matsumoto & Hikosaka 2009 (Nat Neurosci) both find the SAME LHb
+    population bidirectionally signed -- excited by aversive events, inhibited by reward --
+    which is hard to reconcile with two anatomically disjoint channels but is exactly the
+    signature of one signed channel whose limbs carry different dynamics. Laurent et al.
+    2017's pathway-selective ablation (LHb->RMTg) shows the pathway is causally necessary for
+    NEGATIVE predictors to bias choice and not for positive ones -- direct evidence for the
+    functional/causal ASYMMETRY the claim needs (aversive PE is not treated the same as a
+    symmetric net-value signal), independent of whether the underlying representation is one
+    channel or two. Lawson et al. 2014 (human fMRI) adds the same signed bidirectionality with
+    a behavioural readout (aversive value -> response suppression; appetitive value ->
+    invigoration). None of the five entries speak to the claim's pre-consolidation TIMING
+    requirement, which remains untested and is flagged in the pull as `complex (probe-gated)`
+    -- wants a REE experiment varying harm-PE arrival relative to trajectory consolidation, not
+    further literature.
+
+    Consequence: the Wang 2017 entry's evidence_direction has been moved mixed -> supports
+    (see that entry's record.json) now that the reading it was withholding judgment on is
+    resolved in its favour. The other four MECH-053 entries from this pull were already
+    `supports` and are unaffected.
 - id: MECH-054
   title: "Signed harm/benefit prediction-error precision channels remain distinct."
   claim_type: mechanism_hypothesis

@@ -376,8 +376,17 @@ when negative‑valence or harm prediction errors spike. This gate does not comp
 readiness and veto thresholds so that aversive signals can interrupt or delay commitment before deep evaluation
 consolidates a trajectory.
 
-This keeps aversive salience distinct from reward‑like precision weighting and prevents negative prediction error from
-being absorbed into a single scalar objective.
+This keeps aversive salience **functionally** distinct from reward‑like precision weighting: the gate's veto behaviour
+is asymmetric (triggered by negative‑valence spikes, not by reward magnitude), and negative prediction error is not
+folded into a single net‑value scalar that treats gains and losses symmetrically. This is a claim about the gate's
+*behaviour*, not about anatomy or wiring — it does not require an implementation‑level split into two disjoint
+pathways, one of which carries no appetitive information at all. A single signed channel whose aversive and
+appetitive limbs have different dynamics and different downstream consequences satisfies it, provided those limbs
+are not collapsed into one symmetric scalar. (This reading is disambiguated from an earlier ambiguous draft — see
+MECH‑053 in `claims.yaml` for the literature basis. Distinguish it from **MECH‑054**, which makes the stronger,
+narrower claim that harm‑ and benefit‑side precision are *architecturally* separate channels, each with its own
+forward model and independently tracked precision/variance state — that is a claim about wiring, and a different,
+harder bar than this gate's functional asymmetry.)
 
 ---
 
