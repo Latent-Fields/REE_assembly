@@ -264,7 +264,16 @@ Per seed, **two complete lives** from an identical starting point:
 | Arm | Config delta | Expected sleep cycles |
 |---|---|---|
 | `ARM_WAKE` | none (baseline 906b/920 config) | **0** |
-| `ARM_SLEEP` | `use_within_life_sleep_trigger=True`, `within_life_step_ceiling=T` | `floor(life_length / T)` |
+| `ARM_SLEEP` | `use_within_life_sleep_trigger=True`, `within_life_sleep_step_ceiling=T` [^cfgfield] | `floor(life_length / T)` |
+
+[^cfgfield]: The **config** field carries the `sleep_` infix; bare
+`within_life_step_ceiling` is only the `SleepLoopManager` **constructor kwarg** it is
+read into (`ree-v3/ree_core/agent.py:2832-2834`:
+`within_life_step_ceiling=int(getattr(config, "within_life_sleep_step_ceiling", 1000))`).
+`REEConfig` swallows unknown kwargs, so the constructor spelling silently no-ops back to
+the default ceiling of 1000 -- against 920a's measured life lengths that is zero or one
+cycle on half the seeds, i.e. a green run testing nothing (Section 9's hazard).
+V3-EXQ-929 sets `within_life_sleep_step_ceiling=STEP_CEILING`.
 
 Training is **shared**: run the curriculum once per seed, then deep-copy (or
 re-instantiate from an identical seeded state) so both arms enter their life with
