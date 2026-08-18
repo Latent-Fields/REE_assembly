@@ -208,7 +208,7 @@ closure_plan:
       last_updated: 2026-05-25
       resume_condition: "Partially covered by Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) under GAP-C's V3-EXQ-603c retest. Promote to non-deferred only if the 4-arm result needs a dedicated MECH-260-vs-MECH-313 redundancy follow-up per R_X.b."
     - id: "behavioral_diversity_isolation:GAP-G"
-      title: "Theory 7 (deferred): MECH-314 curiosity weight (Goldilocks calibration)"
+      title: "Theory 7 (blocked on GAP-B): MECH-314 curiosity weight (Goldilocks calibration)"
       status: blocked
       severity: low
       live:
