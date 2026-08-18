@@ -1,8 +1,23 @@
 # Pending Experiment Review
 
-Generated: `2026-08-17T01:53:34Z`  
+Generated: `2026-08-18T08:23:23Z`  
 Last review: `2026-08-16T19:07:14Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
+Pending: **5** item(s) -- 2 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
+
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3` | 2026-08-16T22:29 | MECH-467 | — |
+| `v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3` | 2026-08-17T07:57 | MECH-266, SD-032a | — |
+| `v3_exq_937_mech449_envelope_width_dose_response_20260818T013927Z_v3` | 2026-08-18T01:39 | ARC-107, MECH-449 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` | 2026-08-17T06:20 | MECH-439 |
+| `v3_exq_937a_mech449_envelope_inertness_point_20260818T015809Z_v3` | 2026-08-18T01:58 | ARC-107, MECH-449 |
 
 ## Dead z_goal stream (interpret before trusting a z_goal readout)
 
@@ -17,14 +32,6 @@ Each run below reports `z_goal_stream.writer_defect: true`: the agent was steppe
 | Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
 |--------|--------|-------|--------------|-------------|-----------|
 | `v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3` | FAIL | 28674 | **0** | 0.000 | live |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| FAIL | `v3_exq_874b_mech467_distractor_three_leg_battery_20260816T222900Z_v3` | v3_exq_874b_mech467_distractor_three_leg_battery | V3-EXQ-874b | non_contributory |
 
 ---
 

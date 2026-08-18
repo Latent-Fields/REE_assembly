@@ -324,6 +324,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-B`
 
@@ -645,6 +646,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-C`
 
@@ -966,6 +968,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-C-build`
 
@@ -1287,6 +1290,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-D`
 
@@ -1608,6 +1612,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-E`
 
@@ -1929,6 +1934,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-F`
 
@@ -2250,6 +2256,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-G`
 
@@ -2571,6 +2578,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-H`
 
@@ -2892,6 +2900,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-I`
 
@@ -3213,6 +3222,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-J`
 
@@ -3534,6 +3544,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 
 ## `behavioral_diversity_isolation:GAP-K`
 
@@ -3855,4 +3866,5 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-13T04:19Z` [autopsy] `failure_autopsy_V3-EXQ-436e_2026-08-13` -> [`evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436e_2026-08-13.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-15T06:38Z` [decision] `decision:MECH-314a@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L432`](../../../../evidence/decisions/decision_log.v1.jsonl#L432) :: decision undefer_owning_node (proposed)
 - `2026-08-16T18:24Z` [autopsy] `failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16#V3-EXQ-436f` -> [`evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json`](../../../../evidence/planning/failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest weakens
 

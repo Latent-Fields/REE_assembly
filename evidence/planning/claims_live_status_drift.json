@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-16T18:56:35Z",
+  "generated_at": "2026-08-18T08:24:10Z",
   "counts": {
     "total": 1012,
-    "reading_drift": 115,
+    "reading_drift": 118,
     "unstamped": 8,
-    "needs_review": 1,
+    "needs_review": 2,
     "never_reviewed": 991,
     "provenance_drift": 271
   },
@@ -344,6 +344,31 @@
       "diffs": [
         "reading: stored='implemented' derived='implemented/substrate_ceiling'",
         "needs_review: stored=False derived=True"
+      ]
+    },
+    {
+      "claim": "SD-017",
+      "stored_reading": "stable",
+      "derived_reading": "stable/substrate_ceiling",
+      "diffs": [
+        "reading: stored='stable' derived='stable/substrate_ceiling'",
+        "needs_review: stored=False derived=True"
+      ]
+    },
+    {
+      "claim": "ARC-045",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_ceiling",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_ceiling'"
+      ]
+    },
+    {
+      "claim": "MECH-166",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_ceiling",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_ceiling'"
       ]
     },
     {
@@ -972,6 +997,13 @@
         "promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate)"
       ],
       "reading": "implemented/substrate_ceiling"
+    },
+    {
+      "claim": "SD-017",
+      "reasons": [
+        "promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate)"
+      ],
+      "reading": "stable/substrate_ceiling"
     }
   ],
   "never_reviewed": [
@@ -2261,7 +2293,7 @@
     {
       "claim": "ARC-023",
       "stored_from": null,
-      "derived_from": "decision:ARC-023@2026-03-16T18:20:19.361127Z"
+      "derived_from": "decision:ARC-023@2026-08-16T19:59:02.842281Z"
     },
     {
       "claim": "MECH-089",
@@ -2811,7 +2843,7 @@
     {
       "claim": "SD-032a",
       "stored_from": "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c",
-      "derived_from": "failure_autopsy_V3-EXQ-934_2026-08-16"
+      "derived_from": "failure_autopsy_V3-EXQ-935_2026-08-18"
     },
     {
       "claim": "SD-032b",
@@ -2851,7 +2883,7 @@
     {
       "claim": "MECH-266",
       "stored_from": "failure_autopsy_mech266-464e-467e-cluster_2026-08-13",
-      "derived_from": "failure_autopsy_V3-EXQ-934_2026-08-16"
+      "derived_from": "failure_autopsy_V3-EXQ-935_2026-08-18"
     },
     {
       "claim": "MECH-267",
@@ -3151,12 +3183,12 @@
     {
       "claim": "MECH-449",
       "stored_from": "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3",
-      "derived_from": "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
+      "derived_from": "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
     },
     {
       "claim": "ARC-107",
       "stored_from": "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3",
-      "derived_from": "v3_exq_926a_mech449_perseveration_nogo_falsifier_20260814T171050Z_v3"
+      "derived_from": "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
     },
     {
       "claim": "ARC-108",
@@ -3211,7 +3243,7 @@
     {
       "claim": "MECH-467",
       "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-874_2026-08-03"
+      "derived_from": "failure_autopsy_V3-EXQ-874b_2026-08-17"
     },
     {
       "claim": "Q-082",

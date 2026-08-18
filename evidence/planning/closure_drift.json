@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-16T19:10:07Z",
+  "generated_at": "2026-08-18T08:23:56Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 0,
+    "stale_since": 2,
     "suppressed": 1,
     "assembling": 10,
     "assembling_revisit_due": 0,
@@ -107,5 +107,26 @@
     }
   ],
   "drifted": [],
-  "stale_since": []
+  "stale_since": [
+    {
+      "node_id": "commitment_closure:GAP-4",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": null,
+      "node_last_updated": "2026-08-16",
+      "reasons": [
+        "failure_autopsy_V3-EXQ-935_2026-08-18.json (2026-08-18) reclassified MECH-266"
+      ]
+    },
+    {
+      "node_id": "commitment_closure:GAP-4-battery",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "in_progress",
+      "owner_exq": null,
+      "node_last_updated": "2026-08-16",
+      "reasons": [
+        "failure_autopsy_V3-EXQ-935_2026-08-18.json (2026-08-18) reclassified MECH-266"
+      ]
+    }
+  ]
 }

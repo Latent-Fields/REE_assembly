@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -29,10 +29,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -46,10 +46,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -63,10 +63,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -80,10 +80,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -97,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -114,10 +114,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:
@@ -131,10 +131,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-16"
-        from: "failure_autopsy_V3-EXQ-934_2026-08-16"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-935_2026-08-18"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "{'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)', 'required_changes': [\"Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fres..."
         brake: "fired"
         needs_review: false
       join:

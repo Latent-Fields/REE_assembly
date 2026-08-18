@@ -14,13 +14,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -30,13 +29,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -46,13 +44,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -62,13 +59,12 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -78,13 +74,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -95,13 +90,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -118,13 +112,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-note-only"
+        as_of: "2026-08-18"
+        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
+        verdict: "supports/standard"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]

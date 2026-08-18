@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-16T18:56:35Z
+Generated: 2026-08-18T08:24:10Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -8,7 +8,7 @@ Warn-only by default -- run with `--strict` for a blocking gate.
 
 Claims in registry: 1012
 
-## Reading drift -- HARD (115)
+## Reading drift -- HARD (118)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -56,6 +56,9 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | INV-043 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-165 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | SD-016 | `implemented` | `implemented/substrate_ceiling` | reading: stored='implemented' derived='implemented/substrate_ceiling'; needs_review: stored=False derived=True |
+| SD-017 | `stable` | `stable/substrate_ceiling` | reading: stored='stable' derived='stable/substrate_ceiling'; needs_review: stored=False derived=True |
+| ARC-045 | `candidate` | `candidate/substrate_ceiling` | reading: stored='candidate' derived='candidate/substrate_ceiling' |
+| MECH-166 | `candidate` | `candidate/substrate_ceiling` | reading: stored='candidate' derived='candidate/substrate_ceiling' |
 | INV-045 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-046 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | INV-048 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
@@ -145,13 +148,14 @@ Registered claims with no `live_status` block. Run `scripts/apply_live_status.py
 | SD-100 | `candidate/substrate_conditional` |
 | MECH-492 | `candidate` |
 
-## Internal inconsistency -- REVIEW (1)
+## Internal inconsistency -- REVIEW (2)
 
 Claims whose own current-state fields contradict each other (`needs_review` true): a promoted status still carrying the V3-pending gate, or a promoted status tagged `substrate_ceiling` (GOV-CEIL-1 floors ceilings to candidate). The derived `live_status` is a best-effort; a human should reconcile the fields.
 
 | claim | derived reading | why |
 |-------|-----------------|-----|
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
+| SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
 ## Event-provenance drift -- SOFT (271)
 
@@ -217,7 +221,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
 | Q-021 | `failure_autopsy_V3-EXQ-866c_2026-08-08` | `failure_autopsy_V3-EXQ-899_2026-08-09` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
-| ARC-023 | `_none_` | `decision:ARC-023@2026-03-16T18:20:19.361127Z` |
+| ARC-023 | `_none_` | `decision:ARC-023@2026-08-16T19:59:02.842281Z` |
 | MECH-089 | `decision:MECH-089@2026-03-19T19:52:00Z` | `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` |
 | ... | | (+211 more) |
 
