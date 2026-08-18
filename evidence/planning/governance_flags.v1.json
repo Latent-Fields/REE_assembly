@@ -589,6 +589,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0040",
+      "claim_ids": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "hypothesis_space_registry.v1.json has NO `superseded` resolution state, so a ratified superseded/moot disposition cannot be written faithfully -- one is currently parked in prose. Context: the 2026-08-16 cycle (GFLAG-0038) ratified policy_decomposition_discrimination / H-env-underdrives-uncertainty -> superseded/moot, per govdiag1_repose_mech321_chain_2026-08-12.md section 7(ii), which EXPLICITLY recommends `superseded` over `eliminated` because 816b/816d never took their pre-registered elimination branch (pe_elevated false: 0.008594 and 0.008675 against the 0.01 discrimination floor), so calling it eliminated stretches a pre-registered floor after the fact. Neither in-vocabulary option is honest: (1) writing the literal string `superseded` as resolution.state is SILENTLY UNCOUNTED -- build_hypothesis_space.py recognises only ALIVE_STATES {alive, untested}, RESOLVED_OUT_STATES {eliminated, split} and `confirmed`, so the leg would vanish from the surviving/resolved_out/confirmed arithmetic (6 legs, 5 accounted) and the question's environment axis family could never be marked closed, with NO flag firing because check_hypothesis_space_integrity.py only polices the confirmed and eliminated/split rules; (2) writing `eliminated` requires asserting met_elimination_bar true, which is the over-counting Goodhart direction GOV-FROZEN-1 exists to prevent and which governance deliberately declined to endorse. APPLIED INSTEAD (REE_assembly a843ee6ebb, 2026-08-18): the leg keeps state `alive` with the full ratified disposition written into resolution.basis, opening 'RATIFIED DISPOSITION ... SUPERSEDED / MOOT' and stating in terms that the alive state is a schema-vocabulary limit rather than a scientific hedge and that the leg must NOT be re-queued for a fourth environment-axis dose escalation. That is the conservative under-count /governance Step 5c blesses, but it costs accuracy: the dashboard reports this question as 5 surviving where the ratified reading is 4. DECISION NEEDED, one of two: (a) add a `superseded` state to the registry vocabulary AND to both derive scripts -- build_hypothesis_space.py must count it out of `surviving` and allow family closure, while check_hypothesis_space_integrity.py must NOT demand the elimination bar for it (do not simply add it to RESOLVED_OUT_STATES, that set is shared with the bar check); or (b) ratify `eliminated` for this leg, accepting the pre-registered-floor stretch. Full reasoning and the ledger delta: evidence/planning/failure_autopsy_mech321-hypothesis-legs-modeb_2026-08-18.md section 3. Also carried as decision chip chip-20260818-hypothesis-registry-superseded-state.",
+      "raised_by_session": "metaworker-chip-20260816-mech321-hypothesis-legs-mode-b",
+      "raised_at": "2026-08-18T05:20:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
