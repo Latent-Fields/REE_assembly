@@ -1,7 +1,8 @@
 ---
 title: "Matched-arm causal design: experimenter-triggered sleep vs continued wake in a single continuous life"
 registered: 2026-08-14
-status: design-staged (NOT queued -- two calibration constants gated, see Section 9)
+status: design-staged (NOT queued -- Section 9 constants RESOLVED 2026-08-18; now blocked on the
+  open `corrupting` substrate defect contextmemory-write-path-addressing-degeneracy, see Section 11)
 chip_ref: chip-20260812-causal-sleep-deprivation-matched-arm-design
 scope_claims: []
 claim_ids: []
@@ -16,6 +17,17 @@ related:
 **Status: DESIGN STAGED. Nothing in this file has been written to
 `experiment_queue.json`, `claims.yaml`, or any registry. No experiment has been
 queued from it.**
+
+> **UPDATE 2026-08-18 -- READ SECTION 11 BEFORE SECTION 9.** Section 9's two gated
+> constants are now RESOLVED (`T = 400`; DV set fixed from the V3-EXQ-920a N=8
+> retrospective). Queuing is nonetheless **blocked**, on a different and unrelated
+> gate: an open **`corrupting`** substrate defect
+> (`contextmemory-write-path-addressing-degeneracy`) sits on
+> `ContextMemory.write()`, which is the target of the SWS schema pass that
+> constitutes half of ARM_SLEEP's manipulation. Under that defect a null result
+> from this design is **uninterpretable**. Sections 2, 6.1, 6.2, 6.3 and 8 also
+> carry corrections in Section 11.4-11.6. Sections 1-10 are left unedited so the
+> revision is auditable.
 
 ---
 
@@ -436,3 +448,192 @@ GAP-9 simply landing.
 - **Cluster-enabled replication.** Everything in Section 3's table is OFF here;
   909 showed the cluster is reachable in this family with three added flags. A
   cluster-on arm asks whether the aggregation machinery is what carries any effect.
+
+---
+
+## 11. Queue attempt 2026-08-18: the two gated constants are RESOLVED, but a DIFFERENT gate now blocks
+
+**Appended by** `chip-20260814-queue-causal-sleep-matched-arm` (session
+`metaworker-chip-20260814-queue-causal-sleep-matched-arm`, headless on `ree-cloud-5`),
+2026-08-18T18:19Z. Sections 1-10 are left standing so the revision is auditable.
+
+**Status change: `design-staged (two calibration constants gated)` -> `design-staged
+(constants RESOLVED; blocked on a substrate defect)`.** Section 9's gate is OPEN. A new,
+unrelated one is CLOSED. This run was **not queued**, and no script was written.
+
+### 11.1 Section 9's gate is discharged -- both constants are now fixed
+
+`chip-20260812-exq920-multiseed-degradation-retrospective` resolved `done` 2026-08-14T16:21Z.
+Its Section 7 (N=8, V3-EXQ-920a) supplies both missing constants. Section 5 of that document
+carries a superseding block dated 2026-08-18; **its revised bullets govern, not the n=1 ones
+above them.**
+
+- **Sleep cadence `T` = 400** (`within_life_sleep_step_ceiling=400`), absolute, NOT per-seed.
+  The n=1 recommendation to set `T` relative to each seed's own exhaustion point is explicitly
+  **withdrawn**: the pre-registered resource-exhaustion boundary fires in **0/8** seeds, and the
+  energy ramp is bit-identical across seeds (0.0015/step, reaching 0 at t=666), so "each seed's
+  own boundary" is the same absolute step everywhere. At t=400 median energy is 0.398, median
+  `z_goal` has already fallen 0.366 -> 0.063, and **8/8 seeds are still alive** (shortest life
+  628 steps, ~228 steps of margin).
+- **DV set (revised).** Primary: `surprise` (proxy); `z_block` **promoted** to primary, recorded
+  with `action_blocked`; mode-run length / mode-switch rate **and** dominant-mode identity.
+  Secondary: `liking`; cumulative-distinct-cells + revisit rate (**downgraded** -- new-cell
+  acquisition stops mid-life in 5/8 seeds). `z_goal` **manipulation-check only, never an outcome**
+  (`r(z_goal, energy) = 0.9235` to 4 dp in 7/8 seeds). Mandatory covariates: `energy`,
+  resource count, **and `health`** (health is the only state variable that genuinely diverges
+  across seeds: 0.04 .. 0.85 at t=600). Headline organism-level DV: survival time to
+  `health_depleted`.
+- **Dropped from Section 7's provisional set:** `excite` (`r(surprise, excite) = 0.985 .. 1.0000`
+  -- the same signal), `drive` (definitionally `1 - energy`, `ree-v3/ree_core/agent.py:10951`),
+  `residue_wanting` (0.0 in 8/8 -- the 916a recording gap, not a measured null),
+  `orienting_active` (0 fires in 8/8), `is_committed` (False at all 13718 steps).
+  **`vigor` stays excluded** as Section 7 required (0.0 in 7/8, max 0.026 in seed 5).
+
+### 11.2 THE BLOCKER: an open `corrupting` substrate defect on this experiment's own mechanism
+
+`/queue-experiment` **Step 2.5c** (substrate-path overlap gate) fires a mandatory stop:
+
+> `contextmemory-write-path-addressing-degeneracy` -- severity **`corrupting`**,
+> `status: pending_implementation`, `ready: true`, `substrate_paths: ["ree_core/predictors/e1_deep.py"]`,
+> `unblocks_claims: ["SD-017", "ARC-045", "MECH-166"]`.
+
+**The overlap was verified in code, not taken from the path list.** `ContextMemory` is defined at
+`ree_core/predictors/e1_deep.py:36`. Its `read()` addresses by `F.softmax` over projected scores;
+its `write()` (lines ~135-147) addresses by a hard `scores.mean(0).argmin()` under `torch.no_grad()`,
+which under a near-constant query stream is a deterministic single-slot fixed point.
+`agent.run_sws_schema_pass` (`ree_core/agent.py` ~11231) is **the MECH-166 slot-formation phase** and
+its own docstring states it writes "directly to ContextMemory bypassing the offline gate".
+
+That pass is **half of this experiment's entire manipulation.** Section 3's table shows Phase B/C/D/E,
+MECH-204, MECH-423 and the MEL consumer are ALL OFF in the 906b/920 config, so a forced cycle here is
+exactly (1) the SWS schema pass into ContextMemory and (2) the REM attribution rollouts. ARM_SLEEP
+therefore drives the defective write path on every fire.
+
+**Why this is disqualifying rather than a caveat -- the defect's own severity rationale describes
+this run's most likely result, verbatim:**
+
+> "Every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank
+> while write() returns normally and thousands of calls are logged. Nothing errors, the readout is
+> well-formed, and **the resulting null looks like a genuine 'sleep has no effect' finding.** That is
+> the definition of `corrupting` -- evidence that LOOKS valid but is not -- and it has now produced
+> exactly that artefact twice (436e, 436f)."
+
+Section 8 pre-registers a null as informative and expected. Under this defect a null is
+**uninterpretable**: "experimenter-scheduled SD-017 sleep has no within-life functional effect" and
+"the SWS write path collapsed to one slot" are indistinguishable in the manifest. That would spend the
+Section 8 cost estimate (~6-15 h of cloud compute) to produce the third instance of an artefact that
+has already been produced twice.
+
+**A retrospective reading this design should also re-examine on its own evidence.** Section 7 cites
+V3-EXQ-909's near-degenerate sleep content -- `sws_slot_diversity` between 1.1e-5 and 9.2e-4,
+`replay_diversity_index` pinned at exactly 0.02 (= 1 distinct region / 50 draws) -- as grounds to
+"expect small effects" and to power accordingly. A near-zero slot diversity is precisely the
+1-of-16-slots fixed point this defect predicts. **Section 7's "expect small effects" may therefore be
+a readout of the defect rather than a fact about sleep**, which would mean the design is currently
+powered against a number the fix could move. Re-derive it after the fix; do not carry it forward
+unexamined.
+
+**This is not a lone reading.** `chip-20260818-sd017-ceiling-retest-gated` (open) already gates a
+sibling SD-017 retest on the same fix, and the build itself is owned by
+`chip-20260816-implsub-contextmemory-writepath-degeneracy` (open, `/implement-substrate`).
+**No new chip was spawned for the build** -- it is already owned, and duplicating it is the
+documented "spawned then immediately withdrawn" antipattern.
+
+### 11.3 The second overlap, which is NOT a blocker (recorded so it is not re-litigated)
+
+Step 2.5c also matches `SD-SLEEP-ENTRY-PRESSURE` (severity **`degrading`**), whose
+`substrate_paths` include `ree_core/sleep/phase_manager.py::notify_waking_step` -- the exact
+function Section 4's recommended M2 mechanism uses. It does **not** block, and its own
+`severity_reasoning` says why: the defect is "reachable ONLY behind `use_mel_entry`, which is
+default-off". This design uses the **ceiling arm with no MEL consumer** (Section 3's table:
+`mel_consumer is None`), and `notify_waking_step` computes `need_crossed = self.mel_consumer is not
+None and ...`, so the need arm is short-circuited and the broken entry-pressure statistic is never
+read. Carry it as a queue-entry `note` when this is eventually queued, per Step 2.5c's degrading rule.
+
+### 11.4 Substrate facts verified empirically this session (carry these into the driver)
+
+Probed directly against the live substrate on `ree-cloud-5` (`linux-x86_64`, py3.10), scratch
+scripts not committed. These supersede or sharpen several of Sections 2, 6.1 and 6.2.
+
+1. **Config threading works, and the Section 6.1 footnote's hazard is real but avoidable.**
+   Setting `cfg.use_within_life_sleep_trigger = True` and `cfg.within_life_sleep_step_ceiling = 400`
+   post-construction on a `_make_config(env)` config reaches the manager:
+   `agent.sleep_loop.within_life_trigger == True`, `.within_life_step_ceiling == 400`. `_make_config`'s
+   `from_dims` path already exposes the attribute (default ceiling **1000**), so the footnote's
+   silent-no-op-to-1000 failure is exactly what happens if the constructor spelling
+   `within_life_step_ceiling` is used on the config instead of `within_life_sleep_step_ceiling`.
+2. **`force_cycle()` returns a dict here, not `None`** -- Section 2.1's preconditions 1-3 hold in this
+   config. **But on an untrained agent it returned `sws_n_writes = 0.0` and `rem_n_rollouts = 0.0`**,
+   which confirms Section 8's precondition 4 (`sws_n_writes >= 1`, `rem_n_rollouts >= 1` on every
+   firing) is a **live, non-vacuous guard**, not boilerplate. Keep it load-bearing.
+3. **Section 6.2 requirement 2 (arm-independent env RNG) is satisfied STRUCTURALLY -- verified, not
+   assumed.** `CausalGridWorldV2` draws from a dedicated per-env `self._rng =
+   np.random.default_rng(seed)` (`causal_grid_world.py:1383`), and a `force_cycle()` left the env's
+   `bit_generator.state` **bit-identical** across the call. So the manipulation itself cannot perturb
+   env stochasticity, and the V3-EXQ-921 `_spawn_order_for_segment` retrofit Section 6.2 proposes is
+   **not needed**: with `EVAL_EPISODES=1` there is exactly ONE spawn, at step 0, before any cycle can
+   fire, so the spawn is identical across arms by construction. What remains is *behaviour-mediated*
+   env divergence after the first cycle -- and that is the causal pathway under test, not a nuisance
+   factor to engineer away.
+4. **`copy.deepcopy(agent)` FAILS as Section 6.1 literally specifies it** --
+   `TypeError: cannot pickle 'module' object`. Cause is a single attribute:
+   `agent.hippocampal._rng` **is the stdlib `random` module itself**. Detaching that one attribute,
+   deep-copying, and restoring it on both copies works and yields **bit-identical parameters AND
+   buffers** with a distinct `sleep_loop` object. Because it is a shared global module, detach/restore
+   loses nothing. **Prefer this to Section 6.1's "re-instantiate from an identical seeded state"
+   alternative**: it halves the compute (one curriculum per seed, not two) and makes bit-identity a
+   property of the copy rather than of training determinism. Train with the trigger **OFF in both
+   arms**, deep-copy, then flip `use_within_life_sleep_trigger` / `within_life_sleep_step_ceiling` /
+   `sleep_loop.state.steps_since_sleep = 0` on the ARM_SLEEP copy only -- so training is not merely
+   matched but *untouched* relative to the 920 lineage.
+5. **TRAP -- `_observational_run`'s `sleep_cycles_fired` does NOT count within-life cycles.** It
+   diffs `sleep_loop._cycle_history` **once per episode, before the step loop**
+   (`v3_exq_906b_...py` ~line 519). With `num_episodes=1` that check runs exactly once, at `ep_idx=0`,
+   before any step executes. Every cycle `notify_waking_step` fires **inside** the step loop is
+   therefore invisible to `ree["sleep_cycles_fired"]`, which will read **0 for ARM_SLEEP**. A driver
+   that wires Section 6.2's requirement 4 to that field would fail its own load-bearing precondition
+   on a correctly-working manipulation. **Count `len(agent.sleep_loop._cycle_history)` directly,
+   before and after the eval life.**
+
+### 11.5 Correction to Section 8's precondition 3, forced by the now-known survival distribution
+
+Section 8 requires `ARM_SLEEP total_sleep_cycles_fired >= 2` **per seed**. Against 920a's measured
+lives (628, 1008, 1432, 1816, 1846, 1944, 2517, 2527) at `T=400`, `floor(life/T)` gives
+**1, 2, 3, 4, 4, 4, 6, 6** -- so **7/8 seeds reach >= 2 and seed 5 (628 steps) reaches only 1.**
+The blanket per-seed `>= 2` is therefore unsatisfiable at the cadence the same gating artifact
+selected. This is exactly the kind of design-time arithmetic `/queue-experiment` Step 3.5 requires be
+done on paper before compute is spent. Replace with:
+
+- **load-bearing:** `ARM_WAKE` cycles `== 0` in 8/8 seeds (the Section 2.1 silent-no-op guard);
+- **load-bearing:** `ARM_SLEEP` cycles `>= 1` in **8/8** seeds (the manipulation genuinely happened);
+- **load-bearing:** `ARM_SLEEP` cycles `>= 2` in **>= 6/8** seeds (the repeated-cadence contrast;
+  920a predicts 7/8).
+
+Do **not** resolve this by lowering `T`: `T` was selected on liveness and on `z_goal` having already
+moved, and shortening it converts the design from a deprivation contrast toward a
+near-continuous-sleep one (Section 9's own criterion).
+
+### 11.6 A strengthening of Section 6.3's negative control, available for free
+
+Section 6.3 asks that the matched-prefix window (`0..T`) be "statistically indistinguishable"
+between arms. Given 11.4 items 3 and 4, it can be **bit-identical**, which is a far sharper control:
+the agents are bit-identical copies, the env RNG is arm-independent, and `notify_waking_step` returns
+`None` before consuming any randomness on every step until the ceiling is reached
+(`need_crossed` short-circuits on `mel_consumer is None`). So steps `0..T-1` should agree exactly.
+Assert exact per-step equality over the prefix as the load-bearing matching control and report the
+statistical comparison alongside it; any divergence before step `T` is then a positive detection of
+broken matching rather than a judgement call.
+
+### 11.7 Resume condition
+
+Queue this when `contextmemory-write-path-addressing-degeneracy` reaches
+`implemented` / `implemented_validated` in `substrate_queue.json` (tracked by
+`chip-20260816-implsub-contextmemory-writepath-degeneracy`). At that point Sections 1-8 plus 11.1
+and 11.4-11.6 are sufficient to write the driver and queue it via `/queue-experiment` mechanically --
+**and re-derive Section 7's "expect small effects" power expectation first (11.2), rather than
+inheriting it.** No constants remain gated.
+
+**Note for whoever queues it:** `/queue-experiment` **Step 8.6** (`POST /queue/add` to the
+coordinator) **cannot be completed from a headless cloud box** -- `ree-cloud-5` has no
+`REE_assembly/coordinator.env`, so no bearer token is obtainable and a git commit alone is NOT a
+durable add. Queue this from the Mac, or hand off the `queue_id` + commit sha explicitly.
