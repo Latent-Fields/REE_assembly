@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_093",
+  "entry_id": "2026-08-18_q_093_retrieval_gains_token_overlap_norlund2023",
+  "timestamp_utc": "2026-08-18T06:08:00Z",
+  "claim_ids_tested": [
+    "Q-093"
+  ],
+  "source": {
+    "title": "On the Generalization Ability of Retrieval-Enhanced Transformers",
+    "authors": [
+      "Tobias Norlund",
+      "Ehsan Doostmohammadi",
+      "Richard Johansson",
+      "Marco Kuhlmann"
+    ],
+    "year": 2023,
+    "venue": "Findings of the Association for Computational Linguistics: EACL 2023",
+    "doi": "10.18653/v1/2023.findings-eacl.109",
+    "arxiv_id": "2302.12128",
+    "pmid": null,
+    "pmc": null,
+    "pages": "1485-1493",
+    "url": "https://aclanthology.org/2023.findings-eacl.109/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the adversarial reading of the single best supporting result in this pull, and it lands where it hurts: the RETRO offload dividend largely tracks TOKEN OVERLAP between the retrieval database and the test data rather than non-trivial generalisation from the combination of weights and retrieval. If the mechanism is substantially lookup, then the RAG literature's apparent demonstration of sublinear control-machinery scaling is a weaker warrant for Q-093 than it first appears. Confidence is moderate rather than high because the reproduction is at smaller scale than the original and the paper reports a contribution analysis rather than a clean causal decomposition -- it establishes that overlap explains much of the gain, not exactly how much survives without it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's efficiency dividend is measured on a task family whose content overlaps what z_world, semantic memory and episodic structures already encode, the measured dividend may be retrieval-lookup rather than the structural reuse Q-093 is actually asking about -- so the protocol needs an explicit, PRE-REGISTERED overlap control between the evaluation family and the contents of the persistent stores.",
+    "Even limited token overlap significantly decreased test-time loss, so an overlap control cannot be a binary contamination check; it has to be graded, and a REE result reported without a graded overlap measure is uninterpretable in this respect.",
+    "The paper generalises to a measurement problem, not just a RETRO problem: evaluating any retrieval- or memory-augmented system's generalisation is intrinsically hard because the store and the test set are drawn from overlapping distributions. Q-093 inherits this difficulty in full."
+  ],
+  "tags": [
+    "q-093",
+    "retrieval_augmentation",
+    "generalization",
+    "token_overlap",
+    "evaluation_confound",
+    "memory_offload"
+  ],
+  "mapping": {
+    "source_claim_statement": "Re-examining RETRO-style retrieval-enhanced transformers, the performance gains from retrieval largely originate from overlapping tokens between the retrieval database and the test data, indicating substantially less non-trivial generalization from the combination of model weights and retrieval than had been suggested; even limited token overlap can markedly decrease test-time loss, which makes generalization in retrieval-augmented models hard to evaluate.",
+    "ree_translation": "This is the direct falsifier-side reading of the Borgeaud entry in this same directory. Q-093's confirming direction requires that persistent structured state buys competence through REUSE -- that acquired structure persists rather than needing in-context reconstruction. Norlund et al. show that in the best-known instance of memory offload, much of the measured benefit is attributable to surface overlap between store and test, which is the memory-augmented analogue of evaluating on the training set. For REE this converts an assumption into a design requirement: the efficiency dividend must be demonstrated on evaluation content that is not already resident in the stores, with the residual overlap measured rather than assumed away.",
+    "mapping_caveat": "The overlap analysis is specific to token-level text retrieval, where 'overlap' has a crisp operational definition. REE's persistent state is a learned latent field plus episodic and semantic structures, for which no equivalent overlap metric currently exists -- so this paper identifies a confound Q-093 must control without supplying the instrument to control it, and constructing that instrument is itself unbuilt work. The reproduction is also at smaller model scale than the original RETRO, so the quantitative share of the gain attributable to overlap should not be transferred as a number.",
+    "source_context": "Language modelling; reproduction and analysis of RETRO-style retrieval-enhanced transformers with controlled manipulation of database/test token overlap."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good but not top-tier: peer-reviewed Findings paper with released code, at smaller scale than the system it critiques. Mapping fidelity moderate-to-good because the critique targets precisely the mechanism REE would need to claim. Transfer risk substantial because the overlap construct does not port cleanly from tokens to latent fields."
+  }
+}

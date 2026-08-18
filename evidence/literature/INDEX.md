@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-17T06:13:27.424794Z`
+Generated: `2026-08-18T06:13:45.203321Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -373,6 +373,7 @@ Generated: `2026-08-17T06:13:27.424794Z`
 | `targeted_review_q_090` | [`2026-08-07_q_090_regret_counterfactual_dissociation_camille2004`](targeted_review_q_090/entries/2026-08-07_q_090_regret_counterfactual_dissociation_camille2004/record.json) | 5 | [`summary`](targeted_review_q_090/entries/2026-08-07_q_090_regret_counterfactual_dissociation_camille2004/summary.md) |
 | `targeted_review_q_091` | [`2026-08-07_q_091_sycophancy_behavior_internal_fanous2025`](targeted_review_q_091/entries/2026-08-07_q_091_sycophancy_behavior_internal_fanous2025/record.json) | 5 | [`summary`](targeted_review_q_091/entries/2026-08-07_q_091_sycophancy_behavior_internal_fanous2025/summary.md) |
 | `targeted_review_q_092` | [`2026-08-17_q_092_same_analysis_approach_confound_control_goergen2018`](targeted_review_q_092/entries/2026-08-17_q_092_same_analysis_approach_confound_control_goergen2018/record.json) | 3 | [`summary`](targeted_review_q_092/entries/2026-08-17_q_092_same_analysis_approach_confound_control_goergen2018/summary.md) |
+| `targeted_review_q_093` | [`2026-08-18_q_093_theory_based_sample_efficiency_tsividis2026`](targeted_review_q_093/entries/2026-08-18_q_093_theory_based_sample_efficiency_tsividis2026/record.json) | 5 | [`summary`](targeted_review_q_093/entries/2026-08-18_q_093_theory_based_sample_efficiency_tsividis2026/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-08-07_mech_129_trolley_means_side_effect_thomson1985`](targeted_review_relational_harm_love_as_care/entries/2026-08-07_mech_129_trolley_means_side_effect_thomson1985/record.json) | 10 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-08-07_mech_129_trolley_means_side_effect_thomson1985/summary.md) |

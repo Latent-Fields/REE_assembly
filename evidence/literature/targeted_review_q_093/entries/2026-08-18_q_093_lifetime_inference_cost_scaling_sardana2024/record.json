@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_093",
+  "entry_id": "2026-08-18_q_093_lifetime_inference_cost_scaling_sardana2024",
+  "timestamp_utc": "2026-08-18T06:08:00Z",
+  "claim_ids_tested": [
+    "Q-093"
+  ],
+  "source": {
+    "title": "Beyond Chinchilla-Optimal: Accounting for Inference in Language Model Scaling Laws",
+    "authors": [
+      "Nikhil Sardana",
+      "Jacob Portes",
+      "Sasha Doubov",
+      "Jonathan Frankle"
+    ],
+    "year": 2024,
+    "venue": "Proceedings of the 41st International Conference on Machine Learning (PMLR)",
+    "doi": null,
+    "arxiv_id": "2401.00448",
+    "pmid": null,
+    "pmc": null,
+    "url": "https://arxiv.org/abs/2401.00448"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Supports the MEASUREMENT-PROTOCOL half of Q-093 rather than its architectural half, and the support is concrete: it shows that changing the denominator from pre-training compute to training-plus-inference lifetime compute MOVES THE OPTIMUM -- systems facing substantial inference demand should be trained smaller and longer than Chinchilla-optimal. That is empirical vindication of Q-093's decision to define efficiency over total lifetime cost rather than per-step cost or parameter count, and it comes with 47 trained models rather than an argument. Confidence held below source quality because the paper's lifetime accounting is still narrower than Q-093's.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The optimal configuration under lifetime accounting depends on an ASSUMED inference demand (their headline case is roughly 1 billion requests). Q-093 specifies no comparable deployment-volume parameter, so a REE-versus-baseline lifetime-cost verdict could be flipped by an unstated choice of assumed demand -- the protocol must fix and declare this before any comparison is run.",
+    "This paper's lifetime cost counts pre-training and inference only. It excludes memory storage and retrieval, offline replay and consolidation, and post-deployment adaptation -- precisely the terms Q-093 requires and precisely the terms where REE's replay, residue and consolidation machinery ADD cost. Adopting this accounting wholesale would bias the comparison in REE's favour.",
+    "Scaling laws fitted at typical token/parameter ratios overestimate the benefit of additional tokens at extreme ratios; by the same logic, any REE scaling curve extrapolated from a narrow band of configurations should be treated as unreliable outside that band."
+  ],
+  "tags": [
+    "q-093",
+    "scaling_laws",
+    "inference_cost",
+    "lifetime_cost",
+    "measurement_protocol",
+    "cost_accounting"
+  ],
+  "mapping": {
+    "source_claim_statement": "Modifying the Chinchilla scaling laws to account for inference as well as training compute changes the optimal parameter count and pre-training data size: researchers anticipating substantial inference demand should train models smaller and longer than Chinchilla-optimal; across 47 trained models, quality continues improving as tokens per parameter is pushed to extreme ratios (up to 10,000), and laws fitted only at typical ratios overestimate the marginal value of extra tokens at those extremes.",
+    "ree_translation": "Q-093 defines its denominator as total lifetime cost -- developmental compute, environmental experience, inference, memory storage and retrieval, offline replay and consolidation, adaptation after change, planning and counterfactual simulation. That definition is unusual enough to look like special pleading. This paper is the evidence that it is not: within the mainstream scaling-law literature itself, moving from training-only to training-plus-inference accounting demonstrably relocates the optimum, so the choice of denominator is a substantive empirical commitment rather than a framing preference. It also supplies the shape of the instrument -- fit cost-versus-competence curves across many configurations rather than comparing two systems at two points.",
+    "mapping_caveat": "The paper validates the DIRECTION of Q-093's cost accounting while covering only two of its terms. The uncounted terms are not incidental to REE: persistent structured state has ongoing storage and retrieval cost, and replay/consolidation is offline compute with no analogue in a deployed transformer, so a REE system could plausibly win on inference and lose on consolidation. Nothing here speaks to the control-machinery-versus-representational-richness seam at all; treating this as evidence for REE's architecture rather than for REE's measurement protocol would be a category error.",
+    "source_context": "Autoregressive transformer language models; 47 models trained at varying sizes and token/parameter ratios, with cost analysed in both FLOPs and real-world dollar terms."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: ICML 2024, 47 trained models, cost modelled in both compute and money. Mapping fidelity moderate -- it validates the denominator's direction but covers a strict subset of its terms. Transfer risk lower than the other computational entries because the claim is about cost accounting, which is largely architecture-indifferent."
+  }
+}

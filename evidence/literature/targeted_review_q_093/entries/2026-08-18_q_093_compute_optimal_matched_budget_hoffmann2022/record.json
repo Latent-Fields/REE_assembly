@@ -1,0 +1,73 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_093",
+  "entry_id": "2026-08-18_q_093_compute_optimal_matched_budget_hoffmann2022",
+  "timestamp_utc": "2026-08-18T06:08:00Z",
+  "claim_ids_tested": [
+    "Q-093"
+  ],
+  "source": {
+    "title": "Training Compute-Optimal Large Language Models",
+    "authors": [
+      "Jordan Hoffmann",
+      "Sebastian Borgeaud",
+      "Arthur Mensch",
+      "Elena Buchatskaya",
+      "Trevor Cai",
+      "Eliza Rutherford",
+      "Diego de Las Casas",
+      "Lisa Anne Hendricks",
+      "Johannes Welbl",
+      "Aidan Clark",
+      "Tom Hennigan",
+      "Eric Noland",
+      "Katie Millican",
+      "George van den Driessche",
+      "Bogdan Damoc",
+      "Aurelia Guy",
+      "Simon Osindero",
+      "Karen Simonyan",
+      "Erich Elsen",
+      "Jack W. Rae",
+      "Oriol Vinyals",
+      "Laurent Sifre"
+    ],
+    "year": 2022,
+    "venue": "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)",
+    "doi": null,
+    "arxiv_id": "2203.15556",
+    "pmid": null,
+    "pmc": null,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/c1e2faff6f588870935f114ebe04a3e5-Abstract-Conference.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Two-sided by construction, which is why the direction is mixed rather than supports. It is the strongest available methodological warrant for Q-093's insistence on MATCHED-budget comparison -- Chinchilla's whole result exists only because Gopher, GPT-3 and Megatron-Turing NLG were re-compared at equal compute rather than at equal parameter count, and the ranking inverted. But its central empirical finding cuts the other way for the baseline class: for monolithic transformers, capacity and experience must scale EQUALLY, so the comparison class Q-093 must beat is strictly proportional, with no sublinear dividend of its own. Confidence reflects an exceptionally solid result (400+ trained models) applied to a question it was not designed to answer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "For monolithic transformers the compute-optimal frontier requires model size and training tokens to scale 1:1, so any efficiency dividend REE claims must come from the architectural seam between control and representation -- it cannot come from sitting on a better-tuned scaling curve, because the baseline class already occupies its own optimum.",
+    "Chinchilla's parameter count N is undecomposed: a monolithic transformer has no control-machinery-versus-representational-store seam, so this paper cannot supply a baseline MEASUREMENT of the specific ratio Q-093 asks about, only of total capacity against total experience.",
+    "The paper's cost variable is pre-training FLOPs alone. Comparing REE against a Chinchilla-optimal baseline on that variable would silently drop most of Q-093's stated cost terms and could produce a verdict that reverses once inference, memory and adaptation are counted."
+  ],
+  "tags": [
+    "q-093",
+    "scaling_laws",
+    "compute_optimal",
+    "matched_budget",
+    "methodology",
+    "baseline_characterisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Under a fixed training-compute budget, model size and number of training tokens should be scaled equally -- for every doubling of parameters the training tokens should also double -- and current large models are substantially undertrained; a 70B model trained on 4x more data (Chinchilla) uniformly outperforms Gopher (280B), GPT-3 (175B), Jurassic-1 (178B) and Megatron-Turing NLG (530B) at the same compute budget.",
+    "ree_translation": "This paper does two distinct jobs for Q-093. Methodologically it is the canonical demonstration that comparisons at unmatched budget are not merely weaker but can be RANK-REVERSING -- the same evidence that grounds Q-093's non-degeneracy precondition, and a warning that a REE-versus-baseline claim asserted at unmatched competence would be worthless rather than provisional. Substantively it characterises the baseline: the dominant comparison class exhibits proportional, not sublinear, scaling of capacity against experience, which fixes the bar REE's control machinery would have to clear.",
+    "mapping_caveat": "Chinchilla measures a monolithic system with no seam between organising machinery and representational store, so it cannot be treated as a measurement of Q-093's ratio in the baseline -- only of an aggregate. Its cost axis is pre-training FLOPs, a strict subset of Q-093's lifetime-cost definition, so importing the 1:1 rule as 'the baseline scaling law' in a REE comparison would compare unlike denominators. Note also that this result is about the compute-optimal FRONTIER, not about any particular deployed model; a real baseline system is usually off that frontier, which cuts in REE's favour and must not be quietly exploited.",
+    "source_context": "Autoregressive transformer language models, 70M to 16B parameters trained on 5B to 500B tokens (400+ models), plus the 70B Chinchilla model; English text."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality near-maximal: very large controlled sweep, immediately and widely replicated in practice. Mapping fidelity is the limiting term -- the paper answers 'how should total capacity trade against total data' and Q-093 asks 'how does the control fraction of capacity trade against representational richness', which is a decomposition the paper never makes."
+  }
+}

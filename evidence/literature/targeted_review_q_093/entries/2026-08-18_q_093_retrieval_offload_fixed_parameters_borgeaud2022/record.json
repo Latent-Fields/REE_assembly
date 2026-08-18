@@ -1,0 +1,81 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_093",
+  "entry_id": "2026-08-18_q_093_retrieval_offload_fixed_parameters_borgeaud2022",
+  "timestamp_utc": "2026-08-18T06:08:00Z",
+  "claim_ids_tested": [
+    "Q-093"
+  ],
+  "source": {
+    "title": "Improving Language Models by Retrieving from Trillions of Tokens",
+    "authors": [
+      "Sebastian Borgeaud",
+      "Arthur Mensch",
+      "Jordan Hoffmann",
+      "Trevor Cai",
+      "Eliza Rutherford",
+      "Katie Millican",
+      "George van den Driessche",
+      "Jean-Baptiste Lespiau",
+      "Bogdan Damoc",
+      "Aidan Clark",
+      "Diego de Las Casas",
+      "Aurelia Guy",
+      "Jacob Menick",
+      "Roman Ring",
+      "Tom Hennigan",
+      "Saffron Huang",
+      "Loren Maggiore",
+      "Chris Jones",
+      "Albin Cassirer",
+      "Andy Brock",
+      "Michela Paganini",
+      "Geoffrey Irving",
+      "Oriol Vinyals",
+      "Simon Osindero",
+      "Karen Simonyan",
+      "Jack W. Rae",
+      "Erich Elsen",
+      "Laurent Sifre"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (PMLR)",
+    "doi": null,
+    "arxiv_id": "2112.04426",
+    "pmid": null,
+    "pmc": null,
+    "volume": "162",
+    "pages": "2206-2240",
+    "url": "https://proceedings.mlr.press/v162/borgeaud22a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The closest existing empirical analogue of Q-093's confirming direction: a FIXED-SIZE processing component (a 7.5B-parameter transformer) reaches parity with monolithic models 25x larger by conditioning on a 2-trillion-token external store, and performance keeps improving as the STORE grows with the model held constant. That is the sublinear-control-machinery shape Q-093 asks about, demonstrated at scale in a peer-reviewed venue. Confidence is held well below source quality because the mapping is loose in two load-bearing ways: RETRO's fixed component is a next-token predictor, not a control/organising system, and the headline is a PARAMETER count rather than the lifetime-cost denominator Q-093 explicitly requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 25x reduction is a PARAMETER count, not a lifetime-cost count: the storage footprint of the 2-trillion-token database and the per-query approximate-nearest-neighbour cost sit outside the headline, so reading this result as a 25x efficiency dividend would systematically overstate what Q-093 would measure.",
+    "RETRO's fixed-size component is a predictor over token chunks, not a controller that must commit, replay, maintain goals and carry residue; evidence that a predictor stays small as its knowledge store grows does not entail that E1/E2/E3, commitment and replay stay small as z_world richness grows.",
+    "Retrieval is over a STATIC corpus indexed once. REE's representational spaces are learned and continually rewritten, so the analogue of 'growing the database' in REE also grows the cost of maintaining and consolidating it -- a term with no counterpart here."
+  ],
+  "tags": [
+    "q-093",
+    "retrieval_augmentation",
+    "memory_offload",
+    "scaling",
+    "control_machinery",
+    "parameter_efficiency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Conditioning an autoregressive transformer on document chunks retrieved from a large corpus by local similarity lets a 7.5B-parameter model obtain performance comparable to GPT-3 and Jurassic-1 on the Pile despite using 25x fewer parameters, with gains that continue as the retrieval database is scaled up to 2 trillion tokens at fixed model size.",
+    "ree_translation": "Read against Q-093, RETRO is an existence proof that a system can be decomposed at a control/store seam such that competence tracks the STORE while the processing machinery stays fixed -- the architectural precondition for REE's control machinery (E1, E2, E3, commitment, replay, residue, goal maintenance) scaling sub-proportionally to the richness of z_world and its episodic/semantic structures. It also supplies the one methodological move Q-093 most needs: the comparison is made at approximately MATCHED competence (Pile perplexity and downstream tasks), not at unmatched competence, which is exactly the non-degeneracy precondition Q-093's what_would_answer insists on.",
+    "mapping_caveat": "Two boundaries must be stated or this entry over-reads. First, 'control machinery' in REE means an organising/regulatory system, whereas RETRO's fixed component is a language-modelling predictor -- the seam is analogous in topology, not in function. Second, and more seriously, RETRO is scored on parameters and perplexity, never on the total lifetime cost (developmental compute, environmental experience, inference, memory storage and retrieval, offline consolidation, adaptation after change) that Q-093 defines as its denominator; the database's storage and query costs are real and uncounted. This entry evidences that the SEAM can exist and pay off, not that the LIFETIME-COST verdict goes REE's way.",
+    "source_context": "Large-scale language modelling; English text corpora (MassiveText, the Pile, Wikitext103); models from 150M to 7.5B parameters against retrieval databases up to 2 trillion tokens."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high: ICML 2022, very large scale, heavily replicated and built upon. Mapping fidelity is the binding constraint -- the control/store seam is topologically right and functionally wrong, and the reported cost metric is not the one Q-093 asks for. Transfer risk substantial: language-modelling perplexity is not behavioural competence in an embodied task family."
+  }
+}

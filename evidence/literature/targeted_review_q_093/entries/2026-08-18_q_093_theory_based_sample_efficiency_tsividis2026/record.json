@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_093",
+  "entry_id": "2026-08-18_q_093_theory_based_sample_efficiency_tsividis2026",
+  "timestamp_utc": "2026-08-18T06:08:00Z",
+  "claim_ids_tested": [
+    "Q-093"
+  ],
+  "source": {
+    "title": "Human-level learning of complex novel tasks as theory-based modelling, exploration and planning",
+    "authors": [
+      "Pedro A. Tsividis",
+      "Joao Loula",
+      "Jake Burga",
+      "Juan Pablo Rodriguez",
+      "Sam Arnaud",
+      "Nathan Foss",
+      "Andres Campero",
+      "Ajay Subramanian",
+      "Thomas Pouncy",
+      "Samuel J. Gershman",
+      "Joshua B. Tenenbaum"
+    ],
+    "year": 2026,
+    "venue": "Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+    "doi": "10.1098/rsta.2024.0529",
+    "pmid": "42130435",
+    "pmc": null,
+    "arxiv_id": "2107.12544",
+    "volume": "384",
+    "issue": "2320"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The strongest entry in this pull for Q-093's confirming direction, and the only one that satisfies the non-degeneracy precondition head-on: EMPA is compared against humans AT MATCHED COMPETENCE across 90 games, not at unmatched competence, and it is the experiential-cost axis -- 'does the system need less environmental experience per acquired capability' -- that the comparison measures. It is a genuine existence proof that structured, persistent, causal world-modelling plus planning can reach a competence level that model-free deep RL reaches only with vastly more experience. Confidence sits at 0.72 rather than higher because EMPA is not REE and, critically, the paper reports matched SAMPLE efficiency without reporting matched COMPUTE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "EMPA matches human SAMPLE efficiency but the paper does not establish matched COMPUTE: theory-based exploration and planning are expensive per decision, so experiential efficiency can be bought with inference cost. Under Q-093's total-lifetime-cost denominator that trade could cancel the dividend outright -- this is the single most important unresolved term.",
+    "The task family is 90 simple 2D video games built around objects, agents and their interactions, which is exactly the structure intuitive theories are well matched to. An efficiency dividend demonstrated where the right abstractions are effectively given a priori may not survive in domains where those abstractions must themselves be discovered.",
+    "EMPA's structured priors are hand-specified rather than learned. REE's confirming direction requires that ACQUIRED structure persists and pays off; a demonstration resting on built-in structure evidences the value of having the right structure, not the value of having learned it."
+  ],
+  "tags": [
+    "q-093",
+    "sample_efficiency",
+    "matched_competence",
+    "model_based_rl",
+    "world_model",
+    "structured_priors",
+    "experiential_cost"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 90 simple but challenging video games, people learn most games within a few minutes, whereas leading machine reinforcement-learning models require vast experience; a strong form of model-based RL using cognitively grounded intuitive theories -- rich, abstract, causal representations of objects, agents and their interactions -- instantiated as the EMPA agent, matches human learning efficiency, generalizes robustly to new situations and levels as humans do, and shows similar exploration and learning dynamics.",
+    "ree_translation": "Q-093 asks whether competence per unit of lifetime cost is better for a system that maintains persistent structured state and computes selectively over it than for one that scales monolithically. EMPA is the cleanest published instance of the experiential half of that bet being won: a structured causal world model plus planning reaches human-level competence on a task family where model-free deep RL needs orders of magnitude more environmental experience, and -- decisively for Q-093's methodology -- the comparison is anchored to human performance, so it is made at approximately matched competence rather than at an arbitrary point on two different competence curves. It is the nearest thing in the literature to a worked example of the protocol Q-093 says it needs.",
+    "mapping_caveat": "EMPA's structured priors over objects and agents are hand-specified; REE's corresponding structure (z_world, episodic and semantic memory, hippocampal structures) is meant to be acquired developmentally, and the whole efficiency argument in Q-093 turns on ACQUIRED structure persisting rather than on the right structure being supplied. The paper therefore evidences the value of the architectural family, not of REE's developmental route into it. It also measures experience, not lifetime compute, so it speaks to one term of Q-093's denominator and is silent on the rest -- and the term it is silent on (planning cost) is the one most likely to move in the opposite direction.",
+    "source_context": "Human behavioural study plus computational agent; 90 2D video games in a shared game engine, human learning curves compared against the EMPA agent and against deep RL baselines."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high: peer-reviewed Philosophical Transactions A theme issue, substantial human behavioural dataset across 90 games, agent released alongside. Mapping fidelity is the best in this pull because both the claim shape (competence per unit experience) and the architectural family (persistent structured world model plus planning) align with REE. Transfer risk lowest here because the comparison is behavioural-competence-anchored rather than perplexity-anchored, which is the currency Q-093 actually cares about."
+  }
+}
