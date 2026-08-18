@@ -1,0 +1,201 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-18T01:14:28Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_ids_checked": [
+    "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+    "v3_exq_934_mech266_cap_sweep_mode_occupancy_20260815T015216Z_v3",
+    "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
+      "queue_id": "V3-EXQ-935",
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "self_route_label": "cap_recalibration_is_seed_idiosyncratic",
+      "self_route_adjudication": "REFUTED by the run's own designated aliasing control (H-KNIFE). Re-scoring the pre-registered gate at each swept r gives C1 AND C2 AND C3 all PASS at r=2.45 and r=2.65 -- both inside the pre-registered sweep -- and FAIL only at the imported R_STAR=2.25. The C1 count is monotone in r (1/5, 1/5, 2/5, 4/5, 4/5) and occupancy at R_STAR is strictly monotone in baseline_margin, so the residual is systematic, not idiosyncratic.",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1 (rule grades at R_STAR) alone: 2/5 = 0.40 vs MIN_FRACTION 0.667. C2 passed (1/2 >= 0.5) and C3 passed (2 graded normalised vs 0 graded absolute). No precondition was unmet: all five readiness anchors cleared 5/5.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-266's Schmitt trigger was never instantiated (no asymmetric-threshold arm exists in this driver); SD-032a's mode register performed as specified and better than at any prior point in this lineage",
+        "biological_reference": "partial -- MECH-266 hysteresis lit present (6 entries, targeted_review_connectome_mech_266), but the gain stage under test diverges: substrate hard-clips affinity inputs where biology uses divisive normalisation. No lit entry for the normalisation question.",
+        "prerequisites": "present -- contact non-vacuity, margin engagement, calibration statistic, r_star cell and manipulation-landed all cleared 5/5",
+        "implementation": "partial -- the affinity cap is implemented and functional (clean monotone dose-response); MECH-266's exit_threshold asymmetry is unimplemented; the clamp is clipping, not normalisation",
+        "environment": "adequate -- curriculum produced foraging competence and an engaged external_task drive on 5/5 seeds",
+        "measurement": "under-instrumented / misleading -- DOMINANT LAYER. Four defects: (1) the H-KNIFE aliasing control was computed but marked INFO_ONLY and never consulted by the routing, which falls through to H-IDIO via a bare else with no H-KNIFE branch; (2) route_reason is factually false (asserts the rule did not beat the absolute cap while c3_beats_best_absolute_cap is true); (3) R_STAR was imported from V3-EXQ-934, whose seed->margin mapping did not reproduce; (4) ANCHOR_REACHABILITY_EXEMPT claims 'this exact substrate' when substrate_hash and substrate_commit both differ by three ree_core commits.",
+        "integration": "coupled but unstable -- seed->margin basin assignment did not reproduce across the 934->935 substrate move (seed 42 0.3373->0.8139, seed 43 0.7681->0.3217, seed 44 0.7850->0.7851 bit-stable); the bimodal margin distribution itself is stable, the seed-to-basin assignment is not",
+        "scale": "adequate for the question but the sweep is truncated at the top -- the graded window's lower edge is r~2.45 and the top of the sweep (2.65) still grades 4/5, so the upper edge is unmeasured; seed 42 requires r>2.65, untested"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- single bucket. Not chargeable to REE and not to the mechanism. Implementation reads partial (MECH-266's asymmetry unimplemented; clip rather than normalisation) and environment reads adequate, so REE FAILED is unreachable. The observation classified is 'no common normalised cap rule exists', which the run's own sweep refutes."
+      },
+      "biological_reference": {
+        "closest_mechanism": "gain control in cortico-basal-ganglia salience arbitration; divisive normalisation (Carandini & Heeger canonical normalisation computation; in BG via lateral inhibition / FSI-mediated pooling)",
+        "dependencies": [
+          "aggregate salience vector (MECH-259 threshold)",
+          "SD-032a mode register",
+          "tonic-DA-analogue gain setting"
+        ],
+        "is_formal_import": true,
+        "divergence": "SalienceCoordinator.tick() (ree_core/cingulate/salience_coordinator.py:455-467) applies a HARD CLIP, max(-cap, min(cap, value)), per input signal before its per-mode weight, while external_task_bias is added to the external_task logit UNCLAMPED. Hard clipping is scale-sensitive by construction; biological divisive normalisation is scale-FREE by construction. Every difficulty in this lineage -- the bimodal baseline_margin distribution, per-agent saturation, the need for a free per-agent constant at all, and the fact that a RATIO rule under-corrects (a clip does not divide, so dividing the threshold cannot undo it) -- is the predictable consequence of that substitution. A normalising gain stage would remove the free parameter entirely: there would be no r to pre-register. LOAD-BEARING, not a caveat.",
+        "lit_status": "present for MECH-266 hysteresis (6 entries); ABSENT for the salience gain-normalisation question -> /lit-pull commission"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-266": "standard",
+        "SD-032a": "standard"
+      },
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect (aliasing control recorded but not routed) plus an imported constant from a non-reproducing basis. That is a failure-mode diagnosis, not an epistemic_category, so it is recorded here and in four_layer_diagnosis rather than in the category field. `standard` is the behaviour-preserving mapping: it asserts no epistemic suppression, keeps both claims GOV-GRAN-1-visible and v3-testable, and is exactly right for a run that told us nothing about either claim's truth. Deliberately NOT substrate_ceiling or substrate_conditional -- the substrate demonstrably produced a clean graded dose-response and did not ceiling. MECH-266 is additionally PERIPHERAL on this run (not exercised).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-266": "non_contributory",
+        "SD-032a": "supports"
+      },
+      "recommended_evidence_quality_note": "See per_claim_recommendation; the two claims take materially different dispositions on this run.",
+      "per_claim_recommendation": {
+        "MECH-266": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "UPHELD as stamped. PERIPHERAL / not exercised: V3-EXQ-935 sweeps a single symmetric affinity_input_cap and contains no asymmetric-threshold arm, so MECH-266's Schmitt trigger (exit_threshold < enter_threshold) was never instantiated and the claim could not express itself. The run is a calibration step upstream of any MECH-266 test. No substrate_ceiling attribution accrues from this run and the brake count stays at 6. Add the per-claim evidence_quality_note and keep pending_retest_after_substrate -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        },
+        "SD-032a": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "CORRECTED weakens -> supports (narrow, diagnostic; excluded from confidence scoring). The driver stamped `weakens` from the same else-branch that emitted a factually false route_reason ('no common normalised rule outperformed the best absolute cap') while c3_beats_best_absolute_cap was true. On the data the SD-032a mode register produced graded, non-degenerate occupancy spanning 0.124-0.925 with 15-26 genuine switches per cell on 4/5 seeds across a monotone dose-response -- its best performance in this lineage -- and alternates at R_STAR=2.25 as well, so the correction does not rest on the post-hoc r. Consistent with the V3-EXQ-934 autopsy, which already recommended `supports` for SD-032a on narrower grounds -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays stable"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The substrate state is unchanged by this diagnosis. All four defects found are in an EXPERIMENT DRIVER (ree-v3/experiments/v3_exq_935_mech266_margin_normalised_cap_rule.py), not in ree_core, so no substrate_queue write is owed. The V3-EXQ-934 autopsy's implement-substrate routing already covers the substrate side of this lineage. The clipping-vs-normalisation question raised in biological_reference is probe-gated on a /lit-pull and must not be converted into a substrate entry ahead of it."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "SD-032a's `supports` is narrow and diagnostic: it is single-pathway (mode-register occupancy gradedness under one symmetric cap sweep) and was obtained on a calibration run, not a test of SD-032a. It must not be read as broad confirmation of the design decision.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count_at_this_autopsy": {
+          "MECH-266": 6,
+          "SD-032a": 6
+        },
+        "this_target_contributes": 0,
+        "why_not_fired": "The brake fires when THIS autopsy makes the Nth substrate_ceiling reading for the claim. This autopsy's reading is a measurement / test-design defect, not a ceiling, so under R3 it contributes 0 and the historical count of 6 is unchanged. The last three adjudications in this lineage (464e, 467e, 934) also read `standard`; the 2026-08-13 cluster autopsy states the substrate ADVANCED rather than ceilinged. Firing here would refuse the same-claim re-queue that this run's own data already shows clearing the gate.",
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+          "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+          "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08"
+        ],
+        "counted_runs": [
+          "v3_exq_464b_mech266_competing_goals_behavioural_20260604T012553Z_v3",
+          "v3_exq_467b_mech266_mode_stickiness_behavioural_20260604T041909Z_v3",
+          "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
+          "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+          "v3_exq_464d_mech266_competing_goals_behavioural_20260613T183908Z_v3",
+          "v3_exq_467d_mech266_mode_stickiness_behavioural_20260613T153223Z_v3"
+        ],
+        "not_counted": "v3_exq_797 (substrate_conditional); 464e + 467e (standard, 2026-08-13); v3_exq_934 (standard, 2026-08-16); this target (standard, measurement defect).",
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "prior_brake_compliance_note": "V3-EXQ-935 did NOT violate the brake that fired at the V3-EXQ-934 autopsy. 935 was queued at 2026-08-16T12:59Z (ree-v3 cbe407e) and started ~13:01Z; the 934 autopsy was generated at 18:26:35Z, 5.5 hours later. 935 was already running when the refusal landed. Recorded so the sequence is not later mistaken for a discipline failure."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_targets": 10,
+        "cluster_files": 6,
+        "claim_alignment_distribution": {
+          "intact": 3,
+          "weakened": 2,
+          "unclear": 2,
+          "unstamped": 1,
+          "truncated_by_reader": 2
+        },
+        "weakened_targets": [
+          "v3_exq_464d_mech266_competing_goals_behavioural_20260613T183908Z_v3 (weakened -- 6th consecutive non-engagement)",
+          "v3_exq_467d_mech266_mode_stickiness_behavioural_20260613T153223Z_v3 (weakened -- 6th consecutive non-engagement)"
+        ],
+        "why_not_fired": "The trigger requires at least one `weakened` target AND structurally differing signatures. The first condition holds; the second does not. Every target in this cluster carries the SAME signature -- the MECH-266 mechanism is never exercised because the arbitration is mis-calibrated (unreachable in 464b-d/467b-d, saturated in 464e/467e, mis-centred in 934/935). Six repetitions of one signature is measurement and calibration debt, not granularity debt: the claim is not several claims, it is one claim that has never yet been reached. Routing to /claim-synthesis would decompose a claim whose decomposition is not the problem.",
+        "reader": "granularity_debt_cluster.py MECH-266 / SD-032a (both co-tagged on all 10 targets)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "GOV-FANOUT-1 does not apply as a NEW portfolio. The bottleneck is not a live discrimination among rivals -- it is a single, named, unambiguous corrective re-queue whose target value the run's own data already measured. The existing question mech266_mode_arbitration_saturation does gain one new leg (H4-clip-not-normalisation) via labelled FANOUT-GROWTH, recorded in hypothesis_space_ledger below, but that is denominator growth on an existing question rather than a new discrimination portfolio."
+      },
+      "learning_extracted": [
+        "An aliasing control that is not wired into the routing does not control aliasing. The driver identified the H-IDIO/H-KNIFE hazard, built the exact instrument to resolve it, recorded the readout, and then routed through an `else` that never reads it. Any pre-registered aliasing control should have a NAMED BRANCH in the routing, not an INFO_ONLY field.",
+        "A hardcoded route_reason on a fall-through branch will eventually be false. This is the second false route_reason in this lineage in five days (2026-08-13: `external_task_mode_not_occupied` emitted while the mode was 100% occupied). Reasons should be derived from which criterion actually failed.",
+        "A constant imported from a prior run inherits that run's reproducibility, not just its arithmetic. R_STAR's derivation was sound arithmetic on a seed->margin mapping that did not survive a 3-commit substrate move. A pre-registered constant carried across a substrate change needs its basis re-verified against substrate_hash, not asserted in prose.",
+        "A 'narrow band' observed on a coarse grid may be an artefact of the grid. V3-EXQ-934's r band 2.22-2.28 came from two cap values at the ENDS of a 5-point absolute grid intersected with a bimodal margin distribution; V3-EXQ-935's finer sweep put the real graded window entirely ABOVE it.",
+        "Scale-normalisation retrofitted onto a hard clip is fighting the gain stage. The biological mechanism (divisive normalisation) is scale-free by construction and needs no per-agent constant; every calibration difficulty in this lineage is downstream of substituting a clip for a division.",
+        "The 'mixed regime' in this lineage is two-mode, not four: internal_replay and offline_consolidation were 0 in all 35 cells. Any successor's regime claim must be bounded to external_task vs internal_planning."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "successor": "V3-EXQ-935a",
+        "kind": "same-question re-queue, alphabetic suffix (the scientific question is unchanged; the implementation of the test was wrong)",
+        "required_changes": [
+          "Pre-register R_STAR = 2.45 -- the lower edge of the graded window measured by V3-EXQ-935's own five-seed sweep. State openly that it is drawn from 935 and is therefore in-sample for seeds 42-46, which is why fresh seeds are mandatory.",
+          "Extend the sweep upward (e.g. 2.25 / 2.45 / 2.65 / 2.85 / 3.05) so the graded window's UPPER edge is measured and a seed-42-class agent (needs r > 2.65) gets a tested r instead of falling off the end.",
+          "Run on FRESH out-of-sample seeds (e.g. 47-51). r = 2.45 is in-sample on 42-46; the common-rule claim must be re-earned on seeds that did not choose it.",
+          "Wire H-KNIFE into the routing: an explicit branch firing when C1 fails at R_STAR AND some single common r in the sweep clears MIN_FRACTION, routing `rule_right_r_wrong_requeue`. H-IDIO must require that NO swept r clears. Never fall through to H-IDIO while the sweep contains a clearing r.",
+          "Derive route_reason from the actually-failing criterion instead of hardcoding it per branch.",
+          "Re-verify or drop the 'this exact substrate' claim in ANCHOR_REACHABILITY_EXEMPT; gate it on substrate_hash equality rather than prose.",
+          "Report internal_replay / offline_consolidation occupancy so the regime claim is bounded to the two modes actually exercised."
+        ],
+        "brake_note": "Changes 2 and 3 are also what keeps this re-queue outside the re-derive brake's spirit: it is not another letter circling the same operating point, it is the first test of a MEASURED window on UNSEEN seeds."
+      },
+      "secondary_routing": [
+        {
+          "route": "lit-pull",
+          "commission": "targeted_review_salience_gain_normalisation",
+          "question": "Does the biology support replacing the SalienceCoordinator's hard clip max(-cap, min(cap, v)) with a divisive-normalisation gain stage (Carandini & Heeger canonical normalisation; BG lateral-inhibition / FSI pooling)? A normalising stage would be scale-free by construction and would eliminate the free per-agent parameter this entire lineage has been trying to calibrate.",
+          "debt_class": "complex (probe-gated) / puzzle (known rules) -- the frame is well-posed and a fact is missing; a substrate proposal should follow the lit, not precede it."
+        }
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger": {
+    "qid": "mech266_mode_arbitration_saturation",
+    "growth_restriction_checked": true,
+    "growth_restriction": null,
+    "mode_b_resolves": [
+      "H2-structural-bang-bang"
+    ],
+    "mode_a_pre_registers": [
+      "H4-clip-not-normalisation"
+    ],
+    "left_alive_with_updated_basis": [
+      "H1-cap-miscalibration",
+      "H3-instrument-illposed"
+    ],
+    "initial_frozen_count": "3 -> 4",
+    "initial_frozen_count_at_registration": 3,
+    "fanout_growth_event_recorded": true,
+    "non_convergence_note": "Third growth event on this question across three autopsies (2026-08-13, 2026-08-16, 2026-08-18). The campaign has not converged: the denominator is growing while the surviving set is only now taking its first elimination.",
+    "convergence_class": "circling",
+    "convergence_class_note": "build_hypothesis_space.py classifies the H4 growth event as `circling` (families_touched [constitution]; families_already_dead [constitution]) because H4's axis `substrate` shares the constitution family with the just-eliminated H2 (`intrinsic-architecture`). THE FLAG IS DELIBERATELY LEFT STANDING. `representation` was considered as an alternative axis and is genuinely arguable -- it would have cleared the flag -- and was NOT taken: relabelling an axis after seeing the verdict in order to clear it destroys the discriminator's value. The skill permits either 'prefer a different family' or 'state explicitly why this leg is not the dead one wearing a new name'; the second is taken in full in H4's basis (H4 PRESUPPOSES H2's refutation and concerns the gain stage upstream of the register, not the register). At campaign level the flag is arguably correct anyway: eight experiments across three months (464b/c/d/e, 467b/c/d/e, 797, 934, 935) without once reaching a MECH-266 test, denominator grown three times. Read it as: the leg is defensible, the campaign is not converging.",
+    "integrity_audit": {
+      "flags_a": 0,
+      "flags_b": 0,
+      "flags_c": 0,
+      "flags_d": 0,
+      "note": "0 flags; the H4 append reports in the advisory labelled fan-out growth section with conditions (a)-(c) satisfied."
+    }
+  }
+}
