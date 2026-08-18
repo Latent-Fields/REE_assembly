@@ -126,3 +126,70 @@ converge automatically, but a wedge remains possible and the operator path is un
   checkout never diverges. Highest value, highest risk, needs its own chip and a green suite.
 * The throwaway-worktree operator workaround should re-use the LOCAL text verbatim rather than
   amending it, or amend the local copy too, so it stops manufacturing unprovable items.
+
+## 6. Cost, measured
+
+`registry_net_contained` runs only when routes A and B have already left something
+unproven, and bails before touching a registry if any unproven commit touches a
+non-allowlisted path. Measured 2026-08-18 on the umbrella (`TASK_CHIPS.json` is **5.5 MB**,
+944 items) on a box at load average 389:
+
+* one revision costs ~**0.12s** to read and parse;
+* a full containment check over the live 26-ahead / 67-behind range: **5.13s**;
+* when upstream HEAD already holds the tip value, the upstream-history scan is **skipped
+  entirely** -- zero git calls. That is the common case.
+
+`MAX_UPSTREAM_SCAN_COMMITS` was set to **150**, not 400, and the reason is a safety one
+rather than patience. `converge()` runs inside `ree_commit`'s per-repo rebase lock, whose
+waiters give up after `REBASE_LOCK_WAIT_SECONDS` (30) -- cleanly, but by abandoning their
+push, which leaves exactly the orphan this module exists to reconcile. At 400 the worst case
+is ~48s and every concurrent writer starts shedding pushes: the check would manufacture the
+divergence it is proving away. 150 is ~18s worst case. Pinned by
+`test_cap_stays_inside_the_rebase_lock_wait`.
+
+**Monotonicity, which bounds the blast radius:** route C only ever PROMOTES commits that
+routes A and B left unproven. It cannot demote, cannot change what A or B decided, and cannot
+run at all when a non-allowlisted path is in play. The 71 pre-existing `test_ref_convergence.py`
+tests pass unchanged.
+
+## 7. Held-out check (GOV-HELDOUT-1)
+
+Route C is a standing-behaviour change -- it changes when a ref move is permitted -- so it was
+checked against historical cases it was NOT written from. **Three differing cases were found,
+one of them weak; all three are reasoned from the recorded write-ups rather than re-executed,
+because the branches involved live on `ree-cloud-5`.** Stated so it can be re-judged.
+
+**Differing (old refuses / permits, new does the other):**
+
+1. **2026-08-14, `ree-cloud-5` umbrella, n=46 ahead, 4 route-A refusals -- all four verified
+   by content grep to be already upstream, zero genuinely stranded.** OLD refuses the whole
+   move and the box stays wedged. NEW proves them via net containment and converges. New gives
+   the right call.
+2. **2026-08-14T20:15Z staged-doc section 5 audit: 34 local-only `TASK_CLAIMS` keys -- 30
+   correctly-pruned `done` entries, but 3 genuine local-only closure records**, discarded as a
+   consciously-accepted audit-trail loss. NEW refuses (`removed locally, still upstream`) and
+   NAMES them. The loss stops being the automatic outcome. `--allow-discard` still lets an
+   operator take it deliberately, so this constrains the automatic path only.
+3. **(weak) `5c05ebc9` "chips: claim chip-20260814-lit-record-validator"**, the module
+   docstring's own example: content fully on origin, unprovable because a whole-file
+   read-modify-write bundled two logical edits that landed upstream separately. OLD refuses,
+   NEW proves. Marked weak because it is the SAME SHAPE as the motivating incident, so it tests
+   the wording less than cases 1 and 2 do.
+
+**Degenerate (both versions agree -- excluded by the non-degeneracy guard, but kept because
+they are the negative controls that bound the change):**
+
+* **2026-08-15, `ree-cloud-5`, 15 of 33 unproven genuinely stranded** -- 7 whole `TASK_CLAIMS`
+  entries, a `TASK_CHIPS` resolution origin still showed `open`, and 50 of 53 lines of a
+  `WORKSPACE_STATE.md` block. NEW **still refuses**: `WORKSPACE_STATE.md` is not allowlisted,
+  so route C cannot even be consulted, and the absent entries are not contained. This is the
+  case where a false positive would have been catastrophic, and route C does not go near it.
+* **2026-08-15, `REE_assembly` sibling `4fbca68c39`** -- `REE_assembly` holds neither registry,
+  so route C never applies there at all. Refusal and operator audit unchanged.
+* **2026-08-14T07:45Z umbrella backlog, 3 of route A's 10 refusals genuinely stranded** --
+  still refuses.
+
+**Outcome recorded per GOV-HELDOUT-1: the check was run and it did change the shipped result.**
+It is what produced the `removed locally, still upstream` clause (case 2 would otherwise have
+been silently permitted) and the decision to keep `WORKSPACE_STATE.md` out of the allowlist
+despite it being the third file in every bookkeeping commit's diff.
