@@ -200,6 +200,34 @@ read git state". Worth a one-line distinct message. Not a correctness bug, and
 2. `test_audit_stale_claims_shared_basenames.py` -- `KeyError: 'attributable'`
    in `test_proposals_resource_entry_is_never_attributable`; a test reading a
    key the producer no longer emits. Needs its own diagnosis (a) vs (c).
+
+   **RESOLVED 2026-08-18 -- verdict (a), a real producer-side defect, and it was
+   NOT a change to the `attributable` key.** `audit_stale_claims.BASE` was
+   `__file__`-derived, so from any worktree checkout -- every chip session, and
+   the throwaway `origin/master` worktree this audit itself ran from -- it
+   pointed at a tree with no `REE_assembly/` in it. `resolve()` then returned
+   `exists=False` for every claimed resource and `audit()` emitted bare
+   `{resource, state: "missing"}` entries, which carry no `attributable` key at
+   all. So the producer never renamed or removed the field (not (c)); it was
+   emitting a degenerate record because it could not see the work repos. The
+   trigger is worktree-rooted execution, not the box (not (b)): reproduced on
+   both the Mac and `ree-cloud-5`.
+
+   Fixed on trunk by `REE_Working` **`05572156`** (cherry-pick of `127bea655b`,
+   2026-08-18T07:18:26+0100), which moves `BASE` to the `REE_WORKING_ROOT` idiom
+   the five sibling scripts already share, and pins it with a vacuity guard plus
+   a structural `BASE` assertion. Confirmed green post-fix from a fresh
+   `origin/master` worktree on **both** the Mac and `ree-cloud-5` (7 tests, OK).
+
+   Two things worth carrying forward. (i) **No other consumer was affected** --
+   `attributable` is produced and read only inside `audit_stale_claims.py`
+   (`safe_to_close.py`'s hit is prose). (ii) **This file was the only one of the
+   five `test_audit_stale_claims_*.py` that noticed**, and only by the accident
+   of indexing the key; the others with disk-touching assertions passed
+   VACUOUSLY (`governance_lock` 7.98s -> 0.009s, `staged` 3.48s -> 0.019s).
+   Post-fix they run 18.2s and 6.2s, i.e. really doing the work. Item 1 above --
+   a runner for this corpus -- is what would have surfaced this without the
+   accident.
 3. `test_audit_stashes.py` -- 2 failures, and the file's own fixture self-guard
    is one of them (*"Guard the fixture itself: if the pop stopped conflicting,
    the rest is vacuous"*): the autostash pop no longer conflicts, so the fixture
