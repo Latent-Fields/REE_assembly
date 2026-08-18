@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Steward daily T0 auto-fix sweep (launchd).
+
+  NOTE ON WORDING: an XML comment may not contain a double hyphen, so flags are
+  written here without their leading dashes ("fix", "dry-run"). The plist is
+  parsed by launchd, and a double hyphen in this block makes the whole file
+  unparseable rather than merely ugly.
+
+  Runs scripts/steward/steward_sweep.py once a day: applies run_detectors.py's
+  T0 repairs (D-006 annotate, D-008 forward-only last_updated bump) and commits
+  them through scripts/ree_commit.py as the bot identity.
+
+  WHY A SEPARATE SCHEDULED JOB rather than the fix flag inside governance.sh.
+  USER DECISION 2026-08-17, option (ii), daily. governance.sh stays read-only,
+  which is what scripts/steward/README.md "Wiring" already requires; a
+  purpose-built daily job IS the "session running fix on purpose" that sentence
+  names, where a side-effect of a regen is not. There is also an ordering
+  conflict: Steward sits at governance Step 3m because D-010 must audit
+  closure_status.md AFTER Step 3c-bis regenerates it, so fixing at 3m would
+  leave that snapshot stale. Full reasoning is in steward_sweep.py's docstring.
+
+  WHY DAILY. D-008 accrues roughly 1 to 3 findings per week (the 20 fixed on
+  2026-08-16 had accumulated over roughly a quarter; drift gaps 1 to 52 days,
+  median about 5). Daily keeps drift under 24h; hourly would be 24x the commits
+  for no extra freshness at that arrival rate.
+
+  StartInterval, not StartCalendarInterval, matching the established com.ree.*
+  hygiene agents (igwroutine 60min, fleetidle 60min, infrahealth 120min,
+  gitsyncrepair 180min, igwaudit daily). The sweep commits as the bot identity,
+  which clinical_hours_guard.py's push-check exempts from the clinical-hours
+  push hold, so the schedule does not need pinning outside that window.
+
+  MAC / DEV MACHINE ONLY. Do NOT install on the hub or the cloud workers: they
+  run the phase3 writers against continuously-moving checkouts, and a scheduled
+  writer competing with those is the contention this repo's concurrency rules
+  exist to avoid. Same exclusion as the git commit guards.
+
+  ProcessType Background plus a low Nice: this box runs many concurrent Claude
+  sessions and has taken a jetsam event before, so a once-a-day hygiene job must
+  never compete for CPU.
+
+  Install: bash /Users/dgolden/REE_Working/REE_assembly/scripts/steward/install_steward_sweep.sh
+  Log:     ~/Library/Logs/ree_steward_sweep.launchd.log
+  Ledger:  REE_assembly/scripts/steward/state/steward_ledger.jsonl (action autofix, source steward_sweep)
+  Stop:    launchctl bootout gui/$(id -u)/com.ree.steward
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.ree.steward</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/local/bin/python3</string>
+        <string>/Users/dgolden/REE_Working/REE_assembly/scripts/steward/steward_sweep.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/dgolden/REE_Working/REE_assembly</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <key>StartInterval</key>
+    <integer>86400</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>Nice</key>
+    <integer>10</integer>
+    <key>LowPriorityIO</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/dgolden/Library/Logs/ree_steward_sweep.launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/dgolden/Library/Logs/ree_steward_sweep.launchd.log</string>
+</dict>
+</plist>

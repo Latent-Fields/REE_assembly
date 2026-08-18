@@ -581,9 +581,106 @@ the staleness as a defect. Nothing else it reads is written by this pipeline.
 governance regen would make detection expensive, inverting the design: the whole
 argument for running this every cycle is that detection is free.
 
-**No `--fix`.** The T0 lane has 19 real repairs queued against plan frontmatter;
-applying them changes what the morning digest reports. That is a
-governance-visible action for a session running `--fix` on purpose.
+**No `--fix`, and as of 2026-08-18 that is a decision with a named alternative
+rather than a deferral.** The T0 lane has real repairs queued against plan
+frontmatter; applying them changes what the morning digest reports. That is a
+governance-visible action for a session running `--fix` on purpose -- and there
+is now such a session: the **daily sweep** below. Governance stays READ-ONLY.
+
+Two reasons, and the second is the one that makes this structural rather than
+stylistic:
+
+1. **A regen side-effect is not a deliberate act.** The sentence above is
+   satisfied by a purpose-built job whose entire reason for existing is to apply
+   T0 repairs. It would be *falsified*, not satisfied, by bolting `--fix` onto a
+   pipeline everyone runs for other reasons.
+2. **Step 3m cannot fix without breaking its own placement.** Steward sits at
+   Step 3m precisely because D-010 must audit `closure_status.md` AFTER Step
+   3c-bis regenerates it. A `--fix` at 3m mutates plan frontmatter that 3c-bis
+   has already read, so the snapshot 3c-bis just wrote is stale the moment the
+   fix lands. Clearing that needs either a second regen or a re-order that
+   breaks D-010's placement constraint. There is no ordering that gets both.
+
+"Run `--fix` by hand when the morning digest complains" was also rejected: it
+relies on someone remembering, and the digest currently fires ~9 times in 39
+weekdays, so the noticing mechanism is itself unreliable.
+
+`test_governance_wiring.test_no_fix_flag` pins the absence of the flag;
+`test_steward_sweep.test_governance_does_not_call_the_sweep` pins that the
+pipeline does not reach the sweep by another route either.
+
+## The daily T0 sweep (2026-08-18)
+
+`steward_sweep.py`, scheduled by `com.ree.steward.plist` (launchd,
+`StartInterval` 86400), installed with `install_steward_sweep.sh`. **Mac / dev
+machine only** -- not the hub, not the cloud workers, same exclusion as the git
+commit guards, because those boxes run the phase3 writers against continuously
+moving checkouts.
+
+**Daily, not hourly**, because that is the arrival rate: D-008 accrues ~1-3
+findings/week (the 20 fixed on 2026-08-16 had accumulated over roughly a
+quarter; drift gaps 1-52 days, median ~5). Daily keeps drift under 24h. Hourly
+is 24x the commits for no additional freshness.
+
+**Four gates, in this order, and the order is the design.**
+
+| gate | what it refuses |
+|---|---|
+| pin (D-102) | a detached HEAD or a branch with no resolvable name -- a writer with no pinnable ref refuses rather than writing ungated |
+| preview -> guard -> apply | a ref that moved while the detectors ran |
+| `check_plan_frontmatter.py --strict` | committing on top of frontmatter the live explorer cannot parse |
+| `ree_commit.py` | the race-prone `git commit -- <pathspec>` idiom |
+
+**Preview before guard before apply is the load-bearing ordering.** The preview
+is a full `--fix --dry-run` run that writes nothing, and the ref guard fires
+between it and the applying run -- so a moving ref aborts *before a single byte
+is written*. The obvious cheaper orderings (apply, then guard) all end with "and
+then revert someone's file", or with half-applied edits left dirtying a shared
+checkout, which the next run's `_dirty_paths` guard then stalls on forever. The
+cost is running the detectors twice, ~17s/day.
+
+**It commits through `ree_commit.py`, never plain git.** The 2026-08-16 D-008
+fix committed with plain git and drew the pre-push warning *"touches managed
+path(s) ... but was not built by ree_commit.py (race-prone idiom)"*.
+`evidence/planning/` is a multi-writer tree and `git commit -- <pathspec>`
+commits the WORKING-TREE content at commit time while ignoring the index, so any
+concurrent writer landing in that gap silently wins. The test proves this from
+the **intent record** ree_commit writes, not from a source grep -- the same
+artefact the pre-push hook checks.
+
+**Always `--bot`, with no flag to turn it off.** `clinical_hours_guard.py` reads
+a personal-identity commit as an assertion that the work was done off clinical
+duty, and an unattended job must not make that assertion on the operator's
+behalf. It is also what keeps the sweep working in-window: the guard's
+`--push-check` exempts a push whose commits are *all* authored AND committed as
+the bot. Note the corollary -- if the checkout is ahead with someone's non-bot
+commits, the exemption is lost and an in-window push is held. That surfaces as
+exit 1 with the commit already made locally, which is correct: a human lands it.
+
+**Scope, and what it must not acquire.** T0 only, and only what `FIXABLE`
+offers: D-006 (annotate) and D-008 (forward-only `last_updated` bump). It
+commits exactly the paths those fixers report having written, plus
+`state/steward_ledger.jsonl`. It does **not** regenerate the closure snapshot,
+touch `claims.yaml`, change a node status, or queue anything. Those are
+governance's, and a scheduled writer must not acquire them by being convenient.
+
+**One `action: "autofix"`, `source: "steward_sweep"` ledger record per run**,
+including runs that fix nothing -- otherwise a job that silently stopped working
+looks identical to a quiet week. The record lands *in* the commit it describes,
+so it cannot carry the resulting sha; it carries `base` instead, and the commit
+is that base's child.
+
+**Known stall mode, stated rather than discovered later.** The frontmatter gate
+is repo-wide: a pre-existing broken plan unrelated to the fixes will abort the
+sweep every day until it is repaired. That is deliberate -- an unattended writer
+should not add commits to a tree whose plan frontmatter the live explorer
+already cannot parse -- and it is visible, because the abort logs the checker's
+output and writes `aborted: "frontmatter_invalid"` to the ledger.
+
+Exit codes: `0` clean, `1` needs a human, `3` refused by a gate.
+Log: `~/Library/Logs/ree_steward_sweep.launchd.log`.
+Tests: `test_steward_sweep.py` (23, real git repos, time-independent), roughly
+half negative controls -- every gate is a refusal, so a bug in one is silent.
 
 **The `escalate` boolean is printed twice** -- once at Step 3m, and again from
 `governance.sh`'s exit trap, so it is the last thing on the screen even when the

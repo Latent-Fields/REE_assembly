@@ -217,13 +217,23 @@ def test_no_exit_nonzero_on_escalate():
 
 
 def test_no_fix_flag():
-    """--fix edits shared plan frontmatter; it is a deliberate governance act."""
+    """--fix edits shared plan frontmatter; it is a deliberate governance act.
+
+    RESOLVED 2026-08-18, and this test is now pinning a DECISION rather than a
+    deferral: the deliberate act has an owner -- the daily launchd sweep
+    `steward_sweep.py` / `com.ree.steward` (user decision 2026-08-17, option
+    (ii)). Governance stays read-only. Adding --fix here would ALSO break this
+    step's own placement: Step 3m sits after Step 3c-bis because D-010 must
+    audit the closure snapshot 3c-bis writes, so fixing plan frontmatter here
+    leaves that snapshot stale. See README.md "The daily T0 sweep".
+    """
     src = step_3m_code()
     for tok in (" --fix", "\t--fix", "--fix "):
         assert tok not in src, (
             "Step 3m passes --fix. The T0 lane is opt-in by design: it has real "
             "repairs queued against evidence/planning/ frontmatter, and applying "
-            "them changes what the morning digest reports.")
+            "them changes what the morning digest reports. The daily sweep "
+            "(scripts/steward/steward_sweep.py) is where --fix belongs.")
 
 
 def test_runs_after_the_closure_snapshot():
