@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "intelligent-elgamal-222d2b",
-  "last_updated_utc": "2026-08-16T19:56:35Z",
+  "last_updated_utc": "2026-08-18T09:52:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -8262,6 +8262,34 @@
       "last_seen_session": "cranky-driscoll-126a36",
       "added_utc": "2026-08-16T19:56:35Z",
       "created_by": "governance 2026-08-16T19:56:35Z (cranky-driscoll-126a36) applying the GFLAG-0037 SPLIT decision: MECH-091 routed to V3 as a small buildable, SD-006 phase 2 true-concurrency routed to V4. This entry exists because the deferral it replaces was permanent BY OMISSION -- commitment_closure:GAP-7 was registered 2026-05-08 blocking_external on SD-006 phase 2 async heartbeat, phase 2 never reached substrate_queue.json, and so no scoping pass, no IGW auto-discovery and no /implement-substrate route could ever see it."
+    },
+    {
+      "sd_id": "mech151-action-bias-has-no-e3-ranking-channel",
+      "title": "MECH-151's action_bias reaches no ranking path -- E3 has no action-object input channel at all, so the claim's asserted elevate/suppress mechanism is unimplemented rather than untrained",
+      "node_class": "mystery (known data)",
+      "status": "proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET",
+      "ready": false,
+      "design_doc": "REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-151",
+        "SD-016",
+        "SD-055"
+      ],
+      "added_session": "metaworker-chip-20260818-exp0155-action-bias-scoring-disconnect",
+      "added_utc": "2026-08-18T09:52:00Z",
+      "failure_record": [
+        {
+          "run_id": "source-trace + single-tick probe (no queued run)",
+          "experiment_type": "chip-20260818-exp0155-action-bias-scoring-disconnect",
+          "metric": "HippocampalModule candidate scores are BIT-IDENTICAL at action_bias=None vs 1e3, with every scoring extension (wanting/curiosity/MECH-267 mode-value) enabled and with the MECH-267 horizon window narrowed; elite ordering unchanged; in a matched-RNG propose_trajectories pass the first differing scoring call is exactly index num_candidates, i.e. the iteration-1 boundary; at num_cem_iterations=1 the proposal pool is bit-identical end to end.",
+          "target": "action_bias produces a measurable change in candidate RANKING within a single scoring pass (MECH-151: 'action-objects consistent with the cue are ELEVATED, contextually inappropriate ones SUPPRESSED')",
+          "resolved": "open",
+          "added_utc": "2026-08-18T09:52:00Z",
+          "added_by": "chip-20260818-exp0155-action-bias-scoring-disconnect (adjudication of EXP-0155; contract ree-v3 a1d49706, docs 93966bce; GFLAG-0043 extends GFLAG-0039)"
+        }
+      ],
+      "implementation_hint": "DO NOT BUILD BEFORE GOVERNANCE ADJUDICATES ARC-007 -- this entry records a decision point, not a ready build. FINDING (independently source-traced and measured 2026-08-18, contract-pinned at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py): nothing on the ranking path reads an action-object. o_t lands only in Trajectory.action_objects; world_forward/predict_next_self never read it, so world_states are bias-free; _score_trajectory scores get_world_state_sequence() and never touches action_objects; _trajectory_first_action_class (and thus the SP-CEM elite path) and the MECH-294 theta packet both read .actions; e3_selector.py has ZERO occurrences of action_object/action_bias. Across ree_core, action_objects appears in exactly two files (e2_fast.py producer, hippocampal/module.py refit + storage copies). action_bias's ONLY channel is the CEM refit, as an exact additive translation (ao_mean += b, ao_std unchanged, both refit branches, so it never compounds -- always exactly one b). NOT INERT, and do not quote the finding as if it were: that rigid translation passes through the nonlinear action_object_decoder and flips the whole final candidate pool's first-action class. It steers WHERE proposals are drawn, never WHICH one wins. This is also why SD-055's differentiable CEM restored an action-sequence gradient (V3-EXQ-568 grad_max=372) with no behavioural divergence -- gradient and ranking authority are different things, and SD-055 only ever addressed the former. THE DECISION: the obvious repair -- teach _score_trajectory to read action_objects -- is FORBIDDEN by Q-020/ARC-007 STRICT (hippocampal/module.py header: 'HippocampalModule generates VALUE-FLAT proposals ... No separate value head ... E3 introduces ALL weighting'). MECH-151's own wording ('E1 biases which action-objects RANK HIGHLY, but E3 still selects') is satisfiable only where E3 selects, and E3 cannot see an action-object at all. So governance must choose between: (A) give E3 an action-object input channel and consume the bias there (honours ARC-007; the larger build -- E3.select signature, Trajectory threading, and a decision about what consuming it MEANS, since a per-batch constant added identically to every candidate can only re-rank through a nonlinear term such as an alignment/norm read, not through a linear one); or (B) accept the substrate as correct under ARC-007 and QUALIFY MECH-151's registered mechanism -- 'pre-shapes HippocampalModule search' is defensible for a proposal-mean translation, 'ELEVATED/SUPPRESSED' and 'RANK HIGHLY' are not. Note (B) is a claims edit, not a build, and would close this entry with no code. SEPARATELY AND INDEPENDENTLY: this is NOT the cause of the action_bias_divergence=0.0 that EXP-0155 was queued to explain. That metric is computed on e1.extract_cue_context() output, upstream of all of the above; its exact 0.0 is the uniform-attention ContextMemory degeneracy already queued as contextmemory-write-path-addressing-degeneracy (measured 2026-08-18 at fresh init: slot-selection entropy 2.7726 == ln(16), cue_context divergence 0.000e+00). Fixing this entry will NOT move action_bias_divergence, and fixing that one will NOT give action_bias ranking authority. They are independent."
     }
   ],
   "schema_version": "substrate_queue/v2"
