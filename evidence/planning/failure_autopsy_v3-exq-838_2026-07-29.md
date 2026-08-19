@@ -54,7 +54,9 @@ Q-081 is a cross-stream-organisation question (structure-destroying / surrogate-
 | Integration | n/a | not reached |
 | Scale | adequate | 5 valid seeds |
 
-**Recommended `epistemic_category`: `measurement_test_design_defect`** (consistent with 824/824a) · **`evidence_direction`: `non_contributory`**.
+**Recommended `epistemic_category`: `standard`** (measurement/test-design defect, not substrate_ceiling — see GOV-CAT-1 fix note below; consistent with 824/824a's own diagnosis) · **`evidence_direction`: `non_contributory`**.
+
+> **GOV-CAT-1 fix (2026-08-19):** this section originally recommended `measurement_test_design_defect`, which is not one of the eight valid `epistemic_category` enum values (`answer_state`, `derivational`, `governance_rule`, `out_of_domain`, `standard`, `substrate_ceiling`, `substrate_coherence`, `substrate_conditional`) — see `REE_assembly/scripts/validate_claims.py`. The `.json` artifact's `recommended_epistemic_category` is corrected to `standard` with the failure-mode diagnosis preserved verbatim in a new `recommended_epistemic_category_note` field (the diagnosis in this `.md` is otherwise unchanged). `standard` is behaviour-preserving with the settled convention (a measurement/precondition-unmet finding is not an assertion that Q-081's answer is gated on substrate work), matches `re_derive_brake.not_fired_reason` on this same target, and matches Q-081's own stored `epistemic_category: standard` in `claims.yaml` (set 2026-08-01, MEASURED-PAIR REFRAME, which retired this exact pair for the same reason).
 
 ## 6. Learning extracted
 

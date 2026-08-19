@@ -33,7 +33,8 @@
         "divergence": "n/a -- defect is REE-internal (the measured pair is unreachable by available levers), not a biology/architecture mismatch",
         "lit_status": "present"
       },
-      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "GOV-CAT-1 fix (2026-08-19): the original value 'measurement_test_design_defect' is a failure-mode diagnosis, not one of the eight valid epistemic_category enum values (recommended_epistemic_category_per_claim / four_layer_diagnosis.measurement / recommended_evidence_quality_note above already carry the full diagnosis and are unchanged). Re-attributed to standard per the settled convention: a measurement/test-design/precondition-unmet finding maps to standard, not substrate_ceiling -- this run shows the measured pair RV(z_world, operating_mode) is unreachable by every lever tried across 824/824a/838, not that Q-081's answer is gated on substrate work still to be built. re_derive_brake.not_fired_reason on this same target already states the chain is 'not substrate_ceiling'; stamping ceiling would have wrongly counted toward the re-derive brake and GOV-CEIL-1. Consistent with claims.yaml Q-081's own epistemic_category: standard (2026-08-01 MEASURED-PAIR REFRAME, which retired this exact pair for the same reason).",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_direction_per_claim": {
         "Q-081": "non_contributory"
