@@ -4563,7 +4563,8 @@ CHIP_PANEL_FIELDS = (
     "claim_note",
 )
 
-_CHIPS_CACHE = {"key": None, "projected": None, "prompts": None, "etag": None}
+_CHIPS_CACHE = {"key": None, "projected": None, "prompts": None,
+                "archived": None, "etag": None}
 _CHIPS_CACHE_LOCK = threading.Lock()
 
 
@@ -4592,18 +4593,28 @@ def read_chips_projected() -> tuple:
     data = read_chips()
     rows = []
     prompts = {}
+    archived = {}
     for ch in data.get("chips", []):
         if not isinstance(ch, dict):
             continue
         row = {k: ch[k] for k in CHIP_PANEL_FIELDS if k in ch}
         # Same fallback chain copyChipPrompt() uses, so has_prompt is true
         # exactly when a click would produce something to paste.
+        marker = ch.get("archived")
+        has_archived_prompt = (isinstance(marker, dict)
+                               and "prompt" in (marker.get("fields") or []))
         body = ch.get("prompt") or ch.get("tldr") or ch.get("title")
-        row["has_prompt"] = bool(body)
+        row["has_prompt"] = bool(body) or has_archived_prompt
         rows.append(row)
         ref = ch.get("chip_ref")
         if ref and ch.get("prompt"):
             prompts[ref] = ch["prompt"]
+        elif ref and isinstance(ch.get("archived"), dict):
+            # Keep the stub (chip_ref + archived marker) so read_chip_prompt()
+            # can resolve it out of chip_archive/ on click.
+            archived[ref] = {"chip_ref": ref, "archived": ch["archived"],
+                             "resolved_at": ch.get("resolved_at"),
+                             "spawned_at": ch.get("spawned_at")}
 
     payload = {
         "schema_version": data.get("schema_version", "task_chips/v1"),
@@ -4617,17 +4628,37 @@ def read_chips_projected() -> tuple:
 
     with _CHIPS_CACHE_LOCK:
         _CHIPS_CACHE.update(
-            {"key": key, "projected": payload, "prompts": prompts, "etag": etag}
+            {"key": key, "projected": payload, "prompts": prompts,
+             "archived": archived, "etag": etag}
         )
     return payload, etag
 
 
 def read_chip_prompt(chip_ref: str):
-    """One chip's recorded spawn_task prompt, or None. Served on row click."""
+    """One chip's recorded spawn_task prompt, or None. Served on row click.
+
+    Falls back to the fat-field archive (chip_archive/<YYYY-MM>.json, written by
+    chip_ledger.py's `archive` subcommand) when the chip is past the retention
+    window and its prompt is no longer inline in TASK_CHIPS.json. Without this
+    the panel's copy-to-clipboard would degrade to tldr/title for every chip
+    older than the window -- silently, since has_prompt is computed from the
+    same fallback chain and would still say true.
+    """
     read_chips_projected()  # refreshes the cache if the ledger moved
     with _CHIPS_CACHE_LOCK:
         prompts = _CHIPS_CACHE["prompts"] or {}
-    return prompts.get(chip_ref)
+        archived = _CHIPS_CACHE["archived"] or {}
+    if chip_ref in prompts:
+        return prompts[chip_ref]
+    chip = archived.get(chip_ref)
+    if chip is None:
+        return None
+    try:
+        sys.path.insert(0, str(SERVE_DIR.parent / "scripts"))
+        import chip_ledger  # noqa: WPS433
+        return chip_ledger.archived_field(chip, "prompt")
+    except Exception:
+        return None
 
 
 # --- Status/history plane query (status_history_plane:SHP-3, Q2=both) ---------
