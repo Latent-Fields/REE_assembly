@@ -112,6 +112,14 @@ nothing escalates. **The wedge is loud once and then silent forever.**
   `sync_worktree_settings.py`) is *outside* the frozen tree. There is no equivalent
   out-of-band channel for `scripts/`.
 
+> **Correction, 2026-08-16 (§9): the last sentence of (c) is wrong, and it is the most
+> load-bearing sentence on this page.** There IS an out-of-band channel, and it runs before
+> every single cycle: `/usr/local/bin/ree_metaworker_dispatch.sh`, the systemd wrapper. It
+> is installed by hand outside every repo (reference copy in `ree-v3`), so a frozen checkout
+> cannot freeze it, and it is what builds the `claude -p` prompt each cycle. That makes (c)
+> deliverable after all — not as a repo-side assertion, but as a wrapper-side one whose
+> verdict is appended to the dispatcher's own prompt. Built and installed 2026-08-16; §9.
+
 **General statement, and the reusable lesson: no change landed on `origin` can take effect
 on a checkout that is wedged behind `origin`.** The wedge must be cleared out-of-band
 first. A corollary worth stating plainly, because it bounds what this class of chip can
@@ -299,3 +307,107 @@ this artifact.
 **Did not:** move the ref (permission-gated); therefore did **not** deploy the guard and
 did **not** meet the chip's behavioural acceptance test, which is unreachable from a
 session running on the wedged box. The chip is left open.
+
+---
+
+## 9. Second pass, 2026-08-16 — the acceptance test is met, and §7.2 is built
+
+Same chip, same box, a re-dispatched session (`REE_Working` origin `36587d16`, `9cfa5c14`;
+`ree-v3` `a89a26d8b3`). Two separate things happened since §8, and they should not be
+conflated.
+
+### 9.1 The chip's behavioural acceptance test now PASSES, and it was not this session
+
+Someone cleared the 2026-08-14 wedge out-of-band per §6 (the `--allow-discard` adopt).
+Measured 2026-08-16T13:53Z on `ree-cloud-5`:
+
+| check (from §6's own acceptance block) | expected | measured |
+|---|---|---|
+| `grep -c entry_is_orphaned scripts/task_claim.py` | >0 | **16** |
+| `git merge-base --is-ancestor ffe127d779 HEAD` | yes | **DEPLOYED** |
+| `scripts/test_task_claim_close_orphan_guard.py` | green | **14 tests, OK** |
+
+And the guard demonstrably fires on this box: a live `close` of an entry absent from
+origin printed `PUSH WITHHELD: this close is an ORPHAN` and withheld the push, which is
+exactly the behaviour the chip brief asked for. The transplanted-closure corruption of
+2026-08-14 cannot recur in that form here.
+
+### 9.2 The wedge RECURRED within hours, which is the finding that matters
+
+By 13:52Z the same checkout was `[ahead 78, behind 129]` again, `ref_convergence --check`
+reporting `severity: wedged`, 54 refusals since 11:06Z, 19 unproven commits — and
+`scripts/task_claim.py` was **409 lines behind origin again**, along with `chip_ledger.py`,
+`ree_commit.py` and both `session-land` skill copies. So §8's "the chip is left open" was
+right for a reason deeper than authorisation: **clearing the wedge is not a fix, it is a
+reset.** The spiral restarts immediately.
+
+**Root cause of the recurrence, measured, and it is one line of shell.** The box's only
+freshness mechanism is `git -C "$REPO" pull --ff-only origin master` at the top of
+`ree-metaworker-dispatch.sh`. `--ff-only` refuses the moment the checkout holds any commit
+origin does not — which is the *normal steady state* here, because every `ree_commit.py`
+push retry cherry-picks onto origin and leaves the local original behind as an orphan
+(`retry_push_via_worktree`'s "ACCEPTED RESIDUAL"). So the autosync is not failing
+occasionally; it is structurally guaranteed to fail forever once the first orphan lands.
+Measured over `~/ree_metaworker_dispatch.log` to 2026-08-16: **1299 `autosync: FAILED`
+against 853 `autosync: ok`**, the first failure 2026-08-03T14:17:51Z. Its only trace is a
+log line in a file nobody reads — the same loud-once-silent-forever shape as the refusal
+in §3, one layer down.
+
+### 9.3 What was built
+
+**`REE_Working/scripts/check_dispatch_scripts_freshness.py`** (+ 16 tests). Compares this
+checkout's *committed* `scripts/`, `.claude/skills/` and `.agents/skills/` trees against
+`origin/<branch>` and names what differs. Exit 1 only on drift in `CRITICAL_SCRIPTS` — the
+coordination scripts a dispatched session invokes by absolute path (`task_claim`,
+`chip_ledger`, `ree_commit`, `ref_convergence`, `safe_adopt_ref`, `ref_move_guard`,
+`coordination_plane`). Everything else is a NOTE.
+
+**Why this is not a duplicate of `ref_convergence.wedge_severity()`, which already exists
+and is correct.** That escalation reasons from the *ref* — ahead-count and refusal age —
+and a refusal is only ever recorded when a push is attempted and rejected. A checkout that
+is purely BEHIND (`[ahead 0, behind N]`) never refuses anything, so its wedge state is
+empty and `--check` reports clear **while its `scripts/` is arbitrarily stale**. That is
+precisely what a failing `--ff-only` autosync produces. Comparing the trees measures the
+deployment instead of a correlate of it; the two are complements, and both should run.
+
+The negative controls are the load-bearing half, because this sits in front of an
+unattended 5-minute loop and a gate that fires on ordinary states gets switched off. Pinned
+green: hundreds of commits behind on registry churn alone (the box's normal condition —
+which is why this compares trees, not commit counts); `[ahead N, behind 0]` carrying a
+cherry-pick orphan that touches a critical script (origin is an ancestor, so nothing is
+missing — without that short-circuit the gate would fire on the box for holding a duplicate
+of work it had already landed); an uncommitted edit to a critical script (a NOTE, never a
+finding — same split as `audit_vendored_copies.py`); non-critical and skill-only drift; and
+every fail-open path.
+
+**`ree-metaworker-dispatch.sh`** now runs it after the autosync and, on exit 1, appends the
+verdict to the cycle's own `claude -p` prompt. **That wrapper is the delivery channel §4
+said did not exist** (see the correction inline there): it lives at `/usr/local/bin`,
+outside every repo, so a frozen tree cannot freeze it. A `SKILL.md` step, a `PreToolUse`
+hook, or a python guard reached by absolute path are all *inside* the tree that is stale.
+Two tests pin the wiring, because a gate nothing calls is worth nothing: the reference copy
+must invoke the check, and must not `exit 1` on it.
+
+**It deliberately does not halt dispatch.** The repair for a wedged checkout is carried out
+by a headless chip session dispatched by this loop, and so are the `ref_convergence_wedge`
+escalation chips that name it. Halting on stale scripts deadlocks its own fix. The contract
+is: surface it, prioritise the wedge chip, keep dispatching.
+
+`.claude/` + `.agents/skills/metaworker-dispatch/SKILL.md` Step 1 carries the same check for
+a manually-run cycle, and says plainly that on a frozen checkout that step may not be
+present at all and the wrapper's banner is authoritative.
+
+### 9.4 What is still open, stated plainly
+
+This is **detection and recurrence prevention only**. It does not clear a wedge and does not
+stop one forming — §7.1's escalation and §7.3's whole-file-JSON-under-cherry-pick problem
+are still the substantive open items, and clearing a live wedge is still out-of-band
+operator work under §5a's mandatory per-commit content audit. What changes is that a frozen
+box now says so, every cycle, into the one channel that still reaches the dispatcher.
+
+The obvious next step is **fixing the autosync itself** rather than only reporting its
+failure: `--ff-only` cannot work on a checkout that is permanently ahead, and the sanctioned
+replacement (`ref_convergence.py`, proven-only, then `safe_adopt_ref.py`) is already
+written. That was NOT done here — on 2026-08-16 it would have refused anyway (19 unproven
+commits), and putting an audited-discard step inside an unattended 5-minute loop is exactly
+the decision §5a says a human must make per commit. Chipped separately.
