@@ -13,10 +13,12 @@
 > the as-built map.
 >
 > **Not named by the preservation chip, and preserved anyway** -- this is the
-> empirical calibration for stages 2-3, and two of its findings are still
-> UNBUILT (§1 `superseded_upstream`, §8 `hook_activation_on_adopt`). Losing it
-> would have lost the only record of them. See `docs/README.md` -> "Open items
-> carried forward".
+> empirical calibration for stages 2-3. Of its two still-unbuilt findings at
+> the time of preservation, §1 `superseded_upstream` was built 2026-08-19 by
+> `chip-20260817-steward-d101-superseded-upstream-verdict`; §8
+> `hook_activation_on_adopt` remains UNBUILT. Losing this document would have
+> lost the only record of both. See `docs/README.md` -> "Open items carried
+> forward".
 
 **Source:** session `humour-epistemic-discovery-8a7a36`, chip
 `chip-20260814-reconcile-mac-reeassembly-checkout`. This is the *execution* of the

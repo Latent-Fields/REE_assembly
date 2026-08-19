@@ -267,3 +267,37 @@ def added_lines(repo: Path, sha: str, path: str) -> list[str]:
             if body:
                 lines.append(body)
     return lines
+
+
+def renamed_away_target(repo: Path, since_sha: str, path: str) -> str:
+    """If `path` was renamed to a new name somewhere in the history reachable
+    from `since_sha`, return the new path. "" if `path` was never removed
+    there, or was removed by a genuine delete rather than a rename.
+
+    Two-step, matching the FIELD_NOTES_20260815 recipe (section 1):
+
+      1. `log --diff-filter=D --follow -- path` finds the commit(s) that
+         removed this exact path. No -M here on purpose: without rename
+         detection a rename shows as a plain delete of the old path (paired
+         with an unrelated-looking add of the new one), which is exactly the
+         event this step needs to find -- adding -M would make a rename
+         invisible to --diff-filter=D and defeat the search.
+      2. `diff-tree -M --name-status` on each candidate re-examines just that
+         one commit WITH rename detection, which is what can tell a rename
+         apart from a genuine delete (git does not otherwise record "this
+         delete and that add were the same file" anywhere).
+
+    A path can be deleted more than once across history (deleted, restored,
+    deleted again) -- the first candidate (closest to `since_sha`, since `log`
+    lists newest-first) that resolves as a rename wins.
+    """
+    out = git(repo, "log", since_sha, "--diff-filter=D", "--follow",
+              "--format=%H", "--", path)
+    for sha in (l.strip() for l in out.splitlines() if l.strip()):
+        stat = git(repo, "diff-tree", "--no-commit-id", "-r", "-M",
+                   "--name-status", sha)
+        for line in stat.splitlines():
+            parts = line.split("\t")
+            if len(parts) == 3 and parts[0][:1] == "R" and parts[1] == path:
+                return parts[2]
+    return ""

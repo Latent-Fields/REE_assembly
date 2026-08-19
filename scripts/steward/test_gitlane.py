@@ -318,6 +318,77 @@ def test_incident_shape_is_reproduced(tmp_path):
     assert res["verdict"] == "safe_to_adopt"
 
 
+def test_patch_id_hit_whose_path_was_renamed_upstream_is_superseded(tmp_path):
+    """FIELD_NOTES_20260815 section 1, reproduced.
+
+    A commit lands upstream by patch-id (route A hit), but origin later
+    RENAMES the path away. A naive read of "path missing from HEAD" says
+    unique -- which, staged as `A ` after an adopt, would resurrect a
+    document the project deliberately renamed (and reframed) away.
+    superseded_upstream must be emitted instead, and it must still count
+    toward safe_to_adopt, never unique_work_present.
+    """
+    local, bare = make_pair(tmp_path)
+    sha = commit(local, "old_name.md", "sacred body\n", "add old_name.md")
+
+    other = clone_of(bare, tmp_path / "other")
+    sh(other, "fetch", "-q", str(local), "master")
+    sh(other, "cherry-pick", sha)
+    sh(other, "mv", "old_name.md", "new_name.md")
+    sh(other, "-c", "user.email=t@t", "-c", "user.name=Tester",
+       "commit", "-qm", "rename old_name.md -> new_name.md")
+    sh(other, "push", "-q", "origin", "master")
+    sh(local, "fetch", "-q", "origin")
+
+    res = D101.classify_repo(local)
+    klasses = [c["klass"] for c in res["commits"]]
+    assert "superseded_upstream" in klasses
+    assert "unique" not in klasses
+    superseded = next(c for c in res["commits"]
+                       if c["klass"] == "superseded_upstream")
+    assert superseded["superseded_paths"] == {"old_name.md": "new_name.md"}
+    assert res["verdict"] == "safe_to_adopt"
+
+
+def test_missing_path_that_was_genuinely_deleted_is_not_superseded(tmp_path):
+    """Negative control: absence alone does not license superseded_upstream --
+    only a confirmed RENAME (not a plain delete) may explain it away.
+    """
+    local, bare = make_pair(tmp_path)
+    sha = commit(local, "old_name.md", "sacred body\n", "add old_name.md")
+
+    other = clone_of(bare, tmp_path / "other")
+    sh(other, "fetch", "-q", str(local), "master")
+    sh(other, "cherry-pick", sha)
+    (other / "old_name.md").unlink()
+    sh(other, "add", "-A")
+    sh(other, "-c", "user.email=t@t", "-c", "user.name=Tester",
+       "commit", "-qm", "delete old_name.md outright")
+    sh(other, "push", "-q", "origin", "master")
+    sh(local, "fetch", "-q", "origin")
+
+    res = D101.classify_repo(local)
+    klasses = [c["klass"] for c in res["commits"]]
+    # the ADD commit is still a patch-id hit; the outright delete is upstream
+    # history the ahead range never touches, so nothing here is "unique"
+    assert "upstream_by_patch_id" in klasses
+    assert "superseded_upstream" not in klasses
+    assert res["verdict"] == "safe_to_adopt"
+
+
+def test_renamed_away_target_distinguishes_rename_from_delete(tmp_path):
+    """Direct coverage of the new gitlane primitive, independent of D-101."""
+    local, _ = make_pair(tmp_path)
+    commit(local, "a.md", "body\n", "add a")
+    sh(local, "mv", "a.md", "b.md")
+    sh(local, "-c", "user.email=t@t", "-c", "user.name=Tester",
+       "commit", "-qm", "rename a -> b")
+    head = sh(local, "rev-parse", "HEAD").strip()
+
+    assert G.renamed_away_target(local, head, "a.md") == "b.md"
+    assert G.renamed_away_target(local, head, "no-such-path.md") == ""
+
+
 def test_detached_head_is_skipped_not_crashed(tmp_path):
     local, _ = make_pair(tmp_path)
     sh(local, "checkout", "-q", "--detach", "HEAD")

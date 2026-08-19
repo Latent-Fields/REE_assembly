@@ -34,6 +34,18 @@ PER-COMMIT CLASSES
   regenerable_churn     Unique content, but confined to machine-written,
                         derive-only paths that the producing automation
                         rewrites on its next tick. Losing these loses nothing.
+  superseded_upstream   The commit's content reached origin, but the path it
+                        landed at was later renamed (and possibly reframed)
+                        upstream, so the OLD path is absent from origin's HEAD
+                        tree. A naive read of that absence says "unique";
+                        FIELD_NOTES_20260815 section 1 is the incident: a
+                        patch-id-equivalent commit whose path had been
+                        deliberately renamed away, staged as `A ` after an
+                        adopt -- committing it would have resurrected a
+                        document, and the framing it carried, that a human
+                        chose to drop. Never discard *content* origin never
+                        had; this is the opposite case, content origin had and
+                        then intentionally moved on from.
   unique                Real local work origin does not have. Never discard.
   merge                 Carries no content of its own; its parents are
                         classified individually.
@@ -144,6 +156,25 @@ def _content_upstream(repo: Path, pin: G.RefPin, upstream: str,
     return (not missing), missing
 
 
+def _superseded_paths(repo: Path, upstream_sha: str, pin: G.RefPin,
+                       upstream: str, paths: list[str]) -> dict[str, str]:
+    """Of `paths`, the ones absent from upstream's HEAD tree that were
+    RENAMED away somewhere in upstream's history (not merely deleted).
+    {old_path: new_path}. See FIELD_NOTES_20260815 section 1.
+
+    Only worth checking for a path already known to be missing upstream by
+    exact name -- a present path needs no rename search.
+    """
+    out: dict[str, str] = {}
+    for path in paths:
+        if pin.blob_sha(upstream, path):
+            continue
+        target = G.renamed_away_target(repo, upstream_sha, path)
+        if target:
+            out[path] = target
+    return out
+
+
 def classify_repo(repo: Path, branch: str = "", upstream: str = "") -> dict:
     """Classify one repo's divergence. Pure analysis; writes nothing.
 
@@ -187,16 +218,39 @@ def classify_repo(repo: Path, branch: str = "", upstream: str = "") -> dict:
         meta["paths"] = paths
 
         if sha in patch_ids:
-            meta["klass"] = "upstream_by_patch_id"
+            # A patch-id hit proves the WHOLE diff already exists upstream,
+            # so a path missing from HEAD is never a content gap -- only ever
+            # upstream having since moved that path elsewhere. Resolve which,
+            # before publishing, per FIELD_NOTES_20260815 section 1.
+            superseded = _superseded_paths(repo, upstream_sha, pin, upstream, paths)
+            if superseded:
+                meta["klass"] = "superseded_upstream"
+                meta["superseded_paths"] = superseded
+            else:
+                meta["klass"] = "upstream_by_patch_id"
         else:
             ok, missing = _content_upstream(repo, pin, upstream, sha, paths)
             if ok:
                 meta["klass"] = "upstream_by_content"
-            elif paths and all(_is_churn_path(p) for p in paths):
-                meta["klass"] = "regenerable_churn"
             else:
-                meta["klass"] = "unique"
-                meta["missing_paths"] = missing
+                # Route A's false-negative shapes (section 2) can leave a
+                # renamed-away path unresolved by both patch-id and the plain
+                # content probe -- follow rename history before concluding
+                # unique. Requires EVERY missing path to resolve as a rename;
+                # a partial resolution is not enough to clear the commit.
+                superseded = _superseded_paths(repo, upstream_sha, pin,
+                                                upstream, missing)
+                still_missing = [p for p in missing if p not in superseded]
+                if superseded and not still_missing:
+                    meta["klass"] = "superseded_upstream"
+                    meta["superseded_paths"] = superseded
+                elif paths and all(_is_churn_path(p) for p in paths):
+                    meta["klass"] = "regenerable_churn"
+                else:
+                    meta["klass"] = "unique"
+                    meta["missing_paths"] = missing
+                    if superseded:
+                        meta["superseded_paths"] = superseded
         commits.append(meta)
 
     substantive = [c for c in commits if c["klass"] == "unique"]

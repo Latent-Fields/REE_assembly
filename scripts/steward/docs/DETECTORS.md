@@ -510,6 +510,24 @@ substantive remainder present on origin by content, and the rest regenerable
 automation churn — plus a *duplicate* flag entry that adopting origin would
 clean up. That analysis took ~15 tool calls and should be one script.
 
+> **AS BUILT (2026-08-19) -- a fourth per-commit class, `superseded_upstream`,
+> was added.** The trichotomy above has a hole `FIELD_NOTES_20260815` section 1
+> fell into: a commit that is `upstream_by_patch_id` whose file is absent from
+> origin's HEAD tree because origin later renamed (and, in the incident, also
+> reframed) it. Both naive readings are wrong -- it is neither
+> `upstream_by_patch_id` alone (which hides the missing-path nuance from a
+> human doing post-adopt skew repair) nor `unique` (which would re-add a
+> document the project deliberately renamed away). D-101 now follows deletion
+> history (`git log --diff-filter=D --follow`) and confirms a rename rather
+> than a genuine delete (`git diff-tree -M --name-status`) before emitting a
+> verdict for a path missing from origin's HEAD, for both a patch-id hit and a
+> route-A false negative left unresolved by the plain content probe.
+> `superseded_upstream` contributes to `safe_to_adopt`, never
+> `unique_work_present`. Fixed in
+> `chip-20260817-steward-d101-superseded-upstream-verdict`; pinned by
+> `test_gitlane.py::test_patch_id_hit_whose_path_was_renamed_upstream_is_superseded`
+> plus a negative control proving a genuine delete is not reclassified.
+
 ### D-102 · `moving_ref_guard` · P0 · T0-assert
 Record `origin/*` SHAs and timestamps at detection time; re-read before any
 action; abort if moved.

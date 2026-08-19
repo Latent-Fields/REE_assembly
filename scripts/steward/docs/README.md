@@ -85,7 +85,7 @@ Step 3m, warn-only).
 | D-008 `plan_frontmatter_date_drift` | P2 T0 | **yes** | 19 real fixes queued, deliberately not applied |
 | D-009 `owed_successor` | P1 T1 | no | step 5 |
 | D-010 `denominator_integrity` | P0 T0-assert | **yes** | assertion as specified was wrong -- see its `AS BUILT` block |
-| D-101 `divergence_content_equivalence` | P1 T1 | **yes** | 3 verdicts, not 4 -- see below |
+| D-101 `divergence_content_equivalence` | P1 T1 | **yes** | 4 per-commit classes as of `chip-20260817-steward-d101-superseded-upstream-verdict` -- see below |
 | D-102 `moving_ref_guard` | P0 T0-assert | **yes** | |
 | D-103 `untracked_research_artefact` | P2 T1 | no | step 5. Its two named artefacts are *still untracked on this tree* |
 
@@ -96,17 +96,33 @@ what exists is the deterministic detection half plus the T0 repair lane.
 ## Open items carried forward
 
 Recorded here because these documents are their only home. **Nothing in this
-preservation pass changed detector behaviour**, so all four remain open.
+preservation pass changed detector behaviour**, so all four were open as of
+2026-08-17. Item 1 has since been built; see the resolution note under it.
 
-1. **`superseded_upstream`, D-101's missing fourth verdict**
-   (`FIELD_NOTES` §1). As built, D-101 emits three verdicts. The field notes
-   record a real case the trichotomy mis-classifies: a commit that is
-   `upstream_by_patch_id` but whose file is *absent from origin's HEAD tree*,
-   because origin later renamed and reframed it. Both naive readings are wrong,
-   and reading it as `unique` means committing it -- re-adding a document the
-   project deliberately renamed away. Resolve by following rename history
-   (`git log --diff-filter=D --follow`, `git show --stat -M`) before emitting a
-   verdict, and route it to `safe_to_adopt`, never `unique_work_present`.
+1. ~~**`superseded_upstream`, D-101's missing fourth verdict**~~ **RESOLVED
+   2026-08-19 by `chip-20260817-steward-d101-superseded-upstream-verdict`.**
+   (`FIELD_NOTES` §1). As built on 2026-08-17, D-101 emitted three per-commit
+   classes. The field notes recorded a real case the trichotomy mis-classified:
+   a commit that is `upstream_by_patch_id` but whose file is *absent from
+   origin's HEAD tree*, because origin later renamed and reframed it. Both
+   naive readings were wrong, and reading it as `unique` means committing it --
+   re-adding a document the project deliberately renamed away. Fixed by
+   following rename history (`_gitlane.renamed_away_target()`: `git log
+   --diff-filter=D --follow` to find the deleting commit, `git diff-tree -M
+   --name-status` on it to confirm it was a rename rather than a genuine
+   delete) before emitting a verdict, and routing the result to a new
+   `superseded_upstream` class that contributes to `safe_to_adopt`, never
+   `unique_work_present`. The same rename-follow also covers route A's false
+   negatives (`FIELD_NOTES` §2) for a renamed path, not only a confirmed
+   patch-id hit -- a commit whose content-equivalence probe leaves every
+   missing path resolved as a rename is classified `superseded_upstream` too.
+   Tests: `test_gitlane.py::test_patch_id_hit_whose_path_was_renamed_upstream_is_superseded`
+   (the field-notes case, reproduced), plus a negative control
+   (`test_missing_path_that_was_genuinely_deleted_is_not_superseded`) proving a
+   plain delete does not get the same pass. `hook_activation_on_adopt` (item 2
+   below) and the post-adopt `A ` skew repair gap (item 4 below) remain open --
+   out of scope for this chip; item 4 in particular lives in
+   `scripts/safe_adopt_ref.py` / `scripts/ree_commit.py`, not in this detector.
 2. **`hook_activation_on_adopt` (P0), proposed and never catalogued**
    (`FIELD_NOTES` §8). Adopting origin materialised a file that *activated* a
    `PreToolUse` hook dormant only because its `[ -f ]` test was failing; the hook
