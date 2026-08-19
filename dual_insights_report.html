@@ -1,4 +1,14 @@
-<!-- DUAL_INSIGHTS_REPORT_VERSION: 2026-08-08.1 -->
+<!--
+  Dual-System Insights HTML template — REE_assembly house style, 2026-08-08.
+  Companion to insights_report_template.html; same design tokens (copied from
+  REE_assembly/progress.html), different layout: a two-column REE-side /
+  REE_assembly-side split plus an overlap section. DO NOT redesign the tokens or
+  component classes. Bump the version comment on every edit.
+  Write the FILLED copy to REE_assembly/dual_insights_report.html (overwrite, not
+  append). Served at http://localhost:8000/dual-insights-report by a route already
+  wired in serve.py; no server-side change needed per run.
+-->
+<!-- DUAL_INSIGHTS_REPORT_VERSION: 2026-08-19.1 -->
 <title>REE Dual-System Insights</title>
 <style>
   :root {
@@ -68,22 +78,27 @@
   p.body{font-size:13.5px;color:var(--ink);margin:0 0 4px;}
   p.body b{color:var(--ink);}
 
+  /* trend list -- REE-side high-iteration chains by confidence direction */
   .trend-list{list-style:none;margin:0;padding:0;}
   .trend-list li{display:flex;align-items:baseline;gap:8px;padding:5px 0;font-size:13px;border-top:1px dashed var(--line);}
   .trend-list li:first-child{border-top:none;}
   .trend-list .tid{font-family:var(--mono);font-weight:600;min-width:66px;}
   .trend-list .tpill{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;font-weight:600;white-space:nowrap;}
-  .tpill.gain{background:var(--confirmed)1c;color:var(--confirmed);}
-  .tpill.flat{background:var(--accent-soft);color:var(--accent);}
-  .tpill.neg{background:#b0464618;color:#c05a5a;}
-  .tpill.hold{background:var(--alive)1c;color:var(--alive);}
+  .tpill.gain{background:var(--confirmed)1c;color:var(--confirmed);}   /* terminal PASS/supports */
+  .tpill.flat{background:var(--accent-soft);color:var(--accent);}      /* active, unresolved */
+  .tpill.neg{background:#b0464618;color:#c05a5a;}                      /* weakens, unresolved */
+  .tpill.hold{background:var(--alive)1c;color:var(--alive);}           /* documented park */
   .trend-list .ttxt{color:var(--muted);}
 
+  /* metric row -- REE_assembly-side label/value pairs */
   .metric-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line);font-size:13px;}
   .metric-row:first-of-type{border-top:none;}
   .metric-row .mlabel{color:var(--muted);}
   .metric-row .mval{font-family:var(--mono);font-weight:600;color:var(--ink);text-align:right;}
 
+  /* overlap callouts -- .overlap = good overlap (fresh evidence meets open decision),
+     .hard = real ceiling that's also hard to read out of the tracking data,
+     .miss = settled science undercut by a governance blind spot */
   .callout{border-radius:10px;padding:16px 18px;margin-top:14px;font-size:13.5px;}
   .callout.overlap{background:var(--accent-soft);border:1px solid color-mix(in srgb, var(--accent) 35%, var(--line));}
   .callout.hard{background:var(--alive)14;border:1px solid color-mix(in srgb, var(--alive) 35%, var(--line));}
@@ -115,8 +130,8 @@
       <p class="lede">REE (the cognitive substrate under study) vs REE_assembly (the epistemically-governed system studying it) &mdash; the same signal, read two ways.</p>
     </div>
     <div class="stamp">
-      generated <b>2026-08-08T08:57:39Z</b><br>
-      fixed against <b>REE_assembly 2047b759a4</b><br>
+      generated <b>2026-08-19T16:56:36Z</b><br>
+      fixed against <b>REE_assembly b77451c289</b><br>
       companion: <a href="/insights-report">Project Insights &rarr;</a>
     </div>
   </header>
@@ -127,76 +142,91 @@
       <h2>Cognitive substrate</h2>
       <p class="side-intro">Does a mechanism work, is a ceiling real, is a claim gaining or losing confidence &mdash; never process health.</p>
 
+      <p class="body"><b>Hypothesis-space state, whole registry:</b> 37 questions, <b>123 hypotheses</b> &mdash; 45 eliminated, 28 confirmed, 47 alive, 3 split. Roughly <b>59% of the enumerated hypothesis space is now resolved</b>. That is the most direct measure of scientific progress in the assembly, and it is a REE-side number: it does not depend on how fast anything was adjudicated.</p>
+
       <h3>Competence-floor campaign (MECH-457 cluster)</h3>
-      <p class="body">Still <b>candidate / v3_pending</b> (as of 2026-07-24). Re-derive brake <b>has not fired</b> (0 confirmed <code>substrate_ceiling</code> verdicts). Decomposed 2026-07-22 into two narrower children while the umbrella is retained: <b>MECH-475</b> (uninformative value baseline) and <b>MECH-476</b> (acquisition/retention dissociation).</p>
+      <p class="body"><b>20 hypotheses &mdash; 14 eliminated, 4 confirmed, 2 split: the most resolved question in the registry, and now formally CLOSED TO FURTHER FAN-OUT</b> (2026-08-08). It accumulated 5 labelled GOV-FANOUT-1 portfolios (denominator 7 &rarr; 20) before its own standing rule fired the blocking recurrence flag. <code>decidable: true</code>. Five axes eliminated (capacity 769, drive-schedule 770, reward-coupling 771, credit-horizon 772, approach-primitive 781); <code>H-optim</code> (RND) confirmed as necessary-not-sufficient.</p>
+      <p class="body"><b>The scientifically interesting result is that the question changed shape.</b> V3-EXQ-780&rsquo;s <code>raw_view</code> arm installed a BC prior at 20.933 post-BC &mdash; the campaign&rsquo;s first supra-lift-target observation, 3/3 seeds &mdash; which RL refinement then eroded to 11.667. A competence-directed behavioural prior <em>can</em> produce competence; the substrate does not <em>retain</em> it. The ten prior legs were adjudicated on terminal competence, a DV structurally incapable of telling a failed manipulation from a successful one that decayed.</p>
+      <p class="body">Retention portfolio outcome: <code>H-retention-critic</code> <b>confirmed</b>, <code>H-retention-consolidation</code> <b>confirmed</b>, <code>H-retention-auxiliary-decay</code> <b>eliminated</b>, <code>H-consummation-binding</code> <b>eliminated</b>, <code>H-zworld-trained-instrument</code> <b>confirmed</b>. The retention frontier has been worked, not merely proposed.</p>
 
       <h3>Conversion-ceiling campaign (F-dominance cluster)</h3>
-      <p class="body">Largest failure-record count in <code>substrate_queue.json</code> (26). Its own text: arbitration-reweighting route <b>EXHAUSTED</b> (709/711/713, autopsied 2026-07-05); selection-face ceiling lifted via ARC-065/EXQ-569i, but every downstream behavioural retest since (654h, 485i, 625e, 460h, 460i) self-routed <code>substrate_not_ready_requeue</code>. Residual: <b>generalisation of the GAP-A lift has not been demonstrated</b> &mdash; not a missing build.</p>
+      <p class="body"><b><code>conversion_ceiling_root</code> (MECH-457 / ARC-065): 6 hypotheses, 2 eliminated / 4 alive. <code>decidable: false</code>.</b> Live gate is <code>H-objective-misspecification</code>, via a return-decomposition diagnostic &mdash; <b>not yet queued</b>. The former live gate V3-EXQ-737 ran and did not discriminate. <code>H-substrate-ceiling</code>, <code>H-f-dominance</code> and <code>H-observation-interface</code> all remain alive.</p>
+      <p class="body"><b><code>e3_fdominance_causal_discrimination</code> (MECH-439 / ARC-062): 6 hypotheses, 4 alive / 2 confirmed. <code>decidable: false</code>.</b> V3-EXQ-925 (2026-08-12) eliminated none of H1/H2/H4 &mdash; the F-lesion moved the score distribution with no consistent direction, and eligibility toggling almost never changed the winner. H3 was a near-miss (competitor influence 0.086 factual vs 0.096 F-lesioned, both just outside the driver&rsquo;s own 0.05 threshold on either side).</p>
+      <p class="body"><b>What was confirmed is a confound, not an answer:</b> <code>H0-selector-regime-confound</code> and <code>H5-score-scale-uncontrolled</code>. At default configuration the selector essentially never engages committed selection (<code>committed_fraction = 0.000</code>, entropy 0.998), so 925 may not have been a fair test of <em>any</em> of H1&ndash;H4 as MECH-439&rsquo;s committed-selection framing poses them. The next step is a regime-matched re-test, not another lesion.</p>
 
       <h3>High-iteration chains by confidence trend</h3>
       <ul class="trend-list">
-        <li><span class="tid">EXQ-603</span><span class="tpill gain">gained</span><span class="ttxt">SD-059/MECH-358, terminal supports</span></li>
-        <li><span class="tid">EXQ-460</span><span class="tpill gain">gained</span><span class="ttxt">closure-commit-entry, terminal PASS</span></li>
-        <li><span class="tid">EXQ-514</span><span class="tpill gain">gained</span><span class="ttxt">MECH-436, terminal supports</span></li>
-        <li><span class="tid">EXQ-569</span><span class="tpill gain">gained</span><span class="ttxt">ARC-065, ceiling lifted</span></li>
-        <li><span class="tid">EXQ-485</span><span class="tpill flat">flat</span><span class="ttxt">SD-033b/MECH-263 OFC, campaign active</span></li>
-        <li><span class="tid">EXQ-543/654/689</span><span class="tpill flat">flat</span><span class="ttxt">F-dominance ceiling cluster</span></li>
-        <li><span class="tid">EXQ-445</span><span class="tpill neg">negative</span><span class="ttxt">SD-032b DACC, active dacc-cluster investigation</span></li>
-        <li><span class="tid">EXQ-418</span><span class="tpill hold">on hold</span><span class="ttxt">SD-016, documented precondition, not lost</span></li>
+        <li><span class="tid">EXQ-603</span><span class="tpill gain">gaining</span><span class="ttxt">22 iterations, still running 2026-08-15 &mdash; the longest sustained line of inquiry in the corpus.</span></li>
+        <li><span class="tid">EXQ-689/937b</span><span class="tpill gain">gaining</span><span class="ttxt">937b landed today (14:21Z): per-bank envelope/conversion recording plus a K={4,6,8} generality axis.</span></li>
+        <li><span class="tid">EXQ-543/654</span><span class="tpill hold">holding</span><span class="ttxt">CRF substrate question closed (&ldquo;no further CRF amend owed&rdquo;), but the conversion question it fed migrated into a <code>decidable: false</code> ceiling.</span></li>
+        <li><span class="tid">EXQ-485</span><span class="tpill hold">holding</span><span class="ttxt">OFC analog; last manifest 2026-06-22, continued under new numbers.</span></li>
+        <li><span class="tid">EXQ-418</span><span class="tpill flat">parked</span><span class="ttxt">Parked on a stated environmental precondition (z_world cross-context separation) &mdash; not stalled.</span></li>
+        <li><span class="tid">EXQ-445</span><span class="tpill neg">weakens</span><span class="ttxt">Terminal <code>weakens</code> at 445h; continued via the dacc-cluster-862a-870a autopsy.</span></li>
+        <li><span class="tid">EXQ-514 / 569</span><span class="tpill gain">supports</span><span class="ttxt">Both terminal <code>supports</code>; 569 lifted its ceiling outright.</span></li>
       </ul>
 
       <h3>Ready-and-unbuilt substrate</h3>
-      <p class="body"><b>~48 entries</b> (upper bound only &mdash; see data-quality note in Project Insights; the field is inconsistently populated).</p>
+      <p class="body"><b>&le; 34 entries</b> &mdash; an upper bound. The structured field is unpopulated on 95 of 161 entries and at least two of the 34 are demonstrably already built. Highest-priority genuinely-unbuilt candidates: <code>SD-047</code>, <code>SD-048</code>, <code>sd_actor_critic_action_learning</code>, <code>MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION</code>, <code>SD-MECH267-CEM-SELECTION-FIX</code>.</p>
+      <p class="body"><b>Experiment queue depth: 0.</b> Nothing pending, claimed or in flight; the last completion (V3-EXQ-937b) landed 14:21Z today. This is a REE-side fact about the science pipeline having drained &mdash; not a REE_assembly-side failure.</p>
     </div>
 
     <div class="side">
       <div class="side-head assembly"><span class="dot"></span><span class="eyebrow assembly">REE_assembly-side</span></div>
       <h2>Governance throughput</h2>
-      <p class="side-intro">The apparatus's own throughput, independent of whether REE's cognition is any good.</p>
+      <p class="side-intro">The apparatus&rsquo;s own throughput, independent of whether REE&rsquo;s cognition is any good.</p>
 
       <h3>Autopsy turnaround</h3>
-      <div class="metric-row"><span class="mlabel">Median (15 sampled, 2026-08-02&ndash;08)</span><span class="mval">same&ndash;day / next&ndash;day</span></div>
-      <div class="metric-row"><span class="mlabel">Longest outstanding found this cycle</span><span class="mval">ARC-017 EXQ-129/135 &middot; 131 days</span></div>
-      <p class="body" style="margin-top:8px">Neither run ever surfaced in <code>pending_review.md</code> &mdash; both were non-diagnostic terminal states, so the queue's own liveness check never flagged them. A blind spot in the flagging logic, not a slow adjudicator.</p>
+      <div class="metric-row"><span class="mlabel">Median &mdash; 75 resolvable of 189 autopsies since 2026-07-20</span><span class="mval">0.7 d</span></div>
+      <div class="metric-row"><span class="mlabel">Mean / p90</span><span class="mval">4.5 d / 6.7 d</span></div>
+      <div class="metric-row"><span class="mlabel">Longest outstanding found this cycle</span><span class="mval">96.6 d</span></div>
+      <p class="body" style="margin-top:8px"><code>V3-EXQ-512a</code> ran 2026-05-04 and was autopsied 2026-08-09. The next longest are 42.2d (<code>604c</code>), 28.7d (<code>689d</code>, twice), 26.8d (<code>699</code>) and 20.4d (<code>707b</code>) &mdash; and <b>every one of those five was autopsied on 2026-07-20</b>, i.e. a single backlog-clearing sweep of old runs, not five independent neglect events. Read the mean as contaminated by that sweep and the median as the live figure; the eight most recent autopsies all sit between &minus;0.1 and 1.6 days.</p>
 
       <h3>Decision backlog age</h3>
-      <div class="metric-row"><span class="mlabel">Open decisions</span><span class="mval">2</span></div>
-      <div class="metric-row"><span class="mlabel">MECH-074d</span><span class="mval">discussing &middot; touched today</span></div>
-      <div class="metric-row"><span class="mlabel">SD-033e</span><span class="mval">pending_user &middot; touched today</span></div>
+      <div class="metric-row"><span class="mlabel">Open decisions</span><span class="mval">2 / 195</span></div>
+      <div class="metric-row"><span class="mlabel"><code>ARC-107</code> &mdash; promote_to_provisional, pending_user</span><span class="mval">~60 d</span></div>
+      <div class="metric-row"><span class="mlabel"><code>MECH-152</code> &mdash; demote_to_candidate, discussing</span><span class="mval">since 2026-04-01</span></div>
+      <p class="body" style="margin-top:8px">This is a change of <em>kind</em> from 2026-08-08, when both open rows had been touched that same morning. The backlog is the same size and a different age.</p>
 
       <h3>Claim churn</h3>
-      <div class="metric-row"><span class="mlabel">TASK_CLAIMS.json (currently visible)</span><span class="mval">77</span></div>
-      <div class="metric-row"><span class="mlabel">done / active / stale&gt;6h</span><span class="mval">74 / 3 / 0</span></div>
+      <div class="metric-row"><span class="mlabel">Opens per day (2026-08-18 / 2026-08-19)</span><span class="mval">104 / 103</span></div>
+      <div class="metric-row"><span class="mlabel">TASK_CLAIMS.json (currently visible &mdash; pruned at 24h)</span><span class="mval">207</span></div>
+      <div class="metric-row"><span class="mlabel">done / active / stale&gt;6h</span><span class="mval">200 / 7 / 1</span></div>
+      <p class="body" style="margin-top:8px">One stale claim of seven active, on ~100/day throughput, is a low residue (<code>metaworker-chip-20260818-wire-taskclaim-chipledger-remotetip</code>, ~15h).</p>
 
       <h3>Concurrency friction rate</h3>
-      <p class="body"><b>5 of 6</b> most-recent sessions (2026-08-07&ndash;08) show a friction signature (swept-content-surface &times;2, append-conflict &times;2, arbitration failure &times;1, allow-overlap &times;1). <b>All five are the mitigation machinery firing correctly</b> &mdash; content preserved, attribution resolved in every case &mdash; not incidents.</p>
+      <p class="body"><b>50 of 70 sessions (71%)</b> since 2026-07-20 mention at least one documented friction signature. By signature: <code>conflict</code> 27, <code>read-modify-write</code> 17, <code>swept</code> 15, <code>wedge</code> 13, <code>stash</code> 12, <code>contention</code> 12, <code>contaminat*</code> 11, <code>throwaway worktree</code> 10, <code>skew</code> 8, <code>diverged</code> 6, <code>refwedge</code> 4, <code>autostash</code> 2, <code>index.lock</code> 0.</p>
+      <p class="body"><b>Read this carefully.</b> It is <em>not</em> 71% of sessions losing work &mdash; the corpus is biased by construction, since a session that hits friction is far likelier to write a WORKSPACE_STATE entry about it. What it does establish is that coordination-plane repair is the dominant <em>logged</em> activity: only ~19 of the 70 entries carry a science-skill header.</p>
+      <p class="body"><code>index.lock</code> at <b>0</b> and <code>autostash</code> at <b>2</b> are worth naming as wins &mdash; those were the two dominant signatures earlier in the project&rsquo;s history, and the <code>ree_commit.py</code> private-index / rebase-lock work has evidently retired them. The live residue has moved up a layer, to ref-convergence wedges and read-modify-write adoption.</p>
 
       <h3>Literature-pull cadence</h3>
-      <p class="body">4 new reviews landed today; 0 open priority-1 items; no coverage debt visible this window.</p>
+      <p class="body"><b>127 <code>targeted_review_*</code> directories landed in 30 days</b> &mdash; 4 on 2026-08-19, 6 on 2026-08-18. Meanwhile <code>evidence_backlog.v1.json</code> requests literature for <b>0 of 412 items</b>. Lit-pull is running at high throughput on routing entirely external to the backlog generator.</p>
     </div>
   </div>
 
   <section class="overlap-sec">
-    <div class="sec-head"><span class="n">Where the two overlap</span><h2>Three named cases this cycle</h2><span class="rule"></span></div>
+    <div class="sec-head"><span class="n">Where the two overlap</span><h2>2 named cases this cycle</h2><span class="rule"></span></div>
+    <p class="sec-note">Naming these is the point of the split: only the REE_assembly half of each is actionable by changing process rather than science.</p>
 
     <div class="callout overlap">
-      <b class="k">MECH-074d &middot; the good kind of overlap</b>
-      <p>Carries <b>both</b> a live REE-side signal (today's V3-EXQ-894 found the attribution-gate mechanism fails on 2/3 seeds, bimodal not uniform, with an unresolved sigma-threshold confound) <b>and</b> an open REE_assembly-side decision (<code>demote_to_candidate</code>, discussing) sitting in front of the user right now. Fresh evidence arriving exactly where a decision is waiting for it &mdash; not stale process on top of settled science.</p>
+      <b class="k">MECH-457 / conversion-ceiling root &middot; hard problem <em>plus</em> an unqueued gate</b>
+      <p><b>REE-side:</b> <code>conversion_ceiling_root</code> is <code>decidable: false</code> with 4 of 6 hypotheses alive, and its parent <code>competence_floor</code> is closed to further fan-out. That half is genuinely hard; no amount of process improvement touches it.</p>
+      <p><b>REE_assembly-side:</b> the named live gate (<code>H-objective-misspecification</code>, via a return-decomposition diagnostic) is <b>&ldquo;NOT yet queued&rdquo;</b> &mdash; and <code>experiment_queue.json</code> is currently <b>empty</b>. A drained queue plus a named, unqueued live gate on the assembly&rsquo;s own hero cluster is a scheduling gap, not a scientific one. <b>This is the actionable half.</b></p>
     </div>
 
     <div class="callout hard">
-      <b class="k">f_dominance_conversion_ceiling &middot; hard science, and hard to read</b>
-      <p>Genuine hard problem on the REE side (real ceiling, route exhausted, generalisation undemonstrated) that is <i>also</i> hard to audit on the REE_assembly side: its entire 26-failure-record history is one long unstructured free-text <code>status</code> blob in <code>substrate_queue.json</code>, with no clean <code>ready</code> boolean. The science being hard and the tracking being hard to read are separate, and only the second is a quick governance-hygiene fix.</p>
+      <b class="k">MECH-439 / ARC-062 &middot; hard problem <em>plus</em> a small adjudication lag</b>
+      <p><b>REE-side:</b> <code>e3_fdominance_causal_discrimination</code> is <code>decidable: false</code>; V3-EXQ-925 confirmed only a confound (<code>H0-selector-regime</code>, <code>H5-score-scale</code>), leaving H1&ndash;H4 all alive. The correct next move is a regime-matched re-test, which is a design problem.</p>
+      <p><b>REE_assembly-side:</b> <code>v3_exq_936_mech439_f_variance_share_under_f_demotion</code> (PASS, 2026-08-17) is the single item sitting in <code>pending_review.md</code>, generated 2026-08-18T14:11Z &mdash; a ~2-day adjudication lag on the one run that speaks to this cluster. Small, well inside the 0.7d-median norm&rsquo;s tail, but it is the <em>only</em> thing in the review queue.</p>
     </div>
 
     <div class="callout miss">
-      <b class="k">ARC-017 (EXQ-129/135) &middot; the inverse case</b>
-      <p>A REE-side result that was never scientifically contested (both FAILs turned out to be measurement/test-design defects) but sat for 131 days purely because of a REE_assembly-side blind spot &mdash; no pending-review flag ever fires for a non-diagnostic terminal FAIL with no claim dispute. The claim was fine; the review-queue's flagging logic missed it.</p>
+      <b class="k">Explicitly NOT an overlap &middot; f_dominance_conversion_ceiling</b>
+      <p>It carries the largest failure-record count in <code>substrate_queue.json</code> (26) and is <b>not</b> a build gap &mdash; its own status text records the arbitration-reweighting route as EXHAUSTED and autopsied (709/711/713, 2026-07-05) with &ldquo;no new build owed&rdquo;. Reading that count as a REE_assembly-side backlog would manufacture work the science has already ruled out.</p>
     </div>
   </section>
 
   <div class="foot">
-    generated by <code>/dual-insights</code> &middot; REE_assembly on <code>origin/master</code> &middot; commit <code>2047b759a4</code><br>
+    generated by <code>/dual-insights</code> &middot; REE_assembly on <code>origin/master</code> &middot; commit <code>b77451c289</code><br>
     companion: <a href="/insights-report">Project Insights &rarr;</a> &middot; source: <a href="https://github.com/Latent-Fields/REE_assembly/blob/master/dual_insights_report.md">dual_insights_report.md</a>
   </div>
 </div>
