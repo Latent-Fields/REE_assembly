@@ -135,6 +135,12 @@ class RunRecord:
     metrics_path: Path
     summary_path: Path
     manifest_status: str
+    # queue_id (2026-08-19, run_id identifier hygiene): "" for legacy manifests
+    # that predate the field. Exists so _detect_and_mark_duplicate_emissions can
+    # tell "the same queue item re-emitted" from "two different queue items whose
+    # run_id happens to collapse to the same experiment_type stem" -- see that
+    # function's docstring. Not otherwise scored or surfaced.
+    queue_id: str = ""
     final_status: str = "PASS"
     fail_hits: list[StopHit] = field(default_factory=list)
     failure_signatures: list[str] = field(default_factory=list)
@@ -1769,6 +1775,9 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
         machine = str(manifest.get("machine", "") or "").strip()
         machine_class = str(manifest.get("machine_class", "") or "").strip()
+        # queue_id, same reason -- see the RunRecord field comment for why this
+        # exists (run_id identifier hygiene / letter-drop stem collisions).
+        queue_id = str(manifest.get("queue_id", "") or "").strip()
         # canonical-profile provenance, read the same way as substrate_hash above:
         # caller-supplied, absent on the legacy corpus (no-op default).
         canonical_profile = str(manifest.get("canonical_profile", "") or "").strip()
@@ -1792,6 +1801,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 metrics_path=metrics_path,
                 summary_path=summary_path,
                 manifest_status=status,
+                queue_id=queue_id,
                 failure_signatures=[str(x) for x in signatures],
                 metrics=metrics,
                 claim_ids_tested=claim_ids_tested,
@@ -1839,11 +1849,24 @@ def _detect_and_mark_duplicate_emissions(
     """Auto-mark byte-identical-output duplicate emissions as superseded.
 
     Within each experiment_type, runs that share an identical numeric-metrics
-    signature are treated as duplicate emissions of the same underlying run
-    (typical causes: runner re-emission after restart, deterministic re-runs
-    from regex-bug-period queue replays). The latest emission is kept as
-    canonical; earlier emissions are mutated in-memory to
+    signature AND the same queue_id are treated as duplicate emissions of the
+    same underlying run (typical causes: runner re-emission after restart,
+    deterministic re-runs from regex-bug-period queue replays). The latest
+    emission is kept as canonical; earlier emissions are mutated in-memory to
     evidence_direction='superseded' so the existing scoring loop excludes them.
+
+    The queue_id match is load-bearing, not incidental (2026-08-19, run_id
+    identifier hygiene / letter-drop stem collisions -- confirmed
+    failure_autopsy_V3-EXQ-920a_2026-08-16). `experiment_type` is a run-pack
+    directory name derived from the driver's `EXPERIMENT_TYPE` constant, and a
+    lettered bug-fix re-queue (V3-EXQ-920 -> V3-EXQ-920a) commonly reuses that
+    constant unchanged, so TWO DIFFERENT queue_ids can legitimately land in one
+    experiment_type bucket. Grouping on metrics-signature alone would then treat
+    two genuinely different runs as "the same run re-emitted" whenever their
+    numeric metrics happen to coincide, silently superseding one queue item's
+    real evidence under the other's. A blank queue_id (pre-queue_id-field
+    legacy manifests) still groups with other blanks, so old-corpus dedup
+    behaviour for that data is unchanged; only cross-queue_id collapsing is new.
 
     On-disk manifests are NOT modified -- the user's manual supersession
     decisions (visible via evidence_direction_note) remain authoritative. If
@@ -1862,14 +1885,14 @@ def _detect_and_mark_duplicate_emissions(
         # experiment_type -- avoids second-guessing manual decisions.
         if any(r.evidence_direction == "superseded" for r in runs):
             continue
-        by_signature: dict[str, list[RunRecord]] = defaultdict(list)
+        by_signature: dict[tuple[str, str], list[RunRecord]] = defaultdict(list)
         for run in runs:
             if not run.metrics:
                 continue  # cannot fingerprint without numeric metrics
             sig_src = json.dumps(sorted(run.metrics.items()), default=str)
             sig = hashlib.sha1(sig_src.encode()).hexdigest()[:12]
-            by_signature[sig].append(run)
-        for sig, dup in by_signature.items():
+            by_signature[(sig, run.queue_id)].append(run)
+        for (sig, _qid), dup in by_signature.items():
             if len(dup) < 2:
                 continue
             dup_sorted = sorted(dup, key=lambda r: (r.timestamp, r.run_id))

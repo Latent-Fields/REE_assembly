@@ -2140,18 +2140,77 @@ def test_blocked_substrate_reason_survives_regen():
 # off the raw on-disk manifest and route them to /diagnose-errors).
 
 def _run_record(run_id="run1", manifest_status="PASS", claim_ids_tested=None,
-                 experiment_type="exp_type_1"):
+                 experiment_type="exp_type_1", queue_id="", timestamp=None,
+                 metrics=None):
     return b.RunRecord(
         experiment_type=experiment_type,
         run_id=run_id,
         timestamp_raw="2026-08-02T10:50:35Z",
-        timestamp=datetime(2026, 8, 2, 10, 50, 35, tzinfo=timezone.utc),
+        timestamp=timestamp or datetime(2026, 8, 2, 10, 50, 35, tzinfo=timezone.utc),
         manifest_path=Path(f"/tmp/{run_id}/manifest.json"),
         metrics_path=Path(f"/tmp/{run_id}/metrics.json"),
         summary_path=Path(f"/tmp/{run_id}/summary.md"),
         manifest_status=manifest_status,
         claim_ids_tested=claim_ids_tested or [],
+        queue_id=queue_id,
+        metrics=metrics or {},
     )
+
+
+def test_duplicate_emission_same_queue_id_still_superseded():
+    """Preserved behaviour: two runs of the SAME queue_id with identical
+    metrics are re-emissions of one underlying run and the earlier one is
+    still auto-marked superseded."""
+    early = _run_record(run_id="r1", queue_id="V3-EXQ-1",
+                         timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+                         metrics={"m": 1.0})
+    late = _run_record(run_id="r2", queue_id="V3-EXQ-1",
+                        timestamp=datetime(2026, 1, 2, tzinfo=timezone.utc),
+                        metrics={"m": 1.0})
+    warnings = b._detect_and_mark_duplicate_emissions({"exp_type_1": [early, late]})
+    assert early.evidence_direction == "superseded"
+    assert late.evidence_direction == "unknown"
+    assert len(warnings) == 1
+    assert warnings[0]["duplicate_run_id"] == "r1"
+    assert warnings[0]["canonical_run_id"] == "r2"
+
+
+def test_duplicate_emission_legacy_blank_queue_id_still_superseded():
+    """Preserved behaviour for pre-queue_id-field legacy manifests: both
+    blank, still grouped and superseded exactly as before this fix."""
+    early = _run_record(run_id="r1", queue_id="",
+                         timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+                         metrics={"m": 1.0})
+    late = _run_record(run_id="r2", queue_id="",
+                        timestamp=datetime(2026, 1, 2, tzinfo=timezone.utc),
+                        metrics={"m": 1.0})
+    warnings = b._detect_and_mark_duplicate_emissions({"exp_type_1": [early, late]})
+    assert early.evidence_direction == "superseded"
+    assert len(warnings) == 1
+
+
+def test_duplicate_emission_different_queue_id_not_superseded():
+    """THE FIX (run_id identifier hygiene / letter-drop stem collisions,
+    failure_autopsy_V3-EXQ-920a_2026-08-16). Two DIFFERENT queue_ids that
+    land in the same experiment_type bucket (because a lettered re-queue's
+    driver never updates its EXPERIMENT_TYPE constant -- see
+    REE_assembly/scripts/check_runid_letter_hygiene.py) and happen to
+    produce identical numeric metrics must NOT be collapsed into one
+    "duplicate emission": that would silently supersede one queue item's
+    real evidence under the other's, exactly the V3-EXQ-920/920a shape."""
+    v920 = _run_record(run_id="v3_exq_920_fishtank_20260811T210906Z_v3",
+                        queue_id="V3-EXQ-920",
+                        timestamp=datetime(2026, 8, 11, tzinfo=timezone.utc),
+                        metrics={"survival_steps": 1234.0})
+    v920a = _run_record(run_id="v3_exq_920_fishtank_20260814T223432Z_v3",
+                         queue_id="V3-EXQ-920a",
+                         timestamp=datetime(2026, 8, 14, tzinfo=timezone.utc),
+                         metrics={"survival_steps": 1234.0})
+    warnings = b._detect_and_mark_duplicate_emissions(
+        {"v3_exq_920_fishtank": [v920, v920a]})
+    assert v920.evidence_direction == "unknown"
+    assert v920a.evidence_direction == "unknown"
+    assert warnings == []
 
 
 def test_evaluate_runs_error_status_propagates_not_defaulted_to_pass():
