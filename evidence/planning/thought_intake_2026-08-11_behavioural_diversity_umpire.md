@@ -7,7 +7,11 @@ nav_exclude: true
 **Raw thought file:** `docs/thoughts/2026-08-11_behavioural_diversity_umpire.md`
 **Session:** jovial-shannon-35d300, 2026-08-11
 **Status:** processed, claim registered (Q-092, registered 2026-08-11 at session-land once the
-earlier claims.yaml contention cleared)
+earlier claims.yaml contention cleared). NO-GO on queuing as of the 2026-08-12 precondition
+check below. Experiment design refined 2026-08-18 (chip `chip-20260817-q092-umpire-design-guards`)
+with three literature-surfaced guards -- see "Minimal experiment" step 2 and the
+`targeted_review_q_092` lit-pull -- still NOT queued; queuing goes through `/queue-experiment`
+as its own chip once the preconditions clear.
 
 ---
 
@@ -196,44 +200,115 @@ methodology supporting this one open question, not a separate claim.
 1. **Register Q-092 (verify id) into `claims.yaml`** once the current contention on that file
    clears -- mechanical, the YAML block above is ready. `build_claims_json.py` after.
 2. **Minimal experiment, smallest version that tests the idea convincingly** -- deliberately
-   reuses existing validated substrate and code rather than building anything new:
+   reuses existing validated substrate and code rather than building anything new. **Refined
+   2026-08-18** to add three guards surfaced by a targeted literature pull
+   (`evidence/literature/targeted_review_q_092/`: Combrisson & Jerbi 2015, Ojala & Garriga 2010,
+   Goergen et al. 2018) -- all three `supports` the existing design and none of them changes its
+   shape; each is a `complicated (buildable)` refinement, not a new unknown:
    - **Conditions.** Env-A = `SD-054` reef `reef_enabled=True` (current default config).
      Env-B = the SAME substrate with `reef_enabled=False` (already-supported flag; zero new
      environment code). This is a genuinely different ecological problem (no shelter,
      continuous exposure) rather than a cosmetic variant.
    - **Policies.** Train (or reuse existing trained checkpoints if available for both
      conditions) the same architecture/hyperparameters separately in each condition, >=3 seeds
-     each (matching the existing Rung-2 seed-count convention).
+     each (matching the existing Rung-2 seed-count convention, scaled up per-seed episode count
+     per the power calculation below rather than by adding seeds).
+   - **Guard 1 -- episode-budget power calculation (Combrisson & Jerbi 2015), NEW.** Combrisson
+     & Jerbi showed classification accuracy on PURE NOISE reaches 70%+ in two-class problems at
+     small held-out sample sizes, because the sampling variance of accuracy scales as ~1/n. The
+     permutation null correctly controls the false-positive rate at ANY n -- so this is not a
+     false-PASS risk -- but at small n its distribution is wide and a real effect fails to clear
+     it: the likelier failure for Q-092 is a false FALSIFY from an episode budget nobody chose
+     deliberately. Fixed here with a back-of-envelope power calculation, normal approximation to
+     the binomial sampling distribution of held-out accuracy (one-sided alpha=0.05, power=0.80,
+     z_alpha=1.645, z_beta=0.84), targeting the smallest accuracy-above-chance that would be
+     scientifically meaningful given `MECH-439`'s F-dominance-ceiling caveat -- 65%, chosen to
+     sit below `MECH-191`'s own >=70%/class-above-chance bar for a related discriminability
+     classifier so as not to under-power a genuinely modest reef-substrate effect:
+     ```
+     n = (z_alpha*sqrt(p0*(1-p0)) + z_beta*sqrt(p1*(1-p1)))^2 / (p1-p0)^2
+       = (1.645*sqrt(0.5*0.5) + 0.84*sqrt(0.65*0.35))^2 / (0.65-0.50)^2
+       ~= 67 held-out episodes (total, across both conditions)
+     ```
+     **Chosen held-out budget: >=45 held-out episodes per condition (>=90 total across
+     reef-ON/reef-OFF), from >=3 seeds x >=15 held-out episodes/seed/condition.** This clears
+     the ~67-episode target with margin rather than sitting on it, stays inside the existing
+     >=3-seed Rung-2 convention (scaling episodes/seed, not seed count), and is additional to
+     the held-in training episodes -- not carved out of them. A true effect smaller than 65%
+     accuracy-above-chance is still under-powered by this budget; that is a stated limit of a
+     deliberately small first pass, not a silent one.
    - **Held-out split.** Fit any feature normalisation / classifier only on a subset of
-     episodes per seed; evaluate on a disjoint, never-touched set of episodes (or, if seeds
-     permit, hold out an entire seed per condition) -- this is the discipline the existing
-     Rung framework does not state explicitly and this thought's proposal specifically adds.
+     episodes per seed; evaluate on a disjoint, never-touched set of episodes meeting the
+     Guard-1 budget above (or, if seeds permit, hold out an entire seed per condition) -- this is
+     the discipline the existing Rung framework does not state explicitly and this thought's
+     proposal specifically adds.
    - **Features.** Reuse, do not reinvent: the 2026-08-10 reef review already computes most of
      the needed statistics (per-episode `in_reef` fraction, excursion count/duration/depth,
      harm-rate in/out of reef, zone-transition rate, spatial-occupancy histogram). Build the
      trajectory-segment feature vector from that existing instrumentation.
+   - **Variance-confound mitigation (Goergen et al. 2018), NEW.** Reef-OFF episodes plausibly
+     carry higher trajectory variance than reef-ON (no refuge structure to organise excursions
+     around) -- a linear classifier can separate purely on that variance difference, clear both
+     the label-permutation null and the matched-control guard below, and mean nothing about
+     behavioural differentiation. Before fitting: compute per-class per-feature variance; either
+     variance-normalise each feature within-condition before classification, or report per-class
+     feature variance alongside the headline accuracy so a variance-driven result is visible
+     rather than silent.
    - **Classifier.** A simple, interpretable model (logistic regression or a shallow
      gradient-boosted-tree ensemble) -- reuse the harness pattern from
      `experiments/v3_exq_686_mech191_signal_state_discriminability.py` (the codebase's one
      existing classifier-as-discriminator experiment) rather than writing a new one from
      scratch.
-   - **Test (3a).** Held-out accuracy vs. a label-permutation null (shuffle env-A/env-B labels
-     across episodes, refit+reevaluate N times, compare observed accuracy to that null
-     distribution).
+   - **Test (3a) -- label permutation.** Held-out accuracy vs. a label-permutation null (shuffle
+     env-A/env-B labels across episodes, refit+reevaluate N times, compare observed accuracy to
+     that null distribution). Tests whether the classifier found ANY class structure.
+   - **Test (3a-ii) -- within-class feature permutation (Ojala & Garriga 2010), NEW.** A
+     label-permutation null cannot distinguish a classifier that learned genuine JOINT structure
+     across the five feature families (refuge occupancy, excursion structure, hazard
+     relationships, transitions, spatial distribution) from one riding a single dominant
+     marginal -- most plausibly refuge occupancy, the feature a reef-presence manipulation moves
+     most directly. Within each class, independently permute each feature COLUMN across episodes
+     (preserving each feature's within-class marginal distribution while destroying the
+     dependency BETWEEN features), refit+reevaluate N times, and compare observed accuracy to
+     this second null distribution -- another permutation loop over the same fitted pipeline,
+     near-zero extra compute. Reported as a companion diagnostic, not a second PASS/FAIL gate on
+     Stage 1 discriminability (Stage 1 is still answered by 3a/3b/4): a result that clears 3a but
+     not the feature-permutation null means the discriminability finding is carried by one
+     feature and answers "no" to the claim's actual multivariate question even though the
+     headline test passed -- state this plainly in the writeup, and follow up with a
+     leave-one-feature-out ablation to name the marginal responsible.
    - **Control (3b).** Same pipeline, same two environments, but trajectories from an
      untrained / random-action policy (or the existing hand-coded reef-aware heuristic
      mentioned in `V3-EXQ-522`'s own design note) instead of the trained agent. Trained-policy
      discriminability must exceed this control's by a pre-registered margin.
+   - **Guard 3 -- null/design-variable control runs (Goergen et al. 2018), NEW.** Before
+     trusting the real reef-ON/reef-OFF result in EITHER direction, run the IDENTICAL pipeline
+     on (i) null data (feature vectors carrying no genuine label relationship -- e.g. drawn from
+     a single condition and split arbitrarily) and (ii) the design variables themselves --
+     classify held-out episodes by seed, or by cross-validation fold index, where the true
+     answer is chance. This is the Görgen et al. "same analysis approach": it catches a
+     cross-validation-fold/episode-blocking mismatch that would otherwise produce
+     SYSTEMATICALLY BELOW-CHANCE accuracy on the real comparison -- a broken pipeline
+     masquerading as a clean null, not an absence of signal. Both design-variable runs must land
+     at chance (inside the label-permutation null's own spread) before the real result is
+     interpreted in either direction. See `claims.yaml` Q-092 `what_would_answer` for how a
+     below-chance real result is now classified as a pipeline fault rather than a falsifying
+     signature.
    - **Selectivity (4).** Re-run held-out evaluation on episodes from a mildly perturbed
      Env-A (`hazard_food_attraction` shifted by a modest amount, or `reef_patch_radius` +/-1 --
      both already-existing config knobs on the same substrate, no new environment needed) and
      confirm the discriminator trained on the ORIGINAL Env-A/Env-B contrast still classifies
      these as "A" at a comparably high rate (the signature is robust to a nuisance
      perturbation, not merely fit to one specific instantiation).
-   - **PASS bar.** (3a) exceeds permutation null AND (3b) trained policy exceeds matched
-     control AND (4) selectivity holds. Any one failing should be reported as which stage
-     failed (this generalises the existing Rung framework's own "classify which Rung/FP
-     failed" discipline, per `behavioral_diversity_acceptance_criteria.md`).
+   - **PASS bar.** Guard 3's design-variable control runs land at chance (pipeline-validity
+     precondition, checked FIRST -- see below) AND (3a) exceeds permutation null AND (3b) trained
+     policy exceeds matched control AND (4) selectivity holds. Any one failing should be
+     reported as which stage failed (this generalises the existing Rung framework's own
+     "classify which Rung/FP failed" discipline, per `behavioral_diversity_acceptance_criteria.md`).
+     A SYSTEMATICALLY BELOW-CHANCE result on the real comparison is reported as a pipeline fault
+     to diagnose against Guard 3, never as evidence for or against the claim. (3a-ii)'s
+     feature-permutation result is reported alongside a PASS as a companion diagnostic per its
+     own bullet above, not as a fifth gate.
    - **Interpretation, only after PASS.** Feature-importance / coefficient inspection to name
      which components of the signature the classifier relied on -- reported as a descriptive
      gloss, explicitly not yet a claim of adaptive strategic control.
@@ -252,9 +327,15 @@ methodology supporting this one open question, not a separate claim.
    this methodology once Q-092 is registered and a first PASS/FAIL result exists -- but editing
    it now would be a second, unclaimed `evidence/planning/` resource touched outside this
    session's opened claim scope. Flagged as a follow-on, not performed here (Scope Discipline).
-5. No lit-pull performed for this intake -- the methodology (classifier two-sample test with a
-   permutation null) is standard statistics/ML practice, not a REE-specific biological claim
-   requiring citation-backed grounding the way `INV-074` did.
+5. **Superseded 2026-08-17/18.** A targeted lit-pull WAS subsequently performed against the
+   classifier-methodology design itself (`evidence/literature/targeted_review_q_092/`:
+   Combrisson & Jerbi 2015, Ojala & Garriga 2010, Goergen et al. 2018), and its findings are
+   incorporated into the "Minimal experiment" design above (Guards 1-3) and into `claims.yaml`
+   Q-092's `what_would_answer`. The original reasoning above still holds for why no
+   REE-domain-specific citation-backed grounding was sought (the methodology is
+   domain-general classifier statistics, not a biological claim) -- what changed is that the
+   domain-general methodology itself turned out to have citable, actionable failure modes worth
+   pulling literature for.
 
 ---
 

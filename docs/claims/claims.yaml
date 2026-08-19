@@ -81082,18 +81082,38 @@
     produce non-zero-variance trajectory-segment feature vectors on held-out episodes (a run
     where either condition collapses to a single degenerate trajectory self-routes
     substrate_not_ready, not a verdict).
+    PIPELINE-VALIDITY PRECONDITION (added 2026-08-18, Goergen et al. 2018 "same analysis
+    approach"): before the real reef-ON/reef-OFF result is interpreted in EITHER direction, the
+    identical pipeline must be run on null data and on the design variables themselves
+    (classifying held-out episodes by seed, or by cross-validation fold, where the true answer
+    is chance) and both must land at chance level, inside the label-permutation null's own
+    spread. See the minimal-experiment design's "Guard 3" in
+    thought_intake_2026-08-11_behavioural_diversity_umpire.md for the concrete recipe.
     CONFIRMING signature: a classifier trained on held-in episodes classifies held-out
-    episodes' condition (reef-ON vs reef-OFF) at accuracy exceeding a label-permutation null
-    (p<0.05) AND exceeding the same pipeline run on an untrained/random-policy control sampled
-    from the same two environments (rules out "the environments just look different"
-    regardless of policy) AND remains selectively sensitive to the reef-presence axis under an
-    orthogonal nuisance perturbation (e.g. hazard_food_attraction shifted) rather than losing
-    or gaining discriminability indiscriminately.
-    FALSIFYING signature: held-out accuracy does not clear the permutation null; OR it clears
-    the null but does not exceed the matched untrained-policy control (the signal is
-    environment-geometry, not policy-behaviour); OR the orthogonal-perturbation check shows the
-    discriminator is equally sensitive to the nuisance axis as to the real one (not
-    ecological-problem-specific).
+    episodes' condition (reef-ON vs reef-OFF), at a held-out episode budget set by the design's
+    power calculation ("Guard 1"), at accuracy exceeding a label-permutation null (p<0.05) AND
+    exceeding the same pipeline run on an untrained/random-policy control sampled from the same
+    two environments (rules out "the environments just look different" regardless of policy)
+    AND remains selectively sensitive to the reef-presence axis under an orthogonal nuisance
+    perturbation (e.g. hazard_food_attraction shifted) rather than losing or gaining
+    discriminability indiscriminately. Report, as a companion diagnostic and NOT a gate on this
+    PASS (added 2026-08-18, Ojala & Garriga 2010 "Guard 2"): whether accuracy also clears a
+    within-class feature-permutation null. A PASS that does not clear the feature-permutation
+    null means the signal is carried by a single dominant marginal (most plausibly refuge
+    occupancy) rather than genuine joint structure across the feature families -- this bears on
+    Stage 2 interpretation, not on whether Stage 1 discriminability exists, and must be stated
+    plainly rather than folded silently into a bare PASS.
+    FALSIFYING signature: held-out accuracy sits AT chance, inside the permutation null's own
+    spread (a genuine null -- no evidence of discriminability); OR it clears the null but does
+    not exceed the matched untrained-policy control (the signal is environment-geometry, not
+    policy-behaviour); OR the orthogonal-perturbation check shows the discriminator is equally
+    sensitive to the nuisance axis as to the real one (not ecological-problem-specific).
+    NOT A FALSIFYING SIGNATURE -- A PIPELINE FAULT TO DIAGNOSE (added 2026-08-18, Goergen et al.
+    2018): held-out accuracy sits SYSTEMATICALLY BELOW chance, below the permutation null's own
+    lower tail. This is the signature of a cross-validation-fold/episode-blocking mismatch, not
+    an absence of signal -- do not report it as a clean null in either direction. Diagnose the
+    fold structure against the pipeline-validity precondition's null/design-variable control
+    runs above, fix the mismatch, and re-run before drawing any conclusion.
   depends_on:
     - ARC-065     # diversity-generation pathway the umpire would be evaluating evidence about
     - ARC-062     # context-discriminator architecture -- distinguished, not conflated, in notes
@@ -81127,7 +81147,12 @@
     forward-plan REFERENCE to this claim's methodology, not a duplicate or a dependency edge.
   evidence_quality_note: >
     Proposed 2026-08-11 from user thought intake. No experimental evidence yet. Minimal
-    experiment design in thought_intake_2026-08-11_behavioural_diversity_umpire.md "Next steps."
+    experiment design in thought_intake_2026-08-11_behavioural_diversity_umpire.md "Next steps"
+    step 2, refined 2026-08-18 with an episode-budget power calculation, a within-class
+    feature-permutation test, null/design-variable control runs, and a variance-matching
+    mitigation (see evidence/literature/targeted_review_q_092/ -- Combrisson & Jerbi 2015, Ojala
+    & Garriga 2010, Goergen et al. 2018). NO-GO on queuing as of the 2026-08-12 precondition
+    check in the same design doc -- still not queued.
   location: evidence/planning/thought_intake_2026-08-11_behavioural_diversity_umpire.md
 
 # --- continuity / branching / substrate-migration cluster
