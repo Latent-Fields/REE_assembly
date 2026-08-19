@@ -1,6 +1,45 @@
 # ree-v3 autostash-pop residue: the stash holds UNLANDED SUPERSEDING work
 
-**Status: AWAITING USER REVIEW.**
+**Status: RESOLVED 2026-08-19T17:06Z. The Section 7 decisions were taken and executed the same day; `stash@{0}` is RETAINED, not integrated.** The body below is preserved verbatim as the 07:55Z record -- do not read its "UNLANDED" framing as current.
+
+## 0. Resolution (appended 2026-08-19T17:06Z, session `holding-for-direction-540de6`)
+
+This doc was written at **07:55Z**, ~8h BEFORE the disposition it asked for was executed. Its
+headline ("the stash holds UNLANDED SUPERSEDING work") was true when written and is **no longer
+current**. Section 7's two options were resolved as a **third path**, on evidence:
+
+| Section 7 asked | What happened |
+|---|---|
+| 1. Land the stashed four-mode implementation + its contract? | **Partly.** `refractory` landed as an ADDITIONAL default-off mode (ree-v3 `692f852`, 15:56Z, chip `chip-20260819-contextmemory-add-refractory-mode`) -- as an ELIGIBILITY rule ORTHOGONAL to the landed `contextmemory_write_usage_balancing` SCORE rule, composing rather than replacing it. The four-mode enum was NOT adopted wholesale. |
+| 2. Or revise/abandon, and drop `stash@{0}`? | **Revised, and the stash is RETAINED (not dropped).** `gumbel` was rejected on the stashed work's own measurement. |
+
+**What landed, verified 2026-08-19T17:06Z against `origin/main`:**
+
+- `contextmemory_write_selection` = `"argmin"` | `"refractory"`, `contextmemory_write_refractory_k`, alongside `contextmemory_write_usage_balancing` / `_usage_bias_weight` / `_usage_decay`. The stash's `contextmemory_write_usage_weight` landed under the clearer name `_usage_bias_weight`.
+- `tests/contracts/test_contextmemory_write_address_selection.py` -- the contract Section 4 reports as untracked-and-unlandable **is on origin**, and is RICHER than the stashed 23: **26 tests**, including `test_refractory_preserves_content_conditioning`, `test_refractory_occupancy_is_content_determined_and_the_bias_is_not`, `test_landed_usage_balancing_is_a_fixed_cycle_and_refractory_is_not` and `test_the_conscience_bias_subsumes_the_refractory_mask_at_default_weight`. So Section 4's coupled-set (a2) concern is **discharged**: implementation and contract landed together.
+- The Section 3 measurement table is recorded in `evidence/planning/contextmemory_write_selection_comparison_20260819.md` and was **independently re-verified** by `chip-20260819-contextmemory-writesel-verify-measurement` -- exact agreement on `argmin`/`refractory` cosine and Jaccard and on `gumbel` Jaccard **1.000**, with one small discrepancy on `gumbel` occupied-slot cosine (+0.7525 staged vs **+0.7325** re-measured, -0.020). The load-bearing finding is unaffected.
+
+**Symbol containment of `stash@{0}` against `origin/main` (2026-08-19T17:06Z):** the only identifiers present
+in the stash and absent from origin are `contextmemory_write_gumbel_{tau_init,tau_min,anneal_steps}`
+and `contextmemory_write_usage_weight` (renamed). I.e. **the sole unlanded content is the `gumbel`
+write mode** -- the mode the stash's own MEASURED WARNING says makes the bank content-blind
+(cluster Jaccard **1.000**, addressing destroyed). It was dropped deliberately, on its own evidence.
+
+**Therefore: DO NOT re-apply `stash@{0}`.** Re-applying it would re-add the rejected `gumbel`
+mode, rename `_usage_bias_weight` back to `_usage_weight`, and revert the orthogonal-composition
+refactor to a mutually-exclusive four-value enum -- a regression, not an integration.
+
+**Preservation, verified 2026-08-19T17:06Z (quadruple):** `stash@{0}` intact; local tag
+`stash-archive/20260819-dd4b0a4`; and **on origin** as
+`ree-v3` `integration/contextmemory-write-selection-436f-salvage` -> `0d7ea5b`, whose parent is
+`dd4b0a4d68` **verbatim**. So the stash content survives a `git gc` and is reachable from any box.
+
+**Known follow-on, already owned:** `audit_stashes.py` and the hygiene tick still re-flag this
+dispositioned entry as `HAND-AUTHORED CONTENT` at every session close (it did so again at this
+session's close, which is how this refresh was prompted). That is tracked by the open chip
+`chip-20260819-audit-stashes-suppress-dispositioned-retain` -- not re-chipped here.
+
+---
 
 Written by chip `chip-20260819-reev3-autostash-pop-conflict-residue`, 2026-08-19T07:55Z, on `DLAPTOP`.
 
