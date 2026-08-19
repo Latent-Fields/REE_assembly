@@ -46,7 +46,7 @@ metaworker box runs no experiments, it dispatches chip-ledger work to bounded
   "machine": "ree-cloud-5",
   "hostname": "ree-cloud-5",
   "last_tick_utc": "2026-08-02T20:55:00Z",
-  "state": "starting | idle | dispatching | paused | throttled | locked-out | timed-out | runner | draining-to-runner | yielding-to-experiment",
+  "state": "starting | idle | dispatching | paused | throttled | withheld | locked-out | timed-out | runner | draining-to-runner | yielding-to-experiment",
   "health": "dispatching | idle | not-dispatching | holding | stalled | dead-on-arrival | unknown",
   "health_reason": "dispatched 1 chip(s) this cycle",
   "no_dispatch_streak": 0,
@@ -80,7 +80,7 @@ of WORK.
 | `dispatching` | dispatched this cycle, or has live workers, or a sibling cycle holds the per-box lock | no |
 | `idle` | nothing eligible to dispatch (`eligible_work == 0`) | **no** -- a box with nothing it is allowed to take is fine |
 | `not-dispatching` | eligible work, none dispatched, below the stall threshold | not yet -- watch `no_dispatch_streak` |
-| `holding` | dispatch deliberately withheld: plane paused, resource throttle, or the experiment runner owns the box | no |
+| `holding` | dispatch deliberately withheld: plane paused, resource throttle, account-wide usage-limit cooldown (`state: "withheld"`, `scripts/dispatch_usage_cooldown.py`), or the experiment runner owns the box | no |
 | `stalled` | eligible work and no dispatch for `no_dispatch_streak` >= 12 consecutive cycles (1h) | **yes** |
 | `dead-on-arrival` | this cycle's own `claude -p` died without acting (usage limit, or no output at all) | **yes** |
 | `unknown` | health could not be determined -- e.g. an older wrapper supplying no work observations | **yes, weakly** -- it is never a green light |
