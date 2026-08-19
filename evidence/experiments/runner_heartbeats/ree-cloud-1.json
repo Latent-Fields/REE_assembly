@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-19T13:37:58Z",
+  "last_tick_utc": "2026-08-19T13:53:05Z",
   "state": "running",
   "current_exq": "V3-EXQ-940",
   "current_exq_started_utc": "2026-08-19T13:33:03.526800+00:00",
@@ -9,17 +9,28 @@
   "current_claim_id": "MECH-467",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / P0",
-    "runs_done": 0,
+    "run_label": "Seed 43 / P0",
+    "runs_done": 4,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 40,
     "episodes_total": 60,
-    "overall_pct": 0.0
+    "overall_pct": 51.9
   },
-  "seconds_elapsed": 295,
-  "seconds_remaining": 4500,
+  "seconds_elapsed": 1202,
+  "seconds_remaining": 178,
   "recent_lines": [
-    "Seed 42 Condition P0"
+    "Seed 42 Condition P0",
+    "[P0 probe] ep 40/60  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 probe] ep 60/60  rv=0.00000  threshold=0.4  converging=True",
+    "[train] p0 seed=42 ep 60/60 converged=True aborted=False rv=0.00000",
+    "Seed 42 Condition ARM_STOCK",
+    "verdict: PASS window=0.7644 ticks=688/900 cause=health_depleted events=0 rate=0.000000 minhealth=0.000 contam=0.500",
+    "Seed 42 Condition ARM_CONTAM_OFF",
+    "verdict: PASS window=1.0000 ticks=900/900 cause=none events=1 rate=0.001111 minhealth=1.000 contam=0.000",
+    "Seed 42 Condition ARM_HEALTH_DECOUPLED",
+    "verdict: PASS window=1.0000 ticks=900/900 cause=none events=3 rate=0.003333 minhealth=1.000 contam=0.000",
+    "Seed 43 Condition P0",
+    "[P0 probe] ep 40/60  rv=0.00000  threshold=0.4  converging=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
