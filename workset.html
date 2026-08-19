@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-08-19.1 -->
+<!-- WORKSET_VERSION: 2026-08-19.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -589,7 +589,7 @@ function renderChips() {
     (b.spawned_at || '').localeCompare(a.spawned_at || ''));
   list.innerHTML = sorted.map(ch => {
     const statusCls = (ch.status === 'withdrawn' || ch.status === 'done') ? ' status-' + ch.status : '';
-    const titleTip = (ch.tldr || ch.prompt || '').replace(/"/g, '&quot;');
+    const titleTip = (ch.tldr || ch.title || '').replace(/"/g, '&quot;');
     // claimed_by/claimed_at/claim_note added 2026-08-02 (chip_ledger.py
     // "CLAIMING" section) -- distinct from status, which only ever reflects
     // resolution. Only meaningful while status is still "open"; a resolved
@@ -600,7 +600,10 @@ function renderChips() {
          (ch.claim_note ? (' -- ' + ch.claim_note) : ''))
       : 'not claimed';
     const claimText = isClaimed ? ('claimed: ' + ch.claimed_by) : '--';
-    const rowTip = (ch.prompt || ch.tldr || ch.title)
+    // has_prompt comes from the projected /api/chips payload (serve.py
+    // read_chips_projected) -- the prompt TEXT is fetched on click, not shipped
+    // with the list. Fall back to ch.prompt so a ?full=1 payload still works.
+    const rowTip = (ch.has_prompt || ch.prompt || ch.tldr || ch.title)
       ? 'Click to copy this chip\'s prompt (with a chip_ledger.py claim step prepended) -- ' +
         'paste into a new session to claim and run it'
       : 'No prompt recorded for this chip';
@@ -649,8 +652,19 @@ function chipClaimPreamble(chipRef) {
 // 2026-08-03); the claim preamble still goes on those too, as long as the
 // chip has a chip_ref (every chip has had one since the ledger's first
 // schema version, so this is not a further fallback in practice).
-function copyChipPrompt(chip, rowEl) {
-  const body = (chip && (chip.prompt || chip.tldr || chip.title)) || '';
+async function copyChipPrompt(chip, rowEl) {
+  // The list payload carries has_prompt, not the ~4 MB of prompt text (see
+  // renderChips above). Fetch this one chip's prompt now; fall back to an
+  // inline chip.prompt if the payload happened to carry one (?full=1).
+  let body = (chip && (chip.prompt || '')) || '';
+  if (!body && chip && chip.chip_ref && chip.has_prompt) {
+    try {
+      const r = await fetch('/api/chips/prompt?chip_ref=' +
+        encodeURIComponent(chip.chip_ref));
+      if (r.ok) body = (await r.json()).prompt || '';
+    } catch (e) { /* fall through to tldr/title below */ }
+  }
+  body = body || (chip && (chip.tldr || chip.title)) || '';
   if (!body) {
     toast('This chip has no prompt text to copy');
     return;

@@ -4525,6 +4525,111 @@ def read_chips() -> dict:
     return empty
 
 
+# --- Chip ledger projection ---------------------------------------------------
+#
+# TASK_CHIPS.json is ~7 MB (1160+ chips) and its ONE consumer is the collapsed
+# "Pending chips" panel in workset.html. Measured 2026-08-19, three fields are
+# 87.6% of those bytes and the panel renders NONE of them:
+#
+#     prompt           3.98 MB  61.3%   needed only on CLICK (copy to clipboard)
+#     resolution_note  1.45 MB  22.3%   never rendered
+#     prompt_history   0.26 MB   4.0%   never rendered
+#
+# So `/api/chips` projects to the columns the panel actually draws and carries a
+# `has_prompt` boolean in place of the prompt text; `/api/chips/prompt` serves
+# one chip's prompt when a row is clicked. The panel also re-polls every 20 s per
+# open tab, so the parse is cached on (mtime_ns, size) and an unchanged ledger
+# answers the poll with a 304 via ETag.
+#
+# Deliberately NOT a schema or storage change: TASK_CHIPS.json is a git-tracked
+# coordination file written concurrently from this Mac and ree-cloud-5, merged by
+# chip_ledger.py's merge_origin_into_local(), committed through ree_commit.py's
+# compare-and-swap, and audited by its per-item delta summary and plain git diff.
+# A binary or columnar store would break every one of those. The columns are free
+# at the serving layer instead.
+
+# Fields workset.html's renderChips()/copyChipPrompt() read. Keep in sync with
+# that function -- a field dropped here silently renders blank there.
+CHIP_PANEL_FIELDS = (
+    "chip_ref",
+    "status",
+    "title",
+    "tldr",
+    "session_id",
+    "cwd",
+    "spawned_at",
+    "claimed_by",
+    "claimed_at",
+    "claim_note",
+)
+
+_CHIPS_CACHE = {"key": None, "projected": None, "prompts": None, "etag": None}
+_CHIPS_CACHE_LOCK = threading.Lock()
+
+
+def _chips_cache_key():
+    """(mtime_ns, size) of the ledger, or None if it is not there."""
+    try:
+        st = TASK_CHIPS_FILE.stat()
+        return (st.st_mtime_ns, st.st_size)
+    except OSError:
+        return None
+
+
+def read_chips_projected() -> tuple:
+    """Return (payload, etag) for the panel: chips reduced to CHIP_PANEL_FIELDS.
+
+    `prompt` is replaced by a `has_prompt` boolean -- the panel only needs to
+    know whether there is something to copy; the text itself comes from
+    /api/chips/prompt on click. Parse is memoised on (mtime_ns, size), so the
+    20 s poll from every open tab costs a stat() rather than a 7 MB parse.
+    """
+    key = _chips_cache_key()
+    with _CHIPS_CACHE_LOCK:
+        if key is not None and _CHIPS_CACHE["key"] == key:
+            return _CHIPS_CACHE["projected"], _CHIPS_CACHE["etag"]
+
+    data = read_chips()
+    rows = []
+    prompts = {}
+    for ch in data.get("chips", []):
+        if not isinstance(ch, dict):
+            continue
+        row = {k: ch[k] for k in CHIP_PANEL_FIELDS if k in ch}
+        # Same fallback chain copyChipPrompt() uses, so has_prompt is true
+        # exactly when a click would produce something to paste.
+        body = ch.get("prompt") or ch.get("tldr") or ch.get("title")
+        row["has_prompt"] = bool(body)
+        rows.append(row)
+        ref = ch.get("chip_ref")
+        if ref and ch.get("prompt"):
+            prompts[ref] = ch["prompt"]
+
+    payload = {
+        "schema_version": data.get("schema_version", "task_chips/v1"),
+        "projection": "panel/v1",
+        "prompt_endpoint": "/api/chips/prompt?chip_ref=",
+        "chips": rows,
+    }
+    if data.get("empty_note"):
+        payload["empty_note"] = data["empty_note"]
+    etag = '"chips-%s-%s"' % (key[0], key[1]) if key else '"chips-none"'
+
+    with _CHIPS_CACHE_LOCK:
+        _CHIPS_CACHE.update(
+            {"key": key, "projected": payload, "prompts": prompts, "etag": etag}
+        )
+    return payload, etag
+
+
+def read_chip_prompt(chip_ref: str):
+    """One chip's recorded spawn_task prompt, or None. Served on row click."""
+    read_chips_projected()  # refreshes the cache if the ledger moved
+    with _CHIPS_CACHE_LOCK:
+        prompts = _CHIPS_CACHE["prompts"] or {}
+    return prompts.get(chip_ref)
+
+
 # --- Status/history plane query (status_history_plane:SHP-3, Q2=both) ---------
 
 STATUS_HISTORY_LOG = PLANNING_DIR / "status_history" / "status_snapshot.v1.jsonl"
@@ -6734,9 +6839,32 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             body = json.dumps(summary, indent=2, default=str).encode()
             self._json_response(body)
             return
+        if path in ("/api/chips", "/api/chips/prompt"):
+            from urllib.parse import parse_qs  # noqa: WPS433
+            qs = parse_qs(urlparse(self.path).query)
         if path == "/api/chips":
-            body = json.dumps(read_chips(), indent=2, default=str).encode()
-            self._json_response(body)
+            # Projected to the panel's columns -- see read_chips_projected().
+            # ?full=1 returns the raw ledger for anything that needs every field.
+            if qs.get("full", ["0"])[0] in ("1", "true", "yes"):
+                body = json.dumps(read_chips(), indent=2, default=str).encode()
+                self._json_response(body)
+                return
+            payload, etag = read_chips_projected()
+            if self.headers.get("If-None-Match") == etag:
+                self.send_response(304)
+                self.send_header("ETag", etag)
+                self.end_headers()
+                return
+            body = json.dumps(payload, default=str).encode()
+            self._json_response(body, extra_headers={"ETag": etag})
+            return
+        if path == "/api/chips/prompt":
+            ref = (qs.get("chip_ref", [""])[0] or "").strip()
+            prompt = read_chip_prompt(ref) if ref else None
+            body = json.dumps(
+                {"chip_ref": ref, "prompt": prompt}, default=str
+            ).encode()
+            self._json_response(body, status=200 if prompt else 404)
             return
         if path == "/api/workset/assignments":
             try:
@@ -7251,11 +7379,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Expires", "0")
         super().end_headers()
 
-    def _json_response(self, body: bytes, status: int = 200):
+    def _json_response(self, body: bytes, status: int = 200,
+                       extra_headers: dict = None):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Content-Length", str(len(body)))
+        for name, value in (extra_headers or {}).items():
+            self.send_header(name, value)
         self.end_headers()
         self.wfile.write(body)
 
