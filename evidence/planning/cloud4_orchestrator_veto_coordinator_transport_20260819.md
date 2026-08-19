@@ -240,15 +240,9 @@ failures on trunk, unrelated to this change and not addressed here.
   that passes is an unchanged-invariant control).
 * `ree-v3/coordinator/test_cloud_scaler_transport_parity.py` -- +6 (affinity
   parity, exclusion branch ordering, power-on authority retained), 36 total.
-* `REE_Working/scripts/test_ree_metaworker_heartbeat_coordinator.py` -- **26**,
+* `REE_Working/scripts/test_ree_metaworker_heartbeat_coordinator.py` -- 27,
   driven against a REAL loopback HTTP server so the request is genuinely built,
   sent and parsed rather than pattern-matched.
-
-Counts verified per file by running them, not asserted from the diff: **30 /
-36 / 23 / 26**. `test_cloud_scaler_orchestrator_veto.py` is unchanged at 23 --
-it gained no cases, only a re-point of its three call sites through the new
-3-tuple signature with `coord_status={}`, which keeps it a pin on the GIT
-FALLBACK path specifically (its judgement is byte-identical to 2026-08-18's).
 
 Roughly half of each set are negative controls: every fail-open path, both
 bounds, "never fatal", "never a `payload` key", and "must fire on the ticks
