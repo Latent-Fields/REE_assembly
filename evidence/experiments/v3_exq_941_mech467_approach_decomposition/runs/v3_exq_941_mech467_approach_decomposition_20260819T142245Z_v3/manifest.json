@@ -1,0 +1,203 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_941_mech467_approach_decomposition",
+  "run_id": "v3_exq_941_mech467_approach_decomposition_20260819T142245Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-19T14:22:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "denominator_lost_at_approach_initiation",
+    "note": "Approaches are essentially never initiated: the agent does not head for benefit-bearing targets at all, so the missing consumption events are lost UPSTREAM of arrival. This confirms at battery level the substrate-level reading of the 2026-08-18 navigation-immobility scoping spike (MECH-439 F-dominance conversion ceiling, amplified by the E3 hold-and-repeat cadence). Read pooled_move_efficacy and e3_tick_fraction_mean alongside: they say how much of the immobility is wall-blocking and how much is cadence rather than selection.",
+    "preconditions": [
+      {
+        "name": "ARM_PRECOMMIT::movement_instrument_live",
+        "precondition": "movement_instrument_live",
+        "arm": "ARM_PRECOMMIT",
+        "kind": "readiness",
+        "description": "Forced cardinal movement actions from a fresh env DO change the agent's cell, so a count of position changes measures motion rather than instrument failure.",
+        "control": "Positive control: a throwaway env stepped through each of the 4 cardinal actions, counting cell changes. This is the SAME statistic the load-bearing criterion routes on (a COUNT OF POSITION CHANGES), not a magnitude or distance proxy for it -- the V3-EXQ-643 same-statistic rule. Measured 2026-08-19 on this env: 4 of 4.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT::window_instrument_live",
+        "precondition": "window_instrument_live",
+        "arm": "ARM_PRECOMMIT",
+        "kind": "readiness",
+        "description": "The cell stepped the decomposition window at all. Below this floor no rate normalised by realised ticks is measurable.",
+        "control": "n_realised_ticks counted directly in the eval loop.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 579.333333,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT::benefit_bearing_resources_present",
+        "precondition": "benefit_bearing_resources_present",
+        "arm": "ARM_PRECOMMIT",
+        "kind": "readiness",
+        "description": "Benefit-bearing (goal-tag) resource cells were live on the grid. 874b defect (2) made into a gate: an APPROACH is undefined without a target, and 874b let this count vary silently with its ruleset axis.",
+        "control": "Mean live goal-tag cells read off the env's own _resource_type_grid each tick -- measured, not inferred from nominal spawn weights.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 5.261209,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT::approach_is_definable",
+        "precondition": "approach_is_definable",
+        "arm": "ARM_PRECOMMIT",
+        "kind": "readiness",
+        "description": "The agent was not already sitting on / adjacent to its nearest target for the whole window, so there was somewhere to approach FROM.",
+        "control": "Mean Chebyshev distance to the nearest benefit-bearing cell over the window. Step 2.5b adversarial design audit (2026-08-19): with 12 resources on a 6x6 grid the mean distance is small, and at distance 0 no STRICT decrease is possible -- so a near-zero mean distance would produce an approach_initiation_rate of ~0 that ALIASES onto the `never_approached` verdict while meaning the opposite (the agent was already there). Same statistic the initiation count is derived from.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.329301,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PRECOMMIT::distance_instrument_live",
+        "precondition": "distance_instrument_live",
+        "arm": "ARM_PRECOMMIT",
+        "kind": "readiness",
+        "description": "A distance-to-nearest-target was computable on the window's ticks, so an approach/retreat classification is defined.",
+        "control": "n_distance_samples counted whenever a goal-tag cell existed.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 579.333333,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY::movement_instrument_live",
+        "precondition": "movement_instrument_live",
+        "arm": "ARM_REPLAY",
+        "kind": "readiness",
+        "description": "Forced cardinal movement actions from a fresh env DO change the agent's cell, so a count of position changes measures motion rather than instrument failure.",
+        "control": "Positive control: a throwaway env stepped through each of the 4 cardinal actions, counting cell changes. This is the SAME statistic the load-bearing criterion routes on (a COUNT OF POSITION CHANGES), not a magnitude or distance proxy for it -- the V3-EXQ-643 same-statistic rule. Measured 2026-08-19 on this env: 4 of 4.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY::window_instrument_live",
+        "precondition": "window_instrument_live",
+        "arm": "ARM_REPLAY",
+        "kind": "readiness",
+        "description": "The cell stepped the decomposition window at all. Below this floor no rate normalised by realised ticks is measurable.",
+        "control": "n_realised_ticks counted directly in the eval loop.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 647.666667,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY::benefit_bearing_resources_present",
+        "precondition": "benefit_bearing_resources_present",
+        "arm": "ARM_REPLAY",
+        "kind": "readiness",
+        "description": "Benefit-bearing (goal-tag) resource cells were live on the grid. 874b defect (2) made into a gate: an APPROACH is undefined without a target, and 874b let this count vary silently with its ruleset axis.",
+        "control": "Mean live goal-tag cells read off the env's own _resource_type_grid each tick -- measured, not inferred from nominal spawn weights.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.484615,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY::approach_is_definable",
+        "precondition": "approach_is_definable",
+        "arm": "ARM_REPLAY",
+        "kind": "readiness",
+        "description": "The agent was not already sitting on / adjacent to its nearest target for the whole window, so there was somewhere to approach FROM.",
+        "control": "Mean Chebyshev distance to the nearest benefit-bearing cell over the window. Step 2.5b adversarial design audit (2026-08-19): with 12 resources on a 6x6 grid the mean distance is small, and at distance 0 no STRICT decrease is possible -- so a near-zero mean distance would produce an approach_initiation_rate of ~0 that ALIASES onto the `never_approached` verdict while meaning the opposite (the agent was already there). Same statistic the initiation count is derived from.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.176923,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY::distance_instrument_live",
+        "precondition": "distance_instrument_live",
+        "arm": "ARM_REPLAY",
+        "kind": "readiness",
+        "description": "A distance-to-nearest-target was computable on the window's ticks, so an approach/retreat classification is defined.",
+        "control": "n_distance_samples counted whenever a goal-tag cell existed.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 647.666667,
+        "threshold": 20.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_approaches_are_initiated": true,
+      "C3_arrivals_convert_to_consumption": true,
+      "C2_initiated_approaches_complete": true
+    },
+    "preconditions_scope_note": ""
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1b39ad1156495adb27da07438ce391ed15495d26ea83fe8c6df41923a14679e8",
+  "substrate_commit": {
+    "commit": "4c66e69b8c2ede86b6e08b3a359d685b48436119",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 4161,
+    "ticks_active": 4131,
+    "writer_calls": 4161,
+    "active_frac": 0.992790194664744,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
