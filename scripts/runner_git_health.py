@@ -240,6 +240,49 @@ count remains a bare count and a pointer to `audit_stashes.py` for a Mac
 session -- that tool's fuller grading is not reproduced here, and nothing
 plays its role for a remote worker.
 
+WHY LITERATURE EVIDENCE ENTRIES ARE GRADED TOO (added 2026-08-19)
+-------------------------------------------------------------------
+Until this chip, `grade_path`'s only identity test was a run manifest's
+`run_id` + `outcome`. A literature evidence entry
+(`evidence/literature/<review>/entries/<slug>/record.json` + `summary.md`,
+see `evidence/literature/README.md`) has neither, so an untracked one fell
+through to the generic basename step -- whose `MAX_CANDIDATES` cap essentially
+never happens to try the right one of the ~2200 origin `record.json`/
+`summary.md` files -- and ended up a silent `no_counterpart_other` NOTE.
+Confirmed (chip-20260819-githealth-untracked-literature-blindspot): a
+complete, schema-valid GOV-BEHADJ-1/SD-005/ARC-010 entry sat untracked on the
+Mac for 6 days while this probe printed "0 stranded run manifest(s)" and "All
+probed checkouts structurally clean." Worse, `build_experiment_indexes.py`'s
+literature indexer globs the WORKING TREE, so a regen on that box bakes the
+untracked entry into committed derived artifacts as a permanent citation --
+see `audit_dangling_citations.py`, which catches the citation half of that
+(cited but untracked) but is structurally blind to this half (untracked and
+NOT yet cited by anything), since after a later regen on a different box drops
+the row again the entry is cited nowhere either.
+
+Identity is the entry SLUG -- the directory name under `entries/` -- rather
+than a run_id, graded the same way: present anywhere on origin (any review,
+mirroring how a run manifest is graded across flat/pack form) means `clear`;
+present under a different slug-review pairing with the SAME slug but
+DIFFERENT content is `lit_divergent` (the literature analogue of a phantom-
+completion); absent everywhere is `lit_finding`, a genuine strand. Reported in
+its OWN count line -- see `literature grading` in the summary -- deliberately
+not folded into "stranded run manifest(s)", so that line can never again read
+as "nothing is stranded" while a literature entry sits untracked beside it.
+Slug uniqueness (the assumption both this and `audit_dangling_citations.py`
+rest on) was measured 2213 slugs, 0 collisions across `origin/master`,
+2026-08-18.
+
+Deliberately NOT extended to the `--ignored` bucket beyond the generic
+dispatch already in `grade_path` (no `.gitignore` rule in REE_assembly matches
+`record.json` or `summary.md`, unlike the `*.bak` rule that motivated that
+bucket for run manifests) and NOT cross-checked against the PARENT-checkout
+staleness correction (`crosscheck_stranded_against_parent`) that run manifests
+get: literature entries are authored on the Mac by governance / `/lit-pull`
+sessions, never written by a cloud worker's ~60s pull loop, so the stale-
+worker-ref shape that correction exists for (`v3_exq_614`, a worker's own ref
+being merely OLD) has no literature-entry analogue to correct.
+
 USAGE
 -----
     python3 scripts/runner_git_health.py                # whole fleet + the Mac
@@ -413,6 +456,15 @@ CHURN = re.compile(
 # ".bak" splits -- stripping this is what made the 490h manifest findable.
 BAK = re.compile(r"^(.*)\.bak(?:\..*)?$")
 
+# A literature evidence entry: evidence/literature/<review>/entries/<slug>/
+# (record.json|summary.md). The slug (group 1) is graded like a run manifest's
+# run_id -- see the module docstring's "WHY LITERATURE EVIDENCE ENTRIES ARE
+# GRADED TOO" -- because it, not the path, is what audit_dangling_citations.py
+# and the claim_evidence indexer both key on, and it is globally unique across
+# reviews (2213 slugs, 0 collisions, verified 2026-08-18).
+LIT_ENTRY = re.compile(
+    r"^evidence/literature/[^/]+/entries/([^/]+)/(record\.json|summary\.md)$")
+
 # --dry-run smoke residue. TWO independent signals, both set by
 # ree-v3 experiments/pack_writer.py:520 / :341 under `dry_run`: the filename
 # gets a `_dry_` prefix and the manifest doc gets `dry_run: true`. Either is
@@ -548,6 +600,53 @@ def grade_path(root, ref, rel, idx):
                                 if raw is not None else None),
         }
 
+    # 1L) LITERATURE-ENTRY grading. Same shape as step 1, keyed on the entry
+    #     SLUG instead of a run_id (see module docstring, "WHY LITERATURE
+    #     EVIDENCE ENTRIES ARE GRADED TOO"). Deliberately intercepts BEFORE
+    #     step 2: basename "record.json"/"summary.md" is shared by every
+    #     entry in the corpus (~2200 each), so step 2's MAX_CANDIDATES cap
+    #     would almost never happen to try this entry's own origin path --
+    #     that gap is exactly what let a real stranded entry read as an
+    #     un-triageable "no_counterpart_other" note for 6 days.
+    m_lit = LIT_ENTRY.match(rel)
+    if m_lit:
+        slug = m_lit.group(1)
+        same_slug = idx.get("lit_paths", {}).get(slug, ())
+        cands = [p for p in same_slug if p.rsplit("/", 1)[-1] == base]
+        for p in cands[:MAX_CANDIDATES]:
+            blob = git(root, "show", "%s:%s" % (ref, p))
+            if blob is None:
+                continue
+            if base == "record.json":
+                odoc = as_json(blob)
+                if doc is not None and odoc is not None and is_superset(odoc, doc):
+                    return "clear", None
+            elif raw is not None and blob == raw:
+                return "clear", None
+        if cands:
+            # The slug AND this exact filename both exist on origin, but no
+            # candidate's content matched -- a rewritten / re-classified
+            # entry, not a strand. Same shape as run-manifest DIVERGENT: one
+            # of the two copies disagrees and which is right is not knowable
+            # from here.
+            return "lit_divergent", {
+                "path": rel,
+                "slug": slug,
+                "kind": base,
+                "bytes": len(raw or ""),
+                "origin_paths": cands[:MAX_CANDIDATES],
+                "content_sha256": (hashlib.sha256(raw.encode("utf-8")).hexdigest()
+                                    if raw is not None else None),
+            }
+        if same_slug:
+            # The slug exists on origin (its OTHER file landed) but not this
+            # one -- a partial landing, not a full strand; the missing half
+            # is more precise than "stranded".
+            return "note", "literature_partial"
+        return "lit_finding", {
+            "path": rel, "slug": slug, "kind": base, "bytes": len(raw or ""),
+        }
+
     # 2) Basename grading, on the name AND on the de-.bak'd stem.
     cands = list(idx["byname"].get(base, ()))
     if stem:
@@ -590,11 +689,16 @@ def build_index(tree):
     grade_path can COMPARE CONTENT before clearing. The two sets alone answer
     "does this run_id exist on origin", which is not the same question as "is
     the local copy the same run".
+
+    `lit_paths` (slug -> the origin paths -- record.json AND/OR summary.md --
+    that carry it) is the literature-entry counterpart, keyed on LIT_ENTRY's
+    slug rather than a run_id, for the same reason and the same shape.
     """
     byname = {}
     flat_runs = set()
     pack_runs = set()
     runpaths = {}
+    lit_paths = {}
     for p in tree:
         b = p.rsplit("/", 1)[-1]
         byname.setdefault(b, []).append(p)
@@ -608,8 +712,11 @@ def build_index(tree):
             if j > 0:
                 pack_runs.add(rest[:j])
                 runpaths.setdefault(rest[:j], []).append(p)
+        m = LIT_ENTRY.match(p)
+        if m:
+            lit_paths.setdefault(m.group(1), []).append(p)
     return {"byname": byname, "flat_runs": flat_runs, "pack_runs": pack_runs,
-            "runpaths": runpaths}
+            "runpaths": runpaths, "lit_paths": lit_paths}
 
 
 def origin_match(root, ref, doc, raw, paths):
@@ -867,10 +974,13 @@ def grade_repo(root, ref, do_ignored=False):
 
     findings = []
     divergent = []
+    lit_findings = []
+    lit_divergent = []
     notes = {}
     other_paths = []
     ignored = 0
     truncated = 0
+    lit_truncated = 0
     for rel in untracked:
         kind, payload = grade_path(root, ref, rel, idx)
         if kind == "clear":
@@ -882,11 +992,21 @@ def grade_repo(root, ref, do_ignored=False):
             if len(divergent) < MAX_FINDINGS:
                 divergent.append(payload)
             continue
+        if kind == "lit_divergent":
+            if len(lit_divergent) < MAX_FINDINGS:
+                lit_divergent.append(payload)
+            continue
         if kind == "finding":
             if len(findings) >= MAX_FINDINGS:
                 truncated += 1
                 continue
             findings.append(payload)
+            continue
+        if kind == "lit_finding":
+            if len(lit_findings) >= MAX_FINDINGS:
+                lit_truncated += 1
+                continue
+            lit_findings.append(payload)
             continue
         notes[payload] = notes.get(payload, 0) + 1
         # NAME the un-attributable ones (bounded). They stay NOTES -- not run
@@ -901,6 +1021,9 @@ def grade_repo(root, ref, do_ignored=False):
     out = {"untracked": len(untracked), "ignored": ignored,
            "findings": findings, "divergent": divergent,
            "truncated": truncated, "notes": notes,
+           "literature_findings": lit_findings,
+           "literature_divergent": lit_divergent,
+           "literature_truncated": lit_truncated,
            "no_counterpart_other_paths": other_paths,
            "ref": ref, "ref_age_hours": ref_age_hours(root, ref),
            "prepull": grade_prepull_stashes(root, ref)}
@@ -1339,6 +1462,26 @@ def apply_claims(graded, claims):
             info["findings"] = kept
             info["claim_covered"] = covered
             info.setdefault("notes", {})["claim_covered"] = len(covered)
+
+        # Literature-entry findings get the identical treatment -- a slug
+        # covered by an active claim is another session's in-flight
+        # /lit-pull (or similar) work, not a strand. Mirrors the run-manifest
+        # branch immediately above; kept as a separate list (not merged into
+        # `findings`/`claim_covered`) for the same reason grade_repo keeps
+        # literature_findings separate -- see its own count line.
+        lkept, lcovered = [], []
+        for f in info.get("literature_findings") or []:
+            c = claim_covering(claims, repo, f.get("path", ""))
+            if c:
+                d = dict(f)
+                d["claim"] = c
+                lcovered.append(d)
+            else:
+                lkept.append(f)
+        if lcovered:
+            info["literature_findings"] = lkept
+            info["literature_claim_covered"] = lcovered
+            info.setdefault("notes", {})["literature_claim_covered"] = len(lcovered)
         # ...and the same for the named `no_counterpart_other` paths, so an
         # in-flight planning doc or script is attributed rather than left as an
         # anonymous "absent from origin" line for someone to chase.
@@ -1715,6 +1858,59 @@ def classify(d):
             if len(div) > 5:
                 reasons.append(f"    ... and {len(div) - 5} more (use --json)")
 
+        # LITERATURE-ENTRY strand / claim-cover / divergence. Same three-way
+        # split as a run manifest, keyed on the entry SLUG instead of run_id
+        # -- see module docstring, "WHY LITERATURE EVIDENCE ENTRIES ARE
+        # GRADED TOO" (chip-20260819-githealth-untracked-literature-
+        # blindspot). Reported in its OWN lines, never folded into the run-
+        # manifest counts above, so "0 stranded run manifest(s)" can no
+        # longer be misread as "nothing here is stranded".
+        lit_covered = u.get("literature_claim_covered") or []
+        if lit_covered:
+            reasons.append(
+                f"{len(lit_covered)} untracked literature evidence entry(ies) "
+                f"covered by an ACTIVE TASK_CLAIMS entry -- live work, NOT a "
+                f"strand; do not touch")
+            for f in lit_covered[:3]:
+                c = f.get("claim") or {}
+                reasons.append(
+                    f"    {f.get('slug', '?')} -- {f.get('path', '?')} "
+                    f"(claim {c.get('session_id', '?')} on {c.get('resource', '?')})")
+        lit_strand = u.get("literature_findings") or []
+        if lit_strand:
+            n = len(lit_strand) + int(u.get("literature_truncated") or 0)
+            reasons.append(
+                f"{n} STRANDED literature evidence entry(ies) -- parse as "
+                f"evidence/literature/*/entries/*/(record.json|summary.md) "
+                f"and have NO counterpart on origin under this slug, at any "
+                f"review path. A regen that globs the working tree "
+                f"(build_experiment_indexes.py's literature indexer) can bake "
+                f"this in as a permanent dangling citation the moment it runs "
+                f"on this box -- see audit_dangling_citations.py. RECOVER "
+                f"BEFORE any reset/clean/gc")
+            for f in lit_strand[:5]:
+                reasons.append(
+                    f"    {f.get('slug', '?')} [{f.get('kind', '?')}] "
+                    f"-- {f.get('path', '?')}")
+            if len(lit_strand) > 5:
+                reasons.append(f"    ... and {len(lit_strand) - 5} more (use --json)")
+            if u.get("literature_truncated"):
+                reasons.append(
+                    f"    (+{u['literature_truncated']} beyond the report cap -- use --json)")
+        lit_div = u.get("literature_divergent") or []
+        if lit_div:
+            reasons.append(
+                f"{len(lit_div)} untracked literature evidence entry(ies) "
+                f"whose slug IS on origin but with DIFFERENT content -- not a "
+                f"strand and not a duplicate. Diff both before deleting EITHER")
+            for f in lit_div[:5]:
+                op = (f.get("origin_paths") or ["?"])[0]
+                reasons.append(
+                    f"    {f.get('slug', '?')} [{f.get('kind', '?')}] "
+                    f"-- {f.get('path', '?')} vs origin {op}")
+            if len(lit_div) > 5:
+                reasons.append(f"    ... and {len(lit_div) - 5} more (use --json)")
+
         # GITIGNORED bucket (--ignored). Separate and lower-severity on
         # purpose: an ignored path is ignored deliberately, so the prior is
         # much weaker than for an untracked one. But `*.bak` being ignored in
@@ -2008,7 +2204,80 @@ def selftest():
         print("  [PASS] a parent-cleared entry and a genuine strand are both "
               "reported, independently")
 
+    # LITERATURE-ENTRY reporting (chip-20260819-githealth-untracked-
+    # literature-blindspot). A stranded literature entry must show up as its
+    # OWN reported line, must coexist with a genuine run-manifest strand
+    # without either hiding the other, and must never itself flip status.
+    status, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=dict(
+            untracked=3, ignored=0, truncated=0, notes={},
+            findings=[dict(path="evidence/experiments/real_strand_v3.json",
+                           run_id="real_strand_v3", outcome="FAIL")],
+            literature_findings=[dict(
+                path=("evidence/literature/targeted_review_arc_032/entries/"
+                      "2026-03-29_arc_032_frontal_theta_hippocampus_reward_"
+                      "hyman2010/record.json"),
+                slug="2026-03-29_arc_032_frontal_theta_hippocampus_reward_hyman2010",
+                kind="record.json")])))
+    blob = " ".join(reasons)
+    if status != "OK":
+        print(f"  [FAIL] a stranded literature entry changed status to {status}")
+        failed += 1
+    elif "STRANDED literature evidence entry" not in blob:
+        print("  [FAIL] a stranded literature entry was not reported")
+        failed += 1
+    elif "arc_032_frontal_theta_hippocampus_reward_hyman2010" not in blob:
+        print("  [FAIL] stranded literature entry reported without naming its slug")
+        failed += 1
+    elif "real_strand_v3" not in blob or "STRANDED untracked run manifest" not in blob:
+        print("  [FAIL] a run-manifest strand was hidden beside a literature strand")
+        failed += 1
+    else:
+        print("  [PASS] a stranded literature entry is reported in its OWN "
+              "line, names its slug, coexists with a run-manifest strand, "
+              "and does not change status")
+
+    # ...and a literature entry covered by an active TASK_CLAIMS entry must
+    # read as live work, never as a strand -- mirrors _selftest_claims()'s
+    # run-manifest case, applied via apply_claims to literature_findings.
+    graded = {"REE_assembly": {"untracked": 1, "literature_findings": [
+        {"path": ("evidence/literature/targeted_review_x/entries/"
+                  "2026-08-19_inflight_entry/record.json"),
+         "slug": "2026-08-19_inflight_entry", "kind": "record.json"},
+    ], "notes": {}}}
+    apply_claims(graded, [("lit-pull-live-9f3a2b", "2026-08-19T09:00:00Z",
+                           ["REE_assembly/evidence/literature/targeted_review_x"])])
+    info = graded["REE_assembly"]
+    if info.get("literature_findings"):
+        print(f"  [FAIL] literature claims: a claim-covered entry stayed a "
+              f"finding: {info['literature_findings']}")
+        failed += 1
+    elif not info.get("literature_claim_covered"):
+        print("  [FAIL] literature claims: no literature_claim_covered entry "
+              "was produced")
+        failed += 1
+    elif info["literature_claim_covered"][0]["claim"]["session_id"] != "lit-pull-live-9f3a2b":
+        print("  [FAIL] literature claims: the covered entry does not NAME its claim")
+        failed += 1
+    else:
+        status, reasons = classify(dict(
+            branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+            stashes="0", first="", untracked=info))
+        blob = " ".join(reasons)
+        if status != "OK" or "STRANDED literature" in blob:
+            print(f"  [FAIL] literature claims: claim-covered entry still "
+                  f"read as a strand (status={status}): {reasons}")
+            failed += 1
+        elif "lit-pull-live-9f3a2b" not in blob:
+            print("  [FAIL] literature claims: covering session not named in the report")
+            failed += 1
+        else:
+            print("  [PASS] literature claims: a claim-covered entry becomes "
+                  "a NOTE naming its session, never a strand")
+
     failed += _selftest_grader()
+    failed += _selftest_literature_grader()
     failed += _selftest_prepull_grading()
     failed += _selftest_local_target()
     failed += _selftest_claims()
@@ -2234,6 +2503,206 @@ def _selftest_grader():
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
         print(f"  [FAIL] grader selftest errored: {exc}")
+        return 1
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _selftest_literature_grader():
+    """Run the REAL worker-side grader source against literature evidence
+    entries -- the class this chip adds
+    (chip-20260819-githealth-untracked-literature-blindspot). Same method as
+    _selftest_grader: build a throwaway git repo and execute UNTRACKED_PY
+    exactly as the worker does, because the predicate under test is exactly
+    the one that let a real GOV-BEHADJ-1/SD-005/ARC-010 entry sit untracked
+    and unreported (as a silent `no_counterpart_other` note) for 6 days -- a
+    hand-written dict cannot exercise the git plumbing that hid it.
+
+    Six cases, one per way the literature grading could go wrong:
+      1. committed content, untracked at a DIFFERENT review path, byte-
+         identical -- CLEAR (a re-classified/duplicated entry; exercises the
+         JSON-equal branch for record.json and the raw-byte branch for
+         summary.md in one case).
+      2. committed record.json is a SUPERSET of the untracked copy at a
+         different review -- CLEAR (mirrors the run-manifest writer-injected-
+         field pattern; exercises is_superset specifically, not mere byte
+         equality).
+      3. same slug tracked under one review, untracked under a DIFFERENT
+         review with DISAGREEING content -- lit_divergent.
+      4. slug absent from origin entirely, both files untracked -- TWO
+         lit_findings (record.json AND summary.md graded independently; this
+         is the real chip's own observed shape -- 2 STRANDED entries from 1
+         orphaned entry).
+      5. record.json committed, summary.md for the SAME slug + review
+         untracked and absent from origin -- a NOTE (literature_partial),
+         not a finding.
+      6. a literature-tree file that is NOT record.json/summary.md under
+         entries/<slug>/ (a review-level README) -- must fall through to the
+         pre-existing no_counterpart_other note, proving LIT_ENTRY is scoped
+         to the two real filenames only and does not over-match the tree.
+    """
+    import shutil
+    import tempfile
+
+    def record(entry_id, **extra):
+        doc = {"schema_version": "literature_evidence/v1", "entry_id": entry_id,
+               "confidence": 0.7}
+        doc.update(extra)
+        return doc
+
+    tmp = tempfile.mkdtemp(prefix="rgh-lit-selftest-")
+    try:
+        root = os.path.join(tmp, "REE_assembly")
+        os.makedirs(root)
+        LIT = "evidence/literature/"
+
+        def run(*args):
+            subprocess.run(("git",) + args, cwd=root, check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        def write(rel, obj_or_text, is_json=True):
+            p = os.path.join(root, rel)
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w") as fh:
+                if is_json:
+                    json.dump(obj_or_text, fh)
+                else:
+                    fh.write(obj_or_text)
+
+        run("init", "-q")
+        run("config", "user.email", "selftest@local")
+        run("config", "user.name", "selftest")
+
+        # COMMITTED
+        write(LIT + "targeted_review_a/entries/2026-01-01_kept/record.json",
+              record("2026-01-01_kept", reviewer_note="landed"))
+        write(LIT + "targeted_review_a/entries/2026-01-01_kept/summary.md",
+              "kept summary\n", is_json=False)
+        write(LIT + "targeted_review_a/entries/2026-01-02_superset_subset/record.json",
+              record("2026-01-02_superset_subset", extra_field="origin_only"))
+        write(LIT + "targeted_review_a/entries/2026-01-01_divergent/record.json",
+              record("2026-01-01_divergent", confidence=0.9))
+        write(LIT + "targeted_review_a/entries/2026-01-01_partial/record.json",
+              record("2026-01-01_partial"))
+        run("add", "-A")
+        run("commit", "-q", "-m", "base")
+
+        # UNTRACKED
+        # 1. same slug, DIFFERENT review, byte-identical
+        write(LIT + "targeted_review_b/entries/2026-01-01_kept/record.json",
+              record("2026-01-01_kept", reviewer_note="landed"))
+        write(LIT + "targeted_review_b/entries/2026-01-01_kept/summary.md",
+              "kept summary\n", is_json=False)
+        # 2. same slug, DIFFERENT review, local is a SUBSET of origin
+        write(LIT + "targeted_review_c/entries/2026-01-02_superset_subset/record.json",
+              record("2026-01-02_superset_subset"))
+        # 3. same slug, DIFFERENT review, DISAGREEING content
+        local_divergent = record("2026-01-01_divergent", confidence=0.5)
+        write(LIT + "targeted_review_d/entries/2026-01-01_divergent/record.json",
+              local_divergent)
+        # 4. slug absent from origin at every path -- the real finding
+        write(LIT + "targeted_review_a/entries/2026-01-03_orphan/record.json",
+              record("2026-01-03_orphan"))
+        write(LIT + "targeted_review_a/entries/2026-01-03_orphan/summary.md",
+              "orphan summary\n", is_json=False)
+        # 5. slug's record.json is committed; its summary.md is not, and does
+        #    not exist on origin under this slug at any path
+        write(LIT + "targeted_review_a/entries/2026-01-01_partial/summary.md",
+              "partial summary\n", is_json=False)
+        # 6. control: literature-tree file that is NOT an entries/<slug>/
+        #    record.json or summary.md
+        write(LIT + "targeted_review_a/README.md", "just a readme\n", is_json=False)
+
+        r = subprocess.run(
+            [sys.executable, "-", tmp, "REE_assembly:HEAD"],
+            input=UNTRACKED_PY, capture_output=True, text=True, timeout=120)
+        line = [x for x in r.stdout.splitlines()
+                if x.startswith(UNTRACKED_MARKER)]
+        if not line:
+            print("  [FAIL] literature grader emitted no result (%s)"
+                  % (r.stderr or "").strip()[-300:])
+            return 1
+        got = json.loads(line[0][len(UNTRACKED_MARKER):]).get("REE_assembly", {})
+
+        bad = 0
+        lit_findings = got.get("literature_findings") or []
+        find_slugs = sorted(f.get("slug") for f in lit_findings)
+        find_kinds = sorted(f.get("kind") for f in lit_findings)
+        if find_slugs != ["2026-01-03_orphan", "2026-01-03_orphan"] or \
+                find_kinds != ["record.json", "summary.md"]:
+            print(f"  [FAIL] literature findings {lit_findings} -- want exactly "
+                  f"the orphan slug's record.json AND summary.md, each its own "
+                  f"finding, and nothing else")
+            bad += 1
+        else:
+            print("  [PASS] literature grader: an orphaned entry absent from "
+                  "origin at every path produces TWO findings (record.json + "
+                  "summary.md graded independently), matching the real "
+                  "2026-08-19 incident shape")
+
+        lit_div = got.get("literature_divergent") or []
+        if len(lit_div) != 1 or lit_div[0].get("slug") != "2026-01-01_divergent":
+            print(f"  [FAIL] literature divergent {lit_div} != exactly "
+                  f"['2026-01-01_divergent'] -- a same-slug entry with "
+                  f"DIFFERENT content was cleared silently, or a subset/"
+                  f"identical copy was wrongly flagged")
+            bad += 1
+        else:
+            d = lit_div[0]
+            exp_hash = hashlib.sha256(
+                json.dumps(local_divergent).encode("utf-8")).hexdigest()
+            want_path = LIT + "targeted_review_a/entries/2026-01-01_divergent/record.json"
+            if d.get("origin_paths") != [want_path]:
+                print(f"  [FAIL] literature divergent origin_paths {d.get('origin_paths')} "
+                      f"-- must name the origin copy it disagrees with")
+                bad += 1
+            elif d.get("content_sha256") != exp_hash:
+                print(f"  [FAIL] literature divergent content_sha256 "
+                      f"{d.get('content_sha256')} != {exp_hash}")
+                bad += 1
+            else:
+                print("  [PASS] literature grader: same slug + DIFFERENT "
+                      "content is lit_divergent, naming the origin copy and "
+                      "the LOCAL copy's content_sha256")
+
+        notes = got.get("notes") or {}
+        if notes.get("literature_partial") != 1:
+            print(f"  [FAIL] literature grader: literature_partial note count "
+                  f"{notes.get('literature_partial')} != 1 -- a slug whose "
+                  f"OTHER file already landed must not be graded a full strand")
+            bad += 1
+        elif notes.get("no_counterpart_other") != 1:
+            print(f"  [FAIL] literature grader: no_counterpart_other count "
+                  f"{notes.get('no_counterpart_other')} != 1 -- a non-entry "
+                  f"literature-tree file (README.md) either over-matched "
+                  f"LIT_ENTRY or was mis-cleared")
+            bad += 1
+        else:
+            print("  [PASS] literature grader: a slug whose sibling file "
+                  "already landed is literature_partial (not a strand), and a "
+                  "review-level README (not an entries/<slug>/ file) is "
+                  "untouched by LIT_ENTRY and falls through as ordinary noise")
+
+        cleared_slugs = {f.get("slug") for f in lit_findings} | \
+                        {f.get("slug") for f in lit_div}
+        if "2026-01-01_kept" in cleared_slugs or "2026-01-02_superset_subset" in cleared_slugs:
+            print("  [FAIL] literature grader: a byte-identical or subset "
+                  "copy at a different review path was reported instead of "
+                  "clearing")
+            bad += 1
+        else:
+            print("  [PASS] literature grader: a byte-identical copy and a "
+                  "content-subset copy, each at a DIFFERENT review path than "
+                  "origin, both CLEAR (re-classification / duplication is "
+                  "not a strand)")
+
+        if got.get("literature_truncated"):
+            print(f"  [FAIL] unexpected literature_truncated "
+                  f"{got.get('literature_truncated')}")
+            bad += 1
+        return bad
+    except Exception as exc:                      # pragma: no cover - defensive
+        print(f"  [FAIL] literature grading selftest errored: {exc}")
         return 1
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -3273,6 +3742,8 @@ def main():
     adjudicated_hits = 0
     graded = 0
     gitignored_hits = 0
+    lit_stranded = 0
+    lit_divergent = 0
     # Loaded at most once per run -- the file is small and host-scoped inside
     # apply_adjudications, so re-reading it per target would be pure overhead
     # for no additional freshness within a single invocation.
@@ -3326,6 +3797,9 @@ def main():
                 stranded += int(u.get("truncated") or 0)
                 divergent += len(u.get("divergent") or [])
                 adjudicated_hits += len(u.get("adjudicated_divergent") or [])
+                lit_stranded += len(u.get("literature_findings") or [])
+                lit_stranded += int(u.get("literature_truncated") or 0)
+                lit_divergent += len(u.get("literature_divergent") or [])
                 g = u.get("gitignored")
                 if isinstance(g, dict):
                     gitignored_hits += len(g.get("findings") or [])
@@ -3371,13 +3845,16 @@ def main():
     # look, which is exactly the ambiguity this pass was added to remove.
     if args.no_untracked:
         print("untracked grading: SKIPPED (--no-untracked) -- stranded run "
-              "manifests would not be visible in this run")
+              "manifests AND literature evidence entries would not be "
+              "visible in this run")
     else:
         adj_suffix = (f" ({adjudicated_hits} more already adjudicated benign "
                       f"and not re-escalated)" if adjudicated_hits else "")
         print(f"untracked grading: {graded} untracked path(s) graded against "
               f"origin, {stranded} stranded run manifest(s), "
-              f"{divergent} same-run_id-different-content{adj_suffix}")
+              f"{divergent} same-run_id-different-content{adj_suffix}, "
+              f"{lit_stranded} stranded literature evidence entry(ies), "
+              f"{lit_divergent} same-slug-different-content")
     if args.ignored:
         print(f"gitignored grading: {gitignored_hits} run manifest(s) found in "
               f"gitignored path(s) (ignored DIRECTORIES are not descended into)")
@@ -3421,6 +3898,14 @@ def main():
             print("  it survived both, treat it as real -- but still confirm no")
             print("  session opened a claim in between, and NEVER `git checkout")
             print("  -- .` on that tree (other sessions' live work).")
+    if lit_stranded:
+        print()
+        print("ACTION: a box is holding literature evidence entry(ies) that")
+        print("  exist NOWHERE on origin under their slug. A regen that globs")
+        print("  the working tree (build_experiment_indexes.py's literature")
+        print("  indexer) can bake this in as a permanent dangling citation")
+        print("  the moment it runs on this box -- see audit_dangling_")
+        print("  citations.py. Land it BEFORE any reset/clean/gc/regen.")
     return 1 if bad else 0
 
 
