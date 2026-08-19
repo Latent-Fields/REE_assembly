@@ -146,6 +146,39 @@ preservation pass changed detector behaviour**, so all four were open as of
    with `git checkout HEAD -- <p>` at all. The cheap discriminator that should
    run *first* -- `git show "HEAD:$p" | diff -q - "$p"` -- resolved 6 of 7
    flagged paths on ree-v3 instantly as pure index skew.
+5. **The `MM` differs-from-pre-move-base asymmetry protects genuine live work
+   AND stale-work-on-a-stale-base equally, and cannot tell them apart --
+   confirmed by a real recurrence on `scripts/steward/state/steward_ledger.jsonl`
+   itself, not a hypothetical (`chip-20260818-steward-ledger-truncated-cloud5`).**
+   CLAUDE.md's documented repair for `MM` (differs from pre-move HEAD -> treat as
+   live work, restore only the staged half, leave the worktree copy alone) is
+   correct as far as it goes: on `ree-cloud-5` 2026-08-18T10:47Z a ref-wedge
+   repair found exactly this file `MM`, correctly judged the worktree copy
+   "differs from pre-move HEAD, do not restore," and left it untouched
+   (`WORKSPACE_STATE.md` 2026-08-18T10:47Z). But "differs from HEAD" was true for
+   the wrong reason: the worktree copy was not fresher than HEAD, it was a stale
+   prefix -- byte-identical to this file's content at commit `f4d43eb7e5`
+   (2026-08-16T13:21:41Z, 3 records), with 4 genuine local `run` records appended
+   on top of that stale base, none of them ever committed. Both readings pass the
+   same test (`differs from HEAD`); only a per-record content diff against origin
+   (which records are byte-identical, which are absent) distinguishes "protect
+   this, it is ahead" from "this is stale underneath and also has real work on
+   top -- union, don't just protect." This is the SECOND time this exact file has
+   needed this repair (`ba35aa53d8` restored 65 HEAD + 1 local run on the Mac
+   2026-08-18T07:05Z, before the file grew further and truncated again on
+   `ree-cloud-5`), which is what makes it a pattern rather than a one-off:
+   append-only tracked ledgers are the shape most exposed to this gap, because
+   losing history is exactly what the asymmetry is trying to prevent and exactly
+   what it silently permits when the "live" copy is itself stale. Repaired here
+   by the same technique as `ba35aa53d8` -- diff each local record's full JSON
+   against origin's set, keep every local-only record, append after origin's
+   tail (`REE_assembly c0b8669e26`). Not proposing a fix to `ree_commit.py` /
+   `safe_adopt_ref.py` here (out of this chip's resource scope, and it is a
+   repo-level mechanism, not anything steward-specific) -- flagging it as the
+   generalisable gap: any `MM` repair path could add the same per-record/per-key
+   content check the umbrella rule already requires for `TASK_CLAIMS.json` and
+   `TASK_CHIPS.json` before deciding "protect" vs. "protect AND look underneath
+   it for missing history."
 
 ## What was deliberately NOT copied
 
