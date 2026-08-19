@@ -145,7 +145,26 @@ POST lands well inside the wake window rather than at its far edge.
   remains the scaler's fallback and `serve.py`'s `/machines` card source, and
   the `<affinity>-metaworker` identity split is untouched.
 
-## 4. Live verification
+## 4. Live verification -- ACCEPTANCE TEST PASSED
+
+**Criterion (chip):** power on `ree-worker-4`, confirm it is STILL RUNNING one
+hour later AND has claimed at least one chip (`TASK_CHIPS.json` on
+`origin/master`). A green code path is not the test.
+
+| | |
+|---|---|
+| powered on | `2026-08-19T17:46:52Z` |
+| still running at | `2026-08-19T18:49:33Z` (box `uptime` = 1:02) |
+| power samples, 60s apart | **43 running, 0 not-running** |
+| scaler shutdown attempts since power-on | **0** |
+| scaler veto/hold ticks since power-on | **12** |
+| chips claimed by `ree-cloud-4` after power-on, on `origin/master` | **20** (most already `done`) |
+
+Before this change the same box, powered on by an operator at ~16:45, was shut
+down at `16:45:05Z` with **zero** chips claimed.
+
+### The handover, from the hub's own timer journal
+
 
 ```
 17:47:05Z [ree-worker-4] status=running ... orch=none orch_src=git wake=hold
@@ -161,6 +180,25 @@ That is the identical tick shape that killed the box at 16:45:04Z.
 ```
 `/shadow/status` carries the row with `role: orchestrator`,
 `chips_open_work: 69`, `lifecycle_state: live`.
+
+```
+17:50:20Z  orch=none  orch_src=git   wake=hold   -> held by the WAKE HOLD
+17:55:12Z  orch=active orch_src=coord wake=hold  -> coordinator veto now live
+18:00:18Z  orch=active orch_src=coord wake=none  -> hold EXPIRED; coordinator
+             veto alone: "orchestrator_busy in_flight=1 state=dispatching"
+18:35:04Z  orch=active orch_src=coord wake=none  -> steady state
+```
+This is the designed sequence and it demonstrates BOTH halves: the bounded
+bootstrap hold covers the interval in which the box cannot speak, then hands
+over to the coordinator transport, and **the hold expires rather than pinning
+the box** -- which is the property that keeps the billing guard intact.
+
+### Test-suite regression check
+
+`pytest coordinator/` at my commit and at the pre-change base `3b6df21` both
+report **exactly 10 failures, and the sets are identical** -- i.e. **zero new
+failures introduced**. All 10 are pre-existing `test_phase3_writer_smoke.py`
+failures on trunk, unrelated to this change and not addressed here.
 
 ## 5. Incidental findings on `ree-worker-4` (NOT fixed here)
 
@@ -184,8 +222,15 @@ That is the identical tick shape that killed the box at 16:45:04Z.
      (`147e46e7fb0569410da127f1acaf98e3c7507c12`,
       `dbd181bf5e3929432e73f6d81bdaea1061a023d5`).
    **`scripts/audit_stashes.py` does NOT cover cloud boxes**, so this stash is
-   invisible to every session-startup audit. It needs a human decision.
-4. **The live dispatch wrapper was behind its tracked reference copy** and was
+   invisible to every session-startup audit. **It needs a human decision** --
+   both files are large (157KB / 240KB) and may be a partially-forward copy
+   rather than authored work, but that could not be established from here and
+   nothing was dropped on a judgement call.
+4. **A `ree-v3` autostash sits on the Mac** -- `git stash list` on
+   `/Users/dgolden/REE_Working/ree-v3` shows `stash@{0}: autostash`, the
+   documented runner `git pull --rebase --autostash` hazard. Not this chip's
+   subject; flagged for a stash triage.
+5. **The live dispatch wrapper was behind its tracked reference copy** and was
    re-synced from `coordinator/deploy/ree-metaworker-dispatch.sh`.
 
 ## 6. Tests
