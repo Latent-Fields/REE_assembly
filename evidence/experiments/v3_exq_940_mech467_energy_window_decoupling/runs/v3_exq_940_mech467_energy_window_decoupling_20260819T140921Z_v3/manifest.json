@@ -1,0 +1,215 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_940_mech467_energy_window_decoupling",
+  "run_id": "v3_exq_940_mech467_energy_window_decoupling_20260819T140921Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-19T14:09:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "window_restored_rate_unchanged",
+    "note": "The window is restored by gating contamination -- so the truncation WAS self-poisoning -- but the event rate per realised tick does not lift. This is the autopsy's declared H-energy null in its informative form: starvation only shortened the window, it did not suppress eating. The residual rate problem is not an energy problem.",
+    "preconditions": [
+      {
+        "name": "ARM_STOCK::window_instrument_live",
+        "precondition": "window_instrument_live",
+        "arm": "ARM_STOCK",
+        "kind": "readiness",
+        "description": "The cell stepped the exposure window at all. Below this floor nothing about window completeness or any rate normalised by it is measurable.",
+        "control": "n_realised_ticks counted directly in the eval loop; the SAME statistic the load-bearing C1 window-completeness criterion routes on (a count of realised ticks), not a proxy for it.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 749.666667,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_STOCK::health_instrument_live",
+        "precondition": "health_instrument_live",
+        "arm": "ARM_STOCK",
+        "kind": "readiness",
+        "description": "info['health'] was read on the window's ticks, so a health-driven termination is attributable rather than inferred.",
+        "control": "n_health_samples counted from info['health'] each tick.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 749.666667,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_STOCK::benefit_bearing_resources_present",
+        "precondition": "benefit_bearing_resources_present",
+        "arm": "ARM_STOCK",
+        "kind": "readiness",
+        "description": "Benefit-bearing (goal-tag) resource cells were live on the grid. This is 874b defect (2) made into a gate: consumption is impossible without them, and 874b let their count vary silently with its ruleset axis.",
+        "control": "Mean live goal-tag cells read off the env's own _resource_type_grid each tick -- measured, not inferred from nominal spawn weights, which a 2026-08-19 probe showed the stochastic SD-049 allocator does not honour exactly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_CONTAM_OFF::window_instrument_live",
+        "precondition": "window_instrument_live",
+        "arm": "ARM_CONTAM_OFF",
+        "kind": "readiness",
+        "description": "The cell stepped the exposure window at all. Below this floor nothing about window completeness or any rate normalised by it is measurable.",
+        "control": "n_realised_ticks counted directly in the eval loop; the SAME statistic the load-bearing C1 window-completeness criterion routes on (a count of realised ticks), not a proxy for it.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 900.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_CONTAM_OFF::health_instrument_live",
+        "precondition": "health_instrument_live",
+        "arm": "ARM_CONTAM_OFF",
+        "kind": "readiness",
+        "description": "info['health'] was read on the window's ticks, so a health-driven termination is attributable rather than inferred.",
+        "control": "n_health_samples counted from info['health'] each tick.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 900.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_CONTAM_OFF::benefit_bearing_resources_present",
+        "precondition": "benefit_bearing_resources_present",
+        "arm": "ARM_CONTAM_OFF",
+        "kind": "readiness",
+        "description": "Benefit-bearing (goal-tag) resource cells were live on the grid. This is 874b defect (2) made into a gate: consumption is impossible without them, and 874b let their count vary silently with its ruleset axis.",
+        "control": "Mean live goal-tag cells read off the env's own _resource_type_grid each tick -- measured, not inferred from nominal spawn weights, which a 2026-08-19 probe showed the stochastic SD-049 allocator does not honour exactly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.765926,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_CONTAM_OFF::contamination_gate_applied",
+        "precondition": "contamination_gate_applied",
+        "arm": "ARM_CONTAM_OFF",
+        "kind": "readiness",
+        "description": "In the gated arms the env really bound contamination_spread to 0.0. A manipulation check: without it, a null in ARM_CONTAM_OFF would be uninterpretable (gate ineffective vs contamination irrelevant).",
+        "control": "env.contamination_spread read off the constructed env. Pre-authoring probe 2026-08-19: stock 874b kwargs bind 0.5, +hazard_free_contamination_gate=True binds 0.0.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "ARM_HEALTH_DECOUPLED::window_instrument_live",
+        "precondition": "window_instrument_live",
+        "arm": "ARM_HEALTH_DECOUPLED",
+        "kind": "readiness",
+        "description": "The cell stepped the exposure window at all. Below this floor nothing about window completeness or any rate normalised by it is measurable.",
+        "control": "n_realised_ticks counted directly in the eval loop; the SAME statistic the load-bearing C1 window-completeness criterion routes on (a count of realised ticks), not a proxy for it.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 900.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HEALTH_DECOUPLED::health_instrument_live",
+        "precondition": "health_instrument_live",
+        "arm": "ARM_HEALTH_DECOUPLED",
+        "kind": "readiness",
+        "description": "info['health'] was read on the window's ticks, so a health-driven termination is attributable rather than inferred.",
+        "control": "n_health_samples counted from info['health'] each tick.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 900.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HEALTH_DECOUPLED::benefit_bearing_resources_present",
+        "precondition": "benefit_bearing_resources_present",
+        "arm": "ARM_HEALTH_DECOUPLED",
+        "kind": "readiness",
+        "description": "Benefit-bearing (goal-tag) resource cells were live on the grid. This is 874b defect (2) made into a gate: consumption is impossible without them, and 874b let their count vary silently with its ruleset axis.",
+        "control": "Mean live goal-tag cells read off the env's own _resource_type_grid each tick -- measured, not inferred from nominal spawn weights, which a 2026-08-19 probe showed the stochastic SD-049 allocator does not honour exactly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.702222,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HEALTH_DECOUPLED::contamination_gate_applied",
+        "precondition": "contamination_gate_applied",
+        "arm": "ARM_HEALTH_DECOUPLED",
+        "kind": "readiness",
+        "description": "In the gated arms the env really bound contamination_spread to 0.0. A manipulation check: without it, a null in ARM_CONTAM_OFF would be uninterpretable (gate ineffective vs contamination irrelevant).",
+        "control": "env.contamination_spread read off the constructed env. Pre-authoring probe 2026-08-19: stock 874b kwargs bind 0.5, +hazard_free_contamination_gate=True binds 0.0.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.001,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_window_completeness_lifts_when_contamination_gated": true,
+      "C2_event_rate_lifts_when_window_decoupled": true
+    },
+    "preconditions_scope_note": ""
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "cef75e5922c0548490c4f95054a4613b2e1b35666ccff52f2c7c0616884c4ef0",
+  "substrate_commit": {
+    "commit": "78ec9dec16f0fb4f31acf4b67d571cfcbe94eee0",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 8369,
+    "ticks_active": 5591,
+    "writer_calls": 8369,
+    "active_frac": 0.6680607002031306,
+    "writer_defect": false,
+    "n_agents": 9,
+    "goal_state_present": true
+  }
+}
