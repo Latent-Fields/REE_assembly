@@ -73,7 +73,7 @@ def commit(repo: Path, path: str, content: str, msg: str) -> str:
 def make_pair(tmp_path: Path) -> tuple[Path, Path]:
     """A local repo on `master` tracking a real bare `origin`."""
     bare = tmp_path / "origin.git"
-    subprocess.run(["git", "init", "-q", "--bare", str(bare)], check=True)
+    subprocess.run(["git", "init", "-q", "--bare", "-b", "master", str(bare)], check=True)
     local = tmp_path / "local"
     subprocess.run(["git", "init", "-q", "-b", "master", str(local)], check=True)
     commit(local, "seed.txt", "seed\n", "seed")
@@ -91,6 +91,33 @@ def ctx_for(repos: list[Path]) -> Context:
     return Context(repo_root=repos[0], claims=[], claims_by_id={}, nodes=[],
                    plans=[], owners={}, parse_errors=[],
                    git_repos=[Path(r) for r in repos])
+
+
+# ===========================================================================
+# Fixture portability -- regression for the 2026-08-17 bare-init defect
+# ===========================================================================
+
+def test_make_pair_is_independent_of_init_defaultbranch(tmp_path, monkeypatch):
+    """make_pair()'s bare remote must clone regardless of init.defaultBranch.
+
+    A bare `git init` with no explicit `-b` inherits the machine's
+    `init.defaultBranch`, while the local side pinned `-b master` -- on a box
+    with `init.defaultBranch=main` the bare HEAD symref'd `refs/heads/main`,
+    which the subsequent `push -u origin master` never created, so every
+    `clone_of()` failed with "remote HEAD refers to nonexistent ref". All 10
+    tests in this file failed on any such box (confirmed on the Mac) while
+    staying green on boxes where the default is unset or `master` -- silent,
+    environment-dependent breakage. GIT_CONFIG_COUNT/KEY/VALUE injects the
+    config for this test's subprocesses only, without touching the shared
+    box's real git config.
+    """
+    monkeypatch.setenv("GIT_CONFIG_COUNT", "1")
+    monkeypatch.setenv("GIT_CONFIG_KEY_0", "init.defaultBranch")
+    monkeypatch.setenv("GIT_CONFIG_VALUE_0", "main")
+    local, bare = make_pair(tmp_path)
+    clone = clone_of(bare, tmp_path / "clone")
+    assert sh(clone, "rev-parse", "HEAD").strip()
+    assert sh(clone, "status", "--porcelain") == ""
 
 
 # ===========================================================================
