@@ -372,6 +372,85 @@ dependency the raw symbol lacked).
 | ASG-3 | The parity setpoint + ceiling ratio are explicit scalars, not an emergent tonic-DA-homeostasis loop. | ARC-106 G1 function-not-homology: the FUNCTION (a homeostatically-bounded, parity-restoring ascending modulation) is preserved; the DA-homeostasis loop that would set the bound endogenously is abstracted to a configured ratio, as elsewhere in REE. **GROUNDED (2026-07-04), no longer a bare simplification:** the endogenous loop we abstract is the **D2-autoreceptor tonic negative-feedback homeostat** on DA firing/synthesis/reuptake/release ([Chen, Ferris & Wang 2020](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_108_d2_autoreceptor_homeostat_chen2020/), Pharmacol Ther) — a real negative-feedback bound whose FAILURE is a positive-feedback runaway that overwhelms downstream clearance ([Gowrishankar et al. 2018](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_108_tonic_d2ar_runaway_gowrishankar2018/), J Neurosci — the same 709->711 "one loop, two regimes" shape). The unbounded raw scalar was the addiction-like runaway regime of the ascending spiral ([Belin et al. 2008](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_110_ascending_spiral_runaway_belin2008/), Behav Brain Res). Load-bearing per ARC-106: the FUNCTION is a named neural primitive; only its endogenous multi-stage implementation is abstracted to a ratio. | biologically-grounded divergence (was: honest simplification) |
 | ASG-4 | The ascending `M_cross` clamp is a hard box, not the soft striatal lateral-inhibition normalization that bounds the biological spiral. | Honest simplification for a cleanly-isolable falsifier; the clamp is the minimal anti-windup that stops the plastic runaway. A soft normalization can replace it if the biology demands graded bounding. **GROUNDED (2026-07-04):** the soft normalizer we stand in for is the real **SPN->SPN lateral-inhibition network** — projection neurons mutually inhibit via axon collaterals, a distributed divisive-normalization-like bound that is neuromodulator-tunable ([Pommer & Wickens 2021](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_110_spn_lateral_inhibition_pommer2021/), J Neurosci; functional selection role stated-unknown, so this grounds the MECHANISM not a proven selection claim). The normalizer is itself **dopamine-gain-modulated** (D1->D2->D3 stepwise disinhibition, [Kohnomi et al. 2016](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_110_da_graded_lateral_inhibition_kohnomi2016/), Neurosci Lett): the ASG-3 drive and the ASG-4 normalizer are COUPLED from a shared DA signal, not two independent constants. **Successor-design signal:** a soft normalizer replacing the hard box should couple its strength to the same drive that sets the ascending gain, and may need per-loop (limbic vs motor) constants ([Gowrishankar 2018](../../evidence/literature/targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_108_tonic_d2ar_runaway_gowrishankar2018/) region-specificity). | biologically-grounded divergence (was: honest simplification); soft-normalization escape hatch now evidence-backed |
 
+## Addendum: corrected gate-level DV instrument (the 713x re-letter precondition, 2026-08-19)
+
+**Status:** IMPLEMENTED 2026-08-19. PROMOTES NOTHING. Measurement-only -- no `ree_core` change, no config
+flag, no substrate behaviour touched.
+**Module:** `ree-v3/experiments/_lib/gate_dv.py` (`GateDVRecorder`).
+**Regression guard:** `ree-v3/tests/contracts/test_gate_dv_instrument.py` (14 contracts).
+
+### Problem: the two instrument halves were never combined
+
+`substrate_queue.v4_loop_segregation` records the 709/711/713 exhaustion verdict as
+`EXHAUSTION_WITHDRAWN_2026_07_20_never_validly_tested_for_conversion_at_fair_parity_hold_weighted_C1` with
+`713x_re_letter_STILL_REFUSED_corrected_DV_instrument_required`. Measured 2026-08-19, the reason is exact and
+mechanical -- the two halves of the required instrument exist in **different drivers**:
+
+| driver | `fresh_select` uses | gate-telemetry uses |
+|---|---|---|
+| `v3_exq_707c` (the repaired DV) | **31** | **0** |
+| `v3_exq_709` / `711` / `713` (the gate readers) | **0** | 23 / 21 / 21 |
+
+707c carries the fresh-select repair but reads no gate telemetry at all -- its DV is behavioural, three
+stages downstream of the gate. 709/711/713 read the gate richly but predate the repair (it came from the
+699 / 689d autopsies), so every gate read is taken on **every env step**:
+
+```python
+diag = getattr(agent.e3, "last_score_diagnostics", {}) or {}   # v3_exq_709:801
+```
+
+With `heartbeat.e3_steps_per_tick` defaulting to 10, a quantity sampled once per genuine selection is counted
+~10x, and **unequally across arms** -- an arm that changes commitment dynamics changes hold duration, which
+is precisely what these arms do. `clg_limbic_ge_motor_ticks` is the sharp case: a COUNT whose denominator is
+env steps, i.e. exactly the disqualifying class `fresh_select.py` names.
+
+### What is and is not replication-sensitive (stated, not glossed)
+
+Not every 709 reading was wrong, and the write-up must not overstate the defect. **Max-reductions**
+(`clg_m_range_peak`, `clg_w_limbic_eff_peak`) are replication-INVARIANT -- sampling a value ten times does not
+move a max, so those readings were already sound. **Counts, fractions, means and entropies** are
+replication-sensitive; those are the ones the hold silently reweights. The recorder fresh-gates everything
+anyway (one uniform rule is harder to get wrong than a per-field judgement) and emits mean AND peak for each
+gate quantity so a consumer can see the two agree.
+
+### Solution
+
+`GateDVRecorder` composes the shared `FreshSelectProbe` / `FreshSelectCounter` sentinel with the 709/711/713
+gate keys, so **every** `loop_*` / `loop_cross_loop_*` reading is taken once per genuine E3 selection:
+
+- **Primary DV** -- `gate_committed_class_entropy_nats`, accumulated on fresh, non-fallback selections only
+  (the 707c repair, whose `_entropy_from_int_counts` this reuses; a contract extracts 707c's own function
+  from source and asserts agreement, so the two cannot drift).
+- **The repaired reading** -- `gate_limbic_ge_motor_frac` is a fraction of SELECTIONS, replacing 709's
+  `clg_limbic_ge_motor_ticks` env-step count.
+- **Per-loop authority** -- `gate_w_{motor,assoc,limbic}_eff_{mean,peak}`, plus `gate_w_eff_ratio_*`.
+- **Learning engagement** -- `gate_m_cross_range_*`, `gate_limbic_to_motor_*`, `gate_n_updates`.
+- **D1/D2 opponent structure (ARC-109)** -- `gate_d1_d2_active_frac`, `gate_d1_d2_conflict_mean`.
+- **Arbitration outcome** -- `gate_committed_neq_motor_winner_frac`, `gate_winner_disagreement_frac`.
+- **Exposure** -- `gate_n_gate_samples`, `gate_segregation_active_frac`. Reported, gates nothing; the +97.6%
+  arm spread that drove the 707b distortion stays on the record.
+
+A selection where `loop_segregation_active` is False contributes **no** sample: counting zeros there would
+dilute every mean toward 0 and manufacture a false "limbic never wins".
+
+### The saturation guard (the 711 lesson, made mechanical)
+
+V3-EXQ-711 met `limbic_loop_can_win` on 3/3 divergent seeds **by saturation** -- `M_cross` range 4897.8 (vs
+the healthy un-gained ~0.02-0.12) and `w_eff[limbic]` 10-2274x `w_eff[motor]`: a limbic MONOPOLY replacing the
+motor pinning, with committed-class entropy FALLING. So "the limbic loop won" is not on its own a readiness
+signal. `gate_saturated` fires when `gate_w_eff_ratio_peak > 5.0` or `gate_m_cross_range_peak > 50.0` (both
+~2 orders below the observed blow-up and well above the healthy band, both constructor-overridable so a
+falsifier pre-registers them), and `gate_readiness()["gate_ready"]` is AND-of-all -- so a saturated cell
+self-routes `substrate_not_ready_requeue` rather than being scored as a parity win. **Never a false weakens.**
+
+### What this does and does not license
+
+This is the instrument the 713x re-letter was refused pending; it is **not** itself a re-letter, and it
+promotes nothing. It makes the conversion question *validly measurable at the gate* -- the failure that
+produced V3-EXQ-707/709/711/713 was reading the DV three stages downstream of the arbitration it was meant to
+test. Whether to queue a successor falsifier on it remains a governance decision, and the 707c routing
+(`No re-queue`, `No substrate build`) is unchanged by this landing: nothing here rebuilds arbitration.
+
 ## Related Claims
 
 ARC-108 (learned dopamine-gated gating), ARC-110 (segregated loops), MECH-439 (conversion-ceiling umbrella),
