@@ -421,6 +421,9 @@ stash-archive/20260720-87404723  -> 87404723f6dfe86d40a50e6320b039567d2b7dcd   (
 stash-archive/20260714-32c6fd21  -> 32c6fd21b6c3f87d5a51606f911331a0576dd17a   ( 1 file )
 ```
 
+**Count update 2026-08-19: `ree-v3` now carries nine and the umbrella `REE_Working` two,
+eleven in total; the block above remains the 2026-07-29 snapshot, not a current list.**
+
 `20260714-32c6fd21` predates this document (the earlier fleet sweep). `20260729-50c3ea0` was
 tagged by `gracious-snyder-aa4b35` on 2026-07-29 for the SD-054 driver work it recovered and
 re-applied as a patch (`55a8fc2742`); it is **not** an entry triaged here, and it holds the
@@ -436,14 +439,77 @@ merely that a tag exists.
 
 The tags keep the commits reachable, so the content **cannot be garbage-collected**:
 `git stash apply stash-archive/<tag>` or `git show <tag>:<path>` restores it. They are
-**LOCAL-ONLY and deliberately never pushed** (re-verified 2026-07-29: `git ls-remote --tags
-origin 'stash-archive/*'` = 0). List with `git tag -l 'stash-archive/*'`. **Do not
+**LOCAL-ONLY and deliberately never pushed** -- see **Why LOCAL-ONLY** below for the
+reasoning, decided 2026-08-19 (re-verified 0 on both origins 2026-07-29 and 2026-08-19:
+`git ls-remote --tags origin 'refs/tags/stash-archive/*'`). List with `git tag -l 'stash-archive/*'`. **Do not
 bulk-delete these tags**; deleting them is the one action that would actually destroy the
 content.
 
 A plain `git stash drop` leaves the commit reachable only until `git gc` prunes it, so the
 raw SHAs recorded in the verdict table above are a weaker handle than the tags. Tag first,
 then drop.
+
+#### Why LOCAL-ONLY -- the decision and its reasoning (2026-08-19)
+
+The convention above stated "local-only" but never justified it, so it kept being re-raised.
+Decided 2026-08-19 (`chip-20260818-stash-archive-tags-local-only`): **local-only is correct;
+the tags are NOT pushed.** Recorded here so the next triager does not re-open it.
+
+State at decision time: **11 tags, 0 on any origin** -- 2 in the umbrella `REE_Working`
+(private) and 9 in `ree-v3` (**public**). Ten of the 11 are reachable from no branch at all,
+so the Mac's local `.git` is their sole copy. The one exception is instructive, and is
+reason 2 below.
+
+**1. The content is never what is at risk -- the drop gate is the proof of that.** An entry
+is dropped only once its added lines are proven line-exact contained in a commit reachable
+from `origin/main` (test 4 above), so for every dropped entry the content is *already on
+origin* by construction. An INTENTIONALLY-DEAD entry is the same story one commit further
+back: the revert is on origin, so its pre-revert parent holds the content. Losing a tag
+therefore loses a redundant packaging of content origin already carries -- never the only
+copy of any work. What a tag uniquely holds is the stash *commit object*, i.e. the handle for
+re-deriving "what this session had added" via `git diff <tag>^ <tag>`.
+
+**2. The fleet already has the right mechanism for content that must survive, and it is not
+an archive tag.** `stash-archive/20260819-dd4b0a4` -- the single tag of the 11 that IS
+reachable from origin -- got there because a session put its content on a branch,
+`origin/integration/contextmemory-write-selection-436f-salvage`. That is the correct move for
+a stash whose content is *wanted*. Archive tags are for residue proven redundant; a salvage
+branch is for work that must live. Two jobs, two mechanisms. Pushing archive tags would blur
+them, and "is it on origin?" would stop meaning "was it kept?".
+
+**3. Origin's ref namespace is shared operational surface, and `ree-v3` is public.** Pushed
+tags land in the public Tags UI, are fetched in full by every fresh `git clone` (how a new
+cloud worker is provisioned), and the convention above **forbids bulk-deleting them** -- so
+there is no reaping path and the set only grows. Measured 2026-08-19: pushing the unreachable
+tags would add **175 objects / ~3.9 MB to public `ree-v3`** and 26 objects / ~6.7 KB to the
+private umbrella, at an observed accrual of ~5 tags/month over 2026-07-14 -> 2026-08-19. That
+is a permanent, one-way, growing cost on a shared production repo, bought for a per-machine
+forensic convenience.
+
+**4. The residual durability gap is a laptop-BACKUP problem, not a git-remote problem.** The
+exposure is real and is accepted, not denied: if the Mac's disk is lost, those ten drop
+verdicts stop being independently re-runnable and become assertions backed by the written
+record in this document. The matched fix is not publication but
+`git bundle create <backup-path>/stash-archive-<repo>-<date>.bundle --tags 'stash-archive/*'`
+into whatever already covers the laptop -- durability with no shared-namespace cost and no
+publication. **Not built here** (this chip was a decision, not a build); named so the option
+is on the record if the exposure is ever judged unacceptable.
+
+**Explicitly NOT a reason -- checked, void, do not re-invent it.** The tempting objection is
+clinical-hours provenance: all 11 stash commits are personal-identity
+(`nooarche <daniel.delaharpe.golden@gmail.com>`), so a raw
+`git push origin 'refs/tags/stash-archive/*'` IS held in-window by
+`scripts/git-hooks/pre-push`. But the author dates are clean. Every one is outside the Dublin
+clinical window, and the single apparent exception -- `20260724-64a31b95`, Fri 2026-07-24
+13:46 IST, nominally inside Fri 09:00-14:00 -- falls within the declared annual-leave range
+2026-07-18 -> 2026-07-26 in `scripts/clinical_leave.json`, so it is not clinical time at all.
+Publication would therefore not have misrepresented clinical hours; the guard's hold is a
+scheduling inconvenience, not a provenance argument. The decision rests on 1-4, not on this.
+
+**What this does not license.** Do not delete any `stash-archive/*` tag (unchanged from
+above), and do not read "local-only" as "expendable" -- point 4 is an accepted exposure, not
+a claim that the tags do not matter. If a specific entry's content is ever judged to need
+durability, apply reason 2: put that content on a branch and push the branch.
 
 ---
 
