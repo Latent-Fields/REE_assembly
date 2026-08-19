@@ -36,14 +36,14 @@ prescribes is the instruction in force.
 |---|---|---|---|
 | `H-commitment` | `process` | The near-immobility is **not a new finding**: it is the plain-navigation instance of **MECH-439** (F-dominance conversion ceiling, `ceiling_decision: exhausted`, awaiting ARC-107), evidenced by 21 ARC-062 GAP-B autopsies + 9 direct MECH-439 hits. No degenerate-proposer bug exists; the collapse is at the comparator/selection stage. | **Answered at substrate level. Not queued.** |
 | `H-cadence` | `selection` | The E3 heartbeat hold-and-repeat (`e3_steps_per_tick`, default 10, MECH-093-modulated 5-20) means ~85-90% of env ticks are not re-selection at all. Documented across 5 prior autopsies + 1 dedicated diagnostic. The deeper causal question is owned by an **active** hypothesis-space line (`qid e3_fdominance_causal_discrimination`, H0-H5, with a discovery event as recent as 2026-08-18). | **Answered, and re-deriving it would duplicate an in-flight owned investigation. Not queued.** |
-| `H-energy` | `environment` | Not addressed by the spike for 874b's config. The spike DID characterise `agent_health` depletion, but under **toroidal wrap**; 874b was non-toroidal. | **QUEUED -- V3-EXQ-937.** |
-| `H-denominator` | `measurement` | Not addressed. The spike gives the substrate-level prior but not the battery-level decomposition. | **QUEUED -- V3-EXQ-938.** |
+| `H-energy` | `environment` | Not addressed by the spike for 874b's config. The spike DID characterise `agent_health` depletion, but under **toroidal wrap**; 874b was non-toroidal. | **QUEUED -- V3-EXQ-940.** |
+| `H-denominator` | `measurement` | Not addressed. The spike gives the substrate-level prior but not the battery-level decomposition. | **QUEUED -- V3-EXQ-941.** |
 
 ### 1b. The H-commitment MEASUREMENT is kept; only the HYPOTHESIS leg is dropped
 
 Approach-run length -- the quantity `H-commitment` proposed to measure -- is cheap to record
 and is what makes the `H-denominator` decomposition complete. It is therefore instrumented
-inside **V3-EXQ-938** as a counter, alongside the E3-tick/latched-tick split that
+inside **V3-EXQ-941** as a counter, alongside the E3-tick/latched-tick split that
 `H-cadence` would have produced. **What is not queued is a separate MECH-467-specific probe
 whose purpose is to adjudicate those two hypotheses** -- that adjudication is owned
 elsewhere and is running. Recording the number is not duplicating the investigation.
@@ -106,9 +106,9 @@ is left for governance to record on MECH-262 as an exposure, exactly as the auto
 
 ---
 
-## 4. Leg 1 -- V3-EXQ-937, `H-energy` (axis family: `environment`)
+## 4. Leg 1 -- V3-EXQ-940, `H-energy` (axis family: `environment`)
 
-`v3_exq_937_mech467_energy_window_decoupling` -- 3 arms x 3 seeds = 9 cells.
+`v3_exq_940_mech467_energy_window_decoupling` -- 3 arms x 3 seeds = 9 cells.
 
 **The sharpened question.** The autopsy reads the 7/12 `health_depleted` terminations as the
 agent having "starved to death" -- i.e. as a *consequence* of not eating. The scoping spike
@@ -157,9 +157,9 @@ condition fires; it is not a broadcast constant, not a monotone rescaling of can
 and not a permutation of interchangeable units. It is therefore **not invariant** under the
 DV's symmetry group in any of the three arms.
 
-## 5. Leg 2 -- V3-EXQ-938, `H-denominator` (axis family: `measurement`)
+## 5. Leg 2 -- V3-EXQ-941, `H-denominator` (axis family: `measurement`)
 
-`v3_exq_938_mech467_approach_decomposition` -- 2 arms x 3 seeds = 6 cells.
+`v3_exq_941_mech467_approach_decomposition` -- 2 arms x 3 seeds = 6 cells.
 
 **The question.** Decompose "0 events" into **never-approached** vs
 **approached-and-failed-to-arrive**. 874b could not tell these apart: it recorded consumption
@@ -212,19 +212,85 @@ preserve candidate order by construction), and not a permutation of interchangea
 
 ---
 
-## 6. Queue entries
+## 6. Step 2.5b adversarial design audit -- it found three real defects
 
-See `ree-v3/experiment_queue.json`. Both are `experiment_purpose: diagnostic`, tagged
-`MECH-467` only, `machine_affinity: any` (cloud, parallel -- per GOV-FANOUT-1 step 5).
+Run before queuing, per GOV-FANOUT-1 step 4. All three fixes are in the landed drivers.
 
-## 7. For the next governance cycle -- three items this session did not action
+**(i) Coverage.** The registry's four hypotheses are covered (two by the queued legs, two by
+the spike, with their MEASUREMENTS retained in V3-EXQ-941). One hypothesis the registry does
+NOT name is also covered: **wall-blocking**, which the scoping spike calls "additive but
+distinct" -- V3-EXQ-941's `n_move_actions` vs `n_position_changes` measures it directly.
+
+**(ii) Verdict aliasing -- three defects found, three fixed.**
+
+| # | Leg | Aliasing defect | Fix |
+|---|---|---|---|
+| A | 941 | Arrival is measured GEOMETRICALLY (Chebyshev distance to a goal cell reaching 0); a consumption EVENT is the env's own `sd049` tag. They can come apart. A run that reliably ARRIVES and never EATS would have satisfied C1 and C2 and routed to `approach_pipeline_intact` -- **the declared null** -- hiding a defect one step downstream of everything the leg was built to see. | Added load-bearing `C3_arrivals_convert_to_consumption` and the `denominator_lost_at_consumption` route. |
+| B | 941 | With 12 resources on a 6x6 grid the mean distance to a target is small, and at distance 0 no STRICT decrease is possible. A near-zero mean distance drives `approach_initiation_rate` to ~0, which **aliases onto the `never_approached` verdict while meaning the opposite** (the agent was already there). | Added the `approach_is_definable` readiness precondition (mean distance > 0). |
+| C | 940 | C1 reads a **lift** in window completeness. If `ARM_STOCK` never truncated, the lift is ~0 and C1 reads FALSE -- **aliasing "contamination was not the cause" onto "there was no truncation to explain"**, which are opposite findings. | C1's non-degeneracy keyed to `ARM_STOCK` actually truncating; that case routes to the explicit `truncation_not_reproduced_c1_undiscriminating` label instead of to a null. |
+
+Fix C is demonstrably live: the 40-tick smoke does not truncate, and the driver now routes to
+`truncation_not_reproduced_c1_undiscriminating` rather than reporting a spurious null.
+
+## 7. Queue entries -- LANDED
+
+Both `experiment_purpose: diagnostic`, tagged `MECH-467` only, `machine_affinity: any`,
+`priority: 5` (equal, so they run in parallel per GOV-FANOUT-1 step 5).
+
+| queue_id | leg | axis | script | cells | est |
+|---|---|---|---|---|---|
+| V3-EXQ-940 | H-energy | environment | `experiments/v3_exq_940_mech467_energy_window_decoupling.py` | 3 arms x 3 seeds | 75 min |
+| V3-EXQ-941 | H-denominator | measurement | `experiments/v3_exq_941_mech467_approach_decomposition.py` | 2 arms x 3 seeds | 55 min |
+
+- `ree-v3` `034d5849a5`, pushed to `origin/main` (delta `items: +2`, no sweep).
+- Both scripts AND both queue entries verified present on `origin/main` BEFORE the coordinator POST.
+- **Step 8.6 coordinator ingress performed**: `POST /queue/add` returned
+  `{"ok": true, "applied": true, "existed": false}` for both, and `/queue/active` shows both
+  present across 3 polls. This is the authoritative ingress -- a git commit alone is NOT one,
+  and the `phase3-queue: snapshot` writer was live in this window.
+- `supersedes` is deliberately NOT set on either: these are diagnostics about why 874b's
+  denominator vanished, not re-runs of its test, and 874b is already `non_contributory`
+  carrying no weight.
+
+**Gates passed:** GOV-REUSE-1 (0 of 922 manifests carry any decisive readout -> not
+recoverable, run warranted); re-derive brake (MECH-467 count 1 vs threshold 2, does not fire);
+substrate-defect gate (see 7a); ethics preflight (all-false / allow); `validate_queue.py` OK;
+`validate_experiments.py --strict` 2 OK / 0 warnings across all 30 checks; smoke PASS on both.
+
+### 7a. Substrate-defect gate -- a judgement call, flagged for review
+
+Two OPEN `corrupting` `substrate_queue` entries overlap modules these drivers import. The
+skill's disposition for `corrupting` is a hard stop. **Both were judged non-reaching and the
+runs were queued anyway**, with the overlap recorded in each queue entry's `note` (the
+`degrading` disposition). The reasoning, so a reviewer can overturn it:
+
+- **`mode-governance-engagement`** (`salience_coordinator.py`, `config.py`, `agent.py`) -- its
+  own `severity_note` scopes the corrupting defect to
+  `experiments/_lib/regime_occupancy_gate.py`'s min-across-arms/band gate pattern and to "a
+  new experiment inheriting this gate pattern". These drivers do not use that module; they use
+  `precondition_gate.py` with per-arm `applies_to` scoping. Its `external_task` drive is
+  default-off and unused, and both drivers PIN `operating_mode`, discarding the coordinator's
+  computed mode by construction.
+- **`contextmemory-write-path-addressing-degeneracy`** (`e1_deep.py`) -- its
+  `severity_rationale` scopes the hazard to a consumer whose null "looks like a genuine 'sleep
+  has no effect' finding". Neither leg produces a null of that shape; they decompose a
+  denominator, and the current ContextMemory behaviour is part of the substrate condition
+  under test (874b ran under it too). The fix landed 2026-08-19 **default-OFF**.
+
+The counter-argument, stated plainly: `agent.py` appears in three open entries, so a
+module-level match there would block essentially every experiment, and the gate says "when in
+doubt, treat the entry as open". A reviewer who disagrees should dequeue both entries rather
+than let them run.
+
+## 8. For the next governance cycle -- three items this session did not action
+
 
 1. **Dispose of `H-commitment` and `H-cadence`** in `hypothesis_space_registry.v1.json`
    (`qid mech467_legc_event_denominator_cause`), citing
    `navigation_immobility_scoping_2026-08-18.md`. Not done here -- see section 1c.
 2. **Record the MECH-262 exposure** (storage-site vs selection-path rule-read dissociation,
    6/9 live cells) per the autopsy's section 9 verbatim draft. Not this session's authority.
-3. **The contamination footgun is broader than MECH-467.** If V3-EXQ-937 confirms C1, then
+3. **The contamination footgun is broader than MECH-467.** If V3-EXQ-940 confirms C1, then
    any `num_hazards=0` battery that did not set `hazard_free_contamination_gate=True` has been
    running a self-poisoning agent. The scoping spike already recommended a mechanical corpus
    audit of reach-dependent DVs; a confirmed C1 would raise its priority materially.
