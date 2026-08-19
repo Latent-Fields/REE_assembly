@@ -21886,6 +21886,20 @@
     (all default False/0). All wired through REEConfig.from_dims(). Validation experiment
     V3-EXQ-265 queued (2 conditions x 3 seeds, ~45 min). Distinguishes from EXQ-242
     (proxy hooks, non_contributory) -- this is the first-class substrate implementation.
+
+    2026-08-19 (chip-20260816-implsub-contextmemory-writepath-degeneracy): the write-path
+    addressing build that V3-EXQ-436f's re-derive brake was gated on has landed
+    (substrate_queue contextmemory-write-path-addressing-degeneracy, status
+    implemented_pending_validation) -- ContextMemory.write() (ree_core/predictors/e1_deep.py)
+    gains a conscience-bias usage-balancing selection (E1Config.contextmemory_write_usage_balancing,
+    default False = bit-identical legacy argmin path), repairing the deterministic single-slot
+    fixed point 436e/436f established. Validated so far at the ContextMemory unit level only
+    (ree-v3/tests/contracts/test_contextmemory_write_usage_balancing.py): reproduces the lock
+    synthetically and confirms >= 2 occupied slots under the fix on every seed observed to lock.
+    Not yet validated with a queued EXQ measuring n_occupied_slots on a real agent; follow-on
+    chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
+    factual landing note, not a governance disposition -- pending_retest_after_substrate and
+    status are left for governance to update once the validation experiment scores.
   evidence_quality_note: >
     2026-07-10 (governance, failure_autopsy_V3-EXQ-538a, confirmed; user-adjudicated): V3-EXQ-538a (SD-049 Phase-2 sleep-on ablation) tagged SD-017 non_contributory. The manifest's per-claim SD-017 'supports' was SWS/REM-write liveness only (sleep loop fired: SWS/REM writes 160/40) -- vacuous, NOT counted. SD-017 stays STABLE / unchanged; its genuine support is V3-EXQ-691.
 
@@ -21992,6 +22006,20 @@
     - MECH-092
     - ARC-038
     - MECH-166
+  implementation_note: >
+    2026-08-19 (chip-20260816-implsub-contextmemory-writepath-degeneracy): the write-path
+    addressing build that V3-EXQ-436f's re-derive brake was gated on has landed
+    (substrate_queue contextmemory-write-path-addressing-degeneracy, status
+    implemented_pending_validation) -- ContextMemory.write() (ree_core/predictors/e1_deep.py)
+    gains a conscience-bias usage-balancing selection (E1Config.contextmemory_write_usage_balancing,
+    default False = bit-identical legacy argmin path), repairing the deterministic single-slot
+    fixed point 436e/436f established. Validated so far at the ContextMemory unit level only
+    (ree-v3/tests/contracts/test_contextmemory_write_usage_balancing.py): reproduces the lock
+    synthetically and confirms >= 2 occupied slots under the fix on every seed observed to lock.
+    Not yet validated with a queued EXQ measuring n_occupied_slots on a real agent; follow-on
+    chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
+    factual landing note, not a governance disposition -- pending_retest_after_substrate and
+    status are left for governance to update once the validation experiment scores.
   notes: >
     Registered 2026-04-05. Biological grounding: hippocampal-to-neocortical
     information flow during slow-wave sleep (Diekelmann & Born 2010) is the
@@ -22089,6 +22117,20 @@
     - ARC-045
     - MECH-092
     - INV-044
+  implementation_note: >
+    2026-08-19 (chip-20260816-implsub-contextmemory-writepath-degeneracy): the write-path
+    addressing build that V3-EXQ-436f's re-derive brake was gated on has landed
+    (substrate_queue contextmemory-write-path-addressing-degeneracy, status
+    implemented_pending_validation) -- ContextMemory.write() (ree_core/predictors/e1_deep.py)
+    gains a conscience-bias usage-balancing selection (E1Config.contextmemory_write_usage_balancing,
+    default False = bit-identical legacy argmin path), repairing the deterministic single-slot
+    fixed point 436e/436f established. Validated so far at the ContextMemory unit level only
+    (ree-v3/tests/contracts/test_contextmemory_write_usage_balancing.py): reproduces the lock
+    synthetically and confirms >= 2 occupied slots under the fix on every seed observed to lock.
+    Not yet validated with a queued EXQ measuring n_occupied_slots on a real agent; follow-on
+    chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
+    factual landing note, not a governance disposition -- pending_retest_after_substrate and
+    status are left for governance to update once the validation experiment scores.
   notes: >
     Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife):
     context discrimination at inference time is bounded by the quality of the

@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build."
     }
   },
-  "last_seen_session": "intelligent-elgamal-222d2b",
-  "last_updated_utc": "2026-08-18T09:52:00Z",
+  "last_seen_session": "chip-20260816-implsub-contextmemory-writepath-degeneracy",
+  "last_updated_utc": "2026-08-19T01:24:11Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -8164,8 +8164,7 @@
       "sd_id": "contextmemory-write-path-addressing-degeneracy",
       "title": "ContextMemory.write() hard-argmin addressing has a deterministic single-slot fixed point under a low-variance query stream -- give the WRITE path the non-degenerate selection the READ path already has",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -8188,7 +8187,7 @@
       "implementation_hint": "ContextMemory.read() (ree_core/predictors/e1_deep.py:124-133) addresses by softmax over query_proj(query) @ key_proj(memory).T, but ContextMemory.write() (lines 135-147) addresses by a hard scores.mean(0).argmin(), which under a near-constant query stream is a deterministic single-slot fixed point -- established at 436e by a closed-form sign discriminator q . (write_signal - memory[argmin]) that predicted lock-vs-rotate 5/5. Primary build: apply the annealed Gumbel-softmax selection that V3-EXQ-908 ALREADY CONFIRMED works (3/3, genuine context-conditioned sparsification) to the WRITE address, or add an occupancy/usage-balancing term so the fixed point cannot form. Note compute_diversification_loss() already acts on self.memory but the write update runs under torch.no_grad() and is unaffected by it. Secondary/complementary lever (NOT this entry): raise z_world entropy via the SD-070 encoder recipe so the query stream stops being near-constant. This is the WRITE-side sibling of substrate_queue SD-016, which is scoped to cue-indexed RETRIEVAL and is already `implemented`; an amend there would misfile it.",
       "priority": 1,
       "added_session": "cranky-driscoll-126a36",
-      "last_seen_session": "cranky-driscoll-126a36",
+      "last_seen_session": "chip-20260816-implsub-contextmemory-writepath-degeneracy",
       "added_utc": "2026-08-16T19:11:21Z",
       "created_by": "governance 2026-08-16T19:11:21Z (cranky-driscoll-126a36) from confirmed failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16 / V3-EXQ-436f",
       "severity": "corrupting",
@@ -8196,7 +8195,9 @@
         "ree_core/predictors/e1_deep.py"
       ],
       "severity_rationale": "Every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank while write() returns normally and thousands of calls are logged. Nothing errors, the readout is well-formed, and the resulting null looks like a genuine 'sleep has no effect' finding. That is the definition of `corrupting` -- evidence that LOOKS valid but is not -- and it has now produced exactly that artefact twice (436e, 436f). Classified by what the defect does to evidence quality, not by fix difficulty.",
-      "priority_rationale": "One fresh failure record (V3-EXQ-436f), and it blocks 3 claims -- either arm of the governance Step 6a-ii.6 rule gives priority 1."
+      "priority_rationale": "One fresh failure record (V3-EXQ-436f), and it blocks 3 claims -- either arm of the governance Step 6a-ii.6 rule gives priority 1.",
+      "implementation_note": "IMPLEMENTED 2026-08-19 (ree-v3 commit pending push; chip-20260816-implsub-contextmemory-writepath-degeneracy). ContextMemory.write() (ree_core/predictors/e1_deep.py) now supports a frequency-sensitive competitive-learning conscience bias on the write-address selection score (E1Config.contextmemory_write_usage_balancing, default False = bit-identical legacy argmin path). Contract tests (ree-v3/tests/contracts/test_contextmemory_write_usage_balancing.py) reproduce the V3-EXQ-436e/436f deterministic single-slot lock synthetically (3 seeds independently confirmed to lock the legacy path over 3000 write() calls under a perfectly constant query stream) and confirm the fix reaches >= 2 occupied slots on all 3 (broader 20-seed sweep: 11/20 locked under legacy, 20/20 reached >= 2 occupied under the fix). STATUS is implemented_pending_validation, not implemented_validated: the contract tests validate the mechanism at the ContextMemory unit level with a synthetic degenerate query stream, not yet with a queued EXQ measuring n_occupied_slots on a real agent under the 436e/436f harness's own instrumentation. Per CLAUDE.md's chip-everything-else housekeeping rule, queueing that validation experiment is follow-on /queue-experiment work and has been spawned as its own chip (chip-20260819-queueexp-contextmemory-writeusage-validation) rather than done inline in this /implement-substrate session.",
+      "validation_experiment": "PENDING -- diagnostic-purpose ablation (feature ON vs OFF, n_occupied_slots against the >= 2 occupied slots in both arms on >= 3/5 seeds target already registered in this entry's failure_record) not yet queued; follow-on chip chip-20260819-queueexp-contextmemory-writeusage-validation spawned to queue it via /queue-experiment."
     },
     {
       "sd_id": "SD-SLEEP-ENTRY-PRESSURE",
