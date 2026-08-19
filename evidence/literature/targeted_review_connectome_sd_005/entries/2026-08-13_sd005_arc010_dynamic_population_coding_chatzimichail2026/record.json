@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_sd_005",
+  "entry_id": "2026-08-13_sd005_arc010_dynamic_population_coding_chatzimichail2026",
+  "timestamp_utc": "2026-08-13T22:45:00Z",
+  "claim_ids_tested": ["SD-005", "ARC-010"],
+  "source": {
+    "title": "Dynamic population coding of kinematic structure across executed and observed actions in primate premotor cortex",
+    "authors": [
+      "Konstantinos Chatzimichail",
+      "Christos Paschalidis",
+      "Eleftheria Tzamali",
+      "Vassilis Papadourakis",
+      "Vassilis Raos"
+    ],
+    "year": 2026,
+    "venue": "Science Advances",
+    "doi": "10.1126/sciadv.aed9309",
+    "pmid": "42319945",
+    "pmcid": "PMC13281793",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13281793/"
+  },
+  "evidence_class": "macaque_premotor_population_coding",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality primary electrophysiology with 433 macaque premotor neurons, open-access full text, and a Zenodo code/data deposit. The paper directly supports a dynamic population-level account of action observation/execution matching and shows partially overlapping execution-observation geometry tied to kinematics. This supports ARC-010's shared self/other action-model substrate and refines SD-005 away from clean static separation. Confidence is held below strong because the task is narrowly reach-to-grasp, object and grasp labels are not fully dissociated, neural and kinematic data were collected in separate sessions, population analyses use pseudopopulations, and the paper does not test affective empathy, other-harm, moral residue, or multi-agent social behavior.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "static_self_world_split_overclaim",
+    "single_neuron_mirror_congruence_overclaim",
+    "bidirectional_self_other_equivalence_overclaim"
+  ],
+  "tags": [
+    "sd005",
+    "arc010",
+    "mirror-neurons",
+    "premotor",
+    "population-coding",
+    "self-other",
+    "kinematics",
+    "shared-manifold",
+    "partial-overlap",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "During executed and observed reach-to-grasp actions, macaque premotor populations encode grasp configuration dynamically over time. Execution and observation share partially overlapping low-dimensional population geometry, with cross-condition classification strongest during movement and hold. Neural population activity is systematically related to multidimensional hand kinematics, including within the shared execution-observation subspace, while cross-agent transfer is asymmetric.",
+    "ree_translation": "For SD-005, the paper weakens any strict anatomical/static self-world split for social action representation: self-executed and other-observed actions share a graded, time-varying population geometry rather than fully separate heads. The asymmetry and condition-specific components preserve room for provenance gating, so the best REE update is not fusion but gated separation. For ARC-010, the result supports reusing self/action machinery to model others at reduced precision/coupling: observed actions are mapped into a shared action manifold rather than a separate symbolic other-model. REE's ARC-010 implementation should therefore test shared-subspace prediction while preserving self/other provenance and asymmetric coupling parameters.",
+    "mapping_caveat": "The study is about action kinematics in macaque premotor cortex, not affective empathy or moral behavior. It does not show that an observed other has a self-model, nor that harm-to-other routes into valuation. The REE mapping is strongest for the sensorimotor substrate of other-action modelling and weaker for the full ARC-010/INV-005 social-ethical stack. Because object identity and grasp configuration were confounded by design, some apparent grasp coding could include object/goal structure, although cross-agent kinematic analyses reduce a purely object-driven interpretation.",
+    "source_context": "Primary macaque single-unit electrophysiology in PMd/PMv during grasp execution and observation; population decoding, CCA/shared-subspace analyses, kinematic regression; open access with code/data deposited to Zenodo."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.56,
+    "notes": "Source quality is high for the sensorimotor claim, with primary neural data and public analysis artifacts. Mapping fidelity is good for ARC-010's shared action-substrate premise and SD-005's self/other action-provenance caveat, but lower for REE's affective and ethical social claims. Transfer risk remains moderate because the biology is macaque premotor action observation, whereas REE needs inspectable artificial multi-agent other-modelling."
+  }
+}
