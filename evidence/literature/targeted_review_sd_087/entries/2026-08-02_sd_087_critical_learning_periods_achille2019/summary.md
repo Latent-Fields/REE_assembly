@@ -1,5 +1,17 @@
 # Critical Learning Periods in Deep Networks (Achille, Rovere & Soatto, ICLR 2019)
 
+> **PROVENANCE NOTE (2026-08-19, chip `chip-20260818-lit-fuzzy-title-candidates`). Provenance only --
+> no `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched.**
+>
+> This entry was one of a trio (`INV-074`, `SD-087`, `Q-088`) flagged by the 2026-08-14 duplicate-entry
+> scan's fuzzy title matcher as possibly citing the same paper under slightly different titles
+> ("...in Deep Neural Networks" vs "...in Deep Networks"). Confirmed: all three ARE the same ICLR 2019
+> paper (arXiv:1711.08856; the "Deep Networks" / "Deep Neural Networks" variants are the ICLR
+> camera-ready title vs. the arXiv listing title of one work, not two). This is **not** a live
+> double-count -- the three entries test disjoint claims (INV-074, SD-087, Q-088), each legitimately
+> citing the same source once. `source.doi` (previously absent) added: `10.48550/arXiv.1711.08856`,
+> matching the value already present on the INV-074 sibling entry.
+
 ## What the paper did
 
 Achille and colleagues took a standard deep convolutional network and did something that sounds more like developmental ophthalmology than machine learning: they imposed a simulated sensory deficit -- cataract-like blur -- for a fixed window of training epochs, then removed it and let training continue to convergence. The question was whether the network recovers. It does not. The final performance loss depends on the *onset* and *length* of the deficit window in a way that closely tracks the animal literature on monocular deprivation, and on network size. Crucially, they ran a control: vertical flipping of the images, a deficit that scrambles high-level semantics but leaves low-level image statistics intact. That one produced no lasting impairment at all and was fully overcome with further training.

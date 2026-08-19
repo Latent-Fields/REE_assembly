@@ -1,5 +1,17 @@
 # Critical Learning Periods in Deep Neural Networks (Achille, Rovere & Soatto, 2019)
 
+> **PROVENANCE NOTE (2026-08-19, chip `chip-20260818-lit-fuzzy-title-candidates`). Provenance only --
+> no `confidence`, `evidence_direction`, `mapping` or `claim_ids_tested` field was touched.**
+>
+> This entry was one of a trio (`INV-074`, `SD-087`, `Q-088`) flagged by the 2026-08-14 duplicate-entry
+> scan's fuzzy title matcher as possibly citing the same paper under slightly different titles.
+> Confirmed: all three ARE the same ICLR 2019 paper (arXiv:1711.08856; the "Deep Networks" /
+> "Deep Neural Networks" variants are the ICLR camera-ready title vs. the arXiv listing title of one
+> work, not two). This is **not** a live double-count -- the three entries test disjoint claims
+> (INV-074, SD-087, Q-088), each legitimately citing the same source once. `source.doi` (previously
+> `null`) set to `10.48550/arXiv.1711.08856`, matching the value already present on the INV-074
+> sibling entry.
+
 **Claim tested:** Q-088 -- does *competitive redevelopment* (development-without-the-mechanism) dissociate from *mature-state lesion*, and if so, is the expensive redevelopment protocol worth running as a standing requirement?
 
 ## What the paper did
