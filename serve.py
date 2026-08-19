@@ -1859,6 +1859,21 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
         "chips_dispatched_total": hb.get("chips_dispatched_total"),
         "chips_open_work": hb.get("chips_open_work"),
         "chips_open_decision": hb.get("chips_open_decision"),
+        # `state` says what the dispatch wrapper DECIDED; `health` says what
+        # came of it. Read health. `state` is written around the claude
+        # invocation, so it attests only that the timer fired -- confirmed
+        # 2026-08-19, ree-cloud-5 published state="dispatching" with a tick
+        # fresh to the minute for ~12h while every cycle died on a usage limit.
+        # See runner_heartbeats/README.md for the value table (note that
+        # health=="idle" is HEALTHY and must not be rendered as an alarm).
+        # Absent on a pre-2026-08-19 heartbeat, hence no default, same as the
+        # rest of this block.
+        "health": hb.get("health"),
+        "health_reason": hb.get("health_reason"),
+        "no_dispatch_streak": hb.get("no_dispatch_streak"),
+        "session_outcome": hb.get("session_outcome"),
+        "eligible_work": hb.get("eligible_work"),
+        "dispatched_this_cycle": hb.get("dispatched_this_cycle"),
         "in_flight_dispatches": hb.get("in_flight_dispatches"),
         "last_dispatch_chip_ref": hb.get("last_dispatch_chip_ref"),
         "coordination_plane_paused": hb.get("coordination_plane_paused"),
