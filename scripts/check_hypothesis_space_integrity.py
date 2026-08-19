@@ -20,10 +20,16 @@ Checks (design rule 5):
       are NOT violations -- both are reported separately as advisory. See
       `labelled_fanout_growth` and `discovery_growth` in the registry's
       invariants block for the conditions each must satisfy.
-  (c) Confirmed without a passed control -- a `confirmed` hypothesis whose
-      resolution lacks control_passed == true.
+  (c) Confirmed/superseded without a passed control -- a `confirmed` or
+      `superseded` hypothesis whose resolution lacks control_passed == true.
+      `superseded` (ratified moot/no-longer-load-bearing) needs the same
+      adjudicated-control bar as `confirmed`, but is deliberately EXEMPT from
+      check (d) below -- see SUPERSEDED_STATES.
   (d) Elimination-bar violation -- an `eliminated`/`split` hypothesis missing the
       full bar (met_elimination_bar + control_passed + non_degenerate == true).
+      `superseded` is NOT in this bucket's state set: asserting
+      met_elimination_bar true for a superseded leg would be the over-counting
+      Goodhart move GOV-FROZEN-1 exists to prevent.
 
 Also emits ADVISORY overlays that are reported but never counted as flags -- including
 the GOV-FROZEN-1 fan-out/discovery RECURRENCE overlays (N >= FANOUT_RECURRENCE_N growth
@@ -54,6 +60,20 @@ TIMESERIES = PLANNING_DIR / "hypothesis_space_timeseries.v1.jsonl"
 REPORT = PLANNING_DIR / "hypothesis_space_integrity.md"
 
 RESOLVED_OUT_STATES = {"eliminated", "split"}
+# A RATIFIED MOOT/SUPERSEDED resolution -- no longer load-bearing for its question
+# whatever its own truth value (see the registry's `resolution.basis`). Deliberately
+# its OWN set, disjoint from RESOLVED_OUT_STATES: that set gates check (d)'s
+# elimination-bar requirement below, and a superseded leg is EXEMPT from that bar by
+# design -- asserting met_elimination_bar true for one would be the over-counting
+# Goodhart direction GOV-FROZEN-1 exists to prevent. build_hypothesis_space.py's
+# SUPERSEDED_STATES mirrors this name; the two files intentionally do NOT share one
+# constant across the module boundary (each script is hermetic -- see the
+# `--self-test` docstring).
+SUPERSEDED_STATES = {"superseded"}
+# States needing an adjudicated, passed control (check (c)) but EXEMPT from the
+# elimination bar (check (d)): `confirmed` (supports) and `superseded` (ratified
+# moot). Kept distinct from RESOLVED_OUT_STATES for the same reason as above.
+CONTROL_REQUIRED_STATES = {"confirmed"} | SUPERSEDED_STATES
 # Buckets that are REPORTED but never counted as flags: sanctioned labelled growth,
 # the quiet unverifiable-provenance state, cleared git witnesses, and the
 # fan-out RECURRENCE overlay (an ACTIONABLE routing signal, still never a gate).
@@ -720,11 +740,11 @@ def audit(registry: dict, timeseries: list) -> dict:
                     f"resolution {resolved} -- retro-padded pre-registration."
                 )
 
-            # (c) confirmed without a passed control.
-            if state == "confirmed" and res.get("control_passed") is not True:
+            # (c) confirmed/superseded without a passed control.
+            if state in CONTROL_REQUIRED_STATES and res.get("control_passed") is not True:
                 flags["c_confirmed_no_control"].append(
-                    f"`{qid}`/`{hid}`: state=confirmed but control_passed="
-                    f"{res.get('control_passed')!r} -- a confirmed node needs a passed control."
+                    f"`{qid}`/`{hid}`: state={state} but control_passed="
+                    f"{res.get('control_passed')!r} -- a {state} node needs a passed control."
                 )
 
             # (d) elimination-bar violation.
@@ -774,23 +794,33 @@ def audit(registry: dict, timeseries: list) -> dict:
             # unverifiable (quiet), never as a violation, matching the
             # git-witness provenance design elsewhere in this file (insufficient
             # data reads as "cannot tell", not as "therefore a violation").
+            #
+            # A `superseded` resolution (SUPERSEDED_STATES) is the SAME shape of
+            # legitimate non-eliminating drop, added 2026-08-19 alongside the
+            # registry vocabulary itself -- an alive -> superseded transition also
+            # drops `surviving` with no elimination behind it. total_superseded
+            # gets the identical missing-field-is-unverifiable treatment (it is
+            # absent from every snapshot recorded before this date), and a
+            # snapshot pair is credited on the COMBINED confirmed+superseded
+            # delta, since either kind of resolution explains the same drop.
             conf_prev, conf_cur = prev.get("total_confirmed"), cur.get("total_confirmed")
-            if conf_prev is None or conf_cur is None:
+            sup_prev, sup_cur = prev.get("total_superseded"), cur.get("total_superseded")
+            if conf_prev is None or conf_cur is None or sup_prev is None or sup_cur is None:
                 flags["j_confirmed_unverifiable"].append(
                     f"time series {prev.get('date')} -> {cur.get('date')}: surviving fell by "
-                    f"{-d_surv} with no rise in resolved_out, but total_confirmed is absent "
-                    "from one or both snapshots (predates the field) so a "
-                    "confirmation-explained drop cannot be ruled out -- unverifiable, not "
-                    "a violation."
+                    f"{-d_surv} with no rise in resolved_out, but total_confirmed and/or "
+                    "total_superseded is absent from one or both snapshots (predates the "
+                    "field) so a confirmation/supersession-explained drop cannot be ruled "
+                    "out -- unverifiable, not a violation."
                 )
             else:
-                d_conf = conf_cur - conf_prev
-                if d_conf > 0:
+                d_credited = (conf_cur - conf_prev) + (sup_cur - sup_prev)
+                if d_credited > 0:
                     flags["i_confirmed_backed"].append(
                         f"time series {prev.get('date')} -> {cur.get('date')}: surviving fell "
-                        f"by {-d_surv}, backed by {d_conf} newly-confirmed hypothesis(es) "
-                        "(an adjudicated resolution, not an elimination) -- advisory, not "
-                        "a violation."
+                        f"by {-d_surv}, backed by {d_credited} newly-confirmed/superseded "
+                        "hypothesis(es) (an adjudicated resolution, not an elimination) -- "
+                        "advisory, not a violation."
                     )
                 else:
                     flags["a_unbacked_drop"].append(
@@ -877,8 +907,8 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
          "The frozen initial enumeration grew WITHOUT a valid labelled fan-out record, "
          "or a hypothesis was pre-registered after its own adjudicating run. "
          "Labelled GOV-FANOUT-1 growth is NOT counted here -- see the advisory section below."),
-        ("c_confirmed_no_control", "(c) Confirmed without a passed control",
-         "A `confirmed` hypothesis lacks control_passed == true."),
+        ("c_confirmed_no_control", "(c) Confirmed/superseded without a passed control",
+         "A `confirmed` or `superseded` hypothesis lacks control_passed == true."),
         ("d_bar_violation", "(d) Elimination-bar violation",
          "An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_bar + control_passed + non_degenerate)."),
     ]
@@ -930,29 +960,32 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     conf_backed = flags.get("i_confirmed_backed") or []
     conf_unv = flags.get("j_confirmed_unverifiable") or []
     L.append(
-        f"## Advisory -- surviving-count drop backed by confirmation "
+        f"## Advisory -- surviving-count drop backed by confirmation/supersession "
         f"({len(conf_backed)} backed, {len(conf_unv)} unverifiable, NOT violations)"
     )
     L.append("")
     L.append(
-        "_A `confirmed` resolution (supports + control_passed) also legitimately removes a "
-        "hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts "
-        "alive legs, so an alive -> confirmed transition drops the total with no elimination "
-        "behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) lets this "
-        "check credit that instead of reading the drop as unbacked. A snapshot pair predating "
-        "the field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design "
-        "as the git-witness provenance check below._"
+        "_A `confirmed` resolution (supports + control_passed) or a `superseded` resolution "
+        "(ratified moot, added 2026-08-19) also legitimately removes a hypothesis from "
+        "`surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an "
+        "alive -> confirmed/superseded transition drops the total with no elimination behind "
+        "it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) and "
+        "`total_superseded` (added 2026-08-19) let this check credit either instead of reading "
+        "the drop as unbacked. A snapshot pair predating either field is UNVERIFIABLE, not a "
+        "violation -- same quiet-on-insufficient-data design as the git-witness provenance "
+        "check below._"
     )
     L.append("")
     if conf_backed:
-        L.append("**Backed (drop fully explained by a confirmation):**")
+        L.append("**Backed (drop fully explained by a confirmation/supersession):**")
         L.append("")
         for msg in conf_backed:
             L.append(f"- {msg}")
         L.append("")
     if conf_unv:
         L.append(
-            "**Unverifiable (quiet -- total_confirmed absent from one or both snapshots):**"
+            "**Unverifiable (quiet -- total_confirmed and/or total_superseded absent from "
+            "one or both snapshots):**"
         )
         L.append("")
         for msg in conf_unv:
@@ -1499,15 +1532,16 @@ def _self_test() -> int:
         ]},
     ]}
     ts = [
-        # total_confirmed present + FLAT across every row: proves the 07-01->07-02
-        # drop is genuinely unbacked (no confirmation explains it either), not
-        # merely unverifiable for lack of the field.
+        # total_confirmed AND total_superseded present + FLAT across every row:
+        # proves the 07-01->07-02 drop is genuinely unbacked (neither a
+        # confirmation nor a supersession explains it), not merely unverifiable
+        # for lack of either field.
         {"date": "2026-07-01", "total_surviving": 5, "total_resolved_out": 0,
-         "total_initial": 5, "total_confirmed": 0},
+         "total_initial": 5, "total_confirmed": 0, "total_superseded": 0},
         {"date": "2026-07-02", "total_surviving": 3, "total_resolved_out": 0,
-         "total_initial": 5, "total_confirmed": 0},  # (a) unbacked drop
+         "total_initial": 5, "total_confirmed": 0, "total_superseded": 0},  # (a) unbacked drop
         {"date": "2026-07-03", "total_surviving": 3, "total_resolved_out": 0,
-         "total_initial": 7, "total_confirmed": 0},  # (b) init grew
+         "total_initial": 7, "total_confirmed": 0, "total_superseded": 0},  # (b) init grew
     ]
     # Hermetic: stub the two git lookups so the self-test never shells out (and so
     # it exercises the witness LOGIC rather than this repo's actual history).
@@ -1739,13 +1773,20 @@ def _self_test() -> int:
             failures.append(name)
 
     # Confirmed-backed / confirmed-unverifiable surviving-drop discriminations
-    # (2026-08-02 fix). A minimal one-question registry+timeseries pair is enough
-    # here -- the drop is purely a total_surviving/total_resolved_out/
-    # total_confirmed arithmetic comparison, unlike the fan-out checks above which
-    # need real hypotheses/events to drive. `confirmed` param controls whether
-    # BOTH snapshot rows carry total_confirmed (and what it's set to); `None`
-    # means the key is omitted entirely, simulating a pre-fix ledger row.
-    def _confirmed_drop_case(confirmed_prev, confirmed_cur) -> list:
+    # (2026-08-02 fix, generalised 2026-08-19 to also credit `total_superseded`).
+    # A minimal one-question registry+timeseries pair is enough here -- the drop
+    # is purely a total_surviving/total_resolved_out/total_confirmed/
+    # total_superseded arithmetic comparison, unlike the fan-out checks above
+    # which need real hypotheses/events to drive. Each `*_prev`/`*_cur` param
+    # controls whether that snapshot row carries the field (and what it's set
+    # to); `None` means the key is omitted entirely, simulating a pre-fix ledger
+    # row. `superseded_prev`/`superseded_cur` default to 0 on both rows so the
+    # pre-existing confirmed-only call sites below are unaffected -- they
+    # simulate a POST-fix ledger where total_superseded exists and is simply
+    # uninvolved, not a pre-fix ledger missing the field (that path is exercised
+    # explicitly by the superseded-missing cases further down).
+    def _credited_drop_case(confirmed_prev, confirmed_cur,
+                            superseded_prev=0, superseded_cur=0) -> list:
         reg3 = {"questions": [{"qid": "confdrop_q", "initial_frozen_count": 2,
                                "hypotheses": [
                                    {"hid": "cd1", "pre_registered_utc": "2026-07-01",
@@ -1759,12 +1800,16 @@ def _self_test() -> int:
             row1["total_confirmed"] = confirmed_prev
         if confirmed_cur is not None:
             row2["total_confirmed"] = confirmed_cur
+        if superseded_prev is not None:
+            row1["total_superseded"] = superseded_prev
+        if superseded_cur is not None:
+            row2["total_superseded"] = superseded_cur
         return audit(reg3, [row1, row2])
 
-    flags_backed = _confirmed_drop_case(3, 4)          # total_confirmed rose by 1 == the drop
-    flags_missing_cur = _confirmed_drop_case(3, None)   # field absent on the LATER row
-    flags_missing_prev = _confirmed_drop_case(None, 4)  # field absent on the EARLIER row
-    flags_flat = _confirmed_drop_case(3, 3)             # field present but flat -> genuinely unbacked
+    flags_backed = _credited_drop_case(3, 4)          # total_confirmed rose by 1 == the drop
+    flags_missing_cur = _credited_drop_case(3, None)   # field absent on the LATER row
+    flags_missing_prev = _credited_drop_case(None, 4)  # field absent on the EARLIER row
+    flags_flat = _credited_drop_case(3, 3)             # field present but flat -> genuinely unbacked
 
     for name, cond, msg in [
         ("confirmed_backed_not_unbacked",
@@ -1780,6 +1825,86 @@ def _self_test() -> int:
          len(flags_flat["a_unbacked_drop"]) == 1 and not flags_flat["i_confirmed_backed"]
          and not flags_flat["j_confirmed_unverifiable"],
          "total_confirmed present on both sides but FLAT -- drop stays a real (a) violation"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Superseded-backed / superseded-unverifiable surviving-drop discriminations
+    # (2026-08-19, `superseded` state added to the registry vocabulary). Exact
+    # mirror of the confirmed-credit block above, but driving total_superseded
+    # instead -- proves a `superseded` resolution credits an otherwise-unbacked
+    # drop the same way a `confirmed` one does, and that a MIXED delta (one
+    # field flat, the other moving) still credits on the sum.
+    flags_sup_backed = _credited_drop_case(0, 0, 3, 4)          # total_superseded rose by 1
+    flags_sup_missing_cur = _credited_drop_case(0, 0, 3, None)   # field absent on the LATER row
+    flags_sup_missing_prev = _credited_drop_case(0, 0, None, 4)  # field absent on the EARLIER row
+    flags_sup_flat = _credited_drop_case(0, 0, 3, 3)             # field present but flat
+    flags_mixed_backed = _credited_drop_case(3, 3, 0, 1)         # confirmed flat, superseded rose
+
+    for name, cond, msg in [
+        ("superseded_backed_not_unbacked",
+         not flags_sup_backed["a_unbacked_drop"] and len(flags_sup_backed["i_confirmed_backed"]) == 1,
+         "a drop matched by a total_superseded rise lands in i_confirmed_backed, not a_unbacked_drop"),
+        ("superseded_missing_cur_is_unverifiable",
+         not flags_sup_missing_cur["a_unbacked_drop"]
+         and len(flags_sup_missing_cur["j_confirmed_unverifiable"]) == 1,
+         "total_superseded absent from the LATER snapshot reads as unverifiable, not a violation"),
+        ("superseded_missing_prev_is_unverifiable",
+         not flags_sup_missing_prev["a_unbacked_drop"]
+         and len(flags_sup_missing_prev["j_confirmed_unverifiable"]) == 1,
+         "total_superseded absent from the EARLIER snapshot reads as unverifiable, not a violation"),
+        ("superseded_flat_stays_unbacked",
+         len(flags_sup_flat["a_unbacked_drop"]) == 1 and not flags_sup_flat["i_confirmed_backed"]
+         and not flags_sup_flat["j_confirmed_unverifiable"],
+         "total_superseded present on both sides but FLAT -- drop stays a real (a) violation"),
+        ("mixed_credit_sums_both_fields",
+         not flags_mixed_backed["a_unbacked_drop"] and len(flags_mixed_backed["i_confirmed_backed"]) == 1,
+         "confirmed flat + superseded rose by 1 still credits the drop -- the two fields sum"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # (c)/(d) state-set discriminations for `superseded` (2026-08-19). A single
+    # synthetic question carries both: a superseded leg MISSING a passed control
+    # (must land in c_confirmed_no_control, same bucket confirmed uses) and a
+    # superseded leg WITH a passed control but met_elimination_bar explicitly
+    # False (must clear check (c) AND, the negative control this task exists to
+    # pin, must NOT land in d_bar_violation -- superseded is deliberately exempt
+    # from the elimination bar).
+    reg_sup = {"questions": [{"qid": "superseded_checks_q", "initial_frozen_count": 2,
+                              "hypotheses": [
+                                  {"hid": "sup_nocontrol", "pre_registered_utc": "2026-08-01",
+                                   "resolution": {"state": "superseded",
+                                                  "resolved_utc": "2026-08-02",
+                                                  "control_passed": None}},
+                                  {"hid": "sup_ok", "pre_registered_utc": "2026-08-01",
+                                   "resolution": {"state": "superseded",
+                                                  "resolved_utc": "2026-08-02",
+                                                  "control_passed": True,
+                                                  "non_degenerate": True,
+                                                  "met_elimination_bar": False}},
+                              ]}]}
+    flags_sup_checks = audit(reg_sup, [])
+    joined_sup_c = " ".join(flags_sup_checks["c_confirmed_no_control"])
+    joined_sup_d = " ".join(flags_sup_checks["d_bar_violation"])
+    for name, cond, msg in [
+        ("superseded_no_control_caught", "sup_nocontrol" in joined_sup_c,
+         "a `superseded` leg without control_passed is flagged as (c), same as confirmed"),
+        ("superseded_with_control_clears_c", "sup_ok" not in joined_sup_c,
+         "a `superseded` leg WITH a passed control clears check (c)"),
+        ("superseded_exempt_from_bar", "sup_ok" not in joined_sup_d,
+         "a `superseded` leg is EXEMPT from the elimination bar (d) even with "
+         "met_elimination_bar explicitly False -- negative control for the "
+         "anti-over-counting design (GOV-FROZEN-1)"),
+        ("superseded_nocontrol_also_exempt_from_bar", "sup_nocontrol" not in joined_sup_d,
+         "a `superseded` leg missing a control still never enters check (d) -- "
+         "(c) and (d) are independent gates on disjoint state sets"),
     ]:
         if cond:
             print(f"  ok   discrimination: {msg}")

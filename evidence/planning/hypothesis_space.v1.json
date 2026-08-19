@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-18T19:03:08Z",
+  "generated_at": "2026-08-19T17:41:55Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,37 +8,38 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 161,
-      "built_modules": 133,
-      "fraction_built": 0.8261,
+      "built_modules": 134,
+      "fraction_built": 0.8323,
       "state_counts": {
-        "proposed": 28,
+        "proposed": 27,
         "implemented": 92,
-        "implemented_pending_validation": 25,
+        "implemented_pending_validation": 26,
         "validated": 16
       },
-      "build_proof_gap": 117,
-      "build_proof_gap_note": "133 modules built, 117 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 118,
+      "build_proof_gap_note": "134 modules built, 118 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 71.0,
-      "node_total": 97,
-      "node_done_weighted": 68.9,
-      "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
-      "authoritative_view": "/closure"
+      "closure_pct": null,
+      "node_total": null,
+      "node_done_weighted": null,
+      "unavailable_reason": "AttributeError",
+      "source": "serve.read_closure() (read-only mirror)"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 67,
+      "total_surviving": 66,
       "total_initial": 123,
       "total_initial_at_registration": 101,
       "total_fanout_added": 22,
       "total_resolved_out": 48,
       "total_confirmed": 28,
+      "total_superseded": 1,
       "reduction_pct_vs_current": 39.0,
-      "net_narrowing_pct": 33.7,
+      "net_narrowing_pct": 34.7,
       "convergence_classes": {
         "narrowing": 17,
         "static": 15,
@@ -46,7 +47,7 @@
         "refining": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "67 alive against 101 originally enumerated, and against 123 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "66 alive against 101 originally enumerated, and against 123 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 37
     },
     "decide": {
@@ -59,152 +60,152 @@
     {
       "date": "2026-05-06",
       "surviving": 122,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-11",
       "surviving": 121,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-13",
       "surviving": 119,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-15",
       "surviving": 115,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-16",
       "surviving": 114,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-17",
       "surviving": 111,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-18",
       "surviving": 105,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-19",
       "surviving": 101,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-20",
       "surviving": 100,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-24",
       "surviving": 99,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-27",
       "surviving": 97,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-29",
       "surviving": 96,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-07-31",
       "surviving": 95,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-01",
       "surviving": 93,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-02",
       "surviving": 87,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-04",
       "surviving": 86,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-06",
       "surviving": 85,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-08",
       "surviving": 83,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-09",
       "surviving": 81,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-10",
       "surviving": 80,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-11",
       "surviving": 79,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-12",
       "surviving": 78,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-14",
       "surviving": 76,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
       "date": "2026-08-17",
       "surviving": 75,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "closure_pct": null,
+      "build_pct": 83.2
     },
     {
-      "date": "2026-08-18",
-      "surviving": 67,
-      "closure_pct": 71.0,
-      "build_pct": 82.6
+      "date": "2026-08-19",
+      "surviving": 66,
+      "closure_pct": null,
+      "build_pct": 83.2
     }
   ],
   "questions": [
@@ -522,6 +523,7 @@
       "alive": 0,
       "resolved_out": 16,
       "confirmed": 4,
+      "superseded": 0,
       "reduction_numerator": 16,
       "reduction_ratio": 0.8,
       "bits_removed": 4.32,
@@ -931,6 +933,7 @@
       "alive": 4,
       "resolved_out": 2,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.3333,
       "bits_removed": 0.58,
@@ -1060,6 +1063,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -1131,6 +1135,7 @@
       "alive": 2,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -1203,6 +1208,7 @@
       "alive": 2,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -1273,6 +1279,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -1350,6 +1357,7 @@
       "alive": 3,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -1444,6 +1452,7 @@
       "alive": 0,
       "resolved_out": 2,
       "confirmed": 4,
+      "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.3333,
       "bits_removed": 0.58,
@@ -1574,6 +1583,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -1685,6 +1695,7 @@
       "alive": 0,
       "resolved_out": 4,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 4,
       "reduction_ratio": 1.0,
       "bits_removed": 2.0,
@@ -1789,6 +1800,7 @@
       "alive": 2,
       "resolved_out": 0,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -1872,19 +1884,21 @@
         }
       ],
       "fanout_growth_note": "This question has now accumulated fan-out growth after 3 same-axis (environment) attempts failed to converge -- the campaign has not yet converged; read the growth as a non-convergence signal, not just added coverage.",
-      "net_narrowing_ratio": -0.25,
-      "bits_removed_vs_registration": -0.32,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
       "convergence": {
         "convergence_class": "refining",
-        "reason": "1 family closed out; the latest growth opened fresh territory",
+        "reason": "2 families closed out; the latest growth opened fresh territory",
         "families_closed": [
-          "instrumentation"
+          "instrumentation",
+          "world"
         ],
-        "families_touched": [],
+        "families_touched": [
+          "world"
+        ],
         "families_fresh": [
           "process",
-          "representation",
-          "world"
+          "representation"
         ],
         "unclassified_axes": [],
         "growth_events": [
@@ -1903,17 +1917,20 @@
               }
             ],
             "re_entered": [],
-            "families_already_dead": []
+            "families_already_dead": [
+              "world"
+            ]
           }
         ]
       },
-      "surviving": 5,
-      "alive": 5,
+      "surviving": 4,
+      "alive": 4,
       "resolved_out": 0,
       "confirmed": 1,
+      "superseded": 1,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.26,
+      "bits_removed": 0.58,
       "synthesis": null,
       "hypotheses": [
         {
@@ -1948,7 +1965,7 @@
           "label": "the env under-drives persistent prediction uncertainty by measure time",
           "desc": "the default env (8x8, 3 hazards, env_drift_interval default, 40 warmup) is fully learned by the measure window (forward-PE ~0.005), so no low-V_s regions arise; a harsher/non-stationary env produces both forward-PE heterogeneity and low-V_s regions",
           "axis": "environment",
-          "state": "alive",
+          "state": "superseded",
           "evidence_runs": [
             "V3-EXQ-816b",
             "V3-EXQ-816d",
@@ -2040,6 +2057,7 @@
       "alive": 0,
       "resolved_out": 2,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.6667,
       "bits_removed": 1.58,
@@ -2125,6 +2143,7 @@
       "alive": 3,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2208,6 +2227,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -2286,6 +2306,7 @@
       "alive": 3,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2371,6 +2392,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -2448,6 +2470,7 @@
       "alive": 0,
       "resolved_out": 2,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.6667,
       "bits_removed": 1.58,
@@ -2538,6 +2561,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -2613,6 +2637,7 @@
       "alive": 0,
       "resolved_out": 4,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 4,
       "reduction_ratio": 0.8,
       "bits_removed": 2.32,
@@ -2723,6 +2748,7 @@
       "alive": 1,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2782,6 +2808,7 @@
       "alive": 1,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2840,6 +2867,7 @@
       "alive": 0,
       "resolved_out": 0,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2899,6 +2927,7 @@
       "alive": 1,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -2959,6 +2988,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 1.0,
       "bits_removed": null,
@@ -3023,6 +3053,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 1.0,
       "bits_removed": null,
@@ -3083,6 +3114,7 @@
       "alive": 1,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -3147,6 +3179,7 @@
       "alive": 1,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.3333,
       "bits_removed": 1.58,
@@ -3231,6 +3264,7 @@
       "alive": 0,
       "resolved_out": 0,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,
@@ -3293,6 +3327,7 @@
       "alive": 1,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.3333,
       "bits_removed": 1.58,
@@ -3386,6 +3421,7 @@
       "alive": 0,
       "resolved_out": 1,
       "confirmed": 1,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.5,
       "bits_removed": 1.0,
@@ -3469,6 +3505,7 @@
       "alive": 1,
       "resolved_out": 3,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 3,
       "reduction_ratio": 0.75,
       "bits_removed": 2.0,
@@ -3569,6 +3606,7 @@
       "alive": 4,
       "resolved_out": 0,
       "confirmed": 2,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.26,
@@ -3731,6 +3769,7 @@
       "alive": 3,
       "resolved_out": 1,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.25,
       "bits_removed": 0.42,
@@ -3828,6 +3867,7 @@
       "alive": 3,
       "resolved_out": 1,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 1,
       "reduction_ratio": 0.25,
       "bits_removed": 0.42,
@@ -3923,6 +3963,7 @@
       "alive": 2,
       "resolved_out": 0,
       "confirmed": 2,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 1.0,
@@ -4022,6 +4063,7 @@
       "alive": 4,
       "resolved_out": 0,
       "confirmed": 0,
+      "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
       "bits_removed": 0.0,

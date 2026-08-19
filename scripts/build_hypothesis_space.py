@@ -69,6 +69,16 @@ READINESS_DECILE = {
 ALIVE_STATES = {"alive", "untested"}
 # States that count toward the reduction numerator ("ruled out / resolved away").
 RESOLVED_OUT_STATES = {"eliminated", "split"}
+# A RATIFIED MOOT/SUPERSEDED resolution -- no longer load-bearing for its question
+# whatever its own truth value (see the registry's `resolution.basis` for the
+# disposition). Deliberately its OWN set, disjoint from RESOLVED_OUT_STATES: that
+# set is shared with check_hypothesis_space_integrity.py's elimination-bar check,
+# and a superseded leg is EXEMPT from that bar by design -- asserting
+# met_elimination_bar true for one would be the over-counting Goodhart direction
+# GOV-FROZEN-1 exists to prevent. Family-closure and surviving-count accounting
+# below treat `superseded` the SAME as RESOLVED_OUT_STATES; the sibling script's
+# elimination-bar check must not.
+SUPERSEDED_STATES = {"superseded"}
 
 
 def _utc_now_iso_z() -> str:
@@ -231,12 +241,13 @@ def axis_family_convergence(q: dict, families: dict) -> dict:
     closed, touched, fresh = [], [], []
     for f, hs in by_fam.items():
         states = [(h.get("resolution") or {}).get("state") or "untested" for h in hs]
-        n_out = sum(1 for s in states if s in RESOLVED_OUT_STATES)
+        n_out = sum(1 for s in states if s in RESOLVED_OUT_STATES or s in SUPERSEDED_STATES)
         if n_out:
             touched.append(f)
-        # "Closed" = every leg in the family is resolved (out or confirmed); nothing
-        # in that class is still standing as an open rival.
-        if all(s in RESOLVED_OUT_STATES or s == "confirmed" for s in states):
+        # "Closed" = every leg in the family is resolved (out, superseded, or
+        # confirmed); nothing in that class is still standing as an open rival.
+        if all(s in RESOLVED_OUT_STATES or s in SUPERSEDED_STATES or s == "confirmed"
+               for s in states):
             closed.append(f)
         if n_out == 0 and any(s in ALIVE_STATES for s in states):
             fresh.append(f)
@@ -259,7 +270,8 @@ def axis_family_convergence(q: dict, families: dict) -> dict:
             f = fam(h)
             res = h.get("resolution") or {}
             r_utc = res.get("resolved_utc") or ""
-            if f and res.get("state") in RESOLVED_OUT_STATES and r_utc and r_utc < when:
+            st = res.get("state")
+            if f and (st in RESOLVED_OUT_STATES or st in SUPERSEDED_STATES) and r_utc and r_utc < when:
                 prior_dead.add(f)
         added, re_entered = [], []
         for hid in ev.get("added_hids") or []:
@@ -333,6 +345,7 @@ def _question_rollup(q: dict, families: dict = None) -> dict:
     alive = 0
     resolved_out = 0
     confirmed = 0
+    superseded = 0
     for h in hyps:
         st = (h.get("resolution") or {}).get("state") or "untested"
         if st in ALIVE_STATES:
@@ -341,17 +354,22 @@ def _question_rollup(q: dict, families: dict = None) -> dict:
             resolved_out += 1
         elif st == "confirmed":
             confirmed += 1
+        elif st in SUPERSEDED_STATES:
+            superseded += 1
     synthesis = q.get("synthesis")
     # Surviving explanations: alive rivals, plus a single synthesis survivor when
     # the originals have collapsed onto one composed reading. A bare `confirmed`
     # answer (no synthesis, e.g. the DA-density verified run) is itself the 1
-    # surviving explanation.
+    # surviving explanation. `superseded` legs are counted OUT of surviving here
+    # via the `alive` branch (they were never counted into `alive` above); the
+    # fallback subtraction below additionally excludes them for the all-resolved
+    # (alive == 0) case.
     if synthesis and synthesis.get("surviving_label"):
         surviving = alive + 1
     elif confirmed and alive == 0:
         surviving = confirmed
     else:
-        surviving = alive if alive else max(0, initial - resolved_out - confirmed)
+        surviving = alive if alive else max(0, initial - resolved_out - confirmed - superseded)
     reduction_num = resolved_out  # "ruled out / resolved away" (design: eliminated/split)
     reduction_ratio = (reduction_num / initial) if initial else 0.0
 
@@ -421,6 +439,7 @@ def _question_rollup(q: dict, families: dict = None) -> dict:
         "alive": alive,
         "resolved_out": resolved_out,
         "confirmed": confirmed,
+        "superseded": superseded,
         "reduction_numerator": reduction_num,
         "reduction_ratio": round(reduction_ratio, 4),
         "bits_removed": bits_removed,
@@ -651,6 +670,12 @@ def main() -> int:
     # confirmed 2026-08-02 false-positive on H-zworld-trained-instrument.
     # Carrying the aggregate here lets that check credit it the same way.
     total_confirmed = sum(q["confirmed"] for q in questions)
+    # A `superseded` resolution is the same kind of legitimate, non-eliminating
+    # surviving-count drop as `confirmed` above (see SUPERSEDED_STATES) -- carry
+    # the aggregate for the same reason, so the sibling script's anti-Goodhart
+    # drop check can credit a supersession-driven drop instead of reading it as
+    # unbacked.
+    total_superseded = sum(q["superseded"] for q in questions)
     ready_count = sum(1 for q in questions
                       if q["decision"]["readiness_state"] in ("decidable_now", "decided"))
 
@@ -683,6 +708,7 @@ def main() -> int:
                 "total_fanout_added": total_fanout_added,
                 "total_resolved_out": total_resolved_out,
                 "total_confirmed": total_confirmed,
+                "total_superseded": total_superseded,
                 "reduction_pct_vs_current": round(
                     (total_resolved_out / total_initial * 100.0) if total_initial else 0.0, 1),
                 "net_narrowing_pct": round(
@@ -733,6 +759,7 @@ def main() -> int:
         "total_fanout_added": total_fanout_added,
         "total_resolved_out": total_resolved_out,
         "total_confirmed": total_confirmed,
+        "total_superseded": total_superseded,
         "closure_pct": closure_pct,
         "build_pct": build_pct,
         "ready": ready_count,
