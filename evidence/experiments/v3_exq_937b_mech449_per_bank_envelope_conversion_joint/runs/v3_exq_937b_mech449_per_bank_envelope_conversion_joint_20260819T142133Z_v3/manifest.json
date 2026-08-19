@@ -1,0 +1,124 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_937b_mech449_per_bank_envelope_conversion_joint",
+  "run_id": "v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-19T14:21:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449",
+    "ARC-107"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-449": "supports",
+    "ARC-107": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "conversion_is_a_deterministic_step_in_per_bank_envelope_size",
+    "preconditions": [
+      {
+        "name": "suppression_cross_candidate_range_supra_floor",
+        "kind": "readiness",
+        "description": "live dACC MECH-260 suppression varies ACROSS candidates (max - min), the statistic the perseveration threshold crossing the conversion criterion depends on",
+        "control": "positive control: an 8-deep recency ring dominated by one action class, built via real record_action() calls, at every K on the ladder",
+        "measured": 0.75,
+        "threshold": 0.25,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "per_bank_envelope_strata_populated",
+        "kind": "readiness",
+        "description": "both per-bank envelope strata that C1 contrasts are populated at the K=4 anchor: min(n banks at pre-No-Go envelope == 1, n banks at envelope >= 2) on ARM_CONSTITUTION",
+        "control": "positive control: the dose ladder is designed to realize both strata -- floor 0.40 collapses the envelope to 1 and floor 0.10 leaves room; both are on the ladder in every run mode",
+        "measured": 1277,
+        "threshold": 200,
+        "offending_stratum": "envelope==1",
+        "n_banks_envelope_pinned": 1277,
+        "n_banks_envelope_open": 2947,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "envelope_floor_config_plumbing_live",
+        "kind": "readiness",
+        "description": "REEConfig.from_dims plumbs use_go_nogo_constitution, gng_perseveration_floor AND the swept f_eligibility_envelope_floor onto config.e3 (guards the documented from_dims silent-kwarg-swallow failure mode)",
+        "control": "direct from_dims construction with a non-default floor",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_per_bank_envelope_conversion_lift": true,
+      "C2_per_bank_conversion_monotone_in_envelope": true,
+      "C3_safety_failopen": true,
+      "C4_inert_regime_reached_per_bank": true,
+      "C5_content_specificity_shuffled": true,
+      "C6_step_location_invariant_in_k": true
+    },
+    "aggregation_warning": "READ THE PER-BANK JOINT, NOT THE CELL AGGREGATES. Every cell-level `conversion_rate` in this manifest is a MIXING PROPORTION over that cell's envelope-size distribution, and equals 1 - P(envelope collapses to 1) rather than a conversion rate given the envelope. V3-EXQ-937a's headline curve was exactly this quantity read as a dose-response (failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18, CONFIRMED). The load-bearing readouts here are `arm_results[].conversion_by_envelope_size` (per cell), `arm_results[].per_bank` (raw columns) and `summary.per_bank_conversion_by_envelope_constitution`.",
+    "dv_symmetry_declaration": {
+      "ARM_CONSTITUTION": "manipulation = lowering f_eligibility_envelope_floor widens the F-eligible SET (a change of the argmin's DOMAIN), and the No-Go then removes a candidate from that set. DV = committed argmin identity, recorded as a per-bank conversion indicator. Argmin's symmetry group is {uniform additive constant, monotone rescaling, tie permutation}; changing set MEMBERSHIP is in none of them. NOT invariant.",
+      "ARM_SHUFFLED": "same domain manipulation, recency mass on a NON-incumbent. Same argument, NOT invariant. Near-zero conversion here is the specificity control working, not a measured null; it is recorded as first-class criterion C5 rather than a footnote.",
+      "ARM_OFF": "HONEST LIMIT, carried from the driver docstring into the manifest per the autopsy's Learning 5 (a limit recorded in the driver but omitted from the manifest is NOT recorded). ARM_OFF converts exactly 0.000 BY CONSTRUCTION: its arm selector IS the baseline config, so its pick cannot differ from the baseline pick that defines the incumbent. It is a TAUTOLOGICAL control on the conversion metric and proves NOTHING about the envelope. It is retained only because its cost is zero and its per-bank f_eligibility_envelope_size column records the mediator's distribution under no No-Go.",
+      "K_LADDER": "K is not a manipulation of the DV's own symmetry group: it changes the ARITY of the candidate set, i.e. the size of the domain the argmin runs over and the number of states the mediator can realize. NOT invariant. Reported (C6), not gated -- see combination_rule."
+    },
+    "anchor_reachability": {
+      "anchor_name": "suppression_cross_candidate_range_supra_floor",
+      "reachable": true,
+      "control_worst_range": 0.75,
+      "control_worst_range_by_k": {
+        "4": 0.75,
+        "6": 0.75,
+        "8": 0.75
+      },
+      "threshold": 0.25,
+      "margin": 0.5,
+      "reference_source": "deterministic: an 8-deep recency ring with DOMINANT_REPEATS=6, replayed through real DACCAdaptiveControl.record_action() + _suppression_penalty() for every dominant class, at every K on the ladder"
+    },
+    "construction_caveat": "conversion == 1 at envelope >= 2 is PARTLY A CONSTRUCTION PROPERTY: the incumbent is both the F-argmin and the sole suppression target, so once the No-Go has room to drop it the committed pick MUST move. This run RECORDS that coupling per bank (`per_bank.incumbent_is_f_argmin`) rather than asserting it away. Breaking the coupling would be a DIFFERENT experiment with a different design, not a recording change, and is out of scope here. Carried verbatim from the autopsy's caveat (3).",
+    "generality_caveat": "Selection-face synthetic probe, NO TRAINING and NO agent loop (reuse_ineligible_reasons: selection_face_synthetic_no_training). This confirms the constitution's ARITHMETIC, not any behavioural competence. purpose=diagnostic, so it scores nothing and PROMOTES NOTHING. Carried from the autopsy's caveat (1).",
+    "scoped_out_preconditions": {
+      "pre_nogo_eligible_set_admits_alternative": "V3-EXQ-926a's per-cell 'envelope >= 2' readiness gate is DELIBERATELY NOT carried over, for V3-EXQ-937a's reason and more strongly here: the envelope-1 stratum is now the load-bearing HALF of C1's contrast, so a whole-run all(...) gate over per-cell envelope size would fail on precisely the banks this experiment exists to measure and vacate the run -- the V3-EXQ-785 defect exactly. Replaced by per_bank_envelope_strata_populated, which asserts the property this design actually needs, at the same granularity C1 consumes."
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b042039de7168256b5e16d9b28273f8c5a52f8911e487fd0735479a4689ff8e9",
+  "substrate_commit": {
+    "commit": "5322f8148babc1cec3f83bc16dc7971851aaa075",
+    "dirty": false,
+    "branch": "main"
+  }
+}
