@@ -1,48 +1,31 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-19T07:06:20Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-921",
-      "result": "PASS",
-      "completed_at": "2026-08-12T15:25:40.823679+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-927",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:24:04.778072+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-928",
-      "result": "PASS",
-      "completed_at": "2026-08-14T01:34:35.222316+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937",
-      "result": "FAIL",
-      "completed_at": "2026-08-18T01:39:55.041877+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937a",
-      "result": "PASS",
-      "completed_at": "2026-08-18T01:58:59.389993+00:00"
-    }
+  "last_tick_utc": "2026-08-19T13:37:58Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-940",
+  "current_exq_started_utc": "2026-08-19T13:33:03.526800+00:00",
+  "current_title": "MECH-467 H-energy: is 874b's exposure window destroyed by self-contamination or by starvation?",
+  "current_claim_id": "MECH-467",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / P0",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 60,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 295,
+  "seconds_remaining": 4500,
+  "recent_lines": [
+    "Seed 42 Condition P0"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5284 76cbf84 2026-08-19",
+  "runner_version": "r5290 e640c80 2026-08-19 (running r5284 76cbf84)",
   "gpu": {
     "available": false
   },
