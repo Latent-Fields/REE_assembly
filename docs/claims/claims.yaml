@@ -21900,6 +21900,32 @@
     chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
     factual landing note, not a governance disposition -- pending_retest_after_substrate and
     status are left for governance to update once the validation experiment scores.
+
+    2026-08-19, SECOND MECHANISM (chip-20260819-contextmemory-add-refractory-mode; USER-
+    AUTHORISED build): `refractory` landed as an ADDITIONAL, DEFAULT-OFF write-selection
+    mode ALONGSIDE the conscience bias above, which is NOT reverted or replaced (ree-v3
+    692f8526d0). E1Config.contextmemory_write_selection ("argmin" default = bit-identical
+    legacy; "refractory" excludes the k most-recently-written slots) plus
+    .contextmemory_write_refractory_k. The two are orthogonal -- the bias adjusts the SCORE,
+    refractory restricts the ELIGIBLE SET -- and compose. Grounds are STRUCTURAL, not the
+    differentiation DV: occupancy >= k+1 holds BY CONSTRUCTION, and it is the only arm that
+    does not turn the single-slot fixed point into a counter-driven period-16 LRU cycle
+    (round-robin agreement 0.991 with the bias on vs 0.000 for refractory -- real occupancy,
+    but occupancy WITHOUT addressing). The independently pre-registered probe
+    (evidence/planning/contextmemory_write_selection_comparison_20260819.md) found the
+    occupied-slot COSINE column CANNOT discriminate these arms at 5 seeds (|dz| <= 0.47,
+    |t(4)| <= 1.04, sign-inconsistent, INCLUDING refractory-over-legacy at dz = -0.06); it
+    must not be cited for either mechanism, and any retest of THIS claim that turns on that
+    DV needs n = 38-2485 depending on contrast, or a deterministic DV instead.
+    CORRECTION to the note above: the chip it names
+    (chip-20260819-queueexp-contextmemory-writeusage-validation) was never actually written
+    to TASK_CHIPS.json, so the owed validation experiment had no tracker. Re-chipped covering
+    BOTH arms as chip-20260819-queueexp-contextmemory-writesel-validation. Validation remains
+    OWED and substrate_queue status remains implemented_pending_validation for both
+    mechanisms; both flags still default OFF and no driver sets either, so nothing about this
+    claim's evidence base has changed. Factual landing note only -- status, confidence and
+    pending_retest_after_substrate are untouched and remain governance's call. See
+    docs/architecture/contextmemory_write_address_selection.md.
   evidence_quality_note: >
     2026-07-10 (governance, failure_autopsy_V3-EXQ-538a, confirmed; user-adjudicated): V3-EXQ-538a (SD-049 Phase-2 sleep-on ablation) tagged SD-017 non_contributory. The manifest's per-claim SD-017 'supports' was SWS/REM-write liveness only (sleep loop fired: SWS/REM writes 160/40) -- vacuous, NOT counted. SD-017 stays STABLE / unchanged; its genuine support is V3-EXQ-691.
 
@@ -22020,6 +22046,32 @@
     chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
     factual landing note, not a governance disposition -- pending_retest_after_substrate and
     status are left for governance to update once the validation experiment scores.
+
+    2026-08-19, SECOND MECHANISM (chip-20260819-contextmemory-add-refractory-mode; USER-
+    AUTHORISED build): `refractory` landed as an ADDITIONAL, DEFAULT-OFF write-selection
+    mode ALONGSIDE the conscience bias above, which is NOT reverted or replaced (ree-v3
+    692f8526d0). E1Config.contextmemory_write_selection ("argmin" default = bit-identical
+    legacy; "refractory" excludes the k most-recently-written slots) plus
+    .contextmemory_write_refractory_k. The two are orthogonal -- the bias adjusts the SCORE,
+    refractory restricts the ELIGIBLE SET -- and compose. Grounds are STRUCTURAL, not the
+    differentiation DV: occupancy >= k+1 holds BY CONSTRUCTION, and it is the only arm that
+    does not turn the single-slot fixed point into a counter-driven period-16 LRU cycle
+    (round-robin agreement 0.991 with the bias on vs 0.000 for refractory -- real occupancy,
+    but occupancy WITHOUT addressing). The independently pre-registered probe
+    (evidence/planning/contextmemory_write_selection_comparison_20260819.md) found the
+    occupied-slot COSINE column CANNOT discriminate these arms at 5 seeds (|dz| <= 0.47,
+    |t(4)| <= 1.04, sign-inconsistent, INCLUDING refractory-over-legacy at dz = -0.06); it
+    must not be cited for either mechanism, and any retest of THIS claim that turns on that
+    DV needs n = 38-2485 depending on contrast, or a deterministic DV instead.
+    CORRECTION to the note above: the chip it names
+    (chip-20260819-queueexp-contextmemory-writeusage-validation) was never actually written
+    to TASK_CHIPS.json, so the owed validation experiment had no tracker. Re-chipped covering
+    BOTH arms as chip-20260819-queueexp-contextmemory-writesel-validation. Validation remains
+    OWED and substrate_queue status remains implemented_pending_validation for both
+    mechanisms; both flags still default OFF and no driver sets either, so nothing about this
+    claim's evidence base has changed. Factual landing note only -- status, confidence and
+    pending_retest_after_substrate are untouched and remain governance's call. See
+    docs/architecture/contextmemory_write_address_selection.md.
   notes: >
     Registered 2026-04-05. Biological grounding: hippocampal-to-neocortical
     information flow during slow-wave sleep (Diekelmann & Born 2010) is the
@@ -22131,6 +22183,32 @@
     chip chip-20260819-queueexp-contextmemory-writeusage-validation queues that. This is a
     factual landing note, not a governance disposition -- pending_retest_after_substrate and
     status are left for governance to update once the validation experiment scores.
+
+    2026-08-19, SECOND MECHANISM (chip-20260819-contextmemory-add-refractory-mode; USER-
+    AUTHORISED build): `refractory` landed as an ADDITIONAL, DEFAULT-OFF write-selection
+    mode ALONGSIDE the conscience bias above, which is NOT reverted or replaced (ree-v3
+    692f8526d0). E1Config.contextmemory_write_selection ("argmin" default = bit-identical
+    legacy; "refractory" excludes the k most-recently-written slots) plus
+    .contextmemory_write_refractory_k. The two are orthogonal -- the bias adjusts the SCORE,
+    refractory restricts the ELIGIBLE SET -- and compose. Grounds are STRUCTURAL, not the
+    differentiation DV: occupancy >= k+1 holds BY CONSTRUCTION, and it is the only arm that
+    does not turn the single-slot fixed point into a counter-driven period-16 LRU cycle
+    (round-robin agreement 0.991 with the bias on vs 0.000 for refractory -- real occupancy,
+    but occupancy WITHOUT addressing). The independently pre-registered probe
+    (evidence/planning/contextmemory_write_selection_comparison_20260819.md) found the
+    occupied-slot COSINE column CANNOT discriminate these arms at 5 seeds (|dz| <= 0.47,
+    |t(4)| <= 1.04, sign-inconsistent, INCLUDING refractory-over-legacy at dz = -0.06); it
+    must not be cited for either mechanism, and any retest of THIS claim that turns on that
+    DV needs n = 38-2485 depending on contrast, or a deterministic DV instead.
+    CORRECTION to the note above: the chip it names
+    (chip-20260819-queueexp-contextmemory-writeusage-validation) was never actually written
+    to TASK_CHIPS.json, so the owed validation experiment had no tracker. Re-chipped covering
+    BOTH arms as chip-20260819-queueexp-contextmemory-writesel-validation. Validation remains
+    OWED and substrate_queue status remains implemented_pending_validation for both
+    mechanisms; both flags still default OFF and no driver sets either, so nothing about this
+    claim's evidence base has changed. Factual landing note only -- status, confidence and
+    pending_retest_after_substrate are untouched and remain governance's call. See
+    docs/architecture/contextmemory_write_address_selection.md.
   notes: >
     Registered 2026-04-05. Grounded in Sanders, Wilson & Gershman 2020 (eLife):
     context discrimination at inference time is bounded by the quality of the
