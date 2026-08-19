@@ -13,7 +13,7 @@
   not append — it's a snapshot). It is served at http://localhost:8000/insights-report
   by a route already wired in serve.py; no server-side change is needed per run.
 -->
-<!-- INSIGHTS_REPORT_VERSION: 2026-08-19.1 -->
+<!-- INSIGHTS_REPORT_VERSION: 2026-08-19.2 -->
 <title>REE Project Insights</title>
 <style>
   :root {
@@ -209,7 +209,7 @@
       <div class="card"><div class="ch"><span class="cid">SD-049-PHASE-2</span><span class="cn">9</span></div><div class="cnote">Text corrected 2026-08-07; residual is downstream governance depth, not a build.</div></div>
       <div class="card"><div class="ch"><span class="cid">mech457_competence_bootstrap_explorer</span><span class="cn">7</span></div><div class="cnote"><code>blocked_pending_discrimination</code> &mdash; see the hero-question state in the dual report.</div></div>
     </div>
-    <p class="sec-note" style="margin-top:16px">Highest-priority genuinely-unbuilt candidates (<code>ready: true</code>, priority 1, free-text status not claiming implementation): <code>SD-047</code>, <code>SD-048</code>, <code>sd_actor_critic_action_learning</code>, <code>MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION</code>, <code>SD-MECH267-CEM-SELECTION-FIX</code>, <code>SD-ORIENTING-DECISION-SCALE</code>, <code>SD-QUEUE-SEED-ENFORCEMENT</code>. A triage starting point, not a verified build list.</p>
+    <p class="sec-note caveat" style="margin-top:16px"><b>RETRACTED 2026-08-19 &mdash; see Corrections.</b> The seven entries previously listed here as &ldquo;highest-priority genuinely-unbuilt&rdquo; (<code>SD-047</code>, <code>SD-048</code>, <code>sd_actor_critic_action_learning</code>, <code>MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION</code>, <code>SD-MECH267-CEM-SELECTION-FIX</code>, <code>SD-ORIENTING-DECISION-SCALE</code>, <code>SD-QUEUE-SEED-ENFORCEMENT</code>) are <b>all already built</b> &mdash; each carries <code>implementation_status: None</code> with a free-text <code>status</code> of <code>implemented</code> or <code>implemented_pending_validation</code>. The list was produced by trusting the structured field alone, which is exactly the error the caveat above warns about. The canonical consumer returns <b>2</b> buildable entries, not 34.</p>
   </section>
 
   <section>
@@ -253,15 +253,33 @@
       <p>Gates passed: <b>liveness</b> &mdash; both rows still open in the 2026-08-18T21:27Z regeneration; <b>correct target</b> &mdash; this file is the routing artifact for these decisions and no autopsy names a different one; <b>not already applied</b> &mdash; both read non-<code>applied</code>; <b>not brake-refused</b> &mdash; neither is under a re-derive brake.</p>
     </div>
     <div class="synth attn">
-      <b>2 &middot; Backfill substrate_queue.json&rsquo;s implementation_status &mdash; repeated deliberately</b>
-      <p>This was Recommendation 2 on 2026-08-08 and it has got <em>worse</em>: <code>None</code> went 83/146 (57%) &rarr; 95/161 (59%), and the free-text field now carries 41 distinct values including four multi-paragraph narratives. <b>Recommending it twice in a row is the point</b> &mdash; the repeat is the evidence that it is not self-correcting.</p>
-      <p>This is a data-hygiene finding, not a substrate build. A <code>/implement-substrate</code> pass trusting the structured field would be misdirected to at least two demonstrably-built entries (<code>modulatory-bias-selection-authority</code>, <code>crf-availability-maintenance</code>).</p>
+      <b>2 &middot; SUPERSEDED same day &mdash; fix serve.py, not the data</b>
+      <p>Acting on this recommendation established that its <em>diagnosis</em> was right and its <em>prescription</em> was wrong. Every consumer already handles the blank structured field with a two-field fallback to free-text <code>status</code> &mdash; <code>build_claims_json.py:152</code>, <code>serve.py:3757</code>, <code>check_substrate_path_overlap.py:162</code>, <code>build_hypothesis_space.py:117</code>, and <code>generate_inter_governance_workset.py</code> throughout, which carries a <em>named</em> regression fix (MECH-302, 2026-05-30) for exactly the shadowing case. <code>_unclassified_ready_items()</code> returns <b>0</b>, proving the vocabulary has not drifted and the data is already interpretable.</p>
+      <p><b><code>serve.py:3974</code> is the sole outlier</b> &mdash; <code>implementation_status</code> alone, exact-matched against 3 values, no fallback &mdash; and it feeds the user-facing cusp rail. Measured: <b>34 shown vs a canonical 2</b>, a <b>17x over-count</b>, <b>28 of them provably already built</b>. Backfilling 95 rows of a high-contention coordination file to satisfy one buggy reader would have been the wrong layer. Routed to <code>chip-20260819-serve-cusp-substrate-ready-no-fallback</code>; the edit was blocked because another session (<code>cranky-driscoll-126a36-chiparchive</code>) holds an active claim on <code>serve.py</code>.</p>
     </div>
+
     <div class="synth">
       <b>3 &middot; Raise, don&rsquo;t fix: the backlog generator has stopped routing literature</b>
       <p>0 of 412 backlog items request literature, against 127 targeted reviews landed in the same 30 days. Lit-pull throughput is high and entirely backlog-independent. Whether <code>evidence_backlog.v1.json</code> <em>should</em> still route literature is a governance question worth putting to a cycle &mdash; it is not a defect to repair.</p>
     </div>
     <p class="sec-note"><b>Not recommended this run:</b> no substrate build from the high-iteration chains &mdash; all 12 largest trace to a terminal resolution, a documented park, or an active owned campaign; and no stalled-chain finding, because the naive test would have false-positived on every chain in the corpus this cycle (empty queue &rArr; every chain trivially has &ldquo;no successor queued&rdquo;).</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">Corrections</span><h2>Two corrections to this report, found by acting on its own Recommendation 2</h2><span class="rule"></span></div>
+    <div class="synth attn">
+      <b>1 &middot; Retracted: the &ldquo;genuinely-unbuilt candidates&rdquo; list</b>
+      <p>All seven named entries are already built. The list was derived by filtering on the structured field &mdash; the exact failure mode the data-quality caveat in that same section warns about, committed three paragraphs after writing the warning. The canonical consumer returns 2 buildable entries (<code>scaffolded_sd054_onboarding</code>, <code>SD-033b</code>), not 34.</p>
+    </div>
+    <div class="synth attn">
+      <b>2 &middot; Superseded: Recommendation 2&rsquo;s prescription</b>
+      <p>The finding (the structured field is unreliable) stands and is now quantified; the proposed remedy (backfill the data) was the wrong layer. The defect is one consumer missing a fallback that every other consumer already has. Fixing the data without fixing that reader would have been re-broken by the next entry added with a blank field.</p>
+    </div>
+    <div class="synth">
+      <b>What this says about the method</b>
+      <p>A recommendation repeated across two cycles was treated as strengthened by repetition, when what it actually needed was one consumer-side check. The check that resolved it &mdash; <em>&ldquo;which code actually reads this field, and does it fall back?&rdquo;</em> &mdash; cost about ten minutes and inverted the conclusion.</p>
+      <p>This report applies a four-gate liveness discipline to <em>claim</em> recommendations and has no counterpart for <em>data-hygiene</em> findings. A field being messy is not evidence that anything is misreading it. Worth carrying into the next run as a gate in the same spirit.</p>
+    </div>
   </section>
 
   <div class="foot">
