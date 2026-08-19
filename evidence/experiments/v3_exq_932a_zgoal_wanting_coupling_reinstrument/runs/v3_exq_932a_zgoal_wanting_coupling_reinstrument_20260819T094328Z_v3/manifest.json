@@ -1,0 +1,424 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_932a_zgoal_wanting_coupling_reinstrument",
+  "run_id": "v3_exq_932a_zgoal_wanting_coupling_reinstrument_20260819T094328Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-19T09:43:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "wanting_behaviour_coupling_detected",
+    "preconditions": [
+      {
+        "name": "g1_emergent::residue_wanting_nondegenerate_every_seed",
+        "precondition": "residue_wanting_nondegenerate_every_seed",
+        "arm": "g1_emergent",
+        "kind": "readiness",
+        "description": "residue_wanting must vary in EVERY seed (MIN across seeds), not merely in the best one. V3-EXQ-932 gated on chan_max_std -- a MAX across seeds -- which is the specific defect that let one seed certify a channel for all three (autopsy Section 2b).",
+        "control": "V3-EXQ-932's landed run: residue_wanting std 0.468 / 0.288 / 0.568 in seeds 0/1/2 -- non-degenerate in every seed, so the min-across-seeds form is reachable by construction on this channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.22903488176366446,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "g1_emergent::core_channels_nondegenerate_every_seed",
+        "precondition": "core_channels_nondegenerate_every_seed",
+        "arm": "g1_emergent",
+        "kind": "readiness",
+        "description": "the 664-inherited core channels (z_harm_a / z_harm_un / drive) must vary in every seed; measured is the WORST (channel, seed) cell.",
+        "control": "V3-EXQ-932 landed run: all three core channels non-degenerate in all seeds.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.023737001538578058,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "g1_emergent::at_least_one_gating_coupling_settled",
+        "precondition": "at_least_one_gating_coupling_settled",
+        "arm": "g1_emergent",
+        "kind": "readiness",
+        "description": "at least one GATING coupling must reach status 'settled' -- adequate n, adequate affect-channel variance AND adequate DV base rate. This replaces V3-EXQ-932's `couplings_adequately_powered`, which certified n alone and so marked a zero-variance DV `powered: true` (autopsy Section 2a). The two mode-based approach couplings are gating:false and cannot satisfy it.",
+        "control": "V3-EXQ-932's realised rates: moved 103/1013 (10.2%) and benefit_exposure 220/1013 (21.7%) both clear MIN_DV_POSITIVES=20 and MIN_DV_BASE_RATE=0.05, so at least two gating couplings are settleable by construction.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "g4_seeded::residue_wanting_nondegenerate_every_seed",
+        "precondition": "residue_wanting_nondegenerate_every_seed",
+        "arm": "g4_seeded",
+        "kind": "readiness",
+        "description": "residue_wanting must vary in EVERY seed (MIN across seeds), not merely in the best one. V3-EXQ-932 gated on chan_max_std -- a MAX across seeds -- which is the specific defect that let one seed certify a channel for all three (autopsy Section 2b).",
+        "control": "V3-EXQ-932's landed run: residue_wanting std 0.468 / 0.288 / 0.568 in seeds 0/1/2 -- non-degenerate in every seed, so the min-across-seeds form is reachable by construction on this channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.3036966731039332,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "g4_seeded::core_channels_nondegenerate_every_seed",
+        "precondition": "core_channels_nondegenerate_every_seed",
+        "arm": "g4_seeded",
+        "kind": "readiness",
+        "description": "the 664-inherited core channels (z_harm_a / z_harm_un / drive) must vary in every seed; measured is the WORST (channel, seed) cell.",
+        "control": "V3-EXQ-932 landed run: all three core channels non-degenerate in all seeds.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.04784413289238309,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "g4_seeded::z_goal_nondegenerate_every_seed",
+        "precondition": "z_goal_nondegenerate_every_seed",
+        "arm": "g4_seeded",
+        "kind": "readiness",
+        "description": "z_goal must vary in EVERY seed for its couplings to be interpretable within-seed rather than as a between-seed artifact.",
+        "control": "V3-EXQ-932 landed run: z_goal std 0.000 / 0.000 / 0.078 -- nonzero in ONE seed only, and chan_max_std certified the channel from it.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.12701954390162082,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "g4_seeded::z_goal_dose_separation",
+        "precondition": "z_goal_dose_separation",
+        "arm": "g4_seeded",
+        "kind": "readiness",
+        "description": "the seeded arm's z_goal active fraction must exceed the emergent arm's by Z_GOAL_DOSE_SEPARATION_FLOOR. Without this the two arms could be bit-identical (the gain acts only through a strict threshold) and the contrast vacuous -- see the module docstring's DV-symmetry declaration.",
+        "control": "Direct probe of this env config (2026-08-19, seed 0): benefit_exposure max 0.0409, so at gain 4.0 a peak contact reaches 0.0409*4*3 = 0.49 against a benefit_threshold of 0.1, while V3-EXQ-932 measured active_frac 0.0087 at gain 1.0.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8436426116838488,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "g4_seeded::at_least_one_gating_coupling_settled",
+        "precondition": "at_least_one_gating_coupling_settled",
+        "arm": "g4_seeded",
+        "kind": "readiness",
+        "description": "at least one GATING coupling must reach status 'settled' -- adequate n, adequate affect-channel variance AND adequate DV base rate. This replaces V3-EXQ-932's `couplings_adequately_powered`, which certified n alone and so marked a zero-variance DV `powered: true` (autopsy Section 2a). The two mode-based approach couplings are gating:false and cannot satisfy it.",
+        "control": "V3-EXQ-932's realised rates: moved 103/1013 (10.2%) and benefit_exposure 220/1013 (21.7%) both clear MIN_DV_POSITIVES=20 and MIN_DV_BASE_RATE=0.05, so at least two gating couplings are settleable by construction.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "g1_emergent::measurement_valid": true,
+      "g1_emergent::gating_coupling_settled": true,
+      "g4_seeded::measurement_valid": true,
+      "g4_seeded::gating_coupling_settled": true
+    },
+    "criteria": [
+      {
+        "name": "g1_emergent::measurement_valid",
+        "load_bearing": true,
+        "passed": true,
+        "arm": "g1_emergent"
+      },
+      {
+        "name": "g4_seeded::measurement_valid",
+        "load_bearing": true,
+        "passed": true,
+        "arm": "g4_seeded"
+      },
+      {
+        "name": "g1_emergent::gating_coupling_settled",
+        "load_bearing": true,
+        "passed": true,
+        "arm": "g1_emergent"
+      },
+      {
+        "name": "g4_seeded::gating_coupling_settled",
+        "load_bearing": true,
+        "passed": true,
+        "arm": "g4_seeded"
+      }
+    ],
+    "combination_rule": "PASS (measurement_valid) = ANY arm's precondition gate is green -- aggregate_arm_gates' any-arm-green, NEVER all-arms-green. A red arm does NOT vacate a green one (failure_autopsy_V3-EXQ-785). Each arm's gate is the conjunction of the preconditions that APPLY to it; z_goal_nondegenerate_every_seed and z_goal_dose_separation apply to 'g4_seeded' only and are scoped out of 'g1_emergent' (see their applies_note). As in V3-EXQ-932 this gates MEASUREMENT VALIDITY, not coupling detection: whether any coupling clears the |r|/|rho| floor is REPORTED, never gated. UNLIKE V3-EXQ-932, a coupling is only reported at all once it is 'settled' (n + affect-channel variance + DV base rate); otherwise r/rho are null, so an emitted 0.0 now means a measured zero.",
+    "per_arm_gate": {
+      "green_arms": [
+        "g1_emergent",
+        "g4_seeded"
+      ],
+      "red_arms": [],
+      "structurally_vacuous_arms": [],
+      "vacuity_reason_by_arm": {},
+      "all_green": true,
+      "any_green": true,
+      "failed_preconditions_by_arm": {},
+      "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+      "green": [
+        {
+          "arm": "g1_emergent",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "g1_emergent::residue_wanting_nondegenerate_every_seed",
+              "precondition": "residue_wanting_nondegenerate_every_seed",
+              "arm": "g1_emergent",
+              "kind": "readiness",
+              "description": "residue_wanting must vary in EVERY seed (MIN across seeds), not merely in the best one. V3-EXQ-932 gated on chan_max_std -- a MAX across seeds -- which is the specific defect that let one seed certify a channel for all three (autopsy Section 2b).",
+              "control": "V3-EXQ-932's landed run: residue_wanting std 0.468 / 0.288 / 0.568 in seeds 0/1/2 -- non-degenerate in every seed, so the min-across-seeds form is reachable by construction on this channel.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.22903488176366446,
+              "threshold": 0.0001,
+              "met": true
+            },
+            {
+              "name": "g1_emergent::core_channels_nondegenerate_every_seed",
+              "precondition": "core_channels_nondegenerate_every_seed",
+              "arm": "g1_emergent",
+              "kind": "readiness",
+              "description": "the 664-inherited core channels (z_harm_a / z_harm_un / drive) must vary in every seed; measured is the WORST (channel, seed) cell.",
+              "control": "V3-EXQ-932 landed run: all three core channels non-degenerate in all seeds.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.023737001538578058,
+              "threshold": 0.0001,
+              "met": true
+            },
+            {
+              "name": "g1_emergent::at_least_one_gating_coupling_settled",
+              "precondition": "at_least_one_gating_coupling_settled",
+              "arm": "g1_emergent",
+              "kind": "readiness",
+              "description": "at least one GATING coupling must reach status 'settled' -- adequate n, adequate affect-channel variance AND adequate DV base rate. This replaces V3-EXQ-932's `couplings_adequately_powered`, which certified n alone and so marked a zero-variance DV `powered: true` (autopsy Section 2a). The two mode-based approach couplings are gating:false and cannot satisfy it.",
+              "control": "V3-EXQ-932's realised rates: moved 103/1013 (10.2%) and benefit_exposure 220/1013 (21.7%) both clear MIN_DV_POSITIVES=20 and MIN_DV_BASE_RATE=0.05, so at least two gating couplings are settleable by construction.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 3.0,
+              "threshold": 0.5,
+              "met": true
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "g1_emergent::z_goal_nondegenerate_every_seed",
+              "precondition": "z_goal_nondegenerate_every_seed",
+              "arm": "g1_emergent",
+              "applies": false,
+              "reason": "SCOPED OUT of ARM_G1_EMERGENT deliberately. That arm's entire purpose is to MEASURE whether z_goal forms at V3-EXQ-932's own operating point (gain 1.0); requiring it to form there would make the arm structurally un-passable and collapse the two-arm design back to one -- the V3-EXQ-785 defect. A flat z_goal in the emergent arm is this run's RESULT, and the per-coupling admissibility gate reports it as unsettable_x_degenerate rather than as a near-null coupling."
+            },
+            {
+              "name": "g1_emergent::z_goal_dose_separation",
+              "precondition": "z_goal_dose_separation",
+              "arm": "g1_emergent",
+              "applies": false,
+              "reason": "A dose-separation check is a property of the SEEDED arm's manipulation; asserting it on the emergent (control) arm would be asserting that the control separates from itself."
+            }
+          ]
+        },
+        {
+          "arm": "g4_seeded",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "g4_seeded::residue_wanting_nondegenerate_every_seed",
+              "precondition": "residue_wanting_nondegenerate_every_seed",
+              "arm": "g4_seeded",
+              "kind": "readiness",
+              "description": "residue_wanting must vary in EVERY seed (MIN across seeds), not merely in the best one. V3-EXQ-932 gated on chan_max_std -- a MAX across seeds -- which is the specific defect that let one seed certify a channel for all three (autopsy Section 2b).",
+              "control": "V3-EXQ-932's landed run: residue_wanting std 0.468 / 0.288 / 0.568 in seeds 0/1/2 -- non-degenerate in every seed, so the min-across-seeds form is reachable by construction on this channel.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.3036966731039332,
+              "threshold": 0.0001,
+              "met": true
+            },
+            {
+              "name": "g4_seeded::core_channels_nondegenerate_every_seed",
+              "precondition": "core_channels_nondegenerate_every_seed",
+              "arm": "g4_seeded",
+              "kind": "readiness",
+              "description": "the 664-inherited core channels (z_harm_a / z_harm_un / drive) must vary in every seed; measured is the WORST (channel, seed) cell.",
+              "control": "V3-EXQ-932 landed run: all three core channels non-degenerate in all seeds.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.04784413289238309,
+              "threshold": 0.0001,
+              "met": true
+            },
+            {
+              "name": "g4_seeded::z_goal_nondegenerate_every_seed",
+              "precondition": "z_goal_nondegenerate_every_seed",
+              "arm": "g4_seeded",
+              "kind": "readiness",
+              "description": "z_goal must vary in EVERY seed for its couplings to be interpretable within-seed rather than as a between-seed artifact.",
+              "control": "V3-EXQ-932 landed run: z_goal std 0.000 / 0.000 / 0.078 -- nonzero in ONE seed only, and chan_max_std certified the channel from it.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.12701954390162082,
+              "threshold": 0.0001,
+              "met": true
+            },
+            {
+              "name": "g4_seeded::z_goal_dose_separation",
+              "precondition": "z_goal_dose_separation",
+              "arm": "g4_seeded",
+              "kind": "readiness",
+              "description": "the seeded arm's z_goal active fraction must exceed the emergent arm's by Z_GOAL_DOSE_SEPARATION_FLOOR. Without this the two arms could be bit-identical (the gain acts only through a strict threshold) and the contrast vacuous -- see the module docstring's DV-symmetry declaration.",
+              "control": "Direct probe of this env config (2026-08-19, seed 0): benefit_exposure max 0.0409, so at gain 4.0 a peak contact reaches 0.0409*4*3 = 0.49 against a benefit_threshold of 0.1, while V3-EXQ-932 measured active_frac 0.0087 at gain 1.0.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.8436426116838488,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "g4_seeded::at_least_one_gating_coupling_settled",
+              "precondition": "at_least_one_gating_coupling_settled",
+              "arm": "g4_seeded",
+              "kind": "readiness",
+              "description": "at least one GATING coupling must reach status 'settled' -- adequate n, adequate affect-channel variance AND adequate DV base rate. This replaces V3-EXQ-932's `couplings_adequately_powered`, which certified n alone and so marked a zero-variance DV `powered: true` (autopsy Section 2a). The two mode-based approach couplings are gating:false and cannot satisfy it.",
+              "control": "V3-EXQ-932's realised rates: moved 103/1013 (10.2%) and benefit_exposure 220/1013 (21.7%) both clear MIN_DV_POSITIVES=20 and MIN_DV_BASE_RATE=0.05, so at least two gating couplings are settleable by construction.",
+              "direction": "lower",
+              "applies": true,
+              "measured": 3.0,
+              "threshold": 0.5,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        }
+      ],
+      "red": []
+    },
+    "degeneracy_reason": "",
+    "coupling_summary": {
+      "floor_r": 0.15,
+      "min_n": 200.0,
+      "min_dv_positives": 20,
+      "min_dv_base_rate": 0.05,
+      "min_coupling_n_per_seed": 50,
+      "min_dv_positives_per_seed": 10,
+      "reference_906c_near_null_r": 0.07,
+      "gating_couplings": [
+        "zgoal_t_to_benefit_t1t3",
+        "zgoal_t_to_benefitexp_t1t3",
+        "wanting_t_to_benefitexp_t1t3",
+        "wanting_t_to_moved_t1",
+        "wanting_t_to_reefexit_t1"
+      ],
+      "reported_only_couplings": [
+        "zgoal_t_to_approach_t1",
+        "zgoal_t_to_approachraw_t1",
+        "wanting_t_to_approach_t1",
+        "wanting_t_to_approachraw_t1"
+      ],
+      "scored_arms": [
+        "g1_emergent",
+        "g4_seeded"
+      ],
+      "nontrivial_by_arm": {
+        "g1_emergent": [
+          "zgoal_t_to_benefitexp_t1t3",
+          "wanting_t_to_benefitexp_t1t3",
+          "wanting_zgoal_contemporaneous"
+        ],
+        "g4_seeded": [
+          "zgoal_t_to_benefitexp_t1t3",
+          "wanting_t_to_benefitexp_t1t3",
+          "wanting_t_to_moved_t1",
+          "wanting_zgoal_contemporaneous"
+        ]
+      },
+      "status_by_arm": {
+        "g1_emergent": {
+          "zgoal_t_to_approach_t1": "unsettable_dv_degenerate",
+          "zgoal_t_to_approachraw_t1": "unsettable_dv_degenerate",
+          "zgoal_t_to_benefit_t1t3": "unsettable_dv_degenerate",
+          "zgoal_t_to_benefitexp_t1t3": "settled",
+          "wanting_t_to_approach_t1": "unsettable_dv_degenerate",
+          "wanting_t_to_approachraw_t1": "unsettable_dv_degenerate",
+          "wanting_t_to_benefitexp_t1t3": "settled",
+          "wanting_t_to_moved_t1": "settled",
+          "wanting_t_to_reefexit_t1": "unsettable_dv_degenerate",
+          "wanting_zgoal_contemporaneous": "settled"
+        },
+        "g4_seeded": {
+          "zgoal_t_to_approach_t1": "unsettable_dv_degenerate",
+          "zgoal_t_to_approachraw_t1": "unsettable_dv_degenerate",
+          "zgoal_t_to_benefit_t1t3": "unsettable_dv_degenerate",
+          "zgoal_t_to_benefitexp_t1t3": "settled",
+          "wanting_t_to_approach_t1": "unsettable_dv_degenerate",
+          "wanting_t_to_approachraw_t1": "unsettable_dv_degenerate",
+          "wanting_t_to_benefitexp_t1t3": "settled",
+          "wanting_t_to_moved_t1": "settled",
+          "wanting_t_to_reefexit_t1": "unsettable_dv_degenerate",
+          "wanting_zgoal_contemporaneous": "settled"
+        }
+      }
+    },
+    "approach_dv_disposition": "DROPPED FROM THE GATING SET, with evidence. Both mode-based approach couplings are gating:false (retained verbatim for 906c/932 comparability, REPORTED-ONLY). The precedence-free variant `approach_raw` (harm_signal > 0.01) is measured alongside so the drop rests on the event's own base rate rather than on _classify_mode's affect precedence. A direct probe of this env config (2026-08-19, seed 0, 66 steps) found harm_signal > 0.01 on 1/66 steps (1.5%), below MIN_DV_BASE_RATE, so `approach` is expected unsettable in the reef regime at ANY precedence. Re-tuning ENV_KWARGS to make it fire was REJECTED: it would change the substrate under study and break comparability on every other coupling.",
+    "note": "OBSERVATIONAL / DIAGNOSTIC -- promotes nothing, weights no governance (claim_ids=[], experiment_purpose=diagnostic). Lettered re-instrument of V3-EXQ-932 per failure_autopsy_931-932-wanting-authority-cluster_2026-08-16 Section 8. 932's MEASUREMENT-VALIDITY PASS stands and is NOT superseded; what is repaired is its reported, non-gating coupling narrative. A lagged correlation is consistent with but does NOT establish that the signal DRIVES behaviour; the partial correlations reduce ONE confound (a shared z_goal driver), they do not make the design causal. The causal-necessity test is the separate ablation V3-EXQ-931."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "147ff6d0534ad63097bdc7db998ffc8814094c284545ab0ca1fcff509426aa7c",
+  "substrate_commit": {
+    "commit": "196869ee5b3f047ff87c06373cdd67e882fc6d75",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 18866,
+    "ticks_active": 8321,
+    "writer_calls": 18866,
+    "active_frac": 0.4410579879147673,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
