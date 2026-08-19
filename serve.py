@@ -3898,6 +3898,47 @@ def _claims_assembly_view(claims: list, substrate_index: dict) -> dict:
     }
 
 
+def _cusp_substrate_ready_items(sq: dict) -> list[dict]:
+    """Build the cusp rail's "substrate_ready" items from a parsed
+    substrate_queue.json dict.
+
+    Suppresses already-built entries using the canonical classifiers from
+    generate_inter_governance_workset.py's `_substrate_ready_items()` --
+    this site used to read only `implementation_status` (blank on the
+    majority of entries; the real state lives in the free-text `status`
+    field), which advertised already-built substrate as buildable-now work
+    on the dashboard (17x over-count vs. `_substrate_ready_items()`,
+    confirmed 2026-08-19). Delegating avoids re-implementing (and silently
+    drifting from) the MECH-302 / FM2 / FM3 / FM4 fixes those classifiers
+    carry. Falls back to this file's own `_norm_claim_assembly_status_token`
+    (suppressing "built"/"in_progress") if the import fails, so a broken
+    import degrades rather than reverting to the old no-fallback behaviour.
+    """
+    try:
+        sys.path.insert(0, str(SERVE_DIR / "scripts"))
+        import generate_inter_governance_workset as _igw  # noqa: WPS433
+
+        def _already_built(item):
+            return _igw._substrate_resolved(item) or _igw._substrate_implementation_complete(item)
+    except Exception:
+        def _already_built(item):
+            token = (_norm_claim_assembly_status_token(item.get("implementation_status"))
+                     or _norm_claim_assembly_status_token(item.get("status")))
+            return token in ("built", "in_progress")
+    out: list[dict] = []
+    for item in sq.get("queue") or []:
+        if not isinstance(item, dict) or not item.get("ready"):
+            continue
+        if _already_built(item):
+            continue
+        out.append({
+            "kind": "substrate_ready",
+            "label": item.get("sd_id") or item.get("title") or "?",
+            "sd_id": item.get("sd_id"),
+        })
+    return out
+
+
 def _enrich_closure_v2(data: dict) -> dict:
     """Add closure/v2 orientation, live EXQ, cusp rail, per-node flags."""
     nodes = data.get("nodes") or []
@@ -3969,17 +4010,7 @@ def _enrich_closure_v2(data: dict) -> dict:
             })
     try:
         sq = json.loads(SUBSTRATE_QUEUE_FILE.read_text(encoding="utf-8"))
-        for item in sq.get("queue") or []:
-            if not isinstance(item, dict) or not item.get("ready"):
-                continue
-            impl = (item.get("implementation_status") or "").lower()
-            if impl in ("implemented", "done", "complete"):
-                continue
-            cusp_items.append({
-                "kind": "substrate_ready",
-                "label": item.get("sd_id") or item.get("title") or "?",
-                "sd_id": item.get("sd_id"),
-            })
+        cusp_items.extend(_cusp_substrate_ready_items(sq))
     except Exception:
         pass
     for cid in sorted(retest_ids)[:12]:
