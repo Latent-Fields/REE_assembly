@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-08-03.1 -->
+<!-- WORKSET_VERSION: 2026-08-19.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -440,11 +440,17 @@ async function load() {
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
   await loadRecentActivity();  // populate RA before summary so the chip count is right
-  await loadChips();
   renderSummary();
   renderLeverageRail();
   renderAll();
   syncUrl();
+  // Chips are read by renderChips() ONLY -- the collapsed "Pending chips"
+  // panel. Nothing in renderSummary/renderLeverageRail/renderAll touches
+  // CHIPS. TASK_CHIPS.json is ~7 MB (1100+ chips, full prompt text each),
+  // so awaiting it here gated the ENTIRE card grid on that download+parse
+  // and the page sat visibly empty until it finished -- badly so on a
+  // loaded machine. Fire and forget: loadChips() renders its own panel.
+  loadChips();
   hydrateClosure();
   startAutoRefresh();
 }
@@ -472,10 +478,10 @@ async function refreshLiveData() {
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
   await loadRecentActivity();
-  await loadChips();
   renderSummary();
   renderLeverageRail();
   renderAll({ scrollOnFilter: false });
+  loadChips();  // not awaited -- see load(); never gate the grid on the ~7 MB ledger
 }
 
 function startAutoRefresh() {
