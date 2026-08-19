@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 3973580,
   "runner_started_at": "2026-08-19T01:28:10.559626+00:00",
-  "last_updated": "2026-08-19T09:43:28.837496+00:00",
+  "last_updated": "2026-08-19T14:24:34.059802+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-941",
+      "backlog_id": "",
+      "claim_id": "MECH-467",
+      "title": "MECH-467 H-denominator: decompose '0 consumption events' into never-approached vs approached-and-failed-to-arrive",
+      "description": "",
+      "estimated_minutes": 48.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3878,6 +3890,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_932a_zgoal_wanting_coupling_reinstrument_20260819T094328Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 4957.4
+    },
+    {
+      "queue_id": "V3-EXQ-940",
+      "backlog_id": "",
+      "claim_id": "MECH-467",
+      "title": "MECH-467 H-energy: is 874b's exposure window destroyed by self-contamination or by starvation?",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS window=1.0000 ticks=900/900 cause=none events=0 rate=0.000000 minhealth=1.000 contam=0.000 | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-940 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-940.json",
+      "started_at": "2026-08-19T13:33:03.526800+00:00",
+      "completed_at": "2026-08-19T14:09:22.036786+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_940_mech467_energy_window_decoupling_20260819T140921Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 2178.5
+    },
+    {
+      "queue_id": "V3-EXQ-937b",
+      "backlog_id": "",
+      "claim_id": "MECH-449",
+      "title": "MECH-449/ARC-107 RECORDING-ONLY: emit the per-bank (pre-No-Go envelope size, converted) joint that V3-EXQ-937a computes and discards, plus a K={4,6,8} generality axis (V3-EXQ-937a successor)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [937b] outcome=PASS label=conversion_is_a_deterministic_step_in_per_bank_envelope_size rate_env1=0.000000 (n=1277) rate_env2plus=1.000000 (n=2947) lift={'42': 1.0, '43': 1.0, '44': 1.0} step_at_2_by_k={'4': True, '6': True, '8': True} c6_worst_stratum_n=275 shuffled_worst=0.000000 empty_eligible=0 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-937b -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-937b.json",
+      "started_at": "2026-08-19T14:21:32.445034+00:00",
+      "completed_at": "2026-08-19T14:24:34.057795+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 181.6
     }
   ]
 }
