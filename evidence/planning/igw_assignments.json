@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-18T20:02:09Z",
+  "generated_at": "2026-08-19T01:31:58Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6978,6 +6978,31 @@
         "priority": 25,
         "claim_ids": [
           "MECH-091"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260819T013148Z-6c59ead9-spawned_task",
+      "stable_hash": "6c59ead9d2f6",
+      "igw_id_at_assign": "IGW-20260818-214",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-19T01:31:48Z",
+      "released_at": "2026-08-19T01:31:48Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260818T191549Z-6c59ead9-spawned_task",
+      "note": "Duplicate of already-open chip chip-20260816-implsub-contextmemory-writepath-degeneracy (kind=work, origin=headless, /implement-substrate, human-consent-gated by metaworker-dispatch Step 4c condition 5). Assigning to stop re-staging; no new work created.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: contextmemory-write-path-addressing-degeneracy",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "SD-017",
+          "ARC-045",
+          "MECH-166"
         ]
       }
     }
