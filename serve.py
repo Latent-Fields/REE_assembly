@@ -4436,7 +4436,28 @@ def read_progress() -> dict:
 
 
 def read_workset() -> dict:
-    """Load inter-governance workset from generate_inter_governance_workset.py."""
+    """Load inter-governance workset from generate_inter_governance_workset.py.
+
+    A PARSE FAILURE IS REPORTED, NOT SWALLOWED. This used to return the empty
+    stub for any exception, so an unreadable workset rendered as a page with
+    zero packages and no error anywhere -- indistinguishable from "the
+    generator has never run" and from "your filters match nothing". The
+    realistic cause is a TORN READ: the generator rewrites this ~465 KB file
+    while /workset polls this endpoint every 20s. That window is now closed at
+    the source (generate_inter_governance_workset._atomic_write_text), so a
+    parse failure here means either genuine corruption or a writer that has
+    regressed to a non-atomic write -- both worth seeing.
+
+    `unreadable: true` is the machine-readable signal; workset.html renders it
+    as a banner instead of a muted empty-state. Deliberately NOT a 500 and
+    deliberately NOT a cached last-good payload in this process: the page stays
+    up, this read path stays stateless, and the client decides what to keep
+    showing.
+
+    One retry after a short delay, because a torn read is transient by nature
+    and the retry costs ~50ms against a failure that would otherwise blank an
+    open page for a whole refresh cycle.
+    """
     empty = {
         "schema_version": "inter_governance_workset/v1.1",
         "generated_at": None,
@@ -4467,30 +4488,48 @@ def read_workset() -> dict:
     }
     if not WORKSET_JSON_FILE.exists():
         return empty
-    try:
-        data = json.loads(WORKSET_JSON_FILE.read_text(encoding="utf-8"))
-        if isinstance(data, dict) and isinstance(data.get("items"), list):
-            # Re-merge live agent assignments at read time. The generator bakes
-            # `assignments` into the workset JSON, but assign/release POSTs only
-            # write to evidence/planning/igw_assignments.json -- without this
-            # merge, the UI shows stale assignments until the next generator run.
-            try:
-                sys.path.insert(0, str(SERVE_DIR / "scripts"))
-                from igw_assignments_lib import (  # noqa: WPS433
-                    assignments_by_hash,
-                    stable_hash_item,
-                )
-                by_hash = assignments_by_hash()
-                for it in data["items"]:
-                    sh = it.get("stable_hash") or stable_hash_item(it)
-                    it["stable_hash"] = sh
-                    it["assignments"] = by_hash.get(sh) or []
-            except Exception:
-                pass
-            return data
-    except Exception:
-        pass
-    empty["empty_note"] = "Workset file unreadable."
+    last_err = None
+    for attempt in range(2):
+        if attempt:
+            time.sleep(0.05)  # let a torn write land; see the docstring
+        try:
+            data = json.loads(WORKSET_JSON_FILE.read_text(encoding="utf-8"))
+        except Exception as exc:  # noqa: BLE001 -- reported below, never raised
+            last_err = exc
+            continue
+        if not (isinstance(data, dict) and isinstance(data.get("items"), list)):
+            last_err = ValueError(
+                "parsed, but not an object with an 'items' list"
+            )
+            continue
+        # Re-merge live agent assignments at read time. The generator bakes
+        # `assignments` into the workset JSON, but assign/release POSTs only
+        # write to evidence/planning/igw_assignments.json -- without this
+        # merge, the UI shows stale assignments until the next generator run.
+        try:
+            sys.path.insert(0, str(SERVE_DIR / "scripts"))
+            from igw_assignments_lib import (  # noqa: WPS433
+                assignments_by_hash,
+                stable_hash_item,
+            )
+            by_hash = assignments_by_hash()
+            for it in data["items"]:
+                sh = it.get("stable_hash") or stable_hash_item(it)
+                it["stable_hash"] = sh
+                it["assignments"] = by_hash.get(sh) or []
+        except Exception:
+            pass
+        return data
+    empty["unreadable"] = True
+    empty["unreadable_detail"] = "%s: %s" % (type(last_err).__name__, last_err)
+    empty["empty_note"] = (
+        "Workset file unreadable -- %s could not be parsed (%s). "
+        "The page is showing nothing because the READ failed, not because "
+        "there is no work. Re-run scripts/generate_inter_governance_workset.py."
+        % (WORKSET_JSON_FILE.name, empty["unreadable_detail"])
+    )
+    print("read_workset: %s unreadable: %s"
+          % (WORKSET_JSON_FILE, empty["unreadable_detail"]), file=sys.stderr)
     return empty
 
 

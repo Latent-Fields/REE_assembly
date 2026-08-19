@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-08-19.2 -->
+<!-- WORKSET_VERSION: 2026-08-19.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -336,6 +336,17 @@
   .empty {
     padding: 40px 18px; text-align: center; color: var(--muted);
   }
+  /* An unreadable workset is a FAILURE, not an empty state -- .empty is muted
+     and centred and reads as "nothing to do here", which is exactly the wrong
+     signal when the read itself broke. See read_workset() in serve.py. */
+  .read-error {
+    margin: 12px 18px 0; padding: 10px 14px;
+    background: rgba(248, 81, 73, 0.12);
+    border: 1px solid var(--st-blocked); border-left-width: 4px;
+    border-radius: 4px; color: var(--text); font-size: 12px; line-height: 1.5;
+  }
+  .read-error b { color: var(--st-blocked); }
+  .read-error code { font-size: 11px; color: var(--muted); }
   #toast {
     position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
     background: var(--bg-3); border: 1px solid var(--st-ready);
@@ -411,6 +422,7 @@
   <input type="search" id="claim-search" placeholder="Claim search (ARC-065)" autocomplete="off">
 </div>
 
+<div class="read-error" id="read-error" hidden></div>
 <div class="sections" id="sections"></div>
 <div class="empty" id="empty" hidden></div>
 <div id="toast"></div>
@@ -467,13 +479,22 @@ async function refreshLiveData() {
   // Don't yank the card grid out from under an in-progress "assign as
   // other" entry -- wait for the next tick instead.
   if (document.querySelector('.assign-menu')) return;
-  let wsRes;
+  let wsRes, fresh;
   try {
     wsRes = await fetch('/api/workset');
-    WS = await wsRes.json();
+    fresh = await wsRes.json();
   } catch (e) {
     return;  // transient network hiccup -- keep showing the last good data
   }
+  // Same reasoning one layer up: an unreadable payload is very likely a torn
+  // read of a file being rewritten right now, so replacing WS with the empty
+  // stub would blank a working page for a whole refresh cycle. Keep the last
+  // good grid and say so, rather than showing nothing.
+  if (fresh && fresh.unreadable && WS && (WS.items || []).length) {
+    renderReadError(fresh, true);
+    return;
+  }
+  WS = fresh;
   document.getElementById('hdr-meta').textContent =
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
@@ -1220,8 +1241,31 @@ function renderCard(it) {
     '<div class="actions">' + actions + '</div></article>';
 }
 
+// Surface a FAILED READ of the workset JSON. serve.py's read_workset() sets
+// `unreadable: true` when the file exists but will not parse -- historically
+// that returned a silent empty stub, so the page rendered zero packages with
+// no error and looked exactly like "no work" or "your filters match nothing".
+// `staleShown` = we are still displaying the previous good payload (see
+// refreshLiveData), which is the common case: a torn read is transient.
+function renderReadError(payload, staleShown) {
+  const el = document.getElementById('read-error');
+  const p = payload || WS || {};
+  if (!p.unreadable) { el.hidden = true; el.textContent = ''; return; }
+  el.hidden = false;
+  el.innerHTML =
+    '<b>Workset unreadable.</b> ' +
+    escapeHtml(staleShown
+      ? 'The last fetch of the workset JSON did not parse; the packages below are the last good copy and may be out of date.'
+      : 'The workset JSON exists but did not parse, so no packages can be shown. This is a READ failure, not an empty workset.') +
+    ' Re-run <code>scripts/generate_inter_governance_workset.py</code>.' +
+    (p.unreadable_detail
+      ? '<br><code>' + escapeHtml(p.unreadable_detail) + '</code>'
+      : '');
+}
+
 function renderAll(opts) {
   const scrollOnFilter = !opts || opts.scrollOnFilter !== false;
+  renderReadError();
   const items = filterItems();
   const sections = buildSections(items);
   const root = document.getElementById('sections');

@@ -121,9 +121,11 @@ MECH-472, MECH-074, plus ARC-045 intermittently). See
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote as urlquote
@@ -132,6 +134,54 @@ try:
     import yaml as _yaml
 except ImportError:
     _yaml = None
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Replace `path` with `text` in one indivisible step (temp + os.replace).
+
+    WHY THIS EXISTS. `Path.write_text()` is `open(path, "w").write(text)`: it
+    TRUNCATES at open() and then writes the payload in several write() syscalls
+    once past the ~8 KiB stdio buffer. The workset JSON is ~465 KB, so every
+    regen leaves a window in which a CONCURRENT READER sees a truncated or
+    empty document -- and this generator does not run alone. It is shelled out
+    by igw_routine_tick.regenerate_workset() on a timer, by
+    /inter-governance-brief, and by hand, while serve.py's read_workset()
+    (GET /api/workset) is polled by every open /workset page every 20s.
+
+    A torn read there was SILENT until 2026-08-19: read_workset() caught the
+    JSONDecodeError and returned an empty stub, so the page rendered zero
+    packages with no error. Both halves were fixed together -- this write is
+    now atomic, and the read now says so when it fails (`unreadable: true`).
+
+    Same primitive as evidence/experiments/scripts/build_experiment_indexes.py
+    `_atomic_write_text()` and the umbrella's scripts/task_claim.py
+    `atomic_write_text()`; re-stated rather than imported for the reason given
+    at length in the former -- CLAUDE.md rejects cross-repo sys.path imports
+    for shared code, and a ~15-line textbook idiom does not warrant the
+    vendored-copy machinery (audit_vendored_copies.py registration plus an
+    ongoing byte-identity obligation) that a real shared module needs.
+
+    The temp file is created in the SAME directory so os.replace() -- atomic on
+    POSIX -- is a same-filesystem rename. A loser of a rename race is discarded
+    whole and can never be spliced into the winner.
+    """
+    fd, tmp = tempfile.mkstemp(dir=str(path.parent), prefix=path.name + ".tmp.")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            fh.write(text)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        # Never leave a half-written .tmp.* beside the real file -- another
+        # session's `git status` reads it as untracked junk in a shared
+        # checkout, and ree_commit.py's path list is name-driven.
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
 
 ROOT = Path(__file__).resolve().parent.parent
 PLANNING = ROOT / "evidence" / "planning"
@@ -3316,8 +3366,11 @@ def write_markdown(data: dict) -> str:
 
 def main() -> int:
     data = build_workset()
-    OUTPUT_JSON.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    OUTPUT_MD.write_text(write_markdown(data), encoding="utf-8")
+    # Atomic (temp + os.replace), NOT write_text() -- see _atomic_write_text().
+    # Both files are read live by serve.py / igw_routine_tick.py / check_workset_drift.py
+    # while this runs, and write_text() truncates at open().
+    _atomic_write_text(OUTPUT_JSON, json.dumps(data, indent=2) + "\n")
+    _atomic_write_text(OUTPUT_MD, write_markdown(data))
     print(f"Wrote {OUTPUT_JSON.relative_to(ROOT)} ({len(data['items'])} items)")
     print(f"Wrote {OUTPUT_MD.relative_to(ROOT)}")
     # FM3 advisory: the substrate lane fails OPEN to "ready", so an unrecognised
