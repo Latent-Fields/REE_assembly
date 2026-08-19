@@ -47,6 +47,13 @@ from ._common import DEFERRED_STATUSES, Context, finding
 
 DETECTOR_ID = "D-002"
 DETECTOR_TITLE = "Orphan V3 claim (live V3 work outside the V3 denominator)"
+# T1: detection is deterministic, but whether the NODE status is wrong (the
+# SD-031 outcome) or the CLAIM phase is wrong is a disposition, not a
+# mechanical fix -- see the finding detail below. Matches docs/DETECTORS.md
+# and README.md's detector table ("D-002 | T1"). Until 2026-08-18 this was
+# never passed, so every finding silently emitted _common.finding()'s default
+# T2 instead -- see chip-20260817-steward-emitted-tier-vs-designed-tier.
+TIER = "T1"
 
 
 def _is_live_v3(claim: dict) -> bool:
@@ -134,6 +141,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
             confidence=confidence,
             signal=signal,
             escalate=True,
+            tier=TIER,
             evidence={
                 "claim_status": claim.get("status"),
                 "implementation_phase": claim.get("implementation_phase"),

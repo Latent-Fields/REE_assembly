@@ -347,6 +347,20 @@ def test_d002_ignores_non_v3_claims(tmp_path):
     assert ids(r, "D-002") == []
 
 
+def test_d002_emits_tier_t1(tmp_path):
+    """Detection is deterministic; whether the NODE status or the CLAIM phase
+    is stale is a disposition, not a mechanical fix -- docs/DETECTORS.md and
+    README.md's detector table both say T1. Until 2026-08-18 no tier= was ever
+    passed here, so every finding silently emitted _common.finding()'s default
+    T2 instead of the documented T1 -- see
+    chip-20260817-steward-emitted-tier-vs-designed-tier. Pin it so the default
+    can never silently reassert itself."""
+    repo = make_repo(tmp_path / "repo", ORPHAN_CLAIMS, ORPHAN_PLANS)
+    r = run_once(repo, tmp_path / "state")
+    d2 = [f for f in r["findings"] if f["detector"] == "D-002"]
+    assert d2 and all(f["tier"] == "T1" for f in d2)
+
+
 # ---------------------------------------------------------------------------
 # D-001 predicate
 # ---------------------------------------------------------------------------
@@ -401,6 +415,23 @@ def test_d001_narrowing_is_counted_not_silent(tmp_path):
     s = next(x for x in r["detectors"] if x["detector"] == "D-001")
     assert s["raw_owner_pairs_mismatched"] == 1
     assert s["benign_forward_backpointers_filtered"] == 1
+
+
+def test_d001_emits_tier_t1(tmp_path):
+    """Detection is deterministic; which side is stale -- the claim's phase
+    label or the owning plan's generation -- is a disposition, not a
+    mechanical fix. docs/DETECTORS.md and README.md's detector table both say
+    T1. Until 2026-08-18 no tier= was ever passed here, so every finding
+    silently emitted _common.finding()'s default T2 instead of the documented
+    T1 -- see chip-20260817-steward-emitted-tier-vs-designed-tier. Pin it so
+    the default can never silently reassert itself. Uses LIST_ONLY_ESCALATE
+    (escalate=False) fixture state; tier is orthogonal to escalation."""
+    repo = make_repo(
+        tmp_path / "repo", [claim("MECH-001", "v3", True)],
+        {"beta": plan("beta", [node("beta:B-1", "open", ["MECH-001"])], "v5")})
+    r = run_once(repo, tmp_path / "state")
+    d1 = [f for f in r["findings"] if f["detector"] == "D-001"]
+    assert d1 and all(f["tier"] == "T1" for f in d1)
 
 
 # ---------------------------------------------------------------------------
@@ -502,6 +533,32 @@ def test_d010_quiet_when_snapshot_agrees(tmp_path):
     r = run_once(repo, tmp_path / "state")
     assert not [i for i in ids(r)
                 if i.startswith("D-010:snapshot_denominator_mismatch")]
+
+
+def test_d010_emits_tier_t2(tmp_path):
+    """D-010 reports a verdict on the accounting mechanism itself; action is
+    taken elsewhere (governance.sh regen, or a code edit), never by a
+    per-instance disposition -- README.md's detector table says T2, and
+    docs/DETECTORS.md's own AS-BUILT note already corrects the original
+    'T0-assert' spec line to T2. Unlike D-001/D-002, T2 was already the
+    accidental behaviour ( _common.finding()'s default, never overridden) --
+    this pins it now that it is explicit, so it cannot silently drift the
+    other way either. Covers 3 of the 5 finding() call sites (silent
+    exclusion, unknown status, snapshot mismatch); see
+    chip-20260817-steward-emitted-tier-vs-designed-tier."""
+    repo = make_repo(
+        tmp_path / "repo", [],
+        {"alpha": plan("alpha", [node("alpha:1", "done"),
+                                 node("alpha:2", "assembling"),
+                                 node("alpha:3", "brand_new_status")])})
+    (repo / "evidence" / "planning" / "closure_status.md").write_text(
+        "- Weighted progress: **50.0%** across 99 non-deferred nodes in 1 plan(s).\n",
+        encoding="utf-8")
+    r = run_once(repo, tmp_path / "state")
+    d10 = [f for f in r["findings"] if f["detector"] == "D-010"]
+    assert len(d10) >= 3, "fixture should trip silent-exclusion, unknown-status " \
+                          "and snapshot-mismatch together"
+    assert all(f["tier"] == "T2" for f in d10)
 
 
 # ---------------------------------------------------------------------------

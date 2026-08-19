@@ -109,6 +109,18 @@ three are claims.yaml work outside this adjudication's authority.
 **and** one full cycle has run with the suppressions live, **if** the
 unsuppressed residue then measures ≥ 0.6. One constant to flip.
 
+> **AS BUILT (2026-08-19) -- the `T1` above was never actually emitted.**
+> `d001_phase_generation_mismatch.py` never passed `tier=` to `_common.finding()`
+> from initial build through 2026-08-18, so every finding silently carried
+> `finding()`'s default, `T2` -- contradicting this doc and README.md's
+> detector table, both of which already said `T1` correctly. This is a code
+> defect, not a documentation error: the tier field gates `assert_no_status_proposal()`
+> in D-007 and the `autofix=True` guard in `finding()` itself, so a wrong
+> emitted tier is a latent trap for any future tier-keyed consumer, not a
+> cosmetic mismatch. Fixed in `chip-20260817-steward-emitted-tier-vs-designed-tier`
+> by adding a `TIER = "T1"` constant and passing `tier=TIER`; pinned by
+> `test_d001_emits_tier_t1` in `test_run_detectors.py`.
+
 ### D-002 · `orphan_v3_claim` · P0 · T1
 A claim with `implementation_phase: v3` / `v3_pending: true` whose **only**
 owning closure node has a status in `DEFERRED_STATUSES` — therefore excluded
@@ -220,6 +232,16 @@ both cases, `weak` only tracked how much scaffolding (a `v3_pending` flag) the
 claim carried, not whether the underlying orphan was real. Net: `signal`
 stays ranking metadata only (per point 1 above), now with two-for-two evidence
 that downgrading or gating on it would have suppressed real findings.
+
+> **AS BUILT (2026-08-19) -- the `T1` above was never actually emitted.**
+> `d002_orphan_v3_claim.py` never passed `tier=` to `_common.finding()` from
+> initial build through 2026-08-18, so every finding silently carried
+> `finding()`'s default, `T2` -- contradicting this doc and README.md's
+> detector table, both of which already said `T1` correctly. Same class of
+> defect as D-001's, found and fixed in the same pass:
+> `chip-20260817-steward-emitted-tier-vs-designed-tier` added a
+> `TIER = "T1"` constant and `tier=TIER`; pinned by `test_d002_emits_tier_t1`
+> in `test_run_detectors.py`.
 
 ### D-003 · `never_revisited_node` · P1 · T1
 A non-`done` node carrying no `governance_*` key and no `last_updated` movement
@@ -372,6 +394,17 @@ This guards the accounting itself rather than its inputs. Fails loud.
 > as its standing output rather than as a defect. Emitted `tier` is `T2`, not
 > `T0-assert`. See D-002 above and `README.md` -> "Two corrections to the
 > stage-1 spec".
+>
+> **AS BUILT (2026-08-19) -- confirmed and hardened.** Unlike D-001/D-002 (same
+> chip, `chip-20260817-steward-emitted-tier-vs-designed-tier`), this one was
+> already correct in effect: no call site in `d010_denominator_integrity.py`
+> ever passed `tier=` either, so every finding emitted `_common.finding()`'s
+> default, which happens to equal the `T2` this note already prescribes. That
+> was an accident of the default value, not a decision recorded in the code,
+> so all 5 `finding()` call sites now pass an explicit `tier=TIER` (`TIER =
+> "T2"`), pinned by `test_d010_emits_tier_t2` in `test_run_detectors.py` --
+> the emitted tier no longer depends on `_common.finding()`'s default staying
+> `T2`.
 
 #### Cycle-1 adjudication — 2026-08-18 · **verdict `refine`** · both standing findings
 

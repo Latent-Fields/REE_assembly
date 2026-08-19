@@ -43,6 +43,14 @@ from ._common import DEFAULT_GENERATION, Context, finding
 
 DETECTOR_ID = "D-001"
 DETECTOR_TITLE = "Claim phase vs owning plan generation mismatch"
+# T1: detection is deterministic (a claim's phase vs its owning plan's
+# generation), but which side is stale -- the claim's phase label or the
+# owning plan's generation -- is a disposition, not a mechanical fix. Matches
+# docs/DETECTORS.md and README.md's detector table ("D-001 | T1"). Until
+# 2026-08-18 this was never passed, so every finding silently emitted
+# _common.finding()'s default T2 instead -- see
+# chip-20260817-steward-emitted-tier-vs-designed-tier.
+TIER = "T1"
 
 # LIST-ONLY DEMOTION -- 2026-08-18, chip-20260817-d001-unowned-v3-claims.
 #
@@ -162,6 +170,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
             confidence=confidence,
             signal=signal,
             escalate=LIST_ONLY_ESCALATE,
+            tier=TIER,
             evidence={
                 "implementation_phase": phase,
                 "v3_pending": claim.get("v3_pending"),

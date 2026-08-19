@@ -97,6 +97,18 @@ from ._common import (
 
 DETECTOR_ID = "D-010"
 DETECTOR_TITLE = "Closure denominator integrity"
+# T2: this detector reports a verdict on the accounting mechanism itself
+# (structural invariants, the silent-exclusion surface, weight drift, snapshot
+# lag) rather than a defect a human or model adjudicates per-instance -- action
+# on any of it is taken elsewhere (governance.sh regen, or a
+# generate_closure_snapshot.py / _common.py edit). The original spec in
+# docs/DETECTORS.md called this "T0-assert"; that is not a value
+# _common.finding() accepts, and the doc's own AS-BUILT note (2026-08-16)
+# already corrects it: "Emitted tier is T2, not T0-assert." This was already
+# T2 by way of _common.finding()'s default (never overridden), which happened
+# to match; made explicit here so it no longer depends on that default -- see
+# chip-20260817-steward-emitted-tier-vs-designed-tier.
+TIER = "T2"
 
 _SNAPSHOT_RE = re.compile(
     r"Weighted progress:\s*\*\*([\d.]+)%\*\*\s*across\s*(\d+)\s*non-deferred nodes"
@@ -228,6 +240,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
                 % (len(bad_gen), len(bad_weight))
             ),
             severity="P0", confidence=0.99, signal="strong", escalate=True,
+            tier=TIER,
             evidence={
                 "non_v3_in_denominator": [n.node_id for n in bad_gen],
                 "weight_none_in_denominator": [n.node_id for n in bad_weight],
@@ -283,6 +296,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
                 % ", ".join("%s=%d" % (k, len(v)) for k, v in sorted(silent.items()))
             ),
             severity="P2", confidence=0.6, signal="weak", escalate=True,
+            tier=TIER,
             evidence={"by_status": {k: sorted(v) for k, v in silent.items()},
                       "labelled_exclusions": {k: len(v)
                                               for k, v in sorted(labelled.items())},
@@ -311,6 +325,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
                 % ", ".join(sorted(unknown))
             ),
             severity="P1", confidence=0.9, signal="strong", escalate=True,
+            tier=TIER,
             evidence={"by_status": {k: sorted(v) for k, v in unknown.items()}},
         ))
 
@@ -342,6 +357,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
                     % (len(diffs), ", ".join(sorted(diffs)))
                 ),
                 severity="P1", confidence=0.9, signal="strong", escalate=True,
+                tier=TIER,
                 evidence={"diffs": diffs},
             ))
 
@@ -422,6 +438,7 @@ def run(ctx: Context) -> tuple[list[dict], dict]:
                 % (committed_denom, len(denom), why)
             ),
             severity=sev, confidence=conf, signal="weak", escalate=esc,
+            tier=TIER,
             evidence={"committed_denominator": committed_denom,
                       "recomputed_denominator": len(denom),
                       "committed_pct": committed_pct,
