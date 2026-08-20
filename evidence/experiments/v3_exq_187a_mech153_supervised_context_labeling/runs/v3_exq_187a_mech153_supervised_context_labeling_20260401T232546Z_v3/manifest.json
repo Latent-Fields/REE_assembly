@@ -24,10 +24,10 @@
     "ARC-042"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "inconclusive",
   "evidence_direction_per_claim": {
-    "MECH-153": "weakens",
-    "ARC-042": "weakens"
+    "MECH-153": "inconclusive",
+    "ARC-042": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -44,5 +44,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-08-20 registry-integrity repair, MECH-236 class N3b]: ratified evidence-direction correction mirrored from the flat sibling evidence/experiments/v3_exq_187a_mech153_supervised_context_labeling/v3_exq_187a_mech153_supervised_context_labeling_20260401T232546Z.json onto this pack copy, which is the manifest the indexer actually scores. The flat correction has NEVER scored: build_experiment_indexes.py _resolve_flat_sibling (:1526) resolves a flat sibling by EXACT PATH (<base>/<run_id>.json, then <base>/<experiment_type>/<run_id>.json), and this flat file's FILENAME does not equal the run_id, so the lookup returned None, the overlay at :1517 never ran, and the pack's stale 'does_not_support' kept scoring. Ratified in REE_assembly c4143051d0baa23845bb1aa078ee5971fb803528 (\"cowork-2026-04-05-a: unactioned learning cleanup\"). Concurring confirmed autopsy: failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08 (2026-08-08T19:37:15Z), recommended_evidence_direction 'inconclusive'. Only evidence_direction, evidence_direction_per_claim and this note were written; no field describing what the run did or which substrate it ran against was altered. Original correction note, verbatim: Corrected from non-standard 'does_not_support' (2026-04-05, cowork-2026-04-05-a/diag_187a). EXQ-187a IS the bug-fix for EXQ-187 (context_memory.write() correctly applied). Cosine_sim=1.0 is a valid scientific result: 150 warmup eps at lambda=0.1 is insufficient supervised signal to drive context differentiation. Not a code failure. ARC-042: non_contributory (expected behavior per staged-development logic). MECH-153: inconclusive (insufficient training config does not refute that supervision is necessary)."
 }

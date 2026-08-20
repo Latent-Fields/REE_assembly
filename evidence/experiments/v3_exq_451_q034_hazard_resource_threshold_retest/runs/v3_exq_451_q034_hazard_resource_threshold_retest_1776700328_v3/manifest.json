@@ -23,9 +23,9 @@
     "Q-034"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-034": "weakens"
+    "Q-034": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-08-20 registry-integrity repair, MECH-236 class N3b]: ratified evidence-direction correction mirrored from the flat sibling evidence/experiments/v3_exq_451_q034_hazard_resource_threshold_retest/v3_exq_451_q034_hazard_resource_threshold_retest_20260420T155208Z_v3.json onto this pack copy, which is the manifest the indexer actually scores. The flat correction has NEVER scored: build_experiment_indexes.py _resolve_flat_sibling (:1526) resolves a flat sibling by EXACT PATH (<base>/<run_id>.json, then <base>/<experiment_type>/<run_id>.json), and this flat file's FILENAME does not equal the run_id, so the lookup returned None, the overlay at :1517 never ran, and the pack's stale 'weakens' kept scoring. Ratified in REE_assembly e4419b63fb67c62cdf0491892b851fc62d0fb4bb (\"Governance 2026-04-22: V_s monostrategy cluster + amygdala promotions\"). Concurring confirmed autopsy: failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (2026-08-08T20:16:08Z), recommended_evidence_direction 'non_contributory'. Only evidence_direction, evidence_direction_per_claim and this note were written; no field describing what the run did or which substrate it ran against was altered. Original correction note, verbatim: Reclassified non_contributory 2026-04-22: 15/15 grid points (3 res densities x 5 hazard densities x 2 seeds) goal_reach_rate=0.0 with action_entropy_bits=0.0. Monostrategy lock-in prevents threshold identification across the entire sweep. Pending V_s landing (MECH-269). NOTE ON evidence_direction_per_claim: the 2026-04-22 governance edit changed the flat copy's run-level field to non_contributory but left the pre-existing per-claim map at {\"Q-034\": \"weakens\"}. The indexer's per-claim override (:3291) dominates the run-level field, so the ratified disposition would have remained a no-op for its only tagged claim even had the flat been reachable. The per-claim entry is therefore set to non_contributory, which is exactly what the ratifying commit and the concurring confirmed autopsy (claim_ids [\"Q-034\"], recommended non_contributory) dispose for this single-claim run."
 }

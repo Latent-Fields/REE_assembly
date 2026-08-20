@@ -23,7 +23,7 @@
     "INV-054"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-08-20 registry-integrity repair, MECH-236 class N3b]: ratified evidence-direction correction mirrored from the flat sibling evidence/experiments/v3_exq_435_inv054_phase_transition_sustained_recovery/v3_exq_435_inv054_phase_transition_sustained_recovery_1776660122.json onto this pack copy, which is the manifest the indexer actually scores. The flat correction has NEVER scored: build_experiment_indexes.py _resolve_flat_sibling (:1526) resolves a flat sibling by EXACT PATH (<base>/<run_id>.json, then <base>/<experiment_type>/<run_id>.json), and this flat file's FILENAME does not equal the run_id, so the lookup returned None, the overlay at :1517 never ran, and the pack's stale 'does_not_support' kept scoring. Ratified in REE_assembly e4419b63fb67c62cdf0491892b851fc62d0fb4bb (\"Governance 2026-04-22: V_s monostrategy cluster + amygdala promotions\"). Concurring confirmed autopsy: failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (2026-08-08T20:16:08Z), recommended_evidence_direction 'non_contributory'. Only evidence_direction and this note were written; no field describing what the run did or which substrate it ran against was altered. Original correction note, verbatim: Reclassified non_contributory 2026-04-22: ree-v3 substrate has only smooth/graded updates; phase_transition recovery requires discrete operating_mode primitive (SD-032a + MECH-259). Graded recovery in 3/3 seeds is the only output the substrate can produce. pending_retest_after_substrate."
 }
