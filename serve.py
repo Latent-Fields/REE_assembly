@@ -4631,6 +4631,17 @@ CHIP_PANEL_FIELDS = (
     "claimed_by",
     "claimed_at",
     "claim_note",
+    # Filter columns for the panel's filter bar (added 2026-08-20). Measured cost
+    # at the 1273 chips in the ledger that day: 943.9 KB -> 1055.5 KB, +11.8% --
+    # paid once per ledger change, since the 20 s poll still answers 304 off the
+    # (mtime_ns, size) ETag. Worth it because without them the client can filter
+    # only on status, and the 52 open chips stay buried among 1144 done ones.
+    # `resolved_at` is what an age filter reads for a RESOLVED chip (spawned_at
+    # is the wrong clock there).
+    "origin",
+    "kind",
+    "urgency",
+    "resolved_at",
 )
 
 _CHIPS_CACHE = {"key": None, "projected": None, "prompts": None,
