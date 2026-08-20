@@ -332,14 +332,16 @@ class ResolutionTests(Base):
 
 
 # =========================================================================
-# BUCKET 2 SCOPE -- the per_claim_recommendation gap, and its bounds
+# unapplied_evidence_direction SCOPE -- the per_claim_recommendation gap,
+# and its bounds
 # =========================================================================
 class DirectionBucketTests(Base):
 
     def test_target_without_per_claim_recommendation_is_still_checked(self):
         """THE COVERAGE FIX. `per_claim_recommendation` is present on 25 of 1194
-        corpus targets; the 914-914a artifact has none, so bucket 1 skipped both
-        its targets before any check ran. The target-level field covers 1175."""
+        corpus targets; the 914-914a artifact has none, so
+        unapplied_disposition skipped both its targets before any check ran.
+        The target-level field covers 1175."""
         self.fx.autopsy(targets=[self.fx.target()])
         self.fx.pack(direction="weakens")
         self.fx.live()
@@ -489,7 +491,7 @@ class ContractTests(Base):
 
     def test_strict_exit_contract_is_unchanged_by_the_new_bucket(self):
         """NEGATIVE CONTROL, and the one most likely to be broken by a later
-        'simplification': --strict is bucket 1's gate. A live direction row
+        'simplification': --strict is unapplied_disposition's gate. A live row
         alone must NOT make it exit 1, or every existing caller starts failing."""
         self._live_hit()
         rc, out = self.run_main("--strict")

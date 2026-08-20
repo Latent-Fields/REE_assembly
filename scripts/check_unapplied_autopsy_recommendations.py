@@ -85,8 +85,9 @@ BUCKETS
                          (dry-run, stale substrate, diagnostic probe).
 
                          Added 2026-08-20. This is the bucket that would have
-                         caught MECH-236, and it exists because bucket 1 could
-                         not: it keys on the target-level
+                         caught MECH-236, and it exists because
+                         `unapplied_disposition` could not: it keys on the
+                         target-level
                          `recommended_evidence_direction` (1175 of 1190
                          confirmed targets) rather than
                          `per_claim_recommendation` (25 of 1194), and it opens
@@ -110,12 +111,30 @@ BUCKETS
                          direction and category), so a hit here is "re-read", not
                          "re-apply".
 
+NAME BUCKETS BY KEY, NEVER BY ORDINAL
+------------------------------------
+Refer to a bucket as `unapplied_disposition`, `unapplied_evidence_direction` or
+`superseded_citation` -- in prose, in comments, in argparse help, and in printed
+output. Do not write "bucket 1"/"bucket 2"/"bucket 3".
+
+The reason is this file's own history. `unapplied_evidence_direction` was
+inserted in the MIDDLE of the list on 2026-08-20, and every ordinal downstream
+silently repointed. Within hours the same two words named two different things
+in one file: the KNOWN LIMIT paragraph's "bucket 2" still meant
+`superseded_citation` (written when it was second), while the coverage line
+printed at runtime said "bucket 2" meaning the newly-inserted direction bucket
+-- and a third numbering, "BUCKET 3", labelled that same bucket in the scan
+code. An ordinal is a positional reference into a list that later edits reorder;
+nothing type-checks it, no test can assert it, and it cannot go stale loudly. A
+key name cannot repoint. /governance SKILL.md states the same convention
+(`067611cae1`); this is its code half.
+
 COVERAGE IS REPORTED, DELIBERATELY
 ----------------------------------
 `per_claim_recommendation` is a NEW convention (introduced by the 604c artifact),
-so bucket 1 can only see targets that adopt it. The audit prints its own coverage
-(`N of M confirmed targets carry a machine-readable per-claim disposition`) rather
-than silently implying it checked everything.
+so `unapplied_disposition` can only see targets that adopt it. The audit prints
+its own coverage (`N of M confirmed targets carry a machine-readable per-claim
+disposition`) rather than silently implying it checked everything.
 
 That under-claim is deliberate, and it is the honest design. The rejected
 alternative was to INFER "change owed" by comparing each target's
@@ -129,15 +148,16 @@ category. A 338-line report that is mostly wrong would be ignored, and an ignore
 report is the same failure as no report. Precision first; coverage grows as the
 convention spreads.
 
-KNOWN LIMIT. Bucket 2 keys on run_id, so it cannot see a supersession that moves to
-a DIFFERENT run. Q-044 is exactly that case -- it cites the 604b cluster autopsy
-while the superseding adjudication is of 604c, a different run -- and is caught only
-by bucket 1. Do not read an empty bucket 2 as "no stale citations".
+KNOWN LIMIT. `superseded_citation` keys on run_id, so it cannot see a supersession
+that moves to a DIFFERENT run. Q-044 is exactly that case -- it cites the 604b
+cluster autopsy while the superseding adjudication is of 604c, a different run --
+and is caught only by `unapplied_disposition`. Do not read an empty
+`superseded_citation` as "no stale citations".
 
 USAGE
   python3 scripts/check_unapplied_autopsy_recommendations.py
   python3 scripts/check_unapplied_autopsy_recommendations.py --full     # list every direction row
-  python3 scripts/check_unapplied_autopsy_recommendations.py --strict   # exit 1 on bucket 1
+  python3 scripts/check_unapplied_autopsy_recommendations.py --strict   # exit 1 on unapplied_disposition
   python3 scripts/check_unapplied_autopsy_recommendations.py --strict-direction
 
 `--strict`'s contract is DELIBERATELY UNCHANGED by the direction bucket: it gates on
@@ -166,7 +186,8 @@ CLAIM_EVIDENCE = "evidence/experiments/claim_evidence.v1.json"
 
 STANDS = "STANDS"
 
-# Runs listed for bucket 2 before the report truncates; --full prints all.
+# Runs listed for unapplied_evidence_direction before the report truncates;
+# --full prints all.
 DIRECTION_DISPLAY_LIMIT = 25
 
 # ---------------------------------------------------------------------------
@@ -652,12 +673,13 @@ def scan(root: Path) -> dict:
             })
 
     # ------------------------------------------------------------------
-    # BUCKET 3 -- unapplied_evidence_direction (2026-08-20)
+    # BUCKET unapplied_evidence_direction (added 2026-08-20)
     #
     # Keys on the target-level `recommended_evidence_direction`, present on
     # 1175 of 1190 confirmed targets, against `per_claim_recommendation`'s 27.
-    # That 43x coverage gap is why bucket 1 could not see MECH-236: both of
-    # that artifact's targets were skipped before any check ran.
+    # That 43x coverage gap is why unapplied_disposition could not see
+    # MECH-236: both of that artifact's targets were skipped before any
+    # check ran.
     #
     # This is NOT the category-compare inference the module docstring rejects
     # at 338 mismatches. That one INFERRED "a change is owed" from two fields
@@ -749,7 +771,8 @@ def main() -> int:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--strict", action="store_true",
                         help="exit 1 if any unapplied_disposition is found "
-                             "(bucket 1 only -- unchanged)")
+                             "(that bucket only -- unapplied_evidence_direction "
+                             "never affects this exit; contract unchanged)")
     parser.add_argument("--strict-direction", action="store_true",
                         help="exit 1 if any LIVE unapplied_evidence_direction is found")
     parser.add_argument("--full", action="store_true",
@@ -781,11 +804,12 @@ def main() -> int:
     print("  superseded live_status citation (WARN)  : %d" % len(superseded))
     print("  coverage: %d of %d confirmed targets carry a machine-readable"
           % (n_pcr, n_targets))
-    print("            per-claim disposition (bucket 1); %d carry a target-level"
+    print("            per-claim disposition (-> unapplied_disposition);")
+    print("            %d carry a target-level recommended_evidence_direction"
           % n_rec_dir)
-    print("            recommended_evidence_direction (bucket 2), of which %d"
+    print("            (-> unapplied_evidence_direction), of which %d resolve"
           % n_dir_checkable)
-    print("            resolve to a manifest and are checked.")
+    print("            to a manifest and are checked.")
     if not buckets["liveness_available"]:
         print("  NOTE: claim_evidence.v1.json unreadable -- every direction row is")
         print("        reported as WARN because liveness could not be established.")
