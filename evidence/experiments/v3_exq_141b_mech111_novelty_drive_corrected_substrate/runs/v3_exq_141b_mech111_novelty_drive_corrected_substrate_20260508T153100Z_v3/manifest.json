@@ -23,7 +23,7 @@
     "MECH-111"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "[2026-08-20 registry-integrity repair, MECH-236 class N3b]: ratified evidence-direction correction mirrored from the flat sibling evidence/experiments/v3_exq_141b_mech111_novelty_drive_corrected_substrate/v3_exq_141b_mech111_novelty_drive_corrected_substrate_20260508T153100Z.json onto this pack copy, which is the manifest the indexer actually scores. The flat correction has NEVER scored: build_experiment_indexes.py _resolve_flat_sibling (:1526) resolves a flat sibling by EXACT PATH (<base>/<run_id>.json, then <base>/<experiment_type>/<run_id>.json), and this flat file's FILENAME does not equal the run_id, so the lookup returned None, the overlay at :1517 never ran, and the pack's stale 'weakens' kept scoring. Ratified in REE_assembly d32a8be63b4f8a5d1271ec391587142e27fe25d1 (\"Reclassify EXQ-141b weakens -> non_contributory (measurement-invalid)\"). Concurring confirmed autopsy: failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (2026-08-08T20:16:08Z), recommended_evidence_direction 'non_contributory'. Only evidence_direction and this note were written; no field describing what the run did or which substrate it ran against was altered. Original correction note, verbatim: Reclassified weakens -> non_contributory 2026-05-08T19:35Z (per /diagnose-errors + analysis session). Three measurement-validity bugs identified: (1) novelty_bonus_weight=0.10 produced 1e-5 effective E3 score perturbation, 4-6 OOM below E3 score scale (O(0.1-1.0)) so the substrate flag had no behavioural consequence; (2) nav_bias action override torch.randint(0, ACTION_DIM, (1, ACTION_DIM), dtype=torch.float32) produced a [1, ACTION_DIM] tensor of random ints argmax'd to action 0 on ties, making the 'random exploration' deterministic and biased identically across arms; (3) n_harm_min=0 across both arms in 10000 eval steps confirms broken exploration. Smoking-gun signature: bit-identical metrics across arms (mean_entropy_on=mean_entropy_abl=-9.99e-10; mean_cells_on=mean_cells_abl=52.33; harm_rate=0 both). Two truly-different conditions cannot produce bit-identical aggregates across 3 seeds * 50 eval episodes unless the differing config has zero behavioural effect. Successor V3-EXQ-141c (queued 2026-05-08T19:00Z) applies all three fixes plus a C0 action-divergence sanity check that explicitly fails-fast on bit-identical arm collapse. Do NOT weight 141b as evidence against MECH-111."
 }
