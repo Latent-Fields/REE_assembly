@@ -1,6 +1,6 @@
 # Fan-out sweep — the whole-bank `slot_cosine_sim` / `sws_slot_diversity` confound
 
-**Status:** `awaiting_human_confirmation` (headless / staging mode)
+**Status:** `confirmed` (2026-08-20, interactive `/failure-autopsy` Step 8 gate, session `failure-autopsy-slotcosine-confirm`) — drafted headless 2026-08-14, confirmed after independent re-verification. **See the Confirmation section at the foot of this file: recommendations 3 and 7 were already discharged before confirmation and must not be re-applied; recommendation 1's `epistemic_category` was corrected to a valid enum value.**
 **Generated:** 2026-08-14T01:41:47Z
 **Session:** `metaworker-chip-20260813-slotcosinesim-fanout-sweep`
 **Machine-readable companion:** `failure_autopsy_slot_cosine_sim_fanout_sweep_2026-08-13.json`
@@ -202,3 +202,118 @@ All five WAKING_ONLY values sit within ±1.6 sd of the untouched-bank cosine nul
 `task_claim.py open --resources REE_assembly/docs/claims/claims.yaml` returned **exit 3** naming this session as OWNER (earliest `claimed_at`); three stale `igw-auto-*` claims (>6h) also name the file and were reported as notes. No `claims.yaml` edit was made regardless — dispositions are governance's call.
 
 Artifact paths were claimed under a second entry (`…-artifact`) once the dated filenames were known, per CLAUDE.md's rule that a resource discovered mid-task is claimed before it is written.
+
+
+---
+
+# Confirmation — 2026-08-20
+
+Confirmed at the interactive `/failure-autopsy` Step 8 gate by session
+`failure-autopsy-slotcosine-confirm`, six days after the headless draft. The draft was
+**re-verified from source rather than accepted**, and three things had moved underneath it.
+
+## Independent re-verification
+
+| Draft claim | Check performed | Result |
+|---|---|---|
+| Substrate unchanged, diagonal-only mask | read `ree_core/agent.py` at `ree-v3` HEAD | **Confirmed.** `mask = torch.eye(...)`, no occupancy mask. Region last modified **2026-04-09** (`19b7c2d`) — four months untouched. The two uncommitted edits live in the tree (lines 238, 8422; CEM modulatory-authority build) do not touch `run_sws_schema_pass`. |
+| `sws_slot_diversity ≡ 1 − slot_cosine_sim` | read the computation | **Confirmed literally** — `diversity = float((1.0 - off_diag).mean().item())`. |
+| `REM_ONLY = 0.0` is a placeholder | read metrics dict + guard | **Confirmed structurally** — `"sws_slot_diversity": 0.0` initialised, then `if not self.config.sws_enabled: return metrics`. A REM_ONLY arm emits `0.0` having measured nothing. |
+| Untouched bank ≈ 0.9993; every threshold P = 1.0000 | **probe re-run independently**, 200 fresh `ContextMemory(latent_dim=64)` inits, seeds 10000–10199, on the live substrate | **Reproduced.** mean **1.000386**, sd **0.008664**, range 0.969782–1.019436. `P(>0.10) = P(>0.05) = P(>0.02) = P(>0.01) = 1.0000`. Independent seeds, same distribution as the draft's n=400 (0.999284 ± 0.008610). |
+| `INV-044` still rests 2/2 on the confounded gate | `claim_evidence.v1.json` (2026-08-18T21:27:48Z) + `claims.yaml` | **Confirmed and still live.** `genuine_exp_count=2, pass_runs=2, fail_runs=0`, both entries `V3-EXQ-429`, `exp_conf 0.625`, quadrant `confirmed_established`, `lit_conf 0.861`, overall `0.767`. `claims.yaml` still reads `status: provisional`, `live_status.evidence.from` the 2026-04-19 run, `needs_review: false`. **Nothing has been applied.** |
+| Dry-run gate (Step 2a, mandatory) | every cited family | **Passes — 0 dry runs cited.** A dry smoke *does* exist in the 429 family (`20260415T143340Z`) and is correctly absent from both this artifact's citations and the index. Recorded rather than omitted so a later reader need not re-derive the concern. |
+
+**The finding stands.** An untouched 16-slot bank reads ~1.0, so a criterion of the form
+`diversity > ε` is satisfied with certainty by a bank nothing was written to.
+
+## What had moved since 2026-08-13
+
+**Recommendation 3 (`MECH-120`) — ALREADY DISCHARGED. Do not re-apply.**
+The F5 indexer fix landed 2026-08-14 (`chip-20260814-indexer-flat-sibling-subdir-lookup`,
+`done`; `REE_assembly` `d3e6872db8` code+tests, `e030b03b4c` regen). `_resolve_flat_sibling`
+now falls back to the experiment-type subdirectory after the top-level lookup. The live index
+confirms `MECH-120` at `genuine_exp_count=1, pass_runs=1, fail_runs=0, exp_conf 0.643,
+confirmed_established` — matching this sweep's **pre-registered prediction** (`fail 2→0`,
+`genuine 3→1`) exactly. A rare case of an autopsy's numeric prediction being checked against
+its own repair.
+
+**Recommendation 7 (route F5) — ALREADY DISCHARGED.** Same chip. The 26 stranded corrections
+resolved as 19 direction flips, 5 supersessions, 1 per-claim map, 1 `non_degenerate` backfill,
+with confidence deltas recorded for 14 claims.
+
+**Recommendation 4 (`SD-017`) — STRENGTHENED, not superseded.** `V3-EXQ-436f`, the corrected
+occupied-only-DV armed retest, **ran** on 2026-08-14 and returned **FAIL / `non_contributory`**,
+self-routing `insufficient_occupancy_for_c1`: arming the full SD-016 production combination
+moved write-path slot occupancy by *exactly zero seeds*. Already autopsied and
+governance-processed 2026-08-16 (`failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16`).
+So `SD-017` has still never had slot differentiation measured — now for a **second, upstream**
+reason. Recommendation 4 stands and is reinforced.
+
+**Recommendation 6 — partially overtaken by practice; substrate still unrepaired.** The corpus
+grew **32 → 35** drivers referencing the statistic. All three additions use the *corrected*
+pattern: `436f` computes `slot_cosine_sim_occupied_only` and records the raw whole-bank value
+as non-gating `slot_cosine_sim_raw_whole_bank`; `861c`/`861d` gate on
+`mean_sws_new_slot_diversity` with the legacy statistic retained as
+`mean_sws_slot_diversity_wholebank_legacy`, **recorded and not scored**. So no new criterion has
+been pre-registered on the raw whole-bank statistic in the six days since. **But** the
+prohibition is written nowhere binding, and `run_sws_schema_pass` still emits *only* the
+confounded statistic to every driver that calls a sleep pass.
+
+## Corrections made at confirmation
+
+1. **`recommended_epistemic_category` for `INV-044`: `measurement_test_design_defect` → `standard`.**
+   The draft's value is **outside the eight-value enum** (`validate_claims.VALID_EPISTEMIC_CATEGORIES`).
+   Governance writes this field into `claims.yaml` **verbatim**, where `--strict` raises an ERROR —
+   *after* the value is already in the registry. `standard` is the behaviour-preserving mapping: it
+   asserts no epistemic suppression, which is the correct verdict (the claim is **untested**, not
+   substrate-gated), and it leaves GOV-GRAN-1 surfacing and v3-testability unchanged. The
+   failure-mode wording is preserved in `recommended_epistemic_category_note`.
+2. **`targets[]` and `per_claim_recommendation` added.** The draft was sweep-shaped with no
+   `targets[]`, which makes a confirmed disposition **invisible to GOV-APPLY-1** — it reads
+   `targets[].per_claim_recommendation` and nothing else. That is the precise route by which an
+   unapplied demotion decays into a standing positive claim.
+   **`targets[]` deliberately contains only the two `V3-EXQ-429` runs** — the sole runs whose
+   direction this sweep adjudicates. Recommendations 2, 4 and 5 are *note* corrections with no
+   direction change, and `242`/`430`/`265a`/`500a` already carry their own adjudications; adding
+   them as targets would make this artifact the **latest** adjudication of those run_ids under the
+   re-derive brake's R2 latest-wins rule and silently supersede readings this sweep never re-derived.
+3. **`failure_location` added** per GOV-FAILLOC-1.
+
+## Failure-location summary (GOV-FAILLOC-1)
+
+**MEASURES FAILED — solo.** Implementation reads *complete* (`run_sws_schema_pass` does exactly
+what it declares); environment is not implicated; the dependent variable is the defect.
+`mechanism: not_established`, `measures: established`, `environment: not_established`,
+`ree: false`. This sweep invalidates **instruments, not hypotheses** — no REE-level or
+mechanism-level failure read is licensed by it, and `INV-044` in particular may well be correct.
+
+## Dispositions confirmed by the user
+
+**Recommendation 1 — `INV-044`.** Both `V3-EXQ-429` runs `supports → non_contributory`,
+`epistemic_category: standard`. **Status: retain `provisional`, re-scoped explicitly to the 6
+literature entries (`lit_conf 0.861`)**, with the `evidence_quality_note` recording that its
+experimental support was withdrawn as instrument-invalid. Rationale: the claim was *never tested*,
+as opposed to tested and found wanting — demoting to `candidate` would read in the registry as
+evidence **against** `INV-044` when no experimental evidence exists in either direction.
+
+**Recommendation 6 — both halves.** Route a `validate_experiments.py` lint flagging any driver
+that gates on the raw whole-bank `sws_slot_diversity` with an absolute threshold, **and** the
+substrate repair emitting the occupancy-masked statistic alongside the legacy one, following
+`861`'s proven pattern (similarity and occupancy `k` reported **separately**, never their
+product). Rationale: the corpus is demonstrably drifty here (32 → 35 in six days), and a written
+rule with no detector is exactly what let this defect run for four months across two independent
+lineages.
+
+Both answers matched the recommended option and are recorded in `RECOMMENDATION_LOG.jsonl`.
+
+## Status after confirmation
+
+- **Live for `/governance`:** recommendations **1, 2, 4, 5, 6** (+ the `909` fan-out note).
+- **Discharged, do not re-apply:** recommendations **3, 7**.
+- **No hypothesis-ledger write.** Step 9b does not apply: `fanout_recommendation.is_discrimination`
+  is `false` (the `909` note is an observation about a detector, not a rival-hypothesis portfolio)
+  and the draft carries no `hypothesis_space_ledger_pending` block. Nothing was appended to
+  `hypothesis_space_registry.v1.json`.
+- **No follow-on chip spawned.** Per `/failure-autopsy` Step 8 (2026-07-30 rule), an autopsy does
+  not `spawn_task` work its own routing names — `/governance` ratifies at its Step 2b first. The
+  recommendation-6 lint and substrate repair are recorded here for governance to chip once ratified.
