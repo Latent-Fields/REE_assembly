@@ -1,0 +1,105 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_942_inv013_e_ladder_realised_timescale_separation",
+  "run_id": "v3_exq_942_inv013_e_ladder_realised_timescale_separation_20260820T073245Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-20T07:32:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-013"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "min_steps_per_seed_supra_floor",
+        "measured": 899.0,
+        "threshold": 3000.0,
+        "direction": "lower",
+        "control": "worst (minimum) seed's total recorded eval steps",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "dz_world_variance_supra_floor",
+        "measured": 8.212315600689161e-05,
+        "threshold": 1e-08,
+        "direction": "lower",
+        "control": "worst (minimum) seed's per-step z_world delta variance",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "dz_self_variance_supra_floor",
+        "measured": 0.00015321231611927118,
+        "threshold": 1e-08,
+        "direction": "lower",
+        "control": "worst (minimum) seed's per-step z_self delta variance",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "d_precision_variance_supra_floor",
+        "measured": 44874210.93979826,
+        "threshold": 1e-08,
+        "direction": "lower",
+        "control": "worst (minimum) seed's per-step E3 precision delta variance",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_monotonic_ordering_confirmed": false
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "450bc3a47096549297d8dc63389fddb3003477b07260e86b1e820625239ce4f5",
+  "substrate_commit": {
+    "commit": "f0cb0d59a72458fab9d2c0a9f70843017c10f500",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 8399,
+    "ticks_active": 3194,
+    "writer_calls": 8399,
+    "active_frac": 0.38028336706750804,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
