@@ -80359,6 +80359,27 @@
     sub-component only -- the trigger-alignment sub-claim already stands as fairly falsified and
     does not need re-testing) actually runs; this note records that the substrate blocker is
     cleared, not that the retest has happened.
+
+    AMEND 2026-08-20 (ree-v3 775eb5580d): the SECOND, separate defect this claim's retest was
+    waiting on -- the decision_counts logging/persistence defect, severity=degrading -- has had
+    its SUBSTRATE half discharged. Outside reset(), the only clear of _orienting_decision sat
+    inside the five-condition score-bias block, which a 'resume' decision (ticks_remaining = 0)
+    could never reach and which froze the countdown on any tick with no candidates/world_states;
+    the countdown now runs as its own unconditional step. Both leaks are now confirmed by direct
+    live measurement (tests/contracts/test_orienting_decision_window_expiry.py, verified
+    differentially) rather than inferred, closing the gap
+    failure_autopsy_V3-EXQ-910a_2026-08-11 left open when it said it 'could not fully pin the
+    exact failure mode'.
+
+    pending_retest_after_substrate STAYS TRUE. The DRIVER half is still owed and it is the half
+    that produces the headline ratio: the 910-lineage _decision_alignment reads the latched
+    _orienting_decision once per ENV STEP against an E3-tick-denominated window, inflating
+    decision_counts by ~e3_steps_per_tick (predicting ~5x, matching 910's 206/42 = 4.90). Until
+    that readout counts at the override tick only and emits n_latched_ticks, decision_counts is
+    still not usable and EVB-0610 / EXP-0033 stays blocked_substrate. Chipped as
+    chip-20260820-mech489-retest-driver-decision-at-override-tick. Separately surfaced rather
+    than decided silently: whether orienting_post_override_bias_ticks is denominated in E3 ticks
+    (current, retained) or env steps -- chip-20260820-orienting-bias-ticks-denomination.
   claim_level: mechanistic
   registered_utc: "2026-08-09"
   instantiates: SD-099
