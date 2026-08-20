@@ -23,7 +23,8 @@
     "MECH-236"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "[2026-08-13 governance, ratified in REE_assembly ff2e977acfde68c9a5a9cd69d347a3423539cac7 \"governance: apply 6 confirmed autopsy dispositions (... 914-914a/MECH-236 ...)\"]: evidence_direction reclassified weakens -> non_contributory per confirmed failure_autopsy_V3-EXQ-914-914a_2026-08-13. This run's null C_MAIN result (mean gap 0.0032, 1/5 seeds passing) is a test-design artifact, not evidence against MECH-236: HippocampalModule._score_trajectory (ree_core/hippocampal/module.py:1513) CEM elite-selection is goal-blind under this driver's config -- wanting_weight=0.0 (deliberately zeroed to isolate the MECH-293 ghost-probe channel), benefit_terrain_enabled defaults False and is never set, and NUM_HAZARDS=0 leaves the remaining ARC-007 residue-field term (harm-accumulation) with nothing to accumulate. The ghost-probe channel itself functions correctly (P1/P2 both met) but nothing downstream can preferentially select goal-tagged candidates. Failure-location (GOV-FAILLOC-1): MEASURES FAILED, not chargeable to the claim. The disposition reached claims.yaml in that commit; this manifest field was never written, so the voided 'weakens' reading kept setting MECH-236's experimental_confidence (0.308) and conflict_ratio (0.5). Written here to complete the ratified application only -- no new adjudication. See docs/plans/mech236_registry_integrity_20260819.md.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
