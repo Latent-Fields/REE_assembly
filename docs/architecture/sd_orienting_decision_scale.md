@@ -125,6 +125,116 @@ itself. The new per-tick `evaluate_benefit` call and the new baseline-update blo
 SAME `if self.defensive_orienting is not None:` guard SD-099's existing code already uses, so
 MECH-094 (simulation-mode) behaviour is unchanged from SD-099's existing treatment of that guard.
 
+## Amend 2026-08-20: post-override decision-window persistence (`decision_counts` defect)
+
+**Status:** IMPLEMENTED 2026-08-20. `ree_core/agent.py::select_action`. This amend discharges the
+SECOND `failure_record` on `substrate_queue.json`'s `SD-ORIENTING-DECISION-SCALE` entry
+(severity `degrading`). The FIRST -- the norm-vs-benefit scale mismatch documented above -- was
+fixed on 2026-08-10 and is untouched.
+
+### The defect
+
+`failure_autopsy_V3-EXQ-910a_2026-08-11` established that `decision_counts` was untrustworthy
+(sum 206 against a theoretical max of `n_overrides x orienting_post_override_bias_ticks` = 21 x 5
+= 105, and byte-identical to V3-EXQ-910's total despite half the override count) but stated
+plainly that it "could not fully pin the exact failure mode" -- no per-step episode logs were
+retained for either run. It was pinned statically instead, in
+`evidence/planning/mech489_decision_counts_defect_staged_20260817.md` section 2(d):
+
+> Outside `reset()`, the ONLY clear of `_orienting_decision` sat INSIDE the score-bias
+> application block, gated on five conditions including `_orienting_decision_ticks_remaining > 0`
+> and `_orienting_decision in ("approach", "withdraw")`. A `"resume"` decision sets
+> `ticks_remaining = 0` and is excluded by BOTH, so it could never reach the clear and persisted
+> for the rest of the episode. Likewise, any tick on which `candidates` was empty or lacked
+> `world_states` froze the countdown without clearing, making `orienting_post_override_bias_ticks`
+> a LOWER BOUND on persistence rather than a bound.
+
+Both leaks are now confirmed by direct live measurement rather than inference --
+`tests/contracts/test_orienting_decision_window_expiry.py` run against the pre-amend `agent.py`
+records `resume` surviving every sampled tick, and a `withdraw` countdown pinned at 5 across
+seven consecutive block executions with the bias gate closed (i.e. frozen, not merely slow).
+
+**Why this had to be fixed BEFORE the owed retest, not after.** V3-EXQ-910 and 910a both recorded
+`resume = 0`, so the `"resume"` leak has never yet fired. It becomes active precisely at the moment
+the Component 4/5 scale fix starts working -- so a retest run against the pre-amend substrate would
+have corrupted its own counter *only in the branch that indicates success*, biasing the measurement
+toward the null in a way no reader could detect from the manifest.
+
+### The fix
+
+The countdown/expiry moves out of the score-bias application block into its own **unconditional**
+step, gated only on `_orienting_decision is not None`, placed BEFORE the Component 4/5 override
+block so it acts on the *previous* tick's decision. The score-bias APPLICATION stays conditional
+on exactly the same five conditions as before.
+
+```
+(per E3 tick, inside `if self.defensive_orienting is not None:`)
+
+  gate.tick() -> DefensiveOrientingOutput
+  trigger_fired  -> capture _orienting_trigger_z_world           (unchanged)
+  EXPIRY STEP    -> if _orienting_decision is not None:          (NEW, unconditional)
+                        ticks_remaining -= 1
+                        if ticks_remaining <= 0: decision = None; ticks_remaining = 0
+  override_fired -> set decision + ticks_remaining               (unchanged)
+  bias gate open -> apply per-candidate score_bias               (unchanged, still conditional)
+```
+
+**Happy-path behaviour is unchanged.** With the bias gate open on every tick, decrementing at the
+top of each subsequent tick applies the bias on exactly `orienting_post_override_bias_ticks` block
+executions (the override tick plus N-1 following) -- identical to the old
+decrement-after-applying placement. What changes is only that the window now also expires on
+ticks where the bias gate does NOT open, and that a `"resume"` decision expires after one block
+execution instead of never.
+
+`"resume"` is deliberately expired on the NEXT block execution rather than on the tick it is set:
+clearing it eagerly (e.g. by placing the expiry after the bias block) would make `"resume"`
+invisible to any per-step readout -- reproducing the degenerate `resume = 0` reading the retest
+exists to escape.
+
+### Persistence-window denomination
+
+**`orienting_post_override_bias_ticks` is denominated in E3 TICKS, not env steps.** This is now
+stated rather than left implicit, because the name and this document's earlier prose both invite
+the env-step reading.
+
+The whole SD-099 block sits downstream of `select_action()`'s non-E3-tick early return, so at the
+default `heartbeat.e3_steps_per_tick = 10` a nominal 5-tick window spans **~50 env steps**. That
+is existing behaviour, retained deliberately and not changed by this amend:
+`DefensiveOrientingGate.tick()` is only ever called from this one block, so every other SD-099
+tick quantity (`orienting_max_duration`, `orienting_confidence_rise_rate`, `ticks_in_orienting`)
+already counts these same E3 ticks. Re-denominating this one parameter in env steps would make it
+the sole env-step quantity in the mechanism.
+
+**This is a design choice, not a bug fix, and it changes behaviour if reversed** -- so it was
+surfaced to the user as a decision chip
+(`chip-20260820-orienting-bias-ticks-denomination`) rather than decided silently. If the env-step
+reading is preferred, the change is to divide the window by `clock.e3_steps_per_tick` at the point
+it is set, and to restate this section; nothing else in the amend depends on which way it goes.
+
+One residual, recorded rather than papered over: if `use_e3_reselection_shortcircuit` is enabled
+(default `False`), the ARC-071 chunk short-circuit returns from `select_action()` before this
+block on some E3 ticks, so those ticks consume no window. That is arguably correct -- E3 does not
+deliberate on such a tick, so there is no candidate set to bias -- but it means the window is
+denominated in *executed* E3 deliberations, not in wall-clock E3 ticks, whenever that flag is on.
+
+### Driver half (NOT in this amend)
+
+The staged doc's section 3 splits the defect across substrate and driver. Only the substrate half
+is implemented here. The driver half -- counting the decision at the override tick only, in the
+same synchronous block that increments `n_overrides`, and emitting `n_latched_ticks` alongside the
+row count per `/queue-experiment` Step 3.5 -- belongs to the owed MECH-489 valence-gating retest
+and must go through `/queue-experiment`, not a hand-edit. `EVB-0610` / `EXP-0033` therefore stays
+`blocked_substrate` until that half lands too; its `release_condition` names both halves.
+
+### Tests
+
+`ree-v3/tests/contracts/test_orienting_decision_window_expiry.py` (5, time-independent, real
+`REEAgent` over a real `CausalGridWorldV2` rollout -- only the gate's verdict is scripted).
+Verified differentially: 3 of the 5 FAIL against the pre-amend `agent.py`. The 2 that pass in both
+are the invariance controls (SD-099 master switch OFF stays bit-identical inert; `reset()` remains
+the episode-boundary clear), which are what stop a later session widening this expiry into a
+behaviour change.
+
 ## What This SD Enables
 
 Unblocks re-testing MECH-489's valence-gating sub-claim (Components 4/5), which
