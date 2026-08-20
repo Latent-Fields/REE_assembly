@@ -1,16 +1,24 @@
 # Thought Sweep Report
 
-Generated: `2026-08-12T02:54:20.748811Z`
+Generated: `2026-08-20T03:44:55.144743Z`
 
 | metric | count |
 |---|---|
-| total thought files | 186 |
-| processed | 185 |
-| unprocessed | 1 |
+| total thought files | 197 |
+| processed | 188 |
+| unprocessed | 9 |
 | processed missing `Processed in` links | 9 |
 
 ## Unprocessed Queue
 
+- `2026-08-12` `2026-08-12_affordance_indexed_temporally_displaced_present.md` (status=`unprocessed`)
+- `2026-08-12` `2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md` (status=`unprocessed`)
+- `2026-08-12` `2026-08-12_other_agent_provenance_bounded_animistic_prior.md` (status=`unprocessed`)
+- `2026-08-12` `2026-08-12_persistence_must_earn_continuation.md` (status=`unprocessed`)
+- `2026-08-12` `2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md` (status=`unprocessed`)
+- `2026-08-12` `2026-08-12_responsibility_as_epistemic_hygiene.md` (status=`unprocessed`)
+- `2026-08-13` `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md` (status=`unprocessed`)
+- `2026-08-14` `2026-08-14_preserving_the_possibility_of_future_reconstruction.md` (status=`unprocessed`)
 - `INTAKE_AUDIT_REPORT.md` (status=`unprocessed`)
 
 ## Processed Missing Links
@@ -209,6 +217,9 @@ Generated: `2026-08-12T02:54:20.748811Z`
 - `2026-08-11_behavioural_adjudication_scientific_skill_working_thought.md` (1 link(s) in `Processed in`)
 - `2026-08-11_behavioural_diversity_umpire.md` (1 link(s) in `Processed in`)
 - `2026-08-11_ecological_succession_as_developmental_curriculum.md` (4 link(s) in `Processed in`)
+- `2026-08-14_humour_societal_epistemic_probe.md` (2 link(s) in `Processed in`)
+- `2026-08-19_context-inference-active-persistent-control.md` (3 link(s) in `Processed in`)
+- `2026-08-19_hippocampal-episodic-organisation.md` (2 link(s) in `Processed in`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
