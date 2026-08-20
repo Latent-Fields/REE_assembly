@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-19T17:41:55Z",
+  "generated_at": "2026-08-20T02:51:50Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -23,23 +23,23 @@
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": null,
-      "node_total": null,
-      "node_done_weighted": null,
-      "unavailable_reason": "AttributeError",
-      "source": "serve.read_closure() (read-only mirror)"
+      "closure_pct": 71.4,
+      "node_total": 97,
+      "node_done_weighted": 69.3,
+      "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
+      "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 66,
+      "total_surviving": 65,
       "total_initial": 123,
       "total_initial_at_registration": 101,
       "total_fanout_added": 22,
       "total_resolved_out": 48,
-      "total_confirmed": 28,
+      "total_confirmed": 29,
       "total_superseded": 1,
       "reduction_pct_vs_current": 39.0,
-      "net_narrowing_pct": 34.7,
+      "net_narrowing_pct": 35.6,
       "convergence_classes": {
         "narrowing": 17,
         "static": 15,
@@ -47,7 +47,7 @@
         "refining": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "66 alive against 101 originally enumerated, and against 123 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "65 alive against 101 originally enumerated, and against 123 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 37
     },
     "decide": {
@@ -60,151 +60,151 @@
     {
       "date": "2026-05-06",
       "surviving": 122,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-11",
       "surviving": 121,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-13",
       "surviving": 119,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-15",
       "surviving": 115,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-16",
       "surviving": 114,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-17",
       "surviving": 111,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-18",
       "surviving": 105,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-19",
       "surviving": 101,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-20",
       "surviving": 100,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-24",
       "surviving": 99,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-27",
       "surviving": 97,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-29",
       "surviving": 96,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-07-31",
       "surviving": 95,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-01",
       "surviving": 93,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-02",
       "surviving": 87,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-04",
       "surviving": 86,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-06",
       "surviving": 85,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-08",
       "surviving": 83,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-09",
       "surviving": 81,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-10",
       "surviving": 80,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-11",
       "surviving": 79,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-12",
       "surviving": 78,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-14",
       "surviving": 76,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
       "date": "2026-08-17",
       "surviving": 75,
-      "closure_pct": null,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     },
     {
-      "date": "2026-08-19",
-      "surviving": 66,
-      "closure_pct": null,
+      "date": "2026-08-20",
+      "surviving": 65,
+      "closure_pct": 71.4,
       "build_pct": 83.2
     }
   ],
@@ -4044,29 +4044,30 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.25,
+      "bits_removed_vs_registration": 0.42,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
+        "families_closed": [
+          "instrumentation"
+        ],
         "families_touched": [],
         "families_fresh": [
-          "instrumentation",
           "process",
           "world"
         ],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 4,
-      "alive": 4,
+      "surviving": 3,
+      "alive": 3,
       "resolved_out": 0,
-      "confirmed": 0,
+      "confirmed": 1,
       "superseded": 0,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "bits_removed": 0.42,
       "synthesis": null,
       "hypotheses": [
         {
@@ -4086,8 +4087,10 @@
           "desc": "the homeostatic economy kills the agent before the pre-registered window elapses",
           "axis": "environment",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "evidence_runs": [
+            "V3-EXQ-940"
+          ],
+          "basis": "DELIBERATELY UNRESOLVED (user-confirmed 2026-08-20, failure_autopsy_940-941-mech467-cluster_2026-08-20). V3-EXQ-940 is this leg's adjudicating run, but its deciding criterion C2_event_rate_lifts_when_window_decoupled NEVER EVALUATED: rate_lift_ratio divides by ARM_STOCK's event rate of exactly 0.0 and returns null, while its non-degeneracy guard tests total_events_all_arms > 0 -- the pooled numerator, not the denominator arm -- so it is stamped non_degenerate true while being arithmetically undefined. The run's emitted label window_restored_rate_unchanged is contradicted by its own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises MONOTONICALLY with decoupling strength from exactly zero. On 4 events that direction is not significant either, so the honest state is unresolved rather than null. Recording an elimination on a criterion that never computed is the frozen-set discipline's core failure mode. What the run DOES establish, and what is genuinely new: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -4096,9 +4099,11 @@
           "label": "H-denominator",
           "desc": "events are not absent but mis-decomposed -- never-approached and approached-but-failed-to-arrive are pooled into one zero",
           "axis": "measurement",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-941"
+          ],
+          "basis": "The decomposition succeeded and localised the missing denominator UPSTREAM of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms. Control passed (movement_instrument_live: 4 of 4 distinct movement actions changed position on a fresh env), non_degenerate true. Confirms the leg as a description of WHERE the loss occurs; it does not establish WHY, which remains owned by e3_fdominance_causal_discrimination. Basis is thin and recorded as such: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and the approach_is_definable precondition written to catch exactly that aliasing carries a 0.0 floor that cannot fire.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -4118,13 +4123,27 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Which constraint must be lifted before MECH-467 leg (c) can be tested at all?",
-        "distance_phrase": "4 legs pre-registered, none yet run",
+        "distance_phrase": "2 of 4 legs run (V3-EXQ-940 H-energy, V3-EXQ-941 H-denominator); H-denominator confirmed (loss is upstream of arrival), H-energy deliberately unresolved (its deciding criterion never evaluated). Live gate still unmet: best pooled single-arm count is 4 against a floor of 15.",
         "live_gate": ">=15 pooled target-consumption events in at least one arm, over a fully-realised exposure window",
-        "observation_bottleneck": "leg (c) has produced no usable denominator in two consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks)"
+        "observation_bottleneck": "leg (c) has produced no usable denominator in THREE consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks; V3-EXQ-940/941 best single arm 4 events). The best-arm event rate has not moved off ~0.0015/tick across all three. V3-EXQ-940 removed both candidate explanations -- a fully-realised window with contamination gated and health clamped still yielded 4 events -- so the binding constraint is upstream of the window: the agent does not move (98.8% of movement actions blocked) and does not re-select (89-91% of ticks latched). That constraint is owned by the ACTIVE line e3_fdominance_causal_discrimination, not by MECH-467."
       }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-941",
+      "all_runs": [
+        "V3-EXQ-941"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "mech467_legc_event_denominator_cause",
+      "claims": [
+        "MECH-467"
+      ],
+      "moved": "The decomposition succeeded and localised the missing denominator UPSTREAM of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms. Control passed (movement_instrument_live: 4 of 4 distinct movement actions changed position on a fresh env), non_degenerate true. Confirms the leg as a description of WHERE the loss occurs; it does not establish WHY, which remains owned by e3_fdominance_causal_discrimination. Basis is thin and recorded as such: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and the approach_is_definable precondition written to catch exactly that aliasing carries a 0.0 floor that cannot fire.",
+      "resolved_utc": "2026-08-19T14:22:45Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
       "all_runs": [
@@ -5186,6 +5205,20 @@
       "moved": "All three corrected-design runs show z_self specialising for self/action information (532's self_body_advantage=+0.126 is the clearest single number); necessary-not-sufficient (met_elimination_bar left false since this hypothesis is CONFIRMED, not eliminated).",
       "resolved_utc": "2026-05-06T09:06:07Z",
       "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-940",
+      "all_runs": [
+        "V3-EXQ-940"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "mech467_legc_event_denominator_cause",
+      "claims": [
+        "MECH-467"
+      ],
+      "moved": "DELIBERATELY UNRESOLVED (user-confirmed 2026-08-20, failure_autopsy_940-941-mech467-cluster_2026-08-20). V3-EXQ-940 is this leg's adjudicating run, but its deciding criterion C2_event_rate_lifts_when_window_decoupled NEVER EVALUATED: rate_lift_ratio divides by ARM_STOCK's event rate of exactly 0.0 and returns null, while its non-degeneracy guard tests total_events_all_arms > 0 -- the pooled numerator, not the denominator arm -- so it is stamped non_degenerate true while being arithmetically undefined. The run's emitted label window_restored_rate_unchanged is contradicted by its own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises MONOTONICALLY with decoupling strength from exactly zero. On 4 events that direction is not significant either, so the honest state is unresolved rather than null. Recording an elimination on a criterion that never computed is the frozen-set discipline's core failure mode. What the run DOES establish, and what is genuinely new: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator.",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
     },
     {
       "run": "V3-EXQ-935",

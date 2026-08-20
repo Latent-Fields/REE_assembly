@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-19T17:43:05Z
+Generated: 2026-08-20T02:51:54Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **37** open question(s) across **28** time-series snapshot(s). **0** flag(s) raised, **39** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **3** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
+Audited **37** open question(s) across **29** time-series snapshot(s). **0** flag(s) raised, **39** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **3** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -76,9 +76,13 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-08-16 -> 2026-08-17: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
 - time series 2026-08-17 -> 2026-08-18: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
 
-## Advisory -- surviving-count drop backed by confirmation/supersession (0 backed, 3 unverifiable, NOT violations)
+## Advisory -- surviving-count drop backed by confirmation/supersession (1 backed, 3 unverifiable, NOT violations)
 
 _A `confirmed` resolution (supports + control_passed) or a `superseded` resolution (ratified moot, added 2026-08-19) also legitimately removes a hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an alive -> confirmed/superseded transition drops the total with no elimination behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) and `total_superseded` (added 2026-08-19) let this check credit either instead of reading the drop as unbacked. A snapshot pair predating either field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design as the git-witness provenance check below._
+
+**Backed (drop fully explained by a confirmation/supersession):**
+
+- time series 2026-08-19 -> 2026-08-20: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 
 **Unverifiable (quiet -- total_confirmed and/or total_superseded absent from one or both snapshots):**
 

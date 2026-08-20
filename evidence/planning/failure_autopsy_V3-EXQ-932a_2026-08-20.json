@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-20T02:39:17Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-multi-20260819",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_932a_zgoal_wanting_coupling_reinstrument_20260819T094328Z_v3",
+      "queue_id": "V3-EXQ-932a",
+      "claim_ids": [],
+      "failed_criterion": "none -- claim-free diagnostic PASS, autopsied because experiment_purpose is diagnostic",
+      "self_route_label": "wanting_behaviour_coupling_detected",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free by construction",
+        "biological_reference": "n/a -- observational coupling measurement, no mechanism translation under test",
+        "prerequisites": "present -- all 8 preconditions met across both arms",
+        "implementation": "complete -- four of the five prescribed repairs delivered; item 4 partial (partials absent on zgoal couplings and on wanting<->zgoal, where the prescription said 'and vice versa') and item 5 deviated (a third option, a dose on z_goal_seeding_gain, with a stated and defensible rationale)",
+        "environment": "wrong pressures -- approach base rate is 0.000 in both arms (the 932 defect fully reproduced) and the new precedence-free approach_raw lands at 0.004-0.005, below the 0.05 floor; 6 of 10 couplings are unsettable_dv_degenerate in both arms",
+        "measurement": "improved but partial -- an emitted 0.0 now means a measured zero rather than a structural one, but the label logic does not consult the instrument's own pooled_without_within_seed_support flag, and sign instability is systematic across pooled-vs-within-seed, r-vs-rho and arm-vs-arm",
+        "integration": "n/a",
+        "scale": "insufficient -- per-seed n 383/321/34 (g1) and 423/275/53 (g4); seed 2 falls below the pre-registered MIN_COUPLING_N_PER_SEED of 50 in g1, so every g1 within-seed estimate rests on 2 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a (observational coupling diagnostic)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-932a is claim-free (claim_ids []), diagnostic-purpose, promotes nothing and weights no governance; no claim-layer disposition is owed and none is offered. Its GOV-FAILLOC-1 exposure -- a claim-free run's prose making an organism-level competence assertion with no claims.yaml gate in front of it -- is ABSENT: the driver contains exactly one organism-level mention and it is a question, the manifest note independently disclaims causal inference, and the predecessor cluster's standing prohibition against paraphrasing any of this as 'wanting does not work in REE' is respected. Two findings bound how the run should be read. (1) Its label is carried by the NON-PRODUCTION arm: z_goal_seeding_gain ships at 1.0, and in that arm NO wanting coupling clears the 0.15 floor on r -- the only one flagged nontrivial qualifies on |rho| and is NEGATIVE (r -0.132, rho -0.219), opposite to the incentive-salience reading the label evokes, with a within-seed pooled r of +0.541, opposite again. All positive floor-clearing couplings live in the gain-4.0 arm. The label logic is an any() across BOTH arms, sign-agnostic, and ungated (the PASS would be identical had every coupling come back trivial). This is a FIFTH instance of the pattern the 2026-08-16 human gate flagged as CROSS-CLUSTER decision 4 and should be routed to that already-authorised warn-only lint. (2) The production arm does NOT reproduce the predecessor autopsy's sole surviving finding: wanting -> moved pooled r fell +0.373 -> +0.081 and its partial on z_goal +0.432 -> +0.070, from 3/3 seeds replicated to 2/3 settled, and it no longer clears the floor. That comparison is CONFOUNDED and cannot be attributed to instrument repair: the queue note calls g1_emergent 'byte-identical' to 932's operating point, which is true of the knob and false of the substrate -- substrate_commit moved c38e083d -> 196869ee, total_eval_steps fell 1013 -> 753 (-26%) at identical env settings, and z_goal liveness moved from seed 2 at active_frac 0.0087 to seed 0 at 0.4691. 932's measurement-validity PASS stands and is NOT superseded; what is in doubt is the coupling narrative at the production operating point, and this run cannot settle it.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "Deliberately empty, following the predecessor cluster's own precedent for claim-free targets: there is no claim to key a recommendation on, and inventing a key would be worse than an empty object. Governance should apply the evidence_quality_note to the MANIFEST, not to any claim.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "No substrate gap surfaced. The blocking issue is a design one -- the question needs coupling and ablation measured in the SAME run -- not a missing substrate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- not chargeable to REE, matching the predecessor cluster's verdict for both its own targets"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "refusal_note": "Claim-free, so no claim-keyed count exists and the brake cannot fire by construction. A further coupling re-instrument is REFUSED on design grounds: the question's own observation_bottleneck requires a wanting->behaviour coupling and a wanting-pathway ablation in the SAME run, so the successor is an ablation design, not a third letter of 932.",
+        "route_to": "governance",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "An any() across arms, sign-agnostic and ungated, is not a finding: a label set by one nontrivial coupling in a non-production arm, whose production-arm counterpart is negative, cannot bear the reading its name invites.",
+        "'Byte-identical config' is not 'identical substrate'. A re-instrument's baseline arm is a control for its predecessor only if the substrate is pinned too; here total_eval_steps moved 26% and z_goal liveness moved ~54x between the two runs.",
+        "A re-instrument should declare which prescription items it did not deliver; items 4 and 5 were partial and deviated respectively, both defensibly, and neither is flagged as a deviation in the manifest.",
+        "A structurally unreachable DV stays unreachable when redefined: approach_raw was added to test whether action-precedence caused approach's 0/1013 and lands at 0.004-0.005, so the answer is no."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_applied": {
+    "qid": "wanting_authority_vs_behavioural_coupling",
+    "growth": "none -- initial_frozen_count unchanged at 4, no growth event",
+    "resolutions": [],
+    "note": "932a resolves NOTHING, which is the correct outcome. The question's observation_bottleneck requires coupling AND a wanting-pathway ablation in the same run; 932a measures coupling and does not ablate, so the bottleneck persists exactly as stated and distance_phrase ('one cheap discriminator away') remains accurate. H-shared-situation, H-alternative-effector and H-reverse-writer-cadence all stay alive."
+  }
+}

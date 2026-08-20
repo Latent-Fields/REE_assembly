@@ -4393,15 +4393,20 @@
           "basis": "7 of 12 V3-EXQ-874b cells terminated on health_depleted; only 63.1% of the intended exposure window was realised.",
           "pre_registered_utc": "2026-08-17T14:46:54Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-940"
+          ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
+            "resolving_runs": [
+              "V3-EXQ-940"
+            ],
             "evidence_direction": "pending",
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "basis": "DELIBERATELY UNRESOLVED (user-confirmed 2026-08-20, failure_autopsy_940-941-mech467-cluster_2026-08-20). V3-EXQ-940 is this leg's adjudicating run, but its deciding criterion C2_event_rate_lifts_when_window_decoupled NEVER EVALUATED: rate_lift_ratio divides by ARM_STOCK's event rate of exactly 0.0 and returns null, while its non-degeneracy guard tests total_events_all_arms > 0 -- the pooled numerator, not the denominator arm -- so it is stamped non_degenerate true while being arithmetically undefined. The run's emitted label window_restored_rate_unchanged is contradicted by its own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises MONOTONICALLY with decoupling strength from exactly zero. On 4 events that direction is not significant either, so the honest state is unresolved rather than null. Recording an elimination on a criterion that never computed is the frozen-set discipline's core failure mode. What the run DOES establish, and what is genuinely new: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator."
           }
         },
         {
@@ -4412,15 +4417,22 @@
           "basis": "No movement or approach-initiation counter exists in the 874/874b design, so a zero cannot be attributed.",
           "pre_registered_utc": "2026-08-17T14:46:54Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-874b_2026-08-17.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-941"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-941"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "denominator_lost_at_approach_initiation",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-19T14:22:45Z",
+            "basis": "The decomposition succeeded and localised the missing denominator UPSTREAM of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms. Control passed (movement_instrument_live: 4 of 4 distinct movement actions changed position on a fresh env), non_degenerate true. Confirms the leg as a description of WHERE the loss occurs; it does not establish WHY, which remains owned by e3_fdominance_causal_discrimination. Basis is thin and recorded as such: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and the approach_is_definable precondition written to catch exactly that aliasing carries a 0.0 floor that cannot fire."
           }
         },
         {
@@ -4449,8 +4461,8 @@
         "live_gate": ">=15 pooled target-consumption events in at least one arm, over a fully-realised exposure window",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "4 legs pre-registered, none yet run",
-        "observation_bottleneck": "leg (c) has produced no usable denominator in two consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks)"
+        "distance_phrase": "2 of 4 legs run (V3-EXQ-940 H-energy, V3-EXQ-941 H-denominator); H-denominator confirmed (loss is upstream of arrival), H-energy deliberately unresolved (its deciding criterion never evaluated). Live gate still unmet: best pooled single-arm count is 4 against a floor of 15.",
+        "observation_bottleneck": "leg (c) has produced no usable denominator in THREE consecutive designs (V3-EXQ-874 0/0; V3-EXQ-874b 8 events / 6817 realised ticks; V3-EXQ-940/941 best single arm 4 events). The best-arm event rate has not moved off ~0.0015/tick across all three. V3-EXQ-940 removed both candidate explanations -- a fully-realised window with contamination gated and health clamped still yielded 4 events -- so the binding constraint is upstream of the window: the agent does not move (98.8% of movement actions blocked) and does not re-select (89-91% of ticks latched). That constraint is owned by the ACTIVE line e3_fdominance_causal_discrimination, not by MECH-467."
       },
       "notes": "Opened by the V3-EXQ-874b autopsy. H-geometry (arena size / resource density is the binding constraint) was the hypothesis V3-EXQ-874b itself tested and REFUTED -- 6x6 at 2x the probe density produced 8.5x fewer events per tick than the probe -- and is deliberately NOT registered as a live leg."
     }

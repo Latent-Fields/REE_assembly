@@ -1,0 +1,158 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-20T02:39:17Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-multi-20260819",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_940_mech467_energy_window_decoupling_20260819T140921Z_v3",
+      "queue_id": "V3-EXQ-940",
+      "claim_ids": ["MECH-467"],
+      "failed_criterion": "none_load_bearing_failed_but_C2_uncomputable",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-467's falsifier (wrong-target rate elevated with rule drift at floor) is not measured; 3 wrong-target events total and no rule-state read",
+        "biological_reference": "n/a -- denominator diagnostic, no mechanism translation under test",
+        "prerequisites": "missing -- live gate >=15 pooled events in one arm missed at 4",
+        "implementation": "partial -- C2 ratio guard tests the pooled numerator, not the denominator arm",
+        "environment": "adequate for the window, insufficient for the denominator -- contamination gated and health clamped still yielded 4 events in 2700 ticks",
+        "measurement": "misleading -- C2 measured_ratio is undefined (division by a zero stock rate) yet stamped non_degenerate true; emitted label asserts a rate non-lift the per-arm table contradicts",
+        "integration": "n/a",
+        "scale": "likely insufficient -- >=15 events needs ~10100 ticks/arm at the best observed rate, against 2700 budgeted"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a (denominator diagnostic)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-940 (GOV-FANOUT-1 H-energy leg, environment axis) is a denominator diagnostic and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its load-bearing C1 passed (window completeness lift 0.167037 vs 0.15) but at a 0.017 margin resting on 2 of 3 cells. Its C2 did NOT return a null: measured_ratio is null because the ratio divides by ARM_STOCK's event rate of exactly 0.0, so the criterion is arithmetically undefined, while its non-degeneracy guard (total_events_all_arms > 0) tests the pooled numerator rather than the denominator arm and therefore stamps it non_degenerate true. The emitted label window_restored_rate_unchanged and its note ('the residual rate problem is not an energy problem') are contradicted by the run's own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises monotonically with decoupling strength from exactly zero. On 4 events that is not significant either, so the honest state is unresolved. What the run DOES establish is decisive and should be preserved: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator, and 874b's arithmetic (8380-17200 ticks/arm needed against 2700 budgeted) is independently reconfirmed.",
+      "per_claim_recommendation": {
+        "MECH-467": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "no claim-layer change; denominator diagnostic does not exercise the falsifier -- apply the evidence_quality_note and leave the category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "Deliberately none, for the reason 874b's autopsy gave: naming a substrate build now picks one hypothesis before the discrimination has run. The mobility constraint that actually blocks leg (c) is owned by the ACTIVE hypothesis-space line e3_fdominance_causal_discrimination (MECH-439/ARC-062); minting a MECH-467-specific item would duplicate an in-flight investigation."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (measures + environment) -- not chargeable to REE"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "refusal_note": "Brake does not fire by the letter (0 ceiling hits). A fourth denominator design is REFUSED in the brake's SPIRIT and recorded as spirit-not-letter: three consecutive designs (874, 874b, 940/941), best-arm event count unmoved at 4, and 940 has now removed both candidate explanations.",
+        "route_to": "governance",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A rate criterion whose denominator arm can legitimately be zero needs its non-degeneracy guard on the DENOMINATOR, not on the pooled numerator.",
+        "A criterion that can independently produce a PASS is load-bearing whatever its flag says: 940's combination_rule (PASS if C1 or C2) contradicts C2's load_bearing false.",
+        "Removing both candidate explanations and finding the rate unchanged is a real result even when the criterion meant to decide the leg never computed."
+      ],
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_941_mech467_approach_decomposition_20260819T142245Z_v3",
+      "queue_id": "V3-EXQ-941",
+      "claim_ids": ["MECH-467"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- zero wrong-target instrumentation; MECH-467's falsifier is not measured",
+        "biological_reference": "n/a -- measurement-axis decomposition, no mechanism translation under test",
+        "prerequisites": "missing -- 6 approach initiations over 3681 realised ticks",
+        "implementation": "complete for the decomposition itself",
+        "environment": "too sparse / wrong pressures -- 98.8% of movement actions blocked, 2.33 unique cells visited, seed 43 immobile for 900/900 ticks in both arms",
+        "measurement": "under-instrumented -- C3 is a pooled existence test that does not measure conversion; approach_is_definable floor of 0.0 cannot fire",
+        "integration": "n/a",
+        "scale": "likely insufficient -- 2 of 3 cells truncated in each arm on health_depleted"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a (denominator diagnostic)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-941 (GOV-FANOUT-1 H-denominator leg, measurement axis) is a denominator diagnostic with zero wrong-target instrumentation and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its FAIL is the INFORMATIVE result by design (the queue note says so explicitly: outcome PASS would have been the null). It localises the missing denominator upstream of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms -- no approach run ever exceeded a single step. Two caveats bound how far the finding travels. (1) The basis is thin: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and its aliasing was meant to be caught by the approach_is_definable precondition whose 0.0 floor cannot fire (mean_distance_to_goal was exactly 1.0, one step from a target on a grid where one step is arrival). (2) C2 (0.333333) and C3 (4) are stamped passed but rest on <=6 events; C3 as coded is a pooled existence test (total_events > 0) across both arms despite owned_by_arms ARM_PRECOMMIT, and consumption exceeds arrivals 2:1 with 2 of the 4 events in cells recording zero initiations and zero arrivals -- so it certifies only that >=1 consumption happened somewhere, and the denominator_lost_at_consumption branch is unreachable in practice on this env. Neither affected the verdict (the routing tests C1 first). The run also newly quantifies the immobility at battery level: pooled_move_efficacy 0.0115/0.0124 and e3_tick_fraction_mean ~0.104. Its claim to 'confirm' the MECH-439 F-dominance ceiling should be read as 'is consistent with and quantifies', not as independent confirmation: at 98.8% blocked moves and 89-91% latched ticks both are near-ceiling simultaneously and cannot decompose the immobility, and no selection-layer measurement was taken.",
+      "per_claim_recommendation": {
+        "MECH-467": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "no claim-layer change; denominator diagnostic does not exercise the falsifier -- apply the evidence_quality_note and leave the category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "Same reasoning as the sibling leg: the blocking constraint is agent mobility, owned by the ACTIVE e3_fdominance_causal_discrimination line, not a MECH-467 substrate gap."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (measures + environment) -- not chargeable to REE"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "refusal_note": "See sibling leg: a fourth denominator design is refused in the brake's spirit.",
+        "route_to": "governance",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "An existence test is not a conversion test: C3 (total_events > 0) is satisfiable with zero approaches and is weaker than the floor it was built downstream of.",
+        "A precondition written against a known aliasing case must carry a threshold that can actually fire -- approach_is_definable's 0.0 floor could not catch the seed-43 case it was written for.",
+        "A criterion's owned_by_arms and the statistic it actually computes must agree; 941 reports pooled cross-arm statistics under single-arm ownership labels throughout."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "A criterion keyed to a rate whose denominator the substrate does not supply. 940 divides by a zero event rate; 941 divides arrivals by 6 initiations and consumption by 2 arrivals. Where the denominator is absent the criterion does not return a null -- it returns an artefact that reads like one.",
+    "is_independent_bugs": false,
+    "structural_property": "MECH-467 leg (c) has no reachable event denominator on this substrate at any budgeted window length. Three consecutive designs (874: 0/0; 874b: 8 events/6817 ticks; 940/941: best arm 4 events) have failed to produce one, and the best-arm rate has not moved off ~0.0015/tick. The binding constraint is upstream of the window: the agent does not move (98.8% of movement actions blocked) and does not re-select (89-91% of ticks latched).",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "planning_decision_forced": "Do not queue a fourth denominator design. Leg (c) is blocked on agent mobility, which is owned by the ACTIVE hypothesis-space line e3_fdominance_causal_discrimination, not by MECH-467's own substrate.",
+    "live_gate_status": "NOT MET -- registry live_gate requires >=15 pooled target-consumption events in at least one arm over a fully-realised exposure window; best achieved across both runs is 4 (940 ARM_HEALTH_DECOUPLED, 2700/2700 ticks realised), 26.7% of the floor.",
+    "substrate_hash_divergence_resolved": "NOT a confound. The differing substrate_hash between the two legs is driver-script folding (arm_fingerprint.py:653; _SUBSTRATE_GLOBS excludes experiment drivers). git diff over the hashed globs between the two recorded commits is empty, no ree_core commit landed in the window, and machine_class is identical. Recorded so a later session does not re-derive it."
+  },
+  "hypothesis_space_ledger_applied": {
+    "qid": "mech467_legc_event_denominator_cause",
+    "growth": "none -- these are the pre-registered legs' own adjudicating runs; initial_frozen_count unchanged at 4, no growth event recorded",
+    "resolutions": [
+      {"hid": "H-denominator", "state": "confirmed", "resolving_runs": ["V3-EXQ-941"]},
+      {"hid": "H-energy", "state": "alive", "resolving_runs": ["V3-EXQ-940"], "note": "state deliberately unchanged -- deciding criterion never evaluated"}
+    ]
+  }
+}

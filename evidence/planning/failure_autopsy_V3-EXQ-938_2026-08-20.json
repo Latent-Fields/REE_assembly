@@ -1,0 +1,101 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-20T02:39:17Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-multi-20260819",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_938_arc070_mech321_pe_selectivity_yoked_wholeepisode_20260818T215558Z_v3",
+      "queue_id": "V3-EXQ-938",
+      "claim_ids": ["ARC-070", "MECH-321"],
+      "bears_on": ["ARC-070", "MECH-321", "MECH-288", "ARC-069"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "pe_selectivity_refuted_rate_matched_wholeepisode",
+      "self_stamped_evidence_direction": "weakens",
+      "four_layer_diagnosis": {
+        "claim_alignment": "ARC-070 intact (DV class explicitly excluded by the claim's registered what_would_answer, and the mechanism engaged, which is the negation of its FALSIFYING clause); MECH-321 unclear (tests placement not selection quality, on a trigger that is not its declared primary)",
+        "biological_reference": "clear -- Zacks 2007 event-segmentation theory, Schapiro 2017 pattern separation, Pfeiffer & Foster 2013 forward sweeps; primary trigger is a biological translation, not a formal import; the run does not bear on translation fidelity",
+        "prerequisites": "present -- mechanism fired (>=91 forced fires/arm, ~277-287 boundary fires/arm); SD-084 mid-execution handle validated by V3-EXQ-839",
+        "implementation": "complete for what was tested; rate-matching verified at 1.85% arm gap with 0 seeds outside tolerance",
+        "environment": "adequate -- H-env-underdrives-uncertainty is superseded; forward-PE heterogeneous (pe_var_best 8.64e-7 vs a 1e-9 floor)",
+        "measurement": "under-instrumented -- H-representation-axis is alive and unexcluded; forward-PE delta -2.6e-05 is that hypothesis's signature",
+        "integration": "n/a",
+        "scale": "adequate -- n=40 met exactly, MDE ~0.007739 at 80% power, observed |delta| 17.3% of MDE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Event segmentation theory (Zacks et al. 2007): a running event model whose prediction-error pulses gate a re-segmentation update; hippocampal pattern separation (Schapiro 2017) as the candidate V_s substrate; frontoparietal cortex for the segmentation direction (Wymbs 2012)",
+        "dependencies": ["a trained forward/predictive model", "MECH-288 bidirectional event_segmenter", "ARC-071 chunk formation to supply objects to decompose", "SD-084 persistent cross-tick commit handle", "a harm/threat-valence pathway for the task-benefit leg"],
+        "is_formal_import": false,
+        "divergence": "The primary PE-driven trigger is a claimed biological translation. The McGovern-Barto bottleneck path IS an acknowledged formal import, built as a selectable secondary mode with a documented faithfulness disclaimer, and is NOT what 938 tests. The depth-cap's biological citation was formally withdrawn 2026-07-27 as an over-read.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-938 is the first run in the ARC-070/MECH-321 chain to reach a verdict at all (816/820 died on a low_vs_steps occupancy gate at 0.0/5.0; 816b/816d saturated the environment axis within 0.0007). It is cleanly executed: rate_match_ok true at a 1.85% arm gap with 0 seeds outside tolerance, aa_control_ok with max_abs_delta exactly 0.0, >=91 forced fires on both ON arms, ~277-287 boundary fires/arm, all 15 readiness preconditions met, non_degenerate true. Its result is a NULL, not a detected negative effect: harm delta -0.001338 with SE 0.002764 (t = -0.484), 19 seeds negative against 17 positive, and an observed |delta| that is 17.3% of the run's own 80%-power MDE (~0.007739). The pre-declared null (delta <= 0 within 1.0 x SE over >= 40 paired seeds) is satisfied exactly as written, so the run delivered the verdict it promised, scoped by its own statement to 'ARC-070's prediction-failure-selectivity leg AT THIS GRAIN'. The blanket weakens stamped on both claims is NOT applied, for two independent reasons. (1) ARC-070's own registered what_would_answer states that a failure of the DOWNSTREAM task-level benefit is 'EXPLICITLY NOT FALSIFYING' and belongs to MECH-321's separate narrower claim; 938's DV is a whole-episode mean harm signal, squarely that class, and its FALSIFYING clause (the mechanism does not engage when it architecturally should) is negated by the run, which shows the mechanism engaging throughout. (2) The same hypothesis-space question carries H-representation-axis as ALIVE ('forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty'), and 938's proximal readout -- secondary_fwd_pe_delta_yoked_minus_pe = -2.6e-05 -- is precisely that hypothesis's signature; a within-run rank normalisation does not fix a readout that is too coarse. So the run cannot discriminate 'selectivity is false' from 'the PE readout cannot locate the loci where decomposition would help'. Carry forward two readouts: C2_DECOMPOSITION_PER_SE_VS_OFF = -0.03681, roughly 27x the selectivity delta in the harmful direction (non-load-bearing, no SE reported, not adjudicated here) and the larger signal in the manifest; and substrate_stable_across_run = false, where all 132 cells share one hash 3a9826d0 but the stated substrate_commit 839ffe03 does not correspond to it, so this run cannot be mapped to a substrate commit -- recording-debt owed by any successor.",
+      "per_claim_recommendation": {
+        "ARC-070": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "DECLINE the run's self-stamped weakens; record the selectivity-leg null at this grain in the evidence_quality_note and leave the category unchanged -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-321": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "DECLINE the run's self-stamped weakens (tests placement not selection quality, on a trigger that is not MECH-321's declared primary, whose arm1_vs_trigger_total is 0 campaign-wide); keep pending_retest_after_substrate true and the standing V3-EXQ-919 routing; MECH-321 currently carries NO epistemic_category field at all, so set one -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "govdiag1 section 8 already established that no substrate build is warranted by this chain ('the substrate fires the mechanism ... the defect was in the question, not the code'), and 938 confirms the firing directly (>=91 forced fires/arm). MECH-321's standing SD-hazard-aware-policy-decomposition routing from the V3-EXQ-919 autopsy is unaffected and unchanged."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- not chargeable to REE; reaching REE FAILED would require measurement to read adequate, and H-representation-axis is alive and unexcluded"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": {"ARC-070": 0, "MECH-321": 1},
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "refusal_note": "Brake does not fire. Independently REFUSED anyway: (a) a lettered successor to 938 on the strength of this null -- the live question is now whether the forward-PE readout can locate the loci at all, which is a measurement question needing a readout spike rather than another outcome comparison; (b) a fourth environment-axis escalation and any re-queue keyed on region-V_s as the prediction-failure readout, both standing refusals from govdiag1 section 6 and unaffected by this result.",
+        "route_to": "governance",
+        "upstream_substrate": null
+      },
+      "governance_decision_owed": {
+        "item": "Pre-declared null vs registered falsifier",
+        "detail": "govdiag1_repose_mech321_chain_2026-08-12.md section 5f pre-declares that a null 'REFUTES ARC-070's prediction-failure-selectivity leg at this grain'. claims.yaml ARC-070 what_would_answer states that downstream task-benefit failure is EXPLICITLY NOT FALSIFYING. These reconcile if 5f is read as scoping a leg at a grain rather than the claim -- which is what its own words say and what govdiag1 says of itself ('This document promotes and demotes nothing'). An experiment's pre-declared null defines what the EXPERIMENT concludes; it cannot unilaterally widen a claim's registered falsifier. Surfaced for governance to settle, because it will recur on the next run in this chain."
+      },
+      "closure_plan_node": {
+        "node": "policy_decomposition_trigger:REPOSE",
+        "effect": "advances but does not close -- the node has its result, but not a claim-layer disposition, because the null's scope is narrower than the node's framing assumed",
+        "stale_downstream_artifacts": [
+          "node blocker 'queued in git but not yet coordinator-registered' is stale -- the run executed and landed a manifest",
+          "closure_status.md:63 and morning_agenda.md:200,212 still show the node open / 0%",
+          "the node's status_history sidecar does not yet carry the 938 manifest"
+        ]
+      },
+      "learning_extracted": [
+        "A claim's registered what_would_answer is the authority on what falsifies it; a pre-declared null in a planning document scopes what the experiment concludes and cannot widen the claim's falsifier. When they disagree the artifact must surface the conflict rather than silently take the wider reading.",
+        "A null cannot eliminate a hypothesis that predicts it: H-representation-axis was alive before this run and remains alive after, and 938's own forward-PE delta of -2.6e-05 is its signature.",
+        "'Well-powered' is relative to a declared band. A 1-SE equivalence band leaves an effect between 1 and 2.8 SE neither detected by C1 nor excluded by the null; record what the run could and could not have seen.",
+        "A run that fires the mechanism and nulls the benefit is evidence about the BENEFIT leg only. Firing is what ARC-070 asserts; benefit is what MECH-321 asserts."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
