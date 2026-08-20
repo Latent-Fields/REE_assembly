@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-14T06:50:56Z",
+  "last_updated_utc": "2026-08-20T03:54:53Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -803,6 +803,20 @@
       "mechanism_changing_note": "Both switches are no-op at their defaults (safety_proximity_signal_enabled=False, contextual_safety_gate_source='z_harm_a'), so all pre-existing MECH-303 evidence was measured under behaviour bit-identical to the new default. The new proximity gate is opt-in and NO prior driver used it, so nothing prior measured through it. The landing ENABLES the owed behavioural retest (pending_retest_after_substrate, already set on MECH-303) rather than changing what prior runs measured; V3-EXQ-929 is the queued re-measurement.",
       "candidate_stale": [],
       "candidate_stale_note": "No candidate-stale evidence. MECH-303's promotion evidence V3-EXQ-760 (auc_gated 0.884) tested the RBF terrain mechanism via a GROUND-TRUTH hazard_field proxy, NOT the live z_harm_a gate this landing re-sources, so it is unaffected. Every other MECH-303 scoring entry was measured under the unchanged default z_harm_a gate. KEEP all; the dedicated signal is a new opt-in path with no prior evidence flowing through it."
+    },
+    {
+      "substrate": "SD-ORIENTING-DECISION-SCALE",
+      "code_landed_commit": "ree-v3 775eb5580d",
+      "code_landed_utc": "2026-08-20T03:54:53Z",
+      "landed_utc": "2026-08-20T03:54:53Z",
+      "dependent_claims": [
+        "MECH-489"
+      ],
+      "description": "Post-override decision-window persistence amend (the SUBSTRATE half of this SD's second failure_record, the decision_counts logging/persistence defect, severity=degrading). agent.py select_action(): the _orienting_decision countdown/expiry moves out of the five-condition score-bias application block into its own unconditional step gated only on '_orienting_decision is not None'. Before this, a 'resume' decision (which sets ticks_remaining=0 and is excluded by the block's 'decision in (approach, withdraw)' condition) could never be cleared outside reset() and persisted for the rest of the episode, and any tick with no candidates / no world_states froze the countdown without clearing -- so orienting_post_override_bias_ticks was a LOWER BOUND on persistence, not a bound. The score-bias APPLICATION is unchanged and still conditional. No new config.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "Recorded TRUE conservatively, but with no live blast radius. It does change what the mechanism does when enabled (a decision can no longer latch indefinitely), so it is not a no-op-default param or a pure robustness fix. However the entire SD-099 gate is use_defensive_orienting=False by default and the amend sits inside the same 'if self.defensive_orienting is not None:' guard, so behaviour is bit-identical for every run that did not opt in -- pinned by tests/contracts/test_orienting_decision_window_expiry.py::test_gate_off_leaves_decision_state_untouched. Happy-path behaviour with the gate ON is also unchanged: with the bias gate open every tick, the bias still applies on exactly orienting_post_override_bias_ticks block executions, identical to the old decrement-after-applying placement.",
+      "candidate_stale": [],
+      "candidate_stale_note": "No candidate-stale evidence, and no new MARK or REVALIDATE is owed. Exactly two runs ever enabled use_defensive_orienting -- V3-EXQ-910 and V3-EXQ-910a -- and both are ALREADY excluded from weighting on this exact ground: failure_autopsy_V3-EXQ-910a_2026-08-11 found their decision_counts measurement independently broken and 'not usable as evidence either way', and claims.yaml MECH-489 already carries pending_retest_after_substrate: true naming this amend. Every other MECH-489 evidence entry was measured with the gate OFF, i.e. under behaviour bit-identical to the new default. This landing ENABLES the owed retest rather than changing what any prior run measured. NOTE the retest is not yet queueable: only the SUBSTRATE half landed here; the DRIVER half (count the decision at the override tick only, emit n_latched_ticks) is still owed via /queue-experiment, so EVB-0610 / EXP-0033 stays blocked_substrate. Chipped as chip-20260820-mech489-retest-driver-decision-at-override-tick."
     }
   ]
 }
