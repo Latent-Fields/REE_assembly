@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-08-19.3 -->
+<!-- WORKSET_VERSION: 2026-08-20.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -286,10 +286,38 @@
   #pending-chips summary:hover { color: var(--text); }
   #pending-chips[open] summary { border-bottom: 1px solid #30363d; }
   #pending-chips .pc-note { padding: 6px 12px; font-size: 10px; color: var(--muted); border-bottom: 1px solid #21262d; }
+  #pending-chips .pc-controls {
+    padding: 6px 12px; display: flex; gap: 8px; align-items: center;
+    flex-wrap: wrap; border-bottom: 1px solid #21262d; font-size: 11px;
+  }
+  #pending-chips .pc-controls select,
+  #pending-chips .pc-controls input[type="search"] {
+    background: #0d1117; border: 1px solid #30363d; color: var(--text);
+    padding: 2px 6px; border-radius: 4px; font-size: 11px;
+  }
+  #pending-chips .pc-controls input[type="search"] { width: 150px; }
+  #pending-chips .pc-controls label { color: var(--muted); }
+  #pending-chips .pc-controls .pc-seg { display: flex; gap: 0; }
+  #pending-chips .pc-controls .pc-seg button {
+    background: #0d1117; border: 1px solid #30363d; color: var(--muted);
+    padding: 2px 8px; font-size: 11px; cursor: pointer; margin-left: -1px;
+  }
+  #pending-chips .pc-controls .pc-seg button:first-child { margin-left: 0; border-radius: 4px 0 0 4px; }
+  #pending-chips .pc-controls .pc-seg button:last-child { border-radius: 0 4px 4px 0; }
+  #pending-chips .pc-controls .pc-seg button:hover { color: var(--text); }
+  #pending-chips .pc-controls .pc-seg button.active {
+    background: #d4a72c22; border-color: #d4a72c88; color: #e3b341;
+  }
+  #pending-chips .pc-controls .pc-urgent-lbl { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+  #pending-chips .pc-controls .pc-reset {
+    background: none; border: none; color: var(--muted);
+    font-size: 11px; cursor: pointer; text-decoration: underline;
+  }
+  #pending-chips .pc-controls .pc-reset:hover { color: var(--text); }
   #pending-chips .pc-list { padding: 6px 0; max-height: 320px; overflow-y: auto; }
   #pending-chips .pc-row {
     display: grid;
-    grid-template-columns: 90px 1fr 140px 90px 130px;
+    grid-template-columns: 12px 90px 1fr 140px 90px 130px;
     gap: 10px;
     padding: 6px 12px;
     font-size: 11px;
@@ -313,6 +341,11 @@
     color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   #pending-chips .pc-row .pc-claim.claimed { background: #58a6ff22; color: #79c0ff; border: 1px solid #58a6ff55; }
+  /* A claim older than chip_ledger.py's CLAIM_STALE_HOURS (3h) no longer blocks
+     a `chip_ledger.py claim`, so the chip is really available again -- shown
+     amber rather than blue so the panel does not read it as live work. */
+  #pending-chips .pc-row .pc-claim.stale { background: #d4a72c22; color: #e3b341; border: 1px solid #d4a72c55; }
+  #pending-chips .pc-row .pc-urgent { color: #ff7b72; font-weight: 700; text-align: center; }
   #pending-chips .pc-row .pc-session { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #pending-chips .pc-row .pc-when { color: var(--muted); font-family: ui-monospace, monospace; }
   #pending-chips .pc-empty { padding: 12px; font-size: 12px; color: var(--muted); }
@@ -393,6 +426,34 @@
     also start it by hand until that claim goes stale. Click a row to copy its full
     spawn_task prompt to the clipboard, with a `chip_ledger.py claim` step always
     prepended -- paste it into a new session to claim and run the chip.</div>
+  <div class="pc-controls">
+    <span class="pc-seg" id="pc-status-seg">
+      <button type="button" data-s="open" title="Recorded and not yet resolved. This is the working set -- what a session could still pick up.">open</button>
+      <button type="button" data-s="done" title="A session reported the work landed (or was found already done) via chip_ledger.py resolve --status done.">done</button>
+      <button type="button" data-s="withdrawn" title="Invalidated before it ran -- superseded, duplicated, or the spawning session dismissed it.">withdrawn</button>
+      <button type="button" data-s="all" title="Every chip ever recorded, resolved or not.">all</button>
+    </span>
+    <label for="pc-claim-filter">Claim</label>
+    <select id="pc-claim-filter" title="A claim (chip_ledger.py claim) means a worker already started this chip. It goes STALE after 3h (CLAIM_STALE_HOURS), after which the chip is claimable again -- so 'available' = unclaimed OR stale.">
+      <option value="">any</option>
+      <option value="available">available (unclaimed or stale)</option>
+      <option value="unclaimed">unclaimed</option>
+      <option value="claimed">claimed (live)</option>
+      <option value="stale">stale claim</option>
+    </select>
+    <label for="pc-kind-filter">Kind</label>
+    <select id="pc-kind-filter" title="work = a task a session can execute. decision = needs a human call before anything can be built.">
+      <option value="">any</option>
+      <option value="work">work</option>
+      <option value="decision">decision</option>
+    </select>
+    <label for="pc-origin-filter">Origin</label>
+    <select id="pc-origin-filter" title="Which path recorded the chip: a session's spawn_task, a headless worker, or one of the automated ticks (hygiene/IGW/proposal). Populated from the chips actually in the ledger."><option value="">any</option></select>
+    <label class="pc-urgent-lbl" title="Chips flagged urgent via chip_ledger.py urgency."><input type="checkbox" id="pc-urgent-filter"> urgent only</label>
+    <input type="search" id="pc-search" placeholder="search title / ref / session" title="Case-insensitive substring match over title, tldr, chip_ref and session_id.">
+    <button type="button" class="pc-reset" id="pc-reset">reset</button>
+    <span id="pc-shown" style="color:var(--muted);margin-left:auto;"></span>
+  </div>
   <div class="pc-list" id="pc-list"></div>
 </details>
 <section class="leverage-rail" id="leverage-rail" hidden></section>
@@ -440,6 +501,18 @@ let VERSION_FILTER = '';
 let CLAIM_SEARCH = '';
 let RA = { count: 0, releases: [], hours: 24 };  // recent activity (released assignments)
 let CHIPS = { open: 0, items: [] };  // durable spawn_task ledger (TASK_CHIPS.json)
+// Filter state for the "Pending chips" panel. Status defaults to 'open'
+// deliberately: the ledger is append-only and never prunes resolved chips, so
+// at 1273 chips (2026-08-20) an unfiltered panel is 1144 done rows with the 52
+// actionable ones scattered through them. The count line always reports the
+// unfiltered open/total alongside the shown count, so narrowing the view can
+// never hide how big the ledger actually is.
+const CHIP_FILTERS = { status: 'open', claim: '', kind: '', origin: '', urgent: false, q: '' };
+// chip_ledger.py CLAIM_STALE_HOURS -- a claim older than this no longer blocks
+// `chip_ledger.py claim`, so the chip is effectively available again. Keep in
+// sync with that constant; a drift here only mislabels the badge, it cannot
+// cause a double-start (claim() itself is the arbiter and refuses with exit 3).
+const CHIP_CLAIM_STALE_HOURS = 3;
 
 const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops'];
 
@@ -592,7 +665,121 @@ async function loadChips() {
   } catch (e) {
     CHIPS.items = []; CHIPS.open = 0;
   }
+  populateChipOrigins();
   renderChips();
+}
+
+// The origin dropdown is built from the chips actually present rather than a
+// hardcoded list, so a new producer (a future tick, another headless path)
+// becomes filterable the first time it records a chip -- no UI change needed.
+// Preserves the current selection even if that origin has momentarily gone.
+function populateChipOrigins() {
+  const sel = document.getElementById('pc-origin-filter');
+  if (!sel) return;
+  const origins = [...new Set(CHIPS.items.map(c => c.origin).filter(Boolean))].sort();
+  const want = CHIP_FILTERS.origin;
+  if (want && !origins.includes(want)) origins.push(want);
+  const current = origins.join('\u0000');
+  if (sel.dataset.built === current) { sel.value = want; return; }
+  sel.innerHTML = '<option value="">any</option>' +
+    origins.map(o => '<option value="' + escapeAttr(o) + '">' + escapeHtml(o) + '</option>').join('');
+  sel.dataset.built = current;
+  sel.value = want;
+}
+
+// Wires the panel's filter bar. Every control writes CHIP_FILTERS, re-renders
+// from the already-loaded CHIPS.items (no refetch -- filtering is a pure view
+// operation over the projected payload) and persists via saveStoredSettings.
+function wireChipFilters() {
+  const seg = document.getElementById('pc-status-seg');
+  const claimSel = document.getElementById('pc-claim-filter');
+  const kindSel = document.getElementById('pc-kind-filter');
+  const originSel = document.getElementById('pc-origin-filter');
+  const urgentBox = document.getElementById('pc-urgent-filter');
+  const search = document.getElementById('pc-search');
+  const reset = document.getElementById('pc-reset');
+
+  const apply = () => { renderChips(); saveStoredSettings(); };
+
+  if (seg) {
+    seg.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-s]');
+      if (!btn) return;
+      CHIP_FILTERS.status = btn.dataset.s;
+      syncChipControls();
+      apply();
+    });
+  }
+  if (claimSel) claimSel.addEventListener('change', () => { CHIP_FILTERS.claim = claimSel.value; apply(); });
+  if (kindSel) kindSel.addEventListener('change', () => { CHIP_FILTERS.kind = kindSel.value; apply(); });
+  if (originSel) originSel.addEventListener('change', () => { CHIP_FILTERS.origin = originSel.value; apply(); });
+  if (urgentBox) urgentBox.addEventListener('change', () => { CHIP_FILTERS.urgent = urgentBox.checked; apply(); });
+  if (search) search.addEventListener('input', () => { CHIP_FILTERS.q = search.value; apply(); });
+  if (reset) {
+    reset.addEventListener('click', () => {
+      // Back to the panel's default view (open chips), not to "all" -- the
+      // whole point of the default is that an unfiltered ledger is unusable.
+      CHIP_FILTERS.status = 'open';
+      CHIP_FILTERS.claim = CHIP_FILTERS.kind = CHIP_FILTERS.origin = CHIP_FILTERS.q = '';
+      CHIP_FILTERS.urgent = false;
+      syncChipControls();
+      apply();
+    });
+  }
+  syncChipControls();
+}
+
+// Pushes CHIP_FILTERS back into the controls -- used on load (restoring
+// localStorage) and after any change that alters more than one control.
+function syncChipControls() {
+  const seg = document.getElementById('pc-status-seg');
+  if (seg) {
+    seg.querySelectorAll('button[data-s]').forEach(b => {
+      b.classList.toggle('active', b.dataset.s === CHIP_FILTERS.status);
+    });
+  }
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  set('pc-claim-filter', CHIP_FILTERS.claim);
+  set('pc-kind-filter', CHIP_FILTERS.kind);
+  set('pc-origin-filter', CHIP_FILTERS.origin);
+  set('pc-search', CHIP_FILTERS.q);
+  const u = document.getElementById('pc-urgent-filter');
+  if (u) u.checked = !!CHIP_FILTERS.urgent;
+}
+
+// 'unclaimed' | 'claimed' | 'stale'. Claim fields are only a live in-progress
+// signal while the chip is still open -- on a resolved chip they are a
+// historical record, so those always read as 'unclaimed' here (renderChips
+// already suppresses the badge for them, and the claim filter follows suit
+// rather than matching a resolved chip on a claim nobody holds any more).
+function chipClaimState(ch) {
+  if (ch.status !== 'open' || !ch.claimed_by) return 'unclaimed';
+  const t = Date.parse(ch.claimed_at || '');
+  // Unparseable/absent claimed_at is treated as stale -- the same fail-open
+  // direction chip_ledger.py's cmd_claim takes, so the panel never shows a
+  // chip as blocked that the CLI would actually let you claim.
+  if (isNaN(t)) return 'stale';
+  return (Date.now() - t) / 3600000 >= CHIP_CLAIM_STALE_HOURS ? 'stale' : 'claimed';
+}
+
+function chipMatchesFilters(ch) {
+  const f = CHIP_FILTERS;
+  if (f.status && f.status !== 'all' && ch.status !== f.status) return false;
+  if (f.claim) {
+    const st = chipClaimState(ch);
+    if (f.claim === 'available') { if (st === 'claimed') return false; }
+    else if (st !== f.claim) return false;
+  }
+  if (f.kind && (ch.kind || '') !== f.kind) return false;
+  if (f.origin && (ch.origin || '') !== f.origin) return false;
+  if (f.urgent && !ch.urgency) return false;
+  const q = f.q.trim().toLowerCase();
+  if (q) {
+    const hay = [ch.title, ch.tldr, ch.chip_ref, ch.session_id]
+      .map(v => (v || '').toLowerCase()).join(' ');
+    if (!hay.includes(q)) return false;
+  }
+  return true;
 }
 
 function renderChips() {
@@ -603,11 +790,23 @@ function renderChips() {
   if (!CHIPS.items.length) {
     list.innerHTML = '<div class="pc-empty">No chips recorded yet. Chips get recorded here ' +
       'by scripts/chip_ledger.py whenever a session calls spawn_task.</div>';
+    const shownEmpty = document.getElementById('pc-shown');
+    if (shownEmpty) shownEmpty.textContent = '';
     return;
   }
-  // Most recently spawned first.
+  // Most recently spawned first, then filtered to the panel's current view.
   const sorted = CHIPS.items.slice().sort((a, b) =>
-    (b.spawned_at || '').localeCompare(a.spawned_at || ''));
+    (b.spawned_at || '').localeCompare(a.spawned_at || ''))
+    .filter(chipMatchesFilters);
+  const shown = document.getElementById('pc-shown');
+  if (shown) {
+    shown.textContent = 'showing ' + sorted.length + ' of ' + CHIPS.items.length;
+  }
+  if (!sorted.length) {
+    list.innerHTML = '<div class="pc-empty">No chips match these filters. ' +
+      CHIPS.open + ' of ' + CHIPS.items.length + ' chips in the ledger are open.</div>';
+    return;
+  }
   list.innerHTML = sorted.map(ch => {
     const statusCls = (ch.status === 'withdrawn' || ch.status === 'done') ? ' status-' + ch.status : '';
     const titleTip = (ch.tldr || ch.title || '').replace(/"/g, '&quot;');
@@ -615,12 +814,17 @@ function renderChips() {
     // "CLAIMING" section) -- distinct from status, which only ever reflects
     // resolution. Only meaningful while status is still "open"; a resolved
     // chip's claim fields are a historical record, not a live in-progress signal.
-    const isClaimed = ch.status === 'open' && !!ch.claimed_by;
+    const claimState = chipClaimState(ch);
+    const isClaimed = claimState !== 'unclaimed';
     const claimTip = isClaimed
-      ? ('claimed by ' + ch.claimed_by + ' at ' + (ch.claimed_at || '?') +
+      ? ((claimState === 'stale' ? 'STALE claim (older than ' + CHIP_CLAIM_STALE_HOURS +
+          'h, claimable again) by ' : 'claimed by ') +
+         ch.claimed_by + ' at ' + (ch.claimed_at || '?') +
          (ch.claim_note ? (' -- ' + ch.claim_note) : ''))
       : 'not claimed';
-    const claimText = isClaimed ? ('claimed: ' + ch.claimed_by) : '--';
+    const claimText = isClaimed
+      ? ((claimState === 'stale' ? 'stale: ' : 'claimed: ') + ch.claimed_by)
+      : '--';
     // has_prompt comes from the projected /api/chips payload (serve.py
     // read_chips_projected) -- the prompt TEXT is fetched on click, not shipped
     // with the list. Fall back to ch.prompt so a ?full=1 payload still works.
@@ -628,12 +832,17 @@ function renderChips() {
       ? 'Click to copy this chip\'s prompt (with a chip_ledger.py claim step prepended) -- ' +
         'paste into a new session to claim and run it'
       : 'No prompt recorded for this chip';
+    const originTip = [ch.origin ? 'origin: ' + ch.origin : '',
+                       ch.kind ? 'kind: ' + ch.kind : ''].filter(Boolean).join(' -- ');
     return '<div class="pc-row" title="' + escapeAttr(rowTip) + '">' +
-      '<span class="pc-status' + statusCls + '">' + escapeHtml(ch.status || '?') + '</span>' +
+      '<span class="pc-urgent" title="' + (ch.urgency ? 'flagged urgent' : '') + '">' +
+        (ch.urgency ? '!' : '') + '</span>' +
+      '<span class="pc-status' + statusCls + '" title="' + escapeAttr(originTip) + '">' +
+        escapeHtml(ch.status || '?') + '</span>' +
       '<span class="pc-title" title="' + escapeAttr(titleTip) + '">' + escapeHtml(ch.title || '(untitled)') + '</span>' +
       '<span class="pc-session" title="' + escapeAttr(ch.cwd || '') + '">' + escapeHtml(ch.session_id || '?') + '</span>' +
       '<span class="pc-when">' + escapeHtml(formatReleaseWindow(null, ch.spawned_at)) + '</span>' +
-      '<span class="pc-claim' + (isClaimed ? ' claimed' : '') + '" title="' + escapeAttr(claimTip) + '">' +
+      '<span class="pc-claim' + (isClaimed ? ' ' + claimState : '') + '" title="' + escapeAttr(claimTip) + '">' +
         escapeHtml(claimText) + '</span>' +
       '</div>';
   }).join('');
@@ -793,6 +1002,7 @@ function saveStoredSettings() {
       raHours: RA.hours,
       recentOpen: ra ? ra.open : undefined,
       chipsOpen: pc ? pc.open : undefined,
+      chipFilters: { ...CHIP_FILTERS },
     }));
   } catch (e) {
     // storage unavailable -- nothing to persist beyond this page's URL
@@ -812,6 +1022,15 @@ function applySettings() {
   if (ra && typeof stored.recentOpen === 'boolean') ra.open = stored.recentOpen;
   const pc = document.getElementById('pending-chips');
   if (pc && typeof stored.chipsOpen === 'boolean') pc.open = stored.chipsOpen;
+  // Chip-panel filters are localStorage-only (not URL params): they scope a
+  // collapsible side panel, not the claim grid a /workset link is shared for.
+  // Copied key-by-key so a stale stored shape can never introduce a key the
+  // predicate does not know about.
+  if (stored.chipFilters && typeof stored.chipFilters === 'object') {
+    for (const k of Object.keys(CHIP_FILTERS)) {
+      if (k in stored.chipFilters) CHIP_FILTERS[k] = stored.chipFilters[k];
+    }
+  }
 
   // URL params take precedence over the stored settings above.
   const p = new URLSearchParams(location.search);
@@ -827,6 +1046,10 @@ function applySettings() {
   if (q) CLAIM_SEARCH = q;
   const f = p.get('status');
   if (f) STATUS_FILTER = f;
+
+  // wireChipFilters() runs at script load, i.e. BEFORE this restores
+  // CHIP_FILTERS, so the controls need pushing back into sync afterwards.
+  syncChipControls();
 }
 
 function syncUrl() {
@@ -1520,6 +1743,8 @@ if (_raHoursSel) {
 // Persist the open/closed state of the two collapsible panels -- these
 // aren't URL-shareable (no reason to put them in a link), so they're
 // localStorage-only.
+wireChipFilters();
+
 ['recent-activity', 'pending-chips'].forEach(id => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('toggle', saveStoredSettings);
