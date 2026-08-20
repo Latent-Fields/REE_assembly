@@ -1,8 +1,10 @@
 ---
 title: "Matched-arm causal design: experimenter-triggered sleep vs continued wake in a single continuous life"
 registered: 2026-08-14
-status: design-staged (NOT queued -- Section 9 constants RESOLVED 2026-08-18; now blocked on the
-  open `corrupting` substrate defect contextmemory-write-path-addressing-degeneracy, see Section 11)
+status: design-staged (NOT queued -- Section 9 constants RESOLVED 2026-08-18; blocked on the
+  open `corrupting` substrate defect contextmemory-write-path-addressing-degeneracy per Section
+  11; fix LANDED 2026-08-19 but status is implemented_pending_validation, which
+  /queue-experiment Step 2.5c treats as still OPEN -- gate remains closed, see Section 12)
 chip_ref: chip-20260812-causal-sleep-deprivation-matched-arm-design
 scope_claims: []
 claim_ids: []
@@ -637,3 +639,87 @@ inheriting it.** No constants remain gated.
 coordinator) **cannot be completed from a headless cloud box** -- `ree-cloud-5` has no
 `REE_assembly/coordinator.env`, so no bearer token is obtainable and a git commit alone is NOT a
 durable add. Queue this from the Mac, or hand off the `queue_id` + commit sha explicitly.
+
+---
+
+## 12. Queue attempt 2026-08-20: the fix landed, but the resume condition is STILL not met
+
+**Appended by** `chip-20260814-queue-causal-sleep-matched-arm` (session
+`metaworker-chip-20260814-queue-causal-sleep-matched-arm`, headless on `ree-cloud-4`),
+2026-08-20T11:38Z. Sections 1-11 left standing so the revision is auditable. **Status change:
+`blocked (defect open)` -> `blocked (defect fixed, validation owed)`. Still not queued.**
+
+### 12.1 The fix landed
+
+`chip-20260816-implsub-contextmemory-writepath-degeneracy` resolved `done` 2026-08-19T04:10:28Z.
+`ree-v3` `76cbf844` ("e1: repair ContextMemory.write() deterministic single-slot fixed point") is
+confirmed on `origin/main` (`git merge-base --is-ancestor` checked live this session). A second
+mechanism, `692f8526d0` ("add default-off 'refractory' ContextMemory write-selection mode"),
+landed the same window.
+
+### 12.2 Why this does NOT satisfy Section 11.7's resume condition
+
+Section 11.7 says: queue when the `substrate_queue.json` entry reaches `implemented` /
+`implemented_validated`. Read live this session: the entry's `status` is
+**`implemented_pending_validation`** -- a third state Section 11.7 did not anticipate. This is
+not a technicality. `/queue-experiment` Step 2.5c states the rule explicitly and by name:
+
+> A status of the form `implemented_pending_validation` (or any status containing `pending`) is
+> still OPEN, never closed -- ... the substrate has landed and NOT yet been confirmed correct,
+> which is exactly the window a corrupting defect is most likely to still be live in.
+
+This design's own Section 4 mechanism (`use_within_life_sleep_trigger=True`) routes through
+`agent.run_sws_schema_pass()` -> `ContextMemory.write()` in `ree_core/predictors/e1_deep.py` on
+every ARM_SLEEP fire (Section 3 step 2) -- an exact match against the entry's
+`substrate_paths: ["ree_core/predictors/e1_deep.py"]`. Re-ran Step 2.5c's overlap gate live this
+session: the entry is still `corrupting` severity and still reads OPEN under the `pending`
+override. **The mandatory stop-gate shape still applies: do not write the script, do not add a
+queue entry.**
+
+### 12.3 Both fix mechanisms are also DEFAULT-OFF -- opting in is not free either
+
+Even setting the resume-condition question aside, neither fix self-applies. Both
+`E1Config.contextmemory_write_usage_balancing` (bool, default `False`) and
+`E1Config.contextmemory_write_selection` (default `"argmin"`, the legacy path) preserve
+bit-identical legacy behaviour unless a driver explicitly opts in. The substrate_queue entry's
+own `validation_experiment` field states plainly: "no driver in `ree-v3/experiments/` sets
+either, so a driver written today runs the unfixed argmin path." A driver for this design
+that did not explicitly set one of these flags would silently re-run into the exact corrupting
+defect Section 11 stopped this design for -- opting in is not automatic and must be a deliberate,
+documented choice in whichever future session writes the driver.
+
+**Why this session does not just opt in unilaterally and proceed anyway.** The fix's own
+system-level validation is not yet in evidence: `implementation_note` on the substrate_queue
+entry states the two mechanisms are validated only at the `ContextMemory` unit level against a
+*synthetic* degenerate query stream, "not yet with a queued EXQ measuring `n_occupied_slots` on
+a real agent under the 436e/436f harness's own instrumentation." A dedicated chip for exactly
+that validation experiment, `chip-20260819-queueexp-contextmemory-writesel-validation`, is
+itself still `open` (and actively claimed by a concurrent session as of this check) -- i.e. the
+question "does the fix actually work on a real agent" has an owner and is in flight, but has not
+answered yet. Queuing this design's 6-15h compute run on an informal, self-supplied opt-in
+(rather than on a fix the ecosystem has separately confirmed) would repeat the exact "looks
+green, tests nothing" failure mode Section 11.2 quoted the defect's own severity rationale
+about -- just one layer up, on the fix instead of the defect.
+
+### 12.4 Resume condition, corrected
+
+Section 11.7's condition is superseded by this one, which accounts for the pending/default-off
+distinction Section 11.7 did not anticipate:
+
+Queue this when **either**:
+- (a) `contextmemory-write-path-addressing-degeneracy` reaches `implemented_validated` (not
+  merely `implemented_pending_validation`) in `substrate_queue.json` -- i.e.
+  `chip-20260819-queueexp-contextmemory-writesel-validation` lands and confirms the fix on a
+  real agent, which also settles which of the two mechanisms (or their composition) to use and
+  at what parameters; **or**
+- (b) a future session makes a deliberate, documented decision to opt in early (citing this
+  section), explicitly setting `contextmemory_write_selection="refractory"` (or the usage-
+  balancing flag) in BOTH arms of the driver, and adds a load-bearing precondition asserting
+  non-degenerate write-path behaviour in ARM_SLEEP (`n_occupied_slots >= 2` on `>= 3/5` seeds,
+  matching the defect's own `failure_record` acceptance criterion, measured directly rather than
+  assumed) -- so a collapsed write path self-routes to `substrate_not_ready_requeue` rather than
+  masquerading as a null "sleep has no effect" finding.
+
+Route (a) is preferred: it is order-independent of this design and reuses work already in
+flight rather than duplicating it. Nothing else in Sections 1-11 changes; once either condition
+is met, Sections 1-8 plus 11.1 and 11.4-11.6 remain sufficient to write the driver mechanically.
