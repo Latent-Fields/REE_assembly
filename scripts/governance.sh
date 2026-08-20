@@ -587,6 +587,47 @@ echo "--- Step 3l: Citation staleness scan (GFLAG-0010, warn-only) ---"
 # a flagged citation needs fixing; this only surfaces the candidates.
 "$PYTHON" scripts/check_citation_staleness.py || true
 
+echo "--- Step 3l-bis: Dangling claim-reference audit (warn-only) ---"
+# The TENTH standing scan, and the only one that reads the SESSION LOG rather
+# than the registry, the evidence corpus, or the skills. Every sibling asks a
+# question about something already registered; this one asks the reverse --
+# which claim ids does WORKSPACE_STATE.md (plus docs/workspace_state_archive/)
+# DISCUSS that claims.yaml never registered? That is the thought-intake gap the
+# standing rule about registering into claims.yaml rather than prose exists to
+# catch, and nothing else in this pipeline can see it: every other scan starts
+# from claims.yaml and can only find things that are already in it.
+#
+# It runs here because its findings ARE claims.yaml dispositions -- squarely
+# governance work, and therefore reported inline for a human to decide, never
+# chipped (CLAUDE.md Session Land Protocol housekeeping step 6 lists /governance
+# work as one of exactly two categories that is never spawned as a chip). That
+# is also why this is NOT wired into hygiene_routine_tick.py: 16 standing
+# findings on a ~5-minute tick would mint chips for work the standing rule says
+# must not be chipped.
+#
+# Classifier, not a grep: 52 raw non-registered references sort into five
+# buckets and only UNREGISTERED is a finding (~16 today). The precedent for the
+# flat-list version is the keyword grep for un-registered thought intake that
+# over-stated orphans by ~65x. Detection only -- it never edits claims.yaml and
+# never registers anything, because deciding whether an id is a claim is the
+# human judgement the registry exists for.
+#
+# The script lives in the UMBRELLA repo (REE_Working/scripts/), not here, because
+# it reads WORKSPACE_STATE.md and the umbrella's archive alongside claims.yaml.
+# `--root ..` is load-bearing: its DEFAULT_ROOT is the Mac's absolute path, so an
+# unqualified call would silently audit the wrong tree on the hub. Absence is
+# reported rather than skipped silently -- an `[ -f ]` gate that says nothing is
+# how a guard rots unnoticed (CLAUDE.md "Hooks"). Warn-only: `|| true` under
+# `set -e`, and the lint exits 0 with findings anyway unless --exit-nonzero. A
+# lint that can wedge the regen is worse than no lint.
+DANGLING_REFS_LINT="../scripts/audit_dangling_claim_refs.py"
+if [ -f "$DANGLING_REFS_LINT" ]; then
+  "$PYTHON" "$DANGLING_REFS_LINT" --root .. || true
+else
+  echo "NOTE: $DANGLING_REFS_LINT not found (umbrella repo not checked out beside" >&2
+  echo "      REE_assembly) -- dangling claim-reference audit skipped." >&2
+fi
+
 echo "--- Step 3m: Steward integrity detectors (warn-only) ---"
 # The NINTH standing scan, and the only one whose primary output is a single
 # BOOLEAN rather than a report a human reads. `escalate` is the gate that decides
