@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-20T04:06:58Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-937",
-      "result": "FAIL",
-      "completed_at": "2026-08-18T01:39:55.041877+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937a",
-      "result": "PASS",
-      "completed_at": "2026-08-18T01:58:59.389993+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-932a",
-      "result": "PASS",
-      "completed_at": "2026-08-19T09:43:28.834903+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-940",
-      "result": "PASS",
-      "completed_at": "2026-08-19T14:09:22.036786+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937b",
-      "result": "PASS",
-      "completed_at": "2026-08-19T14:24:34.057795+00:00"
-    }
+  "last_tick_utc": "2026-08-20T06:42:35Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-942",
+  "current_exq_started_utc": "2026-08-20T06:38:15.576879+00:00",
+  "current_title": "INV-013 E-ladder REALISED timescale-separation probe: does E1/E2/E3 own-state autocorrelation show the designed 1:3:10 monotonic ordering, or does it collapse like MECH-058 did",
+  "current_claim_id": "INV-013",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / warmup",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 10,
+    "episodes_total": 65,
+    "overall_pct": 5.1
+  },
+  "seconds_elapsed": 260,
+  "seconds_remaining": 3053,
+  "recent_lines": [
+    "Seed 11 Condition warmup",
+    "[train] warmup seed=11 ep 10/40"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5310 0192c4a 2026-08-20 (running r5309 775eb55)",
+  "runner_version": "r5315 20377ec 2026-08-20 (running r5312 1a4b6be)",
   "gpu": {
     "available": false
   },
