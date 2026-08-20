@@ -1,6 +1,15 @@
 # Context inference as an active, persistent control process
 
-**Status:** Provisional thought intake  
+Status: processed
+
+Intake: evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md
+
+Processed in:
+- docs/claims/claims.yaml#MECH-493
+- docs/claims/claims.yaml#MECH-494
+- docs/claims/claims.yaml#Q-094
+
+**Original status label:** Provisional thought intake  
 **Date:** 2026-08-19
 
 ## Core thought

@@ -1,6 +1,14 @@
 # Hippocampal episodic organisation beyond trajectory generation
 
-**Status:** Provisional thought intake  
+Status: processed
+
+Intake: evidence/planning/thought_intake_2026-08-19_hippocampal-episodic-organisation.md
+
+Processed in:
+- docs/claims/claims.yaml#MECH-495
+- docs/claims/claims.yaml#Q-095
+
+**Original status label:** Provisional thought intake  
 **Date:** 2026-08-19
 
 ## Core thought

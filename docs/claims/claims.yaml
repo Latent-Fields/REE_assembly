@@ -82974,3 +82974,431 @@
     predominantly out-group-weaponised, which track entrenchment/polarization. FALSIFYING:
     framing direction is unrelated to resolution outcome; both modes precede resolution and
     entrenchment equally often.
+
+- id: MECH-493
+  title: >
+    Context inference is an active, persistent control process rather than passive
+    nearest-match retrieval: selecting which latent situation is currently active is
+    itself a COMMITMENT-BEARING act that requires hysteresis (a switch threshold and
+    switch cost preventing small fluctuations from continuously reinterpreting the
+    situation) and a protected EXPLOITATION WINDOW (a period after selection during
+    which the organism acts on the interpretation rather than immediately reopening
+    inference). Without both, a sufficiently uncertainty-sensitive agent becomes
+    PERMANENTLY EPISTEMIC -- continuously checking, rarely acting. REE already has a
+    developed commitment-hysteresis account (MECH-106 dwell/switch-cost, MECH-047
+    asymmetric de-commitment) but applies it only to the ACTION/mode variable; this
+    claim asserts the same machinery is required one level up, on the CONTEXT
+    variable, where no dwell, switch cost, or protected window currently exists
+    (ARC-062's learned context discriminator is a soft per-step gate with none of
+    these). The loop spans existing modules (ContextMemory, epistemic_deficit,
+    orient/survey, event segmenter, commitment) and does NOT require a new executive
+    module.
+  claim_type: mechanism_hypothesis
+  subject: context.inference_as_hysteresis_bearing_arbitration
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: "2026-08-20"
+  depends_on:
+    - MECH-482   # epistemic_deficit accumulator -- the uncertainty/deficit signal this loop consumes; not extended by this claim
+    - MECH-483   # orient/survey -- the information-acquisition leg; this claim supplies the TERMINATION-and-protection mechanism MECH-483 lacks
+    - ARC-062    # learned context discriminator -- the natural V3 host for a hysteresis/dwell wrapper; currently a soft gate with no holding behaviour
+  related_claims:
+    - MECH-106   # commitment hysteresis with switching costs -- the SOURCE pattern being transferred from the action variable to the context variable
+    - MECH-047   # asymmetric de-commitment / long-timescale hysteresis -- same source family
+    - MECH-150   # ContextMemory cue-indexed retrieval -- the retrieval policy this claim reframes from nearest-match to best-explanation
+    - MECH-395   # pre-approach orienting -- has stabilise-then-exit, the closest existing analogue to the exploitation window, but per-cue and without re-entry protection
+    - MECH-494   # the switch CRITERION; this claim is the switch DYNAMICS. Siblings from the same 2026-08-19 intake -- do not re-derive one from the other
+    - MECH-309   # monomodal collapse -- pre-registered ALTERNATIVE EXPLANATION for a null; see what_would_answer non-degeneracy precondition
+    - Q-094      # what the active context should CONTAIN -- open question from the same intake
+  source_documents:
+    - docs/thoughts/2026-08-19_context-inference-active-persistent-control.md
+    - evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (mandatory -- without it the run is vacuous):
+    (i) the context variable must be observably live -- context assignment must vary
+    across episodes and be recoverable from the substrate, NOT collapsed to a single
+    value (cf. V3-EXQ-436f, where 3/5 seeds occupied exactly 1 of 16 ContextMemory
+    slots despite thousands of write() calls); (ii) the agent must not have collapsed
+    to monostrategy (MECH-309) -- either run on the ARC-062 gated-policy substrate or
+    pre-register MECH-309 collapse as an alternative explanation, because a
+    monostrategy agent has no context-conditional behaviour for context arbitration
+    to affect and will produce a null for reasons unrelated to this claim;
+    (iii) MECH-153's undifferentiated-ContextMemory finding (cosine_sim ~= 1.0 without
+    a supervised context objective) must be excluded or the retrieval path is silent.
+
+    CONFIRMING: in an environment family containing perceptually similar states
+    requiring OPPOSING policies, an agent with hysteresis + exploitation window
+    (a) maintains the active context under minor/transient ambiguity, (b) switches
+    when evidence genuinely and persistently favours another context, and (c) achieves
+    higher task competence than a matched no-hysteresis ablation BECAUSE it sustains
+    an interpretation long enough to act on it -- with the competence gain traceable
+    to increased mean dwell in a correct context, not merely to fewer switches.
+
+    FALSIFYING, two distinct routes, BOTH of which count against this claim:
+    (1) SUFFICIENCY OF THE SIMPLE ACCOUNT -- context switching in these environments is
+    fully explained by similarity retrieval alone or by unsigned prediction error
+    alone, with no residual variance for hysteresis/orienting to explain; the larger
+    mechanism is then unnecessary.
+    (2) OVERBUILD / PATHOLOGY -- adding uncertainty-sensitivity, orienting and
+    hysteresis fails to improve hidden-context discrimination, OR produces pathological
+    indecision (the permanently-epistemic failure: orienting occupancy rises without a
+    corresponding competence gain). Note route (2) is a REAL predicted risk of this
+    claim's own mechanism, not merely a null -- an agent with orienting but without a
+    protected exploitation window should be predicted to get WORSE, and observing that
+    specific pattern supports the necessity of the window while falsifying any account
+    that treats orienting alone as sufficient.
+  notes: >
+    Registered 2026-08-20 from the 2026-08-19 raw thought "Context inference as an
+    active, persistent control process". Full novelty analysis, including why the
+    individual legs of the loop are NOT re-registered (MECH-482 deficit, MECH-483
+    orienting, MECH-288 segmentation, MECH-150 retrieval all already exist), in
+    evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md.
+
+    The strongest part of this claim is that it is a TRANSFER of an existing, validated
+    in-repo pattern (commitment hysteresis) to a new variable (context), not a new
+    mechanism invented from scratch -- which is why it is registered as a candidate
+    rather than a speculative architectural commitment. The loop diagram in the raw
+    thought is FRAMING and is deliberately not registered as an architectural
+    commitment; the thought says so itself ("This need not imply a new executive
+    module").
+
+    Open questions carried from the raw thought and NOT resolved here: what determines
+    context inertia (i.e. what sets the hysteresis width, and whether it is fixed,
+    learned, or modulated by stakes); what signal terminates orienting; and when
+    mismatch should update the existing context in place rather than retrieve another
+    or create a new one. That last one is a three-way decision this claim treats as a
+    single "retain/switch/create" branch and does not decompose.
+
+    DO NOT queue an experiment against this claim in isolation. Its falsifier needs the
+    perceptually-similar / opposing-policy environment pair, which is the
+    similar-appearance/different-context cell of the 2x2 design in MECH-495's sibling
+    intake. Build that substrate ONCE for MECH-493, MECH-494 and MECH-495.
+
+- id: MECH-494
+  title: >
+    The criterion for abandoning an inferred context is PERSISTENT, STRUCTURED evidence
+    that the currently inferred latent situation no longer explains observations OR
+    THEIR ACTION CONSEQUENCES -- not unsigned prediction-error magnitude. A startling
+    transient, sensor noise, gradual environmental drift, and a genuine latent-state
+    transition can all produce large prediction error, and should NOT produce the same
+    response: transient surprise should not switch context, gradual drift may warrant
+    update-in-place rather than switch, and only genuine latent transition should
+    switch. The ACTION-CONSEQUENCE term is the part with no existing REE analogue:
+    MECH-288's slow-scale BOCPD change-point already supplies a persistence-based
+    (rather than threshold-based) boundary signal over z_goal, but it is computed over
+    observations and is consumed as a region KEY by downstream substrates
+    (MECH-269 anchor sets, per-region V_s, MECH-284 staleness, MECH-287 broadcast) --
+    nothing consumes it to arbitrate retain-vs-switch-vs-create over stored contexts.
+  claim_type: mechanism_hypothesis
+  subject: context.switch_criterion_structured_explanatory_failure
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: mechanistic
+  registered_utc: "2026-08-20"
+  depends_on:
+    - MECH-288   # event segmenter -- supplies the persistence/change-point machinery; this claim adds the action-consequence term and the missing arbitration consumer
+  related_claims:
+    - MECH-493   # the switch DYNAMICS (hysteresis + exploitation window); this claim is the switch CRITERION. Sibling from the same 2026-08-19 intake
+    - MECH-482   # epistemic_deficit -- already defined AGAINST transient prediction error, so its persistence requirement is a precedent for this criterion's shape
+    - MECH-074d  # BLA remap_signal -- the existing remapping trigger is a HARM-PE spike with attribution gating; this claim's trigger is explanatory reallocation. Different trigger, same downstream operation
+    - MECH-314a  # raw novelty -- explicitly NOT the criterion
+    - MECH-314b  # raw uncertainty -- explicitly NOT the criterion
+  source_documents:
+    - docs/thoughts/2026-08-19_context-inference-active-persistent-control.md
+    - evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the four conditions must be genuinely dissociable in
+    the substrate -- transient surprise, sensor noise, gradual drift, and abrupt latent
+    transition must each be independently inducible and must produce COMPARABLE
+    unsigned prediction-error magnitude at the moment of onset. If the abrupt-transition
+    condition simply produces larger PE than the others, the design cannot distinguish
+    this claim from a PE-magnitude threshold and the run is vacuous. Verify by
+    measuring the PE distributions per condition BEFORE scoring any switch behaviour.
+
+    CONFIRMING: context-switch rate is predicted by persistent structured explanatory
+    failure and NOT by instantaneous PE magnitude, specifically -- switches are rare
+    under transient surprise and under noise (high PE, no sustained explanatory
+    failure), rare-or-update-in-place under gradual drift, and reliable under abrupt
+    latent transition. Additionally, and this is the discriminating half: a condition in
+    which OBSERVATIONS remain well-explained but ACTION CONSEQUENCES do not (the same
+    scene now rewards the opposite policy) triggers switching, which an
+    observation-only criterion such as MECH-288's slow-scale BOCPD cannot detect.
+
+    FALSIFYING: switch behaviour is fully predicted by an unsigned-PE threshold or by
+    MECH-288's existing observation-side change-point alone, with the action-consequence
+    term adding no independent predictive power; OR the four conditions cannot be
+    behaviourally dissociated at all, which would indicate the criterion is not
+    implemented (distinct from being wrong -- report as non_contributory, not as a
+    claim-layer falsification).
+  notes: >
+    Registered 2026-08-20 from the 2026-08-19 raw thought "Context inference as an
+    active, persistent control process". See
+    evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md.
+
+    Registered SEPARATELY from MECH-493 deliberately: the criterion (when to switch) and
+    the dynamics (how sticky the switch is, and what protects the post-switch window)
+    are independently falsifiable and could be independently right or wrong. An
+    architecture could have a correct criterion with no hysteresis, or correct
+    hysteresis on a naive PE criterion. Testing them jointly and reporting one verdict
+    would confound them.
+
+    The action-consequence term is the load-bearing novelty. Stated plainly: REE's
+    existing change-detection is computed over what the agent OBSERVES; this claim says
+    the organism must also detect that the world still looks the same but no longer
+    RESPONDS the same. That is what makes the similar-appearance/opposing-policy
+    environment the right test substrate rather than an incidental design choice.
+
+- id: MECH-495
+  title: >
+    The objective for hippocampal/episodic memory organisation is RELATIONAL
+    APPROPRIATENESS, not maximal pattern separation: related experiences should overlap
+    appropriately (overlap is what supports generalisation and memory linking) while
+    behaviourally distinct latent situations should separate appropriately. It follows
+    that "more diverse slots", greater slot occupancy, and lower representational
+    overlap are NOT objectives in themselves, and that a metric which is monotonically
+    improved by increasing differentiation is scoring the wrong quantity regardless of
+    whether it is computed correctly. This is a claim about the TARGET, and is
+    therefore distinct from -- and not answered by -- the already-established finding
+    that REE's slot_cosine_sim family was computed incorrectly (whole-bank, no occupancy
+    mask; 2026-08-07 governance reversal at V3-EXQ-436d) or the finding that the
+    ContextMemory write path could not produce differentiation at all
+    (scores.mean(0).argmin() single-slot fixed point; V3-EXQ-436f).
+  claim_type: mechanism_hypothesis
+  subject: memory.relational_topology_objective
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: false
+  claim_level: architectural
+  registered_utc: "2026-08-20"
+  depends_on:
+    - MECH-154   # E1 as an addressable associative manifold with indexing -- asserts the geometry is addressable; this claim supplies the NORMATIVE TARGET for that geometry
+  related_claims:
+    - MECH-147   # DG pattern separation gates trajectory disambiguation -- its ablation prediction ("collapse trajectory diversity" = the failure signature) presumes separation is a MONOTONE good. Phase v4, so not urgent for it; challenged, not modified
+    - MECH-242   # pattern completion vs vector-based construction -- covers completion well; says nothing about how the store is ORGANISED so completion retrieves the relationally right thing
+    - MECH-288   # event segmenter -- the reciprocal-coupling proposal: persistent context mismatch should raise separation / open an episode, successful completion should support persistence
+    - SD-017     # sleep-driven slot differentiation -- the lineage whose operative DV objective this claim challenges. GOVERNANCE FLAG raised; NO status/confidence/evidence_direction change made by the registering intake
+    - ARC-045    # bidirectional hippocampus-neocortex flow -- its own premise ("context representations remain globally UNDIFFERENTIATED") is the assumption at issue
+    - MECH-166   # third member of the SD-017/ARC-045 slot-differentiation cluster
+    - Q-092      # "umpire, not ruler" -- the BEHAVIOURAL-side counterpart of the same magnitude -> relational reframing. Strong independent support; read the two together
+    - MECH-494   # context-switch criterion -- supplies the "behaviourally distinct latent situation" boundary this claim's topology is defined against
+    - Q-095      # whether explicit episodic organisation adds anything beyond existing trajectory memory -- open question from the same intake
+  source_documents:
+    - docs/thoughts/2026-08-19_hippocampal-episodic-organisation.md
+    - evidence/planning/thought_intake_2026-08-19_hippocampal-episodic-organisation.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (mandatory): (i) the memory store must actually be
+    recruiting multiple slots -- V3-EXQ-436f found 3/5 seeds occupying exactly 1 of 16
+    slots despite 2,837-4,903 write() calls each, and a single-slot store has NO
+    topology to evaluate, making any relational statistic undefined rather than merely
+    null; verify occupancy BEFORE computing any topology statistic. (ii) The environment
+    must expose GROUND-TRUTH latent-context labels, since the statistic is an agreement
+    measure against that structure -- this is a design constraint on the substrate, not
+    an afterthought. (iii) All four cells of the 2x2 must be populated at adequate n.
+
+    TEST DESIGN: vary perceptual similarity and latent-context identity INDEPENDENTLY --
+    (similar appearance, same context), (similar appearance, DIFFERENT context),
+    (different appearance, SAME context), (different appearance, different context).
+    The diagonal cells are what any similarity-driven store gets right for free. The two
+    OFF-DIAGONAL cells are the entire test: similar-appearance/different-context is
+    where a nearest-match store fails by MERGING; different-appearance/same-context is
+    where a maximal-separation store fails by SPLITTING.
+
+    CONFIRMING: representational similarity structure tracks LATENT-CONTEXT structure
+    rather than perceptual similarity -- specifically, representations in the
+    different-appearance/same-context cell overlap MORE than those in the
+    similar-appearance/different-context cell, and this ordering predicts downstream
+    generalisation and discrimination performance. Critically, a differentiation-
+    maximising objective scores the similar-appearance/different-context cell correctly
+    and the different-appearance/same-context cell BACKWARDS, so the two objectives make
+    OPPOSITE predictions in that cell -- that cell is the discriminator between this
+    claim and the incumbent objective, and a design that omits it cannot decide between
+    them.
+
+    FALSIFYING: a maximal-separation objective predicts downstream generalisation and
+    discrimination at least as well as the relational-topology objective across all four
+    cells (i.e. appropriate overlap confers no measurable benefit and separating
+    everything is not merely harmless but optimal); OR the relational statistic cannot be
+    computed at adequate power because latent-context ground truth is not recoverable
+    from the substrate (report non_contributory, not falsified).
+
+    NOT ANSWERED BY: any re-run of the SD-017/ARC-045/MECH-166 lineage scored on a
+    differentiation DV, however correctly that DV is computed. Six generations
+    (V3-EXQ-436a..436f) have established measurement and substrate facts about
+    differentiation; none of them tested whether differentiation is the right target.
+  notes: >
+    Registered 2026-08-20 from the 2026-08-19 raw thought "Hippocampal episodic
+    organisation beyond trajectory generation". Full novelty analysis, including why
+    five of the thought's six named capabilities (binding, segmentation, separation,
+    completion, indexing, remapping) are NOT re-registered as they are already covered by
+    MECH-147/154/242/288/074d, in
+    evidence/planning/thought_intake_2026-08-19_hippocampal-episodic-organisation.md.
+
+    GOVERNANCE FLAG RAISED at registration. Timing is why: the V3-EXQ-436 lineage ran six
+    generations and a re-derive brake fired at 436f (3rd substrate_ceiling hit against a
+    threshold of 2), refusing a same-question 436g re-queue until the write-path build
+    landed. That build HAS now landed (ree-v3 76cbf844, recorded 2026-08-19 in REE_assembly
+    17ee8c318b; refractory write-selection mode 692f8526d0 recorded in 3d868dd89c), and
+    the validation experiment was NOT yet queued as of 2026-08-20 (experiment_queue.json
+    empty). So the next event in this lineage is the DESIGN of a validation run, and on
+    current trajectory it will be scored against an occupied-slot cosine DIFFERENTIATION
+    DV. The flag asks governance to decide, BEFORE that run is designed, whether the DV
+    should remain a differentiation statistic or be re-specified as a relational-topology
+    statistic. The 3d868dd89c landing note already records that "the occupied-slot cosine
+    DV cannot discriminate the arms at 5 seeds", which is independent corroboration that
+    the DV question is live.
+
+    WHAT THIS CLAIM DOES NOT ASSERT: that the six generations were wasted. 436d (metric
+    defect), 436e (DV repair, confirmed sound) and 436f (substrate defect, now fixed) each
+    established something real. The assertion is only that a FOURTH, independent question
+    -- is the objective right? -- has never been asked in this lineage, and that the
+    cheapest moment to ask it is before the next run is designed rather than after it
+    scores. No status, confidence, evidence_direction or pending_retest_after_substrate
+    change was made to SD-017/ARC-045/MECH-166/MECH-147 by the registering intake; those
+    are governance's call.
+
+    Note the sws_slot_diversity blast radius: it is defined as 1 - slot_cosine_sim and is
+    emitted by every sleep-pass driver (v3_exq_242/243/245/245a/245b/246 share the shape),
+    so any criterion pre-registered on it inherits the objective question as well as the
+    already-documented whole-bank measurement confound.
+
+- id: Q-094
+  title: >
+    Should REE's active context representation include INTERNAL variables -- current
+    goal, bodily/interoceptive state, confidence, inferred social situation -- rather
+    than being primarily sensory scene identity? MECH-150 records a deliberate design
+    decision that E1 ContextMemory is queried with z_world ALONE and explicitly NOT the
+    full [z_self, z_world] state, on terrain-weighting grounds. If context is the
+    organism's inference about which latent SITUATION it is in (MECH-493/MECH-494)
+    rather than which SCENE it is looking at, then two states with identical z_world but
+    different goal, bodily state or confidence may be different contexts, and the
+    z_world-only query cannot represent that distinction in principle.
+  claim_type: open_question
+  subject: context.active_context_contents_internal_vs_sensory
+  polarity: open
+  status: open
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-08-20"
+  depends_on:
+    - MECH-150   # the standing z_world-only ContextMemory query design decision this question challenges
+  related_claims:
+    - MECH-493   # context inference as arbitration -- the reframing that makes this question live
+    - MECH-494   # switch criterion -- its action-consequence term is a second route to the same point (same scene, different consequences)
+    - MECH-153   # supervised context-labeling requirement -- any answer here interacts with the training objective, since what the query CAN represent and what training makes it represent are different questions
+    - ARC-041    # shared cue-conditioning substrate cluster with MECH-150/151/152
+  source_documents:
+    - docs/thoughts/2026-08-19_context-inference-active-persistent-control.md
+    - evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: ContextMemory must be producing differentiated
+    representations at all before a query-composition comparison is meaningful --
+    MECH-153 records cosine_sim ~= 1.0 without a supervised context objective, and two
+    query compositions over an undifferentiated bank are indistinguishable by
+    construction. Also requires states that genuinely share z_world while differing in
+    z_self, which must be verified in the substrate rather than assumed.
+
+    ANSWERED BY: a substrate comparison of ContextMemory queried with z_world alone
+    versus [z_self, z_world], on a task family containing states with matched z_world but
+    differing internal state (goal or bodily state) that require different policies.
+    Resolves toward INCLUSION if the augmented query discriminates those states and the
+    z_world-only query provably cannot, with the discrimination translating into
+    behavioural competence; resolves toward MECH-150's EXISTING DECISION if the augmented
+    query adds no discrimination, or degrades retrieval by making context over-sensitive
+    to internal fluctuation (the plausible cost: bodily state varies continuously, so
+    including it risks the context variable never being stable enough to exploit --
+    which is MECH-493's permanently-epistemic pathology arriving by a different route).
+
+    This is cheap and should go FIRST among the 2026-08-19 intake's follow-ons: it needs
+    no new environment family, only matched-z_world/differing-z_self states against the
+    existing bank, and MECH-150's own rationale for the exclusion is on record so the
+    comparison is well-posed.
+  notes: >
+    Registered 2026-08-20 from the closing open-questions section of the 2026-08-19 raw
+    thought "Context inference as an active, persistent control process". See
+    evidence/planning/thought_intake_2026-08-19_context-inference-active-persistent-control.md.
+
+    Registered as an open question rather than a mechanism hypothesis because the raw
+    thought poses it as a question and because MECH-150's exclusion of z_self is a
+    reasoned, recorded design decision rather than an oversight -- this is a challenge to
+    be adjudicated by measurement, not a defect to be fixed. The plausible failure mode of
+    inclusion (continuously-varying internal state destabilising the context variable) is
+    real and is stated in what_would_answer so that a negative result is interpretable
+    rather than reading as a bare null.
+
+- id: Q-095
+  title: >
+    Does explicit hippocampal episodic organisation (binding, segmentation, separation,
+    completion, indexing, remapping treated as ONE coordinated organising principle) add
+    predictive or behavioural capability beyond REE's existing trajectory-generation
+    account and the individually-registered mechanisms that already cover its parts
+    (MECH-147, MECH-154, MECH-242, MECH-288, MECH-074d) -- or is it a REINTERPRETATION of
+    mechanisms REE already has? The raw thought poses this against itself as its own
+    falsification condition: if the existing architecture already produces appropriate
+    episodic discrimination, completion and context-sensitive retrieval without an
+    additional organising principle, the thought is a re-description and should not be
+    promoted into the architecture.
+  claim_type: open_question
+  subject: hippocampus.episodic_organisation_adds_capability
+  polarity: open
+  status: open
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-20"
+  depends_on:
+    - MECH-495   # the relational-topology objective -- the one genuinely new assertion extracted from the same thought; if MECH-495 falsifies, this question largely resolves toward "reinterpretation"
+  related_claims:
+    - MECH-147   # pattern separation (v4)
+    - MECH-154   # addressable associative manifold with indexing
+    - MECH-242   # pattern completion vs vector-based construction
+    - MECH-288   # event segmenter (built)
+    - MECH-074d  # BLA remapping (demoted 2026-08-16)
+  source_documents:
+    - docs/thoughts/2026-08-19_hippocampal-episodic-organisation.md
+    - evidence/planning/thought_intake_2026-08-19_hippocampal-episodic-organisation.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the existing mechanisms must be ARMED and functioning
+    before "the existing architecture already suffices" can be tested. As of 2026-08-20
+    this is NOT the case -- MECH-288 is built, but MECH-147 is phase v4 and unbuilt,
+    MECH-074d was demoted 2026-08-16, and the ContextMemory write path was only repaired
+    on 2026-08-19 (ree-v3 76cbf844) with no validation run yet scored. A null result
+    obtained now would measure the substrate's readiness, NOT this question, and must be
+    reported non_contributory.
+
+    ANSWERED BY: comparing REE with and without an explicit coordinated organising
+    principle on the 2x2 design in MECH-495's what_would_answer, scored on downstream
+    generalisation and discrimination rather than on any internal representational
+    statistic. Resolves toward ADDS CAPABILITY if the coordinated version achieves
+    relational topology and downstream competence the sum of the individually-registered
+    mechanisms does not. Resolves toward REINTERPRETATION if the existing mechanisms,
+    once armed, already produce the appropriate overlap/separation pattern -- in which
+    case the correct disposition is to keep the thought as an explanatory framing in the
+    architecture docs and NOT register further mechanism claims from it.
+
+    This question is deliberately gated behind MECH-495 and behind substrate readiness;
+    it should NOT be the first thing tested from this intake.
+  notes: >
+    Registered 2026-08-20 from the "Potential falsification" section of the 2026-08-19 raw
+    thought "Hippocampal episodic organisation beyond trajectory generation". See
+    evidence/planning/thought_intake_2026-08-19_hippocampal-episodic-organisation.md.
+
+    Registered because the thought's self-directed skepticism is a genuine, answerable
+    question about REE's architecture and is worth carrying explicitly rather than
+    discarding -- an intake that registers only a thought's positive assertions and drops
+    its own stated falsification condition is recording half of it. Episodic BINDING (the
+    thought's capability 1: objects, locations, actions, internal states, goals, outcomes
+    and temporal relations bound into ONE coherent event representation) is the one
+    capability with no clean existing owner; it was deliberately NOT registered as its own
+    claim because the raw thought names it without developing it and it is substantially
+    entangled with MECH-154 and MECH-288. It is recorded as an open gap in the intake file
+    and is the most likely source of a future claim from this thought.
