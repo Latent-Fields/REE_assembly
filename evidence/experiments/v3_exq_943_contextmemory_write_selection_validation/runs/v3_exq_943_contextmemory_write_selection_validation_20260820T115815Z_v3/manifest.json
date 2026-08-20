@@ -1,0 +1,99 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_943_contextmemory_write_selection_validation",
+  "run_id": "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-20T11:58:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "write_address_fix_validated_under_real_agent",
+    "preconditions": [
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 2933.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_BIAS_occupancy_floor": true,
+      "C1_REFRACTORY_occupancy_floor": true
+    },
+    "criteria": [
+      {
+        "name": "C1_BIAS_occupancy_floor",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_passed": 5,
+        "n_seeds_required": 3
+      },
+      {
+        "name": "C1_REFRACTORY_occupancy_floor",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_passed": 5,
+        "n_seeds_required": 3
+      },
+      {
+        "name": "LEGACY_reference_reproduces_known_degeneracy",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_clearing_floor": 2,
+        "note": "Descriptive only -- confirms this run's operating point is comparable to 436e/436f's near-constant-query-stream lock. Not part of the PASS/FAIL gate (see module docstring 'Reference arm')."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "9fd8b2fbafdbff708f3ab4d9daee696277e4ac6f00d60a30bc746d20fb20a72a",
+  "substrate_commit": {
+    "commit": "b1f0d9f6f35200c685572a8287880d16a356cd1f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
