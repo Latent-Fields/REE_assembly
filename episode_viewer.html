@@ -1,4 +1,4 @@
-<!-- EPISODE_VIEWER_VERSION: 2026-04-03.1 -->
+<!-- EPISODE_VIEWER_VERSION: 2026-08-20.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,6 +188,9 @@
     .agentExplore  {}
     .orbitRing     { animation: exploreOrbit   2s linear infinite; transform-box: fill-box; }
   </style>
+  <!-- Shared narrow-viewport hardening. Loaded AFTER the inline <style> above so
+       its rules win specificity ties. Inert above 760px. -->
+  <link rel="stylesheet" href="/mobile.css">
 </head>
 <body>
 

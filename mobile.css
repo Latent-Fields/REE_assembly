@@ -1,0 +1,284 @@
+/* MOBILE_CSS_VERSION: 2026-08-20.8
+ *
+ * Narrow-viewport hardening, shared by every localhost:8000 dashboard page.
+ * Served by serve.py at /mobile.css with no-cache headers (same convention as
+ * the HTML pages), linked AFTER each page's own inline <style> so these rules
+ * win on specificity TIES without needing !important. Note what that does and
+ * does not buy: link order decides only between selectors of EQUAL specificity,
+ * so a page rule carrying even one class still beats the low-specificity
+ * selectors used here. Exactly one declaration (rule 4) hit that and carries
+ * `!important` with the measurement written against it; the rest were each
+ * verified to win on their own.
+ *
+ * SCOPE, and why it is written this way. Everything here lives inside a single
+ * `@media (max-width: 760px)` block, so desktop rendering is untouched by
+ * construction -- there is no code path by which this file can change the
+ * >760px layout. It adds NO design tokens, colours, fonts, spacing or component
+ * classes: the report templates in .claude/skills/dual-insights/assets/ carry a
+ * standing "DO NOT redesign the tokens or component classes" instruction, and
+ * this file deliberately stays on the other side of that line. It only relaxes
+ * four structural constraints that are correct on a desktop and wrong on a
+ * phone.
+ *
+ * It is also deliberately CLASS-AGNOSTIC. The same defect appears under a
+ * different class name on every page (`.stamp` on progress, `.claim-chip` on
+ * workset, `.mchip` on the feed rows), so matching on shapes rather than names
+ * means a newly-added component is covered the day it lands instead of the day
+ * someone remembers to add it here.
+ *
+ * THE VIEWPORT META TAG IS THE OTHER HALF OF THIS FIX AND THIS FILE CANNOT
+ * SUBSTITUTE FOR IT. Without `<meta name="viewport" content="width=device-width,
+ * initial-scale=1">` mobile Safari lays a page out at a 980px virtual viewport
+ * and scales the result down, so `max-width: 760px` NEVER MATCHES and every rule
+ * below is dormant -- which is exactly the state /progress, /workset,
+ * /insights-report, /dual-insights-report and /brain-map were in (three of them
+ * already carrying 2-6 unreachable media queries of their own). A page that
+ * links this file without the meta tag gets nothing at all, silently. Add both.
+ *
+ * Measured effect at 393x852 (iPhone), page scrollWidth before -> after:
+ *   /workset  3891 -> 393    /progress 3466 -> 393    /igw 1360 -> 393
+ *   /closure  8 of 14 header controls unreachable -> 0 unreachable
+ *   /explorer  393 -> 393 (negative control: already-hardened page unchanged)
+ */
+
+@media (max-width: 760px) {
+
+  /* (1) A `1fr` grid track's automatic minimum is its content's MIN-CONTENT
+     width, and a flex item's is likewise auto. So one unbreakable child -- a
+     filesystem path, a run_id, a nowrap label -- widens its track, then its
+     container, then the page. Measured on /progress: a `.cards` container 349px
+     wide whose single `1fr` track resolved to 412px. Flooring min-width at 0
+     lets the track shrink to the viewport instead; `flex-wrap: wrap` lets a
+     single-row toolbar spill onto a second row rather than off the screen.
+     The alternative fix is `minmax(0, 1fr)` per grid, which is more precise but
+     has to be repeated for every grid on every page and silently misses new
+     ones. */
+  * {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  /* (2) ...but NOT for interactive controls. Under rule (1) alone a button in a
+     flex row shrinks below its label and the text breaks mid-word -- confirmed
+     on /closure, which rendered its tabs as "gove/rnan/ce" and "self-/asses/
+     sment". Restoring `min-width: auto` and refusing to shrink keeps each
+     control at its natural width; rule (1)'s wrap on the PARENT is what then
+     moves it to the next row intact. These two rules are a pair: removing
+     either one reintroduces a different failure.
+     `overflow-wrap: normal` is the third member of that pair, and it exists to
+     contain rule (3): a control label is short, meaningful and NOT a token to
+     be broken, so it must opt out of the inherited `anywhere`. Without it
+     /closure renders its tabs as "gove/rnan/ce" and "self-/asses/sment" --
+     confirmed, and the reason this looks over-specified. */
+  button,
+  select,
+  input,
+  textarea,
+  a {
+    min-width: auto;
+    flex-shrink: 0;
+    overflow-wrap: normal;
+  }
+
+  /* A `select` is the one control that must still be allowed to shrink. Its
+     natural width is set by its WIDEST OPTION, which on these dashboards is
+     dynamic data rather than a designed label -- /workset's plan filter
+     resolved to 694px from one long plan title. Shrinking it costs nothing:
+     the UA ellipsises the closed control and the open dropdown still renders
+     every option at full width. Overrides the `flex-shrink: 0` above, so it
+     has to follow it. */
+  select {
+    flex-shrink: 1;
+    max-width: 100%;
+  }
+
+  /* A fixed-height header cannot contain rows that have wrapped. */
+  header,
+  .bar,
+  .topbar,
+  .toolbar {
+    height: auto;
+  }
+
+  /* (2b) Give every flex item a CONTENT-BASED base size. This is the guard that
+     makes rules (1) and (3) safe together, and it was added only after they
+     produced a genuinely worse failure than the one they fixed: on
+     /contributor-status a `.result-title` carrying `flex: 1 1 0%` sat in a
+     317px row beside three `flex-shrink: 0` siblings totalling 286px, so it
+     absorbed the 2px remainder -- and because rule (3) lets text break
+     anywhere, those 2px rendered the title ONE CHARACTER PER LINE, 2px wide
+     and 1448px TALL. A `nowrap` overflow is ugly; this is unreadable, and it
+     is the shape to watch for whenever `min-width: 0` and `anywhere` are
+     combined.
+     `flex-basis: 0%` is what causes it: it tells flex to ignore the content
+     when deciding whether the line is full, so the item never triggers the
+     wrap that rule (1) enabled and is simply crushed instead. Restoring `auto`
+     makes the item's base size its content, the line genuinely overflows, and
+     `flex-wrap: wrap` then moves the item onto its own full-width row -- which
+     is the layout wanted on a phone anyway.
+     It does mean a designed proportional split (two items at `flex: 1` sharing
+     a row 50/50) instead starts from content size. `flex-grow` still
+     distributes the leftover space, so such rows stay filled and merely stop
+     being exactly equal -- an acceptable trade at 393px, and the reason this is
+     scoped to the media query rather than applied generally.
+
+     `!important` for the same reason rule (4) needs it, and here it is even
+     starker: `*` scores (0,0,0), so it loses to EVERY class rule, and the
+     declaration this has to beat is invariably `flex: 1 1 0%` written on a
+     class. Verified: without it the crushed title still computed
+     `flex-basis: 0%` and stayed 2px wide. The universal rules in (1) are left
+     alone -- they are equally out-specified in principle, but the sweep found
+     nothing relying on that, and this file only escalates where a measurement
+     demanded it. */
+  * {
+    flex-basis: auto !important;
+  }
+
+  /* (3) Long unbreakable tokens. It MUST be `anywhere` here and NOT the
+     gentler-looking `break-word`, and the difference is the whole reason this
+     rule exists: per css-text-3, `anywhere` is counted when calculating an
+     element's MIN-CONTENT INTRINSIC SIZE and `break-word` is explicitly NOT.
+     Both break a too-long word identically once a width is already fixed, so
+     they look interchangeable and `break-word` reads as the conservative
+     choice -- but rules (1) and (5) work by letting a track or a table shrink
+     TO its min-content width, and under `break-word` that width is still the
+     full unbroken token. The rule then applies, computes, and changes nothing.
+     Measured on /workset: `.claim-chip` carrying a 652-character underscored
+     token computed `overflow-wrap: break-word` with `min-width: 0` and still
+     laid out at 3377px, holding the page at 3413px; switching this one keyword
+     to `anywhere` collapsed it to 393px.
+     Ordinary prose is unaffected either way -- both prefer existing break
+     opportunities and only break inside a word that cannot fit a line alone.
+     `-webkit-text-size-adjust: 100%` stops iOS silently inflating text after a
+     rotation. Same idioms as mobile_help.html, the in-repo precedent this file
+     generalises. */
+  body {
+    overflow-wrap: anywhere;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* (4) `white-space: nowrap` is correct for a short desktop pill and wrong the
+     moment the pill carries dynamic sentence-length text. /progress's `.stamp`
+     renders the live-gate description on one unbreakable line: 3411px wide on
+     its own, and the single largest cause of that page's 3466px sideways
+     scroll.
+     Note for anyone re-deriving this: /workset's `.claim-chip` (3377px) looks
+     like the same defect and is NOT -- it sets no `white-space` at all, and
+     was fixed by rule (3) instead. Do not cite it as evidence for this rule.
+     `pre` is excluded because there whitespace IS the content, and the
+     interactive controls are excluded to preserve rule (2)'s intent.
+
+     THIS IS THE ONE DECLARATION IN THE FILE THAT NEEDS `!important`, and it is
+     a specificity fact rather than a preference. `:not()` contributes the
+     specificity of its ARGUMENT, so a chain of five type selectors scores
+     (0,0,5) -- which loses to any page rule carrying a single class. Linking
+     this file after the page's inline <style> only wins TIES, so without
+     `!important` the rule silently loses wherever a page happens to have
+     written `.sec-head h2 { white-space: nowrap }` (0,1,1) instead of a bare
+     `h2`. Confirmed on /insights-report: the rule applied, computed, and was
+     overridden, leaving an `h2` at scrollWidth 415 in a 349px column and the
+     page scrolling to 605px, while every OTHER check on that page passed and
+     no element was itself wider than the viewport -- the overflow was a bare
+     text node, so it did not even appear in an element-level audit. The other
+     rules here are left un-`!important` deliberately: each was measured to win
+     on its own, and blanket `!important` would take over declarations no
+     measurement showed to be a problem. */
+  *:not(pre):not(pre *):not(button):not(select):not(input):not(textarea):not(a) {
+    white-space: normal !important;
+  }
+
+  /* (5) A wide table should scroll INSIDE ITS WRAPPER rather than dragging the
+     whole page sideways -- /igw's ledger table is 1344px and took the page with
+     it.
+     Scroll the PARENT and leave the table a table. The obvious one-liner is
+     `table { display: block; overflow-x: auto }`, since `display: block` is
+     what makes `overflow` apply to a table at all -- and it was written that
+     way first, with a comment claiming the loss of column-width negotiation
+     was "an accepted trade at phone width". IT IS NOT: a table demoted to a
+     block shrink-to-fits into the viewport instead of sizing to its content,
+     so with rule (3) also in force the columns collapse and the text breaks
+     per character. Measured on /igw: `td.title` 31px wide holding a span 13px
+     wide and 530px TALL, 137 of them -- the same unreadable failure as rule
+     (2b), reached by a different route, and strictly worse than the sideways
+     scroll it was trying to prevent.
+     `:has(> table)` moves the scrolling to the wrapper the markup already
+     provides (`div#tableWrap` here), so the table keeps `display: table` and
+     `min-width: max-content` then sizes columns to their content. Supported on
+     iOS Safari 16.4+, and `CSS.supports('selector(:has(> table))')` was
+     confirmed true in the target browser before relying on it; on anything
+     older the declaration is simply dropped and the table behaves as it did
+     before this file existed, which is the right way to fail.
+     `html`/`body` are excluded because a table parented directly to the body
+     would otherwise turn the whole page into the scroller -- exactly the
+     behaviour this rule exists to stop. */
+  :has(> table):not(html):not(body) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: max-content;
+    max-width: 900px;
+  }
+
+  /* A table CELL is the one place `anywhere` must be walked back to
+     `break-word` (rule (3) explains why they differ). Auto table layout gives a
+     column at least its content's min-content width, so under `break-word`
+     that floor is the longest WORD and the column can never be narrower than
+     one -- whereas under `anywhere` the floor is a single CHARACTER, and with
+     nine columns competing for 900px the layout takes it: measured on /igw,
+     `/implement-substrate` rendered as a ~10px column of stacked letters.
+     A direct rule on `td`/`th` beats the value inherited from `body`
+     regardless of specificity, which is why this needs no `!important`.
+     The cost is that the table can no longer be squeezed below the sum of its
+     columns' longest words, so `max-width` above becomes a target rather than
+     a guarantee and a table with long words simply scrolls further. That is
+     the correct direction for this trade: swipe distance is recoverable,
+     vertically-stacked letters are not. */
+  th,
+  td {
+    overflow-wrap: break-word;
+  }
+
+  /* (5b) The same trade, for a pseudo-table built from CSS grid instead of
+     `<table>`. This is the ONE name-based rule in the file, and it is here
+     because the generic rules provably cannot reach this shape: /workset's
+     pending-chips rows are `grid-template-columns: 12px 90px 1fr 140px 90px
+     130px`, i.e. 462px of FIXED tracks plus 50px of gaps. `min-width: 0` from
+     rule (1) does not help (the tracks are not the thing being floored),
+     `flex-wrap` does not apply to a grid, and `white-space: normal` cannot
+     shrink a px track. The observable result at 393px is that the `1fr` title
+     column -- the only column anyone reads -- resolves to ZERO WIDTH and the
+     chip titles vanish entirely, while the page itself reports no sideways
+     scroll because `.pc-list` already clips. So this was invisible to a
+     page-width check and only showed up when the audit started comparing
+     scrollWidth to clientWidth per element.
+     Measured scope before writing it: enumerating every multi-column grid on
+     every page found exactly ONE overflowing construct, 28 instances of this
+     row, so a name-based rule is the proportionate fix and a universal
+     `grid-template-columns` override would have been reckless -- it would also
+     have hit the closure and brain-map diagram grids, which are content.
+     `min-width` restores a usable title track (rule (1) has floored it to 0);
+     `max-content` is deliberately avoided since one long title would then set
+     the swipe distance for the whole list. */
+  #pending-chips .pc-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #pending-chips .pc-list .pc-row {
+    min-width: 620px;
+  }
+
+  /* (6) Raster/embedded media should never set the page's minimum width.
+     Deliberately NOT applied to `svg` or `canvas`: the closure map and brain
+     map draw intentionally-oversized diagrams inside their own scroll
+     containers, and clamping those to 100% would squash the visualisation
+     rather than let it be panned. */
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}

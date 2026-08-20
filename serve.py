@@ -6769,6 +6769,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
+        # /mobile.css -- the one shared stylesheet. Every dashboard page keeps its
+        # own inline <style> (the house convention); this carries ONLY the
+        # narrow-viewport hardening, which is identical for all of them and would
+        # otherwise be 16 copies to keep in sync. Same no-cache headers as the HTML
+        # pages so a phone reload always gets the current file.
+        # Served before any other route so a stylesheet request never falls through
+        # to the SimpleHTTPRequestHandler default handler.
+        if path == "/mobile.css":
+            css_file = SERVE_DIR / "mobile.css"
+            if css_file.exists():
+                content = css_file.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/css; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+                self.end_headers()
+                self.wfile.write(content)
+            else:
+                # A missing stylesheet must not blank a page: the pages degrade to
+                # their own inline CSS (i.e. to the pre-2026-08-20 desktop-only
+                # rendering), which is why 404 here is safe rather than fatal.
+                self.send_response(404)
+                self.end_headers()
+            return
         # Ensure explorer.html is present; attempt GitHub pull/clone if missing
         if path in ("/explorer", "/explorer.html"):
             if not (SERVE_DIR / "explorer.html").exists():
