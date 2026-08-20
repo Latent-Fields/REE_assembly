@@ -278,6 +278,20 @@ confounded statistic to every driver that calls a sleep pass.
    them as targets would make this artifact the **latest** adjudication of those run_ids under the
    re-derive brake's R2 latest-wins rule and silently supersede readings this sweep never re-derived.
 3. **`failure_location` added** per GOV-FAILLOC-1.
+4. **A GOV-APPLY-1 self-clearing trap, caught and fixed inside this confirmation.** The
+   `per_claim_recommendation.change` string as first written here ended
+   *"… reading stays `-> provisional`"*. `_reflects()` parses the text after the **last** `->`
+   and matches it against `evidence_direction` / `epistemic_category` / `status` /
+   `live_status.reading` — and `INV-044` already stores `status: provisional` **and**
+   `live_status.reading: provisional`. The audit therefore **cleared a disposition that is
+   entirely unapplied**; verified live, `INV-044` was *absent* from the ACTIONABLE list. Re-ended
+   on `-> standard`, which is currently **false** (`epistemic_category` is unset on `INV-044`),
+   and the row now surfaces correctly.
+   **General lesson worth carrying into the skill:** a `change` string must terminate on a value
+   that is **not yet true**, not merely on one `claims.yaml` is *capable* of storing. A status
+   that legitimately does not move is precisely the case where the documented "end on a storable
+   value" rule silently produces a false clear — and a disposition that reports itself applied
+   when it is not is strictly worse than one that is machine-invisible.
 
 ## Failure-location summary (GOV-FAILLOC-1)
 

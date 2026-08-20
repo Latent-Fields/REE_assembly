@@ -778,7 +778,7 @@
         "INV-044": {
           "recommended_evidence_direction": "non_contributory",
           "recommended_epistemic_category": "standard",
-          "change": "evidence_direction supports -> non_contributory (whole-bank slot_cosine_sim gate: both C1 and C2 are the raw statistic, and an untouched bank clears C1's 0.05 threshold at P=1.0000); status basis re-scoped to literature alone, reading stays -> provisional",
+          "change": "evidence_direction supports -> non_contributory on BOTH V3-EXQ-429 runs (the PASS gate is c1_pass AND c2_pass and both criteria are the raw whole-bank sws_slot_diversity; an untouched bank clears C1's 0.05 threshold at P=1.0000). This removes 2/2 of INV-044's experimental evidence, so its `provisional` reading is re-based on literature alone (6 entries, lit_conf 0.861) with that withdrawal stated in the evidence_quality_note; the reading itself does not move. INV-044 currently carries NO epistemic_category field at all, so set one -> standard",
           "pending_retest_after_substrate": true,
           "status_change": "none -- stays provisional, but re-based on literature alone (6 entries, lit_conf 0.861) with the withdrawal of its experimental support stated in the evidence_quality_note; user-confirmed 2026-08-20"
         }
@@ -818,7 +818,7 @@
         "INV-044": {
           "recommended_evidence_direction": "non_contributory",
           "recommended_epistemic_category": "standard",
-          "change": "evidence_direction supports -> non_contributory (whole-bank slot_cosine_sim gate: both C1 and C2 are the raw statistic, and an untouched bank clears C1's 0.05 threshold at P=1.0000); status basis re-scoped to literature alone, reading stays -> provisional",
+          "change": "evidence_direction supports -> non_contributory on BOTH V3-EXQ-429 runs (the PASS gate is c1_pass AND c2_pass and both criteria are the raw whole-bank sws_slot_diversity; an untouched bank clears C1's 0.05 threshold at P=1.0000). This removes 2/2 of INV-044's experimental evidence, so its `provisional` reading is re-based on literature alone (6 entries, lit_conf 0.861) with that withdrawal stated in the evidence_quality_note; the reading itself does not move. INV-044 currently carries NO epistemic_category field at all, so set one -> standard",
           "pending_retest_after_substrate": true,
           "status_change": "none -- stays provisional, but re-based on literature alone (6 entries, lit_conf 0.861) with the withdrawal of its experimental support stated in the evidence_quality_note; user-confirmed 2026-08-20"
         }
@@ -903,7 +903,8 @@
     "corrections_made_at_confirmation": [
       "recommended_epistemic_category for INV-044 changed from the draft's out-of-enum `measurement_test_design_defect` to `standard`. Governance writes this field into claims.yaml VERBATIM and validate_claims.py --strict ERRORs on anything outside the eight-value enum; the failure-mode wording is preserved in recommended_epistemic_category_note instead.",
       "targets[] and per_claim_recommendation added. The draft was sweep-shaped with no targets[], which makes a confirmed disposition invisible to GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py reads targets[].per_claim_recommendation and nothing else) -- the exact route by which an unapplied demotion decays into a standing positive claim.",
-      "failure_location added per GOV-FAILLOC-1: MEASURES FAILED, solo."
+      "failure_location added per GOV-FAILLOC-1: MEASURES FAILED, solo.",
+      "GOV-APPLY-1 self-clearing trap, caught and fixed during confirmation: the INV-044 per_claim_recommendation.change string first written at this confirmation ended '... reading stays -> provisional'. _reflects() parses the text after the LAST '->' and matches it against evidence_direction / epistemic_category / status / live_status.reading -- and INV-044 already stores status 'provisional' AND live_status.reading 'provisional', so the audit cleared a disposition that is entirely unapplied. Verified live: INV-044 was ABSENT from the ACTIONABLE list. Re-ended on '-> standard', which is currently FALSE (epistemic_category is unset on INV-044), so the row stays ACTIONABLE until governance actually writes it. GENERAL LESSON, worth carrying into the skill: a change string must terminate on a value that is NOT YET TRUE, not merely on one claims.yaml is capable of storing -- a status that legitimately does not move is exactly the case where the documented 'end on a storable value' rule silently produces a false clear."
     ],
     "live_recommendations_after_confirmation": [
       1,
