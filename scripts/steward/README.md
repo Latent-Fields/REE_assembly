@@ -722,6 +722,67 @@ regen aborts at a later blocking gate (Step 4b, Step 9c) and even though several
 hundred lines of regen output follow the step itself. A gate nobody reads is not
 a gate.
 
+### The `ref_moved` abort rate, and the launchd I/O-throttle fix (2026-08-20)
+
+**The measurement, and it is one data point, stated honestly.** By the time the
+plist was installed on DLAPTOP (2026-08-20T07:36Z, chip
+`chip-20260818-install-steward-sweep-launchd`), exactly one `RunAtLoad` firing
+had happened: `07:11:22Z`, `duration_s: 234.473`, `aborted: "ref_moved"` (master
+`d7792c59fe55` -> `a0b022a1dedf`; `origin/master` `6a7cd5a7b610` ->
+`3cb0cdfbc5d1`). To prove the write path anyway, that same session ran the sweep
+once more directly (foreground, not a second launchd firing): `07:19:06Z`,
+`duration_s: 82.439`, `committed: true`, 3 T0 repairs applied, landed as
+`55f1945eb0`. Both records are in `state/steward_ledger.jsonl`, `source:
+"steward_sweep"` -- as of this write-up they are still the only two entries that
+source has ever produced, so "the ratio" is 1 abort out of 1 real launchd run,
+not a multi-day trend. **That is a real gap against this file's own "MEASURE
+FIRST... a single first-run abort is not a trend" standard**, and the honest
+resolution is that the fix below rests on the *mechanism*, not the frequency:
+the 234.473s vs 82.439s gap (2.9x on the ledger's own `duration_s`, and reported
+informally as 234s vs "29s" for the foreground *analysis* phase alone, 8x) was
+measured **same-day, same repo state, same detector findings**, isolating the
+one thing that differed -- the plist's `ProcessType`/`Nice`/`LowPriorityIO`
+combination -- rather than inferring it from noisy day-to-day variance. A gate
+correctly refusing on its first live trigger is not proof the gate is
+mis-scheduled; the direct A/B timing comparison is what makes it a mechanism
+finding rather than a coincidence.
+
+**The fix (`com.ree.steward.plist`): drop `ProcessType Background` and
+`LowPriorityIO`, keep `Nice` (lowered 10 -> 5).** `LowPriorityIO` sets
+`IOPOL_THROTTLE` explicitly and `ProcessType Background` sets an equivalent
+policy implicitly; together they stretch every `git` call the sweep's
+pin/preview/guard/apply/commit sequence makes. `Nice` alone is CPU-only
+deprioritization and does not touch I/O scheduling, so it is kept (at a lighter
+value) for the reason the original comment gave -- this box runs many
+concurrent Claude sessions and has taken a jetsam event before -- without
+widening the D-102 pin-to-commit window the abort exists to bound.
+`StartInterval` (86400, daily) is **unchanged** -- the 2026-08-17 daily decision
+is not being revisited here, and `test_plist_parses_and_is_a_daily_agent`
+still pins it. `StartCalendarInterval` (a fixed quiet hour) was considered and
+**not** used: `origin/master` is written continuously by the phase3 writers and
+the cloud fleet (see "Coordinator" in the umbrella CLAUDE.md), so there is no
+reliably quiet hour to relocate the schedule to -- shortening the exposure
+window is the lever that actually helps, moving it is not.
+
+**Do NOT read this as evidence the gate is too strict, and do not weaken it.**
+The gate wrote nothing both times it could have mattered, which is exactly its
+job; the fix only removes an artificial 2.9-8x inflation of the window it has
+to survive, so a ref move that would have raced it anyway still aborts it.
+
+**Not verifiable from this session, and why.** This measurement and the plist
+edit were done on `ree-cloud-5` (chip `chip-20260820-steward-sweep-launchd-refmoved-rate`,
+headless) -- `launchctl` does not exist on Linux, so neither the live agent's
+loaded state nor the effect of this change could be checked from here, and per
+this file's own "Install" line the plist is cached by launchd: editing the
+version-controlled copy alone changes nothing until
+`install_steward_sweep.sh` is re-run **on DLAPTOP**. That is a required,
+undone follow-up, not an optional one -- until it happens, the Mac keeps
+running the un-fixed cached plist. The next session on DLAPTOP (interactive,
+or the next `/session-land`-style pass that reads `WORKSPACE_STATE.md`) should
+re-run the installer and then watch `state/steward_ledger.jsonl` for
+`source: "steward_sweep"` records over the following several days to confirm
+the fix actually holds beyond this single measured case.
+
 ### The report and the ratchet state stay gitignored -- and the two reasons differ
 
 `reports/steward_report.json` and `state/steward_state.json` were left

@@ -37,9 +37,28 @@
   writer competing with those is the contention this repo's concurrency rules
   exist to avoid. Same exclusion as the git commit guards.
 
-  ProcessType Background plus a low Nice: this box runs many concurrent Claude
-  sessions and has taken a jetsam event before, so a once-a-day hygiene job must
-  never compete for CPU.
+  CPU niceness, WITHOUT disk I/O throttling (fixed 2026-08-20,
+  chip-20260820-steward-sweep-launchd-refmoved-rate). The first-ever scheduled
+  run (2026-08-20T07:11Z) took 234.473s of analysis under the original
+  ProcessType Background + Nice 10 + LowPriorityIO combination and ABORTED on
+  the D-102 moving-ref guard, correctly, since REE_assembly's origin/master
+  is written continuously by the phase3 writers and the cloud fleet, so a
+  234s pin-to-commit window has a real chance of a ref move on any given day.
+  The very next run, 8 minutes later at normal (foreground) priority,
+  finished in 82.439s and committed cleanly (55f1945eb0). That is not this
+  box's jetsam risk disappearing, it is IOPOL_THROTTLE specifically, which
+  LowPriorityIO sets explicitly and ProcessType Background sets implicitly,
+  stretching every git call the sweep makes (D-102's pin, run_detectors.py's
+  scan of evidence/planning/, the frontmatter check, the commit). Dropping
+  LowPriorityIO and ProcessType Background removes that I/O throttle; Nice
+  alone (lowered from 10 to 5) keeps CPU-only deprioritization for the
+  many-concurrent-Claude-sessions / prior-jetsam concern this key was
+  originally added for, without widening the exposure window the D-102 gate
+  has to survive. See "The daily T0 sweep (2026-08-18)" in README.md for the
+  full before/after measurement and why StartCalendarInterval was NOT chosen
+  as the fix (the fleet writes origin/master around the clock, so there is no
+  reliably quiet hour to move the schedule to; shortening the window beats
+  relocating it).
 
   Install: bash /Users/dgolden/REE_Working/REE_assembly/scripts/steward/install_steward_sweep.sh
   Log:     ~/Library/Logs/ree_steward_sweep.launchd.log
@@ -72,12 +91,8 @@
     <key>RunAtLoad</key>
     <true/>
 
-    <key>ProcessType</key>
-    <string>Background</string>
     <key>Nice</key>
-    <integer>10</integer>
-    <key>LowPriorityIO</key>
-    <true/>
+    <integer>5</integer>
 
     <key>StandardOutPath</key>
     <string>/Users/dgolden/Library/Logs/ree_steward_sweep.launchd.log</string>
