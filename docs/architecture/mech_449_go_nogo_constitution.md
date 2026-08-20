@@ -102,7 +102,7 @@ supply the SD-056-trained `e2.world_forward` + ARC-065 GAP-A
 `candidate_summary_source=e2_world_forward` divergent pool + a modulatory channel,
 else self-route `substrate_not_ready_requeue`).
 
-### Envelope-width gating of the SOFT axes (V3-EXQ-926a, 2026-08-16)
+### Envelope-width gating of the SOFT axes (V3-EXQ-926a, 2026-08-16; frequency corrected by V3-EXQ-937b, 2026-08-20)
 
 The `gng_protect_min_eligible` fail-open and the MECH-448 envelope compose into an
 **operating-point constraint that is invisible from either lever alone**, and it is
@@ -116,18 +116,32 @@ envelope is *designed* to narrow. So the two defaults interact: the more decisiv
 discriminates, the less the soft opponency leg can act.
 
 At the shipped `f_eligibility_envelope_floor = 0.30` with `K = 4` candidates this is
-the common case, not a corner. Measured while authoring **V3-EXQ-926a**
-(`v3_exq_926a_mech449_perseveration_nogo_falsifier`):
+**not** the common case. Measured while authoring **V3-EXQ-926a**
+(`v3_exq_926a_mech449_perseveration_nogo_falsifier`, 16 banks):
 
 | `f_eligibility_envelope_floor` | median envelope size | soft No-Go applied |
 |---|---|---|
-| `0.30` (shipped default) | 1 | **6 / 16** banks |
-| `0.10` (what 926a runs at) | 2 | **15 / 16** banks |
+| `0.30` (shipped default) | 1 | 6 / 16 banks |
+| `0.10` (what 926a runs at) | 2 | 15 / 16 banks |
 
-The identical mechanism converted **1/16** at the default floor. **926a's PASS is
-therefore recorded at floor 0.10 and carries no evidence about the perseveration axis
-at the shipped default** -- the caveat governance recorded as `evidence_quality_note`
-on MECH-449 and ARC-107 on 2026-08-16 (`REE_assembly` `288c1c7b98`).
+**That table DID NOT REPLICATE.** V3-EXQ-937b's larger, K-matched per-bank
+re-measurement (384 banks, 3 seeds, `floor = 0.30`, `K = 4`; confirmed
+`failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18`) found:
+
+| `f_eligibility_envelope_floor` | median envelope size (`K = 4`) | gate applied (envelope >= 2) |
+|---|---|---|
+| `0.30` (shipped default) | 2 | **263 / 384 banks (~68%)** |
+
+and that conversion is in fact a **deterministic step function** of per-bank envelope
+size -- envelope 1 -> 0 conversions, envelope >= 2 -> 100%, **0 exceptions over
+12,672 ARM_CONSTITUTION banks**. 926a's PASS remains recorded at floor 0.10 (the
+caveat governance recorded as `evidence_quality_note` on MECH-449 and ARC-107 on
+2026-08-16, `REE_assembly` `288c1c7b98`, is about that run's own floor-0.10 scope,
+not the corrected default-floor figures above). V3-EXQ-937b is diagnostic-purpose
+(selection-face synthetic, no training, no agent loop) and its own confirmed autopsy
+(`failure_autopsy_V3-EXQ-937b_2026-08-20`) found its load-bearing criterion
+analytically entailed by this guard's own logic -- a manipulation check confirming
+the arithmetic above, not independent behavioural evidence; it **promotes nothing**.
 
 **Diagnostic signature.** `go_nogo_n_soft_requested > 0` together with
 `go_nogo_n_soft_applied == 0`: the axis fired and the fail-open refused it. A run
@@ -148,9 +162,8 @@ conversion rate alone.
 **This is lawful composition, not a defect.** On a one-survivor envelope F has already
 decided, and dropping the last candidate is exactly the catatonia / avolition pole the
 fail-open exists to prevent (see *Psychiatric failure mode* below). Whether `0.30` is
-the right production default *given* that it leaves the soft axes near-inert at `K = 4`
-is a separate design question that needs its own evidence and a governance call. **Do
-not move a default to make an axis fire.**
+the right production default is a separate design question that needs its own
+evidence and a governance call. **Do not move a default to make an axis fire.**
 
 ## MECH-094
 
