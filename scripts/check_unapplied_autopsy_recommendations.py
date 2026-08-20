@@ -87,15 +87,18 @@ BUCKETS
                          Added 2026-08-20. This is the bucket that would have
                          caught MECH-236, and it exists because
                          `unapplied_disposition` could not: it keys on the
-                         target-level
-                         `recommended_evidence_direction` (1175 of 1190
-                         confirmed targets) rather than
-                         `per_claim_recommendation` (25 of 1194), and it opens
-                         the manifest instead of trusting claims.yaml prose.
+                         target-level `recommended_evidence_direction`, which
+                         nearly every confirmed target carries, rather than on
+                         `per_claim_recommendation`, which only a few dozen of
+                         them do. That is an order-of-magnitude-plus coverage
+                         gap; the run-time `coverage:` line prints both counts
+                         as they stand today. And it opens the manifest
+                         instead of trusting claims.yaml prose.
 
                          It is NOT the category-compare inference rejected
-                         below at 338 mismatches. That one INFERRED "a change
-                         is owed" from two fields that legitimately differ.
+                         below on precision grounds. That one INFERRED "a
+                         change is owed" from two fields that legitimately
+                         differ.
                          This compares a recommendation the artifact states
                          outright against the field the indexer scores -- a
                          disagreement is a fact about two files, not a
@@ -136,6 +139,18 @@ so `unapplied_disposition` can only see targets that adopt it. The audit prints
 its own coverage (`N of M confirmed targets carry a machine-readable per-claim
 disposition`) rather than silently implying it checked everything.
 
+NO CORPUS COUNTS ARE INLINED IN THIS FILE'S PROSE, AND THAT IS DELIBERATE. Every
+coverage figure is printed at run time by the `coverage:` block in main(); read it
+there. Hardcoded counts were removed on 2026-08-20 after three disagreeing values
+for one quantity accumulated in this single file (a docstring count, a code-comment
+count, and what the script actually printed). A corpus measurement embedded in
+prose is true only on the day it is written, and re-measuring it by hand merely
+resets the clock. Where a magnitude is load-bearing to an ARGUMENT it is stated as
+a magnitude ("a few dozen", "an order of magnitude"), never as a precise count. Do
+not "helpfully" restore exact numbers here. Historical one-off measurements of
+things this script does NOT compute (e.g. the rejected category-compare inference
+below) are kept, but always carried with the date they were taken.
+
 That under-claim is deliberate, and it is the honest design. The rejected
 alternative was to INFER "change owed" by comparing each target's
 `recommended_epistemic_category` against the claim's current one. Measured
@@ -144,9 +159,9 @@ which are NOT defects -- an affirming autopsy (routing `governance-affirm`,
 direction unchanged) legitimately recommends a per-target category that the claim
 layer never mirrors. `failure_autopsy_V3-EXQ-778a_2026-07-20` is the canonical
 example: `instrument_repair_validated` against four claims that correctly carry no
-category. A 338-line report that is mostly wrong would be ignored, and an ignored
-report is the same failure as no report. Precision first; coverage grows as the
-convention spreads.
+category. A report of that size that is mostly wrong would be ignored, and an
+ignored report is the same failure as no report. Precision first; coverage grows
+as the convention spreads.
 
 KNOWN LIMIT. `superseded_citation` keys on run_id, so it cannot see a supersession
 that moves to a DIFFERENT run. Q-044 is exactly that case -- it cites the 604b
@@ -162,8 +177,10 @@ USAGE
 
 `--strict`'s contract is DELIBERATELY UNCHANGED by the direction bucket: it gates on
 `unapplied_disposition` only, because governance.sh Step 3h and any CI caller predate
-the new bucket and adding ~150 hits to their exit code would silently convert a
-warn-only step into a failing one. `--strict-direction` is the opt-in.
+the new bucket. That bucket runs an order of magnitude hotter than
+`unapplied_disposition` (compare the two counts in the report header), so folding
+it into their exit code would silently convert a warn-only step into a failing
+one. `--strict-direction` is the opt-in.
 
 Tests: scripts/test_check_unapplied_autopsy_recommendations.py
 """
@@ -393,8 +410,8 @@ class ManifestResolver:
     run_id field concludes it did. Measured 2026-08-20: 7 live (claim, run)
     rows differ on exactly this, all in the direction of under-reporting.
 
-    Manifests are loaded LAZILY -- the corpus is ~2800 packs and this audit
-    needs ~1100 of them.
+    Manifests are loaded LAZILY -- the pack corpus runs to thousands of files
+    and this audit needs only the subset that a confirmed target names.
     """
 
     def __init__(self, root: Path):
@@ -675,14 +692,16 @@ def scan(root: Path) -> dict:
     # ------------------------------------------------------------------
     # BUCKET unapplied_evidence_direction (added 2026-08-20)
     #
-    # Keys on the target-level `recommended_evidence_direction`, present on
-    # 1175 of 1190 confirmed targets, against `per_claim_recommendation`'s 27.
-    # That 43x coverage gap is why unapplied_disposition could not see
-    # MECH-236: both of that artifact's targets were skipped before any
-    # check ran.
+    # Keys on the target-level `recommended_evidence_direction`, which nearly
+    # every confirmed target carries, against `per_claim_recommendation`'s few
+    # dozen. (No counts inlined -- main() prints both at run time; see the
+    # module docstring's COVERAGE IS REPORTED section for why.) That
+    # order-of-magnitude-plus coverage gap is why unapplied_disposition could
+    # not see MECH-236: both of that artifact's targets were skipped before
+    # any check ran.
     #
     # This is NOT the category-compare inference the module docstring rejects
-    # at 338 mismatches. That one INFERRED "a change is owed" from two fields
+    # on precision grounds. That one INFERRED "a change is owed" from two fields
     # that legitimately differ. This one reads a recommendation the artifact
     # states outright and compares it to the field the indexer scores -- a
     # disagreement here is a fact about two files, not a judgement.
