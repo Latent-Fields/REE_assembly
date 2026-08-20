@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_099",
+  "entry_id": "2026-08-20_sd_099_changes_of_mind_commitment_window_resulaj2009",
+  "timestamp_utc": "2026-08-20T05:14:28Z",
+  "claim_ids_tested": ["SD-099"],
+  "source": {
+    "title": "Changes of mind in decision-making",
+    "authors": ["Resulaj A", "Kiani R", "Wolpert DM", "Shadlen MN"],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08275",
+    "pmid": "19693010",
+    "volume": "461",
+    "issue": "7261",
+    "pages": "263-266"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Not a defensive-behavior or orienting study -- included as a deliberate CONTRAST anchor for what a genuinely sub-theta-cycle (Option C) persistence window looks like in real decision-making data, so its own commitment-reversal window (a few hundred ms) can be checked against the multi-second defensive-freezing entries elsewhere in this directory. Direction coded mixed because it neither directly supports nor weakens SD-099 -- it calibrates what fast-decision-commitment timescales actually look like, and the answer sharpens the contrast rather than closing it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This paradigm shows that when a biological decision-making system genuinely operates on a sub-second commitment window, that window is reported in the low hundreds of milliseconds (a few hundred ms), not the 60-125ms range Option C proposes -- so even the fastest well-characterized human decision-commitment literature does not land inside Option C's own range, a further data point against reading Option C's magnitude as biologically typical."
+  ],
+  "tags": ["sd_099", "decision_commitment", "point_of_no_return", "changes_of_mind", "contrast_anchor", "persistence_timescale"],
+  "mapping": {
+    "source_claim_statement": "Human subjects making a rapid two-alternative perceptual decision (indicated by a reaching movement) continue to integrate sensory evidence already 'in the pipeline' for a further window after initiating their movement, and can reverse their initial choice (a 'change of mind') visible in the hand trajectory, if that additional evidence favors reversal. This window of continued influence/reversibility is on the order of a few hundred milliseconds after initial commitment, after which the trajectory is effectively locked to the final choice.",
+    "ree_translation": "Used here as a calibration anchor rather than direct evidence for SD-099's mechanism: this is the closest well-quantified example in the decision-neuroscience literature of a genuinely FAST (sub-second) post-commitment window, so it answers 'what does a real ~100-300ms biological commitment window look like, and does Option C's 60-125ms match that class of phenomenon or the multi-second defensive-state class documented elsewhere in this directory'. The answer is: it is closer to Option C's order of magnitude than the defensive-freezing entries are, but even this -- the fastest class of biological decision-commitment dynamics reviewed in this pull -- runs to a few hundred ms, sitting closer to Option A's lower bound (625ms, i.e. roughly 2-5x this window) than to Option C's (60-125ms, i.e. below this window).",
+    "mapping_caveat": "This is an arbitrary 2-alternative perceptual-motor decision (dot-motion direction, indicated by a fast reaching movement) in a healthy human, with no defensive/threat/orienting content at all -- not a valence-gated approach/withdraw decision, not rodent, not triggered by a sudden unanticipated onset. It measures the window during which a decision remains REVISABLE by evidence already in the processing pipeline, which is a related but distinct quantity from SD-099's question of how long an ALREADY-RESOLVED decision continues to bias SUBSEQUENT, separate action-selection events. Included specifically as an order-of-magnitude contrast, not as a direct behavioral analog."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.30,
+    "transfer_risk": 0.55,
+    "notes": "Source quality very high (Nature, Shadlen lab, a foundational and heavily replicated result in decision neuroscience). Mapping fidelity low -- the domain (perceptual-motor 2AFC) and the specific quantity (pre-commitment revisability window vs. post-commitment behavioral-bias persistence) both differ substantially from SD-099's mechanism; included for contrast value rather than direct support. Transfer risk elevated for the same reasons, moderated somewhat by this being the standard reference point the decision-neuroscience field itself uses for 'how fast can a real commitment window be'."
+  }
+}

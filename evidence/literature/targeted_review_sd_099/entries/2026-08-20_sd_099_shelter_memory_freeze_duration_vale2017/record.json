@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_099",
+  "entry_id": "2026-08-20_sd_099_shelter_memory_freeze_duration_vale2017",
+  "timestamp_utc": "2026-08-20T05:14:28Z",
+  "claim_ids_tested": ["SD-099"],
+  "source": {
+    "title": "Rapid Spatial Learning Controls Instinctive Defensive Behavior in Mice",
+    "authors": ["Vale R", "Evans DA", "Branco T"],
+    "year": 2017,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2017.03.031",
+    "pmid": "28416117",
+    "pmc": "PMC5434248",
+    "volume": "27",
+    "issue": "9",
+    "pages": "1342-1349"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Triangulates the Shang 2018 seconds-scale finding with a second, independent, graded-threat paradigm (freezing duration scales with looming urgency, 630ms to 7.9s) and adds a distinct spatial-persistence measure (4.6s), but the direction is coded mixed because the paper's central finding -- that defensive behavior is state-dependent/re-entrant on shelter availability, updating within 1-2 trials -- argues against 'fixed duration' as the right primitive at all (bears on Q2, not just Q1).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The fastest measured freezing-state duration in this paper (629.9 +/- 100.0 ms, rapid-looming/shelter-closed condition) still lands almost exactly at Option A's own lower bound (625ms), not inside Option C's 60-125ms range -- a second independent triangulation point against the sub-theta-cycle reading.",
+    "Defensive strategy (freeze vs. flee) reversed COMPLETELY within a single subsequent trial once the shelter route was reopened -- a fixed-duration bias window is a worse model of this system than an evidence/state-gated one; a rigid tick-count may be the wrong primitive regardless of which magnitude is chosen."
+  ],
+  "tags": ["sd_099", "orienting", "defensive_behavior", "shelter_memory", "freezing_duration", "state_dependence", "persistence_timescale"],
+  "mapping": {
+    "source_claim_statement": "Mice escaping a threat target a previously memorized shelter location, and that memory forms within a single visit as short as 18s. When the shelter route is experimentally closed, the looming-elicited freezing response itself lengthens and depends on threat urgency: fast/near-maximal looming produces freezing of 629.9+/-100.0ms, while a slow-expanding (less urgent) looming spot produces freezing of 7.9+/-2.7s. Separately, after an unexpected arena rotation, mice linger near the pre-rotation (now-incorrect) shelter-relative location for 4.6+/-0.2s before updating. When a previously closed shelter route was reopened, defensive strategy reverted to flight again within a single subsequent stimulus presentation 5 minutes later -- i.e. behavior is state-dependent and rapidly reversible, not committed to a fixed schedule.",
+    "ree_translation": "Two distinct contributions to SD-099. (1) A second, independent order-of-magnitude anchor for post-orienting defensive-state persistence, converging with the Shang 2018 entry: even the FASTEST measured condition here (630ms) sits at Option A's own lower edge, not inside Option C's range. (2) A direct empirical bearing on Q2: the biological system's defensive-strategy commitment is not well described as a fixed-duration bias at all -- it re-evaluates and can fully reverse within a single subsequent encounter when the state that produced it (shelter availability) changes. This is evidence that SD-099's own tick-count denomination question may be secondary to a more basic design question about whether a FIXED TICK COUNT is the right primitive versus a state/evidence-gated clear condition.",
+    "mapping_caveat": "The freezing-duration numbers here are for a genuinely different manipulation (shelter route open vs. closed) than SD-099's approach/withdraw/resume valence decision, and the urgency-scaling result (630ms vs 7.9s) shows the biological duration is itself NOT a fixed constant but tracks stimulus/state parameters SD-099's tick-count design does not currently read. Mouse, small n for some conditions (arena-rotation n=8 animals), single lab/paradigm.",
+    "source_context": "Freely-moving mouse in an arena with a fixed or experimentally manipulated shelter location; looming and pure-tone threat stimuli; n=51 responses/26 animals main cohort, n=8 animals arena-rotation, n=12 animals shelter-memory timing."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Current Biology, Branco lab, precise quantification with SEM, causal shelter-manipulation design). Mapping fidelity moderate: strong on the magnitude question (independent seconds-scale anchor), directly informative but not decisive on the Q2 duration-vs-state-gating question. Transfer risk moderate-high, same class as the Shang 2018 entry."
+  }
+}

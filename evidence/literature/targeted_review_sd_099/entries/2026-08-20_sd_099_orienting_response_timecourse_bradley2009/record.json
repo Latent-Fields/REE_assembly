@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_099",
+  "entry_id": "2026-08-20_sd_099_orienting_response_timecourse_bradley2009",
+  "timestamp_utc": "2026-08-20T05:14:28Z",
+  "claim_ids_tested": ["SD-099"],
+  "source": {
+    "title": "Natural selective attention: orienting and emotion",
+    "authors": ["Bradley MM"],
+    "year": 2009,
+    "venue": "Psychophysiology",
+    "doi": "10.1111/j.1469-8986.2008.00702.x",
+    "pmid": "18778317",
+    "pmc": "PMC3645482",
+    "volume": "46",
+    "issue": "1",
+    "pages": "1-11"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Standard, well-cited review of the Sokolov-lineage human psychophysiological orienting response literature, giving the classical multi-second time course of the ORIENTING EPISODE itself (Q1b's cross-check quantity) rather than the post-decision persistence question (Q1) directly. Confidence held at moderate because it is a review synthesizing others' data rather than a primary quantitative source, and because it characterizes autonomic/attentional orienting components, not a behavioral action-selection bias.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-099's post-orienting bias window were meant to be much SHORTER than the orienting episode it follows, that would be a novel and unsupported claim -- every human psychophysiological component of the orienting response reviewed here (cardiac deceleration, electrodermal response, late positive potential) unfolds and resolves on a multi-second timescale, not a sub-200ms one."
+  ],
+  "tags": ["sd_099", "orienting", "sokolov", "psychophysiology", "time_course", "persistence_timescale"],
+  "mapping": {
+    "source_claim_statement": "The orienting response is not a single reflex but a cascade of dissociable components -- an early perceptual/cardiac-deceleration component, later electrodermal (action-readiness) and cortical (late positive potential, significance-detection) components -- that unfold and habituate at different rates across the seconds following an eliciting stimulus, organized by underlying defensive and appetitive motivational systems rather than being a unitary all-or-none event.",
+    "ree_translation": "This is Q1b's cross-check quantity: the duration of the orienting EPISODE itself, against which SD-099's post-decision bias persistence should be compared. Classical psychophysiology places the OR's own components on a multi-second time course (cardiac deceleration typically peaking several seconds post-onset, later components later still), which is the same order of magnitude as the Shang 2018 and Vale 2017 entries' measured post-decision freezing durations in this directory, not two orders of magnitude smaller. This is the source SD-099's own functional_restatement cites as 'the Sokolov orienting-reflex shape' -- this entry grounds that citation with the actual quantitative time course rather than leaving it as an unstated assumption.",
+    "mapping_caveat": "Human, not rodent; autonomic/attentional/electrocortical components of orienting (heart rate, skin conductance, EEG), not a behavioral action-selection bias or an approach/withdraw decision. This is a review's synthesis of a large prior literature, not a single new measurement, so the specific numbers it reports should be read as a well-established consensus range rather than a single-study point estimate. It does not itself address SD-099's approach/withdraw/resume decision at all -- it grounds only the 'how long does orienting itself take' half of the comparison (Q1b), not the post-decision persistence half (Q1)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.40,
+    "notes": "Source quality solid (established Psychophysiology review, well-cited, synthesizes a mature literature). Mapping fidelity moderate -- directly answers Q1b's cross-check quantity (orienting-episode duration) but says nothing about Q1's post-decision persistence question, and is human autonomic physiology rather than rodent defensive-behavior or REE's abstract decision architecture. Transfer risk moderate: human-to-agent and physiology-to-behavior gaps, offset by this being the specific theoretical lineage (Sokolov) SD-099's own design doc already invokes."
+  }
+}

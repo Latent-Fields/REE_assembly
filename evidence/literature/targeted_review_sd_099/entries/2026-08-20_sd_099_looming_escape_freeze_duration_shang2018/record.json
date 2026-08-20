@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_099",
+  "entry_id": "2026-08-20_sd_099_looming_escape_freeze_duration_shang2018",
+  "timestamp_utc": "2026-08-20T05:14:28Z",
+  "claim_ids_tested": ["SD-099"],
+  "source": {
+    "title": "Divergent midbrain circuits orchestrate escape and freezing responses to looming stimuli in mice",
+    "authors": ["Shang C", "Chen Z", "Liu A", "Li Y", "Zhang J", "Qu B", "Yan F", "Zhang Y", "Liu W", "Liu Z", "Guo X", "Li D", "Wang Y", "Cao P"],
+    "year": 2018,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-018-03580-7",
+    "pmid": "29581428",
+    "pmc": "PMC5964329",
+    "volume": "9",
+    "issue": "1",
+    "pages": "1232"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Directly quantitative, well-powered (n=58 mice, 44+14 by response type) primary measurement of exactly the transition this claim's persistence window concerns -- the fast defensive-orienting/escape response and the duration of the ensuing defensive state before the animal is free to resume normal behavior. Held below 0.8 because the paradigm measures freezing-state duration, not a specifically DECISIONAL (approach vs withdraw) bias, and is rodent/innate-defense rather than a graded valence-gated choice.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A design that assumes the post-orienting defensive bias clears within ~100ms (Option C, less than one theta cycle) is contradicted by two orders of magnitude by this paradigm's measured freezing-state duration (21-28s).",
+    "Escape ITSELF is fast (154ms latency, <1s duration) -- if SD-099's window were meant to model the ballistic motor act rather than the ensuing defensive STATE, sub-100ms would be defensible; conflating the two is the likely source of an under-estimate."
+  ],
+  "tags": ["sd_099", "orienting", "defensive_behavior", "looming", "freezing_duration", "persistence_timescale"],
+  "mapping": {
+    "source_claim_statement": "In response to a looming (simulated aerial predator) visual stimulus, mice show one of two stereotyped response patterns: Type I (76% of animals, n=44) escapes within 154+/-32ms then freezes for 28+/-4.5s; Type II (24%, n=14) freezes directly, with onset latency 163+/-29ms and duration 21+/-5.3s. The paper's own focus is the two parallel SC-PBGN / SC-LPTN circuits that produce this dichotomy, not the timing per se, but the timing numbers are given as a primary, well-replicated behavioral characterization.",
+    "ree_translation": "SD-099's DefensiveOrientingGate models a sudden-onset trigger (fast, ~one env-step-scale detection) that releases into a decision (approach/withdraw/resume) whose resulting score_bias then persists for orienting_post_override_bias_ticks. This paper measures the closest available real-world analog end to end: onset detection -> fast motor commitment (~150ms) -> a SUSTAINED post-commitment defensive STATE (freezing) that does not clear for 21-28 SECONDS. The bias-persistence window in REE is the analog of this post-commitment sustained state, not of the initial fast motor commitment itself.",
+    "mapping_caveat": "This is escape-or-freeze (a binary innate defensive reflex), not the graded approach/withdraw/resume VALENCE decision SD-099 implements downstream of its own orienting gate. There is no direct evidence here about how long a *resolved approach-vs-withdraw choice* specifically biases subsequent action selection -- only about how long the broader post-threat defensive state (of which such a choice would be one component) persists behaviorally. Mouse, single acute visual threat, one trial -- no data on how this scales with repeated/graded threat or across multiple subsequent choice points as SD-099's tick-count design implies.",
+    "source_context": "Head-fixed and freely-moving mouse, acute overhead looming-disc visual stimulus, single-trial behavioral scoring, n=58 total animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Nature Communications, large n, precise quantification, causal circuit dissection). Mapping fidelity moderate: freezing-state duration is the best available proxy for 'how long does a resolved defensive orienting event bias subsequent behavior' but is not itself a measurement of decision-bias persistence across discrete subsequent choices. Transfer risk moderate-high: mouse innate visual defense, single acute trial, no graded valence-gated choice."
+  }
+}
