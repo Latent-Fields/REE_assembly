@@ -24,7 +24,7 @@
     "ARC-107"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
     "MECH-449": "supports",
     "ARC-107": "supports"
@@ -120,5 +120,7 @@
     "commit": "5322f8148babc1cec3f83bc16dc7971851aaa075",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-937b_2026-08-20.json: V3-EXQ-937b discharges what the 937/937a cluster autopsy routed it to do -- it emits the per-bank (envelope size, converted) joint that 937a computed and discarded, re-keys every criterion to the per-bank mediator, closes 937a's elapsed_seconds always-core gap and carries ARM_OFF's tautology into the manifest -- and its aggregation_warning is exemplary. The methodological repair is real. But the stamped supports is NOT applied, because all six criteria are analytically entailed by the shipped code rather than measured. Verified independently over the raw per-bank columns: converted == (pre_nogo_envelope_size >= 2) holds with ZERO exceptions across all 12,672 ARM_CONSTITUTION banks. The mechanism is analytic: the suppression vector is built to peak on the target and PERSEVERATION_FLOOR = 0.5 makes soft_nogo a singleton; for ARM_CONSTITUTION that target IS the incumbent; and gng_protect_min_eligible = 1 re-admits the incumbent at envelope 1 (so the pick cannot move) and drops it at envelope >= 2 (so the argmin must move). Given both strata populated, C1's only reachable value is 1.0 against a 0.4 bar -- zero discriminating power, and the driver states this in advance. C4, C5 and C6 are forced by the same argument. This is a manipulation check, not a measurement. The manifest's construction_caveat concedes the coupling is 'PARTLY' a construction property and cites per_bank.incumbent_is_f_argmin as the column that records it; that column is tautological -- as coded it tests argmax(a vector built to peak at target) == target, and reads 1.0 on 38,016 of 38,016 banks INCLUDING all 12,672 ARM_SHUFFLED banks where target != incumbent by design -- so the caveat is carried but unquantified, and 'partly' understates a coupling that is total. Finally, top-level non_degenerate is ABSENT because the driver emits it only on the False branch (no else); reconstructed from the manifest's own values the correct declaration is true, and the per-criterion dict at interpretation.criteria_non_degenerate carries all six true. This is the third consecutive occurrence in the 937 lineage and validate_recording.py cannot see it (the field is outside ALWAYS_CORE_KEYS). Recording gap, not a data gap -- every quantity above was recomputed from the manifest without re-running anything.",
+  "epistemic_category": "standard"
 }

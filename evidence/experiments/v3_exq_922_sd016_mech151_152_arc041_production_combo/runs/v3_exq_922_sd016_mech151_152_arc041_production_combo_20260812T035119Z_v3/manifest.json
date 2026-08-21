@@ -29,7 +29,7 @@
   "evidence_direction": "weakens",
   "evidence_direction_per_claim": {
     "MECH-150": "supports",
-    "MECH-151": "supports",
+    "MECH-151": "non_contributory",
     "MECH-152": "does_not_support",
     "ARC-041": "does_not_support"
   },
@@ -184,5 +184,7 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-936_2026-08-18.json: [2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18, re-adjudication of V3-EXQ-922 for MECH-151 only; SUPERSEDES the MECH-151 disposition in failure_autopsy_V3-EXQ-922_2026-08-13]: GFLAG-0039 CONFIRMED and MECH-151's `supports` reading WITHDRAWN to non_contributory, on three grounds. (1) POWER: the entire support is ONE criterion, `action_bias_div_beats_off_control` -- a bare sign test, 2 of 3 seeds, with NO effect-size threshold. Under the null P(>=2 of 3) is exactly 0.5; the arm means overlap (A0 0.0305, A1 0.0509) and seed 42 inverts. (2) The criterion measures a pathway with NO RANKING SITE: GFLAG-0043's structural finding verified independently -- e3_selector.py contains ZERO references to action_object/action_bias, so MECH-151's asserted elevate/suppress ranking is UNIMPLEMENTED, not untrained; _action_bias_divergence (driver:523-527) is computed on extract_cue_context() output with no calls into HippocampalModule, E2 rollout or E3.select. (3) CORRECTION to GFLAG-0039's stated mechanism: manifest params and driver:429 record sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() was never called and 922 did NOT run against a 1-of-16-occupied bank -- implementing contextmemory-write-path-addressing-degeneracy does not retroactively rescue this run's reading. EXPLICITLY NOT CLAIMED (all three withdrawn on a full re-read of the 922 artifact and driver, after this autopsy first landed): that write-path-off left the slots untrained (they are a trainable nn.Parameter and 922 optimises agent.e1.parameters()); that the training objective GUARANTEES the DV (it is entailed by fitting, and the A0_OFF control runs the same training and is built for that route -- the driver's own lines 290-300 state this correctly); and any challenge to the 922 autopsy's REE-FAILED verdict for MECH-152/ARC-041, which rested on the first of those. This is NOT a demotion -- the demotion bar (tested fairly + biology supports the mechanism + still fails) is not met, because the claim was not tested fairly. Status unchanged (candidate); epistemic_category unchanged (standard); pending_retest_after_substrate stays true. READ-ACROSS, recorded not adjudicated: ARC-041's pre-registered dissociation signature is 'exactly one pathway survives' = MECH-151 supports / MECH-152 fails; withdrawing MECH-151's leg leaves the dissociation UNESTABLISHED (not refuted), so the 2026-08-13 HOLD on ARC-041 was correct and now has a second independent reason. Keep ARC-041 HELD and keep its epistemic_category substrate_conditional; this autopsy recommends no ARC-041 write.",
+  "epistemic_category": "standard"
 }

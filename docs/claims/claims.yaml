@@ -1256,6 +1256,11 @@
     jointly by L-space's recursive structure AND the online/offline split, not
     by L-space's per-layer clock rate alone. Does not falsify INV-013, which
     only requires SOME multi-timescale mechanism.
+  evidence_quality_note: |
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-942_2026-08-21.json]: V3-EXQ-942 (diagnostic, INV-013-tagged) self-routed substrate_not_ready_requeue because worst-seed eval steps were 899 vs a 3000 floor (EXQ-019's unmet C4, copied as MIN_STEPS_PER_SEED). That self-route is REJECTED as a C1 veto: seeds 11 and 23 each recorded 3750 steps (full 25x150, no early done); all three variance floors met (worst var_dz_world 8.21e-5 vs 1e-8); half-lives and lag-k autocorrelations are finite on every seed including seed 37 (n_dz=874 vs a 12-sample computational floor at MAX_LAG=10). Recomputing the driver's _monotonic_verdict from the manifest's own per_seed cells gives monotonic_ordering_confirmed=false on all three seeds (mean tau_e1 4.33 > tau_e2 3.00 > tau_e3 2.67 -- inverted vs designed tau(E1)<tau(E2)<tau(E3)) and still false if seed 37 is dropped (3.5, 3.0, 2.5). Unlike V3-EXQ-939, the 3000 floor is reachable (2/3 seeds cleared it) and is a real seed-37 survival under-run (~36 steps/episode), not a lattice-defective gate; it is still the wrong reason to void C1, and criteria_non_degenerate.C1 is hardcoded false in the P0NotReady branch rather than computed from check_degeneracy. This does not test INV-013 (existence audit; realised-vs-labeled delegated to ARC-001/002/004). Empirical half agrees with the three pre-run structural findings (e2_tick dead, LatentStack re-encoded every step, E3 precision mutated every env tick). e3 tick counts exceed N/10 because of MECH-091 phase reset (572/633/354 vs expected 375/375/90). is_committed never flipped (n_runs=1 on every seed). Same-question re-queue declined (mystery: known data). INV-013 STANDS.
+
+
+
 - id: INV-014
   title: "Representation and regulation are strictly separated."
   claim_type: invariant
@@ -19150,9 +19155,9 @@
     as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-922_2026-08-13"
-      as_of: "2026-08-13"
-      verdict: "supports -- narrow context-conditioning mechanism confirmed on 2/3 seeds under GOV-FANOUT-1's recommended production config; explicitly does NOT validate SD-055's CEM-gradient-restoration path (never invoked by this driver)"
+      from: "failure_autopsy_V3-EXQ-936_2026-08-18"
+      as_of: "2026-08-21"
+      verdict: "non_contributory -- GFLAG-0039 confirmed; V3-EXQ-922 supports withdrawn (sign test + no ranking site)"
   implementation_phase: v3
   epistemic_category: standard
   pending_retest_after_substrate: true  # SD-055 gradient-flow question remains open and untested by V3-EXQ-922 (see evidence_quality_note); a separate driver invoking the differentiable-CEM path is owed
@@ -19184,6 +19189,8 @@
     Registered 2026-03-31 from frontal cue-integration circuit design.
   evidence: []
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-936_2026-08-18.json]: [2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18, re-adjudication of V3-EXQ-922 for MECH-151 only; SUPERSEDES the MECH-151 disposition in failure_autopsy_V3-EXQ-922_2026-08-13]: GFLAG-0039 CONFIRMED and MECH-151's `supports` reading WITHDRAWN to non_contributory, on three grounds. (1) POWER: the entire support is ONE criterion, `action_bias_div_beats_off_control` -- a bare sign test, 2 of 3 seeds, with NO effect-size threshold. Under the null P(>=2 of 3) is exactly 0.5; the arm means overlap (A0 0.0305, A1 0.0509) and seed 42 inverts. (2) The criterion measures a pathway with NO RANKING SITE: GFLAG-0043's structural finding verified independently -- e3_selector.py contains ZERO references to action_object/action_bias, so MECH-151's asserted elevate/suppress ranking is UNIMPLEMENTED, not untrained; _action_bias_divergence (driver:523-527) is computed on extract_cue_context() output with no calls into HippocampalModule, E2 rollout or E3.select. (3) CORRECTION to GFLAG-0039's stated mechanism: manifest params and driver:429 record sd016_writepath_mode='off' in BOTH arms, so ContextMemory.write() was never called and 922 did NOT run against a 1-of-16-occupied bank -- implementing contextmemory-write-path-addressing-degeneracy does not retroactively rescue this run's reading. EXPLICITLY NOT CLAIMED (all three withdrawn on a full re-read of the 922 artifact and driver, after this autopsy first landed): that write-path-off left the slots untrained (they are a trainable nn.Parameter and 922 optimises agent.e1.parameters()); that the training objective GUARANTEES the DV (it is entailed by fitting, and the A0_OFF control runs the same training and is built for that route -- the driver's own lines 290-300 state this correctly); and any challenge to the 922 autopsy's REE-FAILED verdict for MECH-152/ARC-041, which rested on the first of those. This is NOT a demotion -- the demotion bar (tested fairly + biology supports the mechanism + still fails) is not met, because the claim was not tested fairly. Status unchanged (candidate); epistemic_category unchanged (standard); pending_retest_after_substrate stays true. READ-ACROSS, recorded not adjudicated: ARC-041's pre-registered dissociation signature is 'exactly one pathway survives' = MECH-151 supports / MECH-152 fails; withdrawing MECH-151's leg leaves the dissociation UNESTABLISHED (not refuted), so the 2026-08-13 HOLD on ARC-041 was correct and now has a second independent reason. Keep ARC-041 HELD and keep its epistemic_category substrate_conditional; this autopsy recommends no ARC-041 write.
+
     [2026-08-13 governance, V3-EXQ-922, confirmed failure_autopsy_V3-EXQ-922_2026-08-13,
     first-ever experimental evidence entry for this claim]: SUPPORTS the narrow
     context-conditioning mechanism (2/3 seeds) under GOV-FANOUT-1's recommended
@@ -19258,6 +19265,8 @@
     scaling failure (Bechara et al. 1994), not absence of harm knowledge.
     Registered 2026-03-31 from frontal cue-integration circuit design.
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, GFLAG-0044]: HOLD demote_to_candidate. Owed work is a measurement redesign gated on the corrupting write-path (contextmemory-write-path-addressing-degeneracy still implemented_pending_validation; V3-EXQ-943 occupancy PASS is not addressing validation). Status stays provisional.
+
     EXQ-194 MIXED (2026-04-01): direct terrain pathway -- C1 PASS 3/3 (r_w_harm=0.70,
     harm modulation works) but C2 FAIL (r_w_goal=-0.007, w_goal constant). EXQ-194a
     (phased training) also ran. Hold at candidate: harm pathway validated but goal
@@ -24354,6 +24363,8 @@
       as_of: 2026-08-01
       verdict: "mixed/standard -- epistemic_category GRADUATED substrate_ceiling -> standard (reconciled alongside sibling MECH-180 in the same governance pass). The ecological end-to-end run (V3-EXQ-845, cross-validated by the deconfounded V3-EXQ-861) has now scored: sws_power and replay_rate track measured MEL correctly in 2/3 seeds each, the first positive ecological signal for this invariant's third drive."
   evidence_quality_note: |
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-861e_2026-08-21.json]: V3-EXQ-861e (failure_autopsy_V3-EXQ-861e_2026-08-21) -> non_contributory, status and v3_pending UNCHANGED. Commissioned as the 861c n=10 + R3 repair. R3 passed 3/3 (calib_rel_sd_of_mean 0.0705/0.0533/0.0785) so SEM is repaired. Pre-registered target was 2/3 C2 with seed 7 the lone miss; observed C2 is 1/3 because seed 271 gated out at R2 after HIGH-arm MEL collapsed 2.90e-5 -> 2.30e-5 (factor 0.884). 861c's 'n=10 flips seed 271 C2' projection is REFUTED. Step 7c CONTESTED / Step 8 adopted: route /queue-experiment fan-out H1 (reseed n=10 on 17befb8c) vs H3 (n=10 on f810969). H2 is follow-on only (aliased with H3 at n=5 on 861e's substrate; 271 is not like seed 7).
+
     V3-EXQ-701 (INV-050 MEL-measurability diagnostic, no-sleep; confirmed failure_autopsy_V3-EXQ-701_2026-06-23)
     -> non_contributory, NOT a verdict on INV-050 (diagnostic, scoring-excluded; status UNCHANGED). 701 tested only
     the IV precondition the 677 (MECH-180) autopsy flagged: does graded waking novelty produce a measurable,
@@ -24747,9 +24758,9 @@
     as_of: 2026-08-01
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-861_2026-08-01
-      as_of: 2026-08-01
-      verdict: "mixed/standard -- epistemic_category GRADUATED substrate_ceiling -> standard. The ecological end-to-end run has now scored TWICE (V3-EXQ-845, then the write-count-deconfounded V3-EXQ-861): sws_power and replay_rate pass 2/3 seeds each under both runs, cross-validating genuine partial support; spindle_density fails 0/3 seeds under BOTH the confounded and deconfounded statistic, now explained (not merely unresolved) by a discovered dependency gap -- see evidence_quality_note. The 798a-sourced note's own condition ('STAY until that ecological run scores') is met."
+      from: "failure_autopsy_V3-EXQ-861e_2026-08-21"
+      as_of: "2026-08-21"
+      verdict: "non_contributory -- 861e R3 repaired SEM; 861c n=10 C2 seed-271 story REFUTED; status and v3_pending unchanged"
   v3_pending: true
   epistemic_category: standard
   ceiling_decision: deferred
@@ -24833,6 +24844,8 @@
     epistemic_category marker -- an asymmetric-metabolization gap, now closed.
   pending_retest_after_substrate: true  # SD-MEL-CONSUMER (adaptive sleep-cadence), minted 2026-07-07
   evidence_quality_note: |
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-861e_2026-08-21.json]: V3-EXQ-861e (failure_autopsy_V3-EXQ-861e_2026-08-21) -> non_contributory, status and v3_pending UNCHANGED. Commissioned as the 861c n=10 + R3 repair. R3 passed 3/3 (calib_rel_sd_of_mean 0.0705/0.0533/0.0785) so SEM is repaired. Pre-registered target was 2/3 C2 with seed 7 the lone miss; observed C2 is 1/3 because seed 271 gated out at R2 after HIGH-arm MEL collapsed 2.90e-5 -> 2.30e-5 (factor 0.884). 861c's 'n=10 flips seed 271 C2' projection is REFUTED. Step 7c CONTESTED / Step 8 adopted: route /queue-experiment fan-out H1 (reseed n=10 on 17befb8c) vs H3 (n=10 on f810969). H2 is follow-on only (aliased with H3 at n=5 on 861e's substrate; 271 is not like seed 7).
+
     V3-EXQ-718 (confirmed failure_autopsy_V3-EXQ-718_2026-07-07) -> non_contributory +
     pending_retest_after_substrate (status UNCHANGED; v3_pending STAYS). Same finding as INV-050:
     consumer functional (link ii MEL->cadence works, C2 PASS 3/3, factor tracks MEL) but the
@@ -46432,6 +46445,8 @@
   registered_utc: 2026-05-03
   revised_utc: 2026-06-05
   evidence_quality_note: |
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-939_2026-08-20.json]: V3-EXQ-939 is the owed MECH-303 behavioural retest, unblocked by SD-MECH303-THRESHOLD-SOURCING landing 2026-08-14 (status_phase validated, its sole failure_record item already resolved). Its self-route substrate_not_ready_requeue and its degeneracy_reason ('the mechanism could not express itself, so nothing was measured') are REJECTED by this autopsy: the same manifest contains the clean 2x2 dissociation that refutes them -- A_safe_gate_natural 0.43889, B_safe_gate_forced_closed 0.0, C_hazard_gate_natural 0.0, D_hazard_gate_forced_open 0.45, with num_safety_steps 240/0/6/240 exactly as designed. All three pre-registered DVs PASSED, each clearing the 0.34 margin by ~0.10 (DV1 0.43889, DV2 0.45, DV3 0.43889), with criteria_non_degenerate true on all three, including DV3 which the driver names as the genuinely non-analytic one. The run was voided by a single readiness precondition missing by 0.0067, and that gate is defective three independent ways, all verified in source. (1) It aggregates by MIN (all(r >= floor), line 561) while the DVs it guards aggregate by MEAN (line 539) -- the same statistic, so the V3-EXQ-643 rule is met in letter, but the gate is strictly harsher than the criterion it guards, and the docstring's stated intent is a best-case check while the implementation reads the worst cell. (2) Its threshold is unreachable on the measurement lattice: N_TEST_TRIALS = 30 quantises release_rate to multiples of 1/30, so 0.34 lies strictly between 10/30 = 0.33333 (fails) and 11/30 = 0.36667 (passes); the effective floor is 0.3667, a silent 7.8% tightening, and seed 1 missed by 0.2 of a single trial. (3) MIN_VALID_SEEDS = 4, a pre-registered tolerance for up to 2 failing seeds of 6, computed 5 >= 4 and can never bind, because readiness_ok already requires every cell to clear the same floor -- the tolerance was vetoed by a zero-tolerance conjunction. Recorded but unresolved: the queue entry's 1-seed calibration reported A 0.900 / D 1.000 against a realised A 0.439 / D 0.45, roughly half, at identical config and a single driver commit.
+
     2026-07-15 (gov): promoted candidate->provisional on V3-EXQ-760 (contextual safety-terrain
     discrimination, PASS/supports) -- wall-independent representation-level confirm: the
     read-only evaluate_safety field DISCRIMINATES safe vs unsafe contexts, gated (harm-absent
@@ -53588,6 +53603,7 @@
   subject: policy.decomposition_on_prediction_failure
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-08-09
@@ -53708,6 +53724,8 @@
         architectural concern (cf. SD-015 z_resource +
         z_goal_snapshot in MECH-292/293).
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-938_2026-08-20.json]: V3-EXQ-938 is the first run in the ARC-070/MECH-321 chain to reach a verdict at all (816/820 died on a low_vs_steps occupancy gate at 0.0/5.0; 816b/816d saturated the environment axis within 0.0007). It is cleanly executed: rate_match_ok true at a 1.85% arm gap with 0 seeds outside tolerance, aa_control_ok with max_abs_delta exactly 0.0, >=91 forced fires on both ON arms, ~277-287 boundary fires/arm, all 15 readiness preconditions met, non_degenerate true. Its result is a NULL, not a detected negative effect: harm delta -0.001338 with SE 0.002764 (t = -0.484), 19 seeds negative against 17 positive, and an observed |delta| that is 17.3% of the run's own 80%-power MDE (~0.007739). The pre-declared null (delta <= 0 within 1.0 x SE over >= 40 paired seeds) is satisfied exactly as written, so the run delivered the verdict it promised, scoped by its own statement to 'ARC-070's prediction-failure-selectivity leg AT THIS GRAIN'. The blanket weakens stamped on both claims is NOT applied, for two independent reasons. (1) ARC-070's own registered what_would_answer states that a failure of the DOWNSTREAM task-level benefit is 'EXPLICITLY NOT FALSIFYING' and belongs to MECH-321's separate narrower claim; 938's DV is a whole-episode mean harm signal, squarely that class, and its FALSIFYING clause (the mechanism does not engage when it architecturally should) is negated by the run, which shows the mechanism engaging throughout. (2) The same hypothesis-space question carries H-representation-axis as ALIVE ('forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty'), and 938's proximal readout -- secondary_fwd_pe_delta_yoked_minus_pe = -2.6e-05 -- is precisely that hypothesis's signature; a within-run rank normalisation does not fix a readout that is too coarse. So the run cannot discriminate 'selectivity is false' from 'the PE readout cannot locate the loci where decomposition would help'. Carry forward two readouts: C2_DECOMPOSITION_PER_SE_VS_OFF = -0.03681, roughly 27x the selectivity delta in the harmful direction (non-load-bearing, no SE reported, not adjudicated here) and the larger signal in the manifest; and substrate_stable_across_run = false, where all 132 cells share one hash 3a9826d0 but the stated substrate_commit 839ffe03 does not correspond to it, so this run cannot be mapped to a substrate commit -- recording-debt owed by any successor.
+
     Registered 2026-05-10 alongside ARC-069 + ARC-071 from user
     observation. Lit-pull required before child MECH design;
     targeted_review_arc_070_decomposition anticipated.
@@ -54864,6 +54882,7 @@
   subject: policy.decomposition_via_event_segmenter
   polarity: asserts
   status: candidate
+  epistemic_category: standard
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-08-07
@@ -54873,7 +54892,7 @@
       as_of: 2026-08-05
       verdict: FAIL/non_contributory -- measurement_test_design_defect (pool-exhausted AND screen-soundness falsified; 867c refused, redesigned DV/matching strategy owed)
   implementation_phase: v3
-  pending_retest_after_substrate: true  # 2026-08-01: awaiting SD-hazard-aware-policy-decomposition build
+  pending_retest_after_substrate: true # 2026-08-01: awaiting SD-hazard-aware-policy-decomposition build
   v3_pending: true
   claim_level: mechanistic
   registered_utc: "2026-05-10"
@@ -55233,6 +55252,8 @@
         scale factors) is an integration question at substrate-
         landing time.
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-938_2026-08-20.json]: V3-EXQ-938 is the first run in the ARC-070/MECH-321 chain to reach a verdict at all (816/820 died on a low_vs_steps occupancy gate at 0.0/5.0; 816b/816d saturated the environment axis within 0.0007). It is cleanly executed: rate_match_ok true at a 1.85% arm gap with 0 seeds outside tolerance, aa_control_ok with max_abs_delta exactly 0.0, >=91 forced fires on both ON arms, ~277-287 boundary fires/arm, all 15 readiness preconditions met, non_degenerate true. Its result is a NULL, not a detected negative effect: harm delta -0.001338 with SE 0.002764 (t = -0.484), 19 seeds negative against 17 positive, and an observed |delta| that is 17.3% of the run's own 80%-power MDE (~0.007739). The pre-declared null (delta <= 0 within 1.0 x SE over >= 40 paired seeds) is satisfied exactly as written, so the run delivered the verdict it promised, scoped by its own statement to 'ARC-070's prediction-failure-selectivity leg AT THIS GRAIN'. The blanket weakens stamped on both claims is NOT applied, for two independent reasons. (1) ARC-070's own registered what_would_answer states that a failure of the DOWNSTREAM task-level benefit is 'EXPLICITLY NOT FALSIFYING' and belongs to MECH-321's separate narrower claim; 938's DV is a whole-episode mean harm signal, squarely that class, and its FALSIFYING clause (the mechanism does not engage when it architecturally should) is negated by the run, which shows the mechanism engaging throughout. (2) The same hypothesis-space question carries H-representation-axis as ALIVE ('forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty'), and 938's proximal readout -- secondary_fwd_pe_delta_yoked_minus_pe = -2.6e-05 -- is precisely that hypothesis's signature; a within-run rank normalisation does not fix a readout that is too coarse. So the run cannot discriminate 'selectivity is false' from 'the PE readout cannot locate the loci where decomposition would help'. Carry forward two readouts: C2_DECOMPOSITION_PER_SE_VS_OFF = -0.03681, roughly 27x the selectivity delta in the harmful direction (non-load-bearing, no SE reported, not adjudicated here) and the larger signal in the manifest; and substrate_stable_across_run = false, where all 132 cells share one hash 3a9826d0 but the stated substrate_commit 839ffe03 does not correspond to it, so this run cannot be mapped to a substrate commit -- recording-debt owed by any successor.
+
     Registered 2026-05-10 from ARC-070 lit-pull synthesis
     (evidence/literature/targeted_review_arc_070_decomposition/).
     All five lit-pull verdicts (R1-R5) folded into the
@@ -70722,9 +70743,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-732_2026-07-10
-      as_of: 2026-07-10
-      verdict: non_contributory/precondition_unmet
+      from: "failure_autopsy_V3-EXQ-936_2026-08-18"
+      as_of: "2026-08-21"
+      verdict: "non_contributory -- C2 arithmetically unreachable (f_variance_share ~1.0); self-stamp weakens withdrawn"
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -70749,6 +70770,8 @@
     ascending-spiral gain -- target-PARITY controller' + learned_cross_loop_arbitration.md 'Sub-addendum:
     bounded parity controller' + substrate_queue v4_loop_segregation (failure_record[7].repaired_by).
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-936_2026-08-18.json]: [2026-08-18, failure_autopsy_V3-EXQ-936_2026-08-18]: V3-EXQ-936's manifest direction `weakens` should be changed to `non_contributory`. The load-bearing C2 criterion (per-seed paired reduction of f_variance_share >= 0.05) was ARITHMETICALLY UNREACHABLE, not merely unmet: the share is 1.0 to float64 resolution in all 8 cells (exactly 1.0, paired delta exactly 0.0, in 2 of 4 ARM_DEMOTION seeds), and firing C2 would have required var(non-F) to be 3.7e14 to 2.5e43 times larger. Cause: an unbounded E2 imagination rollout. F = compute_reality_cost is the SQUARED z_world step norm while every modulatory channel is at most linear in latent scale, so var(F) ~ var(non-F)^2 -- measured across the run's own 8 cells, OLS slope 2.020, R^2 0.978 over 54 orders of magnitude, against a predicted 2.000. Back-solved rollout magnitude reaches ||dz_world|| ~ 1.42e18, inside the 1e16-1e18 band V3-EXQ-569e measured on 2026-05-31 for this identical code path (SD-056 substrate_queue failure_record; clean ARM_0 baseline there was 0.39-0.77). The repair was BUILT for that incident (SD-056 amend lever (b), per-step rollout output norm clamp, e2_fast.py:694-747, validated V3-EXQ-617 PASS) and ships default-OFF; this run's declared parity ancestor V3-EXQ-689i arms it (True, ratio 2.0) and this lineage's baseline module contains zero occurrences of the flag. In float32 the consequence is stronger than dominance: std(non-F)/std(F) is below float32 eps in 7 of 8 cells, so the harm/residue/benefit/novelty/goal terms are ADDITIVELY ANNIHILATED in the score sum -- C1's conversion result survives only because MECH-448 acts on eligibility rather than on the additive sum. The claim was not tested; MECH-439 is neither supported nor weakened by this run. Status unchanged (candidate); epistemic_category standard (NOT substrate_ceiling -- see the autopsy's Section 9 for why a null instrument must not be counted as a ceiling hit).
+
     [2026-08-10 governance, GOV-APPLY-1]: hit count corrected 10 -> 9, 710 dropped
     (failure_autopsy_V3-EXQ-710_2026-07-20 confirmed re-adjudication withdrew the 2026-07-03 710
     autopsy's own evidentiary basis -- see MECH-140's evidence_quality_note for the full defect
@@ -71869,6 +71892,8 @@
   version_relevance: v3
   registered_utc: "2026-06-20"
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-937b_2026-08-20.json]: V3-EXQ-937b discharges what the 937/937a cluster autopsy routed it to do -- it emits the per-bank (envelope size, converted) joint that 937a computed and discarded, re-keys every criterion to the per-bank mediator, closes 937a's elapsed_seconds always-core gap and carries ARM_OFF's tautology into the manifest -- and its aggregation_warning is exemplary. The methodological repair is real. But the stamped supports is NOT applied, because all six criteria are analytically entailed by the shipped code rather than measured. Verified independently over the raw per-bank columns: converted == (pre_nogo_envelope_size >= 2) holds with ZERO exceptions across all 12,672 ARM_CONSTITUTION banks. The mechanism is analytic: the suppression vector is built to peak on the target and PERSEVERATION_FLOOR = 0.5 makes soft_nogo a singleton; for ARM_CONSTITUTION that target IS the incumbent; and gng_protect_min_eligible = 1 re-admits the incumbent at envelope 1 (so the pick cannot move) and drops it at envelope >= 2 (so the argmin must move). Given both strata populated, C1's only reachable value is 1.0 against a 0.4 bar -- zero discriminating power, and the driver states this in advance. C4, C5 and C6 are forced by the same argument. This is a manipulation check, not a measurement. The manifest's construction_caveat concedes the coupling is 'PARTLY' a construction property and cites per_bank.incumbent_is_f_argmin as the column that records it; that column is tautological -- as coded it tests argmax(a vector built to peak at target) == target, and reads 1.0 on 38,016 of 38,016 banks INCLUDING all 12,672 ARM_SHUFFLED banks where target != incumbent by design -- so the caveat is carried but unquantified, and 'partly' understates a coupling that is total. Finally, top-level non_degenerate is ABSENT because the driver emits it only on the False branch (no else); reconstructed from the manifest's own values the correct declaration is true, and the per-criterion dict at interpretation.criteria_non_degenerate carries all six true. This is the third consecutive occurrence in the 937 lineage and validate_recording.py cannot see it (the field is outside ALWAYS_CORE_KEYS). Recording gap, not a data gap -- every quantity above was recomputed from the manifest without re-running anything.
+
     2026-06-22 (governance-apply, PROMOTED candidate -> provisional; epistemic_category
     substrate_conditional -> standard now that the Go/No-Go constitution is built and
     validated on the existing substrate). PROMOTION RATIONALE, as amended 2026-07-20 for
@@ -73630,6 +73655,8 @@
   claim_level: architectural
   registered_utc: "2026-06-20"
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-937b_2026-08-20.json]: V3-EXQ-937b discharges what the 937/937a cluster autopsy routed it to do -- it emits the per-bank (envelope size, converted) joint that 937a computed and discarded, re-keys every criterion to the per-bank mediator, closes 937a's elapsed_seconds always-core gap and carries ARM_OFF's tautology into the manifest -- and its aggregation_warning is exemplary. The methodological repair is real. But the stamped supports is NOT applied, because all six criteria are analytically entailed by the shipped code rather than measured. Verified independently over the raw per-bank columns: converted == (pre_nogo_envelope_size >= 2) holds with ZERO exceptions across all 12,672 ARM_CONSTITUTION banks. The mechanism is analytic: the suppression vector is built to peak on the target and PERSEVERATION_FLOOR = 0.5 makes soft_nogo a singleton; for ARM_CONSTITUTION that target IS the incumbent; and gng_protect_min_eligible = 1 re-admits the incumbent at envelope 1 (so the pick cannot move) and drops it at envelope >= 2 (so the argmin must move). Given both strata populated, C1's only reachable value is 1.0 against a 0.4 bar -- zero discriminating power, and the driver states this in advance. C4, C5 and C6 are forced by the same argument. This is a manipulation check, not a measurement. The manifest's construction_caveat concedes the coupling is 'PARTLY' a construction property and cites per_bank.incumbent_is_f_argmin as the column that records it; that column is tautological -- as coded it tests argmax(a vector built to peak at target) == target, and reads 1.0 on 38,016 of 38,016 banks INCLUDING all 12,672 ARM_SHUFFLED banks where target != incumbent by design -- so the caveat is carried but unquantified, and 'partly' understates a coupling that is total. Finally, top-level non_degenerate is ABSENT because the driver emits it only on the False branch (no else); reconstructed from the manifest's own values the correct declaration is true, and the per-criterion dict at interpretation.criteria_non_degenerate carries all six true. This is the third consecutive occurrence in the 937 lineage and validate_recording.py cannot see it (the field is outside ALWAYS_CORE_KEYS). Recording gap, not a data gap -- every quantity above was recomputed from the manifest without re-running anything.
+
     [/governance 2026-08-16, V3-EXQ-926a PASS -- first evidence_quality_note on this claim]:
     V3-EXQ-926a is the selection-face perseveration falsifier for the built MECH-449 Go/No-Go
     constitution, and it closes the LAST untested axis of that constitution -- V3-EXQ-689g exercised
@@ -76842,6 +76869,7 @@
   subject: attention.distractor_failure_mode_dissociation
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: false
   live_status:
     reading: candidate
     as_of: 2026-07-22
@@ -76890,6 +76918,8 @@
     operating mode / dACC / urgency interrupt / mode hysteresis) -- a glossary entry, not
     a claim.
   evidence_quality_note: >
+    [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_940-941-mech467-cluster_2026-08-20.json]: V3-EXQ-941 (GOV-FANOUT-1 H-denominator leg, measurement axis) is a denominator diagnostic with zero wrong-target instrumentation and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its FAIL is the INFORMATIVE result by design (the queue note says so explicitly: outcome PASS would have been the null). It localises the missing denominator upstream of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms -- no approach run ever exceeded a single step. Two caveats bound how far the finding travels. (1) The basis is thin: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and its aliasing was meant to be caught by the approach_is_definable precondition whose 0.0 floor cannot fire (mean_distance_to_goal was exactly 1.0, one step from a target on a grid where one step is arrival). (2) C2 (0.333333) and C3 (4) are stamped passed but rest on <=6 events; C3 as coded is a pooled existence test (total_events > 0) across both arms despite owned_by_arms ARM_PRECOMMIT, and consumption exceeds arrivals 2:1 with 2 of the 4 events in cells recording zero initiations and zero arrivals -- so it certifies only that >=1 consumption happened somewhere, and the denominator_lost_at_consumption branch is unreachable in practice on this env. Neither affected the verdict (the routing tests C1 first). The run also newly quantifies the immobility at battery level: pooled_move_efficacy 0.0115/0.0124 and e3_tick_fraction_mean ~0.104. Its claim to 'confirm' the MECH-439 F-dominance ceiling should be read as 'is consistent with and quantifies', not as independent confirmation: at 98.8% blocked moves and 89-91% latched ticks both are near-ceiling simultaneously and cannot decompose the immobility, and no selection-layer measurement was taken.
+
     [2026-08-03 governance, V3-EXQ-874, confirmed failure_autopsy_V3-EXQ-874_2026-08-03, first
     experimental test]: legs (a) sensory-capture and (b) rule-drift were fairly and informatively
     tested (clear dissociation between ARM_PRECOMMIT drift ~0.22 and ARM_REPLAY drift ~0.015). Leg
@@ -80330,6 +80360,10 @@
     confidence, counters all frozen), mirroring freeze_gate.py exactly. Not a learning module --
     no nn.Module, no trainable parameters, phased training not applicable. Validation experiment:
     see MECH-489 what_would_answer; queued via /queue-experiment.
+  evidence_quality_note: |
+    [2026-08-21 governance, gov-20260821-0203]: hold_pending_v3_substrate APPLIED. Newly registered; no V3 experimental run yet. Status stays candidate. No promotion or demotion until a V3 experiment completes.
+
+
 
 - id: MECH-489
   title: "Defensive-orienting response: a phasic freeze-arrest -> orient/identify -> epistemic-sufficiency-override -> valence-gated approach/withdraw/resume behavioural chain triggered by a sudden, UNIDENTIFIED onset (positive-derivative spike in unsigned prediction-error surprise and/or sensory-discriminative harm), distinct from MECH-279 (chronic, accumulated-suffering freeze) and from MECH-482/MECH-483 (persistent target-bound epistemic_deficit accumulator and the diffuse orient/survey regime it drives -- the opposite end of the timescale from this PHASIC, transient trigger, which MECH-482 explicitly excludes by definition)."

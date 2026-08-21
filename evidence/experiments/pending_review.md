@@ -1,50 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-08-21T02:07:08Z`  
-Last review: `2026-08-18T14:10:37Z`  
-Pending: **10** item(s) -- 5 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
+Generated: `2026-08-21T17:11:51Z`  
+Last review: `2026-08-21T17:05:43Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_939_mech303_proximity_gated_contextual_safety_vigilance_release_20260818T213039Z_v3` | 2026-08-18T21:30 | MECH-303 | — |
-| `v3_exq_938_arc070_mech321_pe_selectivity_yoked_wholeepisode_20260818T215558Z_v3` | 2026-08-18T21:55 | ARC-070, MECH-321 | — |
-| `v3_exq_941_mech467_approach_decomposition_20260819T142245Z_v3` | 2026-08-19T14:22 | MECH-467 | — |
-| `v3_exq_942_inv013_e_ladder_realised_timescale_separation_20260820T073245Z_v3` | 2026-08-20T07:32 | INV-013 | — |
-| `v3_exq_861e_inv050_mech180_calibration_power_raised_replication_20260820T214522Z_v3` | 2026-08-20T21:45 | INV-050, MECH-180 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` | 2026-08-17T06:20 | MECH-439 |
-| `v3_exq_932a_zgoal_wanting_coupling_reinstrument_20260819T094328Z_v3` | 2026-08-19T09:43 | (no claim tags) |
-| `v3_exq_940_mech467_energy_window_decoupling_20260819T140921Z_v3` | 2026-08-19T14:09 | MECH-467 |
-| `v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3` | 2026-08-19T14:21 | ARC-107, MECH-449 |
-| `v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3` | 2026-08-20T11:58 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_942_inv013_e_ladder_realised_timescale_separation_20260820T073245Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
-
-## Dead z_goal stream (interpret before trusting a z_goal readout)
-
-**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
-
-Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
-
-**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
-
-**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
-
-| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
-|--------|--------|-------|--------------|-------------|-----------|
-| `v3_exq_861e_inv050_mech180_calibration_power_raised_replication_20260820T214522Z_v3` | FAIL | 44908 | **0** | 0.000 | live |
+All experiments reviewed. Nothing pending.
 
 ---
 

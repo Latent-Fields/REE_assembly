@@ -4,14 +4,14 @@ closure_plan:
   title: "ARC-070 / MECH-321 decomposition trigger operationalization"
   owner_claim: ARC-070
   registered: 2026-08-14
-  last_updated: 2026-08-18
+  last_updated: 2026-08-21
   scope_claims: [ARC-070, MECH-321, MECH-288]
   sibling_plans: [mech303_safety_threshold]
   registered_note: "NEW plan doc (session metaworker-chip-20260812-govdiag1-repose-mech321-chain, 2026-08-14), created to home the GOV-DIAG-1 metabolized marker for the six-hit ARC-070 / MECH-321 / MECH-288 pure-diagnostic chain (816b, 816c, 816d, 830 x2, 839) routed by /governance 2026-08-12 (session sd-016-h3-algorithm-3370cd). No *_plan.md closure-plan node owned this work-stream, so the marker -- which by design lives on the plan node whose status row records the re-operationalization -- had nowhere to live; this is the same closure-graph gap mech303_safety_threshold_plan.md was registered to close on 2026-08-13. The full re-pose is evidence/planning/govdiag1_repose_mech321_chain_2026-08-12.md. This plan doc promotes and demotes nothing, queues no experiment, and writes no hypothesis-space resolution."
   nodes:
     - id: "policy_decomposition_trigger:REPOSE"
       title: "Re-pose ARC-070's prediction-failure decomposition trigger off the saturated region-V_s proxy onto a rank-based forward-PE readout with a rate-matched yoked control"
-      status: in_progress
+      status: blocked
       severity: load-bearing
       owner_exq: "V3-EXQ-938"
       join:
@@ -19,9 +19,9 @@ closure_plan:
         scope_claims: [ARC-070, MECH-321]
       unblocks_claims: [ARC-070, MECH-321]
       depends_on: []
-      last_updated: 2026-08-18
+      last_updated: 2026-08-21
       queued_2026_08_18: "owner_exq V3-EXQ-938 queued via /queue-experiment 2026-08-18 (chip-20260814-mech321-pe-selectivity-repose, landed ree-v3 main b2a56fa87c); status open -> in_progress. This node's build step -- design and author the re-posed rank-based forward-PE trigger + rate-matched yoked control experiment -- is DISCHARGED (design unchanged from the diagnostic_recurrence_metabolized note below). The section 7 ledger resolutions this node's registered_note held open as a gating precondition landed first (REE_assembly a843ee6ebb, GFLAG-0038: H-vs-proxy-saturation -> confirmed; H-env-underdrives-uncertainty -> superseded/moot), which is what cleared V3-EXQ-938 to be authored. Smoke PASS, validate_experiments --strict clean. NOT YET SCHEDULABLE: queued from ree-cloud-5, which has no REE_assembly/coordinator.env, so /queue-experiment Step 8.6 (POST /queue/add) was not performed -- under Phase 3 the runners execute from the coordinator DB, not this file, so the run cannot start until a coordinator-capable box POSTs it. Tracked separately as chip-20260818-exq938-coordinator-post (carries landing sha b2a56fa87c). Do NOT read status:in_progress as 'running' until that POST is confirmed."
-      resume_condition: "Advances/closes on the V3-EXQ-938 RESULT: rank-based top-20% within-run forward-PE trigger vs a rate-matched ARM_YOKED control, unconditional whole-episode harm DV, n=40 paired seeds (44 seeds incl. 4 A-A null-control seeds, 132 cells). Pre-declared null: paired per-seed ARM_PE-minus-ARM_YOKED unconditional whole-episode mean_harm_signal delta <= 0 within 1.0 x SE REFUTES ARC-070's prediction-failure-selectivity leg at this grain; a positive non-degenerate delta supports it -- both directions are verdicts, which is the point of the re-pose. Blocked in the interim on the coordinator POST -- see queued_2026_08_18."
+      resume_condition: "2026-08-21 governance applied confirmed failure_autopsy_V3-EXQ-938_2026-08-20: non_contributory (null at this grain, not a detected negative). Lettered 938 successor and fourth env-axis escalation REFUSED. ARC-070/MECH-321 stay candidate with pending_retest_after_substrate. This node's 938 owner_exq is terminal; reopen only on a different operationalization, not another env-axis letter."
       registered_note: >
         CONSUMES V3-EXQ-816b/816c/816d/830/839 (does not re-queue any of them).
         Six pure-diagnostic no-verdict autopsies circling one question; all six

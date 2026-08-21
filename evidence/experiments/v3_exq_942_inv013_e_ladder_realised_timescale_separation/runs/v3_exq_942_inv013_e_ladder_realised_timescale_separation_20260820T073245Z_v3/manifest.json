@@ -23,7 +23,7 @@
     "INV-013"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -101,5 +101,7 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-942_2026-08-21.json: V3-EXQ-942 (diagnostic, INV-013-tagged) self-routed substrate_not_ready_requeue because worst-seed eval steps were 899 vs a 3000 floor (EXQ-019's unmet C4, copied as MIN_STEPS_PER_SEED). That self-route is REJECTED as a C1 veto: seeds 11 and 23 each recorded 3750 steps (full 25x150, no early done); all three variance floors met (worst var_dz_world 8.21e-5 vs 1e-8); half-lives and lag-k autocorrelations are finite on every seed including seed 37 (n_dz=874 vs a 12-sample computational floor at MAX_LAG=10). Recomputing the driver's _monotonic_verdict from the manifest's own per_seed cells gives monotonic_ordering_confirmed=false on all three seeds (mean tau_e1 4.33 > tau_e2 3.00 > tau_e3 2.67 -- inverted vs designed tau(E1)<tau(E2)<tau(E3)) and still false if seed 37 is dropped (3.5, 3.0, 2.5). Unlike V3-EXQ-939, the 3000 floor is reachable (2/3 seeds cleared it) and is a real seed-37 survival under-run (~36 steps/episode), not a lattice-defective gate; it is still the wrong reason to void C1, and criteria_non_degenerate.C1 is hardcoded false in the P0NotReady branch rather than computed from check_degeneracy. This does not test INV-013 (existence audit; realised-vs-labeled delegated to ARC-001/002/004). Empirical half agrees with the three pre-run structural findings (e2_tick dead, LatentStack re-encoded every step, E3 precision mutated every env tick). e3 tick counts exceed N/10 because of MECH-091 phase reset (572/633/354 vs expected 375/375/90). is_committed never flipped (n_runs=1 on every seed). Same-question re-queue declined (mystery: known data). INV-013 STANDS.",
+  "epistemic_category": "standard"
 }

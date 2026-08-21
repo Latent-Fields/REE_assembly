@@ -3,7 +3,7 @@ closure_plan:
   id: commitment_closure
   title: "Commitment / Closure / Mode-Governance"
   registered: 2026-05-08
-  last_updated: 2026-08-18
+  last_updated: 2026-08-21
   scope_claims: [SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034, MECH-090, MECH-091, MECH-260, MECH-262, MECH-263, MECH-266, MECH-267, MECH-268]
   sibling_plans: [sd033_governance]
   nodes:
@@ -135,7 +135,8 @@ closure_plan:
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-342]
       depends_on: ["commitment_closure:GAP-4", "commitment_closure:GAP-3", "commitment_closure:GAP-11"]
       cross_plan_link: ["sd033_governance:CHK-SD034"]
-      last_updated: 2026-08-16
+      last_updated: 2026-08-21
+      governance_2026_08_21: "Closure-drift stale-since-review ACKNOWLEDGE (governance cycle 2026-08-21, gov-20260821-0203). Flagged because confirmed failure_autopsy_V3-EXQ-935_2026-08-18 reclassified MECH-266 after last_updated. This cycle did not re-adjudicate 935; live: block was already current (as_of 2026-08-18). Does NOT change this node. Status stays in_progress; last_updated bumped to acknowledge."
       governance_2026_08_16: "Stale-since-review acknowledgement only (no status change; /governance cycle cranky-driscoll-126a36). Same trigger as the sibling GAP-4 note: confirmed failure_autopsy_V3-EXQ-934_2026-08-16 reclassified MECH-266 after this node's 2026-08-12 last_updated. This node tracks the *b BEHAVIOURAL cohort (460b/461/463b/464b/466b/467b/468b). V3-EXQ-934 is a cap-sweep MEASUREMENT-PRECONDITION probe on the mode-occupancy register, not a behavioural-cohort arm, so it does not advance or retire any *b leg. It is, however, mildly CONFIRMATORY of this node's standing block rather than neutral: 934's MECH-266 arm could not be exercised at all (fraction_in_external_task 1.0, n_switches 0 in all 15 cells), which is the same could-not-engage signature the *b cohort recorded, and it is TWICE NON-PRODUCTION (salience_affinity_input_cap defaults None, use_external_task_drive defaults False) -- so it reinforces, from a fresh angle, the don't-queue-commitment-dependent-behavioural deferral this node's resume_condition already names. No change to the owed work. Stays in_progress; last_updated bumped. PROMOTES/DEMOTES NOTHING."
       governance_2026_08_12: "Stale-since-review acknowledgement only (no status change; /governance cycle sd-016-h3-algorithm-3370cd). Same trigger as the sibling GAP-4 note: confirmed failure_autopsy_V3-EXQ-923_2026-08-12 reclassified MECH-267 after this node 2026-08-10 last_updated. This node tracks the *b BEHAVIOURAL cohort (460b/461/463b/464b/466b/467b/468b); 923 is a MECHANISM-locus discrimination leg on the CEM elite-refit, not a behavioural-cohort result, so it does not advance or retire any *b leg and changes nothing about this node owed work. Recorded so the acknowledgement is explicit rather than inferred from the sibling. Stays in_progress; last_updated bumped. PROMOTES/DEMOTES NOTHING."
       governance_2026_08_10: "Stale-since-review acknowledgement only (no status change; /governance cycle queue-depth-low-ops-aac785). Flagged for failure_autopsy_V3-EXQ-869_2026-08-02 and failure_autopsy_V3-EXQ-869a_2026-08-03 (both MECH-267, non_contributory/competence_implementation_gap). MECH-267 is one of the commitment-DEPENDENT arms this node's resume_condition already names as deferred-blocked on the incomplete BG commitment layer -- a non_contributory result there is consistent with, not new information against, the existing block. Node stays in_progress as battery-incomplete; last_updated bumped to acknowledge."

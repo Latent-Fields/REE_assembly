@@ -1,18 +1,89 @@
 {
-  "generated_at": "2026-08-21T02:07:29Z",
+  "generated_at": "2026-08-21T17:11:59Z",
   "counts": {
-    "drifted": 1,
-    "stale_since": 2,
-    "suppressed": 1,
+    "drifted": 0,
+    "stale_since": 0,
+    "suppressed": 2,
     "assembling": 10,
     "assembling_revisit_due": 0,
-    "status_plane_drifted": 0,
+    "status_plane_drifted": 7,
     "status_plane_checked": 99
   },
   "status_plane_drift": {
     "checked": 99,
     "skipped_reason": null,
-    "drifted": []
+    "drifted": [
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:CAMPAIGN",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:P-comp",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:P2-rootC",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:P3-ofc",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:FULLSTACK",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:P4-learned-gating",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      },
+      {
+        "plan": "conversion_ceiling_campaign_plan.md",
+        "node_id": "conversion_ceiling_campaign:GENERATION",
+        "diffs": [
+          "needs_review: stored=False projected=True",
+          "needs_review_reasons: stored=[] projected=['newest_forward_predates_later_decision_event(s)']"
+        ],
+        "projected_from": "failure_autopsy_V3-EXQ-937b_2026-08-20",
+        "stored_from": "failure_autopsy_V3-EXQ-937b_2026-08-20"
+      }
+    ]
   },
   "assembly_frontier": [
     {
@@ -106,36 +177,6 @@
       "revisit_due": false
     }
   ],
-  "drifted": [
-    {
-      "node_id": "policy_decomposition_trigger:REPOSE",
-      "plan": "policy_decomposition_trigger_plan.md",
-      "node_status": "in_progress",
-      "owner_exq": "V3-EXQ-938",
-      "manifest": "evidence/experiments/v3_exq_938_arc070_mech321_pe_selectivity_yoked_wholeepisode_20260818T215558Z_v3.json",
-      "autopsy": "evidence/planning/failure_autopsy_V3-EXQ-938_2026-08-20.json"
-    }
-  ],
-  "stale_since": [
-    {
-      "node_id": "behavioral_diversity_isolation:GAP-I",
-      "plan": "behavioral_diversity_isolation_plan.md",
-      "node_status": "in-progress",
-      "owner_exq": null,
-      "node_last_updated": "2026-08-01",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-936_2026-08-18.json (2026-08-18) reclassified MECH-439"
-      ]
-    },
-    {
-      "node_id": "commitment_closure:GAP-4-battery",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "in_progress",
-      "owner_exq": null,
-      "node_last_updated": "2026-08-16",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-935_2026-08-18.json (2026-08-18) reclassified MECH-266"
-      ]
-    }
-  ]
+  "drifted": [],
+  "stale_since": []
 }

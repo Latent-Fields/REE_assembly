@@ -23,7 +23,7 @@
     "MECH-467"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -199,5 +199,7 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_940-941-mech467-cluster_2026-08-20.json: V3-EXQ-941 (GOV-FANOUT-1 H-denominator leg, measurement axis) is a denominator diagnostic with zero wrong-target instrumentation and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its FAIL is the INFORMATIVE result by design (the queue note says so explicitly: outcome PASS would have been the null). It localises the missing denominator upstream of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms -- no approach run ever exceeded a single step. Two caveats bound how far the finding travels. (1) The basis is thin: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and its aliasing was meant to be caught by the approach_is_definable precondition whose 0.0 floor cannot fire (mean_distance_to_goal was exactly 1.0, one step from a target on a grid where one step is arrival). (2) C2 (0.333333) and C3 (4) are stamped passed but rest on <=6 events; C3 as coded is a pooled existence test (total_events > 0) across both arms despite owned_by_arms ARM_PRECOMMIT, and consumption exceeds arrivals 2:1 with 2 of the 4 events in cells recording zero initiations and zero arrivals -- so it certifies only that >=1 consumption happened somewhere, and the denominator_lost_at_consumption branch is unreachable in practice on this env. Neither affected the verdict (the routing tests C1 first). The run also newly quantifies the immobility at battery level: pooled_move_efficacy 0.0115/0.0124 and e3_tick_fraction_mean ~0.104. Its claim to 'confirm' the MECH-439 F-dominance ceiling should be read as 'is consistent with and quantifies', not as independent confirmation: at 98.8% blocked moves and 89-91% latched ticks both are near-ceiling simultaneously and cannot decompose the immobility, and no selection-layer measurement was taken.",
+  "epistemic_category": "standard"
 }

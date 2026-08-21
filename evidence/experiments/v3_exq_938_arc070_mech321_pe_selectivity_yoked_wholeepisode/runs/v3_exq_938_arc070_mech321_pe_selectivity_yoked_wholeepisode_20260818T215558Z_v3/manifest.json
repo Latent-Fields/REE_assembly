@@ -24,7 +24,7 @@
     "MECH-321"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
     "ARC-070": "weakens",
     "MECH-321": "weakens"
@@ -270,5 +270,7 @@
     "writer_defect": null,
     "n_agents": 132,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_V3-EXQ-938_2026-08-20.json: V3-EXQ-938 is the first run in the ARC-070/MECH-321 chain to reach a verdict at all (816/820 died on a low_vs_steps occupancy gate at 0.0/5.0; 816b/816d saturated the environment axis within 0.0007). It is cleanly executed: rate_match_ok true at a 1.85% arm gap with 0 seeds outside tolerance, aa_control_ok with max_abs_delta exactly 0.0, >=91 forced fires on both ON arms, ~277-287 boundary fires/arm, all 15 readiness preconditions met, non_degenerate true. Its result is a NULL, not a detected negative effect: harm delta -0.001338 with SE 0.002764 (t = -0.484), 19 seeds negative against 17 positive, and an observed |delta| that is 17.3% of the run's own 80%-power MDE (~0.007739). The pre-declared null (delta <= 0 within 1.0 x SE over >= 40 paired seeds) is satisfied exactly as written, so the run delivered the verdict it promised, scoped by its own statement to 'ARC-070's prediction-failure-selectivity leg AT THIS GRAIN'. The blanket weakens stamped on both claims is NOT applied, for two independent reasons. (1) ARC-070's own registered what_would_answer states that a failure of the DOWNSTREAM task-level benefit is 'EXPLICITLY NOT FALSIFYING' and belongs to MECH-321's separate narrower claim; 938's DV is a whole-episode mean harm signal, squarely that class, and its FALSIFYING clause (the mechanism does not engage when it architecturally should) is negated by the run, which shows the mechanism engaging throughout. (2) The same hypothesis-space question carries H-representation-axis as ALIVE ('forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty'), and 938's proximal readout -- secondary_fwd_pe_delta_yoked_minus_pe = -2.6e-05 -- is precisely that hypothesis's signature; a within-run rank normalisation does not fix a readout that is too coarse. So the run cannot discriminate 'selectivity is false' from 'the PE readout cannot locate the loci where decomposition would help'. Carry forward two readouts: C2_DECOMPOSITION_PER_SE_VS_OFF = -0.03681, roughly 27x the selectivity delta in the harmful direction (non-load-bearing, no SE reported, not adjudicated here) and the larger signal in the manifest; and substrate_stable_across_run = false, where all 132 cells share one hash 3a9826d0 but the stated substrate_commit 839ffe03 does not correspond to it, so this run cannot be mapped to a substrate commit -- recording-debt owed by any successor.",
+  "epistemic_category": "standard"
 }

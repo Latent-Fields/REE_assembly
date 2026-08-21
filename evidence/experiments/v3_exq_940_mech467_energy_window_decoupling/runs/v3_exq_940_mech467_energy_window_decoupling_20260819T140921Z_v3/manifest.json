@@ -23,7 +23,7 @@
     "MECH-467"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -211,5 +211,7 @@
     "writer_defect": false,
     "n_agents": 9,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-21 gov-20260821-0203 ratified failure_autopsy_940-941-mech467-cluster_2026-08-20.json: V3-EXQ-940 (GOV-FANOUT-1 H-energy leg, environment axis) is a denominator diagnostic and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its load-bearing C1 passed (window completeness lift 0.167037 vs 0.15) but at a 0.017 margin resting on 2 of 3 cells. Its C2 did NOT return a null: measured_ratio is null because the ratio divides by ARM_STOCK's event rate of exactly 0.0, so the criterion is arithmetically undefined, while its non-degeneracy guard (total_events_all_arms > 0) tests the pooled numerator rather than the denominator arm and therefore stamps it non_degenerate true. The emitted label window_restored_rate_unchanged and its note ('the residual rate problem is not an energy problem') are contradicted by the run's own per_arm_pooled: 0 events/2249 ticks (ARM_STOCK, rate 0.0), 2/2700 (ARM_CONTAM_OFF, 0.00074), 4/2700 (ARM_HEALTH_DECOUPLED, 0.00148) -- the rate rises monotonically with decoupling strength from exactly zero. On 4 events that is not significant either, so the honest state is unresolved. What the run DOES establish is decisive and should be preserved: a fully-realised 2700-tick window with contamination gated AND health clamped still produced only 4 events, so neither survival nor contamination explains the missing denominator, and 874b's arithmetic (8380-17200 ticks/arm needed against 2700 budgeted) is independently reconfirmed.",
+  "epistemic_category": "standard"
 }
