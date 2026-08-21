@@ -1954,3 +1954,10 @@ One line per hourly tick. ASCII only.
 2026-08-21T00:51:27Z no eligible item (skipped 235): IGW-20260821-001:skill /governance not allowed; IGW-20260821-002:skill /governance not allowed; IGW-20260821-214:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
 2026-08-21T01:52:39Z workset committed (regen -- 235 items, 23 ready, 0 in flight)
 2026-08-21T01:52:16Z no eligible item (skipped 235): IGW-20260821-001:skill /governance not allowed; IGW-20260821-002:skill /governance not allowed; IGW-20260821-214:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
+2026-08-21T02:52:58Z skip: paused (.igw_routine_pause present)
+2026-08-21T03:52:59Z skip: paused (.igw_routine_pause present)
+2026-08-21T04:53:00Z skip: paused (.igw_routine_pause present)
+2026-08-21T05:53:00Z skip: paused (.igw_routine_pause present)
+2026-08-21T10:51:01Z skip: paused (.igw_routine_pause present)
+2026-08-21T17:28:11Z workset committed (regen -- 239 items, 26 ready, 0 in flight)
+2026-08-21T17:27:50Z skip IGW-20260821-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
