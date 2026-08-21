@@ -1,0 +1,398 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-21T01:36:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-batch-20260821",
+  "companion_md": "failure_autopsy_V3-EXQ-861e_2026-08-21.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_861e_inv050_mech180_calibration_power_raised_replication_20260820T214522Z_v3",
+      "queue_id": "V3-EXQ-861e",
+      "claim_ids": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "self_route_label": "mel_coupling_below_calibration_noise_floor",
+      "self_route_accepted": false,
+      "self_route_note": "Do not rubber-stamp. The combination rule still maps a C2 1/3 miss onto this label, including when a seed never reached C2. R3 passed 3/3 (SEM repaired). Seed 271 HIGH-arm MEL collapsed below its own reference (numerator move, not calibration under-power). Step 7c: do not call this like seed 7; 861c already HIGH-graded 271 at n=5.",
+      "failed_criterion": "absolute",
+      "failed_criterion_name": "C2_on_factor_clears_calibration_noise_floor",
+      "headline_recomputed": {
+        "readiness_ok": true,
+        "r1_frac": 1.0,
+        "r2_frac": 0.6666666666666666,
+        "r3_frac": 1.0,
+        "c1_all_pass": true,
+        "c1_frac": 0.6666666666666666,
+        "c2_pass": false,
+        "c2_frac": 0.3333333333333333,
+        "c2_pinned_frac": 0.6666666666666666,
+        "c2_factor_clears_noise_frac": 0.3333333333333333,
+        "per_dv_pass": {
+          "sws_power": true,
+          "spindle_density": false,
+          "replay_rate": true
+        },
+        "pre_registered_c2_target": "2/3 with seed 7 the lone miss",
+        "observed_c2": "1/3"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- claim not fairly tested on the independence leg; C2 uninterpretable on seed 271 (gated at R2); seed 7 pre-registered miss; seed 883 C2 strong; C1 tautological on ready seeds",
+        "biological_reference": "clear -- process-S / novelty-adaptive SWS+replay; translation partial; lit present",
+        "prerequisites": "present -- R1 1.0; R2 at 2/3 floor; R3 1.0 (SEM repaired). R3 cannot see H1.",
+        "implementation": "complete -- consumer functional, duration factor monotone in measured MEL on ready seeds",
+        "environment": "partial -- world_rule_shift producer failed to raise HIGH-arm MEL above the no-shift base on seed 7 (replicated) and seed 271 (this replication); seed 883 works",
+        "measurement": "partial -- SEM repaired (R3 1.0); that refutes 'this FAIL is still calibration under-power.' R3 is computed only from calib draws and cannot discriminate H1 (unreseeded measurement-phase RNG). Step 7c CONTESTED.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, ENVIRONMENT more prominent than 861c's MEASURES-dominant read -- not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep-pressure regulation scaling SWS depth/duration with prior waking learning load (process-S analog), plus novelty-triggered hippocampal replay during SWS",
+        "dependencies": [
+          "graded waking novelty producing measurable prediction-error load",
+          "a stable homeostatic baseline against which load is compared",
+          "a producer that raises HIGH-arm MEL above the no-shift base"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; the REE consumer is a faithful class translation. The 861c instrumental gap (under-powered mel_reference) is repaired this run (R3 1.0). Residual gap is producer stability on disjoint seeds plus intervention-isolation of the power raise.",
+        "lit_status": "present"
+      },
+      "z_goal_finding": {
+        "ticks_total": 44908,
+        "writer_calls": 0,
+        "writer_defect": true,
+        "active_frac": 0.0,
+        "goal_state_present": true,
+        "criteria_depend_on_live_z_goal": false,
+        "gating": "non_gating",
+        "note": "Lineage-wide driver defect (861/861a/861b/861c/861d + this). Scored DVs and measured MEL do not read z_goal. generate_pending_review: a result that does not read z_goal is unaffected. Driver DEAD_Z_GOAL_STREAM_EXEMPT inherited for architecture parity vs 861c. Not measurement/recording debt on INV-050/MECH-180 criteria; not the C2 cause."
+      },
+      "substrate_stable_across_run_finding": {
+        "flag": false,
+        "per_cell_hashes_disagree": false,
+        "recorded_hash": "d1f4bdaeda6ec67954084692342293cff0820fc02938e4361a0aaf7fbad30451",
+        "on_disk_now": "40dc7e73477bfd78c5830aacdf2ff8e96814d6095c21f7f6ccec93ff70568054",
+        "lag_seconds": 35827,
+        "drifted_since_resolved": true,
+        "commit_describes_recorded_hash": false,
+        "read": "798a reuse-safety pattern: this run's grid is internally consistent; arm_reuse should refuse these cells as a baseline. Not a mid-run code change confounding C1/C2. Separate: 861c vs 861e executed different substrates (f810969 / 5eaa59f5 / ree-cloud-4 vs 17befb8c / d1f4bdae / ree-worker-1) -- live H3, not this flag."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure mode is producer instability on seed 7 plus a live H1 vs H3 discrimination on seed 271's numerator collapse, NOT substrate_ceiling and NOT a repeat of 861c calibration under-power (R3 passed 3/3). Stamping substrate_ceiling here would fire the re-derive brake and forbid the H1/H3 isolation the data now need.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-861e (failure_autopsy_V3-EXQ-861e_2026-08-21) -> non_contributory, status and v3_pending UNCHANGED. Commissioned as the 861c n=10 + R3 repair. R3 passed 3/3 (calib_rel_sd_of_mean 0.0705/0.0533/0.0785) so SEM is repaired. Pre-registered target was 2/3 C2 with seed 7 the lone miss; observed C2 is 1/3 because seed 271 gated out at R2 after HIGH-arm MEL collapsed 2.90e-5 -> 2.30e-5 (factor 0.884). 861c's 'n=10 flips seed 271 C2' projection is REFUTED. Step 7c CONTESTED / Step 8 adopted: route /queue-experiment fan-out H1 (reseed n=10 on 17befb8c) vs H3 (n=10 on f810969). H2 is follow-on only (aliased with H3 at n=5 on 861e's substrate; 271 is not like seed 7).",
+      "per_claim_recommendation": {
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note: 861c n=10 projection REFUTED (seed 271 HIGH-arm MEL collapsed below reference; R3 passed so SEM repaired); GFLAG-0002 remains unresolved; live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861_2026-08-01, stamp this artifact -> failure_autopsy_V3-EXQ-861e_2026-08-21. Fan-out is H1 vs H3 (H2 follow-on).",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note: 861c n=10 projection REFUTED (seed 271 HIGH-arm MEL collapsed; R3 passed so SEM repaired); v3_pending STAYS (DV3 still descoped); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861_2026-08-01, stamp this artifact -> failure_autopsy_V3-EXQ-861e_2026-08-21. Fan-out is H1 vs H3.",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The 861c calibration defect was driver-side and is repaired (R3 1.0 SEM). Residual work is a discrimination (H1 measurement isolation vs H3 substrate/machine), which routes to /queue-experiment, not a substrate build. H2 is follow-on after those two. Already-unblocking entries named so C2 does not treat action=none as a create-collision: SD-MEL-CONSUMER and SD-MEL-PRODUCER. Neither is the residual gap. 861d's MECH122 entry is a DIFFERENT mechanism; do not amend or fork."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08",
+          "failure_autopsy_V3-EXQ-701b_2026-06-29",
+          "failure_autopsy_V3-EXQ-701c_2026-06-30"
+        ],
+        "supersedes_autopsy": "failure_autopsy_861c-861d-mech180-cluster_2026-08-16",
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Counting convention shape (c): direction+category retained (non_contributory / standard); 861c supporting reasoning withdrawn (n=10 flips seed 271 C2). Count unchanged, so the brake does not fire. Rejected ceiling: R3 passed; 2/3 seeds still R2-ready; 883 C2 strong; 798a/861 already graduated both claims ceiling->standard; stamping ceiling would forbid the H1/H3 isolation the data now need."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py before this artifact: INV-050 8 targets (intact=4, unclear=4); MECH-180 9 targets (unclear=4, intact=2, strengthened=2, other=1). NO target reads weakened. This target stamps claim_alignment unclear (not fairly tested), not weakened. Measurement/environment debt, not granularity debt."
+      },
+      "withdrawn_arguments": [
+        "n=10 flips seed 271 C2",
+        "this FAIL is still calibration under-power",
+        "rubber-stamp self-route mel_coupling_below_calibration_noise_floor as the cause",
+        "casual substrate_ceiling restamp",
+        "same seeds isolate CALIB_DRAWS"
+      ],
+      "read_across_not_adjudicated": [
+        {
+          "item": "V3-EXQ-861d / MECH-122 / MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+          "why": "Cluster sibling. This run keeps use_mech122_spindle_content_selection OFF and does not re-test the clamp(mel/ref-1,0,1) gate. Do not amend or fork that substrate entry off 861e."
+        },
+        {
+          "item": "SD-017 occupancy",
+          "why": "INV-050 emergent_from [SD-017]. Keeping INV-050 candidate/standard/pending_retest does not mechanically move SD-017 (stable / substrate_ceiling / pending_retest on SD-016)."
+        },
+        {
+          "item": "861c repair item 4 (z_goal writer)",
+          "why": "Still open, still non-gating for INV-050/MECH-180 criteria."
+        },
+        {
+          "item": "798a stored-ceiling condition",
+          "why": "MECH-180's 'STAY until the ecological run scores' is already discharged on the live claim (861/845 scored; both stored standard). Do not re-open it."
+        }
+      ],
+      "learning_extracted": [
+        "A confirmed n=10 projection can be refuted by the numerator moving, not just by the denominator staying noisy. R3 passing is what makes that visible.",
+        "Same seeds isolate the calibration change is false when extra calib draws consume policy RNG before an unreseeded measurement loop, even if E2 is frozen (train=False).",
+        "Seed 7's producer miss is now replicated at n=10 (factor crossed 1.0 but HIGH remained the lowest measured MEL). Seed 271 did not join that signature: 861c already had 271 HIGH-graded at n=5; 861e dropped HIGH MEL below its own reference. That is a numerator move (H1 or H3), not seed-7's standing producer miss.",
+        "Self-route mel_coupling_below_calibration_noise_floor is a combination-rule leftover: the grid still maps C2-below-noise to that label even when a seed never reached C2.",
+        "Dead z_goal (writer_calls 0, writer_defect true) remains lineage-wide and non-gating for INV-050/MECH-180 criteria.",
+        "substrate_stable_across_run False here is 798a's reuse-safety pattern (one cell hash, process-snapshot drift vs on-disk-now), not a mid-run code change."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Node class: complex (probe-gated) / puzzle (known rules). Live H1 (measurement isolation of extra calib draws) vs H3 (substrate/machine delta f810969 vs 17befb8c). H2 is follow-on after those two (aliased with H3 if run first). Emit fanout_recommendation. Do not bump CALIB_DRAWS again. Do not route implement-substrate.",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: extra CALIB_DRAWS is not intervention-clean (torch RNG consumed in extra frozen-wake steps before unreseeded measurement)",
+          "H3: executed substrate/machine-class delta (861c f810969/ree-cloud-4 vs 861e 17befb8c/ree-worker-1)"
+        ],
+        "follow_on_hypotheses": [
+          "H2: seed 271 is an unstable link-(i) producer on this substrate -- follow-on after H1 and H3; not identifying at n=5 on 17befb8c because that sketch is aliased with H3. 861c already HIGH-graded 271 at n=5, so 271 is not like seed 7."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "measurement",
+            "required": true,
+            "sketch": "Keep CALIB_DRAWS=10. Reseed torch and numpy immediately before the measurement loop so extra calib draws cannot consume measurement-phase RNG. Same substrate 17befb8c.",
+            "null": "If seed 271 HIGH-graded MEL returns under a reseeded n=10, the 861e collapse was an intervention-isolation defect, not a producer failure."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "algorithm",
+            "required": true,
+            "sketch": "Pin 861c substrate (f810969) and rerun the 861e protocol (n=10 + R3), same box class if possible.",
+            "null": "If 271 stays HIGH-graded on the old substrate at n=10, the collapse is a substrate/machine delta, not H1."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "environment",
+            "required": false,
+            "follow_on": true,
+            "sketch": "Repeat seed 271 at CALIB_DRAWS=5 on 861e's substrate (17befb8c) AFTER H1 and H3 have run.",
+            "null": "Not identifying until H3 has run: a collapse at n=5 on 17befb8c is H2-or-H3. If H3 has already shown 271 still HIGH-graded on f810969, then a collapse here isolates producer-on-this-substrate."
+          }
+        ],
+        "note": "GOV-FANOUT-1 revised at Step 8 from Step 7c CONTESTED: H3 is not optional; H2 must not be sold as like-seed-7. Prefer H1 vs H3 as the first portfolio. Do not bump CALIB_DRAWS."
+      },
+      "explicitly_not_recommended": "Another CALIB_DRAWS bump; amending or forking MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION off this run; restamping substrate_ceiling; treating z_goal writer_defect as the C2 cause; moving SD-017 off INV-050 occupancy; rubber-stamping the self-route.",
+      "chip_policy_note": "Parent instructed no chips. Per the 2026-07-30 rule this /failure-autopsy session does not spawn_task its own routing follow-on. Nothing spawned."
+    }
+  ],
+  "cluster_pattern": null,
+  "withdrawn_arguments": [
+    "n=10 flips seed 271 C2",
+    "this FAIL is still calibration under-power",
+    "rubber-stamp self-route mel_coupling_below_calibration_noise_floor as the cause",
+    "casual substrate_ceiling restamp",
+    "same seeds isolate CALIB_DRAWS"
+  ],
+  "read_across_not_adjudicated": [
+    "V3-EXQ-861d / MECH-122 / MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION -- flag OFF; do not amend or fork",
+    "SD-017 occupancy -- INV-050 candidate/standard/pending_retest does not mechanically move SD-017",
+    "861c repair item 4 (z_goal writer) -- still open, still non-gating",
+    "798a stored-ceiling condition -- already discharged on the live claims"
+  ],
+  "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+      "H1: extra CALIB_DRAWS is not intervention-clean (torch RNG consumed in extra frozen-wake steps before unreseeded measurement)",
+      "H3: executed substrate/machine-class delta (861c f810969/ree-cloud-4 vs 861e 17befb8c/ree-worker-1)"
+    ],
+    "follow_on_hypotheses": [
+      "H2: seed 271 is an unstable link-(i) producer on this substrate -- follow-on after H1 and H3; not identifying at n=5 on 17befb8c because that sketch is aliased with H3. 861c already HIGH-graded 271 at n=5, so 271 is not like seed 7."
+    ],
+    "suggested_probes": [
+      {
+        "hypothesis": "H1",
+        "axis": "measurement",
+        "required": true,
+        "sketch": "Keep CALIB_DRAWS=10. Reseed torch and numpy immediately before the measurement loop so extra calib draws cannot consume measurement-phase RNG. Same substrate 17befb8c.",
+        "null": "If seed 271 HIGH-graded MEL returns under a reseeded n=10, the 861e collapse was an intervention-isolation defect, not a producer failure."
+      },
+      {
+        "hypothesis": "H3",
+        "axis": "algorithm",
+        "required": true,
+        "sketch": "Pin 861c substrate (f810969) and rerun the 861e protocol (n=10 + R3), same box class if possible.",
+        "null": "If 271 stays HIGH-graded on the old substrate at n=10, the collapse is a substrate/machine delta, not H1."
+      },
+      {
+        "hypothesis": "H2",
+        "axis": "environment",
+        "required": false,
+        "follow_on": true,
+        "sketch": "Repeat seed 271 at CALIB_DRAWS=5 on 861e's substrate (17befb8c) AFTER H1 and H3 have run.",
+        "null": "Not identifying until H3 has run: a collapse at n=5 on 17befb8c is H2-or-H3. If H3 has already shown 271 still HIGH-graded on f810969, then a collapse here isolates producer-on-this-substrate."
+      }
+    ],
+    "note": "GOV-FANOUT-1. Duplicate of targets[0].fanout_recommendation for consumers that only read the top-level field."
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "basis": "granularity_debt_cluster.py: INV-050 8 targets (intact=4, unclear=4); MECH-180 9 targets (unclear=4, intact=2, strengthened=2, other=1). NO target reads weakened. This artifact stamps unclear, not weakened."
+  },
+  "hypothesis_space_ledger_pending": {
+    "staging_mode_deferred": false,
+    "registry_written": true,
+    "note": "Applied at confirmation. Mode A new qid. Initial frozen set is H1+H3 (count 2). H2 is a labelled follow-on, not in the frozen denominator.",
+    "applicable": true,
+    "mode": "A -- pre-register NEW question (fan-out time, before discriminating experiments run)",
+    "growth_restriction_checked": true,
+    "growth_restriction_result": "n/a -- new qid; a question registered in this edit cannot carry a restriction. Registry search for INV-050 / MECH-180 returned no covering qid (nearest sd017_arc045_mech166_slot_differentiation_sleep tags a different claim set).",
+    "candidate": {
+      "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "title": "Did V3-EXQ-861e's seed-271 HIGH-arm MEL collapse because extra calib draws confounded measurement, or because the executed substrate/machine changed?",
+      "short_title": "861e seed-271 collapse: H1 vs H3",
+      "claims": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-861e_2026-08-21.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "decision_question": "Which hypothesis explains the 861e C2 1/3 miss given that R3 passed, the 861c n=10 projection is refuted, and 861c already HIGH-graded seed 271 at n=5?",
+      "live_gate": "H1 reseeded n=10 on 17befb8c vs H3 pin-f810969 n=10, each with a declared null. H2 is follow-on after those two.",
+      "decidable": false,
+      "hypotheses": [
+        {
+          "hid": "H-measurement-rng-confound",
+          "label": "Extra CALIB_DRAWS consumed measurement-phase RNG (intervention not isolated)",
+          "axis": "measurement",
+          "state": "alive"
+        },
+        {
+          "hid": "H-substrate-machine-delta",
+          "label": "861c vs 861e executed different substrate/machine (f810969/cloud-4 vs 17befb8c/hub)",
+          "axis": "algorithm",
+          "state": "alive"
+        }
+      ],
+      "follow_on_note": "H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7)."
+    },
+    "write_live_registry": true,
+    "applied_utc": "2026-08-21T01:56:34Z"
+  },
+  "constraints_observed": {
+    "step_7c_red_team": "CONTESTED; Step 8 adopted portfolio revision",
+    "step_8_interactive_gate": "adopt_redteam_portfolio",
+    "step_9b_registry_write": "PERFORMED at confirmation",
+    "task_claims_touched": false,
+    "committed_or_pushed": false,
+    "claims_yaml_edited": false,
+    "manifests_edited": false,
+    "review_tracker_edited": false,
+    "substrate_queue_edited": false,
+    "hypothesis_space_registry_edited": false,
+    "spawn_task_or_chip_ledger_called": false
+  },
+  "pre_routing_checks": {
+    "script": "scripts/autopsy_pre_routing_checks.py --artifact <this> --json",
+    "as_of": "2026-08-21T01:36:54Z",
+    "as_of_source": "generated_utc",
+    "first_pass_fire_count": 1,
+    "first_pass_fires": [
+      {
+        "check": "C2",
+        "message": "recommended_substrate_queue_entry.action='none' for ['INV-050', 'MECH-180'], but 2 specific entr(ies) already unblocked those claims at this artifact's own time and are not mentioned in it: SD-MEL-CONSUMER, SD-MEL-PRODUCER",
+        "names": [
+          "SD-MEL-CONSUMER",
+          "SD-MEL-PRODUCER"
+        ]
+      }
+    ],
+    "final_fire_count": 0,
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [],
+    "quiet_and_applicable": [
+      "C1",
+      "C2",
+      "C3",
+      "C5",
+      "C6-narrow",
+      "C7"
+    ],
+    "dispositions": [
+      {
+        "check": "C1",
+        "fired": false,
+        "disposition": "applicable; no fire. Claim-keyed overlap with prior 861-lineage autopsies is expected (re-adjudication). This artifact names supersedes_autopsy and withdrawn_arguments rather than silently contradicting the cluster."
+      },
+      {
+        "check": "C2",
+        "fired": true,
+        "disposition": "FIRST PASS fired: action=none while SD-MEL-CONSUMER and SD-MEL-PRODUCER already unblock INV-050/MECH-180 and were unmentioned. DISPOSED by naming both sd_ids in recommended_substrate_queue_entry.note: they are the already-built/validated producer and consumer (845/861 scored against them); this FAIL is not a missing-consumer or missing-producer-bed result, so action=none remains correct. Not a create-collision and not an amend of either entry. Final pass fire_count 0. 861d's MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION remains a different mechanism, not forked."
+      },
+      {
+        "check": "C3",
+        "fired": false,
+        "disposition": "applicable; no fire. biological_reference.lit_status is present (Wilson & McNaughton 1994 / Tononi & Cirelli 2003 / Stickgold 2001). No /lit-pull commissioned."
+      },
+      {
+        "check": "C5",
+        "fired": false,
+        "disposition": "applicable after sibling .md written; no fire. Prose does not claim a unique/unrun bed; 861e is an explicit replication of 861c."
+      },
+      {
+        "check": "C6-narrow",
+        "fired": false,
+        "disposition": "applicable; no fire. Per-seed outcomes differ by design (seed 883 C2 pass, seed 7 pre-registered miss, seed 271 R2-gated). Prose avoids all-seeds / every-seed absolutes."
+      },
+      {
+        "check": "C7",
+        "fired": false,
+        "disposition": "applicable; no fire. Variation exists where the criterion requires it (C2 1/3, R2 2/3, seed 883 factor 1.975 vs seed 7 factor 1.017 vs seed 271 unscored)."
+      }
+    ]
+  },
+  "confirmed_utc": "2026-08-21T01:56:34Z",
+  "step_7c": {
+    "verdict": "CONTESTED",
+    "agent_id": "b207ee75-0707-49b3-a4f5-8456674d2dae",
+    "survives": [
+      "destination /queue-experiment",
+      "action=none",
+      "standard / non_contributory",
+      "n=10-projection refutation",
+      "z_goal non-gating",
+      "re_derive_brake.fired false"
+    ],
+    "contest": "H2 at n=5 on 861e's substrate is aliased with H3; 861c already shows seed 271 HIGH-graded at n=5 so it is not like seed 7; H3 is not optional. Four-layer measurement should read partial (R3 cannot see H1).",
+    "cheap_confirmer": "861c ARM_3 seed 271 HIGH mean_mel=2.8999705256751363e-05 (above ref) vs 861e same cell 2.2980323189226863e-05 (below ref).",
+    "disposition": "Step 8 adopted the contest. Portfolio revised to H1 vs H3 required; H2 follow-on; measurement partial."
+  },
+  "step_8": {
+    "ran_utc": "2026-08-21T01:56:34Z",
+    "verdict": "adopt_redteam_portfolio",
+    "note": "User adopted Step 7c CONTESTED portfolio: H1 vs H3 required; H2 follow-on only; drop like-seed-7; measurement row partial. Destination /queue-experiment unchanged."
+  }
+}

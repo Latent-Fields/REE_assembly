@@ -1,0 +1,237 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-21T01:34:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-batch-20260821",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_942_inv013_e_ladder_realised_timescale_separation_20260820T073245Z_v3",
+      "queue_id": "V3-EXQ-942",
+      "claim_ids": [
+        "INV-013"
+      ],
+      "bears_on": [
+        "INV-013",
+        "ARC-004",
+        "ARC-023",
+        "SD-006"
+      ],
+      "read_across_not_adjudicated": [
+        "ARC-004: this run reused ARC-004's lag-k half-life criterion on E-loop state, not on z_beta/z_theta/z_delta. Do not count it as ARC-004's missing first test.",
+        "ARC-023: functional analog (distinct update rates) is clock-real for e1/e3 discrete paths and not representation-real for continuous state. Category already substrate_conditional.",
+        "SD-006: status implemented, all five criteria met. This run does not reopen that implementation audit; implemented multi-rate does not imply realised persistence separation."
+      ],
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "Recorded FAIL is P0 min_steps_per_seed_supra_floor (899 vs 3000, worst seed). The designed DV is C1 discrimination (monotonic half-life ordering), which was never scored because of that floor, and which recomputes false (inverted) from the same per_seed cells -- on all three seeds and on the two seeds that cleared 3000.",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "REJECTED -- vacuous as a C1 veto. C1 was reachable at 899 steps (n_dz=874 vs MAX_LAG+2=12; all autocorr finite) and independently inverted on the two full-budget seeds (3750 steps each). Variance floors all met. Unlike V3-EXQ-939, the 3000 floor is reachable (2/3 seeds cleared it) and is a real seed-37 survival under-run, not a lattice-defective gate; it is still the wrong reason to void C1. 'Nothing was measured' is false.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- INV-013 is an architectural existence audit; this DV is ARC-004's realised-timescale criterion pointed at E-loops, which INV-013 explicitly delegates away",
+        "biological_reference": "partial -- thalamic-paced cortico-striatal loops / EEG-band analogy (ARC-023, SD-006); mixed claim_level, functional analog is distinct update rates not literal oscillations",
+        "prerequisites": "present -- warmup_train 40 episodes ran; two seeds produced full-horizon frozen-policy eval; seed 37 early death is post-warmup survival variance",
+        "implementation": "partial -- clock ladder exists; E3 discrete path is tick-gated; continuous z_world/z_self/precision update every env step; e2_tick is dead (computed, never consumed, no _e2_tick)",
+        "environment": "adequate -- CausalGridWorldV2 is a sufficient bed for latent-delta autocorrelation; two seeds survived the full 150-step horizon",
+        "measurement": "misleading for the recorded FAIL (P0 min-steps conjunction voided a reachable C1) / adequate for C1 itself (half-life at max_lag=10)",
+        "integration": "partially coupled -- E3 selection is in the loop (unlike EXQ-019 random actions); continuous E3 precision is still the every-tick channel",
+        "scale": "adequate for C1 -- 3750 steps on two seeds; 874 deltas on the short seed, both well above the 12-sample computational floor; 3000 is a copied EXQ-019 C4 power preference, not a reachability bound"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Thalamic-paced cortico-striatal loop heartbeats / EEG-band analog of E1 gamma, E2 beta, E3 theta (ARC-023, SD-006, control_plane_heartbeat.md)",
+        "dependencies": [
+          "SD-006 async multi-rate clock",
+          "MultiRateClock e1/e2/e3 tick flags actually consumed",
+          "rate-gated representation update if realised persistence is the target property"
+        ],
+        "is_formal_import": false,
+        "divergence": "Functional analog is distinct update rates in an ANN, not literal thalamic oscillations. This run tests the functional analog's realised persistence, not the mechanistic EEG claim.",
+        "lit_status": "partial -- present for ARC-023 (5 entries in targeted_review_connectome_arc_023) and SD-006 (2 entries in targeted_review_sd_006); ABSENT as a dedicated INV-013 review"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Target-level standard because this run told us nothing that should suppress INV-013 (measurement/precondition family mapped to standard per Step 5). Per-claim keeps the stored derivational: INV-013 is an architectural existence audit, and overwriting it to standard would silently change GOV-GRAN-1 / v3-testability. Failure-mode words (vacuous self-route, inverted C1, dead e2_tick) live in notes, not in the category field. Do NOT stamp substrate_ceiling.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-942 (diagnostic, INV-013-tagged) self-routed substrate_not_ready_requeue because worst-seed eval steps were 899 vs a 3000 floor (EXQ-019's unmet C4, copied as MIN_STEPS_PER_SEED). That self-route is REJECTED as a C1 veto: seeds 11 and 23 each recorded 3750 steps (full 25x150, no early done); all three variance floors met (worst var_dz_world 8.21e-5 vs 1e-8); half-lives and lag-k autocorrelations are finite on every seed including seed 37 (n_dz=874 vs a 12-sample computational floor at MAX_LAG=10). Recomputing the driver's _monotonic_verdict from the manifest's own per_seed cells gives monotonic_ordering_confirmed=false on all three seeds (mean tau_e1 4.33 > tau_e2 3.00 > tau_e3 2.67 -- inverted vs designed tau(E1)<tau(E2)<tau(E3)) and still false if seed 37 is dropped (3.5, 3.0, 2.5). Unlike V3-EXQ-939, the 3000 floor is reachable (2/3 seeds cleared it) and is a real seed-37 survival under-run (~36 steps/episode), not a lattice-defective gate; it is still the wrong reason to void C1, and criteria_non_degenerate.C1 is hardcoded false in the P0NotReady branch rather than computed from check_degeneracy. This does not test INV-013 (existence audit; realised-vs-labeled delegated to ARC-001/002/004). Empirical half agrees with the three pre-run structural findings (e2_tick dead, LatentStack re-encoded every step, E3 precision mutated every env tick). e3 tick counts exceed N/10 because of MECH-091 phase reset (572/633/354 vs expected 375/375/90). is_committed never flipped (n_runs=1 on every seed). Same-question re-queue declined (mystery: known data). INV-013 STANDS.",
+      "per_claim_recommendation": {
+        "INV-013": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "derivational",
+          "change": "STANDS",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays active"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "note": "No INV-013-owed substrate write. Rate-gating latent updates by loop identity is a product decision for ARC-023/SD-006 (read-across, not adjudicated), and the structural gap was already documented in e_ladder_realised_timescale_probe_20260820.md before this run. Creating an SD from this diagnostic would treat an existence-audit claim as if it required realised E-loop persistence ordering, which its what_would_answer explicitly does not."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial + MEASURES established), not chargeable to REE alone -- wiring does not rate-gate continuous state (implementation incomplete, so not a fair-test mechanism failure); the recorded outcome FAIL is the P0 worst-seed step floor voiding a reachable C1"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": {
+          "INV-013": 0
+        },
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "refusal_note": "Brake does not fire (INV-013 confirmed tagging runs 0, ceiling hits 0 under R1-R3; granularity_debt_cluster.py INV-013 = 0 targets / 0 files). Do NOT stamp substrate_ceiling -- that would take INV-013 from 0 to 1 and arm the brake against a claim this run did not test. Independently declined, as mystery (known data) not as a brake firing: a V3-EXQ-942a same-question re-queue (lower floor, or more eval budget so seed 37 hits 3000) cannot flip the two full-budget seeds that already invert.",
+        "route_to": "governance-note-only",
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "claim_id": "INV-013",
+        "tagging_targets": 0,
+        "tagging_files": 0,
+        "claim_alignment_distribution": "no prior tagging targets; this would be the first",
+        "note": "Trigger requires at least one tagging target reading weakened AND structurally different signatures. Cluster is empty."
+      },
+      "learning_extracted": [
+        "A readiness gate whose statistic is not the DV's statistic can still void a reachable DV. 939 was harsher aggregation of the same statistic; 942 is a copied power floor (EXQ-019 C4) used as a degeneracy definition. Both self-route substrate_not_ready_requeue. Check the data.",
+        "The mechanism could not express itself is a claim about data. Here two seeds expressed a full-horizon frozen-policy eval and the half-lives are on the page.",
+        "A designed tick ratio is not a realised persistence ratio -- now measured, not only source-read. e3's extra phase-reset ticks are a smaller correction to the planning doc's structurally guaranteed 1:3:10.",
+        "Hardcoding criteria_non_degenerate.C1=False in the P0NotReady branch names C1 as degenerate when C1 was never scored. The variance floors (the driver's own degeneracy definition) all passed.",
+        "INV-013's registered scope (existence audit; realised-vs-labeled delegated) is what stops this inverted C1 from being a claim-layer weaken."
+      ],
+      "routing": "governance-note-only",
+      "work_graph_node": "complex (probe-gated) / mystery (known data) -- C1 already computed on two full-budget seeds; do not gather more on the same question"
+    }
+  ],
+  "cluster_pattern": null,
+  "pre_routing_checks": {
+    "ran_utc": "2026-08-21T01:34:30Z",
+    "command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/autopsy_pre_routing_checks.py --artifact failure_autopsy_V3-EXQ-942_2026-08-21.json --json",
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+      {
+        "check": "C6",
+        "reason": "prose asserts an absolute, but no target manifest carries a top-level arm_results array of >= 4 rows -- single-arm diagnostic, expected"
+      },
+      {
+        "check": "C7",
+        "reason": "no target manifest carries an arm/condition-structured result array with >= 2 arms and >= 2 seeds -- single-arm diagnostic, expected"
+      }
+    ],
+    "disposition": "No fires. C6/C7 inapplicable because this is a single-arm diagnostic (no arm_results). C1-strict does not apply (routing is governance-note-only, not queue-experiment). C2-strict does not apply (substrate action none). C3 does not fire: lit_status is partial with present ARC-023/SD-006 reviews; INV-013 has no dedicated corpus entries, so the ABSENT-for-INV-013 clause is not a false-absent."
+  },
+  "hypothesis_space_ledger_pending": {
+    "action": "Mode_B_same_cycle_new_question",
+    "write_live_registry": true,
+    "reason": "Applied at confirmation. New qid e-ladder-realised-timescale-separation (claims ARC-023/SD-006/ARC-004, not INV-013). Two legs born resolved same-cycle.",
+    "question": {
+      "qid": "e-ladder-realised-timescale-separation",
+      "title": "Do E1/E2/E3 own-state dynamics realise the designed 1:3:10 persistence-timescale separation?",
+      "short_title": "E-ladder realised tau",
+      "claims": [
+        "ARC-023",
+        "SD-006",
+        "ARC-004"
+      ],
+      "registered_utc": "2026-08-21T01:34:30Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-942_2026-08-21.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "decision": {
+        "decision_question": "Is realised E-loop persistence monotonically ordered tau(E1)<tau(E2)<tau(E3) by >=0.8 SD, or do the loops differ in content not timescale?",
+        "live_gate": "C1 recomputed from V3-EXQ-942 per_seed on seeds that cleared the 3000-step floor (11, 23); seed 37 (899 steps) treated as a survival under-run not a C1 veto",
+        "decidable": true,
+        "decision_log_ref": null,
+        "distance_phrase": "decidable_now -- two full-budget seeds invert independently; confirming session still owes the human decision_log stamp"
+      }
+    },
+    "hypotheses": [
+      {
+        "hid": "H-monotonic-e-ladder-persistence",
+        "label": "Realised tau(E1)<tau(E2)<tau(E3) by >=0.8 SD of the cross-seed half-life delta",
+        "desc": "The designed 1:3:10 tick ladder survives into own-state autocorrelation half-life once E3 selection is actually exercised.",
+        "axis": "timescale-realised",
+        "axis_family": "process",
+        "basis": "ARC-004 pre-registered wording applied to E-loops; driver C1; planning doc licensed this as the empirical half.",
+        "pre_registered_utc": "2026-08-20T07:32:45Z",
+        "pre_registration_source": "failure_autopsy_V3-EXQ-942_2026-08-21.json",
+        "adjudicating_runs": [
+          "V3-EXQ-942"
+        ],
+        "resolution": {
+          "state": "eliminated",
+          "resolving_runs": [
+            "V3-EXQ-942"
+          ],
+          "evidence_direction": "weakens",
+          "epistemic_category": "standard",
+          "self_route_label": "substrate_not_ready_requeue",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true,
+          "resolved_utc": "2026-08-20T07:32:45Z",
+          "basis": "Autopsy rejects the P0 degeneracy flag as a C1 veto. Variance floors met. C1 recomputed from manifest per_seed: inverted on seeds 11 and 23 independently (taus 4,3,3 and 3,3,2) and on all three (4.33, 3.00, 2.67). Matches the three pre-run structural findings."
+        }
+      },
+      {
+        "hid": "H-content-not-timescale",
+        "label": "Layers differ in content, not timescale",
+        "desc": "Continuous E1/E2/E3 state shares a common every-step update rate, so persistence half-lives are statistically indistinguishable or inverted relative to the designed 1:3:10 ladder.",
+        "axis": "representation-update-rate",
+        "axis_family": "representation",
+        "basis": "MECH-058/EXQ-019 fate; planning-doc structural findings 1-3; ARC-004's own FAIL branch wording.",
+        "pre_registered_utc": "2026-08-20T07:32:45Z",
+        "pre_registration_source": "failure_autopsy_V3-EXQ-942_2026-08-21.json",
+        "adjudicating_runs": [
+          "V3-EXQ-942"
+        ],
+        "resolution": {
+          "state": "confirmed",
+          "resolving_runs": [
+            "V3-EXQ-942"
+          ],
+          "evidence_direction": "supports",
+          "epistemic_category": "standard",
+          "self_route_label": "substrate_not_ready_requeue",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": false,
+          "resolved_utc": "2026-08-20T07:32:45Z",
+          "basis": "Inverted (not merely indistinguishable) half-life ordering on two full-budget seeds, with e2_tick unconsumed and continuous precision updating every env tick. Necessary-not-sufficient for a general 'no timescale anywhere' claim -- L-space layers were not measured."
+        }
+      }
+    ],
+    "axis_families_rows_to_add": [
+      {
+        "axis": "timescale-realised",
+        "family": "process"
+      },
+      {
+        "axis": "representation-update-rate",
+        "family": "representation"
+      }
+    ],
+    "registry_written": true,
+    "staging_mode_deferred": false,
+    "applied_utc": "2026-08-21T01:56:34Z"
+  },
+  "confirmed_utc": "2026-08-21T01:56:34Z",
+  "step_7c": {
+    "verdict": "CONFIRMED",
+    "agent_id": "c3facdc7-45b8-496b-ad23-0999a667c221",
+    "note": "C1 recomputes false from per_seed cells. STANDS vs H-monotonic elimination does not conflict (different objects). Routing unchanged."
+  },
+  "step_8": {
+    "ran_utc": "2026-08-21T01:56:34Z",
+    "verdict": "confirm_as_written",
+    "note": "User confirmed draft routing: governance-note-only; INV-013 STANDS; no same-question re-queue; Mode B ledger write authorised."
+  }
+}

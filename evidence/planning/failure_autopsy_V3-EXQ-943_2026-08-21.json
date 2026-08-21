@@ -1,0 +1,358 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-21T01:34:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "failure-autopsy-batch-20260821",
+  "staging_mode": false,
+  "staging_mode_note": "Confirmed 2026-08-21T01:56:34Z. Step 7c CONFIRMED. Step 9b: no live registry append (claim-free; occupancy cannot choose BIAS vs REFRACTORY).",
+  "companion_md": "failure_autopsy_V3-EXQ-943_2026-08-21.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_gate_note": "scripts/check_dry_run_citations.py on the target run_id + queue_id + manifest path: 0 dry cited, 0 dry in named families, 0 ambiguous, 1 clean, 0 unknown, exit 0. Manifest top-level dry_run is absent/null. Driver dry-run reduction is 2 episodes x 5 steps x 1 seed; C1 requires >=3/5 seeds and criteria_non_degenerate is len(seeds)>=2, so a smoke could not have produced this PASS. validate_experiments.py --checks dry_run_unreachable_criterion: 11 corpus warnings, all v3_exq_543 b-l; this driver silent. No cluster members, no population statistics.",
+  "already_done_check": {
+    "method": "scripts/check_autopsy_coverage.py full-string match of queue_id and run_id against every committed failure_autopsy_*.json targets[]",
+    "result": "AVAILABLE YES -- 0 covering artifacts"
+  },
+  "recording_provenance": {
+    "validate_recording": "1 manifest checked: 1 complete, 0 always-core gaps, 0 thin-pack provenance drops, 0 schema warnings",
+    "recording_gap_present": false,
+    "always_core_present": [
+      "recording_schema",
+      "substrate_hash",
+      "machine",
+      "machine_class",
+      "elapsed_seconds",
+      "config",
+      "seeds"
+    ],
+    "substrate_stable_across_run": true
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3",
+      "queue_id": "V3-EXQ-943",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "write_address_fix_validated_under_real_agent",
+      "failed_criterion": "none -- claim-free diagnostic PASS, autopsied because experiment_purpose is diagnostic",
+      "failed_criterion_note": "Both load-bearing criteria passed (C1_BIAS 5/5, C1_REFRACTORY 5/5, required 3). The autopsy question is whether those passes are real or vacuous, not which criterion failed.",
+      "key_facts": {
+        "machine": "ree-cloud-2",
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "elapsed_seconds": 147.924,
+        "seeds": [
+          42,
+          7,
+          13,
+          100,
+          200
+        ],
+        "substrate_hash": "9fd8b2fbafdbff708f3ab4d9daee696277e4ac6f00d60a30bc746d20fb20a72a",
+        "substrate_commit": "b1f0d9f6f35200c685572a8287880d16a356cd1f",
+        "p0_writepath_engaged_min_writes": 2933.0,
+        "p0_floor": 200.0,
+        "write_calls_identical_across_arms_per_seed": true,
+        "occupied_LEGACY": [
+          8,
+          1,
+          1,
+          1,
+          9
+        ],
+        "occupied_BIAS": [
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "occupied_REFRACTORY": [
+          6,
+          3,
+          3,
+          3,
+          9
+        ],
+        "C1_BIAS_n_seeds_passed": 5,
+        "C1_REFRACTORY_n_seeds_passed": 5,
+        "LEGACY_n_seeds_clearing_floor": 2,
+        "BIAS_round_robin_range": [
+          0.993020304568528,
+          0.9957279000985869
+        ],
+        "BIAS_entropy_bits_range": [
+          3.9999953912024955,
+          4.0
+        ],
+        "BIAS_self_repeat_all_zero": true,
+        "REFRACTORY_self_repeat_all_zero": true,
+        "REFRACTORY_lock_seed_occupancy": 3,
+        "REFRACTORY_lock_seed_entropy_equals_log2_3": true,
+        "z_goal_ticks_total": 0,
+        "z_goal_writer_defect": null,
+        "z_goal_goal_state_present": false
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free by construction",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "partial",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "four_layer_diagnosis_notes": {
+        "claim_alignment": "claim_ids: []. No claim tested, supported, or weakened.",
+        "biological_reference": "Closest refs: frequency-sensitive competitive-learning conscience bias (DeSieno 1988) and an absolute refractory period on a recently-active unit. Architecture doc names both. Not a formal-definition import. SD-017 sleep-differentiation biology is present in corpus but is not under test here (no sleep loop).",
+        "prerequisites": "Both default-off write-address mechanisms have landed (ree-v3 76cbf844 conscience bias; 2026-08-19 refractory). gated_content_write=True, sd016_writepath_mode=sense_only, Adam-drift freeze on memory, writepath P0 met at 2933 writes vs floor 200.",
+        "implementation": "Flags reached live ContextMemory.write() under a REEAgent training loop -- BIAS DVs match the unit-level probe (16/16, entropy ~4, round-robin 0.993-0.996) and REFRACTORY occupancy on lock seeds is exactly k+1=3. Partial because BIAS is occupancy-without-addressing (counter-driven period-16 cycle once usage_ema * sqrt(memory_dim) dominates mean_scores) and REFRACTORY occupancy>=2 is guaranteed by construction for k=2. Neither is a learned/agent-selected write policy.",
+        "environment": "Same 436-family CausalGridWorldV2 + REEAgent training harness that produced the original degeneracy. Real latents, not a synthetic constant query. Adequate for the occupancy-wiring question this driver asked. The agent never reads ContextMemory for action (baseline harm-eval policy) -- by design of this diagnostic, not an environment defect.",
+        "measurement": "Occupancy, entropy, self_repeat, round_robin were the right DVs (architecture constraint 2; occ_cos explicitly not used). C1 floor of 2 occupied slots cannot fail for REFRACTORY k=2 once P0 holds, and cannot fail for BIAS once the usage term dominates. Those columns still correctly report what the mechanisms did. The load-bearing gate is too weak to distinguish vacuous occupancy from content-addressed occupancy; the non-gating columns (round_robin, entropy, self_repeat vs LEGACY lock) are what actually diagnose.",
+        "integration": "Writes are a sense() side-effect; action selection never consults ContextMemory. Write-count identity across arms at each seed is the fingerprint: swapping the address function did not change episode length.",
+        "scale": "16 slots, ~3000 writes/cell, 5 seeds. Binding constraint is the address rule, not bank size or write budget."
+      },
+      "biological_reference": {
+        "closest_mechanism": "DeSieno 1988 conscience bias (frequency-sensitive competitive learning) and neuronal absolute refractory period on a recently-active unit",
+        "dependencies": [
+          "a write path that actually fires (SD-016 sense_only hook)",
+          "content-bearing payloads (contextmemory_gated_content_write)",
+          "query-stream variance (absent on 3/5 seeds under legacy argmin -- the original defect)"
+        ],
+        "is_formal_import": false,
+        "divergence": "BIAS at default weight is occupancy without addressing -- a global usage-EMA over the bank is not a first-order neural property; refractory is. Architecture already names this. Not a biology-absent formal import.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic: 'no category applies' is spelled standard, never n/a. Asserts no epistemic suppression. The vacuity finding belongs in the note fields, not in this enum.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Matches the manifest self-stamp and the claim-free diagnostic convention (driver docstring). Means the run weights no claim. It does NOT mean the run was uninformative.",
+      "recommended_evidence_quality_note": "V3-EXQ-943 (v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3) is a claim-free diagnostic PASS (claim_ids []) and weights no claim. P0 writepath_engaged_every_cell met (min 2933 writes vs floor 200). C1_BIAS 5/5 and C1_REFRACTORY 5/5 vs required 3; LEGACY reference 2/5 with seeds 7/13/100 locked to 1 slot (same three seeds as 436e/436f). The PASS is REAL as a wiring/integration test: both default-off knobs reached ContextMemory.write() under a REEAgent training loop on the 436 harness, and LEGACY still reproduces the known lock. The PASS is VACUOUS as agent-level write-selection validation: writes fire automatically from sd016_writepath_mode=sense_only during sense(); action selection is baseline harm-eval and never reads ContextMemory; write counts are identical across all three arms at each seed. BIAS occupancy-16 / entropy~4 / self_repeat=0 / round-robin 0.993-0.996 is the documented counter-driven period-16 cycle (occupancy without addressing). REFRACTORY occupancy 3 on the lock seeds equals k+1 and entropy=log2(3), i.e. the structural floor, not learned diversity; self_repeat=0 is by construction for k>=1. Self-route write_address_fix_validated_under_real_agent therefore overclaims if read as 'the agent selected writes'. Do not write that REE succeeded at diverse writing (GOV-FAILLOC-1: Implementation partial, Measurement partial). substrate_queue contextmemory-write-path-addressing-degeneracy occupancy floor is MET when a flag is on; do NOT flip status to implemented_validated without a human call on whether occupancy-without-addressing (BIAS) or the k+1 eligibility floor (REFRACTORY) closes the corrupting 1-slot-bank defect. INV-044 is not moved (no cosine DV). SD-017/ARC-045/MECH-166 are not adjudicated here (no sleep); 436f's targets are not superseded. A 436-family retest with a flag ON is now occupancy-unblocked; prefer REFRACTORY over BIAS so content argmin among eligible slots is preserved. No occ_cos, no whole-bank diversity.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "EMPTY BY NECESSITY. claim_ids is []. GOV-APPLY-1 has no claim disposition to apply. See read_across_not_adjudicated for 436f/INV-044/SD-017.",
+      "read_across_not_adjudicated": {
+        "note": "This autopsy's targets[] covers ONLY v3_exq_943_..._20260820T115815Z_v3 (R2 latest-wins). The following claims/runs are mechanically moved as PRECONDITIONS, not re-adjudicated.",
+        "SD-017_ARC-045_MECH-166": "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16 stamped substrate_ceiling and pending_retest_after_substrate re-scoped to after-WRITE-PATH-ADDRESSING-BUILD, with re-derive brake refusing 436g until that build. The build has landed (two default-off knobs) and this PASS shows the occupancy floor is met under real-agent latents when a knob is on. That LIFTS the occupancy P0 that made 436f C1 unscorable on 3/5 seeds. It does NOT score sleep-vs-waking occupied-slot cosine, does NOT flip those claims off substrate_ceiling, and does NOT supersede 436f's targets. A flag-on 436-family successor is now occupancy-unblocked; prefer contextmemory_write_selection=refractory (content argmin among eligible slots). BIAS would fill all 16 slots via a counter-driven cycle and would likely wash out context-conditioned slot sets the sleep DV needs. occ_cos still cannot discriminate write-address ARMS at 5 seeds (architecture probe); whether occupancy-masked cosine can discriminate SLEEP once occupancy is non-degenerate is a different, still-open question. Whole-bank sws_slot_diversity remains prohibited (slot_cosine_sim fan-out sweep).",
+        "INV-044": "Not moved. 943 computed neither occ_cos nor whole-bank cosine. INV-044's experimental base is still V3-EXQ-429's whole-bank C1/C2 as diagnosed by failure_autopsy_slot_cosine_sim_fanout_sweep_2026-08-13.",
+        "436f_failure_record": "substrate_queue contextmemory-write-path-addressing-degeneracy failure_record[0] (436f, resolved:open) had target '>= 2 occupied slots in both arms on >= 3/5 seeds, under a non-degenerate write-address selection mechanism'. The occupancy half is now met on this harness. The 'non-degenerate write-address' qualifier is the human call: BIAS is degenerate as addressing (round-robin) even though occupancy is full; REFRACTORY is non-degenerate as eligibility (k+1 floor + content argmin). Recommend amend, not a silent resolved flip."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [
+          "SD-017",
+          "ARC-045",
+          "MECH-166"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py"
+        ],
+        "note": "Do NOT flip status implemented_pending_validation -> implemented_validated in this amend. Append a validation record that the occupancy floor is MET under a real REEAgent loop (V3-EXQ-943) when either flag is on, and that BIAS is occupancy-without-addressing (round-robin 0.993-0.996) while REFRACTORY hits the k+1 construction floor on the three legacy-lock seeds. Leave the 436f failure_record resolved:open until a human decides whether that occupancy result closes the corrupting 1-slot-bank defect. unblocks_claims stay gated on that call plus a flag-on 436-family retest; landing default-off knobs still changes no other driver's behaviour.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3",
+          "experiment_type": "v3_exq_943_contextmemory_write_selection_validation",
+          "metric": "C1 occupancy floor MET: BIAS 16/16 occupied 5/5 seeds (round-robin 0.993-0.996, entropy ~4.0, self_repeat 0); REFRACTORY occupied 6/3/3/3/9, 5/5 seeds >=2 (lock seeds at exactly k+1=3, entropy=log2(3)); LEGACY still 2/5 with seeds 7/13/100 locked. P0 min writes 2933.",
+          "target": ">= 2 occupied slots in both fix arms on >= 3/5 seeds (registered). Occupancy half MET. Addressing-non-degeneracy still a human call (BIAS counter-driven; REFRACTORY structural k+1).",
+          "resolved": "open",
+          "run_role": "validation"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- not chargeable to REE in either direction. Implementation reads partial (wiring complete; BIAS is occupancy-without-addressing; REFRACTORY occupancy>=2 is by construction). Measurement reads partial (registered C1 floor cannot fail for REFRACTORY k=2 once P0 holds). Environment reads adequate/established for this diagnostic. REE FAILED / REE SUCCEEDED both unreachable. Do not write that REE learned to write diversely or that REE succeeded at write-address selection."
+      },
+      "failure_location_scope_note": "GOV-FAILLOC-1 claim-free branch. Central risk is the inverse of the usual FAIL case: a diagnostic PASS whose self-route names a real-agent validation. Implementation, Measurement, and Environment are not each independently complete/adequate in the sense required to charge the occupancy diversity to REE.",
+      "pass_is_real_not_degenerate": {
+        "verdict": "mixed -- real wiring, vacuous as agent-level write selection",
+        "real_reasons": [
+          "P0 writepath_engaged is not config-only: min 2933 write() calls vs floor 200, 15/15 cells.",
+          "LEGACY still locks seeds 7/13/100 to 1 slot with self_repeat 1.0 -- the 436e/436f operating point is reproduced, so the fix arms are not being scored on a query stream that was already diverse.",
+          "BIAS and REFRACTORY DVs match the independently pre-registered unit-level probe, which is the fingerprint that the knobs reached write() rather than a silent default-off path.",
+          "Instrumentation polls last_write_index (does not re-derive argmin) -- the 436f tracker trap is not in play."
+        ],
+        "vacuous_reasons": [
+          "Writes are automatic sense() side-effects; the agent never selects a write.",
+          "Action selection never reads ContextMemory; write counts identical across arms at each seed.",
+          "C1_REFRACTORY (>=2 occupied, k=2) is analytically guaranteed: occupancy >= k+1 = 3 by construction; observed 3 on all three lock seeds.",
+          "C1_BIAS (>=2) is guaranteed once usage_ema * sqrt(d) dominates mean_scores; observed 16/16, entropy~4, round-robin 0.993-0.996, self_repeat 0 -- occupancy without addressing.",
+          "Self-route write_address_fix_validated_under_real_agent names a stronger claim than C1 can bear."
+        ],
+        "why_indexer_did_not_flag_vacuous_pass": "criteria_non_degenerate both true (5 seeds >= 2). The vacuous_pass check never engages. C1 can vary in principle on BIAS if the usage term failed to dominate; it cannot vary on REFRACTORY given k=2 and P0. The indexer cannot see analytic guarantees in the address function."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "ceiling_hits_under_r1_r3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "N/A. claim_ids: []. This autopsy recommends standard, not substrate_ceiling, so it contributes nothing to any claim's R1-R3 count. A further occupancy-floor letter of 943 is refused on design grounds (mystery of known data: occupancy cannot choose a winner; the deterministic columns already exist), which is not a brake firing."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "Does not fire. No claim is tagged, so granularity_debt_cluster.py has no target."
+      },
+      "learning_extracted": [
+        "The registered occupancy floor (>=2 slots on >=3/5 seeds) holds for both fix arms under a real REEAgent loop on the 436 harness, with LEGACY still locking the same 3 seeds. Wiring is real.",
+        "BIAS under real latents is the same counter-driven period-16 cycle the unit probe measured: occupancy 16/16, entropy ~4 bits, round-robin 0.993-0.996, self_repeat 0. Occupancy without addressing. C1 cannot see this.",
+        "REFRACTORY under real latents hits the structural k+1=3 floor on every legacy-lock seed (entropy exactly log2(3)) and tracks LEGACY occupancy on the already-diverse seed 200 (9 and 9). self_repeat 0 is by construction.",
+        "Write counts identical across arms at each seed, plus a harm-eval action policy that never reads ContextMemory, means the 'real agent' contributed a query stream, not a write-selection policy.",
+        "Self-route write_address_fix_validated_under_real_agent overclaims. Narrow it to occupancy-floor-validated-under-real-latents.",
+        "A 436-family sleep retest is occupancy-unblocked if a write-selection flag is ON. Prefer refractory over bias so content addressing among eligible slots is preserved. Do not re-open occ_cos as a write-address-arm discriminator (architecture probe) and do not use whole-bank diversity (slot_cosine sweep / INV-044).",
+        "z_goal_stream ticks_total 0 is expected (no goal-using agent) and is not the 861e writer-defect; no criterion depends on z_goal."
+      ],
+      "routing": "governance",
+      "routing_note": "Node class: the occupancy-floor question is answered (complicated, already built and now occupancy-validated). Which flag to ship as default is mystery (known data) -- occupancy cannot choose; 943 plus the 20260819 probe already hold the deterministic columns. Do not queue another occupancy letter. Governance amends substrate_queue contextmemory-write-path-addressing-degeneracy with the validation record above and decides whether occupancy-without-addressing / k+1-floor closes the corrupting defect. A flag-on 436-family successor is a follow-on for governance to ratify and chip, not this session.",
+      "routing_followons": [
+        {
+          "item": "Amend substrate_queue contextmemory-write-path-addressing-degeneracy: append V3-EXQ-943 as a validation record; do not auto-flip implemented_validated",
+          "debt_class": "complicated (buildable)",
+          "route": "governance Step 6a",
+          "note": "This autopsy's own recommendation. Not chipped."
+        },
+        {
+          "item": "If occupancy-floor is accepted as closing the 1-slot corrupting defect: queue a 436-family sleep retest with contextmemory_write_selection=refractory (not BIAS), occupancy-masked cosine, same 436e instrument",
+          "debt_class": "complex (probe-gated) / puzzle (known rules)",
+          "route": "queue-experiment after governance ratifies -- the 436f brake's 'until the write-path build lands' condition is now met for occupancy",
+          "note": "Does not supersede 436f. Sleep-vs-waking discrimination is still untested. Prefer refractory. Check occ_cos power caveats in the architecture doc -- they apply to write-address ARM contrasts, not automatically to sleep contrasts."
+        }
+      ],
+      "explicitly_not_recommended": "A 943b occupancy re-run; a BOTH-ON arm (byte-identical to BIAS at default weight); powering any successor on occ_cos or whole-bank sws_slot_diversity; flipping INV-044 or SD-017 off this PASS; treating z_goal ticks_total 0 as the 861e writer-defect.",
+      "chip_policy_note": "Per the 2026-07-30 rule, this /failure-autopsy session does not spawn_task its own routing follow-on. Parent instructed no chips. Nothing spawned.",
+      "pre_routing_checks_fire_count": 0
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "staging_mode_deferred": true,
+    "registry_written": false,
+    "note": "Confirmed: no live registry append. Occupancy-floor PASS cannot discriminate BIAS vs REFRACTORY under sense_only.",
+    "applicable": false,
+    "reasoning": "No fanout_recommendation. Condition (ii) is met only in the thinnest sense (recommended_evidence_direction: non_contributory) but claim_ids is [] and no existing qid names V3-EXQ-943 or write-address occupancy. Registry search for write-address / contextmemory-write / conscience / refractory / 436f hit only an unrelated MECH-266 question. Opening a new question whose hypotheses are the already-documented BIAS-vs-REFRACTORY pair would duplicate the architecture doc and the 20260819 probe's frozen set, inflating total_initial without a discrimination this run was designed to make (occupancy cannot choose a winner; both legs stay alive). Mode C does not apply -- nothing unanticipated was discovered. Recommend NO ledger append.",
+    "if_the_confirming_session_disagrees": {
+      "mode": "A then B in the same edit (NEW question only)",
+      "candidate_qid": "contextmemory_write_address_bias_vs_refractory",
+      "candidate_title": "Under a real-agent query stream, is the conscience-bias cycle or the refractory eligibility mask the write-address rule that should ship?",
+      "claims": [],
+      "growth_restriction_check": "n/a -- new qid, not an existing question",
+      "candidate_hypotheses": [
+        {
+          "hid": "H-bias-occupancy-without-addressing",
+          "label": "Conscience bias is a counter-driven period-16 cycle",
+          "axis": "algorithm",
+          "proposed_resolution_state": "confirmed",
+          "proposed_bar": "control_passed true (P0 and LEGACY lock reproduced), non_degenerate true, met_elimination_bar false (necessary description, not elimination of refractory)",
+          "proposed_basis": "943 BIAS: 16/16, entropy ~4, round-robin 0.993-0.996, self_repeat 0 on 5/5 seeds, matching the unit probe."
+        },
+        {
+          "hid": "H-refractory-structural-k-plus-one",
+          "label": "Refractory occupancy is the k+1 construction floor on locking streams",
+          "axis": "algorithm",
+          "proposed_resolution_state": "confirmed",
+          "proposed_bar": "control_passed true, non_degenerate true, met_elimination_bar false",
+          "proposed_basis": "943 REFRACTORY: occupancy 3 and entropy=log2(3) on all three LEGACY-lock seeds; self_repeat 0 by construction."
+        }
+      ],
+      "warning": "If appended, both legs stay confirmed-as-description, neither eliminated. That is a characterization question, not a frozen-set reduction. Do not attach to an existing qid."
+    },
+    "write_live_registry": false,
+    "applied_utc": "2026-08-21T01:56:34Z"
+  },
+  "constraints_observed": {
+    "step_7c_red_team": "CONFIRMED",
+    "step_8_interactive_gate": "confirmed_as_written",
+    "step_9b_registry_write": "NOT PERFORMED (no covering qid; claim-free)",
+    "task_claims_touched": false,
+    "committed_or_pushed": false,
+    "claims_yaml_edited": false,
+    "manifests_edited": false,
+    "review_tracker_edited": false,
+    "substrate_queue_edited": false,
+    "hypothesis_space_registry_edited": false,
+    "spawn_task_or_chip_ledger_called": false
+  },
+  "pre_routing_checks": {
+    "script": "scripts/autopsy_pre_routing_checks.py --artifact <this> --json",
+    "as_of": "2026-08-21T01:34:03Z",
+    "as_of_source": "generated_utc",
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+      {
+        "check": "C1",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      },
+      {
+        "check": "C2",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      },
+      {
+        "check": "C3",
+        "reason": "claim-keyed check, but no target carries claim_ids"
+      }
+    ],
+    "quiet_and_applicable": [
+      "C5",
+      "C6-narrow",
+      "C7"
+    ],
+    "dispositions": [
+      {
+        "check": "C1",
+        "fired": false,
+        "disposition": "inapplicable -- claim_ids []. Expected for a claim-free diagnostic. Step 7c carries claim-free load; parent will red-team."
+      },
+      {
+        "check": "C2",
+        "fired": false,
+        "disposition": "inapplicable -- claim_ids []. The recommended amend names target_sd_id contextmemory-write-path-addressing-degeneracy which DOES already exist (created from 436f); that is the point of action=amend, not a C2 create-collision. Recorded so a later session does not re-read silence as 'entry does not exist'."
+      },
+      {
+        "check": "C3",
+        "fired": false,
+        "disposition": "inapplicable -- claim_ids []. lit_status is present (DeSieno / refractory), not absent, so C3 would not have fired on the biological_reference even with a claim id."
+      },
+      {
+        "check": "C5",
+        "fired": false,
+        "disposition": "applicable after sibling .md written; no fire. Prose does not claim a unique/unrun bed."
+      },
+      {
+        "check": "C6-narrow",
+        "fired": false,
+        "disposition": "applicable; no fire. BIAS/REFRACTORY occupancy and round_robin differ from LEGACY in every seed (by-design arm contrast), not a majority-agree / minority-dissent shape."
+      },
+      {
+        "check": "C7",
+        "fired": false,
+        "disposition": "applicable; no fire. Write-count identity across arms (named in the .md) is the expected sense_only fingerprint, not a DV the design requires to vary across address-function arms. Had it fired, the disposal would have been: construction, not a contest."
+      }
+    ],
+    "note": "inapplicable is NOT no-fire. C1/C2/C3 are structurally blind on claim_ids []. Quiet C5/C6/C7 means those checks looked and found nothing. Step 7c skipped (parent)."
+  },
+  "confirmed_utc": "2026-08-21T01:56:34Z",
+  "step_7c": {
+    "verdict": "CONFIRMED",
+    "agent_id": "963f2dae-ae22-4362-98e6-9d08138f1983",
+    "note": "Recomputed P0 min writes 2933 from metrics.n_write_calls_per_seed_*. Routing unchanged."
+  },
+  "step_8": {
+    "ran_utc": "2026-08-21T01:56:34Z",
+    "verdict": "confirm_as_written",
+    "note": "User confirmed draft routing: governance amend of contextmemory-write-path-addressing-degeneracy; do not flip implemented_validated."
+  }
+}
