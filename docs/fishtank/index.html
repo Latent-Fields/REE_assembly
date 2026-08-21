@@ -1,4 +1,4 @@
-<!-- FISHTANK_VIZ_VERSION: 2026-06-10.2 -->
+<!-- FISHTANK_VIZ_VERSION: 2026-08-20.1 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,6 +83,7 @@
 
     /* ── Tank ── */
     #tankWrap {
+      position: relative;
       flex: 1; display: flex; align-items: center; justify-content: center;
       padding: 12px; min-width: 0;
     }
@@ -127,6 +128,45 @@
     .mode-neutral  { background: #1e3a5f; color: #93c5fd; }
     .mode-shelter  { background: #164e63; color: #67e8f9; }
     .mode-freeze   { background: #334155; color: #a5f3fc; }
+
+    /* Sleep-cycle badge (SD-017 SWS/REM/SHY consolidation, fired before this episode/
+       segment -- see episode_log per-episode sleep_cycle_fired_before_this_segment).
+       Deliberately loud: this is the one state where the fish is not "doing" anything
+       observable, so the UI has to say so explicitly rather than leaving a blank tank. */
+    .sleepBadge {
+      display: inline-block; padding: 3px 10px; border-radius: 4px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+      background: #312e81; color: #c7d2fe;
+      animation: sleepPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes sleepPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(129,140,248,0.55); }
+      50%      { box-shadow: 0 0 0 5px rgba(129,140,248,0); }
+    }
+
+    /* Full-tank sleep overlay -- shown for the whole duration the viewer is on an
+       episode/segment that had a sleep cycle fire immediately before it, so the
+       "nothing is happening" stretch reads as a deliberate consolidation state
+       instead of a stalled or broken viz. */
+    #tankSleepOverlay {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(10, 14, 30, 0.55);
+      border-radius: 4px; pointer-events: none; z-index: 5;
+    }
+    #tankSleepOverlay.show { display: flex; }
+    #tankSleepOverlay .sleepMsg {
+      font-size: 15px; font-weight: 700; letter-spacing: 0.05em;
+      color: #e0e7ff; background: rgba(49,46,129,0.85);
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid rgba(165,180,252,0.4);
+      animation: sleepPulse 1.8s ease-in-out infinite;
+      text-align: center;
+    }
+    #tankSleepOverlay .sleepMsg small {
+      display: block; font-size: 10px; font-weight: 500;
+      color: #a5b4fc; letter-spacing: 0.03em; margin-top: 4px;
+    }
     .mode-assert   { background: #831843; color: #fb7185; }
 
     /* Bars */
@@ -208,7 +248,15 @@
     .runList {
       max-height: 220px; overflow-y: auto;
       border: 1px solid var(--border); border-radius: 6px;
-      width: 480px; margin-top: 6px;
+      /* max-width uses vw (viewport-relative, always well-defined) rather
+         than a percentage, since #runListPicker's containing chain
+         (#picker, shrink-to-fit via align-items:center) has no determinate
+         width for a percentage to resolve against. Confirmed on a 375px
+         mobile viewport: the fixed 480px width centered the list off both
+         edges (-52..428px) with body's overflow-x:hidden making the
+         "Watch" buttons unreachable -- this alone made the picker unusable
+         on any phone. */
+      width: 480px; max-width: 92vw; margin-top: 6px;
     }
     .runItem {
       display: flex; align-items: center; gap: 8px;
@@ -254,7 +302,42 @@
       font-size: 11px; font-family: inherit;
     }
     #browseBtn:hover { background: #1e3a5f; }
+
+    /* ── Mobile layout (<=760px phones; breakpoint matches explorer.html) ──
+       Desktop assumes a fixed-size square canvas (grid_size * 50px CSS px,
+       set via the canvas width/height *attributes* in JS -- not CSS, so it
+       never shrinks) sitting beside a fixed 220px info panel in one row
+       that never wraps. Confirmed via Chrome mobile-viewport emulation
+       (375x812) with a real run loaded: the 600x600 canvas rendered at
+       x=-222..378 (overflowing both edges), #browseBtn/#loadBtn were
+       pushed to x=714..831 (fully off-screen -- no way to switch runs or
+       load a file on a phone), and #scrubber had only 51 of its 129px
+       visible -- with body's overflow-x:hidden, none of that was
+       reachable by scrolling. Fix: stack tank above info panel, let the
+       canvas scale via CSS (height:auto preserves its 1:1 aspect ratio
+       from the width/height attributes -- the drawing code is untouched,
+       it just gets displayed downscaled), and let the header/controls
+       rows wrap instead of overflowing. */
+    @media (max-width: 760px) {
+      #header { flex-wrap: wrap; row-gap: 4px; }
+      #runInfo { flex-basis: 100%; min-width: 0; overflow-wrap: anywhere; }
+
+      #main { flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      #tankWrap { flex: none; padding: 8px; }
+      #tank { width: 100%; max-width: 100%; height: auto; display: block; }
+      #infoPanel {
+        width: 100%; flex-shrink: 0;
+        border-left: none; border-top: 1px solid var(--border);
+        overflow-y: visible;
+      }
+
+      #controls { flex-wrap: wrap; row-gap: 6px; }
+      #scrubber { flex-basis: 100%; }
+    }
   </style>
+  <!-- Shared narrow-viewport hardening. Loaded AFTER the inline <style> above so
+       its rules win specificity ties. Inert above 760px. -->
+  <link rel="stylesheet" href="/mobile.css">
 </head>
 <body>
 
@@ -303,6 +386,7 @@
   <div id="main">
     <div id="tankWrap">
       <canvas id="tank"></canvas>
+      <div id="tankSleepOverlay"><div class="sleepMsg">&#x1F4A4; SLEEPING<small>SD-017 consolidation cycle -- SWS / REM / SHY</small></div></div>
     </div>
 
     <div id="infoPanel">
@@ -322,6 +406,7 @@
         <div class="iLabel">Behaviour</div>
         <div id="modeBadgeWrap"><span class="modeBadge mode-neutral">DRIFTING</span></div>
         <div id="zoneBadgeWrap" style="margin-top:4px;min-height:14px"></div>
+        <div id="sleepBadgeWrap" style="margin-top:4px;min-height:14px"></div>
         <div id="eventTag"></div>
       </div>
       <div>
@@ -358,6 +443,12 @@
         <div class="barRow" id="rowGoal"><span class="afLbl">want</span>
           <div class="barOuter"><div class="barInner" id="afGoal" style="width:0%;background:#34d399"></div></div>
           <span class="afVal" id="afGoalV">—</span></div>
+        <div class="barRow" id="rowResWant"><span class="afLbl">res.want</span>
+          <div class="barOuter"><div class="barInner" id="afResWant" style="width:0%;background:#6ee7b7"></div></div>
+          <span class="afVal" id="afResWantV">—</span></div>
+        <div class="barRow" id="rowLiking"><span class="afLbl">liking</span>
+          <div class="barOuter"><div class="barInner" id="afLiking" style="width:0%;background:#f9a8d4"></div></div>
+          <span class="afVal" id="afLikingV">—</span></div>
         <div class="barRow" id="rowVigor"><span class="afLbl">vigor</span>
           <div class="barOuter"><div class="barInner" id="afVigor" style="width:0%;background:#60a5fa"></div></div>
           <span class="afVal" id="afVigorV">—</span></div>
@@ -367,6 +458,22 @@
         <div class="barRow" id="rowBlock"><span class="afLbl">assert</span>
           <div class="barOuter"><div class="barInner" id="afBlock" style="width:0%;background:#fb7185"></div></div>
           <span class="afVal" id="afBlockV">—</span></div>
+
+        <div class="afSub" id="subRelief">Relief &amp; safety (MECH-302/303/304)</div>
+        <div class="barRow" id="rowRelief"><span class="afLbl">relief</span>
+          <div class="barOuter"><div class="barInner" id="afRelief" style="width:0%;background:#2dd4bf"></div></div>
+          <span class="afVal" id="afReliefV">—</span></div>
+        <div class="barRow" id="rowSafetyCue"><span class="afLbl">safe cue</span>
+          <div class="barOuter"><div class="barInner" id="afSafetyCue" style="width:0%;background:#38bdf8"></div></div>
+          <span class="afVal" id="afSafetyCueV">—</span></div>
+        <div class="barRow" id="rowSafetyTerrain"><span class="afLbl">safe terr</span>
+          <div class="barOuter"><div class="barInner" id="afSafetyTerrain" style="width:0%;background:#86efac"></div></div>
+          <span class="afVal" id="afSafetyTerrainV">—</span></div>
+
+        <div class="afSub" id="subSurprise">Surprise (unsigned prediction error, pre-valence)</div>
+        <div class="barRow" id="rowSurprise"><span class="afLbl">surprise</span>
+          <div class="barOuter"><div class="barInner" id="afSurprise" style="width:0%;background:#facc15"></div></div>
+          <span class="afVal" id="afSurpriseV">—</span></div>
 
         <div class="afSub" id="subValence">Valence (dread &#8596; excite)</div>
         <div class="barRow" id="rowVal"><span class="afLbl">val</span>
@@ -1216,11 +1323,46 @@ function updateAffect(s, steps) {
   // Drive & arousal
   const vDrive = setBar('afDrive', 'afDriveV', 'rowDrive', pick(s, ['drive']),    1.0);
   const vGoal  = setBar('afGoal',  'afGoalV',  'rowGoal',  pick(s, ['z_goal']),   chMax(steps, ['z_goal'], 0.3));
+  // Residue wanting (VALENCE_WANTING, index 0) -- distinct from `want`/z_goal above,
+  // which is the frontal goal-attractor's own wanting signal (goal_state.goal_norm()).
+  // This is the hippocampal-map residue channel z_goal seeds indirectly but does not
+  // equal. Graceful: hidden when the log has no `residue_wanting` field.
+  const vResWant = setBar('afResWant', 'afResWantV', 'rowResWant', pick(s, ['residue_wanting']),
+                           chMax(steps, ['residue_wanting'], 0.3));
+  // Liking (VALENCE_LIKING, hedonic-impact channel). Graceful: hidden when the log
+  // has no `liking` field (e.g. 906b and earlier, which predate the telemetry that
+  // surfaces it). Auto-scales to its own per-episode max so small variation is visible.
+  const vLike  = setBar('afLiking','afLikingV','rowLiking',pick(s, ['liking']),   chMax(steps, ['liking'], 0.3));
   const vVigor = setBar('afVigor', 'afVigorV', 'rowVigor', pick(s, ['vigor']),    chMax(steps, ['vigor'], 0.2));
   const vOver  = setBar('afOver',  'afOverV',  'rowOver',  pick(s, ['override']), 1.0);
   const vBlock = setBar('afBlock', 'afBlockV', 'rowBlock', pick(s, ['z_block']),  chMax(steps, ['z_block'], 0.2));
   document.getElementById('subDrive').style.display =
-    (vDrive || vGoal || vVigor || vOver || vBlock) ? 'block' : 'none';
+    (vDrive || vGoal || vResWant || vLike || vVigor || vOver || vBlock) ? 'block' : 'none';
+
+  // Relief (MECH-302 relief_event -- a discrete completion pulse, rendered like
+  // `override` as a 0/1 gate rather than an auto-scaled magnitude) and safety
+  // (MECH-304 safety_cue_signal cosine similarity; MECH-303 safety_terrain_read
+  // passive-terrain query). Graceful: hidden when the log has none of these
+  // fields -- every fishtank driver before V3-EXQ-916 (including 664) never
+  // enabled this substrate, so older logs simply don't carry them.
+  const vRelief = setBar('afRelief', 'afReliefV', 'rowRelief',
+                          pick(s, ['relief_event']), 1.0);
+  const vSafeCue = setBar('afSafetyCue', 'afSafetyCueV', 'rowSafetyCue',
+                           pick(s, ['safety_cue_signal']),
+                           chMax(steps, ['safety_cue_signal'], 0.5));
+  const vSafeTerrain = setBar('afSafetyTerrain', 'afSafetyTerrainV', 'rowSafetyTerrain',
+                               pick(s, ['safety_terrain_read']),
+                               chMax(steps, ['safety_terrain_read'], 1.0));
+  document.getElementById('subRelief').style.display =
+    (vRelief || vSafeCue || vSafeTerrain) ? 'block' : 'none';
+
+  // Surprise (VALENCE_SURPRISE, unsigned prediction-error magnitude -- the
+  // pre-valence channel excite/dread are signed splits of). Graceful: hidden when
+  // the log has no `surprise` field (e.g. 906b and earlier, which predate the
+  // telemetry that surfaces it). Auto-scales to its own per-episode max.
+  const vSurprise = setBar('afSurprise', 'afSurpriseV', 'rowSurprise', pick(s, ['surprise']),
+                            chMax(steps, ['surprise'], 0.05));
+  document.getElementById('subSurprise').style.display = vSurprise ? 'block' : 'none';
 
   // Valence: bipolar dread(-) / excite(+)
   const ex = pick(s, ['excite']);
@@ -1231,11 +1373,17 @@ function updateAffect(s, steps) {
     rowVal.style.display = 'none'; subVal.style.display = 'none';
   } else {
     rowVal.style.display = 'flex'; subVal.style.display = 'block';
-    const vMax = Math.max(chMax(steps, ['excite'], 1e-6), chMax(steps, ['dread'], 1e-6));
+    // Independent per-side maxima. A shared max let the excite side (mean ~14, max
+    // ~43 under the unbounded residue-valence accumulator, SD-RESIDUE-VALENCE-BOUND)
+    // crush the dread side (max ~2.8) to a sliver, hiding all dread variation. The
+    // two bars no longer share a magnitude scale — read each side's fill as variation
+    // relative to its own episode max, and the numeric net label for signed level.
+    const exMax = chMax(steps, ['excite'], 1e-6);
+    const drMax = chMax(steps, ['dread'], 1e-6);
     document.getElementById('afExcite').style.width =
-      (ex ? Math.min(1, ex / vMax) * 50 : 0).toFixed(0) + '%';
+      (ex ? Math.min(1, ex / exMax) * 50 : 0).toFixed(0) + '%';
     document.getElementById('afDread').style.width =
-      (dr ? Math.min(1, dr / vMax) * 50 : 0).toFixed(0) + '%';
+      (dr ? Math.min(1, dr / drMax) * 50 : 0).toFixed(0) + '%';
     const net = (ex || 0) - (dr || 0);
     document.getElementById('afValV').textContent = (net >= 0 ? '+' : '') + net.toFixed(3);
   }
@@ -1267,6 +1415,15 @@ function updateInfo() {
 
   const evtLabel = EVENT_LABELS[s.transition_type] || '';
   document.getElementById('eventTag').textContent = evtLabel ? '\u25b8 ' + evtLabel : '';
+
+  // Sleep-cycle visibility (SD-017): a sleep cycle fires BETWEEN episodes/segments, so
+  // it is a property of the whole episode being viewed, not of any single step -- see
+  // episode_log's per-episode sleep_cycle_fired_before_this_segment.
+  const ep = curEp();
+  const sleeping = !!(ep && ep.sleep_cycle_fired_before_this_segment);
+  document.getElementById('sleepBadgeWrap').innerHTML = sleeping
+    ? '<span class="sleepBadge">&#x1F4A4; SLEEP CYCLE</span>' : '';
+  document.getElementById('tankSleepOverlay').classList.toggle('show', sleeping);
 
   const hp  = s.health != null ? s.health : 1.0;
   const hpP = Math.round(hp * 100);
@@ -1430,7 +1587,7 @@ function buildSeedBtns() {
   logData.seeds.forEach((s, i) => {
     const btn = document.createElement('button');
     btn.className   = 'navBtn' + (i === seedIdx ? ' active' : '');
-    btn.textContent = `seed ${s.seed}`;
+    btn.textContent = `seed ${s.seed}` + (s.arm ? ` (${s.arm})` : '');
     btn.onclick     = () => { seedIdx = i; episodeIdx = 0; stepIdx = 0; fullRefresh(); };
     wrap.appendChild(btn);
   });

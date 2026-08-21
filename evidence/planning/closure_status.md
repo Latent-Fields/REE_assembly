@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-18T08:23:59Z
+Generated: 2026-08-21T02:07:33Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **72.3%** across 95 non-deferred nodes in 17 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **32** nodes.
+- Weighted progress: **71.4%** across 97 non-deferred nodes in 17 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **34** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
-- Deferred (not required for v3 closure): 12 nodes.
+- Deferred (not required for v3 closure): 10 nodes.
 - Done: 63 nodes.
-- Status tally: assembling=10  blocked=12  blocked_pending_substrate=2  deferred=12  done=63  in_progress=8  open=7  partial=2  upstream_blocked=1
+- Status tally: assembling=10  blocked=13  blocked_pending_substrate=3  deferred=10  done=63  in_progress=9  open=6  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -21,14 +21,14 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 |------|-------|-------|----------|---------------|--------------|
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 0% | open:1 | 2026-08-13 |
-| `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 0% | open:1 | 2026-08-14 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 25% | blocked:1 done:1 in_progress:1 open:3 | 2026-08-13 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-08-18 |
-| `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-08-01 |
-| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 79% | assembling:1 deferred:3 done:5 in_progress:2 partial:1 | 2026-08-12 |
-| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 79% | assembling:1 blocked:1 deferred:1 done:7 in_progress:2 | 2026-08-16 |
+| `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 40% | in_progress:1 | 2026-08-18 |
+| `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-08-18 |
+| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-08-18 |
+| `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 79% | assembling:1 blocked:1 deferred:1 done:7 in_progress:2 | 2026-08-18 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-07-21 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
@@ -37,7 +37,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-16 |
 
-## Remaining work to close v3 (32)
+## Remaining work to close v3 (34)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
@@ -60,8 +60,8 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-08-01 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
-| policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | open |  | load-bearing |  |  | 2026-08-14 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-08-16 |
+| policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | in_progress |  | load-bearing | V3-EXQ-938 | Advances/closes on the V3-EXQ-938 RESULT: rank-based top-20% within-run forward-PE trigger | 2026-08-18 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-08-18 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cr | 2026-07-10 |
 | mech357_avoidance_efficacy_plan.md | `mech357_avoidance_efficacy:BUILD` | Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the d | open |  | high |  |  | 2026-08-13 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-13 |
@@ -72,7 +72,9 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium |  | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-08-16 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | in_progress |  | medium |  | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-07-20 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate |  | medium |  | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-07-21 |
+| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I-absorption` | ARC-064 absorption checks for MECH-316 (cross-episode regularities) + MECH-317 ( | blocked_pending_substrate |  | low |  | depends_on: arc_062_rule_apprehension:GAP-I | 2026-08-18 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked |  | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (blocked on GAP-B): MECH-314 curiosity weight (Goldilocks calibration) | blocked |  | low |  | BLOCKED ON behavioral_diversity_isolation:GAP-B only (status partial, severity load-bearin | 2026-08-18 |
 | commitment_closure_plan.md | `commitment_closure:GAP-7` | MECH-091 salient-event trigger wiring (2 of 3 triggers unwired; phase_reset itse | blocked |  | low |  | ext: substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING (V3, buildable now) | 2026-08-16 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:MECH-191` | MECH-191 cross-architecture legibility unblock check (does A's dispositional rea | open |  | low |  | depends_on: global_workspace_jlens:A | 2026-07-09 |
 
@@ -82,28 +84,26 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | blocked_on_upstream |  | 2026-08-12 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=queue-experiment | blocked_on_upstream |  | 2026-08-12 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | {'successor': 'V3-EXQ-935a', 'kind': 'same-question re-queue | built |  | 2026-06-23 |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | routing=queue-experiment | ran_non_contributory |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=queue-experiment | built |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=governance | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=governance | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=governance | blocked_on_upstream |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | routing=governance | ran_non_contributory |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | routing=governance | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=governance | built |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=governance | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
 
-## Deferred -- not required for v3 closure (12)
+## Deferred -- not required for v3 closure (10)
 
 | plan | node | title | status | reason / blocker |
 |------|------|-------|--------|------------------|
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-E` | Multi-strategy scaling probe (>2 strategies) -- distinguishes ARC-062 weak from  | deferred | depends_on: arc_062_rule_apprehension:GAP-B |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-F` | Clinical / failure-mode tests (trauma-schema / paranoid-rule-field / depressive- | deferred | depends_on: arc_062_rule_apprehension:GAP-E |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-G` | Sleep-vs-waking refinement asymmetry tests -- ARC-063 falsifiable predictions (c | deferred | depends_on: arc_062_rule_apprehension:GAP-E |
-| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I-absorption` | ARC-064 absorption checks for MECH-316 (cross-episode regularities) + MECH-317 ( | deferred | depends_on: arc_062_rule_apprehension:GAP-I |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-E` | Theory 5 (deferred): proposal-distribution bias (re-enters candidate set on R_X. | deferred | Re-enters candidate set only if R_X.c fires -- i.e. the full 4-substrate stack (Layers A+B |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-F` | Theory 6 (deferred): MECH-260 anti-recency contribution to behavioural diversity | deferred | Partially covered by Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) u |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (deferred): MECH-314 curiosity weight (Goldilocks calibration) | deferred | V3-EXQ-590a annotated pending_retest_after_substrate (MECH-111 broadcast novelty was scala |
 | commitment_closure_plan.md | `commitment_closure:GAP-6` | MECH-260 vs SD-034 No-Go pulse boundary unclear (V4 flag) | deferred | depends_on: commitment_closure:GAP-4 |
 | sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P3` | Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consume | deferred | SUPERSEDED by sd_037_axis_b:P3 -- do NOT resume in axis (a). The within-plan depends_on (P |
 | sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P4` | Phase 4 -- terminal behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/ON_O | deferred | SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The Phase-4 behavioural valid |

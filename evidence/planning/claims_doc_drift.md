@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-08-17T01:57:09Z
+Generated: 2026-08-21T02:10:38Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (128)
+## Unresolved with a hand status line -- INFO (129)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -44,6 +44,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `cognifold_signed_coupling.md` -- "candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09 from the competitive-interactions thought inta"
 - `cognitive_architecture_graveyard.md` -- "first pass (WS-8 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `compact_consolidation_principle.md` -- "candidate"
+- `contextmemory_write_address_selection.md` -- "IMPLEMENTED (two mechanisms) 2026-08-19 -- VALIDATION PENDING for both"
 - `control_plane.md` -- "stable"
 - `control_plane_heartbeat.md` -- "candidate"
 - `control_plane_signal_map.md` -- "candidate"

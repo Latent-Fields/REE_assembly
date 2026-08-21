@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-08-18T21:27:48.347186Z`
+Generated: `2026-08-21T02:06:56.231968Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -26,7 +26,6 @@ Sorted worst-conflict-first.
 | `ARC-030` | `chronic_under_threshold` | 0.706 | `candidate` | 22 |
 | `SD-007` | `chronic_under_threshold` | 0.692 | `implemented` | 18 |
 | `INV-047` | `chronic_under_threshold` | 0.667 | `candidate` | 10 |
-| `INV-054` | `chronic_under_threshold` | 0.667 | `candidate` | 5 |
 | `INV-087` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-063` | `chronic_under_threshold` | 0.667 | `provisional` | 6 |
 | `MECH-071` | `chronic_under_threshold` | 0.667 | `provisional` | 21 |
@@ -42,7 +41,6 @@ Sorted worst-conflict-first.
 | `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
 | `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-466` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
-| `MECH-467` | `chronic_under_threshold` | 0.667 | `candidate` | 2 |
 | `MECH-471` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
 | `Q-001` | `dormant_low_activity` | 0.667 | `active` | 1 |
 | `Q-007` | `chronic_under_threshold` | 0.667 | `active` | 5 |
@@ -52,6 +50,5 @@ Sorted worst-conflict-first.
 | `SD-078` | `chronic_under_threshold` | 0.667 | `candidate_substrate_landed` | 4 |
 | `MECH-090` | `chronic_under_threshold` | 0.645 | `active` | 24 |
 | `SD-049` | `chronic_under_threshold` | 0.615 | `candidate` | 14 |
-| `ARC-042` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
 | `MECH-128` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
 | `MECH-135` | `chronic_under_threshold` | 0.571 | `candidate` | 10 |

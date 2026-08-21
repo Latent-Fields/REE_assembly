@@ -14,10 +14,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -29,10 +29,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -44,10 +44,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -59,10 +59,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -74,10 +74,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -90,10 +90,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -112,10 +112,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-18"
-        from: "failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18#V3-EXQ-937a"
-        verdict: "supports/standard"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-20"
+        from: "failure_autopsy_V3-EXQ-937b_2026-08-20"
+        verdict: "non_contributory/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
