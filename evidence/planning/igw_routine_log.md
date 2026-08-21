@@ -1963,3 +1963,7 @@ One line per hourly tick. ASCII only.
 2026-08-21T17:27:50Z skip IGW-20260821-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-21T18:28:34Z SPAWN IGW-20260821-229 skill=/queue-experiment prio=40 uuid=b4e393c0-125c-4ed0-919a-4c954e12d2b6 pid=37490 worktree=igw-229-proposal-for-sd-099
 2026-08-21T19:27:27Z reaped TASK_CLAIMS igw-auto-igw-229-proposal-for-sd-099-20260821T182859Z (ledger IGW-20260821-229 -> spawn_failed_no_session)
+2026-08-21T19:32:20Z GC removed worktree igw-229-proposal-for-sd-099 (removed; branch deleted)
+2026-08-21T19:32:10Z GC sweep removed 1 orphan worktree(s), kept 11
+2026-08-21T19:32:44Z workset committed (regen -- 239 items, 26 ready, 0 in flight)
+2026-08-21T19:32:10Z no eligible item (skipped 239): IGW-20260821-001:skill /governance not allowed; IGW-20260821-214:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260821-215:status=blocked blocked_by=ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]
