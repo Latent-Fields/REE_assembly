@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-21T19:07:49Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-937",
-      "result": "FAIL",
-      "completed_at": "2026-08-18T01:39:55.041877+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937a",
-      "result": "PASS",
-      "completed_at": "2026-08-18T01:58:59.389993+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-932a",
-      "result": "PASS",
-      "completed_at": "2026-08-19T09:43:28.834903+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-940",
-      "result": "PASS",
-      "completed_at": "2026-08-19T14:09:22.036786+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-937b",
-      "result": "PASS",
-      "completed_at": "2026-08-19T14:24:34.057795+00:00"
-    }
+  "last_tick_utc": "2026-08-21T19:39:04Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-910b",
+  "current_exq_started_utc": "2026-08-21T19:30:28.700763+00:00",
+  "current_title": "MECH-489 (SD-099) valence-gating retest with decision counted at the override tick",
+  "current_claim_id": "MECH-489",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / full_stack_observational_showcase",
+    "runs_done": 1,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 220,
+    "overall_pct": 16.7
+  },
+  "seconds_elapsed": 516,
+  "seconds_remaining": 19884,
+  "recent_lines": [
+    "Seed 0 Condition orienting_off",
+    "Seed 0 Condition full_stack_observational_showcase",
+    "[EXQ-906b] seed=0 world_obs_dim=350 body_obs_dim=17 full-stack curriculum ON"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5330 17befb8 2026-08-20",
+  "runner_version": "r5333 4d77ec9 2026-08-21 (running r5330 17befb8)",
   "gpu": {
     "available": false
   },
