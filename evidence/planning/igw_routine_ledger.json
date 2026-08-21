@@ -2940,6 +2940,30 @@
       "task_claim_session_id": "igw-auto-igw-229-proposal-for-sd-099-20260821T203428Z",
       "task_claim_claimed_at": "2026-08-21T20:34:28Z",
       "assigned_at": "2026-08-21T20:33:11Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-21T22:16:30Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
+    },
+    {
+      "igw_id": "IGW-20260821-229",
+      "stable_hash": "0f1dde421782",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-236"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for MECH-236",
+      "worktree": ".claude/worktrees/igw-229-proposal-for-mech-236",
+      "branch": "claude/igw-229-proposal-for-mech-236",
+      "session_uuid": "2b12edcd-2611-4a10-a973-a98826fd1da2",
+      "pid": 76808,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-229-proposal-for-mech-236 && claude --resume 2b12edcd-2611-4a10-a973-a98826fd1da2",
+      "task_claim_session_id": "igw-auto-igw-229-proposal-for-mech-236-20260821T221732Z",
+      "task_claim_claimed_at": "2026-08-21T22:17:32Z",
+      "assigned_at": "2026-08-21T22:16:08Z",
       "status": "spawned"
     }
   ],
@@ -4000,6 +4024,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-17T06:08:44Z",
       "re_eligible_after": "2026-08-19T06:08:44Z"
+    },
+    {
+      "stable_hash": "fe5ee5851d42",
+      "igw_id_at_disposition": "IGW-20260821-229",
+      "owner_exq": null,
+      "claim_ids": [
+        "SD-099"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for SD-099",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-21T22:16:47Z",
+      "re_eligible_after": "2026-08-23T22:16:28Z"
     }
   ]
 }
