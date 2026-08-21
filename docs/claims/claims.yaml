@@ -80363,6 +80363,8 @@
   evidence_quality_note: |
     [2026-08-21 governance, gov-20260821-0203]: hold_pending_v3_substrate APPLIED. Newly registered; no V3 experimental run yet. Status stays candidate. No promotion or demotion until a V3 experiment completes.
 
+    [2026-08-21, chip-20260821-sd099-diagnostic-purpose-evidence-credit]: this claim's own validation is deliberately routed through MECH-489 (see this claim's implementation_note, "Validation experiment: see MECH-489 what_would_answer") and will never accrue its own genuine_exp_count as a design_decision claim with no run ever tagging SD-099 directly -- confirmed by code that build_experiment_indexes.py has no instantiates-aware or design_decision-aware evidence-credit path. Do not read SD-099's own zero as "untested" without checking MECH-489. See evidence/planning/design_decision_evidence_credit_gap_20260821.md for the full analysis (generalizes to SD-032/SD-033/SD-033c) and the decision chip raised for /governance ratification of a fix.
+
 
 
 - id: MECH-489
@@ -80495,6 +80497,29 @@
     severity=degrading) for the decision-logging defect; explicitly NOT routing a fresh
     discriminating experiment until the corrected measurement is available. Re-derive brake and
     granularity-debt checks both run: neither fires. Status unchanged (candidate).
+
+
+    [2026-08-21, chip-20260821-sd099-diagnostic-purpose-evidence-credit]: this claim's
+    genuine_exp_count / source_counts.experimental read 0 despite the two dated entries directly
+    above, because both v3_exq_910 and v3_exq_910a manifests carry EXPERIMENT_PURPOSE="diagnostic"
+    (build_experiment_indexes.py:3391 excludes experiment_purpose in (diagnostic, baseline) from
+    scoring -- confirmed the sole active exclusion; the claim-level pending_retest_after_substrate
+    flag above has NO code path into scoring_excluded at all, since _load_claim_registry does not
+    parse it and the per-run manifest flag it maps to is unset on both manifests -- EVB-0622's
+    gating_reason overstated this as a double exclusion). DECIDED, do not re-litigate: the
+    "diagnostic" purpose classification is CORRECT and is RETAINED for this lineage, including the
+    still-pending V3-EXQ-910b -- this is a genuine multi-round substrate-readiness/instrument
+    shakeout (three iterations just to get the decision_counts readout correct), matching
+    /queue-experiment SKILL.md's own definition, not a misclassification. The zero score is
+    therefore expected and correct; the defect is that the auto-proposal generator's why_now
+    signals (missing_experimental_evidence, lit_only_above_cap, synthetic_signals_only) cannot see
+    that this "zero" already carries an extensively adjudicated diagnostic narrative, so it will
+    keep re-firing indefinitely regardless of what V3-EXQ-910b finds. That indexer-layer fix is a
+    /governance design call, not decided or implemented here -- see
+    evidence/planning/design_decision_evidence_credit_gap_20260821.md for the full analysis and two
+    candidate fix shapes, and TASK_CHIPS.json for the decision chip raised for governance
+    ratification. Do not queue a further SD-099/MECH-489 experiment on the strength of this
+    note -- GOV-REUSE-1 already ran for this pair (EVB-0622, 2026-08-21).
   notes: >
     Built 2026-08-09 (session 906b-defensive-orienting-v3) via /implement-substrate, from
     observational_review_V3-EXQ-906b_2026-08-09.md Sections 11b/11d (design, user-ratified "as
