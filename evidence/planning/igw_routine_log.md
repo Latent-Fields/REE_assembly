@@ -1973,3 +1973,4 @@ One line per hourly tick. ASCII only.
 2026-08-21T22:16:47Z auto-defer IGW-20260821-229 hash=fe5ee5851d42 for 48h (reaped -> completed_resumable)
 2026-08-21T22:17:28Z reaped TASK_CLAIMS igw-auto-igw-229-proposal-for-sd-099-20260821T203428Z (ledger IGW-20260821-229 -> completed_resumable)
 2026-08-21T22:17:28Z GC keep igw-229-proposal-for-sd-099 (ledger IGW-20260821-229 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-08-21T22:16:08Z SPAWN IGW-20260821-229 skill=/queue-experiment prio=40 uuid=2b12edcd-2611-4a10-a973-a98826fd1da2 pid=76808 worktree=igw-229-proposal-for-mech-236
