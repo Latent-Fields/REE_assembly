@@ -2921,7 +2921,7 @@
       "outcome": "ERROR",
       "outcome_evidence": "claude exited without writing a session",
       "completed_at": "2026-08-21T22:37:05Z",
-      "completion_summary": "marked EVB-0607 (MECH-236) blocked_substrate: behavioural falsifier barred by the ratified competitive-spread-ratio gate (0.0037 vs floor 0.1) and absent throughput; commitment-free alternative trips Step 2.5c on e1_deep corrupting overlap. Chipped a new finding: V3-EXQ-914's P1 precondition is unfalsifiable by recompute."
+      "completion_summary": "CORRECTED 2026-08-21T22:39Z. This entry is the SD-099 spawn that FAILED (spawn_failed_no_session -- 'claude exited without writing a session'; see outcome_evidence), and outcome=ERROR is correct for it. Its previous completion_summary was MISATTRIBUTED: it described the MECH-236 work of a different IGW-20260821-229 entry (stable_hash 0f1dde421782, worktree igw-229-proposal-for-mech-236). Cause: `igw_routine_tick.py complete IGW-20260821-229` matches by igw_id, three ledger entries share that id, and the command silently completed the first non-completed candidate -- this one -- while printing a NOTE advising 'Pass a stable_hash to be unambiguous'. The `complete` subcommand exposes NO --stable-hash flag, so that advice is unreachable through its own CLI; the working disambiguator is the WORKTREE SLUG positional (`complete igw-229-proposal-for-mech-236`), which is what corrected it. Recorded as chip-20260821-igw-complete-ambiguous-id-misattribution. No SD-099 work was performed by that session; the real SD-099 outcome is on the sibling completed_resumable/USEFUL_LANDED entry."
     },
     {
       "igw_id": "IGW-20260821-229",
