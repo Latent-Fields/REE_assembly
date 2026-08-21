@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-21T18:29:48Z",
+  "generated_at": "2026-08-21T19:27:23Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7017,6 +7017,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=b4e393c0-125c-4ed0-919a-4c954e12d2b6 branch=claude/igw-229-proposal-for-sd-099",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for SD-099",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "SD-099"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260821T192723Z-fe5ee585-claude_local",
+      "stable_hash": "fe5ee5851d42",
+      "igw_id_at_assign": "IGW-20260821-229",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-08-21T19:27:23Z",
+      "released_at": "2026-08-21T19:27:23Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude exited without writing session (see claude.log)",
+      "released_event_for": "asn-20260821T182834Z-fe5ee585-claude_local",
       "note": "session_uuid=b4e393c0-125c-4ed0-919a-4c954e12d2b6 branch=claude/igw-229-proposal-for-sd-099",
       "item_snapshot": {
         "skill": "/queue-experiment",

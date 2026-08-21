@@ -1962,3 +1962,4 @@ One line per hourly tick. ASCII only.
 2026-08-21T17:28:11Z workset committed (regen -- 239 items, 26 ready, 0 in flight)
 2026-08-21T17:27:50Z skip IGW-20260821-229: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-21T18:28:34Z SPAWN IGW-20260821-229 skill=/queue-experiment prio=40 uuid=b4e393c0-125c-4ed0-919a-4c954e12d2b6 pid=37490 worktree=igw-229-proposal-for-sd-099
+2026-08-21T19:27:27Z reaped TASK_CLAIMS igw-auto-igw-229-proposal-for-sd-099-20260821T182859Z (ledger IGW-20260821-229 -> spawn_failed_no_session)
