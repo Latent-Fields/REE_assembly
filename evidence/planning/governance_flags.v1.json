@@ -586,9 +586,9 @@
       "summary": "MECH-151's live_status reads 'supports -- narrow context-conditioning mechanism confirmed (V3-EXQ-922, 2/3 seeds)' under the SD-016 production config that V3-EXQ-436f later measured running against a 1-of-16-occupied ContextMemory slot bank (substrate_queue contextmemory-write-path-addressing-degeneracy, severity corrupting, still open), which would make cue_context near-constant and leave the surviving action_bias variation attributable to the concatenated raw z_world rather than to cue indexing. Separately, source tracing shows action_bias is computed from z_world alone before any candidate exists and added identically to every candidate, so the claim's asserted additive form is structurally incapable of the competition-conditioned/relative behaviour the 2026-08-16 Pastor-Bernier and Cisek 2011 literature entry describes; _score_trajectory and e3_selector never read Trajectory.action_objects, so the bias's only causal path is a rigid translation of the CEM proposal mean. Full evidence and verification: REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md",
       "raised_by_session": "metaworker-chip-20260816-queueexp-mech151-affordance-set-instrumentation-v2",
       "raised_at": "2026-08-18T03:15:23Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-21T17:12:40Z",
+      "resolution_note": "Applied 2026-08-21 cycle gov-20260821-0203: V3-EXQ-922 MECH-151 supports withdrawn. Manifest evidence_direction_per_claim.MECH-151 = non_contributory (run-level stays weakens). claims.yaml live_status.evidence from failure_autopsy_V3-EXQ-936_2026-08-18. See also GFLAG-0043."
     },
     {
       "flag_id": "GFLAG-0040",
