@@ -652,7 +652,7 @@
       "exclude_broad_profile_sweeps": true,
       "gated_at_utc": "2026-08-20T03:40:40Z",
       "gated_by_session": "metaworker-chip-20260817-sd-orienting-decision-scale-amend",
-      "gating_reason": "STILL BLOCKED, but the reason has NARROWED as of 2026-08-20. The SD-ORIENTING-DECISION-SCALE amend's SUBSTRATE half has LANDED (ree-v3 775eb55): the post-override decision window now expires unconditionally, so a 'resume' decision no longer persists for the rest of the episode and the countdown no longer freezes on ticks where the score-bias gate does not open. Pinned by tests/contracts/test_orienting_decision_window_expiry.py, verified differentially against the pre-amend agent.py. WHAT REMAINS is the DRIVER half named in this proposal's own release_condition: the 910-lineage _decision_alignment still reads the latched _orienting_decision once per ENV STEP against a window denominated in E3 TICKS, inflating decision_counts by ~e3_steps_per_tick (predicting ~5x, matching 910's observed 206/42 = 4.90). Until that readout counts the decision at the override tick only and emits n_latched_ticks, decision_alignment remains unusable and a retest queued now would again produce a non-interpretable counter. Chipped as chip-20260820-mech489-retest-driver-decision-at-override-tick, which should author the retest and this driver fix together via /queue-experiment. claims.yaml MECH-489 keeps pending_retest_after_substrate: true. Prior reason (2026-08-17, metaworker-chip-proposal-exp-0033) is superseded only in its substrate half; its root-cause analysis stands and is recorded in evidence/planning/mech489_decision_counts_defect_staged_20260817.md.",
+      "gating_reason": "RELEASED 2026-08-21. This proposal's own release_condition -- 'SD-ORIENTING-DECISION-SCALE amend landed (substrate: reachable _orienting_decision clear for resume and on gate-miss ticks; driver: count the decision at the override tick only + emit n_latched_ticks), then re-queue the MECH-489 valence-gating retest' -- is now satisfied in all three parts: SUBSTRATE landed 2026-08-20 (ree-v3 775eb55), DRIVER landed 2026-08-21 (V3-EXQ-910b's sentinel tap on REEAgent.select_action counts the decision at the override tick only and emits n_latched_ticks / n_fresh_orienting_ticks), and the retest is RE-QUEUED as V3-EXQ-910b. Prior gating_reason (2026-08-20, metaworker-chip-20260817-sd-orienting-decision-scale-amend) is fully superseded. NOTE the driver work also CORRECTED that prior reason's own diagnosis: orienting_override_fired is read off the same latched _orienting_last_output, so the 910-lineage n_overrides was itself replicated and was never a trustworthy denominator -- the ~5x figure was a ratio of two inflated numbers, not decision-inflation against a sound override count. MECH-489 keeps pending_retest_after_substrate: true until V3-EXQ-910b RUNS; executed here means dispatched into a queue entry, not answered.",
       "min_shared_seeds": 2,
       "objective": "Generate decision-grade discriminative evidence for MECH-489 before governance deadline.",
       "priority": "high",
@@ -671,14 +671,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "blocked_substrate",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_489",
       "target_repo": "ree-v3",
       "why_now": [
         "directional_conflict_alert",
         "low_exp_conf",
         "mandatory_decision_checkpoint"
-      ]
+      ],
+      "executed_by": "V3-EXQ-910b",
+      "executed_queue_id": "V3-EXQ-910b"
     },
     {
       "acceptance_checks": [
