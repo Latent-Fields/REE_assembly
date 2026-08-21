@@ -164,7 +164,7 @@ closure_plan:
       phase: 2
       status: in_progress
       severity: high
-      owner_exq: null
+      owner_exq: "V3-EXQ-910b"
       unblocks_claims: ["MECH-489"]
       depends_on: ["orienting_epistemic_deficit_v3:ORNT-5"]
       cross_plan_link: []
@@ -172,11 +172,23 @@ closure_plan:
         claims.yaml MECH-489 carries pending_retest_after_substrate: true --
         SD-ORIENTING-DECISION-SCALE (ree-v3 agent.py select_action()
         Component 4/5) landed 2026-08-10, fixing the norm-vs-value scale
-        mismatch failure_autopsy_V3-EXQ-910_2026-08-10 identified. A clean
-        valence-gating retest (a 910a follow-on) is owed but not yet queued.
-        The trigger-alignment sub-claim already stands as fairly falsified
+        mismatch failure_autopsy_V3-EXQ-910_2026-08-10 identified. The clean
+        valence-gating retest is now queued as V3-EXQ-910b (ree-v3 4d77ec9,
+        status pending, supersedes V3-EXQ-910a), which also repairs the
+        decision_counts readout to count at the override tick only rather
+        than once per env step. Blocked on that run actually executing and
+        its criteria being adjudicated -- no manifest exists yet. The
+        trigger-alignment sub-claim already stands as fairly falsified
         (V3-EXQ-910/910a) and does not need re-testing.
-      last_updated: 2026-08-13
+      resume_condition: >
+        Resume once V3-EXQ-910b's manifest lands under
+        REE_assembly/evidence/experiments/ and its pre-registered criteria
+        are adjudicated (C1: sum(decision_counts) == n_override_ticks
+        exactly; C2: decision_alignment non-degenerate, >= 2 of the 3
+        decision classes non-zero). A pass advances this node toward
+        closure; a fail/mixed outcome routes to a failure autopsy before
+        any further retesting is queued.
+      last_updated: 2026-08-21
       completion_note: >
         Had NO owning closure node until this plan despite real experimental
         evidence existing (V3-EXQ-910, V3-EXQ-910a; failure_autopsy_V3-EXQ-
@@ -188,6 +200,14 @@ closure_plan:
         either way). status: in_progress reflects this being actively
         tested, not merely registered and not stalled. Queue the 910a
         follow-on retest via /queue-experiment once ready.
+
+        2026-08-21 refresh (chip-20260821-ornt6-owner-exq-stale-after-910b):
+        the owed retest is now queued as V3-EXQ-910b (ree-v3 4d77ec9,
+        status pending, supersedes V3-EXQ-910a) -- owner_exq and
+        blocking_on updated accordingly and a resume_condition added. No
+        manifest exists yet under evidence/experiments/, so this is a
+        re-owning of the node, not a status advance; status stays
+        in_progress.
 ---
 
 # Orienting & Epistemic-Deficit Cluster -- V3 Closure Plan
