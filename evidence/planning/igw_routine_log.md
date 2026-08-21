@@ -1975,3 +1975,4 @@ One line per hourly tick. ASCII only.
 2026-08-21T22:17:28Z GC keep igw-229-proposal-for-sd-099 (ledger IGW-20260821-229 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-08-21T22:16:08Z SPAWN IGW-20260821-229 skill=/queue-experiment prio=40 uuid=2b12edcd-2611-4a10-a973-a98826fd1da2 pid=76808 worktree=igw-229-proposal-for-mech-236
 2026-08-21T22:24:40Z reaped TASK_CLAIMS igw-auto-igw-229-proposal-for-mech-236-20260821T221732Z (ledger IGW-20260821-229 -> spawn_failed_no_session)
+2026-08-21T22:37:23Z complete IGW-20260821-229 spawn_failed_no_session->completed outcome=ERROR: marked EVB-0607 (MECH-236) blocked_substrate: behavioural falsifier barred by th

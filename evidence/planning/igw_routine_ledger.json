@@ -2966,10 +2966,12 @@
       "task_claim_session_id": "igw-auto-igw-229-proposal-for-mech-236-20260821T221732Z",
       "task_claim_claimed_at": "2026-08-21T22:17:32Z",
       "assigned_at": "2026-08-21T22:16:08Z",
-      "status": "spawn_failed_no_session",
+      "status": "completed",
       "reaped_at": "2026-08-21T22:24:36Z",
-      "outcome": "ERROR",
-      "outcome_evidence": "claude exited without writing a session"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-0607 (MECH-236) blocked_substrate (REE_assembly 10901a5bc1): behavioural falsifier barred by the ratified competitive-spread-ratio gate (V3-EXQ-931 measured 0.0037 vs floor 0.1) and by absent behavioural throughput (bit-identical proximity at an 80 pct CEM argmin flip rate); routed V3-EXQ-914b independently known-vacuous per GFLAG-0033; the commitment-free proposal-level alternative trips Step 2.5c on contextmemory-write-path-addressing-degeneracy (e1_deep.py, corrupting, implemented_pending_validation). NEW FINDING chipped as chip-20260821-precondition-recomputability-quantifier-mismatch: V3-EXQ-914's P1 precondition is unfalsifiable by recompute (measured = worst-cell min 0.0 vs threshold 0.0, met = seed-fraction quantifier) and the lint misses it. ree-v3 untouched; nothing queued, deliberately.",
+      "completed_at": "2026-08-21T22:38:13Z",
+      "completion_summary": "marked EVB-0607 (MECH-236) blocked_substrate (REE_assembly 10901a5bc1): behavioural falsifier barred by the ratified competitive-spread-ratio gate (V3-EXQ-931 measured 0.0037 vs floor 0.1) and by absent behavioural throughput (bit-identical proximity at an 80 pct CEM argmin flip rate); routed V3-EXQ-914b independently known-vacuous per GFLAG-0033; the commitment-free proposal-level alternative trips Step 2.5c on contextmemory-write-path-addressing-degeneracy (e1_deep.py, corrupting, implemented_pending_validation). NEW FINDING chipped as chip-20260821-precondition-recomputability-quantifier-mismatch: V3-EXQ-914's P1 precondition is unfalsifiable by recompute (measured = worst-cell min 0.0 vs threshold 0.0, met = seed-fraction quantifier) and the lint misses it. ree-v3 untouched; nothing queued, deliberately."
     }
   ],
   "dispositions": [
@@ -3976,7 +3978,7 @@
     },
     {
       "stable_hash": "0f1dde421782",
-      "igw_id_at_disposition": "IGW-20260811-231",
+      "igw_id_at_disposition": "IGW-20260821-229",
       "owner_exq": null,
       "claim_ids": [
         "MECH-236"
@@ -3985,8 +3987,8 @@
       "title": "Proposal for MECH-236",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-11T05:00:24Z",
-      "re_eligible_after": "2026-08-13T05:00:14Z"
+      "noted_at": "2026-08-21T22:38:22Z",
+      "re_eligible_after": "2026-08-23T22:38:22Z"
     },
     {
       "stable_hash": "e5141922bb5a",
