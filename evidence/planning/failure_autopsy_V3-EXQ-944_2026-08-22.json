@@ -1,0 +1,139 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-22T11:35:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "as_ran_substrate_note": "Read the AS-RAN substrate, not the working tree. ree_core/agent.py was ' M' (live edit by another session) DURING this autopsy -- line 10026 read `self.clock.phase_reset()` at one point and `try:` minutes later. All agent.py citations here are against substrate_commit 751fc5e33d58095d9c59c056bf7f7790326a595d (dirty:false), and the baseline lib against ree-v3 243a085; experiments/_lib/baselines/mech091_phase_reset.py is 'M ' staged by the in-flight 944a session and is NOT the version that ran.",
+  "red_team": {
+    "verdict": "CONTESTED",
+    "contests_adopted": 3,
+    "independently_reproduced": true,
+    "note": "All three contests were re-verified by this session against the manifest cells and the as-ran source before adoption; every arithmetic claim in the pre-contest draft also reproduced. The contests were in causal attribution and the successor spec, not in the science."
+  },
+  "pre_routing_checks_7b": {
+    "fire_count": 0,
+    "inapplicable": [],
+    "note": "All five checks applicable and clean at generated_utc."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3",
+      "queue_id": "V3-EXQ-944",
+      "claim_ids": [
+        "MECH-091"
+      ],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "none -- C1/C2/C3/C4 all PASSED and all non-degenerate; the gate failed on pre-registered readiness precondition P3 (rate_match_holds), 0.914 vs <=0.35, on 1 of 5 seeds",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete (mechanism) / partial (control-arm construction)",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Stimulus-driven phase reset of ongoing cortical theta/alpha oscillations (P300 substrate); thalamocortical resynchronisation",
+        "dependencies": [
+          "an ongoing oscillation to reset",
+          "salience/conflict detection upstream",
+          "a readout that separates phase from amplitude/rate"
+        ],
+        "is_formal_import": false,
+        "divergence": "None load-bearing. MECH-091's functional_restatement already declares the ANN form as an explicit cycle-boundary marker and states the biological oscillator is not required.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "NOT substrate_ceiling and NOT substrate_conditional. substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING is status implemented and demonstrably fired (356 phase_reset executions on ALIGNED/seed42; run-wide trigger totals harm=2779, commit_entry=448; C1 passed every seed). The failure mode is a driver-side control-arm defect plus three mis-specified readiness guards -- the measurement/test-design family -- which maps to standard so MECH-091 keeps v3-testability and GOV-GRAN-1 visibility. A substrate_* stamp would re-park a claim un-parked as mis-scoped six days earlier (governance 2026-08-16, GFLAG-0037 SPLIT).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-944 (2026-08-22) did not weigh for or against MECH-091: the pre-registered gate is a plain AND over three readiness preconditions and C1/C2/C3, and P3 (rate match between RATE_MATCHED and ALIGNED, max over seeds <= 0.35) failed at 0.914 on seed 42. NOT a falsification and NOT a substrate-absence result -- all four acceptance criteria PASSED and were non-degenerate. CAUSE: the RATE_MATCHED control degenerated into NO_RESET on seed 42 (4 of 236 re-issues executed; its episode_lengths are element-wise identical to NO_RESET for the first 21 of 30 episodes). The collapse is TREATMENT-INDUCED, not a hostile seed: the shared arm-independent warmup on seed 42 sustains a 24.37-step mean and ALIGNED holds 22.53, while RATE_MATCHED falls to 8.50 and NO_RESET to 7.43. The mechanism is a runaway feedback -- withhold the event-aligned reset, episodes shorten, deferred re-issues (delay U{K..2K}, K=10) can no longer fire before the episode ends, so still fewer resets execute. The existing clamp does not arrest it and in fact changes NO outcome: due=min(due,72) while drain() runs before each of range(72) steps, so _global_step never exceeds 71 and a clamped due of 72 can never fire (it would need episode_step_budget-1). Three guards are mis-specified and must be fixed in the successor: (i) P1 floors n_salient_events (measured 89) but the DV is denominated on n_events_with_following_tick, which fell to 10 on NO_RESET/seed42 -- below P1's own floor of 20 -- while P1 reported met=true; (ii) P3 is a ticks/step RATIO and is partially self-cancelling, since RATE_MATCHED depresses numerator and denominator together (seed 100 passed at 8.0% while executing only 50%, 93/186, of its re-issues); (iii) P2 measures a near-constant -- straddle_frac(NO_RESET) is exactly 1.0 in 5 of 5 cells, 0 of 618 events at lag 1, against the driver's declared uniform-over-[1,K] model (p ~ 5e-29), because events are phase-locked to just-after-tick. On the four seeds where the control IS valid (rate deviation 1.8-8.0%) the C3 straddle delta was 0.79-1.00 against a 0.50 floor, which is the TIMING half of what_would_answer; the INTEGRATION half was never measured. Re-run as V3-EXQ-944a. Superseded by that successor; do not weight this run.",
+      "per_claim_recommendation": {
+        "MECH-091": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-091 currently carries NO epistemic_category field at all; the 2026-08-16 GFLAG-0037 routing left it unstamped. Record this run as non-weighting and set the field so the measurement/test-design reading is explicit and the claim keeps v3-testability -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "MECH091-SALIENT-EVENT-TRIGGER-WIRING",
+        "note": "No substrate write owed. The entry is already status implemented and this run is POSITIVE evidence the wiring works (harm and commit_entry trigger sites both fired on every cell; C1 passed every seed). The defect is in the experiment harness (experiments/_lib/baselines/mech091_phase_reset.py), not ree_core. The known 2-of-3 trigger limitation (completion never fires; completion_signal_max 0.0 vs a 0.75 release threshold) is unchanged and remains correctly classified degrading. Recorded for that entry's benefit, NOT as a new failure_record: the commit_entry trigger is throttled by beta saturation -- its site requires `not beta_gate.is_elevated` while beta_elevated_frac is 0.969-0.996 in all 15 cells -- which is why it fires ~once per episode (29-30/cell) against harm's 207-326."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "0 ceiling hits for MECH-091 under R1-R3. The only two prior MECH-091 targets (both EXQ-133 runs, failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08) are not substrate_ceiling under any reading -- the artifact stamps precondition_unmet and the run packs read non_contributory with no category. The 944 driver conservatively self-described 2 braking autopsies and argued release on two independent grounds; the count is 0 and the brake was never armed. Same conclusion either way."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "tagging_targets": 2,
+        "files": 1,
+        "alignment_distribution": {
+          "intact": 2
+        },
+        "note": "granularity_debt_cluster.py MECH-091: 2 targets across 1 file, alignment distribution intact=2, NO target reads weakened -> measurement/implementation debt, not granularity debt."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- not chargeable to REE and not chargeable to MECH-091. Implementation of the mechanism is complete and fired as specified and every acceptance criterion passed, so MECHANISM FAILED is not established. ENVIRONMENT is NOT established either, and this is a correction to an earlier draft of this autopsy: the seed-42 episode collapse is post-treatment (arm-independent warmup 24.37, ALIGNED 22.53, vs RATE_MATCHED 8.50 / NO_RESET 7.43), so it is an OUTCOME of withholding the reset, not a property of the environment. The failure is located wholly in the measurement apparatus -- the control arm's deferral scheme and three mis-specified readiness guards."
+      },
+      "harm_stream_validity": {
+        "trigger_signal_valid": true,
+        "integration_dv_constructible": false,
+        "note": "Checked because an integration DV was under consideration. (1) VALID for what this run measured: the harm salient-event trigger fires on `harm_signal < 0`, documented at agent.py:9850 (as-ran 751fc5e3) as 'Harm from environment (negative = harm)' -- a value passed into update_residue(), NOT a learned head, so it is unaffected by head grounding and by the EXQ-131 staleness artifact. It fired abundantly and non-degenerately (2779 harm triggers run-wide) and post_event_harm_mean varies 0.069-0.872 and responds to the arm. (2) NOT constructible for an INTEGRATION DV on this protocol: what_would_answer's second half concerns harm/goal ESTIMATES, which are learned heads, and this lineage trains none of them. warmup() runs only compute_prediction_loss() + compute_e2_loss(), and compute_e2_loss trains E2's z_self forward model (predict_next_self, agent.py:11221-11237) -- NOT E2_harm_s. E3's harm_eval/benefit_eval are untrained and therefore random-init; agent.py:9690-9693 states such a signal 'is only meaningful once those heads are grounded (ARC-030 phased protocol) -- a validation using it MUST first assert grounding on a positive control', and this run asserts none. The goal half is not instantiated at all: z_goal_stream.goal_state_present is false with writer_defect null, i.e. configuration rather than defect. So the integration question is complex (probe-gated), not complicated (buildable)."
+      },
+      "unclaimed_observation": {
+        "name": "survival effect of the event-aligned reset",
+        "note": "NON-GATING and sign-inconsistent, so it does not move evidence_direction, but it is the run's most interesting unpre-registered signal and no criterion covers it. ALIGNED vs NO_RESET mean episode length: seed 42 22.53 vs 7.43 (3.03x), seed 100 72.00 vs 47.37 (1.52x), seed 7 69.70 vs 68.27 (1.02x), seed 13 69.87 vs 71.23 (0.98x), seed 200 59.87 vs 60.93 (0.98x). Large on 2 of 5, null/reversed on 3 of 5. The driver deliberately de-gated behavioural readouts as noisy and sign-inconsistent on an untrained agent, and this is consistent with that. Worth pre-registering properly on a protocol that grounds the heads."
+      },
+      "learning_extracted": [
+        "A deferred-re-issue rate control can DESTROY the episodes it is measured over. Withholding the event-aligned reset shortens episodes, which prevents deferred re-issues from firing, which withholds more resets -- a runaway feedback that ran to completion on seed 42, where RATE_MATCHED's episode lengths are element-wise identical to NO_RESET for 21 of 30 episodes. The arm did not fail to be constructed; it became the arm it was supposed to be distinguished from.",
+        "Episode length under a manipulation is an OUTCOME, not a cell property -- and therefore must never become an eligibility filter. The arm-independent warmup is the measurement that settles it (seed 42: 24.37, vs 8.50/7.43 in the withheld-reset arms). Excluding cells on episode length, or on n_events_with_following_tick, conditions on a post-treatment variable and would discard exactly the cells where the manipulation bites hardest -- biasing the successor toward PASS.",
+        "The clamp intended to prevent this is INERT. due = min(due, episode_step_budget) with budget 72, while drain() runs before each of range(72) steps so _global_step tops out at 71: a clamped due of 72 can never fire, and an unclamped due past the budget never fired either. It changes zero outcomes and would need episode_step_budget - 1. Consequence: the budget-overrun losses it was believed to prevent are real and unprevented, and are part of the execution shortfall on the healthy seeds (74/110, 93/186, 270/415).",
+        "A readiness guard must be denominated on the quantity the DV is actually computed over. P1's own description says 'the DV is per-event, so a cell below this measured nothing usable', but it floors n_salient_events while straddle_frac is denominated on n_events_with_following_tick -- events with no following tick inside the episode are silently dropped at mech091_phase_reset.py:437-440. NO_RESET/seed42's DV sample was 10 against P1's floor of 20, and P1 reported met=true measured=89.",
+        "A RATIO guard whose numerator and denominator are both depressed by the manipulation is partially self-cancelling. P3 compares ticks/step; RATE_MATCHED shortens episodes as well as executing fewer resets, so seed 100 passed at 8.0% deviation while executing 50% of its re-issues. A count-based guard would have surfaced 0.72 there and 0.83/0.89 on seeds 7/200.",
+        "A gate can measure a CONSTANT and still be graded met. P2 requires straddle_frac(NO_RESET) >= 0.50 and it is exactly 1.0 in 5 of 5 cells -- 0 of 618 events at lag 1, against the driver's own declared 'uniform-ish over [1,K]' model (p ~ 5e-29), because salient events are phase-locked to just-after-tick. P2 cannot fall below its floor, so it certifies nothing.",
+        "With ALIGNED pinned at 0 by a DECLARED implementation identity and NO_RESET pinned at ~1 by that phase-locking, C3 is substantively a manipulation readout rather than an independent consequence of the mechanism. It carries the TIMING half of what_would_answer; the INTEGRATION half ('harm/goal estimates are FULLY INTEGRATED within the following cycle') was never measured, and on this protocol could not be -- see harm_stream_validity.",
+        "The pre-registered mapping 'any precondition unmet -> substrate_not_ready_requeue' is too coarse when the preconditions guard heterogeneous things. P1/P2 guard substrate and environment readiness, but P3 guards the harness's own control arm; routing a P3 failure to substrate_not_ready mis-attributes a driver defect to substrate absence. MECH-091's what_would_answer still carries the pre-2026-08-16 SD-006 language ('A run without SD-006 phase 2 self-routes substrate_not_ready') which the GFLAG-0037 SPLIT recorded in the same claim's evidence_quality_note lifted as mis-scoped -- the stale text is the likely source of the coarse mapping.",
+        "The biological literature had already specified the shape of control this experiment needs, and it is cited in this claim's own targeted review: Rizzuto 2003 establishes genuine phase reset by showing cross-trial phase locking WITHOUT an increase in oscillatory power, and the Sauseng 2007 entry states that a V3 test of MECH-091 'should include controls that distinguish genuine phase shift from amplitude injection'. RATE_MATCHED is that kind of control -- holding the confound fixed while moving phase -- though the analogy is not exact: Sauseng separates phase from AMPLITUDE, RATE_MATCHED separates phase from RATE. Either way a broken RATE_MATCHED is not a bureaucratic gate trip; it is the loss of the control that makes the result a phase-reset finding at all."
+      ],
+      "routing": "queue-experiment",
+      "successor_spec": {
+        "queue_id_suggested": "V3-EXQ-944a",
+        "shape": "same scientific question, alphabetic suffix -- an implementation/measurement repair, not a new question",
+        "must": [
+          "Do NOT exclude cells on any POST-TREATMENT quantity (episode length, n_events_with_following_tick, execution fraction). Report episode length as an OUTCOME. Post-hoc or pre-registered exclusion on these biases the run toward PASS.",
+          "Replace or supplement P3 with a COUNT-based rate guard, n_resets_executed(RATE_MATCHED)/n_resets_executed(ALIGNED) within a declared tolerance. The ratio-of-rates form is self-cancelling.",
+          "Re-denominate P1 on n_events_with_following_tick (the quantity straddle_frac actually uses), not n_salient_events.",
+          "Replace P2 with a guard that can actually fail, or demote it to a recorded diagnostic. As written it measures a constant.",
+          "Address the runaway feedback directly rather than by clamping: the deferral scheme cannot hold rate fixed when the manipulation shortens the episodes the deferral lives in. If a clamp is retained at all it must be episode_step_budget - 1, since the current form is inert.",
+          "Split the self-route mapping: P1/P2 unmet -> substrate_not_ready_requeue; P3 unmet -> a control-construction / measurement route, NOT substrate absence.",
+          "Record the re-issue execution fraction and the count scheduled past episode end directly, so the diagnosis is legible without recomputation."
+        ],
+        "must_not": [
+          "Bolt an INTEGRATION DV onto this run -- see harm_stream_validity: on this P0-only protocol E3's harm_eval is random-init and ungrounded and the goal subsystem is not instantiated, so an integration readout would be vacuous."
+        ],
+        "separate_probe_gated_followon": "The INTEGRATION half of MECH-091's what_would_answer is complex (probe-gated), not complicated (buildable). It needs a cheap observability probe first -- exactly the discipline GFLAG-0037 applied before 944 was queued -- establishing (a) a training protocol that GROUNDS E3 harm_eval with a positive-control grounding assertion per agent.py:9690-9693, or an integration readout built on a head this protocol does train, and (b) if goal estimates are in scope, the goal subsystem enabled (goal_state_present is false today). NOT chipped by this autopsy: per CLAUDE.md Session Land Protocol step 6, /governance ratifies an autopsy's own routing before it is spawned."
+      },
+      "minor_hygiene": [
+        "Stale comment: mech091_phase_reset.py:50 says re-issue at event_step + U{K..3K}; DECOUPLE_MAX_K = 2 makes it U{K..2K}. The 3K figure is from the pre-queue probe.",
+        "Flat-vs-pack disagreement on a PRIOR run (pre-existing, not caused by this run and not affecting the brake, which reads the pack): v3_exq_133_mech091_phase_reset_pair_20260329T032233Z flat manifest carries evidence_direction 'weakens' while its runs/<run_id>/manifest.json carries 'non_contributory'. Worth a governance data-hygiene pass.",
+        "MECH-091's what_would_answer still carries pre-2026-08-16 SD-006 language contradicted by the GFLAG-0037 SPLIT decision recorded in the same claim's evidence_quality_note."
+      ]
+    }
+  ],
+  "cluster_pattern": null
+}
