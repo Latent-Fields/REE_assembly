@@ -142,6 +142,32 @@ class TestEmbeddedReferenceIds(unittest.TestCase):
         remaining = ids - m.claim_id_numeric_parts(["MECH-341"])
         self.assertNotIn("341", remaining)
 
+    def test_prefixed_citations_trailing_digits_not_double_counted(self):
+        """A SINGLE citation like 'V3-EXQ-642' must count as ONE id, not two.
+
+        `_BARE_ID_RE` also matches the trailing digits of a prefixed match
+        ('642' inside 'V3-EXQ-642'), which without this guard silently
+        satisfies cluster_qualifies()'s ">= 2 distinct ids" self-evidencing
+        test off a SINGLE citation. Confirmed 2026-08-22
+        (chip-20260822-govskill1-clustering-mega-cluster-diagnosis):
+        failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12's
+        only citation is "canonical V3-EXQ-642", and it was self-qualifying as
+        if it named two separate runs.
+        """
+        ids = m.embedded_reference_ids("recurring pattern, canonical V3-EXQ-642")
+        self.assertEqual(ids, {"v3-exq-642"})
+
+    def test_a_second_separate_bare_mention_still_counts(self):
+        """The guard only suppresses a bare match CONTAINED in a prefixed
+        span -- a genuinely separate later mention of the same number is a
+        second textual occurrence and is kept (this module does not attempt
+        to unify bare/prefixed forms of the SAME id across a whole entry)."""
+        ids = m.embedded_reference_ids(
+            "The censoring problem that dominated V3-EXQ-912 is solved, at "
+            "less than half 912's eval-step cost.")
+        self.assertIn("v3-exq-912", ids)
+        self.assertIn("912", ids)
+
 
 # --- salient tokens ---------------------------------------------------------------
 
@@ -187,12 +213,52 @@ def _mk_hit(artifact: str, text: str, claim_ids: list[str] | None = None) -> dic
     }
 
 
+def _mk_review_hit(artifact: str, text: str) -> dict:
+    """Like `_mk_hit` but source='review_tracker' -- a governance review_log
+    note, which is the roster shape (see MAX_EMBEDDED_IDS_FOR_ROSTER / the
+    cluster_qualifies source scoping) rather than a focused autopsy finding."""
+    return {
+        "source": "review_tracker", "artifact": artifact, "target_index": 0,
+        "item_index": 0, "run_id": "", "claim_ids": [], "text": text,
+        "flags": m.match_self_flags(text),
+        "strong_severity": bool(set(m.match_self_flags(text)) & m.STRONG_SEVERITY_PATTERNS),
+        "embedded_ids": sorted(m.embedded_reference_ids(text)),
+        "tokens": sorted(m.extract_salient_tokens(text)),
+    }
+
+
 class TestClusterHits(unittest.TestCase):
     def test_shared_embedded_id_clusters(self):
         a = _mk_hit("a", "under-lifted twice (569g + 684), same instrument")
         b = _mk_hit("b", "does not verify-lift on this env (569g/684 unverified)")
         clusters = m.cluster_hits([a, b])
         self.assertEqual(len(clusters), 1)
+
+    def test_bare_and_prefixed_forms_of_the_same_id_still_bridge(self):
+        """Matching is on NORMALIZED ids: a bare '642' in one hit and a
+        prefixed 'V3-EXQ-642' in another are the same citation and must
+        still cluster, even though embedded_reference_ids() no longer lets
+        ONE hit double-count a single citation as two ids (that fix is about
+        the COUNT, not about cross-hit matching)."""
+        a = _mk_hit("a", "the 642 pattern is now recurring at the authority layer")
+        b = _mk_hit("b", "actively misleading, recurring pattern, canonical V3-EXQ-642")
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 1)
+
+    def test_roster_sized_hit_does_not_cluster_via_a_single_shared_id(self):
+        """MAX_EMBEDDED_IDS_FOR_ROSTER guard: a hit citing many run ids as
+        ordinary bookkeeping (a review_log cycle summary) must not union with
+        an unrelated single-topic hit merely because the roster happens to
+        mention that hit's own run number in passing."""
+        roster = _mk_review_hit(
+            "roster", "Governance cycle: confirmed autopsies for "
+            "843/845/847/850/852/853/855/858/861 applied inline, three "
+            "diagnostic PASSes left pending for next cycle review.")
+        unrelated = _mk_hit("a", "MECH-180's stored category was conditioned "
+                                 "on a future run scoring; it has now scored "
+                                 "twice (845, 861).")
+        clusters = m.cluster_hits([roster, unrelated])
+        self.assertEqual(len(clusters), 2)
 
     def test_low_token_overlap_does_not_cluster(self):
         a = _mk_hit("a", "the harm pathway trained cleanly across all seeds recurring")
@@ -268,6 +334,181 @@ class TestCalibrationIncidents(unittest.TestCase):
         result = m.already_codified([hit], [long_unrelated])
         self.assertIsNone(result, "weak coincidental overlap must not count as codified")
 
+    def test_roster_hub_does_not_merge_unrelated_topics_into_one_mega_cluster(self):
+        """Regression for the 2026-08-22 finding
+        (chip-20260822-govskill1-clustering-mega-cluster-diagnosis): an
+        11-hit cluster mixing a genuine 2-hit zworld_p0_episodes recurrence
+        with 9 UNRELATED hits (pulled in transitively via governance
+        review_log rosters, plus one coincidental single-id citation)
+        diluted the pooled cluster vocabulary enough that already_codified()
+        matched the WRONG skill line -- an unrelated GENERIC governance
+        paragraph that happened to be large enough to win on raw overlap,
+        instead of the actual zworld_p0_episodes fix.
+
+        This replays the real corpus shape with paraphrased fixtures: two
+        genuinely-related zworld hits (sharing the id '728' in both bare and
+        prefixed form), two single-topic autopsy hits that coincidentally
+        both cite prior run '845' in passing (861 / 864 shape -- these DO
+        still cluster with each other under the accepted-residual design;
+        see MAX_EMBEDDED_IDS_FOR_ROSTER's docstring), and two governance
+        review_log roster notes that each mention several of the above run
+        numbers as ordinary cycle bookkeeping and must not bridge ANY of
+        them together.
+        """
+        pending_review = _mk_hit(
+            "pending_review_batch",
+            "Confirms the SD-070 zworld_p0_episodes defect propagates to any "
+            "_train_all_on_agent driver that omits it -- same signature as "
+            "V3-EXQ-728 pre-fix.")
+        zworld_875 = _mk_hit(
+            "875",
+            "Recurring driver-configuration defect class: the opt-in "
+            "zworld_p0_episodes default-0 design in _train_all_on_agent is "
+            "silent and easy to omit -- confirmed twice now (V3-EXQ-728 "
+            "originally, V3-EXQ-875 independently).")
+        ceiling_861 = _mk_hit(
+            "861",
+            "MECH-180's stored epistemic_category was explicitly conditioned "
+            "on a future ecological run scoring -- it has now scored twice "
+            "(845, 861), the reading is stale on its own stated terms.")
+        sweep_864 = _mk_hit(
+            "864",
+            "Recurring pattern (third instance, after 845's write-count "
+            "confound and 794's floor-saturation defect): a driver's nominal "
+            "sweep parameter fails to vary because of an environment-level "
+            "constraint absorbing the manipulation.")
+        roster_a = _mk_review_hit(
+            "review_log[1].note",
+            "Governance cycle: confirmed autopsies for 861/864 applied "
+            "inline; 859 claim-free route_source ablation inconclusive; 847 "
+            "denominator-bug corrected; 843 non_contributory; 850 pending "
+            "next cycle; 852 ceiling reconfirmed; 855 dry-run leak closed; "
+            "857 evidence_direction unset; 848 superseded by a later run.")
+        roster_b = _mk_review_hit(
+            "review_log[2].note",
+            "Continuation of the prior cycle: applied confirmed findings for "
+            "875 and 882 plus 866/873/890/321/358/471/472 processed this "
+            "session; three diagnostic PASSes left pending for next cycle "
+            "review, per user instruction to batch remaining items together.")
+
+        clusters = m.cluster_hits(
+            [pending_review, zworld_875, ceiling_861, sweep_864, roster_a, roster_b])
+        groups = {}
+        for i, c in enumerate(clusters):
+            for h in c:
+                groups[h["artifact"]] = i
+
+        # The genuine pair stays together...
+        self.assertEqual(groups["pending_review_batch"], groups["875"],
+                         "the genuine zworld_p0_episodes pair must still cluster")
+        # ...but nothing else joins it, in either direction.
+        for other in ("861", "864", "review_log[1].note", "review_log[2].note"):
+            self.assertNotEqual(
+                groups["875"], groups[other],
+                f"{other} must not merge into the zworld cluster via the roster hub")
+        # The rosters must not bridge 861 and 864 to EACH OTHER via bookkeeping
+        # either -- confirmed separately (test_bare_and_prefixed_forms_of_the_same_id_still_bridge's
+        # sibling, test_two_topically_distinct_hits_still_merge_on_one_shared_id
+        # below) that 861/864 DO still merge with each other directly, on their
+        # own small, non-roster shared citation of '845' -- an accepted,
+        # checked-non-wrong residual (see MAX_EMBEDDED_IDS_FOR_ROSTER docstring).
+        # What this test asserts is narrower: the ROSTERS specifically must not
+        # be what pulls them together, and must not pull in the zworld pair.
+        self.assertNotEqual(groups["861"], groups["review_log[1].note"])
+        self.assertNotEqual(groups["864"], groups["review_log[1].note"])
+
+        zworld_skill_line = {
+            "skill_file": "skills/queue-experiment/SKILL.md", "line": 771,
+            "text": ("This silent driver-configuration defect class: does "
+                    "every call to _train_all_on_agent pass "
+                    "zworld_p0_episodes? Omitting it is easy and the default "
+                    "opt-in design means the world encoder is never "
+                    "stepped, so z_world silently stays a frozen random "
+                    "projection with no error, propagates to any driver. "
+                    "Confirmed recurring across independent drivers: "
+                    "V3-EXQ-875, plus V3-EXQ-728's original pre-fix "
+                    "discovery, grep every _train_all_on_agent call "
+                    "site and confirm zworld_p0_episodes is explicit."),
+        }
+        zworld_skill_line["tokens"] = m.extract_salient_tokens(zworld_skill_line["text"])
+        # A large, GENERIC governance-process paragraph, unrelated to zworld,
+        # shaped like the real governance/SKILL.md GOV-APPLY-1 paragraph that
+        # incidentally won on raw overlap against the diluted mega-cluster.
+        generic_governance_line = {
+            "skill_file": "skills/governance/SKILL.md", "line": 1581,
+            "text": ("Unapplied confirmed-autopsy recommendations: the other "
+                    "standing scans ask what a set of verdicts means or "
+                    "whether the verdict was recorded, this asks whether it "
+                    "was ever applied. A confirmed target's recommendation "
+                    "is not reflected in the registry. Applies dedup so "
+                    "only the latest adjudication of a run counts. Reports "
+                    "its own coverage across confirmed targets carrying a "
+                    "machine-readable per-claim disposition, deliberately "
+                    "under-claiming rather than inferring change owed from "
+                    "a category compare across the governance cycle, "
+                    "session, and every claim touched this review."),
+        }
+        generic_governance_line["tokens"] = m.extract_salient_tokens(
+            generic_governance_line["text"])
+
+        skill_lines = [zworld_skill_line, generic_governance_line]
+        hits = [pending_review, zworld_875, ceiling_861, sweep_864, roster_a, roster_b]
+        result = m.audit(hits, skill_lines)
+
+        matched = {a: r["codified_in"]["skill_file"] + ":" + str(r["codified_in"]["line"])
+                  for r in result["excluded_already_codified"] for a in r["artifacts"]}
+        candidate_artifacts = {a for r in result["checklist_candidates"] for a in r["artifacts"]}
+
+        self.assertNotIn("875", candidate_artifacts,
+                         "the zworld pair must resolve, not surface as a fresh candidate")
+        self.assertEqual(
+            matched.get("875"), "skills/queue-experiment/SKILL.md:771",
+            "875 must match its OWN zworld fix line, not an unrelated generic "
+            "governance paragraph diluted in via the mega-cluster")
+
+    def test_two_topically_distinct_hits_still_merge_on_one_shared_id_but_resolve_correctly(self):
+        """Accepted residual, checked rather than assumed: two SMALL,
+        non-roster entries sharing exactly one incidental id (V3-EXQ-861,
+        about a claim's ceiling-status re-scoring, and V3-EXQ-864, about an
+        unrelated driver-parameter sweep defect, both citing prior run '845'
+        in passing) DO still merge under MAX_EMBEDDED_IDS_FOR_ROSTER -- a
+        shared-count floor was tried and rejected because it also breaks the
+        genuine V3-EXQ-643/916-cluster "canonical" cross-reference pair (see
+        that constant's docstring). What matters is that the merge does not
+        resolve to a WRONG-FILE already-codified match -- 861's own strong
+        overlap must still dominate the small pooled cluster vocabulary."""
+        a = _mk_hit("861", "MECH-180's stored category was conditioned on a "
+                           "future run scoring; it has now scored twice (845, 861).")
+        b = _mk_hit("864", "Recurring pattern (third instance, after 845's "
+                           "write-count confound and 794's floor-saturation defect).")
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 1)
+
+        matching_line = {
+            "skill_file": "skills/failure-autopsy/SKILL.md", "line": 307,
+            "text": ("Confirmed at V3-EXQ-861 (MECH-180): the stored "
+                    "substrate_ceiling category was conditioned on a specific "
+                    "future run scoring, that run scored twice (845, 861), "
+                    "and nobody had revisited the reading -- a conditionally "
+                    "stamped category is present, so completeness checks see "
+                    "nothing to flag, check for a stated re-check condition."),
+        }
+        matching_line["tokens"] = m.extract_salient_tokens(matching_line["text"])
+        unrelated_line = {
+            "skill_file": "skills/governance/SKILL.md", "line": 1581,
+            "text": ("Unapplied confirmed-autopsy recommendations: whether a "
+                    "recommendation was ever applied to the registry, "
+                    "deliberately under-claiming coverage rather than "
+                    "inferring change owed across the governance cycle."),
+        }
+        unrelated_line["tokens"] = m.extract_salient_tokens(unrelated_line["text"])
+
+        result = m.already_codified(clusters[0], [matching_line, unrelated_line])
+        self.assertIsNotNone(result)
+        self.assertEqual(result["skill_file"], "skills/failure-autopsy/SKILL.md",
+                         "the merged pair must resolve to 861's own correct "
+                         "line, not an unrelated generic paragraph")
+
 
 # --- cluster_qualifies -------------------------------------------------------------
 
@@ -295,6 +536,30 @@ class TestClusterQualifies(unittest.TestCase):
         ok, reason = m.cluster_qualifies([a, b])
         self.assertTrue(ok)
         self.assertIn("independent", reason)
+
+    def test_review_tracker_roster_does_not_self_qualify_via_embedded_ids(self):
+        """Design decision 1(b) is scoped to a `learning_extracted` sentence
+        (an autopsy hit's own focused finding), not a review_log governance
+        roster note. Confirmed 2026-08-22: a review_log note citing 15+ run
+        ids as ordinary cycle bookkeeping was self-qualifying as an
+        'actionable' recurrence candidate purely by virtue of being a
+        roster, with no bearing on whether anything actually recurred."""
+        roster = _mk_review_hit(
+            "review_log[9].note",
+            "Continuation of the cycle: applied confirmed findings for "
+            "005/014/030/059/089/321/322/358/457/471/472/603q/866b/873/875 "
+            "processed this session, three diagnostic PASSes left pending.")
+        ok, _ = m.cluster_qualifies([roster])
+        self.assertFalse(
+            ok, "a review_tracker roster must not self-qualify on id count alone")
+
+    def test_autopsy_hit_still_self_qualifies_via_embedded_ids(self):
+        """Companion negative control: the SAME shape (many embedded ids in
+        one entry) must still qualify when it genuinely IS an autopsy's own
+        focused, self-evidencing citation (design decision 1(b))."""
+        hit = _mk_hit("a", "recurring across 654h/485i/625e/460h/460i self-routes")
+        ok, _ = m.cluster_qualifies([hit])
+        self.assertTrue(ok)
 
 
 # --- end-to-end audit() over a small fixture corpus ---------------------------------

@@ -161,6 +161,83 @@ SKILL_RECURRENCE_N = 2
 # sits strictly between them with margin on both sides.
 MIN_SHARED_TOKENS = 2
 MIN_JACCARD = 0.12
+# Roster guard for the EMBEDDED-ID union path in cluster_hits() (design decision
+# 1(b)): a hit whose OWN embedded_ids set is larger than this is a ROSTER --
+# ordinary bookkeeping enumerating many run numbers (a governance
+# `review_log[].note` cycle summary: "confirmed autopsies for 843/847/853/...")
+# -- not a focused citation, and does not participate in the id-based fast-path
+# union at all (with either side over the cap, that path is skipped and only
+# the token/jaccard test can still cluster the pair).
+#
+# Confirmed 2026-08-22 (chip-20260822-govskill1-clustering-mega-cluster-diagnosis):
+# under the OLD unconditional "if ei & ej: union" rule, ANY autopsy hit whose own
+# run number happens to appear anywhere in such a roster unioned with it -- not
+# because the two describe the same pattern, but because the run was processed
+# in that governance cycle. That is precisely the transitive "hub" failure
+# MIN_JACCARD was built to reject for TOKEN overlap (see MIN_CODIFIED_OVERLAP
+# below), but the id path had no analogous guard, and it chained an 11-hit
+# mega-cluster (a genuine 2-hit zworld_p0_episodes recurrence plus 9 unrelated
+# hits pulled in via 4 review_log rosters) whose diluted pooled vocabulary then
+# made already_codified() match the WRONG skill line -- an unrelated GENERIC
+# governance paragraph, instead of the actual fix.
+#
+# Measured: every autopsy hit's own embedded_ids set in the live corpus tops
+# out at 5 members; every review_log roster starts at 18+. A cap of 8 cleanly
+# separates the two shapes with margin on both sides -- deliberately a SIZE cap
+# on the citing entry, not a SHARED-count floor (a stricter shared-count floor
+# was tried first and rejected: it also breaks the genuine
+# failure_autopsy_V3-EXQ-643_2026-06-06 / ..._916-916a-917-920-fishtank-cluster
+# pair, which are both small, non-roster entries that legitimately share only
+# ONE explicitly-named "canonical V3-EXQ-642" cross-reference -- structurally
+# identical, on the shared-id-COUNT signal alone, to the confirmed-spurious
+# V3-EXQ-861/864 pair below, so a count floor cannot separate them but a
+# roster-size cap does, since neither is a roster).
+MAX_EMBEDDED_IDS_FOR_ROSTER = 8
+# Matching is done on NORMALIZED ids (EXQ-prefix stripped), not raw strings --
+# a bare "642" in one hit and a prefixed "V3-EXQ-642" in another are the SAME
+# citation and must still bridge (see _normalized_id_tail). The raw,
+# prefix-preserving form from embedded_reference_ids() is kept as each hit's
+# stored `embedded_ids` (needed by cluster_qualifies()'s own distinct-id COUNT,
+# which must NOT collapse two genuinely different ids), so normalization is
+# applied only at match time here, not at extraction time.
+#
+# One accepted residual: V3-EXQ-861 (MECH-180 ceiling-status re-scoring) and
+# V3-EXQ-864 (a driver-parameter sweep defect) share nothing but both citing
+# prior run "845" in passing, for unrelated reasons, and neither is roster-sized
+# -- so they still union under this design. Checked (not just assumed): the
+# resulting 2-hit cluster's already_codified() match is 861's own correct line
+# (failure-autopsy/SKILL.md, the V3-EXQ-861 ceiling-staleness passage), not a
+# wrong-file mismatch -- 861's overlap dominates the small pooled vocabulary.
+# So the merge is mildly imprecise (864's own separate, also-correct match is
+# not separately surfaced) rather than actively wrong, which is the same
+# "expect false negatives more than false positives" brittleness the module's
+# own design decision 2 already accepts. This is DELIBERATELY not solved here:
+# distinguishing an explicit "canonical" cross-reference from an incidental
+# parenthetical mention needs a signal this bag-of-words heuristic does not
+# have, and over-fitting the threshold to this one pair risks the SAME
+# regression that rejecting the shared-count-floor alternative above avoided.
+#
+# CORRECTION to the design-decision comment below, which is now WRONG: the
+# "861+864+review_log" cluster it names as a 2026-08-01 calibration example of a
+# confirmed-genuine already-codified match was itself built on the unguarded
+# roster-hub union this cap removes -- 861 and 864 are not the same underlying
+# pattern, and the review_log entry joined only via roster bookkeeping, not
+# shared content. MIN_CODIFIED_OVERLAP/MIN_CODIFIED_FRACTION were validated
+# against a cluster that should never have existed. Left uncorrected in place
+# below (rather than rewritten) because the FRACTION/OVERLAP calibration itself
+# is independent of this fix and remains valid against the corpus's other
+# confirmed cases; only the specific cited example was wrong.
+_ID_PREFIX_RE = re.compile(r"^(?:v3-)?exq-?", re.IGNORECASE)
+
+
+def _normalized_id_tail(ref_id: str) -> str:
+    """Strip an EXQ-family prefix so 'v3-exq-642' and '642' compare equal.
+
+    Used ONLY for cross-hit id MATCHING in cluster_hits() -- never applied to
+    the raw `embedded_ids` stored on a hit, which stays prefix-preserving so
+    cluster_qualifies()'s distinct-id count is unaffected.
+    """
+    return _ID_PREFIX_RE.sub("", ref_id)
 # Already-codified matching is asymmetric vs clustering: a SKILL.md bullet is
 # routinely a long paragraph (tens to 100+ salient tokens), so raw overlap alone
 # lets a long line match almost anything at a low floor by sheer size, and a pure
@@ -172,15 +249,18 @@ MIN_JACCARD = 0.12
 # "matched" an unrelated long paragraph at overlap 3-4) while still passing
 # every confirmed-genuine match, including the large 3-hit 861+864+review_log
 # cluster (overlap=21 but only 14% of its 150-token pooled vocabulary, because
-# the review_log entry alone is a whole governance-cycle summary). KNOWN
-# RESIDUAL FALSE POSITIVE: V3-EXQ-708 still spuriously matches an unrelated
-# pre-push-hook paragraph (overlap=6, fraction=0.30) on generic shared words
-# ("cloud", "workers", "phase") -- this is the accepted brittleness of a
-# bag-of-words heuristic over free text (design decision 2), not something this
-# chip tries to eliminate entirely. Because the report always names the matched
-# skill_file:line and quotes it, a human reviewing the "already codified" bucket
-# can catch a mismatch like this one at a glance -- that human review is the
-# actual safety net (design decision 3), not the heuristic's precision.
+# the review_log entry alone is a whole governance-cycle summary) -- SEE THE
+# CORRECTION ABOVE: that cluster is itself a confirmed false merge, not a
+# genuine example; it is cited here only because that is what was believed true
+# at calibration time. KNOWN RESIDUAL FALSE POSITIVE: V3-EXQ-708 still
+# spuriously matches an unrelated pre-push-hook paragraph (overlap=6,
+# fraction=0.30) on generic shared words ("cloud", "workers", "phase") -- this
+# is the accepted brittleness of a bag-of-words heuristic over free text (design
+# decision 2), not something this chip tries to eliminate entirely. Because the
+# report always names the matched skill_file:line and quotes it, a human
+# reviewing the "already codified" bucket can catch a mismatch like this one at
+# a glance -- that human review is the actual safety net (design decision 3),
+# not the heuristic's precision.
 MIN_CODIFIED_OVERLAP = 5
 MIN_CODIFIED_FRACTION = 0.12
 
@@ -237,9 +317,24 @@ def embedded_reference_ids(text: str) -> set[str]:
     `claim_id_numeric_parts(claim_ids)` -- see that function's docstring for why
     the bare-number regex alone cannot tell a run citation from the target's OWN
     claim tag.
+
+    A bare-digit match that falls INSIDE a prefixed match's own span is dropped
+    rather than counted as a second, distinct id. Without this, a single
+    citation like "V3-EXQ-642" registers as TWO ids ("v3-exq-642" AND "642",
+    since `_BARE_ID_RE` also matches the trailing digits of the prefixed form),
+    silently satisfying the ">= 2 distinct ids" self-evidencing test off ONE
+    citation. Confirmed 2026-08-22 (chip-20260822-govskill1-clustering-mega-cluster-diagnosis):
+    `failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12`'s only
+    citation is "canonical V3-EXQ-642" and it was passing `cluster_qualifies()`
+    as if it cited two separate runs.
     """
-    ids = {m.group(0).lower() for m in _PREFIXED_ID_RE.finditer(text)}
-    ids |= {m.group(0).lower() for m in _BARE_ID_RE.finditer(text)}
+    prefixed_spans = [pm.span() for pm in _PREFIXED_ID_RE.finditer(text)]
+    ids = {text[s:e].lower() for s, e in prefixed_spans}
+    for bm in _BARE_ID_RE.finditer(text):
+        s, e = bm.span()
+        if any(ps <= s and e <= pe for ps, pe in prefixed_spans):
+            continue
+        ids.add(bm.group(0).lower())
     return ids
 
 
@@ -554,25 +649,35 @@ class _UnionFind:
 
 
 def cluster_hits(hits: list[dict], min_shared_tokens: int = MIN_SHARED_TOKENS,
-                 min_jaccard: float = MIN_JACCARD) -> list[list[dict]]:
+                 min_jaccard: float = MIN_JACCARD,
+                 max_embedded_ids_for_roster: int = MAX_EMBEDDED_IDS_FOR_ROSTER) -> list[list[dict]]:
     """Group hits describing the same underlying pattern.
 
     Two hits join a cluster when they share >= min_shared_tokens salient tokens
     AND the Jaccard similarity of their token sets is >= min_jaccard (see
     MIN_JACCARD docstring for why raw count alone over-clusters), OR when they
-    share at least one embedded reference id (design decision 1(b) -- if two
-    entries both cite "684", they are plausibly about the same incident,
-    regardless of how their prose is worded). Cheap O(n^2) union-find; the corpus
-    of SELF-FLAGGED hits is small (dozens, not thousands) so this is not a
-    performance concern.
+    share a NORMALIZED embedded reference id (design decision 1(b) -- if two
+    entries both cite "684", whether bare or as "V3-EXQ-684", they are
+    plausibly about the same incident, regardless of how their prose is
+    worded) AND NEITHER hit's own embedded_ids set is roster-sized (see
+    MAX_EMBEDDED_IDS_FOR_ROSTER docstring for the confirmed false merges a
+    roster-mediated union let through, and why a shared-count floor was tried
+    and rejected in favor of this size cap). Cheap O(n^2) union-find; the
+    corpus of SELF-FLAGGED hits is small (dozens, not thousands) so this is not
+    a performance concern.
     """
     n = len(hits)
     uf = _UnionFind(n)
+    normalized_ids = [{_normalized_id_tail(x) for x in hits[i]["embedded_ids"]}
+                      for i in range(n)]
+    is_roster = [len(hits[i]["embedded_ids"]) > max_embedded_ids_for_roster
+                for i in range(n)]
     for i in range(n):
-        ti, ei = set(hits[i]["tokens"]), set(hits[i]["embedded_ids"])
+        ti = set(hits[i]["tokens"])
         for j in range(i + 1, n):
-            tj, ej = set(hits[j]["tokens"]), set(hits[j]["embedded_ids"])
-            if ei & ej:
+            tj = set(hits[j]["tokens"])
+            if (not is_roster[i] and not is_roster[j]
+                    and normalized_ids[i] & normalized_ids[j]):
                 uf.union(i, j)
                 continue
             inter = ti & tj
@@ -591,7 +696,17 @@ def cluster_qualifies(cluster: list[dict], n: int = SKILL_RECURRENCE_N) -> tuple
     """Whether a cluster crosses the recurrence bar. Returns (qualifies, reason)."""
     if any(h["strong_severity"] for h in cluster):
         return True, "strong self-flag (PROCESS recurrence / third instance / third consecutive)"
-    if any(len(h["embedded_ids"]) >= n for h in cluster):
+    # Design decision 1(b) is scoped, by its own docstring, to "a `learning_extracted`
+    # sentence" -- i.e. an AUTOPSY hit's own focused finding, not a review_tracker
+    # `review_log[].note`. A review_log entry is a governance-cycle bookkeeping
+    # summary that routinely enumerates 15-50 run ids as a matter of course (every
+    # item processed that cycle), so an unscoped check here would make EVERY such
+    # note self-qualify as an "actionable" candidate regardless of content.
+    # Confirmed 2026-08-22 (chip-20260822-govskill1-clustering-mega-cluster-diagnosis):
+    # once cluster_hits()'s roster-hub over-merging was fixed (MAX_EMBEDDED_IDS_FOR_ROSTER),
+    # `review_log[89].note` immediately surfaced standalone this way -- a new false
+    # positive the mega-cluster had been incidentally (and wrongly) masking.
+    if any(len(h["embedded_ids"]) >= n for h in cluster if h.get("source") == "autopsy"):
         return True, f"single entry cites >= {n} distinct experiment/claim ids"
     n_files = len({h["artifact"].split("[")[0].split(".")[0] for h in cluster})
     if n_files >= n:
