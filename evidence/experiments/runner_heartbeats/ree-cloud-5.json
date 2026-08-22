@@ -3,15 +3,15 @@
   "role": "orchestrator",
   "machine": "ree-cloud-5",
   "hostname": "ree-cloud-5",
-  "last_tick_utc": "2026-08-22T10:41:43Z",
+  "last_tick_utc": "2026-08-22T11:05:13Z",
   "cadence_seconds": 300,
-  "next_tick_expected_utc": "2026-08-22T10:46:43Z",
+  "next_tick_expected_utc": "2026-08-22T11:10:13Z",
   "state": "dispatching",
-  "health": "not-dispatching",
-  "health_reason": "7 consecutive cycle(s) with 12 eligible chip(s), no dispatch and no live worker [state=dispatching] (stall threshold 12)",
-  "no_dispatch_streak": 7,
+  "health": "stalled",
+  "health_reason": "12 consecutive cycle(s) with 12 eligible chip(s), no dispatch and no live worker [state=dispatching] -- at/over the 12-cycle stall threshold",
+  "no_dispatch_streak": 12,
   "session_outcome": "ok",
-  "cycles_completed": 3567,
+  "cycles_completed": 3572,
   "chips_dispatched_total": 571,
   "chips_open_work": 12,
   "chips_open_decision": 4,
@@ -20,5 +20,5 @@
   "in_flight_dispatches": 0,
   "last_dispatch_chip_ref": null,
   "coordination_plane_paused": false,
-  "last_cycle_note": "cycle 3567 (dispatching)"
+  "last_cycle_note": "cycle 3572 (dispatching)"
 }
