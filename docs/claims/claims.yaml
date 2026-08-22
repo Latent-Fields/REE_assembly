@@ -30638,6 +30638,43 @@
     blocker (with EXQ-325/EXQ-321 on the sibling SD-021/MECH-332 lineage) without formal
     substrate_ceiling tagging -- see MECH-332's own note for the fuller finding. If a 5th
     same-mechanism re-queue is proposed, route through /failure-autopsy for a ceiling read first.
+
+    [2026-08-22 correction, chip-20260822-exq325-family-evidence-disposition]: the successive
+    substrate theories above (SD-032c missing consumer, then V_s-monostrategy lock via MECH-269)
+    were built to explain a symptom -- DESCENDING and CONTROL bit-identical on z_harm_s_ratio /
+    z_harm_a_ratio -- that has a simpler, sufficient, and directly-confirmed cause: harm_descending_mod_enabled
+    and descending_attenuation_factor are REEConfig fields, NOT declared parameters of
+    REEConfig.from_dims(), so every v3_exq_325-family driver that passed them as from_dims()
+    kwargs (325, 325a all four runs, 325d) had them silently swallowed by its **kwargs catch-all.
+    DESCENDING was therefore never differentially armed relative to CONTROL in ANY of the six
+    manifests scored against this claim. The 2026-04-18 condition-dispatch-bug diagnosis (line
+    above) was correct and was never followed through to a fix. Two corrections follow from
+    reading ree_core/agent.py's descending-modulation consumer (~line 4811) directly: (1) the
+    "SD-032c is the missing downstream consumer" theory does not hold -- the legacy (non-AIC)
+    branch requires only harm_descending_mod_enabled=True and beta_gate.is_elevated, no AIC
+    substrate at all, so SD-032c's implementation status was never the blocker; (2) C1/C2 (the
+    z_harm_s_ratio / z_harm_a_ratio criteria) are direct latent-attenuation measurements taken
+    during already-observed committed steps (n_committed_steps=6000 was achieved in every
+    from-dims-affected run), not behavioural-diversity measurements, so the V_s-monostrategy
+    lock-in this claim's what_would_answer documents (action_class_entropy=0) does not gate
+    C1/C2 either, whatever bearing it may have on C3/benefit_ratio or on SD-032c's own
+    drive-regime behavioural-divergence test. Monostrategy lock-in remains real and
+    independently evidenced (MECH-269's own V3-EXQ-478/480/481 diagnostics, unrelated to this
+    family) -- this correction narrows what it blocks, it does not dismiss it. Repair of the
+    from_dims call sites is in progress (uncommitted as of this note) under
+    chip-20260822-fromdims-exq325-dead-ablation-axis; a from_dims-vs-direct-attribute parity
+    contract is being added alongside it. A separate residual gap found during this review:
+    v3_exq_325a and v3_exq_325d also pass heartbeat=HeartbeatConfig(beta_gate_bistable=True) as
+    a from_dims() kwarg, which is likewise not a declared parameter and is silently dropped --
+    beta_gate_bistable was False throughout every run in this family, contrary to the drivers'
+    own design intent, and this is NOT fixed by the in-progress repair as of this note. Net
+    effect on this claim: status unchanged (candidate, no v3_pending flag to lift here); the six
+    manifests' evidence_direction is corrected (non_contributory across the board -- see each
+    manifest's own evidence_direction_note); once the from_dims plumbing repair (including the
+    heartbeat/beta_gate_bistable gap) is committed, C1/C2/C3 are testable on the EXISTING
+    substrate with no additional gate, and a re-run under a new EXQ letter should be routed
+    through /queue-experiment rather than re-using an EXQ-325* id. See also SD-032c's
+    evidence_quality_note for the parallel correction on that claim.
   notes: >
     This creates a commitment-dependent analgesic mechanism: an agent crossing a hazard
     to reach a goal suppresses sensory alarm for the expected harm component while
@@ -36517,6 +36554,33 @@
     claim's current text during this pass, so the source of that note is unidentified; leaving
     unresolved rather than guessing at a fix. Also part of the 3rd/4th-independent-experiment
     ceiling-review flag on MECH-332 -- see that claim's note for the fuller finding.
+
+    [2026-08-22 correction, chip-20260822-exq325-family-evidence-disposition]: the 2026-04-19
+    expectation above -- "descending branch is now a genuinely different function of state [once
+    SD-032c/AIC-analog is implemented]" -- did not hold, and the reason was not V_s-monostrategy
+    lock-in. harm_descending_mod_enabled is a REEConfig field, not a declared parameter of
+    REEConfig.from_dims(), so every v3_exq_325a/325d driver that passed it as a from_dims()
+    kwarg had it silently swallowed by the **kwargs catch-all: the top-level gate on
+    ree_core/agent.py's descending-modulation consumer (`if harm_descending_mod_enabled and
+    new_latent.z_harm is not None:`, ~line 4830) was never entered in ANY condition of ANY of
+    these runs, so neither the legacy nor the AIC-gated branch ever ran -- independent of
+    whether use_aic_analog/aic_drive_protect_weight were set correctly (they were; both ARE
+    declared from_dims() parameters and reach REEConfig intact). SD-032c's own AIC-analog
+    substrate was therefore never actually exercised by V3-EXQ-325d either; "AIC harm_s_gain
+    machinery is wired and structurally drive-dependent" (above) is a code-level property, not
+    something these runs demonstrated in practice. This claim's v3_pending gate on MECH-269 V_s
+    landing is NOT withdrawn by this correction -- the drive-regime behavioural-divergence test
+    this claim's what_would_answer specifies (AIC_ON vs AIC_DRIVE_ABLATED producing different
+    behaviour under different drive regimes) plausibly does need genuine behavioural diversity,
+    which is a materially different requirement from SD-021's own C1/C2 criteria (see that
+    claim's parallel correction, which DOES narrow its gate). Also found in this pass: the
+    325d driver passes heartbeat=HeartbeatConfig(beta_gate_bistable=True) as a from_dims()
+    kwarg, likewise silently dropped -- beta_gate_bistable was False throughout V3-EXQ-325d,
+    contrary to design intent, and is not yet fixed by the in-progress repair
+    (chip-20260822-fromdims-exq325-dead-ablation-axis). Any re-run intended to actually
+    exercise this claim needs both drops closed first. Manifest evidence_direction for
+    V3-EXQ-325d is unchanged (non_contributory); its evidence_direction_note is updated with the
+    same split.
   epistemic_category: substrate_conditional
   what_would_answer: >
     NON-DEGENERACY PRECONDITION, shared with sibling claim SD-021: MECH-269

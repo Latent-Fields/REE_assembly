@@ -6,7 +6,11 @@
     "SD-021"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-021": "non_contributory"
+  },
+  "evidence_direction_note": "[2026-08-22 governance-adjacent adjudication, chip-20260822-exq325-family-evidence-disposition]: Reclassified from does_not_support (empty note -- apparently never reviewed after generation) to non_contributory. Same signature as this experiment's five siblings (v3_exq_325_..._20260410T160919Z, v3_exq_325a_..._20260417T090811Z/20260418T212923Z/20260419T045712Z, v3_exq_325d_..._20260420T160057Z): z_harm_s_ratio=1.0 and z_harm_a_ratio=1.0 identically in DESCENDING and CONTROL across all 5 seeds, with n_committed_steps=6000 in both conditions (commitment substrate fires; this is not a substrate-absence FAIL). Root cause confirmed by direct code audit 2026-08-22: REEConfig.from_dims() silently drops any kwarg outside its declared signature; harm_descending_mod_enabled and descending_attenuation_factor are REEConfig fields, not declared from_dims() parameters, so this driver's DESCENDING condition was never differentially armed relative to CONTROL. Repair in progress (uncommitted as of this note) under chip-20260822-fromdims-exq325-dead-ablation-axis. Does not refute SD-021 -- the descending-modulation pathway was never exercised. See SD-021's claims.yaml evidence_quality_note for the full corrected trace, including why the previously-invoked SD-032c / MECH-269 substrate gates do not apply to this experiment's C1/C2 criteria.",
   "supersedes": "v3_exq_325_sd021_descending_pain_modulation",
   "registered_thresholds": {
     "C1_z_harm_s_ratio_reduced": 0.0,
