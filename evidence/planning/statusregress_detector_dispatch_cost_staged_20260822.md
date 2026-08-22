@@ -1,6 +1,9 @@
 # statusregress detector: 14 findings, 19 sessions, 0 repairs
 
-**Status: AWAITING USER REVIEW**
+**Status: DECIDED AND IMPLEMENTED (2026-08-22).** User approved options B, A and C.
+Landed `REE_Working` `95b5366ec6` on origin/master. Decision chip
+`chip-20260822-statusregress-detector-dispatch-cost` resolved `done`. The analysis below
+is unchanged from the staged version -- it is the record the decision was made against.
 
 Raised by `/metaworker-learning`, session `metaworker-learning-statusregress-fp`, 2026-08-22T04:52:49Z.
 Subject: hygiene_routine_tick.py source 17, the `chip-statusregress-*` detector.
@@ -216,3 +219,52 @@ is no "obviously safe" carve-out. Claim `metaworker-learning-statusregress-fp` i
 Known adjacent item: `chip-20260822-hygiene-machinelocal-prompts-declare-no-host` (open,
 `kind: decision`) declares the same two resources. Whoever acts on either should check the
 other first.
+
+---
+
+## 7. What was actually built (2026-08-22, after approval)
+
+Landed `REE_Working` `95b5366ec6` on origin/master -- `scripts/chip_ledger.py`,
+`scripts/hygiene_routine_tick.py`, `scripts/test_statusregress_report_and_declarations.py`.
+
+- **B.** New chip kind `report`: an audit record, not a task. Both dispatch-facing consumers
+  (`dispatch_candidate_order.load_open_work_chips`, `check_dispatch_fleet_health`'s
+  dispatchable-backlog scan) already select `kind == "work"`, so a kind outside that set is
+  non-dispatchable BY CONSTRUCTION rather than by an exclusion list someone must maintain.
+  `run_tick` now honours a finding's own kind instead of hardcoding `work`.
+- **A.** `chip_ledger.py` emits a `chips-mutated:` trailer naming every ref a commit MEANT to
+  change; `_chipregress_diff_commit` honours it. Verified end-to-end on real commits for
+  `record`, `claim`, `unclaim` and `resolve`. **The trailer is an INTENT list, never a diff** --
+  a diff-derived list would declare swept contamination as intentional and silence the detector
+  on exactly the read-modify-write case it exists for. Both files document this and a test pins
+  it.
+- **C.** Bounded per-row dedup, 24h, fail-open. Bounded because this source has no
+  auto-resolution branch and (after B) is no longer dispatched, so an unbounded rule would
+  permanently blind the detector to any future regression on a row flagged once.
+- **The design record was corrected, not overwritten.** Source 17's block comment carries a
+  dated CORRECTION naming both falsified premises with their measurements, and the
+  `WHAT IS NOT MACHINE-LOCAL` entry that asserted the sharedness premise now points at it. The
+  original text stays: the wrong predictions are the useful part.
+
+**Detection is unchanged.** `ChipStatusRegressionSelfHealTest` and
+`test_a_finding_once_chipped_stays_open_forever_no_auto_resolution` both still pass.
+
+**Verification.** 21 new tests, **18 of which fail against the pre-change tree** (the 3 that
+pass there are the backwards-compatibility negative controls); roughly half are labelled
+negative controls, the load-bearing one being `test_an_UNDECLARED_ride_along_is_STILL_flagged`,
+which fails if a later edit widens the exemption to whole commits. Existing suites green: 497
+`test_hygiene_routine_tick.py`, 234 across all `test_chip_ledger*.py`, 518 combined at the
+landed sha. A differential per-file sweep over the 65-file blast radius (every test file
+importing `chip_ledger`, `hygiene_routine_tick` or `dispatch_candidate_order`), run in both the
+changed tree and an unmodified `origin/master` worktree, found **zero regressions**: the two
+failures in the changed tree (`test_dev_doctor_worktrees.py`'s live-process end-to-end, and
+`test_test_provenance.py::test_every_at_risk_test_file_pins`) fail identically on unmodified
+trunk. The latter is a genuine pre-existing red -- `test_hygiene_coordinator_backup.py` lacks
+`pin_scripts_dir()` -- chipped separately, and currently unowned because
+`com.ree.scriptscorpus` is not yet installed on the Mac (`chip-20260820-scriptscorpus-mac-launchd-install`).
+
+**Still not addressed** (deliberately, and it is the residual): the machine-local /
+host-declaration half of premise 2. Option D was revised by the held-out check into
+"downgrade or annotate, never suppress", and the host-declaration work belongs to the open
+decision chip `chip-20260822-hygiene-machinelocal-prompts-declare-no-host`, which declares the
+same two files.
