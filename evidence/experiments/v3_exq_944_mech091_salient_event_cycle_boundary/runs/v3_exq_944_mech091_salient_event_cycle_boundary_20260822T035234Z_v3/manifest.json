@@ -129,5 +129,7 @@
     "writer_defect": null,
     "n_agents": 450,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-08-22 governance, cycle bold-chaum-7e245c] Ratified per confirmed failure_autopsy_V3-EXQ-944_2026-08-22.json (dry_run_checked: true). non_contributory STANDS: readiness precondition P3 (rate match <= 0.35) read 0.914 on seed 42 because the RATE_MATCHED control degenerated into NO_RESET (4 of 236 re-issues executed; episode_lengths element-wise identical to NO_RESET for 21 of 30 episodes) -- a treatment-induced runaway feedback, not a hostile seed. All four acceptance criteria PASSED and were non-degenerate, so this is an instrument/test-design result, NOT a falsification of MECH-091 and NOT a substrate-absence result. Three guards are mis-specified (P1 floors the wrong denominator, P3 is a self-cancelling ratio, P2 measures a near-constant) and the existing due=min(due,72) clamp is inert. Routing: /queue-experiment successor. MECH-091 epistemic_category set to standard; status stays candidate.",
+  "epistemic_category": "standard"
 }

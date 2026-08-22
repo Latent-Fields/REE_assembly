@@ -27,13 +27,13 @@
     "Q-044"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "mixed",
   "evidence_direction_per_claim": {
     "MECH-314": "supports",
     "MECH-314a": "supports",
-    "MECH-314b": "mixed",
-    "MECH-314c": "mixed",
-    "Q-044": "supports"
+    "MECH-314b": "non_contributory",
+    "MECH-314c": "non_contributory",
+    "Q-044": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -94,5 +94,7 @@
         "passed": true
       }
     ]
-  }
+  },
+  "evidence_direction_note": "[2026-08-22 governance, cycle bold-chaum-7e245c] Ratified per confirmed failure_autopsy_V3-EXQ-604c_2026-07-20.json, surfaced by GOV-APPLY-1 as an unapplied disposition. The CLAIM layer was applied on 2026-07-20 (MECH-314b / MECH-314c / Q-044 all carry live_status non_contributory/substrate_ceiling, epistemic_category substrate_ceiling, pending_retest_after_substrate true, ceiling_decision deferred) but the MANIFEST was never written, so evidence_direction_per_claim went on scoring the voided readings -- per-claim entries beat the run-level field in the indexer. Corrected here: MECH-314b mixed -> non_contributory, MECH-314c mixed -> non_contributory, Q-044 supports -> non_contributory. MECH-314 and MECH-314a STAND at supports per the same autopsy's per_claim_recommendation. Run-level direction set to the autopsy's recommended_evidence_direction (mixed).",
+  "epistemic_category": "substrate_ceiling"
 }

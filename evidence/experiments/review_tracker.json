@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-21T17:11:42Z",
+  "last_review_utc": "2026-08-22T13:23:53Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1188,7 +1188,9 @@
     "V3-EXQ-936",
     "V3-EXQ-932a",
     "V3-EXQ-937b",
-    "V3-EXQ-943"
+    "V3-EXQ-943",
+    "v3_exq_944_mech091_salient_event_cycle_boundary",
+    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4035,7 +4037,9 @@
     "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
     "v3_exq_932a_zgoal_wanting_coupling_reinstrument_20260819T094328Z_v3",
     "v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3",
-    "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3"
+    "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3",
+    "v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3",
+    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6449,6 +6453,21 @@
         "No other claim-tagged evidence-purpose PASS this wave (861e/939/938 FAILed; 937b/940/941/942/943/932a diagnostic)."
       ],
       "notes": "Wave 1: 10 pending runs, all confirmed-autopsy, all stamped non_contributory. Plus GOV-APPLY-1 re-adjudication of already-reviewed V3-EXQ-922 MECH-151 supports -> non_contributory (per-claim only). HOLD ARC-107 promote; APPLY SD-099 hold_pending_v3_substrate; HOLD MECH-152 demote (GFLAG-0044). GFLAG-0045: GateDV acknowledged, 713x still refused. GFLAG-0047 left open. Write-path stays implemented_pending_validation after 943."
+    },
+    {
+      "utc": "2026-08-22T13:23:53Z",
+      "session": "bold-chaum-7e245c",
+      "cycle": "governance-cycle-2026-08-22",
+      "reviewed_run_ids": [
+        "v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3",
+        "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3"
+      ],
+      "left_pending_needs_autopsy": [],
+      "driver_skim_log": [
+        "V3-EXQ-939a (MECH-303, claim-tagged evidence-purpose PASS): MANDATORY SKIM RUN -- NO DEFECT FOUND. The PASS gate in source (overall_pass = readiness_ok and n_valid_seeds >= MIN_VALID_SEEDS and dv1_pass and dv2_pass and dv3_pass) is a genuine AND and matches the manifest's declared combination_rule verbatim -- not the V3-EXQ-846 OR trap. The driver additionally pre-declares its own window-dependence caveat (release_rate is not a stationary per-trial probability; the 30->90 trial change moves the DV gaps UP, identically across all four arms, every contrast within-context) and verifies the supersession bridge to V3-EXQ-939 bit-for-bit (its trials 1..30 reproduce 939's whole 30-trial window on all four arms at seed 0). MINOR NOTE, not a defect: the aggregate non_degenerate flag uses any() over the three per-DV non-degeneracy checks rather than all(); per-DV detail is preserved in criteria_non_degenerate and all three are true here, so nothing is masked.",
+        "V3-EXQ-944 is a FAIL with a confirmed autopsy, not an evidence-purpose PASS -- no skim owed; adjudicated via failure_autopsy_V3-EXQ-944_2026-08-22."
+      ],
+      "notes": "Wave 1, one-pass cycle (0 items needed autopsy at Step 1.5 pre-flight). MECH-303 PROMOTED provisional -> active on V3-EXQ-939a: the behavioural falsifier the claim's own note named as its promote-to-active gate passed cleanly (6/6 seeds, DV gaps 0.750/0.748/0.750 vs 0.34 margin). Note the mechanical recommender emits ZERO promote_to_active rows across all 279 entries, so this decision reaches governance only through the walk. MECH-091: V3-EXQ-944 non_contributory STANDS (already inert on both manifests; evidence_direction_note added this cycle), epistemic_category unset -> standard, status stays candidate. GOV-APPLY-1 unapplied_disposition bucket worked to completion (11 rows / 10 distinct claims): MECH-314b/MECH-314c/Q-044 -- claim layer was already applied 2026-07-20, the live gap was the MANIFEST (evidence_direction_per_claim still scored mixed/mixed/supports); written flat+pack. ARC-045/MECH-166/SD-017 -- NO ACTION, the 436e (2026-08-13) recommendation of epistemic_category standard is SUPERSEDED by failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, which recommends substrate_ceiling and is what claims.yaml already carries; GOV-APPLY-1 cannot see this because its supersession check keys on run_id and 436e/436f are different runs. INV-044 -- APPLIED: both V3-EXQ-429 runs supports -> non_contributory (claims.yaml + 4 manifests), withdrawing 2/2 of its experimental evidence; provisional re-based on literature alone; epistemic_category unset -> standard; pending_retest_after_substrate set true. The 429 family's dry smoke (20260415T143340Z) was excluded and left untouched. INV-050 -- live_status.evidence.from restamped 861 -> 861e. MECH-180 -- already applied, no action. closure node commitment_closure:GAP-7 acknowledged (Step 5b case 3), stale_since_review 1 -> 0. GFLAG-0047 left OPEN by decision (design fork: differentiation vs relational-topology DV for the ContextMemory write-selection validation run). GOV-DRY-1's single ACTIONABLE is a FALSE POSITIVE -- it flags failure_autopsy_slot_cosine_sim_fanout_sweep_2026-08-13 for citing a dry smoke, but the only occurrence of that run_id in the artifact is inside its own excluded_dry_run_ids field. DEFERRED: the 143-row GOV-APPLY-1 unapplied_evidence_direction backlog (106 runs, 74 claims) and the 2 ceiling-may-have-lifted retests (ARC-030, SD-017)."
     }
   ]
 }

@@ -290,8 +290,10 @@
     "sws_consolidation_steps": 8,
     "rem_attribution_steps": 6
   },
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "summary": "INV-044 test: ORDERED (SWS-then-REM) vs REM_ONLY vs WAKING_ONLY. C1 checks ordered condition installs differentiated context priors (slot_diversity > 0.05). C2 checks ordering advantage over no-sleep baseline. PASS = prior construction before posterior inference yields measurably more differentiated representations, supporting INV-044.",
   "scenario": "Three-arm discriminative probe of prior-before-posterior ordering necessity",
-  "interpretation": "PASS supports INV-044: SWS slot-formation builds context attractors that online encoding and REM-without-SWS cannot build. The degenerate prior (REM_ONLY) leaves ContextMemory undifferentiated (cosine_sim near 1.0). FAIL would suggest the ordering constraint is not computationally binding in the current substrate, weakening the invariant claim."
+  "interpretation": "PASS supports INV-044: SWS slot-formation builds context attractors that online encoding and REM-without-SWS cannot build. The degenerate prior (REM_ONLY) leaves ContextMemory undifferentiated (cosine_sim near 1.0). FAIL would suggest the ordering constraint is not computationally binding in the current substrate, weakening the invariant claim.",
+  "evidence_direction_note": "[2026-08-22 governance, cycle bold-chaum-7e245c] Ratified per confirmed failure_autopsy_slot_cosine_sim_fanout_sweep_2026-08-13.json (dry_run_checked: true), surfaced by GOV-APPLY-1. supports -> non_contributory. The PASS gate is c1_pass AND c2_pass and BOTH criteria are the raw whole-bank sws_slot_diversity (1 - slot_cosine_sim over all 16 ContextMemory slots, diagonal masked only). An untouched 16-slot bank reads 1.0004 +/- 0.0087 (n=200 fresh inits, re-measured 2026-08-20), so C1's 0.05 threshold is cleared by an EMPTY bank at P=1.0000 -- a homogenisation detector read as a differentiation detector. C2 compares two points on a drifting nuisance trajectory. The 'ORDERED 0.290 vs REM_ONLY 0.0' contrast is against a PLACEHOLDER (0.0 is the initialised default in run_sws_schema_pass's metrics dict when sws_enabled is False). INV-044 is NOT falsified -- it is UNTESTED; this withdraws 2/2 of its experimental evidence and re-bases provisional on literature alone. epistemic_category -> standard.",
+  "epistemic_category": "standard"
 }
