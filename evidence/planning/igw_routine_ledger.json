@@ -2992,7 +2992,10 @@
       "task_claim_session_id": "igw-auto-igw-232-confirm-evidence-mech-091-lit-0-20260822T053040Z",
       "task_claim_claimed_at": "2026-08-22T05:30:40Z",
       "assigned_at": "2026-08-22T05:22:02Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-22T07:09:28Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "28 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -4066,6 +4069,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-21T22:37:12Z",
       "re_eligible_after": "2026-08-23T22:37:12Z"
+    },
+    {
+      "stable_hash": "5c2781988288",
+      "igw_id_at_disposition": "IGW-20260822-232",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-091"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: MECH-091 (lit 0.82, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-22T07:09:37Z",
+      "re_eligible_after": "2026-08-24T07:09:28Z"
     }
   ]
 }
