@@ -133,7 +133,7 @@ closure_plan:
       lit_pull_status: done
       severity: medium
       owner_exq: null
-      unblocks_claims: ["Q-070"]
+      unblocks_claims: ["Q-070", "MECH-434"]
       depends_on: ["inference_belief_state_v4:INF-1"]
       cross_plan_link: []
       readiness_gate:
