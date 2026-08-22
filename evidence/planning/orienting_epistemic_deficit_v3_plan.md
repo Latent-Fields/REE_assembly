@@ -168,6 +168,29 @@ closure_plan:
         claims.yaml edits were made, consistent with this plan's
         registration posture.
 
+        2026-08-22 UPDATE, same day, after the design-doc review (chip
+        chip-20260822-sd063-head-training-keystone / -curiosity-budget-split-
+        eligibility): GATE (1) OF resume_condition IS NOW CLEARED. The user
+        reviewed mech314bc_percandidate_extension_staged_2026-08-08.md (which
+        had been AWAITING USER REVIEW for 14 days -- this node's reconcile is
+        what surfaced it) and the outcome is SPLIT. Follow-on item 1, the
+        SD-063 E2WorldUncertaintyHead training loop -- gate (2), the keystone
+        -- was AUTHORISED and is chipped as
+        chip-20260822-sd063-head-training-keystone, so this node's blocker now
+        has a named owner for the first time. Section 4's budget-split
+        resolution was NOT ratified (user: constitutional / basal-ganglia
+        eligibility may answer it better than a single test; anchors ARC-008
+        and MECH-062, both partly-unbuilt) and is routed to
+        chip-20260822-curiosity-budget-split-eligibility as a DESIGN PASS. That
+        second thread does NOT gate this node: training the head and measuring
+        last_uncertainty_dev_range is independent of how the shared curiosity
+        budget is eventually allocated. status stays `open` -- the accumulator
+        itself is still unbuilt and gate (2) has only just been chipped, not
+        landed. Flip to in_progress when that build starts; if the trained head
+        turns out NOT to satisfy the readiness gate
+        (last_uncertainty_dev_range ~ 0), that is a real finding that re-routes
+        this node rather than advancing it.
+
     - id: "orienting_epistemic_deficit_v3:ORNT-3"
       title: "orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-driven)"
       phase: 2
@@ -303,7 +326,7 @@ depends on both clusters plus MECH-279/MECH-205.
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
 | `ORNT-1` | MECH-395 pre-approach orienting (moved from DRV-4) | blocked | high | shared E3 selection-authority / cue-authority ceiling (V3-EXQ-812 successor) |
-| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | GAP-A slot landed 2026-08-08; real gate is the UNTRAINED SD-063 314b source + unreviewed design doc (see node `blocking_on`) |
+| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | design doc REVIEWED 2026-08-22, gate (1) cleared; remaining gate is the UNTRAINED SD-063 314b source, now owned by chip-20260822-sd063-head-training-keystone |
 | `ORNT-3` | MECH-483 orient/survey regime | open | medium | depends on ORNT-2 |
 | `ORNT-4` | Q-089 cold-start-split question | open | medium | depends on ORNT-2 + ORNT-3 |
 | `ORNT-6` | MECH-489 defensive-orienting validation | in_progress | high | 910a retest owed (substrate fix landed 2026-08-10) |
