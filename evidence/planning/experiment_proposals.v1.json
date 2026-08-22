@@ -8133,12 +8133,20 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_151",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "blocked_by": [
+        "mech151-action-bias-has-no-e3-ranking-channel (substrate_queue.json, status proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET, ready=false, added 2026-08-18)",
+        "ARC-007 (governance architectural-decision gate, not a routine substrate build)"
+      ],
+      "gated_at_utc": "2026-08-22T06:58:32Z",
+      "gated_by_session": "chip-proposal-exp-0499",
+      "gating_reason": "queue-experiment Step 2.5 substrate readiness check: MECH-151 asserts E1's cue-indexed action_bias produces top-down ELEVATE/SUPPRESS ranking of action-affordances within HippocampalModule search prior to E3 selection. Independently re-verified 2026-08-22 (source read of ree_core/hippocampal/module.py _score_trajectory -- scores get_world_state_sequence() / residue-field terrain only and never reads Trajectory.action_objects -- plus ree_core/predictors/e3_selector.py, which has zero action_object/action_bias references) that this ranking channel does not exist in the current substrate, confirming GFLAG-0039/GFLAG-0043 (resolved 2026-08-21, governance cycle gov-20260821-0203; V3-EXQ-922's MECH-151 'supports' reading was withdrawn to non_contributory on this same finding) and the contract-pinned measurement at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py (candidate scores bit-identical at action_bias=None vs 1e3; elite ordering unchanged; bias is bit-identically inert at num_cem_iterations=1). action_bias's only live effect is an additive translation of the CEM proposal mean (steers WHERE candidates are drawn), never a ranking/scoring authority (never determines WHICH candidate wins) -- so a new experiment measuring action_bias context-conditioning the way V3-EXQ-922 did would reproduce a metric already shown not to test the claim's asserted mechanism, and a new experiment probing ranking directly would just re-derive the already-measured, contract-pinned null (bit-identical scores). The repair is NOT a routine /implement-substrate build: substrate_queue.json's own entry ('mech151-action-bias-has-no-e3-ranking-channel') is explicitly gated 'DO_NOT_BUILD_YET' pending a governance decision on ARC-007 STRICT ('HippocampalModule generates VALUE-FLAT proposals ... E3 introduces ALL weighting'), which forbids the obvious fix (teaching _score_trajectory to read action_objects) without a governance ruling. Two live options per that entry: (A) give E3 an action-object input channel (honours ARC-007, larger build) or (B) accept the substrate as correct under ARC-007 and re-word MECH-151's registered mechanism away from 'elevated/suppressed ranking' toward 'pre-shapes the CEM proposal mean' (a claims edit, not a build). Neither is a queue-experiment task; both require a /governance cycle to adjudicate. Full design: REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md.",
+      "release_condition": "A /governance cycle adjudicates ARC-007 for this substrate_queue entry: either (A) /implement-substrate builds an E3 action-object input channel and the ranking effect is re-measured, or (B) MECH-151's registered mechanism wording is revised to match the proposal-mean-translation effect the substrate actually has, at which point this proposal should be re-scoped or closed rather than re-offered as-is."
     },
     {
       "acceptance_checks": [
