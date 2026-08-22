@@ -1,0 +1,124 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release",
+  "run_id": "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-21T23:50:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-303"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech303_proximity_gated_accumulation_lowers_background_vigilance",
+    "preconditions": [
+      {
+        "name": "arm_A_mean_release_rate_positive_control",
+        "kind": "readiness",
+        "description": "arm A's MEAN release_rate -- the same statistic AND the same aggregation as the DVs this gate guards, against DV_MARGIN itself",
+        "control": "arm A (safe context, gate at the shipped default) is the best case by construction. AGGREGATION IS THE MEAN, DELIBERATELY, and `met` is a central-tendency comparison rather than a worst-case claim -- so `measured` is the mean and recomputes exactly. DV1 = mean(A) - mean(B) and DV3 = mean(A) - mean(C) with mean(B), mean(C) >= 0, hence DV1 <= mean(A) and DV3 <= mean(A): mean(A) >= DV_MARGIN is the EXACT necessary condition for either to clear, so this gate cannot be harsher than the criteria it guards. V3-EXQ-939 aggregated this same statistic by MIN and voided a run whose mean cleared the floor by 0.099 because one of six seeds sat 0.0067 under it. Per-seed robustness is not abandoned -- it moved to the pre-registered MIN_VALID_SEEDS tolerance below, which for the first time can actually bind.",
+        "measured": 0.75,
+        "threshold": 0.34,
+        "direction": "lower",
+        "worst_cell": "A_safe_gate_natural::seed2",
+        "worst_cell_release_rate": 0.7111111111111111,
+        "met": true
+      },
+      {
+        "name": "arm_A_accumulation_occurred",
+        "kind": "readiness",
+        "description": "arm A num_safety_steps -- the V3-EXQ-916 zero-accumulation catch",
+        "control": "arm A's proximity gate is open by construction in a hazard-free context. MIN aggregation is RETAINED here deliberately (requeue_spec item 1 permits a justified min): this is a structural did-the-manipulation-happen-at-all check -- the V3-EXQ-916 catch, where an entire run executed at num_safety_steps=0 -- not a magnitude guard on a mean-aggregated DV. A cell that accumulated nothing measured nothing, whatever the other cells did. Realised margin is ~12x (240 vs 20), so it is not fragile the way a min-gate at the centre of the arm-A release spread was.",
+        "measured": 240.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "offending_cell": "A_safe_gate_natural::seed0",
+        "met": true
+      },
+      {
+        "name": "proximity_safe_below_gate",
+        "kind": "readiness",
+        "description": "realized proximity mean in SAFE contexts must sit below the gate threshold",
+        "control": "num_hazards=0 emits a hazard-proximity EMA of ~0 by construction. MAX over safe cells (worst case) is RETAINED deliberately: this asks whether the dedicated channel straddles the gate in EVERY cell, a structural property of the manipulation rather than an effect size.",
+        "measured": 0.0,
+        "threshold": 0.25,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "proximity_hazard_above_gate",
+        "kind": "readiness",
+        "description": "realized proximity mean in HAZARD contexts must sit above the gate threshold",
+        "control": "num_hazards=8 emits an elevated hazard-proximity EMA by construction. MIN over hazard cells (worst case) is RETAINED deliberately, for the same structural reason as the safe-side check above.",
+        "measured": 0.8995844975678307,
+        "threshold": 0.25,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "world_encoder_trained",
+        "kind": "readiness",
+        "description": "SD-070 P0a warmup moved split_encoder.world_encoder in every cell",
+        "control": "run_zworld_p0 weight-delta guard on a matched-distribution warmup env",
+        "measured": 24.0,
+        "threshold": 24.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "DV1_accumulation_necessity": true,
+      "DV2_accumulation_is_the_cause": true,
+      "DV3_gate_natural_context_appropriate": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "72ba8314a9330c359abaa175242b9648be898539969709f3d66abb6e7a49a5af",
+  "substrate_commit": {
+    "commit": "bc01077d64009fe502273ab96d1f012428e1e8b0",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
