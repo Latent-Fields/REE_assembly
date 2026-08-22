@@ -140,6 +140,18 @@ except ImportError as exc:  # pragma: no cover - environment problem, be loud
 # In-band marker key on a failure_autopsy_*.json. See the module docstring.
 METABOLIZED_KEY = "dry_run_citation_metabolized"
 
+# Fields that RECORD a dry-run exclusion rather than CITE the run as evidence.
+# `check_dry_run_citations.py`'s own Step 2a gate writes these on a confirmed
+# autopsy to document that a dry sibling was checked and correctly excluded --
+# e.g. `excluded_dry_run_ids: [...]` plus a `dry_run_check_note` explaining why.
+# A run_id mentioned ONLY inside one of these two fields is the audit doing its
+# job, not a leak: flagging it penalises exactly the behaviour GOV-DRY-1 exists
+# to encourage. `_harvest` skips descending into these keys (at any depth) so a
+# run_id named ONLY here is never counted as cited -- one also named in a
+# `target` / `failure_record` / reasoning field elsewhere in the same document
+# is unaffected, since that occurrence is found via the un-skipped fields.
+EXCLUSION_RECORD_FIELDS = frozenset({"excluded_dry_run_ids", "dry_run_check_note"})
+
 # A stamp that ASSERTS a direction. `superseded` / `non_contributory` are
 # deliberately absent: on a dry manifest those are the CORRECT quarantine, not a
 # defect. `unknown` is included because it still occupies the direction field on
@@ -222,14 +234,23 @@ def _dry_index() -> tuple[dict, set[str]]:
     return by_run, {r for r, v in by_run.items() if v["dry_run"]}
 
 
-def _harvest(value, dry: set[str]) -> set[str]:
-    """Dry run_ids mentioned anywhere in a JSON value (prose included)."""
+def _harvest(value, dry: set[str],
+             skip_keys: frozenset[str] = frozenset()) -> set[str]:
+    """Dry run_ids mentioned anywhere in a JSON value (prose included).
+
+    `skip_keys` names dict keys whose subtree is never descended into -- used
+    to exclude EXCLUSION_RECORD_FIELDS from the citation scan (see its
+    docstring) without altering what counts as a citation everywhere else.
+    """
     found: set[str] = set()
     stack = [value]
     while stack:
         node = stack.pop()
         if isinstance(node, dict):
-            stack.extend(node.values())
+            for k, v in node.items():
+                if k in skip_keys:
+                    continue
+                stack.append(v)
         elif isinstance(node, (list, tuple)):
             stack.extend(node)
         elif isinstance(node, str):
@@ -279,7 +300,7 @@ def scan_citations(autopsy_dir: Path, queue_path: Path,
                 continue
             if str(data.get("status", "")).strip().lower() != "confirmed":
                 continue
-            cited = _harvest(data, dry)
+            cited = _harvest(data, dry, skip_keys=EXCLUSION_RECORD_FIELDS)
             if not cited:
                 continue
             marker_hits, bad = _load_markers(path, data)
