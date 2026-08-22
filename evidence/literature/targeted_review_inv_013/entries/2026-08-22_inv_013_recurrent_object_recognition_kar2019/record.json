@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "INV-013"
+  ],
+  "source": {
+    "title": "Evidence that recurrent circuits are critical to the ventral stream's execution of core object recognition behavior.",
+    "authors": [
+      "Kar K",
+      "Kubilius J",
+      "Schmidt K",
+      "Issa EB",
+      "DiCarlo JJ"
+    ],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0392-5",
+    "pmid": "31036945",
+    "pmc": "PMC8785116",
+    "volume": "22",
+    "issue": "6",
+    "pages": "974-983"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Strong, well-controlled primate electrophysiology with a behaviourally-anchored design: the authors first isolate 'challenge' images behaviourally, then show that behaviourally-sufficient identity solutions arrive ~30 ms LATER in IT for exactly those images, and that the late-phase population patterns are poorly predicted by feedforward CNNs. That is direct evidence that a single forward pass is insufficient for a real class of inputs -- the necessity form of INV-013's ITERATIVE limb, not merely its availability. Confidence held at 0.70 for two reasons: the paper's own finding of functional equivalence between recurrence and additional feedforward depth shows iteration is a parameter-efficient route to depth rather than a strictly necessary architecture, and the level of the mapping differs (perceptual categorisation recurrence in the ventral stream versus REE's CEM-style proposal loop over ACTIONS in the planning path).",
+  "failure_signatures": [
+    "The authors report a functional equivalence between additional nonlinear transformations and recurrence -- very-deep feedforward CNNs predicted the late IT responses about as well as shallower recurrent CNNs. So iteration is shown to be how the primate brain buys the extra computation, not that iterative refinement is the only architecture that could deliver it. Any REE argument that iteration is architecturally NECESSARY overreaches this evidence.",
+    "The recurrence demonstrated is within perceptual categorisation in the ventral stream. REE's ITERATIVE mechanism is a proposal-score-revise loop over candidate ACTIONS in agent.py with stuck-state-gated widening. Both are more-than-one-pass-per-decision, but they sit at different levels of the loop, and evidence for one does not transfer automatically to the other.",
+    "The ~30 ms late-solution signature is established for a curated subset of challenge images; the majority of images are solved in the feedforward sweep, so the result bounds how much of ordinary processing is genuinely iterative."
+  ],
+  "tags": [
+    "inv_013",
+    "recurrence",
+    "iterative_refinement",
+    "ventral_stream",
+    "inferior_temporal",
+    "core_object_recognition",
+    "feedforward_insufficiency"
+  ],
+  "mapping": {
+    "source_claim_statement": "For a behaviourally-identified set of 'challenge' images, behaviourally sufficient object identity solutions emerge approximately 30 ms later in macaque inferior temporal cortex than for performance-matched control images, and these behaviourally critical late-phase IT response patterns are poorly predicted by feedforward deep CNN activations. Very-deep CNNs and shallower recurrent CNNs both predict the late responses better, suggesting a functional equivalence between additional nonlinear transformations and recurrence. The authors conclude that recurrent circuits are critical to the ventral stream's execution of rapid object recognition.",
+    "ree_translation": "INV-013's second limb, ITERATIVE, asserts that selection proceeds through repeated refinement rather than a single forward pass -- in REE realised as the CEM-style proposal loop in ree_core/agent.py that produces candidates, scores them, and revises the candidate set within a single decision, with stuck-state-gated widening via difficulty_gated_proposal_entropy.py. Kar et al. give the strongest available biological evidence that this is not a stylistic preference: for a real and behaviourally-identified class of inputs, one pass is provably not enough, and the extra computation arrives late and is recurrence-shaped. In REE terms this supports the claim that a single greedy argmax with no resampling pass -- INV-013's own stated falsifier -- would be a genuine architectural loss on hard inputs, not merely a simplification.",
+    "mapping_caveat": "Two boundaries, and the first is a real partial-weakener that should not be buried. The paper finds recurrence and feedforward depth to be functionally interchangeable predictors of late IT responses, so it supports iteration as the biologically-chosen and parameter-efficient route to extra computation, NOT as the uniquely necessary one; INV-013 only asserts that an iterative mechanism exists and is exercised, which survives this, but any stronger REE claim that iteration is architecturally required does not. Second, the level differs: this is recurrence inside perceptual categorisation, whereas REE's iterative mechanism sits in action selection. The transfer is by structural analogy (more than one pass within one decision), not by shared subject matter.",
+    "source_context": "Macaque inferior temporal cortex, large-scale multi-unit electrophysiology, paired with human and monkey behaviour on rapid core object recognition; CNN comparison models."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Nature Neuroscience, behaviourally-anchored design that identifies the challenge set independently before the physiology, large-scale recordings. Mapping fidelity is the limiting term -- perceptual recurrence mapped onto action-selection refinement is an analogy at the level of computational form, not of subject matter. Transfer risk 0.40 reflects both that analogy and the depth-equivalence result, which caps how strong a necessity claim this evidence can carry."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_013",
+  "entry_id": "2026-08-22_inv_013_recurrent_object_recognition_kar2019",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}

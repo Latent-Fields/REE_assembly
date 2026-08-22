@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "Q-094"
+  ],
+  "source": {
+    "title": "Hippocampal neurons encode information about different types of memory episodes occurring in the same location.",
+    "authors": [
+      "Wood ER",
+      "Dudchenko PA",
+      "Robitsek RJ",
+      "Eichenbaum H"
+    ],
+    "year": 2000,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(00)00071-4",
+    "pmid": "11055443",
+    "pmc": null,
+    "volume": "27",
+    "issue": "3",
+    "pages": "623-633"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the canonical matched-scene manipulation and it is almost exactly the experimental shape Q-094's what_would_answer asks for: hold the sensory scene and the overt behaviour constant, vary only the episode/goal identity, and ask whether the representation differentiates. It does -- two-thirds of hippocampal complex-spike cells fired differentially on the common stem by left- versus right-turn trial type, with running speed, heading and position on the stem explicitly controlled. So the biological system provably does not key context on scene identity alone. Confidence 0.76 rather than higher because of a mapping distinction that matters a great deal for MECH-150: this is evidence that the internal variable enters the REPRESENTED STATE, not that it must enter the RETRIEVAL QUERY, and those are separable design choices in REE.",
+  "failure_signatures": [
+    "The result is representational, not functional -- the study shows the code differentiates by trial type, and does not test whether that differentiation is USED for retrieval. Q-094's resolution condition requires the discrimination to translate into behavioural competence, which this design cannot deliver.",
+    "A substantial minority of cells fired similarly on both trial types, and others differentiated only in combination with spatial and behavioural factors. The differentiation is a majority property of the population, not a clean partition, so a context system built on this signal inherits real noise.",
+    "The design cannot separate prospective coding (where the animal is going -- the goal reading Q-094 wants) from retrospective coding (where it came from). Q-094's 'current goal' interpretation is one of two available readings of the same firing difference.",
+    "The internal variable manipulated is journey/goal identity only. Q-094 names four candidate internal variables -- goal, bodily/interoceptive state, confidence, inferred social situation -- and this paper speaks to the first alone; it is silent on the continuously-varying variables where Q-094's destabilisation worry actually bites."
+  ],
+  "tags": [
+    "q_094",
+    "splitter_cells",
+    "hippocampus",
+    "context_representation",
+    "goal_coding",
+    "matched_scene",
+    "mech_150",
+    "z_self_vs_z_world"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal complex-spike neurons were recorded while rats continuously alternated left and right turns from the central stem of a modified T maze, so that overt behaviour and location on the stem were held constant across trial types. Two-thirds of cells fired differentially on the common stem depending on whether the trial was a left-turn or right-turn episode, even after accounting for variation in running speed, heading and position. The authors conclude that hippocampal representations encode information necessary for representing specific memory episodes, not location alone.",
+    "ree_translation": "Q-094 asks whether two states with identical z_world but different goal, bodily state or confidence should count as different contexts -- challenging MECH-150's recorded decision to query E1 ContextMemory with z_world ALONE. Wood et al. is the biological instance of exactly that comparison: the scene is matched, the internal/task variable is the only thing that differs, and the representation differentiates anyway. In REE terms the hippocampus does not behave like a system whose context key is scene identity; the episode variable -- which in REE lives in z_self, not z_world -- is carried in the code. This is direct support for the INCLUSION pole of Q-094, at least for the goal variable.",
+    "mapping_caveat": "The distinction this entry cannot settle is the one MECH-150 actually turns on. Wood et al. show the internal variable is present in the REPRESENTED STATE of the hippocampal population; MECH-150 is a decision about what is fed into the ContextMemory RETRIEVAL QUERY. Those come apart cleanly in REE: a substrate could carry goal information in the represented state while still keying context lookup on z_world alone, and nothing in this paper rules that architecture out. Reading this entry as direct evidence that the query composition must change would overstate it. Additionally, the transfer is functional-analogical -- REE's ContextMemory is an engineered bank with no claim to be a hippocampal model -- and Q-094's own non-degeneracy precondition (MECH-153 records cosine_sim ~= 1.0 without a supervised context objective) is a substrate fact that no literature can discharge.",
+    "source_context": "Rat, tetrode recordings of hippocampal complex-spike neurons, continuous spatial alternation on a modified T maze; the founding 'splitter cell' demonstration."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: Neuron, a well-controlled design that explicitly regresses out speed, heading and position, and the founding result of a literature that has replicated for two decades. Mapping fidelity 0.70 -- the experimental shape matches Q-094's requested comparison closely, but the represented-state versus retrieval-query distinction is a real gap between what was measured and what MECH-150 decided. Transfer risk 0.35: rodent hippocampus to an engineered context bank is analogical, and only one of Q-094's four internal variables is exercised."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_094",
+  "entry_id": "2026-08-22_q_094_splitter_cells_same_location_wood2000",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}

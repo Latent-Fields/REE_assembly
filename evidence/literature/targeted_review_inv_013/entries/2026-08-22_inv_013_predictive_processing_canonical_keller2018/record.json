@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "INV-013"
+  ],
+  "source": {
+    "title": "Predictive Processing: A Canonical Cortical Computation.",
+    "authors": [
+      "Keller GB",
+      "Mrsic-Flogel TD"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.003",
+    "pmid": "30359606",
+    "pmc": "PMC6400266",
+    "volume": "100",
+    "issue": "2",
+    "pages": "424-435"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-quality perspective in Neuron by two leading circuit neuroscientists, and the canonical modern statement that prediction is not an optional add-on to cortical processing but its default motif. That bears directly on INV-013's PREDICTIVE limb: the architectural commitment REE makes is the one cortex is argued to make. Confidence held to 0.72 rather than higher for two reasons. First, INV-013 is explicitly an audit of REE's own live code paths (E1's LSTM slow world model, E2's world_forward/predict_next_state, both wired into Agent.step()) -- no literature can certify that those paths are exercised, so the paper can only establish that the commitment is well-founded, never that REE realises it. Second, the paper is scrupulous that predictive processing's circuit-level implementation remains under-determined and devotes a section to how it could be falsified, which is the same labelled-versus-genuine distinction INV-013 delegates to ARC-002.",
+  "failure_signatures": [
+    "The paper states that the circuit-level implementation of predictive processing is not settled -- observing a prediction-error-like response does not by itself establish an underlying generative forward model. A substrate could show error-shaped signals without being predictive in INV-013's sense.",
+    "The treatment is centred on sensory cortex and sensorimotor prediction. Prediction of AFFORDANCES conditioned on action -- which is what ARC-002 asks of REE's E2 -- is not the paper's evidential target, so the strongest form of REE's predictive commitment is not directly supported here.",
+    "The proposed distinction between positive- and negative-prediction-error neuron populations is presented as a testable implementation hypothesis, not an established finding; a substrate organised differently would not thereby be non-predictive."
+  ],
+  "tags": [
+    "inv_013",
+    "predictive_processing",
+    "forward_model",
+    "cortical_computation",
+    "prediction_error",
+    "arc_002"
+  ],
+  "mapping": {
+    "source_claim_statement": "Predictive processing is proposed as a canonical computation of cortex: cortical circuits continuously generate predictions of incoming sensory input from internal models, and what propagates forward is substantially the mismatch between prediction and input rather than the input itself. The perspective sets out how this could be implemented in cortical microcircuitry, how the framework could be experimentally falsified, and what it implies for healthy and diseased cortical function.",
+    "ree_translation": "INV-013 asserts three conjunctive properties of REE cognition, the first being PREDICTIVE -- that the substrate forms forward models rather than reacting purely to immediate observation. Keller and Mrsic-Flogel supply the biological warrant for treating that as a structural commitment rather than a design flourish: if prediction is the canonical cortical computation, then a cognitive substrate that lacks forward models is the one making the unusual architectural choice. In REE terms this underwrites the existence of E1's slow LSTM world model and E2's world_forward/predict_next_state as load-bearing rather than ornamental, and it supports the framing that the interesting question is not WHETHER to be predictive but whether the prediction is conditioned on the right things.",
+    "mapping_caveat": "This is evidence about biology, not about REE. INV-013's confirming condition is a CODE AUDIT -- at least one forward-model component wired into the executed agent loop -- and no paper can discharge that. The paper's own falsification section is the honest boundary: it distinguishes a circuit that genuinely predicts from one that merely produces prediction-error-shaped responses, and that is exactly the labelled-versus-genuine gap INV-013 hands off to ARC-002. Treating this entry as evidence that REE IS predictive would be a category error; it is evidence that being predictive is the right thing to be.",
+    "source_context": "Perspective article, mouse and primate sensory cortex, focused on visual and sensorimotor prediction. Widely cited as the reference statement of the circuit-level predictive processing programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- Neuron perspective, authoritative authors, heavily cited. Mapping fidelity moderate because INV-013 is an architectural audit of REE code and the paper speaks to biological cortex; the translation is a warrant-for-the-design-choice rather than a measurement of the claim's subject. Transfer risk moderate: the framework is about sensory prediction in cortex, while REE's E2 is asked to predict affordances, and that extension is assumed rather than evidenced here."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_013",
+  "entry_id": "2026-08-22_inv_013_predictive_processing_canonical_keller2018",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "Q-094"
+  ],
+  "source": {
+    "title": "Motivational states activate distinct hippocampal representations to guide goal-directed behaviors.",
+    "authors": [
+      "Kennedy PJ",
+      "Shapiro ML"
+    ],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0903259106",
+    "pmid": "19528659",
+    "pmc": "PMC2705558",
+    "volume": "106",
+    "issue": "26",
+    "pages": "10805-10810"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "The most directly Q-094-shaped paper found in this pull, and the only one that speaks to the BODILY/INTEROCEPTIVE variable rather than the goal variable. The same hippocampal population was recorded while rats performed identical tasks under food versus water deprivation, so the internal state is manipulated with the scene held constant. Three findings map onto Q-094 almost line for line, and the third is the valuable one: motivational state influenced coding strongly during contextual memory retrieval, when the internal cue was needed to select among remembered actions in the SAME PLACES, and left the same populations relatively unaffected during random foraging, when hunger and thirst were incidental -- deprivation signals 'informed, but did not determine' hippocampal coding. That is a demand-gated inclusion, which is an architectural answer Q-094's what_would_answer does not currently list as an option. Confidence 0.79, capped mainly because hunger and thirst are sustained discrete states rather than the continuously-fluctuating interoceptive signal Q-094's destabilisation worry is actually about.",
+  "failure_signatures": [
+    "Hunger and thirst are discrete, sustained deprivation states, not the continuously-varying interoceptive signal Q-094 worries would destabilise the context variable. The paper therefore does NOT test the worst case for inclusion, and cannot be cited as having retired the destabilisation risk.",
+    "The gating is inferred from a between-task contrast (contextual retrieval versus random foraging) rather than from a manipulation of relevance within a single task. The mechanism that produces the gate is not identified, so 'include internal state only when task-relevant' is a description of the observed pattern rather than a validated control policy REE could copy.",
+    "Rodent hippocampus recorded during behaviour; REE's ContextMemory is an engineered bank with no claim to be a hippocampal model. The mapping is functional-analogical throughout.",
+    "The finding that deprivation-derived signals 'informed but did not determine' hippocampal coding is a qualitative characterisation of an effect-size difference between conditions, not a demonstration of an explicit gating mechanism; a competing reading is simply that internal state has a weaker but constant influence which becomes detectable only when task demand amplifies its behavioural consequences."
+  ],
+  "tags": [
+    "q_094",
+    "motivational_state",
+    "interoception",
+    "hippocampus",
+    "context_representation",
+    "demand_gated_inclusion",
+    "mech_150",
+    "prospective_coding",
+    "z_self"
+  ],
+  "mapping": {
+    "source_claim_statement": "Unit activity was recorded from the same hippocampal population while rats performed identical tasks under food or water deprivation. Hippocampal coding was most strongly influenced by motivational state during hippocampus-dependent contextual memory retrieval, when motivational cues were required to select among remembered goal-directed actions in the same places; the same populations were relatively unaffected during hippocampus-independent random foraging, when hunger and thirst were incidental, so deprivation-derived signals informed but did not determine hippocampal coding. Prospective coding during contextual retrieval was driven by deprivation state and the associated non-spatial target rather than by allocentric trajectory. The authors conclude that hippocampal representations encode relationships between internal states, the external environment and action.",
+    "ree_translation": "Q-094 asks whether REE's active context representation should include internal variables -- explicitly naming bodily/interoceptive state -- against MECH-150's decision to query ContextMemory with z_world alone, and it names the plausible cost of inclusion: bodily state varies continuously, so including it risks a context variable never stable enough to exploit. Kennedy and Shapiro address both halves. The scene is held constant and the internal state varied, and the representation differentiates -- support for inclusion, now for the bodily variable rather than only the goal variable. More usefully, the influence is CONDITIONAL on task demand: strong where internal state is required to disambiguate actions in the same place, weak where it is incidental. Translated into REE, that suggests a third option beside Q-094's two stated poles -- neither unconditional [z_self, z_world] nor z_world-only, but a relevance-gated or demand-weighted query composition in which z_self enters the context key only when it is doing disambiguating work.",
+    "mapping_caveat": "The deprivation states used are discrete and sustained (food-deprived versus water-deprived blocks), which is not the regime Q-094's destabilisation worry concerns -- a continuously-fluctuating interoceptive signal. So this paper supports inclusion under a favourable manipulation and leaves the hard case untested; it must not be cited as having retired the destabilisation risk. The demand-gating is also inferred from a between-task contrast rather than a within-task relevance manipulation, so the third option it suggests for REE is a hypothesis worth building, not a validated policy. And as with all entries in this directory, Q-094's non-degeneracy precondition -- MECH-153's near-unity ContextMemory cosine similarity absent a supervised context objective -- is a substrate fact that no literature can discharge.",
+    "source_context": "Rat, single-unit hippocampal recordings, within-subject comparison of food versus water deprivation across a hippocampus-dependent contextual retrieval task and a hippocampus-independent random foraging task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.85: PNAS, clean within-subject design recording the same population across both motivational states and both task types, which is the control that makes the demand-gating contrast interpretable. Mapping fidelity 0.80 is the highest in this pull -- the paper manipulates the exact variable class Q-094 names and reports on the exact failure mode Q-094 anticipates. Transfer risk 0.35 reflects rodent-to-engineered-bank analogy plus the discrete-versus-continuous mismatch in the internal signal."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_094",
+  "entry_id": "2026-08-22_q_094_motivational_state_hippocampal_kennedy2009",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "Q-094"
+  ],
+  "source": {
+    "title": "Human Orbitofrontal Cortex Represents a Cognitive Map of State Space.",
+    "authors": [
+      "Schuck NW",
+      "Cai MB",
+      "Wilson RC",
+      "Niv Y"
+    ],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.019",
+    "pmid": "27657452",
+    "pmc": "PMC5044873",
+    "volume": "91",
+    "issue": "6",
+    "pages": "1402-1412"
+  },
+  "evidence_class": "fmri_mvpa_decoding",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Genuinely mixed for Q-094 rather than diplomatically hedged. It supports the premise strongly: task states that are UNOBSERVABLE from sensory input can be decoded from human OFC, decoding accuracy tracks task performance and predicts individual behavioural errors, and representational similarity between consecutive states correlates with transition accuracy -- so non-sensory state is represented AND is behaviourally load-bearing, which is the functional half Wood et al. cannot supply. But it cuts against the specific INCLUSION reading of Q-094 by locating that representation in OFC, a structure separate from the hippocampal place/context system. Read as architecture that is an argument for keeping MECH-150's z_world-only ContextMemory and adding a distinct task-state module, not for augmenting the context query -- a third design option that governance should have in front of it. Confidence 0.66 reflects fMRI decoding's coarse spatial and temporal resolution and the fact that the mixed reading rests on an anatomical-separation inference the paper does not itself draw.",
+  "failure_signatures": [
+    "The representation is localised to OFC, not to hippocampus or any structure REE's ContextMemory is analogised to. Taken at face value this argues for a SEPARATE task-state module rather than for augmenting the context retrieval query, which is a design option distinct from both of Q-094's stated poles and which would leave MECH-150's decision standing.",
+    "fMRI multivariate decoding has coarse spatial and temporal resolution; successful decoding of a state variable from a region establishes that information is present in the measured signal, not that a downstream circuit reads it out in that form or uses it as a retrieval key.",
+    "The task states here are abstract, discrete and externally defined by the experimental structure (16 states). Q-094's candidate internal variables -- bodily state, confidence, inferred social situation -- are continuous, self-generated and not externally enumerable, so the demonstrated decodability does not transfer straightforwardly.",
+    "The anatomical-separation argument that grounds the mixed direction is an inference this paper does not itself make; the authors' claim is about OFC's function, not about what hippocampal context representation should or should not contain."
+  ],
+  "tags": [
+    "q_094",
+    "orbitofrontal_cortex",
+    "state_space",
+    "unobservable_state",
+    "cognitive_map",
+    "mvpa",
+    "mech_150",
+    "module_separation",
+    "arc_041"
+  ],
+  "mapping": {
+    "source_claim_statement": "Pattern-classification applied to human fMRI during a 16-state decision-making task showed that task states unobservable from sensory input can be decoded from orbitofrontal cortex; decoding accuracy related to task performance and to the occurrence of individual behavioural errors, and similarity between neural representations of consecutive states correlated with behavioural accuracy on the corresponding transitions. The authors interpret this as support for OFC containing a cognitive map of task space, especially critical when states are not observable from sensory input.",
+    "ree_translation": "Q-094 turns on whether an active context representation keyed on sensory scene identity can in principle represent the distinction between two states with identical z_world but different internal state. Schuck et al. establish the premise that non-sensory, unobservable state is represented in the brain and is behaviourally load-bearing -- the functional half that Wood et al.'s purely representational result cannot supply, since decoding accuracy here predicts errors and transition accuracy. That is real support for Q-094's underlying intuition that situation is not scene. The complication for REE is architectural: the map lives in OFC, a structure separate from the hippocampal place/context system. Mapped onto REE that reads as an argument for a distinct task-state module alongside a z_world-keyed ContextMemory, rather than for concatenating z_self into the context query -- which would leave MECH-150's recorded decision intact while still honouring the inference that motivated Q-094.",
+    "mapping_caveat": "The mixed direction rests on an inference the paper does not itself draw. Schuck et al. argue about what OFC does; they make no claim about what hippocampal context representation should contain, and the anatomical separation between OFC and hippocampus need not imply functional separation in an engineered substrate that has no obligation to respect brain regions. A second boundary: the 16 task states are abstract, discrete and externally defined by the experimental structure, whereas Q-094's internal variables are continuous, self-generated and not enumerable, so decodability here does not license an assumption of decodability there. Finally, fMRI decoding shows information is present in the measured signal, not that a downstream circuit reads it out in that form or uses it as a retrieval key -- the same represented-state-versus-query gap that limits every entry in this directory.",
+    "source_context": "Human fMRI, 16-state sequential decision-making task designed so that a subset of states are indistinguishable from sensory input alone; multivariate pattern classification and representational similarity analysis, with decoding accuracy related to trial-level behavioural errors."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.82: Neuron, well-designed task that makes state unobservability a controlled property rather than an assumption, and the link from decoding accuracy to individual behavioural errors is a genuine functional anchor. Mapping fidelity 0.62 -- the paper's subject is where a state map lives, while Q-094's subject is what a retrieval query should contain, and the bridge between them is an architectural inference added by this entry. Transfer risk 0.45, the highest in this pull, driven by the abstract-discrete versus continuous-internal variable mismatch and by fMRI decoding's inability to establish downstream read-out."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_094",
+  "entry_id": "2026-08-22_q_094_ofc_unobservable_state_map_schuck2016",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,65 @@
+{
+  "claim_ids_tested": [
+    "INV-013"
+  ],
+  "source": {
+    "title": "A hierarchy of intrinsic timescales across primate cortex.",
+    "authors": [
+      "Murray JD",
+      "Bernacchia A",
+      "Freedman DJ",
+      "Romo R",
+      "Wallis JD",
+      "Cai X",
+      "Padoa-Schioppa C",
+      "Pasternak T",
+      "Seo H",
+      "Lee D",
+      "Wang XJ"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3862",
+    "pmid": "25383900",
+    "pmc": "PMC4241138",
+    "volume": "17",
+    "issue": "12",
+    "pages": "1661-1663"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The canonical direct measurement that primate cortex is not organised around a single flat clock: intrinsic spiking-fluctuation timescales are hierarchically ordered across seven areas, short in sensory and long in prefrontal. That is the biological warrant for INV-013's MULTI-TIMESCALE limb, which requires at least two coexisting and interacting update rates. Confidence 0.74 rather than higher because of a specific and instructive mismatch that INV-013's own what_would_answer already anticipates: the timescales measured here are INTRINSIC (autocorrelation of fluctuation), which establishes graded time constants but not that the areas interact ACROSS rates -- and interaction is explicitly part of what the limb requires. The paper is also silent on offline or consolidation-cadence timescales, which is where half of REE's multi-timescale property actually lives.",
+  "failure_signatures": [
+    "The measured quantity is the intrinsic autocorrelation timescale of spiking fluctuation, not a task-update rate. A hierarchy of intrinsic time constants does not by itself establish that the areas INTERACT across those rates, and INV-013's MULTI-TIMESCALE limb explicitly requires that at least two rates 'coexist and interact'. This entry supports coexistence more strongly than interaction.",
+    "Seven cortical areas, with data aggregated across laboratories, species-matched but task-heterogeneous. The hierarchical ordering is a group-level trend with substantial within-area heterogeneity, so a single area does not have a single clean clock rate.",
+    "The paper says nothing about offline or consolidation-cadence processing. REE's MULTI-TIMESCALE property is carried jointly by the within-episode fast/slow split (E2 versus E1) AND the cross-episode sleep cadence in ree_core/sleep/; this evidence bears only on the first kind of split.",
+    "Read against ARC-004's own audit finding -- that LatentStack.encode currently smooths z_beta/z_theta/z_delta with a single shared EMA constant (alpha_shared=0.3) -- the biology here is GRADED per area in a way REE's L-space presently is not. The paper therefore highlights the exact place REE's implementation of this limb is thinnest rather than validating it."
+  ],
+  "tags": [
+    "inv_013",
+    "multi_timescale",
+    "intrinsic_timescale",
+    "cortical_hierarchy",
+    "temporal_specialisation",
+    "arc_004",
+    "l_space"
+  ],
+  "mapping": {
+    "source_claim_statement": "Timescales of intrinsic fluctuation in spiking activity were measured across seven primate cortical areas and found to be hierarchically ordered, with sensory areas exhibiting shorter and prefrontal areas longer timescales. The authors suggest that intrinsic timescales reflect areal specialisation for task-relevant computations over multiple temporal ranges.",
+    "ree_translation": "INV-013's third limb, MULTI-TIMESCALE, requires that processing be stratified across more than one update rate rather than run on a single flat clock, and names two REE mechanisms: the within-episode fast/slow split between E2 and E1, and the cross-episode split via ree_core/sleep/ operating at a slower-than-tick cadence. Murray et al. supply the direct biological measurement that temporal stratification is a real organising principle of cortex rather than an engineering convenience -- sensory-fast to prefrontal-slow, measured in spiking statistics rather than inferred from task structure. In REE terms this warrants treating the fast/slow split as structural, and warrants reading INV-013's falsifier (L-space collapsed to a single shared-rate latent with consolidation removed) as a genuine architectural loss.",
+    "mapping_caveat": "The paper measures INTRINSIC timescales -- the autocorrelation of ongoing fluctuation -- not the rates at which areas update task variables, and it does not demonstrate cross-rate INTERACTION, which INV-013's limb explicitly requires alongside coexistence. More pointedly, INV-013's own non-degeneracy note records that L-space's LatentStack.encode currently smooths z_beta/z_theta/z_delta with a single shared EMA constant, so REE's per-layer clock rates are not differentiated in the way Murray's areal timescales are; REE's multi-timescale property is presently carried by the online/offline split rather than by graded per-layer rates. This entry should therefore be read as supporting the commitment while marking precisely where REE has not yet earned the biological analogy.",
+    "source_context": "Macaque, single-unit recordings pooled across seven cortical areas and multiple laboratories (MT, LIP, OFC, ACC, PFC among them), analysed via spike-count autocorrelation during task fixation/inter-trial intervals."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- Nature Neuroscience brief communication, multi-laboratory dataset, and the field's standard citation for cortical timescale hierarchy, though the pooled cross-lab design and n=7 areas limit how finely the ordering can be trusted. Mapping fidelity 0.70: the limb's 'coexist' requirement is well served, the 'interact' requirement is not tested. Transfer risk 0.35, driven mainly by the intrinsic-versus-update-rate distinction and by the paper's silence on consolidation cadence."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_013",
+  "entry_id": "2026-08-22_inv_013_intrinsic_timescale_hierarchy_murray2014",
+  "timestamp_utc": "2026-08-22T06:07:49Z",
+  "summary_path": "summary.md"
+}
