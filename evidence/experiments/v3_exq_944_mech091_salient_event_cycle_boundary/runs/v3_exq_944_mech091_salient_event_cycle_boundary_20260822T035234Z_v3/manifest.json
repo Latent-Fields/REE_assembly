@@ -1,0 +1,133 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_944_mech091_salient_event_cycle_boundary",
+  "run_id": "v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-22T03:52:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-091"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "salient_events_per_cell_floor",
+        "description": "min over cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "kind": "readiness",
+        "control": "every cell of every arm; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "measured": 89.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "offending_cell": "ALIGNED/seed7",
+        "met": true
+      },
+      {
+        "name": "no_reset_control_shows_partial_integration",
+        "description": "min over seeds of straddle_frac(NO_RESET). what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "kind": "readiness",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "offending_cell": "NO_RESET/seed42",
+        "met": true
+      },
+      {
+        "name": "rate_match_holds",
+        "description": "max over seeds of |e3_rate(RATE_MATCHED)-e3_rate(ALIGNED)|/e3_rate(ALIGNED). C3 only separates PHASE from RATE while the rates are matched",
+        "kind": "readiness",
+        "control": "RATE_MATCHED re-issues every suppressed reset, so its executed count matches ALIGNED's up to end-of-episode truncation",
+        "measured": 0.914,
+        "threshold": 0.35,
+        "direction": "upper",
+        "comparator": "<=",
+        "offending_cell": "RATE_MATCHED/seed42",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "criteria": [
+      {
+        "name": "C1_manipulation_check",
+        "load_bearing": false,
+        "passed": true,
+        "description": "ALIGNED executes resets and NO_RESET executes none, every seed"
+      },
+      {
+        "name": "C2_aligned_straddle_ceiling",
+        "load_bearing": true,
+        "passed": true,
+        "description": "straddle_frac(ALIGNED) <= 0.05 every seed"
+      },
+      {
+        "name": "C3_rate_matched_straddle_delta",
+        "load_bearing": true,
+        "passed": true,
+        "description": "straddle_frac(RATE_MATCHED) - straddle_frac(ALIGNED) >= 0.50 every seed (phase, not rate)"
+      },
+      {
+        "name": "C4_no_reset_lag_delta",
+        "load_bearing": false,
+        "passed": true,
+        "description": "mean_lag(NO_RESET) - mean_lag(ALIGNED) >= 3.0 steps every seed"
+      }
+    ],
+    "combination_rule": "PASS iff (P1 AND P2 AND P3) AND C1 AND C2 AND C3. Plain AND. C4 is corroborating and does not gate. C1 is a manipulation check, not a finding."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ad93e78bb660110d7b654f952605306dc379b53376cdc8d0238f48e20eb9421e",
+  "substrate_commit": {
+    "commit": "751fc5e33d58095d9c59c056bf7f7790326a595d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 373771,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 450,
+    "goal_state_present": false
+  }
+}
