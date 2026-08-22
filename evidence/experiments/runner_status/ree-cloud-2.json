@@ -1,18 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 841,
-  "runner_started_at": "2026-08-20T11:55:45.010340+00:00",
-  "last_updated": "2026-08-20T11:58:15.971936+00:00",
+  "runner_pid": 839,
+  "runner_started_at": "2026-08-21T23:50:46.173022+00:00",
+  "last_updated": "2026-08-22T00:01:18.087751+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-861e",
-      "backlog_id": "",
-      "claim_id": "INV-050",
-      "title": "INV-050/MECH-180 calibration-power-raised replication of the MEL third-drive coupling (repairs 861c's under-powered C2 near-miss)",
+      "queue_id": "V3-EXQ-910b",
+      "backlog_id": "EVB-0610",
+      "claim_id": "MECH-489",
+      "title": "MECH-489 (SD-099) valence-gating retest with decision counted at the override tick",
       "description": "",
-      "estimated_minutes": 264.0,
+      "estimated_minutes": 176.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3540,6 +3540,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 149.4
+    },
+    {
+      "queue_id": "V3-EXQ-939a",
+      "backlog_id": "",
+      "claim_id": "MECH-303",
+      "title": "MECH-303 behavioural retest (same question as V3-EXQ-939) under a repaired readiness gate: proximity-gated live contextual-safety accumulation lowers background avoidance-commitment (vigilance) release",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome=PASS evidence_direction=supports label=mech303_proximity_gated_accumulation_lowers_background_vigilance dv1=0.750 dv2=0.748 dv3=0.750 | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-939a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-939a.json",
+      "started_at": "2026-08-21T23:50:46.189649+00:00",
+      "completed_at": "2026-08-22T00:01:18.086736+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 631.3
     }
   ]
 }
