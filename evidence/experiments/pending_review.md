@@ -1,10 +1,20 @@
 # Pending Experiment Review
 
-Generated: `2026-08-21T17:11:51Z`  
-Last review: `2026-08-21T17:05:43Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-08-22T11:35:56Z`  
+Last review: `2026-08-21T17:11:42Z`  
+Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3` | 2026-08-22T03:52 | MECH-091 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3` | 2026-08-21T23:50 | MECH-303 |
 
 ---
 
