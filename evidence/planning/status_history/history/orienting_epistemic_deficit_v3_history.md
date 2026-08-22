@@ -14,6 +14,7 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 
 ## `orienting_epistemic_deficit_v3:ORNT-2`
 
@@ -25,6 +26,7 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 
 ## `orienting_epistemic_deficit_v3:ORNT-3`
 
@@ -36,6 +38,7 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 
 ## `orienting_epistemic_deficit_v3:ORNT-4`
 
@@ -47,6 +50,7 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 
 ## `orienting_epistemic_deficit_v3:ORNT-5`
 
@@ -58,6 +62,7 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 
 ## `orienting_epistemic_deficit_v3:ORNT-6`
 
@@ -69,4 +74,5 @@ Source plan: `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-909_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-909_2026-08-10.json) :: autopsy non_contributory/standard routing=governance-note-only
 - `2026-08-10T14:21Z` [autopsy] `failure_autopsy_V3-EXQ-910_2026-08-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910_2026-08-10.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-11T05:19Z` [autopsy] `failure_autopsy_V3-EXQ-910a_2026-08-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-910a_2026-08-11.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-21T17:11Z` [decision] `decision:SD-099@2026-08-21T17:11:38.909394Z` -> [`evidence/decisions/decision_log.v1.jsonl#L446`](../../../../evidence/decisions/decision_log.v1.jsonl#L446) :: decision hold_pending_v3_substrate (applied)
 

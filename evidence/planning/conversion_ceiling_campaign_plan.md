@@ -19,7 +19,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -34,7 +35,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -49,7 +51,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -64,7 +67,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -79,7 +83,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -95,7 +100,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -117,7 +123,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=governance"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]

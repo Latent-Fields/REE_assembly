@@ -1,6 +1,6 @@
 # Pending Experiment Review
 
-Generated: `2026-08-22T11:35:56Z`  
+Generated: `2026-08-22T13:23:53Z`  
 Last review: `2026-08-21T17:11:42Z`  
 Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
