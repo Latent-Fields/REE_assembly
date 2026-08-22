@@ -3,7 +3,7 @@ closure_plan:
   id: orienting_epistemic_deficit_v3
   title: "Orienting & Epistemic-Deficit Cluster (V3 closure)"
   registered: 2026-08-13
-  last_updated: 2026-08-21
+  last_updated: 2026-08-22
   scope_claims: [MECH-395, MECH-482, MECH-483, Q-089, MECH-489, SD-099]
   sibling_plans: [drives_motivation_v4, goal_pipeline]
   registered_note: >
@@ -84,7 +84,52 @@ closure_plan:
       unblocks_claims: ["MECH-482"]
       depends_on: []
       cross_plan_link: []
-      last_updated: 2026-08-13
+      blocking_on: >
+        MECH-482's own claims.yaml non-degeneracy precondition -- a substrate
+        where target-bound uncertainty is tracked PER-CANDIDATE rather than as
+        a global scalar -- is still UNMET, and the reason now sits one step
+        further down than "GAP-A unclaimed". Verified against live ree-v3
+        2026-08-22: the ARC-065 GAP-A per-candidate SLOT is present
+        (agent.py `_candidate_epistemic_values`, config fields
+        `curiosity_uncertainty_source` / `curiosity_learning_progress_source`,
+        landed 2026-08-08 c0e0ce8), but BOTH sources default to "broadcast"
+        (bit-identical off) and neither has a genuine signal behind it.
+        314b's genuine source, the SD-063 E2WorldUncertaintyHead, IS
+        instantiated on the agent (config-gated `use_e2_world_uncertainty`,
+        agent.py 573-586) but is UNTRAINED; the phased P0->P1->P2 training
+        loop that would make it live is follow-on item 1 of
+        mech314bc_percandidate_extension_staged_2026-08-08.md and has never
+        been chipped (scan of all 1435 TASK_CHIPS.json entries on 2026-08-22:
+        zero chips naming SD-063 / e2_predictive_variance / head training
+        since the 2026-08-08 slot landing). 314c's genuine source IS this
+        node -- config.py:4030-4037 reserves the enum value
+        "epistemic_deficit" and falls back to broadcast, so the substrate
+        names the hole without filling it. That keystone is ALSO unowned in
+        the closure map: no *_plan.md mentions SD-063 /
+        E2WorldUncertaintyHead / e2_predictive_variance anywhere, and
+        behavioral_diversity_isolation:GAP-A is `done` and scoped to a
+        different concern (CEM elite-pool collapse, Theory 1 / Layer A).
+        ARC-065 in substrate_queue.json remains ready:false, and that
+        queue's own 2026-08-21 next_implement_substrate reconcile concluded
+        no implement-substrate build is ready fleet-wide. The design doc
+        itself is still status AWAITING USER REVIEW, unchanged since
+        2026-08-08.
+      resume_condition: >
+        Two-step gate; neither step is owned today. (1) The design doc
+        mech314bc_percandidate_extension_staged_2026-08-08.md receives its
+        owed user review, releasing its follow-on routing. (2) The SD-063
+        E2WorldUncertaintyHead training loop lands and a run demonstrates
+        readiness -- `last_uncertainty_dev_range > 0` under
+        `curiosity_uncertainty_source=e2_predictive_variance` -- establishing
+        that per-candidate target-bound uncertainty is genuinely
+        discriminative rather than the near-uniform vector an untrained head
+        returns (the MECH-353 / V3-EXQ-642 vacuous-comparison lesson, which
+        agent.py's readiness gate exists to refuse). Only once (2) holds is
+        MECH-482's non-degeneracy precondition met and the accumulator build
+        legitimately startable; flip to in_progress at that point. Until
+        then status stays `open`, and the correct next action is clearing
+        gate (1) -- a governance/user decision, NOT a build.
+      last_updated: 2026-08-22
       completion_note: >
         Registered in claims.yaml 2026-08-05 (thought-digestion, "Epistemic
         Deficit and Orienting" intake), no owning closure node until this
@@ -101,6 +146,28 @@ closure_plan:
         open correctly reflects that the accumulator itself has not been
         claimed/started; flip to in_progress once the design doc is
         reviewed and a build begins.
+        2026-08-22 reconcile (IGW-20260822-154, session pending-task-009a3a):
+        node re-verified against live ree-v3 substrate, claims.yaml,
+        substrate_queue.json and the chip ledger. status STAYS open -- and is
+        correct. The accumulator is confirmed unbuilt: the only occurrences
+        of `epistemic_deficit` anywhere in ree_core are the reserved config
+        enum value (utils/config.py:4030-4037, "not yet built in V3;
+        currently falls back to broadcast") plus comments at agent.py:7587
+        and policy/structured_curiosity.py:421,537 naming MECH-482 as the
+        missing per-candidate learning-progress source. What this pass
+        changes is not the status but the BLOCKER'S PRECISION: the
+        2026-08-13 note rightly said the GAP-A slot is capability
+        infrastructure rather than MECH-482's source, but left the actual
+        gate unnamed, and the summary table below still read "GAP-A
+        (substrate_queue.json) unclaimed" -- stale in both halves, since the
+        slot LANDED on 2026-08-08 and ARC-065 is not merely unclaimed but
+        ready:false. The real gate is now recorded explicitly in the new
+        `blocking_on` / `resume_condition` fields (same shape ORNT-6 gained
+        on 2026-08-21). Nothing in the 9 days since 2026-08-13 advanced this
+        node: no chip, no claim and no substrate change touches MECH-482. No
+        claims.yaml edits were made, consistent with this plan's
+        registration posture.
+
     - id: "orienting_epistemic_deficit_v3:ORNT-3"
       title: "orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-driven)"
       phase: 2
@@ -236,7 +303,7 @@ depends on both clusters plus MECH-279/MECH-205.
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
 | `ORNT-1` | MECH-395 pre-approach orienting (moved from DRV-4) | blocked | high | shared E3 selection-authority / cue-authority ceiling (V3-EXQ-812 successor) |
-| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | GAP-A (substrate_queue.json) unclaimed |
+| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | GAP-A slot landed 2026-08-08; real gate is the UNTRAINED SD-063 314b source + unreviewed design doc (see node `blocking_on`) |
 | `ORNT-3` | MECH-483 orient/survey regime | open | medium | depends on ORNT-2 |
 | `ORNT-4` | Q-089 cold-start-split question | open | medium | depends on ORNT-2 + ORNT-3 |
 | `ORNT-6` | MECH-489 defensive-orienting validation | in_progress | high | 910a retest owed (substrate fix landed 2026-08-10) |
@@ -255,3 +322,51 @@ depends on both clusters plus MECH-279/MECH-205.
   expected to DROP by several points. This is the intended, honest
   correction: the prior percentage was overstated by omitting real
   remaining and in-progress work, not by overcounting done work.
+
+- **2026-08-22** (session `pending-task-009a3a`, IGW-20260822-154, lane
+  plan / reconcile): **ORNT-2 reconciled; status unchanged (`open`), blocker
+  restated.** Re-verified the node against live `ree-v3`, `claims.yaml`,
+  `substrate_queue.json` and the chip ledger. Three findings, all recorded on
+  the node itself:
+  1. **The accumulator is confirmed unbuilt**, so `open` is right. The only
+     `epistemic_deficit` occurrences in `ree_core` are the *reserved* config
+     enum value (`utils/config.py:4030-4037`, which explicitly falls back to
+     `broadcast`) and comments at `agent.py:7587` /
+     `policy/structured_curiosity.py:421,537` naming MECH-482 as the missing
+     per-candidate learning-progress source.
+  2. **The summary-table blocker was stale in both halves.** It read "GAP-A
+     (substrate_queue.json) unclaimed"; in fact the GAP-A per-candidate slot
+     LANDED 2026-08-08 (ree-v3 `c0e0ce8`) and ARC-065 is not merely unclaimed
+     but `ready:false`. The node's own `completion_note` had already caught
+     the first half on 2026-08-13; the table had not been updated to match.
+     Both now agree.
+  3. **The real gate is one step further down, and is unowned.** MECH-482's
+     non-degeneracy precondition needs per-candidate target-bound uncertainty
+     to be *live*, not merely *possible*. The slot is capability; the genuine
+     314b source (SD-063 `E2WorldUncertaintyHead`) is instantiated on the
+     agent but UNTRAINED, and its phased P0->P1->P2 training loop -- follow-on
+     item 1 of `mech314bc_percandidate_extension_staged_2026-08-08.md`, and
+     that doc's own "actual keystone" -- has **never been chipped** (scan of
+     all 1435 `TASK_CHIPS.json` entries: zero chips naming SD-063 /
+     `e2_predictive_variance` / head training since 2026-08-08). It is also
+     unowned by the closure map: **no** `*_plan.md` mentions SD-063 /
+     `E2WorldUncertaintyHead` / `e2_predictive_variance` at all, and
+     `behavioral_diversity_isolation:GAP-A` is `done` and scoped to a
+     different concern (CEM elite-pool collapse). Captured in new
+     `blocking_on` / `resume_condition` fields, the same shape ORNT-6 gained
+     on 2026-08-21.
+
+  Nothing in the 9 days since 2026-08-13 advanced this node. **No
+  `claims.yaml` edits**, consistent with this plan's registration posture;
+  closure percentage is unchanged (no node status moved).
+
+  *Separate finding, recorded but NOT actioned here (out of this item's
+  scope, and `claims.yaml` is governance-only):* four of this plan's six
+  scope claims -- MECH-395, MECH-482, MECH-483, Q-089 -- still carry
+  `location: evidence/planning/drives_motivation_v4_plan.md` in
+  `claims.yaml`, stale since the 2026-08-13 move into this plan. Verified
+  **not** a closure-percentage bug: none of the three closure-tracking
+  consumers (`generate_closure_snapshot.py`, `check_closure_drift.py`,
+  `serve.py`) reads the `location` field -- node ownership is bound via
+  `unblocks_claims` in this frontmatter. It is navigational drift only.
+  `check_closure_drift.py` reports `drifted_nodes=0` for this plan.
