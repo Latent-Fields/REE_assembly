@@ -1,48 +1,59 @@
 {
   "machine": "DLAPTOP",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-08-22T09:40:26Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-910b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-830",
-      "result": "PASS",
-      "completed_at": "2026-07-27T20:49:33.440086+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-832",
-      "result": "PASS",
-      "completed_at": "2026-07-27T21:45:50.756813+00:00"
-    }
+  "last_tick_utc": "2026-08-22T12:31:39Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-861f",
+  "current_exq_started_utc": "2026-08-22T10:47:27.957994+00:00",
+  "current_title": "INV-050/MECH-180 H1 leg (measurement axis): is 861e's seed-271 HIGH-arm MEL collapse an intervention-isolation defect? Reseed the measurement phase, substrate pinned to 861e's own 17befb8c",
+  "current_claim_id": "INV-050",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 7 / ARM_1_LOW_ON",
+    "runs_done": 1,
+    "runs_total": 18,
+    "episodes_done": 91,
+    "episodes_total": 132,
+    "overall_pct": 9.4
+  },
+  "seconds_elapsed": 6251,
+  "seconds_remaining": 57179,
+  "recent_lines": [
+    "Seed 7 Condition ARM_0_NONE_ON",
+    "[train] ARM_0_NONE_ON seed=7 ep 1/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 11/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 21/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 31/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 41/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 51/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 61/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 71/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 81/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 91/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 101/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 111/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 121/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 131/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 132/132",
+    "ARM_0_NONE_ON seed=7: conv_drop=0.947 ref=2.932e-05 (calib n=10 rel_sd=0.223 rel_sd_of_mean=0.071) mel=3.500e-05 factor=1.194 cum_sws=35 cum_rem=72 [descoped dv3: mean_new_div=0.0196 legacy=0.3642 n_touched_mean=5.8 insufficient_cycles=0/6] spindle_sel_applied=0.00 spindle_sel_weight=0.0000",
+    "verdict: PASS",
+    "Seed 7 Condition ARM_1_LOW_ON",
+    "[train] ARM_1_LOW_ON seed=7 ep 1/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 11/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 21/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 31/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 41/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 51/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 61/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 71/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 81/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 91/132"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 51097,
-  "runner_version": "r5355 be66b2b 2026-08-22 (running r5348 655d885)",
+  "runner_version": "r5358 d8845ed 2026-08-22 (running r5348 655d885)",
   "gpu": {
     "available": false
   },
