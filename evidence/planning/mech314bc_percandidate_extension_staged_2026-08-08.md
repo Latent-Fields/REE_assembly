@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or any other registry) as a status/flag change. It records a substrate landing (code) plus a resolved design decision and honest source-scoping; the claims.yaml edits that accompany it are `implementation_note`s only -- no status, confidence, `v3_pending`, or `pending_retest_after_substrate` flag was flipped.**
+**Status: REVIEWED 2026-08-22 -- SPLIT OUTCOME. Section 4's budget-split resolution was NOT ratified; follow-on item 1 WAS authorised. Nothing in this file has been written to claims.yaml (or any other registry) as a status/flag change; the accompanying claims.yaml edits remain `implementation_note`s only. See the Review outcome section at the end.**
 
 # MECH-314b / MECH-314c per-candidate architectural slot (ARC-065 GAP-A Phase-2 extension)
 
@@ -158,3 +158,56 @@ LIVE (314b needs the trained head; 314c needs MECH-482). Therefore **no** `statu
 `v3_pending`, `pending_retest_after_substrate`, or confidence field was changed on MECH-314b,
 MECH-314c, Q-044, or MECH-482. Only `implementation_note`s recording the slot landing were
 added. Flipping the retest flags is governance work for after the source is live + validated.
+
+
+---
+
+## Review outcome (2026-08-22, session pending-task-009a3a, reached via IGW-20260822-154)
+
+This doc sat `AWAITING USER REVIEW` for 14 days. It was surfaced during a plan reconcile of
+`orienting_epistemic_deficit_v3:ORNT-2`, which found this doc's unreviewed status to be one of
+the two live gates on MECH-482. The user reviewed it via AskUserQuestion. The outcome is
+**split** -- do not read the two halves as one verdict.
+
+### Section 4 (budget split): NOT RATIFIED -- re-opened
+
+The user declined to ratify the shared-clamp + weights resolution, verbatim:
+
+> "this is exactly where the constitutional eligibility and more complex biology similar basal
+> ganglia set up might have a better answer than a single test. perhaps more consideration as
+> to how this could be robustly done is needed"
+
+The objection targets rationale points **3 and 4**, not point 2: static per-flavour weights plus
+an observe-at-readiness gate is a "single test", where the biology uses a structured,
+state-dependent **eligibility** layer. Point 2's total-bound argument (three flavours each
+clamped at the rail sum to 3x the rail) is untouched by this and any alternative must still
+answer it.
+
+**Section 4's text is deliberately left in place, unedited, as the BASELINE** the alternatives
+are measured against -- it is not withdrawn, it is unratified. Routed to
+`chip-20260822-curiosity-budget-split-eligibility` as a **design pass, not a build**: at least
+two candidate designs, each answering rationale points 1-4, each with a named falsifier
+distinguishing it from static weights (the 604a / 624a / 614d / 640a vacuous-channel class
+applies here too -- a mechanism indistinguishable from the baseline is not an improvement).
+Registry anchors for the direction: **ARC-008** (commitment eligibility gated by tau/rho/phi;
+status provisional, only a coarse BINARY proxy built, the eligibility matrix M_phi is NOT) and
+**MECH-062** (E3 tri-loop gating as the pre-commit eligibility layer; status candidate, its own
+notes state this over-states what is built). Both being partly-unbuilt is itself a finding the
+design pass must size: "use eligibility" may be gated on first building an eligibility layer.
+
+### Follow-on item 1 (SD-063 head training): AUTHORISED
+
+Chipped as `chip-20260822-sd063-head-training-keystone` (/implement-substrate). This is the
+keystone that makes MECH-482's non-degeneracy precondition satisfiable, and it was owned by no
+chip and no closure node before today. It is **independent of the section 4 question** --
+training the head and measuring `last_uncertainty_dev_range` does not depend on how the budget
+is eventually allocated -- so it proceeds while the budget split is reconsidered.
+
+Follow-on items 2 (MECH-482 accumulator) and 3 (the ON-vs-OFF validation experiment) remain
+routed as written and were NOT authorised by this review.
+
+### Governance posture unchanged
+
+Section 7 still holds: no `status`, `v3_pending`, `pending_retest_after_substrate` or confidence
+field was flipped on MECH-314b, MECH-314c, Q-044 or MECH-482 by this review. Flag flips remain
+governance work for after the source is live AND validated.
