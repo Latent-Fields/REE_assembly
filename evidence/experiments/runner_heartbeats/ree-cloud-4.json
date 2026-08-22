@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-22T10:44:37Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-910b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-903",
-      "result": "FAIL",
-      "completed_at": "2026-08-08T22:27:48.861935+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-190a",
-      "result": "FAIL",
-      "completed_at": "2026-08-09T00:24:51.916486+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-906",
-      "result": "PASS",
-      "completed_at": "2026-08-09T00:38:58.152152+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-906b",
-      "result": "PASS",
-      "completed_at": "2026-08-09T16:30:35.415117+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-913",
-      "result": "PASS",
-      "completed_at": "2026-08-10T21:32:07.792975+00:00"
-    }
+  "last_tick_utc": "2026-08-22T13:11:51Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-861h",
+  "current_exq_started_utc": "2026-08-22T13:09:21.380523+00:00",
+  "current_title": "INV-050/MECH-180 substrate-defect CONTROL leg (representation axis): is the decisive seed's MEL readout trustworthy at all? 861e protocol on 17befb8c with non-degenerate ContextMemory write selection ON",
+  "current_claim_id": "INV-050",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 7 / ARM_0_NONE_ON",
+    "runs_done": 0,
+    "runs_total": 18,
+    "episodes_done": 11,
+    "episodes_total": 132,
+    "overall_pct": 0.5
+  },
+  "seconds_elapsed": 150,
+  "seconds_remaining": 25171,
+  "recent_lines": [
+    "Seed 7 Condition ARM_0_NONE_ON",
+    "[train] ARM_0_NONE_ON seed=7 ep 1/132",
+    "[train] ARM_0_NONE_ON seed=7 ep 11/132"
   ],
-  "runner_pid": 893818,
-  "runner_version": "r5355 be66b2b 2026-08-22",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 1008653,
+  "runner_version": "r5366 a23a925 2026-08-22",
   "gpu": {
     "available": false
   },

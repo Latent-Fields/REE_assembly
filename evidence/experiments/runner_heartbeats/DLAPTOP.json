@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-08-22T12:31:39Z",
+  "last_tick_utc": "2026-08-22T13:11:54Z",
   "state": "running",
   "current_exq": "V3-EXQ-861f",
   "current_exq_started_utc": "2026-08-22T10:47:27.957994+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "INV-050",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 7 / ARM_1_LOW_ON",
-    "runs_done": 1,
+    "run_label": "Seed 7 / ARM_2_MED_ON",
+    "runs_done": 2,
     "runs_total": 18,
-    "episodes_done": 91,
+    "episodes_done": 41,
     "episodes_total": 132,
-    "overall_pct": 9.4
+    "overall_pct": 12.8
   },
-  "seconds_elapsed": 6251,
-  "seconds_remaining": 57179,
+  "seconds_elapsed": 8666,
+  "seconds_remaining": 61734,
   "recent_lines": [
     "Seed 7 Condition ARM_0_NONE_ON",
     "[train] ARM_0_NONE_ON seed=7 ep 1/132",
@@ -47,7 +47,20 @@
     "[train] ARM_1_LOW_ON seed=7 ep 61/132",
     "[train] ARM_1_LOW_ON seed=7 ep 71/132",
     "[train] ARM_1_LOW_ON seed=7 ep 81/132",
-    "[train] ARM_1_LOW_ON seed=7 ep 91/132"
+    "[train] ARM_1_LOW_ON seed=7 ep 91/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 101/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 111/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 121/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 131/132",
+    "[train] ARM_1_LOW_ON seed=7 ep 132/132",
+    "ARM_1_LOW_ON seed=7: conv_drop=0.947 ref=2.932e-05 (calib n=10 rel_sd=0.223 rel_sd_of_mean=0.071) mel=2.925e-05 factor=0.998 cum_sws=30 cum_rem=61 [descoped dv3: mean_new_div=0.0210 legacy=0.3860 n_touched_mean=5.0 insufficient_cycles=0/6] spindle_sel_applied=0.00 spindle_sel_weight=0.0000",
+    "verdict: PASS",
+    "Seed 7 Condition ARM_2_MED_ON",
+    "[train] ARM_2_MED_ON seed=7 ep 1/132",
+    "[train] ARM_2_MED_ON seed=7 ep 11/132",
+    "[train] ARM_2_MED_ON seed=7 ep 21/132",
+    "[train] ARM_2_MED_ON seed=7 ep 31/132",
+    "[train] ARM_2_MED_ON seed=7 ep 41/132"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
