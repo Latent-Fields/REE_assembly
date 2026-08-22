@@ -1,5 +1,7 @@
-**Status: DESIGN PASS -- AWAITING USER RATIFICATION. No code, no config, no claims.yaml
-status/flag edits were made by this session. This document proposes; it does not build.**
+**Status: RATIFIED 2026-08-22T13:19Z -- Design B adopted as the design of record, BUILD GATED
+ON THE SECTION 11 PROBE. Section 4 of the staged doc is NOT ratified and does not become the
+design of record. No code, no config, no claims.yaml status/flag edits were made by this
+session or by the ratification. See section 14.**
 
 # Curiosity budget split: does a constitutional-eligibility layer beat a shared clamp + static weights?
 
@@ -557,3 +559,33 @@ speculatively.
   document is referenced from it, not substituted into it.
 - **No duplication of `chip-20260822-sd063-head-training-keystone`**, which is independent,
   authorised, and is the correct next build regardless of how this decision resolves.
+
+---
+
+## 14. Ratification outcome (2026-08-22T13:19Z)
+
+The user reviewed this document via `AskUserQuestion` and selected **"Adopt Design B, build
+gated on probe"** -- the recommended option. Logged to the recommendation-agreement ledger with
+`had_recommended_option=True matched_recommendation=True`.
+
+**What is now decided.**
+
+1. **Section 4 is NOT the design of record.** Its rationale points 1 and 2 are retained (and
+   point 2 is promoted to constraint C1, binding on every candidate); its point 3 is rejected as
+   refuted by measurement; its point 4 is retained as an observation layer only.
+2. **Design B (per-flavour commensuration under the single existing clamp) is the design of
+   record**, together with constraints C1-C6 in section 5.
+3. **The build is NOT authorised yet.** It is gated on the section 11 probe, and the probe is in
+   turn sequenced behind `chip-20260822-sd063-head-training-keystone` (independent, already
+   authorised, unaffected by this decision).
+4. **Design C is not rejected** -- it is deferred behind the same probe, which produces the
+   relative validity floor it needs. **Design D remains gated on Q-044.**
+
+**What would reverse this.** The probe returning `D ~ 1` (no span disparity) or ~0% selection
+changes ratifies section 4 after all; the in-layer null failing to move the committed DV
+re-classifies the whole node as downstream of the ARC-107 authority ceiling. Both outcomes are
+pre-registered in section 11 and neither is treated as a disappointment.
+
+**Governance posture unchanged.** No `status`, `v3_pending`, `pending_retest_after_substrate` or
+confidence field was flipped on MECH-314a/b/c, Q-043, Q-044, ARC-008, MECH-062, ARC-110,
+MECH-448 or MECH-482 by this design pass or by its ratification.
