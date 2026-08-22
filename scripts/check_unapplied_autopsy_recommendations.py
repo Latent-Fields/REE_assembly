@@ -106,6 +106,16 @@ BUCKETS
                          pack, with `evidence_direction_note`), not a
                          claims.yaml edit.
 
+  superseded_disposition A confirmed target's `per_claim_recommendation[<claim>]`
+                         is CONTRADICTED by a LATER confirmed target's recommendation
+                         for the SAME CLAIM on a DIFFERENT run, and claims.yaml
+                         already reflects that later recommendation. WARN-only: the
+                         older artifact's disposition is moot, not owed -- it is
+                         reported so the stale citation gets re-read, not silenced.
+
+                         Added 2026-08-22 (GOV-APPLY-1 cross-run supersession
+                         blind spot). See "THE 2026-08-22 REPAIR" below.
+
   superseded_citation    A claim whose `live_status.evidence.from` cites autopsy X
                          for run R, while a NEWER confirmed adjudication of the same
                          run R exists. The claim is being weighted by a superseded
@@ -163,11 +173,47 @@ category. A report of that size that is mostly wrong would be ignored, and an
 ignored report is the same failure as no report. Precision first; coverage grows
 as the convention spreads.
 
+THE 2026-08-22 REPAIR -- unapplied_disposition had the MIRROR-IMAGE blind spot
+------------------------------------------------------------------------------
+`superseded_citation`'s own KNOWN LIMIT (below) already names the general shape:
+a supersession that moves to a DIFFERENT run is invisible to anything keyed on
+run_id. `unapplied_disposition`'s R2 dedup is keyed on run_id for exactly that
+reason -- but a claim can be re-adjudicated across DIFFERENT runs, and nothing
+deduped THAT. The result was not under-reporting but its opposite: a claim
+whose disposition claims.yaml already reflects, correctly, per the LATEST
+confirmed autopsy, went on being reported ACTIONABLE forever because an OLDER
+confirmed autopsy's per-claim recommendation -- for a different run of the same
+claim -- was compared against current claims.yaml state and, naturally, no
+longer matched it.
+
+Confirmed instance: `failure_autopsy_V3-EXQ-436e_2026-08-13` recommends
+`epistemic_category unset -> standard` for ARC-045/MECH-166/SD-017 (run
+`v3_exq_436e_...`). `failure_autopsy_436f-603u-precondition-blocked-cluster_
+2026-08-16` -- a LATER confirmed autopsy of a DIFFERENT run
+(`v3_exq_436f_...`) covering the SAME three claims -- recommends
+`epistemic_category standard -> substrate_ceiling` instead. claims.yaml
+carries `substrate_ceiling` for all three: the 436f disposition, correctly
+applied. 436e's disposition was superseded before it was ever applied, and
+this audit re-adjudicated it by hand every cycle regardless, since it never
+compared a target against anything but claims.yaml's CURRENT state.
+
+The fix generalises R2 from "per run_id" to "per claim, across every run a
+confirmed target names": for each claim, the LATEST confirmed per-claim
+recommendation is authoritative. An older recommendation that DISAGREES with
+the latest, where claims.yaml reflects the latest, moves to
+`superseded_disposition` (WARN) instead of `unapplied_disposition`
+(ACTIONABLE). An older recommendation that AGREES with the latest, or whose
+latest sibling is itself unapplied, is unaffected -- both still route to
+`unapplied_disposition`, biased toward false positives exactly as before.
+
 KNOWN LIMIT. `superseded_citation` keys on run_id, so it cannot see a supersession
 that moves to a DIFFERENT run. Q-044 is exactly that case -- it cites the 604b
 cluster autopsy while the superseding adjudication is of 604c, a different run --
 and is caught only by `unapplied_disposition`. Do not read an empty
-`superseded_citation` as "no stale citations".
+`superseded_citation` as "no stale citations". (This is the SAME shape the
+2026-08-22 repair above fixes for `unapplied_disposition` itself -- but
+`superseded_citation`'s own run_id-keyed blind spot is unchanged; it is not in
+this fix's scope.)
 
 USAGE
   python3 scripts/check_unapplied_autopsy_recommendations.py
@@ -654,11 +700,18 @@ def scan(root: Path) -> dict:
     live_pairs = load_live_pairs(root)
 
     unapplied = []
+    superseded_disposition = []
     direction_rows = []
     n_with_pcr = 0
     n_with_recommended_direction = 0
     n_direction_checkable = 0
     n_over_excluded = 0
+
+    # Pass 1 -- collect every per-claim recommendation, keyed by CLAIM rather
+    # than by run. R2 (latest-per-run_id) still applies here, unchanged: it
+    # only ever discards a strictly-superseded re-adjudication of the SAME
+    # run, never a different run's target for the same claim.
+    per_claim_entries = {}
     for gen, slug, target in targets:
         run_id = target.get("run_id")
         # R2 -- only the latest adjudication of a run is authoritative
@@ -674,19 +727,55 @@ def scan(root: Path) -> dict:
             change = str(rec.get("change") or "").strip()
             if not change or change.upper() == STANDS:
                 continue
-            claim = claims.get(cid)
-            if claim is None:
+            if claims.get(cid) is None:
                 continue  # claim id not in registry -- GOV-CAT-1's lane, not ours
-            if _reflects(claim, change, rec.get("recommended_evidence_direction"), slug,
-                         claim_id=cid, run_id=run_id, resolver=resolver):
+            per_claim_entries.setdefault(cid, []).append({
+                "gen": gen, "slug": slug, "run_id": run_id, "change": change, "rec": rec,
+            })
+
+    # Pass 2 -- for each claim, the LATEST confirmed recommendation (by
+    # generated_utc, regardless of which run it targets) is authoritative.
+    # An older, DISAGREEING recommendation whose claim already reflects the
+    # latest one is superseded, not unapplied -- see "THE 2026-08-22 REPAIR"
+    # in the module docstring. Everything else (the latest entry itself, an
+    # older entry that agrees with the latest, or an older entry whose
+    # latest sibling is ALSO unapplied) is unaffected and stays biased
+    # toward false positives exactly as before.
+    for cid, entries in per_claim_entries.items():
+        entries_sorted = sorted(entries, key=lambda e: e["gen"])
+        latest_entry = entries_sorted[-1]
+        latest_reflects = None
+        for entry in entries_sorted:
+            claim = claims.get(cid)
+            if _reflects(claim, entry["change"], entry["rec"].get("recommended_evidence_direction"),
+                         entry["slug"], claim_id=cid, run_id=entry["run_id"], resolver=resolver):
                 continue
+            is_earlier = entry is not latest_entry and entry["gen"] < latest_entry["gen"]
+            if is_earlier and entry["change"] != latest_entry["change"]:
+                if latest_reflects is None:
+                    latest_reflects = _reflects(
+                        claim, latest_entry["change"],
+                        latest_entry["rec"].get("recommended_evidence_direction"),
+                        latest_entry["slug"], claim_id=cid, run_id=latest_entry["run_id"],
+                        resolver=resolver)
+                if latest_reflects:
+                    superseded_disposition.append({
+                        "claim_id": cid,
+                        "change": entry["change"],
+                        "artifact": entry["slug"],
+                        "generated_utc": entry["gen"],
+                        "run_id": entry["run_id"],
+                        "superseded_by": latest_entry["slug"],
+                        "superseded_by_change": latest_entry["change"],
+                    })
+                    continue
             unapplied.append({
                 "claim_id": cid,
-                "change": change,
-                "artifact": slug,
-                "generated_utc": gen,
-                "run_id": run_id,
-                "recommended_epistemic_category": rec.get("recommended_epistemic_category"),
+                "change": entry["change"],
+                "artifact": entry["slug"],
+                "generated_utc": entry["gen"],
+                "run_id": entry["run_id"],
+                "recommended_epistemic_category": entry["rec"].get("recommended_epistemic_category"),
             })
 
     # ------------------------------------------------------------------
@@ -775,6 +864,7 @@ def scan(root: Path) -> dict:
     return {
         "unapplied_disposition": unapplied,
         "unapplied_evidence_direction": direction_rows,
+        "superseded_disposition": superseded_disposition,
         "superseded_citation": superseded,
         "n_confirmed_targets": len(targets),
         "n_with_per_claim_recommendation": n_with_pcr,
@@ -805,6 +895,7 @@ def main() -> int:
     buckets = scan(root)
     unapplied = buckets["unapplied_disposition"]
     directions = buckets["unapplied_evidence_direction"]
+    superseded_disposition = buckets["superseded_disposition"]
     superseded = buckets["superseded_citation"]
     n_targets = buckets["n_confirmed_targets"]
     n_pcr = buckets["n_with_per_claim_recommendation"]
@@ -820,6 +911,7 @@ def main() -> int:
           % (len(live_rows), len({d["run_id"] for d in live_rows}),
              len({d["claim_id"] for d in live_rows})))
     print("  unapplied evidence direction, not scoring (WARN): %d" % len(other_rows))
+    print("  superseded claim disposition (WARN)     : %d" % len(superseded_disposition))
     print("  superseded live_status citation (WARN)  : %d" % len(superseded))
     print("  coverage: %d of %d confirmed targets carry a machine-readable"
           % (n_pcr, n_targets))
@@ -880,6 +972,18 @@ def main() -> int:
         if len(ordered) > len(shown):
             print("  ... and %d more run(s); re-run with --full to list them."
                   % (len(ordered) - len(shown)))
+
+    if superseded_disposition:
+        print("")
+        print("WARN -- a confirmed autopsy's per-claim disposition is superseded by")
+        print("a LATER confirmed autopsy of a DIFFERENT run for the same claim, and")
+        print("claims.yaml already reflects the later recommendation. Nothing is")
+        print("owed here -- re-read before citing the older artifact, do not re-apply.")
+        for item in sorted(superseded_disposition,
+                            key=lambda d: (d["generated_utc"], d["claim_id"])):
+            print("  - %-12s %s" % (item["claim_id"], item["change"]))
+            print("      from %s (%s)" % (item["artifact"], item["generated_utc"][:10]))
+            print("      superseded by %s" % item["superseded_by"])
 
     if superseded:
         print("")

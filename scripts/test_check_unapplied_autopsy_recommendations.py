@@ -236,6 +236,110 @@ class ProseCitationTests(Base):
 
 
 # =========================================================================
+# CROSS-RUN SUPERSESSION -- GOV-APPLY-1's own blind spot (2026-08-22)
+#
+# R2 (load_confirmed's `latest`) only dedups a re-adjudication of the SAME
+# run_id. A claim re-adjudicated across a DIFFERENT run was invisible to
+# that dedup, so an older per-claim disposition kept being compared against
+# claims.yaml's CURRENT state -- which, correctly, reflects the LATER
+# recommendation -- and reported ACTIONABLE forever. Real incident: 436e
+# (run A) recommended `epistemic_category unset -> standard` for
+# ARC-045/MECH-166/SD-017; 436f (run B, later) recommended
+# `standard -> substrate_ceiling` instead; claims.yaml carries
+# substrate_ceiling. 436e's stale disposition never applies and never can.
+# =========================================================================
+class CrossRunSupersessionTests(Base):
+
+    OLDER = "failure_autopsy_older_2026-08-13"
+    NEWER = "failure_autopsy_newer_2026-08-16"
+
+    def _two_runs(self, older_change, newer_change, claim_epistemic_category=None):
+        claim = {"id": CLAIM}
+        if claim_epistemic_category is not None:
+            claim["epistemic_category"] = claim_epistemic_category
+        self.fx.write_claims([claim])
+        self.fx.autopsy(
+            slug=self.OLDER, generated="2026-08-13T04:19:12Z",
+            targets=[self.fx.target(
+                run_id="run_older_v3", recommended=None,
+                per_claim_recommendation={CLAIM: {"change": older_change}})])
+        self.fx.autopsy(
+            slug=self.NEWER, generated="2026-08-16T18:24:28Z",
+            targets=[self.fx.target(
+                run_id="run_newer_v3", recommended=None,
+                per_claim_recommendation={CLAIM: {"change": newer_change}})])
+
+    def test_older_disagreeing_disposition_moves_to_superseded_when_later_is_applied(self):
+        """THE FIX, replicating the real 436e/436f/ARC-045 shape exactly: two
+        DIFFERENT runs, a later disagreeing recommendation, claims.yaml
+        already reflecting the later one. Fails on the pre-fix code (the
+        older disposition was reported unapplied forever)."""
+        self._two_runs("unset -> standard", "standard -> substrate_ceiling",
+                        claim_epistemic_category="substrate_ceiling")
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        superseded = buckets["superseded_disposition"]
+        self.assertEqual(len(superseded), 1)
+        self.assertEqual(superseded[0]["claim_id"], CLAIM)
+        self.assertEqual(superseded[0]["artifact"], self.OLDER)
+        self.assertEqual(superseded[0]["superseded_by"], self.NEWER)
+
+    def test_older_disposition_stays_actionable_when_later_is_also_unapplied(self):
+        """NEGATIVE CONTROL, and the load-bearing one (mirrors Q-044 /
+        MECH-314b / MECH-314c from failure_autopsy_V3-EXQ-604c_2026-07-20,
+        which must keep firing): a later recommendation existing is not
+        enough to silence the older one -- it must actually be APPLIED.
+        Neither is here, so both stay ACTIONABLE."""
+        self._two_runs("unset -> standard", "standard -> substrate_ceiling",
+                        claim_epistemic_category=None)
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 2)
+        self.assertEqual(buckets["superseded_disposition"], [])
+
+    def test_older_disposition_agreeing_with_latest_is_not_marked_superseded(self):
+        """NEGATIVE CONTROL: supersession requires a DISAGREEING later
+        recommendation. Two runs recommending the identical change are not a
+        contradiction, so neither is demoted to the WARN bucket -- both stay
+        ACTIONABLE until the (shared) target state is actually applied."""
+        self._two_runs("unset -> standard", "unset -> standard",
+                        claim_epistemic_category=None)
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 2)
+        self.assertEqual(buckets["superseded_disposition"], [])
+
+    def test_same_run_r2_dedup_is_unaffected(self):
+        """NEGATIVE CONTROL: a re-adjudication of the SAME run still goes
+        through the pre-existing R2 path (load_confirmed's `latest`), never
+        the new cross-run one -- the superseded artifact is dropped before
+        per_claim_recommendation is even read, so it produces neither an
+        unapplied_disposition nor a superseded_disposition row."""
+        self.fx.autopsy(slug="failure_autopsy_old_2026-01-01",
+                        generated="2026-01-01T00:00:00Z",
+                        targets=[self.fx.target(
+                            recommended=None,
+                            per_claim_recommendation={CLAIM: {"change": "unset -> standard"}})])
+        self.fx.autopsy(slug="failure_autopsy_new_2026-08-13",
+                        generated="2026-08-13T00:00:00Z",
+                        targets=[self.fx.target(
+                            recommended=None,
+                            per_claim_recommendation={CLAIM: {"change": "standard -> substrate_ceiling"}})])
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "substrate_ceiling"}])
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        self.assertEqual(buckets["superseded_disposition"], [])
+
+    def test_strict_contract_unaffected_by_a_superseded_disposition(self):
+        """NEGATIVE CONTROL: --strict gates on unapplied_disposition only. A
+        row that moves to superseded_disposition must not leave any residue
+        in the exit code."""
+        self._two_runs("unset -> standard", "standard -> substrate_ceiling",
+                        claim_epistemic_category="substrate_ceiling")
+        rc, out = self.run_main("--strict")
+        self.assertEqual(rc, 0)
+        self.assertIn("superseded claim disposition (WARN)     : 1", out)
+
+
+# =========================================================================
 # MANIFEST RESOLUTION -- mirroring the indexer
 # =========================================================================
 class ResolutionTests(Base):
@@ -485,7 +589,7 @@ class ContractTests(Base):
         counters must survive, or a consumer reading them breaks."""
         self.fx.autopsy(targets=[self.fx.target()])
         buckets = self.scan()
-        for key in ("unapplied_disposition", "superseded_citation",
+        for key in ("unapplied_disposition", "superseded_disposition", "superseded_citation",
                     "n_confirmed_targets", "n_with_per_claim_recommendation"):
             self.assertIn(key, buckets)
 
