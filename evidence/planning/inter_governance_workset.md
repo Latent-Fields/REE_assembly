@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-22T07:09:12Z`
+Generated: `2026-08-22T10:11:31Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -986,7 +986,7 @@ Instructions:
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Gap(s):** orienting_epistemic_deficit_v3:ORNT-2
-- **Why now:** Plan gap open on orienting_epistemic_deficit_v3.
+- **Why now:** Two-step gate; neither step is owned today. (1) The design doc mech314bc_percandidate_extension_staged_2026-08-08.md receives its owed user review, releasing its follow-on routing. (2) The SD-063 E2WorldUncertaintyHead training loop lands a
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -997,7 +997,7 @@ Lane: plan | Skill: (plan reconcile)
 Status: ready
 Gap(s): orienting_epistemic_deficit_v3:ORNT-2
 Claims: MECH-482
-Why now: Plan gap open on orienting_epistemic_deficit_v3.
+Why now: Two-step gate; neither step is owned today. (1) The design doc mech314bc_percandidate_extension_staged_2026-08-08.md receives its owed user review, releasing its follow-on routing. (2) The SD-063 E2WorldUncertaintyHead training loop lands a
 
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
