@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-22T05:04:19Z",
+  "generated_at": "2026-08-22T05:26:25Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7219,6 +7219,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "duplicate of chip-proposal-exp-0482 (same owner_proposal_id EXP-0482 / claim MECH-236); withheld from re-chipping, dispatched via existing chip",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-236",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-236"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260822T052358Z-0f1dde42-spawned_task",
+      "stable_hash": "0f1dde421782",
+      "igw_id_at_assign": "IGW-20260821-230",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-22T05:23:58Z",
+      "released_at": "2026-08-22T05:23:58Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260821T220244Z-0f1dde42-spawned_task",
       "note": "duplicate of chip-proposal-exp-0482 (same owner_proposal_id EXP-0482 / claim MECH-236); withheld from re-chipping, dispatched via existing chip",
       "item_snapshot": {
         "skill": "/queue-experiment",
