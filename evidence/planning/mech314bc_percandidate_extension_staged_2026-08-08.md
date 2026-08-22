@@ -100,6 +100,15 @@ per-flavour diagnostics report honestly, and `None` inputs are bit-identical to 
 
 ## 4. The resolved design decision (budget split)
 
+> **CROSS-REFERENCE (added 2026-08-22, ratification status unchanged -- see the Review
+> outcome section at the end of this file, which remains the authoritative record).** The
+> alternatives analysis this section was routed to is
+> [`curiosity_budget_split_eligibility_design_2026-08-22.md`](curiosity_budget_split_eligibility_design_2026-08-22.md)
+> (REE_assembly `2f6d2033a6`). It finds rationale points 1 and 2 intact -- point 2 becomes a
+> binding constraint on every candidate design -- and rationale point 3 refuted by
+> measurement. The resolution below is UNEDITED and is the baseline those alternatives are
+> measured against.
+
 **RESOLUTION: keep the single shared deviation clamp; relative allocation among 314a/314b/314c
 is governed by the per-flavour WEIGHTS (Q-043/Q-044), with `curiosity_bias_scale` as the
 whole-channel authority knob. REJECT per-sub-flavour deviation clamps.**
@@ -185,7 +194,10 @@ answer it.
 
 **Section 4's text is deliberately left in place, unedited, as the BASELINE** the alternatives
 are measured against -- it is not withdrawn, it is unratified. Routed to
-`chip-20260822-curiosity-budget-split-eligibility` as a **design pass, not a build**: at least
+`chip-20260822-curiosity-budget-split-eligibility` as a **design pass, not a build**
+(DELIVERED 2026-08-22: `evidence/planning/curiosity_budget_split_eligibility_design_2026-08-22.md`,
+REE_assembly `2f6d2033a6` -- recommends Design B, per-flavour commensuration under the single
+existing clamp, build sequenced behind the SD-063 keystone and gated on a named probe): at least
 two candidate designs, each answering rationale points 1-4, each with a named falsifier
 distinguishing it from static weights (the 604a / 624a / 614d / 640a vacuous-channel class
 applies here too -- a mechanism indistinguishable from the baseline is not an improvement).
