@@ -3,8 +3,8 @@ title: "MECH-303: Contextual Passive Safety Terrain"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
 nav_order: 7
-status: provisional
-status_asof: 2026-07-16
+status: active
+status_asof: 2026-08-23
 status_claim: MECH-303
 ---
 
