@@ -1,0 +1,136 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_946_contextmemory_write_address_informativeness_diagnostic",
+  "run_id": "v3_exq_946_contextmemory_write_address_informativeness_diagnostic_20260823T075019Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-23T07:50:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "context_informative_address_found_at_operating_point",
+    "preconditions": [
+      {
+        "name": "mi_null_test_detects_positive_control",
+        "measured": 40.18911071519076,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "synthetic address = f(true context) exactly, zero order-per-se content; instrument must clearly detect this as informative",
+        "met": true,
+        "observed_mi_bits": 1.0,
+        "null_mean_mi_bits": 0.016767071590367746,
+        "null_std_mi_bits": 0.02446515762385327,
+        "kind": "readiness"
+      },
+      {
+        "name": "mi_null_test_rejects_negative_control",
+        "measured": -0.26866863548388603,
+        "threshold": 2.0,
+        "direction": "upper",
+        "control": "synthetic address = tick_index mod NUM_SLOTS exactly, zero context content; instrument must NOT flag this pure clock as context-informative (the six-generation artifact-as-verdict failure mode this null exists to prevent)",
+        "met": true,
+        "observed_mi_bits": 0.0001436359861347492,
+        "null_mean_mi_bits": 0.00017275237487609932,
+        "null_std_mi_bits": 0.00010837286119725146,
+        "kind": "readiness"
+      },
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 2933.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_BIAS_W1_0_exceeds_order_only_null": true,
+      "C_BIAS_W0_1_exceeds_order_only_null": true,
+      "C_BIAS_W0_01_exceeds_order_only_null": true,
+      "C_REFRACTORY_exceeds_order_only_null": true
+    },
+    "criteria": [
+      {
+        "name": "C_BIAS_W1_0_exceeds_order_only_null",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_clearing_null": 5,
+        "n_seeds_required": 3,
+        "z_threshold": 2.0
+      },
+      {
+        "name": "C_BIAS_W0_1_exceeds_order_only_null",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_clearing_null": 3,
+        "n_seeds_required": 3,
+        "z_threshold": 2.0
+      },
+      {
+        "name": "C_BIAS_W0_01_exceeds_order_only_null",
+        "load_bearing": true,
+        "passed": false,
+        "n_seeds_clearing_null": 1,
+        "n_seeds_required": 3,
+        "z_threshold": 2.0
+      },
+      {
+        "name": "C_REFRACTORY_exceeds_order_only_null",
+        "load_bearing": true,
+        "passed": false,
+        "n_seeds_clearing_null": 2,
+        "n_seeds_required": 3,
+        "z_threshold": 2.0
+      }
+    ]
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e70ac4d5737cee98025598d03c882c656b3ad276b69e7c67a883ddccb42fe362",
+  "substrate_commit": {
+    "commit": "b0840f463bc45d4f5d562c2f7b3bfd0ec6579f9e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 20,
+    "goal_state_present": false
+  }
+}
