@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-22T13:24:41Z",
+  "generated_at": "2026-08-23T18:16:29Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -208,7 +208,7 @@
       "build_pct": 83.2
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-08-23",
       "surviving": 68,
       "closure_pct": 71.1,
       "build_pct": 83.2
@@ -4255,7 +4255,9 @@
           "desc": "Extra CALIB_DRAWS consumed measurement-phase RNG (intervention not isolated)",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
+          "evidence_runs": [
+            "V3-EXQ-861f"
+          ],
           "basis": null,
           "children": [],
           "met_elimination_bar": false
@@ -4266,8 +4268,10 @@
           "desc": "861c vs 861e executed different substrate/machine (f810969/cloud-4 vs 17befb8c/hub)",
           "axis": "algorithm",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "evidence_runs": [
+            "V3-EXQ-861g"
+          ],
+          "basis": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -4276,7 +4280,7 @@
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Which hypothesis explains the 861e C2 1/3 miss given that R3 passed, the 861c n=10 projection is refuted, and 861c already HIGH-graded seed 271 at n=5?",
-        "distance_phrase": "0 of 2 first-portfolio legs run. H2 is a labelled follow-on, not in the frozen denominator.",
+        "distance_phrase": "1 of 2 first-portfolio isolation legs landed (H3=V3-EXQ-861g, state still alive pending H1). H1=V3-EXQ-861f claimed on ree-cloud-4. H2 is a labelled follow-on, not in the frozen denominator.",
         "live_gate": "H1 reseeded n=10 on 17befb8c vs H3 pin-f810969 n=10, each with a declared null. H2 is follow-on after those two.",
         "observation_bottleneck": null
       }
@@ -5416,6 +5420,21 @@
         "MECH-152"
       ],
       "moved": "Neither eliminated nor confirmed. The recovery is real in sign but falls below A2's own across-seed SD (0.184 vs 0.193 harm; 0.174 vs 0.193 goal) on n=3, reaches only 37% / 60% of the 194a bar, and is rank-inverted by the tagger-OFF control (A0_OFF r_w_harm 0.356 at w_harm_std ~1e-6). An uninformative run narrows nothing; it surfaces the observation bottleneck recorded on this question.",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
+    },
+    {
+      "run": "V3-EXQ-861g",
+      "all_runs": [
+        "V3-EXQ-861g"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "claims": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "moved": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands.",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

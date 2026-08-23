@@ -1,0 +1,322 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-23T18:15:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "cursor-autopsy-861gh-20260823",
+  "companion_md": "failure_autopsy_861g-861h-mech180-cluster_2026-08-23.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "readjudication_of": "failure_autopsy_V3-EXQ-861e_2026-08-21",
+  "targets": [
+    {
+      "run_id": "v3_exq_861g_inv050_mech180_h3_substrate_pin_f810969_20260822T175951Z_v3",
+      "queue_id": "V3-EXQ-861g",
+      "claim_ids": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "experiment_purpose": "diagnostic",
+      "fanout_qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "fanout_hypothesis": "H3",
+      "fanout_axis": "algorithm",
+      "self_route_label": "mel_coupling_below_calibration_noise_floor",
+      "self_route_accepted": false,
+      "self_route_note": "Combination-rule leftover, same class 861e already refused to rubber-stamp. Grid C2 is 1/3 because seed 7 is not-ready (R2) and seed 271 factor 1.007 misses margin 1.140. The load-bearing readout is the H3 discrimination, not this label.",
+      "failed_criterion": "discrimination",
+      "failed_criterion_name": "C2_on_factor_clears_calibration_noise_floor",
+      "leg_discrimination": {
+        "hypothesis_supported": true,
+        "verdict_label": "h3_supported_old_substrate_retains_high_grading_at_n10",
+        "pin_positive_control_reproduces_861c": true,
+        "control_factor": 1.2145974718547234,
+        "primary_factor": 1.0070073961703054,
+        "calib_draws_alone_moves_readout": false,
+        "n5_n10_delta": -0.207590075684418,
+        "note": "Honour the declared null: HIGH-graded means factor > 1.0. n10 stays above 1.0 on f810969; 861e collapsed to 0.884 on 17befb8c. The 0.208 n5-to-n10 drop on the SAME pin is H1-compatible magnitude but does NOT meet the driver's H1-from-the-other-side bar (that required n10 collapse below 1.0)."
+      },
+      "headline_recomputed": {
+        "readiness_ok": true,
+        "r1_frac": 1.0,
+        "r2_frac": 0.6666666666666666,
+        "r3_frac": 1.0,
+        "c1_all_pass": true,
+        "c2_pass": false,
+        "c2_frac": 0.3333333333333333,
+        "c2_pinned_frac": 0.6666666666666666
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- diagnostic isolation leg; evidence_direction pinned non_contributory by construction; claim not fairly tested",
+        "biological_reference": "clear -- process-S / novelty-adaptive SWS+replay; lit present; no new lit-pull",
+        "prerequisites": "present -- R1 1.0; R2 2/3; R3 1.0; pin-positive-control met (factor 1.2146 == 861c)",
+        "implementation": "complete -- pin verified (authority_spread_ratio absent); consumer arithmetic intact on ready seeds",
+        "environment": "partial -- seed 7 R2-fail; seed 271 HIGH-graded but C2-miss; seed 883 C2-pass",
+        "measurement": "adequate for the H3 question -- pin control bit-identical to 861c; n10 vs n5 isolated on one substrate/box. Grid C2 leftover is not this leg's DV.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, not chargeable to REE -- H3 isolation succeeded; grid FAIL is inherited combination-rule leftover"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep-pressure regulation scaling SWS depth/duration with prior waking learning load (process-S analog), plus novelty-triggered hippocampal replay during SWS",
+        "dependencies": [
+          "graded waking novelty producing measurable prediction-error load",
+          "a stable homeostatic baseline against which load is compared",
+          "a producer that raises HIGH-arm MEL above the no-shift base"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-050": "standard",
+        "MECH-180": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-050": "non_contributory",
+        "MECH-180": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-08-23 autopsy draft, V3-EXQ-861g H3 isolation]: diagnostic, non-voting. Pin to f810969 verified. In-run n5 control bit-identical to 861c factor 1.2145974718547234. Primary n10 factor 1.0070073961703054 stays HIGH-graded (>1.0) while 861e on 17befb8c collapsed to 0.884. H3 SUPPORTED per declared null. Grid C2 1/3 is combination-rule leftover; do not rubber-stamp self-route. Claims status/confidence/v3_pending must not move. Wait for V3-EXQ-861f (H1, claimed on ree-cloud-4) before resolving qid inv050_mech180_861e_producer_vs_intervention_isolation.",
+      "per_claim_recommendation": {
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic H3 isolation; H3 supported per declared null; do not move status/confidence/v3_pending); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21, stamp this cluster artifact -> failure_autopsy_861g-861h-mech180-cluster_2026-08-23",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic H3 isolation; H3 supported; DV3 still descoped; v3_pending STAYS); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21, stamp this cluster artifact -> failure_autopsy_861g-861h-mech180-cluster_2026-08-23",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Already-unblocking entries named so they are not a silent create-collision: SD-MEL-CONSUMER (consumer BANKED) and SD-MEL-PRODUCER (test-bed licensed 845/861). contextmemory-write-path-addressing-degeneracy remains a real corrupting SD but 861h discharged it as not load-bearing for measured MEL. Do not create or amend from this H3 leg."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Recommends standard not substrate_ceiling, so R1-R3 counts do not advance (MECH-180=2, INV-050=3). Brake does not fire. Do not queue another same-grid letter; the remaining required portfolio leg is already claimed (V3-EXQ-861f, driver v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation, claimed on ree-cloud-4)."
+      },
+      "learning_extracted": [
+        "H3 declared-null SUPPORTED: seed 271 stays HIGH-graded (factor 1.007 > 1.0) at CALIB_DRAWS=10 on f810969; 861e's collapse below 1.0 is a substrate/machine delta.",
+        "Pin positive control is bit-identical to 861c (factor 1.2145974718547234) -- the historical substrate pin engaged.",
+        "n5-to-n10 on the SAME pin still drops factor by 0.208 (1.215 -> 1.007). That is H1-compatible magnitude but does not meet the driver's H1-from-the-other-side bar (n10 collapse below 1.0). Leave H1 alive for 861f.",
+        "Self-route mel_coupling_below_calibration_noise_floor is again a combination-rule leftover.",
+        "Dead z_goal (writer_calls 0) remains lineage-wide, exempted, non-gating -- scored DVs and MEL do not read z_goal."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_861h_inv050_mech180_contextmemory_write_lock_control_20260822T222844Z_v3",
+      "queue_id": "V3-EXQ-861h",
+      "claim_ids": [
+        "INV-050",
+        "MECH-180"
+      ],
+      "experiment_purpose": "diagnostic",
+      "fanout_qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "fanout_hypothesis": "CONTROL",
+      "fanout_axis": "representation",
+      "self_route_label": "mel_coupling_below_calibration_noise_floor",
+      "self_route_accepted": false,
+      "self_route_note": "Same combination-rule leftover as 861e/861g. Seed 271 not-ready (R2) on 17befb8c; seed 7 C2 miss (factor 1.017 vs margin 1.141); seed 883 C2 pass (1.975). Load-bearing readout is the write-lock control, which PASSES.",
+      "failed_criterion": "discrimination",
+      "failed_criterion_name": "C2_on_factor_clears_calibration_noise_floor",
+      "leg_discrimination": {
+        "control_passes": true,
+        "verdict_label": "control_PASSES_write_address_lock_not_load_bearing_for_mel",
+        "repair_engaged_on_decisive_seed": true,
+        "refractory_factor": 0.8844596876005758,
+        "legacy_factor": 0.8844596840125855,
+        "factor_delta": 3.5879903e-09,
+        "refractory_insufficient_cycles": 0,
+        "legacy_insufficient_cycles": 6,
+        "note": "Repair engaged (0 vs 6 insufficient cycles). Factor unchanged at 861e's collapse value. Write-address lock is not load-bearing for measured MEL. H1/H3 readings stand. Do not register CONTROL as a fourth frozen hypothesis."
+      },
+      "headline_recomputed": {
+        "readiness_ok": true,
+        "r1_frac": 1.0,
+        "r2_frac": 0.6666666666666666,
+        "r3_frac": 1.0,
+        "c1_all_pass": true,
+        "c2_pass": false,
+        "c2_frac": 0.3333333333333333,
+        "c2_pinned_frac": 0.6666666666666666
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- diagnostic CONTROL leg; evidence_direction pinned non_contributory by construction; claim not fairly tested",
+        "biological_reference": "clear -- process-S / novelty-adaptive SWS+replay; lit present; no new lit-pull",
+        "prerequisites": "present -- write_repair_engaged_on_decisive_seed met; R1 1.0; R2 2/3; R3 1.0",
+        "implementation": "complete for the CONTROL question -- refractory k=2 actually fired (slots [3,3,3,3,3,3] vs legacy [1,1,1,1,1,1])",
+        "environment": "partial -- seed 271 still R2-fails and stays collapsed on 17befb8c even after unlock; seed 7 producer miss; seed 883 C2-pass",
+        "measurement": "adequate for the CONTROL question -- in-run legacy replica bit-matches 861e factor 0.8844596840125855; repair vs lock isolated on one process/box/substrate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, not chargeable to REE -- CONTROL isolation succeeded; write-lock not load-bearing for MEL; grid FAIL is inherited leftover"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep-pressure regulation scaling SWS depth/duration with prior waking learning load (process-S analog), plus novelty-triggered hippocampal replay during SWS",
+        "dependencies": [
+          "graded waking novelty producing measurable prediction-error load",
+          "a stable homeostatic baseline against which load is compared",
+          "a producer that raises HIGH-arm MEL above the no-shift base"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-050": "standard",
+        "MECH-180": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-050": "non_contributory",
+        "MECH-180": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-08-23 autopsy draft, V3-EXQ-861h CONTROL]: diagnostic, non-voting. Refractory repair engaged (0/6 insufficient cycles vs legacy 6/6). Seed 271 factor unchanged (0.8844596876 vs 0.8844596840). CONTROL PASSES: write-address lock is not load-bearing for measured MEL. H1/H3 readings stand. Grid C2 1/3 leftover; do not rubber-stamp self-route. Claims must not move. Not a fourth frozen hypothesis on qid inv050_mech180_861e_producer_vs_intervention_isolation.",
+      "per_claim_recommendation": {
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic CONTROL; write-lock not load-bearing for MEL; do not move status/confidence/v3_pending); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21, stamp this cluster artifact -> failure_autopsy_861g-861h-mech180-cluster_2026-08-23",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic CONTROL; write-lock not load-bearing for MEL; v3_pending STAYS); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21, stamp this cluster artifact -> failure_autopsy_861g-861h-mech180-cluster_2026-08-23",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "CONTROL empirically discharges contextmemory-write-path-addressing-degeneracy as not load-bearing for the MEL factor on seed 271. Do not treat that SD as a 861f/861g confound. Do not create or amend SD-MEL-* from this CONTROL. V3-EXQ-943 occupancy criterion remains a separate question (driver states this run does not validate that SD)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "standard not substrate_ceiling. Counts do not advance. Do not queue another same-grid letter."
+      },
+      "learning_extracted": [
+        "CONTROL PASSES: unlocking ContextMemory writes (refractory k=2) does not restore seed 271 HIGH grading; factor stays at 861e's 0.884 to 3.6e-9.",
+        "Repair actually engaged (slots 3x6 vs legacy 1x6). Not the uninformative branch.",
+        "Write-address lock cannot explain 861c-vs-861e and is not a confound on 861f/861g.",
+        "Seed 271 on 17befb8c still R2-fails even after unlock -- producer/environment signature on that substrate remains.",
+        "Dead z_goal remains lineage-wide, exempted, non-gating."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "shared inherited C2 1/3 grid FAIL + informative isolation discriminations on both legs",
+    "is_independent_bugs": false,
+    "structural_property": "One GOV-FANOUT-1 portfolio, two completed legs. Grid FAIL is the 861e combination-rule leftover on both. Discriminations both informative: H3 supported (old substrate retains HIGH-grading at n=10); CONTROL passes (write-lock not load-bearing for MEL). Remaining required leg is V3-EXQ-861f (H1), currently claimed on ree-cloud-4.",
+    "readings": [
+      "h3_supported_old_substrate_retains_high_grading_at_n10",
+      "control_PASSES_write_address_lock_not_load_bearing_for_mel",
+      "grid_c2_leftover_not_the_dv"
+    ]
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "mech180_targets": 10,
+    "mech180_alignment": "unclear=5, intact=2, strengthened=2, other=1 -- no weakened",
+    "inv050_targets": 9,
+    "inv050_alignment": "unclear=5, intact=4 -- no weakened",
+    "note": "This cluster stamps claim_alignment unclear on both targets. Measurement/isolation debt, not granularity debt."
+  },
+  "hypothesis_space_ledger_pending": {
+    "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+    "growth_restriction_checked": true,
+    "growth_restriction": null,
+    "mode": "resolve_existing",
+    "intended": {
+      "H-substrate-machine-delta": "record V3-EXQ-861g in adjudicating_runs + resolving_runs with basis; KEEP state alive (user hold: do not confirm yet; machine confound + wait for 861f)",
+      "H-measurement-rng-confound": "record V3-EXQ-861f in adjudicating_runs only; stay alive",
+      "CONTROL": "do not append as a fourth frozen hypothesis (861e/queue already forbade this)"
+    },
+    "applied_utc": "2026-08-23T18:15:21Z",
+    "write_live_registry": true
+  },
+  "read_across_not_adjudicated": [
+    "V3-EXQ-861f (H1) -- driver v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation, claimed on ree-cloud-4 as of 2026-08-23T11:45:10Z; do not resolve the qid until it lands. This autopsy does not queue a new letter; it waits for that already-queued driver.",
+    "H2 follow-on -- still aliased until H1+H3 both scored; do not queue.",
+    "861d / MECH-122 -- flag OFF on both legs; do not amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.",
+    "SD-017 occupancy -- INV-050 emergent_from; this cluster does not move SD-017.",
+    "V3-EXQ-943 -- ContextMemory write-address occupancy criterion; 861h driver says it does not validate that SD.",
+    "V3-EXQ-910b / V3-EXQ-946 -- other pending diagnostics, different questions, not this cluster.",
+    "GFLAG-0002 -- remains unresolved; these legs are non-voting."
+  ],
+  "confirmed_utc": "2026-08-23T18:15:21Z",
+  "step8": {
+    "selected": "adopt_hold",
+    "recommended": "adopt_hold",
+    "note": "User adopted recommended hold: H3 supported as substrate/machine delta (not substrate-only); CONTROL passes; claims STAND note-only; do not confirm H3 in the hypothesis ledger yet; wait for 861f; no new queue letter; no substrate create."
+  },
+  "step7b": {
+    "fire_count": 0,
+    "fires": [],
+    "c1_first_pass": "named v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation; fire cleared",
+    "c5": "inapplicable -- prose-keyed, no sibling md at check time"
+  },
+  "step7c": {
+    "verdict": "CONTESTED",
+    "n_confirmed": 10,
+    "n_contested": 2,
+    "n_refuted": 0,
+    "contests": [
+      {
+        "id": "F8",
+        "claim": "H3 cross-run comparison bundles substrate pin with machine change (861g ree-cloud-2 vs 861e ree-worker-1). Ledger confirmed would overstate isolation.",
+        "disposition": "adopted -- H3 recorded as substrate/machine delta; state left alive; not confirmed",
+        "cheap_confirmer": "manifest machine fields: 861g machine=ree-cloud-2, 861e machine=ree-worker-1, 861c machine=ree-cloud-4"
+      },
+      {
+        "id": "F9",
+        "claim": "Manifests pin evidence_direction_per_claim=unknown (indexer scores/drops unknown); autopsy recommends non_contributory at apply.",
+        "disposition": "noted -- indexer drops unknown so it does not vote; top-level evidence_direction already non_contributory; governance may align per_claim to non_contributory; this skill does not edit manifests",
+        "cheap_confirmer": "jq .evidence_direction_per_claim on both manifests; build_experiment_indexes.py drops unknown"
+      }
+    ]
+  }
+}

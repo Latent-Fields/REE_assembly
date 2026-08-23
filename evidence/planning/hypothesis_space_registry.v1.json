@@ -4562,7 +4562,8 @@
       ],
       "registered_utc": "2026-08-21T01:56:34Z",
       "fanout_sources": [
-        "failure_autopsy_V3-EXQ-861e_2026-08-21.json"
+        "failure_autopsy_V3-EXQ-861e_2026-08-21.json",
+        "failure_autopsy_861g-861h-mech180-cluster_2026-08-23.json"
       ],
       "is_hero": false,
       "initial_frozen_count": 2,
@@ -4577,7 +4578,9 @@
           "axis": "measurement",
           "pre_registered_utc": "2026-08-21T01:56:34Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-861e_2026-08-21.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-861f"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -4595,15 +4598,20 @@
           "axis": "algorithm",
           "pre_registered_utc": "2026-08-21T01:56:34Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-861e_2026-08-21.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-861g"
+          ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
+            "resolving_runs": [
+              "V3-EXQ-861g"
+            ],
             "evidence_direction": "pending",
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "basis": "V3-EXQ-861g n10 factor 1.007 > 1.0 on pinned f810969 (pin control bit-identical to 861c 1.2146) while 861e collapsed to 0.884 on 17befb8c. Declared-null H3 SUPPORTED as substrate/machine delta. State left alive: 861g ran on ree-cloud-2 vs 861e on ree-worker-1 (machine bundled with pin); user hold 2026-08-23T18:15:21Z -- do not confirm until V3-EXQ-861f (H1) lands."
           }
         }
       ],
@@ -4613,10 +4621,10 @@
         "live_gate": "H1 reseeded n=10 on 17befb8c vs H3 pin-f810969 n=10, each with a declared null. H2 is follow-on after those two.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "0 of 2 first-portfolio legs run. H2 is a labelled follow-on, not in the frozen denominator.",
+        "distance_phrase": "1 of 2 first-portfolio isolation legs landed (H3=V3-EXQ-861g, state still alive pending H1). H1=V3-EXQ-861f claimed on ree-cloud-4. H2 is a labelled follow-on, not in the frozen denominator.",
         "observation_bottleneck": null
       },
-      "notes": "Opened by failure_autopsy_V3-EXQ-861e_2026-08-21 at confirmation. Step 7c CONTESTED: first-portfolio frozen set is H1 vs H3 only. H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7)."
+      "notes": "Opened by failure_autopsy_V3-EXQ-861e_2026-08-21 at confirmation. Step 7c CONTESTED: first-portfolio frozen set is H1 vs H3 only. H-producer-unstable-271 (H2) is a labelled follow-on after H1 and H3, not in the initial frozen set: its n=5-on-17befb8c sketch is aliased with H3 (861c already HIGH-graded 271 at n=5, so 271 is not like seed 7). 2026-08-23T18:15:21Z failure_autopsy_861g-861h-mech180-cluster: H3 isolation landed, CONTROL (861h) passed and is NOT a fourth frozen hypothesis; H3 left alive (machine confound + wait for 861f)."
     }
   ]
 }
