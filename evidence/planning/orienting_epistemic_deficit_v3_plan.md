@@ -3,7 +3,7 @@ closure_plan:
   id: orienting_epistemic_deficit_v3
   title: "Orienting & Epistemic-Deficit Cluster (V3 closure)"
   registered: 2026-08-13
-  last_updated: 2026-08-22
+  last_updated: 2026-08-23
   scope_claims: [MECH-395, MECH-482, MECH-483, Q-089, MECH-489, SD-099]
   sibling_plans: [drives_motivation_v4, goal_pipeline]
   registered_note: >
@@ -129,7 +129,7 @@ closure_plan:
         legitimately startable; flip to in_progress at that point. Until
         then status stays `open`, and the correct next action is clearing
         gate (1) -- a governance/user decision, NOT a build.
-      last_updated: 2026-08-22
+      last_updated: 2026-08-23
       completion_note: >
         Registered in claims.yaml 2026-08-05 (thought-digestion, "Epistemic
         Deficit and Orienting" intake), no owning closure node until this
@@ -190,6 +190,59 @@ closure_plan:
         turns out NOT to satisfy the readiness gate
         (last_uncertainty_dev_range ~ 0), that is a real finding that re-routes
         this node rather than advancing it.
+
+        2026-08-23 UPDATE -- GATE (2) LANDED, AND THE GATE CRITERION ITSELF WAS
+        FALSIFIED. chip-20260822-sd063-head-training-keystone is DONE: the
+        phased P0->P1->P2 online training loop for the SD-063
+        E2WorldUncertaintyHead landed (ree-v3 88287f11c6, evidence REE_assembly
+        15a87417bb), default OFF and bit-identical off, 18 new contracts, gate
+        green at 4145 passed. It TRAINS (pinball 0.189 -> 0.069 on a synthetic
+        heteroscedastic world, predictive_variance strictly monotone in true
+        per-action noise scale; 216 P1 updates per real CausalGridWorldV2
+        rollout across 3 seeds). So both gates named on 2026-08-22 are now
+        cleared. TWO findings supersede this node's stated readiness criterion:
+
+        (a) THE READINESS CRITERION DOES NOT DISCRIMINATE. resume_condition
+        above names `last_uncertainty_dev_range > 0` as the signal that
+        per-candidate uncertainty is genuinely discriminative. It is not: an
+        UNTRAINED head passes it on 320/320 ticks in 3/3 seeds, with a LARGER
+        absolute range than a trained one (untrained 6.8e-4..1.27e-3 vs trained
+        4.0e-4..5.7e-4) -- training LOWERS overall predicted spread while
+        RAISING relative differentiation (max/min across action classes:
+        trained 10.2-11.8x, untrained 1.15-1.28x). The real discriminator is
+        the new `_last_pvar_relative_spread` (untrained 0.14-0.26, trained
+        1.81-2.37, non-overlapping), added with a negative-control contract
+        pinning why. Its proposed >=1.0 threshold is UNVALIDATED and
+        deliberately not pinned. Read this node's 2026-08-22
+        resume_condition as historical on that point: the shape of the argument
+        was right (refuse a vacuous channel) and the specific metric was wrong.
+        The staged design doc's section 5 carries the same wrong criterion and
+        its correction is covered by
+        chip-20260823-mech314bc-2x2-diversity-validation.
+
+        (b) A THIRD GATE APPEARED AND HAS ALREADY BEEN PROBED. The candidate
+        pool carries only ~2.0-2.4 distinct first-actions of K=32, identical
+        trained vs untrained, so the head's ~10x differentiation can express at
+        most a 2-valued vector where 314b is consumed (the V3-EXQ-614e
+        monostrategy collapse, one layer down). Training the head was NECESSARY
+        BUT NOT SUFFICIENT. The build session classified the next move as
+        `complex (probe-gated)` rather than `complicated (buildable)` -- a spike
+        on first-action diversity, not a build -- and THAT SPIKE HAS SINCE RUN:
+        the ceiling is a CONFIG KNOB
+        (`support_preserving_min_first_action_classes`), not an intrinsic
+        proposer property. So it converts to `complicated (buildable)`, and the
+        owed work is now a 2x2 validation (314b ON/OFF x diversity floor
+        default/raised), chipped as
+        chip-20260823-mech314bc-2x2-diversity-validation. Any validation MUST
+        carry distinct-first-action count as a covariate or it risks reading a
+        proposer-diversity null as a 314b null.
+
+        status STAYS `open`. MECH-482's accumulator is still unbuilt -- the
+        keystone cleared the way to its precondition, it did not build the
+        accumulator, and follow-on item 2 (the accumulator itself) was
+        explicitly held out of scope by the build. Flip to in_progress when the
+        accumulator build starts. NOT re-chipped here: the validation and the
+        section-5 correction are both already owned by the chip named above.
 
     - id: "orienting_epistemic_deficit_v3:ORNT-3"
       title: "orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-driven)"
@@ -326,7 +379,7 @@ depends on both clusters plus MECH-279/MECH-205.
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
 | `ORNT-1` | MECH-395 pre-approach orienting (moved from DRV-4) | blocked | high | shared E3 selection-authority / cue-authority ceiling (V3-EXQ-812 successor) |
-| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | design doc REVIEWED 2026-08-22, gate (1) cleared; remaining gate is the UNTRAINED SD-063 314b source, now owned by chip-20260822-sd063-head-training-keystone |
+| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | both 2026-08-22 gates CLEARED (doc reviewed; SD-063 training landed ree-v3 88287f11c6). Readiness criterion falsified -- use `_last_pvar_relative_spread`, not `dev_range`. Owed: 2x2 diversity validation (chip-20260823-mech314bc-2x2-diversity-validation); accumulator itself still unbuilt |
 | `ORNT-3` | MECH-483 orient/survey regime | open | medium | depends on ORNT-2 |
 | `ORNT-4` | Q-089 cold-start-split question | open | medium | depends on ORNT-2 + ORNT-3 |
 | `ORNT-6` | MECH-489 defensive-orienting validation | in_progress | high | 910a retest owed (substrate fix landed 2026-08-10) |
