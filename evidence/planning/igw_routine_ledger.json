@@ -3016,7 +3016,11 @@
       "task_claim_session_id": "igw-auto-igw-229-proposal-for-inv-044-20260823T065027Z",
       "task_claim_claimed_at": "2026-08-23T06:50:27Z",
       "assigned_at": "2026-08-23T06:49:49Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-23T07:25:52Z",
+      "completion_summary": "EVB-0628/INV-044 marked blocked_substrate (REE_assembly 54e114c5de, verified on origin); no experiment queued -- V3-EXQ-943 fixed ContextMemory occupancy but not ADDRESSING (write address is order-determined), so no attribution DV can carry signal; follow-on chip-20260823-queueexp-contextmemory-write-addressing-diagnostic",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "EVB-0628/INV-044 marked blocked_substrate (REE_assembly 54e114c5de, verified on origin); no experiment queued -- V3-EXQ-943 fixed ContextMemory occupancy but not ADDRESSING (write address is order-determined), so no attribution DV can carry signal; follow-on chip-20260823-queueexp-contextmemory-write-addressing-diagnostic"
     }
   ],
   "dispositions": [
@@ -4104,6 +4108,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-22T07:09:37Z",
       "re_eligible_after": "2026-08-24T07:09:28Z"
+    },
+    {
+      "stable_hash": "bb06f21daef5",
+      "igw_id_at_disposition": "IGW-20260823-229",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-044"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-044",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-23T07:26:38Z",
+      "re_eligible_after": "2026-08-25T07:26:38Z"
     }
   ]
 }
