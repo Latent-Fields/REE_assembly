@@ -765,3 +765,40 @@ which covers bash-4 builtins but not this zsh/bash word-splitting difference.
 Separately: passing **both** `docs/skill_archaeology/claude-md-concurrency.md` and
 `docs/skill_archaeology/claude-md-concurrency/*.md` in one `ree_commit.py` call fails; the file
 and the directory sharing a stem collide in its path handling. Commit them separately.
+
+---
+
+# STEP 2b EXECUTED -- `Housekeeping` + `Running the test suite` (`REE_Working` b7eeaa3db2)
+
+    CLAUDE.md   216,266 -> 199,093 B    ~76,963 -> ~70,852 tok    -6,111 tok
+
+**Day total: 244,947 -> 199,093 B, ~87,170 -> ~70,852 tok = 16,318 tokens off EVERY session
+(18.7% of the file).** Archaeology: 53 entries, 76,002 B, median 1,340 B (~477 tok).
+
+23 blocks moved (A-31..A-53), **per-entry from the start** per the lookup-cost rule -- not a
+combined file exploded afterwards. Three prohibitions rescued inline as replacement lines
+(do-not-re-broaden the chip exception list; the first-action-claim instruction is a mitigation
+not a solution; the archive strip is gated on reaching origin).
+
+Verified: 0 lines unaccounted for · 53/53 links resolve, 53 unique, 0 duplicate ids · 4/4 code
+fences inline · 8/8 operative anchors inline (`chip_ledger.py record`, `ARCHIVING HERE CANNOT
+MEAN DELETING ROWS`, `remote_pytest.sh`, `REMOTE_PYTEST_TARGET`, `Do NOT re-broaden`,
+`archived_field`, `hcloud server poweron`, `CHIP EVERYTHING ELSE`).
+
+**`Dev Doctor` was deliberately SKIPPED.** The marker heuristic scored it 83% archaeology, but its
+one large block (2,669 B of its 3,241 B) is a numbered description of what the tool checks and
+what its three buckets mean -- operative reference, not incident record. Moving it would have
+recovered ~950 tokens and cost the reader the tool's semantics. Another instance of the
+CORRECTION 3 lesson: the heuristic ranks, it does not decide.
+
+## Realistic remaining yield in CLAUDE.md
+
+~15,400 tokens, but the character has changed. What is left is concentrated in the two sections
+already done (`Session Startup Protocol` ~6,495, `Claim-first, edit-last` ~5,185) and is the
+**sentence-level-interleaved kind inside numbered protocol steps** -- the 12,860 B block carrying
+steps 5-7a is the type case. That needs finer editing than block moves, on the single
+most-followed text in the repo. Higher effort, materially higher risk.
+
+**The larger remaining prize is elsewhere:** `metaworker-dispatch` SKILL.md at ~25,415 tok
+marker-based, which is a ~14% floor cut on every dispatcher tick on its own. It must be done
+inside chunk 1's session, which already claims both copies of that file.
