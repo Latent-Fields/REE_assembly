@@ -142,6 +142,30 @@ MUST assert (from `StructuredCuriosity.get_state()`):
 - the relevant per-flavour `last_uncertainty_dev_range` / `last_lp_dev_range` `> 0` (the
   sub-flavour under test actually carries argmin-relevant span -- not a vacuous channel).
 
+**Correction (2026-08-23): the third assertion is NECESSARY BUT NOT SUFFICIENT for the
+`e2_predictive_variance` flavour.** Measured on real `CausalGridWorldV2` rollouts (seeds
+71/101/202, 4 ep x 80 steps): an UNTRAINED `E2WorldUncertaintyHead` passes
+`last_uncertainty_dev_range > 0` on 320/320 ticks in all 3 seeds -- and passes it with a
+LARGER absolute range than a trained head (e.g. seed 71: untrained 8.62e-04 vs trained
+5.75e-04). Training *lowers* the overall predicted spread while *raising* relative
+differentiation, so absolute `dev_range` is the wrong statistic and points the wrong way; a
+random-init MLP evaluated on distinct action one-hots is strictly positive but merely
+near-uniform, which is exactly the vacuous-channel case this gate exists to exclude.
+
+The discriminator is **relative** spread, exposed as of ree-v3 `88287f11c6` via
+`E2WorldUncertaintyHead.get_state()`'s `e2_world_uncertainty_last_pvar_relative_spread`.
+Measured separation is clean and non-overlapping: untrained **0.14-0.26**, trained
+**1.81-2.37**. So for `curiosity_uncertainty_source=e2_predictive_variance`, add a fourth
+assertion alongside the three above:
+- `e2_world_uncertainty_last_pvar_relative_spread` well above the random-init band.
+
+A threshold of **>= 1.0** has been PROPOSED -- an order of magnitude above the observed
+untrained ceiling and below the trained floor -- but it is **UNVALIDATED**: measured on 3
+seeds in one environment only, not independently re-measured, and not pinned as a gate value.
+Treat it as a starting point for the validation experiment (section 6, follow-on 3), not as a
+settled threshold. Full measurement and mechanism:
+`evidence/planning/sd063_online_head_training_keystone_2026-08-22.md` section 4.
+
 This is the guard against the 604a / 624a / 614d / 640a failure class recurring one layer down.
 
 ## 6. Follow-on work routed (NOT done this session)
