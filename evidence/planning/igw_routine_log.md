@@ -2031,3 +2031,9 @@ One line per hourly tick. ASCII only.
 2026-08-23T06:50:12Z workset committed (regen -- 238 items, 23 ready, 1 in flight)
 2026-08-23T06:49:49Z SPAWN IGW-20260823-229 skill=/queue-experiment prio=40 uuid=e47bba77-a406-417b-a37f-99d601b28e0e pid=26555 worktree=igw-229-proposal-for-inv-044
 2026-08-23T07:26:38Z auto-defer igw-229-proposal-for-inv-044 hash=bb06f21daef5 for 48h (complete)
+2026-08-23T07:28:07Z complete igw-229-proposal-for-inv-044 spawned->completed outcome=USEFUL_LANDED: EVB-0628/INV-044 marked blocked_substrate (REE_assembly 54e114c5de, verified on
+2026-08-23T07:52:44Z GC removed worktree igw-229-proposal-for-inv-044 (removed; branch deleted)
+2026-08-23T07:52:41Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-08-23T07:53:07Z workset committed (regen -- 237 items, 22 ready, 1 in flight)
+2026-08-23T07:53:07Z reconcile-release hash=bb06f21daef5 (IGW-20260823-229 -> completed)
+2026-08-23T07:52:41Z no eligible item (skipped 237): IGW-20260823-214:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260823-215:status=blocked blocked_by=ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]; IGW-20260823-216:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229

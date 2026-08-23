@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-23T06:51:18Z",
+  "generated_at": "2026-08-23T07:53:07Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7309,6 +7309,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "session_uuid=e47bba77-a406-417b-a37f-99d601b28e0e branch=claude/igw-229-proposal-for-inv-044",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for INV-044",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "INV-044"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260823T075307Z-bb06f21d-claude_local",
+      "stable_hash": "bb06f21daef5",
+      "igw_id_at_assign": "IGW-20260823-229",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-08-23T07:53:07Z",
+      "released_at": "2026-08-23T07:53:07Z",
+      "released_by": "igw_routine_tick_reconcile",
+      "released_reason": "reconcile: ledger entry IGW-20260823-229 is terminal (completed); release() never fired on the transition tick",
+      "released_event_for": "asn-20260823T064949Z-bb06f21d-claude_local",
       "note": "session_uuid=e47bba77-a406-417b-a37f-99d601b28e0e branch=claude/igw-229-proposal-for-inv-044",
       "item_snapshot": {
         "skill": "/queue-experiment",
