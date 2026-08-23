@@ -259,3 +259,121 @@ Worker sessions fall from 102,412 to roughly 44,000-58,000 on the same assumptio
 - The 2026-08-19 `chip_ledger.py archive` precedent (strip fat fields, keep the row,
   origin-authoritative) is the closest existing pattern in this repo to what is proposed
   in (4) and is worth reading before designing the split.
+
+---
+
+# ADDENDUM -- 2026-08-23T14:38:47Z
+
+Still AWAITING USER REVIEW. Added after user review of the body above raised three design
+questions. Measuring them found **a material error in the body's own cost model**, corrected
+first below. Same session, same populations, no file restructured.
+
+## CORRECTION 1 -- the floor is re-read on EVERY turn, so it is ~57% of spend, not a one-time cost
+
+The body treats the floor as a turn-1 `cache_create` charge (hence "20.3 M/day"). That is the
+**write** only. The always-loaded content sits in the prompt prefix, so **every subsequent turn
+re-reads it** as `cache_read`. Its true contribution is
+
+    floor x (1.25 once, as cache_create)  +  floor x 0.10 x (every later turn, as cache_read)
+
+Simulated on **real per-turn data, deduplicated by assistant message id**, over the 200 largest
+dispatcher transcripts (median 47 real turns): shrinking the floor to 33% of its current size cuts
+**total session cost by a median 57.4% (mean 57.2%; aggregate 279 M -> 121 M base-equivalent,
+-56.6%)**, pricing `cache_create` at 1.25x and `cache_read` at 0.10x of base input.
+
+So the "20.3 M/day floor" in the body is a **floor-write** figure and understates the true cost of
+this content by roughly 5x. **Restructuring is a ~57% cut to total spend, not a ~12-20% one.**
+Recommendations 3 and 4 in the body are correspondingly more valuable than stated there.
+
+## CORRECTION 2 -- the no-op pre-exit (body recommendation 2) is NARROW, not the top item
+
+The body calls the pre-`Skill` exit "the highest ratio of saving to risk of anything measured
+here". Measured properly, it is not. Ticks are **not** idle:
+
+| dispatcher ticks (n=2,032, unbiased) | share | share of dispatcher spend |
+|---|---|---|
+| <=4 turns (would benefit from a pre-exit) | 1.5% | ~0.0% |
+| 5-9 turns | 0.0% | ~0.0% |
+| 20+ turns | 92.3% | 98.3% |
+
+And of the 150 largest dispatcher transcripts, **76% perform a dispatch/spawn action**, at a median
+of 8 tool-calls per tick. (That sample is size-biased toward busy ticks; the table above is not.)
+
+A tick that dispatches needs the skill, so a pre-exit cannot avoid loading it. The right lever is
+that the SKILL.md costs roughly `98,648 (write) + 78,918 x 0.10 x 8 turns = ~162,000`
+base-equivalent tokens **per tick regardless**, so **shrinking the file beats pre-exiting it**:
+a 67% cut saves ~108,000 per tick on ~100% of ticks, where the pre-exit saves ~162,000 on the
+~24% that do not dispatch. Keep the pre-exit -- it is cheap and correct -- but build it **after**
+the file work, not first.
+
+## FINDING 3 -- cost per turn is FLAT to 200+ turns, so long/persistent sessions are safe
+
+There is no quadratic penalty from accumulating context; context management caps it.
+
+| real turns | 17 | 205 |
+|---|---|---|
+| cache_read per turn | 89,522 | 189,284 (2.11x) |
+| **base-equivalent cost per turn** | **21,759** | **22,344 (1.03x)** |
+
+Cost per turn is flat at ~22,000-27,000 across the whole range (n=2,697). A session that stays
+alive and does N units of work therefore pays the floor **write** once instead of N times, with no
+growth penalty. Batching N items saves `(N-1) x 226,663` base-equivalent (the write at 1.25x); it
+does **not** save the per-turn re-read, which is why it is worth less than shrinking the files.
+Both are worth doing and they compose.
+
+## FINDING 4 -- "already-done" is 17.7% of chips, and those sessions run FULL length
+
+Two different populations, easily conflated:
+
+- **Cheap no-ops** -- sessions exiting in <=9 turns: **2% of sessions, ~0% of spend.** Negligible.
+  Fallback work for these would recover almost nothing.
+- **Already-done discoveries** -- of 1,444 chips resolved `done`, **255 (17.7%)** have a
+  resolution note saying the work was already landed, obsolete, or superseded. These do **not**
+  exit early; they run a full session (~1.3 M base-equivalent) to reach that verdict.
+
+So the preflight-triage chip's premise holds, but the mechanism is **earlier detection**, not
+fallback work: the waste is a full-length investigation, not an idle session.
+
+## FINDING 5 -- all-skills census (this closes an "open, not measured" item, cheaply)
+
+29 files, 1,471,355 B = **523,614 tokens, 70% archaeology = 364,575 tokens recoverable.**
+The ratio is **not** uniform -- large skills are archaeology-heavy, small ones are lean -- so the
+fix targets a handful of files.
+
+| ~tokens | arch% | recoverable | file |
+|---|---|---|---|
+| 87,170 | 79% | 69,156 | CLAUDE.md (always loaded) |
+| 78,964 | 78% | 61,336 | metaworker-dispatch |
+| 58,910 | 73% | 43,044 | queue-experiment |
+| 49,257 | 80% | 39,178 | failure-autopsy |
+| 51,236 | 66% | 33,869 | governance |
+| 35,572 | 74% | 26,372 | session-land |
+| 24,165 | 78% | 18,874 | account-handover |
+| 23,297 | 60% | 13,978 | morning-digest |
+
+**Six files carry 272,955 of the 364,575 recoverable tokens (75%).** At the other end,
+`view-experiments` is 3% archaeology, `sync` 17%, `inter-governance-brief` 24%, `zombie-reaper`
+34% -- these need nothing, and a blanket policy applied to them would be wasted effort.
+
+Caveat, unchanged from the body: the classifier's ARCH share is an upper bound (72% agreement with
+hand labels, over-calling archaeology on genuinely operative blocks). Treat the per-file
+percentages as a ranking, which they are reliable for, rather than as precise targets.
+
+## Revised recommendation ordering
+
+1. **Split the six archaeology-heavy files** (CLAUDE.md + the five large skills). ~57% of total
+   spend, 75% of it in six files. This is now clearly first, not third.
+2. **Preflight batch triage** -- 17.7% of chip sessions are full-length already-done discoveries.
+3. **Persistent/batching sessions** -- saves one floor write per avoided session, no growth
+   penalty; safe and additive.
+4. **No-op pre-exit** -- keep, but narrow; build after (1).
+5. **Budget ledger** -- unchanged; it is a safety net, not a saving.
+
+## On the remaining "open, not measured" items
+
+- **All 27 other skills** -- now measured, above. It cost one classifier run. Not expensive.
+- **Whether the harness re-reads CLAUDE.md per session, or the platform cache TTL binds** --
+  genuinely not cheap to separate, and **it does not change any decision here**: the observed
+  reuse is zero either way, and every recommendation above is a size or count reduction that pays
+  off identically under both explanations. Recommend leaving it unmeasured.
+- **AGENTS.md** -- measured: 7,432 tokens, 61% archaeology, 4,512 recoverable. Small; low priority.
