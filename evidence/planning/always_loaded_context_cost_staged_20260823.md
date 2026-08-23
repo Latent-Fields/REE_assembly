@@ -377,3 +377,98 @@ percentages as a ranking, which they are reliable for, rather than as precise ta
   reuse is zero either way, and every recommendation above is a size or count reduction that pays
   off identically under both explanations. Recommend leaving it unmeasured.
 - **AGENTS.md** -- measured: 7,432 tokens, 61% archaeology, 4,512 recoverable. Small; low priority.
+
+---
+
+# PLAN OF ACTION
+
+Added 2026-08-23T15:05:58Z, after user review of the body and addendum. Ordering follows the
+addendum's revised ranking, not the body's. Steps 1-3 are the ~57% lever; steps 4-6 are the
+three already-chunked chips; step 7 checks whether any of it worked.
+
+**Sequencing constraint that shapes everything below:** an open chip that declares a SKILL.md as
+a `--resources` path will arbitrate against a split session touching the same file (CLAUDE.md
+"Conflict resolution"). Audited 2026-08-23 across 34 open chips:
+
+| skill | ~tok recoverable | declared-resource collision |
+|---|---|---|
+| queue-experiment | 43,044 | **clear** |
+| governance | 33,869 | **clear** |
+| session-land | 26,372 | **clear** |
+| account-handover | 18,874 | **clear** |
+| thought-digestion | 9,183 | **clear** |
+| failure-autopsy | 39,178 | chip-20260821-phase3writers-failureautopsy-skill-edit |
+| metaworker-dispatch | 61,336 | chunk 1 + chip-20260823-dispatch-preflight-only-checks-umbrella |
+| morning-digest | 13,978 | chip-20260823-morning-digest-scheduler-misfire |
+
+## Step 1 -- pilot the split on ONE skill, and establish the convention (IN PROGRESS)
+
+Pilot: **`queue-experiment`** -- largest recoverable of the collision-clear files, and its
+operative core (write a script, smoke it, queue it) is sharply separable from its incident record.
+
+Deliverables:
+  (a) a convention: archaeology lives at `docs/skill_archaeology/<skill>.md` in the umbrella repo
+      -- ONE copy, deliberately NOT inside `.claude/skills/` or `.agents/skills/`, because those
+      two trees must stay byte-identical and putting it there would duplicate the archaeology
+      rather than remove it;
+  (b) the split itself, with every moved block reachable by an inline pointer;
+  (c) a measured before/after token count;
+  (d) a validation that the operative core is intact -- every mandatory step, command, path and
+      hard prohibition still present in the SKILL.md itself, not only in the referenced file.
+
+## Step 2 -- apply the validated convention to the collision-clear skills
+
+`governance`, `session-land`, `account-handover`, `thought-digestion`. ~88,000 further tokens.
+Do NOT start before step 1 (d) passes -- the point of a pilot is that the convention can still
+change cheaply.
+
+## Step 3 -- CLAUDE.md (69,156 recoverable, and the only always-loaded file)
+
+Highest per-session value and highest risk, so it goes last of the file work.
+**This is a standing-rule change and therefore REQUIRES the GOV-HELDOUT-1 held-out check**
+(CLAUDE.md General Rules): test the proposed inline-vs-referenced wording against >=3 historical
+cases it was not written from, where inline and referenced give DIFFERENT calls. The `Scope
+history` blocks are the ready-made corpus. The specific risk to test is whether a session that
+does not follow the pointer makes the error the inline text was preventing. If 3 differing cases
+cannot be found, narrow the change and say so rather than shipping it as general.
+
+Four sections are 65% of the file and should be split first:
+`Claim-first, edit-last` (22,656 tok, 82% arch) · `Session Startup Protocol` (17,157, 73%) ·
+`Housekeeping (every session close)` (9,364, 86%) · `Running the test suite` (7,093, 98%).
+
+## Step 4 -- chunk 2 chip: hygiene batching
+
+`chip-20260823-hygiene-batch-one-chip-per-family`. Independent, parallel-safe, and the only
+*daily recurring* saving (7 x 102,412 per corpus round). Can run at any time, including alongside
+steps 1-3.
+
+## Step 5 -- chunk 1 chip: dispatch admission gate, WITH the metaworker-dispatch split folded in
+
+`chip-20260823-preflight-batch-triage-of-candidate-chips`, build order (b) budget gate,
+(c) batch triage, (d) host-preference ordering, then (a) no-op pre-exit.
+**Fold the metaworker-dispatch SKILL.md split (61,336 tok, the single largest recoverable) into
+this same session.** That chip already claims both copies of that file, so a separate split
+session would arbitrate against it and stop. This is the same merge logic that produced chunk 1
+in the first place.
+
+## Step 6 -- chunk 3 chip: remote-tip default flip
+
+`chip-20260823-remotetip-flip-ledger-writer-defaults`. Independent, parallel-safe, user-authorised.
+
+## Step 7 -- re-measure, and publish the delta
+
+Re-run the turn-level simulation against post-split transcripts and compare to the predicted
+~57%. The prediction is a simulation, not an observation; it has not yet been tested against a
+real post-split session. Treat any step that does not move the measured number as a finding about
+the model, not a rounding error.
+
+## Explicitly NOT in this plan
+
+- Deleting any archaeology. Every incident record measured here documents a confirmed failure and
+  several exist specifically to stop a later session simplifying a rule back into a bug.
+  Everything moves; nothing is dropped.
+- Splitting the lean skills (`view-experiments` 3% archaeology, `sync` 17%,
+  `inter-governance-brief` 24%, `zombie-reaper` 34%). A blanket policy across all 29 files would
+  spend effort where there is nothing to recover.
+- Separating "harness re-reads per session" from "cache TTL binds" -- see the body's open items.
+  Observed reuse is zero either way and every step above pays off identically under both.
