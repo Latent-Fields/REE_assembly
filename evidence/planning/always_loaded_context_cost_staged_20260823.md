@@ -685,3 +685,83 @@ overlapping `cache_read` values despite wildly different CLAUDE.md sizes.
 **No CLAUDE.md content has ever been in the cross-session cached prefix, whoever wrote it.**
 There was no cache to lose, and a smaller file strictly reduces `cache_create`. The hypothesis
 was reasonable and is now closed; do not re-open it without new evidence against these numbers.
+
+---
+
+# LOOKUP DESIGN -- and the defect that nearly made the whole split net-negative
+
+User question, 2026-08-23: *"will Claude know how to look up the removed parts in a way that is
+useful -- wiki-like or other?"* Checking it found a **severe defect in what had just been
+shipped.**
+
+## The defect
+
+All 30 pointers named the whole combined archaeology file with **no anchor**. A session following
+one pointer and reading that file spends **~15,624 tokens -- 147% of the 10,656 the split saved**.
+**One naive lookup per session would have made the entire exercise net-negative**, and two would
+have made it worse than never splitting at all.
+
+This is the failure mode a split has that the original monolith does not, and it is invisible in
+the before/after file-size measurement that the rest of this document is built on. Any future
+split must be judged on *lookup cost*, not only on bytes removed.
+
+## The fix, and why this shape
+
+**One file per entry**, under `docs/skill_archaeology/claude-md-concurrency/`, plus an `INDEX.md`.
+
+The reasoning is about **default behaviour, not documented convention**: an agent's instinct on
+seeing a path is to `Read` it. If the path is a 44 KB combined file, that instinct costs 15,624
+tokens. If it is a 1.3 KB entry file, the same instinct costs ~477. Anchors (`#a-17`) do not help
+-- a `Read` ignores the fragment and loads the whole file. A lookup *script*
+(`archaeology.py A-17`) would be cheap but only for a session that has read and remembered the
+convention; a session that has not will just read the file. **Per-entry files are the only option
+that is cheap under the behaviour you get for free.**
+
+| | before | after |
+|---|---|---|
+| lookup cost (one entry) | ~15,624 tok | **~477 tok** (33x cheaper) |
+| pointer names | the whole file | the exact entry, **and its token cost** |
+| index | none | `INDEX.md`, 30 rows, per-entry costs |
+
+Each pointer now reads, e.g.:
+
+> **Background -- A-01:** why the pathspec idiom was the bug (V3-EXQ-603d, 2026-06-01). See
+> [`A-01`](docs/skill_archaeology/claude-md-concurrency/a-01-....md) -- one file, ~390 tok. Not
+> needed to follow the rule above; read it before changing that rule.
+
+Stating the per-entry cost inline is deliberate: it tells a session the lookup is cheap, which is
+what stops it deciding to skip the pointer *or* to slurp the whole directory.
+
+The old combined file is kept as a **~50-token redirect stub** rather than deleted, so a stale
+link or an old habit lands on the index cheaply instead of 404-ing.
+
+`INDEX.md` carries an explicit warning that reading all 30 costs ~15,600 tokens -- more than the
+split saved -- so a session that opens the index is told not to continue, and gets a per-entry
+cost column to choose with.
+
+## Cost of the fix
+
+CLAUDE.md 215,005 -> 216,266 B (+1,261) for the richer pointers. **Day total: 244,947 -> 216,266 B,
+~87,170 -> ~76,963 tok = 10,207 tokens off every session** (slightly below the 10,656 before this
+change; the 449-token difference buys a 33x cheaper lookup and is clearly worth it).
+
+Verified: 30/30 links resolve, 30 unique targets, 0 entry bodies non-verbatim, 0 stale references.
+
+## Rule for the remaining steps
+
+**Split archaeology to one file per entry from the start.** Do not produce a combined file and
+explode it later, and do not rely on anchors or a helper script for retrieval. Budget the pointer
+overhead (~40 B per pointer) into the expected saving.
+
+## Toolchain note (cost real time, worth recording)
+
+`ree_commit.py` calls in this repo are made from **zsh**, where unquoted `$VAR` does **not**
+word-split. A path list built as `FILES=$(ls ...)` and passed as `-- CLAUDE.md $FILES` arrives as
+**one argument containing newlines**, and `ree_commit.py` reports every path as "does not exist on
+disk and is not in HEAD" -- which reads like a missing-file problem and is not. Use a glob
+(`docs/.../*.md`) or `${=FILES}`. This is adjacent to CLAUDE.md's "Shell Portability" section,
+which covers bash-4 builtins but not this zsh/bash word-splitting difference.
+
+Separately: passing **both** `docs/skill_archaeology/claude-md-concurrency.md` and
+`docs/skill_archaeology/claude-md-concurrency/*.md` in one `ree_commit.py` call fails; the file
+and the directory sharing a stem collide in its path handling. Commit them separately.
