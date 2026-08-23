@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_095",
+  "entry_id": "2026-08-23_q_095_predictive_map_successor_representation_stachenfeld2017",
+  "timestamp_utc": "2026-08-23T06:05:28Z",
+  "claim_ids_tested": [
+    "Q-095"
+  ],
+  "source": {
+    "title": "The hippocampus as a predictive map",
+    "authors": [
+      "Kimberly L. Stachenfeld",
+      "Matthew M. Botvinick",
+      "Samuel J. Gershman"
+    ],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4650",
+    "pmid": "28967910",
+    "pmc": null,
+    "volume": "20",
+    "issue": "11",
+    "pages": "1643-1653"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the strongest published case for the REINTERPRETATION horn of Q-095, and it is why the question is worth carrying rather than assuming the answer. A successor representation learned purely for predicting future state occupancy -- i.e. exactly trajectory-generation machinery, with no episodic organising principle stipulated anywhere -- reproduces place-field skewing, reward sensitivity, policy dependence, and remapping-adjacent phenomena, and derives grid cells as its eigenbasis. Confidence is held at 0.68 rather than higher because the coverage is partial in a way that matters for Q-095 specifically: the SR account addresses the SPATIAL/INDEXING and REMAPPING members of the thought's six capabilities and says essentially nothing about heterogeneous-element BINDING or event SEGMENTATION, which is precisely where Q-095's notes locate the unowned residue. It weakens the claim that a coordinated principle is needed for all six; it does not weaken the claim that one is needed for binding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE registers a coordinated episodic-organisation principle whose only demonstrated payoff is reproducing remapping or place-field-like indexing structure, that payoff is already obtainable from a predictive/trajectory objective alone and does not license the extra principle.",
+    "A Q-095 test that scores the coordinated version on internal representational statistics (overlap, occupancy, differentiation) rather than downstream competence will be unable to distinguish the coordinated account from a plain successor-representation account, because the SR produces those statistics too.",
+    "Grid-like and place-like structure emerging in an REE memory store is NOT evidence for an episodic organising principle; under this paper it is the expected eigenstructure of a predictive representation and is therefore uninformative about Q-095."
+  ],
+  "tags": [
+    "q-095",
+    "mech-495",
+    "successor_representation",
+    "predictive_map",
+    "hippocampus",
+    "remapping",
+    "reinterpretation_horn"
+  ],
+  "mapping": {
+    "source_claim_statement": "Place cell responses that fall outside the classical cognitive-map view -- predictive coding, reward sensitivity, policy dependence -- are what one gets when a reinforcement learner represents state as expected future occupancy (the successor representation); entorhinal grid cells are a low-dimensional eigenbasis of that same predictive representation.",
+    "ree_translation": "Q-095's REINTERPRETATION horn has direct published support. Several of the six capabilities the raw thought groups under 'episodic organisation' -- specifically the indexing/addressing geometry and the remapping behaviour -- are derivable consequences of an objective REE already has (predict where the trajectory goes next), not consequences of an additional organising principle layered on top. This raises the bar for what an ADDS-CAPABILITY verdict must show: it must show competence the predictive objective alone does not deliver.",
+    "mapping_caveat": "The paper is about spatial and quasi-spatial representation in an RL agent. It does not test episodic binding of heterogeneous element types (objects, actions, internal states, outcomes), does not model event segmentation, and does not address holistic retrieval. Reading it as 'trajectory prediction covers all of episodic organisation' over-extends it well past what was measured; it covers the members of the list that are geometric, not the members that are compositional.",
+    "source_context": "Theoretical and simulation work (DeepMind / Princeton / Harvard) fitting the successor representation to rodent place- and grid-cell electrophysiology from the published literature, not new recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Nature Neuroscience, heavily replicated and extended since 2017; source quality is not the limiting factor. Mapping fidelity is the limiter: REE's ContextMemory is not a place-cell system and the claim under test is about a six-capability bundle of which this paper speaks to roughly two. Transfer risk is moderate rather than high because the mechanism transferred is an objective-level argument (what a predictive objective suffices to produce), which is substrate-agnostic, rather than a rodent anatomical detail."
+  }
+}

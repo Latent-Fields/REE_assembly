@@ -757,13 +757,13 @@
       "timestamp_utc": "2026-03-16T18:20:19.361144Z"
     },
     "MECH-091": {
-      "actor": "governance-cycle-2026-08-16-cranky-driscoll-126a36",
-      "decision_needed": "Generation of SD-006 phase 2, and whether MECH-091 is genuinely blocked on it (GFLAG-0037)",
+      "actor": "user (governance cycle 2026-08-22, session bold-chaum-7e245c)",
+      "decision_needed": "Adjudicate V3-EXQ-944 FAIL per confirmed autopsy",
       "decision_status": "applied",
-      "rationale": "SPLIT adopted rather than the V3-or-V4 pick GFLAG-0037 posed, because both branches as posed inherit a FALSE PREMISE. MECH-091's phase_reset() is BUILT (clock.py:182), WIRED (agent.py:9903) and MEASURED 2026-08-01 as the dominant driver of E3 tick cadence over a 53,063-step rollout -- so the 2026-05-08 deferral rationale is contradicted by direct measurement. 'Phase 2' is also not one thing: the spec recommends HTA (option 3), whose MECH-089 ThetaBuffer is already built, while clock.py:32 fuses it with the spec-disfavoured threading option, and every downstream 'blocked on phase 2' inherited the fused definition. MECH-091's real gap is 2 of 3 salient-event triggers unwired -- complicated (buildable), both events already present in the substrate. Registered as substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING; commitment_closure:GAP-7 deferred -> blocked (measured closure effect 71.9%/94 -> 71.3%/95, remaining 32 -> 33, done unchanged at 62); needs_review cleared after 3+ months. No status change to the claim -- this is routing, not evidence. One puzzle-grade check owed before building (is the what_would_answer DV observable on phase 1, or absorbed by the EXQ-131 E3-freeze artifact); if it fails the V4 branch is the fallback.",
-      "recommendation": "route_to_v3_small_buildable",
-      "selected_option": "Adopt the brief's split: MECH-091 -> V3, SD-006 phase 2 true concurrency -> V4",
-      "timestamp_utc": "2026-08-16T19:59:02.782003Z"
+      "rationale": "V3-EXQ-944 non_contributory STANDS; epistemic_category unset -> standard; status stays candidate. Instrument/test-design result: readiness precondition P3 read 0.914 on seed 42 because the RATE_MATCHED control degenerated into NO_RESET (treatment-induced runaway), while all four acceptance criteria PASSED and were non-degenerate. Routing: /queue-experiment successor with three named guard fixes.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Accept the autopsy as written",
+      "timestamp_utc": "2026-08-22T13:47:10.703646Z"
     },
     "MECH-092": {
       "actor": "governance",
@@ -1459,13 +1459,13 @@
       "timestamp_utc": "2026-07-12T10:01:12.283854Z"
     },
     "MECH-303": {
-      "actor": "governance",
-      "decision_needed": "Promote candidate->provisional: wall-independent safety-terrain discrimination confirmed",
+      "actor": "user (governance cycle 2026-08-22, session bold-chaum-7e245c)",
+      "decision_needed": "Promotion review: provisional -> active",
       "decision_status": "applied",
-      "rationale": "V3-EXQ-760 PASS/supports: gated AUC 0.884 vs ungated 0.488; first genuine exp support; wall-independent. Behavioural falsifier remains the promote-to-active gate.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Promote candidate->provisional",
-      "timestamp_utc": "2026-07-15T13:44:33.249223Z"
+      "rationale": "V3-EXQ-939a PASS is the behavioural falsifier MECH-303's own evidence_quality_note named as its promote-to-active gate. 6/6 valid seeds; DV1 0.750 / DV2 0.748 / DV3 0.750 against a 0.34 margin; criteria_non_degenerate true on all three; arms A 0.750 / B 0.0 / C 0.0 / D 0.748. Supersedes V3-EXQ-939 (bit-for-bit bridge verified) so the two are not double-counted. Mandatory driver skim found no defect. Evidence at promotion: 2 genuine exp entries both supports, 0 weakens, exp_conf 0.824, lit_conf 0.853, overall 0.841, quadrant confirmed_established. pending_retest_after_substrate cleared -- 939a IS the owed retest. Symmetric with sister claim MECH-304, already active.",
+      "recommendation": "promote_to_active",
+      "selected_option": "Promote to active",
+      "timestamp_utc": "2026-08-22T13:47:10.646904Z"
     },
     "MECH-304": {
       "actor": "governance",
@@ -2746,7 +2746,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-08-22T13:23:23.294740Z",
+  "generated_at_utc": "2026-08-23T06:11:34.574225Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

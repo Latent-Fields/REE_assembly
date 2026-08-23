@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_095",
+  "entry_id": "2026-08-23_q_095_episodic_rl_capability_gershman2017",
+  "timestamp_utc": "2026-08-23T06:05:28Z",
+  "claim_ids_tested": [
+    "Q-095"
+  ],
+  "source": {
+    "title": "Reinforcement Learning and Episodic Memory in Humans and Animals: An Integrative Framework",
+    "authors": [
+      "Samuel J. Gershman",
+      "Nathaniel D. Daw"
+    ],
+    "year": 2017,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev-psych-122414-033625",
+    "pmid": "27618944",
+    "pmc": "PMC5953519",
+    "volume": "68",
+    "pages": "101-128"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Supports the ADDS-CAPABILITY horn in the currency Q-095's what_would_answer actually specifies -- downstream competence rather than internal representational statistics. The review's core argument is that endowing an RL system with episodic memory buys three things a parametric/semantic value representation does not deliver: efficient value approximation over high-dimensional partially-observable state spaces, learning from very little data, and bridging long-term action-reward dependencies. Each is a behavioural capability, measurable without any commitment about representational overlap. Confidence 0.70 rather than higher because 'episodic memory' here means an instance-based retrieval store, which is NARROWER than Q-095's six-capability coordinated principle: the review argues for having an episodic store at all, not for binding, segmentation and completion being one coordinated organising principle. It is also a review rather than a primary result.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The capability advantage of episodic memory is regime-dependent, not universal: it is largest under sparse data, high-dimensional or partially-observable state, and long action-reward delays. A Q-095 test run in a dense-data, low-dimensional, short-horizon environment can return a null for regime reasons alone and must NOT be read as resolving toward reinterpretation.",
+    "If REE's trajectory-generation account already provides instance-based retrieval of individual past experiences, then this paper's capability argument is ALREADY discharged by the existing architecture and cannot be counted as evidence for the additional coordinated principle -- the two must be scored separately.",
+    "Scoring a Q-095 arm on asymptotic performance alone will miss the effect this literature predicts, which is concentrated in sample efficiency and early learning; the discriminating measurement is the learning curve, not its endpoint."
+  ],
+  "tags": [
+    "q-095",
+    "episodic_control",
+    "sample_efficiency",
+    "reinforcement_learning",
+    "instance_based_retrieval",
+    "partial_observability",
+    "credit_assignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "Standard RL theory has focused on procedural and semantic memory -- gradually extracted action values and world models -- and this leaves it computationally ill-equipped for realistic settings where state spaces are high-dimensional, continuous and partially observable, data are sparse, the same situation may never recur exactly, and rewards depend on long-term consequences. Endowing an RL system with episodic memory addresses all three: it approximates value functions over complex state spaces efficiently, learns from very little data, and bridges long-term dependencies between actions and rewards.",
+    "ree_translation": "This supplies Q-095 with its capability hypothesis stated in the right currency and with the regimes in which to look for it. If explicit episodic organisation adds anything over trajectory generation, the effect should appear as sample efficiency and long-horizon credit assignment, not as a cleaner representational topology -- which is exactly the scoring MECH-495's 2x2 already specifies. It also identifies the environment properties the test must have (sparse data, partial observability, delayed reward) for the effect to be detectable at all.",
+    "mapping_caveat": "The gap between this paper and Q-095 is one of scope and must not be elided. Gershman and Daw argue for episodic memory as an instance-based retrieval store -- remember specific past experiences and use them to evaluate current options. Q-095 asks about something larger: whether binding, segmentation, separation, completion, indexing and remapping constitute ONE coordinated organising principle. The review supports the weaker proposition (an episodic store earns its keep) and is silent on the stronger one (the six capabilities are one thing). If REE's existing trajectory memory already retrieves individual past experiences, this paper's argument may be satisfied by the architecture REE has, in which case it supports nothing about the additional principle.",
+    "source_context": "Review integrating human and animal RL psychology and neuroscience with computational RL theory; no new data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.28,
+    "notes": "Annual Review of Psychology by two authors central to this literature; high-quality synthesis but a review, so the evidential weight is in the primary work it aggregates rather than in the paper itself. Mapping fidelity limited by the store-versus-organising-principle scope gap described in the caveat. Transfer risk is comparatively low because the argument is computational and already framed for artificial RL agents, which is REE's setting."
+  }
+}

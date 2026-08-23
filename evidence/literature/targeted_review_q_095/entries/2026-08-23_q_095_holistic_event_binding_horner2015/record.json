@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_095",
+  "entry_id": "2026-08-23_q_095_holistic_event_binding_horner2015",
+  "timestamp_utc": "2026-08-23T06:05:28Z",
+  "claim_ids_tested": [
+    "Q-095"
+  ],
+  "source": {
+    "title": "Evidence for holistic episodic recollection via hippocampal pattern completion",
+    "authors": [
+      "Aidan J. Horner",
+      "James A. Bisby",
+      "Daniel Bush",
+      "Wen-Jing Lin",
+      "Neil Burgess"
+    ],
+    "year": 2015,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms8462",
+    "pmid": "26136141",
+    "pmc": "PMC4506995",
+    "volume": "6",
+    "pages": "7462"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "This is the most direct empirical evidence available for the one capability Q-095's own notes flag as having no clean existing owner: BINDING heterogeneous elements into a single coherent event representation. The design is the load-bearing part -- participants learn events from multiple overlapping pairs and are tested on all pairwise associations, so a pairwise-associative or trajectory-linked account makes a specific prediction (retrieval reinstates the tested partner) that differs from the holistic account's prediction (retrieval reinstates ALL elements, including ones incidental to the tested pair). The incidental reinstatement is observed, is neocortically specific to element type, and its degree correlates with hippocampal activity. Confidence 0.73 rather than higher because the hippocampal link is correlational fMRI rather than causal, and because 'event' here is a laboratory construction of arbitrary element pairs rather than a naturally segmented episode.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An REE memory that retrieves only the queried association and its immediate trajectory neighbours, without reinstating task-incidental co-bound elements, is NOT implementing episodic binding in the sense this literature means -- it is implementing pairwise association, and should not be described as episodic.",
+    "Binding cannot be validated by a retrieval-accuracy metric on the tested pair alone: the tested pair is retrieved under both hypotheses. The discriminating measurement is reinstatement of elements INCIDENTAL to the query, which requires the task to contain such elements by design.",
+    "If REE's ContextMemory shows all-or-none (dependent) retrieval across an event's elements, that is a positive signature of holistic completion; graded independent retrieval per element is the signature of the pairwise alternative."
+  ],
+  "tags": [
+    "q-095",
+    "mech-242",
+    "mech-154",
+    "episodic_binding",
+    "pattern_completion",
+    "holistic_retrieval",
+    "event_engram",
+    "cortical_reinstatement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Elements of an event, represented in distinct neocortical regions, are bound into coherent event engrams in the hippocampus; retrieving any one pairwise association triggers pattern completion that reinstates neocortical activity corresponding to all event elements, including those incidental to the tested association, with the degree of incidental reinstatement correlating with hippocampal activity.",
+    "ree_translation": "Q-095's ADDS-CAPABILITY horn has a concrete, measurable signature at exactly the point where REE currently has no owner. The thought's capability 1 -- objects, locations, actions, internal states, goals, outcomes and temporal relations bound into ONE coherent event representation -- makes a prediction that trajectory-linked pairwise association does not: querying one element should reinstate the whole bound set, not just the queried neighbour. This is testable in REE without any new environment: construct episodes whose elements include some incidental to the query, then measure whether retrieval reinstates them.",
+    "mapping_caveat": "The 'events' are experimentally constructed from arbitrary overlapping element pairs learned in a laboratory session, not naturally segmented experience, so the binding demonstrated is of a deliberately artificial event whose coherence was imposed by the design rather than discovered by a segmenter. The hippocampal contribution is inferred from correlated BOLD activity, not from lesion or stimulation, so 'via hippocampal pattern completion' is the authors' interpretation of a correlation. Neither weakness undermines the behavioural/reinstatement dissociation itself, which is the part this entry rests on.",
+    "source_context": "Human fMRI, healthy adults, associative encoding and cued-retrieval paradigm with multi-element events and representational analysis of category-selective neocortical regions."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Nature Communications, open access, with a well-controlled design whose discriminating measurement (incidental reinstatement) is built into the paradigm rather than reconstructed post hoc; the behavioural holistic-retrieval effect from this group has replicated. Mapping fidelity is comparatively high for this claim because the paper's dissociation is stated at the computational level -- holistic versus pairwise retrieval -- which transfers to REE's memory store directly. Transfer risk is the human-to-agent step plus the artificiality of the constructed events."
+  }
+}

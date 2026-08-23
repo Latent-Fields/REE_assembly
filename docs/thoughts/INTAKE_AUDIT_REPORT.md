@@ -1,6 +1,6 @@
 # Thought Intake Audit Report
 
-Generated: `2026-08-12T02:54:20.864531Z`
+Generated: `2026-08-23T01:38:01.404258Z`
 
 Ground-truth cross-check of both thought-intake paths against `docs/claims/claims.yaml` -- not a keyword/marker check. See `docs/thoughts/README.md` for what the two paths are and `docs/thoughts/scripts/thought_intake_audit.py` module docstring for the method.
 
@@ -14,10 +14,10 @@ A thought marked `processed` that points at a claim ID no longer in `claims.yaml
 
 | metric | count |
 |---|---|
-| total structured intakes | 87 |
+| total structured intakes | 90 |
 | orphaned / explicitly unregistered | 1 |
 | candidate section present, no IDs named or a sibling candidate is un-ID'd (needs a human read) | 48 |
-| all named candidate IDs registered | 12 |
+| all named candidate IDs registered | 15 |
 | no candidate-claims section (nothing to check) | 26 |
 
 ### Orphaned / unregistered -- action needed

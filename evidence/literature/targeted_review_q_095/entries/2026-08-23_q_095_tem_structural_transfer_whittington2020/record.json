@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_095",
+  "entry_id": "2026-08-23_q_095_tem_structural_transfer_whittington2020",
+  "timestamp_utc": "2026-08-23T06:05:28Z",
+  "claim_ids_tested": [
+    "Q-095"
+  ],
+  "source": {
+    "title": "The Tolman-Eichenbaum Machine: Unifying Space and Relational Memory through Generalization in the Hippocampal Formation",
+    "authors": [
+      "James C. R. Whittington",
+      "Timothy H. Muller",
+      "Shirley Mark",
+      "Guifen Chen",
+      "Caswell Barry",
+      "Neil Burgess",
+      "Timothy E. J. Behrens"
+    ],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.10.024",
+    "pmid": "33181068",
+    "pmc": "PMC7707106",
+    "volume": "183",
+    "issue": "5",
+    "pages": "1249-1263.e23"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "This entry is mixed because the paper cuts both ways on Q-095 and pretending otherwise would misrepresent it. It SUPPORTS the coordinated-principle framing at the level of description: one principle -- a factorised structural basis conjunctively bound to sensory input -- unifies grid, band, border, object-vector, place and landmark cells, remapping, and relational (non-spatial) task representations, which is exactly the 'ONE coordinated organising principle' move Q-095 asks about, and it earns a MEASURED downstream capability (structural knowledge is preserved across remapping, confirmed in simultaneously recorded place and grid cells) rather than an internal statistic. It WEAKENS the same framing at the level of mechanism: TEM is trained on sensory prediction over trajectories, so the coordinated organisation is an emergent consequence of a trajectory-prediction objective rather than an additional principle that had to be installed. Confidence 0.74 reflects a high-quality, empirically-confirmed source with genuinely two-directional bearing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE installs a coordinated episodic-organisation module as an explicit architectural addition, TEM is the standing counterexample that the same organisation can arise from a prediction objective plus a factorised-structure/sensory conjunction -- so the ADDS-CAPABILITY verdict must show the installed version beats the emergent one, not merely that the organisation exists.",
+    "Conversely, a REINTERPRETATION verdict cannot be reached by pointing at trajectory prediction alone: TEM's capability depends on the factorisation of structure from sensory content and on conjunctive binding, neither of which REE's trajectory-generation account currently asserts.",
+    "Remapping that destroys structural knowledge is a failure signature: TEM predicts and the recordings confirm that remapping preserves structural relations, so an REE memory whose context switch scrambles relational structure is behaving unlike the biology this claim appeals to."
+  ],
+  "tags": [
+    "q-095",
+    "mech-495",
+    "mech-154",
+    "tolman_eichenbaum_machine",
+    "factorised_representation",
+    "conjunctive_binding",
+    "structural_transfer",
+    "generalisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Medial entorhinal cells form a basis describing structural knowledge and hippocampal cells bind that basis to sensory representations; a model built on these two principles (TEM) develops grid, band, border, object-vector, place and landmark cells, remaps between environments, matches recorded representations in non-spatial relational tasks, and predicts -- confirmed in simultaneous place/grid recordings -- that remapping preserves structural knowledge rather than being random.",
+    "ree_translation": "This is the closest published analogue to what Q-095 calls a coordinated organising principle, and it supplies the discriminating test REE actually needs. The capability it demonstrates is generalisation and structural transfer -- reusing learned relational structure in a new environment -- which is a downstream competence, not a representational statistic, and therefore exactly the currency MECH-495's 2x2 is scored in. But the principle is TWO things (factorise structure from sensory content; bind them conjunctively), not six, and it emerges under a prediction objective. For REE this suggests the productive reformulation of Q-095: not 'does episodic organisation add capability over trajectory prediction', but 'does REE's trajectory-generation account already include a factorised structural code and a conjunctive binding operation, and if not, is that the missing piece'.",
+    "mapping_caveat": "TEM is a model fitted to hippocampal-entorhinal electrophysiology, with the structural-transfer prediction confirmed in rodent recordings; it is not a test of an agent's task competence in the sense Q-095's what_would_answer specifies (downstream generalisation and discrimination scored behaviourally). Its 'generalisation' is generalisation of representation across environments, which is necessary but not sufficient for the behavioural claim. Treating TEM's success as settling that an REE-side coordinated principle will improve task performance would be an unearned step.",
+    "source_context": "Machine-learning model (Oxford/UCL) trained on sequential sensory prediction in spatial and relational-task graphs, compared against published and newly analysed rodent entorhinal and hippocampal recordings, including simultaneously recorded place and grid cells across remapping."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Cell, open access, with a novel empirical prediction confirmed in simultaneous recordings rather than post-hoc fitting alone -- unusually strong for a modelling paper. Mapping fidelity is limited by the representation-versus-behaviour gap: Q-095 asks for behavioural capability and TEM delivers representational transfer. Transfer risk moderate: the architecture is generic (a sequence model with factorised structure), so it travels to REE more readily than an anatomy-specific result would."
+  }
+}
