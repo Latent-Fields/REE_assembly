@@ -550,3 +550,69 @@ should change accordingly.
    `cross-field`, `steward`, `claim-synthesis`, `cowork`, `metaworker-repair`, `zombie-reaper`.
 4. Nothing was changed in `queue-experiment` -- the pilot was abandoned before any edit, so both
    skill trees remain byte-identical and untouched.
+
+---
+
+# STEP 1 EXECUTED -- CLAUDE.md `Claim-first, edit-last` split (2026-08-23, `REE_Working` 27a23f02dd)
+
+Re-pointed from `queue-experiment` per CORRECTION 3. **Landed.**
+
+    CLAUDE.md   244,947 -> 229,469 B    ~87,170 -> ~81,662 tok    -5,508 tok per session
+    new file    docs/skill_archaeology/claude-md-concurrency.md   23,115 B (~8,226 tok, not loaded)
+
+16 blocks moved, each **read in full and chosen by hand** -- not by the classifier, which
+CORRECTION 3 showed cannot be trusted for this. Two blocks carried an operative rule inside
+otherwise-archaeological narration; each got an explicit replacement one-liner inline (the
+`git add -A` prohibition for regen output, and the do-not-install-on-hub rule for the ref-move
+guard). Moved content is verbatim.
+
+## Verification (all mechanical, all passed)
+
+| check | result |
+|---|---|
+| all 16 moved blocks present verbatim in the new file | 16/16 |
+| substantive lines of the old section unaccounted for | **0** |
+| bash fences still INLINE in CLAUDE.md | 8/8 |
+| distinct command tokens still inline | 15/15 |
+| bolded prohibitions still inline | 11/14 -- the 3 others are descriptive fragments, not instructions |
+| diff confined to the section (lines 1-47 and the whole tail byte-identical) | yes |
+| heading count, fence balance | 66 -> 66, 44 fences (even) |
+
+## Held-out check (GOV-HELDOUT-1)
+
+**The rule's own non-degeneracy guard does not apply in its usual form, and saying so is the
+honest result.** A faithful split changes no operative wording, so on the standard test -- "does
+old vs new give a different call" -- **every case is degenerate by construction**. The risk this
+change actually carries is different, so the check was run in the form that tests it:
+*does the trimmed inline text alone give the right call **without** following the pointer?*
+
+1. **2026-08-08, routing regen output through `ree_commit.py` with an explicit path list.**
+   Old: the 3a50c8fc78 incident narration. New: a replacement line stating the rule directly.
+   Wording differs; call is the same. **PASS.**
+2. **2026-08-03, "should the ref-move guard go on `ree-cloud-1`?"** Old: the full mechanism
+   paragraph. New: replacement line keeping "MECHANISM, not caution" and the queue-writer reason.
+   **PASS.**
+3. **2026-07-18 (`serene-cori-f6921a`), skew repair where a broad `git checkout -- .` would have
+   destroyed four sessions' uncommitted work.** Old: a paragraph of rationale. New: that
+   paragraph is moved, but the prohibition survives inline **inside the kept bash block's own
+   comment** (`NEVER git checkout -- . here`). **PASS** -- and this is the pattern that makes the
+   split safe: prohibitions living in code comments travel with the command.
+
+**Residual risk, found by the check and NOT mitigated away.** A session *editing* the
+detect-and-repair command -- e.g. "simplify `git diff --diff-filter=D -z HEAD` to
+`git ls-files --deleted`" -- now has no inline explanation of why each flag is there (that is
+A-09). It could reintroduce the exact 2026-07-19 miss. The control is the pointer's own wording,
+"read it before changing that rule", which is **adoption-dependent** -- the same weakness as every
+other rule in this file. Stated rather than papered over. If a later session does reintroduce it,
+that is evidence the split needs those mechanics back inline, and it should move them back.
+
+## What this calibrates for steps 2-3
+
+The section was 63,689 B and 20,881 B of it moved -- **33%**, against CORRECTION 3's marker-based
+prediction of 35% for CLAUDE.md. The honest estimate held. Net saving is lower than gross
+(15,478 B) because pointers and replacement lines cost ~5,400 B; **budget ~26% net, not 33%.**
+
+Extrapolating at 26% net: the three remaining CLAUDE.md hot sections (`Session Startup Protocol`
+17,157 tok, `Housekeeping` 9,364, `Running the test suite` 7,093) would yield ~8,700 more tokens,
+for ~14,200 total off every session. `metaworker-dispatch` at the same rate yields ~20,500 more
+off every dispatcher tick -- but that one is chunk 1's, and must be done in that session.
