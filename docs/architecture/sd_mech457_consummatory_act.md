@@ -1,3 +1,10 @@
+---
+title: "SD-mech457_consummatory_act: environment.consummatory_act"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 27
+---
+
 # SD-mech457_consummatory_act: environment.consummatory_act
 
 **Claim ID:** mech457_consummatory_act (substrate node; not a claims.yaml claim)

@@ -102,6 +102,7 @@ ASSIGN = {
     "sd_004_sd_005_encoder_codesign.md": "engines", "sd_015_z_resource_encoder.md": "engines",
     "sd_030_e2_self_forward_model.md": "engines", "sd_031_e2_world_forward_model.md": "engines",
     "sd_056_e2_action_conditional_divergence.md": "engines",
+    "contextmemory_write_address_selection.md": "engines", "sd_e3_scorer_completion.md": "engines",
 
     # --- Foundations & Rationale ---
     "post_hoc_filter_insufficiency.md": "foundations", "established_ethical_systems.md": "foundations",
@@ -111,6 +112,10 @@ ASSIGN = {
     "reafference_comparator_family.md": "foundations", "non_deficit_action_drives.md": "foundations",
     "version_layering_doctrine.md": "foundations",
     "arc_106_biology_grounding_framework.md": "foundations",
+    "canonical_profile_admission_criteria.md": "foundations",
+    "active_inference_bridge.md": "foundations", "bitter_lesson_position.md": "foundations",
+    "cognitive_architecture_graveyard.md": "foundations", "corrigibility_positioning.md": "foundations",
+    "formal_ancestor_mapping.md": "foundations", "work_graph_debt_vocabulary.md": "foundations",
 
     # --- Perception, Representation & Dynamics ---
     "residue_geometry.md": "representation", "sensory_stream_tags.md": "representation",
@@ -123,6 +128,7 @@ ASSIGN = {
     "sd_032_cingulate_integration_substrate.md": "attention", "event_segmenter.md": "attention",
     "mech_045_object_file_buffer.md": "attention", "arc_080_object_representation_primitive.md": "attention",
     "mech_294_multi_content_theta_packet.md": "attention",
+    "sd_cross_stream_binding_substrate.md": "attention",
 
     # --- Control, Precision & Neuromodulation ---
     "control_plane.md": "control", "control_plane_heartbeat.md": "control",
@@ -144,6 +150,7 @@ ASSIGN = {
     "developmental_bootstrapping_hippo_retrieval.md": "memory", "sd_039_anchor_goal_payload.md": "memory",
     "mech_189_super_ordinal_goal_anchors.md": "memory",
     "autobiographical_temporality_and_future_simulation.md": "memory",
+    "sd_mech267_cem_selection_fix.md": "memory",
 
     # --- Modes, Agency & Default Mode ---
     "mode_manager.md": "modes", "modes_of_cognition.md": "modes", "default_mode.md": "modes",
@@ -170,6 +177,10 @@ ASSIGN = {
     "sd_092_cross_level_subgoal_credit.md": "goals",
     "sd_093_progress_velocity_maintenance.md": "goals",
     "sd_mech267_horizon_depth_modulation.md": "memory",
+    "competence_bootstrap_mechanisms.md": "goals", "sd_mech303_threshold_sourcing.md": "goals",
+    "sd_mech457_approach_extinction.md": "goals", "sd_mech457_bc_aux_schedule.md": "goals",
+    "sd_mech457_competence_bootstrap_explorer.md": "goals", "sd_mech457_consummatory_act.md": "goals",
+    "sd_mech457_distributional_critic.md": "goals", "sd_mech457_retention_trajectory_probe.md": "goals",
 
     # --- Affect, Harm & Nociception ---
     "affect_primitives.md": "affect", "affect_terminology_instinct_protoemotion.md": "affect",
@@ -207,6 +218,7 @@ ASSIGN = {
     "sleep.md": "sleep", "sleep_aggregation_cluster.md": "sleep",
     "sd_017_sleep_phase_architecture.md": "sleep", "compact_consolidation_principle.md": "sleep",
     "prioritized_replay_write_gating.md": "sleep",
+    "sd_mel_consumer.md": "sleep", "sd_mel_producer.md": "sleep",
 
     # --- Social & Clinical ---
     "social.md": "social", "psychiatric_failure_axes.md": "social",
@@ -230,6 +242,7 @@ ASSIGN = {
     "hook_surface_contract.md": "specs", "streams.md": "specs",
     "v2_v3_transition_roadmap.md": "specs", "v3_v4_transition_boundary.md": "specs",
     "v3_v4_phase_substrate_boundary.md": "specs",
+    "sd_queue_seed_enforcement.md": "specs",
 
     # --- Roadmap & Planning (V4+) ---
     "architecture_scaling_needs.md": "roadmap", "substrate_roadmap.md": "roadmap",
@@ -260,6 +273,7 @@ SUBDIR_ASSIGN = {
 ARCH_SCRATCH = [
     "context_memory_writepath_fix.md",
     "control_vector_logging.md",
+    "landing_integration_worker_investigation.md",
     "mech163_planned_system_gate_session_prompt.md",
     "mech188_vs_mech295_dual_path.md",
     "mech_318_absorption_check.md",
@@ -278,6 +292,10 @@ TOP_EXCLUDE = [
     "changelog.md", "repo_meta.md", "README.md", "repo_meta.md",
     # Reachable by URL / linked from Home, deliberately kept out of the themed sidebar.
     "START_HERE_HOW_REE_DEVELOPS.md", "public_explorer_policy.md",
+    # Sanitized public overview of the mobile-access runbook; operational, not architecture.
+    # mobile_access.local.md is gitignored and absent on most checkouts -- stamp() no-ops
+    # via its exists() check when it isn't there, so listing it here is safe everywhere.
+    "mobile_access.md", "mobile_access.local.md",
 ]
 
 # Whole subdirectories whose .md/.html pages are excluded from the sidebar.

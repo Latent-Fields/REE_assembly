@@ -1,3 +1,10 @@
+---
+title: "SD-MECH267-CEM-SELECTION-FIX: Mode-Content Wash-Out Fix"
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 12
+---
+
 # SD-MECH267-CEM-SELECTION-FIX: Mode-Content Wash-Out Fix
 
 **Claim ID:** SD-MECH267-CEM-SELECTION-FIX

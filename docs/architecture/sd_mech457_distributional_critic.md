@@ -1,3 +1,10 @@
+---
+title: "SD-MECH457-DISTRIBUTIONAL-CRITIC: action_learning.distributional_value"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 23
+---
+
 # SD-MECH457-DISTRIBUTIONAL-CRITIC: action_learning.distributional_value
 
 **Claim ID:** SD-MECH457-DISTRIBUTIONAL-CRITIC

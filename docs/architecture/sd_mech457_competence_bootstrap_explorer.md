@@ -1,3 +1,10 @@
+---
+title: "Substrate: mech457_competence_bootstrap_explorer"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 29
+---
+
 # Substrate: mech457_competence_bootstrap_explorer
 
 **Substrate id:** `mech457_competence_bootstrap_explorer` (composition primitive; no SD-NNN number -- lives in `experiments/_lib/**`, not `ree_core`)

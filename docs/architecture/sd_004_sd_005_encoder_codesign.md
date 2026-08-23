@@ -2,7 +2,7 @@
 title: SD-004 + SD-005 Encoder Co-Design Specification
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
-nav_order: 6
+nav_order: 7
 status: implemented
 status_asof: 2026-07-10
 status_claim: SD-004

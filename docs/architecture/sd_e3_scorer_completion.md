@@ -1,3 +1,10 @@
+---
+title: "SD-E3-SCORER-COMPLETION: predictors.e3_selector.untrained_fallback_scorers"
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 12
+---
+
 # SD-E3-SCORER-COMPLETION: predictors.e3_selector.untrained_fallback_scorers
 
 **Claim ID:** SD-E3-SCORER-COMPLETION

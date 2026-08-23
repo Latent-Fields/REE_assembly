@@ -2,7 +2,7 @@
 title: "MECH-457: First-Class RPE-Driven Actor-Critic Action-Learning Substrate"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 status: implemented
 status_asof: 2026-07-12
 status_claim: MECH-457

@@ -1,3 +1,10 @@
+---
+title: "SD-mech457_approach_extinction: experiments/_lib approach-drive extinction-on-contact"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 26
+---
+
 # SD-mech457_approach_extinction: experiments/_lib approach-drive extinction-on-contact
 
 **Claim ID:** mech457_approach_extinction (substrate node; not a claims.yaml claim)

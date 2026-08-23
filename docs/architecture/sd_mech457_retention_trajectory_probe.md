@@ -1,3 +1,10 @@
+---
+title: "SD-MECH457-RETENTION-TRAJECTORY-PROBE: experiments._lib.mech457_explorer_classes.train_a2c.probe"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 24
+---
+
 # SD-MECH457-RETENTION-TRAJECTORY-PROBE: experiments._lib.mech457_explorer_classes.train_a2c.probe
 
 **Claim ID:** mech457_retention_trajectory_probe

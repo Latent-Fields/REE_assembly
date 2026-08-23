@@ -2,7 +2,7 @@
 title: MECH-293 Waking Ghost-Goal Probe Search
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: MECH-293

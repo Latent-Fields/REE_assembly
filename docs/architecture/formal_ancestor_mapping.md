@@ -1,3 +1,10 @@
+---
+title: Formal-Ancestor Mapping
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 10
+---
+
 # Formal-Ancestor Mapping
 
 **Created:** 2026-07-09

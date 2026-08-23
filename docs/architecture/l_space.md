@@ -2,7 +2,7 @@
 title: Latent Stack (L-space)
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 ---
 
 # Latent Stack (L-space)

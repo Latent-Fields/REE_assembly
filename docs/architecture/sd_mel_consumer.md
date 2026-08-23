@@ -1,3 +1,10 @@
+---
+title: "SD-MEL-CONSUMER: sleep.adaptive_mel_sleep_cadence"
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 10
+---
+
 # SD-MEL-CONSUMER: sleep.adaptive_mel_sleep_cadence
 
 **Claim ID:** SD-MEL-CONSUMER

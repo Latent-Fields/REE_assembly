@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Mobile access: public overview
 
 This repository supports mobile access to the REE explorer and to a persistent

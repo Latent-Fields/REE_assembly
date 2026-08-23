@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Landing / Integration Worker — Investigation and Decision
 
 **Date:** 2026-08-10

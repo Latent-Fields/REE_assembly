@@ -2,7 +2,7 @@
 title: Why Attention Must Be Fragmented
 parent: "Attention, Binding & Objects"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 ---
 
 # Why Attention Must Be Fragmented

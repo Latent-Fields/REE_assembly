@@ -1,3 +1,10 @@
+---
+title: "SD-MECH303-THRESHOLD-SOURCING: safety_prediction.contextual_passive_substrate.dedicated_proximity_gate"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 22
+---
+
 # SD-MECH303-THRESHOLD-SOURCING: safety_prediction.contextual_passive_substrate.dedicated_proximity_gate
 
 **Claim ID:** SD-MECH303-THRESHOLD-SOURCING

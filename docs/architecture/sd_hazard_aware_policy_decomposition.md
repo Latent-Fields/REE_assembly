@@ -2,7 +2,7 @@
 title: "SD-hazard-aware-policy-decomposition: policy.harm_aware_decomposition_selection"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 21
+nav_order: 25
 status: implemented/v3_pending
 status_asof: 2026-08-01
 status_claim: MECH-321

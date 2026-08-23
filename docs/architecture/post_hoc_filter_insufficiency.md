@@ -2,7 +2,7 @@
 title: Post-Hoc Filter Insufficiency
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 9
+nav_order: 15
 ---
 
 # Post-Hoc Filter Insufficiency

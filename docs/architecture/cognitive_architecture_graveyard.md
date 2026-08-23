@@ -1,3 +1,10 @@
+---
+title: Cognitive-Architecture Graveyard — Anti-Patterns REE Must Avoid
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 6
+---
+
 # Cognitive-Architecture Graveyard — Anti-Patterns REE Must Avoid
 
 **Created:** 2026-07-09

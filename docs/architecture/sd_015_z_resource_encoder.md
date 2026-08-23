@@ -2,7 +2,7 @@
 title: "SD-015: Dedicated z_resource Encoder for Goal-Directed Navigation"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
-nav_order: 7
+nav_order: 8
 status: candidate
 status_asof: 2026-07-10
 status_claim: SD-015

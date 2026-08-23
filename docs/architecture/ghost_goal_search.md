@@ -2,7 +2,7 @@
 title: Ghost Goal Search
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 1
+nav_order: 2
 ---
 
 # Ghost Goal Search

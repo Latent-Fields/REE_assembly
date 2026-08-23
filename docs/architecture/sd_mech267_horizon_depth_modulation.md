@@ -2,7 +2,7 @@
 title: "SD-MECH267-HORIZON-DEPTH: Mode-Conditioned Horizon-Depth Modulation"
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 12
+nav_order: 13
 status: implemented
 status_asof: 2026-08-02
 status_claim: MECH-267

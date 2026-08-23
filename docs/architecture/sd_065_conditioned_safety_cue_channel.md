@@ -2,7 +2,7 @@
 title: "SD-065: environment.conditioned_safety_cue_channel"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 18
+nav_order: 19
 status: candidate/v3_pending
 status_asof: 2026-07-15
 status_claim: SD-065

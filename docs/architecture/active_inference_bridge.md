@@ -1,3 +1,10 @@
+---
+title: Active-Inference Bridge
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Active-Inference Bridge
 
 **Created:** 2026-07-09

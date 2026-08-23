@@ -1,3 +1,10 @@
+---
+title: Competence-bootstrap mechanisms (MECH-459 / MECH-460 / MECH-461 / MECH-475 / MECH-476)
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Competence-bootstrap mechanisms (MECH-459 / MECH-460 / MECH-461 / MECH-475 / MECH-476)
 
 Status: **ARCHITECTURE STUB -- candidate claims only. Nothing here is built, and nothing here

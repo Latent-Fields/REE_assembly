@@ -1,3 +1,10 @@
+---
+title: "Substrate: mech457_bc_aux_schedule"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 28
+---
+
 # Substrate: mech457_bc_aux_schedule
 
 **Substrate id:** `mech457_bc_aux_schedule` (composition primitive; no SD-NNN number -- lives in `experiments/_lib/**`, not `ree_core`)

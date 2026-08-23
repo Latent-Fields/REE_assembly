@@ -2,7 +2,7 @@
 title: "MECH-314: structured_curiosity_bonus (frontopolar exploration / EFE analog)"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 8
+nav_order: 9
 status: candidate_substrate_landed
 status_asof: 2026-07-10
 status_claim: MECH-314

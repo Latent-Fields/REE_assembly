@@ -2,7 +2,7 @@
 title: MECH-314a Phase-2 Novelty-Source Architecture Design
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 status: provisional
 status_asof: 2026-07-10
 status_claim: MECH-314A

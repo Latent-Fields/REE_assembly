@@ -2,7 +2,7 @@
 title: MECH-111 per-candidate E1-prediction-error novelty (PARKED design)
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 3
+nav_order: 4
 status: candidate
 status_asof: 2026-07-10
 status_claim: MECH-111

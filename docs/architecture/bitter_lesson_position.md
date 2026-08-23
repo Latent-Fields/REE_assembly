@@ -1,3 +1,10 @@
+---
+title: "Bitter-Lesson Position — Why Scale + Search Should Not Eat REE's Structure (and Where It Should)"
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 3
+---
+
 # Bitter-Lesson Position — Why Scale + Search Should Not Eat REE's Structure (and Where It Should)
 
 **Created:** 2026-07-09

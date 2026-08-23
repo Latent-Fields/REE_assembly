@@ -2,7 +2,7 @@
 title: V2 → V3 Transition Roadmap
 parent: "Specs, Diagrams & Versions"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 ---
 
 # V2 → V3 Transition Roadmap

@@ -2,7 +2,7 @@
 title: "SD-012: Homeostatic Drive Modulation"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 11
+nav_order: 12
 status: provisional
 status_asof: 2026-07-10
 status_claim: SD-012

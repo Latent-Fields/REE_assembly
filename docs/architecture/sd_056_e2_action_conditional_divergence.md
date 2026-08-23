@@ -2,7 +2,7 @@
 title: "SD-056: e2.action_conditional_divergence_contrastive"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: SD-056

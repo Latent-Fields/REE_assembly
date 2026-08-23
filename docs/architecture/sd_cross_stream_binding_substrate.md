@@ -1,3 +1,10 @@
+---
+title: "SD: cross_stream_binding_substrate"
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 9
+---
+
 # SD: cross_stream_binding_substrate
 
 **Claim ID:** cross_stream_binding_substrate (named substrate; unregistered candidate `entities/selection.coherence_nonreducibility`)

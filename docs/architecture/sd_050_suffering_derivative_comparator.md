@@ -2,7 +2,7 @@
 title: "SD-050: relief.suffering_derivative_comparator"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 12
+nav_order: 13
 status: candidate
 status_asof: 2026-07-10
 status_claim: SD-050

@@ -2,7 +2,7 @@
 title: Biology-Grounding Framework
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 1
+nav_order: 2
 status: candidate
 status_asof: 2026-07-10
 status_claim: ARC-106

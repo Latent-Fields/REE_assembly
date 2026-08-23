@@ -1,3 +1,10 @@
+---
+title: Work-graph debt vocabulary (gated vs blocked, made precise)
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 18
+---
+
 # Work-graph debt vocabulary (gated vs blocked, made precise)
 
 *Registered 2026-07-10. Methodology vocabulary for how we classify any unfinished node

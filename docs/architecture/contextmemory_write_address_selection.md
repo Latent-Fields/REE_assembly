@@ -1,3 +1,10 @@
+---
+title: ContextMemory write-address selection
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 1
+---
+
 # ContextMemory write-address selection
 
 **substrate_queue id:** `contextmemory-write-path-addressing-degeneracy`

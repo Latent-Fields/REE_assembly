@@ -1,3 +1,10 @@
+---
+title: "SD-QUEUE-SEED-ENFORCEMENT: validate_queue.seed_enforcement_lint"
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 10
+---
+
 # SD-QUEUE-SEED-ENFORCEMENT: validate_queue.seed_enforcement_lint
 
 **Claim ID:** SD-QUEUE-SEED-ENFORCEMENT

@@ -2,7 +2,7 @@
 title: "Sleep-Aggregation Cluster: MECH-272 / MECH-273 / MECH-275 / MECH-285"
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 11
+nav_order: 13
 ---
 
 # Sleep-Aggregation Cluster: MECH-272 / MECH-273 / MECH-275 / MECH-285

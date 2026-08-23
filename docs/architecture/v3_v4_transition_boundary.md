@@ -2,7 +2,7 @@
 title: V3 / V4 Architecture Transition Boundary
 parent: "Specs, Diagrams & Versions"
 grandparent: Architecture
-nav_order: 11
+nav_order: 12
 ---
 
 <!-- TRANSITION_BOUNDARY_VERSION: 2026-06-23.1 -->

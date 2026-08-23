@@ -2,7 +2,7 @@
 title: Goal / Wanting Signal Chain — Provenance Map
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 2
+nav_order: 3
 ---
 
 # Goal / Wanting Signal Chain — Provenance Map
