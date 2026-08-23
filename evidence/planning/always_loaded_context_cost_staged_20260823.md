@@ -616,3 +616,72 @@ Extrapolating at 26% net: the three remaining CLAUDE.md hot sections (`Session S
 17,157 tok, `Housekeeping` 9,364, `Running the test suite` 7,093) would yield ~8,700 more tokens,
 for ~14,200 total off every session. `metaworker-dispatch` at the same rate yields ~20,500 more
 off every dispatcher tick -- but that one is chunk 1's, and must be done in that session.
+
+---
+
+# STEP 2 EXECUTED -- CLAUDE.md `Session Startup Protocol` split (`REE_Working` 3aaff24123)
+
+    CLAUDE.md   229,469 -> 215,005 B    ~81,662 -> ~76,514 tok    -5,147 tok
+
+**Running total for the day: 244,947 -> 215,005 B, ~87,170 -> ~76,514 tok = 10,656 tokens off
+EVERY session in this repo (12.2% of the file).** Archaeology file now 43,903 B, 30 entries.
+
+14 blocks moved (A-17..A-30): the `ref_convergence.py` route-A/B saga, the worktree-skills
+drift analysis (a)-(d), and the 2026-07-28 three-session claim collision.
+
+## What was deliberately NOT moved, and why it matters for the remaining sections
+
+The numbered protocol itself -- **one 12,860 B block carrying steps 5, 6, 6a, 7 and 7a** -- was
+left whole. It is a single block only because the list items have no blank lines between them,
+and its archaeology is interleaved at **sentence level inside numbered steps** rather than
+sitting in separate paragraphs.
+
+That is a structural finding, not a local one: **block-level splitting works where archaeology
+accretes as standalone paragraphs, and does not work where it accretes inside list items.**
+`Claim-first, edit-last` and this section were both the former, which is why both yielded ~6.3%
+of the whole file. Any remaining section that is mostly a numbered procedure will yield much
+less for the same effort, and needs sentence-level editing to do better.
+
+## Verification (all passed)
+
+14/14 blocks verbatim in the archaeology file · **0** old-section lines unaccounted for ·
+**0** non-test tool paths lost (8 `scripts/test_*.py` inventory paths moved with their rationale,
+which is correct) · numbered steps 1-8 all intact · the load-bearing `PER-COMMIT CONTENT AUDIT`
+rule still inline · diff confined to the section · 30 archaeology entries, 0 duplicated.
+
+**Two defects were made and caught before landing, worth recording because both are cheap to
+repeat:** (1) the validation script `import`ed the split module, which re-ran its top-level
+`main()` and appended a second copy of every block -- the archaeology file reached 64,691 B with
+A-31..A-44 duplicating A-17..A-30. Fixed by guarding `main()` behind `__name__ == "__main__"` and
+restoring the file from HEAD. (2) The first run dropped the only inline mention of
+`scripts/ref_convergence.py`; the replacement line now names it. Neither reached a commit. The
+"non-test tool paths absent" check is what caught (2) and is worth keeping in any later pass.
+
+## Prohibitions rescued from inside moved blocks
+
+Three moved blocks carried a load-bearing prohibition that would otherwise have left the file.
+Each is preserved inline as an explicit replacement line rather than relying on the pointer:
+
+- **Do NOT re-propose** the heuristic reverse-apply proof route for `ref_convergence.py`.
+- **Do NOT re-propose** creation-time or automatic worktree skill-sync (the lever is worktree
+  LIFETIME; automatic sync pins worktrees against GC).
+- `ref_convergence.py` behaviour and the `REE_COMMIT_NO_CONVERGE=1` opt-out.
+
+## Cache hypothesis tested and REFUTED (user-raised, 2026-08-23)
+
+The concern: `Session Startup Protocol` might be Anthropic-authored boilerplate that is normally
+cached, and rewriting it away from that baseline would forfeit the cache.
+
+**Authorship:** written by `nooarche` in `b7c5ffe9`, the initial workspace commit (2026-03-25).
+It is entirely REE-specific (`TASK_CLAIMS.json`, `WORKSPACE_STATE.md`, `pending_review.md`).
+Not boilerplate.
+
+**Cache:** decisive test -- as CLAUDE.md grew 12 KB -> 245 KB, `cache_create` tracked it
+(47,980 -> 116,744, in lockstep) while `cache_read` did **not** (19,687 -> 33,186, and
+non-monotonic: it peaks at 38,281 near 160 KB and falls to 32,234 at 200 KB, tracking harness
+and tool-config changes). Cross-project confirms it: `RosterWizard` and `REE_Working` share
+overlapping `cache_read` values despite wildly different CLAUDE.md sizes.
+
+**No CLAUDE.md content has ever been in the cross-session cached prefix, whoever wrote it.**
+There was no cache to lose, and a smaller file strictly reduces `cache_create`. The hypothesis
+was reasonable and is now closed; do not re-open it without new evidence against these numbers.
