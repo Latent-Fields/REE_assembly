@@ -1,0 +1,351 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation",
+  "run_id": "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260823T210058Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-23T21:00:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-050": "unknown",
+    "MECH-180": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "third_drive_independent_seed_replication_confirmed",
+    "preconditions": [
+      {
+        "name": "seeds_disjoint_from_prior_lineage",
+        "description": "This run's seed set must share NO seed with the ORIGINAL {42,123,456} configuration. Seeds [7,271,883] REUSED from 861b/861c (disjoint).",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "seed sets audited programmatically across all recorded manifests tagging INV-050 and/or MECH-180",
+        "met": true
+      },
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds (R1).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecological_novelty_mel_gradient_present_this_config",
+        "description": "measured mean_mel is non-degenerately graded across the 4 ON arms, on >= 2/3 seeds (R2). Below-floor means the IV never varied on this seed set (not-ready), NOT an INV-050/MECH-180 falsification.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "calibration_precision_adequate_on_decisive_arm",
+        "description": "NEW in this run (repair for the 861c under-powered C2 near-miss): ARM_3_HIGH_ON's own mel_reference_calib_rel_sd_of_mean must not exceed MAX_CALIB_REL_SD_OF_MEAN, on >= 2/3 seeds (R3). A seed whose calibration is too imprecise to trust its C2 margin self-routes to substrate_not_ready_requeue rather than deciding C2 on an unreliable margin.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "control": "MAX_CALIB_REL_SD_OF_MEAN=0.15, pre-registered from the confirmed failure_autopsy_861c-861d-mech180-cluster_2026-08-16 projection at CALIB_DRAWS=10 (rel_sd/sqrt(10) in [0.048, 0.090]), not derived from this run's own stats.",
+        "met": true
+      },
+      {
+        "name": "in_run_unreseeded_control_reproduces_861e_collapse",
+        "kind": "readiness",
+        "description": "the unreseeded ARM_3_HIGH_ON cell on seed 271 must sit at or below its own mel_reference (factor <= 1.0), as 861e recorded (0.884), before a reseeded-vs-unreseeded contrast can mean anything.",
+        "measured": 0.8844596840125855,
+        "threshold": 1.0,
+        "direction": "upper",
+        "control": "in-run cell, same process/machine/substrate as the primary grid; 861e recorded 0.884 for this cell",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": true,
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true,
+      "seeds_independent_of_prior_lineage": true,
+      "in_run_control_set_present": true,
+      "primary_and_control_cells_differ": true,
+      "substrate_pin_verified": true
+    },
+    "per_dv_seed_pass_fraction": {
+      "sws_power": 0.6666666666666666,
+      "spindle_density": 0.0,
+      "replay_rate": 0.6666666666666666
+    },
+    "per_dv_pass": {
+      "sws_power": true,
+      "spindle_density": false,
+      "replay_rate": true
+    },
+    "scored_dvs": [
+      "sws_power",
+      "replay_rate"
+    ],
+    "unscored_dvs": [
+      "spindle_density"
+    ],
+    "dv3_scoring_excluded_reason": "spindle_density (mean_sws_new_slot_diversity) is RECORDED but NOT SCORED, unchanged reasoning from V3-EXQ-861c: substrate_queue.json entry MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION's flag-OFF configuration is what this run uses; the flag-ON follow-up fix (mel_pe novelty reference) is confirmed to fire but its own gate operating point (861d) is a separate, not-yet-repaired defect, out of scope for this driver-side calibration fix. Gating on it would re-import a mechanism this run does not exercise.",
+    "dv3_blocking_sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+    "independence": {
+      "this_run_seeds": [
+        7,
+        271,
+        883
+      ],
+      "prior_lineage_seeds": [
+        42,
+        123,
+        456
+      ],
+      "prior_lineage_runs": [
+        "V3-EXQ-718",
+        "V3-EXQ-718a",
+        "V3-EXQ-845",
+        "V3-EXQ-861",
+        "V3-EXQ-861a",
+        "V3-EXQ-861b",
+        "V3-EXQ-861c",
+        "V3-EXQ-861d",
+        "V3-EXQ-901"
+      ],
+      "seed_overlap": [],
+      "seeds_disjoint": true,
+      "non_degeneracy_levers_satisfied": [
+        "a_new_seeds",
+        "c_consumer_absent_control_arm"
+      ],
+      "non_degeneracy_levers_not_satisfied": [
+        "b_held_out_environment"
+      ],
+      "limitation": "Environment-independence is NOT established -- see V3-EXQ-861c's own docstring for the unchanged reasoning.",
+      "residual_lever_c_note": "ARM_4_HIGH_OFF shows the elevation is consumer-driven rather than environmental stochasticity, but does NOT separate genuine third-drive coupling from the consumer's own deterministic MEL->duration arithmetic. Unchanged from 861c."
+    },
+    "replication_note": "Calibration-power-raised replication of V3-EXQ-861c: identical env, arms, SEEDS [7,271,883], C1 readout code, agent config, and C2 formula. The ONLY changes are CALIB_DRAWS (5 -> 10) and the new R3 calibration-precision readiness precondition. C1 thresholds were deliberately NOT re-tuned.",
+    "calibration_redesign": {
+      "calib_draws": 10,
+      "calib_episodes_per_draw": 6,
+      "calib_episodes_total": 60,
+      "prior_calib_draws_861c": 5,
+      "k_calib_margin": 2.0,
+      "max_calib_rel_sd_of_mean": 0.15,
+      "r3_frac": 1.0,
+      "c2_pinned_frac": 0.6666666666666666,
+      "c2_factor_clears_noise_frac": 0.6666666666666666,
+      "c2_pass_frac": 0.6666666666666666,
+      "per_seed_calib_rel_sd_of_mean_arm3": [
+        0.07050118403563739,
+        0.05331199214548813,
+        0.07851994249315493
+      ],
+      "note": "c2_factor_clears_noise_frac is the fraction of seeds on which ARM_3's mean_duration_factor cleared 1.0 + k*calib_rel_sd_of_mean at CALIB_DRAWS=10. Compare against 861c (CALIB_DRAWS=5), which passed on_gt_off on 1/3 seeds. r3_frac is the fraction of seeds whose ARM_3 calibration precision cleared the new readiness bar; a seed pre-registered to fail here (rather than at C2) means its calibration was too imprecise to trust, not that coupling failed."
+    },
+    "fanout": {
+      "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "hypothesis": "H1",
+      "axis": "measurement",
+      "source_autopsy": "failure_autopsy_V3-EXQ-861e_2026-08-21",
+      "primary_variant": "reseeded",
+      "control_variant": "unreseeded",
+      "portfolio": [
+        "V3-EXQ-861f (H1, measurement)",
+        "V3-EXQ-861g (H3, algorithm)",
+        "V3-EXQ-861h (substrate-defect control, representation)"
+      ],
+      "frozen_set_note": "The registry's frozen set for this qid is H1 + H3 (count 2), H2 a labelled follow-on. V3-EXQ-861h is a CONTROL added by the queue-experiment Step 2.5b(iv) design audit and the Step 2.5c corrupting-overlap gate, NOT a fourth frozen hypothesis."
+    },
+    "discrimination": {
+      "verdict_label": "h1_not_supported_collapse_survives_rng_isolation",
+      "hypothesis_supported": false,
+      "primary_cell": {
+        "arm_id": "ARM_3_HIGH_ON",
+        "seed": 271,
+        "variant": "reseeded",
+        "mean_mel": 2.4617477642693384e-05,
+        "mel_reference": 2.5982329782371255e-05,
+        "mean_duration_factor": 0.9474699862903014,
+        "high_graded": false,
+        "calib_draws_this_cell": 10,
+        "mel_reference_calib_rel_sd_of_mean": 0.05331199214548813,
+        "per_cycle_n_touched_slots": [
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "n_cycles_insufficient_touched_slots": 3,
+        "write_address_locked": true,
+        "contextmemory_write_selection": "argmin",
+        "reseed_before_measurement": true
+      },
+      "control_cell": {
+        "arm_id": "ARM_3_HIGH_ON",
+        "seed": 271,
+        "variant": "unreseeded",
+        "mean_mel": 2.2980323189226863e-05,
+        "mel_reference": 2.5982329782371255e-05,
+        "mean_duration_factor": 0.8844596840125855,
+        "high_graded": false,
+        "calib_draws_this_cell": 10,
+        "mel_reference_calib_rel_sd_of_mean": 0.05331199214548813,
+        "per_cycle_n_touched_slots": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n_cycles_insufficient_touched_slots": 6,
+        "write_address_locked": true,
+        "contextmemory_write_selection": "argmin",
+        "reseed_before_measurement": false
+      },
+      "readings": {
+        "control_reproduces_861e_collapse": true,
+        "reseeded_restores_high_grading": false
+      },
+      "machine_delta_readout": {
+        "note": "in-run unreseeded control vs 861e's RECORDED decisive cell -- same substrate, same protocol, different box. This is a direct read on the machine half of H3, which the autopsy could not otherwise separate. Both runs report machine_class linux-x86_64-py3.10-torch2.12.0+cpu, so any difference is sub-machine-class.",
+        "control_factor": 0.8844596840125855,
+        "recorded_861e_factor": 0.8844596840125855,
+        "abs_delta": 0.0
+      }
+    },
+    "anchor_reachability": [
+      {
+        "anchor_name": "in_run_unreseeded_control_reproduces_861e_collapse",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-861e recorded seed 271 / ARM_3_HIGH_ON cell (factor 0.8845) -- the exact state this leg's control must reproduce",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 1,
+        "n_reference_scored_true": 1,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true
+        ]
+      }
+    ],
+    "contextmemory_write_lock_audit": {
+      "sd_id": "contextmemory-write-path-addressing-degeneracy",
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/predictors/e1_deep.py"
+      ],
+      "lock_criterion": "fraction of measurement cycles with < 2 touched slots >= 0.50",
+      "predecessor_lock_state_measured_from_manifests": {
+        "861c": {
+          "7": false,
+          "271": true,
+          "883": false
+        },
+        "861e": {
+          "7": false,
+          "271": true,
+          "883": false
+        }
+      },
+      "per_seed": {
+        "7": {
+          "reseeded": {
+            "n_cells": 5,
+            "mean_insufficient_frac": 0.0,
+            "locked_cells": 0,
+            "decisive_arm_insufficient_frac": 0.0
+          },
+          "unreseeded": {
+            "n_cells": 1,
+            "mean_insufficient_frac": 0.0,
+            "locked_cells": 0,
+            "decisive_arm_insufficient_frac": 0.0
+          }
+        },
+        "271": {
+          "reseeded": {
+            "n_cells": 5,
+            "mean_insufficient_frac": 0.39999999999999997,
+            "locked_cells": 3,
+            "decisive_arm_insufficient_frac": 0.5
+          },
+          "unreseeded": {
+            "n_cells": 1,
+            "mean_insufficient_frac": 1.0,
+            "locked_cells": 1,
+            "decisive_arm_insufficient_frac": 1.0
+          }
+        },
+        "883": {
+          "reseeded": {
+            "n_cells": 5,
+            "mean_insufficient_frac": 0.0,
+            "locked_cells": 0,
+            "decisive_arm_insufficient_frac": 0.0
+          },
+          "unreseeded": {
+            "n_cells": 1,
+            "mean_insufficient_frac": 0.0,
+            "locked_cells": 0,
+            "decisive_arm_insufficient_frac": 0.0
+          }
+        }
+      }
+    },
+    "diagnostic_scope_note": "EXPERIMENT_PURPOSE is diagnostic. The replicated C1/C2/readiness grid below is recorded for comparability with 861c/861e and does NOT vote on INV-050 or MECH-180; evidence_direction_per_claim is pinned unknown regardless of how it comes out."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "12faa71e111cd12534ca52baa7b5a62a0f079f1df50a76801c06182821456f31",
+  "substrate_commit": {
+    "commit": "e0ba6590f57f67ea9f1f9e3ac03b8993cc0e4f4c",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 54229,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 18,
+    "goal_state_present": true
+  }
+}
