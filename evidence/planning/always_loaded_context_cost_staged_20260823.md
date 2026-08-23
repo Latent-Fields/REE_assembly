@@ -1,0 +1,261 @@
+# Always-Loaded Context Cost -- measurement
+
+Status: AWAITING USER REVIEW
+
+Measured 2026-08-23T11:26:12Z, session `elated-jackson-f12eae` (Mac, `DLAPTOP`).
+**Measurement only. Nothing was restructured; no rule, skill, or file was edited.**
+Recommendations below are recommendations, not applied changes.
+
+Populations measured:
+- **2,697** headless `claude -p` (`entrypoint=sdk-cli`) sessions on `ree-cloud-5`, the
+  metaworker box (`~/.claude/projects`, 696 project dirs, 1.2 GB, 4,207 transcript files).
+- **1,290** interactive sessions on the Mac (`claude-desktop`), as a cross-check.
+- **375** direct measurements of the `metaworker-dispatch` SKILL.md load cost.
+- This session's own turn-1 usage, as a same-day point check at current file sizes.
+
+---
+
+## Q1 -- Do fresh `claude -p` sessions get prompt-cache hits on these files?
+
+**No. Not at any rate, and not under any timing condition.**
+
+### The headline numbers (n=2,697 headless sessions, `ree-cloud-5`)
+
+| turn-1 quantity | median | p90 |
+|---|---|---|
+| total prompt tokens | 111,342 | 127,016 |
+| `cache_read_input_tokens` | 24,424 | 24,424 |
+| `cache_creation_input_tokens` | **86,879** | -- |
+| cache-hit ratio | **19.2%** | 23.5% |
+
+100% of sessions get *some* cache read, which is why a naive "is the cache working?"
+check reads as a pass. It is not. The ~24k that is read is a **fixed harness prefix**
+(system prompt + tool definitions), and the ~87k that is CLAUDE.md is written fresh
+every single session at cache-**write** price.
+
+### Proof that the cached part is not the repo files
+
+`cache_read` is a **quantised constant** and is completely independent of how recently
+another session started on the same box:
+
+| gap to previous session on same box | n | median `cache_read` | median hit% |
+|---|---|---|---|
+| < 60 s | 357 | 24,424 | 19.2% |
+| 1-5 min | 746 | 16,016 | 18.8% |
+| 5-60 min | 1,574 | 24,424 | 20.4% |
+| 1-6 h | 11 | 16,016 | 18.9% |
+| > 6 h | 9 | 16,016 | 21.2% |
+
+Sessions launched **less than a minute apart** get exactly the same cache read as
+sessions **six hours apart**. Across all 2,697 sessions `cache_read` takes only a
+handful of distinct values (p0 15,273 / p25 16,016 / p50 24,424 / p99 30,231) -- the
+signature of a fixed prefix under a few harness configurations, not of content-dependent
+reuse. If CLAUDE.md were entering the shared cache, the `<60s` bucket would separate
+from the `>6h` bucket. It does not.
+
+### Same-day point check -- this session's own first turn
+
+At the current CLAUDE.md (244,947 B):
+
+```
+turn 1: cache_create=124,450  cache_read= 34,538  TOTAL_PROMPT=158,990  hit=21.7%
+turn 3: cache_create=    444  cache_read=158,988  TOTAL_PROMPT=159,434  hit=99.7%
+```
+
+Within a session the cache works essentially perfectly (99.7% from turn 3). Across
+sessions it does not work at all for this content. **Every new session re-pays the floor.**
+
+### Cross-check: interactive Mac sessions
+
+n=1,290, median turn-1 prompt 120,516, median hit ratio **27.6%** -- same regime, slightly
+better only because the interactive harness prefix is larger.
+
+### Consequence for the question you posed
+
+The `~59M tokens/day` branch is the correct one; `~6M` is refuted.
+**The lever is cadence (and file size), not worker count.**
+
+---
+
+## Q1b -- Two corrections to the premise
+
+**(a) The floor is larger than ~117k, and it is not the same for every session.**
+
+Measured, `ree-cloud-5`:
+
+| session kind | n | turn-1 `cache_create` | SKILL.md load | **floor per session** |
+|---|---|---|---|---|
+| dispatcher tick (cwd `~/REE_Working`) | 2,032 | 102,412 | +78,918 | **181,330** |
+| chip worker (cwd `.../worktrees/...`) | 665 | 102,412 | not loaded | **102,412** |
+
+**(b) `metaworker-dispatch/SKILL.md` is NOT paid by every session.** Of 250 worker
+sessions scanned, **zero** loaded it; only 38 (15%) loaded any skill at all
+(`queue-experiment` 19, `session-land` 16, `lit-pull` 4, `implement-substrate` 1).
+The 222 KB SKILL.md is a **dispatcher-tick cost only** -- but on that tick it is
++78,918 tokens (n=375, mean 73,757, range 35,113-86,018), which makes the dispatcher
+floor **181,330**, over 50% larger than the ~117k assumed.
+
+The skill loads on turn 3, as a clean second cache-write step:
+
+```
+turn  1 create 102,139 read  24,424 tot 126,563
+turn  2 create 102,139 read  24,424 tot 126,563  Skill:metaworker-dispatch
+turn  3 create  75,204 read 126,563 tot 201,767   <-- SKILL.md lands here
+turn  5 create     225 read 201,767 tot 201,992
+```
+
+### Tokens per byte, measured rather than assumed
+
+Two independent methods agree:
+
+1. **Direct** -- SKILL.md is 221,890 B and its load costs a median 78,918 tokens
+   => **2.81 chars/token** (n=375).
+2. **Regression** -- CLAUDE.md grew 12 KB -> 245 KB between 2026-03 and 2026-08.
+   Regressing first-turn prompt tokens on CLAUDE.md size at session time over 1,259
+   sessions gives slope 0.378 tok/byte (**2.65 chars/token**), R2 = 0.854, intercept
+   62,522 tokens for everything else.
+
+Both are well below the usual ~4 chars/token for prose, because these files are dense
+in backticked paths, script names, commit shas and IDs. Applying 2.81:
+**CLAUDE.md ~= 87,200 tokens; SKILL.md ~= 78,900 tokens; combined ~= 166,100.**
+
+---
+
+## Q1c -- What it actually costs per day
+
+Current state, worth noting: **the metaworker timer is `disabled` and `inactive` on both
+`ree-cloud-4` and `ree-cloud-5` right now**, and no `claude` process is running on either.
+The figures below are (i) the empirical cost when it was running, and (ii) the projection
+at the configured 5-minute cadence.
+
+Empirical, `ree-cloud-5`, median active day: 95 dispatcher ticks + 30 worker sessions.
+
+| scenario | floor `cache_create` / day |
+|---|---|
+| empirical median active day (95 + 30) | **20.3 M** |
+| busiest observed day (2026-08-22, 299 sessions) | ~48 M |
+| 5-min timer, 288 ticks/day, no early exit | **55.3 M** |
+
+This is the *floor only* -- the always-loaded prefix. It excludes all working context.
+Whole-session totals on active days ran 1.5-4.2 **billion** raw prompt tokens/day, but
+that is dominated by within-session `cache_read` (billed at 0.1x), which is the part that
+is already working correctly and is not the target here.
+
+So: the projection matches your ~59M estimate closely, and the empirical figure is
+20M -- both an order of magnitude above the ~6M cached-case hypothesis.
+
+---
+
+## Q2 -- Operative rule vs incident archaeology
+
+### Method, and its honest error bar
+
+Blocks split at blank lines (fenced code kept intact), then classified three ways with
+increasing aggressiveness, plus a hand-labelled validation set:
+
+| method | CLAUDE.md archaeology | SKILL.md archaeology |
+|---|---|---|
+| v1, strict marker-only (lower bound) | 49.8% | 35.8% |
+| v2, prose-aware (upper bound) | 79.6% | 77.9% |
+| **hand-labelled, byte-weighted random sample (n=18)** | **67%** | -- |
+
+The hand sample labelled 12/18 archaeology, 3 mixed, 3 operative. v2 agrees with the hand
+labels 13/18 (72%); its errors are asymmetric -- 11/12 recall on archaeology but it
+mislabels 2 of 3 genuinely operative blocks as archaeology, so **79.6% is an
+over-estimate and 49.8% an under-estimate**.
+
+**Best estimate: archaeology is ~2/3 of both files (95% CI on the n=18 sample is wide,
+roughly 41-87%). Operative rule is ~12-17%.** The remainder is structural and mixed.
+
+The v1 `NEUTRAL` bucket (21% of CLAUDE.md) turned out on inspection to be mostly design
+rationale -- e.g. "`ree_commit.py` closes the gap structurally: each path is read from
+disk exactly once..." -- which is archaeology, not instruction. That is the single
+biggest reason the strict marker count understates.
+
+### Where the mass actually is -- this is the actionable part
+
+Concentration is extreme. **Four sections are 65% of CLAUDE.md:**
+
+| bytes | ~tokens | arch% | section |
+|---|---|---|---|
+| 63,662 | 22,656 | 82% | Claim-first, edit-last |
+| 48,210 | 17,157 | 73% | Session Startup Protocol |
+| 26,313 | 9,364 | 86% | Housekeeping (every session close) |
+| 19,930 | 7,093 | 98% | Running the test suite (route it to a cloud worker) |
+| 11,056 | 3,935 | 73% | Worktree / Chipped Sessions |
+| 7,535 | 2,681 | 81% | Workers may need waking |
+| 7,418 | 2,640 | 82% | Coordinator (Phase 3) |
+| 6,105 | 2,173 | 97% | General Rules |
+
+**One section is 68% of the entire SKILL.md:**
+
+| bytes | ~tokens | arch% | section |
+|---|---|---|---|
+| 150,257 | 53,472 | 79% | Step 4 -- `kind == "work"`: bounded auto-dispatch |
+| 16,343 | 5,816 | 76% | Step 5 -- `kind == "decision"` |
+| 15,261 | 5,431 | 87% | Step 1 -- Coordination-plane pause check |
+| 9,501 | 3,381 | 81% | Use 2 -- the mid-task query |
+| 7,226 | 2,572 | 77% | Step 3.5 -- source ready IGW workset items |
+
+Recurring archaeology shapes, all of which have a stable operative core wrapped in a
+much larger record: `Confirmed <date> ...` incident narrations, `Why the old idiom was
+the bug`, `Scope history`, `Held-out check (GOV-HELDOUT-1)`, `Tests: scripts/test_*.py
+(N, time-independent...)`, A/B timing tables, and per-fix root-cause explanations.
+
+### What the floor would become
+
+Holding memory/system prompt constant and shrinking only the two files:
+
+| retained share | dispatcher floor | change | empirical/day | 5-min projection/day |
+|---|---|---|---|---|
+| today | 181,330 | -- | 20.3 M | 55.3 M |
+| 33% retained (hand-calibrated) | **70,050** | **-61%** | 8.0 M | 21.5 M |
+| 20% retained (v2) | 48,459 | -73% | 5.6 M | 14.9 M |
+
+Worker sessions fall from 102,412 to roughly 44,000-58,000 on the same assumption.
+
+---
+
+## Recommendations (not applied)
+
+1. **Attack cadence first.** It is the only lever that scales linearly against a floor
+   that has zero cross-session reuse. A 5-min timer costs 288 x 181,330 = 55.3 M/day
+   in floor alone; 15 min costs 18.4 M; 30 min costs 9.2 M. Worker count barely moves
+   this number, because workers are 30/day against 95 dispatcher ticks and do not load
+   the SKILL.md at all.
+
+2. **Make the idle tick cheap before making it rarer.** The dominant waste is a tick
+   that loads 181k tokens and then finds nothing to dispatch. A cheap pre-check --
+   an exit *before* the `Skill` call when the ledger has no open work and no pause is
+   held -- would cut a no-op tick from 181,330 to ~102,412 (-44%) with no change to
+   either file and no behaviour change on a tick that does have work. This is the
+   highest ratio of saving to risk of anything measured here.
+
+3. **Split the four hot sections, not the whole file.** Four CLAUDE.md sections carry
+   65% of it and one SKILL.md section carries 68%. Moving the archaeology out of just
+   `Claim-first, edit-last` (22.7k tok, 82% archaeology) and `Step 4` (53.5k tok, 79%)
+   recovers roughly 60k tokens per dispatcher tick -- about half the total available
+   saving -- while leaving 39 other CLAUDE.md sections untouched.
+
+4. **Keep the archaeology, move it.** Every incident record measured here documents a
+   real confirmed failure, and several explicitly exist to stop a later session
+   "simplifying" a rule back into a bug. The recommendation is a referenced file
+   (e.g. `docs/architecture/coordination_plane_incidents.md`) linked from the operative
+   rule, **not** deletion. The operative sentence and its pointer stay inline; the
+   confirmation, mechanism, measurement table and held-out check move.
+
+5. **Treat this as a standing-rule change when it is enacted.** Per General Rules, a
+   rewrite of CLAUDE.md's rule text needs the GOV-HELDOUT-1 held-out check: at least 3
+   historical cases where inlined-vs-referenced wording would give different calls.
+   The `Scope history` blocks are the obvious corpus, and the risk to test is precisely
+   whether a session that does not follow the reference makes the error the inline text
+   was preventing.
+
+### Open, not measured here
+
+- Whether the harness re-reads CLAUDE.md per session or the platform cache TTL is the
+  binding constraint. The data shows no reuse either way, but the two have different fixes.
+- Whether `AGENTS.md` and the other 27 skills carry the same ratio.
+- The 2026-08-19 `chip_ledger.py archive` precedent (strip fat fields, keep the row,
+  origin-authoritative) is the closest existing pattern in this repo to what is proposed
+  in (4) and is worth reading before designing the split.
