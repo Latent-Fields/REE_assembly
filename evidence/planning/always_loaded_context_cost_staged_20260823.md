@@ -472,3 +472,81 @@ the model, not a rounding error.
   spend effort where there is nothing to recover.
 - Separating "harness re-reads per session" from "cache TTL binds" -- see the body's open items.
   Observed reuse is zero either way and every step above pays off identically under both.
+
+---
+
+# CORRECTION 3 -- the 70% archaeology figure does NOT transfer to the skills (2026-08-23T15:20Z)
+
+Found while executing step 1. **The plan's per-skill recovery estimates were too high and are
+withdrawn.** Discovered by trying to split `queue-experiment` and recovering only 3.4%.
+
+## What went wrong
+
+The v2 classifier calls a long pure-prose block "archaeology" when it has no imperative opener.
+That heuristic was calibrated on CLAUDE.md, where long prose blocks genuinely ARE incident
+narration. It does not hold for the skills, where long prose blocks are **instructional**.
+
+The worked example: `queue-experiment` section "3. Write the experiment script" is 64,597 B
+(39% of the file) and v2 marks it 82% archaeology. Reading it, it is a list of source files to
+check before writing a script -- "read `ree_core/environment/causal_grid_world.py`, check `step()`
+return structure" -- which is operative reference a session genuinely needs. Only 9% of that
+section is inside code fences; the rest is instructional prose, not incident record.
+
+## Honest re-measure -- marker-based (requires an explicit dated-incident or rationale marker)
+
+| ~tok file | v2 says | MARKER says | ~tok recoverable | file |
+|---|---|---|---|---|
+| 87,170 | 79% | **35%** | 30,328 | CLAUDE.md |
+| 78,964 | 78% | **32%** | 25,415 | metaworker-dispatch |
+| 49,257 | 80% | **24%** | 11,892 | failure-autopsy |
+| 58,910 | 73% | **19%** | 11,255 | queue-experiment |
+| 51,236 | 66% | **19%** | 9,730 | governance |
+| 23,297 | 60% | **39%** | 9,010 | morning-digest |
+| 35,572 | 74% | **25%** | 8,776 | session-land |
+| 24,165 | 78% | **16%** | 3,767 | account-handover |
+
+**Totals: 516,440 tok. v2 said 70%; marker-based says 22% = 113,100 tok recoverable**, not the
+364,575 in FINDING 5. Ten skills score 0% marker-based -- they hold no dated incident record at all.
+
+## The true value is bracketed, not point-estimated
+
+- **v2 (70%) is an upper bound** -- it counts instructional prose as archaeology. Refuted directly
+  on `queue-experiment`.
+- **Marker-based (22%) is a lower bound** -- it requires an explicit marker and therefore misses
+  undated design rationale, which the CLAUDE.md hand-labelling confirmed is real archaeology
+  (e.g. "`ree_commit.py` closes the gap structurally: each path is read from disk exactly once...").
+- The 18-block hand-label of CLAUDE.md (67%) sits inside its own bracket of 35-79%.
+
+**The ratio depends on file TYPE, and that is the durable finding:** CLAUDE.md is a rules file that
+accreted incident records, so it is genuinely archaeology-dense. The skills are procedures with a
+comparatively thin incident layer. They are not the same problem and should not get the same
+treatment.
+
+## Revised saving, re-simulated on the same 200 deduped dispatcher transcripts
+
+| floor cut achieved | median saving | aggregate |
+|---|---|---|
+| 20% | 18.9% | 18.9% |
+| **31% (marker-based, honest floor)** | **29.3%** | **29.0%** |
+| 45% (blended) | 42.2% | 41.5% |
+| 67% (v2, optimistic -- withdrawn) | 57.4% | 56.6% |
+
+**The addendum's headline "~57%" was computed at the v2 cut and is withdrawn. The defensible
+range is 19-42%, with ~29% as the honest planning figure.** Still a large saving, and the work is
+still clearly worth doing -- but it is roughly half what was promised, and the plan's ordering
+should change accordingly.
+
+## Consequences for the plan
+
+1. **CLAUDE.md and metaworker-dispatch are 49% of all recoverable tokens** (55,743 of 113,100).
+   Everything else is a long tail. Step 2's list of four skills is worth ~31,000 tokens combined
+   -- real, but no longer the main event.
+2. **`queue-experiment` is a poor pilot** (19% marker archaeology, ~11,255 tok, and its bulk is
+   instructional). Recommend re-pointing step 1 at **CLAUDE.md's single densest section**,
+   `Claim-first, edit-last` (63,662 B, 22,656 tok) -- which is simultaneously the pilot and the
+   highest-value work, and is bounded to one section.
+3. **The ten 0%-marker skills should be dropped from the plan entirely**, joining the lean skills
+   already excluded: `dual-insights`, `diagnose-errors`, `humanizer`, `implement-substrate`,
+   `cross-field`, `steward`, `claim-synthesis`, `cowork`, `metaworker-repair`, `zombie-reaper`.
+4. Nothing was changed in `queue-experiment` -- the pilot was abandoned before any edit, so both
+   skill trees remain byte-identical and untouched.
