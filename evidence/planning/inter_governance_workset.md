@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-23T07:52:44Z`
+Generated: `2026-08-23T08:53:32Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,12 +9,12 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **237** (ready 22, in_flight 1, blocked 164)
+- Items: **237** (ready 22, in_flight 0, blocked 164)
 - By generation: clinical 11, meta 4, process 9, v3 74, v4 76, v5 38, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-861f, V3-EXQ-906c, V3-EXQ-910b
+- Live EXQs: V3-EXQ-861f, V3-EXQ-906c
 
 - Auto-absorbed retests (queued, suppressed from workset): INV-050 -> V3-EXQ-861f, MECH-180 -> V3-EXQ-861f
 
@@ -1058,7 +1058,7 @@ Instructions:
 
 </details>
 
-### IGW-20260823-212 -- Queue depth low (1 pending)
+### IGW-20260823-212 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1067,7 +1067,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260823-212
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2488,6 +2488,34 @@ Instructions:
 
 </details>
 
+### IGW-20260823-157 -- MECH-489 validation: defensive-orienting phasic behavioural chain
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40 | **Generation:** v3
+- **Gap(s):** orienting_epistemic_deficit_v3:ORNT-6
+- **Owner EXQ:** V3-EXQ-910b
+- **Why now:** Resume once V3-EXQ-910b's manifest lands under REE_assembly/evidence/experiments/ and its pre-registered criteria are adjudicated (C1: sum(decision_counts) == n_override_ticks exactly; C2: decision_alignment non-degenerate, >= 2 of the 3 de
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260823-157
+Title: MECH-489 validation: defensive-orienting phasic behavioural chain
+Lane: experiment | Skill: /queue-experiment
+Status: in_progress
+Gap(s): orienting_epistemic_deficit_v3:ORNT-6
+Owner EXQ: V3-EXQ-910b
+Claims: MECH-489
+Why now: Resume once V3-EXQ-910b's manifest lands under REE_assembly/evidence/experiments/ and its pre-registered criteria are adjudicated (C1: sum(decision_counts) == n_override_ticks exactly; C2: decision_alignment non-degenerate, >= 2 of the 3 de
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Plan doc: REE_assembly/evidence/planning/orienting_epistemic_deficit_v3_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260823-170 -- 2x2 motivational state taxonomy + three-stage pipeline (depression / GAD)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40 | **Generation:** clinical
@@ -2585,33 +2613,6 @@ Why now: Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' i
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
 - Plan doc: REE_assembly/evidence/planning/sleep_substrate_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260823-157 -- MECH-489 validation: defensive-orienting phasic behavioural chain
-
-- **Lane:** experiment | **Skill:** `(monitor -- do not re-queue)` | **Status:** in_flight | **Priority:** 43 | **Generation:** v3
-- **Gap(s):** orienting_epistemic_deficit_v3:ORNT-6
-- **Owner EXQ:** V3-EXQ-910b
-- **Why now:** Resume once V3-EXQ-910b's manifest lands under REE_assembly/evidence/experiments/ and its pre-registered criteria are adjudicated (C1: sum(decision_counts) == n_override_ticks exactly; C2: decision_alignment non-degenerate, >= 2 of the 3 de
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260823-157
-Title: MECH-489 validation: defensive-orienting phasic behavioural chain
-Lane: experiment | Skill: (monitor -- do not re-queue)
-Status: in_flight
-Gap(s): orienting_epistemic_deficit_v3:ORNT-6
-Owner EXQ: V3-EXQ-910b
-Claims: MECH-489
-Why now: Resume once V3-EXQ-910b's manifest lands under REE_assembly/evidence/experiments/ and its pre-registered criteria are adjudicated (C1: sum(decision_counts) == n_override_ticks exactly; C2: decision_alignment non-degenerate, >= 2 of the 3 de
-
-Instructions:
-- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.
-- Plan doc: REE_assembly/evidence/planning/orienting_epistemic_deficit_v3_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
