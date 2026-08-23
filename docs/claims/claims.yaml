@@ -81685,6 +81685,86 @@
     mean the transition is not a continuation at all, which is a stronger and
     different claim than this one makes.
 
+- id: INV-101
+  title: >
+    The crystallisation TARGET is environment-conditional, not an architectural constant:
+    for any agent whose representational structure crystallises on a developmental
+    schedule (MECH-496), the structure it should crystallise TO is a function of the
+    latent structure of the environment actually encountered, not a property of the
+    architecture. It follows that a single hand-set dimensionality is wrong in BOTH
+    directions -- over-provisioned relative to a simple world it produces spurious
+    SPLITTING (behaviourally equivalent situations assigned distinct buckets),
+    under-provisioned relative to a rich one it forces MERGING (behaviourally distinct
+    situations collapsed into one) -- and that the same REE substrate deployed in
+    environments of materially different latent complexity requires materially different
+    resolved structures, with no single default correct across them. This is the
+    LOAD-BEARING form of the assertion; the weak form ("different environments need
+    different structures") is near-tautological for any learning system and is explicitly
+    NOT what is claimed here.
+  claim_type: invariant
+  invariant_type: universal
+  subject: learning.environment_conditional_crystallization_target
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-23"
+  depends_on:
+    - MECH-496
+    - MECH-334
+  related_claims:
+    - MECH-495
+    - MECH-154
+    - INV-074
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (mandatory).
+    (i) At least TWO environments whose GROUND-TRUTH latent-context count differs by a
+    known, designed margin. A single environment cannot test an environment-conditional
+    claim in either direction. This is a design constraint on the substrate, not an
+    afterthought -- the same constraint MECH-495 states for its own ground-truth labels.
+    (ii) MECH-496's schedule preconditions must hold in EACH environment separately, or a
+    between-environment difference is unattributable.
+    (iii) The SAME architecture and the SAME num_slots in both arms. Varying the
+    environment and the architecture together makes the comparison uninterpretable.
+
+    CONFIRMING: the resolved structure -- effective bucket count AND the relational
+    topology of the resulting representations -- DIFFERS between the two environments in
+    the direction of their ground-truth latent-context counts, starting from an identical
+    architecture; and in each environment the locally-resolved structure scores better on
+    MECH-495's relational-appropriateness measure than the other environment's resolved
+    structure does when transplanted in.
+
+    FALSIFYING: the resolved structure is the SAME in both environments (architecture
+    dominates, so the target is a constant after all); OR a structure resolved in one
+    environment transplants to the other WITHOUT LOSS (the conditioning does no work); OR
+    the between-environment difference is FULLY accounted for by the number of write()
+    calls rather than by latent structure.
+
+    THE CONFOUND TO GUARD is that last one -- a capacity effect masquerading as a
+    structural one. It is the same shape as the confirmed V3-EXQ-429 defect, where an
+    untouched 16-slot bank cleared a differentiation threshold at P=1.0000 because the
+    statistic responded to bank size rather than to organisation. Match or explicitly
+    report write() call counts across arms.
+
+    MEASUREMENT COROLLARY (bears on GFLAG-0047; does NOT resolve it). If this claim holds,
+    MECH-495's 2x2 off-diagonal cells double as a DIMENSIONALITY MIS-SPECIFICATION
+    detector, not only an objective detector: the different-appearance/same-context cell
+    detects OVER-provisioning (spurious splitting) and the similar-appearance/
+    different-context cell detects UNDER-provisioning (forced merging). That is a second,
+    independent use for a test which is already designed, and it is the cheapest route to
+    evidence on this claim short of building a self-sizing memory.
+  notes: >
+    Registered 2026-08-23 from the raw thought
+    docs/thoughts/2026-08-23_memory-dimensionality-crystallisation.md (same intake as
+    MECH-496), arising during the /governance cycle of 2026-08-22 out of GFLAG-0047.
+    A registry search at registration for environment-conditional architecture returned
+    exactly one hit (MECH-442), unrelated -- this appears to be the first claim asserting
+    that an architectural target, rather than a learned parameter, is set by the
+    environment. CATEGORY / PHASE reasoning as for MECH-496: substrate_conditional because
+    nothing has ever been exercised, and v3 following the dependency chain, both revisable
+    by governance.
+
 - id: ARC-124
   title: "Copying a running REE creates multiple SUCCESSOR BRANCHES sharing a pre-branch history -- not an authentic original plus a morally negligible replica. After divergence each branch accrues an independent causal and moral history, and no branch may be treated as interchangeable with, or discountable because of, a surviving sibling."
   claim_type: architectural_commitment
@@ -83458,6 +83538,18 @@
     differentiation DV, however correctly that DV is computed. Six generations
     (V3-EXQ-436a..436f) have established measurement and substrate facts about
     differentiation; none of them tested whether differentiation is the right target.
+
+    (iv) DEVELOPMENTAL TIMING (added 2026-08-23 per MECH-496 / INV-101): the topology
+    statistic must be read either AFTER representational structure has stopped changing,
+    or as a trajectory ACROSS the change. A system whose bucket structure is still
+    plastic will read as poor relational agreement on any static snapshot, and that
+    reading is an artifact of TIMING, not evidence against the objective -- so a run that
+    omits this precondition can produce a false FALSIFYING result. If no crystallisation
+    schedule exists in the substrate (TRUE AT REGISTRATION: ContextMemory(num_slots=16) is
+    a fixed nn.Module buffer with no growth or allocation policy), record the structure at
+    a declared, fixed training point and state that point explicitly, so the snapshot is
+    at least comparable across arms. See MECH-496's own what_would_answer precondition
+    (iii) -- do not re-derive it.
   notes: >
     Registered 2026-08-20 from the 2026-08-19 raw thought "Hippocampal episodic
     organisation beyond trajectory generation". Full novelty analysis, including why
@@ -83493,6 +83585,103 @@
     emitted by every sleep-pass driver (v3_exq_242/243/245/245a/245b/246 share the shape),
     so any criterion pre-registered on it inherits the objective question as well as the
     already-documented whole-bank measurement confound.
+
+- id: MECH-496
+  title: >
+    Representational dimensionality is an OUTCOME of a developmental plasticity schedule,
+    not an a-priori architectural constant: the number and granularity of memory buckets
+    (ContextMemory slots, and any analogous discrete representational partition) must
+    itself be plastic during an open window and reduce in plasticity as the encountered
+    environment's latent structure is resolved. The INV-074 / MECH-333 / MECH-334
+    critical-period shape -- open window, competitive establishment, closure /
+    crystallisation -- is currently specified ONLY over the SCORING / POLICY plane
+    (behavioural diversity vs winner-take-all capture); this claim asserts the same
+    schedule is required over REPRESENTATIONAL STRUCTURE. Corollary bearing on
+    measurement: a differentiation-family objective is not merely mis-targeted (MECH-495)
+    but ILL-DEFINED under variable dimensionality, since separation can always be
+    increased by adding buckets, so the objective degenerates into "use more slots"; and
+    any fixed-N spread statistic (sws_slot_diversity over 16 slots, emitted by 29
+    experiment drivers) presupposes the very structure that should be the outcome.
+    Substrate state at registration: ContextMemory(num_slots=16) at
+    ree-v3/ree_core/predictors/e1_deep.py:36 is a fixed nn.Module buffer with no growth,
+    no allocation policy and no environment conditioning.
+  claim_type: mechanism_hypothesis
+  subject: memory.representational_dimensionality_crystallization
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-23"
+  depends_on:
+    - MECH-154
+    - MECH-334
+    - MECH-495
+  related_claims:
+    - INV-074
+    - INV-101
+    - MECH-333
+    - MECH-166
+    - SD-017
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (mandatory).
+    (i) The store must be recruiting more than one slot before ANY dimensionality
+    statistic is computed -- V3-EXQ-436f found 3/5 seeds occupying exactly 1 of 16 slots
+    despite 2,837-4,903 write() calls each. A single-slot store has no dimensionality to
+    measure. This INHERITS MECH-495's precondition (i); do not re-derive it.
+    (ii) num_slots must actually be VARIED. The claim is about dimensionality as an
+    OUTCOME, so a single fixed-N run cannot address it in either direction.
+    (iii) The schedule must be OBSERVABLE: whether the effective number of distinct
+    buckets in use CHANGES over training must be recorded per-episode, not only at the
+    end. A single end-of-training snapshot cannot distinguish "crystallised at N" from
+    "was always N", and the distinction is the claim.
+
+    CONFIRMING: with num_slots varied across a range spanning under- and
+    over-provisioning relative to the environment's ground-truth latent-context count --
+    (a) the effective bucket count in use converges toward the GROUND-TRUTH count rather
+    than toward num_slots; (b) that convergence is non-monotone in plasticity -- high
+    early, reducing -- rather than flat; and (c) downstream generalisation /
+    discrimination is FLAT with respect to num_slots over the range where (a) holds.
+    (c) is the LOAD-BEARING leg: it is the claim that the architecture is insensitive to
+    a constant which is currently hand-set.
+
+    FALSIFYING: effective bucket count tracks num_slots rather than the environment (the
+    store simply fills what it is given); OR downstream performance is MONOTONE in
+    num_slots (more is just better, so dimensionality is a capacity parameter and not a
+    structure to be resolved); OR the effective count is FLAT across training (no
+    schedule, so crystallisation is doing no work even if the final count happens to be
+    right).
+
+    CHEAPEST FIRST STEP -- A PROBE, NOT A BUILD. Treat num_slots as a declared
+    experimental variable rather than a constant and re-run the V3-EXQ-436 lineage across
+    a small sweep. If the 436-lineage results are STABLE across num_slots, the
+    dimensionality question is not currently load-bearing and this claim can wait; if they
+    MOVE, it is. This is `complex (probe-gated)` work resolving to `puzzle (known rules)`,
+    NOT the `complicated (buildable)` self-sizing-memory build, and must not be routed as
+    the latter. Registered as a proposal at intake; see manual_proposals.v1.json.
+
+    NOT ANSWERED BY: any run at a single fixed num_slots, however well designed --
+    including MECH-495's own 2x2, unless that 2x2 is itself swept over num_slots.
+  notes: >
+    Registered 2026-08-23 from the raw thought
+    docs/thoughts/2026-08-23_memory-dimensionality-crystallisation.md, arising in
+    conversation during the /governance cycle of 2026-08-22 (session bold-chaum-7e245c)
+    out of GFLAG-0047, the open ContextMemory write-selection DV fork. Structured intake:
+    evidence/planning/thought_intake_2026-08-23_memory-dimensionality-crystallisation.md.
+    RELATION TO THE EXISTING CRITICAL-PERIOD CLUSTER: INV-074 / MECH-333 / MECH-334 /
+    ARC-076 / MECH-335 / MECH-484 already specify the open-then-crystallise schedule, but
+    entirely over the scoring/policy plane. This claim is the representational-structure
+    analogue and is NOT a duplicate of any of them; it depends on MECH-334 (the closure
+    half), which itself currently reads epistemic_category substrate_ceiling with
+    ceiling_decision deferred -- so this claim inherits that block for its full form,
+    which is exactly why the probe above is scoped to need neither.
+    CATEGORY REASONING: substrate_conditional, NOT substrate_ceiling. No allocation policy
+    exists at all, so the mechanism has never been exercised and zero evidence is banked
+    in either direction -- that is the substrate_conditional definition. Do not re-file it
+    as a ceiling without a run that actually exercised a variable-dimensionality store.
+    PHASE REASONING: v3 follows the dependency (MECH-334 is v3) per the standing
+    phase-label-follows-dependency rule. If governance judges the self-sizing build to be
+    V4, the label moves with it -- flagged at registration rather than silently assumed.
 
 - id: Q-094
   title: >

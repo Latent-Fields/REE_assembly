@@ -2239,6 +2239,37 @@
       "backlog_id": "EVB-0596",
       "executed_by": "V3-EXQ-901",
       "executed_queue_id": "V3-EXQ-901"
+    },
+    {
+      "proposal_id": "EXP-0588",
+      "claim_id": "MECH-496",
+      "related_claims": [
+        "INV-101",
+        "MECH-495",
+        "MECH-154",
+        "MECH-334",
+        "SD-017",
+        "MECH-166",
+        "ARC-045"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "parameter_sweep",
+      "seed_policy": "matched_shared_seeds",
+      "require_pre_registered_thresholds": true,
+      "objective": "PROBE, NOT A BUILD. Establish whether ContextMemory's slot count is a load-bearing experimental variable or an inert constant, by treating num_slots as a declared sweep dimension rather than the hard-coded 16 it has always been (ree-v3/ree_core/predictors/e1_deep.py:36, a fixed nn.Module buffer with no growth and no allocation policy). This is MECH-496's own CHEAPEST FIRST STEP clause and is deliberately scoped BELOW the claim it serves: it does NOT build a self-sizing memory, does NOT implement a crystallisation schedule, and cannot confirm or falsify MECH-496 or INV-101. It answers one prior question -- if the V3-EXQ-436 lineage's results are STABLE across num_slots, the dimensionality question is not currently load-bearing and both claims can wait; if they MOVE, it is, and the full variable-dimensionality programme is worth its cost. Work-graph debt class: complex (probe-gated) resolving to puzzle (known rules).",
+      "design": "Re-run a representative slice of the V3-EXQ-436 lineage across a small num_slots sweep (suggested 4 / 8 / 16 / 32; 16 is the incumbent and is the reference arm, not a baseline to beat), matched seeds across arms, everything else held identical. Report per-arm: n_occupied_slots, the EFFECTIVE number of distinct buckets in use, write() call counts, and whatever DV the chosen 436-lineage member already scored on -- recomputed identically per arm. RECORD OCCUPANCY PER-EPISODE, not only at the end: MECH-496 precondition (iii) turns on whether the effective count CHANGES over training, and an end-of-run snapshot cannot see that. This costs nothing extra here and is the only part of the probe that also yields evidence toward the full claim. DELIBERATELY OUT OF SCOPE: any new differentiation metric, any change to the write path, and any attempt at MECH-495's 2x2 -- the latter needs ground-truth latent-context labels the current environments do not expose, and is separately gated on the open GFLAG-0047 DV fork.",
+      "acceptance_checks": [
+        "NON-DEGENERACY (mandatory, blocks the read either way): every arm must occupy >= 2 slots on >= 3/5 seeds before any cross-arm comparison is made. V3-EXQ-436f found 3/5 seeds at exactly 1 of 16 slots despite 2,837-4,903 write() calls; a single-slot store has no dimensionality and the sweep would compare nothing. Inherits MECH-495 precondition (i) and MECH-496 precondition (i) -- do not re-derive.",
+        "CONFOUND GUARD: write() call counts must be matched across arms, or the difference reported explicitly. An apparent dimensionality effect that is really a capacity effect is the confirmed V3-EXQ-429 defect shape, where an untouched bank cleared a differentiation threshold at P=1.0000 because the statistic tracked bank size rather than organisation.",
+        "STABLE (the null, and a fully informative outcome): the 436-lineage DV is flat across num_slots within seed noise. Read as: dimensionality is not currently load-bearing; MECH-496 and INV-101 stay substrate_conditional and are not worth building for yet. This is a PASS of the probe, not a failure of the claims.",
+        "MOVES: the DV varies systematically with num_slots. Read as: the incumbent 16 is a load-bearing unexamined constant, and every 436-lineage result -- plus anything else gated on sws_slot_diversity, emitted by 29 experiment drivers -- is conditional on it. Routes to /governance, NOT straight to a build.",
+        "REPORT-ONLY diagnostic, gates nothing: per-episode effective-bucket-count trajectory per arm. Flat across training would be early evidence against MECH-496's schedule leg; it is recorded rather than gated on because this probe is not powered to decide it."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-23T01:31:49Z",
+      "notes": "Minted 2026-08-23 at thought-intake alongside the registration of MECH-496 and INV-101 (raw thought: docs/thoughts/2026-08-23_memory-dimensionality-crystallisation.md; intake: evidence/planning/thought_intake_2026-08-23_memory-dimensionality-crystallisation.md). User-approved at intake. SCOPE DISCIPLINE, stated because the failure mode is predictable: this proposal must NOT be widened into the self-sizing-memory build. That build sits on MECH-334, which currently reads epistemic_category substrate_ceiling with ceiling_decision deferred, and REE has a documented pattern of ceiling claims parking indefinitely. The whole point of this probe is that it needs neither MECH-334 nor any new substrate, and its NULL result is as useful as its positive one."
     }
   ]
 }
