@@ -802,3 +802,84 @@ most-followed text in the repo. Higher effort, materially higher risk.
 **The larger remaining prize is elsewhere:** `metaworker-dispatch` SKILL.md at ~25,415 tok
 marker-based, which is a ~14% floor cut on every dispatcher tick on its own. It must be done
 inside chunk 1's session, which already claims both copies of that file.
+
+---
+
+# STEP 3 EXECUTED -- sentence-level split inside the numbered protocol steps (`REE_Working` a06d6211)
+
+User-authorised 2026-08-24, discharging `chip-20260823-claudemd-residual-sentence-level-split`.
+This is the hard kind the two earlier passes deliberately stopped short of.
+
+    CLAUDE.md   199,093 -> 195,981 B    ~70,852 -> ~69,744 tok    -1,107 tok
+
+**DAY TOTAL: 244,947 -> 195,981 B, ~87,170 -> ~69,744 tok = 17,426 tokens off EVERY session
+in this repo (20.0% of the file).** Archaeology: 58 entries.
+
+Four lines trimmed (A-55..A-58): the bot-identity note in step 4, `close --claimed-at` and
+`dedupe` in step 5, and the whole of step 7 (the stash audit). Each was replaced by hand-written
+kept text carrying every instruction, command, flag and prohibition, plus a pointer.
+
+**A different and stronger arrangement than the block moves:** each entry holds the **ORIGINAL
+LINE VERBATIM**, so every trim can be audited against its own source. A block move was
+self-contained -- what moved was all that moved. A sentence-level trim rewrites the line that
+stays, so the source has to be preserved or the rewrite is unauditable.
+
+## The finding, and it is the reason to stop here
+
+**Yield is roughly a third of block splitting, and pointer overhead is why.** 7,240 B of source
+became 4,128 B of kept text plus pointers -- a net 3,112 B / ~1,107 tok. A pointer costs ~250 B,
+which was a rounding error against a 2,400 B block move and is a large fraction of a
+sentence-level trim.
+
+| pass | kind | net tok recovered | per line/block touched |
+|---|---|---|---|
+| step 1, `Claim-first` | block moves | 5,508 | ~344 |
+| step 2, `Session Startup` | block moves | 5,147 | ~368 |
+| **step 3, numbered steps** | **sentence-level** | **1,107** | **~277** |
+
+The per-unit figure understates the gap because a sentence-level trim costs far more *effort* per
+unit: each line needs the operative half rewritten by hand and re-verified, where a block move is
+a decision plus a cut.
+
+**If continuing, batch the pointers**: one `> **Background:**` line per numbered step covering
+several `A-nn` entries, rather than one per trimmed line. Three of these four trims sit inside
+one step and could have shared a pointer, recovering ~500 B of the ~1,000 B spent on pointers.
+
+## Verification (all passed)
+
+All four originals byte-identical in their entries · every command, flag and path still inline
+(`task_claim.py dedupe --session-id`, `audit_stashes.py`, `--claimed-at <iso>`, `--personal`,
+`ree_bot_identity.sh`, the `stash-archive` tag form, the triage doc, the Phase 2d pointer) ·
+all five prohibitions still inline (*do NOT hand-export*, *Never drop one on a judgement call*,
+*never merges or guesses*, *Never hand-edit*, *still never guesses*) · numbered steps 1-8 intact
+and in order · all 58 pointer links resolve.
+
+## Held-out check (GOV-HELDOUT-1)
+
+Run in the form that tests a split -- *does the trimmed inline text alone give the right call
+WITHOUT following the pointer?*
+
+1. **A session closing a claim whose `session_id` holds two entries.** Old: the flag plus the
+   2026-08-18 incident and the 5549-revision measurement. New: the flag, the refusal behaviour,
+   and *de-duplicate first, then close normally*. Same call. **PASS.**
+2. **A session finding an unexplained stash.** Old: two incident narrations around the command.
+   New: the command, *this is a loss check not hygiene*, the scan instruction, and the
+   **Never drop one on a judgement call** prohibition with the containment doc and archive-tag
+   form. Same call. **PASS.**
+3. **A session committing a claim during clinical hours.** Old: the 2026-07-27 change plus its
+   rationale and test inventory. New: *do NOT hand-export*, the `--bot` default, `--personal` as
+   the escape hatch, and the authorship-only scope. Same call. **PASS.**
+
+**Residual risk, stated not mitigated:** these trims rewrite the surviving sentence, so a future
+reader cannot tell by inspection that anything was removed -- unlike a block move, where the gap
+is visible. The mitigation is that the entry holds the original line verbatim, which makes the
+trim auditable *if someone looks*. That is adoption-dependent, like every other rule here.
+
+## Landing note
+
+The push was rejected (two `claim: open` commits landed upstream mid-work) and the shared checkout
+was dirty with other sessions' `TASK_CHIPS.json` / `TASK_CLAIMS.json` edits, so `pull --rebase` was
+NOT used. Landed via the documented throwaway-worktree cherry-pick with the bot committer identity,
+then converged with `ref_convergence.py --repo REE_Working`, which proved the local commit
+patch-identical upstream (route A) and moved the ref. Final state: `master...origin/master`, no
+divergence -- a clean end-to-end exercise of the same machinery this programme spent the day on.
