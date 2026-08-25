@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-23T18:16:29Z",
+  "generated_at": "2026-08-25T17:37:31Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -208,7 +208,7 @@
       "build_pct": 83.2
     },
     {
-      "date": "2026-08-23",
+      "date": "2026-08-25",
       "surviving": 68,
       "closure_pct": 71.1,
       "build_pct": 83.2
@@ -3733,7 +3733,7 @@
           "note": "V3-EXQ-935 eliminated H2 and strongly supported H1, and in doing so exposed a rival explanation at a level none of H1-H3 addressed: not WHICH cap value, but WHY a per-agent cap value is needed at all. Pre-registered before any adjudicating run exists (invariant 3a(a) satisfied trivially). NON-CONVERGENCE, stated plainly: this is the THIRD growth event on this question across three autopsies (2026-08-13, 2026-08-16, 2026-08-18). The denominator is growing while the surviving set has only now taken its first elimination -- the campaign has not converged."
         }
       ],
-      "fanout_growth_note": "Three fan-out growth events across three autopsies (2026-08-13 registration, 2026-08-16, 2026-08-18). Denominator 3 -> 4 while eliminations stand at 1. Read the headline narrowing ratio for this question with that in mind: it is inflated by growth, not only by narrowing. Same-family growth is flagged honestly -- H4 shares the `constitution` family with the just-eliminated H2; see H4's basis for why it is refinement (H4 presupposes H2's refutation) rather than circling.",
+      "fanout_growth_note": "Three fan-out growth events across three autopsies (2026-08-13 registration, 2026-08-16, 2026-08-18). Denominator 3 -> 4 while eliminations stand at 1. Read the headline narrowing ratio for this question with that in mind: it is inflated by growth, not only by narrowing. Same-family growth is flagged honestly -- H4 shares the `constitution` family with the just-eliminated H2; see H4's basis for why it is refinement (H4 presupposes H2's refutation) rather than circling. CIRCLING VERDICT REVIEWED 2026-08-25 (mech266_circling_review_20260825.md, session mech-266-rescore-circling-2d31ca): the mechanical `convergence.convergence_class` for this qid reads `circling` (H4's axis `substrate` maps to the same `constitution` family as the just-eliminated H2's axis `intrinsic-architecture`, per axis_families.map). Applying the axis_families `_explanandum_blindness_caveat` operational rule (convergence_class tracks intervention LOCUS only, not EXPLANANDUM, so a legitimate re-pose that keeps its loci will necessarily score `circling`): H2's explanandum was 'can the discrete register produce graded occupancy AT ALL' (refuted -- yes, per V3-EXQ-935's dose-response); H4's explanandum is 'given that it can, WHY does producing it require a per-agent-tuned constant' (a question about the upstream gain stage that presupposes H2's refutation, per H4's own basis). Different explananda, same locus -- this is exactly the caveat's worked-instance shape (competence_floor H-consummation-binding). Independently re-derived rather than taken on the pre-registration's own say-so: CONFIRMED as a false-positive circling read, not a re-derive-brake smell. Do not re-litigate this from the bare `circling` classifier output alone.",
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
       "convergence": {
@@ -3817,7 +3817,7 @@
           "evidence_runs": [
             "V3-EXQ-935"
           ],
-          "basis": "Pre-registered at fan-out. | 2026-08-18 (V3-EXQ-935): STAYS ALIVE, basis updated. 935 replaced the corrupting min-across-arms non-vacuity gate and the mode-agnostic dwell statistic with per-seed readiness anchors and a mode-specific occupancy fraction -- and still found real graded structure, so instrument ill-posedness is not the whole story and the family is not confirmed. But 935 exhibits a NEW defect of the SAME family: its H-KNIFE aliasing control was computed and recorded (graded_at_some_r_fraction) yet marked INFO_ONLY and never consulted by the routing, which falls through a bare `else` to H-IDIO with no H-KNIFE branch; and its route_reason asserts 'no_common_normalised_rule_outperformed_the_best_absolute_cap' while c3_beats_best_absolute_cap is true. That is the second factually-false route_reason in this lineage in five days. The family is therefore neither eliminated nor confirmed.",
+          "basis": "Pre-registered at fan-out. | 2026-08-18 (V3-EXQ-935): STAYS ALIVE, basis updated. 935 replaced the corrupting min-across-arms non-vacuity gate and the mode-agnostic dwell statistic with per-seed readiness anchors and a mode-specific occupancy fraction -- and still found real graded structure, so instrument ill-posedness is not the whole story and the family is not confirmed. But 935 exhibits a NEW defect of the SAME family: its H-KNIFE aliasing control was computed and recorded (graded_at_some_r_fraction) yet marked INFO_ONLY and never consulted by the routing, which falls through a bare `else` to H-IDIO with no H-KNIFE branch; and its route_reason asserts 'no_common_normalised_rule_outperformed_the_best_absolute_cap' while c3_beats_best_absolute_cap is true. That is the second factually-false route_reason in this lineage in five days. The family is therefore neither eliminated nor confirmed. | 2026-08-25T10:53:11Z (mech266_h3_rescoring_20260825.md, zero-cost re-score of the ORIGINAL banked 464e/467e data this leg was pre-registered against -- the probe the leg names had never actually been executed until now; 935 above is a different, new run, not this re-scoring). Declared null (\"re-scoring changes no verdict\") REFUTED on both targets. Readiness gate: regime-conditioned occupancy (sticky arm for 464e, r=0.10 for 467e, instead of min() across the full sweep) flips NOT-MET -> MET on BOTH runs (464e 0.333->1.000, 467e 0.000->1.000 of guard-passing seeds) -- route_reason=external_task_mode_not_occupied does not survive re-scoring on either run, confirming the cluster autopsy Section 2 claim quantitatively rather than only narratively. 467e load-bearing C1/C2 (dwell-based) flip from a definite FAIL (3/3 seeds) to UNDECIDABLE (3/3 seeds) under occupancy-conditioned dwell: at most one ratio arm per seed ever has a genuine external_task-dwell reading (occ>=0.9), so no same-mode comparison across r exists in the banked data -- the original FAIL compared external_task dwell at r=0.10 against internal_planning dwell at r>=0.50 (M3), not a real test of the hysteresis prediction. 464e load-bearing C1/C2 are UNCHANGED (pass 3/3, degenerate 2/3 seeds both before and after) -- never dwell-based, so M1/M3 correctly do not touch them: not every verdict in the cluster was an instrumentation artifact. Net: H3 SUPPORTED on the specific banked data it was pre-registered against, complementary to (not redundant with) the 2026-08-18 finding that 935 own corrected instrument still uncovered real graded structure. Stays ALIVE -- neither eliminated (real defects confirmed here) nor confirmed as sole cause (935 shows graded structure survives correction too).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -3828,7 +3828,7 @@
           "axis": "substrate",
           "state": "alive",
           "evidence_runs": [],
-          "basis": "Pre-registered 2026-08-18 as labelled fan-out growth; probe-gated on a /lit-pull commission, adjudicating experiment not yet queued.",
+          "basis": "Pre-registered 2026-08-18 as labelled fan-out growth. UPDATED 2026-08-25: the /lit-pull probe-gate is satisfied by existing corpus (targeted_review_connectome_mech_439, targeted_review_sd_082, targeted_review_striatal_gain_control_bounding -- see leg basis for the entry-level citation); no new lit-pull commission is owed. Still ALIVE -- the biological case being established is not itself an adjudicating run. Adjudicating experiment (a substrate proposal replacing the clip with a normalising stage, tested against the H1-confirmation regime) not yet queued; blocked behind V3-EXQ-935a (H1 confirmation) so the operating point it would be compared against is settled first.",
           "children": [],
           "met_elimination_bar": false
         }
