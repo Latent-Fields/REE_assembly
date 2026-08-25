@@ -85380,3 +85380,303 @@
     post-perturbation change as causal without a matched unperturbed sibling replay; COMPLIANT
     when a perturb/restore/replay/compare cycle against a matched sibling is actually run.
   evidence: []
+
+- id: MECH-507
+  title: >
+    E1's persistent context should be reframed as an explicit RECIPROCAL compression/decompression
+    bridge, not merely a latent representation with compression left implicit inside ordinary
+    representation learning: high-dimensional experience, autobiographical history, and body state
+    compress into a lower-dimensional organising state z_t, and z_t decompresses into higher-
+    dimensional predictions and candidate sensorimotor futures. Compression is what makes
+    different high-dimensional situations become functionally equivalent when they imply
+    sufficiently similar action-relevant consequences; decompression is what turns that summary
+    back into usable prospective content for downstream planning.
+  claim_type: mechanism_hypothesis
+  subject: e1.compression_decompression_bridge
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - ARC-001   # E1 is the persistent predictive substrate -- this claim proposes a specific reciprocal operation (compress then decompress) as E1's internal form, not a new module
+    - MECH-150  # ContextMemory queried with z_world alone -- the existing compression-side wiring this claim generalizes into an explicit bidirectional bridge
+    - MECH-029  # hippocampal module generates candidate trajectories from E1-adjacent state -- downstream CONSUMER of the decompression half this claim names; distinguished-from: MECH-029 is about trajectory generation and E3 scoring, this claim is about the compression/decompression STRUCTURE that would feed it
+    - MECH-493  # context inference as an active persistent loop -- distinguished-from: MECH-493 specifies the CONTROL LOOP that selects/switches active context; this claim proposes the INTERNAL FORM (compressed generative state) that loop would operate over, not the loop itself
+  location: docs/architecture/e1.md#mech-507
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25 from the raw thought's candidate mechanism 1, itself prompted by
+    Barrett & Miller, "Categorization is 'baked' into the brain," Nature Reviews Neuroscience
+    27:435-456 (2026), DOI 10.1038/s41583-026-01036-2 (biological/computational cross-check, NOT
+    substrate evidence -- see feedback_lit_exp_decoupled: literature and experimental evidence are
+    not co-equal). Distinct from MECH-496/INV-101 (the memory-dimensionality-crystallisation
+    intake, 2026-08-23): those claims are about the DEVELOPMENTAL schedule and environment-
+    conditional TARGET of bucket COUNT/capacity; this claim is about the momentary compress-then-
+    decompress OPERATION itself, orthogonal to how many buckets exist. Distinct from the offline-
+    representational-reindexing intake (2026-08-24, not yet processed as of this registration):
+    that thought addresses what happens when representational PRIMITIVES change and must be
+    reindexed; this claim supplies a candidate UPSTREAM REASON such reindexing becomes necessary
+    (the compression/decompression structure itself changing). DO NOT build in V3 and DO NOT queue
+    a V3 experiment -- no explicit decompression head exists in ree_core; ContextMemory read/write
+    today is a fixed-slot lookup with no generative decompression stage.
+
+- id: MECH-508
+  title: >
+    An REE attractor is best formalised as a compressed, history-conditioned GENERATIVE
+    DISPOSITION defining a family and probability distribution over possible sensorimotor
+    trajectories -- not a stored proposition (e.g. "this is threat") and not a fixed memory
+    object -- whose precision controls how strongly it constrains interpretation and future
+    generation, and into which incoming precision-weighted evidence may select, modify, or (if
+    sufficiently consequential) remodel or displace. Its pathology separates into two independent
+    failure axes that can co-occur but must not be conflated: EXCESSIVE PRECISION (the attractor
+    is treated as extremely certain, strongly constraining interpretation/retrieval/generation --
+    the "perceptual lens" failure, where material the attractor itself generates or biases gets
+    counted as independent confirming evidence) and EXCESSIVE COMPRESSION (too many distinct
+    situations are collapsed into one action-relevant equivalence class, independent of how
+    confident the system is in that collapsed class).
+  claim_type: mechanism_hypothesis
+  subject: attractor.compressed_generative_disposition
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-507  # the compression/decompression bridge this definition is the attractor-level instance of
+    - MECH-112  # goal_state_attractor -- distinguished-from: MECH-112 asserts a POSITIVE attractor must exist in z_world/z_goal; this claim is a REPRESENTATIONAL redefinition of what any attractor (goal or threat) computationally IS, orthogonal to valence
+    - MECH-075  # BG dopaminergic gain/threshold setting on hippocampal attractor dynamics -- distinguished-from: MECH-075 is about a modulatory MECHANISM (BG gain) acting on attractor basin width; this claim is about the REPRESENTATIONAL FORM of the attractor being modulated
+    - MECH-076  # residue as structural deformation of hippocampal map topology (OCD = attractor lock-in) -- consumer: this claim's "excessive precision" failure axis is the computational form of that lock-in
+  location: docs/architecture/hippocampal_systems.md#mech-508
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25. Sharpens rather than duplicates the existing ~198 attractor
+    references in this registry: those are almost entirely about attractor DYNAMICS (basin depth,
+    gain, threshold, flattening) within an assumed representational substrate; this claim is a
+    proposal about what the representational substrate IS. The two-failure-axes distinction
+    (excessive precision vs excessive compression) is new: it gives a computational-psychiatry
+    coordinate system distinct from precision alone, and generates a direct experimental
+    dissociation (hold confidence constant while varying equivalence-class breadth, and vice
+    versa) named in the source thought's "Precision versus compression dissociation" candidate
+    experiment. Precision here is the SAME channel MECH-508 shares a boundary with MECH-510
+    (dual precision routing) on -- MECH-510 supplies the mechanism by which "excessive precision"
+    could be independently routed from error-trust; this claim states the definitional/failure-
+    mode consequence, not the routing mechanism itself. DO NOT build in V3 and DO NOT queue a V3
+    experiment -- this is a representational redefinition with no dedicated substrate change
+    proposed yet; the dissociation experiment requires MECH-512 (momentary compression depth) to
+    exist as an independently-controllable variable first.
+
+- id: MECH-509
+  title: >
+    A cheap, E1-context-conditioned decompression stage should generate a structured POSSIBILITY
+    FIELD -- a proposal distribution over plausible sensorimotor futures, P(possible futures |
+    z_t, current context) -- from which a SMALLER NUMBER of candidate trajectories are sampled
+    for expensive hippocampal/E2 rollout, rather than rollout sampling from an unconstrained
+    space. The possibility field is a computational claim about staging (cheap generative field
+    BEFORE expensive trajectory simulation), not a claim that an explicit long-horizon rollout
+    mechanism has been biologically identified.
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.pre_rollout_possibility_field
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-507  # the compression/decompression bridge -- this claim is the specific hippocampal-facing consumer of the decompression half
+    - SD-038    # HippocampalModule CEM trajectory sampling with anti-recency exploration bonus -- distinguished-from: SD-038 governs how the EXISTING proposal distribution is re-weighted during CEM iterations to avoid recency capture; this claim is about where that initial proposal distribution COMES FROM (an E1-context-conditioned decompression stage) before CEM operates on it
+    - MECH-029  # hippocampal module generates candidate trajectories, E3 scores them -- consumer: this claim proposes an additional cheap staging layer upstream of that generation step
+  location: docs/architecture/hippocampal_systems.md#mech-509
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25. REE already has hippocampal CEM trajectory sampling (SD-038) with a
+    proposal distribution, so this claim is NOT "REE lacks candidate-trajectory generation" --
+    it is narrower: that the proposal distribution CEM samples from and refines should itself be
+    DERIVED from E1's compressed context via an explicit decompression step, rather than starting
+    from an unconditioned/generic prior. Candidate experiment named in the source thought
+    ("Possibility-field efficiency"): compare unconstrained hippocampal candidate generation
+    against candidate generation sampled from a decompressed low-dimensional possibility field,
+    measuring compute cost, candidate diversity, coverage, and behavioural performance. DO NOT
+    build in V3 and DO NOT queue a V3 experiment yet -- MECH-507's decompression stage does not
+    exist as a buildable component; if a /governance cycle judges the decompression head
+    cheaply buildable on top of the existing SD-038 CEM machinery, phase may move with it
+    (phase-follows-dependency), flagged here rather than assumed.
+
+- id: MECH-510
+  title: >
+    Prediction precision -- how strongly a generative attractor constrains interpretation and
+    proposal generation -- and prediction-error precision/salience -- how much a discrepancy is
+    trusted to drive correction or learning -- are separable control-plane quantities that need
+    not move together and should be routable independently. An overprecise prediction combined
+    with underweighted error produces capture (the attractor dominates regardless of contrary
+    evidence); noisy but highly salient errors can produce instability (the system is destabilised
+    by unreliable discrepancies). REE already treats precision as heterogeneous rather than
+    scalar (MECH-043, MECH-054); this claim proposes GENERATIVE/interpretive precision as a
+    further, independently-routable axis distinct from both the unsigned-error channel MECH-043
+    names and the signed harm/benefit valence split MECH-054 names.
+  claim_type: mechanism_hypothesis
+  subject: precision.generative_vs_error_routing
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-043  # dopamine-like precision-weighting for UNSIGNED prediction errors, feeding E3 commitment gate -- distinguished-from: MECH-043's current_precision is an ERROR-TRUST channel (how much a discrepancy is believed); this claim's generative-precision axis is about how strongly the ATTRACTOR/PREDICTION ITSELF constrains interpretation, a distinct quantity that could in principle move independently
+    - MECH-054  # signed harm/benefit prediction-error precision channels remain distinct -- distinguished-from: MECH-054's axis is VALENCE (harm vs benefit channel separation); this claim's axis is GENERATIVE-vs-ERROR (interpretive confidence vs correction-trust), orthogonal to valence
+    - MECH-508  # prospective attractor definition -- this claim supplies the mechanism by which MECH-508's "excessive precision" failure axis could be independently diagnosed/routed from ordinary error-trust precision
+  location: docs/architecture/precision_control.md#mech-510
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25. NOT a claim that REE treats precision as scalar today -- the source
+    thought is explicit that REE "already treats precision as heterogeneous," and the registry
+    confirms it (MECH-043 unsigned-error channel, MECH-054 signed harm/benefit split). The
+    genuinely new piece is a THIRD axis -- generative/interpretive precision, distinct from both
+    -- and the claim that it should be independently measurable and independently perturbable,
+    matching MECH-027's non-degeneracy standard for control-plane channel claims. DO NOT build in
+    V3 and DO NOT queue a V3 experiment -- no generative-precision channel distinct from
+    current_precision (MECH-043) exists in ree_core/predictors/e3_selector.py today; a dedicated
+    channel would need to be added before this is testable.
+
+- id: MECH-511
+  title: >
+    Durable ("deep") revision of E1 or a deep attractor should be gated by a LEARNING ELIGIBILITY
+    function of (error, error precision, predicted future/control relevance, organism-or-other
+    consequence, evidence provenance, current mode) -- not by raw error magnitude alone.
+    Candidate routing: low-consequence mismatch -> local correction; significant mismatch ->
+    retained as pending integration material; high-confidence/high-consequence mismatch -> waking
+    adaptation and active information-seeking; contradiction of a deep attractor -> preserve and
+    contest rather than immediately rewrite; accumulated or structurally important contradiction
+    -> counterfactual reprocessing and possible offline revision. Whether a deep update actually
+    occurred should be measured by whether the EQUIVALENCE CLASSES an attractor uses to generate
+    future possibilities changed, not merely by whether stored content changed -- a corollary
+    measurement criterion, since content can change without the generative structure changing.
+  claim_type: mechanism_hypothesis
+  subject: learning.deep_update_eligibility_function
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-027  # pathological modes reflect mis-tuned control-plane regimes -- names "learning eligibility" as one of five control-plane channels WITHOUT specifying its internal structure; distinguished-from: this claim supplies that internal formula and routing table, MECH-027 only requires the channel be independently measurable/perturbable
+    - MECH-043  # unsigned prediction-error precision -- supplies the error-precision term this claim's eligibility function takes as one input
+    - MECH-261  # mode-conditioned write gate (referenced via context_memory write-path claims) -- distinguished-from: MECH-261 gates WHICH SUBSTRATES CAN WRITE per operating mode; this claim's eligibility function is a finer-grained per-event gate on WHETHER a specific mismatch earns durable write within an already-open channel
+    - MECH-508  # prospective attractor definition -- this claim's equivalence-class-change measurement criterion is the operational test for whether MECH-508's generative disposition was actually revised
+  location: docs/architecture/precision_control.md#mech-511
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25, folding the source thought's candidate mechanisms 5 (deep-update
+    eligibility) and 8 (compression-history dependence -- the equivalence-class measurement
+    criterion) into one claim, since 8 is the operational test for whether 5's eligibility
+    function actually fired. Distinguished from MECH-365's provenance-bearing event token and
+    MECH-094's simulation/real write profile: those gate WHAT CONTENT enters the record and with
+    what provenance tag; this claim gates WHETHER a given mismatch, once admitted, earns access
+    to DEEP (attractor-structure-altering) revision versus staying a local correction. DO NOT
+    build in V3 and DO NOT queue a V3 experiment -- no future/control-relevance estimator or
+    organism/other-consequence channel feeds a learning-eligibility gate in ree_core today;
+    MECH-027's five named channels remain unimplemented as a coordinated set.
+
+- id: MECH-512
+  title: >
+    The level of abstraction / compression depth selected when compressing experience into an
+    attractor or context representation is a MOMENTARY, functionally consequential control
+    variable -- too much compression overgeneralises (distinct contexts collapsed into one
+    action-relevant class); too little compression prevents useful generalisation and leaves the
+    system overly concrete or uncertain. This momentary compression-depth axis is separable both
+    from prediction confidence/precision (MECH-510) and from total representational CAPACITY --
+    distinguished explicitly from MECH-496/INV-101's slower DEVELOPMENTAL crystallisation of
+    bucket COUNT: MECH-496/INV-101 concern how many buckets an architecture resolves to over a
+    training-scale critical-period schedule; this claim concerns how much a GIVEN instance of
+    compression discards versus retains at inference time, which could vary moment to moment even
+    under a fixed bucket count.
+  claim_type: mechanism_hypothesis
+  subject: representation.momentary_compression_depth
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-496  # representational dimensionality as a developmental crystallization OUTCOME -- distinguished-from: MECH-496 is about bucket COUNT resolving over TRAINING TIME; this claim is about compression DEPTH varying at INFERENCE TIME, orthogonal axes that could both be true simultaneously
+    - INV-101   # crystallisation target is environment-conditional -- distinguished-from: same developmental/momentary distinction as MECH-496; INV-101 is the invariant form of that developmental claim
+    - MECH-510  # generative-vs-error precision routing -- distinguished-from: MECH-510 is about CONFIDENCE in a prediction; this claim is about BREADTH of the equivalence class the prediction is generated over, an explicitly separate axis per the source thought
+    - MECH-451  # intermediate finer-channel-granularity selection-gating -- distinguished-from: MECH-451's "granularity" is about splitting an E3 arbitration SCORE-BIAS blend into separately-learnable channels (conversion-ceiling / F-dominance work); unrelated subject despite the shared word -- flagged to prevent future confusion, not because the mechanisms overlap
+  location: docs/architecture/e1.md#mech-512
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25 from the source thought's candidate mechanism 6, explicitly flagged
+    there as "distinct from both memory capacity and confidence." Supplies the "excessive
+    compression" half of MECH-508's two-failure-axes distinction as an independently-controllable
+    variable: MECH-508 states the failure MODE, this claim proposes the CONTROL VARIABLE whose
+    mistuning produces it. Registered narrowly against MECH-496/INV-101 specifically because a
+    registry search at intake found those two as the nearest-sounding existing claims (same
+    2026-08-23 sibling intake, same author-session date-adjacency) and confirmed by full read
+    that both are about the DEVELOPMENTAL/CAPACITY axis, not the momentary/functional one this
+    claim asserts. DO NOT build in V3 and DO NOT queue a V3 experiment -- no compression-depth
+    knob exists at any timescale in ree_core/predictors/e1_deep.py today; MECH-496 has to land an
+    allocation policy before a momentary variant of the same idea is buildable.
+
+- id: INV-103
+  title: >
+    No injection may directly set the truth-state of E1. External injections -- testimony from
+    another agent, direct sensory evidence, an internally generated counterfactual, and an
+    externally injected datum -- may share representational format without becoming epistemically
+    identical; an injection may supply evidence capable of MODIFYING E1 only through ordinary
+    precision-, provenance-, and learning-eligibility machinery (MECH-043, MECH-511), never by
+    overwriting E1's belief state directly.
+  claim_type: invariant
+  invariant_type: universal
+  subject: e1.non_oracular_evidence_ingestion
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-094  # simulation/real distinction write profile, event_token source_status/committed_vs_imagined schema -- upstream prerequisite this invariant generalizes: MECH-094 already gates INTERNALLY-generated vs REALLY-experienced content; this invariant extends the same non-bypass posture explicitly to EXTERNALLY-SOURCED injected content, which MECH-094's schema does not itself name
+    - MECH-043  # unsigned prediction-error precision feeding E3 commitment gate -- one of the "ordinary precision... machinery" routes this invariant requires injected evidence to pass through
+    - MECH-511  # deep-update eligibility function -- the "learning-eligibility machinery" route this invariant names; an injection with high apparent consequence still must clear MECH-511's eligibility gate, not bypass it via injection alone
+  location: docs/architecture/e1.md#inv-103
+  source:
+    - docs/thoughts/2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+  notes: >
+    Registered 2026-08-25. NAMING COLLISION FLAGGED, not a duplicate: GOV-INTERVENE-1 also uses
+    "oracle"/"non-oracle" terminology, but for a completely different domain -- classifying
+    DIAGNOSTIC INTERVENTIONS used to localise a broken causal edge in an EXPERIMENT (epistemic
+    content x construction axes for causal-sensitivity probes). This invariant is about RUNTIME
+    EVIDENCE INGESTION during ordinary operation: whether an externally-supplied datum can
+    directly overwrite E1's belief state versus only influencing it through the ordinary
+    evidence-weighting pipeline. The two should never be conflated despite the shared vocabulary
+    -- GOV-INTERVENE-1 governs how EXPERIMENTERS classify their own interventions; this invariant
+    governs how E1 itself must be architected to treat ANY external input, inside or outside an
+    experiment. Largely already implemented IN SPIRIT via MECH-094 (source_status schema) and
+    MECH-043 (precision-mediated update), but no dedicated provenance channel exists yet
+    specifically for EXTERNALLY-sourced (non-self, non-simulated) content as distinct from the
+    internally-generated-vs-real distinction MECH-094 already draws -- that gap is the genuinely
+    new piece. DO NOT build in V3 and DO NOT queue a V3 experiment -- candidate experiment named
+    in the source thought ("Non-oracular injection": inject externally supplied information
+    conflicting with a high-precision attractor; verify it does not directly overwrite E1,
+    retains provenance, and can alter the attractor only when evidence weighting and learning
+    eligibility support it) requires an external-injection channel with provenance tagging that
+    does not yet exist in ree_core.

@@ -2887,6 +2887,15 @@
     "type": "invariant",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires (a) a multi-agent environment in which a second,\ngenuinely distinct predictive agent exists (the same MAE-3 substrate blocker that gates\nARC-010/MECH-095's discrimination task -- this claim inherits that block for its DETECTION\nhalf); and (b) within that environment, at least one manipulation in which the second\nagent's behaviour is demonstrably conditioned on the tested agent's own actions/beliefs\n(i.e., genuinely strategic/responsive, not merely another independent stochastic process),\nwith a comparison arm in which the second agent's behaviour is NOT so conditioned (matched\nsurface statistics, e.g. same marginal cue distribution, differing only in whether it\nresponds to the tested agent). Without (b), \"strategically generated\" and \"passively\ngenerated\" evidence are indistinguishable by construction and the test is vacuous -- this\nmirrors INV-012 Leg 4's own non-degeneracy precondition, one level up.\n\nCONFIRMING signature: an agent equipped with other-agent evidential discounting infers\nthe CAUSAL STRUCTURE of the responsive source (that its behaviour is conditioned on the\ntested agent, not merely correlated) at above-chance accuracy once the second agent's\nstrategy changes, AND shows measurably slower or corrected uptake of whatever inference\nthe responsive source's outputs superficially support, relative to an otherwise-identical\nagent that treats all sources as C_world by default. An otherwise-identical agent lacking\nthe discount should show the delusion-like lock-in signature INV-012 Leg 4 predicts for\nthe self-solicited case, but triggered by a SECOND agent's strategic behaviour instead of\nthe tested agent's own commitment.\n\nFALSIFYING signature: an agent lacking other-agent evidential discounting recovers from\n(or never forms) an incorrect world-model driven by the responsive source's strategic\noutputs at a rate statistically indistinguishable from one with the discounting mechanism\n-- i.e. existing exploration/curiosity drives, residue decay, or ARC-010's other-model\nmachinery already wash out the confound without a dedicated discount term. This would mean\nthe mechanism identifies a real but practically-inert risk and should be narrowed to a\ndocumented failure mode (EXT-xxx-shaped) rather than an architectural requirement.\n\nExperimental design sketch (from the raw thought's \"Experimental consequence\" section):\nbegin with two superficially similar cue-producing processes -- one a stable stochastic\nworld process, one an entity that produces the same initial cue distribution but changes\nbehaviour conditional on the tested agent's behaviour. Test whether the agent can discover,\nonce interaction changes, that the second source is better modelled as a responsive causal\nprocess, and whether that discovery correctly discounts prior inferences drawn from the\nsecond source's earlier (pre-discovery) outputs. Later stages could progressively add\ngoal-directed competition, cooperation, signalling, teaching, concealment, and deception --\nbut the minimal test does not require sophisticated deception, only conditional\nresponsiveness.\n"
   },
+  "INV-103": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "e1.non_oracular_evidence_ingestion",
+    "title": "No injection may directly set the truth-state of E1. External injections -- testimony from another agent, direct sensory evidence, an internally generated counterfactual, and an externally injected datum -- may share representational format without becoming epistemically identical; an injection may supply evidence capable of MODIFYING E1 only through ordinary precision-, provenance-, and learning-eligibility machinery (MECH-043, MECH-511), never by overwriting E1's belief state directly.\n",
+    "type": "invariant"
+  },
   "MECH-001": {
     "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
@@ -7369,6 +7378,54 @@
     "status": "candidate",
     "subject": "social.operational_otherhood_functional_threshold",
     "title": "An entity crosses an operational \"vulnerable goal-directed other\" threshold when convergent evidence shows (a) diverse behaviour compactly predicted by persistent latent goals and (b) systematic, adaptive alteration of subsequent behaviour in response to harm, threat, goal-frustration, damage, or restoration -- a functional/behavioural criterion sufficient for protective treatment while explicitly preserving uncertainty about subjective experience, and distinct from both MECH-031's self-model-possession criterion and EXT-009/INV-072's similarity-based ethical-inclusion criterion.\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-507": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "e1.compression_decompression_bridge",
+    "title": "E1's persistent context should be reframed as an explicit RECIPROCAL compression/decompression bridge, not merely a latent representation with compression left implicit inside ordinary representation learning: high-dimensional experience, autobiographical history, and body state compress into a lower-dimensional organising state z_t, and z_t decompresses into higher- dimensional predictions and candidate sensorimotor futures. Compression is what makes different high-dimensional situations become functionally equivalent when they imply sufficiently similar action-relevant consequences; decompression is what turns that summary back into usable prospective content for downstream planning.\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-508": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "attractor.compressed_generative_disposition",
+    "title": "An REE attractor is best formalised as a compressed, history-conditioned GENERATIVE DISPOSITION defining a family and probability distribution over possible sensorimotor trajectories -- not a stored proposition (e.g. \"this is threat\") and not a fixed memory object -- whose precision controls how strongly it constrains interpretation and future generation, and into which incoming precision-weighted evidence may select, modify, or (if sufficiently consequential) remodel or displace. Its pathology separates into two independent failure axes that can co-occur but must not be conflated: EXCESSIVE PRECISION (the attractor is treated as extremely certain, strongly constraining interpretation/retrieval/generation -- the \"perceptual lens\" failure, where material the attractor itself generates or biases gets counted as independent confirming evidence) and EXCESSIVE COMPRESSION (too many distinct situations are collapsed into one action-relevant equivalence class, independent of how confident the system is in that collapsed class).\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-509": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampal.pre_rollout_possibility_field",
+    "title": "A cheap, E1-context-conditioned decompression stage should generate a structured POSSIBILITY FIELD -- a proposal distribution over plausible sensorimotor futures, P(possible futures | z_t, current context) -- from which a SMALLER NUMBER of candidate trajectories are sampled for expensive hippocampal/E2 rollout, rather than rollout sampling from an unconstrained space. The possibility field is a computational claim about staging (cheap generative field BEFORE expensive trajectory simulation), not a claim that an explicit long-horizon rollout mechanism has been biologically identified.\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-510": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "precision.generative_vs_error_routing",
+    "title": "Prediction precision -- how strongly a generative attractor constrains interpretation and proposal generation -- and prediction-error precision/salience -- how much a discrepancy is trusted to drive correction or learning -- are separable control-plane quantities that need not move together and should be routable independently. An overprecise prediction combined with underweighted error produces capture (the attractor dominates regardless of contrary evidence); noisy but highly salient errors can produce instability (the system is destabilised by unreliable discrepancies). REE already treats precision as heterogeneous rather than scalar (MECH-043, MECH-054); this claim proposes GENERATIVE/interpretive precision as a further, independently-routable axis distinct from both the unsigned-error channel MECH-043 names and the signed harm/benefit valence split MECH-054 names.\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-511": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "learning.deep_update_eligibility_function",
+    "title": "Durable (\"deep\") revision of E1 or a deep attractor should be gated by a LEARNING ELIGIBILITY function of (error, error precision, predicted future/control relevance, organism-or-other consequence, evidence provenance, current mode) -- not by raw error magnitude alone. Candidate routing: low-consequence mismatch -> local correction; significant mismatch -> retained as pending integration material; high-confidence/high-consequence mismatch -> waking adaptation and active information-seeking; contradiction of a deep attractor -> preserve and contest rather than immediately rewrite; accumulated or structurally important contradiction -> counterfactual reprocessing and possible offline revision. Whether a deep update actually occurred should be measured by whether the EQUIVALENCE CLASSES an attractor uses to generate future possibilities changed, not merely by whether stored content changed -- a corollary measurement criterion, since content can change without the generative structure changing.\n",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-512": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.momentary_compression_depth",
+    "title": "The level of abstraction / compression depth selected when compressing experience into an attractor or context representation is a MOMENTARY, functionally consequential control variable -- too much compression overgeneralises (distinct contexts collapsed into one action-relevant class); too little compression prevents useful generalisation and leaves the system overly concrete or uncertain. This momentary compression-depth axis is separable both from prediction confidence/precision (MECH-510) and from total representational CAPACITY -- distinguished explicitly from MECH-496/INV-101's slower DEVELOPMENTAL crystallisation of bucket COUNT: MECH-496/INV-101 concern how many buckets an architecture resolves to over a training-scale critical-period schedule; this claim concerns how much a GIVEN instance of compression discards versus retains at inference time, which could vary moment to moment even under a fixed bucket count.\n",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

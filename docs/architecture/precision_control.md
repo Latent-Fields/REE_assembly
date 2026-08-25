@@ -174,6 +174,53 @@ See `docs/astrocyte_aware_regulatory_stack/` for:
 For REE-v0, the direct-knob model (above) is a valid simplification. Future implementations should account for the layered regulatory architecture documented in the astrocyte-aware module.
 ---
 
+<a id="mech-510"></a>
+## Generative-vs-Error Precision Routing (MECH-510)
+
+**Claim Type:** mechanism_hypothesis
+**Status:** candidate / substrate_conditional -- DO NOT build in V3
+
+Prediction precision -- how strongly a generative attractor constrains interpretation and
+proposal generation -- and prediction-error precision/salience -- how much a discrepancy is
+trusted to drive correction or learning -- are separable control-plane quantities that need not
+move together and should be routable independently. An overprecise prediction combined with
+underweighted error produces capture; noisy but highly salient errors can produce instability.
+
+REE already treats precision as heterogeneous rather than scalar: MECH-043 is an unsigned
+prediction-error precision channel (error-trust), and MECH-054 is a signed harm/benefit
+precision-channel split (valence). This claim proposes a third, independently-routable axis --
+generative/interpretive precision -- distinct from both, matching MECH-027's non-degeneracy
+standard for control-plane channel claims (independently measurable AND independently
+perturbable).
+
+---
+
+<a id="mech-511"></a>
+## Deep-Update Eligibility Function (MECH-511)
+
+**Claim Type:** mechanism_hypothesis
+**Status:** candidate / substrate_conditional -- DO NOT build in V3
+
+Durable ("deep") revision of E1 or a deep attractor should be gated by a learning-eligibility
+function of `(error, error precision, predicted future/control relevance, organism-or-other
+consequence, evidence provenance, current mode)` -- not by raw error magnitude alone. Candidate
+routing: low-consequence mismatch -> local correction; significant mismatch -> retained as
+pending integration material; high-confidence/high-consequence mismatch -> waking adaptation and
+active information-seeking; contradiction of a deep attractor -> preserve and contest rather
+than immediately rewrite; accumulated or structurally important contradiction -> counterfactual
+reprocessing and possible offline revision.
+
+Corollary measurement criterion: whether a deep update actually occurred should be judged by
+whether the equivalence classes an attractor uses to generate future possibilities changed, not
+merely by whether stored content changed -- content can change without the generative structure
+changing.
+
+MECH-027 already names "learning eligibility" as one of five control-plane channels required for
+its pathological-mode falsifier, without specifying its internal structure; this claim supplies
+that internal formula and routing table.
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -185,6 +232,8 @@ None noted in preserved sources.
 - MECH-054
 - MECH-035
 - MECH-055
+- MECH-510 (Generative-vs-error precision routing)
+- MECH-511 (Deep-update eligibility function)
 
 ## References / Source Fragments
 

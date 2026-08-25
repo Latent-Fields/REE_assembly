@@ -279,6 +279,59 @@ Source: `docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md`
 
 ---
 
+<a id="mech-508"></a>
+## Attractors as Compressed Generative Dispositions (MECH-508)
+
+**Claim Type:** mechanism_hypothesis
+**Status:** candidate / substrate_conditional -- DO NOT build in V3
+
+An REE attractor is best formalised as a compressed, history-conditioned generative disposition
+defining a family and probability distribution over possible sensorimotor trajectories -- not a
+stored proposition (e.g. "this is threat") and not a fixed memory object -- whose precision
+controls how strongly it constrains interpretation and future generation, and into which
+incoming precision-weighted evidence may select, modify, or (if sufficiently consequential)
+remodel or displace.
+
+Its pathology separates into two independent failure axes that can co-occur but must not be
+conflated:
+
+- **Excessive precision** -- the attractor is treated as extremely certain, strongly
+  constraining interpretation/retrieval/generation (the "perceptual lens" failure, where
+  material the attractor itself generates or biases gets counted as independent confirming
+  evidence).
+- **Excessive compression** -- too many distinct situations are collapsed into one
+  action-relevant equivalence class, independent of how confident the system is in that
+  collapsed class (see MECH-512).
+
+Sharpens rather than duplicates the existing attractor-dynamics literature in this registry
+(basin depth, gain, threshold, flattening — MECH-075, MECH-076, MECH-112, and others): those
+concern attractor DYNAMICS within an assumed representational substrate; this claim is about
+what the representational substrate IS.
+
+---
+
+<a id="mech-509"></a>
+## Pre-Rollout Possibility Field (MECH-509)
+
+**Claim Type:** mechanism_hypothesis
+**Status:** candidate / substrate_conditional -- DO NOT build in V3
+
+A cheap, E1-context-conditioned decompression stage (MECH-507) should generate a structured
+possibility field -- a proposal distribution over plausible sensorimotor futures,
+`P(possible futures | z_t, current context)` -- from which a smaller number of candidate
+trajectories are sampled for expensive hippocampal/E2 rollout, rather than rollout sampling from
+an unconstrained space. This is a staging claim (cheap generative field BEFORE expensive
+trajectory simulation), not a claim that an explicit long-horizon rollout mechanism has been
+biologically identified.
+
+REE already has hippocampal CEM trajectory sampling with a proposal distribution (SD-038,
+anti-recency exploration bonus). This claim is narrower than "REE lacks candidate-trajectory
+generation": it proposes that the initial proposal distribution CEM samples from and refines
+should itself be derived from E1's compressed context via an explicit decompression step, rather
+than starting from an unconditioned/generic prior.
+
+---
+
 ## Relationship to other REE components
 
 Relation to E1 (deep recurrent predictor): E1 provides temporally coherent latent dynamics. Hippocampal replay can seed
@@ -385,6 +438,8 @@ Source: `docs/thoughts/2026-03-24_COHERENCE_MULTICONSTRAINT_HIPPOCAMPAL_NAVIGATI
 - MECH-022
 - MECH-033
 - Q-011
+- MECH-508 (Attractors as compressed generative dispositions)
+- MECH-509 (Pre-rollout possibility field)
 
 ## References / Source Fragments
 

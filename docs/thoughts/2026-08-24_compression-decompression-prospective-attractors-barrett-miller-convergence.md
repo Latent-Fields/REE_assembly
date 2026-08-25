@@ -1,5 +1,9 @@
 # Compression, decompression and prospective attractors: Barrett–Miller convergence with REE
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md
+Claims registered: MECH-507, MECH-508, MECH-509, MECH-510, MECH-511, MECH-512, INV-103
+
 Date: 2026-08-24
 
 Source: discussion prompted by Conor Feehly, “A New Framework for How the Brain Compresses Our Noisy World,” *Quanta Magazine*, 24 August 2026, and the underlying Perspective by Lisa Feldman Barrett and Earl K. Miller, “Categorization is ‘baked’ into the brain,” *Nature Reviews Neuroscience* 27, 435–456 (2026), DOI: 10.1038/s41583-026-01036-2.
