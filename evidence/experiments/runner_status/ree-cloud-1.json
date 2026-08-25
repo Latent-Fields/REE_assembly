@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 3973580,
   "runner_started_at": "2026-08-23T02:08:18.488848+00:00",
-  "last_updated": "2026-08-25T14:21:16.592515+00:00",
+  "last_updated": "2026-08-25T20:57:39.493948+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-925a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "E3 F-dominance causal replay, COMMITTED REGIME (H1-H4 re-test; fixes 925 commit-gate deadlock)",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3934,6 +3946,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 23614.6
+    },
+    {
+      "queue_id": "V3-EXQ-944b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-091 salient-event cycle-boundary reset, per-seed gated (successor to V3-EXQ-944a, crash fixed)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "Status: PASS  label: mech091_cycle_boundary_reset_confirmed | Trigger coverage: {'completion': 0, 'harm': 2834, 'commit_entry': 538} | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-944b -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-944b.json",
+      "started_at": "2026-08-25T19:29:36.899878+00:00",
+      "completed_at": "2026-08-25T20:57:39.492972+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 5282.6
     }
   ]
 }
