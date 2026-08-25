@@ -705,6 +705,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0048",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "DO NOT attach the MECH-439 evidence_quality_note drafted by failure_autopsy_V3-EXQ-925_2026-08-12 as written: its premise is refuted. That note reports V3-EXQ-925's committed_fraction=0.000 as a SUBSTRATE REGIME fact (that at default config this substrate essentially never engages committed selection, so MECH-439's committed-selection variance-monopoly framing presumes a regime the substrate does not occupy). Direct runtime measurement on 2026-08-25 (session f-dominance-regime-retest-ddbe10) shows it was a DRIVER DEFECT instead: committed is set at ree-v3 e3_selector.py:3451 as _running_variance < commit_threshold; _running_variance is written only via post_action_update (:3979, reached from REEAgent.update_residue at agent.py:9972); V3-EXQ-925's driver calls neither, so _running_variance stayed pinned at precision_init=0.5 against commit_threshold=0.4 and commitment was arithmetically impossible before the run collected any data (measured: rv exactly 0.500000 across a 260-tick probe). Adding that single missing call, with NO config change, gives rv 0.500000 -> 0.007956 and committed_fraction 0.000 -> 0.959. e3_selector.py:3969-3973 documents this same deadlock and fixes it inside post_action_update; 97 other experiment drivers call it, V3-EXQ-925 does not. The autopsy's recommended re-test lever (use_gap_scaled_commit_temperature) also could not have worked -- both its call sites (e3_selector.py:3683,:3763) sit inside 'elif committed:', so it was a dead branch, bit-identical to OFF. ACTION: treat V3-EXQ-925's regime finding as non-contributory about the substrate, and weigh any MECH-439 note against V3-EXQ-925a (queued 2026-08-25, ree-v3 commit a497e0a99f, supersedes 925), which re-runs the same C0-C5 causal replay with the deadlock fixed and commitment genuinely engaged. MECH-439 is currently candidate/standard/pending_retest_after_substrate and its evidence_quality_note does NOT yet mention 925, so nothing is corrupted -- this flag is pre-emptive.",
+      "raised_by_session": "f-dominance-regime-retest-ddbe10",
+      "raised_at": "2026-08-25T10:49:14Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
