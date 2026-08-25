@@ -65388,6 +65388,83 @@
     covered by existing process discipline and should be closed as
     derivationally answered, cross-referencing the specific gates found,
     rather than left open.
+- id: Q-097
+  title: "What mechanism should estimate an interacting agent's mimicry/deception risk and feed it into EXT-009's liberal care-gate criterion -- i.e. how does (or should) REE detect that a candidate mind is an adversarial agent mimicking mind-signals to extract undeserved care, tightening the criterion's false-positive-cost term (Axiom 8 deception) without collapsing the liberal floor that protects genuine-but-ambiguous minds from exclusion?"
+  claim_type: open_question
+  subject: ree.care_gate_deception_discounting
+  polarity: open
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-25"
+  source:
+    - docs/claims/claims.yaml (EXT-009 candidate_mitigations -- where this question was
+      originally gestured at via an informal "Q-032 adversarial minds" note but never
+      actually registered)
+    - evidence/planning/thought_intake_2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+  depends_on:
+    - EXT-009   # asymmetric liberal criterion on the care gate; this question supplies the tightening term EXT-009's note gestures at but never registers
+    - INV-072   # violence corollary -- the existing partial treatment of similarity collapse -> protection withdrawal
+    - INV-102   # epistemic evidential discounting of another agent's strategically-generated evidence -- the natural source of a mimicry-risk estimate
+    - MECH-015  # trust and deception dynamics stub -- natural eventual host for a built-out mimicry-detection mechanism
+  notes: >
+    REGISTERED 2026-08-25 to correct a stale cross-reference, not merely to relabel one:
+    EXT-009's candidate_mitigations text (twice, in the "Asymmetric criterion placement"
+    mitigation and again in its notes) cites "Q-032 adversarial minds" for its
+    deception/mimicry term, but claims.yaml's actual Q-032 is an unrelated
+    sleep-pharmacology dementia-outcome-prediction question
+    (pharmacology.sws_rem_ratio_dementia_outcome_predictor) -- a pre-existing stale
+    citation, not introduced by this fix. No claim previously existed anywhere in
+    claims.yaml for the "adversarial minds" concept EXT-009's note was actually
+    gesturing at (checked via grep for "adversarial mind" -- the only hits were
+    EXT-009's own two mentions), so the correct fix is a new registration, not a
+    citation swap to an existing ID. Both of EXT-009's "Q-032" references have been
+    repointed to this claim.
+
+    Distinct from INV-102 (epistemic_provenance.other_agent_evidential_discounting,
+    registered same day from the same thought-intake pass): INV-102 answers "should I
+    believe what this evidence shows about the world", scoped to belief-update
+    discounting; this question asks "should I extend costly care on the strength of
+    this mind-signal", scoped to EXT-009's ethical care-gate criterion. The thought
+    that produced INV-102 explicitly insists these are separate thresholds that must
+    not collapse into one binary -- this claim is deliberately kept separate from
+    INV-102 for the same reason, while depending on it as the plausible mechanism that
+    would supply a mimicry-risk estimate.
+
+    Flagged in evidence/planning/thought_intake_2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+    Section 6 item 1 as a follow-on fix; performed here.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: unmet in V3. Requires a multi-agent substrate in
+    which at least one agent can act deceptively -- emitting mind-signals (behavioural
+    cues the observer's similarity/agency detector treats as evidence of
+    mind-likeness) without the goal-structure that would normally accompany them --
+    so mimicry is actually possible to attempt and to detect or fail to detect. No
+    such substrate exists in V3; ARC-047's SocialGridWorld (multi-agent,
+    unimplemented, v5-gated) is the nearest planned candidate, consistent with
+    EXT-009's own notes that this failure mode is "presently V5-load-bearing
+    (multi-agent) and largely philosophical under the single-agent V3 substrate".
+    CONFIRMING (a dedicated mimicry-tightening mechanism is buildable and
+    load-bearing): once a multi-agent adversarial substrate exists, an agent
+    equipped with INV-102's evidential-discounting machinery (attributing an
+    observed mind-signal to a plausible strategic goal) can supply a mimicry-risk
+    estimate that measurably tightens the care-gate's false-positive-cost term under
+    adversarial pressure, while EXT-009's liberal criterion floor is preserved for
+    genuine-but-ambiguous minds -- i.e. the same provenance-discounting machinery
+    that answers the epistemic question also feeds the ethical one, without the two
+    thresholds collapsing into one.
+    FALSIFYING (the question dissolves / no dedicated mechanism is needed): EXT-009's
+    existing asymmetric cost structure already absorbs deception risk without a
+    separate mimicry-detection term -- e.g. because the cost of transiently extending
+    care to a successfully-mimicking adversary is bounded and low relative to the
+    cost of wrongly excluding a real mind, so no machinery beyond EXT-009's existing
+    criterion placement is scientifically motivated.
+    Out of scope for a V3 experiment; this is a design/architecture question pending
+    the v5 multi-agent substrate that would make mimicry attemptable at all.
 - id: Q-069
   title: "Can a REE-style governance loop (manifest -> review -> governance -> claim) measurably reduce evaluation-channel exploitation -- the collapse of an evidence loop into an optimisation loop -- when agentic systems participate in their own development, relative to a direct-score-authority baseline?"
   claim_type: open_question
@@ -65490,7 +65567,7 @@
   red_team_question: "What prevents REE's own similarity model from gating care in a way that reproduces dehumanization -- i.e. what stops care from dropping to zero the moment an agent is classified below the 'sufficiently-like-me' threshold?"
   candidate_mitigations:
     - "Care FLOOR via uncertainty-driven expansion: under Axiom 3 the agent cannot be certain where the boundary of similarity lies; Axiom 7's love-expansion derivation makes that same uncertainty EXPAND love outward. Evaluate whether that expansion can be made a hard FLOOR on care (care never falls below a positive baseline for any candidate mind under boundary uncertainty), rather than a merely emergent tendency that a confident mis-classification can defeat."
-    - "Asymmetric criterion placement on the care gate (SHARPEST mitigation; user-refined 2026-07-09): treat 'is this a mind worthy of care?' as a signal-detection problem and set the CRITERION liberal, so cost(false-exclusion: deny care to a real mind) >> cost(false-inclusion: extend care to a non-mind). This is the empathy-side analog of the hyperactive agency-detection device -- a hyperactive PATIENT-detector on the care channel. It is the CORRECT calibration under REE's own axioms: a false negative can enable terminal/irreversible harm to a bearer-of-value (Axiom 2 via Axiom 5, under Axiom 4 vulnerability) while a false positive costs only wasted protective behaviour; under permanent similarity-uncertainty (Axiom 3; Axiom 5 says similarity is LEARNED, never certain) the expected-cost-minimising criterion is liberal. Consequence: over-attribution / animism is the HEALTH SIGNATURE, and symmetric accuracy is the pathology -- a mind that never over-attributes is the mis-calibrated (dehumanization-prone) one. The care FLOOR is then the emergent shadow of a liberal criterion, not a separate bolt-on clamp. TUNABLE by the false-positive cost, which is ~0 for inert objects (rivers, dolls, robots) but RISES for deceptive agents that mimic mind-signals to extract care (Axiom 8 deception; Q-032 adversarial minds) -- i.e. the criterion balances INV-072's two pathways: the similarity term keeps it liberal, the threat term tightens it under mimicry."
+    - "Asymmetric criterion placement on the care gate (SHARPEST mitigation; user-refined 2026-07-09): treat 'is this a mind worthy of care?' as a signal-detection problem and set the CRITERION liberal, so cost(false-exclusion: deny care to a real mind) >> cost(false-inclusion: extend care to a non-mind). This is the empathy-side analog of the hyperactive agency-detection device -- a hyperactive PATIENT-detector on the care channel. It is the CORRECT calibration under REE's own axioms: a false negative can enable terminal/irreversible harm to a bearer-of-value (Axiom 2 via Axiom 5, under Axiom 4 vulnerability) while a false positive costs only wasted protective behaviour; under permanent similarity-uncertainty (Axiom 3; Axiom 5 says similarity is LEARNED, never certain) the expected-cost-minimising criterion is liberal. Consequence: over-attribution / animism is the HEALTH SIGNATURE, and symmetric accuracy is the pathology -- a mind that never over-attributes is the mis-calibrated (dehumanization-prone) one. The care FLOOR is then the emergent shadow of a liberal criterion, not a separate bolt-on clamp. TUNABLE by the false-positive cost, which is ~0 for inert objects (rivers, dolls, robots) but RISES for deceptive agents that mimic mind-signals to extract care (Axiom 8 deception; Q-097 adversarial minds) -- i.e. the criterion balances INV-072's two pathways: the similarity term keeps it liberal, the threat term tightens it under mimicry."
     - "Epistemic-responsibility coupling (INV-070): treat mis-classification of an agent as below-threshold as a first-class ETHICAL error (not merely a modelling inaccuracy), so the care-gate is penalised for false-negative similarity judgements, not only rewarded for correct ones."
     - "Language-mediated repair as an active obligation (INV-071 / Axiom 8): make the 'expand the category of sufficiently-like-me' operation (INV-071 clause 5) a standing duty of the agent, so the similarity model is biased toward re-admission rather than exclusion."
   ree_mechanism:
@@ -65556,7 +65633,7 @@
     floor is the emergent shadow of a liberal criterion, not a separate clamp
     (Axiom 7 love-expansion is that liberal criterion running forward under Axiom 3
     uncertainty). It is bounded by the false-positive cost, which rises for deceptive
-    agents that mimic mind-signals (Axiom 8; Q-032) -- so the criterion balances
+    agents that mimic mind-signals (Axiom 8; Q-097) -- so the criterion balances
     INV-072's two pathways (similarity keeps it liberal; threat tightens it under
     mimicry). All mitigations are UNDER EVALUATION, not confirmed -- the ree_mechanism
     list points at candidate/partial addresses, not a solved defence (contrast
