@@ -856,7 +856,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-07-11T00:00:00Z",
-            "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface."
+            "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface. | UPDATE 2026-08-25 (failure_autopsy_V3-EXQ-948): 948 sharpens the representation route from corroboration to a CONFIRMED, actionable, NAMED mechanism (H-observation-interface: z_world discards resource-gradient structure present in its own input, even under SD-018's existing scalar proximity supervision). H-substrate-ceiling itself remains alive and untested by 948's design -- this is a read-across note, not a resolution of this leg."
           }
         },
         {
@@ -945,21 +945,23 @@
           "pre_registered_utc": "2026-07-24T14:33:33Z",
           "pre_registration_source": "failure_autopsy_backlog_2026-07-24.json",
           "adjudicating_runs": [
-            "V3-EXQ-813"
+            "V3-EXQ-813",
+            "V3-EXQ-948"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "confirmed",
             "resolving_runs": [
-              "V3-EXQ-813"
+              "V3-EXQ-813",
+              "V3-EXQ-948"
             ],
             "evidence_direction": "supports",
             "epistemic_category": "standard",
-            "self_route_label": "representation_not_foraging_adequate",
+            "self_route_label": "observation_interface_confirmed_re_representation_lifts_competence",
             "control_passed": true,
             "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": "2026-07-24T14:33:33Z",
-            "basis": "V3-EXQ-813: raw-obs PPO clears the D3 floor (9.033) while REE-latent PPO does not (0.5) under the survival-zeroed objective -> the representation, not the learner or reward, is the surviving live root. Newly articulated by the 813 autopsy override; this is the ELEVATED survivor, not eliminated. Needs a positive demonstration (a foraging-adequate re-representation lifts competence) to confirm."
+            "resolved_utc": "2026-08-25T14:21:15Z",
+            "basis": "V3-EXQ-948 supplies the positive demonstration 813 could not: under the identical W3_survival_zeroed objective, ppo_ree_latent (z_world only) does not clear the D3 floor (0.5) while ppo_latent_plus_localfield (z_world + the 25-dim resource field) clears it on all 3 seeds (2.233; per-seed lift +0.75/+2.05/+2.4, monotonic, no sign crossing). 813's anchor pair replicates exactly (0.5 / 9.033). CONFIRMED, not merely supported: the missing content is NAMED as the resource gradient. Sharpened by failure_autopsy_V3-EXQ-948_2026-08-25 adversarial pass: this holds even though SD-018's scalar resource-proximity auxiliary supervision (latent.use_resource_proximity_head) was already active in this run's base config -- the scalar signal is insufficient, the full directional field is what restores competence. Does NOT eliminate H-substrate-ceiling or H-f-dominance (design does not test them). Routed implement-substrate, action:amend, target SD-018 (user-confirmed)."
           }
         }
       ],

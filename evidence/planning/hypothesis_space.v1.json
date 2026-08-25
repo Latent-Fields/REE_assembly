@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-25T18:03:36Z",
+  "generated_at": "2026-08-25T18:32:49Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,15 +31,15 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 68,
+      "total_surviving": 67,
       "total_initial": 127,
       "total_initial_at_registration": 105,
       "total_fanout_added": 22,
       "total_resolved_out": 49,
-      "total_confirmed": 30,
+      "total_confirmed": 31,
       "total_superseded": 1,
       "reduction_pct_vs_current": 38.6,
-      "net_narrowing_pct": 35.2,
+      "net_narrowing_pct": 36.2,
       "convergence_classes": {
         "narrowing": 18,
         "static": 16,
@@ -47,7 +47,7 @@
         "refining": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "68 alive against 105 originally enumerated, and against 127 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "67 alive against 105 originally enumerated, and against 127 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 39
     },
     "decide": {
@@ -209,7 +209,7 @@
     },
     {
       "date": "2026-08-25",
-      "surviving": 68,
+      "surviving": 67,
       "closure_pct": 71.1,
       "build_pct": 83.2
     }
@@ -881,19 +881,20 @@
         }
       ],
       "fanout_growth_note": "First fan-out growth event on this question (2026-07-22). It re-enters the `world` family, which already holds an eliminated leg (H-reward-balance), so the convergence class will read CIRCLING. Read that as the signal it is: this campaign has not converged, and the growth inflates the headline narrowing ratio precisely because a new candidate explanation had to be invented. || 2nd growth event 2026-07-24: adds H-observation-interface on the `representation` family, which holds NO eliminated leg -> REFINING (survivors moving to fresh territory), not circling. The campaign has now eliminated reward-balance (735), policy-learning (813) and displaced objective-misspecification (808); the live front is representation/substrate. Non-convergence signal: this is the 2nd fan-out on this question -- watch for further growth.",
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.25,
+      "bits_removed_vs_registration": 0.42,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
-        "families_closed": [],
+        "families_closed": [
+          "representation"
+        ],
         "families_touched": [
           "process",
           "world"
         ],
         "families_fresh": [
-          "constitution",
-          "representation"
+          "constitution"
         ],
         "unclassified_axes": [],
         "growth_events": [
@@ -935,14 +936,14 @@
           }
         ]
       },
-      "surviving": 4,
-      "alive": 4,
+      "surviving": 3,
+      "alive": 3,
       "resolved_out": 2,
-      "confirmed": 0,
+      "confirmed": 1,
       "superseded": 0,
       "reduction_numerator": 2,
       "reduction_ratio": 0.3333,
-      "bits_removed": 0.58,
+      "bits_removed": 1.0,
       "synthesis": null,
       "hypotheses": [
         {
@@ -967,7 +968,7 @@
           "evidence_runs": [
             "V3-EXQ-734"
           ],
-          "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface.",
+          "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface. | UPDATE 2026-08-25 (failure_autopsy_V3-EXQ-948): 948 sharpens the representation route from corroboration to a CONFIRMED, actionable, NAMED mechanism (H-observation-interface: z_world discards resource-gradient structure present in its own input, even under SD-018's existing scalar proximity supervision). H-substrate-ceiling itself remains alive and untested by 948's design -- this is a read-across note, not a resolution of this leg.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1018,11 +1019,12 @@
           "label": "the REE latent is not a foraging-adequate representation for an external actor",
           "desc": "A competent external PPO actor forages on raw observations but not on the frozen REE latent (V3-EXQ-813), so the ceiling lies in what the latent EXPOSES to a downstream reader -- representational adequacy / observation-interface -- not in the learner (policy-learning eliminated) or the reward (objective displaced).",
           "axis": "representation",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-813"
+            "V3-EXQ-813",
+            "V3-EXQ-948"
           ],
-          "basis": "V3-EXQ-813: raw-obs PPO clears the D3 floor (9.033) while REE-latent PPO does not (0.5) under the survival-zeroed objective -> the representation, not the learner or reward, is the surviving live root. Newly articulated by the 813 autopsy override; this is the ELEVATED survivor, not eliminated. Needs a positive demonstration (a foraging-adequate re-representation lifts competence) to confirm.",
+          "basis": "V3-EXQ-948 supplies the positive demonstration 813 could not: under the identical W3_survival_zeroed objective, ppo_ree_latent (z_world only) does not clear the D3 floor (0.5) while ppo_latent_plus_localfield (z_world + the 25-dim resource field) clears it on all 3 seeds (2.233; per-seed lift +0.75/+2.05/+2.4, monotonic, no sign crossing). 813's anchor pair replicates exactly (0.5 / 9.033). CONFIRMED, not merely supported: the missing content is NAMED as the resource gradient. Sharpened by failure_autopsy_V3-EXQ-948_2026-08-25 adversarial pass: this holds even though SD-018's scalar resource-proximity auxiliary supervision (latent.use_resource_proximity_head) was already active in this run's base config -- the scalar signal is insufficient, the full directional field is what restores competence. Does NOT eliminate H-substrate-ceiling or H-f-dominance (design does not test them). Routed implement-substrate, action:amend, target SD-018 (user-confirmed).",
           "children": [],
           "met_elimination_bar": false
         }
@@ -4288,6 +4290,22 @@
   ],
   "momentum": [
     {
+      "run": "V3-EXQ-948",
+      "all_runs": [
+        "V3-EXQ-813",
+        "V3-EXQ-948"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "V3-EXQ-948 supplies the positive demonstration 813 could not: under the identical W3_survival_zeroed objective, ppo_ree_latent (z_world only) does not clear the D3 floor (0.5) while ppo_latent_plus_localfield (z_world + the 25-dim resource field) clears it on all 3 seeds (2.233; per-seed lift +0.75/+2.05/+2.4, monotonic, no sign crossing). 813's anchor pair replicates exactly (0.5 / 9.033). CONFIRMED, not merely supported: the missing content is NAMED as the resource gradient. Sharpened by failure_autopsy_V3-EXQ-948_2026-08-25 adversarial pass: this holds even though SD-018's scalar resource-proximity auxiliary supervision (latent.use_resource_proximity_head) was already active in this run's base config -- the scalar signal is insufficient, the full directional field is what restores competence. Does NOT eliminate H-substrate-ceiling or H-f-dominance (design does not test them). Routed implement-substrate, action:amend, target SD-018 (user-confirmed).",
+      "resolved_utc": "2026-08-25T14:21:15Z",
+      "evidence_direction": "supports"
+    },
+    {
       "run": "V3-EXQ-942",
       "all_runs": [
         "V3-EXQ-942"
@@ -5341,7 +5359,7 @@
         "MECH-457",
         "ARC-065"
       ],
-      "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface.",
+      "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface. | UPDATE 2026-08-25 (failure_autopsy_V3-EXQ-948): 948 sharpens the representation route from corroboration to a CONFIRMED, actionable, NAMED mechanism (H-observation-interface: z_world discards resource-gradient structure present in its own input, even under SD-018's existing scalar proximity supervision). H-substrate-ceiling itself remains alive and untested by 948's design -- this is a read-across note, not a resolution of this leg.",
       "resolved_utc": "2026-07-11T00:00:00Z",
       "evidence_direction": "non_contributory"
     },

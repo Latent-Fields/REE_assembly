@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-25T18:03:41Z
+Generated: 2026-08-25T18:32:56Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
@@ -77,13 +77,14 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-08-17 -> 2026-08-18: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
 - time series 2026-08-20 -> 2026-08-21: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
 
-## Advisory -- surviving-count drop backed by confirmation/supersession (1 backed, 3 unverifiable, NOT violations)
+## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 
 _A `confirmed` resolution (supports + control_passed) or a `superseded` resolution (ratified moot, added 2026-08-19) also legitimately removes a hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an alive -> confirmed/superseded transition drops the total with no elimination behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) and `total_superseded` (added 2026-08-19) let this check credit either instead of reading the drop as unbacked. A snapshot pair predating either field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design as the git-witness provenance check below._
 
 **Backed (drop fully explained by a confirmation/supersession):**
 
 - time series 2026-08-19 -> 2026-08-20: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
+- time series 2026-08-23 -> 2026-08-25: surviving fell by 1, backed by 1 newly-confirmed/superseded hypothesis(es) (an adjudicated resolution, not an elimination) -- advisory, not a violation.
 
 **Unverifiable (quiet -- total_confirmed and/or total_superseded absent from one or both snapshots):**
 
@@ -155,7 +156,7 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `competence_floor`/`H-mech476-dose-response`: `failure_autopsy_mech476-mech475-cluster_2026-07-29.json` committed 2026-07-29 <= resolution 2026-08-01
 - `competence_floor`/`H-mech476-novelty-tagging`: `failure_autopsy_mech476-mech475-cluster_2026-07-29.json` committed 2026-07-29 <= resolution 2026-08-01
 - `conversion_ceiling_root`/`H-objective-misspecification`: `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json` committed 2026-07-22 <= resolution 2026-07-24
-- `conversion_ceiling_root`/`H-observation-interface`: `failure_autopsy_backlog_2026-07-24.json` committed 2026-07-24 <= resolution 2026-07-24
+- `conversion_ceiling_root`/`H-observation-interface`: `failure_autopsy_backlog_2026-07-24.json` committed 2026-07-24 <= resolution 2026-08-25
 - `arousal-variance-amplifier`/`H-arousal-channel-agnostic`: `failure_autopsy_V3-EXQ-785_2026-07-19.json` committed 2026-07-19 <= resolution 2026-07-19
 
 ---

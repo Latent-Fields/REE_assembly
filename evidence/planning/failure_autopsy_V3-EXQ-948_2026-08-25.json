@@ -1,0 +1,88 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-25T18:32:20Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3",
+      "queue_id": "V3-EXQ-948",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free GOV-FANOUT-1 discrimination probe by design; brake_exempt=true; hooks into hypothesis-space question conversion_ceiling_root, leg H-observation-interface, which bears on MECH-457/ARC-065 without itself tagging them)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial (z_world encoder demonstrably discards recoverable resource-gradient structure present in its own input; PPO-on-raw-obs and PPO-on-field-augmented-latent both clear the floor, PPO-on-latent-alone does not -- AND this is despite SD-018's resource-proximity auxiliary supervision (latent.use_resource_proximity_head=true) already being ACTIVE in this run's base config, per red-team verification against enabled_default_off_flags and ree_core/agent.py::compute_resource_proximity_loss. SD-018 trains z_world to regress a SCALAR proximity target (max(resource_field_view)); 948 shows that is insufficient for downstream behavioural competence, which plausibly needs the full 25-dim DIRECTIONAL gradient, not just magnitude)",
+        "environment": "adequate (hazard-free D3, readiness gates on oracle/local-view-greedy anchors both cleared; identical env across all 4 arms)",
+        "measurement": "adequate (non-circular readiness gates replacing 813's circular consumption_share gate; DV-symmetry declared and empirically confirmed via anchor-pair replication)",
+        "integration": "isolated (probe uses an external PPO actor reading z_world as a frozen input, not REE's own internal policy machinery -- see per_claim_recommendation note on scope of the finding)",
+        "scale": "adequate (3 seeds per arm, majority-of-seeds convention consistent with sibling hypothesis-space legs)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "General cognitive-map / world-model representations (hippocampal/parietal allocentric maps) are known NOT to automatically carry every behaviourally-relevant gradient signal; dedicated parallel pathways (mesolimbic value coding, hypothalamic interoceptive/homeostatic signalling) carry resource- and reward-relevant gradients that a general spatial world-model does not guarantee to preserve.",
+        "dependencies": [
+          "a specialised resource/value channel distinct from the general world-model latent"
+        ],
+        "is_formal_import": false,
+        "divergence": "None -- this finding CORROBORATES, rather than diverges from, REE's own prior biologically-motivated architecture decisions: SD-010/SD-011 (splitting one z_world stream into z_self/z_world/z_harm_s on biological grounds) and SD-015 (a dedicated z_resource encoder, built specifically because z_world alone was not adequate for goal-directed resource seeding). 948 is a second, independent demonstration of the same general principle via a different symptom (external-actor foraging competence rather than z_goal cosine alignment).",
+        "lit_status": "present (via the SD-010/SD-011/SD-015 architecture rationale and design docs; no new /lit-pull needed for this specific finding -- it replicates an already-lit-grounded REE design principle rather than importing an ungrounded formal construct)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": null,
+      "recommended_evidence_quality_note": null,
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-018",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "RED-TEAM-CORRECTED (redteam_948.md): SD-018 ('encoder.resource_proximity_supervision') was NOT absent from this run -- latent.use_resource_proximity_head=true was already active in the shared base config for the whole x734/737/808/948 family (ree-v3/experiments/v3_exq_724_competence_localization_diagnostic.py:338; loss wired at ree_core/agent.py::compute_resource_proximity_loss). So 948's finding is sharper than 'z_world has no resource supervision': it is 'z_world, even WITH SD-018's scalar resource-proximity auxiliary loss already training it, still does not expose enough structure for a downstream PPO reader to clear the D3 competence floor' (ppo_ree_latent 0.5 res/ep vs a 1.0 floor). SD-018 supervises a SCALAR target (max(resource_field_view) -- magnitude only); 948's positive arm succeeds by exposing the FULL 25-dim field (direction + magnitude). Plausible read: a scalar proximity signal cannot tell a policy WHICH WAY to move; foraging needs the directional gradient SD-018 was never designed to supply. Recommend SD-018's target be extended/re-scoped from a scalar regression (benefit_eval_r2 > 0.5 against max(resource_field_view)) to a richer directional readout, OR that the raw field be routed as an explicit additional channel alongside z_world (mirroring what worked here) rather than relying solely on scalar auxiliary supervision. SEPARATE, SECONDARY FINDING for governance: SD-018's own metric_trajectory carries only its PRE-implementation baseline (r2=-0.004, EXQ-085m) and no post-implementation validation entry at all despite implementation_status:implemented since 2026-04-07 -- it is not established SD-018 ever met its own r2>0.5 bar. CROSS-REFERENCE (secondary, more tangential): SD-015 ('Dedicated z_resource encoder for goal-directed navigation') targets a related but distinct consumer (z_goal cosine-seeding for MECH-112 wanting/liking, not general downstream foraging competence) and its own 2026-04-14 record found z_world unexpectedly OUTPERFORMING z_resource for goal alignment, leaving an 'action-selection integration' bottleneck open. Governance should judge SD-018-amend (primary recommendation, same encoder module and same resource_field_view content) vs SD-015-amend vs a new entry; this autopsy presents the options rather than silently picking one.",
+        "unblocks_claims": [
+          "MECH-457",
+          "ARC-065"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/agent.py::compute_resource_proximity_loss",
+          "ree_core/latent/stack.py",
+          "ree_core/latent/zworld_p0.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3",
+          "experiment_type": "v3_exq_948_observation_interface_re_representation_probe",
+          "metric": "with SD-018's use_resource_proximity_head=true already active, ppo_ree_latent (z_world only) 0.5 res/ep vs ppo_latent_plus_localfield (z_world + full 25-dim resource field) 2.23 res/ep vs 1.0 competence floor; all 3 seeds of the field-augmented arm clear the floor, none of the latent-only arm do",
+          "target": "a downstream reader of z_world (under SD-018's existing scalar proximity supervision, or an extended/richer version of it) should clear the 1.0 D3 competence floor on a strict majority of seeds",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": []
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The REE z_world encoder discards recoverable, independently-certified-sufficient resource-gradient structure that is present in its own raw input (world_state) -- a concrete, NAMED, actionable representational gap, not an unspecified 'substrate ceiling'.",
+        "This CONFIRMS the H-observation-interface leg of the conversion_ceiling_root hypothesis-space question as a positive, sufficient demonstration (not merely the negative/necessary result V3-EXQ-813 supplied), while explicitly NOT eliminating H-substrate-ceiling or H-f-dominance -- the design does not test those legs.",
+        "RED-TEAM-SHARPENED: SD-018's resource-proximity auxiliary supervision (latent.use_resource_proximity_head=true) was already ACTIVE in this run's base config -- this is not a 'z_world has zero resource supervision' finding, it is 'z_world's existing SCALAR resource-proximity signal (SD-018) is insufficient; the full DIRECTIONAL 25-dim field is what actually restores competence.' Also surfaces that SD-018's own post-implementation validation was apparently never recorded despite being marked implemented since 2026-04-07.",
+        "The finding also parallels, more loosely, the still-open 'action-selection integration' blocker on SD-015's z_resource encoder (a different consumer -- z_goal cosine-seeding, not general foraging competence) -- two independent lines of evidence point at the same broader class of gap: resource-relevant information exists in the substrate but is not fully reaching the pathway that needs it to act.",
+        "The indexer's automatic vacuous_pass adjudication flag on this run is a FALSE POSITIVE, structurally analogous to the V3-EXQ-783/830/906/908 precedents already documented in build_experiment_indexes.py's own docstring: the driver tags all four criteria load_bearing:true, but its own combination_rule states the PASS is carried by exactly ONE of them (C_latent_plus_localfield_clears_floor) while the other three -- including the one reading passed:false -- are REPLICATION ANCHORS whose values SELECT the interpretation label rather than gating PASS/FAIL. This is a genuinely new 5th sub-case (a load_bearing:true criterion that is an anchor EXPECTED to read false by design, not a caveat the author separately marked load_bearing:false) and is worth a small indexer fix, but is out of this autopsy's charter to make."
+      ],
+      "routing": "implement-substrate",
+      "adversarial_verification": {
+        "verdict": "CONTESTED",
+        "defect": "First-draft recommended_substrate_queue_entry (action:create, new SD-071) omitted SD-018 ('encoder.resource_proximity_supervision'), an already-implemented, directly-on-point substrate fix that was ACTIVE in this very run (enabled_default_off_flags['latent.use_resource_proximity_head']=true, traced to ree-v3/experiments/v3_exq_724_competence_localization_diagnostic.py:338 and ree_core/agent.py::compute_resource_proximity_loss). Independently confirmed by this session against the raw manifest, the driver family's base config, and substrate_queue.json's SD-018 entry.",
+        "correction_applied": "Routing changed to action:amend, target_sd_id:SD-018 (user-confirmed at Step 8 gate). Finding sharpened from 'z_world lacks resource supervision' to 'z_world's existing SCALAR resource-proximity supervision (SD-018) is insufficient; the full DIRECTIONAL 25-dim field is what restores competence.' Also surfaced SD-018's own missing post-implementation validation as a secondary governance note.",
+        "everything_else_checked": "Recomputed means/majority-clears for all 4 arms (exact match to manifest); threshold direction (>=) confirmed against capability_eval.py, moot regardless since 2/3 seeds clear comfortably; vacuous_pass false-positive argument verified directly against build_experiment_indexes.py _diagnostic_adjudication (3b) and confirmed as a genuine 5th sub-case not covered by the four documented exemptions; 813 anchor-pair bit-identical replication explained by fixed seeding + deterministic CPU path, not a copy-paste artifact; known_substrate_limitations cancel out of the arm3-minus-arm1 contrast since both are present identically in the differenced pair; SD-015 cross-reference verified accurate and appropriately hedged as an open question rather than an overreach.",
+        "full_report": "redteam_948.md (session scratchpad, not committed -- findings folded into this artifact and the .md write-up)"
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
