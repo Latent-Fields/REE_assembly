@@ -1,5 +1,8 @@
 # Thought — Model updates should be gated and timed
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-24_model_updates_should_be_gated_and_timed.md
+
 **Date:** 2026-08-24
 **Status:** raw/integrative thought intake
 
