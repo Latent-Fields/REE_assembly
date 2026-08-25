@@ -83942,3 +83942,90 @@
     continuation rule against once/if this is routed to V3; it is cited here as an existing asset,
     not re-asserted. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY. DO NOT
     build or queue a V3 experiment without an explicit version-routing decision.
+
+- id: MECH-499
+  title: "Ephaptic/oscillatory field-level coherence functions as a fast, non-synaptic CONTENT-AGGREGATION mechanism -- not merely the confidence/eligibility readout MECH-270 already covers -- synthesising distributed oscillatory information (amplitude, phase, relative phase, frequency, synchrony, cross-frequency relationships) into the temporally-coherent 'actionable now' state that seeds hippocampal proposal generation. The field need not 'understand' anything; its attraction as a mechanism is that the physical substrate may perform part of the aggregation automatically, fast enough that proposal generation is not stale by the time candidate futures are produced."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.ephaptic_actionable_now_aggregation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - MECH-228  # general ephaptic-coupling-as-coherence-substrate claim this specialises
+    - MECH-270  # hippocampal ephaptic verisimilitude READOUT -- explicitly distinguished, not restated
+    - MECH-269  # hippocampal anchor selection -- the mechanism that consumes the composed "now" state
+    - MECH-022  # hippocampal hypothesis injection -- the proposal-generation function this state seeds
+    - MECH-149  # CA1 mismatch novelty gate -- the rate at which proposal generation should fire, distinct axis
+    - ARC-018   # hippocampal rollout generation from "the current latent state"
+    - MECH-089  # theta-cycle packaging -- sibling oscillatory-substrate mechanism (temporal batching, not aggregation)
+  location: docs/architecture/ephaptic_hippocampal_now_construction.md#mech-499
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_ephaptic_
+    aggregation_hippocampal_now_proposal_generation.md (raw thought docs/thoughts/2026-08-12_
+    ephaptic_aggregation_hippocampal_now_proposal_generation.md). NOT a restatement of MECH-270:
+    MECH-270 explicitly disclaims being about content ("V_s can be computed directly from
+    per-stream prediction/realization alignment... MECH-270 is the biological-grounding claim,
+    not an implementation requirement") and stays scoped to a per-stream confidence/eligibility
+    scalar gating MECH-269 anchor selection. MECH-499 is about where the composed state's
+    CONTENT comes from in the first place -- a temporally-structured population estimate, not a
+    scalar. Both may be true simultaneously on the same substrate family; conflating function
+    with physical substrate is the exact failure mode MECH-269/MECH-270's own split was written
+    to avoid (see feedback_biology_before_formal_definitions), and this claim preserves that
+    separation rather than re-deriving it. Companion thought docs/thoughts/2026-08-12_affordance_
+    indexed_temporally_displaced_present.md (not yet processed as of this registration) supplies
+    the phenomenological frame ("proposals need to come from 'now' quickly") this claim proposes
+    a physical substrate for. Compass / V4; epistemic_category substrate_conditional set
+    EXPLICITLY -- gated on the MECH-228/MECH-270 ephaptic substrate itself, which is not V3-landed
+    (V3-EXQ-720/725/725a: fixed and learned ephaptic-analog cross-stream binders have not yet
+    cleared their own coherence-specificity gate). DO NOT build or queue a V3 experiment without
+    an explicit version-routing decision.
+
+- id: MECH-500
+  title: "Content authority (which candidate future should win commitment -- already REE's existing architecture via MECH-090/MECH-341/ARC-003) and temporal/readiness authority (whether a candidate future has become sufficiently coherent, in the cross-system field-coherence sense, for commitment to be permitted to land AT ALL) are distinct constitutional questions that may require different mechanisms. Fast cross-system field coherence (extending MECH-499's content-aggregation function) is a candidate mechanism for the readiness axis specifically -- locating the moving frontier at which a previously branching predicted future becomes sufficiently well-predicted for commitment to land -- distinct from MECH-434's evidence/posterior-driven epistemic commitment timing at the inference layer, and distinct from MECH-090's beta-gated propagation of an already-decided commit."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.field_coherence_commitment_readiness
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - MECH-499  # content-aggregation claim this readiness axis extends the same substrate for
+    - MECH-228  # general ephaptic-coupling-as-coherence-substrate claim
+    - MECH-270  # hippocampal ephaptic verisimilitude readout -- adjacent field-coherence application
+    - MECH-090  # beta-gated propagation of an ALREADY-DECIDED commit -- explicitly distinguished, not restated
+    - MECH-269  # hippocampal anchor selection -- the proposal-generation side this gates candidates from
+    - MECH-434  # epistemic commitment timing -- evidence/posterior-driven; explicitly distinguished
+    - ARC-018   # hippocampal rollout generation -- source of the candidate futures this claim's gate applies to
+  distinct_from:
+    - MECH-434  # inference-layer, belief-state-uncertainty-driven; MECH-500 is field-coherence-driven, about the proposal-generating machinery's own state, not external evidential sufficiency
+    - MECH-090  # gates propagation of an ALREADY-DECIDED commit via margin/competence; MECH-500 is upstream -- whether commitment should be considered at all
+  location: docs/architecture/ephaptic_hippocampal_now_construction.md#mech-500
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_ephaptic_
+    aggregation_hippocampal_now_proposal_generation.md, "Relationship to the commitment boundary"
+    and "Division of labour with basal-ganglia-like machinery" sections of the raw thought. No
+    existing claim states the content-authority / temporal-readiness-authority split explicitly:
+    MECH-090/MECH-341/ARC-003 collectively cover content authority; MECH-434 covers an
+    evidence-driven readiness axis at the inference layer; none names a field-coherence-based
+    readiness axis or states the two-authority distinction as such. A future V4 scoping pass
+    should determine whether MECH-434 and MECH-500 are independent readiness signals that
+    AND-compose (mirroring MECH-090's own two-axis R-c precedent: within-tick score-margin AND
+    across-tick nav-competence) or whether one subsumes the other once both substrates exist --
+    not resolved here. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY --
+    gated on the MECH-228/MECH-270/MECH-499 ephaptic-aggregation substrate, none of which is
+    V3-landed. DO NOT build or queue a V3 experiment without an explicit version-routing decision.

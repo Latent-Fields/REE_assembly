@@ -1,5 +1,9 @@
 # Thought: Ephaptic Aggregation, Hippocampal Proposal Generation, and the Construction of “Now”
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md
+Claims registered: MECH-499, MECH-500
+
 **Date:** 2026-08-12  
 **Status:** Associated unstructured theoretical thought; hypothesis-generating. This is not a claim of established biological mechanism and is not evidence of subjective experience in REE.
 
