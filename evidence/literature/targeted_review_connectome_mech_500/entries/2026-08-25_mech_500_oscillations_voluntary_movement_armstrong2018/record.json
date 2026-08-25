@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_500",
+  "entry_id": "2026-08-25_mech_500_oscillations_voluntary_movement_armstrong2018",
+  "timestamp_utc": "2026-08-25T22:58:55Z",
+  "claim_ids_tested": ["MECH-500"],
+  "source": {
+    "title": "Neural Oscillations and the Initiation of Voluntary Movement",
+    "authors": ["Siobhan Armstrong", "Martin V. Sale", "Ross Cunnington"],
+    "year": 2018,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2018.02509",
+    "pmid": "30618939",
+    "volume": "9"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Review arguing that slow oscillatory/subthreshold potential dynamics -- not classic accumulate-to-bound evidence accumulation alone -- may set the timing of voluntary movement initiation, which is at least compatible with MECH-500's premise that readiness timing need not reduce entirely to evidence accumulation. But the review's own proposed mechanism (single-region slow-wave threshold-crossing, in the same RP/CNV family Schurger's accumulator model already re-explains) is not the CROSS-SYSTEM FIELD COHERENCE mechanism MECH-500 specifically proposes, so it supports the general axis-distinction more than the specific mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's own proposed causal mechanism -- 'slow changes in neuroelectric potentials may play a role in the timing of movement onset by pushing brain activity above a threshold to trigger the initiation of action' -- is a single-region threshold-crossing account structurally identical in form to the accumulator model in the companion Schurger 2012 entry, not a cross-population coherence/synchrony account; it does not test or propose field coherence BETWEEN systems as the readiness variable.",
+    "The authors explicitly flag correlation-vs-causation as unresolved ('propose using non-invasive brain stimulation... to determine whether these neural patterns actually cause movement initiation or merely correlate with it'), i.e. even the single-region oscillatory-threshold account this review favors is not yet established as causal."
+  ],
+  "tags": ["mech_500", "readiness_potential", "voluntary_movement", "commitment_timing", "oscillation_vs_accumulation"],
+  "mapping": {
+    "source_claim_statement": "Brain states indicative of forthcoming movement occur before conscious awareness of the decision to act. The review surveys evidence that slow-frequency oscillatory/subthreshold potential changes (in the readiness-potential/CNV family) may set the timing of movement onset by driving activity above a threshold that triggers action initiation, and proposes non-invasive brain stimulation as a way to test whether these oscillatory dynamics are causally responsible for movement timing or merely correlated with it.",
+    "ree_translation": "MECH-500's core structural claim is that 'temporal/readiness authority' (whether a candidate future is coherent enough for commitment to land) is a distinct constitutional question from content authority and from MECH-434's evidence-driven epistemic commitment timing. This review is weak-to-moderate supporting context for the GENERAL premise that oscillatory brain dynamics -- as opposed to, or alongside, discrete evidence accumulation -- can set commitment/initiation timing, which keeps the door open for a readiness axis that is not simply MECH-434 under another name. It does not, however, propose or test CROSS-SYSTEM field coherence specifically as that mechanism; its own favored account is single-region slow-potential threshold-crossing, which is the same general class of mechanism Schurger's accumulator model (this same claim's other literature entry) already shows can be explained WITHOUT a distinct coherence mechanism.",
+    "mapping_caveat": "This is a review of the RP/CNV single-region slow-potential literature for movement initiation, not a study of cross-system oscillatory coherence, and not about hippocampal proposal-generation or field-coherence-based gating of a hippocampally-generated candidate future. The review itself acknowledges the causal question is unresolved. Treat as scaffolding for 'oscillation-based timing accounts exist and are taken seriously in the literature' rather than as direct support for MECH-500's specific field-coherence mechanism.",
+    "source_context": "Narrative review synthesizing human EEG/MEG and brain-stimulation literature on readiness potentials, contingent negative variation, and voluntary movement initiation timing."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.7,
+    "notes": "Moderate source_quality (narrative review, not primary data, in a mid-tier journal). Low-moderate mapping_fidelity: relevant to the general oscillation-vs-accumulation axis-distinction MECH-500 needs but does not test or propose cross-system field coherence, which is MECH-500's actual mechanism. Confidence kept low (0.45) to avoid overstating how directly this bears on the specific claim."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_499",
+  "entry_id": "2026-08-25_mech_499_theta_gamma_memory_matching_biel2021",
+  "timestamp_utc": "2026-08-25T22:58:55Z",
+  "claim_ids_tested": ["MECH-499"],
+  "source": {
+    "title": "EEG cross-frequency phase synchronization as an index of memory matching in visual search",
+    "authors": ["Anna-Lena Biel", "Tamas Minarik", "Paul Sauseng"],
+    "year": 2021,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2021.117971",
+    "pmid": "33839263",
+    "volume": "234"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Direct human EEG evidence that cross-frequency (theta-gamma) phase synchronization functionally instantiates a content-level comparison operation -- whether current sensory input matches a held working-memory template -- rather than merely gating attention or arousal. This is the best evidence found in this pull that oscillatory cross-frequency relationships can carry/implement content-relevant computations, though the substrate (scalp EEG, cortical, synaptic network) and species differ substantially from MECH-499's proposed hippocampal ephaptic mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Synchronization was WEAKER, not stronger, when multiple templates had to be matched simultaneously -- i.e. the mechanism appears to have a low aggregation capacity/bandwidth, in tension with MECH-499's requirement that the field-level aggregate compose information from many concurrent streams at once."
+  ],
+  "tags": ["mech_499", "cross_frequency_coupling", "theta_gamma", "working_memory_content", "content_aggregation"],
+  "mapping": {
+    "source_claim_statement": "During visual search, participants held either one or multiple item templates in working memory and compared incoming sensory input against them. A transient theta-gamma cross-frequency phase synchronization (CFS) emerged ~150 ms after search-display onset, localized to right parietal cortex (posterior sites contralateral to the target), and was stronger for single-template than multiple-template conditions. The authors interpret transient theta-gamma phase synchronization as a neural marker for comparing sensory input against working-memory content.",
+    "ree_translation": "MECH-499 needs oscillatory cross-frequency relationships to function as a CONTENT-carrying mechanism, not merely a gate. This paper is the clearest evidence found that cross-frequency phase synchronization is functionally tied to a content-level operation -- matching incoming sensory content against a specific held representation -- rather than simply modulating attentional gain generically. That the synchronization signature tracks WHICH template is being matched (and degrades under multi-template load) supports reading the phase relationship as carrying/implementing content-specific information, which is the core mechanism-shape MECH-499 proposes for the ephaptic/oscillatory aggregate.",
+    "mapping_caveat": "This is scalp EEG over posterior cortex during visual search in humans -- synaptically-mediated cross-frequency coupling in a cortical working-memory-comparison circuit, not non-synaptic ephaptic field coupling in hippocampal CA1/CA3 during theta/SWR. The function tested (compare current input to ONE held template) is also narrower and simpler than MECH-499's proposed function (aggregate MANY concurrent streams into a composite now-state) -- and the finding that synchronization DEGRADES under multi-template load is, if anything, a caution about how much simultaneous content a coherence-based readout can actually carry, which bears directly on MECH-499's scalability.",
+    "source_context": "Human EEG, visual search task manipulating working-memory template load (single vs. multiple items); time-frequency and cross-frequency phase synchronization analysis time-locked to search-display onset."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.65,
+    "notes": "Moderate source_quality (single EEG study, not yet extensively replicated, correlational). Moderate mapping_fidelity: directly on-topic for 'does cross-frequency phase relationship carry content', but wrong substrate (cortical/synaptic EEG vs. hippocampal ephaptic) and the capacity-limitation finding (degradation under multi-template load) is itself a point of tension with MECH-499's multi-stream aggregation requirement, noted in failure_signatures rather than smoothed over."
+  }
+}

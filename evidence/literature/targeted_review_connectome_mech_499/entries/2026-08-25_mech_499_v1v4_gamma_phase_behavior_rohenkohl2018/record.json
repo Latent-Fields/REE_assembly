@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_499",
+  "entry_id": "2026-08-25_mech_499_v1v4_gamma_phase_behavior_rohenkohl2018",
+  "timestamp_utc": "2026-08-25T22:58:55Z",
+  "claim_ids_tested": ["MECH-499"],
+  "source": {
+    "title": "Gamma Synchronization between V1 and V4 Improves Behavioral Performance",
+    "authors": ["Georgia Rohenkohl", "Conrado A. Bosman", "Pascal Fries"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.09.019",
+    "pmid": "30318415",
+    "volume": "100",
+    "issue": "4"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Direct primate electrophysiology showing that the RELATIVE PHASE relationship between two synchronized oscillatory populations (not just synchrony magnitude) has a measurable downstream behavioral consequence (reaction time). This is the closest empirical anchor found for MECH-499's specific emphasis on relative phase as an information-bearing dimension, though the task/circuit (inter-areal visual attention routing) is not hippocampal proposal-generation-state construction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The effect is a modest RT modulation (13-31 ms) tied to deviation from an OPTIMAL phase relationship, i.e. the finding is about transmission EFFICIENCY at a preferred phase offset, not about the phase relationship encoding distinct CONTENT -- a structurally different claim from MECH-499's 'phase relationships constitute a composite state.'"
+  ],
+  "tags": ["mech_499", "gamma_synchrony", "relative_phase", "inter_areal_communication", "v1_v4"],
+  "mapping": {
+    "source_claim_statement": "In macaques performing a visual attention/stimulus-change-detection task, V1-V4 gamma synchronization immediately preceding a stimulus change partly predicted subsequent reaction times. As the phase relationship between the two areas' gamma rhythms deviated from its typical (optimal) offset, reaction times slowed by 13-31 ms. The effect was specific to the attended stimulus representation and not attributable to either area's local activity alone, indicating the RELATIVE PHASE relationship itself -- not just synchrony strength -- carries behaviorally consequential information about transmission readiness.",
+    "ree_translation": "MECH-499 specifically emphasises that the composed 'now' state must be read as temporally-structured population information including relative phase, not a scalar. This paper is direct primate evidence that relative phase between two oscillating populations is a real, separately measurable, behaviorally consequential variable -- distinguishable from raw synchrony magnitude. That is the closest empirical anchor available for the mechanism-SHAPE MECH-499 needs (a multi-dimensional, relationally-structured readout), even though the specific function tested here (communication efficiency/latency between two named visual areas) is narrower than MECH-499's proposed function (aggregation across many concurrent streams into a composite proposer-anchoring state).",
+    "mapping_caveat": "Two-area (V1-V4) visual cortex circuit in a change-detection/attention task in macaques, not hippocampal CA1/CA3 during theta/SWR, and not a many-stream aggregation. The paper demonstrates that relative phase modulates communication EFFICIENCY (how fast/well an existing signal gets through), not that it encodes NEW composite CONTENT synthesised from multiple streams. Correlational (LFP phase vs. RT), not a causal manipulation of phase.",
+    "source_context": "Two adult macaques, chronic microelectrode arrays in V1 and V4, performing a covert-attention change-detection task; local field potential phase and gamma-band coherence analysis relative to trial-by-trial reaction time."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "High source_quality (well-controlled primate electrophysiology from the CTC research programme, published in Neuron). Moderate mapping_fidelity: it validates relative phase as a real, separable, functionally consequential variable (needed for MECH-499's mechanism-shape) but tests communication efficiency between two areas, not multi-stream content aggregation into a hippocampal proposer anchor."
+  }
+}

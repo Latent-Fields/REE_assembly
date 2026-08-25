@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_500",
+  "entry_id": "2026-08-25_mech_500_readiness_potential_accumulator_schurger2012",
+  "timestamp_utc": "2026-08-25T22:58:55Z",
+  "claim_ids_tested": ["MECH-500"],
+  "source": {
+    "title": "An accumulator model for spontaneous neural activity prior to self-initiated movement",
+    "authors": ["Aaron Schurger", "Jacobo D. Sitt", "Stanislas Dehaene"],
+    "year": 2012,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1210467109",
+    "pmid": "22869750",
+    "volume": "109",
+    "issue": "42"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "Highly cited, well-validated model showing that the readiness potential -- the canonical single-region neural signature of impending voluntary-movement commitment -- is well explained by a leaky stochastic accumulator crossing a fixed threshold, i.e. the SAME evidence-accumulation-class mechanism family MECH-434 already covers, rather than requiring a distinct coherence-based mechanism. Direct parsimony challenge to MECH-500's premise that a mechanism DISTINCT from evidence accumulation is needed for commitment-readiness timing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model requires no field-coherence or cross-population-synchrony term at all: 'a leaky stochastic accumulator' operating on ordinary (largely uncorrelated, spontaneously fluctuating) neural noise reproduces both the RP shape and the timing distribution of self-initiated movement -- an existence proof that the phenomenon MECH-500 targets (locating the moment a candidate becomes 'ready' for commitment) does not by itself require positing field coherence as the mechanism.",
+    "Confirmed prediction: rapid responses to unexpected interruptions were preceded by a slow negative voltage deflection beginning well before the interruption, even absent any prior intention to move -- i.e. what looks like a 'readiness' signal can arise from generic accumulating noise crossing threshold, not from a dedicated commitment-readiness-detection mechanism."
+  ],
+  "tags": ["mech_500", "readiness_potential", "accumulator_model", "commitment_timing", "distinct_from_field_coherence"],
+  "mapping": {
+    "source_claim_statement": "The readiness potential (RP), a gradual pre-movement buildup of scalp-recorded neural activity long interpreted as reflecting deliberate movement preparation, can instead be modeled as the product of a leaky stochastic accumulator integrating spontaneous neural noise toward a fixed decision threshold for 'when to move.' When the imperative to move is weak (self-paced, no external trigger), spontaneous fluctuations -- not deliberate planning -- primarily determine the precise moment of movement initiation. The model was validated against both RP shape and reaction-time distributions, and an additional experiment confirmed a specific prediction: rapid responses to unexpected interruptions are preceded by the same slow negative deflection even when the subject was not preparing to move.",
+    "ree_translation": "MECH-500 proposes that WHETHER a candidate future is coherent enough for commitment to be permitted (temporal/readiness authority) is a distinct constitutional question from content authority (MECH-090/MECH-341/ARC-003), and that fast cross-system field coherence is a candidate mechanism for that readiness axis, distinct from MECH-434's evidence/posterior-driven epistemic commitment timing. This paper is the sharpest available parsimony challenge to that premise: the best-characterised biological analogue of 'is this the moment to commit' (the RP preceding self-initiated movement) is well explained by an ordinary accumulator crossing a threshold -- exactly the evidence-accumulation MECHANISM CLASS MECH-434 already covers -- with no need to posit a field-coherence-specific readiness detector. If the RP's function can be fully captured by accumulation, MECH-500's motivating intuition (that readiness needs its OWN mechanism, separate from accumulation) loses its clearest single-region biological anchor.",
+    "mapping_caveat": "This is about spontaneous SELF-PACED movement-onset timing (single motor-cortex/SMA-region EEG signature), not about gating COMMITMENT to a hippocampally-generated candidate FUTURE against cross-system field coherence -- a different decision (when to move an already-decided action) from what MECH-500 targets (whether a proposed future is coherent enough to be considered at all). The accumulator model does not rule out that a SEPARATE, faster, coherence-based readiness signal ALSO exists upstream of or alongside accumulation for the hippocampal-proposal case specifically; it only establishes that accumulation alone is SUFFICIENT to explain the closest existing analogue, which is a real but not decisive constraint.",
+    "source_context": "Human EEG (readiness potential) combined with a computational leaky-stochastic-accumulator model, validated against self-paced movement-onset timing distributions and an interruption-response experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.6,
+    "notes": "Very high source_quality (landmark PNAS paper, extensively cited and replicated/extended in the two decades of RP literature it opened up). Moderate mapping_fidelity: it is the best available biological analogue for 'timing of commitment readiness' but tests a different decision (movement onset, single-region) from MECH-500's target (hippocampal-future commitment gating, cross-system field coherence). Recorded as weakens because its parsimony argument (accumulation alone suffices for the closest known case) directly cuts against MECH-500's premise that readiness needs a mechanism distinct from accumulation -- consistent with how MECH-090's own evidence base (Hanes-Schall, Cisek, Roesch-Calu-Schoenbaum) is also tagged weakens for the same reason: accumulator/competition models are the well-evidenced default REE claims must argue past."
+  }
+}

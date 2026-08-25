@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_499",
+  "entry_id": "2026-08-25_mech_499_communication_through_coherence_fries2015",
+  "timestamp_utc": "2026-08-25T22:58:55Z",
+  "claim_ids_tested": ["MECH-499"],
+  "source": {
+    "title": "Rhythms for Cognition: Communication through Coherence",
+    "authors": ["Pascal Fries"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.09.034",
+    "pmid": "26447583",
+    "volume": "88",
+    "issue": "1",
+    "pages": "220-235"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Strong, canonical, high-citation theory paper directly about the functional consequence of oscillatory phase relationships between neural populations -- but the mechanism it describes (selective gating/routing of an ALREADY-EXISTING representation via gamma-band entrainment, arbitrated by top-down alpha-beta) is functionally distinct from MECH-499's specific claim that the field-level aggregate itself CONSTITUTES a composite content state. Necessary supporting context, not a direct test of the aggregation-for-content function.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CTC's own framing is a filter, not a constructor: 'If a stimulus is selected by attention, its neuronal representation shows stronger and higher-frequency gamma-band synchronization... thereby the attended stimulus representation selectively entrains postsynaptic neurons' -- the content being routed pre-exists the synchronization event; synchronization determines whether it gets through, not what it is.",
+    "The theory is explicitly about SELECTION among multiple already-formed competing representations converging on a postsynaptic population, not about FUSING distributed streams into one new temporally-structured composite -- the opposite direction of information flow from what MECH-499 needs."
+  ],
+  "tags": ["mech_499", "ephaptic_coupling", "communication_through_coherence", "oscillatory_gating", "content_vs_gating"],
+  "mapping": {
+    "source_claim_statement": "Gamma-band synchronization between a presynaptic population and a postsynaptic target renders that specific input effectively transmitted (escapes the following inhibition window) while competing, less-synchronized inputs are shut out; attention operates by selectively increasing gamma synchronization for the attended representation. Top-down alpha-beta influences arbitrate which bottom-up gamma-synchronized channel wins. Theta rhythm paces the sampling cycle.",
+    "ree_translation": "MECH-499 needs the ephaptic/oscillatory field itself to carry a temporally-structured composite of population-level information (phase, relative phase, synchrony, cross-frequency relationships) that CONSTITUTES the hippocampal proposer's actionable-now starting state. CTC establishes the more modest and better-evidenced claim that phase relationships have real functional/behavioral consequences for neural communication -- this is necessary scaffolding (if phase relationships had no functional consequence at all, MECH-499 would have no mechanism to stand on) but CTC's actual mechanism is routing/gating of pre-formed content between two populations, not the field-level SYNTHESIS of a new aggregate state from many streams that MECH-499 specifically proposes. The paper does not test or claim the aggregation-for-content function.",
+    "mapping_caveat": "This is the load-bearing distinction the thought-intake itself flagged: literature establishing that oscillatory coherence has functional consequences for communication does not automatically transfer to the much stronger claim that oscillatory coherence constitutes an information-carrying aggregate. CTC's mechanism (selective entrainment/gating between two named populations) is architecturally closer to MECH-270's confidence/eligibility-readout framing (which stream gets through) than to MECH-499's content-aggregation framing (what composite state results). Cortical gamma/beta/theta interplay in visual attention tasks, not hippocampal ephaptic coupling during theta/SWR.",
+    "source_context": "Theoretical/synthesis review by the originator of CTC theory, drawing on the author's own and others' primate visual-cortex (V1/V4) electrophysiology programme; not itself a new empirical study."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "Very high source_quality (foundational, extensively replicated theory) deliberately does not translate into a high aggregate confidence, because mapping_fidelity is the binding constraint: CTC is evidence that phase relationships matter functionally, not evidence that they aggregate content. Confidence 0.55 reflects real but partial, indirect support -- do not read this entry as confirming MECH-499's stronger claim."
+  }
+}
