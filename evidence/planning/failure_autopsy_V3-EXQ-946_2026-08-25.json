@@ -1,0 +1,76 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-25T18:13:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_utc": "2026-08-25T18:30:37Z",
+  "confirmed_disposition": "User confirmed all three (Recommended) options verbatim: (1) do NOT flip substrate_queue contextmemory-write-path-addressing-degeneracy to implemented_validated on this evidence alone; (2) DEFER write-address default-mode selection (BIAS vs REFRACTORY), neither instrument settles it; (3) MECH-152 measurement redesign scope UNCHANGED (Element 6 still gates it independently). See companion .md Section 11.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_946_contextmemory_write_address_informativeness_diagnostic_20260823T075019Z_v3",
+      "queue_id": "V3-EXQ-946",
+      "claim_ids": [],
+      "failed_criterion": "none at the run level (overall outcome PASS, OR-aggregated across 4 arms); 2 of 4 individually load_bearing:true per-arm criteria failed (C_BIAS_W0_01_exceeds_order_only_null, C_REFRACTORY_exceeds_order_only_null) -- this is what triggered the indexer's mechanical vacuous_pass flag",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a - claim_ids empty by design (readiness/instrument diagnostic for EVB-0628/INV-044, not claim evidence)",
+        "biological_reference": "clear - DeSieno 1988 frequency-sensitive conscience bias (BIAS arm) and neuronal absolute-refractory period (REFRACTORY arm); same grounding as sibling V3-EXQ-943; not a formal-definition import; no /lit-pull owed",
+        "prerequisites": "present - both write-address fixes (usage-balancing conscience bias, refractory eligibility mask) landed and engaged; P0 writepath_engaged_every_cell met at 2933-3187 writes/cell",
+        "implementation": "partial - BIAS_W1_0 and BIAS_W0_1 carry a statistically real but vanishingly small context signal (~0.0002-0.0006 bits vs a 1.0-bit positive control, ~0.02-0.06% of the instrument's own detectable range); BIAS_W0_01 additionally shows partial RE-DEGENERATION of occupancy (4-14 of 16 slots vs 16/16 at W1_0/W0_1), moving back toward the original corrupting few-slot fixed point; REFRACTORY (content-only argmin among eligible slots, no usage term) underperforms BIAS on this specific instrument, and its occupancy in THIS run (6/3/3/3/9 of 16, 3 of 5 seeds sitting exactly at the k+1=3 construction floor) is far worse than BIAS's 16/16 -- what the refractory eligibility mask structurally guarantees is a floor (never collapsing below k+1 slots), not diversity -- the write ADDRESS mechanism at every tested operating point is dominated by order/eligibility structure, with only a thin, weight-dependent residual of genuine content-sensitivity",
+        "environment": "adequate - 436-family CausalGridWorldV2 + REEAgent training loop, real z_world-derived state, writepath genuinely engaged (P0 met); identical harness to V3-EXQ-943 for comparability",
+        "measurement": "adequate - the strongest layer in this diagnosis. Blockwise-permutation order-only null (500 permutations, block structure preserved) is purpose-built to avoid the exact artifact-as-verdict trap (a period-aligned clock producing spurious MI against a naive chance baseline) that cost this lineage six generations (V3-EXQ-436..436f) and withdrew both of INV-044's V3-EXQ-429 entries. P0 instrument validation is itself validated on synthetic positive/negative controls, independently recomputed here: positive control z=40.19 (floor 5.0, 8x margin), negative control z=-0.27 (ceiling 2.0, 7x margin) -- both hold under construction (deterministic synthetic sequences, no substrate dependence), not merely asserted",
+        "integration": "isolated - writes are a sense() side-effect; action selection never reads ContextMemory (identical write-call counts across all arms at each seed confirm no arm-dependent behavioural coupling). This diagnostic does not and does not claim to test integration",
+        "scale": "adequate - 16 slots, ~2933-3187 writes/cell, 40 blocks/cell, 5 seeds/arm; binding constraint is the address rule's information content, not sample size"
+      },
+      "biological_reference": {
+        "closest_mechanism": "DeSieno 1988 frequency-sensitive competitive-learning conscience bias (BIAS arms); neuronal absolute refractory period (REFRACTORY arm)",
+        "dependencies": ["non-degenerate write-address selection (this diagnostic's own subject)", "content-carrying query/payload stream (state-dependent, folds in z_world)"],
+        "is_formal_import": false,
+        "divergence": "Architecture doc (contextmemory_write_address_selection.md) names both biological mechanisms explicitly; divergence already documented in-tree (V3-EXQ-943 autopsy): at default weight the conscience-bias term is occupancy-without-addressing, a global usage-EMA rather than a first-order neural property",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-946 (2026-08-23, PASS/adjudication=vacuous_pass) measured write-ADDRESS informativeness (not occupancy) at 4 operating points against a purpose-built blockwise-permutation order-only null, on a real REEAgent. BIAS_W1_0 (default weight) clears robustly (5/5 seeds, z 2.19-7.73); BIAS_W0_1 clears at the required floor (3/5 seeds, z -- one seed at 0.39, essentially null); BIAS_W0_01 and REFRACTORY do not clear (1/5, 2/5). The indexer's mechanical vacuous_pass flag is very likely a FALSE POSITIVE -- see Section 6 of the companion .md -- because the driver's own semantics is an explicit OR across 4 individually load_bearing:true per-arm criteria ('PASS iff AT LEAST ONE arm clears its bar'), and rule (3b) (build_experiment_indexes.py:532-539) fires unconditionally on any load_bearing:true+passed:false entry with no representation of run-level AND-vs-OR combination semantics. This is a distinct failure mode from the four already-documented join-mismatch sub-cases (branch-selector, criteria-tag join, aggregate _non_degenerate licence, arm::check convention), none of which are even reached here -- they live in the indexer's legacy fallback path, which (3b) short-circuits before it can run. Independently of the flag, the substantive finding is that the statistically real signal at BIAS_W1_0/W0_1 is of MINUTE magnitude: 0.0002-0.0006 bits against the same instrument's own 1.0-bit positive control (~0.02-0.06%). 'Distinguishable from an order-only null' is not 'carries usable context' -- reading this as closing the corrupting write-path defect would repeat the category error the 922a autopsy caught for MECH-152's prior FAILs. Recommend NOT flipping substrate_queue entry contextmemory-write-path-addressing-degeneracy to implemented_validated on this evidence alone.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "unblocks_claims": ["SD-017", "ARC-045", "MECH-166"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_946_contextmemory_write_address_informativeness_diagnostic_20260823T075019Z_v3",
+          "experiment_type": "v3_exq_946_contextmemory_write_address_informativeness_diagnostic",
+          "metric": "Write-address informativeness against a blockwise-permutation order-only null (positive control z=40.19 vs floor 5.0; negative control z=-0.27 vs ceiling 2.0; both instrument-validated). BIAS_W1_0 clears 5/5 seeds (z 2.19-7.73, MI 0.0002-0.0006 bits); BIAS_W0_1 clears 3/5 (thin margin, one seed z=0.39); BIAS_W0_01 clears 1/5 with partial occupancy re-degeneration (4-14/16 slots, up to 7% self-repeat); REFRACTORY clears 2/5 despite content-only (no usage term) addressing. Magnitude at clearing arms is ~0.02-0.06% of the instrument's own positive-control range.",
+          "target": "informativeness alone is necessary but explicitly NOT sufficient to close this entry -- see routing note; magnitude and cross-instrument mode-ranking disagreement (this run favours BIAS on addressing; a separate synthetic probe favours REFRACTORY on raw modulation depth -- see mech152_writepath_addressing_probe_20260825.md Sec.6) remain open",
+          "resolved": "open",
+          "run_role": "validation",
+          "added_utc": "2026-08-25T18:13:06Z"
+        }
+      },
+      "resolves_prior_failure_record": [],
+      "severity": null,
+      "substrate_paths": ["ree_core/predictors/e1_deep.py"],
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Write-address informativeness (distinct from occupancy, V3-EXQ-943's question) is statistically detectable at 2 of 4 operating points against a purpose-built, independently-validated order-only null, on a real agent -- the first run in this six-generation lineage to clear that specific bar with a null construction robust to the period-alignment artifact that produced false positives before.",
+        "The detectable signal is of minute magnitude (~0.02-0.06% of the instrument's own positive-control range) -- statistically real, practically negligible for any downstream differentiation DV until shown otherwise.",
+        "The seeds-clearing-null count falls strictly monotonically as bias_weight falls (5/5 -> 3/5 -> 1/5), the OPPOSITE direction from the driver's own stated hypothesis (weakening the usage term should let more content signal through), with sharply increased per-seed z-score variance at the lowest weight; BIAS_W0_01 additionally shows partial occupancy re-degeneration (4-14/16 slots).",
+        "REFRACTORY (content-only argmin, no usage term at all) underperforms BIAS_W1_0 on THIS instrument, the opposite ranking from a separate synthetic depth-based probe (mech152_writepath_addressing_probe_20260825.md) -- the two instruments disagree on which write-address mode is 'better', and per that probe's own stated preference this real-agent, order-only-null-validated result should be weighted over the synthetic one.",
+        "The indexer's vacuous_pass adjudication flag (rule 3b, build_experiment_indexes.py:532-539) fires unconditionally on any load_bearing:true+passed:false criterion with no representation of run-level AND-vs-OR combination semantics -- distinct in kind from the four documented join-mismatch sub-cases (V3-EXQ-783/906/908 etc., which are key-matching mismatches in the indexer's legacy fallback path, never reached once rule 3b fires)."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
