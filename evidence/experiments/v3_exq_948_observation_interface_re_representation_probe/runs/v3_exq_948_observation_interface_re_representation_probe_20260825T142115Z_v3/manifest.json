@@ -1,0 +1,344 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_948_observation_interface_re_representation_probe",
+  "run_id": "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-25T14:21:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "observation_interface_confirmed_re_representation_lifts_competence",
+    "combination_rule": "PASS is carried by ONE criterion -- C_latent_plus_localfield_clears_floor -- not by a conjunction. The other three load-bearing criteria are expected to read passed=false (C_latent_clears_floor, C_localfield_only_clears_floor) or passed=true (C_raw_obs_clears_floor) as REPLICATION anchors, and their values select which FAIL label is issued rather than gating PASS. Read the flat criteria list against this rule: a run with three false criteria and a PASS is the designed shape, not a mostly-failed run.",
+    "declared_null": "ppo_latent_plus_localfield does NOT clear the 1.0 competence floor on a strict majority of seeds AND ppo_localfield_only does not either -> re_representation_does_not_lift_competence. Restoring a re-representation whose sufficiency is independently certified in this same run (the local_view_greedy anchor clears the floor reading ONLY that channel) does not lift competence, so the ceiling is NOT the observation interface and H-observation-interface is REFUTED as a passive-under-exposure account. Live discrimination passes back to H-substrate-ceiling / H-f-dominance. This does NOT eliminate H-substrate-ceiling (nothing here tests it positively) and does NOT re-open H-policy-learning.",
+    "alternative_outcome_note": "If ppo_latent_plus_localfield clears the floor, H-observation-interface is CONFIRMED and the missing content is NAMED: the resource gradient, which is present in z_world's own input (world_state[225:250]) and not exposed by z_world to a downstream reader. That is actionable at the substrate. If instead arm 3 is flat while ppo_localfield_only clears, the latent ACTIVELY OBSTRUCTS rather than merely under-exposing -- a different and sharper claim, whose substrate work is interference removal, not content addition.",
+    "replication_note": "ppo_ree_latent and ppo_raw_obs are exact per-seed replications of V3-EXQ-813's anchor pair (same rung, same W3_survival_zeroed objective, same seeds, same budgets), which measured 0.5 and 9.033 res/ep. They are re-run rather than cited so all four arms share one substrate_hash and one objective; 813's numbers are a cross-check, not the baseline this run reads against.",
+    "dv_symmetry_note": "Per-arm DV-symmetry declaration. DV = D3 foraging_competence, a count of resources consumed per eval episode. Every arm's manipulation changes the OBSERVATION VECTOR the PPO policy conditions on, hence the action distribution, hence the trajectory, hence the count. No arm's manipulation is a broadcast additive constant over candidate scores (no candidate-score layer exists here -- PPO emits logits over 5 primitive actions directly), a monotone rescaling of a rank-valued DV, or a permutation of interchangeable units. So no arm's delta is an arithmetic identity fixed before the run. Arms 1 and 2 replicate 813 cells that empirically DID move this DV (0.5 vs 9.033).",
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "preconditions": [
+      {
+        "name": "ppo_ree_latent::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The z_world world_encoder must have moved during P0 (SD-070 warmup path). An unmoved encoder means the latent-reading arms are PPO on a frozen random projection, under which neither a lift nor a null says anything about what the TRAINED latent exposes.",
+        "control": "worst-cell world_encoder_max_abs_delta over all seed warmups vs 1e-6",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2752901315689087,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable from the SAME 5x5 resource field this probe hands the re-representation arms. This is the readiness check that makes the field arms interpretable: it certifies the added channel carries enough signal for competence, so a null on those arms is a fact about the LEARNER or the LATENT, never about the channel being empty. 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::survival_linked_share_zeroed",
+        "precondition": "survival_linked_share_zeroed",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "STRUCTURAL check that the objective correction landed: at W3_survival_zeroed the proximity/novelty/other families are multiplied by zero, so the realised survival-linked share must be exactly 0. A non-zero reading means a leaked term (implementation defect), not a finding. Deliberately replaces V3-EXQ-813's per-arm consumption_share floor, which was CIRCULAR -- consumption share falls when an arm forages less, so it penalised each arm for the failure under test.",
+        "control": "worst-cell (max) train-phase survival_linked_share for this arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::harm_share_negligible_on_control",
+        "precondition": "harm_share_negligible_on_control",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "Env-level harm accrual must not dominate the corrected return. Measured on the local_view_greedy POSITIVE CONTROL -- a competent forager NOT under test -- so this certifies an environment property without reading it off an arm whose competence is the dependent variable.",
+        "control": "worst-seed (max) eval-phase harm share of the local_view_greedy anchor",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.028994,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable from the SAME 5x5 resource field this probe hands the re-representation arms. This is the readiness check that makes the field arms interpretable: it certifies the added channel carries enough signal for competence, so a null on those arms is a fact about the LEARNER or the LATENT, never about the channel being empty. 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::survival_linked_share_zeroed",
+        "precondition": "survival_linked_share_zeroed",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "STRUCTURAL check that the objective correction landed: at W3_survival_zeroed the proximity/novelty/other families are multiplied by zero, so the realised survival-linked share must be exactly 0. A non-zero reading means a leaked term (implementation defect), not a finding. Deliberately replaces V3-EXQ-813's per-arm consumption_share floor, which was CIRCULAR -- consumption share falls when an arm forages less, so it penalised each arm for the failure under test.",
+        "control": "worst-cell (max) train-phase survival_linked_share for this arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::harm_share_negligible_on_control",
+        "precondition": "harm_share_negligible_on_control",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "Env-level harm accrual must not dominate the corrected return. Measured on the local_view_greedy POSITIVE CONTROL -- a competent forager NOT under test -- so this certifies an environment property without reading it off an arm whose competence is the dependent variable.",
+        "control": "worst-seed (max) eval-phase harm share of the local_view_greedy anchor",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.028994,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ppo_latent_plus_localfield::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "ppo_latent_plus_localfield",
+        "kind": "readiness",
+        "description": "The z_world world_encoder must have moved during P0 (SD-070 warmup path). An unmoved encoder means the latent-reading arms are PPO on a frozen random projection, under which neither a lift nor a null says anything about what the TRAINED latent exposes.",
+        "control": "worst-cell world_encoder_max_abs_delta over all seed warmups vs 1e-6",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2752901315689087,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ppo_latent_plus_localfield::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_latent_plus_localfield",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_latent_plus_localfield::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_latent_plus_localfield",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable from the SAME 5x5 resource field this probe hands the re-representation arms. This is the readiness check that makes the field arms interpretable: it certifies the added channel carries enough signal for competence, so a null on those arms is a fact about the LEARNER or the LATENT, never about the channel being empty. 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_latent_plus_localfield::survival_linked_share_zeroed",
+        "precondition": "survival_linked_share_zeroed",
+        "arm": "ppo_latent_plus_localfield",
+        "kind": "readiness",
+        "description": "STRUCTURAL check that the objective correction landed: at W3_survival_zeroed the proximity/novelty/other families are multiplied by zero, so the realised survival-linked share must be exactly 0. A non-zero reading means a leaked term (implementation defect), not a finding. Deliberately replaces V3-EXQ-813's per-arm consumption_share floor, which was CIRCULAR -- consumption share falls when an arm forages less, so it penalised each arm for the failure under test.",
+        "control": "worst-cell (max) train-phase survival_linked_share for this arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ppo_latent_plus_localfield::harm_share_negligible_on_control",
+        "precondition": "harm_share_negligible_on_control",
+        "arm": "ppo_latent_plus_localfield",
+        "kind": "readiness",
+        "description": "Env-level harm accrual must not dominate the corrected return. Measured on the local_view_greedy POSITIVE CONTROL -- a competent forager NOT under test -- so this certifies an environment property without reading it off an arm whose competence is the dependent variable.",
+        "control": "worst-seed (max) eval-phase harm share of the local_view_greedy anchor",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.028994,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ppo_localfield_only::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_localfield_only",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_localfield_only::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_localfield_only",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable from the SAME 5x5 resource field this probe hands the re-representation arms. This is the readiness check that makes the field arms interpretable: it certifies the added channel carries enough signal for competence, so a null on those arms is a fact about the LEARNER or the LATENT, never about the channel being empty. 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_localfield_only::survival_linked_share_zeroed",
+        "precondition": "survival_linked_share_zeroed",
+        "arm": "ppo_localfield_only",
+        "kind": "readiness",
+        "description": "STRUCTURAL check that the objective correction landed: at W3_survival_zeroed the proximity/novelty/other families are multiplied by zero, so the realised survival-linked share must be exactly 0. A non-zero reading means a leaked term (implementation defect), not a finding. Deliberately replaces V3-EXQ-813's per-arm consumption_share floor, which was CIRCULAR -- consumption share falls when an arm forages less, so it penalised each arm for the failure under test.",
+        "control": "worst-cell (max) train-phase survival_linked_share for this arm",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ppo_localfield_only::harm_share_negligible_on_control",
+        "precondition": "harm_share_negligible_on_control",
+        "arm": "ppo_localfield_only",
+        "kind": "readiness",
+        "description": "Env-level harm accrual must not dominate the corrected return. Measured on the local_view_greedy POSITIVE CONTROL -- a competent forager NOT under test -- so this certifies an environment property without reading it off an arm whose competence is the dependent variable.",
+        "control": "worst-seed (max) eval-phase harm share of the local_view_greedy anchor",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.028994,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_latent_clears_floor": true,
+      "C_raw_obs_clears_floor": true,
+      "C_latent_plus_localfield_clears_floor": true,
+      "C_localfield_only_clears_floor": true
+    },
+    "criteria": [
+      {
+        "name": "C_latent_plus_localfield_clears_floor",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 2.233333,
+        "threshold": 1.0,
+        "role": "THE positive demonstration -- the criterion that carries PASS"
+      },
+      {
+        "name": "C_localfield_only_clears_floor",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.216667,
+        "threshold": 1.0,
+        "role": "interference discriminator -- separates under-exposure from obstruction"
+      },
+      {
+        "name": "C_latent_clears_floor",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0.5,
+        "threshold": 1.0,
+        "role": "813 FLOOR anchor replication -- expected false; true means divergence"
+      },
+      {
+        "name": "C_raw_obs_clears_floor",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 9.033333,
+        "threshold": 1.0,
+        "role": "813 CEILING anchor replication -- expected true; false means divergence"
+      }
+    ]
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "59b5e6f4f55fc5adceff1d0db892b46c62ac653d1abdf3e558111a4f901706fc",
+  "substrate_commit": {
+    "commit": "8202bd7b4a6be82ce8528ed26886e6b1c7695e22",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 98907,
+    "ticks_active": 89331,
+    "writer_calls": 98907,
+    "active_frac": 0.9031817768206497,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
