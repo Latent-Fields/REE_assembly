@@ -980,6 +980,9 @@
     - SD-026
     - MECH-485  # threshold-gated predicted-harm/confidence pipeline; supplies Leg 3's retained-alternative candidates
     - MECH-487  # Leg 3's retention mechanism -- persists WHICH rejected/uncommitted E3 candidate existed past the tick, provenance-tagged (registered 2026-08-07 by the dedicated lit-pull; was the "retention mechanism ... does NOT YET EXIST" named in Leg 3's what_would_answer)
+    - ARC-015   # self-impact attribution / responsibility-flow substrate Leg 4 discounts against
+    - MECH-060  # pre-commit sim-error / post-commit realized-error write-locus separation Leg 4 builds on and distinguishes itself from
+    - MECH-095  # TPJ self/world comparator -- Leg 4 assumes its OUTPUT (self-causation already known), does not re-test its discrimination task
   epistemic_category: substrate_conditional
   what_would_answer: |
     CORRECTION (2026-08-07, same digestion session, user-caught): the
@@ -84029,3 +84032,122 @@
     not resolved here. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY --
     gated on the MECH-228/MECH-270/MECH-499 ephaptic-aggregation substrate, none of which is
     V3-landed. DO NOT build or queue a V3 experiment without an explicit version-routing decision.
+
+- id: ARC-129
+  title: "The state REE's downstream proposal-generation and action-evaluation machinery consumes as 'the current state' may be more accurately modeled as a short-horizon, affordance-conditioned FORWARD-DISPLACED prediction s_hat(t+tau) rather than the literal current encoded latent, where tau is set by the causal-effect timescale of whichever action REE is presently committed to (or, absent commitment, by the shortest relevant affordance horizon among candidates). Displacement magnitude should scale with commitment quality -- larger when the committed trajectory is well-predicted and low-variance, collapsing toward the immediate encoded state when uncommitted or when prediction quality is poor -- so 'now', for any consumer that reads a single current-state latent, is itself a construction rather than a passthrough of the most recent sensory encoding."
+  claim_type: architectural_commitment
+  subject: commitment.temporally_displaced_actionable_present
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - ARC-002   # E2 is the action-conditioned forward predictor of affordances -- the machinery that would generate s_hat(t+tau); this claim reframes its OUTPUT as a candidate "now" input, not only an evaluation signal
+    - ARC-016   # precision-to-commitment circuit -- commitment quality (E3-derived variance) is the proposed governor of displacement magnitude
+    - MECH-061  # commit-boundary token: pre-commit and post-commit prediction/error streams already carry distinct information -- precedent that "what state means" changes character at the commit boundary
+    - MECH-090  # BG-level gate on E3-to-action-selection propagation -- the existing commitment/interrupt substrate this claim's displacement mechanism would need to sit alongside, not replace
+  location: docs/architecture/temporally_displaced_actionable_present.md#arc-129
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_affordance_indexed_temporally_displaced_present.md
+    (raw thought docs/thoughts/2026-08-12_affordance_indexed_temporally_displaced_present.md). DISTINCT FROM
+    ARC-002: ARC-002 asserts E2 forward-predicts action-conditioned affordance consequences and that
+    those predictions are useful for EVALUATING candidate trajectories; this claim is orthogonal --
+    it proposes that one of E2's forward predictions (specifically, the one along the currently
+    COMMITTED trajectory) could additionally serve as the CURRENT-STATE INPUT that downstream
+    proposal-generation/evaluation machinery treats as "now", rather than the raw current latent.
+    Nothing in ARC-002, ARC-016, or MECH-090 currently distinguishes "the state used to generate
+    new candidates" from "the state most recently encoded from sensory input" -- REE's existing
+    commitment architecture governs WHICH action wins and WHETHER propagation is gated, not WHAT
+    the current-state estimate consumed by that machinery actually is. Companion mechanistic thought
+    (2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md, processed separately by
+    a concurrent session) proposes one candidate biological realization (fast ephaptic/oscillatory
+    aggregation feeding hippocampal-analogue proposal generation); this claim is architecture-level
+    and implementation-agnostic with respect to that mechanism. Compass / V4 architectural framing
+    only; epistemic_category substrate_conditional set EXPLICITLY so promote/demote and
+    narrow_open_question do not fire. DO NOT build a displaced-present substrate or queue a V3
+    experiment from this claim without an explicit version-routing decision. See
+    docs/architecture/temporally_displaced_actionable_present.md for the full comparison against
+    existing machinery (ARC-002, ARC-016, ARC-029, MECH-061, MECH-090, MECH-434).
+
+- id: MECH-501
+  title: "Interruption of a committed trajectory by a sufficiently consequential prediction violation should trigger an explicit BACKWARD RECONSTRUCTION of the current-state estimate proposed by ARC-129 -- a measurable discontinuity in which the forward-displaced predicted-now s_hat(t+tau) is replaced by a less-displaced, evidence-corrected estimate closer to s_hat(t) -- distinct from, and downstream of, gate re-opening (MECH-090) and decommitment (MECH-342), which govern behavioral/ACTION authority but say nothing about what happens to the STATE REPRESENTATION consumed as 'now' at the moment of interrupt. Expected corollary: unexpected interruption of a highly predictable action-linked sequence should produce stronger state-estimate reconstruction than an expected within-trajectory correction of the same magnitude."
+  claim_type: mechanism_hypothesis
+  subject: commitment.interrupt_triggered_now_reconstruction
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - ARC-129   # the displaced-present claim this is the interrupt-time corollary of
+    - MECH-090  # existing surprise-gated interrupt / gate re-opening substrate (EXQ-062b) this is downstream of
+    - MECH-342  # maintenance-time decommit -- the existing release-authority mechanism this claim does NOT duplicate (action authority, not state representation)
+  location: docs/architecture/temporally_displaced_actionable_present.md#mech-501
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_affordance_indexed_temporally_displaced_present.md
+    ("Prediction error and fast interrupt" / "Interruption may reveal the temporal displacement").
+    DISTINCT FROM MECH-090 and MECH-342: both existing mechanisms govern whether/when COMMITMENT
+    releases and action-selection re-opens; neither claims anything about what happens to the
+    STATE ESTIMATE a proposal-generation/evaluation consumer treats as current at that moment. If
+    ARC-129 is right that "now" is normally forward-displaced, then a sufficiently large prediction
+    violation implies the estimate must be pulled back toward the un-displaced sensory-current
+    state, which is a distinct, falsifiable computational event (a discontinuity in the state
+    estimate itself) that MECH-090's gate-state and MECH-342's decommit signal do not, on their own,
+    entail. Loosely analogous (NOT claimed to share mechanism) to psychophysical postdictive/
+    backward-referral phenomena named in the raw thought (intentional binding, sensorimotor
+    temporal recalibration, chronostasis, saccadic predictive remapping) -- literature pull owed
+    before this is treated as more than a computational analogy. Compass / V4;
+    epistemic_category substrate_conditional set EXPLICITLY. DO NOT build or queue a V3 experiment
+    without an explicit version-routing decision and the literature pull named in the intake's
+    Next Steps.
+
+- id: MECH-502
+  title: "Because REE can hold multiple simultaneously-active commitments at different behavioural scales (e.g., a fine-grained motor/action-level commitment nested within a longer path/sequence-level commitment, itself nested within a longer goal-level commitment), the displaced-present construction proposed by ARC-129 should not be modeled as one global scalar displacement but as potentially several concurrently-active, differently-scoped forward-displacement horizons -- with local interrupt/correction at a fine-grained level (e.g., a single-step prediction-error correction) plausibly not requiring re-opening of a coarser-grained commitment, and vice versa. This is a nesting-of-DISPLACEMENT-HORIZONS claim, distinct from ARC-070/MECH-321's nesting of POLICY-DECOMPOSITION depth (which recursively re-segments candidate action primitives, not the temporal position of the consumed current-state estimate)."
+  claim_type: architectural_commitment
+  subject: commitment.nested_multiscale_displacement_horizons
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - ARC-129   # single-horizon displaced-present claim this generalizes to multiple concurrent horizons
+    - ARC-070   # multi-level policy decomposition -- architecturally adjacent nesting claim on a DIFFERENT axis (control-primitive granularity, not temporal displacement); cross-referenced, not duplicated
+    - ARC-016   # precision-to-commitment circuit, presently modeled as a single commit/uncommitted state this claim proposes may need to be per-scale
+    - MECH-090  # BG-level gate this claim implies may need multiple concurrently-active instances rather than one
+  location: docs/architecture/temporally_displaced_actionable_present.md#mech-502
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_affordance_indexed_temporally_displaced_present.md
+    ("Nested commitments imply nested temporal horizons"). DISTINCT FROM ARC-070/MECH-321: those
+    claims concern RECURSIVE POLICY-PRIMITIVE DECOMPOSITION depth (re-segmenting a candidate action
+    sequence into finer sub-elements on a V_s boundary trigger) -- a control-flow/execution-structure
+    hierarchy. This claim concerns whether the CURRENT-STATE ESTIMATE ("now") consumed by
+    proposal-generation/evaluation machinery needs multiple simultaneously-valid forward-
+    displacement horizons at different behavioural timescales, each with potentially independent
+    local correction/interrupt authority -- a temporal-representation hierarchy, not an execution-
+    primitive hierarchy. REE's existing commitment substrate (ARC-016/MECH-090) is currently modeled
+    around a single commit/uncommitted state per agent-tick; this claim's implication (that this may
+    need to be per-scale rather than global) is explicitly NOT asserted as an established requirement
+    -- it is the theory-derived implication the raw thought's own methodology section calls for
+    testing against existing machinery, and is registered here as a candidate dependency, not a
+    verdict. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY. DO NOT build or
+    queue a V3 experiment without an explicit version-routing decision.

@@ -1132,6 +1132,14 @@
     "title": "Persistent-process termination is a general architectural requirement, not a rule_state-closure special case: every family of persistent cognitive process REE can initiate (information-seeking, planning, memory retrieval, threat monitoring, goal pursuit, exploration, ethical counterfactual generation) needs its own instance of a shared termination-state taxonomy (completion / satiety / closure / disengagement / suspension / switching / interruption / reopening) that preserves WHY termination occurred, so that suspended/reopenable processes stay distinguishable from completed, satiated, or abandoned ones.",
     "type": "architectural_commitment"
   },
+  "ARC-129": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "commitment.temporally_displaced_actionable_present",
+    "title": "The state REE's downstream proposal-generation and action-evaluation machinery consumes as 'the current state' may be more accurately modeled as a short-horizon, affordance-conditioned FORWARD-DISPLACED prediction s_hat(t+tau) rather than the literal current encoded latent, where tau is set by the causal-effect timescale of whichever action REE is presently committed to (or, absent commitment, by the shortest relevant affordance horizon among candidates). Displacement magnitude should scale with commitment quality -- larger when the committed trajectory is well-predicted and low-variance, collapsing toward the immediate encoded state when uncommitted or when prediction quality is poor -- so 'now', for any consumer that reads a single current-state latent, is itself a construction rather than a passthrough of the most recent sensory encoding.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -7248,6 +7256,22 @@
     "subject": "control_plane.field_coherence_commitment_readiness",
     "title": "Content authority (which candidate future should win commitment -- already REE's existing architecture via MECH-090/MECH-341/ARC-003) and temporal/readiness authority (whether a candidate future has become sufficiently coherent, in the cross-system field-coherence sense, for commitment to be permitted to land AT ALL) are distinct constitutional questions that may require different mechanisms. Fast cross-system field coherence (extending MECH-499's content-aggregation function) is a candidate mechanism for the readiness axis specifically -- locating the moving frontier at which a previously branching predicted future becomes sufficiently well-predicted for commitment to land -- distinct from MECH-434's evidence/posterior-driven epistemic commitment timing at the inference layer, and distinct from MECH-090's beta-gated propagation of an already-decided commit.",
     "type": "mechanism_hypothesis"
+  },
+  "MECH-501": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "commitment.interrupt_triggered_now_reconstruction",
+    "title": "Interruption of a committed trajectory by a sufficiently consequential prediction violation should trigger an explicit BACKWARD RECONSTRUCTION of the current-state estimate proposed by ARC-129 -- a measurable discontinuity in which the forward-displaced predicted-now s_hat(t+tau) is replaced by a less-displaced, evidence-corrected estimate closer to s_hat(t) -- distinct from, and downstream of, gate re-opening (MECH-090) and decommitment (MECH-342), which govern behavioral/ACTION authority but say nothing about what happens to the STATE REPRESENTATION consumed as 'now' at the moment of interrupt. Expected corollary: unexpected interruption of a highly predictable action-linked sequence should produce stronger state-estimate reconstruction than an expected within-trajectory correction of the same magnitude.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-502": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "commitment.nested_multiscale_displacement_horizons",
+    "title": "Because REE can hold multiple simultaneously-active commitments at different behavioural scales (e.g., a fine-grained motor/action-level commitment nested within a longer path/sequence-level commitment, itself nested within a longer goal-level commitment), the displaced-present construction proposed by ARC-129 should not be modeled as one global scalar displacement but as potentially several concurrently-active, differently-scoped forward-displacement horizons -- with local interrupt/correction at a fine-grained level (e.g., a single-step prediction-error correction) plausibly not requiring re-opening of a coarser-grained commitment, and vice versa. This is a nesting-of-DISPLACEMENT-HORIZONS claim, distinct from ARC-070/MECH-321's nesting of POLICY-DECOMPOSITION depth (which recursively re-segments candidate action primitives, not the temporal position of the consumed current-state estimate).",
+    "type": "architectural_commitment"
   },
   "Q-001": {
     "assembly_state": "mature",

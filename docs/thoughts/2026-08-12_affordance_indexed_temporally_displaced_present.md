@@ -1,5 +1,9 @@
 # Thought: The Present Smeared Across Time — The Affordance-Indexed, Temporally Displaced Present
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_affordance_indexed_temporally_displaced_present.md
+Claims registered: ARC-129, MECH-501, MECH-502
+
 **Date:** 2026-08-12  
 **Status:** Unstructured theoretical thought; hypothesis-generating, not a claim of demonstrated mechanism or subjective experience in REE.
 
