@@ -1,0 +1,360 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_944b_mech091_salient_event_cycle_boundary",
+  "run_id": "v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-25T20:57:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-091"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech091_cycle_boundary_reset_confirmed",
+    "preconditions": [
+      {
+        "name": "seed42::episode_admits_cycle_contrast",
+        "precondition": "episode_admits_cycle_contrast",
+        "arm": "seed42",
+        "kind": "readiness",
+        "description": "min over this seed's three cells of mean_episode_length, against 2 * e3_steps_per_tick. An episode shorter than two E3 cycles cannot express a cycle-BOUNDARY contrast and cannot host a decoupled re-issue (which must land >= K steps from the event), so RATE_MATCHED necessarily collapses toward NO_RESET. This is the precondition V3-EXQ-944 seed 42 actually violated (mean_episode_length 7.4-8.5 against K=10).",
+        "control": "every cell of the seed; the ALIGNED arm is the least likely to be short, so taking the MIN over arms is the conservative read",
+        "direction": "lower",
+        "applies": true,
+        "measured": 65.7,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed42::salient_events_per_cell_floor",
+        "precondition": "salient_events_per_cell_floor",
+        "arm": "seed42",
+        "kind": "readiness",
+        "description": "min over this seed's cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "control": "every cell of the seed; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 165.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed42::no_reset_control_shows_partial_integration",
+        "precondition": "no_reset_control_shows_partial_integration",
+        "arm": "seed42",
+        "kind": "readiness",
+        "description": "straddle_frac(NO_RESET) for this seed. what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "seed42::rate_match_holds",
+        "precondition": "rate_match_holds",
+        "arm": "seed42",
+        "kind": "readiness",
+        "description": "|e3_rate(RATE_MATCHED) - e3_rate(ALIGNED)| / e3_rate(ALIGNED) for this seed. C3 only separates PHASE from RATE while the rates are matched",
+        "control": "RATE_MATCHED re-issues every suppressed reset on its own free step, so its executed count matches ALIGNED's up to resets with no free slot left in the episode (counted as n_resets_dropped_unfired)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.2740566434154129,
+        "threshold": 0.35,
+        "met": true
+      },
+      {
+        "name": "seed13::episode_admits_cycle_contrast",
+        "precondition": "episode_admits_cycle_contrast",
+        "arm": "seed13",
+        "kind": "readiness",
+        "description": "min over this seed's three cells of mean_episode_length, against 2 * e3_steps_per_tick. An episode shorter than two E3 cycles cannot express a cycle-BOUNDARY contrast and cannot host a decoupled re-issue (which must land >= K steps from the event), so RATE_MATCHED necessarily collapses toward NO_RESET. This is the precondition V3-EXQ-944 seed 42 actually violated (mean_episode_length 7.4-8.5 against K=10).",
+        "control": "every cell of the seed; the ALIGNED arm is the least likely to be short, so taking the MIN over arms is the conservative read",
+        "direction": "lower",
+        "applies": true,
+        "measured": 72.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed13::salient_events_per_cell_floor",
+        "precondition": "salient_events_per_cell_floor",
+        "arm": "seed13",
+        "kind": "readiness",
+        "description": "min over this seed's cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "control": "every cell of the seed; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 111.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed13::no_reset_control_shows_partial_integration",
+        "precondition": "no_reset_control_shows_partial_integration",
+        "arm": "seed13",
+        "kind": "readiness",
+        "description": "straddle_frac(NO_RESET) for this seed. what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "seed13::rate_match_holds",
+        "precondition": "rate_match_holds",
+        "arm": "seed13",
+        "kind": "readiness",
+        "description": "|e3_rate(RATE_MATCHED) - e3_rate(ALIGNED)| / e3_rate(ALIGNED) for this seed. C3 only separates PHASE from RATE while the rates are matched",
+        "control": "RATE_MATCHED re-issues every suppressed reset on its own free step, so its executed count matches ALIGNED's up to resets with no free slot left in the episode (counted as n_resets_dropped_unfired)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.011152416356877394,
+        "threshold": 0.35,
+        "met": true
+      },
+      {
+        "name": "seed100::episode_admits_cycle_contrast",
+        "precondition": "episode_admits_cycle_contrast",
+        "arm": "seed100",
+        "kind": "readiness",
+        "description": "min over this seed's three cells of mean_episode_length, against 2 * e3_steps_per_tick. An episode shorter than two E3 cycles cannot express a cycle-BOUNDARY contrast and cannot host a decoupled re-issue (which must land >= K steps from the event), so RATE_MATCHED necessarily collapses toward NO_RESET. This is the precondition V3-EXQ-944 seed 42 actually violated (mean_episode_length 7.4-8.5 against K=10).",
+        "control": "every cell of the seed; the ALIGNED arm is the least likely to be short, so taking the MIN over arms is the conservative read",
+        "direction": "lower",
+        "applies": true,
+        "measured": 61.5,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed100::salient_events_per_cell_floor",
+        "precondition": "salient_events_per_cell_floor",
+        "arm": "seed100",
+        "kind": "readiness",
+        "description": "min over this seed's cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "control": "every cell of the seed; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 181.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed100::no_reset_control_shows_partial_integration",
+        "precondition": "no_reset_control_shows_partial_integration",
+        "arm": "seed100",
+        "kind": "readiness",
+        "description": "straddle_frac(NO_RESET) for this seed. what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "seed100::rate_match_holds",
+        "precondition": "rate_match_holds",
+        "arm": "seed100",
+        "kind": "readiness",
+        "description": "|e3_rate(RATE_MATCHED) - e3_rate(ALIGNED)| / e3_rate(ALIGNED) for this seed. C3 only separates PHASE from RATE while the rates are matched",
+        "control": "RATE_MATCHED re-issues every suppressed reset on its own free step, so its executed count matches ALIGNED's up to resets with no free slot left in the episode (counted as n_resets_dropped_unfired)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.08113316568601119,
+        "threshold": 0.35,
+        "met": true
+      },
+      {
+        "name": "seed200::episode_admits_cycle_contrast",
+        "precondition": "episode_admits_cycle_contrast",
+        "arm": "seed200",
+        "kind": "readiness",
+        "description": "min over this seed's three cells of mean_episode_length, against 2 * e3_steps_per_tick. An episode shorter than two E3 cycles cannot express a cycle-BOUNDARY contrast and cannot host a decoupled re-issue (which must land >= K steps from the event), so RATE_MATCHED necessarily collapses toward NO_RESET. This is the precondition V3-EXQ-944 seed 42 actually violated (mean_episode_length 7.4-8.5 against K=10).",
+        "control": "every cell of the seed; the ALIGNED arm is the least likely to be short, so taking the MIN over arms is the conservative read",
+        "direction": "lower",
+        "applies": true,
+        "measured": 70.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed200::salient_events_per_cell_floor",
+        "precondition": "salient_events_per_cell_floor",
+        "arm": "seed200",
+        "kind": "readiness",
+        "description": "min over this seed's cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "control": "every cell of the seed; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 105.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed200::no_reset_control_shows_partial_integration",
+        "precondition": "no_reset_control_shows_partial_integration",
+        "arm": "seed200",
+        "kind": "readiness",
+        "description": "straddle_frac(NO_RESET) for this seed. what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "seed200::rate_match_holds",
+        "precondition": "rate_match_holds",
+        "arm": "seed200",
+        "kind": "readiness",
+        "description": "|e3_rate(RATE_MATCHED) - e3_rate(ALIGNED)| / e3_rate(ALIGNED) for this seed. C3 only separates PHASE from RATE while the rates are matched",
+        "control": "RATE_MATCHED re-issues every suppressed reset on its own free step, so its executed count matches ALIGNED's up to resets with no free slot left in the episode (counted as n_resets_dropped_unfired)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0036834245893478937,
+        "threshold": 0.35,
+        "met": true
+      },
+      {
+        "name": "seed45::episode_admits_cycle_contrast",
+        "precondition": "episode_admits_cycle_contrast",
+        "arm": "seed45",
+        "kind": "readiness",
+        "description": "min over this seed's three cells of mean_episode_length, against 2 * e3_steps_per_tick. An episode shorter than two E3 cycles cannot express a cycle-BOUNDARY contrast and cannot host a decoupled re-issue (which must land >= K steps from the event), so RATE_MATCHED necessarily collapses toward NO_RESET. This is the precondition V3-EXQ-944 seed 42 actually violated (mean_episode_length 7.4-8.5 against K=10).",
+        "control": "every cell of the seed; the ALIGNED arm is the least likely to be short, so taking the MIN over arms is the conservative read",
+        "direction": "lower",
+        "applies": true,
+        "measured": 63.3,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed45::salient_events_per_cell_floor",
+        "precondition": "salient_events_per_cell_floor",
+        "arm": "seed45",
+        "kind": "readiness",
+        "description": "min over this seed's cells of n_salient_events -- the DV is per-event, so a cell below this measured nothing usable",
+        "control": "every cell of the seed; the harm trigger fires abundantly on this hazard-carrying env by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 149.0,
+        "threshold": 20.0,
+        "met": true
+      },
+      {
+        "name": "seed45::no_reset_control_shows_partial_integration",
+        "precondition": "no_reset_control_shows_partial_integration",
+        "arm": "seed45",
+        "kind": "readiness",
+        "description": "straddle_frac(NO_RESET) for this seed. what_would_answer requires a no-reset control in which partial integration MEASURABLY OCCURS; below this floor there is nothing to compare",
+        "control": "NO_RESET arm -- phase_reset() never executes, so the E3 tick is the bare periodic counter and events land at arbitrary phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "seed45::rate_match_holds",
+        "precondition": "rate_match_holds",
+        "arm": "seed45",
+        "kind": "readiness",
+        "description": "|e3_rate(RATE_MATCHED) - e3_rate(ALIGNED)| / e3_rate(ALIGNED) for this seed. C3 only separates PHASE from RATE while the rates are matched",
+        "control": "RATE_MATCHED re-issues every suppressed reset on its own free step, so its executed count matches ALIGNED's up to resets with no free slot left in the episode (counted as n_resets_dropped_unfired)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.002674584089905315,
+        "threshold": 0.35,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "interpretation.preconditions carries the GREEN arm(s) only (seed42, seed13, seed100, seed200, seed45). The RED arm(s) (seed7) are carried in full at top level under per_arm_gate.red, and their criteria are marked load_bearing:false + criteria_non_degenerate:false. The indexer's _compute_adjudication reads interpretation.preconditions FLAT and ARM-BLIND and returns precondition_unmet for the WHOLE RUN on the first unmet entry, so including a scored-out arm's failure here would re-vacate the green arm at adjudication time.",
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "criteria": [
+      {
+        "name": "C1_manipulation_check",
+        "load_bearing": false,
+        "passed": true,
+        "description": "ALIGNED executes resets and NO_RESET executes none (over scored seeds [42, 13, 100, 200, 45])"
+      },
+      {
+        "name": "C2_aligned_straddle_ceiling",
+        "load_bearing": true,
+        "passed": true,
+        "description": "straddle_frac(ALIGNED) <= 0.05 (over scored seeds [42, 13, 100, 200, 45])"
+      },
+      {
+        "name": "C3_rate_matched_straddle_delta",
+        "load_bearing": true,
+        "passed": true,
+        "description": "straddle_frac(RATE_MATCHED) - straddle_frac(ALIGNED) >= 0.50 (over scored seeds [42, 13, 100, 200, 45]) (phase, not rate)"
+      },
+      {
+        "name": "C4_no_reset_lag_delta",
+        "load_bearing": false,
+        "passed": true,
+        "description": "mean_lag(NO_RESET) - mean_lag(ALIGNED) >= 3.0 steps (over scored seeds [42, 13, 100, 200, 45])"
+      }
+    ],
+    "combination_rule": "PASS iff at least one seed passes its per-seed precondition gate (P0 AND P1 AND P2 AND P3) AND C1 AND C2 AND C3 hold over the SCORED (green) seeds. Plain AND. C4 is corroborating and does not gate. C1 is a manipulation check, not a finding. A red seed does NOT vacate a green one (failure_autopsy_V3-EXQ-785_2026-07-19.md sections 2a/8); a run with no green seed self-routes substrate_not_ready_requeue."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b623780c50cd80b7a59242908c8f0aed55cd2dcc8fa6b2b98559c8069187f170",
+  "substrate_commit": {
+    "commit": "577d036c962a524fceca2c51c075aadb9484a369",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 491184,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 540,
+    "goal_state_present": false
+  }
+}
