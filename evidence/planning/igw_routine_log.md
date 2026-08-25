@@ -2088,3 +2088,4 @@ One line per hourly tick. ASCII only.
 2026-08-25T12:43:54Z skip IGW-20260825-232: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-25T13:44:28Z skip IGW-20260825-232: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-25T14:45:22Z workset committed (regen -- 237 items, 22 ready, 0 in flight)
+2026-08-25T14:45:02Z SPAWN IGW-20260825-232 skill=/queue-experiment prio=55 uuid=0de5d073-3800-476b-95a8-30d53b63c6b5 pid=47440 worktree=igw-232-confirm-evidence-mech-091-lit-0
