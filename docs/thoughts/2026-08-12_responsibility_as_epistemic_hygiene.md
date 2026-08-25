@@ -1,5 +1,9 @@
 # Thought: Responsibility as Epistemic Hygiene — Commitment, Self-Caused Evidence, and the Risk of Self-Confirming Error
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_responsibility_as_epistemic_hygiene.md
+Claims registered: INV-012 (Leg 4 added), Q-096. Cross-referenced: ARC-015, MECH-095, INV-077 (not modified in status/dependencies).
+
 **Date:** 2026-08-12  
 **Status:** Exploratory refinement of existing REE architecture, not a claim that the existing architecture is correct or sufficient.
 

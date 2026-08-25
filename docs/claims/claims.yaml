@@ -1173,6 +1173,75 @@
     responsibility-relevant behavior over an ablated (discard-immediately)
     baseline, i.e. retention supplies no function beyond what SD-033e/
     MECH-264's existing transient scalar already provides.
+
+    LEG 4 (derivational precondition + substrate_conditional test, added
+    2026-08-25 from docs/thoughts/2026-08-12_responsibility_as_epistemic_
+    hygiene.md, Stage 2: evidence/planning/thought_intake_2026-08-12_
+    responsibility_as_epistemic_hygiene.md): responsibility's epistemic
+    function is not exhausted by knowing THAT an outcome was self-caused
+    (Legs 0-3 and ARC-015/MECH-095 already cover self-vs-other/self-vs-
+    world DISCRIMINATION). A further, distinct requirement is that once
+    self-causation is known -- which does not itself require resolving
+    MECH-095's substrate-ceiling-blocked discrimination task, since an
+    agent has direct efference-copy access to its OWN committed action
+    without needing to disambiguate it from a second agent's -- the
+    belief-UPDATE machinery must discount that observation's evidential
+    weight for the SPECIFIC prior that motivated the commitment, because
+    the observation was solicited by the very hypothesis under test
+    (a selection-bias / look-elsewhere problem, not an attribution
+    problem). Naive accumulation of self-solicited-but-genuinely-real
+    evidence can inflate confidence in a prior regardless of that prior's
+    truth: incorrect prior -> congruent commitment -> prior-shaped
+    intervention/sampling -> apparently confirmatory evidence -> stronger
+    incorrect prior -> stronger congruent commitment. This is a THIRD
+    mechanism, distinct from both existing self-referential-belief risks
+    already registered: Leg 3 (imagined/retained counterfactual content
+    contaminating evaluation) concerns IMAGINED content; MAE-3-blocked
+    ARC-015 Half 1 / MECH-095 concerns DISCRIMINATING self from an actual
+    OTHER agent. Leg 4 concerns REAL, correctly-self-attributed evidence
+    whose SAMPLING was itself biased by the commitment under test -- and,
+    unlike ARC-015 Half 1, this does NOT require a second agent or
+    multi_agent_ecology_v5:MAE-3: the confound is constructible in a
+    SINGLE-agent environment where the agent's own committed action
+    determines which region of state-space it subsequently samples.
+
+    NON-DEGENERACY PRECONDITION: requires an environment in which (a) an
+    initially-plausible-but-incorrect prior can drive a committed action,
+    (b) that action measurably changes which subsequent observations the
+    agent encounters (attention/movement/information-seeking, not merely
+    which outcome resolves), and (c) at least one alternative sampling
+    policy (e.g. an ablated or randomised intervention-selection arm)
+    would have produced a materially different, less-confirmatory
+    observation distribution for the SAME underlying prior -- otherwise
+    "self-solicited" and "independent" evidence are indistinguishable by
+    construction and the test is vacuous. No existing V3 test-bed is
+    known to satisfy this; CausalGridWorld's native dynamics were already
+    found insufficiently structured for the adjacent MECH-095 test
+    (ARC-015's own non-degeneracy note), though for a different reason
+    (no distinct OTHER, not no sampling-bias channel) -- this precondition
+    needs its own dedicated environment check, not an inherited pass/fail
+    from SD-047.
+
+    CONFIRMING signature: an agent whose post-commit belief update
+    correctly discounts self-solicited evidence (e.g. via provenance-
+    weighted update rules downstream of MECH-060/061's write-locus
+    separation, or an explicit endogenous-sampling-bias correction term)
+    recovers from an initially incorrect prior at a rate statistically
+    indistinguishable from an agent given independently-sampled evidence
+    of the same volume, while an otherwise-identical agent lacking this
+    discounting shows measurably SLOWER or NON-recovery (persistent
+    incorrect commitment despite nominally-confirmatory real evidence) --
+    the delusion-like lock-in signature this thought predicts.
+
+    FALSIFYING signature: an agent lacking any self-solicitation
+    discounting recovers from an incorrect prior at the same rate as one
+    with it (the naive accumulation loop this thought predicts does not
+    actually manifest at V3 scale, e.g. because exploration/curiosity
+    drives or residue decay already wash out the confound) -- this would
+    mean Leg 4 identifies a real but practically-inert risk, not a
+    load-bearing gap in existing machinery, and should be narrowed to a
+    documented failure mode (EXT-xxx-shaped) rather than kept as an open
+    testability leg of INV-012.
   location: docs/invariants.md#inv-012
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -3273,6 +3342,20 @@
     - ARC-013
     - ARC-007
     - MECH-095
+  notes: >
+    Epistemic-function cross-reference (2026-08-25, docs/thoughts/2026-08-12_
+    responsibility_as_epistemic_hygiene.md, Stage 2: evidence/planning/
+    thought_intake_2026-08-12_responsibility_as_epistemic_hygiene.md): this
+    thought argues the self-impact-attribution + responsibility-flow
+    machinery bundled here (MECH-095 comparator, MECH-060/061/066/067
+    channel separation) serves an EPISTEMIC function in addition to the
+    ethical/agency function this claim was originally motivated by --
+    preventing self-caused, action-solicited evidence from being naively
+    counted as independent confirmation of the prior that produced the
+    committing action. Does not change ARC-015's status, dependencies, or
+    HALF 1/HALF 2 testability split; a further, narrower, single-agent-
+    testable (i.e. NOT MAE-3-blocked) consequence of this reading is
+    registered as INV-012 Leg 4.
   what_would_answer: |
     ARC-015 bundles two testably-separable sub-claims: (1) SELF-IMPACT ATTRIBUTION --
     discriminating self-caused from externally-caused state change via an
@@ -11572,6 +11655,13 @@
     incongruent=exafference/world-change. The efference copy reaches parietal via
     SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
     Literature: evidence/literature/targeted_review_reafference_streams/.
+    Epistemic-function cross-reference (2026-08-25): docs/thoughts/2026-08-12_
+    responsibility_as_epistemic_hygiene.md (Stage 2: evidence/planning/
+    thought_intake_2026-08-12_responsibility_as_epistemic_hygiene.md) argues
+    this comparator's self/world output, once available, additionally
+    licenses discounting self-solicited evidence during belief updates --
+    see INV-012 Leg 4, a downstream consumer of this comparator's output
+    that does not itself require resolving MAE-3.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (HARD): a test of MECH-095 is informative only on a
@@ -65196,6 +65286,85 @@
     path. Does not promote/demote/weaken any existing claim. Home doc:
     docs/architecture/evaluation_channel_integrity.md. Reaped from the 2026-06-07 meta-agent-challenge
     evaluation-channel-integrity intake.
+    .
+    Generalization cross-reference (2026-08-25, docs/thoughts/2026-08-12_responsibility_as_epistemic_
+    hygiene.md): that thought asks whether this invariant's structure -- a self-generated signal must
+    not be mistaken for independent confirmation -- generalizes beyond REE's own development process
+    (the scope here) to REE's ordinary conversational use as a human-AI cognitive prosthesis, where
+    sycophancy can weaken the error signal in a two-participant coupled loop. INV-077 does NOT itself
+    answer that broader question (it audits claims.yaml write paths, not conversational surfaces);
+    the generalization question is registered separately as Q-096 rather than folded in here.
+- id: Q-096
+  title: "Does REE's evaluation-channel-integrity discipline (INV-077) generalize beyond REE's own development process to an ordinary human-AI conversational dyad, where sycophancy can weaken the error signal and let a coupled human-AI cognitive system mistake internally-generated coherence for external confirmation?"
+  claim_type: open_question
+  subject: meta.human_ai_coupled_confirmation_loop
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-25"
+  source:
+    - docs/thoughts/2026-08-12_responsibility_as_epistemic_hygiene.md
+  depends_on:
+    - INV-077   # closest existing analog -- but scoped to REE's OWN dev-process governance, not general human-AI coupling
+    - INV-012   # Leg 4 -- same self-solicited-evidence structure, single-agent case
+    - EXT-003   # reward hacking / incommensurable-signal-collapse external failure mode, adjacent structure
+  notes: >
+    REGISTERED 2026-08-25 from the raw thought's "Human-AI cognitive
+    prostheses" section: human model -> AI reconstruction/elaboration ->
+    increased salience/coherence -> human acceptance or modification ->
+    stronger contextual premise -> further AI elaboration, with sycophancy
+    weakening the error signal ("No, that isn't what I mean" as the needed
+    correction). INV-077 already forbids REE's OWN confidence updates from
+    bypassing provenance/review/governance mediation, but is explicitly
+    scoped to REE's development process (claims.yaml writes), not to REE's
+    ordinary conversational use as a cognitive prosthesis for a human user.
+    Distinct from Q-069 (evaluation-channel exploitation by an agentic
+    system developing REE) and from INV-012 Leg 4 (single-agent
+    self-solicited-evidence discounting) -- this is the TWO-PARTICIPANT
+    case, where neither party alone is confused but the COUPLED system's
+    output looks increasingly confirmed to both. The raw thought frames
+    this as one mechanistic bridge to "the more serious coupled-system
+    failure considered in the Machine Folie a Deux work" -- no existing
+    REE claim or doc was found under that name in this pass (searched
+    claims.yaml and REE_assembly/**/*.md case-insensitively); flagged as a
+    next-step check, not asserted as covered or uncovered. DO NOT BUILD in
+    V3; this is an assembly-process / alignment question, not a
+    cognitive-substrate mechanism claim.
+  what_would_answer: |
+    Answered by inspecting REE's ACTUAL conversational/development-support
+    surfaces (chat sessions, /governance walks, thought-digestion,
+    /session-land, any place a human reads and acts on REE-authored text)
+    for a structural error-signal channel, analogous to INV-077's audit of
+    write-path gating -- NOT by a V3 cognitive-substrate experiment.
+    NON-DEGENERACY PRECONDITION: the audit needs at least one identifiable
+    case where a human user's uncorrected acceptance of AI-generated
+    elaboration measurably increased downstream confidence/action without
+    an intervening independent check -- absent that, the question is
+    hypothetical risk, not an observed gap.
+    CONFIRMING (generalization holds / gap is real): tracing shows human-
+    facing REE outputs (e.g. governance recommendations, thought-intake
+    novelty tables, claim status framing) can influence a human's
+    subsequent claim/experiment decisions without any mechanism analogous
+    to INV-077's provenance/review/governance gate -- i.e. AI-elaborated
+    coherence can reach human belief and downstream REE state changes (new
+    claims, queued experiments, governance dispositions) through a softer,
+    unaudited path than the one INV-077 closes for REE's OWN confidence
+    fields.
+    FALSIFYING (gap is not real / already closed): every human-facing REE
+    surface that can influence a claim/experiment/governance decision
+    already routes through an explicit human confirmation or independent-
+    evidence gate (e.g. AskUserQuestion-mediated choices, governance's
+    interactive walk, the standing rule that lit and experimental evidence
+    are reported/weighted separately) -- in which case this is already
+    covered by existing process discipline and should be closed as
+    derivationally answered, cross-referencing the specific gates found,
+    rather than left open.
 - id: Q-069
   title: "Can a REE-style governance loop (manifest -> review -> governance -> claim) measurably reduce evaluation-channel exploitation -- the collapse of an evidence loop into an optimisation loop -- when agentic systems participate in their own development, relative to a direct-score-authority baseline?"
   claim_type: open_question
