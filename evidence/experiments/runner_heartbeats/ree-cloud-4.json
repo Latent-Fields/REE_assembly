@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-25T19:39:32Z",
+  "last_tick_utc": "2026-08-25T19:54:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-925a",
   "current_exq_started_utc": "2026-08-25T15:54:40.941892+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_COMMIT_GSCT",
-    "runs_done": 4,
+    "run_label": "Seed 44 / ARM_COMMIT_GSCT",
+    "runs_done": 5,
     "runs_total": 6,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 100,
-    "overall_pct": 71.7
+    "overall_pct": 83.3
   },
-  "seconds_elapsed": 13491,
-  "seconds_remaining": 3260,
+  "seconds_elapsed": 14398,
+  "seconds_remaining": 1862,
   "recent_lines": [
     "Seed 42 Condition ARM_COMMIT",
     "== ARM_COMMIT seed 42: P0 SD-056 warmup (60 episodes) ==",
@@ -91,7 +91,21 @@
     "== ARM_COMMIT_GSCT seed 43: P0 SD-056 warmup (60 episodes) ==",
     "[train] P0 seed=43 ep 10/100",
     "[train] P0 seed=43 ep 20/100",
-    "[train] P0 seed=43 ep 30/100"
+    "[train] P0 seed=43 ep 30/100",
+    "[train] P0 seed=43 ep 40/100",
+    "[train] P0 seed=43 ep 50/100",
+    "[train] P0 seed=43 ep 60/100",
+    "[decomp] seed=43 ep 60/60 P0 warmup complete",
+    "readiness: cand_world_pairwise_dist=0.1889 gated_policy_std_across_K=0.000000 committed_fraction=1.000 (rv=0.031815 vs thr=0.400)",
+    "== ARM_COMMIT_GSCT seed 43: P1 capture + inline replay (40 episodes) ==",
+    "[train] P1 seed=43 ep 70/100 n_events=215",
+    "[train] P1 seed=43 ep 80/100 n_events=429",
+    "[train] P1 seed=43 ep 90/100 n_events=643",
+    "[train] P1 seed=43 ep 100/100 n_events=859",
+    "[decomp] seed=43 ep 40/40 n_fresh_events=859 n_committed=859 n_disagreement=845",
+    "verdict: PASS",
+    "Seed 44 Condition ARM_COMMIT_GSCT",
+    "== ARM_COMMIT_GSCT seed 44: P0 SD-056 warmup (60 episodes) =="
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
