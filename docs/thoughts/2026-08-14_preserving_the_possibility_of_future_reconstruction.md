@@ -1,7 +1,11 @@
 # Preserving the possibility of future reconstruction
 
-**Date:** 2026-08-14  
-**Status:** Speculative raw thought; option-preservation argument, not a REE design requirement  
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-14_preserving_the_possibility_of_future_reconstruction.md
+Claims registered: GOV-PRESERVE-1
+
+**Date:** 2026-08-14
+**Nature:** Speculative raw thought; option-preservation argument, not a REE design requirement
 **Related thought:** `docs/thoughts/2026-06-25_continuity_branching_and_substrate_migration.md`
 
 ## Raw thought
