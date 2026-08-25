@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-25T22:10:38Z",
+  "last_tick_utc": "2026-08-25T22:15:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-949",
   "current_exq_started_utc": "2026-08-25T22:06:17.841410+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 71 / floor5_yoked_quad",
-    "runs_done": 0,
+    "run_label": "Seed 101 / floor5_yoked_quad",
+    "runs_done": 4,
     "runs_total": 20,
     "episodes_done": 2,
     "episodes_total": 4,
-    "overall_pct": 2.5
+    "overall_pct": 22.5
   },
-  "seconds_elapsed": 260,
-  "seconds_remaining": 8916,
+  "seconds_elapsed": 561,
+  "seconds_remaining": 7075,
   "recent_lines": [
     "[control] ARM_B314_OFF_AUTH_OFF: self-yoked divergence = 0.000000 (must be 0)",
     "[control] ARM_B314_ON_AUTH_OFF: self-yoked divergence = 0.000000 (must be 0)",
@@ -25,7 +25,19 @@
     "[control] ARM_B314_ON_AUTH_ON: self-yoked divergence = 0.000000 (must be 0)",
     "Seed 71 Condition floor5_yoked_quad",
     "[train] yoked seed=71 floor=5 ep 1/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/61 of 80",
-    "[train] yoked seed=71 floor=5 ep 2/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/10 of 80"
+    "[train] yoked seed=71 floor=5 ep 2/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/10 of 80",
+    "[train] yoked seed=71 floor=5 ep 3/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/5 of 80",
+    "[train] yoked seed=71 floor=5 ep 4/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/36 of 80",
+    "verdict: PASS",
+    "Seed 71 Condition floor5_ARM_B314_ON_AUTH_OFF",
+    "verdict: PASS",
+    "Seed 71 Condition floor5_ARM_B314_OFF_AUTH_ON",
+    "verdict: PASS",
+    "Seed 71 Condition floor5_ARM_B314_ON_AUTH_ON",
+    "verdict: PASS",
+    "Seed 101 Condition floor5_yoked_quad",
+    "[train] yoked seed=101 floor=5 ep 1/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/10 of 80",
+    "[train] yoked seed=101 floor=5 ep 2/4 diverged(ON_AUTHOFF/OFF_AUTHON/ON_AUTHON)=0/0/36 of 80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
