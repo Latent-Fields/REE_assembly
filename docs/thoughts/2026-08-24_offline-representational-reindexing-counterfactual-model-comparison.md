@@ -1,3 +1,7 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md
+Claims registered: ARC-132, MECH-513, MECH-514
+
 # Offline representational reindexing and counterfactual model comparison
 
 Date: 2026-08-24

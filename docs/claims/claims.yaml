@@ -85680,3 +85680,167 @@
     retains provenance, and can alter the attractor only when evidence weighting and learning
     eligibility support it) requires an external-injection channel with provenance tagging that
     does not yet exist in ree_core.
+
+- id: ARC-132
+  title: >
+    A learned attractor's carried quantities -- predictive reliability, epistemic confidence,
+    familiarity, affective valence, salience, action urgency, self-relevance, and source
+    confidence -- are separable axes that must remain independently readable rather than
+    collapsing into one undifferentiated strength signal; when collapsed, a strongly valenced
+    and highly precise attractor stops functioning as a hypothesis and becomes the lens through
+    which what is noticed, how ambiguity is resolved, which memories are retrieved, and which
+    replayed material is stored as further evidence are all determined.
+  claim_type: architectural_commitment
+  subject: representation.attractor_property_differentiation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - ARC-115  # confidence-readout non-collapsibility -- distinguished-from: ARC-115 dissociates propositional confidence/attractor stability/cross-subsystem agreement/conflict pressure/action-readiness FROM externally-supplied social agreement (a social-vs-internal channel split); this claim asserts a different, wider axis set carried by the attractor ITSELF (reliability, confidence, familiarity, valence, salience, urgency, self-relevance, source), and names the specific pathological consequence of their conflation (attractor becomes a perceptual lens), not a social/internal dissociation
+    - MECH-430  # multi-dimensional provenance source vector -- distinguished-from: MECH-430 decomposes SOURCE attribution specifically (perceived-vs-imagined, self-vs-other-generated, source identity, temporal source, modality); this claim's axis list is broader and organised around what an attractor CARRIES for perception/retrieval/replay control, of which source confidence is only one component
+    - MECH-244  # psychosis as precision-weighting self-sealing failure -- cited as the motivating (not asserted-caused) clinical failure mode: this claim does NOT assert axis-conflation IS the mechanism of psychosis, only that it is the kind of failure axis-conflation would produce
+  location: docs/architecture/offline_representational_reindexing.md#arc-132
+  source:
+    - docs/thoughts/2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md
+    (raw thought docs/thoughts/2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md).
+    DISTINCT FROM ARC-115: ARC-115's non-collapse claim is specifically about keeping SOCIALLY-
+    SUPPLIED agreement out of the same accumulator as internally-derived confidence signals
+    (sycophancy-adjacent); this claim is about an attractor's OWN carried property set staying
+    multi-axis rather than collapsing into one scalar "sureness". DISTINCT FROM MECH-430:
+    MECH-430's axes are about WHERE content came from; this claim's axes are about WHAT KIND OF
+    PULL an attractor exerts once formed, a superset that includes but is not limited to source
+    confidence. The raw thought's own self-reinforcing-loop mechanism (attractor -> biased
+    perception/retrieval -> attractor-consistent derived material -> selective replay -> apparent
+    confirmation -> stronger attractor) is the functional consequence this claim names; it does
+    not itself require or imply the counterfactual-replay protocol registered alongside it as
+    MECH-514 -- an architecture could satisfy this differentiation requirement without ever
+    running counterfactual comparisons, and MECH-514 would be pointless without something like
+    this differentiation to test against, so the two are complementary but independently
+    statable. The thought's own evidential-boundary section explicitly declines to assert
+    psychosis is one unitary precision failure or that axis-conflation is a demonstrated
+    mechanism of it (cited only as failure-mode inspiration, per Jardri & Deneve 2013,
+    Powers/Mathys/Corlett 2017, Howes et al. 2011 -- none independently verified in this pass).
+    epistemic_category substrate_conditional set EXPLICITLY so promote/demote and
+    narrow_open_question do not fire. DO NOT build in V3 and DO NOT queue a V3 experiment -- no
+    substrate currently represents an attractor as a structured multi-axis object rather than a
+    scalar or low-dimensional value.
+
+- id: MECH-513
+  title: >
+    Representation-version reindexing for episodic memory: when the representational primitives
+    used to index memory change -- a bucket splits, several buckets merge, ContextMemory's
+    effective dimensionality crystallises to a different count (MECH-496), or the underlying
+    encoder is otherwise updated -- previously stored episodes must be explicitly reinstated and
+    reindexed under the new scheme via an ADDITIVE, versioned relationship rather than an
+    overwrite: the episode, its source, and its original indexing remain independently
+    recoverable, the new indexing is created as a distinct version with provenance back to the
+    change that produced it, and the episode should remain interpretable under both the
+    historical and the current representational scheme.
+  claim_type: mechanism_hypothesis
+  subject: memory.representation_version_reindexing
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-496  # representational dimensionality as a developmental crystallization OUTCOME -- the CHANGE DRIVER this claim's reindexing responds to; MECH-496 asserts dimensionality changes over a plasticity schedule but says nothing about what happens to memories already indexed under a prior dimensionality once it does
+    - INV-080   # raw-episode preservation -- generalises to this case explicitly: INV-080/MECH-392 govern preservation and provenance under CONSOLIDATION/SUMMARISATION (content abstraction); this claim covers the distinct case of the INDEX/SCHEME itself changing while content is untouched -- an episode can be preserved verbatim and still become inaccessible or misinterpreted if nothing updates how it is addressed
+    - MECH-392  # consolidation provenance + contradiction-flag + rollback -- distinguished-from per INV-080 above; cited as the nearest existing sibling mechanism and as the pattern (transformation_history, versioned/reversible change, not silent overwrite) this claim's reindexing operation should follow for consistency
+    - MECH-147  # DG-mediated pattern separation -- the biological substrate for bucket SPLIT specifically; this claim is agnostic to how a split/merge is detected or performed and only asserts what must happen to existing memory once one has occurred
+    - MECH-154  # E1 addressable associative manifold with internal indexing structure -- the substrate whose indexing scheme this claim's reindexing operation would need to version
+    - ARC-039   # hippocampal-entorhinal loop for durable offline consolidation -- candidate locus for where a reindexing pass would run
+  location: docs/architecture/offline_representational_reindexing.md#mech-513
+  source:
+    - docs/thoughts/2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md
+  notes: >
+    Registered from the same thought-intake as ARC-132/MECH-514. NOT a duplicate of
+    MECH-392/INV-080: those two already give REE a well-developed answer to "consolidation must
+    not silently overwrite the evidence base" (transformation_history, contradiction_flags,
+    rollback, the planned 6-state memory-lifecycle store retained/indexed/summarised/
+    consolidated/contested/retired -- see evidence/planning/memory_lifecycle_v4_plan.md MEM-5),
+    but that machinery is scoped to faults in ABSTRACTION over content that stays addressed the
+    same way. This claim is scoped to the different failure the raw thought actually leads with:
+    the ADDRESSING SCHEME ITSELF (the "buckets" a memory is filed under) can change out from
+    under an unchanged episode, which is the same problem latent-replay work in continual
+    learning calls representation drift invalidating stored intermediate activations (Pellegrini
+    et al. 2019, cited in the raw thought, not independently verified in this pass) -- existing
+    latent-replay work deliberately slows learning below the replay layer to avoid it; REE, by
+    allowing MECH-496 dimensionality change, would need either that same slow-layer discipline or
+    an explicit migration/versioning layer, and this claim proposes the latter rather than
+    freezing representational structure. The proposed handoff states from the raw thought
+    (contested, pending_reindex, under_offline_review, provisionally_reindexed, validated,
+    rollback_required) partially overlap the existing 6-state lifecycle's `contested` state but
+    add states the existing model does not have (pending_reindex, under_offline_review,
+    provisionally_reindexed) -- a future V4 build pass should reconcile the two state machines
+    rather than run them in parallel; not attempted in this registration. epistemic_category
+    substrate_conditional set EXPLICITLY. DO NOT build in V3 and DO NOT queue a V3 experiment --
+    no representation-version concept exists anywhere in ree_core today, and MECH-496 (the change
+    driver) is itself unbuilt.
+
+- id: MECH-514
+  title: >
+    Counterfactual replay for attractor testing: an offline-preferred process that (1) separates
+    preserved, externally-grounded evidence from a dominant model's interpretation of it, (2)
+    temporarily reduces that dominant attractor's influence over retrieval and interpretation,
+    (3) constructs a small set of bounded alternative explanatory models, (4) replays the SAME
+    anchored evidence through the dominant and alternative models to generate predictions that
+    would distinguish them, and (5) compares the models against held-out or subsequent waking
+    evidence before any resulting reindexing is granted full action or memory authority. Every
+    replay-derived item carries provenance to its originating evidence and generating model so
+    that repeated simulations from one episode cannot be counted as multiple independent
+    confirmatory samples, and the process selecting what gets replayed must have some
+    independence from the attractor under test.
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.counterfactual_replay_model_comparison
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-269  # hippocampal proposer anchor selection AND anchor-reset, including a probe channel that inverts the gate for low-verisimilitude/high-PE regions under a strengthened MECH-094 tag and withholds viability-map update until validated -- the nearest existing V3-live substrate; MECH-269 operates WITHIN one model's rollout (single anchor reset/probe against a threshold), while this claim proposes comparing evidence ACROSS several bounded alternative explanatory models at once -- an extension in kind, not a duplicate
+    - MECH-094  # hypothesis tag / one-way sim-vs-real write gate -- prerequisite substrate this claim's provenance-tagging and anti-circularity requirement builds on directly
+    - MECH-264  # frontopolar counterfactual-VALUE tracking (SD-033e) -- distinguished-from: MECH-264/265 track the running VALUE of an unchosen ACTION alternative to drive a behavioural switch decision; this claim compares EXPLANATORY models of past evidence to generate discriminating predictions, an epistemic-model-comparison operation rather than an action-value-comparison one, even though both are "counterfactual" in the loose sense
+    - MECH-265  # frontopolar relative-importance monitoring across competing goals -- same distinction as MECH-264: goal/action-value arbitration, not explanatory-model comparison over evidence
+    - ARC-014   # Default Mode / DMN safe imagination without commitment -- the substrate locus this claim's alternative-model construction and replay would run under
+    - MECH-392  # consolidation provenance + contradiction-flag + rollback -- sibling anti-circularity/provenance discipline (transformation_history) this claim's anti-pseudo-replication requirement mirrors, applied to REPLAY-generated rather than consolidation-generated derived content
+    - MECH-513  # representation-version reindexing -- the operation this claim's step (5) can trigger when an alternative model outperforms the dominant one; MECH-513 defines what a resulting reindex must preserve, this claim defines when/how one is proposed and tested
+    - ARC-132   # attractor-property differentiation -- the structural precondition motivating why a dominant attractor needs testing in the first place (an undifferentiated attractor is what produces the self-reinforcing loop this protocol is meant to interrupt)
+  location: docs/architecture/offline_representational_reindexing.md#mech-514
+  source:
+    - docs/thoughts/2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md
+  notes: >
+    Registered from the same thought-intake as ARC-132/MECH-513. The raw thought is explicit that
+    "the counterfactual is therefore a question posed to the model, not evidence about what
+    occurred" and that repeated simulations from one episode must not become multiple independent
+    samples -- this claim registers that anti-circularity requirement as load-bearing, not
+    optional. DISTINGUISHED FROM MECH-264/265: those are ACTION-alternative value-tracking for
+    behavioural switching (a live V3-relevant frontopolar mechanism); this claim is EXPLANATORY-
+    model comparison over ALREADY-preserved evidence, closer in spirit to a held-out-validation /
+    model-selection procedure than to action arbitration. DISTINGUISHED FROM MECH-269: MECH-269 is
+    the V3-live substrate for single-anchor verisimilitude-gated reset and a strengthened-tag
+    probe channel; this claim is a V4/V5 multi-model comparison protocol that could consume
+    MECH-269's anchor/probe machinery as an ingredient but is not a restatement of it. The raw
+    thought's own evidential-boundary section explicitly declines to assert counter-attractor
+    replay is a demonstrated function of dreaming, or that sleep reindexing is a specific defence
+    against psychosis -- neither is asserted here; psychosis material is cited only as failure-
+    mode inspiration in the source thought, not relied upon. Literature named in the raw thought
+    but NOT independently verified in this pass: Jardri & Deneve 2013 (circular inference in
+    psychosis), Powers/Mathys/Corlett 2017 (conditioned hallucination), Howes et al. 2011
+    (striatal dopaminergic abnormalities), Latchoumane et al. 2017 (closed-loop SWR-spindle-slow-
+    oscillation coupling), Pellegrini et al. 2019 (latent replay), Shumailov et al. 2024 (model
+    collapse) -- a dedicated lit-pull is a named next step before hardening. epistemic_category
+    substrate_conditional set EXPLICITLY. DO NOT build in V3 and DO NOT queue a V3 experiment --
+    no multi-model explanatory comparison substrate exists, and MECH-269's own V3 status is still
+    v3_pending on its non-diagnostic behavioural sufficiency test.
