@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_130",
+  "entry_id": "2026-08-25_arc_130_deliberation_cost_degenerate_options_harb2018",
+  "timestamp_utc": "2026-08-25T23:15:08Z",
+  "claim_ids_tested": [
+    "ARC-130"
+  ],
+  "source": {
+    "title": "When Waiting is not an Option: Learning Options with a Deliberation Cost",
+    "authors": [
+      "Jean Harb",
+      "Pierre-Luc Bacon",
+      "Martin Klissarov",
+      "Doina Precup"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence (AAAI-18)",
+    "arxiv_id": "1709.04571",
+    "url": "https://arxiv.org/abs/1709.04571"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Directly documents the specific failure shape ARC-130 warns about: within the option-critic framework (see companion 2017 entry in this directory), options that formally exist, are represented, and are locally operable nonetheless collapse into degenerate solutions absent an explicit regularizer -- either terminating on almost every step (never accumulating committed, multi-step behaviour) or running for an entire episode regardless of state (never exhibiting state-sensitive competitive authority). This is an external, non-REE, empirically-documented instance of ARC-130's central claim that 'authority at one internal selection boundary does not by itself establish that authority reaches committed behaviour' -- here, the option is selected and begins executing (an internal selection event) but the architecture-as-trained does not reliably carry that selection through to a stable, temporally-extended, ecologically meaningful commitment without an additional cost term designed specifically to make that gap visible and correctable.",
+  "failure_signatures": [
+    "Options frameworks trained by the base option-critic objective alone run into degenerate solutions in the absence of proper regularization, where a sub-policy either terminates after each step (collapsing temporal abstraction entirely -- the option never demonstrates committed, extended behaviour) or runs for the entire episode regardless of state (never demonstrating state-sensitive, competitive selection) -- both are failures of exactly the middle-to-late rungs of ARC-130's ladder (competitive authority, committed throughput) despite the option's existence, representation, and local operability being intact."
+  ],
+  "tags": [
+    "arc-130",
+    "hierarchical_reinforcement_learning",
+    "options_framework",
+    "causal_reach_ladder",
+    "degenerate_solutions",
+    "committed_throughput"
+  ],
+  "mapping": {
+    "source_claim_statement": "Without an explicit deliberation-cost regularizer penalising the higher-level policy for switching options, option-critic architectures reliably learn degenerate solutions: either the termination function fires on almost every step (options collapse to primitive single-step actions, discarding temporal abstraction) or it almost never fires (one option runs for the whole episode, discarding state-sensitive selection). Adding a deliberation cost that explicitly prices option-switching restores meaningful, interpretable, temporally-extended options.",
+    "ree_translation": "This is a clean, mechanistically-legible external instance of ARC-130's warning that stages of the causal-reach ladder are independent and a mechanism can pass an earlier stage (the option exists, is parameterised, and its policy executes -- existence, representation, local operation) while failing a later one (committed, state-sensitive, temporally-extended throughput) UNLESS something in the training objective specifically makes the later stage visible and rewarded. REE's own examples of authority-without-throughput (e.g. dACC strategy authority failing to reach LOFC execution gain, cited in ARC-130's own depends_on) are architecture-specific instances of the same general shape this paper documents in a much simpler, fully-controlled RL setting: local operability is not sufficient evidence of committed downstream behaviour, and the gap is not hypothetical -- it is the default failure mode absent a mechanism designed to close it.",
+    "mapping_caveat": "The specific fix this paper proposes (an explicit deliberation-cost regularizer penalising option-switching) is not itself validated or proposed for REE -- ARC-130 explicitly declines to authorise building any new runtime object or telemetry schema from this intake pass, and this entry should not be read as recommending REE adopt a deliberation-cost-style regularizer. The evidentiary value here is purely in the documented FAILURE SHAPE (authority/selection without committed throughput being the default, not the exception, in a comparable staged architecture), not in the paper's proposed remedy.",
+    "source_context": "Reinforcement learning benchmarks (four-rooms navigation, Arcade Learning Environment / Atari), discrete and continuous action spaces, single agent, option-critic architecture as the base case being regularized."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Well-cited AAAI paper, direct empirical demonstration (not merely theoretical) of the degenerate-options failure mode in the exact architecture the companion 2017 entry establishes. Mapping fidelity moderate-high: the FAILURE SHAPE (selection/local operation without committed throughput as a default outcome, not an edge case) maps cleanly onto ARC-130's central warning; the specific mechanism (termination-function collapse under an unregularized policy-gradient objective) is RL-specific and has no literal REE equivalent."
+  },
+  "summary_path": "summary.md"
+}

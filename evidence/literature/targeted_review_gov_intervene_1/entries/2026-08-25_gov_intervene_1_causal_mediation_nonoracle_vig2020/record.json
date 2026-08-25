@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gov_intervene_1",
+  "entry_id": "2026-08-25_gov_intervene_1_causal_mediation_nonoracle_vig2020",
+  "timestamp_utc": "2026-08-25T23:15:08Z",
+  "claim_ids_tested": [
+    "GOV-INTERVENE-1"
+  ],
+  "source": {
+    "title": "Causal Mediation Analysis for Interpreting Neural NLP: The Case of Gender Bias",
+    "authors": [
+      "Jesse Vig",
+      "Sebastian Gehrmann",
+      "Yonatan Belinkov",
+      "Sharon Qian",
+      "Daniel Nevo",
+      "Simas Sakenis",
+      "Jason Huang",
+      "Yaron Singer",
+      "Stuart Shieber"
+    ],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)",
+    "arxiv_id": "2004.12265",
+    "url": "https://arxiv.org/abs/2004.12265"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Directly instantiates the NON-ORACLE / SILKY quadrant of GOV-INTERVENE-1's taxonomy in a rigorous, widely-adopted methodology: the paper's activation-patching interventions perturb one suspected variable (a professions term's implied gender) in a minimally disruptive, distribution-preserving way, without supplying the model any privileged target-correct answer -- it establishes causal SENSITIVITY of specific components to the manipulated variable, not a ceiling on achievable performance. The paper's explicit decomposition of total effect into direct and indirect (mediator-routed) effects is independent methodological support for GOV-INTERVENE-1's requirement that provenance (which stage/variable/relation was altered) be recorded and that the effect be attributed to the intervention condition rather than silently treated as endogenous competence.",
+  "failure_signatures": [
+    "The paper explicitly frames its method as attributing bias effects to specific mediating components via intervention, not as establishing that the network 'naturally' or 'endogenously' expresses that pathway during ordinary operation -- exactly the attribution discipline GOV-INTERVENE-1 requires and which the source thought warns is otherwise easy to silently drop.",
+    "Gender-bias effects are found to be sparse (concentrated in a small part of the network) and synergistic (amplified or repressed by different components in combination), meaning a single-mediator intervention alone can systematically under- or mis-attribute causal responsibility -- a concrete illustration of why GOV-INTERVENE-1 insists interventions be classified and their provenance recorded rather than treated as a single undifferentiated 'positive control' device."
+  ],
+  "tags": [
+    "gov-intervene-1",
+    "causal_mediation_analysis",
+    "activation_patching",
+    "non_oracle_intervention",
+    "silky_intervention",
+    "intervention_taxonomy"
+  ],
+  "mapping": {
+    "source_claim_statement": "Causal mediation analysis is applied to Transformer language models by intervening on individual neurons and attention heads (mediators) -- replacing an ambiguous profession term's context with a gender-specific one and observing how gender-bias effects on a downstream prediction propagate through specific mediators -- and decomposing the total effect into a direct effect (bypassing the mediators) and an indirect effect (through the mediators), revealing that bias effects are sparse and synergistic across components.",
+    "ree_translation": "This is a clean external template for GOV-INTERVENE-1's 'non-oracle, silky' quadrant: the intervention perturbs a single suspected variable (the profession term's gendered context) in a minimally disruptive way that stays close to the model's natural input distribution, without importing the task's correct answer -- it is diagnostic for causal SENSITIVITY and localisation (which mediators carry the effect), not a ceiling/achievability demonstration. The paper's mediator-level attribution and direct/indirect decomposition is direct methodological precedent for GOV-INTERVENE-1's provenance-recording requirement (which stage/variable/relation was altered) and for its warning that a non-oracle result must still be attributed to the intervention condition -- Vig et al. never claim the network 'wants' to express gender bias, only that specific components causally mediate it under intervention.",
+    "mapping_caveat": "This is an interpretability study of a static, feedforward-at-inference Transformer language model on a classification-style probing task, not a recurrent, multi-rate, learning agent like REE. The specific technique (single-token context substitution, mediator-level effect decomposition via activation patching) does not transfer literally to REE's architecture; what transfers is the METHODOLOGICAL DISCIPLINE -- minimal single-variable perturbation, explicit direct/indirect decomposition, and refusal to conflate an intervention-attributed effect with endogenous competence -- which GOV-INTERVENE-1 asks REE governance to adopt as a standing classification practice.",
+    "source_context": "Pre-trained Transformer language models (GPT-2 variants), three datasets designed to probe grammatical-gender sensitivity, activation-patching / causal-mediation interventions on individual neurons and attention heads."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Peer-reviewed NeurIPS paper, now a standard reference in the mechanistic-interpretability causal-intervention literature (activation patching / causal tracing descend directly from this methodology). Mapping fidelity moderate: the intervention-taxonomy discipline (non-oracle, silky, provenance-recorded, intervention-attributed) transfers cleanly as a methodological template; the specific substrate (static LM classification) and REE's recurrent multi-mechanism organism are architecturally distant."
+  },
+  "summary_path": "summary.md"
+}

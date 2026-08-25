@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_130",
+  "entry_id": "2026-08-25_arc_130_option_critic_architecture_bacon2017",
+  "timestamp_utc": "2026-08-25T23:15:08Z",
+  "claim_ids_tested": [
+    "ARC-130"
+  ],
+  "source": {
+    "title": "The Option-Critic Architecture",
+    "authors": [
+      "Pierre-Luc Bacon",
+      "Jean Harb",
+      "Doina Precup"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence (AAAI-17)",
+    "doi": "10.1609/aaai.v31i1.10916",
+    "arxiv_id": "1609.05140",
+    "url": "https://arxiv.org/abs/1609.05140"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Canonical, extremely highly-cited foundational paper that formally decomposes a hierarchical RL 'option' into three independently-learnable components -- an intra-option policy, an initiation condition, and a termination condition -- learned jointly by policy gradient with no external subgoal supervision. This formal separation is direct external-domain evidence that ARC-130's core methodological move (treating 'does the mechanism exist/is it represented' as separable from 'does it operate locally' as separable from 'does it terminate/commit appropriately') is not an REE-specific invention but corresponds to an established, load-bearing decomposition in a mature literature outside REE. Held at moderate confidence because this paper by itself only establishes that the stages ARE separable and jointly learnable -- it does not itself document a case where one stage is achieved and a later stage fails (that gap is the companion entry, Harb et al. 2018, in this same directory).",
+  "failure_signatures": [
+    "Not directly documented in this paper -- see the companion 2018 deliberation-cost entry in this directory for the external instance of options that exist and operate locally but fail to reach stable, ecologically meaningful committed behaviour without additional regularization."
+  ],
+  "tags": [
+    "arc-130",
+    "hierarchical_reinforcement_learning",
+    "options_framework",
+    "causal_reach_ladder",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "An option is formally decomposed into an intra-option policy, an initiation set, and a stochastic termination function, all learned end-to-end via policy-gradient theorems for options, without requiring hand-specified subgoals or additional reward shaping.",
+    "ree_translation": "ARC-130 proposes that 'mechanism status' should be recorded as the furthest stage actually demonstrated along an ordered ladder (existence, representation, endogenous recruitment, local operation, competitive authority, committed throughput, ecological consequence, retention) rather than a flat implemented/not-implemented judgment. The option-critic decomposition is the closest clean external precedent for treating a behavioural unit's existence/representation (the option's parameters), its local operation (the intra-option policy acting), and its termination/commitment behaviour (the termination function) as independently measurable properties that can each succeed or fail on their own -- exactly the granularity ARC-130 argues REE's own mechanism audits are currently missing.",
+    "mapping_caveat": "This is a single-agent, fully-observed RL benchmark result (Arcade Learning Environment, four-rooms gridworld), not a finding about a distributed, multi-rate, recurrent cognitive architecture like REE. The formal separability of stages transfers; nothing in this paper speaks to REE's specific later-ladder concerns (competitive authority against a dominant arbitration term, ecological consequence, retention under REE's own learning dynamics), which are architecture-specific and have no equivalent construct in this paper.",
+    "source_context": "Reinforcement learning benchmarks (four-rooms navigation, Arcade Learning Environment / Atari), discrete and continuous action spaces, single agent, fully or near-fully observed."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Extremely well-established, canonical result (foundational to the entire option-critic literature that followed). Mapping fidelity moderate: the STRUCTURAL move (separable, independently-measurable stages of a behavioural unit's operation) transfers cleanly; the specific stages and their content do not, since REE's ladder has organism-specific stages (competitive authority against an arbitration term, ecological consequence) with no direct RL-options analogue."
+  },
+  "summary_path": "summary.md"
+}

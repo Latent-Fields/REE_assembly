@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gov_intervene_1",
+  "entry_id": "2026-08-25_gov_intervene_1_interchange_intervention_oracle_geiger2021",
+  "timestamp_utc": "2026-08-25T23:15:08Z",
+  "claim_ids_tested": [
+    "GOV-INTERVENE-1"
+  ],
+  "source": {
+    "title": "Causal Abstractions of Neural Networks",
+    "authors": [
+      "Atticus Geiger",
+      "Hanson Lu",
+      "Thomas Icard",
+      "Christopher Potts"
+    ],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems 34 (NeurIPS 2021)",
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly instantiates the ORACLE quadrant of GOV-INTERVENE-1's taxonomy: an interchange intervention sets a neural representation to the value it would take under a DIFFERENT, causal-model-specified input -- i.e. it imports privileged, target-correct information about what a hypothesised causal variable should contain -- and is used specifically as a verification/ceiling test of whether the representation has the causal properties of its hypothesised role, not as a naturalistic probe of ordinary behaviour. The paper's own explicit distinction between 'this representation CAN be made to behave like variable V under intervention' and 'the model NATURALLY implements the causal structure containing V' is close to a formal statement of GOV-INTERVENE-1's warning that an oracle result does not become evidence of natural/endogenous competence.",
+  "failure_signatures": [
+    "The paper finds that a simpler baseline model fails to realize the hypothesised causal structure even under interchange-intervention testing, while a stronger BERT-based model succeeds on parts of it -- demonstrating that oracle-style verification is genuinely informative (it can and does fail), not merely a rubber-stamp of whatever structure is proposed; a positive interchange-intervention result is real information about achievable ceiling structure, but the paper is explicit that this establishes the network CAN be aligned to a causal model, not that it ordinarily exercises that structure unprompted."
+  ],
+  "tags": [
+    "gov-intervene-1",
+    "interchange_intervention",
+    "oracle_intervention",
+    "causal_abstraction",
+    "intervention_taxonomy",
+    "ceiling_test"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neural network representations are aligned with variables in a hand-specified, interpretable causal model, and interchange interventions -- setting a representation to the value it takes on a different input the causal model designates as producing a particular counterfactual value -- are used to experimentally verify whether the neural representation behaves as that causal variable would under the same counterfactual. A BERT-based model on a natural-language-inference task is found to realize parts of the causal structure this way; a simpler baseline model does not.",
+    "ree_translation": "An interchange intervention is a paradigm case of GOV-INTERVENE-1's ORACLE axis: the intervention supplies a representation with a value drawn from the causal model's own privileged specification of what a correct/target state should be, rather than perturbing the system's own natural dynamics -- it establishes an achievable CEILING (can the representation, when forced into the right state, produce the right downstream behaviour) and downstream usability, exactly GOV-INTERVENE-1's description of the oracle role. The paper's own methodological caution -- that a positive interchange-intervention result verifies alignment under intervention, not endogenous exercise of that structure during ordinary forward passes -- directly supports GOV-INTERVENE-1's requirement that oracle results 'must not be silently treated as endogenous REE competence,' stated in the taxonomy's own terms almost a decade before REE's version of the rule.",
+    "mapping_caveat": "The causal model here is hand-specified in advance by the experimenters from known task structure (a formal semantic parse of the NLI corpus), which is a much stronger and more literal 'oracle' than most REE diagnostic interventions would have available -- REE mechanisms typically lack an equally crisp, independently-verifiable ground-truth causal model to intervene from. The paper is also a static-inference-time analysis of a trained, frozen network, not an online, learning, recurrent agent, so nothing here speaks to how an oracle intervention interacts with REE's ongoing learning dynamics or commitment boundaries.",
+    "source_context": "BERT-based and LSTM-based natural language inference models trained on the Multiply Quantified NLI (MQNLI) corpus, a synthetic dataset built from an explicit tree-structured natural-logic causal model, interchange interventions between paired inputs at intermediate representations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Peer-reviewed NeurIPS paper that formalised interchange interventions and directly seeded the widely-used 'causal abstraction' framework in mechanistic interpretability (distributed alignment search and successors build on this). Mapping fidelity moderate-high: the oracle/ceiling-vs-endogenous-competence distinction is stated almost in GOV-INTERVENE-1's own terms; transfer risk is non-trivial because the paper's causal model is hand-specified from known synthetic task structure, a stronger oracle condition than most REE interventions would have available."
+  },
+  "summary_path": "summary.md"
+}
