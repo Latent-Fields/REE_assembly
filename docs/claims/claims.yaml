@@ -24412,10 +24412,12 @@
     as_of: 2026-08-22
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-861e_2026-08-21"
-      as_of: "2026-08-21"
-      verdict: "non_contributory -- 861e R3 repaired SEM; the 861c n=10 projection is REFUTED (seed 271 HIGH-arm MEL collapsed below reference); status and pending_substrate_reconfirmation unchanged; GFLAG-0002 remains unresolved. Citation restamped from failure_autopsy_V3-EXQ-861_2026-08-01 by governance cycle 2026-08-22 (bold-chaum-7e245c) per GOV-APPLY-1; superseded reading was: mixed/standard -- epistemic_category GRADUATED substrate_ceiling -> standard (reconciled alongside sibling MECH-180 in the same governance pass). The ecological end-to-end run (V3-EXQ-845, cross-validated by the deconfounded V3-EXQ-861) has now scored: sws_power and replay_rate track measured MEL correctly in 2/3 seeds each, the first positive ecological signal for this invariant's third drive."
+      from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
+      as_of: "2026-08-25"
+      verdict: "non_contributory -- H1/H2/H3 portfolio (inv050_mech180_861e_producer_vs_intervention_isolation) now CLOSED. H1 (861f, reseed isolation) NOT supported: both reseeded (0.9475) and unreseeded (0.8845) stay below 1.0 in both duplicate executions, surviving RNG isolation. H3 (861g) supported per declared null (f810969 pin retains HIGH grading at n=10 while current substrate 17befb8c collapses; the machine confound previously keeping H3 alive is resolved -- 861f's unreseeded control reproduces 861e's decisive-cell value across three independent machine identities incl. a genuine linux-x86_64 vs darwin-arm64 boundary). CONTROL (861h) passed: ContextMemory write-address lock is not load-bearing for measured MEL. Combined verdict: a genuine SUBSTRATE change between f810969 and 17befb8c (11 ree_core commits) is responsible for 861e's seed-271 HIGH-arm collapse -- not measurement RNG, not a machine/box difference, not the write-address lock. WHICH commit is unresolved (candidate: 76cbf84 ContextMemory.write() single-slot-fixed-point repair -- raises the live possibility f810969's >1.0 reading rode the pre-repair bug and 17befb8c's 0.884 is the corrected value, i.e. not a regression). status/confidence/pending_substrate_reconfirmation UNCHANGED; all three legs diagnostic/non-voting. Citation restamped from failure_autopsy_V3-EXQ-861e_2026-08-21 by governance cycle 2026-08-25 (f-dominance-regime-retest-ddbe10) per GOV-APPLY-1, applying failure_autopsy_861g-861h-mech180-cluster_2026-08-23 and failure_autopsy_861f-mech180-cluster-a_2026-08-25 in the same pass so the citation lands on the complete portfolio read."
   evidence_quality_note: |
+    [2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_861g-861h-mech180-cluster_2026-08-23.json + failure_autopsy_861f-mech180-cluster-a_2026-08-25.json]: the inv050_mech180_861e_producer_vs_intervention_isolation portfolio (H1/H2/H3 + CONTROL) is CLOSED. H1 (V3-EXQ-861f, reseed isolation) -> non_contributory, NOT supported per its own declared null. H3 (V3-EXQ-861g, substrate pin isolation) -> non_contributory, SUPPORTED per declared null. CONTROL (V3-EXQ-861h, write-lock) -> non_contributory, PASSED (write-address lock not load-bearing). Combined: a genuine substrate change between f810969 and 17befb8c drives 861e's collapse, not RNG/machine/write-lock; the specific commit is unresolved (candidate 76cbf84, ContextMemory single-slot-fixed-point repair). status/confidence/pending_substrate_reconfirmation unchanged on all three legs.
+
     [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-861e_2026-08-21.json]: V3-EXQ-861e (failure_autopsy_V3-EXQ-861e_2026-08-21) -> non_contributory, status and v3_pending UNCHANGED. Commissioned as the 861c n=10 + R3 repair. R3 passed 3/3 (calib_rel_sd_of_mean 0.0705/0.0533/0.0785) so SEM is repaired. Pre-registered target was 2/3 C2 with seed 7 the lone miss; observed C2 is 1/3 because seed 271 gated out at R2 after HIGH-arm MEL collapsed 2.90e-5 -> 2.30e-5 (factor 0.884). 861c's 'n=10 flips seed 271 C2' projection is REFUTED. Step 7c CONTESTED / Step 8 adopted: route /queue-experiment fan-out H1 (reseed n=10 on 17befb8c) vs H3 (n=10 on f810969). H2 is follow-on only (aliased with H3 at n=5 on 861e's substrate; 271 is not like seed 7).
 
     V3-EXQ-701 (INV-050 MEL-measurability diagnostic, no-sleep; confirmed failure_autopsy_V3-EXQ-701_2026-06-23)
@@ -24811,9 +24813,9 @@
     as_of: 2026-08-01
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-861e_2026-08-21"
-      as_of: "2026-08-21"
-      verdict: "non_contributory -- 861e R3 repaired SEM; 861c n=10 C2 seed-271 story REFUTED; status and v3_pending unchanged"
+      from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
+      as_of: "2026-08-25"
+      verdict: "non_contributory -- inv050_mech180_861e_producer_vs_intervention_isolation portfolio CLOSED. H1 (861f) not supported, H3 (861g) supported, CONTROL (861h) passed write-lock is not load-bearing; combined verdict is a genuine substrate change between f810969 and 17befb8c (candidate: 76cbf84 ContextMemory write single-slot-fixed-point repair), not RNG/machine/write-lock. status/v3_pending UNCHANGED (DV3 stays descoped behind MECH-122-content-packaging-spindle-selection, unaffected by this leg). Citation restamped from failure_autopsy_V3-EXQ-861e_2026-08-21 by governance cycle 2026-08-25 (f-dominance-regime-retest-ddbe10) per GOV-APPLY-1."
   v3_pending: true
   epistemic_category: standard
   ceiling_decision: deferred
@@ -24897,6 +24899,8 @@
     epistemic_category marker -- an asymmetric-metabolization gap, now closed.
   pending_retest_after_substrate: true  # SD-MEL-CONSUMER (adaptive sleep-cadence), minted 2026-07-07
   evidence_quality_note: |
+    [2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_861g-861h-mech180-cluster_2026-08-23.json + failure_autopsy_861f-mech180-cluster-a_2026-08-25.json]: the inv050_mech180_861e_producer_vs_intervention_isolation portfolio (H1/H2/H3 + CONTROL) is CLOSED. H1 (V3-EXQ-861f, reseed isolation) -> non_contributory, NOT supported per its own declared null. H3 (V3-EXQ-861g, substrate pin isolation) -> non_contributory, SUPPORTED per declared null. CONTROL (V3-EXQ-861h, write-lock) -> non_contributory, PASSED (write-address lock not load-bearing). Combined: a genuine substrate change between f810969 and 17befb8c drives 861e's collapse, not RNG/machine/write-lock; the specific commit is unresolved (candidate 76cbf84, ContextMemory single-slot-fixed-point repair). status/v3_pending unchanged on all three legs; DV3 stays descoped behind MECH-122-content-packaging-spindle-selection.
+
     [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_V3-EXQ-861e_2026-08-21.json]: V3-EXQ-861e (failure_autopsy_V3-EXQ-861e_2026-08-21) -> non_contributory, status and v3_pending UNCHANGED. Commissioned as the 861c n=10 + R3 repair. R3 passed 3/3 (calib_rel_sd_of_mean 0.0705/0.0533/0.0785) so SEM is repaired. Pre-registered target was 2/3 C2 with seed 7 the lone miss; observed C2 is 1/3 because seed 271 gated out at R2 after HIGH-arm MEL collapsed 2.90e-5 -> 2.30e-5 (factor 0.884). 861c's 'n=10 flips seed 271 C2' projection is REFUTED. Step 7c CONTESTED / Step 8 adopted: route /queue-experiment fan-out H1 (reseed n=10 on 17befb8c) vs H3 (n=10 on f810969). H2 is follow-on only (aliased with H3 at n=5 on 861e's substrate; 271 is not like seed 7).
 
     V3-EXQ-718 (confirmed failure_autopsy_V3-EXQ-718_2026-07-07) -> non_contributory +
@@ -80522,13 +80526,13 @@
     as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-910a_2026-08-11"
-      as_of: "2026-08-13"
-      verdict: "mixed -- 910's trigger-alignment falsification reconfirmed (no new weight); new decision_alignment criterion FAILED but its underlying decision_counts measurement is independently broken (2x theoretical max, byte-identical to 910's total despite different override counts), so not usable as evidence either way"
+      from: "failure_autopsy_V3-EXQ-910b_2026-08-23"
+      as_of: "2026-08-25"
+      verdict: "mixed -- the chip-20260820-mech489-retest-driver-decision-at-override-tick fix landed and the readout now counts at the override tick (n_override_ticks=21, unclassified=0), but C1 instrument-correctness still shows a large same-run legacy-vs-new-tap discrepancy (5.95x on overrides, 32.57x on decisions) that the driver's sum-identity check (21==21) does not discriminate away, being true by construction of the tap. Combination rule (AND over C1 + C2 valence non-degeneracy) forces the overall PASS to MIXED rather than a clean supports."
   implementation_phase: v3
   v3_pending: false
   epistemic_category: standard
-  pending_retest_after_substrate: true  # SD-ORIENTING-DECISION-SCALE amend owed (decision-logging defect, severity=degrading) before any further 489 retest is informative
+  pending_retest_after_substrate: false  # SD-ORIENTING-DECISION-SCALE + decision-at-override-tick driver fix both landed and validated by V3-EXQ-910b (2026-08-25 governance)
   implementation_note: >
     SD-ORIENTING-DECISION-SCALE IMPLEMENTED 2026-08-10 (ree-v3 agent.py select_action() Component
     4/5, docs/architecture/sd_orienting_decision_scale.md): fixed the norm-vs-value scale mismatch
@@ -80600,6 +80604,21 @@
     baseline-freeze fix during the build was designed to prevent, so this would indicate a
     regression or an unforeseen second such bug).
   evidence_quality_note: >
+    [2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_V3-EXQ-910b_2026-08-23]:
+    MIXED, not a clean supports. Both substrate fixes this claim's retest was waiting on
+    (SD-ORIENTING-DECISION-SCALE and the decision-at-override-tick driver repair,
+    chip-20260820-mech489-retest-driver-decision-at-override-tick) landed and are validated by this
+    run: preconditions all met (11025 fresh orienting ticks, 56173 latched, 21 pooled override ticks
+    >= the 10 floor), unclassified=0, decision_counts no longer read at the wrong denominator.
+    pending_retest_after_substrate flips true -> false -- the substrate blocker is fully cleared. But
+    C1 instrument-correctness is not itself clean: the same-run legacy per-env-step readout (125
+    overrides / 684 decisions) diverges from the new override-tick readout (21 overrides / 21
+    decisions) by 5.95x/32.57x, and the sum identity 21==21 the driver reports is true by
+    construction of the tap (every override tick is, trivially, itself), not a discriminating check
+    that the two readouts agree. Combination rule (AND over C1 + C2) forces MIXED. Status/confidence
+    unchanged (candidate); routing implement-substrate for any further instrument-correctness work,
+    but no substrate build is owed by this finding alone.
+
     [2026-08-10 governance, V3-EXQ-910, confirmed failure_autopsy_V3-EXQ-910_2026-08-10, first
     genuine touchpoint for this claim]: MIXED, not a clean weakens. The trigger/identification
     sub-component (Components 1-3) fairly hits this claim's own pre-registered falsifying

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-22T13:23:53Z",
+  "last_review_utc": "2026-08-25T18:42:08Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1190,7 +1190,13 @@
     "V3-EXQ-937b",
     "V3-EXQ-943",
     "v3_exq_944_mech091_salient_event_cycle_boundary",
-    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release"
+    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release",
+    "v3_exq_861g_inv050_mech180_h3_substrate_pin_f810969",
+    "v3_exq_861h_inv050_mech180_contextmemory_write_lock_control",
+    "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation",
+    "v3_exq_946_contextmemory_write_address_informativeness_diagnostic",
+    "v3_exq_910b_mech489_orienting_decision_at_override_tick_retest",
+    "v3_exq_948_observation_interface_re_representation_probe"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4039,7 +4045,14 @@
     "v3_exq_937b_mech449_per_bank_envelope_conversion_joint_20260819T142133Z_v3",
     "v3_exq_943_contextmemory_write_selection_validation_20260820T115815Z_v3",
     "v3_exq_944_mech091_salient_event_cycle_boundary_20260822T035234Z_v3",
-    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3"
+    "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3",
+    "v3_exq_861g_inv050_mech180_h3_substrate_pin_f810969_20260822T175951Z_v3",
+    "v3_exq_861h_inv050_mech180_contextmemory_write_lock_control_20260822T222844Z_v3",
+    "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260823T210058Z_v3",
+    "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3",
+    "v3_exq_946_contextmemory_write_address_informativeness_diagnostic_20260823T075019Z_v3",
+    "v3_exq_910b_mech489_orienting_decision_at_override_tick_retest_20260822T235826Z_v3",
+    "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6468,6 +6481,21 @@
         "V3-EXQ-944 is a FAIL with a confirmed autopsy, not an evidence-purpose PASS -- no skim owed; adjudicated via failure_autopsy_V3-EXQ-944_2026-08-22."
       ],
       "notes": "Wave 1, one-pass cycle (0 items needed autopsy at Step 1.5 pre-flight). MECH-303 PROMOTED provisional -> active on V3-EXQ-939a: the behavioural falsifier the claim's own note named as its promote-to-active gate passed cleanly (6/6 seeds, DV gaps 0.750/0.748/0.750 vs 0.34 margin). Note the mechanical recommender emits ZERO promote_to_active rows across all 279 entries, so this decision reaches governance only through the walk. MECH-091: V3-EXQ-944 non_contributory STANDS (already inert on both manifests; evidence_direction_note added this cycle), epistemic_category unset -> standard, status stays candidate. GOV-APPLY-1 unapplied_disposition bucket worked to completion (11 rows / 10 distinct claims): MECH-314b/MECH-314c/Q-044 -- claim layer was already applied 2026-07-20, the live gap was the MANIFEST (evidence_direction_per_claim still scored mixed/mixed/supports); written flat+pack. ARC-045/MECH-166/SD-017 -- NO ACTION, the 436e (2026-08-13) recommendation of epistemic_category standard is SUPERSEDED by failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, which recommends substrate_ceiling and is what claims.yaml already carries; GOV-APPLY-1 cannot see this because its supersession check keys on run_id and 436e/436f are different runs. INV-044 -- APPLIED: both V3-EXQ-429 runs supports -> non_contributory (claims.yaml + 4 manifests), withdrawing 2/2 of its experimental evidence; provisional re-based on literature alone; epistemic_category unset -> standard; pending_retest_after_substrate set true. The 429 family's dry smoke (20260415T143340Z) was excluded and left untouched. INV-050 -- live_status.evidence.from restamped 861 -> 861e. MECH-180 -- already applied, no action. closure node commitment_closure:GAP-7 acknowledged (Step 5b case 3), stale_since_review 1 -> 0. GFLAG-0047 left OPEN by decision (design fork: differentiation vs relational-topology DV for the ContextMemory write-selection validation run). GOV-DRY-1's single ACTIONABLE is a FALSE POSITIVE -- it flags failure_autopsy_slot_cosine_sim_fanout_sweep_2026-08-13 for citing a dry smoke, but the only occurrence of that run_id in the artifact is inside its own excluded_dry_run_ids field. DEFERRED: the 143-row GOV-APPLY-1 unapplied_evidence_direction backlog (106 runs, 74 claims) and the 2 ceiling-may-have-lifted retests (ARC-030, SD-017)."
+    },
+    {
+      "cycle": "governance-cycle-2026-08-25",
+      "session": "f-dominance-regime-retest-ddbe10",
+      "utc": "2026-08-25T18:42:08Z",
+      "reviewed_run_ids": [
+        "v3_exq_861g_inv050_mech180_h3_substrate_pin_f810969_20260822T175951Z_v3",
+        "v3_exq_861h_inv050_mech180_contextmemory_write_lock_control_20260822T222844Z_v3",
+        "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260823T210058Z_v3",
+        "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3",
+        "v3_exq_946_contextmemory_write_address_informativeness_diagnostic_20260823T075019Z_v3",
+        "v3_exq_910b_mech489_orienting_decision_at_override_tick_retest_20260822T235826Z_v3",
+        "v3_exq_948_observation_interface_re_representation_probe_20260825T142115Z_v3"
+      ],
+      "notes": "2026-08-25 governance (f-dominance-regime-retest-ddbe10): applied 5 confirmed autopsy dispositions closing the inv050_mech180_861e_producer_vs_intervention_isolation portfolio (V3-EXQ-861g H3 non_contributory/supported, V3-EXQ-861h CONTROL non_contributory/passed, V3-EXQ-861f x2 duplicate-run H1 non_contributory/not-supported -- combined verdict: a genuine substrate change between f810969 and 17befb8c, candidate commit 76cbf84; claims INV-050/MECH-180 citation restamped 861e -> failure_autopsy_861f-mech180-cluster-a_2026-08-25, status/v3_pending unchanged). V3-EXQ-946 non_contributory (claim-free diagnostic; the vacuous_pass indexer flag is very likely a false positive per the confirmed autopsy, a new undocumented sub-case; not fixed here, out of autopsy charter). V3-EXQ-910b (MECH-489) mixed -- both owed substrate fixes (SD-ORIENTING-DECISION-SCALE + decision-at-override-tick driver repair) landed and validated; pending_retest_after_substrate true -> false; C1 instrument-correctness still shows an unresolved 5.95x/32.57x legacy-vs-new-tap discrepancy, forcing MIXED not a clean supports. V3-EXQ-948 (claim-free diagnostic, this session's own earlier run) CONFIRMS the H-observation-interface leg of conversion_ceiling_root: z_world's existing SD-018 scalar resource-proximity supervision is insufficient; a full 25-dim directional field restores foraging competence. Applied as an AMEND to substrate_queue SD-018 (not a new SD, per red-team-corrected autopsy routing) -- severity degrading, priority 2, unblocks MECH-457/ARC-065. Secondary finding chipped separately (chip-20260825-sd018-missing-validation): SD-018 has no recorded post-implementation r2>0.5 validation despite implemented_utc 2026-04-07. GFLAG-0047 resolved (user-adjudicated: ContextMemory write-selection validation DV should be relational-topology, not differentiation). GFLAG-0048/GFLAG-0049 left OPEN -- both await V3-EXQ-925a (queued this session earlier today, not yet run), which is the evidence they should be judged against."
     }
   ]
 }

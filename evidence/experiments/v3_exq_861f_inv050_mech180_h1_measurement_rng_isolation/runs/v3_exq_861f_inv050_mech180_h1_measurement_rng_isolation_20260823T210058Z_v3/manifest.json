@@ -26,8 +26,8 @@
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "INV-050": "unknown",
-    "MECH-180": "unknown"
+    "INV-050": "non_contributory",
+    "MECH-180": "non_contributory"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -347,5 +347,7 @@
     "writer_defect": true,
     "n_agents": 18,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_861f-mech180-cluster-a_2026-08-25, closing the inv050_mech180_861e_producer_vs_intervention_isolation portfolio]: diagnostic H1 isolation, non-voting. H1 NOT supported per driver's own declared null (reseeded 0.9475, unreseeded 0.8845, both below 1.0, collapse survives RNG isolation). Combined with 861g (H3 supported via substrate change, machine confound resolved) and 861h (CONTROL passed): a genuine SUBSTRATE change between f810969 and 17befb8c is responsible, not measurement RNG/machine/write-lock. WHICH commit is unresolved -- see substrate_queue candidate (76cbf84 ContextMemory.write() single-slot-fixed-point repair). Claims status/confidence/v3_pending do not move. Duplicate execution (chip-20260824-exq861f-duplicate-run-stale-claim-reap) is a separately-tracked infra defect.",
+  "epistemic_category": "standard"
 }

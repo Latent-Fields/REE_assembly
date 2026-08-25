@@ -26,8 +26,8 @@
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "INV-050": "unknown",
-    "MECH-180": "unknown"
+    "INV-050": "non_contributory",
+    "MECH-180": "non_contributory"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -347,5 +347,7 @@
     "writer_defect": true,
     "n_agents": 18,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-08-25 governance, f-dominance-regime-retest-ddbe10, confirmed failure_autopsy_861f-mech180-cluster-a_2026-08-25]: DUPLICATE EXECUTION of the run above (chip-20260824-exq861f-duplicate-run-stale-claim-reap tracks the coordinator stale-claim-reap infra defect; not re-diagnosed here) -- same disposition applies: H1 NOT supported per declared null, diagnostic, non-voting. Claims status/confidence/v3_pending do not move.",
+  "epistemic_category": "standard"
 }

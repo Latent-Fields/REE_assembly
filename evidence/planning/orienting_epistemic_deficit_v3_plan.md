@@ -312,26 +312,44 @@ closure_plan:
       depends_on: ["orienting_epistemic_deficit_v3:ORNT-5"]
       cross_plan_link: []
       blocking_on: >
-        claims.yaml MECH-489 carries pending_retest_after_substrate: true --
-        SD-ORIENTING-DECISION-SCALE (ree-v3 agent.py select_action()
-        Component 4/5) landed 2026-08-10, fixing the norm-vs-value scale
-        mismatch failure_autopsy_V3-EXQ-910_2026-08-10 identified. The clean
-        valence-gating retest is now queued as V3-EXQ-910b (ree-v3 4d77ec9,
-        status pending, supersedes V3-EXQ-910a), which also repairs the
-        decision_counts readout to count at the override tick only rather
-        than once per env step. Blocked on that run actually executing and
-        its criteria being adjudicated -- no manifest exists yet. The
-        trigger-alignment sub-claim already stands as fairly falsified
-        (V3-EXQ-910/910a) and does not need re-testing.
+        V3-EXQ-910b RAN 2026-08-22 and is CONFIRMED-AUTOPSIED
+        (failure_autopsy_V3-EXQ-910b_2026-08-23) as of the 2026-08-25
+        governance cycle. C1 (sum(decision_counts) == n_override_ticks)
+        PASSED exactly (21==21, unclassified=0) -- the decision_counts
+        logging defect is validated fixed (SD-ORIENTING-DECISION-SCALE
+        flipped implemented_pending_validation -> implemented_validated).
+        But C1 also surfaced an unresolved instrument-correctness residual:
+        the same-run legacy per-env-step readout diverges from the new
+        override-tick readout by 5.95x (overrides) / 32.57x (decisions) --
+        expected in direction (it is exactly the inflation the fix removes)
+        but not itself independently cross-checked against a third
+        measurement, so the combination rule (AND over C1 + C2) forces the
+        overall read to MIXED rather than a clean supports. MECH-489
+        claims.yaml: pending_retest_after_substrate flipped true -> false
+        (the substrate blocker this node names is fully cleared); status
+        stays candidate, evidence mixed. No further substrate build is
+        owed by this finding; the autopsy's routing (implement-substrate)
+        was discharged by resolving the SD-ORIENTING-DECISION-SCALE
+        failure_record entry, not by a new build.
       resume_condition: >
-        Resume once V3-EXQ-910b's manifest lands under
-        REE_assembly/evidence/experiments/ and its pre-registered criteria
-        are adjudicated (C1: sum(decision_counts) == n_override_ticks
-        exactly; C2: decision_alignment non-degenerate, >= 2 of the 3
-        decision classes non-zero). A pass advances this node toward
-        closure; a fail/mixed outcome routes to a failure autopsy before
-        any further retesting is queued.
-      last_updated: 2026-08-21
+        The claims.yaml substrate blocker is cleared; this node is not
+        blocked on any further build. Remaining open question is whether
+        the MIXED read (driven by the C1 legacy-vs-new-tap discrepancy,
+        not by C2 valence-gating) warrants a further discriminating
+        instrument-correctness check before this node can close, or
+        whether MECH-489's mixed evidence is simply the standing read
+        going forward. Left for a future governance/claim-synthesis pass
+        to decide; no chip raised (this is a governance-owned disposition
+        question, not a build).
+      last_updated: 2026-08-25
+      governance_2026_08_25: >
+        Case 3 in closure-drift terms: V3-EXQ-910b has landed and been
+        confirmed-autopsied, but its outcome is genuinely MIXED (not a
+        PASS advancing toward closure and not a non_contributory/
+        superseded/inconclusive direction that would auto-suppress) --
+        the node legitimately stays non-terminal pending the disposition
+        question in resume_condition, not because anything is still
+        building.
       completion_note: >
         Had NO owning closure node until this plan despite real experimental
         evidence existing (V3-EXQ-910, V3-EXQ-910a; failure_autopsy_V3-EXQ-
