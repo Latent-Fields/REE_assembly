@@ -160,6 +160,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-2`
 
@@ -317,6 +318,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-3`
 
@@ -474,6 +476,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-4`
 
@@ -631,6 +634,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-4-battery`
 
@@ -788,6 +792,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-5`
 
@@ -945,6 +950,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-6`
 
@@ -1102,6 +1108,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-7`
 
@@ -1259,6 +1266,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-8`
 
@@ -1416,6 +1424,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-9`
 
@@ -1573,6 +1582,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-10`
 
@@ -1730,6 +1740,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `commitment_closure:GAP-11`
 
@@ -1887,4 +1898,5 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-08-16T19:59Z` [decision] `decision:MECH-091@2026-08-16T19:59:02.782003Z` -> [`evidence/decisions/decision_log.v1.jsonl#L441`](../../../../evidence/decisions/decision_log.v1.jsonl#L441) :: decision route_to_v3_small_buildable (applied)
 - `2026-08-18T01:14Z` [autopsy] `failure_autopsy_V3-EXQ-935_2026-08-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-08-22T11:35Z` [autopsy] `failure_autopsy_V3-EXQ-944_2026-08-22` -> [`evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-944_2026-08-22.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-22T13:47Z` [decision] `decision:MECH-091@2026-08-22T13:47:10.703646Z` -> [`evidence/decisions/decision_log.v1.jsonl#L450`](../../../../evidence/decisions/decision_log.v1.jsonl#L450) :: decision hold_candidate_resolve_conflict (applied)
 

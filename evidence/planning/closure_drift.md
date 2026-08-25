@@ -1,14 +1,16 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-08-22T13:44:33Z
+Generated: 2026-08-25T18:03:31Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
 Warn-only -- this script never blocks the governance pipeline.
 
-## Drifted nodes (0)
+## Drifted nodes (1)
 
-_None._
+| plan | node | status | owner_exq | node last_updated | terminal signal |
+|------|------|--------|-----------|-------------------|-----------------|
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | in_progress | V3-EXQ-910b | 2026-08-21 | manifest `evidence/experiments/v3_exq_910b_mech489_orienting_decision_at_override_tick_retest_20260822T235826Z_v3.json` + autopsy `evidence/planning/failure_autopsy_V3-EXQ-910b_2026-08-23.json` |
 
 ## Suppressed (legitimately non-terminal) (2)
 
