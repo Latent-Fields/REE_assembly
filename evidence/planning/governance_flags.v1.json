@@ -718,6 +718,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0049",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "flag_type": "stale_note",
+      "summary": "The H0 discovery leg 'H0-selector-regime-confound' registered in evidence/planning/hypothesis_space_registry.v1.json (question qid=e3_fdominance_causal_discrimination, the H1-H4 F-dominance discrimination registered by failure_autopsy_V3-EXQ-925_2026-08-12) states a conclusion that direct runtime measurement refutes, and should be corrected or re-scoped by /governance. Its desc asserts that 'at this substrate's corpus-standard default configuration the E3 selector essentially never engages committed (argmin) selection -- committed_fraction=0.000 across 2493 fresh events'. That reading attributes to the SUBSTRATE what was actually a defect in V3-EXQ-925's DRIVER: the driver never calls post_action_update, so E3._running_variance stayed pinned at precision_init=0.5 against commit_threshold=0.4 and commitment was arithmetically impossible before the run began (measured 2026-08-25: rv exactly 0.500000 across a 260-tick probe; adding the one missing call gives rv 0.500000 -> 0.007956 and committed_fraction 0.000 -> 0.959 at UNCHANGED default config -- see ree-v3 e3_selector.py:3969-3973, which documents this exact deadlock, and note 97 other drivers make the call). The leg's parenthetical attributing the regime to 'use_gap_scaled_commit_temperature=False' is also wrong: that flag's two call sites (e3_selector.py:3683,:3763) are inside 'elif committed:', so it cannot influence WHETHER commitment engages. ACTION for /governance: H0 as worded is not a property of the substrate and should not stand as a discovered hypothesis about it -- either re-scope it to 'V3-EXQ-925 driver instrumentation defect' or retire it, and re-check whether H1-H4 (recorded as all still alive) were in fact never fairly tested by 925, since its whole dataset was uncommitted. V3-EXQ-925a (queued 2026-08-25, ree-v3 a497e0a99f, supersedes 925) re-runs the same C0-C5 replay with the deadlock fixed; its result is the evidence this leg should be judged against. Related: GFLAG-0048 (same finding, MECH-439 evidence_quality_note side).",
+      "raised_by_session": "f-dominance-regime-retest-ddbe10",
+      "raised_at": "2026-08-25T10:49:55Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
