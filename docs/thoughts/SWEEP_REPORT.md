@@ -1,22 +1,16 @@
 # Thought Sweep Report
 
-Generated: `2026-08-25T20:43:09.752433Z`
+Generated: `2026-08-25T21:34:00.145443Z`
 
 | metric | count |
 |---|---|
 | total thought files | 203 |
-| processed | 196 |
-| unprocessed | 7 |
-| processed missing `Processed in` links | 17 |
+| processed | 202 |
+| unprocessed | 1 |
+| processed missing `Processed in` links | 23 |
 
 ## Unprocessed Queue
 
-- `2026-08-12` `2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md` (status=`unprocessed`)
-- `2026-08-13` `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md` (status=`unprocessed`)
-- `2026-08-14` `2026-08-14_preserving_the_possibility_of_future_reconstruction.md` (status=`unprocessed`)
-- `2026-08-24` `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md` (status=`unprocessed`)
-- `2026-08-24` `2026-08-24_model_updates_should_be_gated_and_timed.md` (status=`unprocessed`)
-- `2026-08-24` `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md` (status=`unprocessed`)
 - `INTAKE_AUDIT_REPORT.md` (status=`unprocessed`)
 
 ## Processed Missing Links
@@ -33,10 +27,16 @@ Generated: `2026-08-25T20:43:09.752433Z`
 - `2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md`
 - `2026-08-12_other_agent_provenance_bounded_animistic_prior.md`
 - `2026-08-12_persistence_must_earn_continuation.md`
+- `2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`
 - `2026-08-12_responsibility_as_epistemic_hygiene.md`
+- `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md`
+- `2026-08-14_preserving_the_possibility_of_future_reconstruction.md`
 - `2026-08-23_memory-dimensionality-crystallisation.md`
 - `2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md`
 - `2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md`
+- `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md`
+- `2026-08-24_model_updates_should_be_gated_and_timed.md`
+- `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md`
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md`
 
 ## Processed Snapshot
@@ -227,13 +227,19 @@ Generated: `2026-08-25T20:43:09.752433Z`
 - `2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md` (0 link(s) in `Processed in`)
 - `2026-08-12_other_agent_provenance_bounded_animistic_prior.md` (0 link(s) in `Processed in`)
 - `2026-08-12_persistence_must_earn_continuation.md` (0 link(s) in `Processed in`)
+- `2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md` (0 link(s) in `Processed in`)
 - `2026-08-12_responsibility_as_epistemic_hygiene.md` (0 link(s) in `Processed in`)
+- `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md` (0 link(s) in `Processed in`)
 - `2026-08-14_humour_societal_epistemic_probe.md` (2 link(s) in `Processed in`)
+- `2026-08-14_preserving_the_possibility_of_future_reconstruction.md` (0 link(s) in `Processed in`)
 - `2026-08-19_context-inference-active-persistent-control.md` (3 link(s) in `Processed in`)
 - `2026-08-19_hippocampal-episodic-organisation.md` (2 link(s) in `Processed in`)
 - `2026-08-23_memory-dimensionality-crystallisation.md` (0 link(s) in `Processed in`)
 - `2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md` (0 link(s) in `Processed in`)
 - `2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md` (0 link(s) in `Processed in`)
+- `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md` (0 link(s) in `Processed in`)
+- `2026-08-24_model_updates_should_be_gated_and_timed.md` (0 link(s) in `Processed in`)
+- `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md` (0 link(s) in `Processed in`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)
