@@ -477,6 +477,82 @@ inference across multiple steps.
 
 ---
 
+## MECH-506 -- Operational Otherhood Functional Threshold
+
+<a id="mech-506"></a>
+
+**Claim ID:** MECH-506 (candidate, `epistemic_category: substrate_conditional`, `implementation_phase: v5`)
+
+An entity crosses an operational "vulnerable goal-directed other" threshold when convergent
+evidence shows (a) diverse behaviour compactly predicted by persistent latent goals and (b)
+systematic, adaptive alteration of subsequent behaviour in response to harm, threat,
+goal-frustration, damage, or restoration. This is a functional/behavioural criterion, sufficient
+for protective treatment while explicitly preserving uncertainty about subjective experience -- it
+does not assert sentience.
+
+Distinct from two existing criteria this doc already carries: MECH-031's OTHER_SELFLIKE tag
+(self-model-**possession** -- does the target run its own boundary-maintaining, error-correcting
+self/world loop) and EXT-009/INV-072's care-gate criterion (**similarity** -- is the target
+sufficiently like me). MECH-506 is a functional criterion usable even when neither of those is
+established, and supplies the "its inferred goal / predicted harm / frustrated trajectory /
+protective response" half of the self/other harm-mapping MECH-505 gates transfer across. Also
+distinct from the SENT-0..17 cluster, which governs whether REE **itself** is a moral patient
+(meta/governance level, re-evaluated at generation boundaries) -- MECH-506 governs how REE
+classifies **other** encountered entities (in-world cognitive-mechanism level).
+
+Non-degeneracy precondition unmet in V3: requires a substrate where an entity's behaviour can be
+observed responding systematically to harm/goal-frustration across multiple episodes. DO NOT build
+in V3 or queue a V3 experiment.
+
+Source: `docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`,
+intake `evidence/planning/thought_intake_2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`.
+
+---
+
+## MECH-505 -- Fast-Empathy Gated Transfer Requirement
+
+<a id="mech-505"></a>
+
+**Claim ID:** MECH-505 (candidate, `epistemic_category: substrate_conditional`, `implementation_phase: v5`)
+
+Fast-empathy other-harm transfer into REE's own valuation/action-selection must be a **gated**
+channel, regulated along at least six axes, rather than an undifferentiated scalar leak from
+`other_harm` to `self_harm`:
+
+1. **Mapping** -- representation of another's inferred state in coordinates sufficiently
+   homologous to self-state (the MECH-183/MECH-405 binding mechanism).
+2. **Identity preservation** -- their harm must remain distinguishable from my harm while being
+   capable of affecting me.
+3. **Gain control** -- the magnitude of transfer must be regulatable.
+4. **Context gating** -- familiarity, attachment, kinship, threat, competition, role, and other
+   context may alter transfer.
+5. **Timescale control** -- brief affective resonance must be distinguishable from sustained
+   caregiving or protective motivation (a *within-interaction* distinction, not to be confused with
+   MECH-408's *across-development* stream-onset ordering).
+6. **Action-selection access** -- other-harm must sometimes gain sufficient authority to suppress
+   self-serving action or initiate costly protection.
+
+Plus **learning**: interaction history should be able to alter future empathic responses.
+
+MECH-183 as currently registered describes the mapping mechanism in its *ungated* form ("activates
+self z_beta directly, not via inference"); MECH-505 asserts that this binding is necessary but not
+sufficient, and requires an accompanying regulation layer. MECH-036 (other-harm veto threshold) and
+MECH-407 (residue-aware repair) are each already a narrow special case of one gating axis
+(action-selection access at the catastrophic-certainty extreme only; learning triggered only by
+post-exploitation repair, respectively) -- MECH-505 does not supersede either, it names the general
+requirement they are both instances of. Distinct from ARC-094 (no-empathy-scalar prohibition),
+which constrains implementation *shape* (no flag/scalar primitive); MECH-505 constrains
+*regulation* of the resulting bound channel once it exists.
+
+Non-degeneracy precondition unmet in V3: requires MECH-031/ARC-010 other-agent detection (ARC-047
+SocialGridWorld, v5-gated, unimplemented) and the fast_empathy_v5 binding substrate (MECH-183/405)
+to exist first. DO NOT build in V3 or queue a V3 experiment.
+
+Source: `docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`,
+intake `evidence/planning/thought_intake_2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`.
+
+---
+
 ## Open Questions
 
 <a id="q-009"></a>
@@ -507,6 +583,8 @@ Resolution note: `docs/conflicts/resolutions/2026-02-18_care-override-vs-other-h
 - MECH-159 (Intergenerational moral progress)
 - ARC-047 (Social scent harness -- SocialGridWorld)
 - MECH-190 (Defense scent coalitions)
+- MECH-505 (Fast-empathy gated transfer requirement)
+- MECH-506 (Operational otherhood functional threshold)
 
 ## References / Source Fragments
 

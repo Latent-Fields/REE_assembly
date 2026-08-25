@@ -1,6 +1,10 @@
 # Thought — From Structured Prediction Error to Inferred Agency and Gated Fast Empathy
 
-**Status:** exploratory synthesis and proposed functional derivation. This thought extends the associated notes on responsibility as epistemic hygiene and other-agent provenance. It is not a claim that REE currently implements this chain correctly, nor that the biological mechanisms proposed below are established.
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md
+Claims registered: MECH-505, MECH-506
+
+**Status (descriptive):** exploratory synthesis and proposed functional derivation. This thought extends the associated notes on responsibility as epistemic hygiene and other-agent provenance. It is not a claim that REE currently implements this chain correctly, nor that the biological mechanisms proposed below are established. Processed 2026-08-25 -- see Intake link above.
 
 ## Core idea
 
