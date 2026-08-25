@@ -1,7 +1,7 @@
 ---
 title: Reusable Computational Motifs, Content Binding, and Coalition Composition
 date: 2026-08-23
-status: raw
+status: processed
 scope: Cognitive modularity, reusable neural subspaces, computational-role reuse, content binding, coalition composition, and scalable cognitive architecture
 related_claims:
   - SD-091
@@ -9,6 +9,10 @@ related_claims:
   - ARC-071
   - MECH-323
 source_email: "REE: this idea is hugely useful"
+intake: evidence/planning/thought_intake_2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md
+claims_registered:
+  - SD-101
+  - MECH-503
 ---
 
 # Reusable Computational Motifs, Content Binding, and Coalition Composition

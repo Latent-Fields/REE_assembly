@@ -84343,3 +84343,231 @@
     testing against existing machinery, and is registered here as a candidate dependency, not a
     verdict. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY. DO NOT build or
     queue a V3 experiment without an explicit version-routing decision.
+
+- id: SD-101
+  title: >
+    Control plane should be able to represent computational ROLE (a reusable operation such as
+    maintain, compare, accumulate, sequence, retrieve, or estimate-uncertainty) independently of
+    the REPRESENTATIONAL CONTENT currently bound to it -- a third compositional axis alongside
+    coalition/topology control (SD-091's graph-valued output G_t) and parametric modulation,
+    distinct from and complementary to both. A conceptual object may need separate role (F),
+    bound-content (X_t), substrate (S_t), coalition-membership (G_t), and parameter-state (theta_t)
+    identities rather than assuming these collapse into one another.
+  claim_type: design_decision
+  subject: control_plane.role_content_binding
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-25'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: '2026-08-25'
+  depends_on:
+    - SD-091    # parent coalition/topology-control lineage -- this claim adds a further axis (role/content) alongside G_t, not a replacement of it
+    - MECH-481  # the typed-demand -> coalition-instantiation sequence this claim proposes inserting a role-selection/content-binding step into
+    - ARC-071   # policy composition -- explicitly DISTINCT axis (learned behavioural-sequence reuse vs. cognitive-operation reuse); cross-referenced, not duplicated
+    - MECH-323  # ARC-071's formation operator -- cross-referenced via ARC-071, same distinction
+  related_claims:
+    - MECH-503  # mechanism-level instantiation of this claim
+    - MECH-167  # narrow existing precedent: same computational motif (interoceptive accumulation) reused across z_harm_a/drive_level -- corroborating, not prerequisite
+    - ARC-061   # narrow existing precedent: same reafference-cancellation motif reused across motor/interoceptive/propositional levels -- corroborating, not prerequisite
+  source:
+    - docs/thoughts/2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md
+  functional_restatement: >
+    Osako et al. 2026 (Nat Neurosci) show mice reuse neuronal subspaces (stimulus-processing,
+    memory-maintenance) across task phases carrying different content, with computation-specific
+    lesion effects in data-constrained RNNs; Driscoll/Shenoy/Sussillo 2024 and Tafazoli et al. 2026
+    corroborate shared dynamical motifs / neural subspaces across compositionally related tasks in
+    independent systems (multitask RNNs; monkey tasks). The architectural generalisation: complex
+    cognition may scale by reusing computational/representational components whose recruitment,
+    binding, sequencing and interaction are dynamically reconfigured, rather than by adding a
+    dedicated mechanism per (function, content) conjunction. This claim asserts only the
+    ARCHITECTURAL NECESSITY of role/content separability existing as a representable distinction in
+    REE's control plane -- it does not commit to a literal software-module ontology (the thought is
+    explicit that the biological unit may be an overlapping subspace, dynamical regime, or
+    distributed manifold rather than an encapsulated component), and it does not specify the
+    binding mechanism itself (that is MECH-503).
+    Falsifiable: if REE's existing coalition/topology substrate (SD-091/MECH-481, which recruits
+    fixed named subsystems rather than content-varying role instances) proves sufficient to
+    reproduce the reuse/recombination/transfer benefits the source thought predicts, without any
+    explicit role/content-binding layer, the third axis is unnecessary over-specification -- see
+    MECH-503's falsifier (Test D, coalition x binding factorial) for the operative test.
+  what_would_answer: >
+    See MECH-503 for the operative falsifier. This claim is weakened at the architectural level if
+    a genuinely novel-task recombination of already-available REE operations (per the source
+    thought's Test C) requires extensive de novo learning despite the relevant operations already
+    existing in some form elsewhere in the substrate -- i.e. if REE's existing fixed-subsystem
+    coalition machinery already generalises across content without needing an explicit binding
+    layer, role/content separation does no discriminative work beyond what SD-091/MECH-481 already
+    provide.
+  location: docs/architecture/reusable_computational_motifs.md#sd-101
+  notes: >
+    Registered 2026-08-25 from docs/thoughts/2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md
+    (thought-intake; structured intake at
+    evidence/planning/thought_intake_2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md).
+
+    DISTINGUISHED FROM SD-091: SD-091 asserts the architecture needs a graph-valued coalition/topology
+    output G_t alongside parametric modulation; that output's current MVP substrate recruits FIXED
+    named subsystems (E1 sensory encoder, E2 forward model, hippocampal anchor set, etc. -- see
+    SD-091's own implementation_note). This claim asks a deeper question the source thought poses
+    explicitly: "Is the unit being recruited always a fixed subsystem, or should REE also be able to
+    recruit a reusable computational role and dynamically bind different content into it?" SD-101
+    does not alter or supersede SD-091's existing coalition-topology output; it proposes a further,
+    composable axis.
+
+    DISTINGUISHED FROM ARC-071/MECH-323: the source thought is explicit that these are different
+    forms of compositionality and "should not be conflated" -- policy composition (ARC-071) reuses
+    LEARNED ACTION/STRATEGY structures via a repetition-count + outcome-consistency accumulator
+    (MECH-323); this claim concerns reuse of a COGNITIVE OPERATION (not a learned behavioural
+    sequence) across different bound content, with no accumulator or repetition-driven formation
+    process implied. No machinery is shared between the two axes.
+
+    PRECEDENT, NOT PREREQUISITE: MECH-167 (z_harm_a/drive_level sharing an interoceptive-accumulation
+    motif) and ARC-061 (self-attribution's family of reafference-cancellation comparators across
+    modalities) are narrow, already-built instances of exactly the "same motif, different content"
+    pattern this claim generalises -- corroborating evidence the pattern already occurs informally
+    in REE's design, cited via related_claims, not depended_on as prerequisite machinery (neither
+    claim asserts a general architectural principle or a binding mechanism).
+
+    EXPLICITLY NOT DEPENDED ON: MECH-155/MECH-156 (E1 general-associative-indexing reuse across
+    spatial navigation / memory search / concept traversal / working memory) raise a structurally
+    similar intuition but carry an unresolved 2026-08-08 governance flag (E1-vs-HippocampalModule
+    conflation, ChatGPT-assisted provenance, two domain terms with no operational referent in the
+    codebase). Deliberately not wired as a dependency to avoid importing that open debt into a fresh
+    registration; noted here only as background.
+
+    NOT ASSERTED: any literal software-module ontology. The source thought is explicit ("REE should
+    preserve the possibility that a reusable computation is a projection or dynamical regime rather
+    than a separately encapsulated component") and this is carried forward as an implementation
+    constraint for any future build, not dropped.
+
+    Literature already cited by the source thought (not yet independently /lit-pull reviewed for
+    REE-specific applicability the way SD-091/MECH-481's targeted_review_claustrum_coalition_control
+    was): Osako et al. 2026 Nat Neurosci (DOI 10.1038/s41593-026-02410-0), Driscoll/Shenoy/Sussillo
+    2024 Nat Neurosci (DOI 10.1038/s41593-024-01668-6), Tafazoli et al. 2026 Nature (DOI
+    10.1038/s41586-025-09805-2). A formal /lit-pull pass is a recommended next step, not performed
+    in this intake.
+
+    DO NOT build a role/content-binding substrate in V3, and DO NOT queue a V3 experiment from this
+    claim, without an explicit /governance version-routing decision. epistemic_category
+    substrate_conditional is set explicitly for exactly this reason (suppresses promote/demote and
+    narrow_open_question firing on a compass-only registration). See MECH-503's notes for a flagged
+    possibility that a NARROW slice might be cheaply testable given SD-091/MECH-481's existing V3
+    wiring -- this is named as a question for governance to weigh, not decided unilaterally here.
+
+- id: MECH-503
+  title: >
+    Motif selection and content binding: given a typed control demand or task requirement, the
+    control plane should select a reusable computational motif (an operation such as maintain,
+    compare, accumulate, sequence, retrieve, or estimate-uncertainty) from a repertoire and
+    dynamically bind task-relevant content to it, as a step distinct from and inserted before/
+    alongside coalition/topology instantiation (MECH-481). Content binding and coalition/topology
+    selection are proposed as separable causal axes: correct-coalition/wrong-binding and
+    wrong-coalition/correct-binding should produce dissociable failure signatures if the axes are
+    genuinely distinct.
+  claim_type: mechanism_hypothesis
+  subject: control_plane.motif_selection_and_content_binding
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-25'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: '2026-08-25'
+  instantiates: SD-101
+  depends_on:
+    - SD-101    # architectural necessity claim this instantiates
+    - MECH-481  # existing typed-demand -> coalition-instantiation sequence this inserts a role-selection/content-binding step into
+    - SD-091    # coalition/topology output this claim's binding step feeds into (unchanged)
+  related_claims:
+    - ARC-071   # distinct compositional axis (learned policy reuse), explicitly not conflated per source thought
+    - MECH-323  # ARC-071's formation operator, cross-referenced via ARC-071
+  source:
+    - docs/thoughts/2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md
+  functional_restatement: >
+    Proposed richer sequence (extending MECH-481's monitor -> classify -> request -> instantiate ->
+    operate -> reassess -> dissolve/sustain/escalate): typed discrepancy/task requirement ->
+    REQUIRED COMPUTATIONAL ROLES -> SELECT REUSABLE MOTIFS -> BIND TASK-RELEVANT CONTENT ->
+    instantiate coalition/topology -> parameterize -> execute -> reassess/rebind/dissolve. The two
+    inserted steps (role selection, content binding) are proposed as the missing link between "what
+    kind of deficiency exists" and "which fixed subsystems get recruited" in MECH-481's existing
+    sequence. The motif repertoire itself (maintain, compare, accumulate, sequence, inhibit,
+    retrieve, simulate, estimate uncertainty, detect discrepancy, bind provenance, maintain a goal,
+    arbitrate alternatives) is explicitly PROVISIONAL/illustrative in the source thought and is NOT
+    committed here as a fixed taxonomy (unlike MECH-481's ControlDemandType enum) -- a concrete
+    repertoire is a build-time decision, not a claim-time one.
+    Falsifiable: per the source thought's own candidate experimental programme (Tests A-F); the
+    operative test is Test D below.
+  what_would_answer: >
+    Primary falsifier -- COALITION x BINDING FACTORIAL (source thought Test D): a 2x2 diagnostic
+    crossing {correct coalition, wrong coalition} x {correct content binding, wrong content
+    binding}. CONFIRMING: the two manipulations produce DISSOCIABLE failure signatures (e.g.
+    wrong-coalition/correct-binding degrades WHICH subsystems interact while the bound content
+    remains usable to whichever subsystems do engage; correct-coalition/wrong-binding degrades what
+    the correctly-recruited subsystems operate ON while their interaction structure stays intact) --
+    this would show topology control and binding control are genuinely separable causal axes, not
+    one axis dressed as two. FAILING: the two manipulations produce the SAME failure signature, or
+    wrong-coalition/correct-binding and correct-coalition/wrong-binding are behaviourally
+    indistinguishable -- binding does no discriminative work beyond what coalition/topology control
+    (SD-091/MECH-481) already provides, and this claim should be retired or folded into MECH-481
+    rather than treated as a separate axis.
+    Secondary/corroborating -- RECOMBINATION TEST (Test C): two motifs developed/trained in separate
+    contexts are recombined for a novel task never directly experienced; compare recombination
+    (no structural learning) vs. de novo mechanism learning vs. a control with one required motif
+    unavailable. A clean positive result is rapid, motif-recombination-specific transfer.
+    NON-DEGENERACY PRECONDITION (learned from the analogous MECH-481 4-arm design and the general
+    REE non-degeneracy discipline): before trusting Test D's dissociation, confirm the "correct"
+    coalition and "correct" binding conditions are each independently sufficient to solve the task
+    at above-chance performance in isolation -- otherwise a null dissociation is uninformative
+    (substrate_not_ready), not a verdict against separability.
+  location: docs/architecture/reusable_computational_motifs.md#mech-503
+  notes: >
+    Registered 2026-08-25 from docs/thoughts/2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md
+    (thought-intake).
+
+    DISTINGUISHED FROM MECH-481: MECH-481's coalition TEMPLATE currently names subsystems directly
+    per demand type (e.g. PROVENANCE_CHECK -> a fixed set of participating/suppressed subsystems).
+    This claim proposes the template instead names REQUIRED ROLES, with a separate binding step
+    deciding which content (and, if multiple realizations exist, which substrate instance) fills
+    each role before topology instantiation proceeds. MECH-481's existing taxonomy, guardrails
+    (do not claim the claustrum is the seat of consciousness; do not collapse into global
+    broadcasting; preserve typed authority/invariant/commit-boundary constraints per SD-034; keep
+    coalition instantiation distinguishable from attention/arousal/E3 selection/mode/confidence/
+    working memory/conscious access) are inherited unchanged and apply equally to this claim's
+    proposed binding step -- content binding must not be allowed to bypass those same authority
+    constraints (source thought section "Why this could matter for scaling cognition," point 5:
+    "preserve authority and provenance constraints across bindings").
+
+    DISTINGUISHED FROM ARC-071/MECH-323: not a duplicate of learned policy-chunk reuse; see SD-101
+    notes for the full distinction. related_claims only, not depends_on, since no machinery is
+    shared.
+
+    NOT COMMITTED: the R_t = (F, X_t, S_t, G_t, theta_t, tau_t) tuple from the source thought is
+    explicitly "not yet a proposed implementation schema" per the thought's own text -- it is
+    recorded here as a representational reminder for future design work, not as a data structure
+    this claim asserts must exist. Similarly the illustrative motif list is not committed as a
+    taxonomy; a concrete repertoire (analogous to MECH-481's ControlDemandType) is future build-time
+    work, not claim-time work.
+
+    VERSION-ROUTING FLAG (for /governance, not decided here): SD-091/MECH-481 already have partial
+    V3 wiring (ree_core/claustrum/, wired into REEAgent.select_action as of 2026-08-03) and its own
+    step-7 4-arm falsifier has not yet been queued. It is PLAUSIBLE that a narrow slice of this
+    claim (e.g. Test A/B "same function, different content" using content already present in agent
+    state, applied to one of the two currently-templated demand types) could be cheaply exercised
+    against the EXISTING V3 coalition substrate without first building a general role/content-binding
+    layer -- but this is a judgment call for a future /governance cycle to make explicitly, not a
+    decision made in this intake. DO NOT build a role/content-binding substrate or queue a V3
+    experiment from this claim without that explicit routing decision.
+
+    Literature: same three citations as SD-101 (Osako et al. 2026; Driscoll/Shenoy/Sussillo 2024;
+    Tafazoli et al. 2026), not yet independently /lit-pull reviewed.
