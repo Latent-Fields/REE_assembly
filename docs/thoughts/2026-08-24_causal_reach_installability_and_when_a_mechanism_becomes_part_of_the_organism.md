@@ -1,7 +1,11 @@
 # Thought: Causal Reach, Installability, and When a Mechanism Becomes Part of the Organism
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+Claims registered: ARC-130, ARC-131, GOV-PATHVALID-1, GOV-INTERVENE-1
+
 **Date:** 2026\-08\-24
-**Status:** Raw thought intake for `docs/thoughts`; no claim or implementation change follows automatically
+**Status (descriptive):** Raw thought intake for `docs/thoughts`; no claim or implementation change follows automatically. Processed 2026-08-25 -- see Intake link above.
 **Origin:** Structured mining of Antonio Gullì’s *Agentic Design Patterns*, its companion code, and the current `REE_assembly` / `ree-v3` repositories
 
 ## Originating observation

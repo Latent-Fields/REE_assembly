@@ -84784,3 +84784,304 @@
     experiment off this registration alone; a minimal single-agent-vs-one-scripted-responsive-
     entity smoke environment MIGHT be a cheaper substrate check than full ARC-047, but that is
     a follow-on scoping question, not decided here.
+
+- id: ARC-130
+  title: "Organism-level mechanism status is stage-qualified beyond ARC-120's competence-before-authority sequence: a mechanism becomes causally reachable only through an ordered audit projection of existence, representation, endogenous recruitment, local operation, competitive authority (non-zero influence is not necessarily competitive influence against the dominant arbitration term), committed throughput (survives any later selector, latch, commitment boundary, or stale-selection path), ecological consequence (the changed behaviour has a valid opportunity to matter in the environment), and retention/generalisation. Authority at one internal selection boundary does not by itself establish that authority reaches committed behaviour -- 'competence should precede authority, but authority must also demonstrate throughput.' The furthest stage actually demonstrated, not a flat implemented/not-implemented judgment, is the correct unit for recording mechanism status."
+  claim_type: architectural_commitment
+  subject: architecture.mechanism_causal_reach_ladder
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-08-25"
+  source:
+    - docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+    - evidence/planning/thought_intake_2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  depends_on:
+    - ARC-120   # base 5-stage sequence this refines/extends -- NOT superseded, ARC-120 remains sole owner of its own sequence
+    - MECH-480  # cleanest existing single instance: authority acquired at one boundary (dACC strategy authority) fails to reach committed throughput (LOFC execution gain)
+    - GOV-FAILLOC-1  # adjacent failure-location triage this ladder could refine (see notes; NOT amended in this pass)
+    - ARC-131   # sibling claim from the same thought (installability); the ladder's final two stages (ecological consequence, retention/generalisation) are where installability failures typically surface
+  notes: >
+    VERSION-ROUTING FLAG (do not read as a default v4/v4_v5 park -- explicit deviation, needs
+    /governance confirmation): unlike a typical thought-intake registration this is scoped
+    implementation_phase v3 / version_relevance v3, matching ARC-120 which it extends, because
+    (a) it is an AUDIT/INTERPRETATION framework, not a proposal for new substrate -- the raw
+    thought states explicitly "It does not presently justify a new cognitive module"; (b) every
+    motivating example in the source thought is a LIVE V3 mechanism (coalition control endogenous
+    recruitment gap, prediction-failure decomposition quality-obligation gap, wanting/selection
+    authority-without-throughput, closure/decommitment mocked-precondition test, epistemic
+    orienting named-but-unbuilt route, rule-apprehension fallback-erases-manipulation); (c) it is
+    immediately applicable to ALREADY-RUNNING V3 failure-autopsy and diagnostic reporting without
+    waiting for V4 substrate. FLAGGING THIS EXPLICITLY rather than deciding unilaterally: a future
+    governance session should confirm whether v3 scoping is right, or whether it should be parked
+    v4/v4_v5 like the sibling persistence-taxonomy intake (ARC-128) despite the framing/audit-not-
+    build distinction.
+
+    DO NOT build a new "MechanismReachTrace" runtime object or dedicated telemetry schema from
+    this claim without a separate build decision -- the raw thought itself hedges the schema as
+    "may be useful... not necessarily as one monolithic runtime object." It is recorded as an
+    UNBUILT instrumentation proposal here, not authorised.
+
+    FOLDS IN (not separately registered): the raw thought's "candidate instrumentation doctrine"
+    (record the furthest stage demonstrated rather than a flat implemented/failed/non-contributory
+    label) is a corollary of this ladder and is NOT given its own claim ID -- the thought itself
+    says it "may refine GOV-FAILLOC-1 rather than requiring a separate rule." Flagged as a
+    possible future GOV-FAILLOC-1 amendment, not done in this pass.
+
+    DISTINCT FROM competence-before-authority (ARC-120) in exactly the direction ARC-120 does not
+    cover: ARC-120 stops at "behavioural influence"; this claim's contribution is specifically the
+    POST-authority granularity (competitive authority is not committed throughput is not ecological
+    consequence is not retention) and the explicit non-linearity caveat -- REE is recurrent,
+    distributed, multi-rate; this ladder is an audit projection, not literal computational
+    topology.
+
+    CAUTIONS carried forward from the raw thought's own "Important cautions" section (do not
+    re-litigate these when applying the ladder): do not force a software-pipeline ontology onto
+    distributed cognition; do not demand immediate action effects from every mechanism (some
+    stages' correct currency is belief revision, write admission, or future policy, not one-step
+    motor behaviour); do not turn the ladder into infinite validation debt (evidence requirements
+    scale with claim authority and consequence of error); a failed ecological consequence does not
+    always mean no causal reach (claim alignment and environmental headroom are separate); a
+    mechanism suppressed in the full organism may be correctly inhibited by a higher-authority
+    mechanism, not un-installed.
+  evidence: []
+
+- id: ARC-131
+  title: "Installability is a competence dissociable from isolated component-level validation: a mechanism that passes in isolation can still fail to express itself when composed into the whole organism, because the rest of the organism changes its operating conditions (input state distribution, scale/variance of competing signals, timing and frequency of relevant events, availability of competent upstream representations, downstream action-space and commitment dynamics, post-installation learning gradients, resource/mode occupancy, and the ecology in which it must demonstrate value). A component-level PASS establishes that an operation is possible; it does not establish that the whole agent can enter the states in which the mechanism operates, that the mechanism remains competitive once other mechanisms are enabled, or that later learning will preserve it. This is dissociable from, though related to, competence RETENTION (surviving subsequent learning/time): installability additionally covers SIMULTANEOUS composition, where a competence may never appear in the full-stack agent even absent any later learning event."
+  claim_type: architectural_commitment
+  subject: architecture.installability_as_composition_competence
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-08-25"
+  source:
+    - docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+    - evidence/planning/thought_intake_2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  depends_on:
+    - MECH-457  # closest existing INSTANCE -- REE governance notes already informally call MECH-457's conversion-ceiling frontier "the competence FLOOR / installability explanandum" (claims.yaml, V3-EXQ-819 notes); this claim is the general property, MECH-457 the specific actor-critic mechanism
+    - MECH-459  # competence retention (post-2026-08-01 MECH-476 fold-in) -- explicitly DISTINGUISHED-FROM, see notes
+    - ARC-120   # competence-before-authority framing this extends in the composition direction
+    - ARC-130   # sibling claim from the same thought (causal-reach ladder); installability failures typically surface at the ladder's later stages
+  notes: >
+    VERSION-ROUTING FLAG (same deviation and same reasoning as ARC-130 -- see that claim's notes
+    for the full argument): implementation_phase v3 / version_relevance v3 rather than the default
+    v4/v4_v5 thought-intake park, because the motivating evidence (MECH-457's conversion-ceiling
+    frontier, V3-EXQ-819) is a LIVE, currently-open V3 explanandum, not a V4+ capability. Flagged
+    for /governance to confirm rather than decided unilaterally.
+
+    EXPLICITLY NOT A DUPLICATE OF MECH-457: MECH-457 asserts a SPECIFIC mechanism (a dedicated
+    actor-critic substrate is REQUIRED for competence floor) is necessary; this claim asserts the
+    GENERAL property (installability is a distinct, checkable competence any mechanism may or may
+    not have) that MECH-457's frontier is one instance of. Promoting/demoting MECH-457 does not
+    promote/demote this claim and vice versa.
+
+    EXPLICITLY NOT A DUPLICATE OF MECH-459/withdrawn-MECH-476 (competence retention): the raw
+    thought itself flags this distinction needs "a duplication and literature audit" -- taken
+    seriously, not glossed over. The working distinction, stated precisely rather than left
+    implicit: retention is a TEMPORAL axis (does competence survive later learning/consolidation
+    events after it was once demonstrated); installability is a COMPOSITIONAL axis (does the
+    competence appear AT ALL once the rest of the organism is turned on, independent of any later
+    learning event). A mechanism could pass installability and fail retention (it works when first
+    composed, then decays under interference) or fail installability outright (it never expresses
+    in the full-stack agent even before any learning event competes with it) -- these are
+    logically independent failure points. NEXT STEP (not done in this pass): the literature/
+    duplication audit the raw thought itself calls for, before this claim is treated as settled
+    vocabulary rather than a working distinction.
+
+    Concrete REE examples cited in the raw thought as illustrating installability failure (not
+    re-adjudicated here, cited only as motivating instances): coalition control (operator present,
+    endogenous recruitment absent -- REE-v3 has typed control demands, coalition templates and a
+    controller, but it is inert until manually called and no endogenous monitor invokes it); rule
+    apprehension (a selector configured to demote candidates can be silently made equivalent to
+    its own OFF arm by a permissive fallback envelope, so the intended causal contrast never
+    occurs even though the surrounding experiment executes without error).
+
+    DO NOT read this as license to demand every mechanism express simultaneously -- the raw
+    thought is explicit that some mechanisms should be conditionally recruited, developmentally
+    staged, or mutually inhibitory; the requirement is that the architecture CAN compose or
+    recruit the mechanism in the situations for which its own claim assigns it a role, not that it
+    must always be active.
+  evidence: []
+
+- id: GOV-PATHVALID-1
+  title: "A load-bearing positive control (or any diagnostic injection standing in for a claim's precondition) must traverse the production path it claims to validate. Directly injecting or mocking the state immediately downstream of a suspected causal edge can certify that a downstream consumer works GIVEN that state, but cannot certify that the production organism can reach that state via its own endogenous pathway. A contract test that mocks the source of a load-bearing state establishes consumer competence, not production-path reachability, and must not be reported or treated as evidence that the organism possesses the full pathway."
+  claim_type: governance_rule
+  subject: governance.epistemics.positive_control_production_path_traversal
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-25"
+  source_thought: docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-FAILLOC-1  # adjacent failure-location triage; this rule is a pre-hoc DESIGN-validity companion to that post-hoc triage
+  - ARC-130        # the causal-reach ladder this rule protects (committed-throughput and later stages are exactly where a mocked precondition can create a false-positive PASS)
+  related_claims:
+  - GOV-FAILLOC-1
+  - GOV-BEHADJ-1
+  - ARC-130
+  source:
+  - docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  - evidence/planning/thought_intake_2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  functional_restatement: >
+    Governance/epistemics rule distinguishing "the consumer can use a correct signal if supplied"
+    from "the organism can generate and deliver that signal itself." A green result obtained by
+    injecting a state a component would only ever receive from an upstream stage of the SAME
+    production pathway must be labelled as testing the downstream consumer only, with the upstream
+    generation/delivery step explicitly marked untested -- never reported as evidence the whole
+    pathway is reachable. Distinguishes: (a) a PRE-EDGE oracle (tests whether a downstream consumer
+    can use a correct signal) from (b) a POST-EDGE oracle (tests whether an upstream mechanism can
+    produce a signal containing the required information) -- passing one is not evidence for the
+    other, and neither alone certifies the full edge.
+  notes: >
+    MOTIVATING INCIDENT (cited in the raw thought, and independently traceable in the existing
+    registry): a closure-exclusive decommitment contract test appeared to pass because its harness
+    directly inserted a committed trajectory into the state the mechanism under test consumes --
+    the production organism could not create that state independently of the natural commitment
+    path. `claims.yaml` already documents a structurally identical finding at the V3-EXQ-460k
+    `closure_exclusive_decommit_eval` build: "the 'closure-exclusive' latch-hold arm source
+    `_closure_commit_active` is gated on `e3._committed_trajectory`, set ONLY by the F-driven
+    natural commit... the dissociation is illusory." That finding was reached per-experiment, ad
+    hoc, by careful manual autopsy; this rule generalises it into a standing design-time discipline
+    so the SAME defect shape does not need to be independently rediscovered by autopsy every time
+    it recurs.
+
+    DISTINCT FROM GOV-FAILLOC-1: GOV-FAILLOC-1 triages an OBSERVED FAIL after the fact into
+    REE/mechanism/measures/environment buckets. This rule is upstream of that -- it is a
+    DESIGN-TIME check on whether a PASS (not a fail) is entitled to the interpretation it is being
+    given. A positive control that violates this rule can produce a false PASS that GOV-FAILLOC-1's
+    triage would never even see, because nothing failed.
+
+    NOT YET APPLIED to `.claude/skills/failure-autopsy/SKILL.md` or `/queue-experiment`'s
+    non-degeneracy checklist. Formalising this into skill text is a follow-on, not done in this
+    intake pass.
+
+    STATUS STAYS CANDIDATE: registered from thought-intake processing only; not yet exercised in a
+    live experiment-design review. Promote only after it has actually changed at least one real
+    positive-control design or autopsy verdict, per the same discipline GOV-HELDOUT-1 applies to
+    itself.
+  what_would_answer: |
+    NOT an empirical falsifier in the usual sense -- this is a DESIGN-VALIDITY / REPORTING rule,
+    checkable by inspecting an experiment's positive-control construction and its evidence writeup,
+    not by any single REE experiment outcome.
+
+    VIOLATED BY: a manifest, autopsy, or claim note that reports a load-bearing positive-control
+    PASS as evidence the organism "possesses" or "can reach" a full pathway, when the control's
+    construction directly injected/mocked a state that only an upstream stage of that SAME pathway
+    would, in production, ever supply -- without explicitly flagging the untested upstream step.
+
+    COMPLIANT: any such control is labelled with which stage was injected/mocked (pre-edge vs.
+    post-edge, per the functional_restatement above), and claims about pathway reachability are
+    scoped no further than what was actually demonstrated.
+
+    NON-DEGENERACY NOTE: this rule does not forbid mocked/injected positive controls -- they remain
+    the correct tool for testing a downstream consumer or an upstream producer in isolation (see
+    GOV-INTERVENE-1's oracle framing). It forbids only the REPORTING move of treating a mocked-
+    precondition PASS as if it were a demonstrated full-pathway PASS.
+  evidence: []
+
+- id: GOV-INTERVENE-1
+  title: "Diagnostic interventions used to localise a broken causal edge must be classified along two independent dimensions rather than one flat implemented/not-implemented judgment. (1) EPISTEMIC CONTENT: an ORACLE intervention imports privileged, target-correct information or competence under investigation (establishing achievable ceilings and downstream usability, as a positive control / ceiling test) versus a NON-ORACLE injection that perturbs a suspected causal variable without supplying the task's answer (establishing causal sensitivity/identification). (2) CONSTRUCTION: a SILKY intervention is a minimally disruptive, distribution-preserving perturbation of one suspected variable (diagnostic for threshold, scale, and timing failures) versus an ODDLY COMPOSED intervention that deliberately combines individually-plausible states that rarely co-occur naturally (a stress test for shortcut-dependence, hidden conjunctions, and factorisation, not evidence of ordinary competence). These axes are orthogonal -- a silky nudge can still be oracle-informed, and an oddly composed state can be wholly non-oracular -- and must not be collapsed into one enum. Provenance (which stage/variable/relation was altered, along both axes) must be recorded, and any effect demonstrated only under such an intervention must be attributed to that intervention condition, never silently treated as endogenous REE competence."
+  claim_type: governance_rule
+  subject: governance.epistemics.intervention_diagnostic_taxonomy
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-25"
+  source_thought: docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-PATHVALID-1  # companion rule from the same thought -- production-path traversal is the reachability-CERTIFICATION half; this is the intervention-CLASSIFICATION half
+  - GOV-BEHADJ-1     # nearest existing ancestor: "discriminating perturbations (positive, destructive, orthogonal negative control)" -- a coarser triad this taxonomy refines with two explicit, orthogonal axes
+  - GOV-DIAG-1        # adjacent diagnostic-stream epistemics (recurrence detection vs. this claim's per-result classification)
+  related_claims:
+  - GOV-PATHVALID-1
+  - GOV-BEHADJ-1
+  - GOV-FAILLOC-1
+  - ARC-130
+  source:
+  - docs/thoughts/2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  - evidence/planning/thought_intake_2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md
+  functional_restatement: >
+    Rather than one undifferentiated "positive control" label, every diagnostic intervention
+    should be describable (at minimum) as a point in a 2x2 space: {oracle, non-oracle} x {silky,
+    oddly-composed}, plus optionally the fuller dimension set the raw thought proposes (intervention
+    form: replacement/nudge/recombination/substitution; distribution relation: on-manifold/
+    near-manifold/deliberately off-manifold; causal locus: upstream source/edge/downstream
+    consumer; diagnostic purpose: ceiling/local sensitivity/threshold/timing/compositional
+    structure/shortcut detection). Oracle results establish ceilings and downstream usability;
+    non-oracle injections establish causal sensitivity without pretending to solve the task; silky
+    injections localise threshold/scale/timing failures; oddly composed injections stress-test
+    factorisation and shortcut-dependence. An oracle result does not become evidence of natural
+    competence; a non-oracle result does not become production-path evidence merely because it
+    supplied no correct answer -- both remain intervention-attributed until a separate
+    production-path demonstration is run (composes directly with GOV-PATHVALID-1).
+  notes: >
+    NOT A DUPLICATE OF GOV-BEHADJ-1's existing "positive, destructive, orthogonal negative control"
+    triad: that triad classifies perturbations by their INTENDED ROLE in an experimental design.
+    This taxonomy classifies interventions by two INDEPENDENT PROPERTIES (what information they
+    import; how they are constructed relative to the natural distribution) that cut across that
+    role -- e.g. a "positive control" in GOV-BEHADJ-1's sense could be built as either a silky or
+    an oddly-composed intervention, and the raw thought argues that distinction carries real
+    diagnostic information GOV-BEHADJ-1's triad does not currently capture.
+
+    SEARCHED AND FOUND NO PRIOR ART: "positive control" appears hundreds of times informally
+    throughout claims.yaml as an undifferentiated device; no hits anywhere in the registry for
+    "oracle intervention", "silky injection", or "oddly composed" prior to this intake.
+
+    CAUTIONS carried forward verbatim from the raw thought's own list (do not silently drop when
+    applying this rule): oracle interventions can move the system into a distribution it would
+    never reach endogenously and so establish ceilings, not learnability; silky injections are not
+    automatically naturalistic (their value is controlled locality, not presumed ecological
+    validity); oddly composed injections are stress tests, not ordinary trials, and a correct
+    response to one does not establish the organism naturally encounters that composition; a
+    non-oracle injection is still an external intervention and its result supports a causal
+    statement about the manipulated pathway, not an endogenous-competence claim on its own.
+
+    NOT YET APPLIED to any skill or experiment-design checklist. Flagged as a follow-on, same as
+    GOV-PATHVALID-1.
+
+    STATUS STAYS CANDIDATE, same promotion discipline as GOV-PATHVALID-1 -- promote only after
+    live use, not merely after formalisation.
+  what_would_answer: |
+    NOT an empirical falsifier -- a classification/reporting discipline, checkable by inspecting
+    whether an experiment's intervention is documented along both axes and whether results are
+    attributed to the correct axis-combination rather than over-generalised.
+
+    VIOLATED BY: a manifest or claim note that reports an intervention result without naming its
+    epistemic content (oracle/non-oracle) or its construction (silky/oddly-composed/neither), OR
+    that treats an oracle-established ceiling as evidence of endogenous competence, OR that treats
+    an oddly-composed stress-test response as evidence of ordinary/ecological competence.
+
+    COMPLIANT: intervention provenance is recorded along both axes (at minimum) and every reported
+    conclusion is scoped to what that specific axis-combination can actually establish (per the
+    functional_restatement above).
+  evidence: []
