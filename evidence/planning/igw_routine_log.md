@@ -2106,3 +2106,6 @@ One line per hourly tick. ASCII only.
 2026-08-25T22:53:18Z workset committed (regen -- 238 items, 23 ready, 0 in flight)
 2026-08-25T22:52:47Z ERROR IGW-20260825-231: TASK_CLAIMS.json stale read, refused to write the protecting claim -- not spawning: TASK_CLAIMS.json would regress 2 entries that HEAD already has, after 3 fresh reads (first: metaworker-chip-20260825-mech357-h2-reanalysis). Refusing to write. Check for HEAD/worktree skew per CLAUDE.md before re-running.
 2026-08-25T22:52:47Z ERROR IGW-20260825-231: worktree removed
+2026-08-25T23:55:38Z workset committed (regen -- 237 items, 22 ready, 0 in flight)
+2026-08-25T23:53:59Z ERROR IGW-20260825-231: TASK_CLAIMS.json stale read, refused to write the protecting claim -- not spawning: TASK_CLAIMS.json is missing 11 entries that HEAD already has, after 3 fresh reads (first: metaworker-chip-20260825-mech499-500-ephaptic-litpull). Refusing to write. Check for HEAD/worktree skew per CLAUDE.md before re-running.
+2026-08-25T23:53:59Z ERROR IGW-20260825-231: worktree removed
