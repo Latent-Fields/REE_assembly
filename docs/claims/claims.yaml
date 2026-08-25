@@ -84239,6 +84239,36 @@
     - ARC-018   # hippocampal rollout generation from "the current latent state"
     - MECH-089  # theta-cycle packaging -- sibling oscillatory-substrate mechanism (temporal batching, not aggregation)
   location: docs/architecture/ephaptic_hippocampal_now_construction.md#mech-499
+  literature_evidence: |
+    Fries (2015) PMID 26447583 [DOI: 10.1016/j.neuron.2015.09.034]: "Rhythms for Cognition:
+    Communication through Coherence." The canonical CTC theory -- gamma-band synchronization
+    between pre- and postsynaptic populations selectively gates/routes an ALREADY-FORMED
+    representation through to a target, arbitrated by top-down alpha-beta. Necessary scaffolding
+    (phase relationships are functionally consequential) but the mechanism described is a
+    filter/router, not a constructor -- it does not test or claim that the field SYNTHESISES a
+    new composite content state, which is MECH-499's specific proposal. Mixed: supports the
+    general premise, argues against the field being read as an aggregation-for-content mechanism
+    in this specific paper's own terms.
+    Rohenkohl, Bosman & Fries (2018) PMID 30318415 [DOI: 10.1016/j.neuron.2018.09.019]: "Gamma
+    Synchronization between V1 and V4 Improves Behavioral Performance." Macaque V1-V4 LFP:
+    RELATIVE PHASE (not just synchrony magnitude) between two oscillating populations predicts
+    reaction time, independent of local activity in either area. Direct primate evidence that
+    relative phase is a real, separable, behaviorally consequential variable -- supports the
+    mechanism-SHAPE MECH-499 needs (multi-dimensional relational readout) though the function
+    tested is communication efficiency between two areas, not multi-stream content aggregation.
+    Biel, Minarik & Sauseng (2021) PMID 33839263 [DOI: 10.1016/j.neuroimage.2021.117971]: "EEG
+    cross-frequency phase synchronization as an index of memory matching in visual search."
+    Human EEG: transient theta-gamma cross-frequency phase synchronization tracks comparison of
+    sensory input against a held working-memory template -- content-specific, not generic
+    attentional gating. Closest available evidence that cross-frequency phase relationships can
+    carry/implement content-level computation, though synchronization WEAKENED under
+    multi-template load, a capacity caution for MECH-499's multi-stream aggregation requirement.
+    Cortical/synaptic EEG, not hippocampal ephaptic coupling.
+    Full assessment: evidence/literature/targeted_review_connectome_mech_499/. None of the
+    ephaptic-coupling literature already anchoring MECH-228/MECH-270 (Anastassiou & Koch 2011;
+    Buzsaki 2015; Frohlich & McCormick 2010; Anastassiou et al. 2010) was found to transfer
+    directly to the content-aggregation reading -- those papers establish that fields exist and
+    influence spike timing/synchrony, not that they carry structured multi-dimensional content.
   notes: >
     Registered from thought-intake evidence/planning/thought_intake_2026-08-12_ephaptic_
     aggregation_hippocampal_now_proposal_generation.md (raw thought docs/thoughts/2026-08-12_
@@ -84287,6 +84317,32 @@
     - MECH-434  # inference-layer, belief-state-uncertainty-driven; MECH-500 is field-coherence-driven, about the proposal-generating machinery's own state, not external evidential sufficiency
     - MECH-090  # gates propagation of an ALREADY-DECIDED commit via margin/competence; MECH-500 is upstream -- whether commitment should be considered at all
   location: docs/architecture/ephaptic_hippocampal_now_construction.md#mech-500
+  literature_evidence: |
+    Schurger, Sitt & Dehaene (2012) PMID 22869750 [DOI: 10.1073/pnas.1210467109]: "An accumulator
+    model for spontaneous neural activity prior to self-initiated movement." PNAS. The readiness
+    potential -- the closest existing biological analogue to "is this the moment commitment
+    should be permitted to land" -- is well explained by an ordinary leaky stochastic accumulator
+    crossing a fixed threshold, the SAME mechanism family MECH-434 already covers, with no field
+    coherence or cross-population synchrony term required. Direct parsimony challenge to MECH-500's
+    premise that readiness needs a mechanism distinct from evidence accumulation. Weakens (same
+    basis MECH-090's own evidence base uses Hanes-Schall/Cisek/Roesch-Calu-Schoenbaum as weakens:
+    accumulator/competition models are the well-evidenced default a distinct-mechanism proposal
+    must argue past). Does not rule out an additional coherence-based signal upstream of
+    accumulation in the hippocampal-proposal case specifically -- tests movement-onset timing
+    (single-region), not gating commitment to a hippocampally-generated candidate future.
+    Armstrong, Sale & Cunnington (2018) PMID 30618939 [DOI: 10.3389/fpsyg.2018.02509]: "Neural
+    Oscillations and the Initiation of Voluntary Movement." Review taking seriously that
+    oscillatory/subthreshold dynamics, not pure evidence accumulation, may set movement-initiation
+    timing -- keeps open the general premise that a readiness axis need not reduce to MECH-434.
+    But the review's own favored mechanism is single-region slow-potential threshold-crossing
+    (the same shape Schurger's accumulator model already explains without positing coherence),
+    not cross-system field coherence specifically; authors themselves flag causality as untested.
+    Mixed, weak mapping to MECH-500's actual mechanism.
+    Full assessment: evidence/literature/targeted_review_connectome_mech_500/. Honest finding:
+    the oscillation/readiness-timing literature located in this pull is dominated by
+    single-region, accumulator-compatible accounts; a CROSS-SYSTEM field-coherence-specific
+    readiness mechanism, as MECH-500 proposes, remains largely untested in the literature
+    searched (PubMed, communication-through-coherence and readiness-potential threads).
   notes: >
     Registered from thought-intake evidence/planning/thought_intake_2026-08-12_ephaptic_
     aggregation_hippocampal_now_proposal_generation.md, "Relationship to the commitment boundary"
