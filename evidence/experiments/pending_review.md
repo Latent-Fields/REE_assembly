@@ -1,16 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-08-25T18:44:45Z`  
+Generated: `2026-08-25T19:28:11Z`  
 Last review: `2026-08-25T18:42:08Z`  
-Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## Needs diagnosis (ERROR manifests -> /diagnose-errors)
-
-These are durable ERROR-class result manifests on disk -- most commonly a runner-synthesized record for a crash-before-manifest (a script that exited non-zero before writing any manifest; incident V3-EXQ-654e). They are scoring-neutral (no claim tags) so they never weight claim confidence, but each is a real code crash that needs `/diagnose-errors` and a re-queue under a NEW letter. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs`.
-
-| Outcome | Manifest stem | Queue ID | Machine | Summary |
-|---------|---------------|----------|---------|---------|
-| ERROR | `v3_v3_exq_944a_runner_error_20260822T151058Z_v3` | V3-EXQ-944a | ree-cloud-3 | Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on c |
+All experiments reviewed. Nothing pending.
 
 ---
 
