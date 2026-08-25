@@ -65303,7 +65303,7 @@
   live_status:
     reading: candidate/substrate_conditional
     as_of: 2026-08-25
-    needs_review: false
+    needs_review: true
   epistemic_category: substrate_conditional
   implementation_phase: v4
   version_relevance: v4_v5
@@ -65312,6 +65312,7 @@
     - docs/thoughts/2026-08-12_responsibility_as_epistemic_hygiene.md
     - "Latent-Fields/ai-cognitive-failure-taxonomy: failure_modes/shared_delusional_coupling.md (external, sibling repo -- structural folie-a-deux analogue, 'Human-AI pairs in high-trust workflows' row)"
     - "Latent-Fields/ai-cognitive-failure-taxonomy: docs/psychopathology_interaction.md (external, sibling repo -- bidirectional human<->AI coupling, sycophancy <-> user reinforcement loops)"
+    - evidence/planning/q096_human_ai_surface_audit_20260825.md
   depends_on:
     - INV-077   # closest existing analog -- but scoped to REE's OWN dev-process governance, not general human-AI coupling
     - INV-012   # Leg 4 -- same self-solicited-evidence structure, single-agent case
@@ -65359,6 +65360,33 @@
     surfaces still need auditing on their own terms. DO NOT BUILD in V3;
     this is an assembly-process / alignment question, not a
     cognitive-substrate mechanism claim.
+    .
+    AUDITED 2026-08-25 (evidence/planning/q096_human_ai_surface_audit_20260825.md):
+    CONFIRMING -- a real, identified gap exists. `/thought-ingestion` (the
+    skill that registers new `candidate` claims from raw thoughts) has ZERO
+    `AskUserQuestion` call sites (vs. 16 in `/governance`, 6 in
+    `/session-land`, 3 in `/thought-digestion`) -- its Step 4 novelty table
+    (thread / existing coverage / genuinely-new verdict) is entirely the
+    session's own judgment, and Step 6 commits+pushes new claims.yaml
+    entries BEFORE Step 9's user-facing report. Concrete, non-hypothetical
+    instance found in REE's own claim history: THIS claim's own registration
+    (session responsibility-epistemic-hygiene-d6f9d3, REE_assembly
+    69f784ae05) framed "the Machine Folie a Deux work" as "not found",
+    landing that framing in claims.yaml with no confirmation gate; it was
+    corrected only 14 minutes later (b5b7a41da9) because the user happened
+    to already know the source and volunteered it unprompted -- the pipeline
+    itself supplied no structural check that would have caught it otherwise.
+    `/governance`'s promotion/demotion path IS interactively gated (Finding
+    2 of the audit doc) but its own Recommendation-Agreement Ledger
+    instrument (umbrella CLAUDE.md) shows REE already treats "is the human
+    confirmation substantively independent, or a rubber-stamp" as an open,
+    self-reported (not hook-enforced) question rather than a closed one.
+    feedback_lit_exp_decoupled addresses a related but distinct failure mode
+    (evidence-type collapse, not framing-acceptance) and does not close this
+    gap. See the audit doc for the full trace and two suggested follow-ons
+    (show the novelty table pre-commit; extend the agreement ledger to
+    ingestion's novelty verdicts) -- left for `/governance` to disposition,
+    not applied unilaterally here.
   what_would_answer: |
     Answered by inspecting REE's ACTUAL conversational/development-support
     surfaces (chat sessions, /governance walks, thought-digestion,
@@ -65388,6 +65416,19 @@
     covered by existing process discipline and should be closed as
     derivationally answered, cross-referencing the specific gates found,
     rather than left open.
+    AUDIT RESULT (2026-08-25, evidence/planning/q096_human_ai_surface_audit_
+    20260825.md): CONFIRMING. `/thought-ingestion`'s claim-registration path
+    has no AskUserQuestion gate anywhere in the skill and commits its own
+    novelty judgment to claims.yaml before reporting to the user -- a
+    concrete instance is this claim's own registration (see notes above).
+    `/governance`'s promotion/demotion path IS interactively gated, a real
+    structural difference from thought-ingestion, but the depth of that
+    gate's independence is itself an open, self-reported question in REE's
+    own tooling (the Recommendation-Agreement Ledger), not a closed one.
+    Left `candidate`/open rather than closed, since the finding motivates a
+    process change (see notes) rather than fully answering whether the
+    generalization holds everywhere -- re-audit if `/thought-ingestion` or
+    `/governance`'s AskUserQuestion gating changes.
 - id: Q-097
   title: "What mechanism should estimate an interacting agent's mimicry/deception risk and feed it into EXT-009's liberal care-gate criterion -- i.e. how does (or should) REE detect that a candidate mind is an adversarial agent mimicking mind-signals to extract undeserved care, tightening the criterion's false-positive-cost term (Axiom 8 deception) without collapsing the liberal floor that protects genuine-but-ambiguous minds from exclusion?"
   claim_type: open_question
