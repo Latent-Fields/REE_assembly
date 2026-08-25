@@ -264,3 +264,90 @@ Queue `V3-EXQ-939` only once **all** hold:
   re-scoped to a measurement redesign. The 2026-08-16 HELD demotion still should not be applied,
   and nothing here changes that: MECH-152 still has never been tested at the magnitude it asserts.
   **This file promotes nothing and demotes nothing.**
+
+---
+
+## 6. AMENDMENT 2026-08-25T07:50:49Z -- id correction, and a SIXTH required element
+
+Appended by session `mech-152-measurement-redesign-d5bf26` while re-running the section 4
+STOP-CHECK for `chip-20260818-mech152-redesign-queue-gated`. **The gate is still closed and
+this amendment does not open it.** Evidence and method:
+`mech152_writepath_addressing_probe_20260825.md` (+ `.py`, `.results.json`), REE_assembly
+`c3bdc3c4cd`.
+
+### 6.1 `V3-EXQ-939` IS TAKEN -- queue as `V3-EXQ-949`
+
+Section 4 item 5 said to re-verify, and it does not hold: `939` is now
+`v3_exq_939_mech303_proximity_gated_contextual_safety_vigilance_release.py` (with a `939a`).
+Max queue id is **948**; next free is **949**. The intended script name becomes
+`ree-v3/experiments/v3_exq_949_mech152_terrain_modulation_depth.py`. Everything else in
+section 3 stands unchanged. Still a new **number**, still no `supersedes`.
+
+### 6.2 The write-path validation has RUN -- the prior step is an AUTOPSY, not an experiment
+
+Section 4's gate is written as though the write-path fix were still owed. Two runs have since
+landed:
+
+- **`V3-EXQ-943`** (2026-08-20, PASS, autopsy confirmed 2026-08-21) -- occupancy. Its autopsy
+  states occupancy cannot discriminate BIAS from REFRACTORY.
+- **`V3-EXQ-946`** (2026-08-23, PASS, `context_informative_address_found_at_operating_point`)
+  -- addressing informativeness on a real REEAgent, against a blockwise-permutation order-only
+  null, with positive and negative instrument controls both met. `BIAS_W1_0` clears 5/5 seeds;
+  `REFRACTORY` clears 2/5 and fails. **But the magnitude is ~0.0005 bits against a 1.0-bit
+  positive control** -- "distinguishable from a clock", not "carries usable context".
+
+**`V3-EXQ-946` has not reached anything that gates on it**: absent from `review_tracker.json`,
+absent from `pending_review.md` (generated 2026-08-22T13:45:22Z, i.e. stale -- it predates the
+run), targeted by no `failure_autopsy_*.json`, and absent from the substrate_queue entry
+(which carries `validation_record_943` only). Being `experiment_purpose: diagnostic`, it needs
+a confirmed `/failure-autopsy` before it can drive the human call the chip is waiting on.
+
+So section 4's gate should be read as: **regen the index, autopsy 946, then put the human call
+to the user with 946's magnitudes in front of them.** No further write-path experiment is owed.
+
+### 6.3 REQUIRED ELEMENT 6 -- bank-content ablation control
+
+**This is the substantive addition, and section 3's five elements do not cover it.**
+
+Measured this session (10 seeds x 3 write modes, best-case training on a frozen bank, scored on
+held-out samples): under the production `cue_slot_tagger=True` read path, attainable
+between-context modulation depth reaches **0.900 and clears the claim's band in 30/30 cells** --
+under every write mode including unfixed LEGACY on its 1-slot-bank seeds, **and equally in
+30/30 cells when the slot bank is replaced with random content carrying nothing written at
+all**. On the legacy (tagger-off) path the same measurement gives 0.12-0.33 and clears the band
+in 1-3 of 10.
+
+The consequence for this design specifically: **element 4's OFF control does not catch it.**
+`A0_OFF` is cue-indexing/tagger OFF, so a run would show a low OFF arm and a band-clearing
+production arm and read as a clean positive -- while the contrast actually measured is *learned
+router present vs absent*, not *cue-indexed retrieval present vs absent*. That is the
+`corrupting` failure mode arriving through a door the write-path gate does not cover.
+
+> **Element 6.** Add an arm identical to the production arm (`cue_slot_tagger=True`) but with
+> slot contents **randomised or shuffled**. Pre-register: if that arm reaches the depth band at
+> or near the production arm, the instrument is not measuring a cue-indexed pathway --
+> self-route `non_contributory` under an instrument reading, exactly as element 4 does for
+> `control_outperforms_experimental_arms`. **Do NOT route `mixed`.** Record its depth beside
+> the production arm's; it is the denominator the measured depth should be read against, in the
+> same role section 3.6 gives the section 2a attainable-depth bound.
+
+Cost: one arm. It is the only one of the six that separates retrieval from readout capacity.
+
+### 6.4 Scope of this amendment, and what it does NOT claim
+
+- **Best-case training is an upper bound**, the same caveat section 2c attached to its 0.6056:
+  4000 Adam steps directly on the terrain objective, bank frozen, no competing losses. What
+  6.3 establishes is that the DV **fails to constrain** the mechanism -- the ceiling is
+  identical with and without content -- **not** that a real phased run reaches that ceiling.
+  `V3-EXQ-922a` measured real `w_harm_std` six orders lower.
+- **Not a real agent**: synthetic two-cluster stream, `ContextMemory` driven directly, tagger
+  matched architecturally rather than driven by real `z_world`. Where this probe and
+  `V3-EXQ-946` disagree on mode ranking -- and they do, this probe favouring REFRACTORY on
+  depth, 946 favouring BIAS on addressing -- **946 wins**: it is a real agent with a validated
+  order-only null, and this probe's own MI columns are the instrument 946 was built to replace.
+- **Promotes nothing, demotes nothing**, and does not change MECH-152's status,
+  `pending_retest_after_substrate`, or the standing advice that the 2026-08-16 HELD demotion
+  should not be applied.
+- Open question worth one line in any successor: it was **not** measured whether the legacy
+  (tagger-off) path also clears on a random bank. If it does, 6.3 generalises past the
+  production config.
