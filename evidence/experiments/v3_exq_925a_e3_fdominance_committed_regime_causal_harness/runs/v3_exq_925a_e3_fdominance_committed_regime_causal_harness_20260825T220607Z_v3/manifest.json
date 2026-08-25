@@ -1,0 +1,177 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_925a_e3_fdominance_committed_regime_causal_harness",
+  "run_id": "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-25T22:06:07Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "committed_regime_engaged_h1_h4_readable",
+    "preconditions": [
+      {
+        "name": "ARM_COMMIT::cand_world_pairwise_dist",
+        "precondition": "cand_world_pairwise_dist",
+        "arm": "ARM_COMMIT",
+        "kind": "readiness",
+        "description": "SD-056 candidate differentiation in z_world space. Verbatim V3-EXQ-925 floor; unchanged so the arms stay comparable.",
+        "control": "fresh E3 probe ticks after P0 SD-056 warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.042221265414463645,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT::gated_policy_std_across_K",
+        "precondition": "gated_policy_std_across_K",
+        "arm": "ARM_COMMIT",
+        "kind": "readiness",
+        "description": "Competitor channel carries per-candidate signal. Verbatim V3-EXQ-925 floor.",
+        "control": "fresh E3 probe ticks after P0 SD-056 warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.00038485568754064543,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT::committed_fraction",
+        "precondition": "committed_fraction",
+        "arm": "ARM_COMMIT",
+        "kind": "readiness",
+        "description": "THE load-bearing readiness statistic for this letter. The primary criteria route on C0-C5 deltas computed over COMMITTED events, so this asserts the SAME statistic rather than a proxy. Reads 0.000 under the V3-EXQ-925 deadlock and ~0.96 with the fix, so a below-floor value here means the deadlock is back -- a substrate_not_ready_requeue, never a regime finding or a ceiling.",
+        "control": "fresh E3 probe ticks after P0 warmup WITH the post_action_update fix applied",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT_GSCT::cand_world_pairwise_dist",
+        "precondition": "cand_world_pairwise_dist",
+        "arm": "ARM_COMMIT_GSCT",
+        "kind": "readiness",
+        "description": "SD-056 candidate differentiation in z_world space. Verbatim V3-EXQ-925 floor; unchanged so the arms stay comparable.",
+        "control": "fresh E3 probe ticks after P0 SD-056 warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.14197320039305028,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT_GSCT::gated_policy_std_across_K",
+        "precondition": "gated_policy_std_across_K",
+        "arm": "ARM_COMMIT_GSCT",
+        "kind": "readiness",
+        "description": "Competitor channel carries per-candidate signal. Verbatim V3-EXQ-925 floor.",
+        "control": "fresh E3 probe ticks after P0 SD-056 warmup",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0006080982365852429,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT_GSCT::committed_fraction",
+        "precondition": "committed_fraction",
+        "arm": "ARM_COMMIT_GSCT",
+        "kind": "readiness",
+        "description": "THE load-bearing readiness statistic for this letter. The primary criteria route on C0-C5 deltas computed over COMMITTED events, so this asserts the SAME statistic rather than a proxy. Reads 0.000 under the V3-EXQ-925 deadlock and ~0.96 with the fix, so a below-floor value here means the deadlock is back -- a substrate_not_ready_requeue, never a regime finding or a ceiling.",
+        "control": "fresh E3 probe ticks after P0 warmup WITH the post_action_update fix applied",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_COMMIT_GSCT::gsct_teff_spread",
+        "precondition": "gsct_teff_spread",
+        "arm": "ARM_COMMIT_GSCT",
+        "kind": "readiness",
+        "description": "MECH-439 Factor B must actually VARY its committed-pick temperature. T_eff = base + alpha*(1 - gap_norm), so an all-decisive-gap run collapses T_eff onto base and the gap-scaled pick silently recovers the plain argmin -- making ARM_COMMIT_GSCT equivalent to ARM_COMMIT and its delta an arithmetic identity rather than a measurement. This is the DV-symmetry guard declared in the module docstring.",
+        "control": "realised gap_scaled_commit_temperature_eff across fresh committed probe ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.14098616052753163,
+        "threshold": 1e-06,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "ARM_COMMIT::committed_regime_engaged": true,
+      "ARM_COMMIT_GSCT::committed_regime_engaged": true
+    },
+    "criteria": [
+      {
+        "name": "ARM_COMMIT::committed_regime_engaged",
+        "load_bearing": true,
+        "passed": true,
+        "measured_committed_fraction": 1.0,
+        "n_committed_events": 3132
+      },
+      {
+        "name": "ARM_COMMIT_GSCT::committed_regime_engaged",
+        "load_bearing": true,
+        "passed": true,
+        "measured_committed_fraction": 1.0,
+        "n_committed_events": 3915
+      }
+    ],
+    "combination_rule": "AND over arms: every arm must engage the committed regime (committed_fraction >= 0.05 AND n_committed_events >= 30). This is an AND because BOTH arms depend on the deadlock fix; a red arm here means the fix did not take in that arm, which is a substrate_not_ready_requeue for that arm rather than a scientific finding.",
+    "regime_note": "READ FIRST. This run's premise is that V3-EXQ-925's committed_fraction=0.000 was an INSTRUMENT defect, not a substrate regime fact, and that use_gap_scaled_commit_temperature (the lever failure_autopsy_V3-EXQ-925_2026-08-12 recommended) could not have engaged commitment because both its call sites sit inside `elif committed:`. Both points were verified by direct runtime measurement at authoring time. If ARM_COMMIT's committed_fraction comes back at or near 0.000 DESPITE the fix, that refutes this run's premise and is itself the finding -- route it as substrate_not_ready_requeue and re-open the 925 reading, do NOT read it as a ceiling."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "06962f1c6b21b3b73af2477316481910dd9ae59cc7b0ed8d125e6e9e69739b0d",
+  "substrate_commit": {
+    "commit": "6bd4a9901e02044dc6a5ad6a60306dbc462d9aaf",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 120664,
+    "ticks_active": 0,
+    "writer_calls": 120664,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
