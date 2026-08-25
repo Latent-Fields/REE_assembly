@@ -85085,3 +85085,298 @@
     conclusion is scoped to what that specific axis-combination can actually establish (per the
     functional_restatement above).
   evidence: []
+- id: MECH-506
+  title: >
+    An entity crosses an operational "vulnerable goal-directed other" threshold when convergent
+    evidence shows (a) diverse behaviour compactly predicted by persistent latent goals and (b)
+    systematic, adaptive alteration of subsequent behaviour in response to harm, threat,
+    goal-frustration, damage, or restoration -- a functional/behavioural criterion sufficient for
+    protective treatment while explicitly preserving uncertainty about subjective experience, and
+    distinct from both MECH-031's self-model-possession criterion and EXT-009/INV-072's
+    similarity-based ethical-inclusion criterion.
+  claim_type: mechanism_hypothesis
+  subject: social.operational_otherhood_functional_threshold
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-031  # AGENCY/OTHER_SELFLIKE tag -- distinguished-from: MECH-031's criterion is self-model-possession (boundary-maintaining, error-correcting self/world loop); this claim's criterion is goal-directedness + harm-responsiveness, a weaker/different evidentiary basis that does not require detecting a self/world loop in the target
+    - EXT-009   # similarity-gated care collapse -- distinguished-from: EXT-009/INV-072's SDT criterion is SIMILARITY-based (sufficiently-like-me); this claim's criterion is FUNCTIONAL/behavioural (goal-pursuit + harm-response), usable even for entities not judged similar
+    - INV-072   # violence conditions corollary -- same distinction as EXT-009
+    - INV-102   # other-agent evidential discounting -- upstream prerequisite: causal attribution to an OTHER-agent hypothesis (INV-102's C_other) must occur before goal/harm evidence can be gathered about that entity at all
+    - MECH-274  # sleep-dependent other-attribution aggregation -- consumer: MECH-274 stabilises single-episode attributions into a persistent other-model; this claim's threshold is what promotes a single-episode goal/harm observation into candidacy for that aggregation
+    - SD-011    # dual nociceptive/harm streams -- supplies the self-side harm representation this claim's "my goal/predicted harm ... <-> its inferred goal/predicted harm" mapping requires as its self-side term
+    - SENT-0    # non-sentience boundary statement -- distinguished-from: SENT-0..17 govern whether REE ITSELF is a moral patient (meta/governance level); this claim governs how REE classifies OTHER encountered entities (in-world cognitive-mechanism level) -- different subject, explicit non-collapse
+  location: docs/architecture/social.md#mech-506
+  source:
+    - docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md
+  notes: >
+    Genuinely new functional/behavioural criterion, upstream of MECH-505's gated-transfer channel:
+    supplies the "its inferred goal / predicted harm / frustrated trajectory / protective response"
+    half of the self/other mapping MECH-505 gates transfer across. Explicitly NOT a sentience or
+    subjective-experience claim -- the source thought is emphatic: "This does not prove subjective
+    experience or sentience. The appropriate claim is weaker...". Preserves the SENT-* cluster's
+    precautionary posture by keeping ethical/protective TREATMENT decoupled from a sentience
+    determination, applied here to REE's judgement about OTHER entities rather than about REE's own
+    status (SENT-*'s subject). Non-degeneracy precondition unmet in V3: requires a substrate where
+    an entity's behaviour can be observed responding systematically to harm/goal-frustration across
+    multiple episodes (multi-agent or scripted-partner substrate, not present in ree_core today).
+    DO NOT build in V3 or queue a V3 experiment.
+- id: MECH-505
+  title: >
+    Fast-empathy other-harm transfer into REE's own valuation/action-selection must be a GATED
+    channel, regulated along (at minimum) six axes -- mapping fidelity, self/other identity
+    preservation, gain control (regulatable transfer magnitude), context gating (familiarity,
+    attachment, kinship, threat, competition, role), timescale differentiation (brief resonance
+    vs. sustained caregiving), and graded action-selection authority (able to suppress
+    self-serving action or trigger costly protection when warranted) -- with interaction history
+    able to update future transfer, rather than an undifferentiated scalar leak from other-harm to
+    self-harm.
+  claim_type: mechanism_hypothesis
+  subject: social.fast_empathy_gated_transfer_requirement
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-506  # operational otherhood threshold -- upstream: supplies the "its inferred goal/harm" half of the self/other mapping this claim gates transfer across
+    - MECH-183  # z_beta leakage -- the mapping/binding mechanism this claim requires be paired with a regulation layer, not left as raw direct leakage
+    - MECH-405  # fast-empathy stream-binding mechanism -- the general binding architecture this claim's gating requirement specifies further
+    - ARC-094   # no-empathy-scalar prohibition -- governs HOW the binding must NOT be implemented (no flag/scalar primitive); this claim governs how the resulting bound channel must be REGULATED once it exists -- complementary, not duplicative
+    - MECH-036  # other-harm veto threshold -- the narrow catastrophic-certainty-only special case this claim generalizes into a graded, continuously-regulated action-selection-authority axis
+    - MECH-407  # residue-aware social repair -- the narrow exploitation-triggered special case this claim generalizes into a general interaction-history-updates-transfer axis
+    - MECH-408  # developmental ordering of other-bound streams -- an across-development timescale precedent this claim's timescale-control axis is consistent with but does not duplicate (MECH-408 orders stream ONSET across development; this claim's timescale axis distinguishes brief-vs-sustained transfer WITHIN a single interaction)
+    - MECH-031  # AGENCY/OTHER_SELFLIKE detection -- upstream detection this claim's gating consumes, does not re-derive
+  location: docs/architecture/social.md#mech-505
+  source:
+    - docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md
+  notes: >
+    Generalizes/extends: MECH-183 as currently registered describes UNGATED direct leakage
+    ("activates self z_beta directly, not via inference") -- this claim asserts that leakage-style
+    binding is necessary but not sufficient, and requires an accompanying regulation layer along
+    the six axes above before it is architecturally complete. Distinct from ARC-094 (which
+    prohibits a *scalar/flag* implementation of empathy -- an implementation-SHAPE constraint) by
+    addressing a different question: once streams ARE bound via MECH-183/405 (not a scalar), the
+    resulting bound channel's MAGNITUDE, CONTEXT-SENSITIVITY, and ACTION-SELECTION AUTHORITY must
+    themselves be regulable -- an unregulated (always-maximal or always-uniform) bound channel is
+    exactly as pathological as a raw undifferentiated scalar leak, just implemented via streams
+    instead of a flag. MECH-036 and MECH-407 are each ALREADY a special case of one gating axis
+    (MECH-036 = action-selection authority at the catastrophic-certainty extreme only; MECH-407 =
+    learning triggered only by post-exploitation repair) -- this claim does not supersede either,
+    it names the general requirement they are both narrow instances of. Source thought verbatim:
+    "An always-open empathy channel could be paralysing... An excessively closed channel produces
+    indifference. The scientific problem is therefore the dynamics of whose state gets through,
+    when, how strongly, for how long, and into which behavioural systems." Non-degeneracy
+    precondition unmet in V3: requires MECH-031/ARC-010 other-agent detection (ARC-047
+    SocialGridWorld, v5-gated, unimplemented) AND the fast_empathy_v5 binding substrate
+    (MECH-183/405) to exist first -- neither exists in ree_core today. DO NOT build in V3 or queue
+    a V3 experiment. Biological literature the source thought flags for later targeted review (NOT
+    verified in this pass): mirror-neuron systems (mapping axis), oxytocin/AVP (context-gating
+    axis), prolactin (timescale/sustained-caregiving axis), endogenous opioids and
+    PAG/hypothalamus/amygdala/ACC/insula/NAcc circuitry (gain and action-selection-authority axes)
+    -- see docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md
+    "Possible biological constraints to investigate".
+
+- id: GOV-SUBIMG-1
+  title: >
+    REE Assembly should build a synchronised, mechanically-derived behaviour+substrate
+    observability instrument -- a Fishtank behavioural panel and a substrate-activity map sharing
+    one navigable timeline, with every visual property (intensity, colour, pulsing, size/halo,
+    connection change, slow background drift) tied to an explicitly documented recorded variable
+    or transformation and never to what the architecture is "supposed" to be doing -- so that a
+    researcher's high-bandwidth parallel visual processing can generate candidate structure that
+    GOV-BEHADJ-1's discovery-oriented methodology and GOV-INTRO-1's triangulation rule then
+    require to be quantified and causally tested before being treated as a finding.
+  claim_type: governance_rule
+  subject: governance.epistemics.substrate_behaviour_observability_instrument
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-25"
+  source_thought: docs/thoughts/2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-BEHADJ-1  # discovery-vs-confirmation discipline this instrument's output feeds; its own lit-pull already documents the visual-read contamination risk this claim's safeguard inherits
+  - GOV-INTRO-1   # general triangulation rule ("generates hypotheses, never validates alone") this claim specialises for a visual-pattern-noticing origin class instead of introspection
+  related_claims:
+  - GOV-BEHADJ-1
+  - GOV-INTRO-1
+  source:
+  - docs/thoughts/2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  - evidence/planning/thought_intake_2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  functional_restatement: >
+    Build a dual-panel display (existing Fishtank behavioural panel + a new substrate-activity
+    map) sharing one scrubbable timeline. Every visual channel on the substrate map must resolve,
+    via a documented and code-inspectable mapping, to an actual recorded variable or a defined
+    transformation of one -- the map is a rendering of real telemetry, never an animation of
+    intended/designed behaviour. The instrument's OWN epistemic status is fixed by GOV-BEHADJ-1/
+    GOV-INTRO-1: what a researcher notices by looking is a candidate observation, never itself a
+    finding, until it is quantified and (per GOV-SUBIMG-2, once that exists) causally tested.
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-13_behaviour_linked_
+    substrate_imaging_longitudinal_artificial_organism_neuroscience.md (raw thought docs/thoughts/
+    2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md).
+
+    NOT A DUPLICATE OF GOV-BEHADJ-1 or GOV-INTRO-1: both existing claims govern how a HYPOTHESIS-
+    GENERATION channel that "never validates alone" must be treated once it exists -- GOV-BEHADJ-1
+    for behavioural-trajectory reads, GOV-INTRO-1 for introspective phenomenology. Neither proposes
+    building any INSTRUMENT. This claim is the tooling proposal that GOV-BEHADJ-1's existing
+    caution about "the researcher's own first unblinded visual read of a Fishtank trajectory"
+    (claims.yaml ~82869, citing Lit et al. 2011's Clever-Hans replication) already anticipates
+    needing to extend to: the same visual-read risk applies with at least as much force to a NEW,
+    richer internal-substrate display, and this claim's apophenia safeguard (documented mappings,
+    raw data authoritative, visual observations are hypotheses not findings, confirmation on
+    held-out lifetimes, causal claims require intervention) is GOV-BEHADJ-1's own discipline
+    carried over deliberately rather than re-derived from scratch.
+
+    INFORMAL PRECEDENT the instrument class already has: feedback_whimsy_visualization (project
+    memory) and the reaped z_harm_a-readout candidate note (claims.yaml ~79482) both record that
+    the EXISTING embodied Fishtank visualisation surfaced a real substrate finding (the z_harm_a
+    saturation) before scalar metrics did. That is evidence the general APPROACH has already paid
+    off once, informally -- not evidence this specific instrument is built or that any particular
+    substrate-visual-channel mapping is correct.
+
+    Buildable now, incrementally, against existing V3 Fishtank + telemetry/heartbeat data -- this
+    is an observability TOOL, not a change to agent substrate, so binds_at_version: v3 is
+    deliberate and not a claim that any agent mechanism needs building. DO NOT queue a V3
+    experiment from this claim; it licenses tooling work, not a scientific test, and any actual
+    build should go through ordinary implementation/tooling channels with an explicit scoping
+    pass (channel-to-variable mapping spec, which telemetry streams are already available vs.
+    need new instrumentation) rather than being treated as pre-scoped by this registration alone.
+  what_would_answer: |
+    Not an empirical falsifier in the usual sense -- a build-and-adopt proposal, checkable by
+    whether the instrument is built and whether it is actually used under the discipline it
+    names (candidate observations logged as observations/hypotheses, not findings; at least one
+    quantification or held-out check attempted on something first noticed visually).
+    VIOLATED BY: the instrument being built but treated as evidential on its own (a visually
+    "obvious" pattern reported as a finding without quantification or intervention), or visual
+    channels left undocumented/not traceable to a recorded variable.
+    COMPLIANT: every shipped visual channel has a documented variable mapping, and at least one
+    real candidate-structure-to-quantified-check pipeline instance exists showing the division of
+    labour actually operating, not merely declared.
+  evidence: []
+
+- id: GOV-SUBIMG-2
+  title: >
+    Once REE substrate activity is observable (GOV-SUBIMG-1), Assembly should apply a
+    behaviour-linked substrate-association methodology that aligns internal state to behavioural
+    events (event-related analysis across event types, repeated occurrences, and organisms),
+    extends the alignment window across many temporal offsets from t-1 to t-1000+ steps rather
+    than only the immediate surround, treats distributed multivariate substrate-state patterns --
+    not single variables -- as the primary unit of analysis (representational-similarity-style
+    comparison across current behaviour, location, goal, recent history, developmental age, and
+    subsequent behaviour), tracks how internal-behavioural signatures change across a long
+    individual REE lifetime (longitudinal artificial-organism analysis), and moves from
+    association to causal claims only via checkpoint branch-and-replay intervention against a
+    matched unperturbed sibling branch -- following the same discovery-then-confirmation
+    discipline GOV-BEHADJ-1 already requires for purely behavioural adjudication.
+  claim_type: governance_rule
+  subject: governance.epistemics.longitudinal_substrate_behaviour_causal_methodology
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-25"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-25"
+  source_thought: docs/thoughts/2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  binds_at_version: v4
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-SUBIMG-1  # the observability instrument this methodology analyses the output of
+  - GOV-BEHADJ-1  # discovery-then-confirmation discipline this methodology re-uses rather than re-deriving
+  - ARC-124       # substrate precondition this claim's causal arm directly inherits: "nothing forks a running agent"
+  related_claims:
+  - GOV-SUBIMG-1
+  - GOV-BEHADJ-1
+  - ARC-124
+  - ARC-125
+  - SD-095
+  - SD-096
+  - MECH-276
+  source:
+  - docs/thoughts/2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  - evidence/planning/thought_intake_2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+  functional_restatement: >
+    Four cumulative analysis moves over substrate+behaviour data once GOV-SUBIMG-1's instrument
+    (or even just its underlying recorded telemetry, without the display) exists: (1) event-related
+    -- align substrate state windows around discrete behavioural events across repeats and
+    organisms; (2) temporal-offset sweep -- repeat the alignment at t-1, t-10, t-100, t-1000+ to
+    find how far back a predictive association extends, not only the immediate surround; (3)
+    distributed-pattern -- compare whole/partial substrate-state VECTORS (representational-
+    similarity style) across behaviour/location/goal/history/age/outcome, not single variables in
+    isolation; (4) longitudinal -- repeat all of the above across a full individual lifetime to see
+    whether internal-behavioural signatures stabilise, shift, or diverge with development. A fifth,
+    separately-gated move converts an association found this way into a CAUSAL claim: perturb a
+    candidate mechanism, restore a checkpoint, replay the same environment, and compare against a
+    matched unperturbed sibling branch of the same individual.
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-13_behaviour_linked_
+    substrate_imaging_longitudinal_artificial_organism_neuroscience.md (raw thought docs/thoughts/
+    2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md).
+
+    DISTINCT FROM ARC-124/ARC-125/SD-095/SD-096: those four claims (2026-06-25 continuity intake)
+    govern the ETHICS AND GOVERNANCE of branching a running REE -- successor-branch standing,
+    commitment inheritance, provenance ledger, process-sensitive replacement testing -- once a
+    fork/branch capability exists. None of them treats branching-and-replay as an EXPERIMENTAL
+    TECHNIQUE for causal confirmation of a substrate-behaviour association; this claim is the
+    scientific-methodology use of the same underlying capability, and INHERITS rather than
+    re-derives ARC-124's own stated substrate precondition ("V3 checkpoints exist but nothing
+    forks a running agent, so there is no branch to reason about") -- the causal arm of this
+    claim cannot be exercised until that capability is built, for exactly the reason ARC-124
+    already names.
+
+    DISTINCT FROM MECH-276 (the "scientist-agent principle"): MECH-276 is the AGENT's own
+    internal hypothesis-generate/act/observe/attribute loop directed at ITS environment. This
+    claim's observe-associate-hypothesise-intervene-replay-adjudicate pipeline is the EXTERNAL
+    HUMAN RESEARCHER's method for studying the agent's substrate. Structurally parallel (both are
+    "behave like a scientist" loops), but the subject performing the loop and the target under
+    study are both different -- cited as a parallel, not folded together.
+
+    VERSION-ROUTING SPLIT, flagged rather than decided here: the associative/correlational
+    sub-pieces (event-related alignment, temporal-offset sweep, distributed-pattern comparison,
+    within-lifetime longitudinal tracking) need no new agent substrate -- they are an offline
+    analysis harness over existing/loggable V3 Fishtank + telemetry data. Only the fifth,
+    causal-confirmation move (checkpoint branch-and-replay against a sibling) is gated behind the
+    fork capability ARC-124 already flags as unbuilt. binds_at_version is set to v4 for the claim
+    AS A WHOLE because the causal arm is the piece that makes this more than GOV-BEHADJ-1 applied
+    to a new data channel; a /governance cycle should decide explicitly whether to split the
+    correlational sub-pieces out as a V3-buildable analysis harness rather than this session
+    deciding that unilaterally.
+
+    DO NOT queue a V3 experiment from this claim. The correlational sub-pieces are, at most, a
+    candidate ANALYSIS-HARNESS scoping task pending the /governance split above; the causal arm
+    is blocked on the same substrate precondition as ARC-124 and inherits its DO-NOT-BUILD stance.
+  what_would_answer: |
+    Not an empirical falsifier -- a methodology-adoption proposal. Checkable in two parts, matching
+    the version-routing split above.
+    CORRELATIONAL PART -- VIOLATED BY: an association reported from a single, un-repeated
+    alignment (no repeats across occurrences/organisms), or a temporal-offset claim made without
+    actually sweeping multiple offsets, or a "distributed pattern" claim resting on a single
+    variable dressed up as multivariate. COMPLIANT: at least one real event-related alignment run
+    across repeats, at least one temporal-offset sweep showing where an association appears/
+    disappears, and at least one distributed-pattern (multi-variable) comparison actually run.
+    CAUSAL PART -- gated: cannot be exercised (and is not violated by its absence) until a
+    checkpoint-fork capability exists per ARC-124. Once it does, VIOLATED BY treating a
+    post-perturbation change as causal without a matched unperturbed sibling replay; COMPLIANT
+    when a perturb/restore/replay/compare cycle against a matched sibling is actually run.
+  evidence: []

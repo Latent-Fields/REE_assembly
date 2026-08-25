@@ -1,7 +1,11 @@
 # Raw thought intake — Behaviour-linked substrate imaging and longitudinal artificial-organism neuroscience
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md
+Claims registered: GOV-SUBIMG-1, GOV-SUBIMG-2
+
 **Date:** 2026-08-13
-**Status:** Raw thought for later refinement, literature review, feasibility assessment, and experimental decomposition.
+**Status:** Processed 2026-08-25 -- see the Stage 2 intake and registered claims noted above. Literature review, feasibility assessment, and further experimental decomposition remain open (see intake "Next steps").
 
 ## Originating thought
 
