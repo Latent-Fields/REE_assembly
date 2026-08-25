@@ -1,6 +1,8 @@
 # Persistence Must Earn Continuation: Satiety, Closure, Information Hunger, and Termination in REE
 
-**Status:** unprocessed working thought
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+Claims registered: ARC-128, MECH-497, MECH-498
 
 This thought arose from considering redundancy and checking in basal-ganglia decision systems, the apparent failure of closure in obsessive-compulsive disorder (OCD), and what that might imply for REE. It developed into a broader architectural question that seems more important than the original route into it:
 

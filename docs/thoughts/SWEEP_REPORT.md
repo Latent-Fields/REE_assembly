@@ -1,24 +1,28 @@
 # Thought Sweep Report
 
-Generated: `2026-08-20T03:44:55.144743Z`
+Generated: `2026-08-25T19:42:46.584708Z`
 
 | metric | count |
 |---|---|
-| total thought files | 197 |
-| processed | 188 |
-| unprocessed | 9 |
-| processed missing `Processed in` links | 9 |
+| total thought files | 203 |
+| processed | 190 |
+| unprocessed | 13 |
+| processed missing `Processed in` links | 11 |
 
 ## Unprocessed Queue
 
 - `2026-08-12` `2026-08-12_affordance_indexed_temporally_displaced_present.md` (status=`unprocessed`)
 - `2026-08-12` `2026-08-12_ephaptic_aggregation_hippocampal_now_proposal_generation.md` (status=`unprocessed`)
 - `2026-08-12` `2026-08-12_other_agent_provenance_bounded_animistic_prior.md` (status=`unprocessed`)
-- `2026-08-12` `2026-08-12_persistence_must_earn_continuation.md` (status=`unprocessed`)
 - `2026-08-12` `2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md` (status=`unprocessed`)
 - `2026-08-12` `2026-08-12_responsibility_as_epistemic_hygiene.md` (status=`unprocessed`)
 - `2026-08-13` `2026-08-13_behaviour_linked_substrate_imaging_longitudinal_artificial_organism_neuroscience.md` (status=`unprocessed`)
 - `2026-08-14` `2026-08-14_preserving_the_possibility_of_future_reconstruction.md` (status=`unprocessed`)
+- `2026-08-23` `2026-08-23_reusable_computational_motifs_content_binding_and_coalition_composition.md` (status=`raw`)
+- `2026-08-24` `2026-08-24_causal_reach_installability_and_when_a_mechanism_becomes_part_of_the_organism.md` (status=`unprocessed`)
+- `2026-08-24` `2026-08-24_compression-decompression-prospective-attractors-barrett-miller-convergence.md` (status=`unprocessed`)
+- `2026-08-24` `2026-08-24_model_updates_should_be_gated_and_timed.md` (status=`unprocessed`)
+- `2026-08-24` `2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md` (status=`unprocessed`)
 - `INTAKE_AUDIT_REPORT.md` (status=`unprocessed`)
 
 ## Processed Missing Links
@@ -31,6 +35,8 @@ Generated: `2026-08-20T03:44:55.144743Z`
 - `2026-08-08_prospective_navigation_through_goal_topology.md`
 - `2026-08-09_control_plane_as_stopping_signal_gated_on_f_dominance.md`
 - `2026-08-10_ree_as_single_understandable_cognifold.md`
+- `2026-08-12_persistence_must_earn_continuation.md`
+- `2026-08-23_memory-dimensionality-crystallisation.md`
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md`
 
 ## Processed Snapshot
@@ -217,9 +223,11 @@ Generated: `2026-08-20T03:44:55.144743Z`
 - `2026-08-11_behavioural_adjudication_scientific_skill_working_thought.md` (1 link(s) in `Processed in`)
 - `2026-08-11_behavioural_diversity_umpire.md` (1 link(s) in `Processed in`)
 - `2026-08-11_ecological_succession_as_developmental_curriculum.md` (4 link(s) in `Processed in`)
+- `2026-08-12_persistence_must_earn_continuation.md` (0 link(s) in `Processed in`)
 - `2026-08-14_humour_societal_epistemic_probe.md` (2 link(s) in `Processed in`)
 - `2026-08-19_context-inference-active-persistent-control.md` (3 link(s) in `Processed in`)
 - `2026-08-19_hippocampal-episodic-organisation.md` (2 link(s) in `Processed in`)
+- `2026-08-23_memory-dimensionality-crystallisation.md` (0 link(s) in `Processed in`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

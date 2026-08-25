@@ -83834,3 +83834,111 @@
     claim because the raw thought names it without developing it and it is substantially
     entangled with MECH-154 and MECH-288. It is recorded as an open gap in the intake file
     and is the most likely source of a future claim from this thought.
+
+- id: ARC-128
+  title: "Persistent-process termination is a general architectural requirement, not a rule_state-closure special case: every family of persistent cognitive process REE can initiate (information-seeking, planning, memory retrieval, threat monitoring, goal pursuit, exploration, ethical counterfactual generation) needs its own instance of a shared termination-state taxonomy (completion / satiety / closure / disengagement / suspension / switching / interruption / reopening) that preserves WHY termination occurred, so that suspended/reopenable processes stay distinguishable from completed, satiated, or abandoned ones."
+  claim_type: architectural_commitment
+  subject: control_plane.termination_taxonomy_generality
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - SD-034    # the one built instance (rule_state completion -> closure), being generalised
+    - MECH-343  # the widening-under-stall response this taxonomy's "disengage" branch complements
+    - SD-061    # difficulty-gated proposal-entropy regulator (design decision pairing MECH-343)
+    - MECH-434  # epistemic commitment timing -- closest existing "when to stop gathering evidence" claim
+  location: docs/architecture/persistent_process_termination_taxonomy.md#arc-128
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+    (raw thought docs/thoughts/2026-08-12_persistence_must_earn_continuation.md). DISTINCT FROM
+    SD-034: SD-034 is a single IMPLEMENTED instance (BetaGate/dACC five-part closure token) wired
+    specifically to committed rule_state; this claim asserts the same structural need -- terminate,
+    and record why -- recurs across REE's OTHER persistent-process families, none of which currently
+    has an explicit shared taxonomy beyond SD-034's binary completion/closure. The taxonomy is richer
+    than SD-034 alone: SD-034 does not distinguish suspension (resumable) from disengagement
+    (abandoned) from interruption (externally invalidated). Motivated by the same root SD-034 itself
+    names ("the 2026-04-20 GAP MEMO and the OCD thought set"), arrived at independently five months
+    later via a different route (redundant-checking / basal-ganglia threshold reasoning). Compass /
+    V4 architectural framing only; epistemic_category substrate_conditional set EXPLICITLY so
+    promote/demote and narrow_open_question do not fire. DO NOT build a general termination-taxonomy
+    substrate or queue a V3 experiment from this claim without an explicit version-routing decision.
+    See docs/architecture/persistent_process_termination_taxonomy.md for the full comparison against
+    existing machinery (SD-034, MECH-343/SD-061, MECH-080, MECH-434, Q-080).
+
+- id: MECH-497
+  title: "A persistent cognitive process can degrade the very confidence/evidence variable that gates its own termination condition, producing a positive-feedback failure to stop: repeated verification/checking reduces subjective recollective confidence while leaving objective accuracy largely intact, so the stopping condition ('sufficiently confident') becomes progressively harder to satisfy the more it is checked. This self-referential-measurement failure is mechanistically distinct from MECH-080's attractor-lock-in account of OCD (deep locked rollout basin via BG/ACh gate dynamics); the two may co-occur but a substrate fix for one does not by itself fix the other."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.self_referential_stopping_failure
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - MECH-080  # existing OCD/rollout-truncation account this claim is explicitly distinguished from
+    - SD-034    # closure token whose firing this failure mode would corrupt/prevent, if present
+    - ARC-128   # umbrella termination-taxonomy generality claim this is one failure mode of
+  location: docs/architecture/persistent_process_termination_taxonomy.md#mech-497
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+    section 13 ("OCD reveals a more dangerous failure: a process can sustain its own stopping
+    failure"). Literature anchor named in the raw thought but NOT yet verified against a specific
+    citation: repeated-checking experiments in which checking reduces subjective memory
+    confidence/vividness while objective accuracy is relatively preserved (van den Hout & Kindt
+    checking-reduces-memory-confidence paradigm is the closest known family; needs a dedicated
+    lit-pull before this claim can be treated as literature-grounded rather than provisional).
+    DISTINCT FROM MECH-080: MECH-080 explains OCD via abnormal BG/ACh attractor depth (a gating/
+    selection-dynamics account); this claim proposes a separate self-referential-measurement
+    mechanism (the act of checking corrupts the checked-for signal) that could produce a
+    phenomenologically similar failure-to-stop through a different causal route. Compass / V4;
+    epistemic_category substrate_conditional set EXPLICITLY. DO NOT build or queue a V3 experiment
+    without an explicit version-routing decision and the literature pull named above.
+
+- id: MECH-498
+  title: "Continuation of a persistent process should be gated jointly on marginal expected return relative to available alternatives (Marginal Value Theorem framing) AND on the observed RATE of progress -- whether uncertainty, goal-distance, or informational yield is actually decreasing under continued investment, not only its current absolute level -- so that a process whose marginal progress has collapsed increasingly loses justification for further resource allocation even while absolute uncertainty/value remains high. This is the disengagement-direction complement to MECH-343/SD-061's difficulty-gated proposal-entropy WIDENING response to stall: it covers the case where widening the search ALSO fails to restore progress."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.progress_gated_disengagement
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-25
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-25
+  depends_on:
+    - MECH-343  # widening-under-stall response this claim is the disengagement-direction complement to
+    - SD-061    # design decision pairing MECH-343
+    - Q-080     # MVT / optimal-foraging effort-dissociation environment already built (2026-07-09)
+    - MECH-434  # epistemic commitment timing -- adjacent "when is evidence enough" claim
+    - ARC-128   # umbrella termination-taxonomy generality claim this instantiates for goal/search processes
+  location: docs/architecture/persistent_process_termination_taxonomy.md#mech-498
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+    sections 10-11 (Marginal Value Theorem continuation rule + "is this process actually making
+    progress" as a stopping heuristic). NOT a duplicate of MECH-343/SD-061: those cover the
+    try-harder response (widen proposal entropy when goal salience is preserved and stall is
+    recent); this claim covers what happens when widening does not restore progress -- continuation
+    of the PROCESS ITSELF, not just the current search strategy, should then lose justification.
+    Q-080 (MVT/foraging effort-dissociation env, landed 2026-07-09 -- see project memory
+    project_q080_effort_dissociation_env_built) is the natural substrate to test a marginal-value
+    continuation rule against once/if this is routed to V3; it is cited here as an existing asset,
+    not re-asserted. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY. DO NOT
+    build or queue a V3 experiment without an explicit version-routing decision.

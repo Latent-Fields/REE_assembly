@@ -642,7 +642,7 @@
   },
   "ARC-071": {
     "assembly_state": "awaiting_substrate",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "mech090-arc071-attick-persistent-handle-fix",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -1123,6 +1123,14 @@
     "title": "Generalising REE's environmental hazard/valence system from fixed per-object-class danger to conditional, context-dependent danger (time-of-day, a post-feeding window, co-occurring organism state, or combinations of these) is architecturally necessary to force representation of combined sensory evidence, time, memory, and environmental state together, rather than a simple fixed-category lookup.\n",
     "type": "architectural_commitment",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires a conditional-danger environment variant (e.g. a hazard class dangerous only in a specific time window or organism-state combination) plus a matched fixed-valence control condition using the same objects, and a held-out generalisation test (novel timing/context combinations not seen during training).\nCONFIRMING: REE's learned avoidance/approach behaviour becomes conditionally sensitive (differs by time/state/context) in a way a fixed-valence-trained control agent's behaviour does not, and this conditional sensitivity survives the held-out generalisation test.\nFALSIFYING: REE fails to learn any conditional sensitivity (treats the object class as uniformly dangerous or safe regardless of context, no better than chance at discriminating safe vs. dangerous instances), OR the existing fixed-valence architecture already achieves equivalent discrimination without requiring any conditional-valence extension (context information is already implicitly available and usable through other existing channels).\n"
+  },
+  "ARC-128": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.termination_taxonomy_generality",
+    "title": "Persistent-process termination is a general architectural requirement, not a rule_state-closure special case: every family of persistent cognitive process REE can initiate (information-seeking, planning, memory retrieval, threat monitoring, goal pursuit, exploration, ethical counterfactual generation) needs its own instance of a shared termination-state taxonomy (completion / satiety / closure / disengagement / suspension / switching / interruption / reopening) that preserves WHY termination occurred, so that suspended/reopenable processes stay distinguishable from completed, satiated, or abandoned ones.",
+    "type": "architectural_commitment"
   },
   "EXT-001": {
     "assembly_state": "remaining",
@@ -3621,8 +3629,8 @@
   },
   "MECH-090": {
     "assembly_state": "mature",
-    "assembly_status": "built",
-    "awaiting": "mech090-arc071-attick-persistent-handle-fix",
+    "assembly_status": "in_progress",
+    "awaiting": "MECH-090",
     "epistemic_stance": "shown",
     "status": "active",
     "subject": "control_plane.commitment_gated_policy_output",
@@ -7208,6 +7216,22 @@
     "title": "Representational dimensionality is an OUTCOME of a developmental plasticity schedule, not an a-priori architectural constant: the number and granularity of memory buckets (ContextMemory slots, and any analogous discrete representational partition) must itself be plastic during an open window and reduce in plasticity as the encountered environment's latent structure is resolved. The INV-074 / MECH-333 / MECH-334 critical-period shape -- open window, competitive establishment, closure / crystallisation -- is currently specified ONLY over the SCORING / POLICY plane (behavioural diversity vs winner-take-all capture); this claim asserts the same schedule is required over REPRESENTATIONAL STRUCTURE. Corollary bearing on measurement: a differentiation-family objective is not merely mis-targeted (MECH-495) but ILL-DEFINED under variable dimensionality, since separation can always be increased by adding buckets, so the objective degenerates into \"use more slots\"; and any fixed-N spread statistic (sws_slot_diversity over 16 slots, emitted by 29 experiment drivers) presupposes the very structure that should be the outcome. Substrate state at registration: ContextMemory(num_slots=16) at ree-v3/ree_core/predictors/e1_deep.py:36 is a fixed nn.Module buffer with no growth, no allocation policy and no environment conditioning.\n",
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION (mandatory).\n(i) The store must be recruiting more than one slot before ANY dimensionality\nstatistic is computed -- V3-EXQ-436f found 3/5 seeds occupying exactly 1 of 16 slots\ndespite 2,837-4,903 write() calls each. A single-slot store has no dimensionality to\nmeasure. This INHERITS MECH-495's precondition (i); do not re-derive it.\n(ii) num_slots must actually be VARIED. The claim is about dimensionality as an\nOUTCOME, so a single fixed-N run cannot address it in either direction.\n(iii) The schedule must be OBSERVABLE: whether the effective number of distinct\nbuckets in use CHANGES over training must be recorded per-episode, not only at the\nend. A single end-of-training snapshot cannot distinguish \"crystallised at N\" from\n\"was always N\", and the distinction is the claim.\n\nCONFIRMING: with num_slots varied across a range spanning under- and\nover-provisioning relative to the environment's ground-truth latent-context count --\n(a) the effective bucket count in use converges toward the GROUND-TRUTH count rather\nthan toward num_slots; (b) that convergence is non-monotone in plasticity -- high\nearly, reducing -- rather than flat; and (c) downstream generalisation /\ndiscrimination is FLAT with respect to num_slots over the range where (a) holds.\n(c) is the LOAD-BEARING leg: it is the claim that the architecture is insensitive to\na constant which is currently hand-set.\n\nFALSIFYING: effective bucket count tracks num_slots rather than the environment (the\nstore simply fills what it is given); OR downstream performance is MONOTONE in\nnum_slots (more is just better, so dimensionality is a capacity parameter and not a\nstructure to be resolved); OR the effective count is FLAT across training (no\nschedule, so crystallisation is doing no work even if the final count happens to be\nright).\n\nCHEAPEST FIRST STEP -- A PROBE, NOT A BUILD. Treat num_slots as a declared\nexperimental variable rather than a constant and re-run the V3-EXQ-436 lineage across\na small sweep. If the 436-lineage results are STABLE across num_slots, the\ndimensionality question is not currently load-bearing and this claim can wait; if they\nMOVE, it is. This is `complex (probe-gated)` work resolving to `puzzle (known rules)`,\nNOT the `complicated (buildable)` self-sizing-memory build, and must not be routed as\nthe latter. Registered as a proposal at intake; see manual_proposals.v1.json.\n\nNOT ANSWERED BY: any run at a single fixed num_slots, however well designed --\nincluding MECH-495's own 2x2, unless that 2x2 is itself swept over num_slots.\n"
+  },
+  "MECH-497": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.self_referential_stopping_failure",
+    "title": "A persistent cognitive process can degrade the very confidence/evidence variable that gates its own termination condition, producing a positive-feedback failure to stop: repeated verification/checking reduces subjective recollective confidence while leaving objective accuracy largely intact, so the stopping condition ('sufficiently confident') becomes progressively harder to satisfy the more it is checked. This self-referential-measurement failure is mechanistically distinct from MECH-080's attractor-lock-in account of OCD (deep locked rollout basin via BG/ACh gate dynamics); the two may co-occur but a substrate fix for one does not by itself fix the other.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-498": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.progress_gated_disengagement",
+    "title": "Continuation of a persistent process should be gated jointly on marginal expected return relative to available alternatives (Marginal Value Theorem framing) AND on the observed RATE of progress -- whether uncertainty, goal-distance, or informational yield is actually decreasing under continued investment, not only its current absolute level -- so that a process whose marginal progress has collapsed increasingly loses justification for further resource allocation even while absolute uncertainty/value remains high. This is the disengagement-direction complement to MECH-343/SD-061's difficulty-gated proposal-entropy WIDENING response to stall: it covers the case where widening the search ALSO fails to restore progress.",
+    "type": "mechanism_hypothesis"
   },
   "Q-001": {
     "assembly_state": "mature",

@@ -1,5 +1,9 @@
 # Memory dimensionality should crystallise, and its target is environment-conditional
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-23_memory-dimensionality-crystallisation.md
+Claims registered: MECH-496, INV-101 (plus amendment to MECH-495)
+
 Date: 2026-08-23
 Source: conversation during `/governance` cycle 2026-08-22 (session `bold-chaum-7e245c`),
 arising from GFLAG-0047 (the ContextMemory write-selection DV fork: differentiation
@@ -80,7 +84,3 @@ results are stable across it. That is a spike, not an architecture.
 
 E1 (ContextMemory), sleep/consolidation pass (`sws_slot_diversity` is emitted by 29
 experiment drivers), the developmental-curriculum / critical-period cluster.
-
-Status: processed
-Intake: evidence/planning/thought_intake_2026-08-23_memory-dimensionality-crystallisation.md
-Claims registered: MECH-496, INV-101 (plus amendment to MECH-495)
