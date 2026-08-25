@@ -1,7 +1,11 @@
 # Thought: Other-Agent Provenance and the Bounded Animistic Prior
 
+Status: processed
+Intake: evidence/planning/thought_intake_2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+Claims registered: INV-102, MECH-504
+
 **Date:** 2026-08-12  
-**Status:** Exploratory hypothesis and extension of the responsibility-as-epistemic-hygiene thought. This does not establish that the proposed mechanism exists in REE, is biologically correct, or requires a particular implementation.
+**Status (descriptive):** Exploratory hypothesis and extension of the responsibility-as-epistemic-hygiene thought. This does not establish that the proposed mechanism exists in REE, is biologically correct, or requires a particular implementation. Processed 2026-08-25 -- see Intake link above.
 
 REE's existing self/other distinction, Theory of Mind, social prediction and responsibility machinery may have an additional epistemic function.
 

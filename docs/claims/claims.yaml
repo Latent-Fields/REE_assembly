@@ -84571,3 +84571,216 @@
 
     Literature: same three citations as SD-101 (Osako et al. 2026; Driscoll/Shenoy/Sussillo 2024;
     Tafazoli et al. 2026), not yet independently /lit-pull reviewed.
+
+- id: INV-102
+  title: >
+    In a world containing other predictive agents, causal-model selection over an observation
+    must include a distinct OTHER-agent-caused hypothesis (alongside world-caused, self-caused,
+    and jointly-caused) with non-zero but bounded prior probability -- a signal-detection-theory
+    calibration target, not a fixed threshold -- and once evidence is attributed to another
+    agent's action with sufficient probability, downstream belief-updating on whatever that
+    evidence appears to support about the world must be discounted or reweighted conditional on
+    a shallow, recursion-bounded model of that agent's likely goal in producing it (teach, warn,
+    cooperate, deceive, conceal, or no strategic intent at all). This generalizes INV-012 Leg 4's
+    single-agent self-solicited-evidence discounting to the multi-agent case, and is distinct
+    from ARC-010/MECH-031/MECH-274's existing machinery for DETECTING and aggregating
+    other-agent causation, which currently feeds only empathy/harm-coupling (MECH-036) and
+    other-model stabilisation, not evidential-weight discounting of the observation's apparent
+    world-content.
+  claim_type: invariant
+  invariant_type: universal
+  subject: epistemic_provenance.other_agent_evidential_discounting
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: "2026-08-25"
+  depends_on:
+    - INV-012   # Leg 4 -- single-agent self-solicited-evidence discounting this generalizes to a second agent
+    - ARC-010   # other-model / fast-empathy machinery supplying the OTHER-caused detection this claim's discount consumes; MAE-3-blocked (no multi-agent substrate in V3)
+    - MECH-031  # AGENCY / OTHER_SELFLIKE tags -- existing detector; this claim adds a NEW downstream (epistemic, not empathy) consumer
+    - MECH-274  # V4 sleep aggregation of other-agent attributions into a stable other-model -- sibling but distinct: aggregation stabilises WHO the other agent is, this claim discounts WHAT the resulting observation is evidence for
+    - ARC-037   # causal attribution routing circuit -- currently binary self/env; this claim requires the routing circuit be extended to a third (other) and fourth (joint) class
+    - SD-003    # counterfactual self-attribution -- supplies the self-caused half of the C_self/C_other split this claim's routing depends on
+    - MECH-095  # TPJ self/world comparator -- substrate the C_other detection would route through; this claim assumes its output, does not re-test its own MAE-3-blocked discrimination task
+    - MECH-223  # animated agency attribution overweighting -- adjacent PATHOLOGICAL miscalibration bias; explicitly distinguished (this claim states the correct SDT calibration target, MECH-223 is a failure mode of that calibration)
+    - EXT-009   # similarity-gated care collapse -- parallel SDT liberal-criterion framing, but for the ETHICAL/care gate, not this claim's EPISTEMIC/causal-inference gate; explicitly non-identical thresholds per the thought's own "Relationship to ethics" section
+    - INV-072   # violence corollary -- carries the existing threat/deception term EXT-009's care-gate criterion leans on; cited for the parallel SDT structure
+    - MECH-504  # developmental discovery mechanism (this same batch) supplying the C_other detection this claim's discount consumes; gates non-degeneracy alongside ARC-010
+  source:
+    - docs/thoughts/2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+    - evidence/planning/thought_intake_2026-08-12_responsibility_as_epistemic_hygiene.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires (a) a multi-agent environment in which a second,
+    genuinely distinct predictive agent exists (the same MAE-3 substrate blocker that gates
+    ARC-010/MECH-095's discrimination task -- this claim inherits that block for its DETECTION
+    half); and (b) within that environment, at least one manipulation in which the second
+    agent's behaviour is demonstrably conditioned on the tested agent's own actions/beliefs
+    (i.e., genuinely strategic/responsive, not merely another independent stochastic process),
+    with a comparison arm in which the second agent's behaviour is NOT so conditioned (matched
+    surface statistics, e.g. same marginal cue distribution, differing only in whether it
+    responds to the tested agent). Without (b), "strategically generated" and "passively
+    generated" evidence are indistinguishable by construction and the test is vacuous -- this
+    mirrors INV-012 Leg 4's own non-degeneracy precondition, one level up.
+
+    CONFIRMING signature: an agent equipped with other-agent evidential discounting infers
+    the CAUSAL STRUCTURE of the responsive source (that its behaviour is conditioned on the
+    tested agent, not merely correlated) at above-chance accuracy once the second agent's
+    strategy changes, AND shows measurably slower or corrected uptake of whatever inference
+    the responsive source's outputs superficially support, relative to an otherwise-identical
+    agent that treats all sources as C_world by default. An otherwise-identical agent lacking
+    the discount should show the delusion-like lock-in signature INV-012 Leg 4 predicts for
+    the self-solicited case, but triggered by a SECOND agent's strategic behaviour instead of
+    the tested agent's own commitment.
+
+    FALSIFYING signature: an agent lacking other-agent evidential discounting recovers from
+    (or never forms) an incorrect world-model driven by the responsive source's strategic
+    outputs at a rate statistically indistinguishable from one with the discounting mechanism
+    -- i.e. existing exploration/curiosity drives, residue decay, or ARC-010's other-model
+    machinery already wash out the confound without a dedicated discount term. This would mean
+    the mechanism identifies a real but practically-inert risk and should be narrowed to a
+    documented failure mode (EXT-xxx-shaped) rather than an architectural requirement.
+
+    Experimental design sketch (from the raw thought's "Experimental consequence" section):
+    begin with two superficially similar cue-producing processes -- one a stable stochastic
+    world process, one an entity that produces the same initial cue distribution but changes
+    behaviour conditional on the tested agent's behaviour. Test whether the agent can discover,
+    once interaction changes, that the second source is better modelled as a responsive causal
+    process, and whether that discovery correctly discounts prior inferences drawn from the
+    second source's earlier (pre-discovery) outputs. Later stages could progressively add
+    goal-directed competition, cooperation, signalling, teaching, concealment, and deception --
+    but the minimal test does not require sophisticated deception, only conditional
+    responsiveness.
+  location: evidence/planning/thought_intake_2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+  notes: >
+    Registered from a same-batch thought-intake pass extending the responsibility-as-epistemic-
+    hygiene thought's causal-provenance requirement to the multi-agent case. DISTINCT FROM
+    MECH-223: MECH-223 describes a PATHOLOGICAL prior miscalibration (overweighting agency
+    attribution to animated/moving entities, producing paranoid ideation); this claim states
+    the CORRECT signal-detection-theory calibration target (non-zero but bounded prior,
+    tunable by evidence) that MECH-223's failure mode is a departure FROM. DISTINCT FROM
+    EXT-009/INV-072: those apply an identically-shaped liberal-criterion signal-detection
+    framing to the ETHICAL/care gate ("is this a mind worthy of protection?"); this claim
+    applies the same SDT shape to the EPISTEMIC/causal-inference gate ("was this evidence
+    strategically produced, and if so by whom and why?"). The raw thought explicitly states
+    these should NOT collapse into a single binary variable (agent detection / ToM / sentience
+    attribution / ethical standing are named as four things that must stay separable even
+    though they may share evidence) -- this claim is the epistemic member of that set; EXT-009
+    is the ethical member. Worth flagging separately: EXT-009's own notes cite "Q-032
+    adversarial minds" for its deception/mimicry term, but claims.yaml's actual Q-032 is an
+    unrelated sleep-pharmacology dementia-outcome question -- this looks like a pre-existing
+    stale cross-reference in EXT-009, not introduced by this pass; not corrected here (see
+    evidence/planning/thought_intake_2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+    Next Steps for a follow-on flag). DISTINCT FROM ARC-010/MECH-031/MECH-274: those detect
+    and aggregate other-agent causation into a stable other-MODEL; this claim is about
+    discounting the evidential WEIGHT of what an other-caused observation appears to show
+    about the world, which is a separate downstream consumer nothing currently wires up.
+    Recursion is bounded by construction (the thought's own "does not require infinite
+    recursion" caveat): the discount term requires only a shallow model of why the other agent
+    likely produced the evidence, not unbounded nested mentalizing.
+
+    JUDGMENT CALL, flagged for governance: registered as a SIBLING invariant rather than a
+    fifth Leg of INV-012, because INV-012's subject (commitment.epistemology) and its Leg 0-4
+    scaffold concern the tested agent's OWN commitment/responsibility, while this claim
+    concerns discounting evidence generated by a SECOND agent's commitment -- a distinct
+    subject that depends on and parallels INV-012 rather than extending its testability
+    scaffold. Either form (sibling or Leg 5) is compatible with the content above; only the
+    id/depends_on shape would change if governance prefers the Leg form.
+
+    DO NOT build in V3 -- substrate_conditional, gated on the same multi-agent environment
+    (MAE-3-class) that already blocks ARC-010/MECH-095's discrimination task, and on MECH-504
+    supplying the developmental detection substrate this claim's discount consumes. Do not
+    queue a V3 experiment off this registration alone.
+
+- id: MECH-504
+  title: >
+    Developmental specialisation of the scientist-agent principle (MECH-276) for other-agent /
+    responsive-entity discovery: parallel to MECH-278's stage-2 object-schema formation via
+    experimental intervention on passive world-features, an agent discovers candidate other-
+    minds by performing actions and testing which environmental entities' subsequent behaviour
+    covaries with those actions (I-move to entity-responds; I-stop to entity-changes-behaviour;
+    I-approach to entity-withdraws; I-pursue to entity-evades; I-signal to entity-changes-state),
+    producing the RESPONSIVE-entity discrimination that a purely passive-world-focused
+    curriculum (static hazards and resources only) cannot supply. This is the "V4
+    social-intervention mechanism (parallel to MECH-278 for other-agents)" MECH-276's own notes
+    already name as a known specialisation but do not register.
+  claim_type: mechanism_hypothesis
+  subject: developmental.other_agent_discovery_via_responsive_intervention
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: "2026-08-25"
+  depends_on:
+    - MECH-276  # scientist-agent principle (general form) this specialises
+    - MECH-277  # stage-1 prerequisite -- self/world sensory-change discrimination must exist first
+    - MECH-278  # stage-2 sibling specialisation on PASSIVE world-features; this claim is the parallel on RESPONSIVE entities
+    - ARC-059   # developmental ordering this claim's stage slots into
+    - ARC-010   # other-model architecture this claim supplies a developmental ENTRY POINT for (currently MAE-3-blocked for lack of a multi-agent substrate; this claim's minimal responsive-entity manipulation is a candidate lightweight substrate)
+    - MECH-031  # AGENCY / OTHER_SELFLIKE tagging -- downstream consumer of the responsive/non-responsive discrimination this claim produces
+    - INV-102   # epistemic-provenance claim (this same batch) whose C_other detection this claim developmentally supplies
+  source:
+    - docs/thoughts/2026-08-12_other_agent_provenance_bounded_animistic_prior.md
+    - docs/architecture/scientist_agent_developmental_ordering.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires an environment offering at least two superficially
+    similar cue-producing sources at curriculum-entry: one exogenous/passive (stable stochastic
+    rule, uncorrelated with the agent's behaviour) and one RESPONSIVE (behaviour measurably
+    covaries with the agent's own prior actions -- approach/withdrawal, pursuit/evasion,
+    signal/state-change, or simpler). Without a genuinely responsive counterpart, "discovering
+    agency via intervention" cannot be distinguished from ordinary world-model learning, and the
+    claim is untestable by construction. No existing V3 CausalGridWorld variant is confirmed to
+    supply this (ARC-047's SocialGridWorld is the designated candidate substrate but is itself
+    unimplemented, status candidate, confidence 0.0, gated v5 per ARC-010's own testability
+    note) -- this precondition needs its own dedicated environment check, not an inherited
+    pass/fail from an adjacent claim.
+
+    CONFIRMING signature: an agent using only the existing self/world scientist-agent
+    experimentation machinery (MECH-276/277/278's shared mechanism, applied here to entities
+    rather than passive features) discovers, through its own actions and without a dedicated
+    social-cognition module, which entities' behaviour is conditioned on its own actions --
+    i.e. the responsive/non-responsive discrimination emerges from the SAME experimental-
+    intervention logic MECH-278 already uses for object-schema formation, requiring no
+    additional architecture beyond redirecting the intervention target from world-features to
+    candidate-entity behaviour. This discrimination should then measurably improve MECH-031's
+    AGENCY/OTHER_SELFLIKE tagging accuracy relative to a version trained only on static
+    hazards/resources (no responsive entities in the curriculum).
+
+    FALSIFYING signature: the responsive/non-responsive discrimination requires a dedicated
+    social-cognition detector that cannot be reduced to the existing scientist-agent
+    experimentation logic reused from MECH-278 -- i.e. redirecting the SAME mechanism to
+    entity-behaviour targets fails to produce above-chance discrimination even with adequate
+    intervention density, meaning other-agent discovery is not, in fact, a specialisation of
+    the general scientist-agent principle and needs its own architecture, contrary to what
+    MECH-276's notes already anticipate.
+  location: docs/architecture/scientist_agent_developmental_ordering.md#mech-504
+  notes: >
+    Registered from the same-batch other-agent-provenance thought's "Developmental
+    implications" section. Fills a gap MECH-276's own notes already name but leave
+    unregistered: "a V4 social-intervention mechanism (parallel to MECH-278 for other-agents)."
+    This claim is that mechanism. Distinct from MECH-278 only in the TARGET of intervention
+    (candidate-entity behaviour vs passive world-features); the underlying scientist-agent
+    logic (MECH-276) is asserted to be shared, which is itself the CONFIRMING/FALSIFYING
+    question above -- this claim does not assume architectural novelty beyond target
+    redirection, and explicitly flags that assumption as the thing to test. Distinct from
+    ARC-010 (which is the mature other-model this claim's output feeds, not itself a
+    developmental-discovery mechanism) and from MECH-274 (which aggregates ALREADY-DETECTED
+    other-agent attributions during sleep; this claim is the WAKING-phase, single-episode
+    detection step upstream of that aggregation).
+
+    ID NOTE: this claim was drafted as "MECH-503" and renumbered to MECH-504 at merge time --
+    MECH-503 was concurrently consumed by a sibling thought-intake in the same batch
+    (reusable-computational-motifs, control_plane.motif_selection_and_content_binding),
+    committed to claims.yaml minutes earlier in the same session.
+
+    DO NOT build in V3 -- substrate_conditional, same multi-agent/responsive-entity substrate
+    blocker as ARC-010/ARC-047 (SocialGridWorld, unimplemented, v5-gated). Do not queue a V3
+    experiment off this registration alone; a minimal single-agent-vs-one-scripted-responsive-
+    entity smoke environment MIGHT be a cheaper substrate check than full ARC-047, but that is
+    a follow-on scoping question, not decided here.
