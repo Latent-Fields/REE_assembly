@@ -1,0 +1,250 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-25T18:17:31Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "mech-266-rescore-circling-2d31ca-autopsy-861f-clustera",
+  "companion_md": "failure_autopsy_861f-mech180-cluster-a_2026-08-25.md",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "read_across_of": "failure_autopsy_861g-861h-mech180-cluster_2026-08-23",
+  "targets": [
+    {
+      "run_id": "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260823T210058Z_v3",
+      "duplicate_run_ids": [
+        "v3_exq_861f_inv050_mech180_h1_measurement_rng_isolation_20260824T023853Z_v3"
+      ],
+      "duplicate_run_note": "V3-EXQ-861f executed TWICE from one queue entry -- ree-cloud-4 (9.26h) and DLAPTOP-4.local (34.97h, started 20.1h into the still-running Mac execution). This is an infra defect (coordinator stale-claim reap under a 6h COORDINATOR_STALE_HOURS window vs a 35h single-experiment run), already chip-tracked at chip-20260824-exq861f-duplicate-run-stale-claim-reap (status open) -- NOT re-diagnosed here. The two manifests are treated as ONE informative leg, not two independent replicates: values agree to ~1e-7-1e-9 (floating-point/torch-build noise on the SAME substrate pin, not a fresh seed draw), so the second run is evidentially redundant for the H1/H3 discrimination, though its cross-machine-CLASS identity (see below) is itself informative for H3.",
+      "queue_id": "V3-EXQ-861f",
+      "claim_ids": ["INV-050", "MECH-180"],
+      "experiment_purpose": "diagnostic",
+      "fanout_qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+      "fanout_hypothesis": "H1",
+      "fanout_axis": "measurement",
+      "self_route_label": "third_drive_independent_seed_replication_confirmed",
+      "self_route_accepted": false,
+      "self_route_note": "Same class of combination-rule leftover the sibling cluster (861g/861h) already flagged: this label is the generic 861c-lineage 'seeds are disjoint replication' precondition-grid label and fires on ANY successfully-completed run in this replication family regardless of what the H1 discrimination itself found. The load-bearing readout is discrimination.verdict_label = h1_not_supported_collapse_survives_rng_isolation, not this label. Both runs' own R1/R2/R3 preconditions and criteria_non_degenerate are genuinely met (this part of the label is not wrong), so it is not a vacuous_pass -- but it must not be read as 'H1 confirmed' by anyone skimming interpretation.label alone.",
+      "failed_criterion": "n/a -- outcome PASS on its own precondition grid; the driver's DECISIVE comparison is a separate declared-null discrimination block, not the C1/C2 grid",
+      "leg_discrimination": {
+        "hypothesis_supported": false,
+        "verdict_label": "h1_not_supported_collapse_survives_rng_isolation",
+        "reseeded_factor": 0.9474699862903014,
+        "unreseeded_control_factor": 0.8844596840125855,
+        "control_reproduces_861e_collapse": true,
+        "reseeded_restores_high_grading": false,
+        "note": "Driver's own pre-registered declared null (docstring, 'DECLARED NULL' section): H1 SUPPORTED only if reseeded rises above 1.0 while unreseeded control stays below (reproducing 861e). Observed: BOTH cells sit below 1.0 in BOTH duplicate runs (reseeded 0.9475/0.9475; unreseeded 0.8845/0.8845). This is the driver's own explicitly-declared INFORMATIVE null, not an ambiguous or uninformative read -- the control criterion (control reproduces 861e) is met, so the leg has a valid baseline to isolate against."
+      },
+      "machine_delta_readout": {
+        "cloud_run_control_factor": 0.8844596840125855,
+        "mac_run_control_factor": 0.8844595741832282,
+        "recorded_861e_factor": 0.8844596840125855,
+        "cloud_vs_861e_abs_delta": 0.0,
+        "mac_vs_861e_abs_delta": 1.0982935727543719e-07,
+        "cloud_machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "mac_machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "note": "IMPORTANT CORRECTION to the manifest's own boilerplate: the 20260823T210058Z manifest's machine_delta_readout.note asserts 'Both runs report machine_class linux-x86_64-py3.10-torch2.12.0+cpu' -- that is FALSE for the accidental duplicate on DLAPTOP-4.local, which is darwin-arm64-py3.13-torch2.12.0 (confirmed directly from that manifest's own top-level machine_class field). The note was authored before the duplicate-run defect produced a second, differently-classed execution and was never updated. This does NOT weaken the discrimination -- if anything it strengthens it: the unreseeded control factor is stable to ~1.1e-7 across a genuine ARCHITECTURE+OS+torch-python-version boundary (linux x86_64 py3.10 vs darwin arm64 py3.13), not merely a different box of the same class. Flagged as a minor hygiene item for the driver's next revision, not a scientific finding of its own."
+      },
+      "contextmemory_write_lock_audit": {
+        "sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "severity": "corrupting",
+        "seed_271_locked_both_runs": true,
+        "note": "Seed 271 is write-address LOCKED (per_cycle_n_touched_slots mostly 1) in BOTH 861f runs, consistent with 861c/861e/861g. Per 861g's own note this defect is a CONSTANT across the compared conditions here (legacy argmin write path deliberately unchanged in 861f/861g to preserve single-variable isolation), so it cannot explain the H1-vs-H1-control difference within this leg. 861h already discharged it as not load-bearing for the MEL factor when unlocked ON THE CURRENT substrate. It remains open whether it was ALSO present, and load-bearing, on the historical f810969 pin at the time 861c ran -- see the Step 8-confirmed substrate_queue create below."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- diagnostic isolation leg; evidence_direction pinned non_contributory by construction; claim not fairly tested",
+        "biological_reference": "clear -- process-S / novelty-adaptive SWS+replay; lit present (same lineage as 861g/861h); no new lit-pull needed",
+        "prerequisites": "present -- R1 1.0, R2 2/3, R3 1.0 (both runs); pin verified (authority_spread_ratio marker present at 17befb8c)",
+        "implementation": "complete -- pin verified via structural + behavioural marker; reseed/no-reseed isolation correctly implemented per docstring",
+        "environment": "partial -- seed 271 write-locked (constant, does not confound H1); seed 7/883 rotate normally",
+        "measurement": "adequate for the H1 question -- in-run control bit-reproduces 861e's recorded cell; reseeded vs unreseeded isolated on one process/substrate per run",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, not chargeable to REE -- H1 isolation succeeded and is fully informative; the underlying C2 grid FAIL is the same 861e combination-rule leftover the sibling cluster already attributed to inherited grid mechanics, not to REE's organism-level competence"
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep-pressure regulation scaling SWS depth/duration with prior waking learning load (process-S analog), plus novelty-triggered hippocampal replay during SWS",
+        "dependencies": [
+          "graded waking novelty producing measurable prediction-error load",
+          "a stable homeostatic baseline against which load is compared",
+          "a producer that raises HIGH-arm MEL above the no-shift base"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-050": "standard",
+        "MECH-180": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-050": "unknown",
+        "MECH-180": "unknown"
+      },
+      "recommended_evidence_quality_note": "[2026-08-25 autopsy, V3-EXQ-861f H1 isolation, closing the inv050_mech180_861e_producer_vs_intervention_isolation portfolio]: diagnostic, non-voting. H1 NOT SUPPORTED per the driver's own declared null -- reseeded (0.9475) and unreseeded (0.8845) both sit below 1.0 in both duplicate runs (ree-cloud-4 and an accidental DLAPTOP-4.local re-run, chip-20260824-exq861f-duplicate-run-stale-claim-reap tracks the infra defect, not re-diagnosed here). The collapse survives measurement-phase RNG isolation. Combined with 861g (H3, confirmed by user 2026-08-25: old substrate f810969 retains HIGH grading at n=10 while current substrate 17befb8c collapses, and the machine confound that previously held H3 'alive' is now resolved -- 861f's own unreseeded control reproduces 861e's exact decisive-cell value across THREE independent machine identities including a genuine linux-x86_64/py3.10 vs darwin-arm64/py3.13 architecture+OS boundary, abs delta ~1e-7) and 861h (CONTROL, confirmed: ContextMemory write-address lock is not load-bearing for the MEL factor), the portfolio's answer to 'why did 861e's seed-271 HIGH-arm MEL collapse' is: a genuine SUBSTRATE change between f810969 and 17befb8c (11 ree_core commits), not measurement-phase RNG, not a machine/box difference, not the write-address lock. WHICH of the 11 commits is responsible is UNRESOLVED -- see the substrate_queue create below (candidate: 76cbf84 ContextMemory.write() single-slot-fixed-point repair, which raises the live possibility that f810969's >1.0 reading itself rode the pre-repair write-path bug and 17befb8c's 0.884 is the corrected, lower true coupling -- i.e. this may not be a regression at all). Claims status/confidence/v3_pending must not move on any of these three legs; all are diagnostic/non-voting. live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21 -- the confirmed-but-not-yet-applied failure_autopsy_861g-861h-mech180-cluster_2026-08-23 (GOV-APPLY-1 confirms this: both its INV-050 and MECH-180 per_claim rows are still unreflected in claims.yaml as of this artifact's generated_utc, and V3-EXQ-861g/861h are STILL listed in pending_review.md's FAIL table) should be applied in the SAME governance pass as this artifact, in order (861e -> 861g-861h-cluster -> this artifact), so the citation lands on the final, complete portfolio read rather than a superseded intermediate one.",
+      "per_claim_recommendation": {
+        "INV-050": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic H1 isolation closing the 861e portfolio; H1 eliminated, H3 confirmed via read-across, CONTROL already passed; do not move status/confidence/v3_pending); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21 (with the intervening 861g-861h-mech180-cluster_2026-08-23 citation also still unapplied per GOV-APPLY-1) -> stamp failure_autopsy_861f-mech180-cluster-a_2026-08-25 as the final citation for this portfolio",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-180": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "evidence_quality_note only (diagnostic H1 isolation closing the 861e portfolio; H1 eliminated, H3 confirmed via read-across, CONTROL already passed; v3_pending STAYS -- DV3 still descoped behind MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION, unaffected by this leg); live_status.evidence.from currently cites failure_autopsy_V3-EXQ-861e_2026-08-21 (with the intervening 861g-861h-mech180-cluster_2026-08-23 citation also still unapplied per GOV-APPLY-1) -> stamp failure_autopsy_861f-mech180-cluster-a_2026-08-25 as the final citation for this portfolio",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate/v3_pending"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mel-f810969-vs-17befb8c-collapse-bisection",
+        "title": "Bisect ree_core commits f810969..17befb8c to localize the cause of the seed-271 ARM_3_HIGH_ON MEL duration-factor collapse (1.007-1.215 on f810969 vs 0.884 on 17befb8c, n=10, R3-repaired calibration)",
+        "implementation_hint": "Reuse the 861f/861g/861h substrate-pin harness (experiments/_lib/substrate_pin.py) to run the SAME single decisive cell (seed 271, ARM_3_HIGH_ON, CALIB_DRAWS=10, legacy argmin write path, unreseeded) at each of the 11 intervening commits (or a binary search over them: git log --oneline f810969..17befb8c46f0b7352f74a6b6e3ee4fc9715878fc -- ree_core/) to find which commit flips mean_duration_factor across 1.0. Prioritise 76cbf84 ('e1: repair ContextMemory.write() deterministic single-slot fixed point') FIRST: it directly touches the same corrupting SD (contextmemory-write-path-addressing-degeneracy) already flagged in this lineage, and if it is the cause, the correct reading INVERTS -- f810969's >1.0 grading would itself be an artifact of the pre-repair write-path bug, and 17befb8c's 0.884 would be the CORRECTED (lower) true third-drive coupling at seed 271, not a regression. Secondary candidates: 1a4b6be (modulatory-bias-selection-authority AMEND, touches e3_selector action-selection upstream of ContextMemory writes) and 0911574 (E3 last_scores pre-arbitration staleness fix, could alter which candidate action is committed at each step). This is diagnostic/instrument-provenance work, not a behavioural claim test -- experiment_purpose should be 'diagnostic', claim_ids should stay [] or non-voting, matching 861f/861g/861h's own framing.",
+        "unblocks_claims": ["INV-050", "MECH-180"],
+        "not_a_duplicate_of": "SD-MEL-CONSUMER (consumer capability, validated) and SD-MEL-PRODUCER (producer test-bed) -- both already unblock these claims for the CAPABILITY question; this entry is a narrower, distinct diagnostic (which landed commit changed this specific numeric readout between two historical pins), not a duplicate build or amendment of either.",
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py",
+          "ree_core/predictors/e3_selector.py"
+        ],
+        "failure_record_entry": {
+          "run_id": null,
+          "experiment_type": "not yet authored -- bisection diagnostic across f810969..17befb8c",
+          "metric": "ARM_3_HIGH_ON seed 271 mean_duration_factor at CALIB_DRAWS=10, legacy argmin write path, unreseeded",
+          "target": "identify the single commit (or minimal commit set) in ree_core across f810969..17befb8c whose inclusion flips the factor from >1.0 to <1.0; explicitly test whether 76cbf84 (ContextMemory.write() repair) is that commit, which would invert which pin's reading is the historically-corrupted one",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-677_2026-06-14",
+          "failure_autopsy_V3-EXQ-718a_2026-07-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "recommended_epistemic_category is standard, not substrate_ceiling, so R1-R3 counts do not advance for either claim (unchanged from the 861g/861h cluster's own computation). The new substrate_queue create above is a diagnostic bisection of an already-diagnosed instrument-provenance question, not a lettered re-derive of INV-050/MECH-180 at the same granularity -- it is exempt from the brake on the same 'diagnostic discriminating WHY' grounds 861e/861f/861g/861h all cite."
+      },
+      "learning_extracted": [
+        "H1 ELIMINATED (user-confirmed 2026-08-25): the 861e seed-271 collapse survives measurement-phase RNG isolation in both a cloud run and an accidental cross-machine-class duplicate. It is not an intervention-isolation/RNG-displacement artifact.",
+        "H3 CONFIRMED (user-confirmed 2026-08-25): the collapse is a genuine substrate delta between f810969 and 17befb8c, not a machine/box effect -- three independent machine identities (two linux boxes of the SAME machine_class, plus one genuinely different machine_class, darwin-arm64/py3.13) all reproduce the current-substrate collapse to within ~1e-7, while the historical substrate has only ever been tried on one machine.",
+        "The manifest's own machine_delta_readout.note is factually wrong for the accidental Mac duplicate run (claims both runs share machine_class linux-x86_64-py3.10-torch2.12.0+cpu; the Mac run is darwin-arm64-py3.13-torch2.12.0). This makes the cross-machine-class replication MORE decisive than the driver's own prose realizes, not less -- flagged as a documentation hygiene item, not a scientific caveat.",
+        "WHICH of the 11 f810969..17befb8c ree_core commits causes the substrate delta is open. commit 76cbf84 ('e1: repair ContextMemory.write() deterministic single-slot fixed point') is a live candidate for INVERTING the naive reading: if the historical f810969 substrate's >1.0 grading rode a since-repaired write-path bug, 17befb8c's 0.884 is the corrected, lower true coupling, and there was never a regression -- there was a bug fix that also happened to change this readout.",
+        "Dead z_goal (writer_calls 0) remains lineage-wide across all four 861f/g/h manifests, exempted, non-gating -- scored DVs and MEL do not read z_goal.",
+        "GOV-APPLY-1 confirms failure_autopsy_861g-861h-mech180-cluster_2026-08-23's per_claim_recommendation is STILL UNAPPLIED as of this artifact (live_status.evidence.from for both INV-050 and MECH-180 still cites 861e, and V3-EXQ-861g/861h are still in pending_review.md's FAIL table) -- governance should apply that confirmed cluster autopsy and this one together, in sequence, in its next pass."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "One GOV-FANOUT-1 portfolio (H1 measurement, H3 algorithm/substrate, CONTROL representation), all three legs now landed. Shared inherited C2 1/3 grid FAIL on all three (861e combination-rule leftover); all three discriminations independently informative.",
+    "is_independent_bugs": false,
+    "structural_property": "The portfolio's question -- why did V3-EXQ-861e's seed-271 ARM_3_HIGH_ON MEL collapse below its own reference at CALIB_DRAWS=10 -- is now answered: a genuine substrate change between f810969 and 17befb8c, not measurement RNG (H1 eliminated), not a machine/box difference (H3's confound resolved by 861f's own cross-machine-class control), and not the known ContextMemory write-address lock (CONTROL passed on 861h). The unresolved residual is WHICH of 11 intervening commits, with a live possibility (76cbf84) that the direction of 'regression' is inverted -- the old substrate's reading may itself have been the corrupted one.",
+    "readings": [
+      "h1_eliminated_collapse_survives_rng_isolation",
+      "h3_confirmed_substrate_delta_machine_confound_resolved",
+      "control_passes_write_address_lock_not_load_bearing_for_mel",
+      "grid_c2_leftover_not_the_dv",
+      "commit_bisection_open_with_possible_inversion_candidate"
+    ]
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "mech180_targets": 11,
+    "mech180_alignment": "unclear=8, intact=2, strengthened=2, other=1 -- no target reads weakened",
+    "inv050_targets": 10,
+    "inv050_alignment": "unclear=8, intact=4 -- no target reads weakened",
+    "note": "No target in either claim's cluster reads weakened. Measurement/isolation debt (now largely resolved by this portfolio), not granularity debt."
+  },
+  "hypothesis_space_ledger_pending": {
+    "qid": "inv050_mech180_861e_producer_vs_intervention_isolation",
+    "growth_restriction_checked": true,
+    "growth_restriction": null,
+    "mode": "resolve_existing",
+    "write_live_registry": false,
+    "write_blocked_reason": "TASK_CLAIMS.json arbitration: hypothesis_space_registry.v1.json is owned by a concurrent active claim (failure-autopsy-cluster-c-3c01c6, V3-EXQ-948, claimed_at 2026-08-25T18:12:53Z, earlier than this session's 2026-08-25T18:16:53Z attempt). Not implemented here per CLAUDE.md arbitration rule (YOU ARE NOT THE OWNER). This block records the INTENDED write for whoever applies it next (this session once the rival claim closes, or /governance).",
+    "intended": {
+      "H-measurement-rng-confound": {
+        "resolution": {
+          "state": "eliminated",
+          "resolving_runs": ["V3-EXQ-861f"],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "self_route_label": "third_drive_independent_seed_replication_confirmed",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true,
+          "resolved_utc": "2026-08-24T02:38:53Z",
+          "basis": "Driver's own declared null: H1 NOT SUPPORTED because both the reseeded cell (0.9475) and the unreseeded control (0.8845) sit below 1.0, in both duplicate runs. Control criterion met (unreseeded control reproduces 861e's decisive-cell value to ~1e-7), so this is the driver's pre-registered INFORMATIVE null, not an uninformative/ambiguous read. User-confirmed 2026-08-25."
+        }
+      },
+      "H-substrate-machine-delta": {
+        "resolution": {
+          "state": "confirmed",
+          "resolving_runs": ["V3-EXQ-861g", "V3-EXQ-861f"],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": false,
+          "resolved_utc": "2026-08-25T18:17:31Z",
+          "basis": "861g (2026-08-23) established the substrate difference (f810969 n10 factor 1.007 vs 17befb8c 0.884) but left it 'alive' pending resolution of a machine confound (861g on ree-cloud-2 vs 861e on ree-worker-1). 861f's own in-run unreseeded control (2026-08-23/24) reproduces 861e's exact decisive-cell value (abs delta 0.0 and 1.1e-7) on THREE independent machine identities including a genuine cross-machine-CLASS boundary (linux-x86_64/py3.10 vs darwin-arm64/py3.13), resolving the machine confound: current-substrate readouts are machine-invariant to ~1e-7, so the divergence from f810969 is attributable to substrate, not machine. Note met_elimination_bar left false (per rule 4, only eliminated/split require the full bar; confirmed only requires control_passed) -- this is a confirm, not an elimination of a rival."
+        }
+      },
+      "CONTROL": "unchanged -- do not append as a fourth frozen hypothesis (861e/861g/861h/queue already forbade this); already resolved 861h CONTROL PASSES (write-address lock not load-bearing for MEL), no further action"
+    },
+    "decision_block_update_intended": {
+      "decidable": true,
+      "distance_phrase": "All 3 portfolio legs landed (H1=861f eliminated, H3=861g+861f confirmed, CONTROL=861h passed). qid answered: substrate delta between f810969 and 17befb8c, machine and RNG and write-lock all ruled out. Residual open question (WHICH commit, possible inversion via 76cbf84) is scoped as a new substrate_queue entry (mel-f810969-vs-17befb8c-collapse-bisection), not a live hypothesis on this qid.",
+      "observation_bottleneck": null
+    },
+    "applied_utc": null
+  },
+  "read_across_not_adjudicated": [
+    "861d / MECH-122 -- flag OFF on all four legs (861f/g/h); do not amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION from this cluster.",
+    "SD-017 occupancy -- INV-050 emergent_from; this cluster does not move SD-017.",
+    "V3-EXQ-943 -- ContextMemory write-address occupancy criterion; 861h's own driver already stated this cluster does not validate that SD.",
+    "V3-EXQ-910b / V3-EXQ-946 / V3-EXQ-948 -- other pending diagnostics on unrelated questions, being autopsied concurrently by sibling sessions (autopsy-946-serene-yalow, failure-autopsy-cluster-c-3c01c6) as of this artifact's generated_utc; not this cluster.",
+    "GFLAG-0002 -- remains unresolved; these legs are non-voting and do not touch it.",
+    "chip-20260824-exq861f-duplicate-run-stale-claim-reap (open) -- the infra fix for the duplicate execution itself; explicitly not re-diagnosed or duplicated by this autopsy.",
+    "The new substrate_queue entry (mel-f810969-vs-17befb8c-collapse-bisection) is diagnostic/instrument-provenance scoped -- it must not be read as reopening INV-050/MECH-180's status, confidence, or v3_pending, all of which stay unchanged on this cluster's own recommendation."
+  ],
+  "confirmed_utc": "2026-08-25T18:17:31Z",
+  "step8": {
+    "selected": "eliminate_h1_confirm_h3_create_substrate_queue_entry",
+    "recommended": "eliminate_h1_confirm_h3_no_substrate_queue_entry",
+    "note": "User adopted the recommended H1/H3 resolutions but chose to CREATE the substrate_queue bisection entry rather than record-only (the autopsy's own recommendation, given neither claim is currently blocked on it). Logged per CLAUDE.md's Recommendation-Agreement Ledger."
+  },
+  "step7b": {
+    "fire_count": 1,
+    "fires": [
+      {
+        "check": "C2",
+        "message": "SD-MEL-CONSUMER and SD-MEL-PRODUCER already unblock INV-050/MECH-180 and are not mentioned in the create recommendation.",
+        "disposition": "dismissed, reason recorded -- SD-MEL-CONSUMER/SD-MEL-PRODUCER are about the third-drive MEL producer/consumer CAPABILITY (already validated/built, per their own titles); mel-f810969-vs-17befb8c-collapse-bisection is a narrower, distinct diagnostic question -- WHICH of 11 already-landed commits changed a specific numeric readout (seed 271 ARM_3_HIGH_ON duration_factor) between two historical pins. It does not build or amend producer/consumer capability and does not duplicate either entry's scope. Cross-referenced explicitly in the new entry's own note field for a future reader (mirrors how 861g's autopsy named SD-MEL-CONSUMER/PRODUCER defensively to avoid a create-collision)."
+      }
+    ],
+    "note": "autopsy_pre_routing_checks.py run against the finalized draft; 1 fire (C2), dismissed with reason above. C5 inapplicable (prose-keyed, checked before the companion .md existed)."
+  },
+  "step7c": {
+    "verdict": "CONFIRMED",
+    "self_administered_note": "Adversarial pass performed inline given the depth of cross-checking already done (both manifests diffed byte-for-byte, machine/machine_class fields read directly rather than trusted from prose, git log run independently to enumerate the 11 candidate commits, GOV-APPLY-1 run to verify the unapplied-citation claim rather than assumed). Two candidate objections were raised and addressed rather than suppressed: (1) the duplicate-run manifests could inflate an apparent 'replication' -- addressed by treating them as ONE leg, not independent evidence, and by deferring the infra question entirely to its existing chip; (2) the cross-machine-class invariance argument could overstate confidence given [memory] reference_cross_machine_class_contract_divergence documents real torch.multinomial divergence across machine classes -- addressed by NOT claiming this refutes that memory (it is an N=1 comparison for one specific downstream statistic, mean_duration_factor, which may not exercise the divergent codepath, or may average over enough draws to wash it out) and by keeping the H3 resolution as 'confirmed' rather than 'certain', with the residual commit-bisection question left explicitly open rather than treated as settled.",
+    "contests": []
+  }
+}
