@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reusable_computational_motifs",
+  "entry_id": "2026-08-25_sd_101_cross_domain_llm_primitives_lippl2025",
+  "timestamp_utc": "2026-08-25T23:03:08Z",
+  "claim_ids_tested": ["SD-101"],
+  "source": {
+    "title": "Algorithmic Primitives and Compositional Geometry of Reasoning in Language Models",
+    "authors": ["Samuel Lippl", "Thomas McGee", "Kimberly A Lopez", "Ziwen Pan", "Pierce Zhang", "Salma Ziadi", "Oliver Eberle", "Ida Momennejad"],
+    "year": 2025,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2510.15987",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2510.15987"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Included specifically to answer this pull's instruction to check whether reusable-computational-motif findings are a convergent pattern across independent lines of work, not a single-paper result. This paper finds cross-task and cross-model reusable 'algorithmic primitive' vectors in large language model reasoning traces (Traveling Salesperson, 3SAT, AIME math, graph navigation), which is the same qualitative phenomenon (SD-101's role/content separability) surfacing in a THIRD, structurally unrelated substrate (transformer-based LLM latent reasoning) beyond the two already covered by the three named papers (rodent/primate cortex, vanilla RNNs). Confidence held low-moderate: unreviewed preprint, and the domain (symbolic multi-step reasoning in LLMs) is a much larger transfer-risk jump to REE's proposed embodied control-plane binding mechanism than any other entry in this pull.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Unreviewed arXiv preprint (posted 2025-10-23 per its arXiv ID), no peer review or independent replication identified in this pull.",
+    "The 'primitives' are derived via function-vector methods from clustering internal activations post hoc, on four abstract symbolic-reasoning benchmarks (TSP, 3SAT, AIME, graph navigation) -- a domain with essentially no structural resemblance to REE's proposed control-plane role/content binding for embodied cognitive operations (maintain, compare, accumulate, retrieve, etc. over agent state), so any transfer of this finding to REE is a very loose analogy at the level of 'reusable structure exists in transformer latents,' not a claim about the same mechanism."
+  ],
+  "tags": ["sd-101", "cross_domain", "llm_reasoning", "algorithmic_primitives", "function_vectors", "transformer", "compositional_geometry", "convergent_evidence"],
+  "mapping": {
+    "source_claim_statement": "Reasoning in large language models (evaluated on Traveling Salesperson Problem, 3SAT, AIME math competition problems, and graph navigation, across Phi-4, Phi-4-Reasoning, and Llama-3-8B) is supported by a compositional geometry of 'algorithmic primitives' -- reusable vectors, derived by clustering internal activations and applying function-vector methods, that can be combined via addition, subtraction, and scalar operations and transfer across both tasks and models; reasoning-finetuning (comparing Phi-4 to Phi-4-Reasoning) strengthens systematic reuse of specific primitives (verification, path-generation), and injecting a primitive vector into the base model induces behavior characteristic of the fine-tuned model.",
+    "ree_translation": "This is the weakest-mapped but most independently convergent entry in the pull: it is evidence for SD-101's general architectural thesis -- that reusable computational structure, separable from the specific content or task it is currently applied to, is a recurring organizational principle -- surfacing in a domain (transformer latent reasoning) that shares no biological or architectural lineage with the rodent cortex, primate cortex, or vanilla-RNN substrates the other four entries examine. That independence is exactly what the source thought's own framing (a convergent pattern across multiple papers, not a single result) would predict if the underlying principle is real and general rather than an artifact of one system class. It does not speak to MECH-503's specific mechanism (a typed binding step inserted into a coalition-instantiation sequence) at all -- there is no coalition/topology analogue in this paper's domain.",
+    "mapping_caveat": "The transfer from 'algorithmic primitive vectors in transformer reasoning traces' to 'reusable computational role in REE's embodied cognitive control plane' is a large one: different substrate (transformer attention/MLP layers vs. a proposed typed control-plane mechanism over agent state), different task class (abstract symbolic reasoning vs. embodied multi-modal cognition), and a different sense of 'reuse' (linear combination of activation-space vectors vs. dynamic recruitment of a coalition with bound content). This entry should be read as weak convergent-pattern evidence for SD-101's general thesis only, not as evidence bearing on MECH-503's specific mechanism or on any REE implementation choice.",
+    "source_context": "Purely computational: internal activation analysis of three LLMs (Phi-4, Phi-4-Reasoning, Llama-3-8B) across four symbolic reasoning benchmarks, using function-vector extraction and activation-injection (causal steering) methods. No biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.3,
+    "transfer_risk": 0.75,
+    "notes": "source_quality moderate: methodologically careful (cross-task, cross-model validation, and a genuine causal steering test showing injected primitives induce fine-tuned-model-like behavior) but unreviewed and with modest citation traction so far (6 citations at time of pull). mapping_fidelity low: the domain match to REE's embodied control-plane proposal is weak. transfer_risk high, reflecting both the domain gap and the preprint status. Included despite the low individual confidence because its VALUE in this pull is as an independence check on the source thought's convergence claim, not as a strong individual evidentiary anchor -- see the review's synthesis note."
+  }
+}

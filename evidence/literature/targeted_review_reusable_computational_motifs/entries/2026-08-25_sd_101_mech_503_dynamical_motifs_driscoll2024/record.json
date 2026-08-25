@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reusable_computational_motifs",
+  "entry_id": "2026-08-25_sd_101_mech_503_dynamical_motifs_driscoll2024",
+  "timestamp_utc": "2026-08-25T23:03:08Z",
+  "claim_ids_tested": ["SD-101", "MECH-503"],
+  "source": {
+    "title": "Flexible multitask computation in recurrent networks utilizes shared dynamical motifs",
+    "authors": ["Laura N Driscoll", "Krishna V Shenoy", "David Sussillo"],
+    "year": 2024,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-024-01668-6",
+    "pmid": "38982201",
+    "pmc": "PMC11239504",
+    "volume": "27",
+    "issue": "7",
+    "pages": "1349-1363",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11239504/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Purely computational (artificial recurrent networks trained on ~20 related tasks), which removes biological-transfer risk but also means it speaks only to what is DYNAMICALLY POSSIBLE and learnable, not what the brain (or REE's eventual substrate) actually does. Confidence set relatively high within that scope because the paper directly demonstrates all three components MECH-503 needs to be plausible: (1) reusable dynamical motifs (attractors, decision boundaries, rotations) recur across tasks, (2) lesioning the units implementing a motif produces a computation-specific (not global) deficit, and (3) motifs are recombined/reconfigured to support fast transfer learning on tasks not seen in the original training set -- the closest available proxy for MECH-503's Test C (recombination on a genuinely novel task).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reused motifs are discovered post hoc via dynamical-systems analysis of a network that was NOT explicitly architected with a separate role-selection/content-binding mechanism -- the network learns to share dynamical structure as an emergent consequence of multi-task training, not because an explicit binding layer was built in. This means the paper demonstrates the PHENOMENON MECH-503 wants to exploit but does not test MECH-503's SPECIFIC mechanism (an explicit typed binding step distinct from coalition/topology instantiation) against an alternative architecture lacking it.",
+    "Motif discovery requires restricting unit activation functions to be non-negative for the clustering analysis to cleanly recover discrete motif-bearing clusters -- an analysis-enabling constraint on the model, not a claim about biological unit properties, and a caveat on how cleanly 'a motif = a cluster of units' generalizes outside this specific network class."
+  ],
+  "tags": ["sd-101", "mech-503", "dynamical_motif", "recurrent_neural_network", "lesion_study", "transfer_learning", "compositional_computation"],
+  "mapping": {
+    "source_claim_statement": "In artificial recurrent neural networks trained on ~20 related tasks, dynamical-systems analysis reveals recurring patterns of neural activity ('dynamical motifs' -- attractors, decision boundaries, rotations) that implement specific computations and are reused across multiple tasks (e.g. the same ring attractor is repurposed whenever a task requires memory of a continuous circular variable); these motifs are implemented by identifiable clusters of units, cluster lesions cause computation-specific performance deficits, and motifs are reconfigured to support fast transfer learning to new tasks after an initial learning phase.",
+    "ree_translation": "This is the clearest evidence in the pull that 'same computational operation, different content, reused across contexts' is not merely a biological curiosity but a general property of systems trained to be multi-task competent -- directly supporting SD-101's claim that role/content separability should be architecturally representable rather than assumed away. The cluster-lesion result is the strongest available analogue to MECH-503's primary falsifier (Test D, coalition x binding factorial): disrupting a motif-bearing cluster produces a deficit specific to the computation that motif implements, which is the qualitative signature MECH-503 predicts for a 'wrong binding, right coalition' failure mode (the participating units/subsystems are still engaged, but the operation they perform on the bound content is disrupted). The transfer-learning result (motifs reconfigured for rapid adaptation to new tasks) is a proxy for MECH-503's Test C (recombination of already-available operations on a novel task).",
+    "mapping_caveat": "The network in this paper has no explicit architectural separation between 'select a motif' and 'bind content to it' -- both are emergent properties of a single trained recurrent network, discovered after the fact via dynamical-systems analysis. This is evidence that the PHENOMENON SD-101/MECH-503 want to represent architecturally is learnable and useful, not evidence that an EXPLICIT typed binding layer (as MECH-503 proposes inserting into MECH-481's sequence) is necessary to obtain it, versus emerging implicitly from sufficiently rich multi-task training pressure -- which is close to the alternative hypothesis SD-101's own falsifier names (that REE's existing fixed-subsystem coalition machinery might already suffice without an explicit binding layer).",
+    "source_context": "Purely in-silico: artificial recurrent neural networks (vanilla RNNs with unit activation constrained non-negative for the clustering analysis) trained end-to-end on a suite of ~20 related cognitive tasks (extending Yang et al. 2019's task set), analyzed via fixed-point-finding and dynamical-systems methods. No animal or human subjects."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "High-quality, well-cited (76 citations per Semantic Scholar as of this pull) computational work from an established group (Sussillo, Shenoy) with a rigorous dynamical-systems methodology and a direct causal (lesion) test, which is a stronger design than purely correlational analyses of trained-network activity. mapping_fidelity held at 0.7 rather than higher because the paper demonstrates the phenomenon emerging WITHOUT an explicit binding mechanism, which is directly relevant to but does not confirm MECH-503's specific proposed mechanism (an explicit binding step). transfer_risk lower than the biological entries in this pull since there is no species-to-REE transfer question -- the open question is architecture-to-architecture (implicit emergent reuse vs. explicit typed binding), not biology-to-silicon."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-23T06:11:34.574225Z`
+Generated: `2026-08-25T23:08:46.756668Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -384,6 +384,7 @@ Generated: `2026-08-23T06:11:34.574225Z`
 | `targeted_review_relief_completion_mechanism` | [`2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/record.json) | 8 | [`summary`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/summary.md) |
 | `targeted_review_rem_precision_recalibration_timing` | [`2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016`](targeted_review_rem_precision_recalibration_timing/entries/2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016/record.json) | 7 | [`summary`](targeted_review_rem_precision_recalibration_timing/entries/2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016/summary.md) |
 | `targeted_review_replay_prioritization_mech_319` | [`2026-06-19_mech_443_reward_preplay_olafsdottir2015`](targeted_review_replay_prioritization_mech_319/entries/2026-06-19_mech_443_reward_preplay_olafsdottir2015/record.json) | 5 | [`summary`](targeted_review_replay_prioritization_mech_319/entries/2026-06-19_mech_443_reward_preplay_olafsdottir2015/summary.md) |
+| `targeted_review_reusable_computational_motifs` | [`2026-08-25_sd_101_mech_503_reusable_subspaces_osako2026`](targeted_review_reusable_computational_motifs/entries/2026-08-25_sd_101_mech_503_reusable_subspaces_osako2026/record.json) | 5 | [`summary`](targeted_review_reusable_computational_motifs/entries/2026-08-25_sd_101_mech_503_reusable_subspaces_osako2026/summary.md) |
 | `targeted_review_rl_diversity_monostrategy_curriculum` | [`2026-05-16_rl_diversity_paired_dennis2020`](targeted_review_rl_diversity_monostrategy_curriculum/entries/2026-05-16_rl_diversity_paired_dennis2020/record.json) | 6 | [`summary`](targeted_review_rl_diversity_monostrategy_curriculum/entries/2026-05-16_rl_diversity_paired_dennis2020/summary.md) |
 | `targeted_review_rule_apprehension_vocabulary_mapping` | [`2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986`](targeted_review_rule_apprehension_vocabulary_mapping/entries/2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986/record.json) | 12 | [`summary`](targeted_review_rule_apprehension_vocabulary_mapping/entries/2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986/summary.md) |
 | `targeted_review_rule_level_credit_assignment` | [`2026-06-04_arc_063_frontopolar_reward_trend_kovach2012`](targeted_review_rule_level_credit_assignment/entries/2026-06-04_arc_063_frontopolar_reward_trend_kovach2012/record.json) | 3 | [`summary`](targeted_review_rule_level_credit_assignment/entries/2026-06-04_arc_063_frontopolar_reward_trend_kovach2012/summary.md) |

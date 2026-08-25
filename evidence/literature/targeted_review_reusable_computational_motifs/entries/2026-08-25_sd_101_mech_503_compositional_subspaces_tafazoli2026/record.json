@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reusable_computational_motifs",
+  "entry_id": "2026-08-25_sd_101_mech_503_compositional_subspaces_tafazoli2026",
+  "timestamp_utc": "2026-08-25T23:03:08Z",
+  "claim_ids_tested": ["SD-101", "MECH-503"],
+  "source": {
+    "title": "Building compositional tasks with shared neural subspaces",
+    "authors": ["Sina Tafazoli", "Flora M Bouchacourt", "Adel Ardalan", "Nikola T Markov", "Motoaki Uchimura", "Marcelo G Mattar", "Nathaniel D Daw", "Timothy J Buschman"],
+    "year": 2025,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-025-09805-2",
+    "pmid": "41299181",
+    "pmc": "PMC12872450",
+    "volume": "650",
+    "issue": "8100",
+    "pages": "164-172",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12872450/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct primate neurophysiology (monkeys switching between three compositionally related tasks) with a design purpose-built to test compositional reuse of neural subspaces, verified via the full verbatim abstract from Princeton's institutional repository. Confidence set moderately high because the finding directly supports SD-101's coalition/binding distinction at the representational level (shared sensory and motor subspaces, task-specifically engaged) and adds a mechanism the source three papers together only partially cover: an explicit account of how the animal SELECTS which shared subspace to engage (iteratively updating an internal belief about the current task), which maps onto MECH-503's proposed 'select reusable motif' step more directly than either other paper. Held below 0.8 because -- based on available abstract/secondary-source text -- the paper does not report a direct causal (lesion/microstimulation) test of subspace-selectivity, and the three tasks were 'compositionally related' by design rather than testing recombination onto a genuinely novel, untrained task (MECH-503's stronger Test C).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The three tasks monkeys switch between were explicitly designed by the experimenters to be compositionally related (sharing sensory and motor subspaces by construction), which is well-suited to demonstrating that shared subspaces CAN be reused across related tasks but does not test the harder claim MECH-503's Test C requires -- rapid transfer to a task that was never trained on at all, recombining motifs in a genuinely novel configuration.",
+    "No causal perturbation (lesion, microstimulation, or optogenetic) evidence was identified in the available abstract/secondary sources confirming that disrupting a shared subspace produces the task-specific behavioral deficit the correlational subspace-engagement finding would predict; the evidence assembled here is representational/correlational (population geometry, engagement patterns tied to belief updating), not causal."
+  ],
+  "tags": ["sd-101", "mech-503", "shared_subspace", "compositional_task", "belief_updating", "primate_electrophysiology", "sensory_motor_transformation"],
+  "mapping": {
+    "source_claim_statement": "Monkeys trained to switch between three compositionally related tasks show that task-relevant information about stimulus features and motor actions is represented in subspaces of neural activity SHARED across tasks; when performing a given task, neural representations in the relevant shared sensory subspace are transformed into the relevant shared motor subspace, and monkeys adapt to task changes by iteratively updating an internal belief about the current task and then, based on that belief, flexibly engaging the shared sensory and motor subspaces relevant to it.",
+    "ree_translation": "This paper most directly evidences the SELECTION half of MECH-503's proposed sequence (select reusable motif -> bind content), which the other two papers in this pull address less directly: the monkey's 'iteratively updating an internal belief about the current task, then engaging the relevant shared subspaces based on that belief' is a biological existence proof for something close to MECH-481's typed-demand classification step feeding into a role-selection mechanism, prior to content (here, sensory/motor information) being routed into the selected shared representational structure. The sensory-subspace-to-motor-subspace transformation is also a concrete instance of 'binding' in the sense MECH-503 uses it -- task-relevant content is routed through a task-appropriate transformation rather than every task building its own dedicated sensorimotor mapping from scratch.",
+    "mapping_caveat": "The three tasks were constructed by the experimenters to share structure (compositionally related by design), so the paper demonstrates that shared-subspace reuse CAN happen across related tasks, not that it happens for arbitrary, unrelated tasks or that a genuinely novel task recombines existing subspaces without new learning -- the latter is closer to what MECH-503's architectural claim (a general-purpose binding layer usable for ANY typed demand) would need. The 'belief updating' language describing task-selection is the authors' own interpretive framework (an implicit Bayesian task-inference process), not a claim about how REE's control plane should implement demand classification -- REE's MECH-481 already has its own typed-demand classification mechanism, and this paper's belief-updating account is offered as biological corroboration that SOME form of task-context inference precedes subspace engagement, not as a specific algorithm to adopt.",
+    "source_context": "Non-human primate (monkey, exact N not confirmed from available abstract text) electrophysiology during three compositionally related tasks requiring switching between shared sensory and motor representational subspaces; population-level neural recording with representational-geometry analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Nature-published primate electrophysiology from an established compositional-cognition group (Buschman, Daw), with a task design purpose-built to test the shared-subspace hypothesis rather than discovering it incidentally -- a real strength for mapping fidelity. Held below source_quality 0.9 because full methodological detail (sample size, statistical tests) could not be independently confirmed past the abstract; the biorxiv preprint full text was rate-limited across two attempts during this pull. transfer_risk moderate: primate sensorimotor task-switching to REE's proposed typed control-plane binding mechanism is again a functional-analogy transfer, and the 'compositionally related by design' task set is a real limitation on generalizing to arbitrary novel-task recombination."
+  }
+}

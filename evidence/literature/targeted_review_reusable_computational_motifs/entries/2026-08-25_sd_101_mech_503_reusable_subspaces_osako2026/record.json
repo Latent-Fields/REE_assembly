@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reusable_computational_motifs",
+  "entry_id": "2026-08-25_sd_101_mech_503_reusable_subspaces_osako2026",
+  "timestamp_utc": "2026-08-25T23:03:08Z",
+  "claim_ids_tested": ["SD-101", "MECH-503"],
+  "source": {
+    "title": "Reusable modular architecture enables flexible cognitive operations in the mouse brain and artificial recurrent networks",
+    "authors": ["Yuma Osako", "Greggory R Heller", "Sofie Ährlund-Richter", "Timothy J Buschman", "Mriganka Sur"],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02410-0",
+    "pmid": "42608572",
+    "pmc": "PMC12458543",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12458543/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The paper's own abstract directly states the finding the source thought cites: mice reuse specialized neuronal subspaces (prefrontal, parietal) across task phases carrying different bound content, and silencing specific clusters in RNNs constrained to the recorded neural data disrupted specific computations. Verified independently via Semantic Scholar's indexed abstract (not just the source thought's paraphrase) -- the abstract text matches the thought's characterization closely, including the RNN lesion result. Held below 0.75 because the causal claim in mice themselves (as opposed to the RNN model fit to the data) is not yet tested: three independent secondary-source summaries (AZoLifeSciences, MedicalXpress, TechExplorist) each state that optogenetic/inhibition perturbation of the live circuit is explicitly future work, not a result in this paper -- so the strongest causal evidence for 'reusable module' status is currently confined to the data-constrained model, not the animal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The causal (silencing) demonstration that a subspace's disruption produces a computation-specific deficit is performed in an artificial RNN constrained to fit the recorded neural data, not via direct perturbation of the mouse circuit itself -- live-animal optogenetic/inhibition testing of the same clusters is explicitly stated (in secondary press coverage of the paper) as planned future work, not a result reported here.",
+    "Only two functionally distinct subspaces (stimulus-processing, memory-maintenance) and two regions (mPFC, PPC) are characterized in one task (delayed match-to-sample with delayed report); the paper does not test whether a subspace generalizes to a THIRD, structurally different task or content type, which is the stronger claim SD-101/MECH-503 would need for full generality."
+  ],
+  "tags": ["sd-101", "mech-503", "reusable_subspace", "mixed_selectivity", "prefrontal_cortex", "posterior_parietal_cortex", "rnn_lesion", "data_constrained_rnn"],
+  "mapping": {
+    "source_claim_statement": "Mice performing a delayed match-to-sample with delayed report task reuse neuronal subspaces specialized for stimulus processing and memory maintenance to represent, respectively, new stimulus inputs and different types of memories over the course of a trial; each subspace is supported by a distinct cluster of neurons in prefrontal and posterior parietal cortex, and silencing specific clusters in artificial recurrent networks constrained to the recorded neural data selectively disrupts the corresponding computation.",
+    "ree_translation": "This is the most direct empirical anchor available for SD-101's central architectural claim: the SAME neural population (a fixed cluster of PFC neurons) performs the SAME computation (hold information across a delay) on DIFFERENT content (first the tone identity, then the action plan) at different points within a single trial -- exactly the 'reusable computational role with dynamically bound content' distinction SD-101 asks REE's control plane to be able to represent, and exactly the kind of within-trial re-binding MECH-503 proposes inserting a role-selection + content-binding step to support. The RNN lesion result (silencing a cluster disrupts only the computation it implements, leaving other computations intact) is a weak analogue of MECH-503's coalition x binding factorial (Test D): it shows a computation-specific deficit from disrupting a motif-bearing unit cluster, though it does not itself cross content-binding errors against coalition/topology errors as MECH-503's operative falsifier requires.",
+    "mapping_caveat": "This is animal/RNN evidence for the EXISTENCE of role-reuse-with-rebinding as a biological and computational phenomenon, not evidence that REE's specific proposed architecture (an explicit binding step inserted between demand classification and coalition instantiation, per MECH-481's sequence) is the right way to implement it -- the paper says nothing about how such reuse should be represented in a symbolic/typed control-plane output, only that it is what the underlying dynamics do. The rodent PFC/PPC substrate and REE's proposed control-plane binding layer are not homologous structures; this is a functional-analogy transfer, not a structural one.",
+    "source_context": "Mouse (Mus musculus) electrophysiology (large-scale recording, exact N not confirmed from available abstract/summary text) during an auditory delayed match-to-sample with delayed report task, cross-validated against artificial recurrent neural networks trained to reproduce the recorded population dynamics (data-constrained RNNs)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.45,
+    "notes": "High-profile venue (Nature Neuroscience, 2026) with a combined empirical + data-constrained-model design, which is a stronger methodology than either alone. source_quality held below 0.85 because sample size and full statistical detail could not be independently confirmed (PMC full text was CAPTCHA-gated; relied on the Semantic-Scholar-indexed abstract plus three independent secondary press summaries, which agree with each other and with the abstract on all substantive points). transfer_risk moderate-high: rodent PFC/PPC subspace dynamics to a proposed symbolic control-plane binding mechanism is a functional-analogy transfer, and the live-circuit causal test (vs. the RNN-model causal test) is not yet done."
+  }
+}

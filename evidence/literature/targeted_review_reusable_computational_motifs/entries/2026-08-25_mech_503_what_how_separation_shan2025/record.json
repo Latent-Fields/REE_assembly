@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_reusable_computational_motifs",
+  "entry_id": "2026-08-25_mech_503_what_how_separation_shan2025",
+  "timestamp_utc": "2026-08-25T23:03:08Z",
+  "claim_ids_tested": ["SD-101", "MECH-503"],
+  "source": {
+    "title": "Separating the what and how of compositional computation to enable reuse and continual learning",
+    "authors": ["Haozhe Shan", "Sun Minni", "Lea Duncker"],
+    "year": 2025,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2510.20709",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2510.20709"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Not one of the three papers the source thought cited -- surfaced via the broader search this pull was instructed to run for the convergent 'shared dynamical motifs / task-independent computational primitives' pattern. Directly relevant because its two-system architecture (a 'what' system that identifies which computation is needed, a 'how' system, a low-rank RNN, that executes it) is structurally the closest thing found in this search to MECH-503's proposed role-selection-then-binding split, evaluated with a real functional benefit (continual learning without catastrophic forgetting, forward/backward transfer, rapid generalization to novel tasks). Confidence held at 0.55, well below the three named papers, because it is an unreviewed arXiv preprint (posted 2025-10-23) with no biological validation at all -- pure computational demonstration that the split is USEFUL when engineered in, not evidence that brains (or REE's eventual substrate) are organized this way.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Preprint status: no peer review, no independent replication found in this pull, and no biological grounding whatsoever -- this is engineering evidence that a what/how split is a good design choice for continual learning, not evidence that it is how any biological or REE-relevant system actually solves the problem.",
+    "The paper's 'what' system explicitly builds a vocabulary of task components via unsupervised structure discovery across many training episodes; it is not shown to perform MECH-503's harder single-shot or few-shot role selection under a typed demand classification, so the transfer to MECH-481's already-typed ControlDemandType setting is not directly tested."
+  ],
+  "tags": ["mech-503", "sd-101", "compositional_computation", "continual_learning", "low_rank_rnn", "transfer_learning", "what_how_separation"],
+  "mapping": {
+    "source_claim_statement": "A two-system architecture -- a 'what' system using a probabilistic generative model to infer shared task structure and incrementally build a vocabulary of task components, and a 'how' system implementing an RNN with low-rank components composed based on the inferred context -- enables continual learning without catastrophic forgetting, demonstrates forward and backward transfer between tasks, and achieves rapid generalization to novel tasks by recomposing previously learned low-rank components.",
+    "ree_translation": "This is the clearest computational precedent found for MECH-503's specific proposed BIFURCATION (select which reusable motif is needed, then separately bind/compose content into it), as opposed to the other three entries in this pull, which mostly demonstrate that reuse HAPPENS rather than that separating selection from execution as two distinct systems is itself advantageous. The explicit engineering benefit reported here -- avoiding catastrophic forgetting and enabling forward/backward transfer -- is a concrete, testable prediction of the same shape as SD-101's own falsifier: if role/content separability does no useful work, a monolithic (non-separated) architecture should do just as well, which is not what this paper finds for its own architecture class.",
+    "mapping_caveat": "This is a from-scratch engineered continual-learning architecture, not a model constrained to reproduce biological data (unlike Osako et al. or Tafazoli et al. in this pull) and not a post-hoc analysis of an existing trained network (unlike Driscoll/Shenoy/Sussillo). It shows that BUILDING IN an explicit what/how split produces good continual-learning properties -- it does not show that biological brains, or REE's eventual substrate under MECH-481's existing typed-demand machinery, need or benefit from the same split, only that the split is a coherent and workable design pattern when you choose to implement it. As an unreviewed preprint, this entry should be weighted as suggestive convergent design evidence, not as confirmatory evidence at the same tier as the three peer-reviewed papers in this pull.",
+    "source_context": "Purely computational/simulation: a novel two-system (generative 'what' model + low-rank RNN 'how' model) architecture evaluated on continual-learning benchmarks (forward/backward transfer, catastrophic-forgetting resistance, novel-task generalization). No biological data of any kind."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.55,
+    "notes": "source_quality held low because this is an unreviewed preprint with no independent replication identified; mapping_fidelity is high because the architecture is structurally the closest match in this search to MECH-503's own proposed bifurcation (which is itself part of why it was worth including despite the preprint status). transfer_risk moderate-high: engineered ML architecture to REE's proposed control-plane mechanism is a design-pattern transfer, not a biological-grounding transfer, and should not be read as evidence the brain does this."
+  }
+}
