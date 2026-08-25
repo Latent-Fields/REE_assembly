@@ -883,3 +883,106 @@ NOT used. Landed via the documented throwaway-worktree cherry-pick with the bot 
 then converged with `ref_convergence.py --repo REE_Working`, which proved the local commit
 patch-identical upstream (route A) and moved the ref. Final state: `master...origin/master`, no
 divergence -- a clean end-to-end exercise of the same machinery this programme spent the day on.
+
+---
+
+# STEP 4 EXECUTED -- CLAUDE.md `Worktree / Chipped Sessions` split (`REE_Working` 940b5586, 2026-08-25)
+
+User-authorised 2026-08-25 (session `serene-yalow-3dd4b0`), picking up the next section from the
+concentration table above that steps 1-3 had not yet touched: `Worktree / Chipped Sessions`
+(11,056 B / 3,935 tok / 73% arch in the original measurement) -- ranked 5th, below the four
+sections steps 1-3 already executed.
+
+    CLAUDE.md   195,981 -> 195,335 B    ~69,744 -> ~69,514 tok    -230 tok  (`REE_Working` 940b5586)
+    + pointer batch   195,335 -> 195,199 B    ~69,514 -> ~69,466 tok    -48 tok  (`REE_Working` 486e46fd)
+
+**RUNNING TOTAL SINCE 2026-08-23: 244,947 -> 195,199 B, ~87,170 -> ~69,466 tok = 17,704 tokens off
+EVERY session in this repo (20.3% of the original file).** Archaeology: 61 entries.
+
+## Pointer-batching correction (user-suggested, same session)
+
+Step 3's own notes said this and it was never applied: "batch the pointers -- one `Background:`
+line per numbered step covering several A-nn entries... recovering ~500 B." A-60 and A-61 sit
+under the same numbered sub-item (5b) and are the same hazard class (editing the wrong copy of a
+file); merging their two 3-line pointers into one saved a further 136 B (~48 tok).
+
+**The merge only pays off if the combined line is TERSER than the sum of its parts, not merely
+concatenated.** First attempt added a connecting sentence ("both examples of this same wrong-copy
+hazard") explaining WHY the two were grouped -- net saving was 43 B, nearly the whole gain eaten
+by the explanation. Removing that sentence and just concatenating the two titles and link lists
+recovered the rest. **Do not editorialise a batched pointer; the grouping under one numbered item
+is already the justification, and a reader who wants the "why" can read the entries themselves.**
+
+**Not extended to A-59.** It sits under a different numbered sub-item (5a) covering a different
+hazard (mis-homed chips, not wrong-file-copy), so batching it with A-60/A-61 would misrepresent
+which rule each entry backs -- the existing per-numbered-item boundary from step 3 still holds as
+the right grouping unit, not "any two adjacent entries."
+
+**Left as a candidate, not executed:** auditing the existing 58 pre-step-4 entries for other
+same-numbered-item pointer pairs that could still be batched retroactively. Not attempted this
+session -- scope was this section's own split, and a retroactive audit across three earlier
+sections is separable work with its own verification burden.
+
+3 blocks moved (A-59..A-61): the 2026-07-30 mis-homed-chip incident (`focused-ishizaka-c3cba9`),
+the `$CLAUDE_PROJECT_DIR` discriminator bug and its 2026-08 fix, and the 2026-08-08 dual-insights
+main-checkout-edit near-miss.
+
+## Confirms the step-2 structural finding, on a new section
+
+**Yield (~230 tok) is well below the block-move sections (~5,100-5,500 tok) and even below step
+3's sentence-level pass (~1,107 tok for 4 trims).** This section's own concentration-table entry
+(73% arch) undersells how INTERLEAVED that archaeology is: 2 of the 3 moved blocks sat inside
+numbered sub-items (5a, 5b) immediately followed by operative "what to do next" text, so each
+needed a hand-written rescued sentence in place of the removed paragraph rather than a bare
+pointer -- the same shape step 2 identified in the numbered-protocol-steps block ("block-level
+splitting works where archaeology accretes as standalone paragraphs, and does not work where it
+accretes inside list items"). Only A-61 was a clean removal with no rescue needed, and it is not
+coincidentally the smallest, least section-critical of the three.
+
+## Verification (all passed)
+
+3/3 moved blocks verbatim in their entry files · 0 old-section lines unaccounted for · every
+command, path and prohibition in the section confirmed still inline by direct grep (the
+`REE_WORKING_ROOT`/absolute-path rule, the orientation checks and both their bash blocks, the
+MIS-HOMED remediation steps, the one-question discriminator, the `TASK_CLAIMS.json`/
+`.claude/settings.json` narrow-exception carve-out, the non-blocking `PreToolUse` advisory
+description, and the general worktree-safety checklist) · fence count 44 -> 44 (even, unchanged)
+· 61/61 archaeology links resolve, 0 duplicate ids · confirmed via byte-diff that no OTHER
+session's concurrent CLAUDE.md edit was overwritten (fresh `origin/master` fetched immediately
+before commit was byte-identical to the pre-edit copy this session started from).
+
+## Held-out check (GOV-HELDOUT-1)
+
+Run in the split-specific form used by steps 1-3 -- *does the trimmed inline text alone give the
+right call WITHOUT following the pointer?* -- since a faithful split is degenerate on the
+standard "does old vs new give a different call" test by construction.
+
+1. **A chip arrives mis-homed under a work-repo worktree (the actual `focused-ishizaka-c3cba9`
+   shape).** Old: full incident narration plus the receiving-side remediation paragraph
+   immediately above it. New: the remediation paragraph is untouched (it was never part of the
+   moved text) and the replacement sentence still states the check remains necessary after a
+   spawning-side fix. Same call -- re-home and report. **PASS.**
+2. **A session writes a new worktree-discriminator command and is tempted to use
+   `$CLAUDE_PROJECT_DIR` for convenience.** Old: the bug narrative, confirmation dates, and the
+   prohibition. New: the prohibition and its reasoning ("set for hook commands only... entirely
+   absent from the Bash tool's environment") survive verbatim in the kept sentence. Same call --
+   resolve through `git`, never the variable. **PASS.**
+3. **A worktree session decides whether to edit a skill file in the main checkout or its own
+   worktree copy (the actual `dual-insights-330b1f` shape).** Old: the one-question discriminator
+   rule (unmoved) plus a supporting incident as evidence. New: discriminator rule unchanged, only
+   the supporting evidence moved. Same call -- check whether the path resolves inside the
+   worktree first. **PASS.**
+
+**Residual risk, stated not mitigated, same shape as steps 1 and 3:** cases 1 and 2 rewrote the
+surviving sentence rather than only deleting a paragraph, so a future reader cannot tell by
+inspection that anything was removed -- the mitigation is the pointer's own "read before changing
+that rule" wording, which is adoption-dependent like every other rule in this file. Case 3 was a
+pure deletion with nothing rewritten, so it carries no such risk.
+
+## What remains, per the original concentration table
+
+`Coordinator (Phase 3)` (2,640 tok, 82% arch), `Workers may need waking` (2,681 tok, 81% arch),
+and `General Rules` (2,173 tok, 97% arch -- the highest ratio measured of any section, despite
+being short) are the next candidates below this one. Not yet measured whether their archaeology
+sits in standalone paragraphs (cheap, like steps 1-2) or interleaved in list items (expensive,
+like step 3 and this step) -- that shape, not the raw byte count, is what predicts yield now.
