@@ -1,0 +1,306 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_949_mech314b_authority_rescale_validation",
+  "run_id": "v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-25T22:38:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314b"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "b314_authority_rescale_restores_argmin_selection_authority",
+    "preconditions": [
+      {
+        "name": "ARM_B314_OFF_AUTH_OFF::candidate_pool_diversity_matches_floor",
+        "precondition": "candidate_pool_diversity_matches_floor",
+        "arm": "ARM_B314_OFF_AUTH_OFF",
+        "kind": "readiness",
+        "description": "mean distinct first-action classes across candidates reaches the raised support_preserving_min_first_action_classes floor (fixed for this experiment -- the 947 2x2 already proved it necessary)",
+        "control": "every tick's own candidate pool on a real CausalGridWorldV2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.85625,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_OFF_AUTH_OFF::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_B314_OFF_AUTH_OFF",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::candidate_pool_diversity_matches_floor",
+        "precondition": "candidate_pool_diversity_matches_floor",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "mean distinct first-action classes across candidates reaches the raised support_preserving_min_first_action_classes floor (fixed for this experiment -- the 947 2x2 already proved it necessary)",
+        "control": "every tick's own candidate pool on a real CausalGridWorldV2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.85625,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::pcv_carries_cross_candidate_span",
+        "precondition": "pcv_carries_cross_candidate_span",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "the per-candidate uncertainty vector's cross-candidate relative spread is non-zero -- i.e. the 314b manipulation is NOT a uniform additive constant and is therefore not annihilated by the argmax (the V3-EXQ-604c DV-symmetry failure)",
+        "control": "live candidate pools with a trained head; 947 driver measured 0.1948 at this floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.21999457634228747,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::head_5class_relative_spread_trained",
+        "precondition": "head_5class_relative_spread_trained",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "SD-063 head predictive_variance evaluated on all action classes at one z_world shows relative spread above the keystone's PROPOSED (unvalidated) trained/untrained separator -- untrained band 0.14-0.26, trained band 1.81-2.37",
+        "control": "all action_dim one-hots at a single z_world, arm-independent by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.3228414058685303,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::curiosity_channel_carries_argmin_relevant_span",
+        "precondition": "curiosity_channel_carries_argmin_relevant_span",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "StructuredCuriosity.last_bias_range > 0 -- the surviving argmin-relevant deviation is non-zero",
+        "control": "live per-candidate curiosity bias on a trained head",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.570821708213771e-06,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_OFF::curiosity_clamp_not_fully_saturated",
+        "precondition": "curiosity_clamp_not_fully_saturated",
+        "arm": "ARM_B314_ON_AUTH_OFF",
+        "kind": "readiness",
+        "description": "last_clamp_saturated_frac stays below its (K-1)/K ceiling -- the ranking is not fully compressed by the shared deviation clamp",
+        "control": "live per-candidate curiosity bias on a trained head",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_OFF_AUTH_ON::candidate_pool_diversity_matches_floor",
+        "precondition": "candidate_pool_diversity_matches_floor",
+        "arm": "ARM_B314_OFF_AUTH_ON",
+        "kind": "readiness",
+        "description": "mean distinct first-action classes across candidates reaches the raised support_preserving_min_first_action_classes floor (fixed for this experiment -- the 947 2x2 already proved it necessary)",
+        "control": "every tick's own candidate pool on a real CausalGridWorldV2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.85625,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_OFF_AUTH_ON::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_B314_OFF_AUTH_ON",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_OFF_AUTH_ON::authority_no_spurious_engagement_without_signal",
+        "precondition": "authority_no_spurious_engagement_without_signal",
+        "arm": "ARM_B314_OFF_AUTH_ON",
+        "kind": "readiness",
+        "description": "mean relative deviation |post_score_range - raw_score_range| / raw_score_range stays below a tight ceiling when the only modulatory contribution is a uniform (zero cross-candidate range) broadcast -- confirms authority cannot manufacture movement from nothing (modulatory_authority_min_range_floor gate)",
+        "control": "live broadcast curiosity + authority rescale attempt on a trained head",
+        "direction": "upper",
+        "applies": true,
+        "measured": 5.1756319105541354e-08,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::candidate_pool_diversity_matches_floor",
+        "precondition": "candidate_pool_diversity_matches_floor",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "mean distinct first-action classes across candidates reaches the raised support_preserving_min_first_action_classes floor (fixed for this experiment -- the 947 2x2 already proved it necessary)",
+        "control": "every tick's own candidate pool on a real CausalGridWorldV2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.825,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::pcv_carries_cross_candidate_span",
+        "precondition": "pcv_carries_cross_candidate_span",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "the per-candidate uncertainty vector's cross-candidate relative spread is non-zero -- i.e. the 314b manipulation is NOT a uniform additive constant and is therefore not annihilated by the argmax (the V3-EXQ-604c DV-symmetry failure)",
+        "control": "live candidate pools with a trained head; 947 driver measured 0.1948 at this floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2228583119722316,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::head_5class_relative_spread_trained",
+        "precondition": "head_5class_relative_spread_trained",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "SD-063 head predictive_variance evaluated on all action classes at one z_world shows relative spread above the keystone's PROPOSED (unvalidated) trained/untrained separator -- untrained band 0.14-0.26, trained band 1.81-2.37",
+        "control": "all action_dim one-hots at a single z_world, arm-independent by construction",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.2276040315628052,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::curiosity_channel_carries_argmin_relevant_span",
+        "precondition": "curiosity_channel_carries_argmin_relevant_span",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "StructuredCuriosity.last_bias_range > 0 -- the surviving argmin-relevant deviation is non-zero",
+        "control": "live per-candidate curiosity bias on a trained head",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.610878219566075e-06,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::curiosity_clamp_not_fully_saturated",
+        "precondition": "curiosity_clamp_not_fully_saturated",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "last_clamp_saturated_frac stays below its (K-1)/K ceiling -- the ranking is not fully compressed by the shared deviation clamp",
+        "control": "live per-candidate curiosity bias on a trained head",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_B314_ON_AUTH_ON::modulatory_authority_engages_argmin_relevant_span",
+        "precondition": "modulatory_authority_engages_argmin_relevant_span",
+        "arm": "ARM_B314_ON_AUTH_ON",
+        "kind": "readiness",
+        "description": "mean relative deviation |post_score_range - raw_score_range| / raw_score_range across genuine E3 select() fires exceeds the engagement floor -- confirms authority actually rescales the combined modulatory contribution to a magnitude competitive with raw_score_range, as the 2026-08-25 diagnostic measured directly",
+        "control": "live per-candidate curiosity bias + authority rescale on a trained head",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.12945054480353455,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_b314_authority_on_moves_committed_action": true,
+      "C3_authority_alone_does_not_move_action_dv_symmetry_control": true,
+      "C2_effect_attributable_to_authority_not_314b_alone": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ba1d4efd3e4b35652dd29c40afa0350baf6e48c92e552b2543fef13f28ec9562",
+  "substrate_commit": {
+    "commit": "b5d4c1e844564841bc2b77c4b3842aab32516415",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 6400,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 20,
+    "goal_state_present": false
+  }
+}
