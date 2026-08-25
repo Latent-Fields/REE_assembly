@@ -19,7 +19,8 @@
       "non_degenerate": true,
       "self_route_label": "vs_pe_decoupled_proxy_saturation",
       "recommended_evidence_direction": "non_contributory",
-      "recommended_epistemic_category": "measurement_saturation",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Failure-mode diagnosis (not the epistemic_category itself, per the failure-autopsy skill's standing rule -- 'measurement_saturation' is not in the claims.yaml enum): this run establishes that region_vs (the V_s proxy) is decoupled from forward-PE and saturated in the tested regime -- it does not discriminate uncertainty (region_vs_min_over_cells 0.9338, var 0.000275, spearman_unc_vs_pe_mean_over_cells 0.0832 against a spearman_coupled_floor of 0.2, 0 low_vs steps of 1654 paired steps, pe_trigger_fires_total 13 vs vs_trigger_fires_total 0, cofire_total 0). This target carries no claim_ids (claim-free diagnostic), so per the skill's convention `standard` is the correct stamp for a claim-free/claim-neutral finding -- it asserts no epistemic suppression, which is the accurate verdict here.",
       "failed_criterion": "none",
       "role": "adjudicating run for H-vs-proxy-saturation"
     },
