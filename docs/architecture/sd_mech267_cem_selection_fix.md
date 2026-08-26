@@ -75,8 +75,10 @@ experiments), so it bites in the C1 condition.
 
 ### H3 -- `mode_partitioned_cem` (persistent mode breadth)
 
-`HippocampalConfig.mode_partitioned_cem: bool = False`. When True (and mode conditioning
-enabled and `operating_mode` supplied), the mode-conditioned noise scale is **re-applied
+`HippocampalConfig.mode_partitioned_cem: bool` (landed 2026-08-14 default `False`; flipped
+to production default `True` 2026-08-26, see "Production Default Landing" below). When
+True (and mode conditioning enabled and `operating_mode` supplied), the mode-conditioned
+noise scale is **re-applied
 to the freshly-refit `ao_std` once per CEM iteration**, in both the legacy argsort-refit
 and the SD-055 differentiable-refit branches, so each mode-conditioned proposal keeps its
 own persistent breadth instead of converging to the mode-blind elite spread. Because
@@ -113,7 +115,31 @@ floor; H2's `z_world`-keyed term shifts elite ranking (a scored trajectory moved
 0.355 -> -0.268) but its `raw_std` effect is the open question the formal multi-seed
 validation answers.
 
+## Production Default Landing (2026-08-26)
+
+V3-EXQ-927/928 (30 seeds) resolved the two no-op-default flags this doc introduced:
+
+- **H2 (`mode_value_weight`) -- confirmed NULL** on the C1 wash-out target (paired
+  +0.0015, t=+0.48). Left at its default `{}` (dormant, not retired -- a null on the C1
+  metric is not evidence the z_world-keyed ranking term is inert everywhere, and the
+  field still has its own contract coverage exercising it directly).
+- **H3 (`mode_partitioned_cem`) -- rescues the extreme-pair contrast** (H3-OFF control
+  +0.0167, t=+4.34, 24/30 seeds positive; OFF washed out as predicted, manipulation
+  confirmed on 480/480 cells). Default **flipped False -> True** 2026-08-26
+  (chip-20260825-mech267-cem-flip-default), so production runs now get the validated
+  fix without needing to opt in. Still gated on `mode_conditioning_enabled` AND
+  `operating_mode` being supplied -- bit-identical for every caller that does not
+  already enable mode conditioning with an operating mode.
+
+**Residual, not closed by this landing**: V3-EXQ-928's ORDERED four-mode gradient check
+(`per_arm_all_adjacent_gaps_clear_floor`) is FALSE in all four arms -- adjacent gaps
++0.00729 / +0.00750 / -0.00116, the last INVERTED. Only the broad-minus-tight
+extreme-pair contrast is rescued; the full ordered-gradient wash-out that motivated this
+SD is not restored. `failure_record` on `SD-MECH267-CEM-SELECTION-FIX` in
+`substrate_queue.json` carries this open item forward.
+
 ## Related Claims
 
 MECH-267, SD-MECH267-HORIZON-DEPTH, SD-055, ARC-007;
-`failure_autopsy_V3-EXQ-923_2026-08-12`, `failure_autopsy_V3-EXQ-869_2026-08-02`.
+`failure_autopsy_V3-EXQ-923_2026-08-12`, `failure_autopsy_V3-EXQ-869_2026-08-02`,
+`failure_autopsy_927-928-mech267-cluster_2026-08-16`.
