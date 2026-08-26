@@ -252,3 +252,91 @@ non-live streams (vintaging) or *drops* them. **If it drops them, V3-EXQ-840b sa
 SD-064's precondition (3) after all and its null becomes DIRECT and serious pressure on
 SD-064 rather than adjacent pressure.** Single-file check, materially changes SD-064's
 evidential position -- worth doing before any of this is applied.
+
+---
+
+## GROUP G1 -- MECH-312b, MECH-312c, MECH-316, MECH-317, MECH-318  (returned 20:25Z, ~11.0 min)
+
+### Dispositions
+| claim | disposition |
+|---|---|
+| MECH-312b | **(c) `substrate_conditional`, blocker REPLACED** -- ARC-063 landed; the true residual is a graded practice->weight term (one term, one place) |
+| MECH-312c | **(c) `substrate_conditional`, gap located exactly** -- affect reaches CRF as CREDIT, not as CONTEXT KEY |
+| MECH-316 | **(a) testable NOW** -- disposition CHANGED by a discovered substrate (see below) |
+| MECH-317 | **(b) derivational** -- absorption check vs ARC-071, settled by audit not experiment |
+| MECH-318 | **(c) `substrate_conditional`** -- and explicitly AGAINST the `substrate_ceiling` label the 606 autopsy floated |
+
+### FLAG A -- an 11-week promote/demote suppression standing on a FALSE premise
+MECH-312b and MECH-312c both carry, verbatim: *"epistemic_category: depends on ARC-063
+rule-creator substrate (planned, design-only 2026-06-04, **not yet built**); suppress
+promote/demote until it lands. Set 2026-06-07 IGW-046."*
+
+**ARC-063 landed 2026-06-04** (`ree-v3` `175a24f`, `candidate_rule_field.py`, 862 lines).
+The note was set **2026-06-07 -- three days AFTER the substrate it declares unbuilt** -- then
+migrated verbatim on 2026-07-18 without re-checking. The note's own text carries the correct
+date ("design-only 2026-06-04") next to the wrong verdict, which is presumably how it
+survived review. **Do not simply delete it**: these claims are still not promotable, but for
+a different reason (behavioural coverage), and the recorded reason should be the true one.
+
+### The group's blocker SILENTLY CHANGED CLASS and no claim records it
+All five substrates now exist: ARC-063 (2026-06-04), MECH-457 SF critic (2026-07-12),
+ARC-071 PolicyChunking (2026-07-22), SD-081 arbitration weight (2026-07-22), SD-054
+`reef_bipartite_layout` (exercised 2026-05-21). The real blocker moved from **absence of
+mechanism** to **degenerate behavioural coverage on mechanisms that exist**.
+
+**Operational cost:** this mis-routes the cluster to `/implement-substrate` when the actual
+lever is upstream of it -- consistent with `substrate_queue.json`'s own 2026-08-21 audit
+finding **zero** ready implement-substrate entries while MECH-316/317 sit in
+`candidate_v3_pending`.
+
+### NDP-SD054-COVERAGE -- one shared, MEASURED precondition to register once
+> A seed contributes evidence to any SD-054 falsifier in this cluster only if the **eval**
+> policy actually inhabits the goal-rich states the DV is read from: `reef_frac_eval > 0` in
+> **every** regime contrasted, per seed, measured arm-agnostically **before** any arm
+> comparison. A failing seed is `degenerate`, **never a null**. A run below `MIN_PASS_SEEDS`
+> non-degenerate seeds is `non_contributory` **regardless of what the contrast shows** --
+> including when it looks favourable.
+
+Not stipulated -- **measured**: V3-EXQ-606 seeds 7 and 17 gave `reef_frac_eval = 0` in BOTH
+axes while the wiring criterion C3 passed 3/3. Seed 42 alone cleared C1 at 0.186. **Reading
+that 1-of-3 as weak support is the exact error this prevents.** Register on MECH-318;
+cross-reference from the other four instead of restating it four times.
+
+### Deepest cross-cutting finding
+**Nothing in V3 learns a predictive representation that is both TRAINED and VALUE-AGNOSTIC
+-- which is exactly what MECH-316/317 assert.** The built candidates split into two families,
+neither of which is what the claims describe: the structural/counting family is untrained by
+design (`candidate_rule_field.py:41` -- *"pure-arithmetic ... the differentiation is
+structural, not learned"*; ARC-071 chunks stay **value-flat** by explicit design to preserve
+ARC-007 strict), while the trained family is reward-coupled (the SF critic's `w` is grounded
+in the MECH-229 VALENCE_WANTING channel). **This is the honest content of
+`substrate_conditional` for this cluster -- far sharper than the stale "no module exists".**
+
+### Other cross-claim output
+- **Mutual confound neither sibling declares:** MECH-312b's test is valid only with affective
+  load pinned; MECH-312c's only with practice count balanced. **Each is the other's confound
+  and a null on either is uninterpretable unless the other is pinned.** Now an explicit
+  precondition on both drafts.
+- **MECH-317 is a duplicate registration of a built mechanism** (ARC-071/MECH-323/MECH-324,
+  same Smith & Graybiel + Sutton anchors, 2114 lines, 25+ contracts, 3 readiness runs).
+  Neither claim references the other. Expect verdict-B partial absorption -- ARC-071
+  explicitly *rejects* the option-critic gradient-discovery route MECH-317 names, so a
+  residual survives and must be carried forward, not orphaned. **MECH-312b `depends_on`
+  MECH-317 and must be repointed in the same pass.**
+- **A merge pressure that points OUT of the group**, which `(g)` as scoped cannot express
+  (MECH-317 -> ARC-071; MECH-316 -> the MECH-457 SF critic). See PILOT FINDING P4 below.
+- **MECH-312c's gap located to one line:** affect enters CRF as `_crf_outcome =
+  -||z_harm_a||` (credit) while the context key is `z_world` -- so **no rule in the field
+  carries an affective context signature** and affect-congruent retrieval is *structurally
+  impossible* on current wiring. A test run today returns a null for a reason unrelated to
+  the hypothesis. Build = concatenate `z_harm_a` into `_crf_ctx` behind a default-OFF knob.
+
+### Agent's own honesty, worth preserving
+- It reported its **own first grep was a FALSE NEGATIVE** (`successor_rep|sr_matrix` found
+  nothing; a case-insensitive search found the SF critic) -- **and MECH-316's disposition
+  turned on that correction**, from substrate-blocked to testable-now.
+- It declined to claim the three ARC-071 readiness runs as evidence FOR MECH-317, having
+  checked that none carries a `claim_ids` field tagging it.
+- It recommended **against** `substrate_ceiling` on MECH-318 *on evidence* (the runs were
+  degenerate, not non-degenerate -- failing that label's stated bar), rather than adopting
+  the autopsy's floated label.
