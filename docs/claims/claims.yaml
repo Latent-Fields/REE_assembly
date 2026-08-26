@@ -85973,6 +85973,18 @@
     narrow_open_question do not fire. DO NOT build in V3 and DO NOT queue a V3 experiment -- no
     substrate currently represents an attractor as a structured multi-axis object rather than a
     scalar or low-dimensional value.
+    Literature pull (2026-08-26, chip chip-20260825-mech513-514-litpull -- no claim
+    status/confidence touched): Jardri & Deneve 2013 (circular inferences in schizophrenia, Brain
+    136(11):3227-41, PMID 24065721) now has an initial lit-pull entry at
+    evidence/literature/targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013
+    (evidence_direction=supports, confidence=0.35). The paper's hierarchical Bayesian
+    "circular belief propagation" model -- non-independent signal reverberating through a
+    hierarchy and being miscounted as fresh confirmation -- is a genuine structural analogue of
+    the self-reinforcing loop this claim guards against, but confidence is kept low: it is a
+    clinical human population and a specific message-passing mechanism, not a test of an artificial
+    multi-axis attractor. Confirms, rather than lifts, the raw thought's own failure-mode-only
+    framing; does not harden this claim past candidate/substrate_conditional. Powers/Mathys/Corlett
+    2017 and Howes et al. 2011 remain unverified -- out of scope for this pass.
 
 - id: MECH-513
   title: >
@@ -86048,6 +86060,18 @@
     `pending_reindex`/`under_offline_review`/`provisionally_reindexed` never touch
     `lifecycle_state`. Full writeup:
     docs/architecture/offline_representational_reindexing.md#5-addendum-2026-08-26-reindex-handoff-state-reconciliation.
+    Literature pull (2026-08-26, chip chip-20260825-mech513-514-litpull -- no claim
+    status/confidence touched): Pellegrini et al. 2019/2020 (Latent Replay for Real-Time
+    Continual Learning, arXiv:1912.01100 / IEEE IROS 2020 pp.10203-10209, DOI
+    10.1109/IROS45743.2020.9341460) now has an initial lit-pull entry at
+    evidence/literature/targeted_review_mech_513/entries/2026-08-26_mech513_latent_replay_pellegrini2019
+    (evidence_direction=supports, confidence=0.55). The paper directly demonstrates the failure
+    this claim is registered to prevent -- stored intermediate representations drifting out of
+    correspondence with a changing representation degrades performance -- confirming the "not
+    independently verified" note above. Its own mitigation (freezing/slowing lower layers) is a
+    different strategy than this claim's proposed additive versioned reindexing, so the paper
+    evidences the problem statement, not the specific proposed mechanism; does not harden this
+    claim past candidate/substrate_conditional.
 
 - id: MECH-514
   title: >
@@ -86107,3 +86131,21 @@
     substrate_conditional set EXPLICITLY. DO NOT build in V3 and DO NOT queue a V3 experiment --
     no multi-model explanatory comparison substrate exists, and MECH-269's own V3 status is still
     v3_pending on its non-diagnostic behavioural sufficiency test.
+    Literature pull (2026-08-26, chip chip-20260825-mech513-514-litpull -- no claim
+    status/confidence touched): two of the six sources named above are now independently
+    verified. Jardri & Deneve 2013 (Brain 136(11):3227-41, PMID 24065721) -- lit-pull entry at
+    evidence/literature/targeted_review_arc_132/entries/2026-08-26_arc132_circular_inference_jardri2013
+    (evidence_direction=supports, confidence=0.35; cited as failure-mode inspiration only, per
+    the raw thought's own discipline). Shumailov et al. 2024 (Nature 631:755-759, PMID 39048682,
+    DOI 10.1038/s41586-024-07566-y) -- lit-pull entry at
+    evidence/literature/targeted_review_mech_514/entries/2026-08-26_mech514_model_collapse_shumailov2024
+    (evidence_direction=supports, confidence=0.60). Model collapse -- indiscriminate recursive
+    training on self-generated content causing irreversible loss of distributional tails -- is
+    direct, general-principle corroboration for this claim's anti-pseudo-replication requirement
+    (repeated replay of one episode must not be miscounted as independent samples), at one remove:
+    the paper's unit is multi-generation model training, this claim's unit is single-system
+    replay bookkeeping. Pellegrini et al. 2019 is verified against MECH-513 instead (see that
+    claim's notes) since it motivates the reindexing operation this claim's step (5) can trigger,
+    not the counterfactual-replay protocol itself. Powers/Mathys/Corlett 2017, Howes et al. 2011,
+    and Latchoumane et al. 2017 remain unverified -- out of scope for this pass. None of this
+    hardens the claim past candidate/substrate_conditional.
