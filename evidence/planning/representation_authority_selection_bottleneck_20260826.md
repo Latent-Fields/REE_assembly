@@ -7,7 +7,24 @@
 synthesis below is offered for the user to accept, revise or reject.
 
 
-## TL;DR (the four things worth your time)
+## TL;DR (the five things worth your time)
+
+0. **THE HEADLINE, added after the second pass: the naive form of this thesis has
+   already been tested once, cleanly, and it FAILED.** REE has exactly one place
+   with a real architectural funnel -- SD-004's action-object space O
+   (`action_object_dim << world_dim`), which the hippocampal planner searches
+   inside. **SD-080** established that `action_object_head` receives **zero
+   gradient from every REE training path**: O is a frozen random projection,
+   **99.5% of its variance explained by the action label**, state-invariant
+   rather than consequence-structured. **V3-EXQ-817a** then built the missing
+   grounding objective. It **took** (four gates, shuffled control, r^2 0.99 ->
+   0.725) and behaviour **did not move** (harm_rate: frozen 0.4426, shuffled
+   0.4209, **grounded 0.5144**). SD-004 `weakens`. Any development of this
+   thought has to confront that result. My reading of *why* it failed -- the
+   grounding was applied to the encoder while the **decoder** exit from the
+   bottleneck stayed an untrained map whose "argmax pins to one constant class"
+   -- is item 3's pattern, appearing at the site of the one direct test. **The
+   open link is unowned**: no substrate_queue entry, no follow-on. (S3.3-3.3d)
 
 1. **Your principle is already registered** as MECH-359 ("for proto-affect to
    carve behaviour it must carry per-candidate range, not merely per-tick
@@ -487,30 +504,244 @@ joint representation-and-value objective deliberately re-entangles what SD-004/
 SD-005 separated. That is not necessarily wrong -- but it is a reversal of a
 stated architectural commitment and should be argued, not slipped in.
 
-### 3.3 REE already has one worked example of the thesis, and it PASSED
+### 3.3 CORRECTION: SD-004 is NOT a worked example of the thesis -- it was tested and it FAILED
 
-`SD-004` (status: **implemented**) -- "action objects as hippocampal map
-backbone". E2 produces compressed **action-object** representations; the
-hippocampus navigates action-object space O (16-dim) rather than raw z_world
-(32-dim). `EXQ-003` PASS: terrain-guided planning in O-space achieved a **6x
-survival improvement** over random trajectory selection in z_world.
+**An earlier version of this document (commit `579635adde`, section 3.3) claimed
+SD-004 was "the user's thesis, already built, already validated". That was wrong.
+I had read the design doc and not the evidence.** The correction is more
+interesting than the error, so it is kept in full rather than silently replaced.
 
-`efficiency_dimensionality_hypothesis.md` calls this "the strongest current piece
-of evidence for the efficiency hypothesis" and notes the benefit is *structural*
-and does not depend on SD-005 holding.
+**What SD-004 asserts.** `o_t = action_object_head(z_world_t, a_t)` -- a
+*learned* compression of the world-EFFECT of an action, with an explicit
+architectural bottleneck (`action_object_dim << world_dim`), which the
+hippocampal CEM then searches and refits inside. On paper this is precisely the
+user's funnel: a compression whose target is defined by what the planner must
+choose between.
 
-And it is already **per-candidate**: `Trajectory.action_objects` carries the
-`o_t` sequence on every candidate trajectory (`ree_core/predictors/e2_fast.py:53`).
-The compressed, consumer-defined unit is present at the selection site today --
-it simply carries no value index.
+**What is actually the case -- SD-080** (`candidate`, registered 2026-07-22 from
+the `action_object_invariance_spike_2026-07-22.md` scoping spike):
 
-**This is the user's thesis, already built, already validated, at one narrow
-scope.** O-space is a funnel: a compression whose target is defined by *what the
-planner needs to choose between*, not by what reconstructs the world. The
-proposal in section 4 is essentially: generalise the SD-004 move from
-action-effects to objects-and-episodes, with drive/harm as the value index.
+> `E2.action_object_head` receives **zero gradient from every REE training path**,
+> so the action-object space O that SD-004's hippocampal map backbone navigates
+> is a **frozen random projection fixed at initialisation**, not the learned
+> world-effect compression SD-004 specifies. **O is state-invariant rather than
+> consequence-structured**, and the hippocampal CEM searches and refits inside it.
 
----
+Measured in the spike: **99.5% of O's variance is explained by the action label
+alone**, and the head's parameters are **bit-identical after 40 warmup episodes**.
+So O encodes approximately *which action was taken*, not *what that action does
+to the world*. The bottleneck is real; what passes through it is a random
+projection of the action index.
+
+**This is the user's diagnosis, holding at a site nobody was looking at, and in
+its strongest possible form.** Not "abstract but not funnelled" -- rather
+*funnelled, consumed by the planner, and compressed toward nothing at all.*
+
+**The 6x survival result does not belong to O.** V3-EXQ-809 (2026-07-23,
+diagnostic, confirmed autopsy `failure_autopsy_V3-EXQ-809_2026-07-25`) re-ran the
+EXQ-003 TERRAIN-vs-RANDOM contrast with `action_object_head` re-initialised at
+several seeds. Re-drawn heads *do* reach the CEM proposals (first-action TV up to
+0.15, ao_param L2 9.94 -- C1 rejected), but the load-bearing criterion passed:
+**behaviour is invariant to the head's content** (`ao_content_reaches_proposals_but_not_behaviour`).
+SD-004's behavioural PASSes stand; their *mechanism* is attributed to
+terrain/residue navigation. SD-004's **efficiency / semantic-grounding rationale
+is `does_not_support`.**
+
+### 3.3b The direct test of the thesis: V3-EXQ-817a -- grounding TOOK, behaviour did NOT move
+
+This is the single most decision-relevant result for the whole thought, and it
+must not be softened.
+
+The spike pre-declared a 3-arm falsifier and **it was run.** V3-EXQ-817a
+(2026-07-26, autopsy `failure_autopsy_batch-822a-826-817a-827_2026-07-26`,
+user-adjudicated) built the consequence-grounding objective SD-080 said was
+missing: ARM_0 frozen / ARM_1 grounded (o_t regressed onto the realised
+world-effect) / ARM_2 shuffled-target parameter control.
+
+**The representational half succeeded, cleanly, with controls:**
+
+| gate | result |
+|---|---|
+| `worldeffect_groundable_from_zworld` | MSE 0.773 <= 0.85 ceiling (ARM_2 shuffled ~1.0) |
+| `arm1_state_dependence_acquired` | r^2 0.725 <= 0.90 (down from ARM_0/ARM_2 frozen ~0.99) |
+| `arm1_state_dependence_paired_drop` | 0.271 >= 0.10 floor (paired within-seed) |
+| `content_not_traffic_discriminated` | margin 0.275 >= 0.10 (shuffled target unfittable -- the effect is CONTENT, not gradient traffic) |
+
+`grounding_took = true`. **O was made consequence-structured.**
+
+**The behavioural half failed:**
+
+| arm | harm_rate (lower better) |
+|---|---|
+| ARM_0 frozen | 0.4426 |
+| ARM_2 shuffled control | 0.4209 |
+| **ARM_1 consequence-grounded** | **0.5144** |
+
+Grounding produced **no behavioural benefit and was nominally worse than the
+frozen baseline.** Governance direction: **SD-004 `weakens`** -- "even when the
+representation is technically correct, no behavioural benefit manifests";
+SD-080 `non_contributory` (its claim is about the *unmodified* substrate; a
+bespoke diagnostic training path does not falsify it).
+
+**So the naive form of the user's thesis has been tested once, at the one site
+where REE has a genuine bottleneck, and it did not hold.** Making the
+representation consequence-structured did not improve selection. Any development
+of this thought that does not confront 817a is not serious.
+
+### 3.3c Why I think 817a is a confirmation of section 2.3, not a refutation of the thought
+
+The autopsy names its own remaining open link precisely:
+
+> the gap is in SD-004's implicit assumption that achieving consequence-structured
+> geometry is **sufficient** for behavioural benefit -- **the CEM planner's
+> sensitivity to that geometry** ... is a separate, still-open question.
+>
+> Integration: **isolated | frozen encoder, head-only grounding; a fully
+> integrated grounding path is untested.**
+
+That is section 2.3's prediction, stated by someone who was not making section
+2.3's argument:
+
+> **If value/consequence structure is destroyed at the interface to the consumer,
+> improving that structure upstream produces no behavioural change.**
+
+817a is a clean instance of the signature: upstream structure verifiably improved
+(four gates, shuffled control), downstream behaviour unmoved. And the interface is
+identifiable in code. `_decode_action_objects()` carries an explicit warning:
+
+> **NOT AN ACTION SOURCE.** ... That round trip -- `a -> E2.action_object(a) ->
+> decoder -> a_hat` -- **is not invertible on this substrate.** The
+> non-invertibility is a property of the COMPOSITION, not of this decoder:
+> **both halves are untrained** and the action-object distribution is a small ball
+> far from the decoder's decision boundaries, **so the argmax pins to one constant
+> class.**
+
+**817a grounded the ENCODER half only** ("frozen encoder, head-only grounding").
+The **decoder** -- the path by which O-space geometry becomes an action the world
+sees -- was left an untrained random map whose argmax "pins to one constant
+class". So 817a improved what goes *into* the bottleneck while the exit from the
+bottleneck remained a collapsing interface. **A fourth instance of the section-2.3
+pattern, at the site of the one direct test of the thesis.**
+
+I want to be careful about how much this is worth. The categorical-collapse
+reading was constructed in the previous pass from three instances (object argmax,
+episode binary gate, affect scalar broadcast). **817a was not one of them** -- it
+was found afterwards, and it fits. That is a genuine out-of-sample check rather
+than a post-diction, though with the honest caveat that 817a was sitting in the
+record and retrievable, so it is out-of-sample only relative to how I built the
+pattern, not to the evidence base as a whole.
+
+**Nobody owns the open link.** I searched `substrate_queue.json` for SD-080 /
+action-object / world-effect entries and found **none**, and no follow-on
+experiment pursues planner-sensitivity-to-O-geometry. The 817a autopsy names the
+question and routes nothing. It is an unowned gap, and it is exactly where this
+thought lands.
+
+### 3.3d The ordering consequence -- and it contradicts the standing one
+
+`monostrategy_representation_ceiling_root` currently predicts **differentiate-first**:
+differentiate z_world, *then* apply diversity pressure. MECH-458's owed
+rarity-seeking build is explicitly "ordering-gated on INV-088 z_world
+differentiation".
+
+If the section-2.3 reading is right, that ordering is **wrong, or at least
+incomplete**, and 817a is the evidence:
+
+> **You cannot detect a representation improvement through a collapsing
+> interface.** Fix the interface first -- not because the representation does not
+> matter, but because while the interface collapses, every representation-side
+> experiment returns a null that is uninterpretable.
+
+817a is precisely such a null: a technically-correct representation improvement,
+verified with controls, reading as no-benefit. Under differentiate-first it looks
+like "consequence structure does not help". Under interface-first it looks like
+"the measurement could not have detected help".
+
+**This is the sharpest testable disagreement the thought generates**, it is cheap
+to adjudicate, and it is a *prediction* rather than a reinterpretation:
+
+> Re-run an 817a-shaped grounding contrast **through a non-collapsing interface**
+> (e.g. the section-5.1 soft object-field read, or an O-space consumer that does
+> not argmax through an untrained decoder). Interface-first predicts the
+> behavioural benefit that 817a could not see. Differentiate-first predicts
+> another null.
+
+## 3.4 The episode side, delved: "usefulness" is NOT "current value"
+
+Running the thought properly through the episode half turns up a constraint that
+sharpens it, and a division of labour that I think is genuinely new.
+
+### 3.4a The biology forbids the naive reading
+
+MECH-443's architecture doc states the constraint flatly:
+
+> the priority is the value of the **update** (gain x need, Mattar & Daw 2018),
+> **NOT reward magnitude**. **A MECH-443 implementation that equates priority with
+> reward level or committed-policy value is biologically falsified.**
+
+With the Carey et al. 2019 refinement that replay can be biased **away** from the
+currently-most-valuable outcome, and Olafsdottir 2015 that motivational relevance
+gates replayed *content*.
+
+So on the episode side, "useful" is **not** "valuable now". It is
+**decision-theoretic**: *how much would incorporating this change what I would
+choose* (gain), times *how likely am I to face that choice* (need). An episode
+about a place I never revisit is worthless however good the outcome was; an
+episode that would overturn a belief I act on daily is precious however neutral
+it felt.
+
+This is a real constraint on the thought as stated. "Usefulness ... relating to
+goals, harm, and things like metabolic or interoceptive state" reads naturally as
+*current consummatory value*, and for episodes that reading is specifically ruled
+out by the literature REE has already pulled.
+
+### 3.4b The division of labour this suggests
+
+Your list of drives -- goals, harm, metabolic/interoceptive state, **and
+information need** -- may not attach to one carrier. Splitting it by carrier
+resolves the S3.1b objection I raised in the first pass (that nothing supplies an
+epistemic "benefit pulse" to write an object's `base_value`):
+
+| carrier | value it holds | currency | REE machinery |
+|---|---|---|---|
+| **Objects** | consummatory + harm value | `base_value[k] x (1 + kappa x drive_axis[k])` -- benefit pulse at contact, revalued by interoceptive state | SD-057 `IncentiveTokenBank` (**live**, default-OFF) |
+| **Episodes** | epistemic value | **gain x need** -- how much would this update change what I would choose | MECH-443 (**registered, unbuilt**) |
+
+On this reading **information need is natively an EPISODE-side quantity, not an
+object-side one** -- which is why there is no epistemic benefit pulse to bind to
+an object, and why trying to add an epistemic axis to SD-049's per-axis drive
+felt forced. Epistemic value is about *where my model is wrong*, and a model is
+wrong about *transitions and episodes*, not about *things*.
+
+That is a clean architectural proposal falling straight out of your thought:
+**objects carry what the world is worth to me; episodes carry what learning is
+worth to me.** Both are "usefulness"; they are different quantities with
+different update rules, and REE has the first one live and the second one
+registered-but-unbuilt.
+
+### 3.4c And the episode side has the same interface collapse
+
+The symmetry from S2.2 completes:
+
+- **Object side:** graded `wanting[k]` -> `most_wanted()` **argmax** -> one z_goal.
+- **Episode side:** graded update-utility (MECH-443, unbuilt) -> **MECH-319's
+  binary WHETHER gate**, which "is all-or-nothing. It says nothing about
+  *ordering* among the replayed transitions it admits."
+
+MECH-443's own falsifier is already written and is interface-shaped, not
+representation-shaped: a per-transition priority weight must lift retention or
+selectivity **strictly above a matched-total-write-mass uniform-admit control** --
+i.e. it must beat "same amount of writing, ungraded". That is precisely a test of
+whether grading at the interface buys anything, and it is exactly the shape of
+the S5.1 probe on the object side. **The two halves of your thought converge on
+the same experiment design.**
+
+Note also MECH-444 (the freshness leg): admitted writes should have their targets
+**recomputed against the current model** before writing, down-weighted when they
+have not drifted. That is the *reanalyze* trick, and it is the episode-side
+statement of "compressed toward what the consumer needs *now*" rather than
+"compressed once at write time". Registered, unbuilt, and explicitly designed to
+compose with MECH-443.
 
 ## 4. Does the object/episode distinction survive scrutiny, or collapse into "just a latent"?
 
