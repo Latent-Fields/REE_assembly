@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-26T08:05:09Z",
+  "generated_at": "2026-08-26T20:16:20Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7430,6 +7430,28 @@
         "priority": 55,
         "claim_ids": [
           "MECH-489"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260826T201308Z-33f820eb-claude_local",
+      "stable_hash": "33f820eb9eac",
+      "igw_id_at_assign": "IGW-20260826-234",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-08-26T20:13:08Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=ce7a443a-20a3-4458-a68b-b6320821bbea branch=claude/igw-234-proposal-for-arc-130",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for ARC-130",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-130"
         ]
       }
     }
