@@ -86151,3 +86151,66 @@
     not the counterfactual-replay protocol itself. Powers/Mathys/Corlett 2017, Howes et al. 2011,
     and Latchoumane et al. 2017 remain unverified -- out of scope for this pass. None of this
     hardens the claim past candidate/substrate_conditional.
+
+- id: MECH-515
+  title: "In multi-agent settings, the cost of continued deliberation is not only an opportunity cost against a passive, unchanging world (the internal expected-value-of-information trade MECH-434 already governs) but a STRATEGIC cost that another goal-directed agent can actively impose: a competing mind can occupy a contested resource, block a route, infer REE's objective from its information-seeking behaviour, conceal or manufacture evidence, or prepare an attack while REE continues gathering evidence. A commitment-timing mechanism that weighs only pragmatic-vs-epistemic value against a static environment will systematically over-deliberate whenever another agent is present and can act on REE's delay; the commitment threshold/urgency term must therefore also be sensitive to detected other-agent presence and behaviour, not internal information value alone."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.multiagent_strategic_delay_cost
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-434  # single-agent epistemic commitment timing (pragmatic-vs-epistemic urgency) -- this claim adds an other-agent-behaviour-sensitive term that mechanism does not currently include
+    - ARC-128   # general termination-taxonomy generality claim; its own compass doc explicitly left this exact multi-agent-delay thread out of scope pending this cross-reference check
+    - MECH-435  # opportunity-cost-of-time currency for drive arbitration -- the natural place a strategic (other-agent-induced) delay-cost term would be priced into, once a multi-agent substrate exists
+    - ARC-010   # mirror modelling / other-agent policy inference -- supplies the other-agent-state estimate this claim's cost term would need as an input
+    - ARC-047   # SocialGridWorld -- the shared multi-agent substrate blocker (unimplemented, v5-gated) also blocking ARC-010/MECH-504/INV-102
+    - INV-102   # other-agent evidential discounting -- DISTINGUISHED FROM, not duplicated: INV-102 discounts the evidential WEIGHT of an observation attributed to another agent's strategic action; this claim raises the COST of further deliberation given another agent's mere presence/behaviour, independent of whether any new evidence was gathered at all
+  location: docs/architecture/persistent_process_termination_taxonomy.md#mech-515
+  source:
+    - docs/thoughts/2026-08-12_persistence_must_earn_continuation.md
+    - evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+  notes: >
+    Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
+    section 6 ("Other minds make delay strategically costly"). That intake's own novelty table
+    explicitly deferred this thread pending "a closer check against REE's existing multi-agent/
+    adversarial-evidence claim cluster" -- this entry is that check, performed 2026-08-26. Cross-
+    referenced against ARC-010 (mirror modelling), ARC-047 (SocialGridWorld), MECH-031 (AGENCY/
+    OTHER_SELFLIKE tags), MECH-274 (sleep-aggregated other-model), MECH-223 (animistic
+    over-attribution bias), ARC-037 (causal-attribution routing), EXT-009/INV-072 (ethical-domain
+    SDT care gate), INV-102/MECH-504 (other-agent evidential discounting / developmental
+    other-agent discovery, registered 2026-08-25 from the sibling thought
+    2026-08-12_other_agent_provenance_bounded_animistic_prior.md), and MECH-434/MECH-435
+    (commitment timing / opportunity-cost currency). None of these cover a commitment-threshold
+    term driven by DETECTED OTHER-AGENT PRESENCE/BEHAVIOUR specifically -- MECH-434 governs timing
+    against a static/passive world only; INV-102 governs how much to TRUST evidence once
+    attributed to another agent's action, not how urgently to stop deliberating given that agent's
+    mere presence; ARC-010/MECH-031/MECH-274 supply other-agent detection and modelling but do not
+    feed a delay-cost or urgency term; MECH-435's opportunity-cost currency is agent-blind (prices
+    the passage of time generically, not a specific rival's ability to exploit that time).
+    Genuinely new. DISTINCT FROM MECH-434: MECH-434's inverted-U is driven entirely by the belief
+    state's own epistemic value versus pragmatic value; this claim asserts a third term -- the
+    other agent's capacity and apparent intent to exploit or invalidate the delay -- that can push
+    the optimal commitment point earlier even when MECH-434's internal EVOI calculus alone would
+    still favour more sampling. DISTINCT FROM MECH-498: MECH-498's disengagement is progress-gated
+    (continuation loses justification because the process itself stops making headway); this claim
+    is threat/competition-gated (continuation loses justification because a rival's action is
+    eroding the value of the outcome, independent of REE's own rate of progress) -- the two could
+    co-occur but are mechanistically separate, mirroring the MECH-080/MECH-497 distinction already
+    drawn elsewhere in this same taxonomy. Compass / V4 architectural framing only; epistemic_category
+    substrate_conditional set EXPLICITLY so promote/demote and narrow_open_question do not fire.
+    NON-DEGENERACY PRECONDITION shared with ARC-010/ARC-047/MECH-504/INV-102: no multi-agent
+    environment and no other-agent latent/inference channel exist in the V3 substrate (SocialGridWorld
+    itself is unimplemented, v5-gated). DO NOT build a substrate for this or queue a V3 experiment
+    without an explicit version-routing decision. Literature to mine before hardening (per the raw
+    thought's own list, sections 6 and "Literature directions to mine"): multi-agent decision timing
+    and strategic opportunity cost specifically -- not yet independently verified against a citation
+    in this pass.

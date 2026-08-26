@@ -10,11 +10,11 @@ status_claim: ARC-128
 
 # Persistent-Process Termination Taxonomy
 
-**Claim IDs:** ARC-128 (generality), MECH-497 (self-referential stopping failure), MECH-498 (progress-gated disengagement)
+**Claim IDs:** ARC-128 (generality), MECH-497 (self-referential stopping failure), MECH-498 (progress-gated disengagement), MECH-515 (multi-agent strategic cost of delay)
 **Origin:** thought-intake [thought_intake_2026-08-12_persistence_must_earn_continuation.md](../../evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md), from raw thought `docs/thoughts/2026-08-12_persistence_must_earn_continuation.md`
 **Status:** candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed. Not a V3 build target.
 
-> This is a **control-plane compass doc**, not a V3 implementation target. All three claims
+> This is a **control-plane compass doc**, not a V3 implementation target. All four claims
 > registered here are `substrate_conditional` / `implementation_phase: v4` -- they generalize
 > and extend already-built V3 machinery (SD-034, MECH-343/SD-061, MECH-080, MECH-434) rather
 > than proposing new V3 substrate. Do not build a general termination-taxonomy substrate or
@@ -90,12 +90,27 @@ on the *observed rate* of progress -- not only the current absolute uncertainty/
 so that a process whose marginal progress has collapsed increasingly loses justification for
 further resource allocation even while absolute uncertainty remains high.
 
+### 2d. Multi-agent strategic cost of delay (MECH-515)
+
+Thought section 6: against a passive environment, excessive deliberation merely wastes time;
+against another goal-directed mind, delay is actively exploitable -- a competing agent can
+occupy a resource, block a route, infer REE's objective from its search behaviour, conceal or
+manufacture evidence, or prepare to act first while REE keeps sampling. This is a distinct cost
+term from MECH-434's internal pragmatic-vs-epistemic trade: MECH-434's inverted-U is driven
+entirely by the belief state's own epistemic value, and says nothing about whether another agent
+can act on the time REE spends acquiring it. Cross-referenced 2026-08-26 against REE's
+multi-agent/ToM/adversarial-evidence cluster (ARC-010, ARC-047, MECH-031, MECH-274, MECH-223,
+ARC-037, EXT-009/INV-072, INV-102/MECH-504, MECH-435) -- none supplies an other-agent-behaviour-
+sensitive commitment-threshold term, so this is registered as its own claim rather than folded
+into ARC-128. Distinguished from INV-102 (which discounts the evidential *weight* of an
+observation already attributed to another agent's action, not the *urgency* of stopping
+deliberation given that agent's mere presence) and from MECH-498 (progress-gated: REE's own rate
+of progress stalling, vs. MECH-515's threat/competition-gated: a rival eroding the value of the
+outcome regardless of REE's own progress). See `claims.yaml` MECH-515 for the full cross-reference
+notes.
+
 ## 3. Explicitly out of scope here
 
-- The multi-agent strategic-cost-of-delay thread (thought section 6: another mind can make
-  waiting costly independent of information value) is flagged in the intake as needing a closer
-  check against REE's existing multi-agent/adversarial-evidence claims before it can be judged
-  genuinely new; it is not registered as its own claim in this pass.
 - The sleep/termination-behaviour speculation (thought section 17) is explicitly hypothesis-
   generating on a single anecdotal Fishtank observation and is not claim-worthy yet.
 

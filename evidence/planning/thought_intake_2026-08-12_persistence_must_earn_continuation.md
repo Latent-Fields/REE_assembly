@@ -39,7 +39,7 @@ confidence while leaving objective accuracy intact), producing positive-feedback
 | Self-referential stopping failure: checking degrades the confidence variable that gates its own termination, independent of BG/ACh attractor dynamics | No existing claim; MECH-080 covers a different (gate-dynamics) mechanism for the same clinical phenomenon. | **Genuinely new -> registered as MECH-497.** |
 | Progress-gated disengagement: continue only while marginal return AND observed rate of progress both justify it; the complement to MECH-343's widening response when widening also fails | MECH-343/SD-061 cover only the widen-under-stall direction. | **Genuinely new -> registered as MECH-498.** |
 | Information-seeking as an action competing with other actions (expected-value-of-information framing) | Partially covered by MECH-314b (uncertainty-driven curiosity / epistemic-value bonus) and MECH-434, but neither explicitly frames information-seeking as competing on the SAME action-selection ledger as eating/resting/fleeing/helping. | Adjacent, not a clean duplicate, but thin enough (and close enough to MECH-314b/MECH-434 in spirit) that it is folded into ARC-128's framing rather than given its own claim. |
-| Multi-agent strategic cost of delay (another mind can make waiting costly independent of information value) | No hits for "strategic cost of delay" / adversarial-delay framing found by targeted search of claims.yaml. | Plausibly new, but not verified against REE's existing (large) multi-agent/adversarial-evidence claim cluster carefully enough in this pass to register responsibly. **Left as a next-step lit/claims check, not registered.** |
+| Multi-agent strategic cost of delay (another mind can make waiting costly independent of information value) | No hits for "strategic cost of delay" / adversarial-delay framing found by targeted search of claims.yaml. Cross-referenced 2026-08-26 against ARC-010, ARC-047, MECH-031, MECH-274, MECH-223, ARC-037, EXT-009/INV-072, INV-102/MECH-504, MECH-434/435 -- none supplies an other-agent-behaviour-sensitive commitment-threshold term. | **Genuinely new -> registered as MECH-515** (2026-08-26; see `docs/architecture/persistent_process_termination_taxonomy.md` section 2d). |
 | Sleep may alter termination behaviour specifically (not just representations/policies) | Speculative, single anecdotal Fishtank observation per the thought's own section 17. | Correctly left unclaimed by the raw thought itself; not claim-worthy material. |
 
 ## Key formulations (verbatim, load-bearing)
@@ -103,10 +103,11 @@ list, is in the new architecture doc
    optimal foraging (Charnov, already partially covered via Q-080's design doc); hierarchical-RL
    options/termination (Sutton et al. 1999, already used elsewhere in the registry for MECH-317 --
    check whether that citation covers the termination-function half or only option-formation).
-2. **Multi-agent strategic-cost-of-delay thread**: check REE's existing multi-agent /
-   adversarial-evidence claim cluster carefully (not yet done in this pass) before deciding
-   whether it is genuinely new or already implicit somewhere. If new, register as its own claim
-   rather than folding into ARC-128.
+2. **Multi-agent strategic-cost-of-delay thread -- RESOLVED 2026-08-26.** Checked against REE's
+   existing multi-agent/adversarial-evidence claim cluster; genuinely new, registered as its own
+   claim (**MECH-515**), not folded into ARC-128. See
+   `docs/architecture/persistent_process_termination_taxonomy.md` section 2d for the full
+   cross-reference.
 3. **Version-routing decision**: all three registered claims are parked `v4`/`substrate_conditional`
    by default, per standing practice for thought-intake registrations. A future `/governance`
    cycle can route any of them onto V3 explicitly if a cheap, non-degenerate test becomes
