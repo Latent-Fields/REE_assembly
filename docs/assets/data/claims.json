@@ -1164,6 +1164,22 @@
     "title": "A learned attractor's carried quantities -- predictive reliability, epistemic confidence, familiarity, affective valence, salience, action urgency, self-relevance, and source confidence -- are separable axes that must remain independently readable rather than collapsing into one undifferentiated strength signal; when collapsed, a strongly valenced and highly precise attractor stops functioning as a hypothesis and becomes the lens through which what is noticed, how ambiguity is resolved, which memories are retrieved, and which replayed material is stored as further evidence are all determined.\n",
     "type": "architectural_commitment"
   },
+  "ARC-133": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.selection_relevant_individuation",
+    "title": "Selection-relevance is a legitimate object-individuation criterion: an object may be individuated by what it is FOR -- its usefulness relative to goals, harm, and interoceptive/metabolic state -- rather than (only) by the causal coherence of its features under intervention. This is RIVAL to MECH-278 and the two disagree on real cases: causally-identical-but-functionally-distinct items are one object under MECH-278 and two under ARC-133; causally-distinct-but-functionally-identical items (a hazard that bites, a hazard that falls) are two under MECH-278 and one under ARC-133. The sharpest divergence is drive-relative re-individuation -- the same world carves differently when hungry, thirsty or injured -- which a causal criterion cannot deliver and which is precisely what MECH-359 asserts selection requires.",
+    "type": "architectural_commitment"
+  },
+  "ARC-134": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.perceptual_dynamic_regranularisation",
+    "title": "The unit of PERCEPT is a dynamic representation, not a fixed primitive: perceptual grain rescales with circumstance, so that the same scene is individuated coarsely or finely depending on demand. This is the perceptual analogue of ARC-069's already-accepted policy-side commitment, and ARC-069's rationale transfers axis-independently -- a fixed grain is either too fine (combinatorial explosion in what must be tracked and bound) or too coarse (units fail to map onto the actual state). REE has made this commitment for policy (ARC-069/070/071) and for context slots offline (MECH-166) but never for online perception, where the unit remains fixed.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -7458,6 +7474,54 @@
     "status": "candidate",
     "subject": "control_plane.multiagent_strategic_delay_cost",
     "title": "In multi-agent settings, the cost of continued deliberation is not only an opportunity cost against a passive, unchanging world (the internal expected-value-of-information trade MECH-434 already governs) but a STRATEGIC cost that another goal-directed agent can actively impose: a competing mind can occupy a contested resource, block a route, infer REE's objective from its information-seeking behaviour, conceal or manufacture evidence, or prepare an attack while REE continues gathering evidence. A commitment-timing mechanism that weighs only pragmatic-vs-epistemic value against a static environment will systematically over-deliberate whenever another agent is present and can act on REE's delay; the commitment threshold/urgency term must therefore also be sensitive to detected other-agent presence and behaviour, not internal information value alone.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-516": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.graded_value_categorical_interface",
+    "title": "Graded value, categorical interface: REE repeatedly computes a graded value structure and delivers it to its consumer as a categorical summary, so cross-item structure that existed upstream is destroyed at the boundary rather than never having been present. Confirmed instances -- per-object wanting[k] collapsed by most_wanted()'s ARGMAX into a single z_goal before selection; MECH-319's BINARY replay write-gate which says nothing about ordering among the transitions it admits; MECH-294's ThetaPacket FIXED-ARITY dataclass; and the O-space decoder whose argmax pins to one constant class. The prediction that follows is that improving a signal upstream of such an interface produces no downstream behavioural change.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-517": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "methodology.interface_before_representation_ordering",
+    "title": "Interface before representation: a representation improvement is undetectable through a collapsing interface, so representation-side experiments run before the consumer interface is fixed return nulls that cannot be interpreted. This is RIVAL to the standing differentiate-first ordering (differentiate z_world per INV-088, THEN apply diversity pressure). The two give opposite readings of the same result: V3-EXQ-817a verifiably improved O's consequence structure and produced no behavioural change, which differentiate-first reads as consequence structure does not help, and this claim reads as the measurement could not have detected help.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-518": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampal.action_object_dual_role_variance_contention",
+    "title": "One tensor, two masters: E2.action_object_head's output O is simultaneously the semantic compression (what o_t means) and the search coordinate system the hippocampal CEM samples in (ao_mean + ao_std*noise, decoded to actions), so an objective that improves the first can degrade the second by reallocating a shared fixed budget -- O's variance. Measured in V3-EXQ-817a: ao_M5_r2_explained_by_action_alone fell from ~0.995 to ~0.721, moving roughly 28 percent of O's variance out of action-coding, while the consequence-ordering metric M6 remained weak and sign-unstable (mean ~+0.12, negative on 2 of 5 seeds). O stopped being a clean action code without becoming a reliable consequence code.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-519": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "drive.epistemic_value_carrier",
+    "title": "Epistemic value is episode-borne, not object-borne: consummatory and harm value attach to OBJECTS (SD-057's base_value[k] revalued by interoceptive drive), whereas the value of information attaches to EPISODES as gain x need -- how much incorporating this would change what the agent would choose, times how likely it is to face that choice. The structural reason is that a model is wrong about TRANSITIONS rather than about THINGS, which predicts there is no environmental epistemic benefit-pulse available to bind to an object identity, and therefore no natural write rule for an epistemic axis added to SD-049's per-axis drive.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-520": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.predictive_obligation_anticollapse",
+    "title": "Predictive obligation is the anti-collapse constraint on a value-carved representation: a representation compressed toward selection-relevance ALONE degenerates, because value is a near-scalar projection and a pure value-carving objective admits solutions that discard everything not currently useful. Requiring the higher-order latents to remain PREDICTIVE across the ARC-004 temporal spread supplies a constraint the value objective lacks -- cross-horizon prediction demands retained state structure that value alone does not -- so the combination holds perception open where value-carving alone would collapse it.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-521": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "entities.settling_derived_slot_occupancy",
+    "title": "Perceptual slot occupancy is an emergent order parameter of a settling competition, not a count read off coherence: counting related coherencies is circular because the relatedness criterion IS the grain decision, and coherence nests rather than partitions. Occupancy instead emerges from coupling competing against lateral inhibition, bounded above by the carrier ratio (Lisman & Jensen theta/gamma capacity ~ slots x phase-bins), so CAPACITY and OCCUPANCY are distinct regulators that must not be collapsed. Ephaptic field strength enters as the COUPLING CONSTANT of that dynamic rather than as a quantity measured and counted -- which is what a physical field natively supplies, and which is heterogeneous by population rather than imposing a single ordered abstraction axis.",
     "type": "mechanism_hypothesis"
   },
   "Q-001": {

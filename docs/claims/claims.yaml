@@ -86215,3 +86215,338 @@
     thought's own list, sections 6 and "Literature directions to mine"): multi-agent decision timing
     and strategic opportunity cost specifically -- not yet independently verified against a citation
     in this pass.
+- id: ARC-133
+  title: "Selection-relevance is a legitimate object-individuation criterion: an object may be individuated by what it is FOR -- its usefulness relative to goals, harm, and interoceptive/metabolic state -- rather than (only) by the causal coherence of its features under intervention. This is RIVAL to MECH-278 and the two disagree on real cases: causally-identical-but-functionally-distinct items are one object under MECH-278 and two under ARC-133; causally-distinct-but-functionally-identical items (a hazard that bites, a hazard that falls) are two under MECH-278 and one under ARC-133. The sharpest divergence is drive-relative re-individuation -- the same world carves differently when hungry, thirsty or injured -- which a causal criterion cannot deliver and which is precisely what MECH-359 asserts selection requires."
+  claim_type: architectural_commitment
+  subject: representation.selection_relevant_individuation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-278  # RIVAL -- the incumbent causal-coherence individuation criterion
+    - ARC-080   # object-identity spine; OBJ-1 coregistration this would extend by a fourth facet
+    - MECH-359  # candidate-differentiated affect -- the requirement this criterion would satisfy structurally
+    - SD-057    # live object-bound incentive salience: wanting[k] is already usefulness x interoceptive state
+    - MECH-344  # benefit-to-object-identity binding
+    - ARC-006   # object-file / binding layer
+  location: docs/architecture/selection_relevant_representation.md#arc-133
+  notes: >
+    Registered from thought-intake 2026-08-26 (representation -> authority -> selection).
+    REGISTERED AS AN EXPLICIT RIVAL TO MECH-278 on user instruction (2026-08-26): mutually
+    exclusive claims are to be registered so experiment and literature can adjudicate, rather
+    than the registering session pre-judging. Both readings are live and neither is weakened
+    by this registration. CONSERVATIVE READING: a FOURTH FACET coregistered under ARC-080's
+    OBJ-1 resolution (type / anchor / token / USE), which crowned none of the existing three.
+    RADICAL READING: usefulness is the primary criterion and causal coherence is merely
+    evidence for it. Not resolved here -- the fork is the first thing a governance pass should
+    put to the user. What makes this non-vacuous: SD-057 already computes
+    wanting[k] = base_value[k] * (1 + kappa * drive_axis[k]), i.e. object identity x
+    interoceptive state -> value, LIVE in ree_core/goal.py (default-OFF flags). The criterion
+    is therefore already half-instantiated; what does not exist is any use of it to
+    INDIVIDUATE. Literature NOT yet pulled and NOT verified for this pass: affordance-based
+    categorisation (Gibson), functional/teleological categories in infant cognition
+    (Gergely & Csibra), and the animal-cognition predator-category literature that unifies
+    causally-dissimilar items by relation-to-organism, are the obvious anchors and should be
+    commissioned before hardening. DO NOT build in V3. DO NOT queue an experiment.
+- id: ARC-134
+  title: "The unit of PERCEPT is a dynamic representation, not a fixed primitive: perceptual grain rescales with circumstance, so that the same scene is individuated coarsely or finely depending on demand. This is the perceptual analogue of ARC-069's already-accepted policy-side commitment, and ARC-069's rationale transfers axis-independently -- a fixed grain is either too fine (combinatorial explosion in what must be tracked and bound) or too coarse (units fail to map onto the actual state). REE has made this commitment for policy (ARC-069/070/071) and for context slots offline (MECH-166) but never for online perception, where the unit remains fixed."
+  claim_type: architectural_commitment
+  subject: representation.perceptual_dynamic_regranularisation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - ARC-069   # the policy-axis parent commitment whose rationale this transfers
+    - ARC-070   # policy zoom-in (trigger: prediction failure / V_s drop)
+    - ARC-071   # policy zoom-out (trigger: repetition + outcome consistency)
+    - MECH-321  # ARC-070's built mechanism via the MECH-288 event segmenter
+    - MECH-166  # context slot-formation -- the OFFLINE (SWS) grain-setting analogue
+    - MECH-126  # overmerge / oversplit -- the failure taxonomy that supplies the DV
+    - ARC-080   # defines what an object IS, but says nothing about grain or its dynamics
+    - MECH-288  # already runs two segmentation scales with nothing arbitrating which is operative
+  location: docs/architecture/selection_relevant_representation.md#arc-134
+  notes: >
+    Registered from thought-intake 2026-08-26. NOT a duplicate of ARC-069: ARC-069 is explicitly
+    and repeatedly scoped to the unit-of-POLICY that ARC-062/ARC-065 operate on (imagined action
+    chunks in hippocampal rollout); ARC-134 is the unit-of-PERCEPT. The distinction is load-bearing
+    because policy chunks and context slots are both DOWNSTREAM of how the percept was carved.
+    Evidence the perceptual cell is genuinely empty: a part-whole / compositional-hierarchy search
+    over claims.yaml returns ZERO claims; ARC-080 fixes what an object is without fixing at what
+    grain objects are individuated. DISTINCT FROM MECH-166: MECH-166 is context-slot schema
+    abstraction and asserts it CANNOT be co-computed online (must consolidate during an SWS-analog
+    phase); ARC-134 is an online, fast perceptual claim, so the two are complementary rather than
+    competing -- if both hold, grain is set offline for contexts and online for percepts, which is
+    itself a testable structural prediction. STANDING CAUTION carried from MECH-321's own provenance
+    note: Badre & Nee 2018 finds the evidence supports neither a unitary model of lateral frontal
+    function nor a unidimensional abstraction gradient, so there may be NO single ordered axis along
+    which to regulate; a scalar-dial formulation of ARC-134 is the version that objection kills, and
+    a per-population formulation (see MECH-521) is the version that survives it. DO NOT build in V3.
+- id: MECH-516
+  title: "Graded value, categorical interface: REE repeatedly computes a graded value structure and delivers it to its consumer as a categorical summary, so cross-item structure that existed upstream is destroyed at the boundary rather than never having been present. Confirmed instances -- per-object wanting[k] collapsed by most_wanted()'s ARGMAX into a single z_goal before selection; MECH-319's BINARY replay write-gate which says nothing about ordering among the transitions it admits; MECH-294's ThetaPacket FIXED-ARITY dataclass; and the O-space decoder whose argmax pins to one constant class. The prediction that follows is that improving a signal upstream of such an interface produces no downstream behavioural change."
+  claim_type: mechanism_hypothesis
+  subject: selection.graded_value_categorical_interface
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-359  # DISTINGUISHED-FROM: the signal must carry per-candidate range
+    - MECH-463  # DISTINGUISHED-FROM: a global scalar amplifies the incumbent
+    - MECH-464  # the live counter to MECH-463's uniform-scalar reading; contests one instance
+    - MECH-439  # F-dominance -- the ceiling this reading reinterprets
+    - MECH-346  # z_goal seeded from the argmax incentive-token pointer (instance 1)
+    - MECH-319  # binary simulation-mode write gate (instance 2)
+    - MECH-294  # fixed-arity theta packet (instance 3)
+    - SD-080    # frozen O and its decoder (instance 4)
+    - MECH-487  # adjacent: retaining WHICH alternative was considered rather than a transient scalar
+  location: docs/architecture/selection_relevant_representation.md#mech-516
+  notes: >
+    Registered from thought-intake 2026-08-26; the four instances were found by code inspection of
+    ree-v3 during that session, not inferred from design docs. DISTINCT FROM MECH-359: MECH-359
+    asserts a requirement ON THE SIGNAL (it must carry cross-candidate range); MECH-516 asserts that
+    range which DID exist is destroyed at the consumer boundary -- a different locus and a different
+    remedy (plumbing, not signal strength). DISTINCT FROM MECH-463: MECH-463 concerns a signal that
+    is a global scalar at source; MECH-516 concerns a graded source rendered categorical in transit.
+    HONEST WEAKNESS, recorded rather than hidden: MECH-464 disputes the affect instance directly,
+    arguing D1/D2 opponent gain IS order-changing because it acts asymmetrically about zero on a
+    signed representation. That instance is therefore CONTESTED and the pattern rests on the other
+    three. Note also that MECH-464, if true, is itself an instance of the general thesis that
+    representation FORMAT decides whether a signal can differentiate. Each instance additionally has
+    a good local justification (MECH-346 needed a single z_goal seed; MECH-319 needed a clean
+    simulation/real boundary; MECH-294's typing prevents collapsing the SD-011 dual-stream
+    distinction), so the open question this claim exists to force is whether it is one architectural
+    habit or several defensible local decisions assembled with hindsight. Adjudicate by experiment,
+    not by inspection. No lit anchor claimed.
+- id: MECH-517
+  title: "Interface before representation: a representation improvement is undetectable through a collapsing interface, so representation-side experiments run before the consumer interface is fixed return nulls that cannot be interpreted. This is RIVAL to the standing differentiate-first ordering (differentiate z_world per INV-088, THEN apply diversity pressure). The two give opposite readings of the same result: V3-EXQ-817a verifiably improved O's consequence structure and produced no behavioural change, which differentiate-first reads as consequence structure does not help, and this claim reads as the measurement could not have detected help."
+  claim_type: mechanism_hypothesis
+  subject: methodology.interface_before_representation_ordering
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-516  # the interface-collapse mechanism this ordering claim depends on
+    - INV-088   # RIVAL ordering -- evaluator bounded by z_world differentiation (differentiate-first)
+    - MECH-458  # carries the standing ordering-gated-on-INV-088 instruction this competes with
+    - SD-080    # the frozen-O finding whose falsifier produced the discriminating null
+    - MECH-518  # the specific interface implicated in that null
+    - SD-004    # the claim 817a weakened
+  location: docs/architecture/selection_relevant_representation.md#mech-517
+  notes: >
+    Registered from thought-intake 2026-08-26. REGISTERED AS AN EXPLICIT RIVAL to the
+    differentiate-first ordering on user instruction (2026-08-26) -- both orderings are live, both
+    are testable, and neither is weakened by the other's registration. DISCRIMINATING TEST, which
+    is a forward prediction rather than a reinterpretation: re-run an 817a-shaped grounding contrast
+    THROUGH a non-collapsing interface. Interface-first predicts the behavioural benefit 817a could
+    not see; differentiate-first predicts a second null. IMPORTANT SCOPE LIMIT, recorded because it
+    cuts against this claim: the 734/737b/742a autopsy explicitly REJECTED substrate_ceiling on the
+    representation, finding ppo_ree_latent 0.233 and ppo_raw_obs 0.567 both sub-random and
+    concluding that a failure invariant across learner AND representation is a property of the
+    OBJECTIVE they share. That result is congruent with an objective-level reading but must NOT be
+    cited as evidence that representation is the ceiling -- it says the opposite. No lit anchor
+    claimed; this is a methodological/ordering claim about REE's own experimental sequence.
+- id: MECH-518
+  title: "One tensor, two masters: E2.action_object_head's output O is simultaneously the semantic compression (what o_t means) and the search coordinate system the hippocampal CEM samples in (ao_mean + ao_std*noise, decoded to actions), so an objective that improves the first can degrade the second by reallocating a shared fixed budget -- O's variance. Measured in V3-EXQ-817a: ao_M5_r2_explained_by_action_alone fell from ~0.995 to ~0.721, moving roughly 28 percent of O's variance out of action-coding, while the consequence-ordering metric M6 remained weak and sign-unstable (mean ~+0.12, negative on 2 of 5 seeds). O stopped being a clean action code without becoming a reliable consequence code."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.action_object_dual_role_variance_contention
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: 2026-08-26
+  depends_on:
+    - SD-080    # O is a frozen random projection receiving zero gradient
+    - SD-004    # action objects as hippocampal map backbone -- the claim 817a weakened
+    - MECH-516  # the general interface-collapse pattern this instantiates
+    - SD-056    # supplies cand_world_pairwise_dist, the proposal-diversity instrument for the check
+    - SD-055    # differentiable-CEM selection -- the other consumer of this search geometry
+  location: docs/architecture/selection_relevant_representation.md#mech-518
+  notes: >
+    Registered from thought-intake 2026-08-26. Read from the V3-EXQ-817a manifest per-seed, not
+    from the autopsy summary. THIS CLAIM IS CHEAPLY TESTABLE ON EXISTING V3 SUBSTRATE and the
+    check is pre-registered: record per-candidate proposal diversity (cand_world_pairwise_dist,
+    the SD-056 / GAP-A instrument) under ARM_0 frozen vs ARM_1 grounded. If proposal diversity
+    DROPS in ARM_1 the claim is supported and V3-EXQ-817a is NOT evidence against
+    consequence-grounding -- the remedy is to stop making one tensor serve both masters (ground a
+    consequence READOUT of O while leaving the CEM's search coordinates action-conditioned). If
+    proposal diversity is UNCHANGED the claim is refuted and 817a bites much harder against SD-004
+    and ARC-133. implementation_phase v3 reflects that the substrate exists and the measurement is
+    available today; the ROUTING DECISION (whether to queue it, and against which lineage given the
+    live re-derive brake on the 689/485/445/625 families) is deliberately left to /governance and
+    is NOT taken here. CAVEAT on the behavioural half of 817a: seed variance dwarfs the arm effect
+    (ARM_0 harm_rate ranges 0.021 to 0.702, survival 8.9 to 187.7 steps across 5 seeds), so 817a is
+    decisive that grounding did not HELP and weak evidence that it actively HURT. No lit anchor.
+- id: MECH-519
+  title: "Epistemic value is episode-borne, not object-borne: consummatory and harm value attach to OBJECTS (SD-057's base_value[k] revalued by interoceptive drive), whereas the value of information attaches to EPISODES as gain x need -- how much incorporating this would change what the agent would choose, times how likely it is to face that choice. The structural reason is that a model is wrong about TRANSITIONS rather than about THINGS, which predicts there is no environmental epistemic benefit-pulse available to bind to an object identity, and therefore no natural write rule for an epistemic axis added to SD-049's per-axis drive."
+  claim_type: mechanism_hypothesis
+  subject: drive.epistemic_value_carrier
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-443  # gain x need as replay write-priority -- the episode-side quantity
+    - MECH-444  # the freshness/reanalyze leg that composes with it
+    - SD-057    # the object-side carrier this contrasts with
+    - SD-049    # per-axis drive -- the mechanism an epistemic axis would have to plug into
+    - MECH-388  # DISTINGUISHED-FROM: epistemic pressure on ACTIONS under partial observability
+    - MECH-314b # DISTINGUISHED-FROM: a reward BONUS over states tracking epistemic value
+    - MECH-458  # curiosity as exploitation amplifier; the owed rarity-seeking drive this bears on
+  location: docs/architecture/selection_relevant_representation.md#mech-519
+  notes: >
+    Registered from thought-intake 2026-08-26, from the user's listing of information need alongside
+    hunger and thirst as a basic drive. This is a CARRIER claim -- about which structure HOLDS the
+    quantity -- and is therefore distinct from all three adjacent claims, which are about where
+    epistemic value ACTS: MECH-388 assigns pressure to information-gathering ACTIONS; MECH-314b is a
+    reward BONUS over states; MECH-443 is the write-priority MECHANISM. None of them says what
+    structure the value is stored on, which is what this claim asserts. LOAD-BEARING CONSTRAINT
+    inherited from MECH-443's architecture doc and NOT to be softened: the priority is the value of
+    the UPDATE (gain x need, Mattar & Daw 2018), NOT reward magnitude -- an implementation equating
+    it with reward level or committed-policy value is biologically falsified, with the Carey et al.
+    2019 refinement that replay can be biased AWAY from the currently-most-valuable outcome. So
+    usefulness in the episodic sense is explicitly NOT current value. RIVAL READING, deliberately
+    left live per the user's register-mutually-exclusive-claims instruction (2026-08-26): epistemic
+    value is object-borne like nutritive value, with base_value written from accumulated
+    E1/E2 prediction error ABOUT object k. That version is buildable and would falsify this claim's
+    structural premise; it is not suppressed. Literature (Mattar & Daw 2018, Carey 2019,
+    Olafsdottir 2015) is already pulled and verified under MECH-443's own lit-pull; not
+    re-verified in this pass. DO NOT build in V3.
+- id: MECH-520
+  title: "Predictive obligation is the anti-collapse constraint on a value-carved representation: a representation compressed toward selection-relevance ALONE degenerates, because value is a near-scalar projection and a pure value-carving objective admits solutions that discard everything not currently useful. Requiring the higher-order latents to remain PREDICTIVE across the ARC-004 temporal spread supplies a constraint the value objective lacks -- cross-horizon prediction demands retained state structure that value alone does not -- so the combination holds perception open where value-carving alone would collapse it."
+  claim_type: mechanism_hypothesis
+  subject: representation.predictive_obligation_anticollapse
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - ARC-133   # the value-carving proposal this constrains
+    - ARC-004   # the multi-timescale latent stack supplying the temporal spread
+    - ARC-088   # DISTINGUISHED-FROM: anti-collapse at the BEHAVIOURAL/evaluator level
+    - SD-070    # DISTINGUISHED-FROM: a specific VICReg-style training recipe for z_world
+    - INV-091   # the viable band -- too little integration is fragmentation, too much is collapse
+    - MECH-006  # serotonin-like modulation governs representational collapse
+  location: docs/architecture/selection_relevant_representation.md#mech-520
+  notes: >
+    Registered from thought-intake 2026-08-26, from the user's own corrective to their proposal
+    ("alone what I just thought of might just end up with horrendously over compressed
+    representations that mean nothing"). DISTINCT FROM ARC-088: ARC-088 prevents BEHAVIOUR
+    collapsing onto the dominant gradient via plural gated evaluators; MECH-520 prevents the
+    REPRESENTATION collapsing onto its own value projection. Different level, different mechanism.
+    DISTINCT FROM SD-070: SD-070 is an implemented training RECIPE (class-balanced CE plus a
+    VICReg-style variance/covariance penalty) for one encoder; MECH-520 is the general assertion
+    that a predictive obligation across timescales is what supplies the constraint. SD-070 is
+    nonetheless the strongest REE precedent that the hazard is REAL and not hypothetical: it exists
+    because z_world was MEASURED collapsing to participation ratio ~1.06 at world_dim=128. RELATED
+    TO INV-091: INV-091 asserts a viable band with a measurable quantity in between; MECH-520
+    proposes a mechanism for staying below its upper wall, so a confirmation of MECH-520 would
+    supply INV-091 one of its missing operators. FORMAL SHAPE: the two-term objective is ordinary
+    information-bottleneck geometry -- compress subject to preserving selection-sufficiency, with
+    cross-horizon predictive sufficiency as the floor. External anchors NOT yet verified in this
+    pass: value-equivalent models (Grimm et al. 2020), bisimulation metrics (Ferns et al.),
+    MuZero's reconstruction-free latent (already an intake lane in REE_convergence, CDQ-005).
+    DO NOT build in V3.
+- id: MECH-521
+  title: "Perceptual slot occupancy is an emergent order parameter of a settling competition, not a count read off coherence: counting related coherencies is circular because the relatedness criterion IS the grain decision, and coherence nests rather than partitions. Occupancy instead emerges from coupling competing against lateral inhibition, bounded above by the carrier ratio (Lisman & Jensen theta/gamma capacity ~ slots x phase-bins), so CAPACITY and OCCUPANCY are distinct regulators that must not be collapsed. Ephaptic field strength enters as the COUPLING CONSTANT of that dynamic rather than as a quantity measured and counted -- which is what a physical field natively supplies, and which is heterogeneous by population rather than imposing a single ordered abstraction axis."
+  claim_type: mechanism_hypothesis
+  subject: entities.settling_derived_slot_occupancy
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - ARC-134   # the perceptual-regranularisation commitment this supplies a mechanism for
+    - MECH-140  # soft-competitive disinhibition -- losers down-weighted, not silenced
+    - MECH-450  # minimal recurrent settling step; built, for SELECTION not perception
+    - MECH-089  # theta-cycle packaging -- the carrier, active in v3
+    - MECH-294  # multi-content theta packet; its FIXED-ARITY sub-slots are the contrast case
+    - MECH-499  # ephaptic content aggregation -- distinct function
+    - MECH-500  # ephaptic temporal/readiness authority -- distinct function
+    - MECH-228  # ephaptic coupling as general coherence substrate
+    - Q-077     # slot-vs-resource for SD-046; this claim is a THIRD answer to that fork
+    - ARC-006   # binding substrate
+  location: docs/architecture/selection_relevant_representation.md#mech-521
+  notes: >
+    Registered from thought-intake 2026-08-26, from the user's question "could coherence extent set
+    slot count -- perhaps the number of related coherencies -- that would be too simple though
+    right?". The naive counting version is registered here as REFUTED-BY-ARGUMENT (circularity,
+    nesting, and type/token underdetermination -- the last being exactly the fork ARC-080's OBJ-1
+    declined to collapse) and the settling formulation is what is asserted. THIRD FUNCTION for
+    ephaptic coupling, distinct from MECH-499 (what the actionable now CONTAINS) and MECH-500 (WHEN
+    a branching future is coherent enough to commit): at what GRAIN the now is carved. THIRD ANSWER
+    to Q-077, which poses slot-vs-resource as a dichotomy and records that the human literature is
+    itself unresolved: coupling is a continuous RESOURCE, settling turns it into discrete
+    ATTRACTORS, so discreteness is emergent from a resource and neither is primitive. DISCRIMINATING
+    SIGNATURE, a prediction rather than a reconciliation: capacity should degrade gracefully
+    (resource-like) up to a point and then lose a whole domain (slot-like). STANDING CAUTION that
+    anyone building on this must carry: V3-EXQ-725a, REE's only ephaptic-analog test, FAILED its
+    load-bearing SPEC_coherence_specific gate at 1/6 seeds against a 4/6 bar, with 2 of the 3
+    cleanly-interpretable seeds ANTI-specific (2 further seeds saturated at 1.000 on both real and
+    shuffle, so the instrument could not discriminate on a third of the sample). It tested coherence
+    as a BINDING signal rather than as a GRAIN regulator -- a different function on a different
+    readout -- but it is a real negative. RESIDUAL, stated rather than hidden: this MOVES the
+    regulator rather than eliminating it, since something must still set the coupling constant; the
+    gain is that it moves from a threshold on a measurement (arbitrary, circular) to a scalar
+    control parameter on a dynamic (physical, and natively what a field supplies). Literature
+    anchors already on file from the 2026-06-06 binding pull (Lisman & Jensen 2013 theta-gamma;
+    Fries CTC; von der Malsburg superposition catastrophe; Locatello slot-attention) -- NOT
+    re-verified in this pass, and none independently verified for the settling/occupancy claim
+    specifically. DO NOT build in V3. DO NOT queue an experiment.
