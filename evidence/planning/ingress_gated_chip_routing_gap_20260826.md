@@ -224,3 +224,25 @@ facts confirmed live above.
   claim of "dozens of cycles on both boxes" is taken as given and is
   consistent with condition 4 applying identically on both (neither has
   `coordinator.env`).
+
+## Human decision (2026-08-26, via chip-20260826-ingress-dispatch-architecture-decision)
+
+**Decision: (b) Authorize cloud->Mac SSH.** The user chose to let cloud dispatchers
+hand off ingress-gated work directly to the Mac via `dispatch_remote_launch.py --box local`,
+rather than installing a resident dispatcher on the fragile hub, or reversing the
+deliberate interactive-only Mac dispatch design.
+
+**Status: PENDING the user's own manual step.** Adding an SSH public key to
+`~/.ssh/authorized_keys` is a system/security-setting change the orchestrator is not
+permitted to perform even with explicit authorization (see the safety boundary this
+was flagged against). The orchestrator supplied the two cloud boxes' existing public
+keys (`ree@ree-cloud-4-metaworker`, `ree-cloud-5-fleet-outbound`) and a `command=`
+restriction option for scoping the grant down to `dispatch_remote_launch.py --box local`
+only, rather than a bare unrestricted key. As of this cycle, reachability has not yet
+been re-verified -- do not assume the key is in place; check `ssh -o BatchMode=yes ree@<mac-tailscale-or-wireguard-ip> true` (or equivalent) from a cloud box before relying on this path, and if reachable, wire `ree-cloud-4`/`ree-cloud-5` dispatch cycles to actually invoke `dispatch_remote_launch.py --box local` for ingress-gated candidates instead of leaving them WITHHELD.
+
+**Follow-on chip needed once the key is confirmed in place:** wire condition 4's
+WITHHELD branch to attempt a hand-off to the Mac via SSH when a chip is ingress-gated,
+falling back to the existing WITHHELD-and-report behavior if the Mac is unreachable
+or its own memory floor is exceeded (do not let a cloud dispatcher pile work onto an
+already-constrained Mac blind to its load -- read `mac_dispatch_load.json` first).
