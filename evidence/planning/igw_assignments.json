@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-25T15:47:20Z",
+  "generated_at": "2026-08-26T07:02:42Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7385,6 +7385,28 @@
         "priority": 55,
         "claim_ids": [
           "MECH-091"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260826T065954Z-829f5783-claude_local",
+      "stable_hash": "829f578353c7",
+      "igw_id_at_assign": "IGW-20260826-235",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-08-26T06:59:54Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=c67974dc-1a6f-4307-9bc1-a049a68e8678 branch=claude/igw-235-confirm-evidence-mech-489-lit-0",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-489 (lit 0.83, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-489"
         ]
       }
     }

@@ -2118,3 +2118,4 @@ One line per hourly tick. ASCII only.
 2026-08-26T05:59:15Z ERROR IGW-20260826-231: TASK_CLAIMS.json stale read, refused to write the protecting claim -- not spawning: TASK_CLAIMS.json is missing 5 entries that HEAD already has, after 3 fresh reads (first: metaworker-chip-20260825-igw-refresh-taskclaim-partial-key). Refusing to write. Check for HEAD/worktree skew per CLAUDE.md before re-running.
 2026-08-26T05:59:15Z ERROR IGW-20260826-231: worktree removed
 2026-08-26T07:01:05Z workset committed (regen -- 241 items, 22 ready, 0 in flight)
+2026-08-26T06:59:54Z SPAWN IGW-20260826-235 skill=/queue-experiment prio=55 uuid=c67974dc-1a6f-4307-9bc1-a049a68e8678 pid=8151 worktree=igw-235-confirm-evidence-mech-489-lit-0
