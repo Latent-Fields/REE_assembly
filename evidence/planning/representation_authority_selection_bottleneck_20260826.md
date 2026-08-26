@@ -1665,3 +1665,64 @@ ARC-080's 2026-06-04 state, not as current fact.
 **NOT ACTED ON: ARC-080's architecture doc still carries the stale "orphaned"
 text.** Correcting another claim's doc is a governance-touching edit and is not
 taken unilaterally here -- surfaced for the user / `/governance`.
+
+---
+
+# 12. CORRECTION (digestion wave 1): §3.3c's mechanism for the 817a null is WRONG
+
+Section 3.3c explained V3-EXQ-817a's behavioural null as: grounding was applied to the
+ENCODER while the **decoder** exit from the bottleneck stayed a collapsing interface
+"whose argmax pins to one constant class", and called this "a fourth instance of the
+section-2.3 pattern, at the site of the one direct test of the thesis."
+
+**The decoder is not on 817a's behavioural path.** Verified in the driver:
+`experiments/v3_exq_817a_sd080_worldeffect_grounding_falsifier.py` lines 480/486,
+581/585 and 748/751 run
+
+```
+candidates = agent.hippocampal.propose_trajectories(...)
+result     = agent.e3.select(candidates, temperature=1.5)
+...        = result.selected_action
+```
+
+with **no call** to `_decode_action_objects` or `get_action_object_sequence`.
+`module.py`'s own docstring says `select_action` "routes through E3's J(zeta) and returns
+the action directly **without consulting the decoder at all**", and the decoder's
+*sanctioned* CEM use "consumes the full real-valued vector, so candidates differ
+continuously even when their argmaxes coincide". The argmax-pins-to-one-class effect
+belongs to an explicitly **forbidden driver idiom**, retained as a diagnostic
+(`action_object_roundtrip_recovery`). Two independent digestion agents found this;
+I verified it directly.
+
+**The claim survives; my stated mechanism for it did not.** The real dual-role site is
+`ree_core/hippocampal/module.py:2293-2302`: after CEM iteration 0, `ao_mean`/`ao_std` are
+refit from `elite_ao_tensor` = the elites' `get_action_object_sequence()`, i.e. **E2's O**.
+So from iteration 1 the CEM's proposal distribution *literally is* a mean/std over O -- and
+that site **is** on 817a's path, since the driver calls `propose_trajectories`. O really is
+both the semantic compression and the search geometry; the contention is at the elite
+refit, not at the decoder.
+
+**Consequences for the sections above:**
+
+- **S2.3's fourth instance is withdrawn.** MECH-516 has been narrowed accordingly to the
+  `most_wanted()` argmax alone, and its ThetaPacket instance was also withdrawn (every
+  content sub-slot carries a full continuous tensor; the typing exists to PREVENT collapse,
+  and fixed arity constrains how many *streams*, not value resolution). A real instance in
+  that module was missed and is left for a later pass: `_apply_vs_gate` thresholds
+  continuous `V_s` into a binary `is_current`, and `coherence_weights` is 3-valued.
+- **S3.3c-ter's "both halves untrained" framing was right about the decoder but attached
+  it to the wrong causal path.** The variance-reallocation argument is unaffected -- it
+  runs through the CEM refit, and gains a measured mechanism it did not have:
+  `support_preserving_ao_std_floor=0.2` (a `from_dims` default 817a used) clamps `ao_std`
+  to a constant at CEM iterations 1-2, an order of magnitude above ARM_0's own O spread.
+- **S2.3's pattern now rests on two verified instances, not four**, and one of the two
+  (`most_wanted`) is already partially confirmed at the interface by V3-EXQ-514u. The
+  "one architectural habit" reading is correspondingly weaker, and is deliberately NOT
+  registered -- design provenance is not experimentally adjudicable.
+
+**Evidence that existed and none of this thread cited** (all verified present):
+V3-EXQ-948 (2026-08-25, PASS) removed the survival confound behind the 734/737b/742a
+"objective not representation" verdict -- objective fixed at `W3_survival_zeroed`, varying
+only the observation vector: z_world 0.5, z_world + 25-dim resource field **2.233**
+(clearing the 1.0 floor 3/3), raw obs 9.033. V3-EXQ-108b (2026-08-03) already scored
+**INV-088 `weakens`**, so S3.3d's "rival to a standing prediction" framing is stale.
