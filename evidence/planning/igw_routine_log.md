@@ -2142,3 +2142,4 @@ One line per hourly tick. ASCII only.
 2026-08-26T19:12:46Z workset committed (regen -- 244 items, 24 ready, 0 in flight)
 2026-08-26T19:12:26Z skip IGW-20260826-234: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-26T20:13:08Z SPAWN IGW-20260826-234 skill=/queue-experiment prio=40 uuid=ce7a443a-20a3-4458-a68b-b6320821bbea pid=89276 worktree=igw-234-proposal-for-arc-130
+2026-08-26T20:32:23Z auto-defer igw-234-proposal-for-arc-130 hash=33f820eb9eac for 48h (complete)

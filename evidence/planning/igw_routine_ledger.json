@@ -3090,7 +3090,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-arc-130-20260826T201333Z",
       "task_claim_claimed_at": "2026-08-26T20:13:33Z",
       "assigned_at": "2026-08-26T20:13:08Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-26T20:32:08Z",
+      "completion_summary": "marked EVB-0633 (ARC-130) blocked_substrate: no reach-stage instrumentation (unauthorised by the claim's own notes); authority!=throughput core already demonstrated 4x (V3-EXQ-931 + MECH-314/320/341); chipped /claim-synthesis evidence tagging instead",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0379 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -4206,6 +4210,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-26T07:15:11Z",
       "re_eligible_after": "2026-08-28T07:15:11Z"
+    },
+    {
+      "stable_hash": "33f820eb9eac",
+      "igw_id_at_disposition": "IGW-20260826-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-130"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-130",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-26T20:32:23Z",
+      "re_eligible_after": "2026-08-28T20:32:23Z"
     }
   ]
 }
