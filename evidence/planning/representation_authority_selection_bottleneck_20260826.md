@@ -1098,3 +1098,210 @@ was read from `ree-v3` at `main` during this session, not inferred from the
 design docs. Section 5.1 records where my own first draft was wrong, because the
 wrong version was more optimistic about existing machinery than the code
 supports.
+
+---
+
+# 9. The ephaptic level-regulator (user push, 2026-08-26)
+
+> "This, and again I am just wondering here, might bring in the ephaptic coupling
+> again to regulate the level at which perception is considered."
+
+## 9.1 Collision check FIRST -- the function is owned, normatively
+
+Per "extraction beats invention", the first question is whether REE already owns
+"regulate the level at which perception is considered". **It does, on paper.**
+
+**MECH-002** (`provisional`, legacy) -- "REE uses **depth-indexed precision gains
+alpha_k** to control how strongly errors at different depths shape belief and
+action", with four named regimes that are explicitly level-setting: ACh-like
+"increases precision at **sensory depths (alpha_gamma)**"; dopamine-like
+"increases precision at **action and policy depths**"; 5HT-like "reduces premature
+commitment by limiting precision escalation".
+
+**MECH-003** (`provisional`, legacy) is emphatic and normative:
+
+> "REE treats precision and confidence as the same control variable operating at
+> different temporal depths (tau)... Precision values at different tau depths
+> **MUST** be stored, updated, and applied independently.
+> **There is no global precision scalar in REE.**"
+
+So level-regulation is not a new function. It is a **standing design commitment**.
+
+## 9.2 But it is NOT implemented -- and the implementation is the negation of the rule
+
+Read from `ree-v3` this session. Being precise, because this is load-bearing:
+
+**What EXISTS:**
+- **The depths are real.** `ree_core/latent/stack.py` implements `z_beta`
+  (affective), `z_theta` (sequence context), `z_delta` (regime/motivation)
+  alongside the SD-005 `z_self`/`z_world` split. The L-space stratification is
+  built.
+- **Per-CHANNEL precision exists.** `LatentState.precision: Dict[str, Tensor]`,
+  with learnable `self_precision_logit` `[self_dim]` and `world_precision_logit`
+  `[world_dim]`.
+- **One global commitment precision exists.** `E3TrajectorySelector.current_precision`
+  = `1.0 / (_running_variance + 1e-6)` (ARC-016 dynamic precision) -- **a single
+  float**, gating commitment.
+
+**What does NOT exist:**
+- **No precision indexed BY DEPTH.** There is no `pi_theta` vs `pi_delta`. Greps
+  for `alpha_gamma|alpha_beta|alpha_theta|alpha_delta|tau_scoped|depth_precision`
+  across `ree_core/` return **nothing**.
+- **No runtime signal that shifts which depth is operative.** The per-channel
+  precision logits are `nn.Parameter(torch.zeros(...))` -- **learned constants**,
+  not content-dependent state. They are trained once; they do not track the
+  current situation.
+
+So the honest statement is narrower than "MECH-003 is violated everywhere", and
+still damning:
+
+> **REE has the levels. REE has precision. REE has no precision-per-level.**
+> Nothing in the running system decides which level of the latent stack is
+> currently the operative grain -- and the one precision scalar that gates
+> commitment is depth-agnostic.
+
+MECH-003's "there is no global precision scalar in REE" is a **specification**;
+`current_precision` is a global precision scalar. This is a **fifth instance of the
+S2.3 pattern** -- a graded, multi-level structure specified in design and collapsed
+to one scalar at the point of use -- and it is arguably the most consequential,
+because precision is *the* mechanism by which level would be regulated at all.
+
+## 9.3 The setter problem -- why the DESIGNED regulator is already suspect
+
+Even taking MECH-002's design at face value, note **what sets alpha_k**: the four
+regimes are **global neuromodulatory scalars** (dopamine-like, NA-like, ACh-like,
+5HT-like). That is a top-down, slow, organism-wide command signal.
+
+And REE has separately argued, from measurement, that global scalars are the wrong
+shape for differentiation: **MECH-463** -- global-scalar arousal channels are a
+"VARIANCE AMPLIFIER of the already-dominant selection channel, not a source of
+behavioural differentiation". (With **MECH-464** the live counter: D1/D2 opponent
+gain may be order-changing *because* it acts asymmetrically about zero on a signed
+representation -- itself an instance of "representation format decides whether a
+signal can differentiate".)
+
+So: the designed level-regulator is a family of global scalars, and REE's own live
+argument says global scalars amplify rather than differentiate. **That is the gap
+the user's proposal walks into.**
+
+## 9.4 What ephaptic coupling uniquely offers here: grain is INTRINSIC to a field
+
+This is the part I think is genuinely new, and it is a physical argument rather
+than an analogy.
+
+A neuromodulatory scalar must be **told** which depth to act on -- the depth index
+is external to the signal, supplied by whatever routes it. A field is different:
+
+- an extracellular field has a **coherence length** -- the spatial extent over
+  which phase relations hold;
+- and a **characteristic frequency** -- which, in a system where depth *is*
+  timescale (ARC-004), is a direct index of depth.
+
+So for a field, **the grain is not a parameter the mechanism carries; it is a
+property the mechanism has.** Broad, slow coherence *is* a coarse operative grain
+(regime-level, z_delta); focal, fast coherence *is* a fine one (z_gamma). No
+routing table, no learned gate, no external depth index.
+
+This is exactly the extension of MECH-499's own argument -- "the physical substrate
+may perform part of the aggregation automatically" -- **from CONTENT to GRAIN**, and
+it is the strongest available reason to reach for ephaptic coupling *specifically*
+for this job rather than any generic gate.
+
+It also has a ready REE anchor: **MECH-089** (`active`, v3) already packages E1
+updates into **theta-cycle summaries** before they reach E3 -- cross-frequency
+temporal packaging. Frequency is already load-bearing for timescale in the running
+system. A coherence-indexed level regulator extends a mechanism REE has, rather
+than importing one it does not.
+
+## 9.5 A THIRD ephaptic function, distinct from MECH-499 and MECH-500
+
+| claim | question it answers |
+|---|---|
+| MECH-499 | **What** does the actionable "now" contain? (content aggregation) |
+| MECH-500 | **When** is a branching future coherent enough for commitment to land? (temporal/readiness authority, vs MECH-090's content authority) |
+| **proposed** | **At what GRAIN** is perception currently resolved? (level/scale authority) |
+
+Distinct from both, and there is a **well-formed empty slot** for it:
+`MECH-288`'s event segmenter is explicitly **two-scale** (fast PE-threshold, slow
+BOCPD) emitting nested `outer.inner` segment IDs, and its API "accepts a list of
+`Scale(...)` configs so a third level is a config-only addition." **REE has
+multi-scale segmentation and nothing that decides which scale is operative.** The
+scales run in parallel and both emit; no mechanism arbitrates.
+
+## 9.6 The empirical caution -- REE tried an ephaptic analog and it did not clear
+
+This must be stated before any of the above is treated as promising.
+**V3-EXQ-725a** (2026-07-10, the converged learned-binder coherence-nonreducibility
+retest, 3rd in the 641a -> 720 -> 725 -> 725a lineage) **FAILED** its load-bearing
+`SPEC_coherence_specific` gate: **1/6 seeds, needs 4/6.**
+
+Per-seed, real vs shuffle:
+
+| seed | real | shuffle | read |
+|---|---|---|---|
+| 42 | 0.946 | 0.947 | near-ceiling both -- tie |
+| 43 | 0.189 | 0.500 | **anti-specific** |
+| 44 | 1.000 | 1.000 | **saturated both** |
+| 45 | 0.242 | 0.859 | **anti-specific** |
+| 46 | 1.000 | 1.000 | **saturated both** |
+| 47 | 0.909 | 0.606 | specific |
+
+Of the 3 cleanly-interpretable (non-saturated) seeds, **2 are anti-specific and 1
+is specific.** The binder converged (PASS) and rebinding was exercised (1676 events,
+0 in every predecessor), so this was a fair test, and the autopsy calls it "a
+contributory fair-test negative on coherence-SPECIFICITY" which "refutes the
+720-autopsy's learned-binder-as-residual-prerequisite hypothesis in the negative".
+
+**Honest read of the caution:** it is a real negative, but a weak one -- 2 of 6
+seeds saturated at 1.000 on both real and shuffle, i.e. the instrument could not
+discriminate on a third of the sample. It is evidence against coherence being
+*non-reducible* as a binding signal; it is **not** a test of coherence as a
+*level regulator*, which is a different function on a different readout. But
+anyone proposing more ephaptic work has to carry this result.
+
+## 9.7 Why this closes the loop with 817a -- a REGULATED aperture
+
+The 817a failure (S3.3c-bis/ter) was a **fixed** funnel: one objective, applied
+uniformly, reallocating O's variance away from the use the consumer depended on.
+
+A level regulator makes the aperture **state-dependent**:
+
+- coherent, settled situation -> resolve at a coarse grain, compress hard, let
+  selection-relevance dominate (the user's original thesis);
+- incoherent, novel, or contested situation -> resolve at a fine grain, hold
+  perception open, keep distinctions that are not currently useful (the user's
+  own anti-collapse corrective).
+
+**The level regulator IS the compression regulator.** That is why the two halves of
+the user's 2026-08-26 pair -- "usefulness-carved representation" and "hold
+perception open via cross-time prediction" -- are not two thoughts but one
+mechanism with a control parameter. And it is why a *fixed* funnel had to fail: a
+fixed aperture must choose once, for all situations, which is precisely the choice
+817a made badly.
+
+## 9.8 The V3-tractable move, and the dependency ordering
+
+**You do not need ephaptic coupling to test level regulation.** The knob must exist
+before any candidate setter can be evaluated, and the knob does not exist.
+
+Ordering, in the debt vocabulary:
+
+1. **`complicated (buildable)` -- implement tau-scoped precision.** `pi_tau` per
+   depth, stored/updated/applied independently, per MECH-003's existing normative
+   spec. This is a substrate build with a design already written, no new science,
+   and it is a prerequisite for *every* level-regulation hypothesis including the
+   boring ones. It also directly discharges a standing spec violation.
+2. **`complex (probe-gated)` -- is a content-derived setter better than a global
+   one?** With `pi_tau` in place, the discriminating contrast is a *global*
+   neuromodulatory setter (MECH-002's design) vs a *coherence-derived* setter
+   (the user's proposal). MECH-463 predicts the global setter amplifies the
+   incumbent; the ephaptic proposal predicts the coherence-derived setter
+   differentiates.
+3. **`complex (probe-gated)` -- is ephaptic field coherence specifically the right
+   coherence measure?** Only here does 725a's negative bite, and only here is the
+   exotic physics load-bearing.
+
+The value of this ordering is that step 1 is cheap, non-exotic, independently
+justified, and **de-risks the whole thread** -- if `pi_tau` exists and nothing
+useful can be done with it by ANY setter, the level-regulation idea is dead before
+any ephaptic work is commissioned.
