@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_521",
+  "entry_id": "2026-08-26_mech_521_resource_limited_tracking_alvarez_franconeri2007",
+  "timestamp_utc": "2026-08-26T19:36:28Z",
+  "claim_ids_tested": ["MECH-521"],
+  "source": {
+    "title": "How many objects can you track? Evidence for a resource-limited attentive tracking mechanism",
+    "authors": ["George A. Alvarez", "Steven L. Franconeri"],
+    "year": 2007,
+    "venue": "Journal of Vision",
+    "doi": "10.1167/7.13.14",
+    "pmid": "17997642",
+    "volume": "7",
+    "issue": "13",
+    "pages": "14.1-10",
+    "url": "https://jov.arvojournals.org/article.aspx?articleid=2121950"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Shows that the number of objects successfully tracked in multiple-object-tracking (MOT) is not a fixed slot count but trades off logarithmically against target speed -- up to ~8 at slow speeds, as few as 1 at high speeds -- attributed to a flexibly-divisible attentional resource. This is structurally close to MECH-521's capacity/occupancy split: a bounded resource (capacity) from which a task-dependent, dynamically realized tracking count (occupancy) emerges. Marked mixed rather than supports because a later, direct challenge (Franconeri and colleagues' object-spacing account) argues the same data are better explained by a spatial-interference limit than by a divisible resource pool, which is a live complication for reading this as clean capacity/occupancy evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A fixed-slot model (a hard N-item ceiling, period) predicts a flat tracking-count-vs-speed function up to the slot limit and then a cliff; the observed smooth, logarithmic trade-off between target speed and the number of objects that can be tracked is inconsistent with a pure fixed-slot account and is the paper's central argument for a divisible resource instead.",
+    "A published follow-up line of work (object-spacing accounts, e.g. Franconeri, Jonathan & Scimeca and related studies) argues the same speed-count trade-off is largely explained by inter-object spacing/crowding rather than by a divisible attentional resource per se -- meaning the 'resource pool bounded above by capacity' interpretation this entry leans on is contested, not settled, in the tracking literature itself."
+  ],
+  "tags": ["mech_521", "slot_occupancy", "capacity_occupancy_dissociation", "multiple_object_tracking", "resource_model", "contested"],
+  "mapping": {
+    "source_claim_statement": "The number of objects an observer can successfully track in a multiple-object-tracking task is not fixed (contrary to earlier ~4-item FINST-based accounts) but trades off against target speed in a smooth, roughly logarithmic fashion: as many as 8-9 objects can be tracked at slow speeds, but as few as 1 at high speeds. The authors argue this reflects a flexibly divisible attentional resource, allocated more thinly as target count increases, rather than a hard slot ceiling.",
+    "ree_translation": "MECH-521 claims occupancy (the number of domains a scene is actually carved into on a given trial) is an emergent order parameter bounded above by an independently-set capacity, and that capacity and occupancy are two distinct regulators rather than one. The resource-model reading of this paper is a close structural analog in an established literature: a total resource pool (analogous to capacity) that gets divided among targets by task demands, producing a REALIZED tracked-object count (analogous to occupancy) that varies below the pool's total size depending on the settling/competition dynamics of the specific trial (here, target speed). It is evidence that a capacity-like upper bound and a dynamically-realized lower count can, in principle, be genuinely distinct regulators in a real biological system, rather than the same number measured two ways.",
+    "mapping_caveat": "This entry needs to be read carefully rather than as clean confirmation. The paper's OWN resource-pool interpretation has been directly challenged by later work in the same MOT literature arguing that the speed-count trade-off is better explained by object-spacing/crowding constraints than by a divisible attentional resource -- i.e. the very capacity-like construct this entry maps onto MECH-521's 'capacity' term is itself contested as an explanatory construct, not a settled fact about the visual system. Additionally, MOT tracking count is a downstream BEHAVIORAL measure (successful tracking accuracy), not a direct readout of a perceptual settling competition's domain count the way MECH-521 frames occupancy; the mapping is analogical rather than a mechanistic match.",
+    "source_context": "Healthy adult human participants; classic multiple-object-tracking (MOT) paradigm with parametrically varied target speed and target set size, measuring the speed threshold at which tracking accuracy for a given number of targets drops to a criterion level."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "Well-cited, methodologically standard MOT study, but its central resource-pool interpretation is actively contested by a later object-spacing account in the same literature, which the confidence explicitly discounts for rather than ignoring. Mapping fidelity moderate: structurally analogous to a capacity/occupancy split, but the underlying construct validity of 'resource pool' as capacity is itself disputed."
+  }
+}

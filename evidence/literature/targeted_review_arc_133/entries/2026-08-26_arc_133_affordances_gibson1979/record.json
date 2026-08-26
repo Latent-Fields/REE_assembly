@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_133",
+  "entry_id": "2026-08-26_arc_133_affordances_gibson1979",
+  "timestamp_utc": "2026-08-26T19:28:48Z",
+  "claim_ids_tested": ["ARC-133"],
+  "source": {
+    "title": "The Ecological Approach to Visual Perception",
+    "authors": ["James J. Gibson"],
+    "year": 1979,
+    "venue": "Houghton Mifflin (book; Ch. 8, 'The Theory of Affordances')",
+    "isbn": "978-0898599596",
+    "url": "https://monoskop.org/images/c/c6/Gibson_James_J_1977_1979_The_Theory_of_Affordances.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational ecological-psychology text proposing that much of perception consists of directly detecting affordances -- what an environment offers an organism for action -- rather than first perceiving neutral physical properties and then computing usefulness. This directly legitimizes usefulness/relation-to-organism as a primary perceptual category, supporting ARC-133's general architectural stance. Confidence and direction are both tempered because Gibson's affordances are defined relative to relatively STABLE organism-environment fit (an organism's action capabilities), not to moment-to-moment interoceptive/drive fluctuation -- which cuts specifically against the RADICAL, moment-to-moment reading of ARC-133 that its own registration flags as the sharpest test, and is more naturally read as support for the CONSERVATIVE 'fourth facet' reading instead.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Gibson explicitly treats affordances as invariant properties of the animal-environment relationship (a surface affords sitting for an organism of a given size and rigidity, independent of that organism's momentary state), not as quantities that fluctuate with internal drive state from moment to moment. If ARC-133's radical (moment-to-moment, drive-relative) reading were the correct extension of affordance theory, Gibson's own insistence on affordances as stable, directly-perceived invariants would need qualification that the source text does not provide -- a genuine tension the claim's registration does not yet flag."
+  ],
+  "tags": ["arc_133", "mech_278", "object_individuation", "selection_relevance", "affordances", "ecological_psychology", "gibson"],
+  "mapping": {
+    "source_claim_statement": "Perception of the environment is, to a large extent, direct perception of affordances -- what the environment offers, provides, or furnishes an organism for action (e.g. a surface affords support/locomotion for an organism of the right size and rigidity relative to it). Affordances are properties of the organism-environment SYSTEM, not of the environment alone or of the organism's private construal; they exist to be perceived whether or not they are currently perceived, and are relatively invariant given a fixed organism-environment relationship.",
+    "ree_translation": "This is the primary theoretical anchor named at ARC-133's registration. It supplies the deepest architectural precedent for usefulness/relevance-to-organism as a category that perception picks up on directly, rather than one computed post hoc from a prior causal-feature representation -- exactly the ordering ARC-133 needs (usefulness as primary, or at least co-primary, rather than causal coherence being primary and usefulness merely read off it). It supports the claim's CONSERVATIVE reading well: a fourth, use-relative individuation facet alongside type/anchor/token.",
+    "mapping_caveat": "Gibson's affordances are pitched at the level of an organism's relatively stable action capabilities (size, strength, locomotor repertoire) relative to environmental structure, not at the level of moment-to-moment interoceptive or drive state. The claim's own registration names drive-relative re-individuation -- the same scene carving differently when hungry, thirsty, or injured -- as its SHARPEST divergence from MECH-278, and Gibson's ecological realism (affordances as directly-perceived invariants of a stable organism-environment fit) sits in tension with, rather than straightforwardly supporting, that specific radical extension. This entry should be read as strong support for ARC-133's general legitimacy and weak-to-neutral (arguably mildly discouraging) evidence for its most drive-relative form.",
+    "source_context": "Theoretical/philosophical synthesis text, not an empirical study; draws on the author's earlier empirical work on optic flow and locomotion but the affordance theory itself (Chapter 8) is presented as a conceptual framework rather than a single testable experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.3,
+    "notes": "Foundational, canonical, extremely widely cited -- source quality is high as theory, though it is not an empirical result and offers no falsification test of its own. Mapping fidelity and direction are both discounted for the tension described above: the theory as Gibson wrote it does not clearly license the moment-to-moment drive-relative reading that makes ARC-133 sharply distinct from MECH-278."
+  }
+}

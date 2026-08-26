@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_521",
+  "entry_id": "2026-08-26_mech_522_no_unidimensional_abstraction_axis_badre_nee2018",
+  "timestamp_utc": "2026-08-26T19:36:28Z",
+  "claim_ids_tested": ["MECH-522"],
+  "source": {
+    "title": "Frontal Cortex and the Hierarchical Control of Behavior",
+    "authors": ["David Badre", "Derek Evan Nee"],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.11.005",
+    "pmid": "29229206",
+    "volume": "22",
+    "issue": "2",
+    "pages": "170-188",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29229206/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "This entry verifies a citation MECH-522's own registration text already relies on ('the single ordered abstraction axis that Badre and Nee 2018 reports the evidence does not support'). The review's systematic synthesis of rostrocaudal prefrontal hierarchy evidence concludes against BOTH a unitary model of lateral frontal function AND a single unidimensional abstraction gradient, instead favoring separate interacting frontal networks -- confirming the citation is accurate and directly relevant to MECH-522's heterogeneity claim. Confidence is capped because this is prefrontal hierarchical CONTROL abstraction (levels of policy abstraction), not perceptual GRAIN (domain count in a settling competition), so the domain match is at the level of a shared architectural principle (heterogeneity over unidimensionality) rather than the same mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If cognitive control abstraction in prefrontal cortex were organized along a single ordered rostrocaudal gradient (as some earlier unidimensional models proposed), a systematic review of the evidence should converge on that gradient as the best-supported account. Instead Badre & Nee's synthesis concludes the evidence supports neither a unitary model nor a single unidimensional gradient, but rather separate, interacting frontal networks operating at local and global hierarchical levels simultaneously -- the same qualitative shape (heterogeneous, multi-network organization rather than one ordered axis) MECH-522 claims should hold for perceptual grain regulation."
+  ],
+  "tags": ["mech_522", "mech_521", "heterogeneous_grain", "abstraction_hierarchy", "prefrontal_cortex", "citation_verification"],
+  "mapping": {
+    "source_claim_statement": "A systematic review and synthesis of evidence on rostrocaudal organization of prefrontal cortex and hierarchical cognitive control concludes that the evidence supports neither a single unitary model of lateral frontal function nor a single unidimensional (ordered, one-axis) abstraction gradient. Instead, separate frontal networks interact via both local and global hierarchical structure to support diverse task demands -- a heterogeneous, multi-network picture rather than one ordered abstraction axis.",
+    "ree_translation": "MECH-522 explicitly argues its field-derived, natively-heterogeneous grain-setting mechanism (different streams settling into different domain counts simultaneously) is preferable to 'imposing the single ordered abstraction axis that Badre and Nee 2018 reports the evidence does not support.' This entry verifies that citation is accurate: Badre & Nee's synthesis does indeed reject a single unidimensional abstraction gradient in favor of heterogeneous, interacting networks. This lends indirect architectural support to MECH-522's heterogeneity claim by showing the same qualitative pattern (heterogeneous organization beats a single ordered axis) holds in a well-studied, adjacent domain of hierarchical cognitive organization.",
+    "mapping_caveat": "The domain is prefrontal hierarchical CONTROL -- levels of policy/goal abstraction guiding action selection -- not perceptual GRAIN in the sense MECH-522 uses (how many domains a settling competition currently carves a scene into). The paper says nothing about ephaptic fields, oscillatory coupling constants, or perceptual segmentation at all. The relevance is at the level of a shared architectural PRINCIPLE (heterogeneous, multi-axis organization is what the evidence favors over a single ordered gradient, in a domain where that question has been carefully studied) rather than a direct empirical test of MECH-522's specific mechanism.",
+    "source_context": "Systematic review/meta-synthesis of human neuroimaging (primarily fMRI), lesion, and some primate electrophysiology evidence on rostrocaudal prefrontal organization and hierarchical cognitive control, spanning several decades of the relevant literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "High-quality, well-cited systematic synthesis in a strong venue; the citation-verification function of this entry is itself high-value (confirms a claim registration's own cited evidence is accurately characterized). Mapping fidelity is low because the domain (control abstraction) differs from the domain MECH-522 targets (perceptual grain); this should be weighted as principle-level, not mechanism-level, support."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_520",
+  "entry_id": "2026-08-26_mech_520_self_predictive_collapse_dynamics_tang2023",
+  "timestamp_utc": "2026-08-26T19:41:54Z",
+  "claim_ids_tested": ["MECH-520"],
+  "source": {
+    "title": "Understanding Self-Predictive Learning for Reinforcement Learning",
+    "authors": ["Yunhao Tang", "Zhaohan Daniel Guo", "Pierre Harvey Richemond", "Bernardo Avila Pires", "Yash Chandak", "Remi Munos", "Mark Rowland", "Mohammad Gheshlaghi Azar", "Charline Le Lan", "Clare Lyle", "Andras Gyorgy", "Shantanu Thakoor", "Will Dabney", "Bilal Piot", "Daniele Calandriello", "Michal Valko"],
+    "year": 2023,
+    "venue": "Proceedings of the 40th International Conference on Machine Learning (ICML), PMLR",
+    "arxiv_id": "2212.03319",
+    "volume": "202",
+    "pages": "33632-33656",
+    "url": "https://proceedings.mlr.press/v202/tang23d.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "The most mechanistically direct paper found in this pull: it studies self-predictive representation learning in RL (an online network predicting its own future latent, BYOL/SimSiam-style, structurally close to a predictive-obligation objective) and shows explicitly that such objectives ADMIT trivial collapsed solutions (constant representations) that minimize the loss, yet typically do not collapse in practice -- and identifies the SPECIFIC optimization-dynamics ingredients (asymmetric predictor/representation learning speed, semi-gradient rather than full-gradient updates on the representation) responsible for avoiding collapse. This directly speaks to MECH-520's central mechanism claim, but complicates rather than simply confirms it: a predictive objective's FUNCTIONAL FORM does not by itself guarantee anti-collapse (contra a naive reading of MECH-520); specific training dynamics are doing the load-bearing work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper explicitly identifies that trivial, fully-collapsed representations (e.g. mapping every state to a constant vector) achieve zero self-prediction loss and are therefore globally optimal for a naively-specified predictive objective -- meaning 'require the representation to be predictive across horizons' is NOT, by itself, a sufficient anti-collapse constraint in the way a literal reading of MECH-520 might suggest. Collapse is avoided only when specific optimization dynamics (a predictor network updated faster than the representation, and semi-gradient rather than full-gradient flow into the representation from the predictor) are present; absent these, the same objective's collapsed global optimum is reachable."
+  ],
+  "tags": ["mech_520", "predictive_obligation", "anti_collapse", "self_predictive_representations", "representation_collapse", "optimization_dynamics", "byol", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "Self-predictive representation learning (an online encoder trained so a predictor can forecast a target-network encoding of a future observation/state, BYOL/SimSiam-style) has, as one of its global optima, a fully collapsed representation (e.g. a constant) that trivially minimizes prediction loss with zero informational content. Empirically, well-tuned instances of this scheme do not collapse to this degenerate optimum. The paper proves this is because of specific optimization dynamics -- an asymmetric learning-rate/update-speed relationship between the predictor and the representation, and semi-gradient (stop-gradient-like) rather than full-gradient updates flowing back into the representation -- which the authors show causes the learning dynamics to implicitly perform something like a spectral decomposition of the state-transition structure, rather than settling into the collapsed optimum.",
+    "ree_translation": "This is the most mechanistically precise test in this pull of MECH-520's actual claim: that requiring predictive sufficiency across the ARC-004 temporal spread supplies a constraint value-carving alone lacks, holding perception open against collapse. Tang et al. show this is true only CONDITIONALLY -- a predictive objective's functional form alone (predict the future) admits collapse as a global optimum just as readily as a pure value objective does; what actually prevents collapse in practice is specific optimization-dynamics machinery layered on top of the predictive loss, not the predictive framing per se. This is directly relevant to REE's own SD-070 precedent, which MECH-520's registration cites as the strongest evidence the hazard is real: SD-070 needed an ADDED VICReg-style variance/covariance penalty on top of its predictive/classification losses to prevent the measured collapse (participation ratio ~1.06) -- exactly the kind of extra dynamics-shaping ingredient this paper identifies as necessary in a formally analogous setting.",
+    "mapping_caveat": "Two points, both important and both cutting the same direction. First, this paper is about SELF-predictive objectives (predict your own future latent, via a target/predictor network pair), which is architecturally different from MECH-520's cross-horizon predictive obligation framed against explicit future OBSERVATIONS or world-state -- the collapse-avoidance mechanisms identified (predictor speed asymmetry, semi-gradient flow) are specific to the self-predictive/BYOL family and may or may not transfer to a differently-structured predictive-sufficiency constraint. Second, and more consequential for MECH-520's own argument: this paper is evidence that 'require predictive sufficiency' is NOT automatically anti-collapse -- it complicates a naive reading of MECH-520 by showing the predictive term needs its own dynamics-management to actually deliver the anti-collapse property MECH-520 wants from it, rather than delivering that property for free by virtue of being predictive.",
+    "source_context": "Theoretical + empirical ML paper (ICML 2023); combines formal analysis of learning dynamics (linear/simplified models) with empirical validation on RL benchmark self-predictive representation learning setups."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "High-quality, rigorous ICML paper from a strong DeepMind-affiliated author group, combining theory and empirical validation. Mapping fidelity moderate-high (genuinely on-topic: representation collapse under a predictive objective in RL) but the self-predictive/BYOL architecture differs from MECH-520's framing, and the paper's main lesson complicates rather than simply confirms MECH-520 as literally stated."
+  }
+}

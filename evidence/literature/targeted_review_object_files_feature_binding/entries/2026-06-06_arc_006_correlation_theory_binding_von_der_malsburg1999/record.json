@@ -3,7 +3,7 @@
   "literature_type": "targeted_review_object_files_feature_binding",
   "entry_id": "2026-06-06_arc_006_correlation_theory_binding_von_der_malsburg1999",
   "timestamp_utc": "2026-06-06T21:21:00Z",
-  "claim_ids_tested": ["ARC-006", "MECH-044"],
+  "claim_ids_tested": ["ARC-006", "MECH-044", "MECH-521"],
   "source": {
     "title": "The what and why of binding: the modeler's perspective",
     "authors": ["Christoph von der Malsburg"],
@@ -21,11 +21,11 @@
     "The superposition-catastrophe argument shows static conjunction coding is INSUFFICIENT, but it does not by itself prove temporal correlation is THE solution -- competing solutions (e.g. competitive slot allocation, attention) also avoid the catastrophe. So it motivates a binding variable without uniquely selecting synchrony.",
     "A modeler's-perspective theoretical paper: it argues for what a binding mechanism must accomplish, not what the brain demonstrably does -- empirical adjudication is elsewhere (and contested, per Shadlen & Movshon 1999)."
   ],
-  "tags": ["arc_006", "mech_044", "binding_problem", "correlation_theory", "superposition_catastrophe", "temporal_binding", "object_files"],
+  "tags": ["arc_006", "mech_044", "mech_521", "binding_problem", "correlation_theory", "superposition_catastrophe", "temporal_binding", "object_files"],
   "mapping": {
     "source_claim_statement": "The 'what and why' of binding: a representation built only from feature-detector activity cannot express WHICH features belong together when several objects are present simultaneously -- distinct objects' features superpose ambiguously (the 'superposition catastrophe'). A binding mechanism must therefore add a variable that tags co-belonging; von der Malsburg argues this is dynamic temporal correlation (synchrony), giving a flexible, on-the-fly grouping that fixed conjunction units cannot.",
     "ree_translation": "Grounds the PREMISE of ARC-006 ('entities are sparse, persistent, BINDABLE structures') and MECH-044 (relational binding) by giving the principled reason a binding variable is necessary at all: without one, a multi-object representation is ambiguous. This is the 'why' beneath the whole object-binding design fork -- it establishes that SOME binding mechanism is required, while leaving open WHICH (synchrony vs competitive slot allocation), which is exactly the fork the design memo frames.",
-    "mapping_caveat": "Theoretical/modeler's-perspective argument, not empirical data; and the superposition-catastrophe motivates a binding variable without uniquely selecting temporal synchrony as the answer (competitive slot-attention also resolves it). So it supports ARC-006's NEED for binding strongly, but is neutral between the two candidate mechanisms in the design fork. Transfer to REE latents is at the level of the principle, not an implementation.",
+    "mapping_caveat": "Theoretical/modeler's-perspective argument, not empirical data; and the superposition-catastrophe motivates a binding variable without uniquely selecting temporal synchrony as the answer (competitive slot-attention also resolves it). So it supports ARC-006's NEED for binding strongly, but is neutral between the two candidate mechanisms in the design fork. Transfer to REE latents is at the level of the principle, not an implementation. CROSS-REFERENCED FOR MECH-521 2026-08-26: this is the paper behind MECH-521's own 'coherence nests rather than partitions, which is circular and ill-posed' framing -- the superposition catastrophe is precisely the failure mode of reading occupancy off coherence by counting related coherencies. Per MECH-521's own registration notes this argument is the claim's MOTIVATION, not one of its legs, and must not be given a falsifier of its own.",
     "source_context": "Theoretical review / position piece in Neuron's 1999 binding special issue, arguing the computational necessity and form of a neural binding mechanism."
   },
   "confidence_components": {

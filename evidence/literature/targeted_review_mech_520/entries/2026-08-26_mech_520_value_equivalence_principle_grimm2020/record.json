@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_520",
+  "entry_id": "2026-08-26_mech_520_value_equivalence_principle_grimm2020",
+  "timestamp_utc": "2026-08-26T19:41:54Z",
+  "claim_ids_tested": ["MECH-520"],
+  "source": {
+    "title": "The Value Equivalence Principle for Model-Based Reinforcement Learning",
+    "authors": ["Christopher Grimm", "Andre Barreto", "Satinder Singh", "David Silver"],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems 33 (NeurIPS 2020)",
+    "arxiv_id": "2011.03506",
+    "url": "https://proceedings.neurips.cc/paper/2020/hash/3bb585ea00014b0e3ebe4c6dd165a358-Abstract.html"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Formalizes value equivalence (VE): two models are VE with respect to a set of policies and value functions if they yield identical Bellman updates for that set. The paper's own central theorem is the precise formal anchor for MECH-520's collapse worry: as the policy/function set considered SHRINKS, the class of models satisfying VE GROWS, admitting increasingly degenerate/under-constrained models, and only as the set is augmented does the VE-model class shrink toward a single point (a perfect, non-degenerate model). This is exactly MECH-520's claim that value-carving ALONE (a narrow, near-scalar target) under-constrains representation, formalized in the RL theory the claim itself cites. Marked mixed rather than supports because the paper's own stated purpose and empirical framing is celebratory of this property (it enables SIMPLER, more efficient models, and grounds MuZero's success) rather than diagnostic of a hazard -- the paper does not itself argue value-only compression is dangerous; MECH-520 reads the same formal fact in the opposite light.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own abstract states the class of value-equivalent models shrinks toward a single (perfect) model only as the policy and function set is augmented -- meaning a SMALL policy/function set (the degenerate case closest to 'value alone') leaves a large, under-constrained space of models satisfying the VE criterion, many of which need not preserve state structure irrelevant to that narrow set. This is a precise formal statement of MECH-520's exact worry: a pure value-carving objective, formalized as VE over a minimal policy/function set, provably admits a wide space of solutions that discard everything not currently useful to that set."
+  ],
+  "tags": ["mech_520", "predictive_obligation", "anti_collapse", "value_equivalence", "model_based_rl", "muzero", "representation_compression"],
+  "mapping": {
+    "source_claim_statement": "Two models of an environment are value equivalent with respect to a set of policies and value functions if they produce identical Bellman updates for every member of that set, regardless of whether they otherwise resemble the true environment. As the policy/function set considered is progressively augmented (more policies, more functions), the class of models satisfying value equivalence for that set shrinks monotonically, eventually collapsing to a single point corresponding to a model that perfectly describes the environment. A small set therefore under-constrains the model; a maximal set (all policies, all functions) fully constrains it.",
+    "ree_translation": "MECH-520's own registration names value-equivalent models as external precedent, not yet verified. This entry verifies and formalizes the connection precisely: MECH-520 claims 'a representation compressed toward selection-relevance ALONE degenerates... a pure value-carving objective admits solutions that discard everything not currently useful.' The VE theorem is a formal proof of exactly this structure -- value alone (a narrow policy/function set) is a weak constraint admitting many degenerate models; MECH-520's proposed fix (a cross-horizon PREDICTIVE obligation) can be read, in this framework's own vocabulary, as broadening the effective constraint set beyond the current value function toward something closer to full predictive sufficiency, which the theorem says is exactly what shrinks the admissible model class back toward non-degenerate.",
+    "mapping_caveat": "This is a genuinely double-edged citation and should not be flattened into simple support. The paper's own argument is that VALUE-EQUIVALENT compression is DESIRABLE -- it is offered as the theoretical grounding for MuZero's celebrated success at learning small, efficient, reconstruction-free models, and the authors frame the shrinking-toward-a-point property as a feature (bigger sets buy more fidelity only when you need it) rather than a warning about collapse. MECH-520 has to argue that REE's actual policy/value function set is narrow enough in practice (a near-scalar wanting projection, per the claim's own framing) that the degenerate end of this spectrum is where REE actually sits -- which the paper's celebratory framing does not itself assert. Also, the theorem is about VALUE PRESERVATION under Bellman updates, not about REPRESENTATION geometry collapsing to a low participation ratio the way SD-070 measured (z_world at ~1.06) -- the mapping from 'admits models with fewer preserved Bellman-irrelevant distinctions' to 'representation collapses to near-scalar' is intuitive but not something this paper formally proves.",
+    "source_context": "Theoretical machine learning paper (NeurIPS 2020), providing a formal framework and proofs (not an empirical study), with empirical grounding drawn from citing prior published results for VPN, value iteration networks, and MuZero as VE-consistent systems."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High-quality, influential NeurIPS theory paper from a strong author group (including MuZero's own team). Mapping fidelity capped because the paper's normative framing (VE compression as a virtue) is the opposite valence from how MECH-520 needs to read the same formal fact (VE compression as a hazard at the narrow end of the spectrum); the formal machinery transfers cleanly, the argumentative stance does not."
+  }
+}

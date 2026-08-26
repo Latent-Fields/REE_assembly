@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_133",
+  "entry_id": "2026-08-26_arc_133_predacity_threat_dimension_connolly2016",
+  "timestamp_utc": "2026-08-26T19:28:48Z",
+  "claim_ids_tested": ["ARC-133"],
+  "source": {
+    "title": "How the Human Brain Represents Perceived Dangerousness or \"Predacity\" of Animals",
+    "authors": ["Andrew C. Connolly", "Long Sha", "J. Swaroop Guntupalli", "Nikolaas Oosterhof", "Yaroslav O. Halchenko", "Samuel A. Nastase", "Matteo Visconti di Oleggio Castello", "Hervé Abdi", "Barbara C. Jobst", "M. Ida Gobbini", "James V. Haxby"],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3395-15.2016",
+    "volume": "36",
+    "issue": "19",
+    "pages": "5373-5384",
+    "url": "https://www.jneurosci.org/content/36/19/5373"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "A well-controlled factorial fMRI design (taxonomic class x threat level, crossed and balanced) shows that a perceived-dangerousness dimension organizes neural representation of animal categories along the right STS, and that this dimension becomes progressively dominant over both low-level visual and taxonomic/causal-similarity representations moving from posterior to anterior temporal cortex. This is direct evidence that a relation-to-organism (threat) dimension is a real, independent representational axis, not merely a re-description of causal/taxonomic similarity -- which is ARC-133's core architectural claim. Confidence is capped because the paradigm is passive categorical viewing, not an active individuation task, and the study does not manipulate the observer's own interoceptive/motivational state (it tests that a relevance dimension exists and is dissociable, not that it is drive-relative).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If threat/relevance-to-organism were merely a downstream re-weighting of taxonomic or visual features rather than an independent organizing dimension, the STS pathway should not show threat dominance persisting after taxonomic and visual dimensions 'fall away' toward anterior temporal cortex -- but that is exactly what the paper reports, which is the finding ARC-133 needs and MECH-278's pure causal-coherence criterion does not predict on its own."
+  ],
+  "tags": ["arc_133", "mech_278", "object_individuation", "selection_relevance", "threat_perception", "fmri", "predacity"],
+  "mapping": {
+    "source_claim_statement": "Perceived dangerousness ('predacity') of animal images forms a distinct, dissociable dimension of neural representational geometry, organized along a network centered on right STS, that becomes the dominant explanatory dimension in anterior temporal cortex after taxonomic-class and low-level visual similarity contributions diminish.",
+    "ree_translation": "ARC-133 claims an object/category can be individuated by its relation to the organism (usefulness, harm) rather than only by causal coherence of features under intervention. This paper is the closest available empirical instantiation of the 'animal-cognition predator-category literature that unifies causally-dissimilar things by their relation to the organism' anchor named at ARC-133's registration: cobras, scorpions and tarantulas are taxonomically and morphologically disjoint (reptile, arachnid x2 across different orders) yet the brain represents them as similar along the threat axis, in a way that is neurally dissociable from -- not reducible to -- taxonomic/causal similarity. This is evidence that a non-causal, organism-relative individuation dimension is neurally real and independent, which is the minimal claim ARC-133 needs to be a live rival rather than a redundant restatement of MECH-278.",
+    "mapping_caveat": "This is human fMRI during passive categorical viewing/oddball detection, not an active object-individuation task, so it shows the dimension exists in representational geometry, not that it is used online to determine object COUNT (one-object-vs-two carving) the way ARC-133's worked examples require. It also does not manipulate the viewer's own drive/interoceptive state, so it bears on ARC-133's general thesis (relevance is an independent individuating axis) but not on the sharper drive-relative re-individuation test (the same scene carving differently when hungry vs. injured) that the claim's registration flags as its most distinctive prediction against MECH-278.",
+    "source_context": "12 healthy adults; 12 animal images spanning a 3 (taxonomic class: mammal, reptile/amphibian, insect) x 2 (threat: high, low) factorial design; same-category same/different oddball-detection task during fMRI; representational similarity / searchlight analysis across ventral temporal and STS cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Peer-reviewed, well-controlled factorial design with a small (n=12) but standard fMRI sample. Mapping fidelity is capped because passive image categorization is a weaker test than active individuation, and human visual cortex representational geometry is one causal step removed from REE's architectural individuation mechanism."
+  }
+}

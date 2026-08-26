@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_521",
+  "entry_id": "2026-08-26_mech_522_theta_tacs_capacity_wolinski2018",
+  "timestamp_utc": "2026-08-26T19:36:28Z",
+  "claim_ids_tested": ["MECH-522", "MECH-521"],
+  "source": {
+    "title": "The speed of parietal theta frequency drives visuospatial working memory capacity",
+    "authors": ["Natalia Wolinski", "Nicholas R. Cooper", "Paul Sauseng", "Vincenzo Romei"],
+    "year": 2018,
+    "venue": "PLOS Biology",
+    "doi": "10.1371/journal.pbio.2005348",
+    "pmc": "PMC5868840",
+    "volume": "16",
+    "issue": "3",
+    "pages": "e2005348",
+    "url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2005348"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "A causal (not merely correlational) manipulation: transcranial alternating current stimulation (tACS) at 4 Hz vs. 7 Hz over parietal cortex CHANGES visuospatial working-memory capacity (K-values) in opposite directions, lateralized to the stimulated hemisphere's contralateral visual field. This is the strongest available direct evidence in this pull that a rhythm/frequency parameter can SET item capacity rather than merely correlating with a separately-determined count -- the exact causal direction MECH-522 needs (coupling constant as setter, not readout). Confidence is capped because the manipulated frequency band and mechanism (theta-gamma phase-amplitude coupling via cortical rhythms) is a single GLOBAL parietal rhythm setting ONE capacity number, not a heterogeneous field acting differently per stream -- MECH-522's more specific and more distinctive claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If working-memory item capacity were fixed by a slot-count mechanism independent of oscillatory dynamics, externally imposing a different theta frequency via tACS should not change K-values at all -- but 4-Hz tACS significantly enhanced K-values (and accuracy) relative to sham while 7-Hz tACS significantly reduced them (Cohen's d 0.44-0.57), which is inconsistent with a fixed, rhythm-independent capacity and consistent with the rhythm ITSELF acting as (or directly setting) the capacity-determining parameter."
+  ],
+  "tags": ["mech_521", "mech_522", "slot_occupancy", "ephaptic_coupling", "theta_tacs", "working_memory_capacity", "causal_manipulation"],
+  "mapping": {
+    "source_claim_statement": "Transcranial alternating current stimulation at slow theta (4 Hz) over parietal cortex causally enhances visuospatial working memory capacity (higher K-values, better accuracy) relative to sham, while fast theta (7 Hz) causally reduces it, with effects lateralized to the visual hemifield contralateral to stimulation. The authors interpret this via theta-gamma phase-amplitude coupling: slower theta cycles nest more gamma subcycles, each subcycle carrying one item, so slower theta mechanically permits a higher item count.",
+    "ree_translation": "MECH-522 proposes that ephaptic field strength is the COUPLING CONSTANT of a settling competition that SETS slot occupancy, rather than a quantity that is measured and counted after the fact. This paper supplies the cleanest available causal-manipulation evidence for that direction of causality in any oscillatory system: externally imposing a different rhythm parameter (frequency) changes the realized item count in the SAME direction the coupling-constant framing predicts (slower rhythm -> more nested capacity). It is the strongest 'field/coupling sets count, rather than count being separately measured then correlated with field properties' evidence found in this pull.",
+    "mapping_caveat": "Two gaps against MECH-522's more specific claim. First, this is a single GLOBAL parietal theta rhythm setting ONE scalar capacity number for the whole task -- not a field with a per-stream coherence length/frequency giving HETEROGENEOUS, simultaneously-different domain counts across streams, which is MECH-522's more distinctive claim (the part that goes beyond Lisman & Jensen's already-on-file theta-gamma account). It is evidence for 'a rhythm parameter can causally set capacity,' not evidence for 'the setting is natively heterogeneous across streams.' Second, this is synaptic/oscillatory (tACS entrains ongoing neural oscillations via the same currents that drive spiking), not specifically an EPHAPTIC (non-synaptic extracellular field) mechanism -- MECH-522's specific bet on ephaptic coupling as opposed to any generic neuromodulatory or rhythmic gate is not tested here.",
+    "source_context": "32 healthy adult participants (16 per electrode-montage group); within-subject tACS at 4 Hz, 7 Hz, and sham over parietal cortex during a visuospatial delayed match-to-sample task (memory loads of 4, 5, 6 colored squares, lateralized presentation); K-value (Cowan's K, an estimate of items successfully held in working memory) as the outcome measure."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Peer-reviewed, causal (stimulation) design with a reasonable sample (n=32) and a clean double-dissociation (opposite-direction effects at two frequencies, both relative to sham, both lateralized as predicted). Mapping fidelity capped by the single-global-rhythm vs. heterogeneous-per-stream-field gap described above; transfer risk moderate (human tACS/cortical rhythms to REE's engineered heartbeat/ephaptic-analog substrate, which MECH-089/V3-EXQ-725a already partially address in an on-file, unresolved way)."
+  }
+}

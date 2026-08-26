@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_520",
+  "entry_id": "2026-08-26_mech_520_bisimulation_metrics_ferns2011",
+  "timestamp_utc": "2026-08-26T19:41:54Z",
+  "claim_ids_tested": ["MECH-520"],
+  "source": {
+    "title": "Bisimulation Metrics for Continuous Markov Decision Processes",
+    "authors": ["Norm Ferns", "Prakash Panangaden", "Doina Precup"],
+    "year": 2011,
+    "venue": "SIAM Journal on Computing",
+    "volume": "40",
+    "issue": "6",
+    "pages": "1662-1714",
+    "url": "https://www.cs.mcgill.ca/~prakash/Pubs/siamFP11.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Foundational formal-methods paper defining a bisimulation pseudometric between MDP states as a fixed point combining immediate-reward difference and a Wasserstein (earth-mover) distance between next-state transition distributions, with the guarantee that the optimal value function varies continuously (Lipschitz) with respect to this metric. This is a REWARD/VALUE-relevant state-similarity metric, structurally in the same family as value equivalence (Grimm et al. 2020, companion entry in this directory) -- it collapses states that differ in ways that do not affect reward or future value-relevant transition structure, which is again closer to the compression MECH-520 warns about than to the anti-collapse constraint MECH-520 proposes. Confidence capped and direction marked mixed for the same reason as the VE entry, plus reduced source-quality certainty because full-text verification of the exact metric definition was blocked by an unreadable PDF in this pull.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bisimulation metrics are explicitly REWARD-relevant: two states with identical reward and reward-relevant transition structure but different underlying features (e.g. different textures, different irrelevant background objects) are metrically CLOSE or IDENTICAL under bisimulation, by design. This is precisely the kind of compression MECH-520 warns a pure value-carving objective will produce -- discarding structure that is not currently reward/value-relevant -- rather than a demonstrated anti-collapse mechanism."
+  ],
+  "tags": ["mech_520", "predictive_obligation", "anti_collapse", "bisimulation", "state_abstraction", "value_relevant_compression"],
+  "mapping": {
+    "source_claim_statement": "A bisimulation (pseudo)metric assigns each pair of MDP states a distance built from the difference in their immediate rewards plus a Wasserstein distance between their next-state transition distributions (recursively, using the metric itself to compare distributions), constructed as the fixed point of a contraction mapping. States that are bisimulation-close have provably similar (Lipschitz-bounded) optimal value, which licenses using the metric for state aggregation/abstraction without materially harming value-based planning.",
+    "ree_translation": "MECH-520's own registration names bisimulation metrics (Ferns et al.) as external precedent, alongside value-equivalent models, not yet verified. Like the VE principle, bisimulation is fundamentally a REWARD/VALUE-preserving compression scheme: it licenses collapsing states that differ in reward-irrelevant ways. This is directly relevant to MECH-520's diagnosis of the hazard (value-shaped compression discards non-value-relevant structure) but is, again, presented in its own literature as a virtue (a principled way to abstract state spaces for tractable planning) rather than as the danger MECH-520 needs external anchors for.",
+    "mapping_caveat": "As with the value-equivalence entry in this same directory, this is a double-edged citation: bisimulation metrics formalize exactly the kind of value-relevant-only compression MECH-520 warns is insufficient alone, but the bisimulation literature treats that compression as the intended, desirable outcome (a principled state abstraction), not a failure mode to be corrected by an added predictive constraint. Full-text verification of the precise metric definition (the exact form of the fixed-point equation and the Lipschitz value-bound theorem) was blocked by an unreadable PDF during this pull; the characterization above draws on well-established, textbook-level knowledge of bisimulation metrics in the RL/formal-methods literature and should be spot-checked against the primary source before being cited with mathematical precision in a governance-facing document.",
+    "source_context": "Formal theoretical computer science / RL theory paper; defines the metric and proves its properties (contraction, Lipschitz value bound) for continuous-state MDPs, building on the authors' earlier finite-MDP bisimulation metric work."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Canonical, highly-cited formal-methods paper in its own literature, but source-quality confidence is discounted here because primary full-text verification was blocked in this pull (PDF returned unreadable binary to automated fetch) and the summary relies on well-established secondary knowledge of the construction rather than a freshly-read primary text. Mapping fidelity capped for the same double-edged-citation reason as the companion value-equivalence entry."
+  }
+}

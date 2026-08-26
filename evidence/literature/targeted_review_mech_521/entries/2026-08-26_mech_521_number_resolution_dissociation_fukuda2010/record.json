@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_521",
+  "entry_id": "2026-08-26_mech_521_number_resolution_dissociation_fukuda2010",
+  "timestamp_utc": "2026-08-26T19:36:28Z",
+  "claim_ids_tested": ["MECH-521"],
+  "source": {
+    "title": "Quantity, not quality: the relationship between fluid intelligence and working memory capacity",
+    "authors": ["Keisuke Fukuda", "Edward K. Vogel", "Ulrich Mayr", "Edward Awh"],
+    "year": 2010,
+    "venue": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/17.5.673",
+    "pmid": "21037165",
+    "pmc": "PMC3050565",
+    "volume": "17",
+    "issue": "5",
+    "pages": "673-679",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3050565/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Uses exploratory factor analysis across multiple number-limited and resolution-limited visual working memory tasks and finds a two-factor model with FULLY ORTHOGONAL factors: how many items are held (number) and how precisely each is held (resolution) empirically dissociate, with only the number factor predicting fluid intelligence. This is a clean, direct empirical demonstration that two working-memory parameters that could in principle be a single underlying quantity are instead statistically independent -- structurally the kind of dissociation MECH-521 asserts between capacity and occupancy, though the specific dissociated pair (item count vs. per-item precision) is not identical to MECH-521's pair (capacity ceiling vs. realized domain count).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If number and resolution were the same underlying working-memory quantity expressed two ways (e.g. a single resource that could be spent on either more items or more precision per item, producing a forced trade-off), the two factors should load together or trade off against each other and both should predict fluid intelligence similarly. Instead the factor analysis found orthogonal loadings and the fluid-intelligence relationship was carried entirely by the number factor, not the resolution factor -- inconsistent with a single-quantity account and consistent with genuinely separable regulators of working memory performance."
+  ],
+  "tags": ["mech_521", "slot_occupancy", "capacity_occupancy_dissociation", "working_memory", "factor_analysis", "fluid_intelligence"],
+  "mapping": {
+    "source_claim_statement": "Exploratory factor analysis across several number-limited (how many items can be held) and resolution-limited (how precisely each item is held) visual working memory tasks supports a two-factor model with fully orthogonal factors. The number factor, but not the resolution factor, reliably predicts fluid intelligence (per secondary reporting of this result, the number factor correlates with fluid intelligence while the resolution factor does not).",
+    "ree_translation": "MECH-521 asserts capacity and occupancy are two distinct regulators rather than one, against the possibility that occupancy could be read off as a byproduct of a single underlying resource (which would make the two-regulator framing definitionally true but empirically unfalsifiable, or simply false if the two collapse to one quantity under measurement). This paper is the clearest available demonstration, in an established literature, that two candidate working-memory parameters that COULD have been a single quantity (e.g. a resource traded off between item count and per-item fidelity) are instead statistically orthogonal, with different external correlates. It is evidence that the visual/working-memory system is capable of maintaining genuinely separable capacity-like regulators, which is the general form of dissociation MECH-521 needs, even though the specific dissociated pair differs.",
+    "mapping_caveat": "The dissociated pair here is item COUNT vs. per-item RESOLUTION/precision within working memory, not MECH-521's specific pair of an independently-set upper-bound CAPACITY vs. a dynamically emergent, settling-derived OCCUPANCY (how many domains a scene is currently carved into, which can be less than capacity). These are different dissociations that happen to share the general shape 'two working-memory-relevant quantities are orthogonal rather than reducible to one.' Direct full-text verification of the reported correlation values (r=.66 for the number-intelligence link, r=-.05 for resolution, per secondary sources) was not possible in this pull -- PMC and the lab's own PDF both blocked automated fetch -- so those specific figures should be treated as reported-but-not-independently-verified pending a follow-up check against the primary PDF.",
+    "source_context": "79 undergraduate human participants; a battery of visual working memory change-detection and continuous-report tasks varying whether performance was number-limited or resolution-limited, plus a standard fluid-intelligence measure (matrix reasoning), analyzed via exploratory factor analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Well-cited, methodologically standard factor-analytic study from an established working-memory lab. Mapping fidelity capped because the dissociated pair (count vs. precision) differs from MECH-521's specific pair (capacity vs. occupancy); confidence further tempered because the specific correlation figures could not be verified against primary full text in this pull (both PMC and the author lab's PDF returned unreadable/blocked content to automated fetch)."
+  }
+}

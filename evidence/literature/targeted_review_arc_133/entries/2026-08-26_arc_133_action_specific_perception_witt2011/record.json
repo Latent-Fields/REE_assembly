@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_133",
+  "entry_id": "2026-08-26_arc_133_action_specific_perception_witt2011",
+  "timestamp_utc": "2026-08-26T19:28:48Z",
+  "claim_ids_tested": ["ARC-133"],
+  "source": {
+    "title": "Action's Effect on Perception",
+    "authors": ["Jessica K. Witt"],
+    "year": 2011,
+    "venue": "Current Directions in Psychological Science",
+    "doi": "10.1177/0963721411408770",
+    "volume": "20",
+    "issue": "3",
+    "pages": "201-206",
+    "url": "https://journals.sagepub.com/doi/10.1177/0963721411408770"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.4,
+  "confidence_rationale": "Reviews a body of work (Witt, Proffitt and colleagues) claiming that a perceiver's energetic/action-capability state -- fatigue, load, fitness -- changes the perceived properties of the SAME physical scene (hill steepness, target distance). This bears loosely on ARC-133's drive-relative claim: a bodily-state variable modulating perception of a fixed external scene. Confidence is capped, and the direction is marked mixed rather than supports, because (a) the mapping is to property perception (magnitude estimates), not object individuation, and (b) this literature has a live, substantive methodological controversy (Firestone & Scholl 2014/2016 argue the effects are demand-characteristic/response-bias artifacts rather than genuine perceptual change) that this review, being from the action-specific-perception camp itself, does not resolve.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Firestone & Scholl's 'Cognition does not affect perception' critique (Behavioral and Brain Sciences, 2016) argues that several action-specific perception findings, including hill-slant and distance effects under load/fatigue, are better explained by response bias and demand characteristics (participants inferring the hypothesis and adjusting verbal reports accordingly) than by genuine changes in perceptual experience -- a direct challenge to reading this literature as evidence that internal state changes perception rather than merely changes REPORTS about perception."
+  ],
+  "tags": ["arc_133", "mech_278", "object_individuation", "selection_relevance", "action_specific_perception", "energetic_state", "contested"],
+  "mapping": {
+    "source_claim_statement": "A perceiver's capacity to act -- shaped by energetic state (fatigue, physical fitness, carried load, age/health) -- influences visual estimates of scene properties such as hill steepness and target distance: the same physical hill or gap is judged steeper or farther when the perceiver is less able to traverse it.",
+    "ree_translation": "ARC-133's sharpest test is whether the same scene is carved differently under different interoceptive/motivational states. This literature, if it reflects genuine perceptual (not merely reportorial) change, would be a partial instantiation: a bodily-state variable (energetic capacity) changes how the SAME external scene is perceived, which is structurally adjacent to (though weaker than) individuation -- it is magnitude/property remapping of a fixed scene rather than a change in object count or boundaries.",
+    "mapping_caveat": "Two independent caveats, both material. First, even taken at face value the effect is on perceived MAGNITUDE of a property (steepness, distance) of a scene whose object identity is not in question -- it does not test whether the SAME scene is carved into a different number or grouping of objects, which is ARC-133's actual claim. Second, and more serious: this is a contested literature. Firestone & Scholl's demand-characteristic/response-bias critique has not been definitively resolved by the action-specific-perception camp, and this review (authored by one of the effect's principal proponents) does not engage that critique. This entry should be read as suggestive of the general PLAUSIBILITY of state-dependent perception, not as a settled empirical anchor.",
+    "source_context": "Review synthesizing psychophysical studies (verbal estimation and visually-matched estimation tasks) of hill-slant and egocentric-distance judgments under manipulations of fatigue, carried load (backpack, ankle weights), physical fitness, and age/health, primarily in healthy adult human samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.5,
+    "notes": "Source quality reduced to reflect the unresolved methodological controversy around the entire effect class, not the review's own execution (which is a competent, well-cited synthesis). Mapping fidelity low because the finding, even if real, targets property magnitude rather than individuation. This is the weakest of the ARC-133 entries in this pull and should be weighted accordingly in any governance pass."
+  }
+}
