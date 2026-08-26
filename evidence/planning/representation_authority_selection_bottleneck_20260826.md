@@ -1459,3 +1459,158 @@ reason to specify it the second way from the start.
 Same de-risking logic as before, now on the right axis: steps 1-2 are cheap and
 non-exotic, and if grain-arbitration buys nothing under *any* arbiter, the ephaptic
 question never needs to be asked.
+
+---
+
+# 10. Could coherence extent set slot count? (user, 2026-08-26)
+
+> "Could coherence extent set slot count though. That would be very interesting.
+> Perhaps the number of related coherencies. That would be too simple though right?"
+
+## 10.1 Yes, too simple -- and the failure is CIRCULARITY, not crudeness
+
+"The number of **related** coherencies" -- *related* is doing all the work.
+
+To count coherencies you need a relatedness criterion; but deciding whether two
+coherent patches are **one thing or two related things IS the grain decision.**
+So counting presupposes the answer:
+
+- if the relatedness threshold is **fixed** -> the grain is fixed, which is the
+  thing we were trying to escape;
+- if it is **regulated** -> the *threshold* is the regulator, and the coherency
+  count is merely its readout.
+
+Either way, counting does not do the work. Three concrete ways it breaks:
+
+1. **Circularity** (above).
+2. **Coherence nests, it does not partition.** A hand is coherent; the fingers are
+   coherent within it. "How many coherencies" is undefined until a level is fixed --
+   so the count cannot *set* the level.
+3. **Type/token underdetermination.** Three apples: one coherency (all "apple") or
+   three (distinct tokens)? That is exactly the fork **ARC-080's OBJ-1** refused to
+   collapse. Coherence-counting inherits the fork; it does not resolve it.
+
+## 10.2 The version that is NOT too simple: do not COUNT, let it SETTLE
+
+The non-circular move is to stop treating assembly-count as a *measurement* and
+treat it as an **emergent order parameter of a dynamic**.
+
+Run a competition: coupling pulls elements together, lateral inhibition holds them
+apart. Do not threshold a similarity graph -- let the system settle and count the
+attractors that survive. The control parameter is then the **coupling / inhibition
+ratio**: one continuous knob that yields a **discrete** number of stable domains.
+This is ordinary pattern formation -- domain count in a spin system, Turing
+wavelength. **Discreteness is emergent, not imposed**, and no relatedness threshold
+is ever chosen.
+
+**REE has this machinery, built, one layer over.**
+`disinhibitory_soft_competitive_settling` (MECH-140 x MECH-450, IMPLEMENTED
+2026-07-02, `E3Config.use_soft_competitive_settling`, default off, gain 0.0 = exact
+no-op): "a few rounds of mutual/lateral inhibition over the eligible set before
+commit", adopted precisely because "a hard argmin over an F-dominated score
+structurally returns the F-winner... a settling competition with lateral inhibition
+can **FLIP the selected attractor**". Lit-grounded on Wang 2002 / Rolls 2021
+recurrent attractors and VIP->SOM disinhibition (Keller 2020).
+
+**Built for SELECTION over candidate trajectories -- not for perception.** Exactly
+the ARC-069 situation again: the mechanism the perceptual question needs exists,
+aimed at a different layer.
+
+## 10.3 What stops the settling account being arbitrary: the CARRIER bounds it
+
+A settling dynamic alone could produce any number of domains. Lisman & Jensen give
+a hard, independent bound: **capacity ~ theta period / gamma period ~ 7+-2.** Slot
+count is bounded by a **frequency ratio**, a physical quantity, not a free
+parameter.
+
+That converts "regulate the level" into something concrete and measurable:
+**grain regulation = regulating the cross-frequency nesting ratio.** Theta frequency
+is known to shift with task demand, so the regulator has an empirical signature
+rather than being a fitted knob.
+
+**MECH-089 (`active`, v3) already batches E1 updates into theta-cycle summaries** --
+the carrier is in the running system, not hypothetical.
+
+## 10.4 The distinction that must not be collapsed: CAPACITY is not COUNT
+
+- **Carrier ratio -> capacity**: how many slots *can* be held (the ceiling).
+- **Settling competition -> occupancy**: how many the scene actually *is* carved into.
+
+Two different regulators. Conflating them is a real error, and "coherence extent sets
+slot count" collapses them by construction -- which is a second, independent reason
+the simple version fails. The workable architecture needs **both**: the carrier
+bounds it, the competition fills it.
+
+## 10.5 Where this lands in REE -- the slot count is a hard-coded dataclass arity
+
+**MECH-294** implements the Lisman/Colgin gamma-sub-slot idea, and the implementation
+is decisive:
+
+> "Each stream gets a **fixed, typed sub-slot** in the packet -- the substrate
+> analogue of distinct gamma frequencies routing distinct content (Colgin 2009,
+> Lisman & Jensen 2013)."
+
+```python
+@dataclass
+class ThetaPacket:
+    goal_latent; action_proposal; risk_sensory; risk_affective; state_summary
+```
+
+**Slot count in REE is a constant baked into a type declaration** -- one sub-slot per
+*stream type*, fixed at 5, addressable by name. Not content-dependent, not variable,
+not regulated. The doc defends the typing (a flat concat "would silently collapse the
+SD-011 dual-stream distinction") and it is right to -- but the consequence is that
+REE's theta-gamma capacity structure has **fixed arity by construction**.
+
+That is another instance of the S2.3 pattern: the capacity structure is present and
+**fixed where the biology it cites is variable**.
+
+The one place REE has variable N is **SD-046** (multi-slot GoalState, "N>=2
+simultaneously-active goal slots") -- for **goals**, v4. And **Q-077** asks exactly
+the right question about it:
+
+> "Is SD-046's multi-slot GoalState a set of DISCRETE fixed-capacity slots (Cowan
+> ~4-chunk focus-of-attention) or a single FLEXIBLE precision-resource shared across
+> goals (Bays & Husain)... The human capacity literature is itself unresolved on
+> slot-vs-resource."
+
+## 10.6 The payoff: the settling account is a THIRD answer to Q-077
+
+Q-077 poses slot-vs-resource as a dichotomy, and records that the human literature is
+stuck on it. The settling formulation **dissolves it rather than picking a horn**:
+
+- coupling/coherence is a **continuous resource**;
+- settling dynamics turn that resource into **discrete attractors**;
+- so discreteness is **emergent from a resource**, and neither primitive.
+
+Capacity then degrades *gracefully* (resource-like) up to a point and then *loses a
+whole domain* (slot-like) -- which is the empirical signature that would discriminate
+it from both horns, and it is a prediction, not a reconciliation.
+
+This is a genuine contribution to a registered open question, and it arrives from the
+perceptual side rather than the goal side.
+
+## 10.7 And this is the RIGHT job for ephaptic coupling
+
+Section 9.9b had field coherence as something *measured* and used to index grain.
+10.1 shows that version is circular. The settling formulation gives ephaptic coupling
+a better and more physically natural role:
+
+> **The field is not the thing counted. The field is the COUPLING CONSTANT.**
+
+Field strength / extent sets the coupling term in the settling competition; the
+competition then produces however many stable assemblies that coupling supports,
+bounded above by the carrier ratio. That is what a physical field actually does --
+it does not enumerate domains, it sets the interaction strength from which the
+domain count emerges.
+
+This also answers the Badre & Nee "no unidimensional abstraction gradient" objection
+better than 9.9c did: there is no gradient being imposed at all. Different
+populations have different local coupling and settle into different numbers of
+domains independently. Heterogeneous by construction.
+
+**Residual honesty:** this does move the regulator rather than eliminate it -- something
+still has to set the coupling constant. But it moves it from *a threshold on a
+measurement* (arbitrary, circular) to *a scalar control parameter on a dynamic*
+(physical, and exactly what a field natively supplies). That is a better place for the
+unknown to sit, not an elimination of it.
