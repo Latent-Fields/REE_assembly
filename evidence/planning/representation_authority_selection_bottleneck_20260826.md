@@ -637,6 +637,92 @@ experiment pursues planner-sensitivity-to-O-geometry. The 817a autopsy names the
 question and routes nothing. It is an unowned gap, and it is exactly where this
 thought lands.
 
+### 3.3c-bis HOW exactly 817a failed -- read from the manifest, not the autopsy summary
+
+(User question, 2026-08-26. Read from
+`evidence/experiments/v3_exq_817a_sd080_worldeffect_grounding_falsifier_20260726T153154Z_v3.json`,
+per-seed, because the autopsy reports only 5-seed means.)
+
+**Per-seed `harm_rate` (lower better) / `mean_survival_steps`:**
+
+| seed | ARM_0 frozen | ARM_1 grounded | ARM_2 shuffled |
+|---|---|---|---|
+| 0 | 0.702 / 8.9 | 0.935 / 7.65 | 0.796 / 9.3 |
+| 1 | 0.656 / 11.05 | 0.698 / 10.75 | 0.433 / 19.05 |
+| 2 | **0.021 / 187.7** | 0.158 / 48.65 | 0.035 / 147.7 |
+| 3 | 0.450 / 20.1 | 0.548 / 14.7 | 0.514 / 15.55 |
+| 4 | 0.383 / 21.65 | **0.234 / 33.55** | 0.326 / 21.45 |
+| **mean** | **0.4426** | **0.5144** | **0.4209** |
+
+Two things the means hide:
+
+1. **ARM_1 is worse than ARM_0 on 4 of 5 seeds** (better only on seed 4). So this is
+   not a wash -- it is a consistent, if small, degradation.
+2. **Seed variance dwarfs the arm effect.** Within ARM_0 alone, `harm_rate` ranges
+   0.021 to 0.702 and survival 8.9 to 187.7 -- a **21x** spread. Seed 2 is a
+   different behavioural regime from the rest. The arm means differ by ~0.07 on a
+   DV whose seed range is ~0.68. **Any causal reading of the mean difference is
+   weak**, and this should be said plainly: 817a is decisive that grounding did not
+   *help*, and much weaker evidence that it actively *hurt*.
+
+**The mechanism, which is where the real information is:**
+
+| metric | ARM_0 frozen | ARM_1 grounded | ARM_2 shuffled |
+|---|---|---|---|
+| `ao_M5_r2_explained_by_action_alone` | ~0.995 | **~0.721** | ~0.997 |
+| `ao_M6_mean_within_pair_spearman` (consequence ordering) | ~0.0 | +0.264, -0.121, -0.040, +0.197, +0.288 (**mean ~+0.118, sign-unstable**) | ~0.0 |
+
+So grounding moved **~28% of O's variance out of action-coding** (M5 0.995 -> 0.721)
+and **did not reliably buy consequence-ordering in exchange** (M6 mean ~+0.12, and
+**negative on 2 of 5 seeds** -- which is why the run's own design non-gated M6 rather
+than thresholding it).
+
+**O stopped being a clean action code without becoming a reliable consequence code.**
+
+### 3.3c-ter Why that is the worst possible trade -- O is not only a representation, it is the SEARCH SPACE
+
+This is the part neither the autopsy nor SD-080 states, and it reframes the result.
+
+`action_object_head` serves **two masters simultaneously**:
+
+- **(a) semantics** -- what `o_t` *means* (SD-004's "compressed world-effect");
+- **(b) search geometry** -- the coordinate system the hippocampal CEM *samples in*.
+  `module.py` draws `action_objects_sample = ao_mean + ao_std * noise` and then
+  `actions = self._decode_action_objects(action_objects_sample)`. **The planner
+  explores by perturbing O and decoding the perturbation into actions.**
+
+When O is ~99.5% action-explained, perturbing O is *almost exactly* perturbing the
+action: the search is well-conditioned for the only thing it is used for. After
+grounding, ~28% of the sampling budget perturbs directions that encode **state**,
+which the decoder -- itself untrained, and documented as a map whose "argmax pins to
+one constant class" -- turns into nothing useful. Same sampling effort, fewer
+effectively-distinct action proposals.
+
+**817a optimised (a) and silently degraded (b). Nothing in the run measured (b).**
+
+So the honest description of the failure is not "consequence structure does not
+help". It is:
+
+> **The grounding objective reallocated a shared resource -- O's variance -- from a
+> use the consumer depended on to a use the consumer could not exploit.**
+
+This is not over-compression in the sense of *too few dimensions*. It is
+**mis-allocated compression**: the funnel was pointed at a target the consumer had
+no way to read, while being taken away from the one it did read.
+
+**This is a hypothesis, not a measured finding, and it has a cheap decisive check.**
+817a recorded no proposal-diversity metric. The discriminator already exists in the
+codebase as a standard readout: per-candidate action-class diversity /
+`cand_world_pairwise_dist` (the GAP-A instrument, SD-056's own DV). Re-read or re-run
+ARM_0 vs ARM_1 with that recorded:
+
+- **Proposal diversity DROPS in ARM_1** -> the account above is right; the fix is to
+  stop making one tensor serve both masters (give O a consequence-grounded *readout*
+  while leaving the CEM's search coordinates action-conditioned), and 817a is
+  **not** evidence against consequence-grounding.
+- **Proposal diversity UNCHANGED in ARM_1** -> the account is wrong, and 817a is much
+  stronger evidence that consequence-structured geometry genuinely does not convert.
+
 ### 3.3d The ordering consequence -- and it contradicts the standing one
 
 `monostrategy_representation_ceiling_root` currently predicts **differentiate-first**:
