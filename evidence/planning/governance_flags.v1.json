@@ -799,6 +799,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0055",
+      "claim_ids": [
+        "ARC-004"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "ARC-004 FAILS its own registered what_would_answer, measured 2026-08-26. First execution of that falsifier -- its own text records the claim 'has never been tested as its own claim (absent from claim_evidence.v1.json) -- it is currently assumed via 36 dependents architecture, not measured'. PASS requires half-life(z_delta) > half-life(z_theta) > half-life(z_beta) by >= 0.8 SD of the seed-to-seed delta. Measured at 3 operating points, 5 seeds each (distinct stack init AND input stream), 1500 ticks: synthetic AR(1) rho=0.5 -> 1/5 seeds, margin +0.043 vs bar 0.060; rho=0.95 -> 1/5 seeds, margin +0.041 vs bar 0.653; REAL CausalGridWorld rollout -> 0/5 seeds, margin -0.159 vs bar 0.142, i.e. INVERTED (z_delta persists SHORTER than z_beta on every seed). Mechanism is transparent and read from source: alpha_shared=0.3 is a bare hardcoded literal applied identically to all three depths (stack.py:1454; note alpha_self/alpha_world ARE configurable, alpha_shared is not), and the beta->theta->delta cascade is a chain of UNTRAINED static projections (MECH-523), which change values but not temporal correlation -- so each depth inherits its input timescale under one identical EMA. White-noise control confirms: at rho=0 all three measure 1.89-1.91 against the EMA-alone prediction ln(0.5)/ln(0.7)=1.94. ARC-004's own FAIL branch prescribes the consequence: layers differ in content, not timescale; 'multi-timescale' is the wrong description of why they work; supersession review of the framing, structurally analogous to MECH-058 (asserted timescale separation for z_self/z_world, tested by lag-k autocorrelation in V3-EXQ-019, FAILED, retired, superseded by MECH-069 'incommensurable domains'). NO STATUS CHANGED HERE -- ARC-004 is active/standard with 36 dependents and this is governance's call. LIMITS, stated: encoders untrained (the as-built condition per MECH-523, and the condition ARC-004's own precondition frames, but a trained stack is untested); random-action policy on the real rollout; the 210-dim observation was split in half for body/world rather than using canonical channel routing, which should be redone before any supersession decision; the optional MECH-423 per-layer convergence corroboration was not run. Full write-up: evidence/planning/arc004_timescale_stratification_probe_20260826.md (REE_assembly 84d7260cb4).",
+      "raised_by_session": "insights-7fd98a",
+      "raised_at": "2026-08-26T20:08:38Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
