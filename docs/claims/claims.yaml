@@ -86028,6 +86028,26 @@
     substrate_conditional set EXPLICITLY. DO NOT build in V3 and DO NOT queue a V3 experiment --
     no representation-version concept exists anywhere in ree_core today, and MECH-496 (the change
     driver) is itself unbuilt.
+    Lifecycle reconciliation (2026-08-26, chip chip-20260825-mech513-lifecycle-reconcile,
+    design-question resolution -- no claim status/confidence touched): verdict is a DISTINCT,
+    ORTHOGONAL sub-state-machine, not a fold-in to MEM-5's `lifecycle_state`. MEM-5's 6 states
+    track a record's ABSTRACTION level (how summarised/consolidated it is); MECH-513's four
+    proposed states track whether the ADDRESSING SCHEME currently applied to a record is
+    current -- independent axes, since a record can be `consolidated` and `pending_reindex`
+    simultaneously, or `retained` and `pending_reindex` simultaneously. Recommended shape (V4
+    build-time, not itself a claim): a second field, e.g. `reindex_status`
+    (none/pending_reindex/under_offline_review/provisionally_reindexed/validated/
+    rollback_required), read/written independently of `lifecycle_state`; `validated` resets it
+    to `none` rather than resting there, exactly as `transformation_history` already
+    accumulates entries under MEM-5 without its own lifecycle slot. The one real coupling
+    point: `rollback_required` (reindex failed validation against held-out/waking evidence)
+    SHOULD set the record's existing `lifecycle_state` to `contested`, reusing MEM-5's
+    "flagged, not silently authoritative" discipline rather than inventing a second
+    contested-equivalent -- which is also why `contested` is the one name shared between the
+    raw thought's proposed 6-item list and MEM-5's 6 states, not a coincidental collision.
+    `pending_reindex`/`under_offline_review`/`provisionally_reindexed` never touch
+    `lifecycle_state`. Full writeup:
+    docs/architecture/offline_representational_reindexing.md#5-addendum-2026-08-26-reindex-handoff-state-reconciliation.
 
 - id: MECH-514
   title: >

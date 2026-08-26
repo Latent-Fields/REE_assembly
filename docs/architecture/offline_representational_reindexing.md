@@ -123,7 +123,8 @@ optional, since without it the process could manufacture its own confirming evid
   `under_offline_review`, `provisionally_reindexed`, `validated`, `rollback_required`) against the
   existing 6-state memory-lifecycle model. `contested` already exists in both; the other four
   states named in the raw thought are not yet in the existing model. This reconciliation is real
-  work for a future V4 build pass, not attempted here.
+  work for a future V4 build pass; the design question itself (fold-in vs. distinct state
+  machine) is resolved in Section 5 below.
 - **NREM-vs-REM architectural placement.** The raw thought suggests NREM-like phases for
   evidence-anchored consolidation and speculates REM-like phases could be useful for looser
   recombination and alternative generation, while flagging that the REM half is speculative. Not
@@ -142,3 +143,49 @@ detour-remapping and 2026 macaque assembly-drift studies cited in the raw though
 2012 and Gupta et al. 2010 (awake hippocampal replay); Jardri & Deneve 2013, Powers/Mathys/Corlett
 2017, Howes et al. 2011 (psychosis failure-mode inspiration only, per Section 3 above); Pellegrini
 et al. 2019 (latent replay representation drift); Shumailov et al. 2024 (model collapse).
+
+## 5. Addendum (2026-08-26): reindex handoff-state reconciliation
+
+Closes the reconciliation flagged in Section 3 above and in the original thought-intake's Next
+Steps item 2 (`thought_intake_2026-08-24_offline-representational-reindexing-counterfactual-model-comparison.md`).
+Run under chip `chip-20260825-mech513-lifecycle-reconcile`; a design-question resolution against
+MECH-513 as already registered, not a new claim and not a change to any claim's status or
+confidence.
+
+**Verdict: a distinct, orthogonal sub-state-machine, not a fold-in.** The existing 6-state
+memory-lifecycle model (`memory_lifecycle_v4_plan.md` MEM-5:
+retained/indexed/summarised/consolidated/contested/retired) tracks a record's ABSTRACTION level --
+how much a memory has been summarised or consolidated, and whether that abstraction conflicts
+with its source. MECH-513's four proposed states (`pending_reindex`, `under_offline_review`,
+`provisionally_reindexed`, `rollback_required`) track something orthogonal: whether the ADDRESSING
+SCHEME currently applied to a record is up to date with the system's current representational
+primitives. A record can be `consolidated` (fully abstracted) and simultaneously
+`pending_reindex` (its index just went stale because a MECH-496 bucket split), or `retained`
+(barely touched) and simultaneously `pending_reindex` -- the two axes are independent, and
+folding the four states into MEM-5's single `lifecycle_state` field would force every reindex
+event to also assert an abstraction-level transition it has no information about.
+
+**Recommended shape (V4 build-time, not itself a claim):** a second field on the memory record,
+e.g. `reindex_status`, taking values `none` (default) / `pending_reindex` / `under_offline_review`
+/ `provisionally_reindexed` / `validated` (terminal success) / `rollback_required` (terminal
+failure), read and written independently of `lifecycle_state`. `validated` is not a resting state
+distinct from the others -- once the new index is accepted the field resets to `none` and the
+ADDITIVE new indexing relationship MECH-513's title specifies simply becomes one more entry a
+record carries, exactly as `transformation_history` already accumulates entries under MEM-5
+without needing its own lifecycle slot.
+
+**The one real coupling point:** `rollback_required` (a reindex attempt failed validation against
+held-out/waking evidence) SHOULD set the record's existing `lifecycle_state` to `contested`,
+reusing MEM-5's "flagged, not silently authoritative" discipline rather than inventing a second
+contested-equivalent. `pending_reindex`, `under_offline_review`, and `provisionally_reindexed`
+are purely internal to the reindex sub-state-machine and never touch `lifecycle_state`.
+
+**Why `contested` is the one name shared with the raw thought's own 6-item list, and that is not
+a coincidence:** the raw thought's full proposed list is `contested, pending_reindex,
+under_offline_review, provisionally_reindexed, validated, rollback_required` -- six items, of
+which only `contested` collides by name with MEM-5. Given the coupling point above, `contested`
+was never a fifth reindex-native state needing its own slot; it is the raw thought correctly
+reaching for MEM-5's existing failure-signal state rather than proposing a new one.
+
+This resolves the design question; it does not authorise building MEM-5, `reindex_status`, or
+MECH-513's substrate in V3 -- see Section header status and CLAUDE.md's V3-pending gate.
