@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_513",
+  "entry_id": "2026-08-26_mech513_latent_replay_pellegrini2019",
+  "timestamp_utc": "2026-08-26T05:13:54Z",
+  "claim_ids_tested": ["MECH-513"],
+  "source": {
+    "title": "Latent Replay for Real-Time Continual Learning",
+    "authors": ["Lorenzo Pellegrini", "Gabriele Graffieti", "Vincenzo Lomonaco", "Davide Maltoni"],
+    "year": 2020,
+    "venue": "2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+    "doi": "10.1109/IROS45743.2020.9341460",
+    "arxiv_id": "1912.01100",
+    "pages": "10203-10209"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Pellegrini et al. give direct, empirical continual-learning evidence for the failure mode MECH-513 is designed to prevent: when a network's intermediate representation keeps changing (as lower layers keep training), previously stored activations of that representation drift out of alignment with what the current network would produce, degrading recognition performance across non-uniform, real-time data streams (CORe50 NICv2, OpenLORIS). This directly corroborates the raw thought's framing that a change in representational primitives can silently invalidate previously stored, indexed content unless something explicit is done about it -- exactly the failure MECH-513 names for episodic memory. The paper's own fix, however, is a different strategy from MECH-513's: rather than reindexing/versioning stored content after the representation changes, it prevents most of the drift from occurring in the first place by slowing (near-freezing) learning in the layers below the replay point while letting only the layers above it train freely. MECH-513 explicitly declines to freeze representational structure and instead proposes an additive, versioned reindexing layer that lets episodes remain interpretable under both the old and new scheme -- so this paper evidences the problem MECH-513 responds to and the empirical cost of not solving it, without evidencing MECH-513's specific proposed solution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pellegrini et al.'s primary mitigation is architectural rate-limiting (freeze/slow lower layers), not the additive versioned reindexing MECH-513 proposes -- the paper does not test or validate an explicit multi-version indexing scheme against a frozen-lower-layers baseline.",
+    "The paper's representation is a CNN's intermediate feature layer under supervised image/video classification; MECH-513's target is episodic memory indexed by structures like ContextMemory slots or an E1 associative manifold (MECH-154), which are not evaluated here.",
+    "MECH-513's change drivers include bucket split/merge and dimensionality crystallisation (MECH-496) as discrete structural events; the paper's drift is continuous and gradual (ongoing SGD on lower layers), a different temporal profile than a discrete re-indexing event."
+  ],
+  "tags": ["mech_513", "latent_replay", "representation_drift", "continual_learning", "catastrophic_forgetting", "episodic_memory"],
+  "mapping": {
+    "source_claim_statement": "In continual learning under real-time, highly non-uniform data streams, storing raw input for rehearsal is often infeasible; instead the method stores activation volumes ('latent replay') at an intermediate network layer. But if the layers below that intermediate layer keep changing during subsequent training, the network that produced those stored activations no longer matches the network that will consume them -- the stored activations drift out of correspondence with the current representation. The paper's solution is to slow learning in the layers below the replay point (near-freezing them) while allowing full-speed training above it, trading some plasticity for representational stability, and shows this preserves accuracy across nearly 400 highly non-uniform batches, including a real-time smartphone deployment.",
+    "ree_translation": "This is a direct, empirical demonstration of the exact failure MECH-513 is registered to prevent, described in the raw thought as: 'an episode organised under an earlier representational system may no longer be correctly located or interpreted by the current one.' MECH-513 generalises this from a CNN's replay buffer to REE's episodic memory: when the representational primitives used to index memory change (a bucket split/merge, or ContextMemory's dimensionality crystallising differently per MECH-496), previously stored episodes risk becoming stale or misinterpreted under the new scheme in the same qualitative way Pellegrini et al.'s stored activations go stale when the feature extractor beneath them keeps moving. Where the two diverge is the remedy: Pellegrini et al. avoid the problem by constraining the representation to change slowly; MECH-513 explicitly rejects that option (REE's design allows MECH-496 dimensionality change to occur) and instead proposes an additive, versioned reindexing operation so episodes remain interpretable under both the historical and current scheme -- a design choice the paper's results indirectly motivate by showing how costly unmanaged drift is, without directly testing that alternative.",
+    "mapping_caveat": "The paper validates that representation drift is a real, performance-relevant problem and that one mitigation (rate-limiting the representation) works well in a CNN/continual-image-classification setting. It does not validate MECH-513's specific proposed mechanism (additive versioned reindexing with dual historical/current interpretability) -- that remains an engineering hypothesis motivated by, but not tested by, this paper. Domain transfer risk is moderate: supervised feature-extractor drift in vision continual learning is a different substrate than REE's episodic/associative memory indexing, though the underlying principle (a downstream consumer's indexing assumptions can be invalidated by upstream representational change) transfers reasonably cleanly.",
+    "source_context": "Peer-reviewed robotics/continual-learning venue (IROS 2020); originally released as arXiv:1912.01100 (Dec 2019, cited by the raw thought as the 2019 preprint). Evaluated on CORe50 NICv2 and OpenLORIS video benchmarks plus a real smartphone deployment; well-cited within the continual-learning / catastrophic-forgetting literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Solid peer-reviewed empirical continual-learning study with a concrete, deployed system (not purely theoretical), giving reasonably high source quality. Mapping fidelity is moderate: the problem statement (representational drift invalidates previously stored, indexed content) transfers cleanly, but the paper's chosen solution (rate-limiting/freezing) is a different strategy than MECH-513's proposed additive-reindexing fix, so it evidences the problem far more strongly than the proposed remedy. Transfer risk is moderate given the domain gap between CNN feature-layer replay buffers and REE's episodic-memory indexing substrate."
+  }
+}

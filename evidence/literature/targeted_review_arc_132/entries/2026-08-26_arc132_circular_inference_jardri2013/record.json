@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_132",
+  "entry_id": "2026-08-26_arc132_circular_inference_jardri2013",
+  "timestamp_utc": "2026-08-26T05:13:54Z",
+  "claim_ids_tested": ["ARC-132", "MECH-514"],
+  "source": {
+    "title": "Circular inferences in schizophrenia.",
+    "authors": ["Renaud Jardri", "Sophie Denève"],
+    "year": 2013,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awt257",
+    "pmid": "24065721",
+    "volume": "136",
+    "issue": "Pt 11",
+    "pages": "3227-41"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.35,
+  "confidence_rationale": "Jardri & Deneve build a hierarchical Bayesian message-passing model in which subtle excitatory/inhibitory imbalance lets bottom-up sensory evidence and top-down predictions reverberate rather than being correctly discounted for their shared history -- a pathological loop they name 'circular belief propagation'. This is a structural analogue of the self-reinforcing loop ARC-132/MECH-514's notes describe (attractor -> biased perception/retrieval -> attractor-consistent derived material -> selective replay -> apparent confirmation -> stronger attractor): in both cases, failing to keep evidence and its own downstream reinterpretation separately tagged lets non-independent signal be double-counted as fresh confirmation, producing pathological over-confidence, spurious causal learning, and (in the model) resistance to perceptual illusions that lower-confidence percepts would normally show. That structural parallel is real corroboration for why ARC-132 requires an attractor's carried quantities to stay separable rather than collapsing into one strength scalar, and for why MECH-514's anti-circularity requirement (repeated replay of one episode must not be miscounted as independent samples) is a load-bearing design constraint rather than an optional nicety. Confidence is kept low and the direction is read narrowly: the raw thought's own evidential-boundary section and both claims' notes are explicit that this paper is cited as failure-mode inspiration only, not as demonstrated evidence that REE's attractor architecture works this way or that axis-conflation is schizophrenia's actual mechanism -- Jardri & Deneve's model is a specific message-passing algorithm error in a clinical human population, not an architectural commitment about carried-quantity separability in an artificial cognitive system. This entry should not be read as hardening either claim past 'candidate' / substrate_conditional.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's mechanism is a computational-psychiatry model of excitatory/inhibitory imbalance in cortical hierarchical inference, not a claim about multi-axis attractor properties (reliability, confidence, familiarity, valence, salience, urgency, self-relevance, source) -- ARC-132's axis list has no counterpart in the model.",
+    "Jardri & Deneve's circular belief propagation is a failure of discounting shared history between bottom-up and top-down signal in one inference pass; REE's self-reinforcing loop (per the raw thought) operates across perception, retrieval, and replay over time -- same qualitative shape (double-counting non-independent evidence), different granularity and timescale.",
+    "The model is validated against schizophrenia symptom clusters (hallucinations, delusions, illusion resistance) in a clinical population; there is no direct test of an artificial multi-axis attractor representation or of an offline counterfactual-replay protocol."
+  ],
+  "tags": ["arc_132", "mech_514", "circular_inference", "psychosis", "hierarchical_bayesian_inference", "belief_propagation", "failure_mode_inspiration"],
+  "mapping": {
+    "source_claim_statement": "A hierarchical Bayesian message-passing model in which subtle excitatory-to-inhibitory imbalance causes sensory (bottom-up) and predictive (top-down) messages to be counted more than once as they reverberate through the hierarchy -- 'circular belief propagation' -- rather than being correctly discounted for their shared causal history. This single mechanism reproduces several distinct schizophrenia phenomena: erroneous perceptions/hallucinations, overconfident probabilistic judgements, learning of spurious causal links between unrelated events, and paradoxical resistance to standard perceptual illusions.",
+    "ree_translation": "REE's self-reinforcing loop (attractor -> biased perception/retrieval -> attractor-consistent derived material -> selective replay -> apparent confirmation -> stronger attractor) is the same qualitative failure at a different level of description: content generated or reinterpreted through an insufficiently-differentiated attractor gets miscounted as independent confirming evidence for that attractor, rather than being recognised as the attractor's own reverberation. ARC-132 argues the fix is keeping an attractor's carried quantities (reliability, confidence, familiarity, valence, salience, urgency, self-relevance, source) separately readable so that e.g. high emotional urgency cannot silently stand in for epistemic reliability; MECH-514 argues the fix is an explicit offline protocol that separates anchored evidence from its interpretation and never lets one episode's repeated replay count as multiple samples. Jardri & Deneve's model is evidence that failing to discount reverberating, non-independent signal is a mechanistically real way to produce exactly this class of pathological overconfidence and spurious inference in a hierarchical inference system -- corroborating the failure mode both claims are designed to prevent, without demonstrating that REE's specific architectural remedy is the one biology uses.",
+    "mapping_caveat": "This is cross-domain, structural-analogy evidence, not a direct test of either claim. Transfer risk is high in both directions named in the raw thought itself: clinical human psychiatric population -> artificial cognitive architecture, and one specific message-passing algorithm's failure mode -> a general design principle for attractor differentiation and counterfactual replay. Per the raw thought's own 'evidential boundary' section (also reflected in both claims' registration notes), this paper must not be read as demonstrating that psychosis is one unitary precision failure, that axis-conflation is a confirmed mechanism of it, or that REE's proposed remedies are biologically validated -- it licenses only the narrower claim that undifferentiated, reverberating belief updating is a real way to produce the failure mode both claims exist to guard against.",
+    "source_context": "Peer-reviewed computational psychiatry paper in Brain (2013), highly cited foundational work connecting predictive-coding/hierarchical Bayesian models to psychotic symptom formation via a specific circuit-level (E/I balance) mechanism. Human clinical population (schizophrenia) plus simulation/model work; no animal or REE-substrate data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.70,
+    "notes": "High source quality: canonical, peer-reviewed, widely cited computational-psychiatry paper with an explicit mechanistic model reproducing multiple symptom clusters from one principle. Mapping fidelity is deliberately kept moderate-low: the structural analogy (non-independent signal miscounted as confirmation) is genuine but the paper's actual object (E/I-imbalance message-passing in a clinical population) is not the same kind of thing as ARC-132's multi-axis carried-property architecture or MECH-514's offline model-comparison protocol. Transfer risk is high given the clinical-population-to-artificial-architecture jump and because both target claims explicitly flag this literature as failure-mode inspiration only, per the raw thought's own evidential-boundary discipline -- weighted heavily here per lit-pull calibration guidance for architectural claims."
+  }
+}
