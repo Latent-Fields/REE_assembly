@@ -85072,6 +85072,7 @@
     as_of: "2026-08-25"
     needs_review: false
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true  # cross-tag backfill, chip-20260826-arc130-authority-throughput-evidence-tagging (EVB-0633/EXP-0379 release_condition (a)): pre-existing claim-free diagnostic findings confirmed into evidence_quality_note below (2026-08-26)
   claim_level: architectural
   implementation_phase: v3
   version_relevance: v3
@@ -85142,6 +85143,75 @@
     internal selection boundary does not by itself establish that authority reaches committed
     behaviour." Neither paper is REE-specific; confidence held at 0.55/0.65 respectively -- see the
     entries' record.json for full mapping caveats and confidence components.
+  evidence_quality_note: |
+    [2026-08-26, chip-20260826-arc130-authority-throughput-evidence-tagging, cross-tag of
+    pre-existing evidence per EVB-0633/EXP-0379 release_condition (a); not a new experiment]:
+    ARC-130's distinctive post-authority contribution -- authority at one internal selection
+    boundary does not by itself establish committed throughput -- is discharged by pre-existing,
+    CONFIRMED evidence across two independent mechanisms. Status/confidence unchanged (candidate);
+    this note adjudicates existing evidence, it does not promote or demote.
+
+    STRONGEST, DIRECT: failure_autopsy_931-932-wanting-authority-cluster_2026-08-16 (CONFIRMED,
+    human-gated 2026-08-16T18:41:10Z), V3-EXQ-931 (FAIL) + V3-EXQ-932 (PASS). V3-EXQ-931
+    demonstrates the exact dissociation this claim names: at the documented operating weight
+    (0.5), wanting_authority_ratio ~= 0.0037 and selection_flip_rate = 0.0 in 5/5 seeds (no
+    competitive authority at the hippocampal CEM's own elite-selection boundary). Forced to full
+    authority (w=5000, in-run positive control), the CEM elite argmin flips on 80.3 pct of genuine
+    refits -- authority achieved -- yet mean_resource_proximity is BIT-IDENTICAL to ablation
+    (0.6229773644254133), because REEAgent.select_action re-scores the candidate pool with
+    e3.last_scores independently of the CEM's own elite pick: committed throughput is exactly zero
+    even with authority forced to ~2700x its measured value at the operating weight. This is the
+    cleanest evidence in the record of competitive authority and committed throughput as
+    independently demonstrable, dissociable stages, not one "has influence" fact. NOTE: the
+    specific throughput gap this run measured has SINCE been partially closed (ree-v3 1a4b6be,
+    2026-08-20 -- CEM elite-stage authority plus a bounded, advisory-only throughput channel into
+    E3's committed selection); the run's own numeric null is therefore substrate-historical, but
+    the LADDER POINT it establishes -- authority does not imply throughput; each must be
+    separately demonstrated and each can independently fail -- is the reusable finding this claim
+    needs, and is unaffected by the subsequent fix.
+
+    ALSO DIRECT, A DIFFERENT RUNG (committed-throughput PERSISTENCE, not cross-boundary
+    re-scoring): diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md (H1 CONFIRMED, H2
+    REFUTED) and its companion diagnostic_arc071_e3_reselection_probe_2026-08-01.md (confirmed
+    real, non-aleatoric defect, "complex (probe-gated)" -> "complicated (buildable)"). Together
+    these show a failure mode distinct from 931/932's single-tick re-scoring: even where a chunk
+    genuinely commits (the SD-084 persistent handle correctly holds the same chunk_sequence across
+    every non-E3-tick step), E3 unconditionally re-deliberates and installs a brand-new trajectory
+    object on every E3 tick with no "already committed, skip re-selection" check, so
+    _committed_step_idx never advances past 1 across 80 ticks / 8-10 E3 cycles in the forced H1/H2
+    probe. The companion probe shows this is not a forced-scenario artifact: at practically-used
+    chunk sizes (chunk_max_size=5, one of V3-EXQ-841's own three tested dose arms) 36.8 pct of
+    chunk-committed decisions are prematurely re-selected before completion, rising to 41-55 pct at
+    chunk_max_size 8/15. This directly instantiates ARC-130's committed-throughput clause
+    ("survives any later selector, latch, commitment boundary, or stale-selection path") failing
+    for a mechanism independent of 931/932's (repeated re-deliberation overwriting an
+    otherwise-valid commitment, vs. a separate downstream re-scoring step ignoring an elite pick) --
+    two distinct mechanisms converging on the same rung, which strengthens rather than duplicates
+    the ladder-level claim. Named fix (an E3 unexpired-commitment short-circuit) is NOT YET BUILT
+    as of this note -- this rung is an ACTIVE substrate gap, not a historical one.
+
+    CHECKED AND DELIBERATELY NOT TAGGED: MECH-314 (curiosity bonus), MECH-320 (vigor penalty),
+    MECH-341 (within-class temperature) -- the three prior "convergent instances" ree-v3 1a4b6be
+    cites alongside V3-EXQ-931 (failure_autopsy_604a-624a-630_2026-06-03's finding that the
+    MECH-314/320 score-bias terms are "dominated by the primary harm/goal score term, so they
+    never change argmax"; V3-EXQ-614d's finding that MECH-341 "fires but leaves committed-class
+    entropy invariant"). These instantiate a DIFFERENT, EARLIER rung failure -- local operation
+    without competitive authority (the signal exists and operates but never competes against the
+    dominant term at all, at any forcing) -- which is the transition this claim's own notes
+    explicitly assign to ARC-120 ("ARC-120 stops at 'behavioural influence'; this claim's
+    contribution is specifically the POST-authority granularity"). Tagging them here would be
+    exactly the peripheral-co-tag mis-attribution this ladder exists to prevent: none of the three
+    measures authority ACHIEVED and throughput failing -- only authority absent outright, which is
+    ARC-120's rung, not this claim's. Left untagged on that basis, not overlooked.
+
+    Net: ARC-130's testable core (competitive authority is not committed throughput) is adjudicated
+    CONFIRMED-SUPPORTS by pre-existing evidence across two independent mechanisms. 'Ecological
+    consequence' and 'retention/generalisation', the ladder's two furthest rungs, remain UNTESTED
+    by any of this evidence and must not be read as supported. diagnostic_evidence_adjudicated set
+    true accordingly -- all cited runs/probes are claim_ids:[] diagnostic-purpose or unqueued
+    scratch probes by design, so exp_count reads 0 (design_decision_evidence_credit_gap_20260821.md
+    fix shape 1). EVB-0633/EXP-0379 updated to status=gated in the same commit as this note per its
+    own release_condition (a).
   evidence: []
 
 - id: ARC-131
