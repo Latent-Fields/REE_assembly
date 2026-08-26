@@ -19,22 +19,34 @@ closure_plan:
   nodes:
     - id: PHASE-0
       title: "Prerequisites + design finalization (WireGuard coverage audit, schema/endpoint spec, degrade-path spec)"
-      status: in-progress
+      status: done
       severity: load-bearing
       last_updated: 2026-08-26
       note: >
-        STARTED 2026-08-26 (session dazzling-jackson-efb9e9). Established:
-        the contention surface is small (only the Mac + ree-cloud-5 write
-        TASK_CLAIMS.json/TASK_CHIPS.json today; ree-cloud-1..4 never touch
-        them). NOT YET DONE: live verification of ree-cloud-5's WireGuard
-        mesh membership (see section 6.1 -- the 2026-06-11 mesh doc predates
-        ree-cloud-5's 2026-08-11 discovery, so it is very likely NOT a peer
-        yet); the coordinator schema/endpoint spec (section 5.2) is a design
-        sketch only, not reviewed against ree-v3/coordinator/schema.sql or
-        db.py by someone who will actually implement it; the degrade-path
-        (coordinator/mesh unreachable) behavior is specified in section 5.3
-        but not yet validated against the Mac's documented WireGuard-flakiness
-        history (reference_wireguard_mesh memory).
+        CLOSED 2026-08-26 (session
+        metaworker-chip-20260826-taskclaim-coordinator-migration-phase0), all
+        three prerequisites verified live, no blockers. 6.1 WireGuard:
+        ree-cloud-5 was ALREADY a peer (10.8.0.15/32, persisted in wg0.conf,
+        bidirectional with PersistentKeepalive) -- the prior assumption that it
+        was very likely NOT a peer was WRONG; verified end-to-end with ping
+        (0% loss) and a coordinator /health 200 from cloud-5 over the mesh. No
+        mesh change was made. 6.2 Mac tunnel: both launchd agents loaded and
+        healthy, latest digest reads bounces_24h=0 / keepalive=HOLDING, so the
+        literal precondition is met -- BUT the full 75-digest record is 33%
+        FLAPPING (8 flapping days in the last 30, most recent 2026-08-22, and 5
+        occasions where recovers < bounces), so the point-check as written is a
+        weak predicate and section 6.2 now recommends restating it as a trailing
+        rate criterion before PHASE-2. This does NOT gate PHASE-1, which is
+        read-only and does not depend on the Mac's tunnel. 6.3 schema/endpoint:
+        section 5.2 rewritten from a sketch into implementation-ready DDL +
+        endpoint signatures against a full read of schema.sql/db.py/app.py, with
+        all field and uniqueness assumptions checked against the live JSON files;
+        11 design problems recorded in 5.2.6, of which D1 (path-namespace
+        collision with the existing experiment /claim endpoints), D2 (resources
+        MUST be an indexed child table or the migration buys no correctness at
+        all), D3 (dedupe has no atomic equivalent and needs none under a
+        composite PK) and D7 (chip archive stays git-side -- its gate is an
+        origin fact) change the design as sketched.
     - id: PHASE-1
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
       status: not-started
@@ -80,7 +92,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** DESIGN STAGE (v0.1, 2026-08-26). PHASE-0 started; nothing landed yet. No code has been written, no coordinator schema change made, no WireGuard mesh change made. This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** DESIGN STAGE (v0.2, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6); PHASE-1 not started, nothing implemented yet. No code has been written, no coordinator schema change made, no WireGuard mesh change made. This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -129,17 +141,248 @@ Root `CLAUDE.md`'s "Multi-Machine Experiment Coordination" section explicitly do
 - **`experiment_queue.json`** is already coordinator-authoritative (Phase 2/3, section 2). Nothing to do here.
 - **Work-repo (`ree-v3`/`REE_assembly`) code-plane contention** already has its own, different, already-adequate defense (`integration/<slug>` staging branches, per-file claim discipline in root `CLAUDE.md` "Why trunk-only"). Out of scope.
 
-## 5. Architecture design (sketch -- needs implementation-level review before Phase 1 starts)
+## 5. Architecture design (5.2 REVIEWED and implementation-ready as of 2026-08-26; 5.1/5.3 unchanged)
 
 ### 5.1 Who writes today (the actual contention surface)
 
 Only two real git clients write `TASK_CLAIMS.json`/`TASK_CHIPS.json` today: the Mac (interactive sessions + worktrees) and `ree-cloud-5` (the metaworker dispatcher, ~123 worktrees per `reference_cloud_workers` memory). `ree-cloud-1..4` never touch these files -- they are experiment-only runners mediated entirely by the coordinator already. This is good news for feasibility: the write-side fan-in is small.
 
-### 5.2 Schema + endpoint shape (draft -- not reviewed against `schema.sql`/`db.py` yet)
+### 5.2 Schema + endpoint design (REVIEWED against `schema.sql` + `db.py`, 2026-08-26)
 
-- New tables mirroring the JSON entry shapes byte-for-byte, so materialization back to `TASK_CLAIMS.json`/`TASK_CHIPS.json` stays compatible with every existing consumer (`audit_stale_claims.py`, `prune_task_claims_done.py`, `chip_ledger.py list`, `serve.py`'s `/workset` panel, the IGW ledger, the `spawn_task` first-action instruction, `/session-land`'s self-report check).
-- Endpoints mirroring the CLI verbs 1:1, so `task_claim.py`/`chip_ledger.py` become thin HTTP clients with the exact same command surface: `/claim/open`, `/claim/close`, `/claim/check`, `/claim/renew`, `/claim/amend`, `/claim/dedupe`; `/chip/record`, `/chip/claim`, `/chip/unclaim`, `/chip/resolve`, `/chip/attach`, `/chip/amend-prompt`, `/chip/list`, `/chip/archive`.
-- Materialization: one writer thread per file (or one shared, keyed by path), committing on state-change only -- explicitly NOT a timer tick (section 2's warning applies here too). Bot-authored by default, same as `task_claim.py`'s current `--bot` default, so clinical-hours stays clean without any new logic.
+**Status: implementation-ready.** This section was a sketch until 2026-08-26; it has now been written against a full read of `ree-v3/coordinator/schema.sql` (155 lines), `db.py` (1296) and `app.py` (975), and every field/uniqueness assumption below was verified against the **live** `TASK_CLAIMS.json` (154 entries) and `TASK_CHIPS.json` (1692 entries) rather than inferred. Where the earlier sketch was wrong, it is corrected rather than softened -- see "Design problems found" at the end, which is the part a Phase-1 implementer should read first.
+
+#### 5.2.1 Conventions inherited from the existing schema
+
+The two tables below deliberately copy four patterns already load-bearing in `schema.sql`, so nothing new has to be reasoned about:
+
+- **A lossless `entry_json` column** on every row, mirroring `experiments.item_json`. Materialization back to the JSON files reads this, so a field this schema does not model explicitly still round-trips. This is what makes the migration safe against every existing consumer (`audit_stale_claims.py`, `prune_task_claims_done.py`, `chip_ledger.py list`, `serve.py`'s `/workset` panel, `audit_orphan_chips.py`, `substrate_queue_writeback_drift.py`).
+- **`updated_at TEXT NOT NULL`** on every row, ISO-8601 UTC via `db.utcnow()`.
+- **Additive-only migrations** in a `_migrate_*(conn)` function called from `connect()`, guarded by a `PRAGMA table_info` column check -- never a table rebuild. Existing rows keep NULL.
+- **ASCII-only** in all returned strings and log lines.
+
+#### 5.2.2 `task_claims` -- exact DDL
+
+```sql
+-- One row per TASK_CLAIMS.json claims[] entry.
+-- PK is COMPOSITE and must stay that way: CLAUDE.md states the claim key is
+-- (session_id, claimed_at), and `close --claimed-at` exists precisely because
+-- session_id alone is ambiguous. Verified on the live file 2026-08-26:
+-- 0 duplicate (session_id, claimed_at) pairs, but 8 session_ids own more than
+-- one claim -- so a session_id-only PK would silently collapse real rows.
+CREATE TABLE IF NOT EXISTS task_claims (
+    session_id                   TEXT NOT NULL,
+    claimed_at                   TEXT NOT NULL,   -- ISO-8601 UTC, second half of the key
+    session_label                TEXT NOT NULL DEFAULT '',
+    task                         TEXT NOT NULL DEFAULT '',
+    status                       TEXT NOT NULL DEFAULT 'active',  -- active|done
+    closed_at                    TEXT,            -- committer date of the landing commit
+    completion_note              TEXT,
+    completion_note_history_json TEXT,            -- JSON array, append-only; see 5.2.5
+    spawned_by                   TEXT,            -- present on 2/154 live entries
+    entry_json                   TEXT NOT NULL,   -- full original entry, lossless
+    updated_at                   TEXT NOT NULL,
+    PRIMARY KEY (session_id, claimed_at)
+);
+CREATE INDEX IF NOT EXISTS idx_task_claims_status ON task_claims(status);
+
+-- `resources` is a LIST and gets a child table, NOT a JSON column. This is the
+-- single most important schema decision in this document -- see design problem
+-- D2. Cheap: 372 rows total across all 154 live claims, 200 distinct paths.
+CREATE TABLE IF NOT EXISTS task_claim_resources (
+    session_id  TEXT NOT NULL,
+    claimed_at  TEXT NOT NULL,
+    resource    TEXT NOT NULL,           -- repo-relative path, verbatim
+    PRIMARY KEY (session_id, claimed_at, resource),
+    FOREIGN KEY (session_id, claimed_at)
+        REFERENCES task_claims(session_id, claimed_at) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_task_claim_resources_resource
+    ON task_claim_resources(resource);
+```
+
+#### 5.2.3 `chip_ledger` -- exact DDL
+
+```sql
+-- One row per TASK_CHIPS.json chips[] entry. PK = chip_ref (verified unique
+-- across all 1692 live entries). task_id CANNOT be the PK: it is NULL on
+-- 1043/1692 rows (a chip only gets one if spawn_task actually minted it), so
+-- it is a nullable column with a PARTIAL unique index instead -- 649 non-null
+-- values, 0 duplicates.
+CREATE TABLE IF NOT EXISTS chip_ledger (
+    chip_ref                     TEXT PRIMARY KEY,
+    task_id                      TEXT,
+    session_id                   TEXT NOT NULL,
+    session_label                TEXT NOT NULL DEFAULT '',
+    title                        TEXT NOT NULL DEFAULT '',
+    tldr                         TEXT NOT NULL DEFAULT '',
+    prompt                       TEXT,           -- NULL once archived (see D5)
+    cwd                          TEXT NOT NULL DEFAULT '',
+    origin                       TEXT,           -- spawn_task|headless|hygiene_tick|igw_tick|proposal_tick
+    kind                         TEXT,           -- work|decision|report
+    urgency                      INTEGER NOT NULL DEFAULT 0,   -- bool
+    spawned_at                   TEXT NOT NULL,
+    origin_host                  TEXT,           -- canonical_machine_name()
+    origin_host_raw              TEXT,           -- as reported; audit only (see D6)
+    status                       TEXT NOT NULL DEFAULT 'open',  -- open|done|withdrawn
+    claimed_by                   TEXT,
+    claimed_at                   TEXT,
+    claim_note                   TEXT,
+    claimed_host                 TEXT,           -- canonical
+    claimed_host_raw             TEXT,           -- as reported; audit only
+    resolved_at                  TEXT,
+    resolved_by_session_id       TEXT,
+    resolution_note              TEXT,           -- NULL once archived (see D5)
+    resolution_note_auto         INTEGER NOT NULL DEFAULT 0,   -- bool
+    attached_by_session_id       TEXT,
+    attached_at                  TEXT,
+    archived_json                TEXT,           -- {file, month, fields[], at}
+    prompt_history_json          TEXT,           -- JSON array
+    urgency_history_json         TEXT,           -- JSON array
+    resolution_note_history_json TEXT,           -- JSON array
+    confirmer_verdict_json       TEXT,           -- JSON object
+    entry_json                   TEXT NOT NULL,
+    updated_at                   TEXT NOT NULL
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_chip_ledger_task_id
+    ON chip_ledger(task_id) WHERE task_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_chip_ledger_status  ON chip_ledger(status);
+CREATE INDEX IF NOT EXISTS idx_chip_ledger_claimed ON chip_ledger(status, claimed_by);
+CREATE INDEX IF NOT EXISTS idx_chip_ledger_spawned ON chip_ledger(status, spawned_at);
+```
+
+File-level metadata (`schema_version`, and `TASK_CLAIMS.json`'s `stale_after_hours: 6`) is **not** a column -- it is regenerated by the materializer from coordinator config constants (`COORDINATOR_TASK_CLAIM_STALE_HOURS`, defaulting to 6 to match today's file).
+
+#### 5.2.4 The atomic write -- `try_open_task_claim`, mirroring `try_claim`
+
+This is where the migration earns its correctness claim (section 3). Today's arbitration is, in CLAUDE.md's own words, "best-effort, not a lock": `task_claim.py open` reads `TASK_CLAIMS.json`, checks for a rival, then writes -- and two sessions on two machines can both pass the check. The DB version closes that window with the *same* primitive `try_claim` already uses:
+
+```python
+def try_open_task_claim(conn, session_id, session_label, task, resources,
+                        allow_overlap=False, spawned_by=None,
+                        stale_hours=TASK_CLAIM_STALE_HOURS_DEFAULT, now=None):
+    """Atomic claim-open with resource arbitration. Returns
+    (verdict, payload) where verdict is one of:
+      'ok'            -- claim written, caller owns every named resource
+      'idempotent'    -- this session already holds an active claim; nothing written
+      'owned_by_other'-- a live rival owns >=1 named FILE resource; nothing written
+      'error'
+    payload carries the owner rows so the CLI can render today's exit-3 text.
+
+    Atomicity: BEGIN IMMEDIATE takes the write lock BEFORE the rival SELECT,
+    so no other request -- on any machine -- can interleave between the
+    arbitration check and the INSERT. This is the read-then-write gap that
+    the git implementation structurally cannot close, and it is why the
+    2026-07-28 three-session collision on runner_remote_control.py (three
+    claims inside 84 seconds, two implementations live in one working tree)
+    cannot recur under this path.
+
+    `now` is injected for testability, matching db.py's existing convention
+    (_is_stale, machine_departed, lifecycle_state all take an explicit now).
+    """
+    now = now or utcnow()
+    try:
+        conn.execute("BEGIN IMMEDIATE")
+        # Preserve today's documented idempotency: `open` is idempotent per
+        # session-id and silently no-ops on a re-run. Without this the
+        # server-assigned claimed_at would mint a SECOND row every retry.
+        existing = conn.execute(
+            "SELECT claimed_at FROM task_claims "
+            "WHERE session_id=? AND status='active'", (session_id,)
+        ).fetchone()
+        if existing is not None:
+            conn.execute("ROLLBACK")
+            return ("idempotent", {"claimed_at": existing["claimed_at"]})
+
+        rivals = []
+        if not allow_overlap and resources:
+            # Scope claims are NOT arbitrated -- a verdict fires only on an
+            # exact match of a FILE-shaped resource. governance.sh holds
+            # REE_assembly/evidence/ for a whole regen and fails open;
+            # arbitrating it would stop every evidence session. Directory
+            # overlaps are reported as a NOTE by the caller, never a refusal.
+            files = [r for r in resources if not r.endswith("/")]
+            if files:
+                q = ",".join("?" * len(files))
+                rivals = conn.execute(
+                    "SELECT c.session_id, c.claimed_at, c.session_label, "
+                    "       c.task, r.resource "
+                    "FROM task_claim_resources r "
+                    "JOIN task_claims c ON c.session_id=r.session_id "
+                    "                  AND c.claimed_at=r.claimed_at "
+                    "WHERE r.resource IN (%s) AND c.status='active'" % q,
+                    files,
+                ).fetchall()
+                # Stale rivals (older than stale_hours) are excluded, matching
+                # task_claim.py's existing arbitration.
+                rivals = [r for r in rivals
+                          if not _is_stale(r["claimed_at"], stale_hours, now)]
+        if rivals:
+            conn.execute("ROLLBACK")
+            return ("owned_by_other", {"rivals": [dict(r) for r in rivals]})
+
+        conn.execute(
+            "INSERT INTO task_claims (session_id, claimed_at, session_label, "
+            " task, status, spawned_by, entry_json, updated_at) "
+            "VALUES (?,?,?,?, 'active', ?, ?, ?)",
+            (session_id, now, session_label, task, spawned_by,
+             json.dumps({...}, sort_keys=True), now),
+        )
+        conn.executemany(
+            "INSERT OR IGNORE INTO task_claim_resources "
+            "(session_id, claimed_at, resource) VALUES (?,?,?)",
+            [(session_id, now, r) for r in resources],
+        )
+        conn.execute("COMMIT")
+        return ("ok", {"claimed_at": now})
+    except sqlite3.Error:
+        try:
+            conn.execute("ROLLBACK")
+        except sqlite3.Error:
+            pass
+        return ("error", {})
+```
+
+Every other mutating verb follows the identical `BEGIN IMMEDIATE` / SELECT-guard / conditional-UPDATE / `COMMIT` skeleton already used by `try_claim`, `release_claim` and `ack_command` -- most are simpler, because they address one row by primary key. `close`, `renew`, `amend` guard on `(session_id, claimed_at)` and refuse rather than guess when `claimed_at` is omitted and the session owns more than one row (today's documented `close --claimed-at` behaviour, including printing the candidate stamps).
+
+#### 5.2.5 Endpoints -- exact signatures
+
+All are bearer-authenticated exactly like every existing endpoint (`self._authed()`), return `application/json` via `self._send(code, obj)`, and accept an optional gzip body via `self._json_body()`. `409` is used for a refusal that is a legitimate verdict (a rival owns the resource); `400` for a malformed request; `404` for an unknown key.
+
+| Verb | Method + path | Request body | Response |
+|---|---|---|---|
+| open | `POST /task_claim/open` | `{session_id, session_label, task, resources[], allow_overlap?, spawned_by?}` | `200 {verdict:"ok"\|"idempotent", claimed_at}` / `409 {verdict:"owned_by_other", rivals:[{session_id, claimed_at, session_label, task, resource}], notes:[...]}` |
+| close | `POST /task_claim/close` | `{session_id, claimed_at?, closed_at, completion_note, not_landed?}` | `200 {ok:true}` / `409 {error:"ambiguous", candidates:[{claimed_at, task}]}` / `404` |
+| check | `GET /task_claim/check?resource=A&resource=B` | -- | `200 {owned:false}` / `200 {owned:true, rivals:[...]}` |
+| renew | `POST /task_claim/renew` | `{session_id, claimed_at?}` | `200 {ok:true, claimed_at}` |
+| amend | `POST /task_claim/amend` | `{session_id, claimed_at?, completion_note, reason?}` | `200 {ok:true}` (pushes prior text onto `completion_note_history_json`) |
+| dedupe | `POST /task_claim/dedupe` | `{session_id, claimed_at?}` | `200 {removed:0, note:"not applicable under PK"}` -- see D3 |
+| list | `GET /task_claim/list?status=active` | -- | `200 {claims:[...], stale_after_hours:6}` |
+| record | `POST /chip/record` | full chip entry (`chip_ref` required; `prompt` MUST contain `[chip_ref: <ref>]`) | `200 {ok:true}` / `400 {error:"prompt missing chip_ref marker"}` |
+| claim | `POST /chip/claim` | `{chip_ref, claimed_by, claimed_host, note?, stale_after_hours?}` | `200 {ok:true}` / `409 {error:"already claimed", claimed_by, claimed_at}` |
+| unclaim | `POST /chip/unclaim` | `{chip_ref, note?}` | `200 {ok:true}` |
+| resolve | `POST /chip/resolve` | `{chip_ref?, task_id?, status:"done"\|"withdrawn", note, resolved_by_session_id}` | `200 {ok:true, changed:bool}` -- `changed:false` when already at that status (today's silent no-op, now *reported*; see D11) |
+| attach | `POST /chip/attach` | `{chip_ref, task_id, attached_by_session_id}` | `200 {ok:true}` |
+| amend-prompt | `POST /chip/amend-prompt` | `{chip_ref, prompt, reason}` | `200 {ok:true}` / `400` if marker missing |
+| list | `GET /chip/list?status=open&origin=...&limit=...` | -- | `200 {chips:[...]}` |
+| archive | -- | -- | **stays git-side; see D7** |
+
+Client-side, `task_claim.py`/`chip_ledger.py` keep their exact CLI surface and gain one transport branch each (coordinator first, git on failure -- section 5.3).
+
+#### 5.2.6 Design problems found
+
+These are the review's actual output. D1-D3 and D7 change the design; the rest are constraints an implementer would otherwise discover the hard way.
+
+- **D1 -- the sketch's `/claim/open` path was wrong and must not be used.** `/claim` and `/claim/release` are already taken by the **experiment** claim endpoints (`app.py` lines 471, 543) and mean something entirely different. Namespacing new verbs under `/claim/*` would put two unrelated claim systems in one path prefix. Corrected above to `/task_claim/*` and `/chip/*`.
+- **D2 -- `resources` must be a child table, not a JSON column, and this is the whole correctness argument.** A JSON blob can only be arbitrated by loading every active claim and scanning in Python -- which is exactly today's best-effort check, reimplemented server-side, and would leave the migration with no correctness gain at all over git. Only an indexed `task_claim_resources` row makes the rival test a single indexed SELECT *inside* the `BEGIN IMMEDIATE` transaction. This is the difference between "the same race, faster" and "the race is gone".
+- **D3 -- `dedupe` has no atomic equivalent, and does not need one.** It is a whole-file operation that removes entries byte-identical to another entry. Under a `(session_id, claimed_at)` primary key the duplicate class it cleans up **cannot be created** -- the second INSERT fails. The 2026-08-18 byte-identical-duplicate incident is prevented at the source rather than repaired after the fact. Keep the verb as an accepted no-op returning `{"removed": 0}` so existing call sites and tests do not break; do not port its logic.
+- **D4 -- `task_id` cannot be an identifier.** NULL on 1043/1692 live rows. `chip_ref` is the only always-present unique key; `resolve` accepting `--task-id` must resolve through the partial unique index and 404 cleanly on a NULL-task_id chip.
+- **D5 -- archiving must strip FIELDS and keep the ROW, and the DB makes this easy to get wrong.** CLAUDE.md is emphatic that `merge_origin_into_local()` has no deletion path and that teaching it tombstones would be a mistake. A DB tempts an implementer to `DELETE` archived rows. It must instead set `prompt=NULL, resolution_note=NULL, archived_json=...` and keep the row, so the materialized JSON keeps the identity/status/timestamp fields and `chip_ledger.archived_field()` readers continue to work unchanged.
+- **D6 -- the bearer token identifies a MACHINE; claims and chips are per-SESSION.** `auth_machine()` maps a token to a machine label, but `session_id` is the actor here and must come from the body. Follow the existing `machine_raw` vs `_canon(machine)` split exactly (`app.py` `/claim`): store the canonical host for logic, keep the raw reported host for audit. `origin_host`/`claimed_host` must go through `machine_identity.canonical_machine_name()` -- never a raw compare, per CLAUDE.md's DLAPTOP note.
+- **D7 -- `chip archive` does NOT move to the coordinator in Phase 2.** Its correctness gate is that the archive file has actually reached **origin** (`cmd_archive` fetches and verifies at `origin_ref()` before stripping, after the 2026-08-19 first-run failure). That gate is inherently a git fact and has no DB equivalent. Leave `archive` as a git-side operation reading the materialized file; revisit only in Phase 3.
+- **D8 -- `open`'s idempotency is load-bearing and is easy to lose.** Today `open` is idempotent per `session_id`. If the server assigns `claimed_at = now`, a naive INSERT mints a *new* row on every retry -- and retries are common, since the current git path fails and retries under contention. The active-claim pre-check in `try_open_task_claim` above is not optional.
+- **D9 -- history fields stay JSON columns, deliberately, unlike `resources`.** `completion_note_history`, `prompt_history`, `urgency_history`, `resolution_note_history` are append-only audit lists that nothing queries *across* rows (62, 22, 5 and 1 live occurrences respectively). A child table would add four joins to buy nothing. The asymmetry with D2 is intentional and is justified by whether anything arbitrates on the field.
+- **D10 -- `check` must be a GET.** It is the START-TIME predicate a chip STOP-CHECK carries and it writes nothing; making it a POST invites an implementer to log or mutate on it.
+- **D11 -- `resolve` on an already-resolved chip is currently a SILENT no-op**, which is exactly the trap the headless worker contract warns about (`resolve --status open` losing a note). The endpoint should return `{"changed": false}` explicitly so the CLI can say so, rather than reporting success indistinguishable from a real transition.
 
 ### 5.3 Fallback / degrade path (must be first-class, not an afterthought)
 
@@ -151,13 +394,55 @@ When the coordinator or the WireGuard mesh is unreachable, `task_claim.py`/`chip
 
 The mesh, as last documented (`reference_wireguard_mesh` memory, 2026-06-11), has four peers: the hub (`10.8.0.1`), the Mac's GUI tunnel (`10.8.0.11`), and cloud workers 2/3/4 (`10.8.0.12/13/14`). **`ree-cloud-5` was discovered on 2026-08-11 -- after that mesh documentation -- and is not a confirmed peer.** Given `ree-cloud-5` is one of exactly two machines that write these files today (section 5.1), this is a hard prerequisite, not a nice-to-have. Verify live with `sudo wg show` on the hub before assuming either way; adding a peer is documented as a single non-disruptive command (`sudo wg set wg0 peer <pub> allowed-ips 10.8.0.X/32` + append a `[Peer]` block to `wg0.conf`, no interface restart).
 
+**RESOLVED 2026-08-26 -- verified live, no change required. The assumption above was wrong.**
+
+`ree-cloud-5` **is already a WireGuard peer** and has been configured as one at some point before this audit. Measured directly on the hub (`sudo wg show` + `/etc/wireguard/wg0.conf`):
+
+- Peer `lfhMcbKT0c09vfe7bZqD4lWvLnl3x5m062Ci2pLKuXI=`, `allowed ips 10.8.0.15/32`, latest handshake **1 minute** old at time of check.
+- Persisted in `/etc/wireguard/wg0.conf` under the comment `# ree-cloud-5 (Phase H metaworker-dispatch box)` -- so it survives an interface restart. It is not a live-only `wg set` that would evaporate.
+- **Bidirectional**, which the prerequisite as written did not actually ask about but which is what matters: from `ree-cloud-5`, `sudo wg show` lists the hub (`qp3fuadZ8...`, `10.8.0.1/32`) as its peer with `persistent keepalive: every 25 seconds`.
+
+End-to-end verification from `ree-cloud-5`, not inferred from config:
+
+```
+$ ping -c 3 10.8.0.1     -> 3 packets transmitted, 3 received, 0% packet loss
+                            rtt min/avg/max = 0.768/0.996/1.427 ms
+$ curl http://10.8.0.1:8787/health
+                         -> HTTP 200 in 2.0 ms
+                            {"ok": true, "mode": "coordinator"}
+```
+
+So the coordinator is **already reachable over the mesh from the metaworker box**, which is the actual thing this prerequisite exists to establish. No peer was added and no config was edited.
+
+**Current mesh (measured, supersedes the 2026-06-11 four-peer doc):** `10.8.0.1` hub, `10.8.0.11` Mac GUI tunnel, `10.8.0.12` ree-cloud-2, `10.8.0.13` ree-cloud-3, `10.8.0.14` ree-cloud-4, `10.8.0.15` ree-cloud-5, `10.8.0.20` an iPhone peer (added 2026-06-23). Next free /32 for a future box is `10.8.0.16`.
+
+One incidental observation, not a blocker for this migration: `ree-cloud-3`'s handshake was **5h57m** stale at check time. That is the expected signature of a scaler-powered-off experiment worker, not a fault, and `ree-cloud-3` writes neither `TASK_CLAIMS.json` nor `TASK_CHIPS.json` (section 5.1), so it is outside this migration's contention surface either way.
+
 ### 6.2 Mac WireGuard tunnel reliability audit
 
 The Mac's tunnel has a documented history of "Connected but not routing" blackouts, mitigated by a `PersistentKeepalive` fix + a launchd watchdog (`com.ree.wgwatchdog`) + a daily health digest (`com.ree.wghealthdigest`) -- all detailed in `reference_wireguard_mesh` memory. Before Phase 2 makes the Mac's claim/chip traffic depend on this tunnel, confirm the watchdog is still installed and the health digest still reads `bounces_24h=0` (keepalive holding). If it is not, fix that first -- it is a precondition for the whole migration, not a Phase-2-time surprise.
 
+**AUDITED 2026-08-26 on the Mac itself (`DLAPTOP`). The literal precondition is MET, but the precondition as written is a weak predicate -- read the second half of this.**
+
+What was verified:
+
+- Both launchd agents are **loaded and healthy**: `launchctl list` shows `com.ree.wgwatchdog` and `com.ree.wghealthdigest`, both with last exit status `0`. Plists present in `~/Library/LaunchAgents/`.
+- The most recent digest (`~/Library/Logs/ree_wg_health.log`, `2026-08-26T11:44:16Z`) reads `hub reachable; watchdog=active; 24h: bounces=0 recovers=0 warns=0 offline_skips=0; keepalive=HOLDING`. **`bounces_24h=0`, exactly what 6.2 asks for.**
+- Independently corroborated from the hub side: the Mac's peer (`10.8.0.11`) showed a **41-second-old** handshake during the 6.1 check.
+
+**The finding that matters, which a point-check would have missed.** The full log is 75 digests spanning 2026-06-11 to 2026-08-26, and it is **50 HOLDING / 25 FLAPPING -- 33% of days show at least one bounce**. Eight of those flapping days fall in the last 30, the most recent on 2026-08-22 (4 days before this audit). On five occasions `recovers < bounces` (e.g. `2026-08-20T18:49Z bounces=4 recovers=1 warns=3`), meaning the watchdog did **not** fully recover every bounce it saw.
+
+Nothing here is a regression -- there are **zero** `hub unreachable` digests and **zero** `watchdog=inactive` digests across the entire 75-day record, so the tunnel has never been recorded fully down and the mitigation is working as designed. But the consequence for this plan is concrete: **"the digest reads `bounces_24h=0` today" is close to a coin flip about tomorrow**, and 6.2's phrasing invites a future session to run it once, see green, and treat the Mac's tunnel as settled.
+
+**Recommended restatement of this prerequisite for Phase 2** (not applied to the criterion above, since changing a gate is not this node's call): replace the point check with a rate criterion measured over a trailing window -- e.g. *no unrecovered bounce (`recovers < bounces`) in the trailing 14 days*, which the current record would **fail** (2026-08-20). Whichever form is chosen, it should be a rate, not a snapshot.
+
+**This does not block PHASE-0 or PHASE-1**, and deliberately so: Phase 1 is a read-only shadow mirror with no write path (see the PHASE-1 node), so nothing about it depends on the Mac's tunnel being up. The flakiness is a **PHASE-2 gate**, where section 5.3's git-fallback path stops being a nicety and becomes the thing that keeps the Mac productive on a bounce. Carried forward as such rather than passed silently.
+
 ### 6.3 Schema/endpoint review
 
 Section 5.2 is a sketch written without reading `ree-v3/coordinator/schema.sql` or `db.py` in implementation-level detail. Before writing any code, a session should read both, confirm the `try_claim`-style atomic-transaction pattern generalizes cleanly to a claim/chip shape (vs. the experiment-claim shape it was built for), and update this section with the actual table/endpoint design.
+
+**DONE 2026-08-26.** Section 5.2 has been rewritten against a full read of `schema.sql`, `db.py` and `app.py`, with every field and uniqueness assumption checked against the live `TASK_CLAIMS.json`/`TASK_CHIPS.json` rather than inferred. The `try_claim` pattern **does** generalize cleanly -- `BEGIN IMMEDIATE` + a guarded SELECT + a conditional write is the right shape for every mutating verb here -- but it only delivers the correctness gain if `resources` is an indexed child table (design problem D2). Eleven design problems are recorded in 5.2.6; D1, D2, D3 and D7 change the design as sketched.
 
 ## 7. Phased rollout
 
@@ -177,4 +462,10 @@ See the frontmatter `nodes` table at the top of this file for the authoritative,
 
 ## 10. Where to resume
 
-Read section 6 first (Prerequisites) -- nothing past PHASE-0 should start until 6.1 and 6.2 are closed with a live-verified answer (not carried forward from a stale memory doc, per root `CLAUDE.md`'s memory-freshness discipline). Then read section 5.3 (schema/endpoint review) before writing any coordinator code. Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
+**PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims. Start at **PHASE-1 (shadow)**.
+
+Read, in this order: section 5.2.6 (the eleven design problems -- D1/D2/D3/D7 change the design, and D2 is the one that decides whether the migration is worth doing at all), then 5.2.2-5.2.5 for the DDL and endpoint signatures, then `ree-v3/coordinator/sync_daemon.py`'s top-of-file docstring as the model for a read-only shadow reconciler with no write path.
+
+Two things PHASE-1 must NOT do: it must not add any write path back to git (that is PHASE-2, and it is explicitly not user-ratified as a build -- see section 3), and it must not treat section 6.2's green digest as settling the Mac's tunnel (see the rate-criterion recommendation there, which is a PHASE-2 gate).
+
+Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
