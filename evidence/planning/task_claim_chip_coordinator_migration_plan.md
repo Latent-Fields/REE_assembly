@@ -49,10 +49,74 @@ closure_plan:
         origin fact) change the design as sketched.
     - id: PHASE-1
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
-      status: built-not-soaking
+      status: soaking
       severity: high
       last_updated: 2026-08-26
       note: >
+        SOAK STARTED 2026-08-26T20:26:52Z (session
+        metaworker-chip-20260826-coordinator-migration-phase1-deploy, chip
+        chip-20260826-coordinator-migration-phase1-deploy). Deployed to the
+        coordinator hub (ree-cloud-1 / ree-worker-1, 91.98.130.117): cloned a
+        read-only umbrella checkout to
+        /home/ree/REE_Working_shadow_mirror_readonly (--no-checkout +
+        `checkout master`, origin https://github.com/Latent-Fields/REE_Working.git),
+        installed deploy/ree-task-claim-chip-shadow-sync.{service,timer}
+        verbatim (matched byte-for-byte against origin/main via `diff`
+        before install -- no edits needed, TASK_CLAIM_CHIP_REPO_PATH already
+        pointed at the exact path used) to /etc/systemd/system/, and
+        `systemctl enable --now` the timer. `systemctl list-timers` confirms
+        the 10-minute OnUnitActiveSec cadence is armed (next tick
+        2026-08-26T20:36:52Z at enable time).
+
+        ZERO-DRIFT VERIFIED via two manual `systemctl start` ticks before
+        enabling the timer (byte-identical invocation to what the timer
+        itself runs) -- first tick populated the mirror from empty
+        (claims: git=142 db=141 new=141, chips: git=1707 db=1706 new=1706,
+        diverged=0), second tick back-to-back showed new=0 updated=0
+        orphan=0 diverged=0 on both tables, i.e. genuine convergence, not
+        just an empty-DB false positive. The git=142/db=141 (and
+        git=1707/db=1706) gap is NOT drift -- `task_claim_chip_shadow_sync`
+        reports diverged=0 for both -- and is explained by section
+        5.2.2/D3's composite-PK dedup: TASK_CLAIMS.json currently carries
+        one confirmed exact-duplicate (session_id, claimed_at) pair (see
+        this session's own `task_claim.py open` output, which surfaced it
+        independently and unprompted), and TASK_CHIPS.json likely carries
+        an analogous chip_ref collapse (chip_ledger.py's own `dedupe`/HEAL
+        logic hit several `chip-queuefloor-since-initial`-style duplicates
+        during this same session, unrelated file but same failure class).
+        Neither file was edited to remove the duplicate -- out of scope for
+        this chip -- so the count gap will persist until a future dedupe
+        pass, without affecting diverged=0.
+
+        `GET /task_claim/drift` is NOT YET REACHABLE: on-disk `app.py`
+        (mtime 2026-08-26T19:00:27Z, from the ree-v3 f385e8bb24 pull already
+        present on the hub) has the new /task_claim/* and /chip/* routes,
+        but the live `ree-coordinator.service` process has been running
+        since 2026-08-26T04:47:44Z -- 14h before that code landed on disk --
+        so it is still serving the pre-PHASE-1 route table and 404s on
+        those paths. Per this node's own prior text and the plan's HARD
+        STOP framing ("reloading ree-coordinator.service... left for a
+        human to do with eyes on it, not something this session
+        self-authorized mid-run"), this session deliberately did NOT
+        restart the live production coordinator -- it is a shared,
+        always-on service the whole experiment fleet depends on for
+        claim/heartbeat traffic, and the plan doc pre-decided that decision
+        belongs to a human. Soak verification therefore continues via
+        `journalctl -u ree-task-claim-chip-shadow-sync -f` on the hub until
+        a human restarts the coordinator (a fast, low-risk restart --
+        Type=simple + Restart=always, same pattern as every other phase3
+        writer -- but still a live-infra action this session was not
+        chartered to take unilaterally); the drift-log table
+        (task_claim_chip_drift_log) is already being written every tick
+        regardless, so `GET /task_claim/drift` will have full backfilled
+        history the moment the coordinator picks up the new routes.
+
+        PHASE-2 explicitly NOT started, per the chip's own hard-stop
+        instruction and this node's pre-existing text -- no claim-authority
+        cutover, no write path added, task_claim.py/chip_ledger.py
+        untouched.
+
+        Prior (unchanged, retained for history):
         BUILT 2026-08-26 (session
         metaworker-chip-20260826-taskclaim-coordinator-migration-phase1,
         ree-v3 f385e8bb24, pushed to origin/main). Added task_claims/
@@ -139,7 +203,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** BUILD STAGE (v0.3, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is BUILT but NOT SOAKING**: the shadow-mirror schema, reconciler and read-only endpoints are landed on `ree-v3` `main` (`f385e8bb24`), verified against the live files with zero drift, but the systemd timer that would actually run it on a schedule is a committed template only -- nothing is installed on the coordinator hub yet (see the PHASE-1 frontmatter node for exactly why and what a human runs next). No coordinator schema change has been made on the LIVE hub DB; the migration is additive and applies itself the next time `ree-coordinator.service` restarts with this code. No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** SOAKING (v0.4, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING as of 2026-08-26T20:26:52Z**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are now installed on the coordinator hub -- a read-only umbrella clone was provisioned, `ree-task-claim-chip-shadow-sync.{service,timer}` is installed and enabled at its documented 10-minute cadence, and two manual ticks confirmed zero-drift convergence (see the PHASE-1 frontmatter node). The coordinator DB schema migration has been applied (via the shadow-sync script's own `db.connect()`, additive, no table rebuild); the LIVE `ree-coordinator.service` HTTP process has NOT been restarted yet, so `/task_claim/*` and `/chip/*` read endpoints still 404 -- soak evidence is being read via `journalctl` instead until a human restarts that shared service (deliberately left to a human, not self-authorized). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -511,16 +575,18 @@ See the frontmatter `nodes` table at the top of this file for the authoritative,
 
 **PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims.
 
-**PHASE-1 is built but not soaking (2026-08-26, session
-metaworker-chip-20260826-taskclaim-coordinator-migration-phase1).** The
-remaining PHASE-1 work is entirely deployment, not design or code: provision
-a read-only clone of REE_Working on the coordinator hub, install and enable
-`ree-v3/coordinator/deploy/ree-task-claim-chip-shadow-sync.{service,timer}`
-per that service file's own header, then let it accrue soak evidence
-(`GET /task_claim/drift`, or `journalctl -u ree-task-claim-chip-shadow-sync`)
-for the N days the exit criterion calls for. That is a deliberate
-human-in-the-loop step, not something the building session self-authorized
-against shared production infra -- see the PHASE-1 frontmatter node.
+**PHASE-1 is now soaking (started 2026-08-26T20:26:52Z, session
+metaworker-chip-20260826-coordinator-migration-phase1-deploy).** The
+read-only clone, systemd timer, and zero-drift verification described in
+the PHASE-1 frontmatter node above are done. What remains before the exit
+criterion (N days of `diverged_ticks` staying at 0) can even be measured
+via the API: a human needs to restart `ree-coordinator.service` on the hub
+so the already-on-disk `/task_claim/*` and `/chip/*` routes actually load
+-- this session deliberately did not do that itself (see the node for why).
+Until that restart, use `journalctl -u ree-task-claim-chip-shadow-sync -f`
+on the hub for soak evidence instead of `GET /task_claim/drift`; the
+drift-log table is being populated every tick either way, so nothing is
+lost by waiting.
 
 Two things PHASE-1 must NOT do, unchanged from the original plan and still
 true of the code as built: it must not add any write path back to git (that
