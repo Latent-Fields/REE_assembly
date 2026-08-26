@@ -1614,3 +1614,54 @@ still has to set the coupling constant. But it moves it from *a threshold on a
 measurement* (arbitrary, circular) to *a scalar control parameter on a dynamic*
 (physical, and exactly what a field natively supplies). That is a better place for the
 unknown to sit, not an elimination of it.
+
+---
+
+# 11. CORRECTION (2026-08-26, digestion wave 1): the object-file layer is NOT orphaned, and it hard-codes MECH-278
+
+Section 1.4 relayed ARC-080's characterisation of Lineage A (ARC-006 / MECH-044 /
+MECH-045) as "**NOT in ree-v3 code** (design-only, legacy 2026-02-10 source). The
+entire layer is orphaned." **That is stale, and I repeated it without checking.**
+
+Verified in code this session:
+
+- **`ree-v3/ree_core/entities/object_file_buffer.py` EXISTS** (14,239 bytes, dated
+  2026-06-09 -- i.e. it landed **five days after** ARC-080 was registered on
+  2026-06-04, which is why ARC-080's own text was correct when written and is
+  wrong now).
+- It has been **exercised**: `experiments/v3_exq_658_mech045_object_file_persistence.py`.
+- The association cost is `object_file_buffer.py:208`:
+  `cost = cfg.w_motion * d_pos + cfg.w_feat * feat_term` -- **motion + appearance
+  only. There is no use/value/drive term.**
+- `resource_tag` IS carried, but only stored onto `ObjectFile.type_hint`
+  (lines 232-233, 267-268); it is **not** an input to the association decision.
+
+**Why this matters, and it sharpens ARC-133 rather than weakening it.** The one
+place in REE where individuation actually happens is running code, and that code
+**hard-codes MECH-278's criterion**: continuity and appearance decide what counts
+as the same object; usefulness is structurally excluded from the decision. So
+ARC-133 is not a rival to a design doc -- it is a rival to an implemented default.
+That is a stronger claim and a better-founded `substrate_conditional` disposition:
+the missing piece is a concrete, locatable ~15-line additive term in a known cost
+function, not an unbuilt subsystem.
+
+**Second finding, same source: the buffer's ATTENTION half has never been
+exercised.** V3-EXQ-658 passes `salience=1.0, precision=1.0` hardcoded
+(driver line 179) and `obf_min_birth_salience` defaults to `0.0`
+(`utils/config.py:5190`), so the C4 birth gate has **never rejected an
+observation** and precision-weighting has never been differential. MECH-045 is
+`provisional` on that single run with C1/C2/C3 exercised and C4/C5 not.
+`salience` is the only existing channel by which internal state could reach an
+individuation decision, and it has never carried a non-constant value.
+
+**Two consequences for the sections above.** (1) The S2.3 "graded value,
+categorical interface" pattern gains a candidate FIFTH instance -- an attention
+gate whose graded input is pinned to a constant -- though it is a *never-varied*
+input rather than a *collapsed* one, so it is a different failure and should not
+be folded in without argument. (2) The claim in S1.4 that the object machinery
+sits in "three disconnected lineages" with Lineage A dormant should be read as
+ARC-080's 2026-06-04 state, not as current fact.
+
+**NOT ACTED ON: ARC-080's architecture doc still carries the stale "orphaned"
+text.** Correcting another claim's doc is a governance-touching edit and is not
+taken unilaterally here -- surfaced for the user / `/governance`.
