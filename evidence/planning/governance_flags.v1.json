@@ -759,6 +759,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0052",
+      "claim_ids": [
+        "MECH-357"
+      ],
+      "flag_type": "stale_note",
+      "summary": "closure_plan node mech357_avoidance_efficacy:BUILD is stale: it reads status=open, 'active blocker: none -- ready, last untried candidate, UNBUILT', but BOTH halves have since landed. The hazard_agent_pursuit wiring is threaded through Stage-H (scaffold_hazard_stage_hazard_agent_pursuit, ree-v3 experiments/scaffolded_sd054_onboarding.py:459 and :1828) and the discrimination test it was held out for RAN as V3-EXQ-603u on 2026-08-15 (manifest v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3, FAIL/non_contributory, self-routed pressure_insufficient_lesion_ceiling_requeue). The plan doc is the only place still describing this as unbuilt, so mech357_avoidance_efficacy_plan.md reports 0% progress against work that is done.",
+      "raised_by_session": "metaworker-chip-20260823-queue-refill-fresh-design",
+      "raised_at": "2026-08-26T12:15:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
