@@ -211,13 +211,18 @@ Two independent confirmations from the session's own artifacts:
 **Different answer -> non-degenerate.**
 
 ### 4.4 Negative control
-Grouping must NOT be read as "always group". The 27-33 solo claims at the recommended
-setting are genuinely isolated and correctly stay solo -- and inspecting them is
-informative: they are dominated by `IMPL-*` registry-infrastructure entries
-(`IMPL-002` "Repository metadata and contribution process", `IMPL-018` "Claim index and
-navigation", `IMPL-006` "Legacy migration mapping"). **9 of ~30 solos are `IMPL-*`
-entries that arguably should not be in a scientific digestion backlog at all** -- which
-is a separate finding worth surfacing (Open Question 5).
+Grouping must NOT be read as "always group". At the recommended setting (cap=5,
+floor=3.0, edge-first) **69 of 545 claims come back solo**, and they are genuinely
+isolated -- correctly staying solo is the right call, not a failure of the grouper.
+Inspecting that set is informative: **9 of the 69 solos are `IMPL-*`
+registry-infrastructure entries** -- `IMPL-002` "Repository metadata and contribution
+process", `IMPL-018` "Claim index and navigation", `IMPL-006` "Legacy migration mapping"
+-- which arguably should not be in a *scientific* digestion backlog at all. That is a
+separate finding worth surfacing (Open Question 5).
+
+(Exact solo counts by configuration, for reference: floor=2.0 greedy 28 / agglom 22;
+floor=3.0 greedy 87 / agglom 69. The 69 figure is the recommended one; earlier drafts of
+this note quoted the floor=2.0 set by mistake.)
 
 ---
 
