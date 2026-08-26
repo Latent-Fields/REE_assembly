@@ -33,7 +33,7 @@ of responsibility for others, and language as a repair mechanism for similarity.
 | You can never be sure | Axiom 3: I cannot be certain of the universe beyond myself, but I must act under models of it | Uncertainty is now joined to world-structure and the necessity of action. |
 | I am | Axiom 1: I think, therefore I am | The self is now the first dependency, because responsibility requires a subject. |
 | The world exists | Axiom 3 + Axiom 4 | The real world is split into modelable structure (A3) and causal power over/through the agent (A4). |
-| Others share this world | Axiom 5: I have learned that others exist and are sufficiently like me | Other minds are now grounded in learned similarity, which is the representational bridge to V4 social modelling. |
+| Others share this world | Axiom 5: I have learned that others exist and are sufficiently like me | Other minds are now grounded in learned similarity, which is the representational bridge to V5 social modelling. |
 | Love exists | Axiom 6 + Axiom 7 | Love is no longer only asserted as real; it is the mechanism and skill by which responsibility for others makes finite existence bearable. |
 | *(implicit)* | Axiom 2: Existence has value sufficient to justify its continuation | Value is made explicit instead of being smuggled through harm avoidance. |
 | *(implicit)* | Axiom 8: Language is a mechanism for recognising and repairing similarity | Communication becomes structurally ethical because it maintains the self-other similarity model. |

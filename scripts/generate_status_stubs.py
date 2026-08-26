@@ -336,6 +336,7 @@ INDEX_BODY = """<div class="ree-home">
         <div><strong>ree-v2</strong><span>complete 15-experiment predecessor; triggered the V3 transition</span></div>
         <div><strong>ree-v1-minimal</strong><span>active baseline and parity substrate</span></div>
       </div>
+      <p class="ree-credit"><a href="{{ '/substrate_versions.html' | relative_url }}">What each substrate generation is for, and how they build on each other &rarr;</a></p>
       <p class="ree-credit">REE is developed by Daniel Golden (Latent Fields). Licensed under Apache 2.0.</p>
     </div>
   </section>

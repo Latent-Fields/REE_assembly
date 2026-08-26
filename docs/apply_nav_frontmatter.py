@@ -43,7 +43,8 @@ TOP_LEVEL = {
     "architecture/overview.md":                  {"title": "Architecture",          "nav_order": 4, "has_children": True},
     "architecture/five_axioms_foundations.md":   {"title": "Foundations",           "nav_order": 5},
     "invariants.md":                             {"title": "Invariants",            "nav_order": 6},
-    "roadmap.md":                                {"title": "Roadmap",               "nav_order": 7},
+    "substrate_versions.md":                     {"title": "Roadmap",               "nav_order": 7, "has_children": True},
+    "roadmap.md":                                {"title": "Status Log",            "nav_order": 17},
     "research_status.md":                        {"title": "Research Status",       "nav_order": 8},
     "related_work.md":                           {"title": "Related Work",          "nav_order": 9},
     "glossary.md":                               {"title": "Glossary",              "nav_order": 10},
@@ -53,14 +54,20 @@ TOP_LEVEL = {
     "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 14},
     "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 15},
     "visualizations.md":                         {"title": "Visualizations",        "nav_order": 16},
-    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 18},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 19},
 }
 
 # ---------------------------------------------------------------------------
 # 2. Governance section (top-level parent + children)
 # ---------------------------------------------------------------------------
 
-GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 17, "has_children": True}
+# Roadmap (substrate versions) children -- the per-generation deep-dives that
+# would otherwise be orphaned (V1 had no inbound nav link at all before 2026-08-26).
+VERSIONS_CHILDREN = {
+    "V1_PROGRESS_AND_LEARNING.md": {"title": "V1: Progress and Learning", "parent": "Roadmap", "nav_order": 1},
+}
+
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 18, "has_children": True}
 GOVERNANCE_CHILDREN = {
     "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
     "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},
@@ -288,7 +295,7 @@ ARCH_SCRATCH = [
 # Top-level docs hidden from sidebar (reachable by link).
 TOP_EXCLUDE = [
     "FINAL_OUTPUT.md", "MIGRATION.md", "REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md",
-    "REE_MIN_SPEC.md", "REE_overview.md", "V1_PROGRESS_AND_LEARNING.md",
+    "REE_MIN_SPEC.md", "REE_overview.md",
     "changelog.md", "repo_meta.md", "README.md", "repo_meta.md",
     # Reachable by URL / linked from Home, deliberately kept out of the themed sidebar.
     "START_HERE_HOW_REE_DEVELOPS.md", "public_explorer_policy.md",
@@ -389,6 +396,7 @@ def _placed_set():
     """Every docs-relative path this script explicitly positions in the nav."""
     placed = set(TOP_LEVEL.keys())
     placed |= set(GOVERNANCE_CHILDREN.keys())
+    placed |= set(VERSIONS_CHILDREN.keys())
     placed |= {"architecture/" + b for b in ASSIGN}
     placed |= {"architecture/" + k for k in SUBDIR_ASSIGN}
     placed |= {"architecture/" + b for b in ARCH_SCRATCH}
@@ -586,6 +594,9 @@ def run():
     else:
         stamp(gov_stub, gov_fm)
     for rel, fm in GOVERNANCE_CHILDREN.items():
+        if stamp(rel, fm):
+            count += 1
+    for rel, fm in VERSIONS_CHILDREN.items():
         if stamp(rel, fm):
             count += 1
 

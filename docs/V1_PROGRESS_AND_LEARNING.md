@@ -1,5 +1,7 @@
 ---
-nav_exclude: true
+title: "V1: Progress and Learning"
+parent: Roadmap
+nav_order: 1
 ---
 
 # REE V1: Progress and Learning

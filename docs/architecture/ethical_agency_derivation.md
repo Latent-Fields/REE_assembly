@@ -30,7 +30,7 @@ canonical dependency chain.
 | You can never be sure | Axiom 3 supplies the imperfect-signal premise and the need to act under models. |
 | I am | Axiom 1 supplies the subject to whom action, harm, and responsibility can attach. |
 | The world exists | Axioms 3 and 4 split the world into modelable structure plus causal vulnerability. |
-| Others share this world | Axiom 5 becomes the representational isomorphism requirement for V4 social modelling. |
+| Others share this world | Axiom 5 becomes the representational isomorphism requirement for V5 social modelling. |
 | Love exists | Axioms 6 and 7 make love the mechanism by which responsibility for others becomes live in trajectory evaluation. |
 
 The sections below start from Axiom 3 because comparator architecture is forced by
@@ -169,7 +169,7 @@ and goal trajectory look like without my intervention?
 **Requires:** Representations of other agents' harm and goal states that are structurally
 isomorphic to one's own; the same comparators (1–5) applied to those representations  
 **REE realization:** Axiom 5 (others exist and are sufficiently like me); INV-005
-(harm to others representable via self-model reuse); V4+ substrate (multi-agent)  
+(harm to others representable via self-model reuse); V5 substrate (multi-agent)  
 **If absent:** Agent can act with reference to its own harm and goals but has no basis
 for ethical consideration of others. "Moral agency toward others" requires that the same
 comparator machinery that evaluates self-directed harm/benefit can be applied to
@@ -200,7 +200,7 @@ require, determine the architecture. There is not much slack:
 | Harm-goal tradeoff | z_harm ≠ z_goal | E3 viability map |
 | Temporal / forward | future ≠ present | E2 rollout; hippocampal trajectory proposal |
 | Commitment | rehearsal ≠ action | E3 commit gate; pre/post-commit channels |
-| Other-representation | self-harm/goal ≠ other-harm/goal | Mirror modelling; V4+ multi-agent substrate |
+| Other-representation | self-harm/goal ≠ other-harm/goal | Mirror modelling; V5 multi-agent substrate |
 
 E1 (the persistent world model) is required to hold all of these representations stable
 across time. Without E1, each comparator operates on ephemeral representations that cannot
@@ -258,20 +258,28 @@ derived from functional requirements, and the biology was found to match.
 
 ---
 
-## The V3 / V4 Progression
+## The Substrate Progression
+
+> Full version-by-version account, including V1 and V2: **[Substrate Versions](../substrate_versions.html)**.
 
 **V3** implements the sole-world single-agent cognifold. One agent, one environment.
 The architecture scaffolds comparators 1–5 above. Other-representation (comparator 6) is
 architecturally present in the isomorphism principle (INV-005) but not yet exercised in
 a multi-agent environment.
 
-**V4+** implements the shared-world multi-agent extension. The other-representation
+**V4** completes the individual mind. It does *not* introduce the shared world. Its
+pillar is object/entity permanence plus a materialised self-model, because an other is a
+persistent object that additionally carries policy, welfare and goal dynamics — the
+subclass is not representable before the class. Otherness inference requires
+object-permanence and a stable self, both V4.
+
+**V5** implements the shared-world multi-agent extension. The other-representation
 comparator becomes active: other agents' harm and goal states are represented using the
 same architecture as one's own, enabling the self-attribution comparator to be extended
 to ask "did I cause *their* harm?" using the SD-003 counterfactual structure applied to
 their state.
 
-The V4 extension does not redesign the architecture. It runs the existing comparator
+The V5 extension does not redesign the architecture. It runs the existing comparator
 machinery over other-agent models. The mechanism by which this becomes possible is
 Axiom 5: others are *sufficiently like me* means representationally isomorphic enough
 that the same comparators apply. Love (Axiom 7) is the mechanism by which the viability
