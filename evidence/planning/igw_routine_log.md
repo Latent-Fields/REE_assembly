@@ -2120,3 +2120,9 @@ One line per hourly tick. ASCII only.
 2026-08-26T07:01:05Z workset committed (regen -- 241 items, 22 ready, 0 in flight)
 2026-08-26T06:59:54Z SPAWN IGW-20260826-235 skill=/queue-experiment prio=55 uuid=c67974dc-1a6f-4307-9bc1-a049a68e8678 pid=8151 worktree=igw-235-confirm-evidence-mech-489-lit-0
 2026-08-26T07:15:11Z auto-defer igw-235-confirm-evidence-mech-489-lit-0 hash=829f578353c7 for 48h (complete)
+2026-08-26T07:15:23Z complete igw-235-confirm-evidence-mech-489-lit-0 spawned->completed outcome=NO_OP: queued nothing: MECH-489 'exp ~0' is a GOV-CONFIRM-1 false positive (3 adjudicat
+2026-08-26T08:04:22Z GC removed worktree igw-235-confirm-evidence-mech-489-lit-0 (removed; branch deleted)
+2026-08-26T08:04:14Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-08-26T08:05:09Z workset committed (regen -- 242 items, 22 ready, 0 in flight)
+2026-08-26T08:05:09Z reconcile-release hash=829f578353c7 (IGW-20260826-235 -> completed)
+2026-08-26T08:04:14Z no eligible item (skipped 242): IGW-20260826-219:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260826-220:status=blocked blocked_by=ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]; IGW-20260826-221:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
