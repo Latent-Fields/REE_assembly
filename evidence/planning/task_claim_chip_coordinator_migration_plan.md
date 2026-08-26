@@ -49,16 +49,63 @@ closure_plan:
         origin fact) change the design as sketched.
     - id: PHASE-1
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
-      status: not-started
+      status: built-not-soaking
       severity: high
       last_updated: 2026-08-26
       note: >
-        Mirrors ree-v3 sync_daemon.py's own PHASE 1 (shadow) design: read-only
-        reconciliation against git-authoritative state, no write path, "no
-        autostash, no rebase -- structurally incapable of the failure class
-        this whole migration exists to remove" (quoting sync_daemon.py's own
-        docstring on itself). Exit criterion: N days of the coordinator's
-        mirrored claim/chip state matching git HEAD with zero drift.
+        BUILT 2026-08-26 (session
+        metaworker-chip-20260826-taskclaim-coordinator-migration-phase1,
+        ree-v3 f385e8bb24, pushed to origin/main). Added task_claims/
+        task_claim_resources/chip_ledger/task_claim_chip_drift_log tables
+        (schema.sql + an additive db.py migration guarded by the existing
+        PRAGMA table_info convention) and task_claim_chip_shadow_sync.py, a
+        read-only reconciler modeled directly on sync_daemon.py's own PHASE-1
+        design: it only ever runs `git fetch` / `git rev-parse` / `git show`
+        against the REE_Working umbrella repo (a DIFFERENT repo from this
+        one) -- no autostash, no rebase, no commit, no push, and no code path
+        anywhere in it can mutate that repo's working tree or advance its
+        branch. Verified live against the real 144-claim/1697-chip files in
+        3.7s with zero drift, and a dedicated test
+        (test_reconcile_never_dirties_the_source_working_tree) pins the
+        structural-incapability property rather than just asserting it in
+        prose. Added three READ-ONLY observability endpoints (GET
+        /task_claim/list, /task_claim/check, /chip/list, /task_claim/drift)
+        -- no mutating /task_claim/* or /chip/* endpoint exists, and a test
+        (test_no_mutating_task_claim_or_chip_post_route_exists) pins that
+        every such POST still 404s. task_claim.py/chip_ledger.py are
+        UNCHANGED -- nothing anywhere reads from or writes to this mirror
+        yet. 646 coordinator/ tests pass (was 645 + a real bug this work
+        surfaced: db.connect() never set PRAGMA foreign_keys=ON, so the new
+        ON DELETE CASCADE silently did not enforce outside init_db()'s
+        one-off executescript connection -- fixed, and every pre-existing
+        table has no FK so nothing else changed behaviourally).
+
+        NOT YET LIVE-INSTALLED ANYWHERE, deliberately: the coordinator hub
+        (ree-cloud-1) has no git clone of the REE_Working umbrella repo today
+        (confirmed live via SSH) -- only ree-v3/REE_assembly/etc, a different
+        repo. Provisioning a new read-only clone on shared production infra
+        and reloading ree-coordinator.service to pick up the schema
+        migration are left for a human to do with eyes on it, not something
+        this session self-authorized mid-run. The systemd timer/service
+        template (deploy/ree-task-claim-chip-shadow-sync.{service,timer},
+        10-minute cadence) is committed and documents exactly what a human
+        runs to start the soak, including the clone-provisioning step.
+
+        HOW TO CHECK SOAK STATUS, once installed: `journalctl -u
+        ree-task-claim-chip-shadow-sync -f` on the hub, or `GET
+        /task_claim/drift` on the coordinator (same bearer-token auth as
+        every other endpoint) for total_ticks/diverged_ticks/recent rows
+        without SSH. The exit criterion (frontmatter summary, unchanged): N
+        days of diverged_ticks staying at 0.
+
+        Exit criterion (unchanged): N days of the coordinator's mirrored
+        claim/chip state matching git HEAD with zero drift, once the timer
+        is actually running. status is `built-not-soaking`, not `done` --
+        the soak has not started because the timer has not been installed.
+        PHASE-2 (claim-authority cutover) is explicitly NOT started and NOT
+        chipped by this session -- see the plan's HARD STOP note; that
+        remains a human-initiated follow-up once the soak window has
+        actually elapsed cleanly.
     - id: PHASE-2
       title: "Claim-authority cutover: task_claim.py/chip_ledger.py call the coordinator; git becomes state-change materialization"
       status: not-started
@@ -92,7 +139,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** DESIGN STAGE (v0.2, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6); PHASE-1 not started, nothing implemented yet. No code has been written, no coordinator schema change made, no WireGuard mesh change made. This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** BUILD STAGE (v0.3, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is BUILT but NOT SOAKING**: the shadow-mirror schema, reconciler and read-only endpoints are landed on `ree-v3` `main` (`f385e8bb24`), verified against the live files with zero drift, but the systemd timer that would actually run it on a schedule is a committed template only -- nothing is installed on the coordinator hub yet (see the PHASE-1 frontmatter node for exactly why and what a human runs next). No coordinator schema change has been made on the LIVE hub DB; the migration is additive and applies itself the next time `ree-coordinator.service` restarts with this code. No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -462,10 +509,30 @@ See the frontmatter `nodes` table at the top of this file for the authoritative,
 
 ## 10. Where to resume
 
-**PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims. Start at **PHASE-1 (shadow)**.
+**PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims.
 
-Read, in this order: section 5.2.6 (the eleven design problems -- D1/D2/D3/D7 change the design, and D2 is the one that decides whether the migration is worth doing at all), then 5.2.2-5.2.5 for the DDL and endpoint signatures, then `ree-v3/coordinator/sync_daemon.py`'s top-of-file docstring as the model for a read-only shadow reconciler with no write path.
+**PHASE-1 is built but not soaking (2026-08-26, session
+metaworker-chip-20260826-taskclaim-coordinator-migration-phase1).** The
+remaining PHASE-1 work is entirely deployment, not design or code: provision
+a read-only clone of REE_Working on the coordinator hub, install and enable
+`ree-v3/coordinator/deploy/ree-task-claim-chip-shadow-sync.{service,timer}`
+per that service file's own header, then let it accrue soak evidence
+(`GET /task_claim/drift`, or `journalctl -u ree-task-claim-chip-shadow-sync`)
+for the N days the exit criterion calls for. That is a deliberate
+human-in-the-loop step, not something the building session self-authorized
+against shared production infra -- see the PHASE-1 frontmatter node.
 
-Two things PHASE-1 must NOT do: it must not add any write path back to git (that is PHASE-2, and it is explicitly not user-ratified as a build -- see section 3), and it must not treat section 6.2's green digest as settling the Mac's tunnel (see the rate-criterion recommendation there, which is a PHASE-2 gate).
+Two things PHASE-1 must NOT do, unchanged from the original plan and still
+true of the code as built: it must not add any write path back to git (that
+is PHASE-2, and it is explicitly not user-ratified as a build -- see section
+3), and it must not treat section 6.2's green digest as settling the Mac's
+tunnel (see the rate-criterion recommendation there, which is a PHASE-2
+gate). Neither happened -- verified by test_reconcile_never_dirties_the_
+source_working_tree and test_no_mutating_task_claim_or_chip_post_route_
+exists in ree-v3/coordinator/, and the Mac's tunnel was not touched.
+
+**Do not start PHASE-2 from this state.** A built-and-clean PHASE-1 is not
+evidence the soak passed -- the soak is elapsed time with the timer actually
+running, and the timer is not running yet.
 
 Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
