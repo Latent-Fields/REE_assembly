@@ -3065,7 +3065,11 @@
       "task_claim_session_id": "igw-auto-igw-235-confirm-evidence-mech-489-lit-0-20260826T070136Z",
       "task_claim_claimed_at": "2026-08-26T07:01:36Z",
       "assigned_at": "2026-08-26T06:59:54Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-26T07:15:03Z",
+      "completion_summary": "queued nothing: MECH-489 'exp ~0' is a GOV-CONFIRM-1 false positive (3 adjudicated runs all scoring_excluded=diagnostic_probe); adjudicated do-not-queue on EXP-0075/EVB-0610, REE_assembly a5f57747f4",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -4167,6 +4171,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-23T07:26:38Z",
       "re_eligible_after": "2026-08-25T07:26:38Z"
+    },
+    {
+      "stable_hash": "829f578353c7",
+      "igw_id_at_disposition": "IGW-20260826-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-489"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: MECH-489 (lit 0.83, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-26T07:15:11Z",
+      "re_eligible_after": "2026-08-28T07:15:11Z"
     }
   ]
 }
