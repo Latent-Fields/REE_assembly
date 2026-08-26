@@ -2271,6 +2271,42 @@
       "added_utc": "2026-08-23T01:31:49Z",
       "notes": "Minted 2026-08-23 at thought-intake alongside the registration of MECH-496 and INV-101 (raw thought: docs/thoughts/2026-08-23_memory-dimensionality-crystallisation.md; intake: evidence/planning/thought_intake_2026-08-23_memory-dimensionality-crystallisation.md). User-approved at intake. SCOPE DISCIPLINE, stated because the failure mode is predictable: this proposal must NOT be widened into the self-sizing-memory build. That build sits on MECH-334, which currently reads epistemic_category substrate_ceiling with ceiling_decision deferred, and REE has a documented pattern of ceiling claims parking indefinitely. The whole point of this probe is that it needs neither MECH-334 nor any new substrate, and its NULL result is as useful as its positive one.",
       "backlog_id": "EVB-0629"
+    },
+    {
+      "proposal_id": "EXP-0589",
+      "proposal_type": "experimental",
+      "claim_id": "MECH-518",
+      "related_claims": [
+        "MECH-518",
+        "SD-080",
+        "SD-004",
+        "MECH-516",
+        "MECH-517",
+        "ARC-133",
+        "SD-056",
+        "SD-055"
+      ],
+      "objective": "Test whether E2.action_object_head's output O serves two contending masters -- the semantic compression AND the CEM's search coordinate system -- by re-running V3-EXQ-817a's frozen (ARM_0) vs consequence-grounded (ARM_1) vs shuffled-target (ARM_2) contrast while CAPTURING the propose-side diagnostics that 817a computed and discarded. Determines whether 817a's behavioural null is a measurement artefact of a shared variance budget or genuine evidence against consequence-grounding.",
+      "design": "Re-run the V3-EXQ-817a 3-arm design unchanged (grounding objective, seeds, env), adding: (1) capture of HippocampalModule.get_last_propose_diagnostics() every propose tick -- pre_refit_first_action_entropy, post_elite_refit_first_action_entropy, cem_iteration_diagnostics[i].{ao_std_mean,ao_std_min,ao_std_max}, action_object_roundtrip_recovery; (2) a MANDATORY matched support_preserving_ao_std_floor=0.0 control arm, because the from_dims default (use_support_preserving_cem=True, floor=0.2, which 817a itself used) was measured clamping ao_std fully at CEM iteration 2 and partly at iteration 1, against ARM_0's own mean_per_dim_action_std of 0.0296 -- an order of magnitude below the floor -- so at defaults the search width is a constant and the variance channel under test cannot express itself; (3) a 3-line computation of mean pairwise L2 between candidates' get_action_object_sequence()[:,0,:] for the float32 non-vacuity guard. DO NOT use cand_world_pairwise_dist: it routes through world_forward, has zero references to action_object, and is unchanged by this manipulation BY CONSTRUCTION. Raise num_candidates above 817a's 8 (num_elite floors to _MIN_CEM_ELITES=2, making ao_std a 2-sample unbiased std, very noisy). Diagnostic, PROMOTES NOTHING.",
+      "acceptance_checks": [
+        "P1 search budget not floor-set: ao_std_max > 1.10 * support_preserving_ao_std_floor on >= 50% of scored CEM iterations in BOTH arms, OR the floor=0.0 control arm is used and read there",
+        "P2 ARM_0 has diversity to lose: action_object_roundtrip_recovery.true_unique_classes >= 2 AND pre_refit_first_action_entropy > 0.10 nats on >= 4/5 seeds",
+        "P3 float32 non-vacuity (V3-EXQ-643 guard): mean pairwise L2 between candidates' first-step action objects in ARM_0 > 1e-3",
+        "P4 grounding reproduces (V3-EXQ-817a's own gates): ARM_1 median ao_M5_r2_explained_by_action_alone <= 0.90; median paired (ARM_0 - ARM_1) M5 >= 0.10; ARM_2 >= 0.99",
+        "PASS/CONFIRMING: paired within-seed DROP in ARM_1 vs ARM_0 on BOTH above-floor cem ao_std_mean AND pre_refit_first_action_entropy, with the entropy drop >= 0.10 nats AND >= 1.0 SD of the paired per-seed delta, on >= 4/5 seeds",
+        "FAIL/FALSIFYING: paired per-seed entropy delta within +/- 0.05 nats and below 0.5 SD of the paired delta on >= 4/5 seeds, with no drop in above-floor ao_std_mean",
+        "RESIDUAL to report either way: ao_mean is NOT floored, so report its candidate-geometry movement separately -- a variance-channel null with ao_mean movement falsifies the 'shared budget = VARIANCE' wording only, not the weaker shared-geometry claim",
+        "Tag claim_ids to SD-004/SD-080/MECH-518 and do NOT pose this as a conversion-ceiling or f-dominance re-test: the re-derive brake is live on the 689/485/445/625 families but does NOT fire on this lineage (SD-004 and SD-080 both at 0 substrate_ceiling hits)"
+      ],
+      "priority": "medium",
+      "status": "proposed",
+      "target_repo": "ree-v3",
+      "seed_policy": "matched_shared_seeds",
+      "dispatch_mode": "parameter_sweep",
+      "require_pre_registered_thresholds": true,
+      "added_utc": "2026-08-26",
+      "backlog_id": null,
+      "notes": "Minted by thought-digestion wave 1 (session insights-7fd98a-digestion, user-gated) on disposition (a) for MECH-518. Supersedes the claim's original pre-registered check, which named cand_world_pairwise_dist and would have auto-refuted MECH-518 and auto-escalated against SD-004 and ARC-133 on an instrument that cannot respond to the manipulation. Result determines how V3-EXQ-817a should be read for SD-004, SD-080, ARC-133 and MECH-517 simultaneously, and MECH-517's own deferral is gated on it. Hand off to /queue-experiment; this skill does not queue."
     }
   ]
 }

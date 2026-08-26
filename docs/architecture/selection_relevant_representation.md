@@ -48,9 +48,25 @@ that falls) are two under MECH-278 and one under ARC-133. The sharpest divergenc
 when hungry vs thirsty vs injured, which a causal criterion cannot deliver and which
 is exactly what MECH-359 says selection needs.
 
-The conservative reading makes it a **fourth facet** coregistered under ARC-080's
-OBJ-1 resolution (type / anchor / token / **use**); the radical reading makes it
-primary and demotes causal coherence to evidence for it. Not resolved here.
+> **FORK RESOLVED 2026-08-26** (thought-digestion wave 1, user-gated). The
+> "fourth facet" reading is **withdrawn as a type error**: OBJ-1's facets
+> (TYPE / ANCHOR / TOKEN) are coordinate descriptors *of a persisting particular* --
+> properties the object HAS -- while USE is a *relation* between object and current
+> internal state. The facets are stable under drive change; ARC-133's whole content is
+> that drive change alters **how many object-files there are**, and a facet cannot
+> determine how many bearers-of-facets exist. The tell: the fourth-facet reading is
+> **already instantiated** as SD-057's `wanting[k]`, and instantiating it changed no
+> carving. ARC-133 stands as the **primary-criterion** rival. A conservative landing
+> zone already exists without inventing a facet -- OBJ-1 defers a
+> "token-vs-type **individuation-strength** sub-fork" to the first OBJ-2 build step, and
+> drive-modulated individuation strength is a third option there, at the right level.
+
+**Substrate note (verified 2026-08-26):** `ree-v3/ree_core/entities/object_file_buffer.py`
+**exists** (landed 2026-06-09, *after* ARC-080 was written -- so ARC-080's "the entire
+layer is orphaned" text is stale) and **hard-codes MECH-278**: the association cost is
+`w_motion * d_pos + w_feat * feat_term`, with `resource_tag` stored as `type_hint` but
+never an input to the decision ("the key is continuity, not type"). ARC-133 is a rival to
+**running code**, not to a design doc.
 
 ## ARC-134 -- dynamic regranularisation of PERCEPTUAL grain {#arc-134}
 
@@ -130,7 +146,21 @@ real: SD-070 exists because z_world was measured collapsing to participation rat
 organisation is fragmentation; too much is representational collapse) -- MECH-520
 proposes a mechanism for staying below the upper wall.
 
-## MECH-521 -- settling-derived slot occupancy; the field as coupling constant {#mech-521}
+## MECH-521 -- settling-derived slot occupancy (mechanism-agnostic core) {#mech-521}
+
+> **SPLIT 2026-08-26** (thought-digestion wave 1, user-gated). MECH-521 is now the
+> mechanism-agnostic settling core; the ephaptic specialisation moved to **MECH-522**
+> below and is ordered strictly after it. The split is load-bearing: fused, a
+> 725a-shaped negative on the ephaptic leg would read as refuting the settling core,
+> which it would not -- the exact function-vs-substrate conflation MECH-499/500's own
+> scoping doc exists to prevent. Two further corrections applied: the
+> `disinhibitory_soft_competitive_settling` machinery is the **structurally wrong site**
+> (its elements are candidate *trajectories*, its kernel a discrete first-action-class
+> surround, its readout a single argmin with no domain-count output, and its own
+> divergence ledger records "no convergence guarantee", so "count the surviving
+> attractors" is not well-defined on it -- what transfers is the algorithm *template*);
+> and the **"third answer to Q-077" framing does not hold**, since Q-077 already names a
+> hybrid third answer and is scoped to *goal* slots rather than perceptual grain.
 
 Perceptual slot count is **not** read off coherence by counting "related
 coherencies" -- that is circular, since the relatedness criterion IS the grain
@@ -157,11 +187,40 @@ coherence-specificity gate (1/6 seeds vs a 4/6 bar; 2 of 3 cleanly-interpretable
 seeds anti-specific). It tested coherence as a *binding* signal, not as a *grain*
 regulator, but anyone proposing ephaptic work carries it.
 
+## MECH-522 -- ephaptic field strength as the coupling constant {#mech-522}
+
+Split out of MECH-521 on 2026-08-26. The field is **not the thing counted** -- it is the
+**coupling constant** of the settling dynamic. A physical field does not enumerate
+domains; it sets the interaction strength from which the domain count emerges, and
+because coherence is a property of *each population separately*, a field-derived setter is
+natively **heterogeneous** rather than imposing the single ordered abstraction axis that
+Badre & Nee 2018 reports the evidence does not support. A **third** ephaptic function,
+distinct from MECH-499 (what the now *contains*) and MECH-500 (*when* it is ready to
+commit): at what **grain** the now is carved.
+
+**The 725a caution is two-sided and must be carried whole.** V3-EXQ-725a failed its
+coherence-specificity gate (1/6 seeds vs a 4/6 bar; 2 of 3 interpretable seeds
+anti-specific) -- *but* the same `cross_stream_binder` substrate then had **MECH-456
+promoted candidate -> provisional** on 2026-07-12 (V3-EXQ-733b PASS 6/6 + 733c replication
+on disjoint seeds). So "the ephaptic-analog binder does no functional work" is false; what
+725a killed is coherence-*specificity as a selection factor*, a different function on a
+different readout from grain regulation.
+
 ---
 
 ## Sequencing (nothing here authorises V3 work except MECH-518)
 
+0. **MECH-521's derivational toy comes first and needs no REE substrate.** The
+   "graceful degradation then whole-domain loss" signature is *asserted, not derived* --
+   pattern formation gives domain count and size as functions of the control parameter,
+   but the mapping from domain size to per-item *fidelity* is unargued. A ~20-line 1-D
+   lateral-inhibition settling model can kill or confirm it before anything is built.
 1. **MECH-518** is cheaply V3-testable now and settles how V3-EXQ-817a should be read.
+   Proposal **EXP-0589** minted 2026-08-26; hand off to `/queue-experiment`.
+   **Note the corrected instrument** -- `cand_world_pairwise_dist` routes through
+   `world_forward` and cannot respond to this manipulation; use
+   `pre_refit_first_action_entropy` + `cem_iteration_diagnostics[i].ao_std_*`, and add a
+   matched `support_preserving_ao_std_floor=0.0` arm.
 2. Grain-arbitration can be probed with **no ephaptic content**: MECH-288 already runs
    two segmentation scales in parallel with nothing arbitrating which is operative,
    and MECH-126's overmerge/oversplit supplies the DV.

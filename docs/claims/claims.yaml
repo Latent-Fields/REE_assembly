@@ -86238,6 +86238,59 @@
     - MECH-344  # benefit-to-object-identity binding
     - ARC-006   # object-file / binding layer
   location: docs/architecture/selection_relevant_representation.md#arc-133
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (three gates, ALL currently unmet -- which is why this is
+    substrate_conditional): (a) AN INDIVIDUATION PATH MUST EXIST. The valuation half is
+    live (IncentiveTokenBank: wanting[k] = base_value[k]*(1+kappa*drive_axis[k]), and
+    CausalGridWorld supplies per-axis drives hunger/thirst/curiosity), but that value is
+    consumed ONLY to select AMONG already-individuated objects (MECH-346). The one place
+    individuation happens -- ObjectFileBuffer's association cost,
+    cost = w_motion*d_pos + w_feat*feat_term -- has NO use/value term, and its docstring
+    states the incumbent: resource_tag is "NEVER used as the association key (the key is
+    continuity, not type)". The substrate HARD-CODES MECH-278. A run not adding a
+    drive-relevance term to that decision cannot adjudicate -> substrate_not_ready_requeue.
+    (b) THE ATTENTION GATE MUST BE NON-VACUOUS. EntityObservation.salience is the only
+    channel by which internal state could reach individuation and has never varied
+    (V3-EXQ-658 hardcodes salience=1.0, precision=1.0; obf_min_birth_salience defaults 0.0,
+    so the C4 birth gate has never rejected an observation). Report the realised salience
+    distribution and a non-zero birth-gate rejection count. (c) ANTI-COLLAPSE CONTROL
+    (MECH-520): report a retained-structure control -- the carving must still recover the
+    causally-coherent grouping under NEUTRAL drive -- else a "win" is the value-only
+    degeneracy MECH-520 predicts, not support.
+    THE DISCRIMINATOR IS NECESSITY, NOT PRESENCE. Wiring drive into the individuation cost
+    and then observing drive-dependent individuation is TAUTOLOGICAL. What discriminates
+    ARC-133 from MECH-278 is whether drive-relative carving resolves a selection problem
+    the causal carving structurally CANNOT. Three arms over ONE recorded observation
+    stream replayed under two internal states (hunger-high/thirst-low vs the converse),
+    world bit-identical by construction: ARM_CAUSAL (w_use = 0, motion+appearance only);
+    ARM_USE (w_use > 0, use_i = normalised wanting[type_i] read live from the bank);
+    ARM_SHUFFLE (w_use > 0 but wanting permuted across types -- LOAD-BEARING, separates
+    drive-RELEVANT structure from "any extra cost term perturbs a greedy assignment").
+    Two item pairs: PAIR-1 causally-identical / functionally-distinct (matched spawn,
+    benefit amplitude and motion, common perceptual channel, differing only in which drive
+    axis they discharge) -- MECH-278 predicts ONE token, ARC-133 TWO under differential
+    drive. PAIR-2 causally-distinct / functionally-identical (a pursuing hazard vs a static
+    contact hazard, matched harm amplitude) -- MECH-278 predicts TWO always, ARC-133 ONE
+    under harm pressure.
+    CONFIRMING: ARM_USE shows (R2) non-zero drive-locked merge/split events on an unchanged
+    world when the drive state is flipped mid-episode -- MECH-278 predicts ZERO by
+    construction -- AND (R3) a forced-choice discrimination margin on PAIR-1 that
+    ARM_CAUSAL cannot reach (under MECH-278 the two items are ONE token, so the goal
+    pointer is structurally ambiguous and the margin is at chance), with ARM_SHUFFLE at or
+    below ARM_CAUSAL on R3 and the anti-collapse control clean. Ordering
+    ARM_USE > ARM_CAUSAL > ARM_SHUFFLE on R3 per-seed, not arm-mean.
+    FALSIFYING (any one): (i) ARM_USE ~= ARM_SHUFFLE on R3 -- the benefit is from
+    perturbing the assignment, not from drive-relevance (the most likely null, and why
+    ARM_SHUFFLE exists); (ii) ARM_USE <= ARM_CAUSAL on R3 while R2 is large -- the carving
+    IS drive-relative and it HURTS, vindicating MECH-278's criterion and placing `wanting`
+    where it already is, downstream as a CONSUMER of a causally-carved object;
+    (iii) the anti-collapse control fails -- the use-carved representation cannot recover
+    the causal grouping under neutral drive, i.e. degeneracy not individuation;
+    (iv) PAIR-1's margin is recoverable on ARM_CAUSAL by purely perceptual means -- the
+    case was never causally-identical and the divergence was a harness artifact.
+    SCOPE: this adjudicates the CRITERION (what makes one object one object), NOT MECH-278's
+    stage-2 DEVELOPMENTAL assertion, whose own falsifier requires ablating the engineered
+    z_world and is untestable in V3.
   notes: >
     Registered from thought-intake 2026-08-26 (representation -> authority -> selection).
     REGISTERED AS AN EXPLICIT RIVAL TO MECH-278 on user instruction (2026-08-26): mutually
@@ -86298,7 +86351,7 @@
     which to regulate; a scalar-dial formulation of ARC-134 is the version that objection kills, and
     a per-population formulation (see MECH-521) is the version that survives it. DO NOT build in V3.
 - id: MECH-516
-  title: "Graded value, categorical interface: REE repeatedly computes a graded value structure and delivers it to its consumer as a categorical summary, so cross-item structure that existed upstream is destroyed at the boundary rather than never having been present. Confirmed instances -- per-object wanting[k] collapsed by most_wanted()'s ARGMAX into a single z_goal before selection; MECH-319's BINARY replay write-gate which says nothing about ordering among the transitions it admits; MECH-294's ThetaPacket FIXED-ARITY dataclass; and the O-space decoder whose argmax pins to one constant class. The prediction that follows is that improving a signal upstream of such an interface produces no downstream behavioural change."
+  title: "Argmax collapse at the incentive-to-goal interface: the per-object drive-conditioned value structure wanting[k] is computed over ALL stored objects and then reduced by most_wanted()'s ARGMAX to a single winner before it reaches selection, so z_goal is seeded from one object embedding and every candidate trajectory is scored against that one target. The comparative structure that would let candidates differ from one another for a value-relevant reason is destroyed upstream of the selector, not absent from it -- predicting that a downstream readout is FLAT in upstream wanting range except at rank flips, and becomes sloped when the argmax is replaced by a norm-matched graded read."
   claim_type: mechanism_hypothesis
   subject: selection.graded_value_categorical_interface
   polarity: asserts
@@ -86322,24 +86375,85 @@
     - MECH-294  # fixed-arity theta packet (instance 3)
     - SD-080    # frozen O and its decoder (instance 4)
     - MECH-487  # adjacent: retaining WHICH alternative was considered rather than a transient scalar
+    - MECH-443  # owns the replay-gate instance withdrawn from this claim (graded write priority)
+    - MECH-444  # composes with MECH-443 (staleness-gated target refresh)
+    - MECH-517  # same-wave sibling; deferred pending this claim's and MECH-518's results
+    - MECH-436  # V3-EXQ-514u tagged this claim and supplies the partial interface confirmation
   location: docs/architecture/selection_relevant_representation.md#mech-516
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: (P1) LIVE SITE -- use_incentive_token_bank=True (DEFAULT-OFF,
+    so a default-config run is vacuous for reasons unrelated to this claim); require
+    bank_populated_frac == 1.0 and >= 3 distinct tokens each with a stored z_object.
+    (P2) UPSTREAM RANGE IS REAL -- wanting_rel_range = (max_k w[k] - min_k w[k]) /
+    (mean_k |w[k]| + 1e-9), median over scored ticks >= 0.10; if the wanting vector is
+    near-flat there is no range to destroy. (P3) SEEDS ARE SEPARABLE --
+    z_object_min_pairwise_cos_dist >= 0.05, else argmax and mixture emit the same seed and
+    the contrast is arithmetically empty. (P4) CONSUMER CAN MOVE --
+    e3_goal_score_cross_candidate_range > 1e-6 on >= 90% of scored ticks, and report
+    f_variance_share (V3-EXQ-571 basis); > 0.95 forbids scoring any behavioural readout.
+    ARMS (bit-identical otherwise, >= 3 seeds): ARM_ARGMAX (control) seed_latent =
+    z_object[argmax_k w[k]], the current code; ARM_GRADED (treatment) seed_latent =
+    sum_k softmax(w/T)[k] * z_object[k] RENORMED to ||z_object[k*]|| -- matched seed mass, so
+    no result can be a seed-magnitude effect; ARM_SHUFFLE (negative control) the same mixture
+    with w permuted across k -- identical arity and norm, value ORDERING destroyed, separating
+    "graded value matters" from "mixing embeddings at all matters". Dose-sweep
+    incentive_drive_kappa_scale over >= 5 levels spanning >= 1 order of magnitude in
+    wanting_rel_range; record argmax_flip_rate.
+    CONFIRMING (both legs required): (C1) under ARM_ARGMAX the downstream metric
+    e3_goal_score_cross_candidate_range is FLAT in wanting_rel_range except at rank flips --
+    R^2(downstream ~ argmax_flip_rate) > R^2(downstream ~ wanting_rel_range) on >= 2/3 seeds;
+    AND (C2) ARM_GRADED shows a monotone non-zero slope of the SAME metric on
+    wanting_rel_range at matched seed norm, with mean(GRADED - SHUFFLE) >=
+    max(1.0 * pstdev(per-seed delta), 0.05) on >= 2/3 seeds.
+    FALSIFYING (any one): (F1) ARM_GRADED not separable from ARM_ARGMAX on any interface
+    metric at matched seed norm with P1-P4 passing -- the argmax is not the binding
+    constraint (the likely outcome, and the one that cleanly kills the claim);
+    (F2) ARM_GRADED ~= ARM_SHUFFLE -- any lift is seed geometry, not graded VALUE;
+    (F3) ARM_ARGMAX's downstream metric already tracks wanting_rel_range continuously
+    (argmax_flip_rate high enough that the interface is effectively graded in practice) --
+    no destruction occurs.
+    PRIOR EVIDENCE, PARTIAL AND CONSISTENT: V3-EXQ-514u (2026-06-20, PASS/supports MECH-436,
+    5 seeds) already ran flip-gated vs continuous readouts on this substrate -- flip-gated
+    mean_wl_drive_delta -0.133 (sd 0.119), sign-unstable, FAILED its 0.15 margin; the
+    sub-flip continuous mean_cont_amplitude_shift +0.164 (sd 0.022) cleared 5/5 against a
+    hard 0.0 OFF floor. That is this claim confirmed AT THE INTERFACE, not behaviourally.
   notes: >
-    Registered from thought-intake 2026-08-26; the four instances were found by code inspection of
-    ree-v3 during that session, not inferred from design docs. DISTINCT FROM MECH-359: MECH-359
-    asserts a requirement ON THE SIGNAL (it must carry cross-candidate range); MECH-516 asserts that
-    range which DID exist is destroyed at the consumer boundary -- a different locus and a different
-    remedy (plumbing, not signal strength). DISTINCT FROM MECH-463: MECH-463 concerns a signal that
-    is a global scalar at source; MECH-516 concerns a graded source rendered categorical in transit.
-    HONEST WEAKNESS, recorded rather than hidden: MECH-464 disputes the affect instance directly,
-    arguing D1/D2 opponent gain IS order-changing because it acts asymmetrically about zero on a
-    signed representation. That instance is therefore CONTESTED and the pattern rests on the other
-    three. Note also that MECH-464, if true, is itself an instance of the general thesis that
-    representation FORMAT decides whether a signal can differentiate. Each instance additionally has
-    a good local justification (MECH-346 needed a single z_goal seed; MECH-319 needed a clean
-    simulation/real boundary; MECH-294's typing prevents collapsing the SD-011 dual-stream
-    distinction), so the open question this claim exists to force is whether it is one architectural
-    habit or several defensible local decisions assembled with hindsight. Adjudicate by experiment,
-    not by inspection. No lit anchor claimed.
+    Registered 2026-08-26 from thought-intake; NARROWED 2026-08-26 by thought-digestion wave 1
+    (session insights-7fd98a-digestion, user-gated) from a four-instance PATTERN claim to this
+    single instance. WHAT WAS WITHDRAWN AND WHY -- recorded because the withdrawn instances were
+    asserted, not verified, at registration: (i) the O-SPACE DECODER instance is FALSE. The
+    decoder's sanctioned CEM use "consumes the full real-valued vector, so candidates differ
+    continuously even when their argmaxes coincide", and the argmax-pins-to-one-class effect
+    belongs to an explicitly FORBIDDEN round-trip idiom used as a diagnostic; verified that
+    V3-EXQ-817a's own driver runs propose_trajectories -> agent.e3.select -> selected_action and
+    never consults the decoder. (ii) the THETAPACKET instance mis-states the module: every
+    content sub-slot carries a full continuous tensor and the typing exists precisely to PREVENT
+    collapse; fixed arity constrains how many STREAMS, not value resolution. A real instance in
+    the same module was missed -- _apply_vs_gate thresholds continuous V_s into binary
+    is_current, and coherence_weights is 3-valued -- and is left for a future pass rather than
+    swapped in unexamined. (iii) the MECH-319 instance is MECH-443 RESTATED (registered
+    2026-06-19 with a better matched-total-write-mass falsifier); MECH-443/444 are now wired into
+    depends_on. ALSO CORRECTED: the registration notes claimed "MECH-464 disputes the affect
+    instance" -- there was no affect instance among the four; that was drift from the source
+    document's earlier list. MECH-463/464 concern global-scalar channels with NO cross-candidate
+    range AT SOURCE, which is the opposite failure and is explicitly disclaimed here, so the
+    MECH-464 dispute does not touch this claim as now stated.
+    WHAT THIS CLAIM IS NOT: not MECH-359 (which asserts a requirement ON THE SIGNAL -- it must
+    carry per-candidate range); not MECH-463 (a signal that is a global scalar at source). This
+    claim is about range that DID exist upstream and is destroyed at the consumer boundary --
+    a different locus and a different remedy (plumbing, not signal strength).
+    THE PATTERN QUESTION IS DELIBERATELY NOT REGISTERED. "One architectural habit vs several
+    defensible local decisions" is a claim about design PROVENANCE, not substrate behaviour --
+    two systems with identical dynamics can differ on it, so it is not experimentally
+    adjudicable in principle. Only a TRANSFER test (a pre-registered site-agnostic remedy
+    template applied UNCHANGED at a second site) makes it partly empirical, and at n=2
+    heterogeneous sites that is a qualitative signature, not a powered discrimination. If the
+    generalisation is ever wanted, the cheapest honest route is to run this claim's test, wait
+    for MECH-443's already-written falsifier (which IS the site-2 transfer test for the replay
+    gate), and compare SHAPES.
+    CAVEAT: the site is behind a default-OFF flag (use_incentive_token_bank), so the headline
+    prediction is trivially true in the default config for reasons unrelated to the claim; the
+    P1 precondition exists to stop that being scored.
 - id: MECH-517
   title: "Interface before representation: a representation improvement is undetectable through a collapsing interface, so representation-side experiments run before the consumer interface is fixed return nulls that cannot be interpreted. This is RIVAL to the standing differentiate-first ordering (differentiate z_world per INV-088, THEN apply diversity pressure). The two give opposite readings of the same result: V3-EXQ-817a verifiably improved O's consequence structure and produced no behavioural change, which differentiate-first reads as consequence structure does not help, and this claim reads as the measurement could not have detected help."
   claim_type: mechanism_hypothesis
@@ -86363,6 +86477,44 @@
     - MECH-518  # the specific interface implicated in that null
     - SD-004    # the claim 817a weakened
   location: docs/architecture/selection_relevant_representation.md#mech-517
+  digestion_note: >
+    DEFERRED 2026-08-26 by thought-digestion wave 1 (session insights-7fd98a-digestion,
+    user-gated; disposition (f)). DO NOT draft a what_would_answer or queue a falsifier for
+    this claim until the items below are resolved; REMOVE THIS NOTE once they are.
+    (1) STRUCTURAL: this claim's empirical content is a STRICT SUBSET of MECH-516's -- it is
+    MECH-516's last sentence plus a research-strategy inference, and that inference is a COST
+    argument, not an empirical proposition. The only falsifier constructible is a 3x2
+    (representation x interface) interaction test whose CONFIRMING outcome is identical to a
+    confirming outcome for MECH-516. Specific hazard: a MAIN-EFFECT result (the interface helps
+    equally at both representation levels) refutes this claim AS WORDED but would naturally be
+    absorbed as vindication, which would make it unfalsifiable. Resolve whether this should be
+    merged into MECH-516 and re-recorded as a governance_rule-shaped methodological heuristic
+    rather than a mechanism_hypothesis.
+    (2) FLAGSHIP INSTANCE MISATTRIBUTED: the reading that V3-EXQ-817a's null was caused by a
+    collapsing O-space DECODER is FALSE -- verified that 817a's driver runs
+    propose_trajectories -> agent.e3.select -> selected_action and never consults the decoder,
+    and the decoder's sanctioned path consumes the full real-valued vector. The real dual-role
+    site is the CEM's elite refit of ao_mean/ao_std from E2's O, which is MECH-518's territory.
+    (3) GATED ON MECH-518: if MECH-518's check shows proposal diversity DROPS under grounding,
+    817a's null is variance contention in O and this claim loses its flagship instance outright.
+    MECH-518 must clear first.
+    (4) THE RIVAL IS NOT IN THE HEALTH THIS CLAIM ASSUMES: V3-EXQ-108b (2026-08-03, user-gated)
+    already scored INV-088 `weakens` -- z_world's real-state differentiation is healthy
+    (CR_real 0.19-0.20) while the evaluator built on its ROLLOUT is degenerate by ~11 orders of
+    magnitude (CR_rollout/CR_real ~3e-6), cause being E1's single-step-trained forward model
+    applied autoregressively 30 steps. 108b is arguably this claim's STRONGEST existing support
+    and is cited nowhere.
+    (5) UNRESOLVED SPECIFICITY TENSION: V3-EXQ-948 (2026-08-25, PASS) removed the survival
+    confound behind the 734/737b/742a "objective not representation" verdict (objective fixed at
+    W3_survival_zeroed, varying only the observation vector: z_world 0.5; z_world + 25-dim
+    resource field 2.233, clearing the 1.0 floor 3/3; raw obs 9.033), which rescues this claim
+    from that counter-evidence -- but 948's mechanism is UNDER-EXPOSURE (content absent from the
+    reader's input), not CATEGORICAL COLLAPSE (graded structure destroyed at a boundary).
+    Broadened to "any consumer-side defect" this claim is near-unfalsifiable; held to MECH-516's
+    mechanism its flagship instance is misattributed per (2). Resolve the scope before drafting.
+    (6) POWER: 817a's within-arm harm_rate ranged 0.021-0.702 and survival 8.9-187.7 across 5
+    seeds -- a 21x spread against an arm-mean difference of ~0.07. A 5-seed unpaired behavioural
+    read cannot carry an interaction test.
   notes: >
     Registered from thought-intake 2026-08-26. REGISTERED AS AN EXPLICIT RIVAL to the
     differentiate-first ordering on user instruction (2026-08-26) -- both orderings are live, both
@@ -86398,6 +86550,52 @@
     - SD-056    # supplies cand_world_pairwise_dist, the proposal-diversity instrument for the check
     - SD-055    # differentiable-CEM selection -- the other consumer of this search geometry
   location: docs/architecture/selection_relevant_representation.md#mech-518
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION (all four, in BOTH arms, or the read is vacuous):
+    (P1) THE SEARCH BUDGET MUST NOT BE FLOOR-SET. HippocampalConfig defaults are
+    use_support_preserving_cem=True with support_preserving_ao_std_floor=0.2, and the elite
+    refit is clamped to that floor. Measured live on default config: CEM iteration 0
+    ao_std_mean 1.000 (constant init, not O); iteration 1 mean 0.206 (partly clamped);
+    iteration 2 mean 0.2000003, min 0.200, max 0.200 (FULLY clamped) -- against ARM_0's own O
+    carrying mean_per_dim_action_std 0.0296, an order of magnitude BELOW the floor. At defaults
+    the CEM's search WIDTH is set by a constant rather than by O's variance, so the channel this
+    claim is about cannot express itself. REQUIRE ao_std_max > 1.10 * floor on >= 50% of scored
+    iterations in both arms, OR run a matched support_preserving_ao_std_floor=0.0 control arm
+    and read the test there. (The floor value and the clamp measurement are sourced; the
+    1.10x / 50% trigger is a judgement call.)
+    (P2) ARM_0 MUST HAVE DIVERSITY TO LOSE -- action_object_roundtrip_recovery.true_unique_classes
+    >= 2 and pre_refit_first_action_entropy > 0.10 nats on >= 4/5 seeds. A candidate set already
+    collapsed to one first-action class has no diversity for grounding to degrade, and a drop
+    measured from zero is not a drop.
+    (P3) FLOAT32 GUARD (V3-EXQ-643) -- mean pairwise L2 between the K candidates'
+    get_action_object_sequence()[:,0,:] in ARM_0 > 1e-3. At ARM_0's magnitudes a
+    difference-of-means in float32 is only ~4 decades above eps, and the V3-EXQ-604a rule
+    ("scaling a zero range is still zero", quoted verbatim in module.py) applies to a floored
+    ao_std the same way.
+    (P4) THE GROUNDING MANIPULATION MUST REPRODUCE -- ARM_1 median
+    ao_M5_r2_explained_by_action_alone <= 0.90, median paired (ARM_0 - ARM_1) M5 >= 0.10, ARM_2
+    (shuffled target) staying >= 0.99. All three sourced from V3-EXQ-817a's own measured
+    0.721 / 0.271 / ~0.995.
+    CONFIRMING: with P1-P4 met, ARM_1 (grounded) shows a paired within-seed DROP versus ARM_0
+    (frozen) in BOTH (a) the search budget -- mean over CEM iterations of
+    cem_iteration_diagnostics[i].ao_std_mean, restricted to iterations above the floor -- AND
+    (b) proposal diversity -- pre_refit_first_action_entropy and
+    pre_refit_unique_first_action_classes at the same iterations -- with the paired drop in (b)
+    >= 0.10 nats AND >= 1.0 SD of the paired per-seed delta, on >= 4/5 seeds. Direction and
+    per-seed consistency are what matter, not absolute level. A confirming read means
+    V3-EXQ-817a's behavioural null is a MEASUREMENT ARTEFACT of the shared budget rather than
+    evidence against consequence-grounding, and the remedy is to split the roles (ground a
+    consequence READOUT of O while leaving the CEM's search coordinates action-conditioned).
+    FALSIFYING: with P1-P4 met, ARM_1's search budget and proposal diversity are statistically
+    indistinguishable from ARM_0's -- paired per-seed delta in pre_refit_first_action_entropy
+    within +/- 0.05 nats and below 0.5 SD of the paired delta on >= 4/5 seeds, with no drop in
+    above-floor ao_std_mean. Then O's variance reallocation does not propagate into the search
+    geometry, the two masters do not contend, and 817a's null bites directly against SD-004's
+    efficiency rationale and against ARC-133.
+    RESIDUAL that any FALSIFYING write-up must state: ao_std is floored but ao_mean is NOT, so a
+    null on the variance channel accompanied by movement in ao_mean's candidate geometry
+    falsifies the "shared fixed budget = O's VARIANCE" formulation specifically, not the weaker
+    claim that O's geometry is shared.
   notes: >
     Registered from thought-intake 2026-08-26. Read from the V3-EXQ-817a manifest per-seed, not
     from the autopsy summary. THIS CLAIM IS CHEAPLY TESTABLE ON EXISTING V3 SUBSTRATE and the
@@ -86498,7 +86696,7 @@
     MuZero's reconstruction-free latent (already an intake lane in REE_convergence, CDQ-005).
     DO NOT build in V3.
 - id: MECH-521
-  title: "Perceptual slot occupancy is an emergent order parameter of a settling competition, not a count read off coherence: counting related coherencies is circular because the relatedness criterion IS the grain decision, and coherence nests rather than partitions. Occupancy instead emerges from coupling competing against lateral inhibition, bounded above by the carrier ratio (Lisman & Jensen theta/gamma capacity ~ slots x phase-bins), so CAPACITY and OCCUPANCY are distinct regulators that must not be collapsed. Ephaptic field strength enters as the COUPLING CONSTANT of that dynamic rather than as a quantity measured and counted -- which is what a physical field natively supplies, and which is heterogeneous by population rather than imposing a single ordered abstraction axis."
+  title: "Perceptual slot OCCUPANCY is an emergent order parameter of a coupling-versus-lateral-inhibition settling competition, bounded above by an independently-set CAPACITY -- so capacity and occupancy are two distinct regulators rather than one. Occupancy is not read off coherence by counting related coherencies, which is circular (the relatedness criterion IS the grain decision) and ill-posed (coherence nests rather than partitions). Mechanism-agnostic about what sets the coupling constant."
   claim_type: mechanism_hypothesis
   subject: entities.settling_derived_slot_occupancy
   polarity: asserts
@@ -86523,30 +86721,171 @@
     - MECH-228  # ephaptic coupling as general coherence substrate
     - Q-077     # slot-vs-resource for SD-046; this claim is a THIRD answer to that fork
     - ARC-006   # binding substrate
+    - MECH-045  # ObjectFileBuffer -- the only V3 site where capacity and occupancy coexist
+    - MECH-522  # the ephaptic coupling-constant specialisation split out of this claim
   location: docs/architecture/selection_relevant_representation.md#mech-521
+  what_would_answer: >
+    DERIVATIONAL PRECONDITION, OWED FIRST AND CHEAPEST: the discriminating signature
+    ("graceful degradation then whole-domain loss") is ASSERTED, NOT DERIVED. Pattern
+    formation gives domain COUNT and domain SIZE as functions of the control parameter; the
+    mapping from domain size to per-item representational FIDELITY is unargued. This is
+    checkable in a ~20-line 1-D lateral-inhibition settling toy -- sweep coupling, plot count
+    and mean-domain-coherence -- with NO REE substrate at all, and it can kill or confirm the
+    signature before any substrate work is justified. Nothing in the record names this probe.
+    NON-DEGENERACY PRECONDITION (three gates, ALL currently FALSE in V3): (P0) THE UNIT COUNT
+    MUST BE ENDOGENOUS -- ObjectFileBuffer.update() consumes a caller-built
+    List[EntityObservation] assembled from grid cells, so occupancy today measures the
+    ENVIRONMENT, not the agent. (P1) THE RESOURCE HORN MUST BE EXPRESSIBLE -- per-item fidelity
+    must degrade continuously with load, i.e. something must be shared across items; today
+    tok.precision depends only on that observation's own precision (no cross-token
+    normalisation) and capacity is a hard truncation cap = max(1, max_tokens) (default 5), so
+    a load sweep returns a step function BY CONSTRUCTION, which is a vacuous PASS for the slot
+    horn rather than evidence for it. (P2) CAPACITY AND OCCUPANCY MUST BE INDEPENDENTLY
+    MANIPULABLE -- capacity must be a DERIVED quantity (a carrier/nesting ratio) rather than a
+    config constant, else the two-regulator assertion is untestable in principle. Any run not
+    meeting P0-P2 self-routes substrate_not_ready_requeue, NOT a verdict.
+    DESIGN: escalating load, N = 1..K simultaneously-presented distinguishable elements,
+    scoring per-item fidelity f(N) and retained-item count R(N), as a pre-registered 2x2
+    (carrier ratio high/low x coupling constant high/low) with an interaction test -- NOT two
+    one-way sweeps.
+    CONFIRMING (all three, in order): (1) f(N) degrades SMOOTHLY and monotonically over the
+    sub-critical range (resource-like, no plateau-then-cliff in fidelity alone); (2) R(N) drops
+    DISCRETELY -- a whole unit lost, not all units degraded -- at a critical coupling/inhibition
+    ratio; (3) THE DISSOCIATION, which is the load-bearing part: manipulating the CARRIER ratio
+    moves the discrete drop point while leaving the sub-critical f(N) slope unchanged, and
+    manipulating the COUPLING constant moves occupancy WITHIN the bound while leaving the drop
+    point where the carrier puts it.
+    FALSIFYING (any one): R(N) is a pure step with f(N) flat below it under a load-only
+    manipulation (the discrete-slot horn -- this claim's dissolution adds nothing); f(N)
+    degrades smoothly with R(N) = N and no whole-unit loss at any supported coupling value (the
+    pure-resource horn, likewise); THE DISSOCIATION FAILS -- carrier and coupling move the same
+    thing, or occupancy tracks the capacity constant one-for-one -- which refutes the
+    two-regulator leg SPECIFICALLY and reduces the claim to a re-description of the existing
+    max_tokens truncation; or occupancy is reproduced by a magnitude-matched RANDOM coupling
+    constant (shuffle control, mandatory per the 725a precedent), making coupling a generic
+    perturbation rather than a control parameter.
+    BINDING INSTRUMENT REQUIREMENT, inherited from the V3-EXQ-725a autopsy: the fidelity DV must
+    be GRADED and NON-SATURATING. A raw occupancy COUNT is discrete and ceiling-saturates at the
+    capacity bound -- the exact failure that left 2 of 6 seeds uninterpretable in 725a
+    (frac_state_div 1.000 on BOTH real and shuffle). Score fidelity per item on a continuous
+    scale and report the count alongside it, never as the sole DV.
   notes: >
-    Registered from thought-intake 2026-08-26, from the user's question "could coherence extent set
-    slot count -- perhaps the number of related coherencies -- that would be too simple though
-    right?". The naive counting version is registered here as REFUTED-BY-ARGUMENT (circularity,
-    nesting, and type/token underdetermination -- the last being exactly the fork ARC-080's OBJ-1
-    declined to collapse) and the settling formulation is what is asserted. THIRD FUNCTION for
-    ephaptic coupling, distinct from MECH-499 (what the actionable now CONTAINS) and MECH-500 (WHEN
-    a branching future is coherent enough to commit): at what GRAIN the now is carved. THIRD ANSWER
-    to Q-077, which poses slot-vs-resource as a dichotomy and records that the human literature is
-    itself unresolved: coupling is a continuous RESOURCE, settling turns it into discrete
-    ATTRACTORS, so discreteness is emergent from a resource and neither is primitive. DISCRIMINATING
-    SIGNATURE, a prediction rather than a reconciliation: capacity should degrade gracefully
-    (resource-like) up to a point and then lose a whole domain (slot-like). STANDING CAUTION that
-    anyone building on this must carry: V3-EXQ-725a, REE's only ephaptic-analog test, FAILED its
-    load-bearing SPEC_coherence_specific gate at 1/6 seeds against a 4/6 bar, with 2 of the 3
-    cleanly-interpretable seeds ANTI-specific (2 further seeds saturated at 1.000 on both real and
-    shuffle, so the instrument could not discriminate on a third of the sample). It tested coherence
-    as a BINDING signal rather than as a GRAIN regulator -- a different function on a different
-    readout -- but it is a real negative. RESIDUAL, stated rather than hidden: this MOVES the
-    regulator rather than eliminating it, since something must still set the coupling constant; the
-    gain is that it moves from a threshold on a measurement (arbitrary, circular) to a scalar
-    control parameter on a dynamic (physical, and natively what a field supplies). Literature
-    anchors already on file from the 2026-06-06 binding pull (Lisman & Jensen 2013 theta-gamma;
-    Fries CTC; von der Malsburg superposition catastrophe; Locatello slot-attention) -- NOT
-    re-verified in this pass, and none independently verified for the settling/occupancy claim
-    specifically. DO NOT build in V3. DO NOT queue an experiment.
+    Registered 2026-08-26 from thought-intake; SPLIT 2026-08-26 by thought-digestion wave 1
+    (session insights-7fd98a-digestion, user-gated). This claim is now the MECHANISM-AGNOSTIC
+    settling core; the ephaptic specialisation ("field strength IS the coupling constant") moved
+    to MECH-522 and is ordered strictly AFTER this one. THE SPLIT IS LOAD-BEARING, NOT TIDINESS:
+    fused, a 725a-shaped negative on the ephaptic specialisation would read as refuting the
+    settling core, which it would not be -- exactly the conflation MECH-499/MECH-500's own
+    scoping doc says it exists to prevent ("conflating them was the exact class of error
+    MECH-269 / MECH-270's own split was written to avoid: function vs physical substrate").
+    LEG STRUCTURE: the circularity/nesting/type-token argument is NOT a leg of this claim -- it
+    is an ARGUMENT (recorded as refuted-by-argument) and is the motivation, not the assertion;
+    it must not be given a falsifier. The order-parameter and two-regulator assertions are ONE
+    claim, not two: "occupancy is an order parameter" is contentless without a distinct bound to
+    be an order parameter relative to, and "capacity != occupancy" is a definition unless a
+    dynamic fills it.
+    CORRECTION APPLIED (the registration overstated substrate readiness):
+    disinhibitory_soft_competitive_settling (MECH-140 x MECH-450, implemented 2026-07-02) is the
+    structurally WRONG SITE, and "REE has this machinery built, one layer over" is too strong.
+    Its elements are candidate TRAJECTORIES, not perceptual elements; its kernel is a discrete
+    first-action-class surround (1.0 within / 0.25 across), not feature similarity; its readout
+    returns a cost field to a SINGLE ARGMIN, so there is no domain-count readout and nowhere to
+    put one; and its own divergence ledger (SCS-4) states "bounded rounds (R~3), no convergence
+    guarantee to a fixed point", so "count the attractors that survive" is not well-defined on
+    it. What transfers is the ALGORITHM TEMPLATE (softmax-support lateral inhibition with a
+    structured kernel) plus the ARC-106 grounding/divergence-ledger discipline -- not a flag flip
+    or a gain sweep. depends_on MECH-450 is lineage, not availability.
+    CORRECTION APPLIED (the Q-077 framing): "THIRD ANSWER to Q-077" does not hold as written.
+    Q-077's own notes already say "Hybrid slots+averaging models exist in the source literature
+    and are a third possible answer", so this is a MECHANISM FOR the already-named third rather
+    than a new third; and Q-077 is scoped to GOAL slots (SD-046 multi-slot GoalState, dACC
+    arbitration) while this claim is scoped to PERCEPTUAL grain, so treating one as an answer to
+    the other requires an unstated claim that the slot-vs-resource resolution is
+    substrate-general. What DOES hold: the dissolution plus a PREDICTED discriminating signature
+    is more than Q-077 has, and the capacity/occupancy dissociation is a real testable that
+    neither horn generates.
+    CLOSEST EXISTING INSTANTIATION, now wired into depends_on: ObjectFileBuffer (MECH-045 /
+    ARC-006) is the only place in V3 where a capacity constant (max_tokens=5, the FINST analogue)
+    and an occupancy count (n_active(), obf_n_capacity_evictions) coexist -- and it is
+    simultaneously a live instance of the FIXED-RELATEDNESS-THRESHOLD horn this claim argues
+    against (hard continuity_radius motion gate + cosine appearance cost + greedy assignment =
+    a fixed relatedness criterion, therefore fixed grain).
+    DO NOT build in V3. DO NOT queue an experiment. The derivational toy in what_would_answer is
+    the only sanctioned next step and needs no REE substrate.
+- id: MECH-522
+  title: "Ephaptic field strength is the COUPLING CONSTANT of the perceptual settling competition that sets slot occupancy (MECH-521), not a quantity that is measured and counted. A physical field does not enumerate domains; it sets the interaction strength from which the domain count emerges -- and because coherence is a property of each population separately, a field-derived setter is natively HETEROGENEOUS (different streams settling into different domain counts simultaneously) rather than imposing the single ordered abstraction axis that Badre and Nee 2018 reports the evidence does not support. This is a THIRD ephaptic function, distinct from MECH-499 (what the actionable now CONTAINS) and MECH-500 (WHEN a branching future is coherent enough to commit): at what GRAIN the now is carved."
+  claim_type: mechanism_hypothesis
+  subject: entities.ephaptic_coupling_constant_for_grain
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-08-26
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-08-26
+  depends_on:
+    - MECH-521  # the mechanism-agnostic settling core this specialises; ORDERED STRICTLY AFTER it
+    - MECH-228  # ephaptic coupling as general coherence substrate
+    - MECH-270  # ephaptic CA1/CA3 verisimilitude readout (confidence, not content -- distinguished)
+    - MECH-499  # ephaptic CONTENT aggregation -- distinct function
+    - MECH-500  # ephaptic temporal/READINESS authority -- distinct function
+    - MECH-456  # cross_stream_binder: promoted candidate->provisional on 733b/733c, the other half of the 725a record
+    - ARC-134   # the perceptual-regranularisation commitment this ultimately serves
+  location: docs/architecture/selection_relevant_representation.md#mech-522
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: MECH-521's own P0-P2 must already be met AND MECH-521's
+    CONFIRMING signature must already have been demonstrated under at least ONE NON-ephaptic
+    coupling constant (a learned scalar, a prediction-error-derived scalar, or a global
+    neuromodulatory scalar). Until then there is no dynamic for a field to be the coupling
+    constant OF, and any test here is uninterpretable. This ordering is the whole point of the
+    split and must not be relaxed.
+    CONFIRMING: a field-coherence-derived coupling constant produces MECH-521's core signature
+    AND outperforms matched non-ephaptic setters specifically on HETEROGENEITY -- occupancy
+    tracking LOCAL, PER-POPULATION coherence, with different streams settling into different
+    domain counts simultaneously, which scalar setters cannot produce by construction. That
+    heterogeneity is the only thing this claim buys over MECH-521 and is therefore the correct
+    DV; a magnitude or drop-point win alone does not confirm it.
+    FALSIFYING: a field-derived coupling constant is indistinguishable from (a) a
+    magnitude-matched RANDOM scalar or (b) any of the cheap non-ephaptic setters, on BOTH
+    occupancy and the per-population heterogeneity DV -- the ephaptic framing is decoration,
+    MECH-521 survives, this claim does not.
+    BINDING INSTRUMENT REQUIREMENT inherited from the V3-EXQ-725a autopsy: the DV must be GRADED
+    and NON-SATURATING; a discrete count ceiling-saturates at the capacity bound, which is the
+    exact failure that left 2 of 6 seeds uninterpretable there.
+  notes: >
+    Split out of MECH-521 on 2026-08-26 by thought-digestion wave 1 (session
+    insights-7fd98a-digestion, user-gated). THE SPLIT IS LOAD-BEARING: fused with the settling
+    core, a 725a-shaped negative on this specialisation would read as refuting the core, which
+    it would not -- the exact function-vs-physical-substrate conflation MECH-499/MECH-500's own
+    scoping doc was written to avoid.
+    WHY EPHAPTIC SPECIFICALLY, rather than any generic gate: a neuromodulatory scalar must be
+    TOLD which level to act on -- the depth index is external to the signal -- whereas a field
+    has a coherence LENGTH and a characteristic FREQUENCY, and in a system where depth is
+    timescale (ARC-004) both are natively scale-indexed. The grain is not a parameter the
+    mechanism carries; it is a property the mechanism has. This extends MECH-499's own "the
+    physical substrate may perform part of the aggregation automatically" argument from CONTENT
+    to GRAIN. MECH-089 (active, v3) already batches E1 updates into theta-cycle summaries, so the
+    carrier is in the running system rather than hypothetical.
+    STANDING CAUTION, AND IT IS TWO-SIDED -- carry BOTH halves. V3-EXQ-725a (2026-07-10), REE's
+    only ephaptic-analog test, FAILED its load-bearing SPEC_coherence_specific gate at 1/6 seeds
+    against a 4/6 bar, with 2 of the 3 cleanly-interpretable seeds ANTI-specific and 2 further
+    seeds saturated at 1.000 on both real and shuffle. BUT the registration of MECH-521 carried
+    only that half and was six weeks stale: the SAME cross_stream_binder substrate then had
+    MECH-456 promoted candidate -> provisional on 2026-07-12 (V3-EXQ-733b PASS, DV1 6/6 DV2 6/6,
+    replicated by V3-EXQ-733c on disjoint seeds 101-106). So "the ephaptic-analog binder does no
+    functional work" is FALSE; what 725a killed is specifically coherence-SPECIFICITY as a
+    SELECTION factor, which is a different function on a different readout from grain regulation.
+    Anyone building on this must carry both halves, and the re-derive brake threshold on this
+    lineage was raised 2 -> 3 by the user on 2026-07-13.
+    RESIDUAL, stated rather than hidden: this MOVES the regulator rather than eliminating it --
+    something must still set the coupling constant. The gain is that it moves from a threshold on
+    a MEASUREMENT (arbitrary and circular, per MECH-521) to a scalar control parameter on a
+    DYNAMIC (physical, and natively what a field supplies).
+    Literature on file from the 2026-06-06 binding pull (Lisman & Jensen 2013 theta-gamma; Fries
+    CTC; von der Malsburg superposition catastrophe; Locatello slot-attention) is NOT verified for
+    the grain-regulation function specifically -- it was pulled for BINDING. A targeted pull is
+    owed before this hardens. DO NOT build in V3. DO NOT queue an experiment.
