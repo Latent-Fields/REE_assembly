@@ -3631,6 +3631,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_invariant_type: str | None = None
     current_epistemic_category: str | None = None
     current_v3_pending: bool = False
+    current_diagnostic_evidence_adjudicated: bool = False
     current_impl_phase: str | None = None
     current_eq_note: str | None = None
     current_defer_until: str | None = None
@@ -3676,6 +3677,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "instantiates": current_instantiates or "",
                     "epistemic_category": current_epistemic_category or "",
                     "v3_pending": str(current_v3_pending),
+                    "diagnostic_evidence_adjudicated": str(current_diagnostic_evidence_adjudicated),
                     "implementation_phase": current_impl_phase or "",
                     "evidence_quality_note": (current_eq_note or "").strip(),
                     "defer_promotion_until": current_defer_until or "",
@@ -3693,6 +3695,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_instantiates = None
             current_epistemic_category = None
             current_v3_pending = False
+            current_diagnostic_evidence_adjudicated = False
             current_impl_phase = None
             current_eq_note = None
             current_defer_until = None
@@ -3737,6 +3740,18 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
         if current_id and line.startswith("  v3_pending:"):
             val = _strip_inline_yaml_comment(line.split(":", 1)[1]).lower()
             current_v3_pending = val in ("true", "yes", "1")
+            continue
+
+        # Set explicitly by /failure-autopsy at the point it confirms a
+        # diagnostic-purpose run's finding into this claim's evidence_quality_note
+        # narrative (SD-099/MECH-489 fix shape 1 -- see
+        # evidence/planning/design_decision_evidence_credit_gap_20260821.md).
+        # Consumed in _write_planning_outputs to suppress missing_experimental_evidence
+        # / lit_only_above_cap when exp_count == 0 but the zero is already adjudicated,
+        # not merely un-looked-at.
+        if current_id and line.startswith("  diagnostic_evidence_adjudicated:"):
+            val = _strip_inline_yaml_comment(line.split(":", 1)[1]).lower()
+            current_diagnostic_evidence_adjudicated = val in ("true", "yes", "1")
             continue
 
         if current_id and line.startswith("  implementation_phase:"):
@@ -3790,6 +3805,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "instantiates": current_instantiates or "",
             "epistemic_category": current_epistemic_category or "",
             "v3_pending": str(current_v3_pending),
+            "diagnostic_evidence_adjudicated": str(current_diagnostic_evidence_adjudicated),
             "implementation_phase": current_impl_phase or "",
             "evidence_quality_note": (current_eq_note or "").strip(),
             "defer_promotion_until": current_defer_until or "",
@@ -5894,6 +5910,14 @@ def _write_planning_outputs(
         if claim_id in _pinned_claim_ids:
             continue  # Pinned backlog entry governs this claim; skip auto-generation
         claim_type = str(registry_meta.get("claim_type", "unknown"))
+        # Fix shape 1 (SD-099/MECH-489, 2026-08-26): set explicitly by
+        # /failure-autopsy when it confirms a diagnostic-purpose run's finding into
+        # this claim's evidence_quality_note narrative. A zero exp_count that has
+        # already been adjudicated this way is a settled reading, not an unlooked-at
+        # gap -- see evidence/planning/design_decision_evidence_credit_gap_20260821.md.
+        diagnostic_evidence_adjudicated = (
+            str(registry_meta.get("diagnostic_evidence_adjudicated", "False")) == "True"
+        )
         claim_entries = entries_by_claim.get(claim_id, [])
         claim_meta = _summarize_claim_entries(claim_entries, generated_at_dt) if claim_entries else None
 
@@ -6145,11 +6169,21 @@ def _write_planning_outputs(
             # case where literature alone is propping a claim up.
             if experimental_confidence < low_exp_conf_threshold:
                 _add_reason("low_exp_conf")
-            if exp_count == 0 and literature_confidence >= lit_only_above_cap_threshold:
+            if (
+                exp_count == 0
+                and literature_confidence >= lit_only_above_cap_threshold
+                and not diagnostic_evidence_adjudicated
+            ):
                 _add_reason("lit_only_above_cap")
             if exp_count == 0:
-                _add_reason("missing_experimental_evidence")
-                evidence_needed.add("experimental")
+                if diagnostic_evidence_adjudicated:
+                    # Suppress the missing-evidence churn -- the zero is already
+                    # adjudicated (fix shape 1), so do not re-propose an experiment
+                    # that GOV-REUSE-1 already ruled out re-queuing.
+                    _add_reason("diagnostic_evidence_adjudicated")
+                else:
+                    _add_reason("missing_experimental_evidence")
+                    evidence_needed.add("experimental")
             if lit_count == 0:
                 _add_reason("missing_literature_evidence")
                 evidence_needed.add("literature")
@@ -6464,10 +6498,15 @@ def _write_planning_outputs(
         # evidence), so the resulting proposal would be permanently unactionable and
         # would re-issue every single cycle -- precisely the proposal churn this
         # branch exists to stop. Same shape as the two guards just above.
+        # diagnostic_evidence_adjudicated (fix shape 1) is exempt for the identical
+        # reason: without this, the catch-all would silently re-add "experimental"
+        # right after the block above deliberately left it out, re-triggering the
+        # exact re-proposal churn GOV-REUSE-1 already ruled out for SD-099/MECH-489.
         if not evidence_needed and not (
             saturation_guard_engaged
             or escalate_architecture_decision
             or validated_via_instantiating_children
+            or diagnostic_evidence_adjudicated
         ):
             evidence_needed.add("experimental")
 

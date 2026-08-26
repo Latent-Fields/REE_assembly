@@ -3617,3 +3617,157 @@ def test_subcase_a_not_implemented_parent_with_claim_meta_is_unchanged():
     # took the ordinary `else` path, NOT the sub-case B branch
     assert "validated_via_instantiating_children" not in ids["SD-902"]["reasons"]
     assert "missing_experimental_evidence" in ids["SD-902"]["reasons"]
+
+
+# ── `diagnostic_evidence_adjudicated` flag (fix shape 1, SD-099/MECH-489) ─────
+# Added 2026-08-26. Set explicitly by /failure-autopsy when it confirms a
+# diagnostic-purpose run's finding into a claim's evidence_quality_note narrative.
+# Suppresses missing_experimental_evidence / lit_only_above_cap when exp_count == 0
+# AND the flag is set -- the zero is an adjudicated reading, not an unlooked-at gap.
+# See evidence/planning/design_decision_evidence_credit_gap_20260821.md, and the
+# GOV-HELDOUT-1 finding at the end of that doc explaining why the sibling
+# "sub-case A" fix (test_subcase_a_not_implemented_..., above) was NOT built --
+# this flag is the shape that was actually shipped for SD-099/MECH-489.
+
+_DIAG_CLAIMS_YAML_FIXTURE = """\
+- id: MECH-950
+  status: candidate
+  claim_type: mechanism_hypothesis
+  diagnostic_evidence_adjudicated: true    # trailing comment must be stripped
+- id: MECH-951
+  status: candidate
+  claim_type: mechanism_hypothesis
+  diagnostic_evidence_adjudicated: false
+- id: MECH-952
+  status: candidate
+  claim_type: mechanism_hypothesis
+"""
+
+
+def test_registry_parses_diagnostic_evidence_adjudicated_flag():
+    reg = _registry_from_fixture(_DIAG_CLAIMS_YAML_FIXTURE)
+    assert reg["MECH-950"]["diagnostic_evidence_adjudicated"] == "True"
+    assert reg["MECH-951"]["diagnostic_evidence_adjudicated"] == "False"
+    # absent field defaults to "False", matching the sibling boolean fields
+    assert reg["MECH-952"]["diagnostic_evidence_adjudicated"] == "False"
+
+
+def test_registry_diagnostic_evidence_adjudicated_does_not_disturb_sibling_fields():
+    """Negative control: adding a field to the hand-rolled line parser is exactly
+    the kind of change that silently shifts an adjacent field."""
+    reg = _registry_from_fixture(_DIAG_CLAIMS_YAML_FIXTURE)
+    assert reg["MECH-950"]["claim_type"] == "mechanism_hypothesis"
+    assert reg["MECH-950"]["status"] == "candidate"
+
+
+def _mk_diag_reg_entry(claim_type, diagnostic_evidence_adjudicated="False", status="candidate"):
+    entry = _mk_reg_entry(claim_type)
+    entry["diagnostic_evidence_adjudicated"] = diagnostic_evidence_adjudicated
+    entry["status"] = status
+    return entry
+
+
+# NOTE on exp_count vs genuine_exp_count (confirmed against the live registry,
+# 2026-08-26): _write_planning_outputs rebuilds its OWN entries_by_claim straight
+# from matrix["entries"] (the full unfiltered audit log), filtered only by
+# is_applicable() -- NOT by scoring_excluded. So exp_count (source_counts.experimental)
+# here counts scoring_excluded=diagnostic_probe entries too, unlike genuine_exp_count
+# (which _is_genuine_experimental_entry does exclude them from) and unlike
+# claim_evidence.v1.json's own matrix["claims"][id] sub-object (built from the
+# separately, correctly scoring_excluded-filtered claim_to_entries in
+# _write_claim_evidence_matrix). Confirmed on the real MECH-489 claim: 3 diagnostic
+# experimental entries (910/910a/910b) all scoring_excluded='diagnostic_probe' give
+# genuine_exp_count=0 (claim_evidence.v1.json) but exp_count=3 in the auto-generated
+# backlog (evidence_backlog.v1.json EVB-0610) -- so missing_experimental_evidence /
+# lit_only_above_cap do NOT currently fire for MECH-489 via this exp_count==0 gate at
+# all (its real backlog reason is directional_conflict_alert -> synthetic_signals_only
+# downgrade instead). This is therefore a fix for the general "genuinely zero
+# experimental entries reached this claim" case -- true when NO experimental manifest
+# exists for the claim at all, or every one was epoch-filtered out by is_applicable --
+# not a fix for "every experimental entry that exists is scoring_excluded". Widening
+# the gate to genuine_exp_count==0 (which WOULD cover MECH-489's shape) is a separate,
+# larger design call this chip does not take unilaterally -- see the addendum in
+# evidence/planning/design_decision_evidence_credit_gap_20260821.md.
+_DIAG_LIT_ENTRY = {
+    "claim_id": "MECH-950", "source_type": "literature", "run_id": "diag-lit1",
+    "evidence_direction": "supports", "timestamp_utc": "2026-08-01T00:00:00Z",
+}
+
+
+def test_diagnostic_evidence_adjudicated_suppresses_missing_experimental_evidence():
+    """The genuinely-zero-exp_count case: no experimental entry reached this claim
+    at all (matches a claim with no experimental manifest, or one whose only
+    experimental manifest predates the epoch cutoff -- NOT MECH-489's own shape,
+    see the NOTE above)."""
+    reg = {"MECH-950": _mk_diag_reg_entry("mechanism_hypothesis", "True")}
+    ids, _ = _run_planning(reg, [_DIAG_LIT_ENTRY], {"MECH-950": {}})
+    assert "MECH-950" in ids
+    assert "missing_experimental_evidence" not in ids["MECH-950"]["reasons"]
+    assert "diagnostic_evidence_adjudicated" in ids["MECH-950"]["reasons"]
+
+
+def test_diagnostic_evidence_adjudicated_suppresses_lit_only_above_cap():
+    reg = {"MECH-950": _mk_diag_reg_entry("mechanism_hypothesis", "True")}
+    ids, _ = _run_planning(reg, [_DIAG_LIT_ENTRY], {"MECH-950": {}})
+    assert "lit_only_above_cap" not in ids["MECH-950"]["reasons"]
+
+
+def test_diagnostic_evidence_adjudicated_generates_no_new_proposal():
+    """THE load-bearing assertion, mirroring sub-case B's own load-bearing test:
+    without the evidence_needed catch-all exemption, this claim would silently get
+    'experimental' re-added right after the suppression block deliberately left it
+    out, re-triggering the exact re-proposal churn GOV-REUSE-1 already ruled out.
+
+    status='active' (not 'candidate'/'provisional') deliberately sidesteps the
+    UNRELATED insufficient_experimental_replication / insufficient_literature_grounding
+    checks (candidate_min_experimental_entries default 2 > exp_count 0 here), which add
+    'experimental'/'literature' to evidence_needed on their own threshold and are not in
+    fix shape 1's scope -- this isolates the catch-all exemption this test targets."""
+    reg = {"MECH-950": _mk_diag_reg_entry("mechanism_hypothesis", "True", status="active")}
+    ids, proposals = _run_planning(reg, [_DIAG_LIT_ENTRY], {"MECH-950": {}})
+    assert ids["MECH-950"]["evidence_needed"] == []
+    assert [p for p in proposals if p.get("claim_id") == "MECH-950"] == []
+
+
+def test_diagnostic_evidence_adjudicated_false_still_reports_missing_evidence():
+    """Negative control: the flag must be explicitly true, not merely present."""
+    reg = {"MECH-950": _mk_diag_reg_entry("mechanism_hypothesis", "False")}
+    ids, _ = _run_planning(reg, [_DIAG_LIT_ENTRY], {"MECH-950": {}})
+    assert "missing_experimental_evidence" in ids["MECH-950"]["reasons"]
+    assert "diagnostic_evidence_adjudicated" not in ids["MECH-950"]["reasons"]
+
+
+def test_diagnostic_evidence_adjudicated_absent_still_reports_missing_evidence():
+    """Negative control: absent field behaves identically to explicit false --
+    every pre-existing claim in the registry has no such field."""
+    reg = {"MECH-950": _mk_reg_entry("mechanism_hypothesis")}
+    ids, _ = _run_planning(reg, [_DIAG_LIT_ENTRY], {"MECH-950": {}})
+    assert "missing_experimental_evidence" in ids["MECH-950"]["reasons"]
+
+
+def test_diagnostic_evidence_adjudicated_reason_is_not_high_priority():
+    """Mirrors test_validated_via_instantiating_children_is_not_an_escalation_marker:
+    the flag is INFORMATIONAL visibility, not an alarm -- it must not itself force
+    a high-priority backlog item (low_exp_conf may still apply independently and
+    push this to medium, which is fine; the flag alone must never reach high)."""
+    assert b._priority_from_reasons(["diagnostic_evidence_adjudicated"]) == "low"
+
+
+def test_diagnostic_evidence_adjudicated_does_not_suppress_when_exp_count_nonzero():
+    """Pins the confirmed gap documented in the NOTE above: when a scoring_excluded
+    experimental entry is still present (as for MECH-489's real 910/910a/910b runs),
+    exp_count is NOT zero via this function's own (unfiltered) count, so the
+    suppression gate never engages even with the flag set -- missing_experimental_evidence
+    still would not fire (exp_count != 0 already bypasses it), but this test exists so a
+    future reader who "fixes" entries_by_claim to filter scoring_excluded does not
+    silently change this flag's behaviour without re-running GOV-HELDOUT-1."""
+    diag_exp_entry = {
+        "claim_id": "MECH-950", "source_type": "experimental", "run_id": "diag-r1",
+        "evidence_direction": "mixed", "timestamp_utc": "2026-08-10T00:00:00Z",
+        "architecture_epoch": "ree_hybrid_guardrails_v1", "outcome": "PASS",
+        "scoring_excluded": "diagnostic_probe",
+    }
+    reg = {"MECH-950": _mk_diag_reg_entry("mechanism_hypothesis", "True")}
+    ids, _ = _run_planning(reg, [diag_exp_entry], {"MECH-950": {}})
+    assert "missing_experimental_evidence" not in ids["MECH-950"]["reasons"]
+    assert "diagnostic_evidence_adjudicated" not in ids["MECH-950"]["reasons"]

@@ -465,6 +465,32 @@ def main():
                     f"{cid}: revisit_after='{rv}' is not an ISO date (YYYY-MM-DD); "
                     "it will be ignored by the revisit-due check"))
 
+    # diagnostic_evidence_adjudicated (fix shape 1, SD-099/MECH-489, 2026-08-26,
+    # warn-only per the stabilise-then-elevate posture used above for
+    # epistemic_category/assembly_state). Set explicitly by /failure-autopsy at the
+    # point it confirms a diagnostic-purpose run's finding into a claim's
+    # evidence_quality_note narrative; consumed by build_experiment_indexes.py to
+    # suppress missing_experimental_evidence/lit_only_above_cap when exp_count == 0.
+    # See evidence/planning/design_decision_evidence_credit_gap_20260821.md.
+    for c in claims:
+        cid = c.get("id", "<unknown>")
+        if "diagnostic_evidence_adjudicated" not in c:
+            continue
+        val = c.get("diagnostic_evidence_adjudicated")
+        if not isinstance(val, bool):
+            all_issues.append((
+                "WARN",
+                f"{cid}: diagnostic_evidence_adjudicated={val!r} is not a plain "
+                "true/false -- the indexer's hand-rolled parser only recognises "
+                "true/yes/1 as true (case-insensitive) and treats anything else as "
+                "false, so a non-boolean value here silently means false there"))
+        elif val and not str(c.get("evidence_quality_note", "") or "").strip():
+            all_issues.append((
+                "WARN",
+                f"{cid}: diagnostic_evidence_adjudicated=true but evidence_quality_note "
+                "is empty -- the flag is meant to be set at the point a diagnostic run's "
+                "finding is confirmed into the claim's narrative, not on its own"))
+
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]
 

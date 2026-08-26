@@ -313,3 +313,84 @@ active TASK_CLAIMS claim by `metaworker-chip-20260825-indexer-vacuous-pass-or-se
 recorded. Decision chip
 `chip-20260821-governance-design-decision-evidence-credit-fix` stays open with
 its scope now narrowed to sub-case B.
+
+---
+
+## Fix shape 1 implemented, 2026-08-26 -- with a confirmed pre-existing gap that
+## limits it on the MOTIVATING case itself (chip-20260826-sd099-diagnostic-adjudicated-flag)
+
+Session `metaworker-chip-20260826-sd099-diagnostic-adjudicated-flag`. Shipped:
+`diagnostic_evidence_adjudicated` claims.yaml field (parsed in
+`_load_claim_registry`, same hand-rolled-parser idiom as `instantiates`),
+`validate_claims.py` warn-only schema check, `_write_planning_outputs` suppression
+of `missing_experimental_evidence` / `lit_only_above_cap` (and the `evidence_needed`
+catch-all default) when the flag is set and `exp_count == 0`, and the
+`/failure-autopsy` SKILL.md recommendation field (`per_claim_recommendation.
+recommended_diagnostic_evidence_adjudicated`, both `.claude/` and `.agents/`
+copies) so future adjudications populate it. MECH-489 backfilled
+`diagnostic_evidence_adjudicated: true`.
+
+### GOV-HELDOUT-1 check, run before landing, per CLAUDE.md General Rules
+
+Checked the suppression condition (`exp_count == 0` -- deliberately mirroring
+the EXISTING `missing_experimental_evidence`/`lit_only_above_cap` guard's own
+condition, so the suppression is symmetric with what it counteracts) against 3
+real claims from the live `evidence_backlog.v1.json` / `claim_evidence.v1.json`
+snapshots (2026-08-25T18:02Z / 23:08Z), none of which this doc's fix-shape-1
+recipe text was written from. Non-degeneracy: a case counts only if old vs. new
+wording actually differ, i.e. the claim currently shows `exp_count == 0` with
+`missing_experimental_evidence`/`lit_only_above_cap` firing.
+
+| claim | `_write_planning_outputs` `exp_count` (backlog, unfiltered) | `genuine_exp_count` (claim_evidence.v1.json, filtered) | old vs new differ? |
+|---|---|---|---|
+| **MECH-489** (motivating case) | **3** | 0 | **NO** -- see finding below |
+| MECH-481 (held-out) | 0 | 0 | YES -- suppression engages correctly |
+| SD-091 (held-out) | 0 | 0 | YES -- suppression engages correctly |
+
+**Finding: `_write_planning_outputs` re-derives its OWN `entries_by_claim` directly
+from `matrix["entries"]` (the full, unfiltered audit log), filtered only by
+`is_applicable()` (epoch staleness) -- NOT by `scoring_excluded`.** This is
+different from `claim_evidence.v1.json`'s own `matrix["claims"][id]` sub-object,
+which is built in `_write_claim_evidence_matrix` from the separately,
+correctly-filtered `claim_to_entries` (scoring_excluded entries `continue`d out
+before being appended, `build_experiment_indexes.py:3413-3461`).
+`_write_planning_outputs` does not reuse that already-correct `matrix["claims"]`
+result -- it rebuilds its own from the raw log instead
+(`build_experiment_indexes.py:5829-5840`), and that rebuild has no
+`scoring_excluded` check at all.
+
+Confirmed directly against `claim_evidence.v1.json`'s own `entries` array: MECH-489
+carries 8 total entries for its claim_id, 3 of them `source_type: "experimental"`
+(`v3_exq_910`, `v3_exq_910a`, `v3_exq_910b`), **all three** `scoring_excluded:
+"diagnostic_probe"`. All three are epoch-applicable (`architecture_epoch:
+"ree_hybrid_guardrails_v1"`, matching the current cutoff), so all three land in
+`_write_planning_outputs`'s own `entries_by_claim["MECH-489"]` and count toward
+`exp_count` -- giving 3, not 0, even though every one of them is
+`scoring_excluded` and `genuine_exp_count` (which DOES filter on
+`_is_genuine_experimental_entry`) correctly reads 0. This is why the live
+`evidence_backlog.v1.json` (`EVB-0610`, snapshot 18:02Z) shows MECH-489's actual
+current reason as `directional_conflict_alert` (from a real literature/experimental
+conflict_ratio computation) -- not `missing_experimental_evidence` /
+`lit_only_above_cap` at all.
+
+**Consequence: fix shape 1, exactly as scoped and shipped, does NOT change
+MECH-489's own current backlog entry.** Its `exp_count` never reads 0 via this
+function's own (buggy) count, so `missing_experimental_evidence`/
+`lit_only_above_cap` were never firing on it in the first place -- there is
+nothing for the new flag to suppress. The flag's suppression mechanism is
+correctly built and verified to work on genuinely-zero-`exp_count` claims (see
+MECH-481 / SD-091 above), and the MECH-489 backfill is still correct and required
+(the flag is meant to describe the claim's adjudication state, independent of
+whether today's `exp_count` bug happens to mask its effect) -- but readers should
+not expect MECH-489's own backlog priority/reasons to visibly change from this
+fix alone. **MECH-489's actual live churn (`directional_conflict_alert` ->
+`synthetic_signals_only` downgrade) is a different mechanism, out of scope for
+fix shape 1, and not decided here.**
+
+**Not fixed in this session, and not decided here -- a further, larger design
+call:** whether `_write_planning_outputs`'s `entries_by_claim` should instead
+reuse `matrix["claims"]` (or otherwise filter on `scoring_excluded` itself). That
+is a shared-scoring-code change touching every claim's `evidence_needed`/`reasons`
+computation fleet-wide (not scoped to diagnostic-adjudicated claims), well beyond
+this chip's mandate -- flagged here for a future `/governance`-reviewed chip,
+per CLAUDE.md's standing rule against unilateral shared-scoring-code changes.
