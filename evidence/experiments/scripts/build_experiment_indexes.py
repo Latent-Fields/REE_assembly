@@ -3673,6 +3673,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "status": current_status or "unknown",
                     "claim_type": current_type or "unknown",
                     "invariant_type": current_invariant_type or "",
+                    "instantiates": current_instantiates or "",
                     "epistemic_category": current_epistemic_category or "",
                     "v3_pending": str(current_v3_pending),
                     "implementation_phase": current_impl_phase or "",
@@ -3689,6 +3690,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_status = None
             current_type = None
             current_invariant_type = None
+            current_instantiates = None
             current_epistemic_category = None
             current_v3_pending = False
             current_impl_phase = None
@@ -3713,6 +3715,19 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
 
         if current_id and line.startswith("  invariant_type:"):
             current_invariant_type = _strip_inline_yaml_comment(line.split(":", 1)[1])
+            continue
+
+        # `instantiates` names the PARENT claim this one is an instantiation of
+        # (e.g. "instantiates: SD-033c"). It is a scalar in every one of its 23
+        # occurrences as of 2026-08-26 -- never a list -- so it is parsed with the
+        # same single-value + inline-comment handling as its siblings above.
+        # Consumed by _build_instantiating_children() to give a design_decision
+        # parent visibility into the evidence its children carry; see the
+        # "sub-case B" branch in _write_planning_outputs.
+        if current_id and line.startswith("  instantiates:"):
+            current_instantiates = _strip_inline_yaml_comment(
+                line.split(":", 1)[1]
+            ).strip("\"'")
             continue
 
         if current_id and line.startswith("  epistemic_category:"):
@@ -3772,6 +3787,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "status": current_status or "unknown",
             "claim_type": current_type or "unknown",
             "invariant_type": current_invariant_type or "",
+            "instantiates": current_instantiates or "",
             "epistemic_category": current_epistemic_category or "",
             "v3_pending": str(current_v3_pending),
             "implementation_phase": current_impl_phase or "",
@@ -3785,6 +3801,33 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "intentional_cross_epoch_comparison": str(current_intentional_cross_epoch),
         }
     return registry
+
+
+def _build_instantiating_children(
+    claim_registry: dict[str, dict[str, str]],
+) -> dict[str, list[str]]:
+    """Map a PARENT claim id -> sorted ids of claims declaring `instantiates: <parent>`.
+
+    A `design_decision` claim is frequently validated NOT by a run tagged against
+    its own id, but by the mechanism claims that instantiate it. Before 2026-08-26
+    nothing in this file read `instantiates` at all, so that relationship was
+    invisible to the why_now / auto-proposal layer and such a parent was either
+    silently skipped (no claim_meta -> the `continue` in _write_planning_outputs)
+    or told it was missing experimental evidence it structurally cannot hold.
+
+    Deliberately NOT a general graph: only the direct parent->child edge is built,
+    because that is the only edge the sub-case B branch consumes. As of 2026-08-26
+    exactly 9 parents are referenced fleet-wide, 6 of them design_decision.
+    """
+    children: dict[str, list[str]] = {}
+    for child_id, meta in claim_registry.items():
+        parent = str(meta.get("instantiates", "") or "").strip()
+        if not parent or parent == child_id:
+            continue
+        children.setdefault(parent, []).append(child_id)
+    for kids in children.values():
+        kids.sort()
+    return children
 
 
 def _is_inactive_claim_status(status: str) -> bool:
@@ -5837,6 +5880,10 @@ def _write_planning_outputs(
     # (b) match the canonical prefix pattern and will be added to the registry
     # when fully described.
     _CANONICAL_CLAIM_RE = re.compile(r"^(INV|ARC|MECH|SD|Q|IMPL)-")
+    # Parent -> instantiating children, for the design_decision sub-case B branch
+    # below. Built once per regen rather than per claim: the registry is ~1050
+    # entries and the loop below is already the hot path.
+    _instantiating_children = _build_instantiating_children(claim_registry)
     for claim_id in claim_ids:
         if claim_id not in claim_registry and not _CANONICAL_CLAIM_RE.match(claim_id):
             continue  # Pseudo-claim (smoke-test bucket, instrumentation label, etc.)
@@ -5855,6 +5902,7 @@ def _write_planning_outputs(
         stage_info: dict[str, Any] = {}
         suppress_structure_signals = False
         suppress_external_precedence = False
+        validated_via_instantiating_children = False
         suppress_mandatory_decision = False
 
         def _add_reason(token: str) -> None:
@@ -5995,6 +6043,59 @@ def _write_planning_outputs(
                         "overall_confidence": 0.0,
                         "source_counts": {"experimental": 0, "literature": 0},
                         "conflict_ratio": 0.0,
+                    }
+                )
+            elif claim_type == "design_decision" and _instantiating_children.get(claim_id):
+                # ── Sub-case B: design_decision validated via instantiating children ──
+                # This parent has NO evidence entry of its own -- no run or paper has
+                # ever tagged its id directly -- but that is BY DESIGN, not a gap: it is
+                # validated through the claims that instantiate it. Before 2026-08-26
+                # this hit the bare `continue` below and vanished from the backlog and
+                # proposal outputs entirely, which is indistinguishable from "not yet
+                # looked at" and is strictly worse than a noisy-but-visible entry.
+                #
+                # We surface it with its children's AGGREGATE evidence attached, and
+                # deliberately leave `evidence_needed` EMPTY so no experiment proposal
+                # is generated against the parent id -- no run can be tagged against a
+                # design_decision parent to clear it, so a proposal here would be
+                # permanently unactionable. Visibility is the fix; a manufactured
+                # proposal is not.
+                #
+                # Scope note (GOV-HELDOUT-1, 2026-08-26): the sibling "sub-case A"
+                # fix -- suppressing missing-evidence signals on a design_decision
+                # parent that DOES have a claim_meta entry when its child carries real
+                # experimental evidence -- was measured and deliberately NOT built. On
+                # all three real instances (SD-091, SD-099, SD-101) the child's runs are
+                # themselves scoring_excluded='diagnostic_probe', so the child's
+                # genuine_exp_count is 0 and the suppression could never fire. See
+                # evidence/planning/design_decision_evidence_credit_gap_20260821.md.
+                _child_ids = _instantiating_children[claim_id]
+                _child_entries: list[dict[str, Any]] = []
+                for _child_id in _child_ids:
+                    _child_entries.extend(entries_by_claim.get(_child_id, []))
+                _child_meta = (
+                    _summarize_claim_entries(_child_entries, generated_at_dt)
+                    if _child_entries
+                    else None
+                ) or {}
+                _child_sources = _child_meta.get("source_counts", {})
+                validated_via_instantiating_children = True
+                reasons.append("validated_via_instantiating_children")
+                signals.update(
+                    {
+                        "overall_confidence": 0.0,
+                        "source_counts": {"experimental": 0, "literature": 0},
+                        "conflict_ratio": 0.0,
+                        "instantiating_children": {
+                            "claim_ids": _child_ids,
+                            "genuine_exp_count": int(
+                                _child_meta.get("genuine_exp_count", 0)
+                            ),
+                            "experimental_count": int(
+                                _child_sources.get("experimental", 0)
+                            ),
+                            "literature_count": int(_child_sources.get("literature", 0)),
+                        },
                     }
                 )
             else:
@@ -6357,8 +6458,16 @@ def _write_planning_outputs(
         ):
             priority = "medium"
             _add_reason("synthetic_signals_only")
+        # The catch-all below defaults an otherwise-empty need to "experimental".
+        # A design_decision parent surfaced via sub-case B must be EXEMPT: no run is
+        # ever tagged against a design_decision parent id (its children carry the
+        # evidence), so the resulting proposal would be permanently unactionable and
+        # would re-issue every single cycle -- precisely the proposal churn this
+        # branch exists to stop. Same shape as the two guards just above.
         if not evidence_needed and not (
-            saturation_guard_engaged or escalate_architecture_decision
+            saturation_guard_engaged
+            or escalate_architecture_decision
+            or validated_via_instantiating_children
         ):
             evidence_needed.add("experimental")
 

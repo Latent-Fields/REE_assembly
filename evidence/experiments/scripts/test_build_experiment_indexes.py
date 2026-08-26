@@ -3422,3 +3422,198 @@ def test_claim_evidence_dedup_end_to_end_from_disk():
     scored = [e for e in claim_entries if "scoring_excluded" not in e]
     assert len(scored) == 1
     assert scored[0]["run_id"] == "dup_a"
+
+
+# ── `instantiates` parsing + parent->children map (design_decision sub-case B) ──
+# Added 2026-08-26. Before this, build_experiment_indexes.py had ZERO references to
+# `instantiates`, so a design_decision parent validated through its instantiating
+# children was invisible to the why_now / auto-proposal layer -- silently `continue`d
+# when it had no claim_meta of its own. See
+# evidence/planning/design_decision_evidence_credit_gap_20260821.md.
+
+_CLAIMS_YAML_FIXTURE = """\
+- id: SD-900
+  status: candidate
+  claim_type: design_decision
+- id: MECH-900
+  status: candidate
+  claim_type: mechanism_hypothesis
+  instantiates: SD-900    # trailing comment must be stripped
+- id: MECH-901
+  status: candidate
+  claim_type: mechanism_hypothesis
+  instantiates: "SD-900"
+- id: MECH-902
+  status: candidate
+  claim_type: mechanism_hypothesis
+- id: MECH-903
+  status: candidate
+  claim_type: mechanism_hypothesis
+  instantiates: MECH-900
+"""
+
+
+def _registry_from_fixture(text):
+    with tempfile.TemporaryDirectory() as tmp:
+        p = Path(tmp) / "claims.yaml"
+        p.write_text(text)
+        return b._load_claim_registry(p)
+
+
+def test_registry_parses_instantiates_and_strips_inline_comment():
+    reg = _registry_from_fixture(_CLAIMS_YAML_FIXTURE)
+    # inline `# comment` must not survive -- it would corrupt the parent id
+    assert reg["MECH-900"]["instantiates"] == "SD-900"
+    # quoted form resolves to the same bare id
+    assert reg["MECH-901"]["instantiates"] == "SD-900"
+    # absent field is "" (never missing), matching the sibling scalar fields
+    assert reg["MECH-902"]["instantiates"] == ""
+    assert reg["SD-900"]["instantiates"] == ""
+
+
+def test_registry_instantiates_does_not_disturb_sibling_fields():
+    """Negative control: adding a field to the hand-rolled line parser is exactly
+    the kind of change that silently shifts an adjacent field."""
+    reg = _registry_from_fixture(_CLAIMS_YAML_FIXTURE)
+    assert reg["MECH-900"]["claim_type"] == "mechanism_hypothesis"
+    assert reg["MECH-900"]["status"] == "candidate"
+    assert reg["SD-900"]["claim_type"] == "design_decision"
+
+
+def test_build_instantiating_children_maps_parent_to_sorted_children():
+    reg = _registry_from_fixture(_CLAIMS_YAML_FIXTURE)
+    kids = b._build_instantiating_children(reg)
+    assert kids["SD-900"] == ["MECH-900", "MECH-901"]  # sorted, deterministic
+
+
+def test_build_instantiating_children_omits_claims_without_the_field():
+    reg = _registry_from_fixture(_CLAIMS_YAML_FIXTURE)
+    kids = b._build_instantiating_children(reg)
+    assert "MECH-902" not in kids          # declares no parent
+    assert "MECH-902" not in kids.get("SD-900", [])
+
+
+def test_build_instantiating_children_is_claim_type_agnostic():
+    """Deliberate: the helper does NOT filter to design_decision parents. The
+    claim_type test lives in the consuming branch, so that a future non-SD parent
+    shape can reuse the same map. Do not 'tidy' a type filter into the helper."""
+    reg = _registry_from_fixture(_CLAIMS_YAML_FIXTURE)
+    kids = b._build_instantiating_children(reg)
+    assert kids["MECH-900"] == ["MECH-903"]  # a mechanism_hypothesis parent is kept
+
+
+def test_build_instantiating_children_ignores_self_reference():
+    reg = _registry_from_fixture(
+        "- id: SD-901\n  status: candidate\n  claim_type: design_decision\n"
+        "  instantiates: SD-901\n"
+    )
+    assert b._build_instantiating_children(reg) == {}
+
+
+def test_build_instantiating_children_empty_registry():
+    assert b._build_instantiating_children({}) == {}
+
+
+def test_validated_via_instantiating_children_is_not_an_escalation_marker():
+    """The sub-case B reason is INFORMATIONAL visibility, not an alarm: it must not
+    promote a backlog item to high/medium priority on its own. If someone later adds
+    it to high_markers, every design_decision parent with children becomes a
+    permanent high-priority item that no experiment can ever clear."""
+    assert b._priority_from_reasons(["validated_via_instantiating_children"]) == "low"
+
+
+# ── sub-case B end-to-end through _write_planning_outputs ─────────────────────
+
+def _mk_reg_entry(claim_type, instantiates=""):
+    return {
+        "status": "candidate", "claim_type": claim_type, "instantiates": instantiates,
+        "invariant_type": "", "epistemic_category": "", "v3_pending": "False",
+        "implementation_phase": "", "evidence_quality_note": "",
+    }
+
+
+def _run_planning(registry, entries, matrix_claims):
+    matrix = {"claims": matrix_claims, "entries": entries}
+    with tempfile.TemporaryDirectory() as tmp:
+        backlog, proposals, _rest = b._write_planning_outputs(
+            Path(tmp), matrix, registry, [], {}, {}, {}, "2026-08-26T00:00:00Z"
+        )[:3]
+    return {i.get("claim_id"): i for i in backlog}, proposals
+
+
+_CHILD_ENTRY = {
+    "claim_id": "MECH-900", "source_type": "experimental", "run_id": "r1",
+    "evidence_direction": "supports", "timestamp_utc": "2026-08-01T00:00:00Z",
+    "architecture_epoch": "ree_hybrid_guardrails_v1", "outcome": "PASS",
+}
+
+_SUBCASE_B_REGISTRY = {
+    "SD-900": _mk_reg_entry("design_decision"),                      # parent, no claim_meta
+    "MECH-900": _mk_reg_entry("mechanism_hypothesis", "SD-900"),     # child, carries evidence
+    "SD-901": _mk_reg_entry("design_decision"),                      # control: no children
+}
+
+
+def test_subcase_b_design_decision_parent_becomes_visible():
+    """Regression target: before 2026-08-26 a design_decision parent with no
+    claim_meta of its own hit a bare `continue` and vanished from the backlog
+    entirely -- indistinguishable from 'not yet looked at'."""
+    ids, _ = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
+    assert "SD-900" in ids
+    assert ids["SD-900"]["reasons"] == ["validated_via_instantiating_children"]
+
+
+def test_subcase_b_carries_children_aggregate_evidence():
+    ids, _ = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
+    kids = ids["SD-900"]["signals"]["instantiating_children"]
+    assert kids["claim_ids"] == ["MECH-900"]
+    assert kids["experimental_count"] == 1
+
+
+def test_subcase_b_generates_no_proposal_against_the_parent_id():
+    """THE load-bearing assertion. No run is ever tagged against a design_decision
+    parent id, so a proposal there is permanently unactionable AND re-issues every
+    cycle -- the proposal churn this branch exists to stop. A catch-all at the end
+    of the loop defaults an empty evidence_needed to 'experimental'; sub-case B must
+    stay exempt from it."""
+    ids, proposals = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
+    assert ids["SD-900"]["evidence_needed"] == []
+    assert [p for p in proposals if p.get("claim_id") == "SD-900"] == []
+
+
+def test_subcase_b_control_design_decision_without_children_still_skipped():
+    """Negative control: the branch must fire on the instantiates RELATIONSHIP, not
+    merely on claim_type == design_decision. Otherwise all 110 design_decision
+    claims would flood the backlog."""
+    ids, _ = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
+    assert "SD-901" not in ids
+
+
+def test_subcase_b_does_not_disturb_ordinary_claims():
+    """Negative control: an ordinary claim WITH a claim_meta entry takes the
+    untouched `else` path and still asks for the evidence it lacks."""
+    ids, _ = _run_planning(_SUBCASE_B_REGISTRY, [_CHILD_ENTRY], {"MECH-900": {}})
+    assert set(ids["MECH-900"]["evidence_needed"]) == {"experimental", "literature"}
+
+
+def test_subcase_a_not_implemented_parent_with_claim_meta_is_unchanged():
+    """GOV-HELDOUT-1, 2026-08-26: the sibling 'sub-case A' suppression was measured
+    as a no-op on all three real instances (SD-091/SD-099/SD-101 -- every child's
+    runs are scoring_excluded='diagnostic_probe', so genuine_exp_count is 0) and was
+    deliberately NOT built. A design_decision parent that DOES have its own evidence
+    entry must therefore still take the ordinary path and still report missing
+    experimental evidence. If someone later implements sub-case A, this test is the
+    one that should force them to re-run the held-out check first."""
+    reg = {
+        "SD-902": _mk_reg_entry("design_decision"),
+        "MECH-902": _mk_reg_entry("mechanism_hypothesis", "SD-902"),
+    }
+    parent_lit_entry = {
+        "claim_id": "SD-902", "source_type": "literature", "run_id": "lit1",
+        "evidence_direction": "supports", "timestamp_utc": "2026-08-01T00:00:00Z",
+    }
+    ids, _ = _run_planning(reg, [parent_lit_entry], {"SD-902": {}})
+    assert "SD-902" in ids
+    # took the ordinary `else` path, NOT the sub-case B branch
+    assert "validated_via_instantiating_children" not in ids["SD-902"]["reasons"]
+    assert "missing_experimental_evidence" in ids["SD-902"]["reasons"]
