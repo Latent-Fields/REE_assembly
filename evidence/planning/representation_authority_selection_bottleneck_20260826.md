@@ -185,13 +185,44 @@ direction of variation *matters*. If the object-indexed value structure had
 survived to that point, no singular-vector projection would be needed: the
 per-candidate differences would already be in value units.
 
+### 2.1 Correction: there are TWO multi-item value stores, and neither reaches the selector
+
+The "funnel to one" above is accurate for the SD-057 path but is too strong as a
+blanket statement, and the correction makes the finding sharper rather than
+weaker. REE has **two** ranked multi-item value stores:
+
+| Store | Key | Per-item value | Consumer |
+|---|---|---|---|
+| `IncentiveTokenBank` (SD-057) | resource **type** tag k | `base_value[k]`, drive-conditioned `wanting[k]` | `most_wanted()` -> **argmax** -> z_goal seed (MECH-346) |
+| `GhostGoalBank` (MECH-292) | spatial **anchor** | `wanting_strength`, `arousal_tag`, `ghost_priority` -- a genuine **ranked** list (`bank.rank()`) | MECH-293 waking ghost-goal **probe search** (seeds candidate trajectories) |
+
+The ghost bank does *not* collapse -- it ranks. But its consumer is **trajectory
+proposal**, not candidate **scoring**: it seeds probes into the candidate pool,
+tagged `hypothesis_tag` / `metadata["ghost_priority"]`. It never supplies a
+per-candidate value at the committed argmin.
+
+So the accurate statement is stronger than the one above:
+
+> **REE maintains two ranked, revaluable, multi-item value stores, and neither
+> delivers a multi-item comparison to the E3 committed selector.** One is
+> collapsed by `max()` into a single attractor; the other feeds proposal rather
+> than selection.
+
+This sharpens ARC-080's "three disconnected per-item stores" observation with a
+consumer-side fact ARC-080 does not state: the stores are not merely
+uncoordinated with each other -- **none of them is a selection-time input.** The
+selector sees one z_goal vector, plus whatever the modulatory channels supply
+(measured spread: 0.0).
+
 **Caveat, stated rather than buried.** SD-057 is default-OFF, and the argmax
 collapse is by design -- MECH-346 exists specifically to make z_goal's *seed
 source* object-bound so wanting could dissociate from liking. Collapsing to one
 pointer was the point of L4, and it solved the L9 dissociation problem it was
 built for. The observation here is not that MECH-346 is wrong; it is that
 **nothing downstream of it carries the multi-object comparison**, and that gap
-was never anyone's assignment.
+was never anyone's assignment. The same holds for MECH-292: ranking anchors for
+probe search is what it was built for, and nothing asked it to also score
+candidates.
 
 ---
 
@@ -291,6 +322,11 @@ survival improvement** over random trajectory selection in z_world.
 of evidence for the efficiency hypothesis" and notes the benefit is *structural*
 and does not depend on SD-005 holding.
 
+And it is already **per-candidate**: `Trajectory.action_objects` carries the
+`o_t` sequence on every candidate trajectory (`ree_core/predictors/e2_fast.py:53`).
+The compressed, consumer-defined unit is present at the selection site today --
+it simply carries no value index.
+
 **This is the user's thesis, already built, already validated, at one narrow
 scope.** O-space is a funnel: a compression whose target is defined by *what the
 planner needs to choose between*, not by what reconstructs the world. The
@@ -352,38 +388,91 @@ In `work_graph_debt_vocabulary.md` terms:
 
 ### 5.1 The cheapest decisive probe (proposed, NOT queued)
 
-`e3_selector.py` already has a channel-routing mechanism with a
-`modulatory_channel_route_source` enum (`none` / `cand_world_summary` /
-`curiosity` / `gated_policy` / `mech295` / `coherence`) and a P0 readiness
-diagnostic `modulatory_channel_route_range` that reports the raw cross-candidate
-range of the routed bias *before* any rescaling.
+My first draft of this section proposed adding an `object_incentive` source to
+`modulatory_channel_route_source` and claimed "the machinery exists at both
+ends". **I then checked the code and that claim was wrong in one respect and
+understated in another.** The corrected version is simpler and stronger.
 
-The probe: **add one more source, `object_incentive`.** For each candidate
-trajectory, determine which stored object its rollout engages (the machinery to
-ask this exists: candidates already carry world-forward rollouts, and SD-049
-supplies per-type identity tags), and route `wanting[k]` -- the drive-conditioned
-per-object value that already exists -- as the per-candidate bias. Then measure
-`modulatory_channel_route_range` for `object_incentive` vs `cand_world_summary`
-at matched operating point.
+**What is NOT there:** `E3TrajectorySelector.select()` receives
+`candidates: List[Trajectory]` and has **no** per-candidate resource-type or
+object-identity argument. `resource_prox_pred` is a `[batch, 1]` **scalar** head
+(peak resource proximity), so it cannot attribute a candidate to an object type.
+There is no existing per-candidate object-attribution step.
 
-Why this is the right first probe:
-- It reuses existing machinery at **both** ends. Nothing new is invented.
-- It tests the thesis at its **cheapest** point: spread, not behaviour. No
-  competence claim, no committed-entropy claim, no promotion.
-- It is **pre-registered falsifiable**: no spread advantage -> property (b) of
-  section 4 is false -> the object framing does not earn its place at the
-  selector, and the thought should be narrowed to representation-learning only.
-- It sits **downstream of the argmax problem**, so it directly tests whether
-  preserving the multi-object comparison buys anything.
+**What IS there, and makes the attribution step unnecessary:**
 
-It also composes with the one assertion the 2026-08-22 probe recommended
-building ("in a configuration satisfying the producer's preconditions, the
-score_bias reaching `select()` has non-zero cross-candidate SPREAD").
+- `Trajectory.world_states` -- `[batch, horizon+1, world_dim]`, already used by
+  `compute_goal_score()`.
+- `IncentiveTokenBank._z_object[k]` -- `[1, goal_dim]` per stored object.
+- **Dimensions are already compatible.** `config.goal.goal_dim` is wired to
+  `config.latent.world_dim` by default (`utils/config.py:7747`), and
+  `z_resource_dim` "must match GoalConfig.goal_dim for direct seeding"
+  (`utils/config.py:350`). **No new projection is needed.**
 
-**Explicitly NOT proposed here:** any V4 object-file build, any MECH-359/360/361
-unparking, any change to MECH-278's definition, any new claim. Those are
-downstream of the user deciding whether the criterion in section 3 is one he
-wants.
+So the candidate does not need to be *labelled* with an object. Its proximity to
+**every** stored object can be read directly. The probe is therefore not a new
+channel source -- it is **replacing an argmax with a soft, wanting-weighted read
+over the whole bank**, using only tensors that already exist:
+
+```
+current (compute_goal_score, e3_selector.py:1111-1123):
+    prox   = goal_proximity(flat)                       # vs ONE z_goal
+    score  = prox.reshape(B, H+1).sum(-1)               # [B]
+
+proposed (additive modulatory channel, default OFF):
+    w = bank.wanting(per_axis_drive, scalar_drive)      # {k: float}
+    bias = sum_k  w[k] * ( 1 / (1 + MSE(flat, z_object[k])) )
+    bias = bias.reshape(B, H+1).sum(-1)                 # [B]
+```
+
+In words: **per-candidate value = how close this candidate brings me to each
+thing I have stored, weighted by how much I currently want that thing given my
+interoceptive state.** That is the user's sentence -- "objects and episodes then
+hold useful information, indeed very compressed information which could help with
+selection" -- expressed in ~10 lines over existing tensors.
+
+Properties that make this the right first probe:
+
+1. **Spread is non-degenerate by construction**, whenever >= 2 objects are stored
+   with differing `wanting[k]` and candidates differ in which they approach. This
+   attacks the measured F-C2 defect (`score_bias` spread 0.0 across ~3182 ticks)
+   at its source rather than rescaling it downstream.
+2. **It does not touch z_goal or MECH-346.** It is an *additive modulatory
+   channel*, so the L9 wanting != liking machinery, the argmax seed, and the
+   commit-threshold semantics are all untouched. Bit-identical when OFF.
+3. **It reuses the existing authority plumbing.** The routed bias folds into
+   `_modulatory_accum`, so `modulatory_channel_route_range` reports its raw
+   cross-candidate range *before* rescaling -- the P0 readiness gate the 663 work
+   already built exists to measure exactly this.
+4. **It is pre-registered falsifiable at the cheapest point.** DV is *spread*,
+   not behaviour: `modulatory_channel_route_range` for the object-field read vs
+   the existing `cand_world_summary` singular-vector projection, at matched
+   operating point. No competence claim, no committed-entropy claim, no
+   promotion, no `claim_ids`.
+5. **A null is informative.** If the object-indexed read carries no more
+   cross-candidate range than the generic latent projection, property (b) of
+   section 4 is false, the object framing does not earn its place at the
+   selector, and the thought should be narrowed to representation-learning only.
+
+**Mandatory guards, inherited from the existing record and not optional:**
+
+- The **V3-EXQ-643 non-vacuity gate**. The 643 harness drove primary scores to
+  ~1e32 and float32 cancellation returned a spurious zero range. Any run here
+  must keep `raw_score_range` bounded and assert it, or a null is uninterpretable.
+- The **604a degeneracy guard**: assert the bank is non-empty with >= 2 stored
+  objects and non-uniform `wanting`, else the arm tests a degenerate upstream
+  signal rather than the mechanism. "Scaling a zero range is still zero."
+- SD-057 is **default-OFF**, so the operating point must arm
+  `use_incentive_token_bank` -- and per the 2026-08-22 probe, most drivers do not
+  satisfy such preconditions, which is precisely how a false INERT arises.
+
+**A second, independent route worth noting.** `Trajectory.action_objects` carries
+the SD-004 `o_t` sequence per candidate -- the *already-validated* funnel of
+section 3.3 (EXQ-003 PASS, 6x survival). An object-field read in **O-space**
+rather than z_world space is the more faithful expression of the thesis, since
+O-space is already a consumer-defined compression. It is second, not first,
+because it needs the bank's embeddings mapped into O-space, which the z_world
+route does not.
 
 ### 5.2 Ordering caution against the existing record
 
@@ -483,4 +572,15 @@ MECH-045, SD-057, MECH-344/346, MECH-439, MECH-448, MECH-457, MECH-458, MECH-463
 INV-088, ARC-062, MECH-309, ARC-065, SD-055, SD-056, SD-016);
 `ree-v3/ree_core/goal.py` (IncentiveTokenBank, verified in code);
 `ree-v3/ree_core/agent.py:10897`; `ree-v3/ree_core/predictors/e3_selector.py`
-(channel registry, `goal_proximity` call site).
+(channel registry, `compute_goal_score` / `goal_proximity` call site,
+`select()` signature); `ree-v3/ree_core/predictors/e2_fast.py:42-70`
+(`Trajectory` fields); `ree-v3/ree_core/hippocampal/ghost_goal_bank.py`;
+`ree-v3/ree_core/hippocampal/anchor_set.py:60-90` (`AnchorGoalPayload`);
+`ree-v3/ree_core/utils/config.py:350,7747` (goal_dim/world_dim/z_resource_dim
+wiring).
+
+**Provenance note.** Every code-level statement in sections 2, 2.1, 3.3 and 5.1
+was read from `ree-v3` at `main` during this session, not inferred from the
+design docs. Section 5.1 records where my own first draft was wrong, because the
+wrong version was more optimistic about existing machinery than the code
+supports.
