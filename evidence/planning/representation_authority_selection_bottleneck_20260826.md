@@ -1106,7 +1106,33 @@ supports.
 > "This, and again I am just wondering here, might bring in the ephaptic coupling
 > again to regulate the level at which perception is considered."
 
-## 9.1 Collision check FIRST -- the function is owned, normatively
+## 9.0 CORRECTION (user, 2026-08-26): precision is NOT representational depth
+
+**Sections 9.1-9.3 below ran the collision check on the wrong axis.** They are kept
+because the finding in 9.2 is real, but it answers a DIFFERENT question and must not
+be read as bearing on the level-regulator.
+
+MECH-002/003's `tau` is **temporal depth** -- prediction horizon, the gamma/beta/
+theta/delta timescale bands -- and `alpha_tau` is a gain on prediction ERROR at a
+timescale. "The level at which perception is considered" is **representational
+depth**: the grain at which content is carved, how coarsely or finely the world is
+individuated. These are orthogonal. One can hold a fine-grained representation over
+a long horizon (tracking *this* apple for minutes) or a coarse one over a short
+horizon (danger, now).
+
+I slid between the two senses of "depth" because ARC-004 stratifies L-space by
+timescale and calls the bands depths. **Precision does not own the user's question.**
+
+And that makes the point sharper, not weaker: **ARC-004's only notion of "level" IS
+timescale.** So z_delta is not "more abstract" -- it is *slower*. Slowness is a
+proxy for abstraction, not abstraction. Which is exactly the user's original
+complaint, now located precisely: *"higher level latents may be more abstract but
+without there being a funnel they are not necessarily compressed"* -- L-space's
+higher levels are higher in TIME, and nothing makes them higher in ABSTRACTION.
+
+The correct collision check is in **9.9** below.
+
+## 9.1 [WRONG AXIS -- see 9.0] Collision check on temporal depth
 
 Per "extraction beats invention", the first question is whether REE already owns
 "regulate the level at which perception is considered". **It does, on paper.**
@@ -1127,7 +1153,7 @@ commitment by limiting precision escalation".
 
 So level-regulation is not a new function. It is a **standing design commitment**.
 
-## 9.2 But it is NOT implemented -- and the implementation is the negation of the rule
+## 9.2 [DIFFERENT GAP -- see 9.0] tau-scoped precision is specified but not implemented
 
 Read from `ree-v3` this session. Being precise, because this is load-bearing:
 
@@ -1305,3 +1331,131 @@ The value of this ordering is that step 1 is cheap, non-exotic, independently
 justified, and **de-risks the whole thread** -- if `pi_tau` exists and nothing
 useful can be done with it by ANY setter, the level-regulation idea is dead before
 any ephaptic work is commissioned.
+
+
+---
+
+## 9.9 The CORRECT collision check: representational grain -- and REE has already made this exact commitment, for POLICY
+
+Re-run on the right axis (abstraction / part-whole / granularity / scale-selection),
+the registry returns something far more useful than precision.
+
+**`ARC-069` -- `policy_hierarchy_dynamic_regranularisation`** (candidate,
+`substrate_conditional`, v3), parent commitment, `depends_on: []`:
+
+> "the unit-of-policy that the rule-apprehension layer (ARC-062) and the
+> diversity-generation layer (ARC-065) operate on **is itself a dynamic
+> representation, not a fixed primitive**. The granularity rescales based on
+> simulation outcomes... Without this commitment, ARC-007 hippocampal proposals are
+> flat action sequences **at fixed grain**, and the rule layer must apprehend rules
+> at whatever grain the proposer happens to emit, **which may be too fine
+> (combinatorial explosion in rollout) or too coarse (chunks fail to map onto the
+> actual state)**."
+
+With two children and a live mechanism:
+
+- **ARC-070** -- zoom **IN**. Trigger: simulation-side **prediction failure** (chunk
+  fails to ground, or MECH-269 `V_s` drops on the chunk's region).
+- **ARC-071** -- zoom **OUT**. Trigger: **repetition count + outcome consistency**
+  (slow accumulator). Anchor: "making coffee was once seventeen motor acts; after a
+  thousand repetitions it is one unit."
+- **MECH-321** -- ARC-070's first mechanism, wiring the rollout stream into MECH-288's
+  event segmenter and consuming boundary pulses at the policy-primitive layer.
+  Partially BUILT: `ree_core/policy/policy_decomposition.py`, `PolicyDecomposition`,
+  flag `use_policy_decomposition` (default off).
+
+**So REE has already accepted the user's entire argument -- for the policy axis.**
+ARC-069's "too fine (combinatorial explosion) or too coarse (fails to map)" IS the
+over-compression dial, argued and registered. What REE has NOT done is make the same
+commitment for **perception**.
+
+### 9.9a The discriminating table -- the user's cell is empty
+
+| | axis regranularised | trigger | timing | status |
+|---|---|---|---|---|
+| ARC-070 / MECH-321 | policy chunks | prediction failure / `V_s` drop | online (rollout) | partially built |
+| ARC-071 | policy chunks | repetition + outcome consistency | slow accumulator | candidate |
+| MECH-166 | **context slots** ("which distinctions between contexts are worth representing") | -- | **OFFLINE (SWS consolidation)**, explicitly cannot be co-computed online | candidate, `substrate_ceiling` |
+| **user's proposal** | **percept / object grain** | **field coherence** | **online, fast** | **unregistered** |
+
+Supporting evidence that the perceptual cell really is empty: the part-whole search
+returns **zero** claims (`part[- ]whole|subpart|compositional hierarchy|whole object`).
+ARC-080 defines what an object *is* (OBJ-1: coregistration of type/anchor/token) and
+says nothing about **at what grain** objects are individuated, or that the grain is
+dynamic. The perceptual unit in REE is **fixed**.
+
+**MECH-126** supplies the failure taxonomy and therefore the DV: "specific modes of
+REE state abstraction failure -- **overmerge, oversplit**, temporal context loss,
+valence mis-tagging, uncertainty collapse, narrow representational capacity". Coarse
+and fine failure, already named, already tied to psychiatric analogues.
+
+### 9.9b Why ephaptic coherence is the RIGHT trigger for the perceptual axis specifically
+
+ARC-070's policy-side trigger is prediction failure, and prediction error is
+computed everywhere in REE -- so why not just reuse it for perception?
+
+Because the two axes ask different questions. On the policy axis the question is
+*"did THIS chunk fail?"* -- a scalar, per-chunk test, which PE answers directly. On
+the perceptual axis the question is *"how many distinct things is this scene?"* --
+which is a question about **how many separately-coherent assemblies there are**, and
+a scalar PE does not answer it.
+
+That is precisely what binding-by-synchrony is for, and REE already holds the
+literature: **von der Malsburg**'s superposition catastrophe (why facets must stay
+distinct-but-bound), **Fries/Singer** communication-through-coherence, and
+**Lisman & Jensen** theta-gamma capacity ~ **slots x phase-bins** -- pulled 2026-06-06
+and already wired to ARC-006/MECH-044/MECH-089. *Slot count is grain.* A field's
+coherence **extent** natively sets how many separately-bound assemblies exist, which
+IS how finely the scene is carved. No external depth index, no routing table -- the
+same "physics does part of the work" argument MECH-499 already makes for content,
+extended to grain.
+
+**This is a third ephaptic function**, distinct from MECH-499 (what the now
+*contains*) and MECH-500 (*when* a future is ready to commit): **at what grain the
+now is carved.**
+
+### 9.9c The strongest objection, from REE's own literature note
+
+MECH-321's provenance correction (2026-07-27) carries a caution that bites this
+proposal directly:
+
+> Badre & Nee 2018 (Badre's own re-appraisal) "finds the evidence supports neither a
+> unitary model of lateral frontal function **nor a unidimensional abstraction
+> gradient**, so there is **no single ordered axis** along which to cap."
+
+If abstraction is not unidimensional, then "the level at which perception is
+considered" **may not be a scalar to regulate at all** -- and a coherence-length dial
+would be imposing a single ordered axis the biology does not support.
+
+**The available answer, which I think is genuinely good:** a *field* account is not a
+single dial. Coherence is a property of **each population separately** -- different
+regions/streams can be coherent at different extents simultaneously. So a
+coherence-derived regulator is natively **heterogeneous and multi-axis**, which fits
+Badre & Nee *better* than either a global neuromodulatory dial or a single ordered
+abstraction gradient. The objection lands hard on a scalar-dial version of this
+proposal and much more softly on a per-population-coherence version -- which is a
+reason to specify it the second way from the start.
+
+### 9.9d Revised ordering (supersedes 9.8)
+
+9.8's "build tau-scoped precision first" was reasoning on the wrong axis and is
+**withdrawn as the first step** (it remains a real, separate gap -- see 9.2).
+
+1. **`complicated (buildable)`, and it is the honest first move:** state the
+   perceptual analogue of ARC-069 as a claim and check it against ARC-069's own
+   rationale. REE accepted "fixed grain is either too fine or too coarse" for policy;
+   the argument is axis-independent. This costs nothing and inherits an accepted
+   rationale rather than arguing from scratch.
+2. **`complex (probe-gated)`: is perceptual grain dynamic at all in a way that
+   matters?** The cheapest probe reuses MECH-126's overmerge/oversplit taxonomy as
+   the DV and MECH-288's already-two-scale segmenter as the instrument -- REE has
+   multi-scale segmentation running with **nothing arbitrating which scale is
+   operative**, so the first question is simply whether arbitrating it changes
+   anything. **No ephaptic content required at this step.**
+3. **`complex (probe-gated)`: is field coherence the right arbiter**, versus PE, versus
+   a learned gate? Only here does 725a's negative bite, and only here is the exotic
+   physics load-bearing.
+
+Same de-risking logic as before, now on the right axis: steps 1-2 are cheap and
+non-exotic, and if grain-arbitration buys nothing under *any* arbiter, the ephaptic
+question never needs to be asked.
