@@ -2,7 +2,7 @@
 title: "SD-033b: OFC-analog (specific-outcome / task-structure substrate)"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 21
+nav_order: 22
 status: candidate
 status_asof: 2026-07-10
 status_claim: SD-033B

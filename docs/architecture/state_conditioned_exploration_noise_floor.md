@@ -2,7 +2,7 @@
 title: State-conditioned exploration (MECH-440 / MECH-441)
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
-nav_order: 18
+nav_order: 19
 ---
 
 # State-conditioned exploration (MECH-440 / MECH-441)

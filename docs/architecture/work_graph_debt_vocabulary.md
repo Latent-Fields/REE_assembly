@@ -2,7 +2,7 @@
 title: Work-graph debt vocabulary (gated vs blocked, made precise)
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 18
+nav_order: 19
 ---
 
 # Work-graph debt vocabulary (gated vs blocked, made precise)

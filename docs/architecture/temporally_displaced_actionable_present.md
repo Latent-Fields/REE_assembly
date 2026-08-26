@@ -1,5 +1,5 @@
 ---
-title: "Temporally Displaced Actionable Present"
+title: Temporally Displaced Actionable Present
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 26

@@ -1,8 +1,8 @@
 ---
-title: "Persistent-Process Termination Taxonomy"
+title: Persistent-Process Termination Taxonomy
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 25
+nav_order: 16
 status: candidate
 status_asof: 2026-08-25
 status_claim: ARC-128

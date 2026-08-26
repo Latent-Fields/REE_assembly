@@ -2,7 +2,7 @@
 title: Cognitive-Architecture Graveyard — Anti-Patterns REE Must Avoid
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 6
+nav_order: 7
 ---
 
 # Cognitive-Architecture Graveyard — Anti-Patterns REE Must Avoid

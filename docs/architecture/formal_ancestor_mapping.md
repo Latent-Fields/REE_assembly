@@ -2,7 +2,7 @@
 title: Formal-Ancestor Mapping
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 ---
 
 # Formal-Ancestor Mapping

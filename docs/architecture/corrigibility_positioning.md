@@ -2,7 +2,7 @@
 title: "Corrigibility Positioning — REE's Commit Boundary vs. the Formal Corrigibility Literature"
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 7
+nav_order: 8
 ---
 
 # Corrigibility Positioning — REE's Commit Boundary vs. the Formal Corrigibility Literature

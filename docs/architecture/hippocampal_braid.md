@@ -2,7 +2,7 @@
 title: Hippocampal Braid (Path Memory and Replay)
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 4
+nav_order: 5
 ---
 
 # Hippocampal Braid (Path Memory and Replay)

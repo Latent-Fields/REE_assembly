@@ -2,7 +2,7 @@
 title: Valenced Hippocampal Map, Amygdala Read/Write, and Therapeutic Geometry
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 14
+nav_order: 15
 ---
 
 # Valenced Hippocampal Map, Amygdala Read/Write, and Therapeutic Geometry

@@ -2,7 +2,7 @@
 title: "SD-MEL-CONSUMER: sleep.adaptive_mel_sleep_cadence"
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 ---
 
 # SD-MEL-CONSUMER: sleep.adaptive_mel_sleep_cadence

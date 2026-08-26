@@ -2,7 +2,7 @@
 title: "Hippocampal Valence Asymmetry: BLA vs VTA Pathways"
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 8
+nav_order: 9
 ---
 
 # Hippocampal Valence Asymmetry: BLA vs VTA Pathways

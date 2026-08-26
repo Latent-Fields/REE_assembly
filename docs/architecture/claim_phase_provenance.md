@@ -2,7 +2,7 @@
 title: Claim Phase Provenance and Dependency-Driven Reclassification
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 ---
 
 # Claim Phase Provenance and Dependency-Driven Reclassification

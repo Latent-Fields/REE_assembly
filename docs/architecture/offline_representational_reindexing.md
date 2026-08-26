@@ -2,7 +2,7 @@
 title: "Offline Representational Reindexing & Counterfactual Model Comparison"
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 14
+nav_order: 5
 status: candidate
 status_asof: 2026-08-25
 status_claim: MECH-514

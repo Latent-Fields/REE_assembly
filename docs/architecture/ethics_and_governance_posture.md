@@ -2,7 +2,7 @@
 title: Ethics and Governance Posture
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 ---
 
 # Ethics and Governance Posture

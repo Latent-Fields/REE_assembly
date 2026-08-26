@@ -2,7 +2,7 @@
 title: "Invariant Types: Universal vs Emergent"
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 12
+nav_order: 13
 ---
 
 # Invariant Types: Universal vs Emergent

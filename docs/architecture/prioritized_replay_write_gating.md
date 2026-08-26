@@ -2,7 +2,7 @@
 title: Prioritized replay write-gating (MECH-443 / MECH-444)
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 6
+nav_order: 7
 ---
 
 # Prioritized replay write-gating (MECH-443 / MECH-444)

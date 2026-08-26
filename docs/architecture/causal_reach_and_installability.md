@@ -1,8 +1,8 @@
 ---
-title: "Causal Reach, Installability, and the Mechanism-Organism Boundary"
+title: Causal Reach, Installability, and the Mechanism-Organism Boundary
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 19
+nav_order: 5
 status: candidate
 status_asof: 2026-08-25
 status_claim: ARC-130

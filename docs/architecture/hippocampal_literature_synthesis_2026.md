@@ -2,7 +2,7 @@
 title: Hippocampal Literature Synthesis 2026
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 ---
 
 # Hippocampal Literature Synthesis 2026

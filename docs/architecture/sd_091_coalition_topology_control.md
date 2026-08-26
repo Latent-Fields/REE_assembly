@@ -2,7 +2,7 @@
 title: "SD-091: Coalition/Topology Control Substrate"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
-nav_order: 16
+nav_order: 17
 status: candidate/v3_pending
 status_asof: 2026-08-03
 status_claim: SD-091

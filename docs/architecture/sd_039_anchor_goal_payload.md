@@ -2,7 +2,7 @@
 title: SD-039 Dual-Trace Anchor Goal-Snapshot Payload
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 11
+nav_order: 12
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: SD-039

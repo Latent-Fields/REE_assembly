@@ -1,8 +1,8 @@
 ---
-title: "Reusable Computational Motifs and Content Binding"
+title: Reusable Computational Motifs and Content Binding
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
-nav_order: 19
+nav_order: 13
 status: candidate
 status_asof: 2026-08-25
 status_claim: SD-101

@@ -2,7 +2,7 @@
 title: Papez Circuit (Functional Analog)
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 10
+nav_order: 11
 ---
 
 # Papez Circuit (Functional Analog)

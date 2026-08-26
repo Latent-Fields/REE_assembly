@@ -2,7 +2,7 @@
 title: Precision Recalibration
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 ---
 
 # Precision Recalibration

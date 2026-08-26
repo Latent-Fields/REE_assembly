@@ -123,6 +123,7 @@ ASSIGN = {
     "active_inference_bridge.md": "foundations", "bitter_lesson_position.md": "foundations",
     "cognitive_architecture_graveyard.md": "foundations", "corrigibility_positioning.md": "foundations",
     "formal_ancestor_mapping.md": "foundations", "work_graph_debt_vocabulary.md": "foundations",
+    "causal_reach_and_installability.md": "foundations",
 
     # --- Perception, Representation & Dynamics ---
     "residue_geometry.md": "representation", "sensory_stream_tags.md": "representation",
@@ -148,6 +149,7 @@ ASSIGN = {
     "sd_037_broadcast_override_regulator.md": "control", "mech_271_routing_v3_substrate_plan.md": "control",
     "state_conditioned_exploration_noise_floor.md": "control",
     "sd_091_coalition_topology_control.md": "control",
+    "reusable_computational_motifs.md": "control",
 
     # --- Memory & Hippocampus ---
     "hippocampal_systems.md": "memory", "hippocampal_braid.md": "memory",
@@ -158,6 +160,7 @@ ASSIGN = {
     "mech_189_super_ordinal_goal_anchors.md": "memory",
     "autobiographical_temporality_and_future_simulation.md": "memory",
     "sd_mech267_cem_selection_fix.md": "memory",
+    "ephaptic_hippocampal_now_construction.md": "memory",
 
     # --- Modes, Agency & Default Mode ---
     "mode_manager.md": "modes", "modes_of_cognition.md": "modes", "default_mode.md": "modes",
@@ -217,6 +220,8 @@ ASSIGN = {
     "rule_distinguishability_maintenance.md": "pfc",
     "dopamine_into_gating.md": "pfc", "arc_108_job2_control_plane.md": "pfc",
     "mech_451_finer_channel_granularity.md": "pfc",
+    "persistent_process_termination_taxonomy.md": "pfc",
+    "temporally_displaced_actionable_present.md": "pfc",
 
     # --- Language ---
     "language.md": "language", "arcuate_fasciculus.md": "language",
@@ -226,6 +231,7 @@ ASSIGN = {
     "sd_017_sleep_phase_architecture.md": "sleep", "compact_consolidation_principle.md": "sleep",
     "prioritized_replay_write_gating.md": "sleep",
     "sd_mel_consumer.md": "sleep", "sd_mel_producer.md": "sleep",
+    "offline_representational_reindexing.md": "sleep",
 
     # --- Social & Clinical ---
     "social.md": "social", "psychiatric_failure_axes.md": "social",

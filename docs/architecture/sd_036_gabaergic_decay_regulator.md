@@ -2,7 +2,7 @@
 title: "SD-036: GABAergic Cross-Stream Decay Regulator"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
-nav_order: 14
+nav_order: 15
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: SD-036

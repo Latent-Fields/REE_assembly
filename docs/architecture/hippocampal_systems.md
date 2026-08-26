@@ -2,7 +2,7 @@
 title: Hippocampal Systems (Path Memory and Replay)
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 7
+nav_order: 8
 ---
 
 # Hippocampal Systems (Path Memory and Replay)

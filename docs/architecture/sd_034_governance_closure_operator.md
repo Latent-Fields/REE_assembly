@@ -2,7 +2,7 @@
 title: "SD-034: Governance Closure Operator"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 23
+nav_order: 24
 status: provisional
 status_asof: 2026-07-10
 status_claim: SD-034

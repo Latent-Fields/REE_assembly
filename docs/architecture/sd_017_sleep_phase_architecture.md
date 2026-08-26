@@ -2,7 +2,7 @@
 title: "SD-017: Minimal Sleep-Phase Architecture (V3)"
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 status: stable
 status_asof: 2026-07-10
 status_claim: SD-017

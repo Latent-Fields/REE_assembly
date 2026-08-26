@@ -2,7 +2,7 @@
 title: How Established Ethical Systems Derive from REE
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 11
+nav_order: 12
 ---
 
 # How Established Ethical Systems Derive from REE

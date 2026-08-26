@@ -2,7 +2,7 @@
 title: Reality Consolidation
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
-nav_order: 7
+nav_order: 8
 ---
 
 # Reality Consolidation

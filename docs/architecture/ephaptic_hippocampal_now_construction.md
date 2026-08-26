@@ -1,8 +1,8 @@
 ---
-title: Ephaptic Aggregation and the Construction of Actionable "Now"
+title: "Ephaptic Aggregation and the Construction of Actionable \"Now\""
 parent: "Memory & Hippocampus"
 grandparent: Architecture
-nav_order: 8
+nav_order: 3
 ---
 
 # Ephaptic Aggregation and the Construction of Actionable "Now"
