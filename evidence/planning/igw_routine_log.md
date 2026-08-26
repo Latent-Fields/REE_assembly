@@ -2143,3 +2143,9 @@ One line per hourly tick. ASCII only.
 2026-08-26T19:12:26Z skip IGW-20260826-234: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-26T20:13:08Z SPAWN IGW-20260826-234 skill=/queue-experiment prio=40 uuid=ce7a443a-20a3-4458-a68b-b6320821bbea pid=89276 worktree=igw-234-proposal-for-arc-130
 2026-08-26T20:32:23Z auto-defer igw-234-proposal-for-arc-130 hash=33f820eb9eac for 48h (complete)
+2026-08-26T20:32:32Z complete igw-234-proposal-for-arc-130 spawned->completed outcome=USEFUL_LANDED: marked EVB-0633 (ARC-130) blocked_substrate: no reach-stage instrumentation (una
+2026-08-26T21:16:56Z GC removed worktree igw-234-proposal-for-arc-130 (removed; branch deleted)
+2026-08-26T21:16:54Z GC sweep removed 1 orphan worktree(s), kept 13
+2026-08-26T21:18:02Z workset committed (regen -- 243 items, 23 ready, 0 in flight)
+2026-08-26T21:18:02Z reconcile-release hash=33f820eb9eac (IGW-20260826-234 -> completed)
+2026-08-26T21:16:54Z no eligible item (skipped 243): IGW-20260826-219:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; IGW-20260826-220:status=blocked blocked_by=ready_blocked_by: STALE TEXT CORRECTED 2026-08-07T18:17Z (session metaworker-chip-20260807-substrate-queue-stale-gating-audit; companion sweep to the ARC-065 GAP-A fix REE_assembly ffb4dbc4fc): the named gate RAN and d; ARC-062 [implemented]; IGW-20260826-221:status=blocked blocked_by=ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
