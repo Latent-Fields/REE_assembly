@@ -419,7 +419,56 @@ def _compute_adjudication(interpretation: Any, status: str,
                              EITHER (3b) a criterion tagged load_bearing:true with
                              passed:false (the V3-EXQ-621a aggregation-vacuity
                              pattern) OR the legacy criteria_non_degenerate value
-                             being false. CONVENTION for the legacy check: a key
+                             being false.
+
+                             RUN-LEVEL COMBINATION MODE (2026-08-26,
+                             failure_autopsy_V3-EXQ-946_2026-08-25.md Sec.6).
+                             (3b) itself has NO representation of AND-vs-OR
+                             combination semantics by default: a criterion
+                             tagged load_bearing:true can mean EITHER "my own
+                             failure alone invalidates the overall PASS" (an
+                             AND-gate member -- the V3-EXQ-621a pattern (3b)
+                             exists to catch) OR "I am a genuine, meaningful,
+                             worth-surfacing finding for MY OWN arm/operating-
+                             point's conclusion, deliberately OR-combined with
+                             my siblings" (V3-EXQ-946 `overall_pass =
+                             any(per_arm_pass.values())`; V3-EXQ-927/928's
+                             `any_fix_clears`; V3-EXQ-948's own
+                             combination_rule, "PASS is carried by ONE
+                             criterion... not by a conjunction"). A driver
+                             using OR-semantics declares it explicitly via
+                             `interpretation.criteria_aggregation: "any"`
+                             (absent, or any other value, defaults to "all",
+                             the historical implicit AND behaviour every
+                             pre-2026-08-26 manifest keeps unchanged). Under
+                             "any", (3b) fires only when EVERY load_bearing:true
+                             criterion has passed:false, so a genuinely vacuous
+                             OR-driver PASS (every declared load-bearing
+                             criterion failed) is still caught -- it just stops
+                             firing on the FIRST false entry the way "all" mode
+                             does, which is exactly the M-of-N shape "all" mode
+                             cannot represent. Distinct in kind from the four
+                             legacy-path sub-cases documented below: those all
+                             fix a NAME/KEY-MATCHING mismatch between
+                             criteria_non_degenerate{} and criteria[] in code
+                             that (3b) never even reaches once it fires; this
+                             fixes (3b) itself, upstream of that path, and has
+                             no join/key-matching involved. NARROW BY
+                             MEASUREMENT: of 941 manifests under
+                             evidence/experiments as of 2026-08-26, exactly 4
+                             distinct runs (8 files, flat+pack) are
+                             diagnostic/baseline, overall PASS, and carry >=2
+                             load_bearing:true criteria with a passed=true/false
+                             mix -- V3-EXQ-927, V3-EXQ-928, V3-EXQ-946,
+                             V3-EXQ-948 -- all corrected to declare
+                             criteria_aggregation="any". A fifth candidate,
+                             V3-EXQ-921, was found by the same sweep and ruled
+                             OUT: its experiment_purpose is "evidence", so it
+                             never reaches this function at all (returns "n/a"
+                             at the top-of-function purpose gate) regardless of
+                             its criteria[] shape -- left unmodified.
+
+                             CONVENTION for the legacy check: a key
                              in criteria_non_degenerate is a NON-DEGENERACY
                              ASSERTION (True=non-degenerate/good), so a False value
                              flags a gate cleared on nothing -- EXCEPT keys whose
@@ -529,14 +578,26 @@ def _compute_adjudication(interpretation: Any, status: str,
     # criterion explicitly tagged load_bearing:true did not pass clears a gate on
     # nothing. Gated on the explicit load_bearing tag so it never over-fires on a
     # legitimate M-of-N pass.
+    #
+    # RUN-LEVEL COMBINATION MODE (2026-08-26, failure_autopsy_V3-EXQ-946_2026-08-25
+    # .md Sec.6). See the "vacuous_pass" docstring entry above for the full
+    # rationale and the NARROW BY MEASUREMENT count. `criteria_aggregation: "any"`
+    # (driver-declared, defaults to "all" -- unchanged AND behaviour) switches the
+    # (3b) test from "ANY load_bearing:true criterion failed" to "EVERY
+    # load_bearing:true criterion failed" -- still catches a genuinely vacuous
+    # OR-driver PASS, stops false-flagging a legitimate M-of-N OR pass.
     if str(status).upper() == "PASS":
         criteria = interp.get("criteria")
         if isinstance(criteria, list):
-            for c in criteria:
-                if (isinstance(c, dict)
-                        and c.get("load_bearing") is True
-                        and c.get("passed") is False):
+            lb_entries = [c for c in criteria
+                          if isinstance(c, dict) and c.get("load_bearing") is True]
+            if str(interp.get("criteria_aggregation", "all")).strip().lower() == "any":
+                if lb_entries and all(c.get("passed") is False for c in lb_entries):
                     return label, "vacuous_pass"
+            else:
+                for c in lb_entries:
+                    if c.get("passed") is False:
+                        return label, "vacuous_pass"
 
     # --- legacy author-trusted checks (fallback for declarations that expose no
     # numeric measured/threshold or load_bearing tag) ---

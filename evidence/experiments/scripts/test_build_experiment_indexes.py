@@ -2609,6 +2609,171 @@ def test_908_manifest_end_to_end():
     assert flag == "verified", flag
 
 
+# ---------------------------------------------------------------------------
+# (3b) RUN-LEVEL COMBINATION MODE -- `interpretation.criteria_aggregation`.
+#
+# (3b) had no representation of AND-vs-OR combination semantics: a criterion
+# tagged load_bearing:true can mean EITHER "my own failure alone invalidates
+# the overall PASS" (an AND-gate member) OR "I am a genuine, meaningful,
+# per-arm finding, deliberately OR-combined with my siblings" (a driver whose
+# own `overall_pass = any(per_arm_pass.values())`). A driver declares the
+# latter via `interpretation.criteria_aggregation: "any"`; absent (or any
+# other value) keeps the historical "all" (AND) behaviour unchanged. Fixed at
+# (3b) itself, upstream of the four legacy join-mismatch sub-cases above --
+# distinct in kind, not another name/key-matching heuristic.
+# Regression target: failure_autopsy_V3-EXQ-946_2026-08-25.md Sec.6.
+# ---------------------------------------------------------------------------
+
+def _or_arms(passed_flags, aggregation="any"):
+    """N per-arm load_bearing:true criteria, OR-combined, mirroring the real
+    V3-EXQ-946 shape (overall_pass = any(per_arm_pass.values())). Carries a
+    matching all-True criteria_non_degenerate sibling, like every real
+    manifest in this shape, so the legacy fallback below (3b) resolves to
+    "verified" rather than the "unverified" no-declaration default."""
+    interp = {
+        "label": "context_informative_address_found_at_operating_point",
+        "criteria_non_degenerate": {
+            f"C_arm{i}_exceeds_null": True for i in range(len(passed_flags))
+        },
+        "criteria": [
+            {"name": f"C_arm{i}_exceeds_null", "load_bearing": True, "passed": p}
+            for i, p in enumerate(passed_flags)
+        ],
+    }
+    if aggregation is not None:
+        interp["criteria_aggregation"] = aggregation
+    return interp
+
+
+def test_or_mode_not_vacuous_when_some_arms_pass():
+    """THE FIX. 2 of 4 load_bearing:true arms failed, but criteria_aggregation
+    is 'any' -- (3b) must not fire on the ones that failed."""
+    _, flag = b._compute_adjudication(
+        _or_arms([True, True, False, False]), "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_or_mode_still_vacuous_when_every_arm_fails():
+    """SAFETY. 'any' mode is not a blanket suppression: if EVERY load_bearing
+    criterion failed, the PASS still rests on nothing and must still flag."""
+    _, flag = b._compute_adjudication(
+        _or_arms([False, False, False]), "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_or_mode_verified_when_all_arms_pass():
+    """All-pass under 'any' mode is unambiguously verified (matches 'all' mode
+    too, but exercised here for completeness)."""
+    _, flag = b._compute_adjudication(
+        _or_arms([True, True]), "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_aggregation_field_absent_keeps_and_semantics():
+    """NEGATIVE CONTROL. Without criteria_aggregation, behaviour is exactly
+    the pre-2026-08-26 AND rule: one failed load_bearing criterion is enough
+    to flag, even though a sibling passed -- the default must not silently
+    loosen to 'any' for the ~941-manifest legacy population."""
+    _, flag = b._compute_adjudication(
+        _or_arms([True, False], aggregation=None), "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_aggregation_field_unrecognised_value_keeps_and_semantics():
+    """NEGATIVE CONTROL. An unrecognised criteria_aggregation value (typo,
+    future extension) must fall back to 'all', never silently loosen."""
+    _, flag = b._compute_adjudication(
+        _or_arms([True, False], aggregation="some_of"), "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_or_mode_does_not_apply_to_a_non_pass():
+    """A FAIL was never vacuous_pass; criteria_aggregation must not change
+    that -- (3b) is gated on status == PASS regardless of mode."""
+    _, flag = b._compute_adjudication(
+        _or_arms([False, False]), "FAIL", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_946_manifest_shape_end_to_end():
+    """The real V3-EXQ-946 shape: 4 per-arm criteria, 2 pass / 2 fail, overall
+    PASS, criteria_aggregation='any' -- resolves to verified, not
+    vacuous_pass. failure_autopsy_V3-EXQ-946_2026-08-25.md Sec.6."""
+    interp = {
+        "label": "context_informative_address_found_at_operating_point",
+        "criteria_aggregation": "any",
+        "criteria_non_degenerate": {
+            "C_BIAS_W1_0_exceeds_order_only_null": True,
+            "C_BIAS_W0_1_exceeds_order_only_null": True,
+            "C_BIAS_W0_01_exceeds_order_only_null": True,
+            "C_REFRACTORY_exceeds_order_only_null": True,
+        },
+        "criteria": [
+            {"name": "C_BIAS_W1_0_exceeds_order_only_null", "load_bearing": True, "passed": True},
+            {"name": "C_BIAS_W0_1_exceeds_order_only_null", "load_bearing": True, "passed": True},
+            {"name": "C_BIAS_W0_01_exceeds_order_only_null", "load_bearing": True, "passed": False},
+            {"name": "C_REFRACTORY_exceeds_order_only_null", "load_bearing": True, "passed": False},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_927_928_manifest_shape_end_to_end():
+    """The real V3-EXQ-927/928 shape: an OR across fix arms PLUS an explicit
+    (non-'_non_degenerate'-suffixed) aggregate criterion that already states
+    the OR result. (3b) fires on the failing per-arm entry without
+    criteria_aggregation='any' even though the aggregate itself passed --
+    the aggregate's name doesn't license the legacy _aggregate_cleared path
+    (which is never reached anyway, since (3b) fires first)."""
+    interp = {
+        "label": "fix_effective::H3+BOTH",
+        "criteria_aggregation": "any",
+        "criteria_non_degenerate": {
+            "C_BOTH_broad_minus_tight_gap_clears_floor": True,
+            "C_H2_broad_minus_tight_gap_clears_floor": True,
+            "C_H3_broad_minus_tight_gap_clears_floor": True,
+            "C_OFF_broad_minus_tight_gap_clears_floor": True,
+            "C_at_least_one_fix_arm_clears_floor_with_off_washed_out": True,
+            "C_manipulation_engagement_check": True,
+        },
+        "criteria": [
+            {"name": "C_manipulation_engagement_check", "load_bearing": True, "passed": True},
+            {"name": "C_H2_broad_minus_tight_gap_clears_floor", "load_bearing": True, "passed": False},
+            {"name": "C_H3_broad_minus_tight_gap_clears_floor", "load_bearing": True, "passed": True},
+            {"name": "C_BOTH_broad_minus_tight_gap_clears_floor", "load_bearing": True, "passed": True},
+            {"name": "C_at_least_one_fix_arm_clears_floor_with_off_washed_out",
+             "load_bearing": True, "passed": True},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_948_manifest_shape_end_to_end():
+    """The real V3-EXQ-948 shape: PASS is carried by ONE criterion, the other
+    three are replication anchors/discriminators (one of which is expected
+    to read False). criteria_aggregation='any' resolves this to verified."""
+    interp = {
+        "label": "observation_interface_confirmed_re_representation_lifts_competence",
+        "criteria_aggregation": "any",
+        "criteria_non_degenerate": {
+            "C_latent_clears_floor": True,
+            "C_raw_obs_clears_floor": True,
+            "C_latent_plus_localfield_clears_floor": True,
+            "C_localfield_only_clears_floor": True,
+        },
+        "criteria": [
+            {"name": "C_latent_plus_localfield_clears_floor", "load_bearing": True, "passed": True},
+            {"name": "C_localfield_only_clears_floor", "load_bearing": True, "passed": True},
+            {"name": "C_latent_clears_floor", "load_bearing": True, "passed": False},
+            {"name": "C_raw_obs_clears_floor", "load_bearing": True, "passed": True},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
 # --- atomic-write drift guard --------------------------------------------
 #
 # build_experiment_indexes.py rewrites ~10 shared artifacts under

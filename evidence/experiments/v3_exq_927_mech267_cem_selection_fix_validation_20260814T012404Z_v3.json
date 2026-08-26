@@ -101,6 +101,7 @@
   "experiment_purpose": "diagnostic",
   "experiment_type": "v3_exq_927_mech267_cem_selection_fix_validation",
   "interpretation": {
+    "criteria_aggregation": "any",
     "combination_rule": "outcome = FAIL/non_contributory if the raw_std readout is unpopulated on any cell, or the manipulation check fails (a facet did not engage as configured) -- neither is informative about the fix. Else, on a valid measurement: PASS iff >=1 fix arm's across-seed mean broad-minus-tight raw_std gap clears FLOOR_PRODUCTION AND the OFF control does not (the wash-out localisation). FAIL/label=fix_insufficient if no fix arm clears; FAIL/label=control_leak if OFF also clears (premise violated). evidence_direction is always non_contributory (diagnostic): the finding is WHICH fix locus holds, not a claim-supporting or claim-weakening reading.",
     "criteria": [
       {
