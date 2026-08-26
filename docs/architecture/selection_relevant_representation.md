@@ -206,6 +206,33 @@ on disjoint seeds). So "the ephaptic-analog binder does no functional work" is f
 725a killed is coherence-*specificity as a selection factor*, a different function on a
 different readout from grain regulation.
 
+## MECH-523 -- the compression sites are untrained {#mech-523}
+
+Registered 2026-08-26 from digestion wave 2, after three independent agents each surfaced
+one site. **Verified in source:** (a) `E2.action_object_head` receives **zero gradient** from
+every REE path (SD-080) -- a frozen random projection, ~99.5% of its variance the action label;
+(b) `beta_encoder` / `theta_encoder` / `delta_encoder` appear **zero times** in `agent.py`, have
+no loss, no optimiser and no predictive head at any horizon, and are an untrained
+random-projection cascade smoothed by one hardcoded `alpha_shared = 0.3`; (c) **no value-shaped
+objective reaches any encoder** -- `compute_benefit_eval_loss` reads `z_world.detach()`.
+
+**The corollary is methodological:** a null measured at an untrained compression site is
+evidence about the absence of a training signal, not about the representation's capacity. SD-070
+is the one worked instance and it went that way -- collapse measured at participation ratio
+~1.06, a training recipe built, and V3-EXQ-783 then measuring trained PR 5.261 against a 0.50
+retained-fraction floor.
+
+**This reframes the thought this whole document came from.** The diagnosis was "abstract but not
+funnelled". The measured situation is simpler: the funnels exist -- a bottleneck at O, a depth
+cascade at z_beta/theta/delta -- and none is trained toward anything. There is no learning
+pressure on the abstraction in the first place.
+
+**Immediate consequence for ARC-004:** depth-equals-timescale has **never been measured**, and
+ARC-004's own falsifier warns it could fail as MECH-058 did. With three untrained encoders
+sharing one EMA constant, "one timescale wearing three labels" is the outcome to *expect*. A
+per-layer autocorrelation half-life check (z_delta > z_theta > z_beta) is cheap and owed before
+anything leans on the temporal spread.
+
 ---
 
 ## Sequencing (nothing here authorises V3 work except MECH-518)
