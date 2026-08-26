@@ -1,0 +1,134 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing",
+  "run_id": "v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-26T12:25:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-492"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech492_confirmed_no_place_safety_discrimination_under_either_mode",
+    "preconditions": [
+      {
+        "name": "damage_sourced::place_hazard_label_both_classes_present",
+        "precondition": "place_hazard_label_both_classes_present",
+        "arm": "damage_sourced",
+        "kind": "readiness",
+        "description": "min(SAFE frac, HAZARDOUS frac) among scored ticks, worst cell in the arm. This is the SAME statistic the load-bearing AUC criterion routes on: an AUC over a binary label does not exist unless both classes are populated.",
+        "control": "positive control is the random walk itself, which is not hazard-avoiding (the env is stepped with a RANDOM action) so both classes are reachable by construction. Asserts NOTHING about threat_ok's own variance -- a constant threat_ok is criterion (b), a CONFIRMING result, not a readiness failure.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.21862348178137653,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "damage_sourced::z_harm_a_apparatus_valid",
+        "precondition": "z_harm_a_apparatus_valid",
+        "arm": "damage_sourced",
+        "kind": "readiness",
+        "description": "fraction of ticks with a finite z_harm_a norm > MIN_APPARATUS_NORM, worst cell in the arm. Below floor means z_harm_a is wired off/None -- a genuine substrate defect, never a discrimination verdict.",
+        "control": "z_harm_a is an unconditional every-tick forward pass over harm_obs_a (SD-011), never gated on training/convergence, so a finite nonzero norm is the only way sense() returns in practice (V3-EXQ-917 precedent).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "proximity_ema_sourced::place_hazard_label_both_classes_present",
+        "precondition": "place_hazard_label_both_classes_present",
+        "arm": "proximity_ema_sourced",
+        "kind": "readiness",
+        "description": "min(SAFE frac, HAZARDOUS frac) among scored ticks, worst cell in the arm. This is the SAME statistic the load-bearing AUC criterion routes on: an AUC over a binary label does not exist unless both classes are populated.",
+        "control": "positive control is the random walk itself, which is not hazard-avoiding (the env is stepped with a RANDOM action) so both classes are reachable by construction. Asserts NOTHING about threat_ok's own variance -- a constant threat_ok is criterion (b), a CONFIRMING result, not a readiness failure.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.27208480565371024,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "proximity_ema_sourced::z_harm_a_apparatus_valid",
+        "precondition": "z_harm_a_apparatus_valid",
+        "arm": "proximity_ema_sourced",
+        "kind": "readiness",
+        "description": "fraction of ticks with a finite z_harm_a norm > MIN_APPARATUS_NORM, worst cell in the arm. Below floor means z_harm_a is wired off/None -- a genuine substrate defect, never a discrimination verdict.",
+        "control": "z_harm_a is an unconditional every-tick forward pass over harm_obs_a (SD-011), never gated on training/convergence, so a finite nonzero norm is the only way sense() returns in practice (V3-EXQ-917 precedent).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "C1_discriminates_damage_sourced": true,
+      "C3_threat_ok_invariant_damage_sourced": true,
+      "C2_discriminates_proximity_ema_sourced": true,
+      "C4_threat_ok_invariant_proximity_ema_sourced": true
+    },
+    "scoped_out_criteria": [
+      {
+        "name": "ALSO_FALSIFYING_another_conjunct_always_binding",
+        "source": "MECH-492 what_would_answer, third (narrowing) criterion",
+        "disposition": "scoped out of scoring -- structurally unsatisfiable in this harness",
+        "measured_reason": "max staleness_max across every cell = 0.000000; the hippocampal staleness accumulator snapshot stays EMPTY in a wake-only walk harness even with use_staleness_accumulator/use_anchor_sets on, so staleness_ok = (0.0 > 0.3) is structurally False every tick and the staleness conjunct is trivially always-binding for a HARNESS reason, not a gate property. Reporting a narrowing verdict from that would be a vacuous gate.",
+        "what_would_answer_it": "a driver running a real sleep loop with episode-end notifications so regions accrue MECH-284 staleness -- named as follow-on, not built here"
+      }
+    ]
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b57461a28857a9122d84574e09625f9e68751709a3c4241d470ed0f9d63ad09a",
+  "substrate_commit": {
+    "commit": "090ffba1b4cb912156dff29808e6b547974063a9",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}
