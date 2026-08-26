@@ -297,3 +297,58 @@ action):
   duration there; this design doc does not have an equivalent measurement for either cloud box
   (no ssh reach). The install follow-on should measure one real tick's wall-clock time on the
   target box before treating 900s as validated rather than merely carried over.
+
+---
+
+## 11. Installation follow-on results (2026-08-26, `chip-20260826-install-cloud-hygienetick-timer`)
+
+**`ree-cloud-5`: installed and verified, both open items resolved.**
+
+- Measured wall-clock of one real `hygiene_routine_tick.py --push` tick on `ree-cloud-5`:
+  **~80s** (`time` output: `real 1m20.242s`). 900s leaves an ~11x margin -- comfortable, no
+  `OnUnitActiveSec` change needed. (A second tick, triggered by the timer itself moments after
+  install, completed in ~66s -- consistent with the manual measurement.)
+- Section 10's open question, resolved directly: `systemctl status ree-metaworker.timer` on
+  `ree-cloud-5` shows `Loaded: loaded (...; disabled; ...)` / `Active: inactive (dead)`. The old
+  dispatch timer is **disabled outright**, the same as `ree-cloud-4`'s -- not lease-conditional.
+  (`ree-metaworker-healer.timer` is separately active, but that is the new Healer role, not the
+  old dispatch cycle, and does not invoke `hygiene_routine_tick.py`.) So the dedicated timer
+  installed here was not merely defense-in-depth against an intermittent trigger -- on
+  `ree-cloud-5`, as on `ree-cloud-4`, it is now the *only* trigger.
+- `scripts/install_hygienetick_timer_cloud.sh` ran clean (`canonical_machine_name` resolved to
+  `ree-cloud-5`, unit files copied, `daemon-reload` + `enable --now`). `systemctl list-timers`
+  confirms `ree-hygienetick.timer` enabled, next fire scheduled 900s after the first, and the
+  triggered `ree-hygienetick.service` exited `status=0/SUCCESS` producing a real chip
+  (`chip-queuefloor-ree-cloud-5-since-2026-08-26t21-15-08z`) -- the confirmation this chip's
+  Step 4 asked for.
+
+**`ree-cloud-4`: NOT installed -- confirmed unreachable, not merely untried.** This is the same
+asymmetric SSH-reach gap `metaworker-repair/SKILL.md` documents for the Healer's reach into the
+Mac, now measured for the `ree-cloud-5` -> `ree-cloud-4` leg specifically rather than assumed by
+analogy:
+
+- Direct `ssh ree@91.99.68.94` (the fleet's own recorded IP for `ree-cloud-4`, from
+  `dispatch_remote_launch.py`'s `DEFAULT_SSH_HOSTS`) from `ree-cloud-5`: `Permission denied
+  (publickey,password)`. The host key matches a prior connection (known to `known_hosts`), so
+  this is an authorization gap, not a routing/network one at this hop.
+- `scripts/check_metaworker_wrapper_deploy.py --json`, run from `ree-cloud-5`, independently
+  confirms the same: `"machine": "ree-cloud-4", "status": "UNREACHABLE", "detail": "ree@
+  91.99.68.94: Permission denied (publickey,password)."` -- this is the tool's own documented
+  non-finding stance (`UNREACHABLE ... NOT a finding`), included here only as independent
+  confirmation, not as a new discovery.
+- Routed through the hub instead (`ree-cloud-5` -> `ree-cloud-1` -> `ree-cloud-4`, both by public
+  IP `91.99.68.94` and by the hub's own WireGuard peer `10.8.0.14`): same `Permission denied
+  (publickey,password)` in both cases. So the hub's key is not authorized on `ree-cloud-4`
+  either -- this is not a `ree-cloud-5`-specific gap that routing through another box works
+  around.
+- Per `metaworker-repair/SKILL.md`'s framing of the equivalent Mac case: "Both are the user's
+  decisions, not gaps to route around." No `authorized_keys`/WireGuard change was attempted here
+  for the same reason. Raised as a `kind: decision` chip
+  (`chip-20260826-cloud4-hygienetick-ssh-unreachable`) rather than guessed around, per the
+  headless-worker contract.
+- **Once reach exists** (whether via a human running it directly, or a future session with a
+  working route), the remaining work is exactly Section 8's three steps, unchanged: `bash
+  /home/ree/REE_Working/scripts/install_hygienetick_timer_cloud.sh`, then `time
+  /usr/bin/python3 /home/ree/REE_Working/scripts/hygiene_routine_tick.py --push` to check the
+  900s margin holds there too (worktree count and therefore GC-scan cost may differ from
+  `ree-cloud-5`'s), then confirm one real chip or clean tick via `journalctl -u ree-hygienetick`.
