@@ -217,3 +217,99 @@ Session: metaworker-chip-20260821-sd099-diagnostic-purpose-evidence-credit.
 Decision-chip raised for `/governance` ratification of Decision B:
 see `TASK_CHIPS.json` chip-ref cited in the closing WORKSPACE_STATE.md line
 for this session.
+
+---
+
+## GOV-HELDOUT-1 check, 2026-08-26 -- sub-case A of Decision B's fix shape 2
+## is a MEASURED NO-OP. Do not implement it as written.
+
+Run by session `rc-mac-designdecision-heldout-finding` (Mac, DLAPTOP) against
+`claim_evidence.v1.json` + `docs/claims/claims.yaml` as of 2026-08-26T06:40Z,
+before writing any code, per CLAUDE.md General Rules. **The check changed the
+design**, which is the outcome that discipline exists to produce -- recording it
+here so the eventual implementer does not rebuild the dead branch.
+
+### The finding
+
+Fix shape 2's **SD-099-shaped sub-case** proposes: for a `design_decision`
+parent that HAS a `claim_meta` entry reading `genuine_exp_count = 0`, suppress
+`missing_experimental_evidence` / `lit_only_above_cap` / `synthetic_signals_only`
+*if the instantiating child itself carries real, non-superseded experimental
+evidence*.
+
+**On every real instance in the registry, the child carries none, so the
+suppression can never fire.** There are exactly three such parents:
+
+| parent | child | child exp / genuine_exp / lit | suppression fires? |
+|---|---|---|---|
+| SD-099 (motivating case) | MECH-489 | 0 / **0** / 5 | no |
+| SD-091 (**held-out**) | MECH-481 | 0 / **0** / 4 | no |
+| SD-101 (**held-out**) | MECH-503 | 0 / **0** / 4 | no |
+
+SD-091, SD-101, MECH-481 and MECH-503 appear **nowhere** in this document
+(verified by grep: 0 mentions each), so they are genuine held-out cases, not
+the motivating ones re-read. They independently reproduce the pattern, so this
+is structural rather than an SD-099 quirk.
+
+The mechanism is already stated in this doc's own "Correction to EVB-0622"
+section and simply was not carried forward into the fix shape: MECH-489's two
+runs are `scoring_excluded='diagnostic_probe'`, which is exactly what drives
+`genuine_exp_count` to 0. The child is therefore **as evidence-less as the
+parent by the same mechanism**. A parent-suppression rule keyed on child
+evidence is asking a question whose answer is structurally always "no".
+
+Shipping it would add a dead branch to a shared scoring path used by all 1052
+claims -- cost with no behaviour change, and a future reader would reasonably
+assume it was doing something.
+
+### What IS real -- sub-case B, unchanged and worth building
+
+The **SD-032/SD-033-shaped** sub-case survives the check intact. Those parents
+have no `claim_meta` entry at all, hit the `continue` at
+`build_experiment_indexes.py:5939-5940`, and are invisible to the entire
+auto-proposal pipeline -- while their children carry genuine evidence:
+
+| parent | claim_meta | children (exp/genuine/lit) |
+|---|---|---|
+| SD-032 | NONE | SD-032a 1/**1**/20, SD-032b 0/0/14, SD-032c 0/0/3, SD-032d 0/0/4, SD-032e 0/0/4 |
+| SD-033 | NONE | SD-033a 3/**3**/19, SD-033b 0/0/5, SD-033c NONE, SD-033d NONE, SD-033e 0/0/9 |
+| SD-033c | NONE | ARC-035 0/0/13, MECH-133 NONE, MECH-151 0/0/4, MECH-152 1/**1**/2, MECH-235 NONE |
+
+So the recommended scope is **sub-case B only**: stop silently `continue`-ing
+past a `design_decision` parent that has instantiating children; emit a visible
+entry with a dedicated reason (e.g. `validated_via_instantiating_children`)
+carrying the children's aggregate evidence, instead of either silence or a
+spurious `missing_experimental_evidence`.
+
+Implementation note for whoever picks this up: `_load_claim_registry`
+(`build_experiment_indexes.py:3605` on) does **not** currently extract
+`instantiates` -- grep confirms zero references to it in the whole file -- so the
+reverse parent -> children map has to be built from a new field added to that
+hand-rolled line parser. `instantiates` is a **scalar** in claims.yaml (e.g.
+`instantiates: SD-033c    # comment`), not a list, in all 23 occurrences; it
+needs the same `_strip_inline_yaml_comment` treatment the sibling fields get.
+Blast radius of the reverse map is small and auditable: only 9 distinct parents
+are referenced by any `instantiates`, of which 6 are `design_decision`
+(SD-032, SD-033, SD-033c, SD-091, SD-099, SD-101) and 3 are
+`mechanism_hypothesis` with a `claim_meta` entry already (MECH-059, MECH-256,
+MECH-269) and so are untouched by a `claim_meta is None` branch.
+
+### SD-099 still needs fix shape 1, and this check does not weaken that
+
+Dropping sub-case A leaves SD-099/MECH-489 **unfixed** -- that is the honest
+consequence, not an oversight. The only shape that addresses it is fix shape 1
+(the structured `diagnostic_evidence_adjudicated` flag), which needs a
+claims.yaml schema field plus a `/failure-autopsy` SKILL.md change to set it at
+adjudication time, and is a materially larger decision than an indexer-local
+edit. It is deliberately left open here rather than folded in.
+
+### Status
+
+**Not implemented in this session.** `build_experiment_indexes.py` was under an
+active TASK_CLAIMS claim by `metaworker-chip-20260825-indexer-vacuous-pass-or-semantics-gap`
+(opened 2026-08-26T05:45:30Z) for an unrelated vacuous_pass OR-semantics fix;
+`task_claim.py open` arbitrated this session as NOT the owner, so per CLAUDE.md
+"Conflict resolution" the code was left untouched and only this finding was
+recorded. Decision chip
+`chip-20260821-governance-design-decision-evidence-credit-fix` stays open with
+its scope now narrowed to sub-case B.
