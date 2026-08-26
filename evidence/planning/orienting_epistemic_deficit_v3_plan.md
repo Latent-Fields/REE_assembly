@@ -3,7 +3,7 @@ closure_plan:
   id: orienting_epistemic_deficit_v3
   title: "Orienting & Epistemic-Deficit Cluster (V3 closure)"
   registered: 2026-08-13
-  last_updated: 2026-08-23
+  last_updated: 2026-08-25
   scope_claims: [MECH-395, MECH-482, MECH-483, Q-089, MECH-489, SD-099]
   sibling_plans: [drives_motivation_v4, goal_pipeline]
   registered_note: >
