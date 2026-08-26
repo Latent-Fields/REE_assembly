@@ -6,6 +6,45 @@
 `claims.yaml` entry, no queue entry, no substrate change, no promotion. The
 synthesis below is offered for the user to accept, revise or reject.
 
+
+## TL;DR (the four things worth your time)
+
+1. **Your principle is already registered** as MECH-359 ("for proto-affect to
+   carve behaviour it must carry per-candidate range, not merely per-tick
+   magnitude") -- parked as `substrate_conditional`, do-not-build-in-V3. What is
+   NOT registered is your *criterion*: that an object is individuated by **what
+   it is useful for**. MECH-278 currently individuates objects **causally**;
+   MECH-288 carves episodes by **prediction error**; ARC-004 stratifies latents
+   by **timescale**. None of the three is indexed by why it matters. (S1, S3)
+
+2. **Code-verified finding.** REE holds two ranked, revaluable, drive-conditioned
+   multi-item value stores -- `IncentiveTokenBank` (per object) and
+   `GhostGoalBank` (per anchor) -- and **neither delivers a multi-item comparison
+   to the E3 committed selector.** One is collapsed by `most_wanted()`'s argmax
+   into a single z_goal; the other feeds proposal, not scoring. The value index
+   you are asking for **exists today, one layer deep, wired to something other
+   than the selector.** (S2, S2.1)
+
+3. **The pattern I think is the real finding, and the one I am least sure of.**
+   The same move happens three times independently: graded value computed, then
+   delivered categorically -- objects via argmax, episodes via MECH-319's binary
+   write gate, affect via one uniform scalar (measured cross-candidate spread
+   **0.0** across ~3182 ticks). If that reading holds, three months of authority
+   work has been trying to *manufacture* downstream a differentiation that was
+   *discarded at the interface*. That makes it plumbing
+   (`complicated (buildable)`), not tuning. (S2.3 -- with its own post-diction
+   checks and their limits)
+
+4. **One cheap probe would settle a lot**, and needs no new representation: replace
+   the argmax with a soft, wanting-weighted read over the whole bank --
+   "per-candidate value = how close this brings me to each thing I have stored,
+   weighted by how much I want it given my current interoceptive state". ~10
+   lines over tensors that already exist, dimensionally verified, bit-identical
+   when off, does not touch z_goal or MECH-346. DV is *spread*, not behaviour.
+   **A null kills the object framing cheaply.** (S5.1)
+
+Open questions are in S6; nothing is registered or queued.
+
 ---
 
 ## 0. The thought, verbatim
@@ -370,8 +409,7 @@ was *surprising*; intervention-carved objects preserve what *coheres causally*.
 Neither preserves what *matters*, except by the accident that surprising and
 causally-coherent things are often also important.
 
-### 3.1b "Information need" as a drive axis -- the least obvious and possibly
-most consequential part of the thought
+### 3.1b "Information need" as a drive axis
 
 The user lists "information need" alongside hunger and thirst as a **basic
 drive**. That is a stronger claim than "curiosity exists", and it interacts with
