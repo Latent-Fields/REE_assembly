@@ -786,6 +786,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0054",
+      "claim_ids": [
+        "MECH-464"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "PIPELINE DEFECT (general; MECH-464 is the concrete instance). A claim with ZERO evidence entries never enters evidence_backlog.v1.json unless its claim_type is open_question -- the generator's zero-evidence path (build_experiment_indexes.py, reason token no_evidence_for_open_question) is open_question-ONLY. So a newly registered mechanism_hypothesis or architectural_commitment is INVISIBLE to the backlog and therefore to /lit-pull's worklist, which reads that file to pick work. Verified 2026-08-26 by a full derive-only regen: backlog grew 417->430 and the literature channel opened 0->3 items (MECH-492, Q-096, Q-097 -- note BOTH Q-claims qualified via the open_question path), while ALL TEN claims registered 2026-08-26 (ARC-133, ARC-134, MECH-516..523) and BOTH claims registered 2026-07-20 (MECH-464, MECH-465) remain ABSENT from the backlog entirely. MECH-464 is the cost: registered five weeks ago with a written falsifier and literature already on file, never routed, never run. This also refines evidence_backlog_literature_channel_probe_2026-08-25's DRAINED-not-broken verdict -- the code path is live as that probe found, but the population it ranges over structurally excludes every zero-evidence non-Q claim, so 'drained' partly means 'new claims never enter'. Suggested fix for governance to weigh: extend the zero-evidence path beyond open_question, or emit missing_literature_evidence for any registered claim with lit_count==0 regardless of claim_type. Not fixed here -- surfacing only.",
+      "raised_by_session": "insights-7fd98a-regen",
+      "raised_at": "2026-08-26T18:41:29Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
