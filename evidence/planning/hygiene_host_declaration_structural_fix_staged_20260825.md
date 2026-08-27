@@ -1,4 +1,8 @@
-**Status: AWAITING USER REVIEW**
+**Status: DECIDED AND LANDED.** Option 1 (structural fix, Section 4) chosen via
+decision chip `chip-20260825-hygiene-declaration-structural-fix-decision`
+(resolved done 2026-08-26T04:43:35Z). Built and landed `REE_Working`
+origin/master `6866cd6d` (`_ensure_host_declared` + 9 tests). This doc is kept
+as the design record and held-out check, not an open proposal.
 
 # Structural fix for machine-local hygiene prompts missing a host declaration
 
