@@ -5,6 +5,14 @@
 - **Proposal:** EXP-0590 (`claim_id: MECH-465`), status `proposed` -> `blocked_substrate`
 - **Claims touched:** MECH-465 (primary). MECH-463 / SD-011 referenced, not tagged.
 - **ree-v3 substrate at probe time:** `8bfcf19` (post-`2023589`, the ascending-gate fix)
+- **PRIOR ART -- READ THIS FIRST (added same-session, ~20 min after the initial write).**
+  Two earlier MECH-465 spikes exist and were NOT consulted before this note's first version:
+  [`mech465_commit_gate_boundary_spike_2026-07-20.md`](mech465_commit_gate_boundary_spike_2026-07-20.md)
+  (stage 1) and
+  [`mech465_stage2_conditional_gate_probe_2026-07-21.md`](mech465_stage2_conditional_gate_probe_2026-07-21.md)
+  (stage 2). **They reach the same verdict by an independent route, and they supersede this
+  note's original ROUTING.** See section 6a. The DECLINE itself stands and is now doubly
+  supported; what changed is where the release condition points.
 - **Outcome:** NOT queued. The design's own pre-registered non-degeneracy gate (P1 HEADROOM,
   P2 DISPERSION FLOOR) is **empirically unreachable** on the current commit gate, measured on
   3/3 seeds in the very boundary regime the proposal was minted to create.
@@ -138,8 +146,9 @@ and **neither is reachable from the live agent path**:
 | SD-063 `conditional_predictive_variance` (per-input predictive variance from `E2WorldUncertaintyHead`) | `e3_selector.py:2711, 3545-3546` | `select()` kwarg only. **0 occurrences in `agent.py`** -- `_e3_select_kwargs` never sets it, so `use_conditional_precision_gate` silently falls back to the EMA ("byte-identical OFF") |
 | `use_harm_variance_commit` + `harm_bridge` (cross-candidate harm-score variance) | `e3_selector.py:2696, 3528` | both `select()` kwargs only. **0 occurrences in `agent.py`** |
 
-The SD-063 gap is the sharp one and is a **doc-vs-runtime discrepancy of exactly the kind
-`/queue-experiment` Step 2.5a exists to catch**: `substrate_queue.json` carries SD-063 at
+The SD-063 gap is real and is a **doc-vs-runtime discrepancy of exactly the kind
+`/queue-experiment` Step 2.5a exists to catch** -- **but closing it is NOT the fix; see section
+6a, which supersedes the routing this section originally implied**: `substrate_queue.json` carries SD-063 at
 `implementation_status: implemented_validated`, titled *"E2 conditional predictive-uncertainty
 head ... **feeding E3 commitment gating**"*. The **head** is built, instantiated
 (`agent.py:573-612`) and trained online (`_train_e2_world_uncertainty`, `agent.py:4131`),
@@ -174,11 +183,9 @@ These three are what a successor experiment would otherwise have to re-establish
   pre-registered value that provably fails a gate is a design-time proof, not a substrate
   fact. NEVER lower the threshold to resolve it -- that converts a detected artifact into a
   citable result."*
-- **Release condition:** wire a state-dependent gated quantity into `agent.select_action`'s
-  `e3.select()` call -- SD-063's `conditional_predictive_variance` is the natural one and
-  its producer is already built, trained and validated. Route: `/implement-substrate` on the
-  SD-063 consumer half. Once the gate reads a per-input quantity with real within-run
-  dispersion, P1/P2 become reachable and EXP-0590's residual DV becomes meaningful as written.
+- **Release condition: SEE SECTION 6a.** (This note's first version routed here to an
+  `/implement-substrate` build on the SD-063 consumer half. That routing is **withdrawn** --
+  prior stage-2 work already measured that build and found it does not help.)
 - **MECH-465 is SHARPENED, not refuted, by this.** The claim says arousal's commit-gate
   effect "is expressible only near the commit-gate boundary". This probe adds: on the
   current EMA gate that boundary is not merely un-visited but **un-occupiable in graded
@@ -186,11 +193,73 @@ These three are what a successor experiment would otherwise have to re-establish
   substantive finding about the gate, and it is why the route is a substrate build rather
   than another lettered experiment.
 
+## 6a. CORRECTION: the routing, superseded by prior art
+
+Read after the first version of this note was written and committed. **The decline stands; the
+release route changes.**
+
+`mech465_stage2_conditional_gate_probe_2026-07-21.md` (session `strange-payne-281125`,
+ree-v3 `f06067d`) **already hand-wired and trained `E2WorldUncertaintyHead`** and measured the
+SD-063 conditional gate in the deployment condition. Its results:
+
+| gated quantity / driver | dispersion p99/p1 | vs the 1.455x urgency bar |
+|---|---|---|
+| `_running_variance` (EMA), stage-1 spike | 1.024-1.069x | FAILS |
+| `predictive_variance`, uniform-random actions | 1.9896x | *apparently clears -- driver artefact* |
+| `predictive_variance`, **CEM leading-candidate (deployment)** | **1.2473x** | **FAILS** |
+
+Its Routing section states verbatim: **"Do NOT wire SD-063 into `agent.py`. ... the wiring would
+land a gate whose gated quantity disperses 1.2473x against a 1.455x manipulation, i.e. the same
+ceiling effect in a new mechanism. The build is small and correct-looking, and would not help."**
+Its Finding 5 independently records the same unwired-consumer gap section 4 above reports.
+
+**What this session adds that is genuinely new** (the decline is not merely a re-derivation):
+
+1. The **pooled-vs-per-seed error in MECH-465's `what_would_answer`** -- section 2. That text was
+   written 2026-08-26, *after* both spikes, and asserts "REACHABILITY (settled on recorded data,
+   no longer open)" without reconciling two artifacts that say the opposite. That is
+   `GFLAG-0056`.
+2. Measurement at **ree-v3 post-`2023589`**, the ascending-gate fix. Both spikes predate it, so
+   the direction they measured was `threshold * (1 - urgency)`.
+3. The **calibration-instability** finding (section 3, item 4) -- the target moves 35-165% while
+   the band is 2.7-4.5% wide. Neither spike measured this.
+4. The three **confirmed positives** in section 5.
+
+**The binding constraint, per stage 2 and not contradicted by anything here: the UNTRAINED
+AGENT.** Both gated quantities collapse on the states this agent visits -- a frozen random
+z_world encoder plus a near-degenerate CEM policy (action distribution
+`[0.08, 0.00, 0.92, 0.00, 0.00]` over 250 ticks; z_world variance share **0.2%**). Two
+structurally different quantities failing the same bar by different routes **retires "swap the
+gated quantity" as the fix.**
+
+**Corrected route:** `substrate_queue.json` entry **`sd_zworld_warmup_optimizer_group`**
+(`implemented_pending_validation`, priority 1, design doc
+`docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md`; failure record *"0 of 61
+latent_stack tensors changed after P0 warmup"*). It already blocks MECH-457 / INV-088 / Q-002,
+so it is **already owned and was deliberately NOT re-chipped** from this session. Once a trained
+z_world exists, MECH-465 is re-probed cheaply by re-running the stage-2 instrument's offline
+threshold x urgency sweep on both gate paths.
+
+**Ordering claim, preserved from stage 2 and not weakened by this session's measurements:** it is
+*not* asserted that a trained z_world **will** clear the bar -- only that the question is
+unanswerable until it is trained, and that the conditional-gate build cannot substitute for that.
+
+**Chip `chip-20260827-sd063-e3-commit-gate-consumer-wiring` was WITHDRAWN** by this session before
+any human acted on it.
+
+**Process note worth keeping.** The two prior artifacts sit in the same directory as this one and
+are named `mech465_*`; a `ls evidence/planning/ | grep mech465` before starting would have found
+them in seconds. This session found them only at the final landing-verification step, via an
+unrelated `ls-tree` on the paths it had just pushed. Prior-art discovery on the claim id belongs
+at Step 2.4, not at close.
+
 ## 7. Work-graph classification
 
-`complicated (buildable)` -- the SD-063 consumer-half wiring is a named build with no open
-question, so the route is `/implement-substrate`, not an experiment. MECH-465's own falsifier
-remains `complex (probe-gated)` **behind** that build.
+**Corrected per section 6a.** The SD-063 consumer-half wiring *is* `complicated (buildable)` --
+but building it is measured not to help, so it is not the gating node. The gating node is
+`sd_zworld_warmup_optimizer_group`, also `complicated (buildable)` and **already owned**.
+MECH-465's own falsifier remains `complex (probe-gated)` **behind** that build: the stage-2
+instrument re-run is the spike that converts it.
 
 ## 8. Reproduction
 
