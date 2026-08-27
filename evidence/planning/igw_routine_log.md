@@ -2154,3 +2154,4 @@ One line per hourly tick. ASCII only.
 2026-08-27T00:19:55Z workset committed (regen -- 243 items, 23 ready, 0 in flight)
 2026-08-27T00:19:34Z ERROR IGW-20260827-234: TASK_CLAIMS.json stale read, refused to write the protecting claim -- not spawning: TASK_CLAIMS.json is missing 4 entries that HEAD already has, after 3 fresh reads (first: metaworker-repair-cloud4-healer-20260826213640). Refusing to write. Check for HEAD/worktree skew per CLAUDE.md before re-running.
 2026-08-27T00:19:34Z ERROR IGW-20260827-234: worktree removed
+2026-08-27T01:20:25Z skip IGW-20260827-234: no fresh runner heartbeat (experiment-lane item would just sit in queue)
