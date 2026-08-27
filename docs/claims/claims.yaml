@@ -13092,6 +13092,35 @@
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
+  what_would_answer: >
+    SD-003 is superseded (2026-04-18, by MECH-256 + SD-029) and carries no
+    live falsification obligation of its own. Its two-pass counterfactual
+    architecture (causal_sig = E2(a_actual) - E2(a_cf)) was retired because
+    the 2026-04-18 three-pull literature synthesis (14 entries) found the
+    single-pass comparator (Frith 2000, Shergill 2003, Blakemore 1998) to be
+    the biologically-evidenced mechanism, not the two-pass counterfactual.
+    SD-003's own accumulated evidence chain (28 FAILs across V2+V3, EXQ-030b/
+    115/166a/195/353/431/032d) remains historical record and is not
+    re-litigated here.
+
+    THE LIVE FALSIFIER IS SD-029'S (successor, single-pass z_harm_s
+    comparator, MECH-256's concrete instantiation), already digested
+    2026-08-07 (thought-digestion wave 10): C1 (forward_r2 >= 0.9) and C3
+    (event-conditioned residual SNR) repeatedly pass clean across 13+ runs;
+    C2 (Shergill-style partial attenuation for self- vs externally-caused
+    harm) has never once been evaluable because training/eval produces
+    near-single-class hazard-event distributions. SD-029 is
+    epistemic_category: substrate_ceiling (set 2026-08-07), held pending
+    MECH-269/MECH-269b V_s landing and, per self_attribution_plan.md GAP-2,
+    conversion_ceiling_campaign:FULLSTACK specifically. SD-031 carries the
+    analogous falsifier for the parallel z_world instantiation.
+
+    [2026-08-27 thought-digestion]: depends_on still lists SD-005/SD-007/
+    SD-008/MECH-071/SD-011/ARC-033/SD-013 -- fine as historical lineage, but
+    INV-076, MECH-341, and SD-013 (all registered after or spanning the
+    2026-04-18 supersession) still list SD-003 rather than MECH-256/SD-029 in
+    their own depends_on. Governance flag raised to repoint those three
+    edges -- bookkeeping only, no scientific content change.
 - id: SD-004
   title: "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories."
   claim_type: design_decision
@@ -17696,6 +17725,45 @@
     interventional_fraction of each training batch. Location: ree_core/predictors/e2_harm_s.py.
     Backward compatible: disabled by default. Validation: V3-EXQ-320 queued.
 
+  what_would_answer: >
+    [Extracted from this claim's own experimental_test field, reframed as a
+    falsifier.] Discriminative pair, environment/architecture/eval-protocol held
+    fixed, E2_harm_s training varied: INTERVENTIONAL (use_interventional=True, a
+    subset of steps substitute a_cf for a_actual and record the resulting
+    z_harm_s change) vs OBSERVATIONAL (standard rollout only). Primary DV:
+    causal_sig bias in confounded states (elevated ambient-harm correlation with
+    agent proximity, independent of causal contribution). FALSIFYING:
+    INTERVENTIONAL does not produce significantly lower causal_sig error than
+    OBSERVATIONAL in confounded states. CONFIRMING: it does.
+
+    STATUS: already tested and largely confirmed, not merely proposed. EXQ-353
+    (2026-04-15, PASS, all seeds 1.34-1.69x lift on the normalized gap vs
+    shuffled-action baseline) is the clean positive signal; EXQ-431 (2026-04-17)
+    independently distinguishes interventional vs random at C1/C2; the apparent
+    EXQ-330a FAIL (2026-04-14) is diagnosed in this claim's own notes as a
+    threshold-calibration artifact, not a genuine conflict. Net: 3
+    supports/1 diagnosed-artifact-FAIL, exp_conf=0.608, lit_conf=0.837.
+    Implementation confirmed live at ree-v3/ree_core/predictors/e2_harm_s.py.
+
+    WHY STILL PROVISIONAL, NOT STABLE -- AND WHY THAT REASON IS NOW PARTLY
+    STALE: governance held at provisional (2026-04-18) because dependencies
+    SD-003/SD-011/ARC-033 were candidate at the time. SD-011 and ARC-033 are
+    both now status: stable (ARC-033 promoted 2026-08-07 per GFLAG-0001). Only
+    the SD-003 dependency is unresolved -- and it is unresolved because SD-003
+    is superseded, not candidate; its successor SD-029 is
+    candidate/v3_pending/substrate_ceiling. SD-013's own mechanism
+    (interventional-vs-observational training of E2_harm_s) is orthogonal to
+    whether the downstream comparator is single-pass (SD-029) or the retired
+    two-pass (SD-003) -- the interventional-training question is identical
+    either way.
+
+    [2026-08-27 thought-digestion]: recommend governance re-review of the
+    provisional->stable gate against the corrected dependency set (SD-011
+    stable, ARC-033 stable, SD-029 in place of superseded SD-003) -- no new
+    experiment needed. Flag also raised: the experimental_test field's
+    'Prerequisite: EXQ-115 must pass' could not be fully verified from the
+    manifest in this pass (outcome field read ambiguous); verify directly
+    before treating it as resolved either way.
 - id: SD-014
   title: "Hippocampal map nodes must store an explicit 4-component valence vector (wanting, liking, harm-discriminative, surprise) updated incrementally per visit; replay prioritisation is weighted by drive-state-gated valence relevance."
   claim_type: design_decision
@@ -33494,6 +33562,35 @@
 #   ree_failure_mode_analog: optional link to an entry in REE_failure_modes.md
 # ---------------------------------------------------------------------------
 
+  what_would_answer: >
+    Q-042 is answered by the proof obligation already landed at
+    ree-v3/tests/contracts/test_running_variance_contract.py (ree-v3 commit
+    5cff117): R1 (_running_variance moves >1e-6 from precision_init under a
+    StepHarness-conformant update_residue() loop), R2 (_running_variance stays
+    EXACTLY at precision_init when update_residue() is omitted -- locks the
+    original EXQ-514d/530/536 failure mode and forbids a silent parallel update
+    path), R3 (the StepHarness canonical loop keeps rv live).
+
+    The question would be REOPENED / FALSIFIED if a future change introduces a
+    call site that updates _running_variance during action selection without
+    going through update_residue() (violating R2 -- reintroducing the
+    early-update/hoist reading, Option B, that the 2026-05-08 lit-pull
+    rejected), or if a StepHarness-conformant loop is found where rv does not
+    move (violating R1/R3).
+
+    [2026-08-27 thought-digestion]: verified -- the contract test landed and
+    192/192 contracts PASSed at landing; the retest cohort this claim's own
+    text names (EXQ-471a/475a/483c/490g/524a) ran to completion under
+    StepHarness in the 2026-05-29 cohort autopsy (returned non_contributory for
+    an unrelated Tier-1 library-template gap, NOT a precision-callsite
+    failure -- StepHarness itself worked correctly in all five). StepHarness
+    has been the canonical loop pattern across the entire ree-v3 experiment
+    corpus for three-plus months since. This claim's own stated promotion
+    trigger ('Q-042 will move to candidate-resolved once the regression test
+    lands and at least one V3 experiment exercises both StepHarness and the new
+    test... completes successfully') has fired repeatedly. Recommend a status
+    flip from candidate_resolved to fully resolved -- flagged for governance,
+    not applied here (a status promotion is governance's call).
 - id: EXT-001
   title: "Sycophancy: approval-seeking displaces principled goal pursuit."
   claim_type: external_failure_mode
@@ -35786,6 +35883,44 @@
     ~22.6 (correct attribution gap).
   location: docs/architecture/self_attribution_per_stream.md
 
+  what_would_answer: >
+    SD-031 (single-pass z_world comparator: residual_world = z_world_observed -
+    E2_world(z_world_{t-1}, a_actual)) is falsified if, once both
+    non-degeneracy preconditions below are met, the comparator does not
+    discriminate self-caused from externally-caused world events -- residual
+    magnitude for self-caused events is not measurably smaller than for
+    externally-caused ones (the Sommer & Wurtz corollary-discharge / parietal
+    outcome-prediction grounding).
+
+    TWO-PART NON-DEGENERACY PRECONDITION (both required): (1) world_dim >= 128
+    in the validation config (E2WorldForward hard-asserts this) -- ALREADY MET,
+    demonstrated in the 2026-06-06 smoke and the 2026-07-18 V3-EXQ-783 crossing
+    run. (2) ARC-065 behavioural diversity active in the main agent path
+    (balanced agent-caused vs externally-caused world events) -- NOT yet met.
+    This is the same gate blocking SD-029's C2 and MECH-257's C2:
+    self_attribution_plan.md GAP-6 (this claim's dedicated closure node, split
+    out 2026-08-15) is blocked on behavioral_diversity_isolation:GAP-I (MECH-439
+    F-dominance, in-progress) -> conversion_ceiling_campaign:FULLSTACK
+    (assembling, via ARC-107/MECH-448+449, V3-EXQ-689g pending).
+
+    CONFIRMING: once both preconditions hold, residual_world_self <
+    residual_world_external with adequate SNR (matching the 2026-06-06 smoke's
+    direction -- ~2.0 vs ~22.6 -- but under a genuinely diverse event
+    distribution). FALSIFYING: residual magnitude is agency-blind (self/external
+    ratio ~1.0) even once the diversity confound is removed, or world_forward_r2
+    degrades below ~0.9 under the balanced-event regime.
+
+    STANDING PROHIBITION: do not queue the discriminative arm until GAP-6's
+    two-part gate clears.
+
+    [2026-08-27 thought-digestion]: the earlier 'world_dim=32 lacks
+    discriminative granularity' reading (2026-06-06 cluster autopsy) is now
+    REFUTED, not merely retested -- V3-EXQ-783 (2026-07-18) crossed training x
+    dimensionality 2x2 and found training lifts contrast at BOTH dims while
+    dimensionality lifts nothing at either training state. The real fault was an
+    untrained encoder (fixed by SD-070, same day), not dimensionality. See
+    governance flag raised this session.
+  epistemic_category: substrate_ceiling
 - id: MECH-255
   title: "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel."
   claim_type: mechanism_hypothesis
@@ -36083,6 +36218,42 @@
     landing).
   location: docs/architecture/self_attribution_per_stream.md
 
+  what_would_answer: >
+    Falsifiable (already stated in this claim's own functional_restatement,
+    restated here as the operative test): if a single forward-model substrate
+    cannot support both read modes effectively (training for evaluator degrades
+    comparator performance or vice versa), MECH-257 is refuted and the
+    architecture must split into two substrates per stream (E2_x_comparator,
+    E2_x_evaluator), doubling the parameter count. Formalised per the manifest's
+    own criteria: C1 comparator validity (counterfactual_separation > 0.05 in
+    >=2/3 seeds), C2 evaluator validity (pe_harm_surprise_corr > 0.15 in >=2/3
+    seeds).
+
+    NON-DEGENERACY PRECONDITION (not yet met): C2 (Mode 2) requires a
+    training/eval distribution with genuine harm-differentiated trajectory
+    classes to correlate prediction-error against. Both EXQ-452 (2026-04-20, C2
+    not evaluable) and its retest EXQ-452a (2026-05-05, C2 FAIL --
+    pe_harm_surprise_corr 0.182/-0.021 seed 42, seed7 STD/INTERVENTIONAL) were
+    run under the same monostrategy/monomodal-policy substrate gap that blocks
+    SD-029's C2 and SD-031's discriminative arm. self_attribution_plan.md's
+    GAP-3 (this claim's own closure node) is blocked on GAP-1/GAP-2, which are
+    blocked on behavioral_diversity_isolation:GAP-I (MECH-439 F-dominance) ->
+    conversion_ceiling_campaign:FULLSTACK (in-progress, via ARC-107/MECH-448+449,
+    V3-EXQ-689g pending).
+
+    FALSIFYING (once cleared): C2 still fails under a genuinely diverse,
+    F-dominance-corrected candidate/committed-action distribution. CONFIRMING:
+    C2 passes under the corrected substrate -- the same weights that pass C1
+    also produce pe_harm_surprise_corr > 0.15.
+
+    STANDING PROHIBITION: per GAP-3/GAP-1/GAP-2, do not re-queue a MECH-257
+    dual-function ablation before conversion_ceiling_campaign:FULLSTACK lands.
+
+    [2026-08-27 thought-digestion]: EXQ-452a (2026-05-05, two runs) already
+    reproduces this C2-fails pattern -- this claim's own evidence_quality_note
+    predated that retest and should be updated (see governance flag raised this
+    session).
+  epistemic_category: substrate_ceiling
 - id: SD-032
   title: "Cingulate integration substrate: a network-level module with AIC, dACC/aMCC, pMCC, pACC, and PCC analog subdivisions bound by a salience-network coordinator. Primary output: operating-mode variable plus behavioural-adjustment-magnitude signal."
   claim_type: design_decision
@@ -37848,6 +38019,46 @@
     V3-EXQ-456 queued (diagnostic). MECH-094 handled via MECH-261
     gate (no separate hypothesis_tag check).
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+  what_would_answer: >
+    Falsifiable (from this claim's own functional_restatement): if ree-v3's
+    existing E3 sequence-selection machinery reproduces rule-abstracted
+    generalisation, rule-selective persistence across distractor events, and
+    training-dependent rule emergence -- WITHOUT an explicit lateral-PFC-analog
+    substrate -- SD-033a is over-specification and should be retired in favour
+    of the pre-existing E3 machinery.
+
+    ALREADY ANSWERED, split by signature:
+    - Signatures (ii) persistence and (iii) bias-projection into E3: POSITIVELY
+      SHOWN (V3-EXQ-598 C1/C2 PASS, narrow-supports flagged -- single pathway,
+      should not on its own promote).
+    - Signatures (i) stimulus-abstracted representation and (ii)
+      representation-level persistence, decoupled from downstream policy
+      behaviour: POSITIVELY SHOWN cleanly (V3-EXQ-598c, supersedes 598b for this
+      portion, all criteria non-degenerate).
+    - Signature (iv) training-dependent rule emergence: deferred at landing
+      (untrained head; phased-training protocol not wired) -- genuinely
+      untested, not merely blocked.
+
+    REMAINING, BLOCKED test: rule-SELECTIVE (as opposed to generic) persistence
+    -- does the substrate discriminate rule A's held state from rule B's held
+    state, not just 'hold something.' Non-degeneracy precondition:
+    arc_062_rule_apprehension:GAP-B (the upstream rule-creator) must produce a
+    differentiated, non-monomodal rule_state; SD-033a's own substrate cannot
+    manufacture this input. GAP-B remains an open, tracked ceiling (21 confirmed
+    runs as of the 2026-08-10 GOV-CEIL-1 audit, deferred pending an unlanded
+    MECH-269/MECH-269b V_s unblock) -- do not requeue an SD-033a-alone retest
+    before a GAP-B PASS lands.
+
+    CONFIRMING: once GAP-B clears, direct rule_state cosine probes on held-out
+    rule-context pairs (the candidate replacement metric named in the V3-EXQ-598
+    autopsy) discriminate rule identity above a positive-control margin (>=
+    0.15, matching the 598c z_world context-discriminability precedent).
+
+    FALSIFYING: post-GAP-B-PASS, rule_state cosine similarity between held-out
+    rule-context pairs is statistically indistinguishable from same-rule pairs
+    -- the substrate holds something stable but not the rule identity
+    specifically.
+  epistemic_category: substrate_conditional
 - id: SD-033b
   title: "OFC-analog (specific-outcome prediction and task-structure cognitive map): module that represents the state space of the current task and the specific outcomes expected from actions in each state. E2's natural substrate address for harm-predictive rollouts; distinct from scalar value integration (SD-033c)."
   claim_type: design_decision
@@ -38090,6 +38301,39 @@
     readiness floor aligned to the DV-significance floor (bias_range competitive with
     the selection softmax, ~0.05). SD-033b stays candidate; no demotion.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+  what_would_answer: >
+    Architectural-level falsifier (from this claim's own functional_restatement):
+    if E2's harm-prediction behaviour and ree-v3's rule-conditioned outcome-
+    generalisation can be reproduced without distinguishing a state-structure
+    substrate (SD-033b) from a scalar-value substrate (SD-033c), the OFC/vmPFC
+    functional dissociation does not apply at REE's level of description and
+    SD-033b collapses back into SD-033c.
+
+    This is the SAME falsification event as MECH-263's -- MECH-263 is the
+    mechanism hypothesis this architectural claim is built around, and the two
+    collapse or survive together. See MECH-263's what_would_answer for the
+    representation-level and behavioural-conversion-level detail (devaluation
+    sensitivity, task-role discrimination) and its current blocked status; this
+    entry does not restate that.
+
+    What is specific to SD-033b as the module claim (as opposed to MECH-263 as
+    the mechanism claim) is the structural side: SD-033b's substrate is
+    IMPLEMENTED (ree_core/pfc_analogs/ofc_analog.py, landed 2026-04-25,
+    v3_pending flipped false 2026-04-28 on structural-landing PASS), the oracle
+    query path is landed and round-trip-verified (V3-EXQ-485a), and the GAP-8
+    devaluation-head decouple (2026-06-22) resolved the earlier
+    clamp-starvation structural defect. SD-033b's structural existence is not
+    in question -- only whether its distinct-from-SD-033c representational
+    content is behaviourally load-bearing, which is exactly MECH-263's open
+    question.
+
+    Do not queue a fresh isolated OFC-face retest for either claim -- the same
+    re-derive brake (11 fires) applies to both, since they share the same
+    evidence.
+
+    [2026-08-27 thought-digestion]: this claim's evidence_quality_note has the
+    same 2026-06-22 staleness as MECH-263's (see that entry) -- one shared
+    governance flag covers both.
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
   claim_type: design_decision
@@ -38175,6 +38419,29 @@
     as complete.
   consolidation_status: complete    # commitment_closure:GAP-9, 2026-06-09 -- subsumes/instantiates edges closed both directions
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+  what_would_answer: >
+    This is a graph-consolidation node, not an independent mechanism
+    hypothesis -- it registers that the vmPFC-analog's scalar-value-integration
+    function is already fully covered by four pre-existing claims (ARC-035,
+    MECH-151, MECH-152, MECH-235), each of which carries the reciprocal
+    instantiates: SD-033c edge. SD-033c therefore has no experimental falsifier
+    of its own beyond those four claims' own evidence.
+
+    Falsifiable (structural, derivational -- not an experiment): SD-033c's
+    boundary fails if evidence on any of its four subsumed claims shows that
+    what they compute is NOT purely scalar-value integration -- i.e. if one of
+    them is shown to represent specific-outcome identity, task-state structure,
+    or anything SD-033b's dissociation reserves for the OFC-analog. In that case
+    either (a) the offending claim should be re-scoped as an SD-033b
+    instantiator instead, or (b) SD-033c's functional_restatement needs to
+    narrow what it actually asserts is scalar-only.
+
+    Confirming: no action needed -- the four subsumed claims' own evidence
+    continues to be read as scalar-value integration.
+
+    Do not propose an SD-033c-specific experiment. Any evidence bearing on this
+    boundary will arrive via ARC-035/MECH-151/MECH-152/MECH-235's own evidence
+    trails.
 - id: SD-033d
   title: "Premotor/SMA-analog (sequence execution substrate): module that holds candidate action sequences, binds actions to states, and executes committed sequences. Largely implemented inside E3's existing trajectory-selection machinery; registered for claim-graph completeness."
   claim_type: design_decision
@@ -38252,86 +38519,40 @@
     doc records the falsifier (a split into SD-033d-i/ii/iii) for if/when
     evidence shows E3 inadequately covers the premotor distinctions.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
-  epistemic_category: substrate_conditional
   what_would_answer: >
-    TWO DISTINCT THINGS ARE BEING TESTED HERE, and they must not be conflated.
+    This is a graph-completeness registration node, not an independent
+    mechanism hypothesis -- it maps the Tanji & Hoshi 2008 pre-SMA/SMA/
+    dorsal-premotor gradient onto machinery that already exists in ree-v3 (E3's
+    trajectory-proposal/scoring/selection; MECH-090's bistable commitment latch
+    and committed-step stepping; the ARC-028/MECH-105 hippocampal-completion
+    release). No new substrate is proposed, and none is owed. The falsifier is
+    therefore structural, not experimental.
 
-    (i) V3-NARROW GEOMETRIC SLICE (BUILT, 2026-07-09; use_frontopolar_decommit /
-    frontopolar_gain, ree_core/pfc/frontopolar_analog.py compute_counterfactual_value).
-    A parameter-free, SINGLE-TICK goal-proximity advantage of the best unchosen
-    candidate over the committed endpoint (||z_chosen-z_goal|| - ||z_alt-z_goal||),
-    wired only as an entry-relative de-commit PRESSURE on the natural-commit latch
-    (NaturalCommitUrgencyRelease). This is NOT a maintained parallel value channel
-    and is NOT what this claim asserts -- it is a deliberately degenerate stand-in,
-    built to serve a different substrate goal (the MECH-439 F-dominance
-    duration-face de-commit lever), that happens to instantiate MECH-264's switch
-    logic in its simplest possible form.
+    Falsifiable (from this claim's own notes and design doc,
+    docs/architecture/sd_033d_premotor_sma_analog.md): if future experimental
+    evidence shows E3's existing trajectory-selection machinery INADEQUATELY
+    covers the pre-SMA (sequence planning, set-switching) / SMA (sequence
+    execution) / dorsal-premotor (stimulus-action binding) functional
+    distinctions Tanji & Hoshi describe -- e.g. a behavioural signature that
+    requires these three sub-functions to be dissociable and E3 cannot produce
+    the dissociation -- SD-033d should be split into SD-033d-i / SD-033d-ii /
+    SD-033d-iii along those subdivisions, each becoming its own registered
+    claim with its own substrate requirement.
 
-    (ii) V4-FULL SUBSTRATE (UNBUILT). The mechanism this claim actually asserts: a
-    RUNNING, MULTI-STEP counterfactual-value ESTIMATE maintained in parallel with
-    SD-033c's chosen-option value signal (not recomputed fresh each tick), with a
-    switch fired when it exceeds the chosen estimate by a threshold-sensitive
-    margin. Structurally blocked on MECH-163 (hippocampal multi-step trajectory
-    planning, unmet) -- without multi-step plans a counterfactual value is
-    necessarily 1-step and collapses to MECH-257 (dACC immediate-reward
-    comparator), which is a different mechanism entirely.
+    Confirming: no split is warranted while E3's undifferentiated trajectory
+    machinery continues to account for observed sequence-execution behaviour
+    without a demonstrated gap between the three sub-functions.
 
-    NON-DEGENERACY PRECONDITION (must hold before any result is interpretable):
-    - For (i): the isolated-GAP-A substrate must sustain a genuine natural-commit
-      latch to de-commit FROM -- i.e. competent committed foraging must exist at
-      all. V3-EXQ-726 (the slice's own validation script, arms ARM_FP_CONTRAST vs
-      ARM_FP_ON) is written and gate-hygiene-fixed but explicitly HELD, NOT QUEUED:
-      its resume condition is "a substrate that sustains competent committed
-      foraging," which is the SAME substrate gap the MECH-457 competence-floor
-      campaign (V3-EXQ-724 lineage, GOV-FANOUT-1) is diagnosing. That campaign
-      remains open (candidate/v3_pending) as of the latest confirmed evidence
-      (V3-EXQ-821, 2026-07-25). Running 726 before MECH-457 clears would
-      self-route substrate_not_ready_requeue on a precondition already known to
-      be unmet.
-    - For (ii): requires MECH-163 multi-step planning landed, plus a non-degenerate
-      3+-alternative decision task (this claim's own functional_restatement names
-      "simulated three-alternative decision tasks").
+    No experiment is implied by this falsifier at present -- it is a standing
+    structural condition to check against future E3-behavioural evidence, not
+    something to propose a dedicated run for.
 
-    CONFIRMING observation:
-    - (i), once MECH-457 clears and V3-EXQ-726 runs: ARM_FP_ON's median committed-
-      latch occupancy (ncur_last_occupancy_at_release) drops >= 0.40 vs
-      ARM_FP_CONTRAST on >= 2/3 strong-F seeds, WITH frontopolar_release_count > 0
-      on the ON arm (proving the release is attributable to the counterfactual
-      term firing when cfv_now > cfv_at_entry, not to flat-timeout or F noise).
-      This would confirm the geometric switch signal behaves as a genuine
-      counterfactual-value comparator even in its degenerate 1-step form --
-      supportive but NOT sufficient to promote MECH-264 itself, since (i) is
-      explicitly not the claim's mechanism.
-    - (ii), in a V4 implementation: lateral-FPC-analog activity tracks the value
-      of the best UNCHOSEN alternative (dissociable from SD-033c's chosen-option
-      value stream) during simulated three-alternative decision tasks, and
-      individual variation in the counterfactual signal's magnitude predicts
-      switch propensity (per Boorman et al. 2009).
-
-    FALSIFYING observation (this claim's own primary falsifier, verbatim from
-    functional_restatement): if lateral-FPC-analog activity in a V4
-    implementation tracks CHOSEN-option value rather than counterfactual-option
-    value during simulated three-alternative decision tasks, MECH-264 fails at
-    source and SD-033e collapses functionally into SD-033c -- in that case the
-    OFC/vmPFC/FPC value architecture is over-specified at REE's level of
-    description and the frontopolar subdivision should be folded into the
-    vmPFC-analog. A secondary falsifier applies to (i) alone: if V3-EXQ-726 runs
-    post-clearance and ARM_FP_ON shows no attributable occupancy drop
-    (frontopolar_release_count == 0, or the drop is indistinguishable from the
-    flat-urgency contrast), the geometric slice fails to behave as a
-    counterfactual comparator even in its minimal form -- this would NOT itself
-    falsify MECH-264 (the slice is not the claim), but would remove the one
-    piece of experimental purchase currently available on any instantiation of
-    the mechanism.
-
-    Until MECH-457 clears, MECH-264 has zero experimental evidence
-    (genuine_exp_count: 0 in claim_evidence.v1.json; all current evidence
-    entries are literature) and cannot be tested even in its narrow V3 form.
-
-    [2026-08-08 thought-digestion]: implementation_phase was flipped v4->v3 on
-    2026-08-07 as an administrative phase-follows-dependency move (MECH-487 lists
-    MECH-264 as a dependency) -- this is NOT a green light to build; the full
-    mechanism remains unbuilt and blocked as described above.
+    [2026-08-27 thought-digestion, data-integrity correction]: this field
+    previously carried MECH-264's falsifier text in error (a prior digestion
+    pass misfiled it); that text has been moved to MECH-264's own
+    what_would_answer field, and the epistemic_category: substrate_conditional
+    tag (which described MECH-264's blocked status, not SD-033d's) has been
+    removed -- SD-033d has nothing blocking it, it is already complete.
 - id: SD-033e
   title: "Frontopolar-analog (parallel-goal deliberation substrate): V4-scope module maintaining counterfactual-value estimates for alternatives to the current course of action, mediating transitions between external engagement and internally-generated deliberation, enabling disengagement from the current task to explore novel alternatives, and monitoring relative importance across multiple active goals. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4."
   claim_type: design_decision
@@ -39462,6 +39683,56 @@
     485b/485c representation-level supports are unaffected. MECH-263 stays candidate /
     v3_pending.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+  what_would_answer: >
+    Shares its falsification condition with SD-033b (see SD-033b's
+    what_would_answer for the architectural-level statement; this entry is the
+    representation/behaviour-level detail SD-033b points to).
+
+    FALSIFYING (already stated in this claim's own functional_restatement,
+    restated here as the operative test): if SD-033b activity encodes scalar
+    value without discriminating same-value/different-outcome-identity states,
+    or fails the devaluation-sensitivity test, MECH-263 is violated and SD-033b
+    is functionally indistinguishable from SD-033c -- the OFC/vmPFC dissociation
+    does not carry at REE's level of description and the subdivision should
+    collapse.
+
+    CURRENT STATE, split by signature (do not read as a single pass/fail):
+    - Representation-level devaluation signature: POSITIVELY SHOWN, not
+      falsified. V3-EXQ-485h/485m both show the OFC bias range collapses at the
+      devalued state (ratio 0.12, 3/3 seeds in 485h; C1 devaluation shift 3/3 in
+      485m post-GAP-8-decouple) -- the head is genuinely outcome-value-
+      conditioned. This half needs no further test.
+    - Behavioural conversion signature: BLOCKED, not falsified. Five successive
+      autopsies (485g/h/k/l/m) show the OFC bias reaches selection authority
+      range with degraded-to-zero behavioural conversion, traced downstream to
+      the shared F-dominated selector (MECH-439) and, past the FULLSTACK arm
+      (V3-EXQ-714, terminal FAIL 2026-07-07), to the unbuilt MECH-457
+      actor-critic action-learning substrate. Non-degeneracy precondition for
+      any further behavioural-conversion test: MECH-457 must supply a
+      first-class RPE-trained policy object that sustains competent committed
+      foraging above the reference floor. As of 2026-08-08/12 this precondition
+      is UNMET and the competence_floor investigation line attacking it is
+      formally CLOSED with further legs REFUSED -- the closing verdict reframes
+      the deficit as possibly a reward-specification/DV artifact
+      (rate-vs-duration conflation in foraging_competence) rather than a
+      fixable substrate gap, and routes the live thread to a NEW, not-yet-
+      registered qid (approach-drive reward magnitude).
+
+    CONFIRMING: on a future MECH-457-cleared retest, the ON arm shows both
+    signatures simultaneously non-degenerate -- devaluation shift >= 0.05 AND
+    committed-class C2 separation, on the same run, without the FULLSTACK
+    readiness-gate collapse.
+
+    Do not re-queue an isolated OFC valuation-face retest -- the re-derive brake
+    has fired 11 times on this exact request (485n REFUSED, 2026-06-22). Any
+    future test must be the assembled co-armed full-stack arm, gated behind
+    MECH-457.
+
+    [2026-08-27 thought-digestion]: this claim's evidence_quality_note stops at
+    the 2026-06-22 V3-EXQ-485m entry and does not reflect the FULLSTACK terminal
+    FAIL (V3-EXQ-714, 2026-07-07), the 719a convergence, or the MECH-457/
+    competence_floor campaign's 2026-08-08/12 closure -- see governance flag
+    raised this session (shared with SD-033b).
 - id: MECH-264
   title: "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin."
   claim_type: mechanism_hypothesis
@@ -39559,6 +39830,86 @@
     (integrates counterfactual tracking as one of four frontopolar
     functions).
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+  epistemic_category: substrate_conditional
+  what_would_answer: >
+    TWO DISTINCT THINGS ARE BEING TESTED HERE, and they must not be conflated.
+
+    (i) V3-NARROW GEOMETRIC SLICE (BUILT, 2026-07-09; use_frontopolar_decommit /
+    frontopolar_gain, ree_core/pfc/frontopolar_analog.py compute_counterfactual_value).
+    A parameter-free, SINGLE-TICK goal-proximity advantage of the best unchosen
+    candidate over the committed endpoint (||z_chosen-z_goal|| - ||z_alt-z_goal||),
+    wired only as an entry-relative de-commit PRESSURE on the natural-commit latch
+    (NaturalCommitUrgencyRelease). This is NOT a maintained parallel value channel
+    and is NOT what this claim asserts -- it is a deliberately degenerate stand-in,
+    built to serve a different substrate goal (the MECH-439 F-dominance
+    duration-face de-commit lever), that happens to instantiate MECH-264's switch
+    logic in its simplest possible form.
+
+    (ii) V4-FULL SUBSTRATE (UNBUILT). The mechanism this claim actually asserts: a
+    RUNNING, MULTI-STEP counterfactual-value ESTIMATE maintained in parallel with
+    SD-033c's chosen-option value signal (not recomputed fresh each tick), with a
+    switch fired when it exceeds the chosen estimate by a threshold-sensitive
+    margin. Structurally blocked on MECH-163 (hippocampal multi-step trajectory
+    planning, unmet) -- without multi-step plans a counterfactual value is
+    necessarily 1-step and collapses to MECH-257 (dACC immediate-reward
+    comparator), which is a different mechanism entirely.
+
+    NON-DEGENERACY PRECONDITION (must hold before any result is interpretable):
+    - For (i): the isolated-GAP-A substrate must sustain a genuine natural-commit
+      latch to de-commit FROM -- i.e. competent committed foraging must exist at
+      all. V3-EXQ-726 (the slice's own validation script, arms ARM_FP_CONTRAST vs
+      ARM_FP_ON) is written and gate-hygiene-fixed but explicitly HELD, NOT QUEUED:
+      its resume condition is "a substrate that sustains competent committed
+      foraging," which is the SAME substrate gap the MECH-457 competence-floor
+      campaign (V3-EXQ-724 lineage, GOV-FANOUT-1) is diagnosing. That campaign
+      remains open (candidate/v3_pending) as of the latest confirmed evidence
+      (V3-EXQ-821, 2026-07-25). Running 726 before MECH-457 clears would
+      self-route substrate_not_ready_requeue on a precondition already known to
+      be unmet.
+    - For (ii): requires MECH-163 multi-step planning landed, plus a non-degenerate
+      3+-alternative decision task (this claim's own functional_restatement names
+      "simulated three-alternative decision tasks").
+
+    CONFIRMING observation:
+    - (i), once MECH-457 clears and V3-EXQ-726 runs: ARM_FP_ON's median committed-
+      latch occupancy (ncur_last_occupancy_at_release) drops >= 0.40 vs
+      ARM_FP_CONTRAST on >= 2/3 strong-F seeds, WITH frontopolar_release_count > 0
+      on the ON arm (proving the release is attributable to the counterfactual
+      term firing when cfv_now > cfv_at_entry, not to flat-timeout or F noise).
+      This would confirm the geometric switch signal behaves as a genuine
+      counterfactual-value comparator even in its degenerate 1-step form --
+      supportive but NOT sufficient to promote MECH-264 itself, since (i) is
+      explicitly not the claim's mechanism.
+    - (ii), in a V4 implementation: lateral-FPC-analog activity tracks the value
+      of the best UNCHOSEN alternative (dissociable from SD-033c's chosen-option
+      value stream) during simulated three-alternative decision tasks, and
+      individual variation in the counterfactual signal's magnitude predicts
+      switch propensity (per Boorman et al. 2009).
+
+    FALSIFYING observation (this claim's own primary falsifier, verbatim from
+    functional_restatement): if lateral-FPC-analog activity in a V4
+    implementation tracks CHOSEN-option value rather than counterfactual-option
+    value during simulated three-alternative decision tasks, MECH-264 fails at
+    source and SD-033e collapses functionally into SD-033c -- in that case the
+    OFC/vmPFC/FPC value architecture is over-specified at REE's level of
+    description and the frontopolar subdivision should be folded into the
+    vmPFC-analog. A secondary falsifier applies to (i) alone: if V3-EXQ-726 runs
+    post-clearance and ARM_FP_ON shows no attributable occupancy drop
+    (frontopolar_release_count == 0, or the drop is indistinguishable from the
+    flat-urgency contrast), the geometric slice fails to behave as a
+    counterfactual comparator even in its minimal form -- this would NOT itself
+    falsify MECH-264 (the slice is not the claim), but would remove the one
+    piece of experimental purchase currently available on any instantiation of
+    the mechanism.
+
+    Until MECH-457 clears, MECH-264 has zero experimental evidence
+    (genuine_exp_count: 0 in claim_evidence.v1.json; all current evidence
+    entries are literature) and cannot be tested even in its narrow V3 form.
+
+    [2026-08-08 thought-digestion]: implementation_phase was flipped v4->v3 on
+    2026-08-07 as an administrative phase-follows-dependency move (MECH-487 lists
+    MECH-264 as a dependency) -- this is NOT a green light to build; the full
+    mechanism remains unbuilt and blocked as described above.
 - id: MECH-265
   title: "Frontopolar relative-importance monitoring across competing goals: SD-033e maintains a representation of relative importance across a set of active goals (parallel, not pairwise), enabling parallel-goal monitoring and flexible switching. Lesion analogue should reproduce the Mansouri 2015 over-focus + novel-rule-impairment phenotype."
   claim_type: mechanism_hypothesis
@@ -47785,6 +48136,32 @@
     docs/architecture/sd_054_reef_enrichment_substrate.md.
   location: docs/architecture/sd_054_reef_enrichment_substrate.md
 
+  what_would_answer: >
+    SD-054's falsifier is the same test MECH-309 runs, read at the
+    substrate-purpose level rather than the mechanism-diagnostic level: agents
+    trained under SD-054-enabled environments (reef safe zones + food-attracted
+    hazard drift) should produce measurably more diverse behavior distributions
+    (reef-visit fraction in a non-degenerate range, forage events, zone
+    transitions per episode) than agents trained under reef_enabled=False
+    baseline -- the prerequisite for unblocking SD-029 C2/C3 measurement.
+
+    Do not re-derive a separate SD-054 falsifier -- this is MECH-309's
+    ARM_1-vs-ARM_0 test verbatim (see MECH-309's own what_would_answer for the
+    current, post-654h/i/j/851 state of that test and its downstream-of-
+    selection blocker). SD-054 would be falsified at the substrate level only
+    if the reef/forage attractor structure itself failed to produce diversity
+    even under an externally injected discriminative policy -- that leg
+    (V3-EXQ-522, heuristic policy) is independently PASSed and not in question.
+    What remains open is purely the trained-policy conversion leg, which is
+    MECH-309's substrate_ceiling finding, not a fresh SD-054-specific
+    falsifier.
+
+    [2026-08-27 thought-digestion]: this claim's pending_retest_after_substrate
+    note cites V3-EXQ-603h as the survival-leg blocker; that citation is now
+    two experiment-letters stale (603l FAILed 2026-06-10, a redesign successor
+    603o exists) -- the escape-affordance-bridge substrate itself IS built, but
+    the specific behavioral gate has moved on. Governance flag raised
+    separately.
 - id: SD-055
   title: "Differentiable CEM selection approximation -- replaces the non-differentiable argmax / argsort elite-selection step in HippocampalModule.propose_trajectories() with a softmax-weighted candidate mean so that gradient flows from task reward back through candidate selection to SD-016 cue_action_proj. Opt-in via use_differentiable_cem flag (default False; legacy argmax path bit-identical when off). Preserves ARC-007 STRICT value-flat constraint: scoring uses existing residue-terrain evaluation, not a new value head."
   claim_type: design_decision
@@ -48397,6 +48774,42 @@
   ceiling_routing_note: "2026-06-23 substrate-ceiling-lifted triage (verdict: DEFER to in-flight line, no separate retest -- sibling of ARC-062's note, same falsifier evidence). The audit flags SD-056 (E2 world-forward contrastive loss) being implemented, but BOTH lifts that could re-route MECH-309 were ALREADY consumed without converting. (1) SD-056 / E2 contrastive world-forward: exercised in the 543l (gated-policy mode-separation collapsed even under escalated MODE_SEPARATION_FLOOR 0.5 + aux 0.3; confirmed substrate_ceiling, MECH-309 tagged) and 569f/604a line -- 569f had the upstream world-forward divergence REAL and measured (consumed world-summary spread 0.196 > floor; C1 e2.world_forward divergent PASS) yet selected-action entropy bit-identical (0.549141) across PROPOSER / E2WF / MATCHED-NOISE, 0/3 seeds strict-above (C0 contrastive PASS but committed readout washout). (2) modulatory-bias-selection-authority (ARC-065 GAP-A, 569i top_k k=3): consumed by V3-EXQ-654i/654j (arc_062 GAP-B rule-apprehension behavioural falsifiers, 2026-06-22) which ran it live as a matched constant -- all seven C1 readiness/non-vacuity gates met (the minted rule bias REACHES committed action) yet the load-bearing C2 committed-class entropy lift FAILED. Both faces converge on ONE bottleneck: the conversion ceiling is structural and DOWNSTREAM of selection (MECH-439 F-dominance / E3 commit-selection-authority coupling), not a representation-layer or selection-face lever. SD-056's distinct world-forward angle is therefore NOT a fresh non-vacuous retest -- 569f already exercised it at the same committed readout. Re-derive brake FIRED (18th MECH-309 / 19th ARC-062 autopsy; further GAP-B eligibility/commit-T letters refused). The residual conversion ceiling is being decisively tested NOW by V3-EXQ-700b (ARC-108/MECH-450 learned-gating settling C3, claimed ree-cloud-4 2026-06-23T17:58Z), which carries both MECH-309 unblockers (SD-056 path + modulatory-authority/top_k k=3 569i) as matched constants and is pre-registered decisive-or-escalate-to-V4. Action: let the 700b line clear/route MECH-309's pending_retest. REMOVE THIS MARKER to re-route only if 700b PASSes (settling converts) -- then a rule-apprehension retest becomes non-vacuous; if 700b escalates to V4, MECH-309 follows to V4 (with its ARC-063 strong-reading slot). Same downstream-of-selection bottleneck and DEFER reasoning as ARC-062's note above and MECH-294's. Stays substrate_ceiling / pending_retest_after_substrate; PROMOTES NOTHING."
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    [Already present verbatim in this claim's own functional_restatement --
+    restated here as the operative what_would_answer per digestion convention.]
+    A gated-policy architecture (ARC-062 weak-reading instantiation: at least
+    two policy heads with a learned context discriminator, trained alongside
+    the existing E3 on SD-054 substrate) should break the EXQ-433e/f / 523-
+    series monomodal pattern. Specific pre-registered prediction: ARM_1 (gated
+    heads, learned discriminator) reef_visit_fraction in [0.3, 0.7] and
+    zone_transitions_per_ep at least 5x ARM_0 (single-head baseline) under the
+    same training budget; SD-029 C0 trials-sufficient gate PASSes in 3/4 seeds.
+
+    The original falsifier has now been run in successive corrected forms
+    (V3-EXQ-654h/i/j) with all non-degeneracy/readiness gates (C1) eventually
+    cleared, and it did not cleanly falsify or confirm the claim: the
+    load-bearing C2 criterion (paired-by-seed committed-class entropy lift,
+    >=2/3 seeds) failed even once the apprehension-layer machinery was live and
+    non-vacuous. This relocates the decisive test downstream: MECH-309 would be
+    FALSIFIED if, once the MECH-439 F-dominance/selection-authority conversion
+    ceiling is lifted (via the GAP-A gain/contrast amend or the
+    MECH-450/ARC-108 learned-gating-settling route), a gated-policy ARM_1 still
+    fails to produce diverse committed-class behavior relative to ARM_0 on the
+    same SD-054 substrate. It would be SUPPORTED if, under that same
+    post-ceiling-lift condition, ARM_1 clears C2 where ARM_0 does not.
+
+    Absent a ceiling-lift, any further same-substrate retest (a 654-lettered
+    successor) is explicitly refused by this claim's own re-derive-brake logic
+    (fired repeatedly). The correct next action is /implement-substrate on the
+    GAP-A gain/contrast amend or the ARC-108/MECH-450 settling line, not a
+    fresh behavioral falsifier.
+
+    [2026-08-27 thought-digestion]: this claim's own claims.yaml block is
+    current (already reflects the 851 and 906b/c/911 entries). The stale item
+    is arc_062_rule_apprehension_plan.md's GAP-B resume_condition text, which
+    still describes V3-EXQ-654h as QUEUED+PENDING though it completed
+    2026-06-21 -- a plan-doc staleness, not a claims.yaml one. Governance flag
+    raised separately.
 - id: ARC-062
   title: "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063 -- brought forward V4->V3 2026-05-18, this parenthetical is stale as of registration 2026-05-08). Architectural slot, not yet implemented."
   claim_type: architectural_commitment
@@ -49953,6 +50366,34 @@
     not re-registered here). See rule_apprehension_layer.md.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    Freshly derived (no existing Falsifiable clause; built from this claim's
+    own functional_restatement + MECH-338's test shape). Once a caregiver/
+    teacher-agent substrate exists (multi-agent extension to the current
+    single-agent V3 loop) and can write into the live ARC-063 CandidateRule
+    field: MECH-337 would be SUPPORTED if, when a caregiver agent ostensively
+    marks a regularity during exposure structured within the learner's zone-of-
+    proximal-development, the marked regularity is instantiated as a
+    CandidateRule (status=latent) carrying context tags from the scaffolding
+    episode -- and this happens for regularities the learner's own unsupervised
+    exploration does NOT independently discover within a matched budget.
+
+    FALSIFIED if candidate rules populated via the caregiver channel are
+    indistinguishable in content and context-binding from candidates the
+    agent's own bottom-up extraction (ARC-064) would produce anyway on a
+    no-caregiver control -- i.e. the caregiver channel adds no candidate the
+    agent couldn't have generated itself. Non-degeneracy precondition: the
+    no-caregiver control must itself fail to populate the target regularity
+    within the matched budget (otherwise the comparison is vacuous).
+
+    [2026-08-27 thought-digestion]: verified live -- grep for
+    caregiver/teacher_agent/TeacherAgent across ree-v3/ree_core/ returns zero
+    hits; the substrate genuinely does not exist. Two of the three prerequisites
+    this claim's own implementation_prerequisites text names are now discharged
+    (GAP-L lit-pull complete 2026-05-18; the ARC-063 CandidateRule field is now
+    confirmed BUILT, landed 2026-06-04). The sole remaining blocker is the
+    caregiver/teacher-agent multi-agent substrate.
+  epistemic_category: substrate_conditional
 - id: MECH-338
   title: "Cue-driven context-bound rule retrieval (the 'cue pipeline' / 'select' face of the ARC-063 CandidateRule field). Environmental or internal cues are matched against CandidateRule context tags to gate rollout-eligibility: a rule populated in a context becomes available again when that context, or a cue associated with it, recurs (context-dependent / cued recall; Tulving & Thomson encoding-specificity; Godden & Baddeley context-dependent memory). This is the retrieval pay-off of context-bound population (MECH-337) and the access gate that decides which CandidateRules enter hippocampal rollout. Child of ARC-077. Structural slot only; hard-gated on the GAP-L biology lit-pull."
   claim_type: mechanism_hypothesis
@@ -50045,6 +50486,29 @@
     replace it. See rule_apprehension_layer.md.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    MECH-338 cannot be tested independently of MECH-337 -- it operates on
+    candidates MECH-337 populates -- so its falsifier is a conditional
+    extension of MECH-337's test, run second: given a population event that
+    succeeded per MECH-337's own falsifier (a context-tagged CandidateRule
+    written via caregiver scaffolding), present the agent with (i) a cue that
+    overlaps the original scaffolding context tags and (ii) a matched cue that
+    does not. MECH-338 is SUPPORTED if rollout-eligibility (the ARC-063
+    Tolerance-Principle gate) for the context-matched-cue condition rises
+    relative to the mismatched-cue condition on the SAME candidate pool.
+
+    FALSIFIED if rollout-eligibility for that candidate is statistically
+    indistinguishable between matched and mismatched cue conditions -- the
+    context tags written at population time carry no retrieval-relevant
+    information, which would sever the 'in'/'select' coupling this claim's
+    title asserts and would undercut the Tulving & Thomson encoding-specificity
+    grounding in its literature_anchors. Non-degeneracy precondition: the
+    candidate pool must contain >=2 differentiated context-tagged rules so a
+    mismatched cue has something real to fail to retrieve.
+
+    No standalone experiment proposal -- inherently sequenced behind MECH-337's
+    own substrate build (same caregiver-agent gate, verified absent).
+  epistemic_category: substrate_conditional
 - id: ARC-065
   title: "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing."
   claim_type: architectural_commitment
@@ -62213,6 +62677,44 @@
        arguments is the SD-003 claim."
   location: evidence/planning/behavioral_diversity_acceptance_criteria.md
 
+  what_would_answer: >
+    Derivational (structural/logical, not resolved by a single experimental
+    outcome): given P(a|s) monomodal, the CEM elite pool's support collapses to
+    trajectories beginning with a*, so any comparator/evaluator reading of
+    E2/E3 that requires >=2 distinct-harm-profile candidates -- whether the
+    retired SD-003 two-pass counterfactual or its successor family (MECH-256's
+    single-pass comparator, concretely SD-029/SD-031) -- structurally cannot be
+    exercised on a diverse candidate set.
+
+    FALSIFICATION (proof obligation): exhibit a formulation of the CEM/comparator
+    pipeline in which a genuinely monomodal P(a|s) (action_class_entropy == 0
+    verified at the proposal stage, not merely low downstream) nonetheless
+    supplies >=2 trajectory classes with distinct harm profiles to the
+    comparator/evaluator -- e.g. by decoupling candidate generation from the
+    parametric policy's mode. Absent such a counterexample, the invariant holds
+    by construction.
+
+    EMPIRICAL OPERATIONALIZATION (companion, validates rather than falsifies):
+    Rung 4 of behavioral_diversity_acceptance_criteria.md (V3-EXQ-TBD
+    "Rung-4-ethics", never minted/queued) -- extract trajectory classes from CEM
+    candidates at each E3 evaluation, compute harm/goal profiles per class,
+    measure cf_diverse_candidate_rate + ablation_harm_delta with ARC-065 OFF vs
+    ON.
+
+    NON-DEGENERACY STATUS: the doc's own Rung-sequencing requires Rung 3 PASS
+    <- Rung 2 PASS <- MECH-269 V_s substrate behaviourally active (not merely
+    wired). MECH-269 remains candidate/v3_pending (2026-05-29: wired-but-
+    behaviourally-inert). This gate is distinct from the MECH-439 F-dominance
+    ceiling blocking MECH-257/SD-029/SD-031 -- it sits one layer upstream, at
+    hippocampal-proposer anchor selection rather than E3 committed-action
+    selection.
+
+    Two of the four depends_on dependencies (ARC-065, MECH-341) are now fully
+    landed (ARC-065 stable/v3_pending:false; MECH-341 provisional/v3_pending:false,
+    ratified 2026-06-14) -- the candidate-generation-and-preservation half of the
+    empirical precondition is satisfied; only the Rung-sequencing/MECH-269-V_s
+    half remains open.
+  epistemic_category: substrate_conditional
 - id: SD-057
   title: "Object-bound incentive-salience layer: insert a per-object incentive layer between the benefit pulse and z_goal. The legacy goal stream wrote a SINGLE z_goal attractor overwritten on every contact, conflating liking (hedonic impact at consumption) with wanting (incentive salience to a cue/object) and goal-location (where) with goal-object (what); wanting target always equalled liking target, so the L9 wanting!=liking dissociation was structurally inexpressible (514l C6=0.0 on all seeds). SD-057 adds (L2 MECH-344) benefit->object-identity binding on the SD-049 per-type tag, (L3 MECH-345) a per-object slow-decay revaluable incentive token with at-recall drive-specific wanting amplitude = base_value*(1+kappa*per_axis_drive), and (L4 MECH-346) z_goal seeded FROM the most-wanted object's stored embedding rather than the raw last-contacted z_resource. v1 = L2+L3+L4 core; L6 cue-recall (MECH-CUEWANT) + L7 dACC-readout-wiring (MECH-CONSUME) deferred to a phase-2 pass within this SD."
   claim_type: design_decision
