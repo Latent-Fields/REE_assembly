@@ -904,6 +904,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0063",
+      "claim_ids": [
+        "Q-042"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "Q-042's own stated promotion trigger ('move to candidate-resolved once the regression test lands and at least one V3 experiment exercises both StepHarness and the new test... completes successfully') has fired repeatedly since 2026-05-08: the contract test landed (ree-v3/tests/contracts/test_running_variance_contract.py, commit 5cff117), the named retest cohort (EXQ-471a/475a/483c/490g/524a) ran under StepHarness successfully (2026-05-29), and StepHarness has been the canonical loop pattern across the entire experiment corpus since. Status is still candidate_resolved rather than fully resolved. Recommend governance review a status flip -- a promotion decision, not digestion's to make. Surfaced by thought-digestion 2026-08-27 (grouped mode, group C).",
+      "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
+      "raised_at": "2026-08-27T19:28:12Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
