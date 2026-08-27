@@ -22346,6 +22346,44 @@
     [2026-08-16 governance apply | V3-EXQ-436f -> ARC-045 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling
 
     [2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.
+  what_would_answer: >
+    ARC-045 is falsified if disabling the SWS-direction (hippocampus->cortex)
+    offline consolidation pass produces context-attribution structure of the
+    SAME OR BETTER quality than an agent with it enabled, measured as
+    representational-similarity-matrix (RSM) agreement with ground-truth
+    latent-context structure -- i.e. contexts that are behaviourally/causally
+    related should show correspondingly elevated representational similarity,
+    and contexts that are behaviourally distinct should show correspondingly
+    reduced similarity (per the 2026-08-25 GFLAG-0047 governance resolution,
+    which reframes this claim's decisive DV away from pure differentiation/
+    maximal-separation and toward relational appropriateness, per MECH-495).
+    ARC-045 is supported if bidirectional (SWS-then-REM) flow measurably
+    improves that RSM-ground-truth agreement over a waking-only (single-pass
+    online) condition.
+
+    NON-DEGENERACY PRECONDITION: the underlying write-selection substrate must
+    first demonstrate CONTENT-addressed discrimination (writes route to slots
+    correlated with context identity, not merely fill slots via counter-driven
+    rotation or a structural k+1 floor) -- currently unmet.
+
+    Shares this falsification condition with MECH-166 -- do not re-derive
+    independently; the two claims differ only in which variable is
+    manipulated (direction/presence of the hippocampus->cortex pass, vs.
+    temporal separation of formation from filling).
+
+    [2026-08-27 thought-digestion]: this claim's pending_retest_after_substrate
+    scoping ('after-WRITE-PATH-ADDRESSING-BUILD') is stale -- the write-path
+    build has gone through THREE generations since that text was written (bias
+    2026-08-19, refractory 2026-08-19, gumbel_learned 2026-08-26). V3-EXQ-943
+    (2026-08-20/21) found occupancy achieved but explicitly NOT content-
+    addressed ('occupancy without addressing'). A third mechanism
+    (gumbel_learned, ree-v3 636d0e4fb2, 2026-08-26) is built but its own
+    resolution note says content-discrimination is 'NOT yet shown to actually
+    discriminate content'. An open chip (chip-20260827-queueexp-
+    contextmemory-gumbel-learned-validation) is designing its validation right
+    now but proposes a still-differentiation-shaped DV, not yet reflecting
+    GFLAG-0047's relational-topology mandate. Governance flag raised covering
+    this whole chain.
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
   claim_type: mechanism_hypothesis
@@ -22478,6 +22516,34 @@
     [2026-08-16 governance apply | V3-EXQ-436f -> MECH-166 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling
 
     [2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.
+  what_would_answer: >
+    MECH-166 is falsified if slot-formation and slot-filling, co-computed
+    within a single ONLINE pass (no SWS-analog/REM-analog temporal
+    separation), produce attribution-map quality statistically
+    indistinguishable from -- or superior to -- a temporally-separated
+    SWS-then-REM condition, measured on the SAME relational-topology DV as
+    ARC-045 (RSM agreement with ground-truth latent-context structure; see
+    ARC-045 for the full DV specification and the 2026-08-25 GFLAG-0047
+    provenance for why this replaces the earlier whole-bank differentiation
+    framing). MECH-166 is supported if the temporally-separated condition
+    shows measurably better RSM-ground-truth agreement AND better downstream
+    attribution accuracy (e.g. terrain/context classification accuracy
+    conditioned on the formed slots) than the co-computed condition.
+
+    This is the SAME falsification condition and the SAME substrate-readiness
+    gate as ARC-045 -- see there rather than re-deriving; the two claims differ
+    only in the manipulated variable (MECH-166 varies temporal separation of
+    formation/filling; ARC-045 varies presence/direction of the
+    hippocampus->cortex pass itself). Non-degeneracy precondition: identical
+    to ARC-045's (content-addressed write selection must be demonstrated
+    first).
+
+    [2026-08-27 thought-digestion]: identical staleness picture to ARC-045 --
+    same evidence trail (436/436a-f, write-path-addressing lineage), same
+    three fresh developments (V3-EXQ-943 non-adjudicating; gumbel_learned built
+    2026-08-26; GFLAG-0047 DV mandate not yet reflected in the open validation
+    chip). No claim-specific divergence found beyond what ARC-045 already
+    covers. Shared governance flag.
 - id: MECH-167
   title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
   claim_type: mechanism_hypothesis
@@ -35459,6 +35525,40 @@
     testing SD-026 is the higher priority, and SD-027 validation is more
     meaningful once SD-026 provides goal-modulated selection weights.
 
+  what_would_answer: >
+    SD-027 is falsified if, on a competent all-ON substrate, disabling the
+    E1/E2->E3 boundary selection gate (forwarding all active content
+    unfiltered) produces NO degradation in E3 update stability or committed-
+    mode precision -- this would indicate selection-for-broadcast is not a
+    distinct architectural stage and E3 can absorb unfiltered content without a
+    dedicated upstream gate. SD-027 is supported if gate-disabled forwarding
+    measurably degrades E3 stability under high-activity conditions relative
+    to the gated (top-k, k~5) condition. IDENTICAL falsification condition to
+    MECH-254 and to SD-064's Experiment B -- ONE experiment answers all three
+    claims, differing only in which prediction is read off it (E3-internal
+    stability for SD-027/MECH-254; integrative-cognition cliff-vs-graceful for
+    SD-064). V3-minimum operationalization: fixed-k top-k selector over active
+    z_world components, with a hard ablation mode (k->all) for the factorial.
+
+    [2026-08-27 thought-digestion]: global_workspace_jlens_plan.md's GATE-B
+    node's stated blocker is CONFIRMED STALE. As of the plan's last
+    substantive update (2026-07-10), GATE-B was gated on 'observation-encoding
+    competence build (V3-EXQ-732-localized H2_observation_interface_
+    unlearnable)'. That H2 hypothesis was REFUTED the following day --
+    V3-EXQ-738 (failure_autopsy_734-737-conversion-ceiling-competence_2026-07-
+    11) showed a trivial greedy local-view forager clears the competence floor
+    6-48x, ruling out observability as the wall. No observation-encoding build
+    was ever queued (deliberately -- the reserved leg was never minted). The
+    real current blocker is the still-unresolved MECH-457 first-class
+    actor-critic action-learning substrate: two candidate follow-on mechanisms
+    (MECH-475, MECH-476, both registered 2026-07-22 as MECH-457 children) were
+    both WITHDRAWN/retired by their own pre-registered falsifiers (2026-07-29
+    and 2026-08-01 respectively) -- no evidence past 2026-08-01 that a
+    competent all-ON substrate now exists. GATE-B remains correctly gated, but
+    on a different and still-unresolved dependency than what's written down.
+    Governance flag raised recommending the plan doc's blocking_external field
+    be updated to point at the MECH-457/competence-floor lineage.
+  epistemic_category: substrate_conditional
 - id: MECH-254
   title: "At each E3 heartbeat cycle, a top-k selection over active E1/E2 latents determines which content enters E3 deliberation. Selection weights combine precision, z_goal-derived template gain, and noradrenergic bottom-up salience."
   claim_type: mechanism_hypothesis
@@ -35507,6 +35607,34 @@
     factorial ablation -- four cells: {both off, gate only, template
     only, both on} -- to dissect contributions.
 
+  what_would_answer: >
+    MECH-254 is falsified if ablating the top-k selection gate (letting ALL
+    active E1/E2 content through to E3 unfiltered) produces no measurable
+    stability or behavioural degradation relative to the gated condition --
+    this would indicate E3 has sufficient internal selection capacity and the
+    boundary-gate mechanism SD-027 posits is unnecessary. MECH-254 is
+    supported if gate ablation produces pathological rumination, attentional
+    overload, or E3 update instability (precision fluctuations increasing
+    under high-activity conditions in committed mode). Operationalized as the
+    four-cell factorial already specified: {gate off, template off}, {gate
+    only}, {template only}, {both on} -- factorial with SD-026/MECH-251's
+    template channel, since sd026_enabled and sd027_enabled toggle
+    independently.
+
+    This is the IDENTICAL falsification condition as SD-027's own evidence_
+    quality_note falsifier and IS SD-064's Experiment B (the workspace-
+    ablation cliff) read through a different lens -- see SD-027 and SD-064
+    rather than re-deriving. Non-degeneracy precondition: the V3 top-k gate
+    retrofit (use_boundary_access_gate, no-op-default) must exist and be
+    smoke-tested first -- currently unbuilt.
+
+    [2026-08-27 thought-digestion]: verified via direct grep -- zero
+    sd027/use_boundary_access_gate hits anywhere in ree-v3/ree_core. Textbook
+    substrate_conditional case (unbuilt mechanism, not a built-and-exercised
+    one whose signal is absorbed). registered_utc/live_status.as_of both stale
+    relative to the 2026-07-10/11 GOV-FANOUT-1 finding that changed what
+    GATE-B is actually blocked on -- see SD-027 for the full correction.
+  epistemic_category: substrate_conditional
 - id: SD-028
   title: "An attentional template is a first-class precision-space object, compiled from stored-goal content and current context by a vmPFC-dlPFC translator circuit, distinct from both the stored goal itself (content) and the SD-026 write channel (transport)."
   claim_type: design_decision
@@ -51206,6 +51334,36 @@
     placement at the point Q-044 / Q-043 are queued.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    MECH-314 is falsified in the direction of 'the structured-curiosity-bonus
+    mechanism does not exist / is not load-bearing' if, on a substrate where the
+    single-arena F-dominance conversion ceiling has genuinely lifted, a
+    parametric sweep of the MECH-314 weight against the MECH-313 noise-floor
+    weight FAILS to produce a Pareto frontier on behavioural-diversity-vs-task-
+    reward (Q-043's DV), and/or a three-arm sub-flavour ablation (314a-OFF /
+    314b-OFF / 314c-OFF vs. all-on) fails to produce THREE DISTINCT failure
+    signatures once each sub-flavour is genuinely per-candidate.
+
+    Until the shared single-arena ceiling lifts, a null result on ANY such
+    retest is NOT informative about MECH-314 itself (the standing brake-lock
+    finding from the 705b/706b autopsy cluster) -- it only becomes a genuine
+    test once the readiness gates (GAP-A pool divergence, curiosity-bias non-
+    degeneracy, and selection-authority genuinely moving the argmin) are
+    simultaneously met. Cross-references MECH-314a/b/c's own falsifiers rather
+    than re-deriving them; Q-044 is the standing open question this retest
+    resolves.
+
+    [2026-08-27 thought-digestion]: this claim's ceiling_retest_binding_
+    substrate note (2026-07-01) calls the MECH-448/449/ARC-107 substrate
+    'unbuilt' -- it was actually built+validated+promoted (provisional) by
+    2026-06-22, nine days before the note was written. The cross-loop
+    arbitration-REWEIGHTING route specifically (V3-EXQ-709/711/713) was tried
+    and found EXHAUSTED 2026-07-05, routing to MECH-448's fixed selection-face
+    lever as the campaign's route of record. A corrected measurement instrument
+    (GateDVRecorder, ree-v3 c309bc6486, 2026-08-19) has since landed but sits
+    governance_held (2026-08-21). None of this newer activity has produced a
+    lift; disposition unchanged. Governance flag raised separately for the
+    stale binding-substrate note.
 - id: MECH-314a
   title: "novelty_bonus_striatal_analog. A reward bonus that tracks recency-of-encounter; new or rarely-encountered states/actions receive a positive bonus independent of reward prediction error. Biological substrate: ventral striatum response to stimulus novelty (Wittmann et al. 2008 Neuron). Sub-flavour of MECH-314 structured curiosity bonus."
   claim_type: mechanism_hypothesis
@@ -51302,6 +51460,24 @@
     defect that autopsy upheld bears on MECH-314b / MECH-314c / Q-044 only, not on this claim.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    MECH-314a is falsified if a state-novelty-bonus ablation (314a-OFF vs.
+    all-on) does NOT show a distinct failure signature from the 314b-OFF and
+    314c-OFF conditions -- specifically, if 314a-OFF agents do not show a
+    reduced return-rate to rarely-visited states, OR if the effect is
+    indistinguishable in direction/magnitude from what 314b-OFF or 314c-OFF
+    produce (the Q-044 collapse hypothesis).
+
+    Standing evidence (V3-EXQ-590b, reclassified non_contributory 2026-06-12)
+    already shows the AUTHORITY-moves-argmin leg is operative (H_pos moves
+    0.283 across gains) but did not show gain=0 was reliably beaten (best gain
+    1/3 seeds lifted) -- routed to /claim-synthesis as granularity debt
+    ('novelty buys exploration' under-names authority-moves-argmin != signal-
+    is-adaptive) rather than treated as a weakens. A future confirmatory run
+    would need to close that specific gap: does novelty's Goldilocks calibration
+    actually improve on off, not merely move the argmin. Not currently blocking
+    -- this is optional hardening, not a required retest.
+  epistemic_category: standard
 - id: MECH-314b
   title: "uncertainty_driven_curiosity_frontopolar_analog. A reward bonus that tracks epistemic value -- how much the agent would learn from sampling a state or action. Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature). Sub-flavour of MECH-314 structured curiosity bonus. Active-inference framing: bonus equals epistemic value term in expected free energy decomposition (Friston 2010/2015)."
   claim_type: mechanism_hypothesis
@@ -51441,6 +51617,30 @@
     MECH-314a alone.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    MECH-314b is falsified if, on a substrate where 314b's epistemic-value
+    bonus genuinely varies PER-CANDIDATE (not the Phase-1 uniform broadcast
+    scalar, which cannot move an argmax by construction), an ablation (314b-OFF
+    vs. 314b-ON) shows NO reduction in uncertainty-resolution rollouts at
+    familiar-but-uncertain states, and the corrected authority-rescale
+    mechanism (modulatory-bias-selection-authority, implemented) does not move
+    the committed action's class distribution.
+
+    [2026-08-27 thought-digestion]: THIS FALSIFIER HAS ALREADY BEEN RUN.
+    V3-EXQ-949 (2026-08-25, ree-v3/experiments/
+    v3_exq_949_mech314b_authority_rescale_validation.py) PASSED with
+    evidence_direction: supports -- C1 (authority-on moves committed action,
+    threshold 0.02): measured 0.3675, PASS. C2 (effect attributable to
+    authority+genuine-per-candidate-signal jointly, not authority alone):
+    measured 0.3675, PASS. C3 (DV-symmetry negative control, authority alone
+    with no genuine signal): measured 0.0, PASS (correctly non-gating). This is
+    exactly the un-park trigger this claim's own 2026-07-20 ceiling_routing_note
+    names ('per-candidate uncertainty... the Phase-2 treatment MECH-314a
+    already received'). The run has NOT been through /failure-autopsy or
+    governance review -- absent from reviewed_run_ids, absent from
+    pending_review.md. Governance flag raised separately naming V3-EXQ-949;
+    epistemic_category left at substrate_ceiling pending that review rather
+    than flipped unilaterally here.
 - id: MECH-314c
   title: "learning_progress_curiosity_intrinsic_motivation_analog. A reward bonus that tracks the rate-of-improvement of the agent's predictive model (or any internal-state quantity); actions that produce a steepening learning curve receive a positive bonus. Most computationally instantiated in ML literature (Schmidhuber 1991, Pathak et al. 2017); least biologically anchored of the three MECH-314 sub-flavours -- no clean cellular or regional analog. Distinguishes from MECH-314a (recency-based) and MECH-314b (uncertainty-based) by tracking second-order signal (improvement rate) rather than first-order (count or uncertainty)."
   claim_type: mechanism_hypothesis
@@ -51472,7 +51672,7 @@
       as_of: 2026-07-20
       verdict: non_contributory/substrate_ceiling
   last_reviewed: 2026-07-20
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional  # 2026-08-27 thought-digestion: reclassified from substrate_ceiling -- blocker is MECH-482 (unbuilt, DO-NOT-BUILD-IN-V3), not a built-and-exercised mechanism whose signal is absorbed downstream. See this claim's own what_would_answer.
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -51588,6 +51788,28 @@
     MECH-314a alone.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    MECH-314c is falsified if, on a substrate with a genuine per-candidate
+    learning-progress signal (not the Phase-1 global EMA-of-|PE_t - PE_{t-K}|
+    broadcast, which -- per the same structural-vacuity argument as 314b --
+    cannot move an argmax and so cannot be tested by any argmax-derived DV),
+    314c-OFF agents on tasks where model-improvement rate varies with policy do
+    NOT show reduced learning-curve curvature relative to 314c-ON, holding
+    314a+314b constant. Per Pull 1 SYNTHESIS R3's own framing, a negative result
+    here is explicitly a LIVE possibility the registration anticipated
+    ('potentially-discardable-if-314a-plus-314b-suffice') -- falsification would
+    retire it cleanly rather than requiring architectural rework.
+
+    This test CANNOT currently be run: the per-candidate LP source is gated
+    behind MECH-482 (epistemic_deficit accumulator), which carries an explicit
+    DO-NOT-BUILD-IN-V3 directive elsewhere in the registry (confirmed current).
+    Unlike MECH-314b, there is no un-park trigger currently in flight for this
+    claim.
+
+    [2026-08-27 thought-digestion]: reclassified epistemic_category from
+    substrate_ceiling to substrate_conditional (see field above) -- the
+    blocker is an unbuilt (and explicitly not-to-be-built-in-V3) substrate,
+    not a built-and-exercised mechanism whose signal is absorbed downstream.
 - id: Q-043
   title: "How should the relative weights of MECH-313 (stochastic noise floor / LC-NE tonic analog) and MECH-314 (structured curiosity bonus / frontopolar curiosity) be calibrated for V3 substrates? Falsifiable with parametric sweep on SD-054 reef substrate plus ARC-062 gated-policy."
   claim_type: open_question
@@ -52447,6 +52669,25 @@
     set. Substrate-design EXQ deferred.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a substrate with hidden cross-episode statistical structure (e.g., a
+    transition matrix that varies between two rule regimes), MECH-316-ON
+    agents should learn a representation whose state-occupancy predictions
+    diverge between the two regimes; MECH-316-OFF agents (or successor-
+    representation-ablated) should fail to capture the divergence and behave
+    monomodally across both regimes.
+
+    NON-DEGENERACY PRECONDITION: no successor-representation or cross-episode-
+    statistics substrate exists in ree-v3 (verified by direct grep of
+    ree_core/; only incidental string matches found, none implementing the
+    mechanism). The multi-rule-context substrate this falsifier needs (>=2
+    distinguishable transition regimes) does not exist and is the same gap
+    MECH-318's absorption check and the substrate_queue MECH-316 entry both
+    name. GAP-I-absorption's 2026-08-18 governance correction (D-002
+    adjudication) already established this is live V3 work incorrectly
+    excluded from the denominator as deferred -- that status-label fix has
+    landed but no substrate work followed from it.
+  epistemic_category: substrate_conditional
 - id: MECH-317
   title: "behavioural_pattern_compression (option_formation_striatal_chunking_analog). A mechanism for compressing repeated behavioural patterns into reusable options / action-chunks, producing a representation that supports temporally-extended action selection. Biological substrate: dorsolateral striatum sequence consolidation (Smith & Graybiel 2013/2016; Martiros & Graybiel 2018). Computational analog: options framework / option-critic (Bacon, Harb & Precup 2017). Sub-claim of ARC-064 bottom-up rule discovery."
   claim_type: mechanism_hypothesis
@@ -52524,6 +52765,46 @@
     chunk boundary detection); EXQ design deferred.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    PROPOSED MERGE (requires /claim-synthesis confirmation, NOT applied here):
+    MECH-317 (behavioural_pattern_compression, option_formation_striatal_
+    chunking_analog) is a strong duplicate/absorption candidate against the
+    already-built ARC-071 / MECH-323 (ChunkAccumulator) / MECH-324
+    (ChunkLibrary) cluster -- same trigger design (repetition-count +
+    outcome-consistency), same lit anchors (Smith & Graybiel 2013/2016 DLS
+    sequence consolidation), same options-framework formalism (Sutton, Precup
+    & Singh 1999, initiation-set + termination-condition), same registration
+    date (2026-05-10), and the survivor already has landed substrate + a
+    confirmed run (V3-EXQ-810a, 2026-07-30, 'chunk-accumulator readiness
+    confirmed') that MECH-317 entirely lacks.
+
+    Proposed survivor: ARC-071/MECH-323/MECH-324. Proposed absorbed: MECH-317.
+    Reverse-deps needing repointing if confirmed: MECH-312b (depends_on:
+    MECH-317), MECH-318 (depends_on: MECH-316, MECH-317),
+    arc_062_rule_apprehension_plan.md's GAP-I-absorption node (unblocks_claims:
+    [MECH-316, MECH-317]), and mech_318_absorption_check.md's 'sibling unbuilt
+    substrates' list, itself now stale on this point since it predates ARC-071's
+    substrate landing.
+
+    NOT CONFIRMED: whether ARC-071's chunk output is or should be wired into
+    MECH-318's rule-state-abstraction consumer specifically -- the two claims
+    sit under different parent architectural commitments (MECH-317 under
+    ARC-064 bottom-up rule discovery, feeding MECH-318; ARC-071 under ARC-069
+    dynamic regranularisation, feeding ARC-062's rollout pool) and this may be
+    the same underlying mechanism wired to two different registered consumers
+    rather than a byte-for-byte duplicate claim. This is the concrete question
+    a claim-synthesis pass needs to resolve before this moves from proposed to
+    applied.
+
+    IF THE MERGE IS NOT CONFIRMED, fall back to (c) substrate-blocked /
+    substrate_conditional with this claim's own already-specified falsifier
+    (reuse verbatim, do not redraft): a substrate with repeated behavioural
+    sequences should show chunk boundaries detectable in action-distribution
+    entropy troughs under MECH-317-ON, absent under OFF.
+
+    [2026-08-27 thought-digestion]: governance flag raised separately naming
+    both sides and the reverse-deps, routed to /claim-synthesis.
+  digestion_note: "[2026-08-27 thought-digestion, session responsibility-epistemic-hygiene-d6f9d3] MERGE PROPOSAL PENDING /claim-synthesis confirmation against ARC-071/MECH-323/MECH-324 -- see what_would_answer for full detail and GFLAG (raised same session). Remove this note once claim-synthesis resolves the merge question."
 - id: MECH-318
   title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md."
   claim_type: mechanism_hypothesis
@@ -52661,6 +52942,40 @@
     (MECH-316/MECH-317 absorption checks remain separately scoped).
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a multi-rule-context substrate (e.g. SD-054 extended with two reef
+    configurations requiring different foraging strategies -- still unbuilt),
+    MECH-318-ON agents should show within-episode adaptation timing at
+    rule-switch points (faster adjustment to new rule-context); MECH-318-OFF
+    (or recurrent-state-ablated) agents should adapt only at the slow-learning
+    (across-episode) timescale.
+
+    CONFIRMING signature: if, once GAP-B (rule_state differentiation -- landed
+    2026-06-04) and ARC-062 Phase 3 GAP-C (wiring closure between the
+    discriminator and the rule_state buffer -- status open, blocked on Phase 2
+    GAP-B PASS) are both closed, the SD-033a + ARC-062 cluster produces the
+    within-episode rule-state-adaptation signature on the multi-rule-context
+    substrate, MECH-318 retires as superseded by SD-033a + ARC-062 (cluster).
+
+    FALSIFYING/PROMOTING signature: if that same cluster, tested on the
+    multi-rule-context substrate once it exists, fails to produce the
+    within-episode adaptation signature, MECH-318 promotes candidate -> active
+    and motivates a dedicated substrate landing (the W2 multi-task-training gap
+    and, likely as V4 scope, the W5 cross-episode-continuity gap).
+
+    NON-DEGENERACY PRECONDITION (verified current): the multi-rule-context
+    substrate this test needs still does not exist. This claim's own resume
+    path (ARC-062 Phase 2 GAP-B PASS + Phase 3 GAP-C closure) has NOT
+    advanced: GAP-B's plan-doc row is stale (already flagged by wave 1's
+    MECH-309 digestion) and Phase 3 GAP-C remains open, gated on a Phase 2
+    GAP-B PASS that has not been recorded.
+
+    [2026-08-27 thought-digestion]: falsifier extracted almost entirely from
+    docs/architecture/mech_318_absorption_check.md (2026-05-10, verdict B
+    'partially absorbed'), which already did most of the digestion work here.
+    Note: depends_on: [MECH-316, MECH-317] may need one edge re-pointed
+    pending the MECH-317/ARC-071 merge review (see MECH-317).
+  epistemic_category: substrate_conditional
 - id: MECH-312
   title: "rule_arbitration_multi_variable_multi_channel_dynamic_within_session. Parent claim for the multi-variable, multi-channel, dynamic-within-session arbitration that selects between competing rules / policy modes / action sources at the policy layer. Arbitration is governed by at least four distinct sub-mechanisms (MECH-312a/b/c/d), each falsifiable independently, with a candidate fifth (controllability/agency) deferred pending V3 substrate availability. Recommended combination rule: multiplicative gate (per-channel softmax of reliability * cost * agency * V_s * practice_maturity products) per Pull 3 R4 verdict; falsified against additive-logit baseline in V3-EXQ-543b/c. Reframed 2026-05-10 from earlier dual-channel-arbitration sketch following Pull 3 SYNTHESIS R5 SUB-MECH SPLIT recommendation (conf 0.78)."
   claim_type: mechanism_hypothesis
@@ -52905,6 +53220,36 @@
     promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a substrate where one candidate rule has high reliability (low recent
+    exception rate) and another has low reliability (recently failed),
+    arbitration weight should track reliability monotonically: MECH-312a-ON
+    agents show an arbitration-weight ratio matching the reliability ratio;
+    MECH-312a-OFF (uniform weighting) agents show flat arbitration regardless
+    of reliability.
+
+    NON-DEGENERACY PRECONDITION (verified current, correcting this claim's own
+    stale note): ARC-063's CandidateRuleField substrate landed 2026-06-04
+    (ree-v3/ree_core/policy/candidate_rule_field.py), so the 'no rule-creator
+    substrate exists' blocker this claim cites is resolved. But the landed
+    substrate carries only ONE scalar per rule (availability, an EMA of
+    'support net of exceptions') -- it does not separate a Bayesian-style
+    uncertainty/reliability estimate from MECH-312b's practice-maturity signal.
+    Until a second, independent channel is added to CandidateRule, MECH-312a
+    and MECH-312b cannot be discriminated from each other even if arbitration
+    weight is shown to track something. This is a sharper, corrected non-
+    degeneracy gate than the stale 'ARC-063 not built' framing; disposition
+    unchanged for a corrected reason.
+
+    FALSIFYING signature (once the channel exists and the shared GAP-B
+    downstream conversion ceiling clears): a discriminating test that shows
+    arbitration weight is invariant to reliability, or tracks it non-
+    monotonically, falsifies the claim.
+
+    [2026-08-27 thought-digestion]: the migrated evidence_quality_note calling
+    ARC-063 'not yet built' (set 2026-06-07 IGW-046) has been factually wrong
+    since it was written -- ARC-063 v1 landed 2026-06-04, three days earlier.
+    Governance flag raised separately covering all four MECH-312a-d entries.
 - id: MECH-312b
   title: "practice_maturity_weighting (Smith_Graybiel_habit_takeover_analog). Arbitration weight tracks practice-maturity / habit-strength of each candidate rule or policy mode; well-practiced behaviour receives higher arbitration weight via a habit-takeover dynamic. Biological substrate: dorsolateral striatum habit consolidation (Smith & Graybiel 2013/2016); successor-representation maturation (Stachenfeld et al. 2017). LOW-MEDIUM divergence; partial mapping (the maturity dimension is well-anchored; the integration into a multi-channel arbitration layer is more REE-specific). Sub-claim of MECH-312."
   claim_type: mechanism_hypothesis
@@ -52964,6 +53309,31 @@
     promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a substrate where one candidate rule has high practice (many prior
+    successful deployments) and another has low practice (recently
+    introduced), arbitration weight under MECH-312b should track practice-
+    count monotonically; deviations indicate other factors (uncertainty,
+    affect, V_s) dominating.
+
+    NON-DEGENERACY PRECONDITION: as with MECH-312a, ARC-063's rule-creator
+    substrate has landed (correcting the stale note), but
+    CandidateRuleField.availability conflates reliability and maturity into one
+    scalar. The natural fix for MECH-312b specifically is to source the
+    maturity signal from ARC-071/MECH-323's chunk-crystallisation count (a
+    genuinely repetition-driven accumulator, independent of outcome-success
+    framing) rather than from CandidateRuleField.availability -- this would
+    also resolve the depends_on edge to MECH-317, pending the MECH-317/ARC-071
+    merge review (see MECH-317).
+
+    FALSIFYING signature (post-GAP-B, post-channel-separation): arbitration
+    weight invariant to practice-count, or tracking it non-monotonically, on a
+    substrate where practice and reliability are experimentally decoupled.
+
+    [2026-08-27 thought-digestion]: same stale ARC-063 note as MECH-312a.
+    depends_on: MECH-317 should be reviewed pending the merge proposal --
+    if confirmed, this edge needs repointing to ARC-071/MECH-323/324, not
+    silent inheritance of a retired claim's id.
 - id: MECH-312c
   title: "affective_stream_modulation_of_arbitration_REE_novel. Arbitration weight is modulated by affective stream load: when the SD-010 / SD-011 affective stream produces high load (high salience harm or affect), the arbitration layer routes more weight to rules associated with affect-laden context, suppressing arbitration weight on neutral-context rules. The REE-novel claim is the FUNCTIONAL CONSEQUENCE: dual-stream architecture (SD-010/SD-011) is well-anchored in Murray-Rudebeck 2018 and Pessoa-Adolphs 2010, but the modulation of rule-arbitration weights by affective-stream load is REE-specific (MEDIUM-HIGH divergence). Sub-claim of MECH-312."
   claim_type: mechanism_hypothesis
@@ -53049,6 +53419,30 @@
     promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a substrate where affective load varies (SD-054 extended with
+    affect-cue conditions), arbitration weight should show interaction effects
+    with affect load: rules previously deployed under high-affect conditions
+    should receive higher weight when affect re-elevates. MECH-312c-OFF agents
+    should show flat arbitration across affect conditions.
+
+    NON-DEGENERACY PRECONDITION (verified current): the dual-stream structural
+    substrate (SD-010/SD-011) is landed and stable -- this part is NOT
+    blocking. Two things are: (1) SD-054 has no affect-variable condition yet;
+    (2) CandidateRuleField carries no affect-weighted channel or context-tag-
+    by-affect distinction -- context_tag is a generic cosine-matched cue vector
+    with no explicit affect dimension. Both must be built before this claim is
+    testable, in addition to the shared GAP-B rule_state-differentiation
+    precondition (met) and the downstream conversion-ceiling clearance
+    (unmet).
+
+    Clinical corollary (mood-congruent decision-bias prediction) flagged for
+    V4/clinical-substrate work, not currently V3-testable even once the above
+    lands.
+
+    [2026-08-27 thought-digestion]: same stale ARC-063 note as MECH-312a/b. No
+    other staleness found -- the 'EXQ design deferred' framing is still
+    accurate.
 - id: MECH-312d
   title: "V_s_freshness_modulation_per_region_REE_novel. Arbitration weight is modulated per-region by V_s freshness (the per-region staleness scalar from MECH-269 / MECH-284 / MECH-287); rules associated with stale regions receive lower arbitration trust, regardless of their reliability or practice. HIGH divergence (REE-novel per-region scope + rule-trust function): Behrens 2007 ACC volatility and Bouton 2004 contextual renewal are nearest cousins, but per-region continuous scalar + arbitration-trust routing are REE-specific. Sub-claim of MECH-312."
   claim_type: mechanism_hypothesis
@@ -53135,6 +53529,32 @@
     promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
+  what_would_answer: >
+    On a substrate with region-specific staleness induction (SD-054 extended
+    with reef-config rotation that ages V_s on previously-active reef regions),
+    arbitration weight on rules previously deployed in those regions should
+    drop monotonically with V_s freshness. MECH-312d-OFF agents should show
+    invariant arbitration weight despite V_s drift.
+
+    NON-DEGENERACY PRECONDITION (verified current, materially UPDATED from this
+    claim's own note): MECH-269/284/287 are further along than the evidence_
+    quality_note suggests -- MECH-284 and MECH-287 were promoted to provisional
+    on 2026-07-14 (after this claim's as_of: 2026-07-11 live_status stamp), so
+    the upstream V_s-freshness substrate is now more mature, not still purely
+    candidate. What remains missing: (1) any consumption path routing a
+    per-region freshness scalar into CandidateRuleField arbitration weight (no
+    such wiring found in candidate_rule_field.py), and (2) the region-
+    staleness-induction substrate itself (multi-reef-configuration rotation),
+    still absent.
+
+    FALSIFYING signature (post-substrate, post-conversion-ceiling-clearance):
+    arbitration weight on stale-region-derived rules matches fresh-region rules
+    despite measured V_s divergence.
+
+    [2026-08-27 thought-digestion]: same stale ARC-063 note as the rest of the
+    family; PLUS a positive update the claim doesn't yet reflect -- MECH-284/
+    287's 2026-07-14 promotion to provisional, the strongest upstream-readiness
+    improvement found anywhere in this group.
 - id: MECH-319
   title: "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level."
   claim_type: mechanism_hypothesis
@@ -55463,6 +55883,30 @@
         instantaneously.
   location: docs/architecture/non_deficit_action_drives.md
 
+  what_would_answer: >
+    MECH-320 is falsified if, on a substrate where the tonic-vigor score-bias
+    has genuine bounded authority at E3 committed selection (modulatory-bias-
+    selection-authority -- confirmed IMPLEMENTED), a discriminative-pair
+    experiment in the well-fed-safe-familiar regime (full energy, no z_goal
+    active, familiar environment, no harm signal) shows NO monotonic rise in
+    action density with v_t when MECH-320 is ON relative to the ARM_0 baseline
+    (MECH-313 ON, MECH-320 OFF, predicted behaviourally inert at the noise
+    floor only). The pre-registered discriminative design (ARM_0 baseline /
+    ARM_1 additive / ARM_2 multiplicative) additionally falsifies the ADDITIVE-
+    as-primary sub-hypothesis if the action-vs-no-op gap does NOT scale
+    linearly with v_t independent of pre-existing action preference -- linear
+    scaling under weak preference but differential scaling under strong
+    preference would instead support the multiplicative secondary form.
+
+    [2026-08-27 thought-digestion]: this retest has NOT yet been run on the
+    authority-implemented substrate. No manifest tags MECH-320 after V3-EXQ-624c
+    (2026-06-07) -- no retest has occurred since the authority substrate landed
+    (2026-06-03) despite ~12 weeks of availability. The 3-arm discriminative
+    pair is already fully specified (ARM_0/ARM_1/ARM_2) and ready to queue with
+    use_modulatory_selection_authority=True -- the single most concretely
+    ready-to-queue item across this wave. Chip spawned separately for
+    /queue-experiment.
+  epistemic_category: substrate_ceiling
 - id: MECH-321
   implementation_note: >-
     SUBSTRATE BUILT 2026-07-24 in ree-v3, default OFF and bit-identical when OFF.
@@ -67397,6 +67841,36 @@
     diagnostic (and, later, the ablation cliff) scores. PROMOTES NOTHING.
   location: evidence/planning/global_workspace_jlens_plan.md
 
+  what_would_answer: >
+    FALSIFIER (unchanged from this claim's own text, reproduced per the
+    extract-don't-invent convention): the workspace-ablation CLIFF. If SD-064
+    is right, ablating the selection-for-broadcast channel should collapse
+    integrative/multi-step/committed-action cognition toward zero while leaving
+    reactive automatic behaviour intact -- a CLIFF, not graceful degradation
+    (the pluralist/no-single-workspace reading predicts graceful degradation
+    via redundant distributed pathways). IDENTICAL experiment to SD-027's and
+    MECH-254's falsifiers -- the SAME gate-ablation four-cell factorial, read
+    for a cliff-vs-graceful profile on an integrative-cognition DV rather than
+    an E3-stability DV. Substrate-blocked: the SD-027 boundary gate is not
+    implemented in V3 (confirmed by direct code search).
+
+    [2026-08-27 thought-digestion]: CORRECTED blocking chain (see SD-027) --
+    the plan's own text ties this to an observation-encoding competence build
+    (V3-EXQ-732) that was refuted 2026-07-11 and never built; the actual
+    current prerequisite is the still-unresolved MECH-457 action-learning
+    competence-floor campaign (two candidate sub-mechanisms falsified as of
+    2026-08-01) reaching a competent all-ON substrate, after which the GATE-B
+    retrofit becomes buildable and Experiment B becomes runnable.
+
+    Note: REE's own internal J-lens analogue (Experiment A, V3-EXQ-723/723a)
+    RAN and is confounded/unresolved, not positive -- 723a (2026-07-10)
+    returned no_compact_workspace_diffuse, confounded by the same competence
+    floor (an all-ON substrate foraging below floor makes a compact J-space
+    and an impoverished near-monostrategy policy indistinguishable from this
+    instrument). Already correctly reflected in the plan doc's own
+    reconcile_2026_07_10 note -- not stale, just confirming compact-vs-diffuse
+    remains genuinely UNRESOLVED.
+  epistemic_category: substrate_conditional
 - id: SD-065
   title: "Conditioned-safety cue channel: env-level controllable, observable Pavlovian safety CS added to CausalGridWorld -- an ambient (uniform-when-active) 25-dim field view emitted into world_state (feeds the z_world encoder the SD-051 ConditionedSafetyStore keys on). Can be paired with the MECH-302 relief-completion window during teaching (the store still writes its prototype ONLY on the real event_fired tick -- the pairing is real, not synthesized) and presented CONCURRENTLY with a threat cue at test. Closes the 'no controllable safety cue' substrate gap that forced V3-EXQ-759 to synthesize the Pavlovian pairing off-substrate, making MECH-304's promote-to-active classical-conditioned-inhibition behavioural falsifier runnable. Adds no entity type (NUM_ENTITY_TYPES stays 7); pure environment substrate; no trainable parameters; no MECH-094 interaction at the env level."
   claim_type: design_decision
