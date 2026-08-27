@@ -228,9 +228,9 @@ closure_plan:
         actually elapsed cleanly.
     - id: PHASE-2
       title: "Claim-authority cutover: task_claim.py/chip_ledger.py call the coordinator; git becomes state-change materialization"
-      status: not-started
+      status: in-progress
       severity: high
-      last_updated: 2026-08-26
+      last_updated: 2026-08-27
       note: >
         Mirrors ree-v3's SYNC_MODE=coordinator (claim cutover): the DB becomes
         the claim/chip authority; git remains the transport/audit trail, one
@@ -240,6 +240,18 @@ closure_plan:
         against reintroducing that). The existing git-mutate-and-commit path
         in task_claim.py/chip_ledger.py becomes the FALLBACK mode for when the
         coordinator/mesh is unreachable, not the default.
+
+        BUILD STARTED 2026-08-27 (user go-ahead, decoupled from the soak):
+        the soak (PHASE-1's remaining exit criterion) only validates the
+        shadow mirror before anything DEPENDS on it -- it says nothing about
+        whether the cutover code is ready. So implementation work starts now,
+        in parallel with the soak's remaining ~1 day, gated behind a
+        default-OFF flag so today's git-only behavior is completely
+        unchanged until an explicit separate go-live decision flips it. The
+        ACTUAL CUTOVER (flipping the default so task_claim.py/chip_ledger.py
+        call the coordinator first) still waits on: (a) soak evidence (N
+        days of GET /task_claim/drift showing diverged_ticks=0), and (b) a
+        separate go-live confirmation. Building/testing does not.
     - id: PHASE-3
       title: "Harden: monitoring, CLAUDE.md rewrite to reflect the new default, decommission what is safe to decommission"
       status: not-started
