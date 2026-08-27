@@ -1,6 +1,6 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
-Claims registered: none yet -- 2 STAGED, registration deferred behind a concurrent claims.yaml claim (see intake section 6)
+Claims registered: GOV-CAPCONTRACT-1, ARC-135
 
 <!--
 STAGE 1 RAW CAPTURE. Imported verbatim 2026-08-27T19:25Z from

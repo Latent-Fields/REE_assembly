@@ -3,7 +3,7 @@
 **Date:** 2026-08-27
 **Raw thought:** `docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md` (1253 lines, imported verbatim from an external Dropbox capture)
 **Session:** `thought-ingest-devintegration-20260827`
-**Stage:** 2 (structured intake). Registration into `claims.yaml` is **STAGED, NOT APPLIED** -- see section 6.
+**Stage:** 2 (structured intake). **REGISTERED:** GOV-CAPCONTRACT-1, ARC-135 (REE_assembly `cbac6ceea6`) -- see section 6.
 
 ---
 
@@ -150,23 +150,31 @@ section 20.
 
 ---
 
-## 6. Candidate claims -- STAGED, registration DEFERRED (concurrency block)
+## 6. Candidate claims -- REGISTERED this pass
 
-**Why this section says STAGED rather than REGISTERED.** `/thought-ingestion` Step 6 is a standing
-correction against leaving new ideas as prose out of caution. This is **not** caution. At
-2026-08-27T19:25Z `task_claim.py open` **refused with exit 3**: session
+**Registration history -- a 61-second concurrency block, recorded because the sequencing matters.**
+At 2026-08-27T19:25Z `task_claim.py open` **refused with exit 3**: session
 `responsibility-epistemic-hygiene-d6f9d3` (opened 19:00:29Z, `thought-digestion v3-closure
-(grouped)`) holds an active claim on `REE_assembly/docs/claims/claims.yaml`,
-`docs/assets/data/claims.json` and `WORKSPACE_STATE.md`, and is writing `what_would_answer` blocks
-into existing entries right now. Appending to `claims.yaml` concurrently is the exact
-read-modify-write contamination shape CLAUDE.md documents. The arbitration verdict is binding.
+(grouped)`) held an active claim on `claims.yaml`, `claims.json` and `WORKSPACE_STATE.md` and was
+writing `what_would_answer` blocks into 17 existing entries. The arbitration verdict is binding, so
+this intake was drafted against the two uncontended files under a narrowed claim and both entries
+below were staged rather than appended. That session closed at **19:26:24Z** -- one second before
+the narrowed claim opened -- landing its 17 digested claims; `claims.yaml` was then re-verified
+byte-identical to `origin/master` and both entries were registered under a second claim
+(`thought-ingest-devintegration-20260827-reg`) in REE_assembly `cbac6ceea6`.
 
-A narrowed claim was opened instead, covering only the two uncontended files this intake writes.
-**Both entries below are drafted to paste; the registration pass owes only an ID re-check and the
-append.** IDs are deliberately NOT pre-allocated (`ARC-` max was 134 at read time; another session
-may register in the interim).
+Post-commit structural check (manual, because `ree_commit.py`'s per-item delta summary does **not**
+cover YAML -- see CLAUDE.md): claim-id sets diffed between base `aa50575406` and `cbac6ceea6` show
+**+2 (`ARC-135`, `GOV-CAPCONTRACT-1`), -0**, a single hunk at the file tail, and **zero removed
+lines**. No other session's work was swept.
 
-### STAGED-1 -- `GOV-CAPCONTRACT-1` (name verified free: 0 hits in `claims.yaml`)
+Neither entry carries a `what_would_answer` -- per this skill's own discipline, that is
+`/thought-digestion`'s job in a later pass. Neither carries a `location:` field either: the closest
+siblings (`GOV-PATHVALID-1`, `ARC-130`, `ARC-131`) have none, so following that precedent avoided
+two new architecture stubs and a sidebar regeneration for a two-entry change (CLAUDE.md "Narrow
+Edits Only").
+
+### REGISTERED-1 -- `GOV-CAPCONTRACT-1`
 
 - `claim_type`: `governance_rule`
 - `subject`: `governance.epistemics.instantiated_organism_capability_contract`
@@ -176,14 +184,13 @@ may register in the interim).
 - `claim_level`: `governance`
 - `binds_at_version`: `v3`
 - `blocks_v3_green_board`: `false`
-- `registered_utc`: (date of the registration pass)
+- `registered_utc`: `"2026-08-27"`
 - `source_thought`: `docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md`
 - `depends_on`: `GOV-PATHVALID-1`, `GOV-FAILLOC-1`, `ARC-130`, `ARC-131`
 - `related_claims`: `GOV-INTERVENE-1`, `GOV-DIAG-1`, `ARC-120`
-- `location`: `docs/architecture/experiment_capability_contract.md#gov-capcontract-1` (new stub;
-  `parent` to be chosen by surveying `grep -h "^parent:" docs/architecture/*.md | sort | uniq -c`)
+- `location`: **none** -- matching `GOV-PATHVALID-1`, which has no `location:` field either
 
-**title (draft):**
+**title (as registered):**
 > A run is not admissible as negative evidence for a claim unless the organism instantiated for
 > that run was demonstrably able to express, and where the claim is learning-dependent to acquire,
 > the faculty under test. Each organism-level experiment must therefore declare, and a preflight
@@ -199,7 +206,7 @@ may register in the interim).
 > capability-precondition diagnostic status and MUST NOT be recorded as evidence against the claim.
 > "It did not learn" and "it could not have learned" are different scientific outcomes.
 
-**notes (draft):** carries the section 3a discrimination above verbatim -- PASS-side vs FAIL-side vs
+**notes (as registered, abridged here -- full text in `claims.yaml`):** carries the section 3a discrimination above verbatim -- PASS-side vs FAIL-side vs
 plasticity-bucket -- plus: motivating observation is that `torch.is_grad_enabled()` appears nowhere
 in the tree and parameter-delta witnesses exist ad hoc in 4 experiment scripts, while long-life
 observational drivers run under `no_grad`, so "more observed ticks" has been silently equatable with
@@ -211,7 +218,7 @@ CLAUDE.md's GOV-HELDOUT-1 held-out check first. **STATUS STAYS CANDIDATE** until
 changed at least one real experiment design or autopsy verdict, per the discipline GOV-HELDOUT-1
 applies to itself.
 
-### STAGED-2 -- `ARC-1xx` (allocate at registration; max was ARC-134)
+### REGISTERED-2 -- `ARC-135`
 
 - `claim_type`: `architectural_commitment`
 - `subject`: `architecture.organismal_continuity_decomposition`
@@ -225,9 +232,9 @@ applies to itself.
 - `version_relevance`: `v3_v4`
 - `depends_on`: `ARC-130`, `ARC-131`, `ARC-019`
 - `related_claims`: `ARC-120`, `MECH-511`
-- `location`: `docs/architecture/organismal_continuity_decomposition.md#arc-1xx` (new stub)
+- `location`: **none** -- matching `ARC-130`/`ARC-131`, which have none either
 
-**title (draft):**
+**title (as registered):**
 > "Long life" in an artificial organism is not one property but at least four separable continuities
 > -- cognitive/affective/mnemonic state continuity, parameter/plasticity continuity, body/homeostatic
 > continuity, and ecological/world continuity -- which can be held or broken independently. A
@@ -238,7 +245,7 @@ applies to itself.
 > decomposition separates and a scalar "lifespan" cannot: age from layout luck, learning from reset
 > effects, injury/recovery from death, and memory accumulation from environmental regeneration.
 
-**notes (draft):** motivated by the 906 lineage, where cognitive/affective/mnemonic state persists
+**notes (as registered, abridged here -- full text in `claims.yaml`):** motivated by the 906 lineage, where cognitive/affective/mnemonic state persists
 across segment boundaries while the environment resets local layout and body health -- so a
 `health_depleted` boundary regenerates body and world around a persisting cognitive system rather
 than constituting organismal death. Distinct from ARC-131 (installability = simultaneous composition)
@@ -268,34 +275,27 @@ GOV-CAPCONTRACT-1's plasticity field rather than duplicating it.
 
 ## 7. Next steps
 
-**Owed by this intake (blocked, not abandoned):**
-
-1. **Register STAGED-1 and STAGED-2** once `responsibility-epistemic-hygiene-d6f9d3` closes its
-   claim on `claims.yaml`. Re-check max `ARC-` id at write time; re-read `claims.yaml`'s tail
-   immediately before appending; validate (`validate_claims.py --strict`), rebuild
-   (`build_claims_json.py`), pathspec-limited commit.
-2. **Write the two architecture stubs** named in the `location` fields, with `parent` surveyed
-   rather than guessed.
+**Done in this pass:** both claims registered (`cbac6ceea6`); `validate_claims.py --strict` 0 errors / 5 warnings, identical to the pre-edit count; `build_claims_json.py` rebuilt to 1064 claims. No architecture stubs written -- see section 6.
 
 **Routing / decisions owed to `/governance`, not decidable here:**
 
-3. **STAGED-2's `implementation_phase: v3`** needs a routing ratification.
-4. **Deliverable 4A (populate the canonical integrated V3 profile)** is a governance decision about
+1. **ARC-135's `implementation_phase: v3`** needs a routing ratification.
+2. **Deliverable 4A (populate the canonical integrated V3 profile)** is a governance decision about
    which mechanisms are admitted, gated on the existing admission criteria and, for anything
    E3-adjacent, on the F-dominance investigation (per `ree_v3_baseline.json`'s own `notes`).
 
 **Chippable follow-on (work-type is `/implement-substrate` or curation, not governance):**
 
-5. Within-life plasticity inventory across long-life drivers -- prerequisite input to
+3. Within-life plasticity inventory across long-life drivers -- prerequisite input to
    GOV-CAPCONTRACT-1's preflight, and the cheapest item in the whole programme.
-6. The preflight/contract implementation itself (`experiments/_lib/` module + manifest fields +
+4. The preflight/contract implementation itself (`experiments/_lib/` module + manifest fields +
    self-routing status), composing with `precondition_gate.py` rather than replacing it.
-7. Behavioural Evidence Ladder v0, derived from `review_tracker.json` + reviewed manifests, **not
+5. Behavioural Evidence Ladder v0, derived from `review_tracker.json` + reviewed manifests, **not
    written from memory**.
 
 **Standing risk to carry forward (recorded because it will otherwise be rediscovered):**
 
-8. The capture's section 2 warns against a second scoreboard and then proposes a Developmental
+6. The capture's section 2 warns against a second scoreboard and then proposes a Developmental
    Integration View, with the word "derived" as its only safeguard, and specifies no generator. The
    cautionary evidence is one directory away: `docs/CURRENT_FRONT.md` is a generated derived view
    that is **currently emitting `(could not derive front headline)` and `needs_review: true`**. If
