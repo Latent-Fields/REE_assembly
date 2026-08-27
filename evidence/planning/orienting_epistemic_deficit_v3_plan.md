@@ -114,6 +114,23 @@ closure_plan:
         no implement-substrate build is ready fleet-wide. The design doc
         itself is still status AWAITING USER REVIEW, unchanged since
         2026-08-08.
+      reconcile_2026_08_27: >
+        GATES-CLEARED CORRECTION (session f-dominance-regime-retest-ddbe10,
+        debt-classification sweep; plan-frontmatter only, NO status change,
+        nothing queued). The resume_condition below lags this plan's own
+        status table: both 2026-08-22 gates CLEARED (design doc reviewed;
+        SD-063 E2WorldUncertaintyHead training loop landed ree-v3
+        88287f11c6), and the readiness criterion as written was FALSIFIED --
+        use `_last_pvar_relative_spread`, not `last_uncertainty_dev_range`
+        (see the status-table row for ORNT-2, updated 2026-08-23). Residual
+        before the accumulator build: the 2x2 diversity validation
+        (chip-20260823-mech314bc-2x2-diversity-validation, resolved done ->
+        experiment queued; V3-EXQ-949 mech314b authority-rescale validation
+        RAN PASS/supports 2026-08-25). The accumulator build itself is
+        complicated (buildable) and is chipped as
+        chip-20260827-mech482-accumulator-build with a STOP-CHECK on the
+        validation state. Classification record:
+        evidence/planning/work_graph_debt_classification_20260827.md.
       resume_condition: >
         Two-step gate; neither step is owned today. (1) The design doc
         mech314bc_percandidate_extension_staged_2026-08-08.md receives its

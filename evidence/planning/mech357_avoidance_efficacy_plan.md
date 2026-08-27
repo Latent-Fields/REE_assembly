@@ -13,6 +13,28 @@ closure_plan:
       title: "Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursuit was held out as the last untried candidate for"
       status: open
       severity: high
+      reconcile_2026_08_27: >
+        NODE OVERTAKEN BY EVENTS (session f-dominance-regime-retest-ddbe10,
+        debt-classification sweep; plan-frontmatter only, status left open
+        for /governance to flip, nothing queued). The BUILD half LANDED
+        2026-08-14 (scaffold_hazard_stage_hazard_agent_pursuit threaded,
+        session intelligent-elgamal-222d2b) and VALIDATED NEGATIVE via
+        V3-EXQ-603u (governance 2026-08-16: G_H_LESION_frac = 1.0, so the
+        discrimination could not pass; all four pressure designs now
+        exhausted -- substrate_queue
+        mech357-freeze-incompatible-pressure-mechanism status
+        validated_negative). The sibling eligibility-trace repair was
+        implemented 2026-08-16 (ree-v3 93d5d98b80) and its validation
+        V3-EXQ-603v RAN PASS/supports 2026-08-27T18:47Z (UNREVIEWED at this
+        writing -- pending_review walk owes it). The node's owed work has
+        therefore MIGRATED from a build to the zero-compute reanalysis of
+        the already-recorded 603s/603t/603u per-episode trajectories (the
+        substrate entry's own named precondition for any fifth pressure
+        mechanism) -- chipped as chip-20260827-mech357-trajectory-reanalysis.
+        node_class reading migrates complex (probe-gated) -> mystery (known
+        data). Governance flag raised (stale_note, MECH-357).
+        Classification record:
+        evidence/planning/work_graph_debt_classification_20260827.md.
       join:
         bears_on: []
         scope_claims: ["MECH-357"]
