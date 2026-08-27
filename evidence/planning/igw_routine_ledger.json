@@ -3115,7 +3115,11 @@
       "task_claim_session_id": "igw-auto-igw-234-proposal-for-mech-465-20260827T052608Z",
       "task_claim_claimed_at": "2026-08-27T05:26:08Z",
       "assigned_at": "2026-08-27T05:25:41Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-27T06:25:32Z",
+      "completion_summary": "EXP-0590/MECH-465 NOT queued: marked blocked_substrate -- P1/P2 non-degeneracy gate fails 3/3 seeds (the 0.51 P2 floor is 785a's POOLED-across-seed IQR/median; within-seed 0.027-0.045). Routing corrected same-session to sd_zworld_warmup_optimizer_group after finding two prior spikes; GFLAG-0056+0057 raised; SD-063 chip withdrawn.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "9 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -4245,6 +4249,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-26T20:32:23Z",
       "re_eligible_after": "2026-08-28T20:32:23Z"
+    },
+    {
+      "stable_hash": "ac9c92b7afdc",
+      "igw_id_at_disposition": "IGW-20260827-234",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-465",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-27T06:25:37Z",
+      "re_eligible_after": "2026-08-29T06:25:37Z"
     }
   ]
 }
