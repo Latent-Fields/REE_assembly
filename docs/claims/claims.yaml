@@ -87757,3 +87757,179 @@
     DO NOT read this as authorising a build at any of the three sites. Whether to supply a training
     signal, and of what kind, is a separate design question -- and at site (a) V3-EXQ-817a already
     shows that supplying one naively can make behaviour WORSE (see MECH-518).
+
+- id: GOV-CAPCONTRACT-1
+  title: "A run is not admissible as negative evidence for a claim unless the organism instantiated for that run was demonstrably able to express -- and, where the claim is learning- or development-dependent, to acquire -- the faculty under test. Each organism-level experiment must therefore DECLARE, and a preflight must machine-verify against the instantiated organism, at minimum: the canonical profile identity and every explicit deviation from it; the mechanisms and capabilities the hypothesis presupposes; whether those mechanisms were constructed, enabled and reached on the production path; whether their decisive readouts engaged often enough for the test to be non-vacuous; whether their output could compete at the relevant arbitration surface at the scale present in the run; which forms of change were permitted (parameters, policy/value, E1/E2 representations, memory state, residue/EMA state, offline updates); and, where online learning is load-bearing, whether gradients were enabled, whether the intended trainable parameters were in an optimizer, and whether a parameter-delta witness confirms an actual update path. A run failing any declared precondition self-routes to a capability-precondition diagnostic status and MUST NOT be recorded as evidence against the claim. 'It did not learn' and 'it could not have learned' are different scientific outcomes."
+  claim_type: governance_rule
+  subject: governance.epistemics.instantiated_organism_capability_contract
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-27"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: "2026-08-27"
+  source_thought: docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+    - GOV-PATHVALID-1  # the PASS-side complement -- that rule guards a false positive from a mocked precondition; this one guards a false NEGATIVE from an incapable or non-plastic organism
+    - GOV-FAILLOC-1    # the nearest neighbour, and explicitly DISTINGUISHED-FROM: post-hoc four-bucket triage with no plasticity bucket, see notes
+    - ARC-130          # the causal-reach ladder whose stages this contract's declared fields operationalise as pre-run checks
+    - ARC-131          # installability -- a full-stack composition failure is one of the interpretation routes this contract must be able to name
+  related_claims:
+    - GOV-INTERVENE-1
+    - GOV-DIAG-1
+    - ARC-120
+  source:
+    - docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md
+    - evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
+  functional_restatement: >
+    Governance/epistemics rule binding EXPERIMENT MEANING to INSTANTIATED ORGANISM CAPABILITY.
+    Distinguishes four outcomes that a bare FAIL currently collapses into one: (a) the mechanism was
+    present, reachable, authoritative and plastic, and the hypothesis still failed -- genuine negative
+    evidence; (b) the mechanism was absent, default-off, or never constructed -- mis-instantiation;
+    (c) the mechanism operated but below the competitive-authority floor or without committed
+    throughput -- a causal-reach diagnostic per ARC-130; (d) the run could not have learned at all
+    because the relevant parameters were frozen -- a plasticity misfire. Only (a) may enter the
+    evidence record against the claim. The check is PRE-REGISTERED and MACHINE-VERIFIED, not
+    reconstructed at autopsy.
+  notes: >
+    MOTIVATING OBSERVATION (measured 2026-08-27 during this intake, not asserted): the whole tree
+    contains ZERO occurrences of `torch.is_grad_enabled()`; parameter-delta witnesses exist ad hoc in
+    exactly 4 experiment scripts; and the standard observational long-life drivers run under
+    `torch.no_grad()`. The August developmental-readiness investigation
+    (evidence/planning/developmental_readiness_investigation_2026-08-12.md) had already found that
+    more observed ticks do not equal more gradient-based learning. Nothing in the harness records that
+    fact per-run, so "duration" has been silently equatable with "developmental opportunity", and a
+    null from a frozen organism is currently indistinguishable in the evidence record from a null
+    from a competent one.
+
+    EXPLICITLY NOT A DUPLICATE OF GOV-PATHVALID-1. That rule is about FALSE POSITIVES -- its own notes
+    say it is "a DESIGN-TIME check on whether a PASS (not a fail) is entitled to the interpretation it
+    is being given", and it forbids reporting a mocked-precondition PASS as a full-pathway PASS. This
+    rule is its mirror: it governs whether a FAIL is entitled to be called negative evidence. The two
+    are complementary halves of one discipline and neither subsumes the other.
+
+    EXPLICITLY NOT A DUPLICATE OF GOV-FAILLOC-1, and this is the discrimination the claim turns on.
+    GOV-FAILLOC-1 triages an OBSERVED FAIL, POST-HOC, by human judgement at autopsy time, into four
+    buckets: REE FAILED / THE MECHANISM FAILED / THE MEASURES FAILED / THE ENVIRONMENT FAILED. A run in
+    which the mechanism was correctly instantiated, the measures were adequate and the environment was
+    informative, but every relevant parameter was frozen, ticks NONE of those four buckets. Plasticity
+    is a fifth category and it is currently invisible to the registry. This rule adds it, and moves the
+    check from post-hoc-and-optional to pre-registered-and-machine-checked.
+
+    NEAREST EXISTING PRIMITIVES, both real and neither sufficient:
+    `ree-v3/experiments/_lib/precondition_gate.py` supplies regime-conditioned per-arm non-vacuity
+    gating (and its own docstring records the V3-EXQ-785 incident where a whole-run AND of per-arm
+    gates vacated a clean arm's valid result); `ree-v3/experiments/_lib/canonical_profile_fingerprint.py`
+    supplies organism IDENTITY but not capability. This contract composes with both rather than
+    replacing either.
+
+    PRECONDITION FOR ITS OWN IMPLEMENTATION: a within-life plasticity inventory across the existing
+    long-life drivers (which state may change during a life: parameters, policy/value, E1/E2, memory,
+    hippocampal buffers, residue, EMAs, sleep-dependent updates). Without that inventory the
+    `requires_plasticity` field has no vocabulary to declare against.
+
+    RELATED BUT DISTINCT ORGANISM-IDENTITY GAP, recorded here because the two are usually met together
+    and should not be conflated: `docs/architecture/canonical_profiles/ree_v3_baseline.json` version v0
+    is a PLACEHOLDER with `"overrides": {}` -- the canonical-profile MECHANISM exists and has been
+    frozen since 2026-08-12, but no admission pass has ever populated it, so "which REE did this
+    experiment test?" is currently unanswerable by construction. Populating it is a /governance
+    decision gated on the existing admission criteria (and, for anything E3-adjacent, on the
+    F-dominance investigation, per that file's own notes) -- NOT authorised by this registration.
+
+    ITS OWN FALSIFIER, stated by the source document and preserved rather than softened: if runs that
+    pass the full capability/configuration/plasticity preflight still show the same apparent failures
+    at the same rate, then mis-instantiation was not an important source of prior nulls and this rule
+    buys nothing but overhead.
+
+    NOT YET APPLIED to `.claude/skills/queue-experiment/SKILL.md` or `.claude/skills/failure-autopsy/SKILL.md`.
+    Formalising it into skill text is a follow-on requiring CLAUDE.md's GOV-HELDOUT-1 held-out check
+    (>=3 historical cases where old and new wording give DIFFERENT answers) first -- the same discipline
+    GOV-FAILLOC-1 followed before it was written into the autopsy skill.
+
+    STATUS STAYS CANDIDATE until it has actually changed at least one real experiment design or autopsy
+    verdict, per the discipline GOV-HELDOUT-1 applies to itself. DO NOT treat this registration as
+    authorising a build.
+
+    Full novelty analysis and the repo-audit verification table:
+    evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
+  evidence: []
+
+- id: ARC-135
+  title: "'Long life' in an artificial organism is not one property but at least four separable continuities -- cognitive/affective/mnemonic state continuity, parameter/plasticity continuity, body/homeostatic continuity, and ecological/world continuity -- which can be held or broken independently of one another. A persistent-organism experiment must therefore declare which of the four it preserves, because duration under a broken continuity is not developmental opportunity: an organism whose cognitive state persists while its body and world regenerate at every boundary is not aging in a world, and an organism observed for many ticks with its parameters frozen is not developing. The decomposition separates four confounds that a scalar 'lifespan' or 'ticks survived' cannot: age from layout luck, learning from reset effects, injury/recovery from death, and memory accumulation from environmental regeneration."
+  claim_type: architectural_commitment
+  subject: architecture.organismal_continuity_decomposition
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-27"
+    needs_review: false
+  v3_pending: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: "2026-08-27"
+  source_thought: docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md
+  depends_on:
+    - ARC-130  # causal-reach ladder -- retention/generalisation, its final stage, is only interpretable once you know WHICH continuity was preserved across the interval
+    - ARC-131  # installability (SIMULTANEOUS composition) -- explicitly DISTINGUISHED-FROM, see notes
+    - ARC-019  # developmental curriculum: the stage sequence this decomposition supplies the persistence semantics for
+  related_claims:
+    - ARC-120
+    - MECH-511
+    - GOV-CAPCONTRACT-1
+  source:
+    - docs/thoughts/2026-08-27_developmental_integration_and_readiness_programme.md
+    - evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
+    - evidence/planning/organism_lifespan_development_review_906_lineage_2026-08-10.md
+    - evidence/planning/observational_review_V3-EXQ-906b_2026-08-09.md
+  functional_restatement: >
+    Architectural distinction turning "long life" from a scalar into a declared 4-tuple. Each
+    continuity is independently holdable: cognitive state may persist while the body resets;
+    parameters may be frozen while cognitive state persists; the world may regenerate while both
+    persist. An experiment claiming a developmental effect over a long life must state which of the
+    four it held, because the interpretation of the same tick count differs completely between them.
+  notes: >
+    MOTIVATED BY THE 906 LINEAGE, where the semantics are genuinely unusual and worth naming
+    precisely: cognitive/affective/mnemonic state persists across segment boundaries while the
+    environment resets local layout and body health, so a `health_depleted` boundary REGENERATES the
+    body and world around a persisting cognitive system rather than constituting organismal death.
+    That is continuity (1) held and continuities (3) and (4) broken -- a configuration with no name
+    before this claim, and one that a "ticks survived" or "lifespan" readout renders invisible.
+
+    VERSION-ROUTING FLAG: implementation_phase v3 / version_relevance v3_v4 rather than the default
+    v4/v4_v5 thought-intake park, because the 906 lineage already supplies partial cognitive
+    continuity on live V3 substrate and the claim's FIRST use is a declaration requirement on drivers
+    that already exist -- not a new mechanism. Flagged for /governance to confirm rather than decided
+    unilaterally, per the same deviation and reasoning as ARC-130/ARC-131.
+
+    EXPLICITLY NOT A DUPLICATE OF ARC-131 (installability). ARC-131 is a COMPOSITIONAL axis: does a
+    competence appear at all once the rest of the organism is turned on. This claim is a PERSISTENCE
+    axis: which substrates of continuity an experiment holds fixed across time. They interact -- an
+    installability failure and a broken-parameter-continuity failure can produce the same flat
+    behavioural trace -- which is precisely why both must be declared rather than inferred.
+
+    EXPLICITLY NOT A DUPLICATE OF COMPETENCE RETENTION (MECH-459 lineage). Retention asks whether a
+    demonstrated competence survives later learning. This claim asks what was even ABLE to carry
+    across the interval in the first place; it is upstream of retention, and a retention null measured
+    across a boundary that reset the relevant substrate is uninterpretable rather than negative.
+
+    COMPOSES WITH GOV-CAPCONTRACT-1 rather than duplicating it: that rule's `requires_plasticity` /
+    permitted-modes-of-change field is the per-run DECLARATION; this claim supplies the four-way
+    VOCABULARY that declaration is made in. Registered in the same intake pass for that reason.
+
+    DO NOT BUILD a new continuity mechanism in V3 on the strength of this registration, and DO NOT
+    QUEUE an experiment from it. The persistent-ecology assay family the source document proposes
+    (its section 11.2) is a separate design question requiring its own routing. This registration
+    buys a vocabulary and a declaration requirement, nothing more.
+
+    Full novelty analysis:
+    evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
+  evidence: []
