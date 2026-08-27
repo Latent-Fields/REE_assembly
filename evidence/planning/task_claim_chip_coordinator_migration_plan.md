@@ -241,6 +241,126 @@ closure_plan:
         in task_claim.py/chip_ledger.py becomes the FALLBACK mode for when the
         coordinator/mesh is unreachable, not the default.
 
+        PHASE-2a BUILT AND LANDED 2026-08-27 (session
+        coordinator-migration-phase2-build, chip
+        chip-20260827-coordinator-migration-phase2-build). The flag is
+        DEFAULT OFF and nothing in the fleet reaches any of it.
+
+        WHAT LANDED -- ree-v3 528ce44fc5 + a follow-up (server, on
+        origin/main) and REE_Working ed1bcf7869 (client, on origin/master):
+        * ree-v3/coordinator/db.py: 11 mutating verbs, each taking BEGIN
+          IMMEDIATE BEFORE its guard SELECT (the same primitive try_claim
+          already uses for experiment claims). Claims: try_open_task_claim /
+          close_task_claim / renew_task_claim / amend_task_claim /
+          dedupe_task_claim (accepted no-op per D3). Chips: record_chip /
+          try_claim_chip / unclaim_chip / resolve_chip / attach_chip /
+          amend_chip_prompt.
+        * ree-v3/coordinator/app.py: the 11 matching POST endpoints under
+          /task_claim/* and /chip/* (D1), as a dispatch table rather than 11
+          more arms in do_POST. 409 = a legitimate VERDICT a client branches
+          on; 400 malformed; 404 unknown key.
+        * scripts/coordinator_transport.py (NEW): the client transport. Hard
+          no-op unless TASK_CLAIM_COORDINATION_MODE=coordinator AND a URL and
+          token are configured. Every failure returns None = "carry on with
+          git".
+        * scripts/task_claim.py: coordinator branch on `open` (arbitration,
+          can stop the session on CONTENTION_EXIT) and `close` (mirror only,
+          never stops).
+        * scripts/chip_ledger.py: coordinator branch on `claim` (the mutex --
+          the only chip verb allowed to stop the session), plus `record`,
+          `resolve` and `unclaim` as mirrors.
+
+        THE SCOPE OF "COORDINATOR-FIRST" IN THIS PHASE, stated plainly
+        because it is the thing a later session is most likely to
+        misremember: with the flag ON, the client asks the coordinator AND
+        STILL WRITES GIT. It does not stop writing git. The DB->git
+        materializer (the analogue of sync_daemon's phase3_*_writer family)
+        DOES NOT EXIST for these two files, so a claim living only in the DB
+        would be invisible to audit_stale_claims.py,
+        prune_task_claims_done.py, serve.py's /workset panel,
+        audit_orphan_chips.py, every chip_ledger.py list, and every session
+        on every other machine. What moves to the coordinator here is the
+        ARBITRATION AUTHORITY -- the verdict, not the storage. This mirrors
+        ree-v3's own Phase 2 exactly ("git remains the queue worklist/
+        transport; the DB becomes the claim authority"). Suppressing the
+        client git write is PHASE-2b and needs the materializer first.
+
+        The local file-based arbitration is NOT removed, weakened, or
+        skipped. It still runs FIRST, unchanged, and still refuses on its
+        own terms; the coordinator adds a second, stricter opinion. Two
+        consequences worth stating: a check that can only ADD refusals
+        cannot regress today's behaviour, and running the local check first
+        means a local refusal never leaves an orphan claim row in the DB
+        that git never learns about.
+
+        ONE REAL BUG FOUND IN THIS SESSION'S OWN CODE, worth recording
+        because it defeats the promise 5.2.1 makes: the entry_json rebuild
+        emitted only the MODELLED columns, so any field the schema does not
+        model was silently dropped by a coordinator mutation. `handoff_pending`
+        is the live case -- no column, set by chip_ledger.py's `resolve
+        --handoff-pending` / `declare-handoff`, and present on **198 of 1920
+        chips** in the real TASK_CHIPS.json (measured 2026-08-27). A chip
+        claimed or resolved through the coordinator would have lost it with no
+        error anywhere. Fixed by `_carry_unmodelled()`, which fills only keys
+        the rebuild does not produce, so the columns still win. Ordering is
+        load-bearing and the first attempt got it wrong: it must run BEFORE the
+        archived-field pop, or it resurrects a stripped `prompt` out of a stale
+        blob -- the archive-undo D5 forbids. Caught by
+        test_archived_fields_are_absent_not_null_in_entry_json, which is the
+        argument for having written that test.
+
+        TESTED -- 110 new tests, all green, no regressions:
+        * ree-v3/coordinator/test_task_claim_chip_mutations.py (57): the db
+          layer. Two headline concurrency tests on REAL threads and REAL
+          sqlite -- 3 sessions racing one claim resource produce exactly 1
+          owner and 2 told (the 2026-07-28 shape), 4 sessions racing one chip
+          claim produce exactly 1 winner (the 2026-08-09 shape). Plus
+          negative controls that no verb touches git and that no archive verb
+          exists (D7).
+        * ree-v3/coordinator/test_task_claim_chip_mutation_endpoints.py (4):
+          HTTP wiring end to end. Its own server and DB, because sharing
+          PHASE-1's fixture polluted that file's list assertions.
+        * test_task_claim_chip_endpoints.py: PHASE-1's
+          "no mutating route exists" pin is INVERTED, not deleted -- it said
+          such a change had to be deliberate and reviewed, and this is that
+          change. It now pins the routes exist, that an empty body is a 400
+          rather than a 404, and that /chip/archive still 404s.
+        * scripts/test_coordinator_transport.py (22): default-off, and the
+          fallback exercised against REAL sockets -- closed port, unresolvable
+          host, a server that accepts and never answers (the WireGuard
+          blackhole shape, which is NOT the same as connection refused), a
+          500, a non-JSON error body, and a 200 with an unparseable body.
+        * scripts/test_task_claim_coordinator_branch.py (15) and
+          scripts/test_chip_ledger_coordinator_branch.py (14): the flag-off
+          assertions run against a LIVE, ANSWERING coordinator whose request
+          log must stay empty -- so "no call was made" is a measurement, not
+          an inference. The headline flag-on tests are the ones where the
+          LOCAL file shows no rival at all and the coordinator refuses anyway,
+          which is the whole correctness argument in one assertion.
+        * Full ree-v3 coordinator suite after the change: 707 passed + 172
+          subtests, zero regressions.
+        * Full existing umbrella suites with the flag OFF -- all 43
+          test_task_claim_*.py + test_chip_ledger_*.py files: 43/43 green.
+          The parallel run (jobs=7) initially reported
+          test_task_claim_amend_renew_orphan_guard.py red and
+          test_task_claim_mutation_lock.py timed out at the 600s per-file
+          limit; both pass solo (461s and 137s respectively) on the same dirty
+          tree. Both do real git pushes to file remotes and are slow enough
+          that 7-way parallelism plus concurrent test runs pushed them over.
+          Neither touches a code path this work changed.
+
+        STILL OPEN, and the ACTUAL CUTOVER still waits on all of it:
+        (a) soak evidence (N days of GET /task_claim/drift showing
+        diverged_ticks=0); (b) a separate human go-live confirmation;
+        (c) PHASE-2b, the DB->git materializer, before the client git write
+        can be suppressed; (d) deployment -- the endpoints are on origin/main
+        but ree-coordinator.service on the hub has not been restarted to pick
+        them up, so /task_claim/open et al still 404 in production, exactly
+        as PHASE-1's routes did before its own restart. Nothing depends on
+        them, so this is not urgent, but a future session should not read
+        "landed" as "reachable".
+
+        Prior (unchanged, retained for history):
         BUILD STARTED 2026-08-27 (user go-ahead, decoupled from the soak):
         the soak (PHASE-1's remaining exit criterion) only validates the
         shadow mirror before anything DEPENDS on it -- it says nothing about
@@ -271,7 +391,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** SOAKING (v0.5, 2026-08-27). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** SOAKING + PHASE-2a BUILT (v0.6, 2026-08-27). **PHASE-2a (the coordinator-first transport, DEFAULT OFF) is built, tested and landed** -- 11 mutating endpoints on `ree-v3` `528ce44fc5`, a new `scripts/coordinator_transport.py`, flag-gated branches in `task_claim.py`/`chip_ledger.py`, 110 new tests green, the full 707-test coordinator suite unregressed and all 43 existing `task_claim`/`chip_ledger` umbrella test files green with the flag off. Server on `ree-v3` `origin/main`, client on `REE_Working` `origin/master` (`ed1bcf7869`). Nothing in the fleet reaches any of it: `TASK_CLAIM_COORDINATION_MODE` defaults to `git` and the endpoints are not yet deployed to the running hub. See the PHASE-2 frontmatter node and section 10. **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -562,6 +682,8 @@ These are the review's actual output. D1-D3 and D7 change the design; the rest a
 - **D9 -- history fields stay JSON columns, deliberately, unlike `resources`.** `completion_note_history`, `prompt_history`, `urgency_history`, `resolution_note_history` are append-only audit lists that nothing queries *across* rows (62, 22, 5 and 1 live occurrences respectively). A child table would add four joins to buy nothing. The asymmetry with D2 is intentional and is justified by whether anything arbitrates on the field.
 - **D10 -- `check` must be a GET.** It is the START-TIME predicate a chip STOP-CHECK carries and it writes nothing; making it a POST invites an implementer to log or mutate on it.
 - **D11 -- `resolve` on an already-resolved chip is currently a SILENT no-op**, which is exactly the trap the headless worker contract warns about (`resolve --status open` losing a note). The endpoint should return `{"changed": false}` explicitly so the CLI can say so, rather than reporting success indistinguishable from a real transition.
+- **D12 (added 2026-08-27 during the PHASE-2 build) -- `claimed_at` is CLIENT-SUPPLIED, not server-stamped. This CHANGES 5.2.4 as written above.** The sketch has `try_open_task_claim` stamp `claimed_at = now` server-side, and that is wrong for as long as the client is still performing its own git write -- which, per the PHASE-2a scope note in section 10, is the whole of this phase. A server stamp and a client stamp differ by the network round trip, so the DB row and the JSON entry would carry **different halves of the `(session_id, claimed_at)` primary key**, and the PHASE-1 reconciler would report that as drift on every tick, forever. Implemented as: the client sends the stamp it is about to write to git, and the server falls back to its own `now` only when the field is absent (which keeps the sketch's signature valid for any caller that does not have a stamp of its own). The same applies to a chip claim's `claimed_at`. Pinned by `test_the_clients_own_claimed_at_is_what_is_sent` in `scripts/test_task_claim_coordinator_branch.py` and `test_claim_calls_the_coordinator_and_still_writes_git` in `scripts/test_chip_ledger_coordinator_branch.py`.
+- **D13 (added 2026-08-27) -- the client flag MUST NOT be `COORDINATION_MODE`.** The obvious implementation reuses ree-v3's existing `coordinator_client.py` env contract wholesale, since this module is otherwise modelled on it. That would have been an incident: `COORDINATION_MODE=coordinator` is **already set in production** on every cloud worker's `ree-runner.service` for the EXPERIMENT plane, so reusing the name would have flipped claim/chip transport across the fleet the moment the code landed -- a silent default flip, which is precisely what the phase forbids. The mode variable is therefore namespaced (`TASK_CLAIM_COORDINATION_MODE`, default `git`) while the CONNECTION settings (`_URL`, `_TOKEN`, `_TIMEOUT`) do fall back to the experiment-plane names, so a box already configured for the coordinator needs only the mode flag. Pinned by `test_the_experiment_plane_flag_does_NOT_enable_this` in `scripts/test_coordinator_transport.py`.
 
 ### 5.3 Fallback / degrade path (must be first-class, not an afterthought)
 
@@ -679,8 +801,46 @@ test_no_mutating_task_claim_or_chip_post_route_exists in
 ree-v3/coordinator/ (unchanged by this session, since it touched
 infrastructure, not code), and the Mac's tunnel was not touched.
 
-**Do not start PHASE-2 from this state.** A live, zero-drift PHASE-1 is not
-by itself evidence the soak has run long enough -- the exit criterion is N
-days of clean history, and as of this restart only ~11.4h has accumulated.
+**PHASE-2a is BUILT (2026-08-27) and is where a resuming session picks up.**
+The sentence that used to stand here -- "Do not start PHASE-2 from this
+state" -- was written before the user's explicit 2026-08-27 go-ahead to
+DECOUPLE the build from the soak. That decision is narrow and is worth
+restating precisely, because the reasoning is what makes it safe: the soak
+validates that the shadow mirror does not drift **before anything depends on
+it**, which says nothing whatever about whether the transport code is
+correct. So building and testing proceed in parallel; what still waits on the
+soak is FLIPPING THE DEFAULT, and only that.
+
+Read the PHASE-2 frontmatter node for exactly what landed and what is tested.
+The four things still open, in the order a resuming session should think about
+them:
+
+1. **PHASE-2b -- the DB->git materializer.** The largest remaining piece, and
+   the one that gates suppressing the client's own git write. Model it on
+   `sync_daemon.py`'s `phase3_heartbeat_writer`: commit on STATE-CHANGE ONLY.
+   Root `CLAUDE.md` explicitly forbids reintroducing a forced periodic
+   liveness tick (it was the dominant source of `REE_assembly` history bloat
+   and was deliberately retired), and this writer would be writing to the
+   umbrella repo, whose trunk is already ~60-77% machine-written coordination
+   data.
+2. **Deployment.** The endpoints are on `ree-v3` `origin/main` but
+   `ree-coordinator.service` on the hub has not been restarted to pick them
+   up, so `POST /task_claim/open` still 404s in production -- exactly the
+   state PHASE-1's own routes were in between 2026-08-26T19:00Z and the
+   2026-08-27T07:52Z restart. Nothing depends on them, so this is not urgent;
+   the point is that **"landed" must not be read as "reachable"**. Restarting
+   the live coordinator remains a human-with-eyes-on action, per this doc's
+   own standing framing.
+3. **Soak evidence.** Unchanged: N days of `GET /task_claim/drift` showing
+   `diverged_ticks: 0`.
+4. **The go-live decision itself**, which is a human's and is separate from
+   all three above.
+
+**What a resuming session must NOT do:** flip
+`TASK_CLAIM_COORDINATION_MODE` to `coordinator` anywhere -- not in
+`.claude/settings.json`, not in a systemd unit, not as a default in
+`coordinator_transport.py` -- and must not remove the git path. Section 5.3
+and the PHASE-3 node both say the git path stays permanently, mirroring the
+runner's own retained legacy git-claim fallback.
 
 Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
