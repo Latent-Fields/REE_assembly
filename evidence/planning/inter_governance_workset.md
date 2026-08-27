@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-27T06:27:26Z`
+Generated: `2026-08-27T13:33:36Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -2667,9 +2667,9 @@ Instructions:
 
 ### IGW-20260827-212 -- Claim-authority cutover: task_claim.py/chip_ledger.py call the coordinator; git becomes state-change materialization
 
-- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** not_started | **Priority:** 40 | **Generation:** process
+- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** process
 - **Gap(s):** PHASE-2
-- **Why now:** Plan gap not_started on task_claim_chip_coordinator_migration.
+- **Why now:** Plan gap in_progress on task_claim_chip_coordinator_migration.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -2677,9 +2677,9 @@ Instructions:
 REE inter-governance work item: IGW-20260827-212
 Title: Claim-authority cutover: task_claim.py/chip_ledger.py call the coordinator; git becomes state-change materialization
 Lane: plan | Skill: (plan reconcile)
-Status: not_started
+Status: in_progress
 Gap(s): PHASE-2
-Why now: Plan gap not_started on task_claim_chip_coordinator_migration.
+Why now: Plan gap in_progress on task_claim_chip_coordinator_migration.
 
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
