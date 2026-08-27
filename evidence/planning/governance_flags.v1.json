@@ -825,6 +825,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0057",
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "STRENGTHENS AND EXTENDS GFLAG-0056 (same session, same day; read that one first). Two MECH-465 spike artifacts predate the 2026-08-26 thought-digestion pass and reach the OPPOSITE conclusion to the one that pass recorded: evidence/planning/mech465_commit_gate_boundary_spike_2026-07-20.md measured the running-variance commit gate at 1.02-1.07x dispersion against a 1.455x urgency bar (FAILS), and mech465_stage2_conditional_gate_probe_2026-07-21.md hand-wired and trained E2WorldUncertaintyHead and measured the SD-063 conditional gate at 1.2473x in the deployment condition (FAILS, three of six urgency levels pinned at exactly 0), concluding that the binding constraint is the UNTRAINED AGENT (frozen random z_world encoder plus a near-degenerate CEM policy, action distribution [0.08,0.00,0.92,0.00,0.00], z_world variance share 0.2 pct) and that swapping the gated quantity is not the fix. The 2026-08-26 pass nonetheless moved MECH-465's epistemic_category substrate_conditional -> standard and minted EXP-0590, justifying both on 'REACHABILITY (settled on recorded data, no longer open)' -- without citing or reconciling either artifact. GOVERNANCE ACTION OWED: (a) reconcile what_would_answer against both spikes and restore substrate_conditional unless there is a reason to prefer the newer reading, since the epistemic_category move rests on the same premise GFLAG-0056 shows to be a pooled-vs-per-seed error; (b) note that this session's independent measurement at ree-v3 post-2023589 (the ascending-gate fix, which both spikes predate) CORROBORATES the spikes rather than the digestion pass. EXP-0590 is blocked_substrate with its release route corrected to sd_zworld_warmup_optimizer_group (REE_assembly 34bc995fbd); chip-20260827-sd063-e3-commit-gate-consumer-wiring was withdrawn before any human acted on it. Full write-up: evidence/planning/mech465_boundary_regime_reachability_probe_20260827.md section 6a.",
+      "raised_by_session": "igw-234-proposal-for-mech-465",
+      "raised_at": "2026-08-27T06:22:14Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
