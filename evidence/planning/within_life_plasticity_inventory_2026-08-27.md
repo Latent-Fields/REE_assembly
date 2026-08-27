@@ -507,8 +507,17 @@ Per the chip's read-only constraint, each of these is recorded for separate rout
 **F1 -- `_flush_exploration_episode` is a no-op in the entire 906 family.** `_segment_boundary_consolidate`
 (`906b:438-446`) calls it as one of only two boundary actions, with the comment "MECH-165: consolidate
 + bound buffer growth". It returns immediately at `agent.py:3656` because `replay_diversity_enabled`
-is False (§3.7). Either the flag should be set or the call and its comment are misleading. **Not a
-crash; a silent structural no-op that reads as an active consolidation step.**
+is False (§3.7). **Not a crash; a silent structural no-op that reads as an active consolidation step.**
+
+*Qualified after a cross-check, so this is a comment-accuracy point and NOT an unowned defect:*
+`evidence/planning/mech165_reverse_replay_nonfiring_diagnosis_2026-08-08.md` already establishes that
+`replay_diversity_enabled` defaulting False is **expected** (a backward-compat master switch, its §6
+note), and that even with the buffer populated MECH-165's replay never fires because
+`hippocampal.diverse_replay(...)` is never called (its §97). So the 906 family is not silently missing
+an intended consolidation -- it is running the documented default. What this inventory adds is only
+that the *call site and its comment* in `_segment_boundary_consolidate` read as an active step when
+they are inert, which matters for anyone reasoning about C1 continuity from that function alone. No
+routing owed.
 
 **F2 -- the gap9 sleep cycle runs inside the driver's `no_grad`.** `notify_waking_step` is invoked
 from `agent.update_residue` (`agent.py:10031`), and all three gap9 drivers call `update_residue`
