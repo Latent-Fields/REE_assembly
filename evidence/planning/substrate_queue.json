@@ -8154,7 +8154,34 @@
       "implemented_session": "github-write-access-setup-88d6ec",
       "severity_note": "UNCHANGED. This occurrence does not change the classification, and substrate_paths are unchanged -- leave both as governance already has them.",
       "governance_amend_2026_08_16": "Amended by /governance cycle cranky-driscoll-126a36 from confirmed failure_autopsy_V3-EXQ-930_2026-08-16 (V3-EXQ-930).",
-      "status_note": "2026-08-16 governance: status_phase validation_owed -> validated. V3-EXQ-930 (this entry's named validation_experiment) MET the acceptance target at the SIGNAL layer -- best AUC 1.0 at tau=0.08, qualifying band tau 0.02-0.30, shipped default 0.25 inside the band (reach 0.648, AUC 1.0), against a >=~0.84 bar. CAVEAT: this is signal-layer validation with use_contextual_safety_terrain OFF; the gate-layer evidence is the build's own e2e smoke, not a scored manifest. The residual gate-layer validation is discharged by the owed MECH-303 BEHAVIOURAL retest (now unblocked and chipped), not by another substrate item."
+      "status_note": "2026-08-16 governance: status_phase validation_owed -> validated. V3-EXQ-930 (this entry's named validation_experiment) MET the acceptance target at the SIGNAL layer -- best AUC 1.0 at tau=0.08, qualifying band tau 0.02-0.30, shipped default 0.25 inside the band (reach 0.648, AUC 1.0), against a >=~0.84 bar. CAVEAT: this is signal-layer validation with use_contextual_safety_terrain OFF; the gate-layer evidence is the build's own e2e smoke, not a scored manifest. The residual gate-layer validation is discharged by the owed MECH-303 BEHAVIOURAL retest (now unblocked and chipped), not by another substrate item.",
+      "consumer_audit": {
+        "audit_added_utc": "2026-08-27T06:57:46Z",
+        "audit_added_by": "chip-20260826-mech286-consumer-audit-enumeration",
+        "why_this_field_exists": "The pre-existing sourcing audit recorded in this entry's implementation_note is scoped to DRIVERS enabling use_contextual_safety_terrain (it asks which of them set limb_damage_enabled=True). That scoping is what let a second CONSUMER of the same shared z_harm_a.norm() expression go unnoticed: MECH-286's sleep-onset gate reads the identical expression but does not enable use_contextual_safety_terrain, so no driver-scoped sweep could ever surface it. This field enumerates the expression's consumers directly, so that whoever re-points MECH-303 at the dedicated obs_safety_proximity / contextual_safety_gate_source signal sees every consumer that needs re-pointing, not only the ones the driver sweep happened to reach. Recorded in MECH-492's SCOPE block in docs/claims/claims.yaml; nothing in the pipeline re-derives it, hence this entry.",
+        "shared_expression": "z_harm_a.norm() (full instantaneous norm; there is no tonic/phasic decomposition anywhere in either path)",
+        "consumers": [
+          {
+            "claim_id": "MECH-303",
+            "status_in_this_entry": "primary consumer -- the one this SD entry was built for; already re-pointable via contextual_safety_gate_source",
+            "substrate_path": "ree-v3/ree_core/agent.py:5145",
+            "expression": "harm_norm = float(new_latent.z_harm_a.norm().item())",
+            "threshold_knob": "contextual_safety_harm_threshold (default 0.25 as shipped 2026-08-14; was 0.05)",
+            "driver_scope": "drivers enabling use_contextual_safety_terrain (764/520/916/916a named in the pre-existing audit; implementation_note records 3 of 21 setting limb_damage_enabled=True)"
+          },
+          {
+            "claim_id": "MECH-286",
+            "status_in_this_entry": "SECOND consumer, enumerated 2026-08-27 -- NOT yet re-pointed; declares no sourcing mode of its own and inherits whichever the driver sets",
+            "substrate_path": "ree-v3/ree_core/sleep/sleep_onset_gate.py::evaluate_sleep_onset_permit",
+            "expression": "threat conjunct: harm_a_norm < cfg.threat_tonic_threshold, where harm_a_norm comes from _z_harm_a_tonic_norm() = float(agent._current_latent.z_harm_a.norm())",
+            "threshold_knob": "mech286_threat_tonic_threshold (default 0.4, ree_core/utils/config.py:6025) -- uncalibrated; no measurement of this signal informed it",
+            "driver_scope": "does NOT enable use_contextual_safety_terrain, which is exactly why the driver-scoped audit missed it",
+            "consequence_if_not_re_pointed": "The term is ANDed into a three-way conjunction (override_ok and staleness_ok and threat_ok), so a near-constant threat_ok silently degrades the gate to an effective always-permit (or, above threshold, always-refuse) rather than a safety gate. Consequential only when use_mech286_sleep_onset_gate is enabled, which is REEConfig-default False.",
+            "owning_claim": "MECH-492 (candidate, registered 2026-08-14) -- see its SCOPE block"
+          }
+        ],
+        "re_point_build_is_DEFERRED_not_owed_here": "This field is the ENUMERATION only. The MECH-286 re-point BUILD is deliberately deferred and is NOT part of this SD entry's remaining work: it is contingent on MECH-492's first-ever falsifier V3-EXQ-950 (ree-v3 fd93db01ab, queued 2026-08-26), which measures whether the threat conjunct discriminates place safety under each sourcing mode. As of 2026-08-27 that run has landed a manifest (v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3, outcome PASS, evidence_direction supports) but is NOT yet governance-reviewed, so its disposition is not settled and must not be pre-empted. No default was changed and no ree_core path was touched by this enumeration."
+      }
     },
     {
       "sd_id": "SD-QUEUE-SEED-ENFORCEMENT",
