@@ -1,63 +1,48 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-27T12:39:05Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-603v",
-  "current_exq_started_utc": "2026-08-26T12:15:37.368727+00:00",
-  "current_title": "MECH-357 eligibility-trace repair validation: is the learned avoidance_efficacy still live in the Stage-H scoring window after credit-eligibility windowing?",
-  "current_claim_id": "MECH-357",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
-    "runs_done": 4,
-    "runs_total": 6,
-    "episodes_done": 170,
-    "episodes_total": 235,
-    "overall_pct": 78.7
-  },
-  "seconds_elapsed": 87808,
-  "seconds_remaining": 25755,
-  "recent_lines": [
-    "[v3_exq_603v_mech357_eligibility_trace_repair_validation] starting (dry_run=False)",
-    "Seed 42 Condition ARM_INTACT_midline_pag_gate_combined_fix",
-    "[train] stage0 ARM_INTACT_midline_pag_gate_combined_fix seed=42 ep 20/235 z_goal_peak=0.4854",
-    "[train] p0 ARM_INTACT_midline_pag_gate_combined_fix seed=42 ep 130/235 mean_len=186.4 rv=0.00003",
-    "[train] hazard_avoidance ARM_INTACT_midline_pag_gate_combined_fix seed=42 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=180 eff=0.4942 n_credit=228 n_freeze_suppr=326",
-    "[train] p1 ARM_INTACT_midline_pag_gate_combined_fix seed=42 ep 220/235 median_last=200.0 survival_gate=pass",
-    "[train] p2 ARM_INTACT_midline_pag_gate_combined_fix seed=42 ep 235/235 contact_rate=0.1909",
-    "verdict: PASS seed=42 arm=ARM_INTACT_midline_pag_gate_combined_fix g_h=True g0=True g1=True g2=True eff_final=0.4942",
-    "Seed 43 Condition ARM_INTACT_midline_pag_gate_combined_fix",
-    "[train] stage0 ARM_INTACT_midline_pag_gate_combined_fix seed=43 ep 20/235 z_goal_peak=0.4315",
-    "[train] p0 ARM_INTACT_midline_pag_gate_combined_fix seed=43 ep 130/235 mean_len=182.1 rv=0.00009",
-    "[train] hazard_avoidance ARM_INTACT_midline_pag_gate_combined_fix seed=43 ep 170/235 median_last=6.5 survival_gate=FAIL pag_commits=170 eff=0.4961 n_credit=210 n_freeze_suppr=328",
-    "[train] p1 ARM_INTACT_midline_pag_gate_combined_fix seed=43 ep 220/235 median_last=200.0 survival_gate=pass",
-    "[train] p2 ARM_INTACT_midline_pag_gate_combined_fix seed=43 ep 235/235 contact_rate=0.1009",
-    "verdict: FAIL seed=43 arm=ARM_INTACT_midline_pag_gate_combined_fix g_h=False g0=True g1=True g2=True eff_final=0.4961",
-    "Seed 44 Condition ARM_INTACT_midline_pag_gate_combined_fix",
-    "[train] stage0 ARM_INTACT_midline_pag_gate_combined_fix seed=44 ep 20/235 z_goal_peak=0.3736",
-    "[train] p0 ARM_INTACT_midline_pag_gate_combined_fix seed=44 ep 130/235 mean_len=191.9 rv=0.00002",
-    "[train] hazard_avoidance ARM_INTACT_midline_pag_gate_combined_fix seed=44 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=198 eff=0.0331 n_credit=575 n_freeze_suppr=2810",
-    "[train] p1 ARM_INTACT_midline_pag_gate_combined_fix seed=44 ep 220/235 median_last=5.0 survival_gate=FAIL",
-    "[train] p2 ARM_INTACT_midline_pag_gate_combined_fix seed=44 ep 235/235 contact_rate=0.1873",
-    "verdict: PASS seed=44 arm=ARM_INTACT_midline_pag_gate_combined_fix g_h=True g0=False g1=False g2=True eff_final=0.0331",
-    "Seed 42 Condition ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
-    "[train] stage0 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=42 ep 20/235 z_goal_peak=0.5014",
-    "[train] p0 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=42 ep 130/235 mean_len=190.1 rv=0.00007",
-    "[train] hazard_avoidance ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=42 ep 170/235 median_last=200.0 survival_gate=pass pag_commits=184 eff=0.4971 n_credit=403 n_freeze_suppr=876",
-    "[train] p1 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=42 ep 220/235 median_last=103.0 survival_gate=pass",
-    "[train] p2 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=42 ep 235/235 contact_rate=0.1277",
-    "verdict: PASS seed=42 arm=ARM_POSCTRL_reefspawn_pag_gate_combined_fix g_h=True g0=True g1=True g2=True eff_final=0.4971",
-    "Seed 43 Condition ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
-    "[train] stage0 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=43 ep 20/235 z_goal_peak=0.4288",
-    "[train] p0 ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=43 ep 130/235 mean_len=184.0 rv=0.00013",
-    "[train] hazard_avoidance ARM_POSCTRL_reefspawn_pag_gate_combined_fix seed=43 ep 170/235 median_last=6.0 survival_gate=FAIL pag_commits=180 eff=0.4967 n_credit=203 n_freeze_suppr=300"
-  ],
-  "queue_depth": null,
+  "last_tick_utc": "2026-08-27T18:49:20Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 0,
   "queue_id_at_head": null,
-  "recent_completed": [],
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-920a",
+      "result": "PASS",
+      "completed_at": "2026-08-14T22:34:34.528052+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-936",
+      "result": "PASS",
+      "completed_at": "2026-08-17T06:20:39.334934+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-943",
+      "result": "PASS",
+      "completed_at": "2026-08-20T11:58:15.971038+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-939a",
+      "result": "PASS",
+      "completed_at": "2026-08-22T00:01:18.086736+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-945",
+      "result": "PASS",
+      "completed_at": "2026-08-25T21:01:12.035360+00:00"
+    }
+  ],
   "runner_pid": 840,
-  "runner_version": "r5426 73de695 2026-08-26",
+  "runner_version": "r5432 8bfcf19 2026-08-27",
   "gpu": {
     "available": false
   },

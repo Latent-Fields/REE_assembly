@@ -1,29 +1,18 @@
 {
   "schema_version": "v1",
-  "runner_pid": 838,
-  "runner_started_at": "2026-08-25T20:55:48.761449+00:00",
-  "last_updated": "2026-08-25T21:01:12.036331+00:00",
+  "runner_pid": 840,
+  "runner_started_at": "2026-08-26T12:15:37.357114+00:00",
+  "last_updated": "2026-08-27T18:47:08.941083+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-925a",
+      "queue_id": "V3-EXQ-950",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "E3 F-dominance causal replay, COMMITTED REGIME (H1-H4 re-test; fixes 925 commit-gate deadlock)",
+      "claim_id": "MECH-492",
+      "title": "MECH-492: does MECH-286's sleep-permission threat conjunct discriminate place safety under both z_harm_a sourcing modes?",
       "description": "",
-      "estimated_minutes": 80.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-944b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-091 salient-event cycle-boundary reset, per-seed gated (successor to V3-EXQ-944a, crash fixed)",
-      "description": "",
-      "estimated_minutes": 104.0,
+      "estimated_minutes": 1280.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3579,6 +3568,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_945_cem_elite_authority_throughput_readiness_20260825T210111Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 322.0
+    },
+    {
+      "queue_id": "V3-EXQ-603v",
+      "backlog_id": "",
+      "claim_id": "MECH-357",
+      "title": "MECH-357 eligibility-trace repair validation: is the learned avoidance_efficacy still live in the Stage-H scoring window after credit-eligibility windowing?",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_603v_mech357_eligibility_trace_repair_validation] C1_frac=1.00 (floor 0.01) C2_frac=0.67 C1R_frac=1.00 worst_INTACT_seed_idx=2 worst_window_median=0.0331 intact_green=True -> outcome=PASS route=eligibility_trace_repair_validated evidence_direction=supports | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-603v -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-603v.json",
+      "started_at": "2026-08-26T12:15:37.368727+00:00",
+      "completed_at": "2026-08-27T18:47:08.940237+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_603v_mech357_eligibility_trace_repair_validation/v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 109890.9
     }
   ]
 }
