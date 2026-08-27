@@ -652,8 +652,9 @@ no infra, no config change is pending. A future session (or a human) should
 periodically check `GET /task_claim/drift` (or `journalctl -u
 ree-task-claim-chip-shadow-sync`) until N days of clean history has
 accumulated, then bring that evidence forward for the PHASE-2 go/no-go
-decision -- which additionally still needs the section 6.2 Mac-tunnel
-rate-criterion question resolved (unchanged, still open).
+decision. (Section 6.2's Mac-tunnel rate-criterion is no longer a
+prerequisite here -- see the 2026-08-27 revision at the end of section 6.2:
+deferred to post-cutover monitoring by explicit user decision.)
 
 Two things PHASE-1 must NOT do, unchanged from the original plan and still
 true of the code as built and now the live routes: it must not add any write
