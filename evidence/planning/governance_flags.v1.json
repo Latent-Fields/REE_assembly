@@ -852,6 +852,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0059",
+      "claim_ids": [
+        "SD-031"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The 2026-06-06 cluster-autopsy reading ('world_dim=32 lacks discriminative granularity') is refuted, not merely retested, by its own prescribed retest V3-EXQ-783 (2026-07-18): training lifts contrast at both dim=32 and dim=128 while dimensionality lifts nothing at either training state. The real fault was an untrained encoder (fixed by SD-070, same day), not dimensionality. SD-031's evidence_quality_note still reflects the pre-783 dim=32 framing. Surfaced by thought-digestion 2026-08-27 (grouped mode, group A).",
+      "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
+      "raised_at": "2026-08-27T19:27:25Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
