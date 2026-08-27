@@ -51,8 +51,64 @@ closure_plan:
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
       status: soaking
       severity: high
-      last_updated: 2026-08-26
+      last_updated: 2026-08-27
       note: >
+        COORDINATOR RESTARTED 2026-08-27T07:52:01Z (session
+        metaworker-chip-20260827-coordinator-phase1-restart-soak-start, chip
+        chip-20260827-coordinator-phase1-restart-soak-start). SSH to the hub
+        (ree-cloud-1, ree@91.98.130.117) confirmed the pre-restart state
+        exactly as the prior node text described: `ree-coordinator.service`
+        had been running since 2026-08-26T04:47:44Z (~27h), while
+        `app.py` on disk carried the PHASE-1 routes since 2026-08-26T19:00Z
+        -- so `/task_claim/list` and `/chip/list` 404'd with a verified-valid
+        bearer token (confirmed via `/shadow/status` -> 200 with the same
+        token) while `/health` still answered normally. Before restarting,
+        confirmed the shadow-sync timer was healthy (11h of ticks since
+        enable, most recent tick 5 min prior, diverged=0 on every visible
+        tick) and that phase3 writer commits were still landing normally on
+        `origin/master` -- i.e. the restart was not being used to paper over
+        an already-broken soak.
+
+        `sudo systemctl restart ree-coordinator.service` executed cleanly
+        (ActiveEnterTimestamp confirms 2026-08-27T07:52:01Z). Post-restart
+        verification, all live: `/health` -> `{"ok": true, "mode":
+        "coordinator"}`; `/task_claim/list` -> 200 with real claim data;
+        `/chip/list` -> 200; `/task_claim/drift` -> 200 with the FULL
+        backfilled history the shadow-sync timer had been accumulating all
+        along (`total_ticks: 70, diverged_ticks: 0` at restart time, i.e.
+        zero drift across the entire ~11.4h the timer had been running
+        pre-restart -- nothing was lost by waiting, exactly as the prior
+        node predicted). `journalctl -u ree-coordinator.service` post-restart
+        shows normal `POST /heartbeat` (200) traffic resuming from cloud-2/
+        cloud-4/the hub itself within seconds, plus a `POST /claim` and a
+        `GET /commands` both 200. `/writer-health` confirms all three phase3
+        writers (git_writer, queue_writer, heartbeat_writer) show
+        `last_error: null` and a `last_tick_at` seconds-old at check time,
+        `spool_pending: 0` -- the restart caused no observable disruption to
+        the writer plane it shares the box with.
+
+        **THE SOAK CLOCK NOW EFFECTIVELY STARTS RETROACTIVELY FROM THE TIMER
+        ENABLE, NOT FROM THIS RESTART**: because the shadow-sync timer and
+        drift-log table were already running and recording ticks the whole
+        time (per the PHASE-1 node's prior text), the moment the routes
+        became reachable they immediately reported the full pre-restart
+        history rather than starting from zero. `GET /task_claim/drift`
+        (`total_ticks`/`diverged_ticks`) is now the live, API-reachable exit
+        -criterion measurement -- no more `journalctl` workaround needed.
+        Exit criterion (still N days of `diverged_ticks` staying at 0,
+        unchanged from the original design) is NOT yet met: only ~11.4h of
+        history exists as of this restart, well short of any reasonable N.
+        This session's task ends here, per its own brief -- it does not
+        redefine N, does not start PHASE-2, and does not add any write path.
+        The only remaining PHASE-1 work is elapsed time: continue polling
+        `GET /task_claim/drift` (or `journalctl -u
+        ree-task-claim-chip-shadow-sync`) periodically until N days of
+        zero-drift history accumulates, then bring that evidence to a human
+        for the PHASE-2 go/no-go decision (which additionally needs the
+        section 6.2 Mac-tunnel rate-criterion question resolved -- still
+        open, unchanged by this session).
+
+        Prior (unchanged, retained for history):
         SOAK STARTED 2026-08-26T20:26:52Z (session
         metaworker-chip-20260826-coordinator-migration-phase1-deploy, chip
         chip-20260826-coordinator-migration-phase1-deploy). Deployed to the
@@ -203,7 +259,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** SOAKING (v0.4, 2026-08-26). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING as of 2026-08-26T20:26:52Z**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are now installed on the coordinator hub -- a read-only umbrella clone was provisioned, `ree-task-claim-chip-shadow-sync.{service,timer}` is installed and enabled at its documented 10-minute cadence, and two manual ticks confirmed zero-drift convergence (see the PHASE-1 frontmatter node). The coordinator DB schema migration has been applied (via the shadow-sync script's own `db.connect()`, additive, no table rebuild); the LIVE `ree-coordinator.service` HTTP process has NOT been restarted yet, so `/task_claim/*` and `/chip/*` read endpoints still 404 -- soak evidence is being read via `journalctl` instead until a human restarts that shared service (deliberately left to a human, not self-authorized). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** SOAKING (v0.5, 2026-08-27). **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -575,30 +631,36 @@ See the frontmatter `nodes` table at the top of this file for the authoritative,
 
 **PHASE-0 is closed (2026-08-26).** Sections 6.1, 6.2 and 6.3 all carry live-verified answers, not carried-forward memory claims.
 
-**PHASE-1 is now soaking (started 2026-08-26T20:26:52Z, session
-metaworker-chip-20260826-coordinator-migration-phase1-deploy).** The
-read-only clone, systemd timer, and zero-drift verification described in
-the PHASE-1 frontmatter node above are done. What remains before the exit
-criterion (N days of `diverged_ticks` staying at 0) can even be measured
-via the API: a human needs to restart `ree-coordinator.service` on the hub
-so the already-on-disk `/task_claim/*` and `/chip/*` routes actually load
--- this session deliberately did not do that itself (see the node for why).
-Until that restart, use `journalctl -u ree-task-claim-chip-shadow-sync -f`
-on the hub for soak evidence instead of `GET /task_claim/drift`; the
-drift-log table is being populated every tick either way, so nothing is
-lost by waiting.
+**PHASE-1 is now soaking with `/task_claim/*` and `/chip/*` LIVE (coordinator
+restarted 2026-08-27T07:52:01Z, session
+metaworker-chip-20260827-coordinator-phase1-restart-soak-start).** The
+read-only clone, systemd timer, zero-drift verification, and now the
+coordinator restart itself are all done -- see the PHASE-1 frontmatter node
+for full detail. The exit criterion (N days of `diverged_ticks` staying at
+0) is now directly measurable via `GET /task_claim/drift`
+(`total_ticks`/`diverged_ticks`), no `journalctl` workaround required. As of
+the restart, only ~11.4h of zero-drift history exists -- well short of any
+reasonable N. **The only remaining PHASE-1 work is elapsed time**: no code,
+no infra, no config change is pending. A future session (or a human) should
+periodically check `GET /task_claim/drift` (or `journalctl -u
+ree-task-claim-chip-shadow-sync`) until N days of clean history has
+accumulated, then bring that evidence forward for the PHASE-2 go/no-go
+decision -- which additionally still needs the section 6.2 Mac-tunnel
+rate-criterion question resolved (unchanged, still open).
 
 Two things PHASE-1 must NOT do, unchanged from the original plan and still
-true of the code as built: it must not add any write path back to git (that
-is PHASE-2, and it is explicitly not user-ratified as a build -- see section
-3), and it must not treat section 6.2's green digest as settling the Mac's
-tunnel (see the rate-criterion recommendation there, which is a PHASE-2
-gate). Neither happened -- verified by test_reconcile_never_dirties_the_
-source_working_tree and test_no_mutating_task_claim_or_chip_post_route_
-exists in ree-v3/coordinator/, and the Mac's tunnel was not touched.
+true of the code as built and now the live routes: it must not add any write
+path back to git (that is PHASE-2, and it is explicitly not user-ratified as
+a build -- see section 3), and it must not treat section 6.2's green digest
+as settling the Mac's tunnel (see the rate-criterion recommendation there,
+which is a PHASE-2 gate). Neither happened -- verified by
+test_reconcile_never_dirties_the_source_working_tree and
+test_no_mutating_task_claim_or_chip_post_route_exists in
+ree-v3/coordinator/ (unchanged by this session, since it touched
+infrastructure, not code), and the Mac's tunnel was not touched.
 
-**Do not start PHASE-2 from this state.** A built-and-clean PHASE-1 is not
-evidence the soak passed -- the soak is elapsed time with the timer actually
-running, and the timer is not running yet.
+**Do not start PHASE-2 from this state.** A live, zero-drift PHASE-1 is not
+by itself evidence the soak has run long enough -- the exit criterion is N
+days of clean history, and as of this restart only ~11.4h has accumulated.
 
 Update the frontmatter `nodes` status/note for whichever phase you touch, in the same commit as your actual work, so the next session does not have to re-read this whole document to find out what changed.
