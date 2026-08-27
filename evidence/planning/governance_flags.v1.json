@@ -945,6 +945,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0066",
+      "claim_ids": [
+        "MECH-317",
+        "ARC-071",
+        "MECH-323",
+        "MECH-324"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "MECH-317 (behavioural_pattern_compression, unbuilt, doc-only since registration 2026-05-10) is a strong duplicate/absorption candidate against the already-built ARC-071/MECH-323 (ChunkAccumulator)/MECH-324 (ChunkLibrary) cluster: same trigger design (repetition-count + outcome-consistency), same lit anchors (Smith & Graybiel 2013/2016), same options-framework formalism (Sutton/Precup/Singh 1999), same registration date, and the survivor has a confirmed run (V3-EXQ-810a, 2026-07-30). Proposed survivor: ARC-071/MECH-323/MECH-324; proposed absorbed: MECH-317. Reverse-deps needing repointing if confirmed: MECH-312b, MECH-318, arc_062_rule_apprehension_plan.md's GAP-I-absorption node. NOT confirmed: whether ARC-071's chunk output should wire into MECH-318's rule-state-abstraction consumer specifically -- the two claims currently feed different registered consumers (ARC-062's rollout pool vs MECH-318), which may mean this is one mechanism wired to two consumers rather than a byte-for-byte duplicate. Recommend routing to /claim-synthesis to resolve. digestion_note added to MECH-317 pending this review. Surfaced by thought-digestion 2026-08-27 (grouped mode, wave 2, group E).",
+      "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
+      "raised_at": "2026-08-27T19:57:40Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
