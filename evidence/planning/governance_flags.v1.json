@@ -812,6 +812,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0056",
+      "claim_ids": [
+        "MECH-465"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-465's what_would_answer asserts 'REACHABILITY (settled on recorded data, no longer open)' and cites rv percentiles p5 0.00259 / p25 0.00330 / median 0.00562 / p75 0.00618 / p95 0.00720. Those reproduce EXACTLY as the POOLED-ACROSS-SEEDS distribution of V3-EXQ-785a's per-tick running variance; post-warmup the WITHIN-seed IQR/median is 0.010-0.085, not the 0.51 the same paragraph pre-registers as the P2 DISPERSION FLOOR -- so the pooled dispersion is almost entirely BETWEEN-seed and reachability is NOT settled. A live boundary-regime probe at ree-v3 post-2023589 confirms: P1 HEADROOM and P2 both fail 3/3 seeds (within-seed IQR/median 0.0266 / 0.0450 / 0.0279), and the calibration target moves 35-165% while the graded band is only 2.7-4.5% wide. EXP-0590 was declined at the /queue-experiment guardrail and set to blocked_substrate on REE_assembly 9dad9461ef; full analysis in evidence/planning/mech465_boundary_regime_reachability_probe_20260827.md. Governance action owed: correct or qualify the REACHABILITY sentence (and reconsider the substrate_conditional -> standard epistemic_category move made in the same 2026-08-26 pass, which was justified by that sentence).",
+      "raised_by_session": "igw-234-proposal-for-mech-465",
+      "raised_at": "2026-08-27T06:07:52Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
