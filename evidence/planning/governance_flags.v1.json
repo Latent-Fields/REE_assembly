@@ -932,6 +932,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0065",
+      "claim_ids": [
+        "MECH-314b"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "V3-EXQ-949 (2026-08-25, ree-v3/experiments/v3_exq_949_mech314b_authority_rescale_validation.py) PASSED/supports on the exact un-park trigger this claim's own 2026-07-20 ceiling_routing_note names (a genuine per-candidate uncertainty signal, now built into structured_curiosity.py's compute_score_bias via an optional per_candidate_uncertainty argument). C1/C2 both cleared 0.3675 against a 0.02 threshold; C3 negative control correctly read 0.0. The run has NOT been through /failure-autopsy or governance review -- absent from reviewed_run_ids and pending_review.md. Recommend routing to /failure-autopsy then a governance disposition decision (un-park + reconsider whether the per-candidate path should become the production default rather than an opt-in kwarg). Surfaced by thought-digestion 2026-08-27 (grouped mode, wave 2, group D).",
+      "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
+      "raised_at": "2026-08-27T19:57:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
