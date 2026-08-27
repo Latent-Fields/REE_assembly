@@ -111,4 +111,39 @@ Pure-chain rows inflating the blocked count without independent content (correct
 
 ---
 
-*Scope note: classification only, per the spawning instruction. Nothing here was built, queued, or chipped; no claims.yaml / substrate_queue / plan-frontmatter edits were made. The staleness findings above are reported for the next `/governance` or `/steward` cycle to apply — including the two memory retirements, which the owning interactive session should do rather than a sweep like this one.*
+*Scope note (v1.0): classification only, per the spawning instruction. Nothing in v1.0 was built, queued, or chipped; no claims.yaml / substrate_queue / plan-frontmatter edits were made.*
+
+---
+
+# Addendum v1.1 — same-day verification corrections + routing (user-directed)
+
+**Added:** 2026-08-27, same session, after the user directed that the identified work be routed (chips + flags + reconcile edits). Chip-rule STOP-CHECK-style verification before spawning overturned **three** v1.0 rows — recorded here so the table above is not read uncorrected.
+
+## Corrections to v1.0
+
+1. **`mech357_avoidance_efficacy:BUILD` — the probe already ran, negative; token migrates `complex (probe-gated)` -> `mystery (known data)`.** The pursuit wiring landed 2026-08-14 and V3-EXQ-603u (2026-08-16 governance) returned G_H_LESION_frac = 1.0: all four pressure designs are now exhausted (substrate_queue entry `validated_negative`). The sibling eligibility-trace repair's validation **V3-EXQ-603v ran PASS/supports 2026-08-27T18:47Z (unreviewed)**. The owed work is the substrate entry's own named precondition: the zero-compute reanalysis of the recorded 603s/603t/603u trajectories. Probe #3 in the highest-yield list is therefore replaced by that reanalysis (chipped below). The v1.0 plan-staleness observation stands — the plan node still read `open`/unbuilt; reconcile note added.
+2. **`commitment_closure:GAP-7` (MECH-091) — not merely buildable: essentially RESOLVED pending review.** The trigger wiring landed 2026-08-17 (ree-v3 `6293b239`); validation 944 was voided on a control degeneration, its autopsy-routed successor **V3-EXQ-944b ran PASS/supports 2026-08-25 (unreviewed)**. No chip warranted; this is pending_review + a node flip — flagged (GFLAG-0067). v1.0's "flagship mislabel" verdict was right in direction but understated: the node was not just buildable, the build and its validation are both done.
+3. **`conversion_ceiling_campaign:GENERATION` — NOT freely parallel.** v1.0's probe #5 said it "can run in parallel"; the node's `upstream_block_reason` says it is ORDERING-GATED on INV-088 z_world differentiation (a rarity term over an under-differentiated map has nothing to range over). `blocked_on_upstream` is accurate; token stays `complex (probe-gated)` but the spike must wait on INV-088. Not chipped.
+
+## Routing performed (this session, user-directed)
+
+**Plan-frontmatter reconcile notes** (docs-only, dated fields, no status changes; REE_assembly `61669463f6`): `arc_062:GAP-B` (stale "654h QUEUED+PENDING" — ran terminal 2026-06-21), `orienting:ORNT-2` (resume_condition lagged its own status table's gates-cleared record), `mech357:BUILD` (overtaken by 603u/603v, above).
+
+**Governance flags raised** (stale_note; on origin/master): **GFLAG-0067** (MECH-091 — review 944b, flip GAP-7), **GFLAG-0068** (MECH-357 — review 603v, flip BUILD, reanalysis chipped), **GFLAG-0069** (ARC-108/MECH-450/MECH-439 — blocked_on_upstream stale, GateDV instrument landed `c309bc6486`; the residual is the held 713x re-letter *decision*, adjudicate it).
+
+**Memory labels retired** (session memory, not repo): MECH-303 and MECH-304 "blocked" memories rewritten as tombstones (both claims active: 2026-08-22 / 2026-07-15).
+
+**Chips spawned** (all recorded in TASK_CHIPS.json with STOP-CHECKs incl. `task_claim.py check`; model guidance embedded per prompt — Fable for the three high-judgment items, Opus for builds/pulls):
+
+| chip_ref | routes to | model | discharges |
+|---|---|---|---|
+| chip-20260827-mech357-trajectory-reanalysis | analysis memo -> /governance | fable | mech357 mystery (known data) |
+| chip-20260827-arc070-repose-reoperationalization | design spike -> /governance | fable | REPOSE mystery (known data) |
+| chip-20260827-competence-final-discriminator | /queue-experiment | fable | U1 (last standing rival) |
+| chip-20260827-inv050-nonconverging-mel-env | /implement-substrate + /queue-experiment | opus | INV-050 producer unknown (user-authorized un-park) |
+| chip-20260827-mech482-accumulator-build | /implement-substrate | opus | ORNT-2 build (gates cleared) |
+| chip-20260827-litpull-task-resumption | /lit-pull + registration | opus | unregistered resumption gap |
+| chip-20260827-litpull-imagination-licitness | /lit-pull + Stage-2 intake | opus | thrice-surfaced unregistered principle |
+| chip-20260827-infant-gap14-redesign-scoping | staged proposal -> /governance | opus | GAP-14 mystery (known data) |
+
+**Deliberately NOT chipped:** FULLSTACK corrected-DV probe (sequenced behind U1 + the GFLAG-0069 decision — governance chips it once ratified); GENERATION (INV-088-gated, correction 3); jlens A/GATE-B/B/MECH-191 (spring-loaded behind U1, correctly held); the U2-gated execution chains (self_attribution GAP-1/2/3/6, sd_037_axis_b P1b-P4, sleep GAP-2, arc_062 GAP-I/J + behavioral GAP-G); play-mode / MECH-088 planes / MECH-178 (deliberate V4-leaning deferrals — chip on request); 603v and 944b review (pending_review walk, governance-owned).
