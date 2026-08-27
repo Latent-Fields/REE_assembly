@@ -1,0 +1,169 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603v_mech357_eligibility_trace_repair_validation",
+  "run_id": "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-27T18:47:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-357"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "eligibility_trace_repair_validated",
+    "readiness_route": "eligibility_trace_repair_validated",
+    "route_note": "Credit-eligibility windowing (ree-v3 93d5d98b80) holds the learned avoidance_efficacy above the pre-registered floor through the scoring window, where V3-EXQ-603u measured numerical zero (~1e-24..1e-29) on the identical config. The MECH-357 Stage-H instrument is repaired: the INTACT arm is no longer functionally lesioned where the DV is measured. substrate_queue mech357-avoidance-efficacy-eligibility-trace-imbalance failure_record target MET -> that failure_record may be resolved.",
+    "preconditions": [
+      {
+        "name": "ARM_INTACT_midline_pag_gate_combined_fix::ilpfc_gate_engages_and_suppresses_freeze",
+        "precondition": "ilpfc_gate_engages_and_suppresses_freeze",
+        "arm": "ARM_INTACT_midline_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "The ilPFC gate must register efficacy updates under threat (n_credit+n_decay>0) AND suppress the PAG freeze (n_freeze_suppressed>0) on >= 2/3 seeds. Below floor => the gate never engaged, so the trace readout measures nothing => substrate_not_ready_requeue.",
+        "control": "Gate-ON arm with the protective-scaffold floor 0.8 annealing to 0.0.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666656666667,
+        "met": true
+      },
+      {
+        "name": "ARM_INTACT_midline_pag_gate_combined_fix::stage0_forced_feed_lights_zgoal",
+        "precondition": "stage0_forced_feed_lights_zgoal",
+        "arm": "ARM_INTACT_midline_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >= 2/3 seeds -- the goal-FORMATION positive control, without which the agent never reaches a meaningful Stage-H.",
+        "control": "run_stage0_nursery forced-feed.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666656666667,
+        "met": true
+      },
+      {
+        "name": "ARM_INTACT_midline_pag_gate_combined_fix::avoidance_trace_peak_nondegenerate",
+        "precondition": "avoidance_trace_peak_nondegenerate",
+        "arm": "ARM_INTACT_midline_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC positive control for C1 (the 643 rule): the LEARNED mech357_avoidance_efficacy -- the exact quantity C1 routes on, not a proxy -- must reach TRACE_PEAK_READY_FLOOR at SOME point in the Stage-H run on >= 2/3 seeds. V3-EXQ-603u cleared this on the BROKEN substrate (in-run peaks 0.659-0.970), so it is known-achievable and independent of the repair under test. Below floor => the learner never moved the trace at all => substrate_not_ready_requeue, NEVER a verdict about whether the repair worked.",
+        "control": "V3-EXQ-603u, same config, pre-fix: in-run peaks 0.659/0.936/0.832 (INTACT) and 0.894/0.964/0.971 (POSCTRL).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666656666667,
+        "met": true
+      },
+      {
+        "name": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix::ilpfc_gate_engages_and_suppresses_freeze",
+        "precondition": "ilpfc_gate_engages_and_suppresses_freeze",
+        "arm": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "The ilPFC gate must register efficacy updates under threat (n_credit+n_decay>0) AND suppress the PAG freeze (n_freeze_suppressed>0) on >= 2/3 seeds. Below floor => the gate never engaged, so the trace readout measures nothing => substrate_not_ready_requeue.",
+        "control": "Gate-ON arm with the protective-scaffold floor 0.8 annealing to 0.0.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666656666667,
+        "met": true
+      },
+      {
+        "name": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix::stage0_forced_feed_lights_zgoal",
+        "precondition": "stage0_forced_feed_lights_zgoal",
+        "arm": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >= 2/3 seeds -- the goal-FORMATION positive control, without which the agent never reaches a meaningful Stage-H.",
+        "control": "run_stage0_nursery forced-feed.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666656666667,
+        "met": true
+      },
+      {
+        "name": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix::avoidance_trace_peak_nondegenerate",
+        "precondition": "avoidance_trace_peak_nondegenerate",
+        "arm": "ARM_POSCTRL_reefspawn_pag_gate_combined_fix",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC positive control for C1 (the 643 rule): the LEARNED mech357_avoidance_efficacy -- the exact quantity C1 routes on, not a proxy -- must reach TRACE_PEAK_READY_FLOOR at SOME point in the Stage-H run on >= 2/3 seeds. V3-EXQ-603u cleared this on the BROKEN substrate (in-run peaks 0.659-0.970), so it is known-achievable and independent of the repair under test. Below floor => the learner never moved the trace at all => substrate_not_ready_requeue, NEVER a verdict about whether the repair worked.",
+        "control": "V3-EXQ-603u, same config, pre-fix: in-run peaks 0.659/0.936/0.832 (INTACT) and 0.894/0.964/0.971 (POSCTRL).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666656666667,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_trace_live_in_scoring_window_INTACT": true,
+      "C2_trace_within_order_of_magnitude_of_peak_INTACT": true,
+      "C1R_trace_live_in_scoring_window_POSCTRL": true
+    },
+    "criteria": [
+      {
+        "name": "C1_trace_live_in_scoring_window_INTACT",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_trace_within_order_of_magnitude_of_peak_INTACT",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C1R_trace_live_in_scoring_window_POSCTRL",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "d4e0610e968c35aeb5d384aabc73d53e97b22f76ba93dd7e3e03f3b16adc4eea",
+  "substrate_commit": {
+    "commit": "8bfcf198ff99fe4511b36f0004a699b0fd534405",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 195428,
+    "ticks_active": 195422,
+    "writer_calls": 7194,
+    "active_frac": 0.9999692981558426,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
