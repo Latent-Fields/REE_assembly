@@ -424,11 +424,50 @@ closure_plan:
           that 7-way parallelism plus concurrent test runs pushed them over.
           Neither touches a code path this work changed.
 
+        PHASE-2b BUILT AND DEPLOYED IN CHECK MODE 2026-08-28 (session
+        coordinator-phase2b-takeover-20260828, user-directed takeover).
+        ree-v3 af4dcea1e9 + a trailing-newline-tolerance follow-up:
+        * coordinator/task_claim_chip_git_writer.py -- the DB->git
+          materializer. One tick = ingest origin (closes the
+          fallback-commit race), render both registries from the lossless
+          entry_json blobs (D14 retention at render: done>24h aged out,
+          absorbing prune_task_claims_done.py's job; chips never dropped
+          per D5; source-order-faithful; metadata carried over), byte-
+          compare, and in write mode commit+push on state change only.
+        * db.py: entry_json now stored VERBATIM (was sort_keys=True, which
+          defeated _claim_entry_json's carefully-mirrored client key order
+          and made D15 byte-equality impossible). Reconciler overwrites
+          blobs from git every tick, so pre-change rows self-healed on the
+          first post-land tick (one-tick n_updated blip; diverged counts
+          only orphans, unaffected).
+        * deploy/ree-task-claim-chip-git-writer.{service,timer}: installed
+          and ENABLED on the hub 2026-08-28T07:28Z, 2-min cadence,
+          REGISTRY_WRITER_MODE=check (renders + compares + reports, never
+          writes -- the deployment soak). First live ticks: chips
+          match=True (1974/1974 byte-identical against origin), claims
+          mismatch ONLY in the expected direction (+0 added, -2 aged-out
+          done entries the render correctly prunes).
+        * 13 new contracts (test_task_claim_chip_git_writer.py): round-trip
+          byte-equality incl unmodelled keys + odd key order, retention,
+          fallback-race survival, coordinator-row canonical key order,
+          state-change-only commits, check-mode-never-writes, source-order
+          fidelity, trailing-newline tolerance. 131 existing task_claim/
+          chip coordinator tests green, zero regressions.
+
         STILL OPEN, and the ACTUAL CUTOVER still waits on all of it:
-        (a) soak evidence (N days of GET /task_claim/drift showing
-        diverged_ticks=0); (b) a separate human go-live confirmation;
-        (c) PHASE-2b, the DB->git materializer, before the client git write
-        can be suppressed. (d) DEPLOYMENT IS NOW DONE -- see below.
+        (a) soak evidence -- TWO soaks now: the PHASE-1 windowed drift
+        criterion (section 10 item 3) AND the materializer check-mode soak
+        (journalctl -u ree-task-claim-chip-git-writer: chips_match=True
+        and claims_delta never showing +added is the healthy signature);
+        (b) a separate human go-live confirmation; (c) the CLIENT
+        git-write suppression branch in task_claim.py/chip_ledger.py
+        (skip the local write+commit+push when the coordinator write
+        succeeded AND a suppression flag is set; fall back to the full
+        git path on any coordinator failure) -- NOT yet built, blocked
+        2026-08-28 behind an active rival claim on those two files
+        (rc-remotetip-gate-20260828); (d) client env wiring (mode flag +
+        URL + token) for Mac interactive sessions and ree-cloud-5.
+        (e) DEPLOYMENT of the endpoints IS DONE -- see below.
 
         DEPLOYED 2026-08-27, shortly after the build landed: the user
         authorised the coordinator restart and the orchestrator session
@@ -920,14 +959,19 @@ Read the PHASE-2 frontmatter node for exactly what landed and what is tested.
 The four things still open, in the order a resuming session should think about
 them:
 
-1. **PHASE-2b -- the DB->git materializer.** The largest remaining piece, and
-   the one that gates suppressing the client's own git write. Model it on
-   `sync_daemon.py`'s `phase3_heartbeat_writer`: commit on STATE-CHANGE ONLY.
-   Root `CLAUDE.md` explicitly forbids reintroducing a forced periodic
-   liveness tick (it was the dominant source of `REE_assembly` history bloat
-   and was deliberately retired), and this writer would be writing to the
-   umbrella repo, whose trunk is already ~60-77% machine-written coordination
-   data.
+1. **PHASE-2b -- the DB->git materializer.** ~~The largest remaining piece~~
+   **BUILT + DEPLOYED IN CHECK MODE 2026-08-28** (ree-v3 `af4dcea1e9`;
+   `coordinator/task_claim_chip_git_writer.py` + verbatim `entry_json` in
+   `db.py` + deploy units enabled on the hub, 2-min timer,
+   `REGISTRY_WRITER_MODE=check`). Commits on STATE-CHANGE ONLY, as required.
+   See the PHASE-2 frontmatter node for what landed and the healthy-soak
+   signature. What remains before the client git write can be suppressed:
+   (i) the CLIENT suppression branch in `task_claim.py`/`chip_ledger.py`
+   (blocked 2026-08-28 behind rc-remotetip-gate-20260828's claim on those
+   files); (ii) client env wiring (mode flag + URL + token) for Mac
+   interactive sessions and ree-cloud-5; (iii) flipping
+   `REGISTRY_WRITER_MODE=check` -> `write` on the hub AS PART OF the
+   go-live decision, never before it.
 2. ~~**Deployment.**~~ **DONE 2026-08-27.** The user authorised the
    coordinator restart and the orchestrator session (insights-7fd98a)
    performed it; `/task_claim/*` and `/chip/*` now answer 401 rather than
