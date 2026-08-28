@@ -1,8 +1,7 @@
 Status: processed
 
 Intake: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
-Registered: MECH-485 (threshold-gated predicted-harm/confidence pipeline), Q-090 (leg-3 admission-criterion open question), INV-012 Leg 3 (retrospective retention + counterfactual evaluation + self-attribution -- added once the concurrent digestion session that owned INV-012 closed)
-Deliberately NOT registered: retained-alternative-memory mechanism (gated on dedicated lit-pull per project_imagination_learning_constraints.md, 2026-05-10)
+Registered: MECH-485 (threshold-gated predicted-harm/confidence pipeline), Q-090 (leg-3 admission-criterion open question), INV-012 Leg 3 (retrospective retention + counterfactual evaluation + self-attribution -- added once the concurrent digestion session that owned INV-012 closed), MECH-487 (provenance-tagged retention buffer for rejected/uncommitted E3 candidates -- registered later the same day, 2026-08-07T19:47Z, once the dedicated lit-pull it was originally gated on landed: evidence/literature/targeted_review_uncommitted_candidate_retention/, 5 entries)
 
 ## The thought (user's own reasoning, session 2026-08-07, captured near-verbatim)
 
