@@ -4,7 +4,7 @@ closure_plan:
   generation: process
   title: "TASK_CLAIMS/TASK_CHIPS Coordinator Migration (single-writer cutover)"
   registered: 2026-08-26
-  last_updated: 2026-08-27
+  last_updated: 2026-08-28
   owner: machinery
   summary: >
     Move TASK_CLAIMS.json/TASK_CHIPS.json claim+chip coordination off
