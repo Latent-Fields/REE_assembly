@@ -1283,6 +1283,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0090",
+      "claim_ids": [
+        "MECH-520",
+        "MECH-522"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Both claims' registered text rests on ARC-004's depth-is-timescale premise, which measures absent as built (see GFLAG-0088). MECH-520's title requires the latents to stay 'PREDICTIVE across the ARC-004 temporal spread' and its notes say 'a predictive obligation across timescales' -- as built the three depths span no horizons, so the obligation would be the same obligation three times and could not supply the differential structure that is the entire source of its anti-collapse constraint; MECH-520 is not refuted but is not implementable in V3 as formulated. MECH-522's what_would_answer says a field has a coherence LENGTH and a characteristic FREQUENCY and 'in a system where depth is timescale (ARC-004) both are natively scale-indexed' -- the frequency leg is void as built, the coherence-length leg is untouched, so it loses half its why-ephaptic-specifically argument. MECH-522 additionally does NOT declare ARC-004 in depends_on despite naming it in its argument, an undeclared dependency that makes this propagation invisible to a dependency walk. Both are v4/v3_pending so nothing is blocked today; the consequence is that the serial-smoothing substrate item proposed in GFLAG-0088 is a shared prerequisite for two v4 preconditions rather than only for testing ARC-004. Detail: evidence/planning/arc004_bridge_propagation_20260828.md. Unaffected: the S9.9d grain-arbitration ordering, which uses no frequency bridge.",
+      "raised_by_session": "elated-nobel-914234",
+      "raised_at": "2026-08-28T18:49:08Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
