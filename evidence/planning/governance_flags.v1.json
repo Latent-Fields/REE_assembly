@@ -1157,6 +1157,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0081",
+      "claim_ids": [
+        "ARC-088",
+        "MECH-463"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "ARC-088's anti-collapse leg has a contradicting result it does not carry. MECH-463 was registered as the sharpened form of this prediction; its decisive test V3-EXQ-785a (2026-07-19, gate GREEN, non-degenerate, 1757 independent committed selections, 8.5x exogenous urgency range, effective_threshold genuinely moved 0.3761->0.2570) found incumbent share 0.9375 -> 0.9411 (+0.0036 against a +0.02 threshold) and var_total fold 0.970; the 2026-07-20 autopsy filed does_not_support/standard. The null is tight, not underpowered (within-level share SE ~0.0044). Reading: the global-scalar affective channels are neither de-concentrating nor amplifying but CAUSALLY INERT wrt the dominant channel, and an inert channel prevents no collapse. TWO CAVEATS MUST TRAVEL WITH THIS: a single incumbent regime was tested (channel-agnosticism untested), and z_world participation ratio ~1.06 leaves live that the substrate cannot EXPRESS the effect.",
+      "raised_by_session": "thought-digestion-v3closure-20260828",
+      "raised_at": "2026-08-28T06:50:48Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
