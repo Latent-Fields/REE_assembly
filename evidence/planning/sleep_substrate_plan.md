@@ -11,13 +11,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -29,13 +28,12 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -61,13 +59,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -80,13 +77,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -101,13 +97,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -119,13 +114,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -138,13 +132,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -189,13 +182,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -209,13 +201,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
@@ -228,13 +219,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-23"
-        from: "failure_autopsy_861g-861h-mech180-cluster_2026-08-23#V3-EXQ-861h"
+        as_of: "2026-08-25"
+        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: []
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]

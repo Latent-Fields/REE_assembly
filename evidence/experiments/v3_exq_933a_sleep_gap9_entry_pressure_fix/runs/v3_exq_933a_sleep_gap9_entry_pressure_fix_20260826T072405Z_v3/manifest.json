@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_933a_sleep_gap9_entry_pressure_fix",
+  "run_id": "v3_exq_933a_sleep_gap9_entry_pressure_fix_20260826T072405Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-26T07:24:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "entry_pressure_fix_validated",
+    "preconditions": [
+      {
+        "name": "pressure_arm_wired",
+        "description": "the PRESSURE arms actually have a mel_consumer AND use_entry_pressure set from config -- guards against a from_dims silent-kwargs miswire reading as a non-firing pressure arm rather than an unwired flag",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "control": "all PRESSURE_HIGH + PRESSURE_SUB seeds"
+      },
+      {
+        "name": "stimulus_crossed_threshold",
+        "description": "the injected PRESSURE_HIGH demand stimulus genuinely crossed entry_pressure_threshold at fire time (the SAME statistic entry_pressure_crossed() routes on) on every seed -- the positive control that a below-floor stimulus self-routes as substrate_not_ready_requeue, never as a pressure-arm defect.",
+        "measured": 2.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true,
+        "control": "known-supra-threshold injected stimulus (PRESSURE_INJECT_HIGH=1.000) on PRESSURE_HIGH"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "c1_sub_crosses_in_bounded_time": true,
+      "c2_high_rate_bounded": true,
+      "c3_off_arm_inert": true
+    },
+    "criteria": [
+      {
+        "name": "c1_sub_crosses_in_bounded_time",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "c2_high_rate_bounded",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "c3_off_arm_inert",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "combination_rule": "PASS = readiness(pressure_arm_wired AND stimulus_crossed_threshold) AND c1_sub_crosses_in_bounded_time AND c2_high_rate_bounded AND c3_off_arm_inert",
+    "dv_symmetry_note": "The manipulation (use_entry_pressure + injected per-step demand relative to entry_pressure_threshold) directly gates the DV path: entry_pressure_crossed() is a running-SUM threshold comparison, and the arm-attribution DV (pressure vs ceiling) plus first-fire step / fire rate are functions of that comparison's outcome over time. This is a genuine measurement, not an arithmetic identity invariant under any symmetry of the DV.",
+    "note": "Diagnostic CONSUMER validation for sleep_substrate:SD-SLEEP-ENTRY-PRESSURE (GAP-9 follow-up), reproducing V3-EXQ-933's exact NEED_SUB/NEED_HIGH injected-demand levels and threshold against the NEW entry_pressure_crossed() mechanism. Controlled demand stimulus injected via note_step_pe (the ecological producer is parked -- measured env MEL is noise-level per GAP-5b/718a), exactly how 933/718a validated the MEL consumer. Untrained agent by design: the DV is the pressure arm's trigger behaviour, independent of learning. claim_ids=[]; does not weight governance. use_mel_entry left OFF on every arm (isolates the pressure arm from need_crossed(), which is V3-EXQ-933's territory). use_mech286_sleep_onset_gate deliberately OFF (lit-synthesis brief, same as 933)."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "08676c91c2a88b55a463a21dbfca175b21921846364ff724dc42f667b82e64c1",
+  "substrate_commit": {
+    "commit": "2023589a933de45003924a351aeb2bc48bc1f71d",
+    "dirty": true,
+    "dirty_count": 4,
+    "dirty_paths": [
+      "ree_core/agent.py",
+      "ree_core/sleep/mel_consumer.py",
+      "ree_core/sleep/phase_manager.py",
+      "ree_core/utils/config.py"
+    ],
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 9,
+    "goal_state_present": false
+  }
+}

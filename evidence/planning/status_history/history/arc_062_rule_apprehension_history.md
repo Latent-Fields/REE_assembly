@@ -166,6 +166,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-B`
 
@@ -329,6 +330,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-C`
 
@@ -492,6 +494,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-D`
 
@@ -655,6 +658,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-E`
 
@@ -818,6 +822,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-F`
 
@@ -981,6 +986,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-G`
 
@@ -1144,6 +1150,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-H`
 
@@ -1307,6 +1314,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-I`
 
@@ -1470,6 +1478,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-I-absorption`
 
@@ -1633,6 +1642,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-J`
 
@@ -1796,6 +1806,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-K`
 
@@ -1959,6 +1970,7 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `arc_062_rule_apprehension:GAP-L`
 
@@ -2122,4 +2134,5 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-08-15T06:38Z` [decision] `decision:MECH-317@2026-08-15T06:38:09.000000Z` -> [`evidence/decisions/decision_log.v1.jsonl#L431`](../../../../evidence/decisions/decision_log.v1.jsonl#L431) :: decision undefer_owning_node (proposed)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-316@2026-08-16T11:57:28.897709Z` -> [`evidence/decisions/decision_log.v1.jsonl#L437`](../../../../evidence/decisions/decision_log.v1.jsonl#L437) :: decision hold_pending_v3_substrate (applied)
 - `2026-08-16T11:57Z` [decision] `decision:MECH-317@2026-08-16T11:57:28.937162Z` -> [`evidence/decisions/decision_log.v1.jsonl#L438`](../../../../evidence/decisions/decision_log.v1.jsonl#L438) :: decision hold_pending_v3_substrate (applied)
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-26T19:46:18.746362Z`
+Generated: `2026-08-28T07:05:54.183309Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -19,7 +19,7 @@ Generated: `2026-08-26T19:46:18.746362Z`
 | `targeted_review_arc_027_nociception` | [`2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/record.json) | 3 | [`summary`](targeted_review_arc_027_nociception/entries/2026-03-19_arc027_romanski_ledoux1992_thalamo_amygdala_equipotential/summary.md) |
 | `targeted_review_arc_029` | [`2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017`](targeted_review_arc_029/entries/2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017/record.json) | 6 | [`summary`](targeted_review_arc_029/entries/2026-04-05_arc_029_pause_cancel_bg_pathways_schmidt2017/summary.md) |
 | `targeted_review_arc_030` | [`2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012`](targeted_review_arc_030/entries/2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012/record.json) | 5 | [`summary`](targeted_review_arc_030/entries/2026-04-04_arc_030_pavlovian_pruning_avoidance_huys2012/summary.md) |
-| `targeted_review_arc_032` | [`2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013`](targeted_review_arc_032/entries/2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013/record.json) | 7 | [`summary`](targeted_review_arc_032/entries/2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013/summary.md) |
+| `targeted_review_arc_032` | [`2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013`](targeted_review_arc_032/entries/2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013/record.json) | 6 | [`summary`](targeted_review_arc_032/entries/2026-04-16_arc_032_goal_path_sequences_swr_pfeiffer2013/summary.md) |
 | `targeted_review_arc_033` | [`2026-04-05_arc_033_cortical_pain_representation_treede1999`](targeted_review_arc_033/entries/2026-04-05_arc_033_cortical_pain_representation_treede1999/record.json) | 6 | [`summary`](targeted_review_arc_033/entries/2026-04-05_arc_033_cortical_pain_representation_treede1999/summary.md) |
 | `targeted_review_arc_038` | [`2026-04-05_arc_038_swr_reactivation_review_oneill2010`](targeted_review_arc_038/entries/2026-04-05_arc_038_swr_reactivation_review_oneill2010/record.json) | 4 | [`summary`](targeted_review_arc_038/entries/2026-04-05_arc_038_swr_reactivation_review_oneill2010/summary.md) |
 | `targeted_review_arc_041` | [`2026-04-02_arc_041_vmpfc_cognitive_map_value_2025`](targeted_review_arc_041/entries/2026-04-02_arc_041_vmpfc_cognitive_map_value_2025/record.json) | 2 | [`summary`](targeted_review_arc_041/entries/2026-04-02_arc_041_vmpfc_cognitive_map_value_2025/summary.md) |

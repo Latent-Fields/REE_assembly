@@ -327,6 +327,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-B`
 
@@ -651,6 +652,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-C`
 
@@ -975,6 +977,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-C-build`
 
@@ -1299,6 +1302,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-D`
 
@@ -1623,6 +1627,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-E`
 
@@ -1947,6 +1952,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-F`
 
@@ -2271,6 +2277,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-G`
 
@@ -2595,6 +2602,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-H`
 
@@ -2919,6 +2927,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-I`
 
@@ -3243,6 +3252,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-J`
 
@@ -3567,6 +3577,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 
 ## `behavioral_diversity_isolation:GAP-K`
 
@@ -3891,4 +3902,5 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-25T22:38Z` [manifest] `v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3` -> [`evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json`](../../../../evidence/experiments/v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3.json) :: PASS manifest supports
 

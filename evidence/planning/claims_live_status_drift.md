@@ -1,14 +1,14 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-25T18:03:46Z
+Generated: 2026-08-28T07:15:12Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1019
+Claims in registry: 1064
 
-## Reading drift -- HARD (118)
+## Reading drift -- HARD (140)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -38,6 +38,7 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | Q-021 | `open` | `open/substrate_conditional` | reading: stored='open' derived='open/substrate_conditional' |
 | MECH-083 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-023 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-092 | `provisional` | `provisional/substrate_conditional` | reading: stored='provisional' derived='provisional/substrate_conditional' |
 | MECH-103 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-030 | `candidate` | `candidate/substrate_ceiling` | reading: stored='candidate' derived='candidate/substrate_ceiling' |
 | SD-007 | `implemented` | `implemented` | needs_review: stored=True derived=False |
@@ -86,29 +87,45 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | INV-073 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-056 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-225 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-235 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-238 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | SD-026 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| SD-027 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-254 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | SD-029 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
+| SD-031 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
+| MECH-257 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
 | SD-032 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | SD-032c | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
-| SD-033d | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| SD-033a | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | SD-033e | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-264 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-271 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | ARC-059 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-277 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | SD-039 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | SD-040 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-063 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-337 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-338 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-314b | `candidate_substrate_landed` | `candidate_substrate_landed/substrate_ceiling` | reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_ceiling' |
-| MECH-314c | `candidate_substrate_landed` | `candidate_substrate_landed/substrate_ceiling` | reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_ceiling' |
+| MECH-314c | `candidate_substrate_landed` | `candidate_substrate_landed/substrate_conditional` | reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_conditional' |
 | Q-044 | `open` | `open/substrate_ceiling` | reading: stored='open' derived='open/substrate_ceiling' |
 | ARC-064 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-316 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-318 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | ARC-069 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | ARC-071 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | ARC-072 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| MECH-320 | `candidate_substrate_landed/v3_pending` | `candidate_substrate_landed/v3_pending/substrate_ceiling` | reading: stored='candidate_substrate_landed/v3_pending' derived='candidate_substrate_landed/v3_pending/substrate_ceiling' |
 | ARC-074 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-078 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | ARC-079 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-343 | `candidate/v3_pending/substrate_conditional` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/v3_pending/substrate_ceiling' |
+| INV-076 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
+| Q-096 | `candidate/substrate_conditional` | `candidate/substrate_conditional` | needs_review: stored=True derived=False |
+| SD-064 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-441 | `candidate/v3_pending/substrate_ceiling` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_ceiling' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-448 | `provisional` | `candidate` | reading: stored='provisional' derived='candidate' |
 | MECH-475 | `retired` | `retired/v3_pending` | reading: stored='retired' derived='retired/v3_pending' |
 | MECH-476 | `retired` | `retired/v3_pending` | reading: stored='retired' derived='retired/v3_pending' |
@@ -132,15 +149,20 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | MECH-487 | `candidate/v3_pending/substrate_conditional` | `candidate/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/substrate_conditional' |
 | SD-097 | `candidate/v3_pending/substrate_conditional` | `candidate/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/substrate_conditional' |
 | SD-098 | `candidate/v3_pending/substrate_conditional` | `candidate/substrate_conditional` | reading: stored='candidate/v3_pending/substrate_conditional' derived='candidate/substrate_conditional' |
+| MECH-516 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| MECH-517 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| MECH-518 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| MECH-523 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| ARC-135 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 
-## Unstamped -- SOFT (15)
+## Unstamped -- SOFT (29)
 
 Registered claims with no `live_status` block. Run `scripts/apply_live_status.py`.
 
 | claim | would-derive |
 |-------|--------------|
 | MECH-464 | `candidate` |
-| MECH-465 | `candidate/substrate_conditional` |
+| MECH-465 | `candidate` |
 | Q-092 | `open` |
 | INV-101 | `candidate/substrate_conditional` |
 | Q-093 | `open/substrate_conditional` |
@@ -154,6 +176,20 @@ Registered claims with no `live_status` block. Run `scripts/apply_live_status.py
 | MECH-496 | `candidate/substrate_conditional` |
 | Q-094 | `open` |
 | Q-095 | `open` |
+| INV-102 | `candidate/v3_pending/substrate_conditional` |
+| MECH-504 | `candidate/v3_pending/substrate_conditional` |
+| MECH-506 | `candidate/v3_pending/substrate_conditional` |
+| MECH-505 | `candidate/v3_pending/substrate_conditional` |
+| MECH-507 | `candidate/substrate_conditional` |
+| MECH-508 | `candidate/substrate_conditional` |
+| MECH-509 | `candidate/substrate_conditional` |
+| MECH-510 | `candidate/substrate_conditional` |
+| MECH-511 | `candidate/substrate_conditional` |
+| MECH-512 | `candidate/substrate_conditional` |
+| INV-103 | `candidate/substrate_conditional` |
+| ARC-132 | `candidate/substrate_conditional` |
+| MECH-513 | `candidate/substrate_conditional` |
+| MECH-514 | `candidate/substrate_conditional` |
 
 ## Internal inconsistency -- REVIEW (2)
 
@@ -164,7 +200,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 | SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (278)
+## Event-provenance drift -- SOFT (279)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -230,9 +266,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
 | Q-021 | `failure_autopsy_V3-EXQ-866c_2026-08-08` | `failure_autopsy_V3-EXQ-899_2026-08-09` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
-| ... | | (+218 more) |
+| ... | | (+219 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (998 of 1019)
+## Never reviewed (no `last_reviewed`) -- INFO (1043 of 1064)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-25T18:03:34Z
+Generated: 2026-08-28T07:13:56Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -24,7 +24,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
-| `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 25% | blocked:1 done:1 in_progress:1 open:3 | 2026-08-23 |
+| `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 25% | blocked:1 done:1 in_progress:1 open:3 | 2026-08-25 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-08-18 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-08-18 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-08-21 |
@@ -46,7 +46,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-1` | Pre-approach orienting/surveying mode (cue-triggered, narrow vector resolution) | blocked | 1 | high |  |  | 2026-08-13 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | open | 1 | high |  | MECH-482's own claims.yaml non-degeneracy precondition -- a substrate where target-bound u | 2026-08-23 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-08-18 |
-| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | MECH-489 validation: defensive-orienting phasic behavioural chain | in_progress | 2 | high | V3-EXQ-910b | claims.yaml MECH-489 carries pending_retest_after_substrate: true -- SD-ORIENTING-DECISION | 2026-08-21 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | MECH-489 validation: defensive-orienting phasic behavioural chain | in_progress | 2 | high | V3-EXQ-910b | V3-EXQ-910b RAN 2026-08-22 and is CONFIRMED-AUTOPSIED (failure_autopsy_V3-EXQ-910b_2026-08 | 2026-08-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-08-18 |
 | orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-3` | orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-dr | open | 2 | medium |  | depends_on: orienting_epistemic_deficit_v3:ORNT-2 | 2026-08-13 |
@@ -190,7 +190,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 89.0% across 50 non-deferred nodes in 9 plan(s).
+- **PROCESS**: 85.0% across 54 non-deferred nodes in 10 plan(s).
 - **V4**: 32.4% across 96 non-deferred nodes in 14 plan(s).
 - **V5**: 16.8% across 38 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -438,6 +438,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-1` | z_self promoted from body-state latent to a stateful self-model (DR-13 | done | load-bearing | V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exist | 2026-07-01 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-2` | Finish self-attribution: complete the per-stream comparator topology ( | blocked | load-bearing | V3 BEGINNING present: self-attribution on the z_world causal-footprint stream runs (SD-031 | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-3` | z_self enters E3 viability scoring (DR-10): bodily state modulates tra | in_progress | load-bearing | V3 LIMIT: E3.score_trajectory() currently evaluates entirely in z_world space -- there is  | 2026-07-01 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-0` | Prerequisites + design finalization (WireGuard coverage audit, schema/ | done | load-bearing |  | 2026-08-26 |
 | meta | assembly_vs_closure_plan.md | `MOVE-2` | Assembly-chip path mirroring the closure-chip path (session-land) | done | high |  | 2026-06-21 |
 | meta | epistemic_overlay_plan.md | `PHASE-2` | Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, ad | in_progress | high |  | 2026-07-12 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-3` | Staged corpus migration backlog (step 3): route the 1,028-script corpu | done | high |  | 2026-07-13 |
@@ -454,6 +455,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-5` | z_self-domain goal representation (DR-11): self-state goals representa | blocked | high | V3 WIRING AUDIT (MECH-214, 2026-04-07): z_goal lives purely in z_world; V3 grid world conf | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-6` | Proxy/hedonic dissociating environment (DR-14): substrate that surface | blocked | high | V3 LIMIT: the grid world makes proxy == hedonic by construction; you cannot show a goal pu | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (INV-064): self-stability must prec | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-1` | Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; gi | soaking | high |  | 2026-08-28 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-2` | Claim-authority cutover: task_claim.py/chip_ledger.py call the coordin | in_progress | high |  | 2026-08-27 |
 | meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-2` | pack_writer field-coverage survey (step 2) | done | medium |  | 2026-07-12 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | done | medium |  | 2026-07-15 |
@@ -472,6 +475,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | ree_ai_design_critique_plan.md | `WS-11` | Early-gating vs late-judging demo (REE early commit-gating beats a Con | open | medium |  | 2026-07-09 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | in_progress | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-17 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-3` | Harden: monitoring, CLAUDE.md rewrite to reflect the new default, deco | not_started | medium |  | 2026-08-26 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | parked | low |  | 2026-07-15 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | parked_indefinite | low |  | 2026-07-15 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:NARCOLEPSY-CATAPLEXY` | Narcolepsy and cataplexy: bilateral orexin-loss failure | open | low |  | 2026-07-30 |
