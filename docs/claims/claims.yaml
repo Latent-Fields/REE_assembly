@@ -10673,6 +10673,53 @@
     - PHARM-006  # SSRIs do not address the simulation/real-distinction failure underlying chronic-PTSD rumination architecture
 # Registered 2026-03-15 — control plane heartbeat architecture cluster
 # Source: conversation developing heartbeat model from MECH-057a FAIL analysis
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the audited write path must be LIVE, not merely
+    present. Three conditions, all measurable: (1) `hypothesis_tag=True` content must
+    actually be GENERATED and reach the write sites during the run -- a run in which
+    simulate() / _do_replay / the DMN rollout never fires tests nothing, and a zero
+    simulation-firing count is a vacuity signal, not a PASS (the load-bearing C4-style
+    control V3-EXQ-628 and V3-EXQ-880 both carried); (2) the paired waking arm must
+    produce NON-ZERO durable writes on the same channels, or "no simulation write" is
+    indistinguishable from "no write at all"; (3) the enumerated call-site set must be
+    re-derived from the CURRENT tree at run time, not from a stored list -- the claim
+    is about coverage, and a coverage test against a stale enumeration is vacuous by
+    construction. Primary sites: ree_core/residue/field.py (ResidueField.accumulate /
+    accumulate_benefit / accumulate_safety / update_valence); secondary: the ~30
+    getattr(new_latent, "hypothesis_tag", False) sites in ree_core/agent.py gating MEL
+    writes, novelty/visitation buffers, EMA advancement, chunking, escape-affordance
+    learning, and pACC/cingulate drive updates.
+    CONFIRMING: every write-capable consumer of simulated / replayed / imagined
+    content explicitly checks hypothesis_tag (or the equivalent replay_origin /
+    simulation_mode flag) and refuses to write when it is set -- with the sole
+    exception being the bounded, audited MECH-322 sleep-only path firing strictly
+    within its own three ANDed preconditions -- while the matched waking arm writes
+    normally on the same channels. This IS the currently-confirmed state: V3-EXQ-499
+    (2026-04-29, supports), V3-EXQ-633 (2026-06-03, PASS/supports), V3-EXQ-880
+    (2026-08-02, PASS/supports -- two independent channels, rule_state/MECH-319 and
+    residue/MECH-094, both confirming suppression under simulation mode vs waking
+    commitment). Imagination is demonstrated live to execute and reach phi(z)-adjacent
+    READ paths (attenuated affect) without producing a belief update in the
+    real-experience channels.
+    FALSIFYING: hypothesis_tag=True content reaches and durably alters ANY
+    real-experience belief-update channel -- residue / phi(z) accumulation, valence
+    update, hippocampal RBF/MEL write, chunk formation, or novelty/visitation state --
+    through an UNGOVERNED path: the tag silently ignored, defaulted away by a getattr
+    fallback on a new consumer, or bypassed outside MECH-322's stated conditions. Also
+    falsifying: the MECH-322 carve-out itself firing outside its preconditions (waking
+    DMN, non-sleep phase, or without the replay_origin audit flag). Note the asymmetry
+    that makes this a DRIFT test rather than a one-shot: the failure mode is a NEWLY
+    LANDED write-capable consumer that never learned about the tag, so a single
+    historical PASS does not discharge the claim -- only a coverage assertion
+    re-derived against the current tree does.
+    DO NOT RE-DERIVE ELSEWHERE. This is the group's shared write-gate condition.
+    MECH-092, MECH-205, MECH-319 and MECH-322 each inherit it and must cross-reference
+    this block rather than restate it. Its audit-trace form is already written out in
+    INV-011's own what_would_answer (site enumeration, primary/secondary split,
+    carve-out treatment); this block adds only the coverage-regression leg. MECH-319
+    is the substrate-level instantiation of this gate at the rule-arbitration layer
+    and is NOT redundant with it (Pull 3 R1 + Pull 4 R3 KEEP-AS-IS, 2026-05-10).
 - id: ARC-023
   title: "Three BG-like loops operate at characteristic thalamic heartbeat rates."
   claim_type: architectural_commitment
@@ -11259,6 +11306,72 @@
     maintenance-release capability lives on the dependent MECH-342 claim, not here --
     no MECH-090 flag / confidence / promotion change. 592f pending_retest_after_substrate
     cleared to false (the reach-gap retest happened and passed).
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: The AT-tick persistent-handle fix (ree-v3 main
+    31ed78e, landed 2026-08-01, sd_id arc071_e3_reselection_on_committed_program,
+    implemented_validated) must be ACTIVE and its object-identity DV live. Concretely,
+    in every cell: n_genuine_commits_identity_based MUST be strictly less than
+    (n_e3_ticks + n_episodes_probe). Equality is the exact V3-EXQ-871a defect
+    signature -- E3 recreating a fresh committed-trajectory object at every tick, zero
+    exceptions -- under which every commit-persistence DV is arithmetically forced and
+    the run measures the wiring, not the gate. Additionally: the flag
+    use_persistent_committed_program_handle must be scoped to the PROBE phase only and
+    left at its lineage default during formation (the V3-EXQ-871 defect: setting it
+    cell-wide changes select_action's between-tick fast path and cascades through
+    RNG-coupled env dynamics into different chunk formation -- same seeds 101/505
+    formed 1/0 chunks vs 2/2 under V3-EXQ-841). Report the DV tick-rate-normalised
+    (n_genuine_commits / n_e3_ticks), NOT as raw mean segment length: the
+    _segment_commitments() 'idx <= prev_idx => new segment' rule reports a spurious
+    length-1 segment at every E3-tick boundary even when the handle correctly persists,
+    so raw segment length under-reports a genuinely fixed substrate.
+    CONFIRMING: measured at the PROPAGATION boundary, upstream of the
+    committed-selection argmin and therefore NOT subject to the G4 shared-conversion
+    absorption. (1) Bistable concordance: gate elevates on entry to committed state and
+    holds; hold_concordance and release_concordance both ~1.0 across a trained
+    (low-variance, committed) and a fresh (high-variance, uncommitted) agent -- the
+    EXQ-049e two-condition design, the canonical PASS and still the strongest evidence
+    for this claim. (2) Interrupt selectivity: the elevated gate re-opens on a genuine
+    surprise-gated variance spike but NOT on expected harm contact (EXQ-062b).
+    (3) Post-fix persistence: with the AT-tick fix active, tick-rate-normalised
+    genuine-commit count is strictly below the tick count and committed-program object
+    identity survives across E3 ticks. (4) R-c admission discriminates:
+    mech090_n_elevation_blocked > 0 under the V3-EXQ-592 seed-42 degenerate signature
+    (running_variance ~1e-5 with nav_competence 0.0) AND mech090_n_elevation_admitted >
+    0 when readiness clears -- the gate blocks the trivial-predictability basin without
+    permanently locking out commitment.
+    FALSIFYING: (1) With the AT-tick fix confirmed active and the tick-rate-normalised
+    DV live, committed-trajectory identity still fails to persist across E3 ticks --
+    the gate cannot hold a commitment at all, and the propagation/internal-update
+    distinction has no substrate referent. (2) E3 internal model state is shown to
+    propagate to policy output DURING an elevated-beta committed sequence (measured as
+    a change in selected action attributable to an E3 update, with the gate confirmed
+    elevated) -- falsifies the claim's core distinction directly, measured at the
+    propagation boundary. (3) The R-c admission conjunction is shown to be
+    arithmetically inert: blocked-count zero across a regime that includes the
+    reproduced seed-42 degenerate signature, with counters confirmed wired.
+    NOT FALSIFYING, and this must be stated because it has been misread FOUR TIMES in
+    this claim's own history (592d C1 instrumentation defect, 592e hold-rate, 592f
+    FAIL_NO_RELEASE_AUTHORITY, 630 unattributable OFF baseline): any result in which
+    the R-c predicates FIRE but produce no discriminative committed-state OCCUPANCY.
+    That is the admission-only-by-design reach gap; the release authority was moved to
+    MECH-342 and VALIDATED there (V3-EXQ-592g PASS, 2/stage decommit transitions in
+    B/C/D, mech342_fires 1/stage, no false abort in A/E). Route such a result to
+    MECH-342, never to this claim.
+    OUT-OF-DOMAIN LEG (stated, not dropped): "Do BG-level beta oscillations (~13-30Hz,
+    STN/striatum) gate output propagation without gating internal model updating in
+    biological brains?" is an electrophysiology question tested outside REE and
+    answered there -- Jenkinson & Brown 2011, Frank 2005, Frank/Seeberger/O'Reilly
+    2004, Redgrave/Prescott/Gurney 1999. NOT REE's to test, and the claim's own
+    functional_restatement already concedes "the biological mechanism (beta in
+    STN/striatum) is one implementation; it is not required in the ANN substrate."
+    Scope limits already recorded and still binding: the output-only-gating property
+    holds at the BG level and does NOT generalise to cortical beta (Hosaka 2016: SMA
+    beta gates internal plan-representation stability), and post-movement beta rebound
+    carries internal-model-confidence information (Tan 2016), so the BG gate is not a
+    dumb switch. The REE leg is solely: does the ANN substrate need a commitment-gated
+    routing variable decoupling E3 forward pass from policy output, distinct from E3
+    internal updating?
 - id: MECH-091
   title: "Salient events phase-reset the E3 heartbeat clock."
   claim_type: mechanism_hypothesis
@@ -11434,6 +11547,55 @@
     MECH-291 specifies the distinct parameter profile required for quiescent mode vs
     waking mode (longer rollout horizon, exploration weighting, less context-anchored);
     implementing this requires SD-006 (async multi-rate loop execution).
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this claim has TWO halves with DIFFERENT readiness,
+    and a run that conflates them is vacuous.
+     (1) TRIGGER HALF -- requires e3_quiescent to actually fire during the run
+     (ree_core/heartbeat/clock.py:158, e3_quiescent = not self._salient_event_this_cycle)
+     and theta_buffer.recent to be non-empty at the fire; a run whose every E3 cycle
+     carries a salient event, or whose theta buffer is empty, produces zero replay
+     calls and tests nothing. This half is ALREADY SATISFIED and CONFIRMED --
+     V3-EXQ-761 (PASS/supports) established selective firing on quiescent cycles via
+     the real production path (act_with_split_obs -> _do_replay -> hippocampal.replay)
+     on an untrained agent.
+     (2) CONSOLIDATION-BENEFIT HALF -- requires a DURABLE CONSUMER of replay output to
+     exist. IT DOES NOT. REEAgent._do_replay() (ree_core/agent.py:9900-9961) assigns
+     replay_trajs from hippocampal.diverse_replay() / .replay() and then RETURNS
+     WITHOUT USING IT; grep -rn "replay_trajs" ree_core yields the two assignment lines
+     and no consumer. The only path that consumes replay output is the SD-017 REM pass
+     (run_rem_attribution_pass), which is read-only terrain scoring plus MECH-217
+     wanting-spread. Until a consumer is built, ANY consolidation-benefit measurement
+     is measuring a discarded value and self-routes substrate_not_ready, not a verdict.
+     The stated SD-006 blocker is STALE and must not be reused as the gate: SD-006 is
+     status: implemented (live_status.reading: implemented), validated end-to-end by
+     EXQ-052b PASS 5/5 on 2026-03-21 -- BEFORE the 2026-03-28 hold was written. The
+     gate is the missing consumer, not the async loop.
+    CONFIRMING (trigger half, already met): replay fires selectively on quiescent E3
+    cycles and not on salient ones, through the production call path, on an untrained
+    agent -- V3-EXQ-761.
+    CONFIRMING (consolidation half, once a consumer exists): an agent whose quiescent
+    replay output is consumed shows measurably better viability-map / forward-model
+    quality than a matched agent with quiescent replay suppressed but IDENTICAL waking
+    exposure -- with the improvement concentrated in UNDER-SAMPLED regions of the map
+    (the anti-recency signature, MECH-289) rather than in recently-traversed ones, and
+    present for trajectories the agent never behaviourally executed (the generative
+    signature, distinguishing this from standard experience replay per Gupta 2010).
+    FALSIFYING (consolidation half): with a consumer built and replay demonstrably
+    firing, map/forward-model quality is statistically indistinguishable between
+    replay-on and replay-suppressed arms at matched waking exposure -- quiescent replay
+    buys nothing. Or: the improvement is present but concentrated in RECENTLY-traversed
+    regions and absent for never-executed trajectories, which falsifies the generative /
+    anti-recency framing specifically and collapses MECH-092 to ordinary experience
+    replay (its notes explicitly stake the claim on NOT being that).
+    FALSIFYING (trigger half): replay fires at rates uncorrelated with e3_quiescent --
+    already contradicted by 761.
+    CROSS-REFERENCES -- do not re-derive. The write-gate safety condition (replay
+    carries hypothesis_tag=True throughout and cannot write residue) is MECH-094's.
+    The consolidation-benefit measurement OVERLAPS MECH-121's own falsifier and is the
+    leg MECH-209's what_would_answer already defers to MECH-092 for -- one consumer
+    build discharges all three, and the registry should record the test ONCE. Which
+    episode gets replayed and how often is MECH-205's, not this claim's.
 - id: MECH-093
   title: "z_beta modulates E3 heartbeat frequency, distinct from precision-weighting."
   claim_type: mechanism_hypothesis
@@ -12972,6 +13134,43 @@
     architecture.three_engine_irreducibility). Corrected to ARC-027 (2026-03-19).
 
 # ── Design Decisions (SD) ────────────────────────────────────────────────────
+  epistemic_category: standard
+  what_would_answer: |
+    SCOPE -- THIS CLAIM IS FUSED, AND ONLY ONE LEG IS A REE QUESTION.
+    OUT-OF-DOMAIN LEG (named, not dropped): "the spinothalamic tract provides fast
+    nociceptive input direct to amygdala (VPM/Po -> amygdala) in parallel with the
+    slower cortical route", i.e. LeDoux's "low road". This is a neuroanatomy question.
+    It is settled in its own literature (Romanski & LeDoux 1992; Li & LeDoux 1996;
+    Guirimand & Le Bars 1996 -- all three already linked to this claim as lit entries)
+    and NO REE experiment can bear on it. It is the claim's biological GROUNDING, not
+    its falsifier, and must never be scored as though a V3 run confirmed or weakened it.
+    REE LEG (the only testable one): does the harm signal have to be available EARLIER
+    IN THE PIPELINE than world-model processing -- i.e. is the precedence property
+    load-bearing, over and above the encoder separation SD-010 already owns?
+    NON-DEGENERACY PRECONDITION: the two legs must be measured apart, and the REE leg
+    must be separated from SD-010. ARC-027 currently has NO experimental evidence of
+    its own -- all 6 of its exp entries (EXQ-056/056b/058b/056c, three of them
+    duplicate re-timestamps) are also SD-010's, and they test encoder separation,
+    which SD-010 asserts too. A run that re-demonstrates "z_harm is learned from
+    harm_obs, not from z_world" scores SD-010 and tells us NOTHING about ARC-027's
+    residue. The discriminating manipulation is ORDER, not source: harm available to
+    E3 at trajectory-scoring time versus harm available only after the world-model
+    pass, with the encoder architecture held identical in both arms.
+    CONFIRMING: the early-availability arm shows ethical leverage concentrated in the
+    APPROACH gradient rather than at contact -- the EXQ-045 ladder (none 0.067 >
+    approach 0.049 > contact 0.044) is the registered signature, and it is the one
+    existing result that is ARC-027's and not SD-010's. The late-availability arm
+    should flatten or invert that ladder, because harm cannot inform trajectory
+    selection before the trajectory is scored. Contact-rate reduction should track the
+    same axis (EXQ-059c measured ~10x with the harm stream functional).
+    FALSIFYING: the late-availability arm reproduces the approach-gradient ladder and
+    the contact-rate reduction. Then precedence is not load-bearing, everything
+    ARC-027 asserts that is testable is already SD-010's, and ARC-027 should be
+    RETIRED INTO SD-010 -- moving the "low road" biological grounding into SD-010's
+    notes as literature, and repointing SD-010.depends_on and SD-011.depends_on (the
+    only two direct reverse-deps) accordingly.
+    See SD-010's what_would_answer for the fused-vs-split ablation and SD-011's for
+    the stream readouts; do not re-derive either here.
 
 - id: SD-001
   title: "CEM-based trajectory search belongs in HippocampalModule, not E2."
@@ -13621,6 +13820,45 @@
     at contact events), consistent with approach-gradient leverage predicted by MECH-102.
   depends_on: [SD-005, SD-007, ARC-027]
   location: docs/architecture/sensory_stream_tags.md
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the test must be a FUSED-vs-SPLIT ablation, not
+    another demonstration that the split encoder works. All 22 existing experimental
+    entries (EXQ-056/056c/058/058b/058c/059/059c and successors) measure the SPLIT arm
+    only -- Pearson r_z_harm 0.914-0.973, calibration_gap 0.712, clean rank ordering.
+    Not one runs the fused control. A rerun of the split arm alone is degenerate: it
+    can only re-confirm what is already established and cannot discriminate. The
+    ablation arm must route harm content back through the z_world encoder with
+    TRAINING BUDGET HELD EQUAL (the EXQ-094 lesson: training E3 on bridge noise
+    produced a 100x harm_var regression, which is a budget artefact, not a fusion
+    result). It must also NOT be the HarmBridge design: SD-010 makes z_world
+    perpendicular to z_harm BY CONSTRUCTION, so a learned z_world -> z_harm bridge has
+    nothing to learn and returns bridge_r2=0 trivially (EXQ-093, EXQ-094) -- that is a
+    restatement of the architecture, not a test of it.
+    CONFIRMING: under matched budget, the fused arm reproduces at least two of the
+    three failure signatures this claim was registered to explain -- (1) residue
+    contamination: ResidueField's world_delta accumulation tracks hazard proximity
+    rather than causal footprint, measurable as a rising correlation between residue
+    density and hazard density in an environment where the agent causes no harm;
+    (2) counterfactual collapse: world_forward_r2 degrades toward the EXQ-044 value
+    (~0.0) because E2 cannot simultaneously predict world dynamics and harm proximity
+    from one latent; (3) reafference inversion: applying SD-007 correction to the
+    fused stream reduces the harm estimate as the agent APPROACHES a hazard (the
+    EXQ-027b over-correction, correction_delta=-0.045, harm_pred_std 0.108 -> 0.008).
+    Reproducing these under a fair control is what upgrades the claim from "the split
+    works" to "the split is necessary".
+    FALSIFYING: under matched budget the fused arm matches the split arm on all three
+    -- calibration_gap within the split arm's band, world_forward_r2 undegraded,
+    reafference correction not inverting on approach. That would mean the 2026-03-19
+    root-cause cluster (EXQ-027b / 043 / 044 / 047) was attributable to training
+    procedure or to the SD-005 z_self/z_world split alone, and that the third stream
+    is a convenience rather than an architectural necessity. SD-010 would then narrow
+    to an implementation preference and would stop underwriting SD-003 / SD-007 /
+    MECH-102.
+    DO NOT RE-DERIVE the stream readouts, the encoder-floor correction, or the
+    sourcing-mode caveat here -- see SD-011's own what_would_answer, which owns them
+    for the whole harm-stream group. SD-010 concerns the separation of harm from
+    z_world; SD-011 concerns the separation WITHIN harm.
 
 - id: SD-011
   title: "Harm stream separates into sensory-discriminative (z_harm_s: proximity/intensity, Adelta-pathway analog, forward-predictable) and affective-motivational (z_harm_a: accumulated homeostatic deviation, C-fiber/paleospinothalamic analog)."
@@ -13768,6 +14006,55 @@
 # Registered 2026-03-21 — Respiratory oscillator cluster
 # Source: cross-species behavioural observation (dog + human exhalation on plan abandonment)
 # Proposed by: Daniel Golden
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION -- DECLARE THE REGIME, then check two floors. This
+    claim's four validated results (EXQ-178b, EXQ-198, EXQ-323a, and the D3-reversal
+    resolution) were ALL obtained in one specific regime that no manifest states and
+    that is no longer the only one available: harm_history_len=10,
+    use_gabaergic_decay=False (pure feedforward encodes), limb_damage_enabled
+    per-driver. Any run scored against SD-011 must record all three.
+     (i) SECOND SOURCE LIVE. LatentStackConfig.harm_history_len defaults to 0. At 0,
+     AffectiveHarmEncoder receives only harm_obs_a and z_harm_a is a monotone
+     transform of the sensory stream -- the D3 reversal documented in the 2026-04-06
+     governance meta. A run with harm_history_len=0 is VACUOUS as an SD-011 test
+     regardless of what its stream_corr reads, and must be reported as such rather
+     than as a weakens.
+     (ii) ENCODER FLOOR MEASURED AND SUBTRACTED. harm_encoder(zeros) has norm ~0.46
+     and affective_harm_encoder(zeros,zeros) ~0.33, so a resting harm_norm of ~0.51
+     is a floor response to the ambient hazard field, not stream content. Every DV
+     must be a floor-robust relative form (the V3-EXQ-854 C3 convention), never an
+     absolute level.
+     (iii) SOURCING MODE STATED. z_harm_a sourced from SD-022 body damage
+     (limb_damage_enabled=True) and from the legacy proximity EMA are NOT
+     interchangeable readouts -- V3-EXQ-917 measured safe-vs-unsafe AUC 0.52 (chance)
+     damage-sourced against 0.84-0.97 proximity-sourced on identical apparatus. Note
+     limb_damage_enabled DEFAULTS TO FALSE; do not describe either mode as "the
+     production default" without checking the driver.
+    CONFIRMING: in a regime declared per (i)-(iii), the two streams remain
+    functionally dissociated -- a forward model learns z_harm_s transitions
+    (harm_fwd_r2 >= ~0.6, the EXQ-178b/EXQ-198 band), stream_corr stays well below
+    the 0.85 saturation threshold, autocorr_gap stays positive with z_harm_a
+    integrating and z_harm_s tracking, and the D3 direction does NOT reverse
+    (R^2_affective must not exceed R^2_sensory). Crucially, this must hold ACROSS
+    regimes and not only in the one it was validated in: with use_gabaergic_decay=True
+    the two streams become leaky integrators with DIFFERENT poles
+    (gaba_state_alpha_z_harm_s=0.5 vs _z_harm_a=0.2), which should WIDEN
+    autocorr_gap, not collapse it.
+    FALSIFYING: with the second source live and the floor subtracted, either (a)
+    stream_corr rises toward saturation or the D3 reversal returns -- z_harm_a is not
+    carrying information z_harm_s lacks, it is a filtered copy; or (b) harm_fwd_r2 on
+    z_harm_s collapses toward the obs-space result of EXQ-166a (C2 causal gap ~0),
+    meaning the sensory stream is not forward-predictable and the SD-003 / ARC-033
+    consumers have nothing to attribute against. Either outcome refutes the functional
+    division of labour (ARC-016 on z_harm_a, SD-003 on z_harm_s) that is the whole
+    content of this claim; the anatomical dual-pathway grounding (Melzack & Casey,
+    Craig, Rainville) would be unaffected and is NOT what is at stake.
+    OPEN, NOT YET MEASURED: every result above predates ree-v3 35e8969 (2026-07-31),
+    which gave z_harm/z_harm_a temporal state for the first time. The dissociation has
+    never been measured with use_gabaergic_decay=True. This is the SD-011 leg of the
+    shared harm-stream regime-matrix run described in SD-036's what_would_answer --
+    run it there, do not mint a separate experiment.
 
 - id: MECH-107
   title: "Exhalation is the physiological instantiation of E3 trajectory-abandonment — each exhale sweeps pre-commit rollouts for viability and clears the hypothesis tag."
@@ -28313,6 +28600,65 @@
 
 # Registered 2026-04-07 -- CA1 comparator as surprise buffer write mechanism
 # Source: Duncan 2011 + Bein 2020 lit-pull synthesis for MECH-205
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION -- read this before configuring any run; the shipped
+    default is the known-vacuous setting. surprise_gated_replay defaults to False
+    (ree_core/utils/config.py:3026), and -- the trap -- pe_surprise_threshold STILL
+    DEFAULTS TO 0.001 (config.py:3035), which is the EXACT value this claim's own
+    evidence_quality_note root-causes as the EXQ-258a failure ("~53x too high vs
+    observed mean_surprise=1.86e-5"). The EXQ-258b PASS used 1e-5, set in the
+    experiment and never promoted to the default. So a run that enables the flag and
+    inherits the default threshold writes ZERO VALENCE_SURPRISE entries, produces a
+    flat surprise_weight, and reads vacuously "no prioritisation observed". The gate
+    must therefore assert, from measured run output and not from config: (a)
+    surprise_gated_replay=True AND valence_enabled=True; (b) a NON-ZERO count of
+    surprise writes to the residue field (EXQ-258b smoke reference: 64/100 steps);
+    (c) _pe_ema > 0 at the replay call so surprise_weight = min(1.0, _pe_ema * 5.0) is
+    not pinned at its 0.3 fallback (agent.py:9913-9917); (d) genuine PE VARIANCE
+    across episodes -- a flat PE stream makes any priority ordering unmeasurable
+    regardless of threshold. pe_ema_alpha was correctly fixed to 0.02 (~50-step
+    window); 0.1 is the known-too-fast value that drives surprise to zero.
+    CONFIRMING -- leg 1 (allocation, the claim's own three predictions): (i) replay
+    frequency of an episode correlates positively with its initial prediction-error
+    magnitude; (ii) replay of an episode DECREASES as the forward models improve on it
+    (the tapering / natural-termination signature); (iii) selectively blocking replay
+    of high-surprise episodes impairs model correction for the BLOCKED episodes
+    specifically, not globally. Prediction (iii) requires MECH-092's missing consumer;
+    (i) and (ii) are measurable today against replay start-selection.
+    CONFIRMING -- leg 2 (the priority RULE, and this is the discriminator): priority
+    tracks PE x NEED (Mattar & Daw 2018, Refinement D) -- i.e. a high-PE episode in a
+    region the agent will NOT revisit is DE-prioritised despite high gain.
+    Constructing exactly that cell (rare region, high PE, low revisit probability)
+    separates this claim from MECH-092, whose anti-recency framing (Gupta 2010, via
+    depends_on: MECH-289) predicts the OPPOSITE for the same cell -- replay it MORE
+    because it is under-sampled. Both rules are instantiated on the same drive_state
+    vector consumed by HippocampalModule.replay() start-selection, so at most one can
+    be operative. A single 3-cell probe (high-PE/high-need, high-PE/low-need,
+    low-PE/high-need) adjudicates both claims at once and is the highest-value
+    experiment this group affords.
+    CONFIRMING -- leg 3 (generative, not rote): replayed content consists of
+    hippocampally-constrained RECOMBINATIONS (forward + reverse segment composition,
+    Refinement C) rather than verbatim re-presentation, and the variations are
+    CONTRASTIVELY paired with the anchor episode (variations where the surprising
+    outcome did NOT occur), with the harm/goal valence asymmetry writing to the
+    avoidance vs approach map respectively (ARC-031).
+    FALSIFYING: with the threshold set to a value that demonstrably fires and PE
+    variance present, replay allocation is INDEPENDENT of prediction-error magnitude --
+    episodes selected by recency, uniformly, or by valence alone with no PE term --
+    which falsifies the surprise-gating core. Or: replay of an episode does NOT taper
+    as forward-model error on it drops (no convergence-based termination, falsifying
+    the natural-termination prediction and, clinically, the intrusive-replay reading).
+    Or: allocation tracks RAW PE with no need/relevance term, which falsifies
+    Refinement D specifically and hands the discriminator to MECH-092's anti-recency
+    rule. Or: replayed content is verbatim re-presentation with no counterfactual
+    variation, falsifying the generative half while leaving the gating half intact.
+    CROSS-REFERENCES -- do not re-derive. The hypothesis_tag requirement on every
+    generated variation (tag loss during generative replay = confabulation; tag loss
+    on high-affect replay = the PTSD-intrusion reading) is MECH-094's condition. WHEN
+    replay fires at all is MECH-092's. The downstream "does the corrected model help"
+    measurement is gated on MECH-092's missing replay-output consumer and must not be
+    posed as a fresh MECH-205 blocker.
 - id: MECH-206
   title: "CA1 acts as a PE-proportional comparator that writes episodes to the surprise buffer: mismatch between CA3 prediction and entorhinal actual input produces a graded signal that tags the episode for offline replay and suppresses retrieval of the now-erroneous prediction."
   claim_type: mechanism_hypothesis
@@ -34408,6 +34754,57 @@
 # MECH-240 through MECH-243: improvement-tier — system can navigate goals without
 # these; they target efficiency, generalization, and output fidelity. Flagged for
 # later implementation (implementation_phase: v4).
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a graded arbitration WEIGHT between a deliberative and
+    a habitual action channel must exist and be readable per-tick. IT DOES NOT, as of
+    2026-08-28. E1 (ree_core/predictors/e1_deep.py) is a slow world model whose own
+    module contract states it "is READ-ONLY with respect to z_self and z_world" -- it is
+    an associative prior, not a habitual ACTION pathway, so the claim's named model-free
+    leg has no substrate referent. The only implemented arbitration is
+    E3Config.urgency_interrupt_threshold (config.py:964, default 0.8, applied
+    agent.py:6048): a HARD BINARY interrupt, which is precisely the "binary switch" this
+    claim asserts the arbitration is NOT. Any experiment run on the current substrate
+    can only vary the binary threshold, which tests MECH-091's interrupt calibration,
+    NOT MECH-235's spectrum assertion. Building the precondition means either (a) a
+    continuous arbitration weight modulating channel contribution in proportion to
+    z_harm_a magnitude rather than crossing a threshold -- explicitly named as future
+    work in the claim's own notes -- or (b) re-anchoring the habitual leg onto ARC-071
+    policy chunking, which IS a real planned->habitual transfer mechanism, but which
+    feeds the PROPOSAL layer (hippocampal.set_chunk_source, agent.py:1536) rather than
+    competing at selection. Route (b) CHANGES THE CLAIM and needs an explicit decision,
+    not a silent substitution.
+    CONFIRMING (once a graded weight exists): (1) arbitration weight varies CONTINUOUSLY
+    with z_harm_a magnitude across a dose range, rather than stepping at a threshold --
+    measured on the weight itself, at the arbitration site, upstream of the
+    committed-selection argmin and therefore not absorbed. (2) Commitment (beta-elevated
+    E3) shifts the weight toward model-based WITHOUT silencing the habitual channel --
+    the habitual contribution is downweighted, not zeroed, which is the claim's specific
+    and falsifiable content against a binary switch. (3) Urgency shifts the weight toward
+    model-free PROPORTIONALLY, not to a pure model-free reset. (4) The clinical-prediction
+    axis the claim names: agents with a low arbitration setpoint abandon goal-directed
+    plans under mild threat; agents with a high setpoint maintain them under significant
+    threat -- a dose-response curve, not two regimes. If any behavioural DV is added
+    downstream of selection, apply SHARED-CONVERSION-PRECONDITION (G4): a graded weight
+    entering as a score bias into an argmin where F holds 88-89% of the variance
+    (MECH-439) will be absorbed exactly as MECH-314 / SD-032b / ARC-062 were.
+    FALSIFYING: (1) a graded weight is built and the arbitration is shown to behave as a
+    threshold anyway -- contribution is step-shaped in z_harm_a with no intermediate
+    regime, i.e. the binary implementation was not a simplification but the correct
+    model. (2) Commitment SILENCES the habitual channel rather than downweighting it
+    (habitual contribution goes to zero, not to a reduced nonzero share) -- falsifies the
+    "without silencing" clause directly. (3) Urgency resets to pure model-free regardless
+    of z_harm_a magnitude -- falsifies the proportionality clause and makes MECH-091's
+    interrupt a genuine bypass rather than the arbitration shift this claim says it is.
+    OUT-OF-DOMAIN LEG (stated, not dropped): "Does vmPFC continuously weight model-based
+    and model-free contributions on a spectrum rather than switching between discrete
+    states in biological brains?" is a human neuroimaging / computational-psychiatry
+    question, tested outside REE and substantially answered there (Dolan & Dayan 2013,
+    Neuron). Not REE's to test and no REE experiment bears on it. Its role here is to
+    license the REE leg's DESIGN, not to be re-litigated. Also note the architectural
+    boundary already recorded and still binding: this arbitration sits at the BG/vmPFC
+    level and does NOT apply below it (spinal withdrawal reflexes, MECH-234 note, remain
+    active independently of it).
 
 - id: MECH-236
   title: "Hippocampal trajectory proposals must be conditioned on a goal signal (z_goal) injected from E3 via a dedicated input channel; without this conditioning, the hippocampal module generates only position-based trajectories and cannot produce goal-directed navigation toward target states."
@@ -42786,6 +43183,66 @@
   pharmacological_predictions:
     - PHARM-004  # lorazepam in catatonia, subtype-II specificity prediction
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
+  epistemic_category: standard
+  what_would_answer: |
+    EXTRACTED FROM the design doc's four pre-registered "Predicted observables"
+    (docs/architecture/sd_036_gabaergic_decay_regulator.md). Their disposition as of
+    2026-08-28 is NOT uniform and must be read before designing anything:
+      #1 lock resolution -- WITHDRAWN AS WORDED, permanently. The measured encoder
+         floor (harm_norm ~0.509) EXCEEDS the 471-lineage avoid threshold (0.25), so
+         no decay rate can resolve the mode lock under that classifier. V3-EXQ-854
+         records it as observable_1_reachability and treats it as NON-GATING. Do not
+         re-register it.
+      #2 gaba_tone dose-response -- RAN as V3-EXQ-854 (2026-08-01), PASS / supports,
+         C1 rho=-1.0 across the sweep. Discharged.
+      #3 multi-stream cluster at tone 0.3 -- NEVER RUN. This is the live falsifier and
+         the whole content of the claim.
+      #4 freeze commit/exit -- belongs to MECH-279, ran as V3-EXQ-776.
+    NON-DEGENERACY PRECONDITION -- four floors, all newly binding post-fix.
+     (i) TEMPORAL AUTHORITY LIVE. Before ree-v3 35e8969 (2026-07-31) the regulator had
+     NO temporal authority over z_harm or z_harm_a -- LatentStack.encode() produced
+     both as pure feedforward encodes, so the per-tick rescale was discarded and every
+     scale-free DV was EXACTLY invariant to gaba_tone (measured spread 8.6e-08: a
+     structural null, not a small effect). Post-fix: 1.4e-03 (z_harm), 1.0e-01
+     (z_harm_a). Any run must assert a non-zero sweep spread on EVERY stream it
+     scores, or it is vacuous. A fixed-ABSOLUTE-threshold DV must NOT be used: pre-fix
+     it would have shown a clean monotone dose-response as the trivial rescale -- a
+     confident-but-wrong confirmation.
+     (ii) CONTROL ARM IS use_gabaergic_decay=False, NOT gaba_tone=0.0. Post-fix, tone
+     0.0 suspends decay but leaves the recurrence live, so it is no longer bit-equal
+     to the legacy arm. Use gaba_recurrence_z_harm_s/_a=False to isolate decay from
+     recurrence.
+     (iii) PRIMARY DV IS z_harm_a SUSTAIN RATIO. The z_harm effect is real but modest
+     (1.4e-03) beside z_harm_a (1.0e-01).
+     (iv) FLOOR-ROBUST RELATIVE FORM ONLY, and the floor measured every run -- see
+     SD-011's what_would_answer, which owns the encoder-floor convention for this group.
+    CONFIRMING (observable #3, the discriminating test): at gaba_tone=0.3, z_harm_s,
+    z_harm_a AND z_beta degrade TOGETHER on one run -- prolonged harm responses,
+    persistent over-precision, and freeze-prone behaviour simultaneously -- with the
+    per-stream effect magnitudes ordered by their registered taus (0.05 / 0.02 / 0.03)
+    rather than varying independently. Joint, tau-ordered degradation from a single
+    scalar is the signature of a REGULATOR LAYER and is what distinguishes SD-036 from
+    three independent per-stream decay rules that happen to coexist.
+    FALSIFYING: at gaba_tone=0.3 the three streams degrade INDEPENDENTLY -- one or two
+    respond while the others do not, or the magnitudes do not track the registered
+    taus, or the cluster can be reproduced by decaying any single stream in isolation.
+    Then decay is a per-stream property and SD-036's sole architectural commitment
+    ("regulation lives at the regulator, not in each target") is refuted, even though
+    the dose-response of V3-EXQ-854 would remain true of z_harm_a alone. Note the
+    2026-07-31 measurement makes this a live risk, not a formality: pre-fix, only
+    z_beta responded genuinely, so a cluster WOULD have fired for the wrong reason in
+    2 of 3 streams.
+    RUN THIS AS THE GROUP'S SHARED REGIME MATRIX, not as a solo experiment.
+    Instrumented to also emit SD-011's dissociation DVs (stream_corr, autocorr_gap,
+    harm_fwd_r2, D3 direction) and MECH-279's pag_n_commits at both theta 2.0 and 0.8,
+    the same factorial answers all three claims' outstanding questions at once. Hold
+    use_pag_freeze_gate OFF in the arms scoring SD-036 itself, per the V3-EXQ-854
+    de-confounding convention.
+    ORTHOGONALITY NOTE (load-bearing, and stated in neither claim block): SD-036 does
+    NOT undercut MECH-279's threshold test. agent.py passes gaba_tone to
+    PAGFreezeGate.tick() as a DIRECT SCALAR (exit_threshold = theta_freeze *
+    gaba_tone), never through the decay path -- which is why V3-EXQ-854 does not tag
+    MECH-279 and why V3-EXQ-776's PASS is untouched by the 35e8969 fix.
 
 - id: MECH-279
   evidence_quality_note: |
@@ -42850,6 +43307,61 @@
   pharmacological_predictions:
     - PHARM-004  # lorazepam in catatonia subtype II, freeze-gate exit
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
+  epistemic_category: standard
+  what_would_answer: |
+    EXTRACTED FROM the claim's own registered falsifiers and from V3-EXQ-776's three
+    pre-registered signatures. What is OWED is not a new design; it is those same
+    signatures measured in the regime the substrate is actually run in.
+    STALE CAVEAT -- CORRECT THIS FIRST. The block's SCOPE paragraph states the gate is
+    not established to engage ECOLOGICALLY, citing pag_release_count_end=0 across 12
+    runs of 483e and routing to a theta_freeze / duration_input_threshold
+    recalibration. That is superseded. V3-EXQ-603s (2026-08-09) measured pag_n_commits
+    of [176,154,189] / [180,165,185] / [175,152,198] across its three arms, 3/3 seeds,
+    in a live mobile-predator environment, with the readiness precondition
+    pavlovian_freeze_reaction_present_on_lesion at 1.0 against a 0.667 floor, MET. It
+    engages. The recalibration the caveat routes to is what made it engage: 603s runs
+    PAG_THETA_FREEZE=0.8 and PAG_DURATION_INPUT_THRESHOLD=0.2.
+      [ORCHESTRATOR CORRECTION, VERIFIED 2026-08-28: V3-EXQ-603s is outcome FAIL /
+       evidence_direction non_contributory / claim_ids ['MECH-357']. Its PAG counters
+       are valid OBSERVATIONS that refute the caveat, but re-tagging it would attach a
+       NON-CONTRIBUTORY entry, not a second contributory one. Treat as a stale-note
+       correction, NOT evidence banking.]
+    NON-DEGENERACY PRECONDITION: state theta, and do not confuse the two
+    parameterisations. pag_theta_freeze DEFAULTS to 2.0 and
+    pag_duration_input_threshold to 0.4; V3-EXQ-776 validated all three signatures at
+    those values. But 83 of 83 experiment drivers in the corpus that touch the gate
+    set 0.8 / 0.2. The claim's law is therefore validated at a parameterisation
+    nothing runs, and every ecological run uses a parameterisation the claim never
+    validated. Any run must record theta and the duration threshold explicitly, and a
+    run scoring MECH-279 must additionally show (i) freeze commits are non-zero on
+    >=2/3 seeds -- a silent gate is vacuous, not a weakens -- and (ii) z_harm_a
+    genuinely varies in situ, per SD-011's non-degeneracy precondition.
+    CONFIRMING: at BOTH theta=2.0 and theta=0.8, in an ECOLOGICAL setting (not the
+    env-free driven probe of 776), the three registered signatures hold -- S1 commit
+    law: freeze commits when z_harm_a x duration exceeds theta_freeze, with commit
+    latency decreasing in z_harm_a; S2 committed-state hysteresis: freeze is a
+    sustained state with its own exit criterion and does not simply track
+    instantaneous z_harm_a (this is the architectural core -- "an active commitment to
+    not-move", not merely absence of movement); S3 gaba_tone exit control: gaba_tone
+    1.5 accelerates exit, gaba_tone 0.5 sustains freeze under mild harm, which is the
+    catatonia phenotype and the architectural derivation of the clinical
+    benzodiazepine response.
+    FALSIFYING: at the theta the corpus actually runs, either (a) S2 fails -- freeze
+    onset and offset track instantaneous z_harm_a with no hysteresis and no separate
+    exit criterion, i.e. it is "no movement" rather than a committed state, which
+    refutes the claim's core even though S1 would still describe the arithmetic; or
+    (b) S3 fails -- gaba_tone does not order exit latency monotonically, which severs
+    the entry/exit shared-neurotransmitter commitment and demotes the lorazepam
+    prediction (PHARM-004) from architectural consequence to coincidence; or (c) the
+    signatures hold at 2.0 but not at 0.8, in which case the claim is true of a
+    parameterisation nothing uses and the corpus default must be reconciled with the
+    registered one before any further scoring.
+    DECONTAMINATION NOTE STANDS: V3-EXQ-776 is outside the
+    update_z_goal_typeerror_swallowed cohort (471/475/483/490/524) and does not
+    inherit its defect. The pre-2026-05-07 cohort remains superseded.
+    ORTHOGONALITY: gaba_tone reaches this gate as a direct scalar, NOT through
+    SD-036's decay path -- see SD-036's what_would_answer, which states the mechanism;
+    do not re-derive it here.
 
 - id: SD-037
   # Assembly-state companion fields (auto-join audit, 2026-06-22; repointed same
@@ -47285,6 +47797,63 @@
     V3-EXQ-516 queued (agent-loop integration diagnostic). Blocks MECH-302,
     MECH-303.
   location: docs/architecture/sd_050_suffering_derivative_comparator.md
+  epistemic_category: standard
+  what_would_answer: |
+    DERIVATIONAL PART (settled, and correctly so): that the trigger must be a DERIVED
+    comparator rather than a pooled DA readout follows from the Bromberg-Martin 2010 /
+    Brischoux 2009 DA-heterogeneity qualifier -- ventral-VTA DA is excited by aversive
+    ONSET (salience coding), so a pooled DA readout would fire on the START of
+    suffering as well as its end, inverting the event's meaning. This is an argument,
+    not an experiment. It licenses "a comparator", not specifically "a non-trainable
+    FIFO on the latent norm."
+    NON-DEGENERACY PRECONDITION (LIVE, and the reason this claim's falsifier is
+    currently uninterpretable): a sustained peak-to-trough descent detector requires
+    the signal to HAVE a trough. Measured on V3-EXQ-664, z_harm_a.norm() spans only
+    ~7.18-7.42 within an episode -- a near-constant encoder offset with a small
+    functional component riding on it, and no descent to detect. So any SD-050 null on
+    a naturally-driven agent is a statement about the SIGNAL, not the detector. The run
+    must assert, per arm and before scoring: z_harm_a.norm() cross-state dynamic range
+    exceeds an absolute floor with non-zero cross-seed variance, AND at least one
+    descent of magnitude >= suffering_drop_threshold occurs within
+    suffering_window_length ticks from a peak above suffering_min_initial_norm. Below
+    either, self-route substrate_not_ready_requeue. This is SD-086's territory and is
+    UNRESOLVED as of 2026-08-02: SD-087's harm-surprise-PE explanation was weakened by
+    V3-EXQ-856 and Q-086's environmental-confound control returned degenerate on
+    V3-EXQ-857a, so the saturation is CONFIRMED AND UNEXPLAINED rather than pending.
+    Note also SD-086's default_off_scope_note: both named E3 consumers of z_harm_a
+    (urgency_weight, affective_harm_scale) default to 0.0, so on shipped defaults
+    nothing downstream consumes this readout at all.
+    WHERE MEASURED / WHY NOT ABSORBED: at the comparator's own tick() boundary --
+    event-fire flag set in sense(), consumed in select_action() on the same tick --
+    plus the two reuse sites it claims (beta_gate.release() + committed_step_idx reset;
+    ResidueField.update_valence(z_world, VALENCE_LIKING, relief_completion_weight)).
+    The earliest possible point and definitionally unabsorbable: the question is
+    whether the event exists and lands, not whether it survives selection. Downstream
+    absorption is MECH-302's problem, and conflating them is how detector evidence has
+    been getting filed against MECH-302.
+    CONFIRMING: on a substrate whose z_harm_a clears the range precondition WITHOUT
+    scheduled injection -- i.e. on descents the agent's own trajectory produces -- the
+    comparator fires at a rate materially above zero, fires zero times with the flag
+    OFF, fires zero times in simulation_mode=True (the MECH-094 gate), and each fire is
+    accompanied by both claimed downstream effects. Additionally, the detector must be
+    shown preferable to the two rejected alternatives on the same stream: it fires on
+    descents where a pooled-DA proxy also fires on ONSETS (the Bromberg-Martin failure
+    mode made empirical), and it achieves this without training.
+    FALSIFYING: either (a) on a range-non-degenerate naturally-driven stream the
+    comparator's fire rate is at or near zero across the parameter envelope, meaning
+    z_harm_a descents are real but not of the peak-to-trough SHAPE the FIFO detects --
+    which routes to a different detector form, not to abandoning the comparator; or
+    (b) fires occur but one or both reuse sites do not execute, falsifying the
+    pipeline-reuse half; or (c) a trained scalar head off z_harm_a (SD-086's proposed
+    readout) detects relief episodes the non-trainable norm-based FIFO misses, on the
+    same stream -- which falsifies the NON-TRAINABLE and NORM-BASED specifics while
+    leaving the comparator-not-pooled-DA argument intact. (c) is the live alternative
+    and the one SD-086 exists to prosecute.
+    EVIDENCE-JOIN DEFECT, TO BE FIXED BEFORE THIS CLAIM IS SCORED: SD-050 carries zero
+    entries in claim_evidence.v1.json, while V3-EXQ-515, 516, 517c and 517d all
+    exercise SD-050's detector directly and all tag claim_ids ["MECH-302"] only. The
+    join key is the driver script's module-level CLAIM_IDS constant, so the fix is a
+    script edit via /queue-experiment, not a queue-field edit.
 
 - id: MECH-302
   title: "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'."
@@ -47440,6 +48009,71 @@
     rescued-substrate evidence accumulates. Gate (c) for MECH-304 conditioned-
     inhibition (V3-EXQ-519) now lifted.
   location: evidence/literature/targeted_review_relief_completion_mechanism/verdict.md
+  epistemic_category: standard
+  what_would_answer: |
+    OUT-OF-DOMAIN LEG (affective neuroscience; already answered, no REE run bears on
+    it): that pain relief recruits the same value-coding VTA-DA / NAc-shell machinery
+    as appetitive reward -- Navratilova 2012 PNAS (relief activates VTA-DA + NAc-shell
+    DA, DA-antagonist-blockable, produces CPP; supports 0.84), Andreatta 2012
+    (relief->striatum / fear->amygdala cross-species double dissociation; 0.86,
+    LOAD-BEARING), Ramirez 2015 (active avoidance requires BA->NAc-shell; 0.78),
+    Tanimoto 2004 (Drosophila opponent-timing relief-as-reinforcer; 0.78), with
+    DA-heterogeneity qualifiers Bromberg-Martin 2010 / Brischoux 2009 (mixed ~0.80)
+    that motivate the comparator-not-pooled-DA trigger.
+    REE LEG (the testable claim): MECH-302 asserts the CONSOLIDATION PIPELINE is
+    SHARED, with polarity set at the input -- a relief-completion event writes into the
+    SAME approach-attractor tag store as goal-attainment, such that relief-paired
+    stimuli acquire conditioned approach with the SAME temporal-discounting profile and
+    the SAME downstream tag-write signature as goal-paired stimuli.
+    NON-DEGENERACY PRECONDITION: (D1) the comparator must FIRE non-vacuously in BOTH
+    the relief and the goal condition, at rates in the same order of magnitude. Met and
+    exceeded on the scheduled-curriculum substrate -- V3-EXQ-517d recorded 686.7 events
+    and 686.7 writes per seed in ARM_A against 0.0/0.0 in ARM_B, 3/3 seeds.
+    (D2) THE RELIEF EVENTS MUST BE ACTION-CONTINGENT, NOT ENVIRONMENT-SCHEDULED. This
+    is the precondition the whole 517 lineage evades by design. V3-EXQ-517/517a/517b
+    FAILed at 0-0.33 events/seed precisely because a trained avoidance policy filters
+    out the damage->heal trajectories the comparator needs; the SD-022 scheduled-limb-
+    damage curriculum rescued the run by injecting damage INDEPENDENT OF AGENT ACTION.
+    That fix is legitimate for testing the DETECTOR (SD-050) but makes the relief
+    non-contingent, and a non-contingent relief event cannot produce conditioned
+    approach to anything the agent DID -- there is nothing to credit. A run using
+    scheduled_limb_damage_* as its sole relief source is a valid SD-050 test and a
+    VACUOUS MECH-302 test, and must self-route substrate_not_ready_requeue on the
+    approach DV. Additionally inherited: SD-050's readout precondition.
+    WHERE MEASURED / WHY NOT ABSORBED: the DV is conditioned APPROACH to a
+    relief-paired cue measured in a subsequent extinction-style probe phase with the
+    comparator, the curriculum and the hazard all OFF -- at the behavioural output,
+    after consolidation, with every generating mechanism removed. Nothing downstream
+    can absorb it because nothing downstream is running. Two paired instruments make
+    the "same pipeline" assertion falsifiable rather than merely plausible: (i) the
+    temporal-discounting profile of approach to the relief-paired cue versus the
+    goal-paired cue, fitted per seed, since the claim is SAME-profile not merely
+    non-zero; (ii) the MECH-094 tag-write signature (tag valence, weight, residue write
+    address) for the two event types, compared for identity of STRUCTURE rather than of
+    magnitude. Recording event counts and write counts alone -- what the entire 517
+    lineage does -- cannot discriminate a shared pipeline from two parallel ones
+    producing similar counts.
+    CONFIRMING: in the OFF-probe phase, approach to the action-contingently-relief-
+    paired cue exceeds approach to a matched unpaired control cue on >=2/3 seeds by a
+    margin scaled on the SD of the paired delta plus an absolute floor; AND the fitted
+    discounting profile for the relief-paired cue lies within the seed-noise band of
+    the goal-paired cue's profile; AND the MECH-094 write signatures for the two event
+    types are structurally identical, differing only in the input-polarity field the
+    claim says is the ONLY licensed difference.
+    FALSIFYING: either (a) relief events fire action-contingently and tags are written,
+    but the probe phase shows no conditioned approach above the unpaired control -- the
+    tag store does not feed the approach attractor, so the "shared" pipeline is shared
+    in name only; or (b) approach IS produced but its discounting profile is separable
+    from goal-attainment's beyond the seed-noise band, or the write signatures differ
+    structurally -- which supports PARALLEL circuitry with a common output rather than
+    the shared-pipeline-with-input-polarity architecture the claim asserts. (b) is the
+    more informative refutation and the claim should be read as predicting against it.
+    WHAT 517c/517d DID AND DID NOT ESTABLISH: they established the PLUMBING
+    (comparator fires, beta-gate releases, VALENCE_LIKING write lands, none of it with
+    the comparator OFF -- 686.7/686.7 vs 0.0/0.0, 3/3 seeds). They did NOT establish
+    the CLAIM, because relief was environment-scheduled rather than action-contingent
+    and no approach DV was recorded. The v3_pending clearance those runs bought should
+    be read as scoped to the plumbing.
 
 - id: MECH-303
   title: "Context-bound passive safety representation: the agent encodes 'this environment predicts absence of suffering' through sustained non-occurrence of harm, without requiring a discrete teaching event. Substrate is prefrontal-hippocampal (IL for expression gating; vHipp-to-PL-equivalent for contextual store). Update rule is diffuse and slow -- accumulated context exposure without harm drives the store. Output lowers background vigilance threshold: reduces the general avoidance commitment level when the agent is in an environment the store predicts as safe. Parallel to the 'things liked' goal-cue store but tracking suffering-absence rather than reward-presence. Sister claim to MECH-304 (cue-specific conditioned inhibition pathway)."
@@ -51220,6 +51854,73 @@
     wiring validation queued (3-arm equivalence). See ree-v3/CLAUDE.md
     "ARC-065 SP-CEM Main-Path Landing (2026-05-17)".
   location: docs/architecture/rule_apprehension_layer.md
+  what_would_answer: |
+    Answered by a multi-arm behavioural ablation of the diversity-generation
+    substrates on an ARMED conversion stack -- not by any run in the
+    569/687/707/708/714 lineage, all of which were measured against a class-entropy
+    ceiling they were already at.
+    NON-DEGENERACY PRECONDITION (ARMED-CONVERSION; shared with MECH-440 and MECH-441,
+    which cross-reference this text rather than restating it). Two independently-
+    defaulting config clamps must BOTH be lifted, and both asserted from MEASURED
+    per-arm quantities, not from the config:
+     (P1) support_preserving_min_first_action_classes = action_dim, with measured
+     mean_distinct_first_action_classes >= 0.9 * action_dim in every arm. At the
+     shipped default of 2 (set literally at 273 driver call sites) the candidate pool
+     realises only ~2.16-3.08 distinct first-action classes of 5, so committed-CLASS
+     entropy is capped at ln(~3) ~ 1.08 nats IDENTICALLY IN EVERY ARM -- an
+     arm-invariant ceiling no diversity lever can move. V3-EXQ-708b measured
+     precommit_n_distinct_classes_mean = 2.959 / 2.958 / 2.956 across its three arms
+     with precommit_class_entropy at 97.8% of that ceiling in the OFF baseline.
+     (P2) use_modulatory_selection_authority = True, with measured
+     authority_rel_deviation_mean > 0.05 in every arm bearing a modulatory lever
+     (~1e-8 is the OFF signature). With authority OFF, a per-candidate modulatory
+     contribution is added at fixed small magnitude to scores whose raw range is
+     10-560, and cannot move the argmin by construction.
+     Both load-bearing, neither substitutes for the other: V3-EXQ-949 (5 seeds)
+     measured yoked committed-action divergence 0.000 with P1 alone, 0.000 with P2
+     alone, 0.3675 with both. A null with either clamp in place is VACUOUS and must
+     self-route substrate_not_ready_requeue, never weakens.
+     A third precondition remains from the original design: ARC-062's gated policy
+     heads and learned context discriminator must be ON in every arm, so that a
+     monomodal outcome is attributable to absent diversity rather than an absent
+     consumer of it.
+    WHERE MEASURED / WHY NOT ABSORBED: primary DV is committed_class_entropy over the
+    episode -- the terminal output of E3 selection, downstream of every candidate
+    scorer, eligibility gate, shortlist and argmin, so nothing remains to absorb it.
+    Three MANDATORY instruments, whose absence made the prior lineage unreadable:
+    (i) mean_distinct_first_action_classes per arm as a covariate, so the
+    combinatorial ceiling ln(distinct) is VISIBLE and the DV is reported as a FRACTION
+    of it rather than an absolute nat count; (ii) yoked-pair per-tick committed-action
+    divergence against a matched control arm sharing a private RNG stream (the
+    V3-EXQ-949 design), which detects authority acquisition even when episode-level
+    entropy has not yet moved; (iii) authority_rel_deviation_mean per arm, so P2 is
+    witnessed rather than assumed.
+    CONFIRMING: on an armed stack, complete ablation of the diversity-generation
+    pathway (LC-NE tonic floor OFF + structured curiosity OFF + striatal novelty OFF,
+    ARC-062 gating ON) drives committed-class entropy to monomodal collapse -- a
+    fraction-of-ceiling at or near its floor -- while at least one single-substrate-ON
+    arm reaches a strictly higher fraction-of-ceiling on >=2/3 seeds by a margin scaled
+    on the SD of the paired delta plus an absolute floor. The partial-ON arms then
+    discriminate load-bearing from contributory among the substrates. ARC-065 is
+    confirmed as an ARCHITECTURAL SLOT if ANY substrate arm lifts the DV; it does not
+    require that all four do, and its own text says so.
+    FALSIFYING: on a fully armed stack (P1 and P2 both witnessed, ARC-062 gating ON,
+    ceiling headroom demonstrably present -- fraction-of-ceiling in the ALL-OFF arm
+    materially below 1.0), the ALL-ON arm's committed-class entropy is statistically
+    indistinguishable from the ALL-OFF arm AND from a matched-magnitude noise control,
+    on >=2/3 seeds. Then diversity generation is not the missing architectural function
+    and the collapse must be re-rooted to the representation ceiling (INV-088 z_world
+    under-differentiation) or to F-dominance (MECH-439). Note the asymmetry
+    deliberately: a null in the ALL-OFF arm is uninformative (nothing to lift), so the
+    ceiling-headroom check is a precondition on the FALSIFYING branch specifically.
+    SCOPE SPLIT OWED ON SUBSTRATE (b): currently lumps striatal novelty (MECH-314a),
+    frontopolar uncertainty (MECH-314b) and learning-progress curiosity (MECH-314c)
+    into one "curiosity" slot. MECH-458 splits that slot by POLARITY: density-
+    attraction curiosity is a reward-conditional EXPLOITATION amplifier contributing
+    0.00 diversity force at the decision point and 0 directed behaviour on an unshaped
+    map, while uncertainty- and disagreement-driven curiosity (MECH-314b/c, MECH-441)
+    carry the opposite, Bellemare polarity. Any curiosity arm must DECLARE which
+    polarity it instantiates and record a visitation-density covariate.
 
 - id: MECH-313
   title: "stochastic_noise_floor (max_entropy_policy_regularisation_LC_NE_tonic_analog). A floor-level stochastic action-selection noise that prevents complete deterministic collapse of the policy. Biological substrate: locus coeruleus tonic firing producing baseline action-selection variability (Aston-Jones & Cohen 2005 adaptive-gain model). Computational analog: max-entropy policy regularisation / SAC entropy bonus (Haarnoja et al. 2018). Distinct from MECH-260 dACC anti-recency: MECH-313 is a state-independent noise floor, while MECH-260 is a state-dependent recency penalty. Both can contribute to anti-monostrategy pressure but operate via different mechanisms; whether they collapse into a single substrate or are mutually load-bearing is open (Q-045)."
@@ -54126,6 +54827,63 @@
     waking. Together they instantiate two complementary axes of
     write-gating at the rule-arbitration layer.
   location: docs/architecture/mech_319_simulation_mode_rule_gate.md
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: three conditions, all of which V3-EXQ-628 and
+    V3-EXQ-668 already carried and any successor must too. (1) The replay-driven
+    invocation path must actually be constructed -- REEAgent.select_action never calls
+    the gate with caller_sim=True, so a run relying on the ordinary step loop
+    exercises only the waking identity-passthrough branch and is structurally vacuous
+    (this is why 628 had to build effective_simulation_mode(simulation_mode=True,
+    site=lateral_pfc) + a conditional LateralPFCAnalog.update by hand). Assert a
+    NON-ZERO simulation-firing count. (2) The waking path must be bit-identical across
+    BLOCK and ADMIT arms with zero simulation firings -- the load-bearing C4
+    falsifier; without it, an observed arm divergence could come from the waking path
+    rather than the gate. (3) The readout must reach rule_state (and, for the drift
+    form, compute_bias) -- a truth-table or wiring-only check never touches the
+    consumer and is diagnostic, not evidence (V3-EXQ-546 was exactly this and scored
+    non_contributory). Construction guard: the substrate raises ValueError on
+    admit_writes=True without master ON (loud, not silent), so a mis-configured
+    falsifier arm fails loudly rather than reading as a green BLOCK.
+    CONFIRMING (V3 -- ALREADY MET, twice, do not re-queue these slices): with
+    admit_writes=False (MECH-319 normal), a simulation-tagged caller produces ~zero
+    rule_state delta while the ADMIT arm replaying the SAME captured latent produces a
+    measurable one, the arms diverge, and the waking path stays bit-identical --
+    V3-EXQ-628 (3/3 seeds, mean replay delta ~0.31). And, over a SUSTAINED replay
+    regime, BLOCK produces no accumulated drift while ADMIT accumulates beyond a
+    single step and the drift reaches the compute_bias arbitration output --
+    V3-EXQ-668 (3/3 seeds, all criteria green, bias_readout_non_degenerate). Two
+    contributory entries, genuine_exp_count=2, exp_conf 0.825, conflict_ratio 0,
+    quadrant novel_discovery; promoted candidate_substrate_landed -> provisional,
+    v3_pending: false, 2026-06-11.
+    CONFIRMING (V3 -- the RESIDUAL that is still open): the gate's declared scope is
+    "MECH-312 sub-mechanisms" generally, but it is wired at exactly TWO call sites
+    (GatedPolicy.forward and LateralPFCAnalog.update). Confirming: an enumeration of
+    arbitration-weight write sites re-derived from the CURRENT tree shows every one
+    either gate-consulted or explicitly out of scope.
+    FALSIFYING (V3): an arbitration-weight write site is reachable from a
+    simulation-tagged caller WITHOUT consulting effective_simulation_mode -- the
+    coverage gap, which is the live drift risk now that the two behavioural paths have
+    passed. Or: BLOCK and ADMIT arms produce indistinguishable rule_state trajectories
+    under a genuinely-exercised replay regime (would contradict 628 and 668). Or: the
+    waking path differs across arms, which invalidates the instrument rather than the
+    claim.
+    OUT-OF-DOMAIN LEG (stated plainly, NOT dropped, and NOT gating the V3 verdict):
+    the claim's functional_restatement carries a second, V4-bound,
+    pharmacology-dependent falsifier REE cannot run: pharmacological or optogenetic
+    SWR suppression during a rule-arbitration training task should NOT change
+    steady-state rule-arbitration weights, whereas suppression during ACTIVE-policy-
+    deployment phases SHOULD produce different effects -- the training-vs-deployment
+    dissociation is the diagnostic. Substrate availability is well-anchored (Joo &
+    Frank 2018; Foster & Wilson 2006); the specific REE commitment -- that SWR events
+    suppress rule-arbitration-weight updates in cortical-striatal arbitration loops --
+    is biologically unverified at cellular/synaptic level and the literature does not
+    confirm it. THIS LEG DOES NOT BLOCK A V3 PROVISIONAL and must not be cited as an
+    outstanding V3 gate.
+    CROSS-REFERENCES: the write-gate principle is MECH-094's; MECH-319 is its
+    substrate-level instantiation at the arbitration layer, and the two are NOT
+    redundant (Pull 3 R1 + Pull 4 R3 KEEP-AS-IS, 2026-05-10). MECH-261 is the
+    complementary CONTINUOUS gate; the two compose and neither subsumes the other.
 
 - id: ARC-066
   title: "tonic_vigor_coupling (capacity-to-action-bias, average-reward-rate / LC-NE tonic / DA effort-vigor analog). Architectural commitment: behaviour-bias toward action scales with capacity (high energy AND low recent prediction error AND low drive -- 'things are going well, deploy'), independent of any specific target. Distinct from existing behavioural-source slots (z_harm threats, z_goal deficit-seeded wants, novelty curiosity) which all fall to zero when the agent is well-fed, safe, and the world is familiar. Without ARC-066 a healthy REE agent has no gradient to act; biology has a positive gradient (felt phenomenology: drive to deploy energy when one has it). First of three slots in the non_deficit_action_drives family; companion ARC-067 (idle aversion / boredom) and ARC-068 (opportunity cost) cover the aversive-of-rest and cost-of-passivity halves of the same architectural commitment. Family principle: behaviour comes from surplus capacity AND from deficits, not deficits alone."
@@ -57374,6 +58132,85 @@
         downward, agent could chunk imagined-as-positive
         sequences. Audit flag enables detection.
   location: docs/architecture/policy_primitive_granularity.md
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: four readiness conditions, all validated as a gate
+    family by V3-EXQ-810a / 873a / 892 / 896 and all of which must be MEASURED per
+    arm, not assumed. (1) episode_outcome_spread_supra_floor -- MECH-323's evaluative
+    gate is RELATIVE to a running baseline, so real chunk formation is structurally
+    impossible on a flat outcome stream (896 measured 0.358 vs floor 0.05).
+    (2) chunk_buffer_supports_size_range -- a per-trial buffer shorter than
+    chunk_max_size makes the tracked-sequence tally too shallow (896: 10.55 vs 4.0).
+    (3) salient_harm_events_fire -- confirms the hazard-bearing grid is genuinely
+    exercised so an arm's gate is never vacuously green from zero applied
+    preconditions (896: 0.050 vs 0.01). (4) replay_high_value_candidate_seed_fraction
+    -- the FRACTION of seeds in which at least one tracked real sub-sequence cleared
+    ChunkAccumulator.replay_value_threshold() by the sleep checkpoint (896: 1.0 vs
+    floor 0.4). THE FRACTION-BASED FORM IS LOAD-BEARING AND MUST NOT BE REVERTED TO
+    WORST-OF-N-SEED: V3-EXQ-873's only FAIL was a worst-of-3-seed readiness veto
+    conflating a STOCHASTIC precondition with a DETERMINISTIC plumbing check; 873a
+    fixed it with n=8 and a decoupled gate, and that fix is what makes every
+    subsequent result readable. Substrate defaults to assert:
+    chunk_replay_value_quantile = 0.75, chunk_replay_corroboration_episodes = 75,
+    use_chunk_replay_origin_path = False. Note the threshold is +inf on an empty
+    real-execution history -- an agent with no waking achievement can never mint, by
+    construction, so a run with no real history is vacuous rather than safe.
+    CONFIRMING -- safety half (ALREADY MET, three consecutive non-negative
+    touchpoints): the strict path refuses a matched candidate outright
+    (strict_mint_fraction = 0.0) while the carve-out path mints correctly under valid
+    conditions (replay_mint_fraction = 1.0), with every fail-closed branch holding
+    independently -- wake refusal, master-switch-off, low-value refusal, no-candidate
+    -- across all seeds and arms. V3-EXQ-873a (n=8, 7/8 cleared readiness, all 7
+    minted correctly), V3-EXQ-892 (corroboration survival), V3-EXQ-896 (PASS/supports:
+    C1 + C2 + C3 all green and non-degenerate, survival_rate 0.75 vs pre-registered
+    floor 0.30, corroboration_rate 1.0).
+    CONFIRMING -- survival half (ALREADY MET): replay-origin chunks survive to real
+    corroboration at a rate clearing the pre-registered floor under the
+    SUBSTRATE-DEFAULT deadline. 892: 57.1% survived at N=75, 85.7% corroborated at
+    least once given an unlimited window (N=200), corroboration timing spanning
+    offsets 1-88 of 100 post-checkpoint episodes. This retires 873a's 0%-survival
+    reading as an artefact of an artificially short deadline, confirmed by a clean
+    negative control in the same run.
+    CONFIRMING -- the OPEN half, the claim's own pre-registered prediction, NEVER RUN:
+    an agent with MECH-322 active shows OVERNIGHT IMPROVEMENT on a chunked-task
+    signature -- behavioural latency on a structurally repeating sub-sequence drops
+    MORE after a sleep-phase-included episode block than after a no-sleep block of
+    equivalent waking exposure. Discriminative pair as pre-registered: ARM_0 (MECH-322
+    OFF baseline, sleep replays do not write chunks) vs ARM_1 (MECH-322 ON, sleep
+    replays meeting all three conditions write chunks). ARM_1 must show measurably
+    faster chunk formation on repeating sub-sequences AND comparable safety metrics
+    (no spurious-chunk pathology under structured-noise perturbation). Mirrors Albouy
+    2013 structurally and is the only leg that tests FUNCTIONAL BENEFIT rather than
+    minting correctness or safety.
+    FALSIFYING -- safety (highest-severity outcome this lane can produce): the strict
+    path mints from hypothesis_tag=True content, or the carve-out fires outside its
+    three ANDed conditions -- during waking DMN, outside SD-017 sleep phase, below the
+    value-tag threshold, or without the replay_origin=True audit flag. That is a
+    genuine MECH-094 breach, not merely a MECH-322 weakening.
+    FALSIFYING -- benefit: with all four readiness preconditions green and minting
+    confirmed to fire, ARM_1's latency drop on repeating sub-sequences is
+    statistically indistinguishable from ARM_0's at matched waking exposure -- the
+    carve-out mints safely but buys nothing, which weakens MECH-322's realism
+    rationale while leaving the safety carve-out intact. A survival rate below the
+    0.30 floor under the substrate-default deadline is the same class of result:
+    valid, non-catastrophic, weakening-not-eliminating.
+    FALSIFYING -- parent-taint: a higher-grain chunk built from a mix of real-origin
+    and replay-origin sub-chunks does NOT inherit replay_origin status, defeating the
+    audit trail under chunks-of-chunks recursion (R4). The registered conservative
+    default is ANY replay-origin sub-chunk taints the parent; open Q-claim for the
+    child-MECH design pass.
+    CROSS-REFERENCES: MECH-322 is a NEW write-path with its own conditions, NOT a
+    relaxation of MECH-094 -- MECH-094 strict gating remains the default for residue
+    writes, z_world updates, goal seeding, and the default ARC-071 chunking path.
+    Waking DMN (MECH-292 / MECH-293 ghost-goal probes) stays MECH-094-strict and is
+    not tested here. The carve-out's existence is itself evidence the simulation/real
+    boundary is actively POLICED rather than absent.
+    PROMOTION ARITHMETIC: 873a and 892 were experiment_purpose=diagnostic and
+    contribute 0 experimental entries; 896 is the FIRST contributory evidence entry
+    (claim_evidence: exp=1, exp_conf 0.735, 0 fail runs). candidate -> provisional
+    needs min_experimental_entries=2, so exactly ONE MORE contributory evidence run is
+    owed -- and the never-run overnight-improvement falsifier is the natural candidate,
+    since it is both the missing entry and the claim's own outstanding prediction.
 
 - id: MECH-323
   implementation_note: >-
@@ -58083,6 +58920,96 @@
     (seed-202 narrow-repertoire follow-up, same family) also supports/standard, clean PASS on
     both load-bearing criteria. Stays candidate/v3_pending.
   location: docs/architecture/policy_primitive_granularity.md
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (four; any one unmet makes the run vacuous):
+     (1) CHUNKS MUST ACTUALLY FORM, checked from PER-SEED rows. Pre-check
+     chunk_acc_n_formed against a pre-registered worst-seed floor BEFORE any
+     downstream statistic is trusted. V3-EXQ-810a's own bar is the calibrated
+     precedent (load-bearing criterion cleared 7/8 seeds vs a 0.75 pre-registered
+     fraction; worst-seed margins 2.4x-7.0x); do not invent a new one. V3-EXQ-834 is
+     the counter-example that makes this a per-seed check rather than a gate reading:
+     it returned precondition_unmet on chunks_formed while 4/5 seeds had in fact
+     formed 8-44 chunks each -- a driver gate-strictness defect, not a substrate
+     ceiling.
+     (2) THE OUTCOME SPAN MUST BE PRE-REGISTERED, AND >= 2.0. F_low and F_high are
+     SCALE-RELATIVE: the substrate applies no normalisation anywhere
+     (policy_chunking._variance is plain population variance over the raw, unbounded,
+     caller-supplied E3-score-receipt scalar). Population variance on a span-S range
+     is at most S^2/4, so at F_high = 0.45 dissolution needs S > 1.342 and S >= 2.0 is
+     the recommended floor for headroom. Span moves BOTH gates at once -- a wider span
+     makes F_low HARDER to satisfy -- so it is an IV, never an unstated constant.
+     (3) THE RETENTION STATE MUST BE DECLARED. With use_chunk_dissolution_retention
+     ON, this claim's repetition bar is not R_min but ceil(R_min * f_reacq) for any
+     sequence carrying a dormant chunk -- the trigger is state-dependent on the
+     MECH-324 library. The cheap control is the flag: retention OFF makes the bar
+     unconditionally R_min.
+     (4) PERSISTENCE FLAGS SCOPED TO THE PROBE PHASE ONLY. V3-EXQ-871 showed that
+     flipping a persistence flag across the WHOLE cell perturbs formation itself via
+     RNG-coupled environment dynamics -- same seeds 101/505 formed 1/0 chunks vs 2/2
+     under V3-EXQ-841 -- producing an artefact indistinguishable from a substrate
+     finding.
+    CONFIRMING: target the RELATIONS, never the registered constants. R_min = 20,
+    W = 100, F_low = 0.15, evaluative margin 0.05, chunk size 2-5, f_reacq = 0.25 and
+    chunk_ceiling_returns_threshold = 0.10 are UNCALIBRATED ENGINEERING DEFAULTS with
+    no literature support; only the orderings are grounded (Barnes 2005; Bouton 2012;
+    Ramkumar 2016; Bo, Borza & Seidler 2009). A result turning on a specific value
+    scores nothing.
+     (C1) FORMATION READINESS -- ALREADY ANSWERED; DO NOT RE-DERIVE. V3-EXQ-810a and
+     810b confirm the accumulator forms chunks under non-degenerate conditions with
+     2.4x-7.0x margins and C7 credit-rule separation 5x. This leg is closed; it is a
+     PRECONDITION above, not a target.
+     (C2) REDUCED-BAR ORDERING -- the sharpest open formation-side item. On the
+     829a-corrected substrate (use_reacquisition_window_isolation ON), re-formation of
+     a dormant chunk under an identical consistent above-baseline regime completes in
+     STRICTLY FEWER repetitions than first acquisition of the same sequence, with
+     r_acq MEASURED on the same run, not assumed: r_reacq < r_acq. AND r_reacq is
+     monotonic-decreasing in f_reacq across at least three levels -- a rank ordering,
+     not a value match.
+     (C3) CEILING-DERIVATION ORDERING (never measured; V3-EXQ-834 attempted and failed
+     on a driver defect, so this is open, not answered). With use_growable_chunk_ceiling
+     ON, all three must hold: (i) an agent with a LARGER deliberation/rollout horizon
+     settles at a LARGER mean chunk size than one with a smaller horizon, same task,
+     same seeds -- the ordering, not the number; (ii) growth PLATEAUS strictly below
+     the derived maximum when marginal returns go flat, rather than running to the cap;
+     (iii) settled size is INVARIANT to chunk_min_repetitions at fixed horizon (the Bo
+     et al. size-vs-rate dissociation). (i) alone is consistent with a monotonic
+     practice-driven accumulator, which Ramkumar's macaques rule out -- so partial
+     satisfaction is not confirmation.
+    FALSIFYING:
+     (F1) r_reacq >= r_acq on the corrected substrate, under a declared span and a
+     declared retention state, with the formation precondition met. PRIOR RESULT IS
+     VOID FOR THIS PURPOSE: V3-EXQ-829 measured exactly this shape (median r_reacq 90
+     vs measured median r_acq 20 = R_min exactly) but its DV was rate-limited by the
+     contaminated whole-lifetime variance window -- r_reacq/W = 0.908 +/- 0.029,
+     tracking W and not R_min or f_reacq -- a MECH-323/MECH-324 SHARED-WINDOW confound
+     since closed by use_reacquisition_window_isolation (V3-EXQ-829a, supports). Any
+     re-run MUST have that flag ON and MUST report r_reacq/W.
+     (F2) r_reacq FLAT across f_reacq with r_reacq/W no longer tracking W. The genuine
+     structural falsification that 829's result was mistaken for.
+     (F3) Settled chunk size fails to order with the deliberation horizon, OR grows
+     monotonically to the cap regardless of realised marginal return, OR moves with
+     chunk_min_repetitions at fixed horizon.
+     (F4) NOT FALSIFIABLE AS REGISTERED -- CONTEXT-CONDITIONED FORMATION. This claim's
+     title and its initiation_set inference rule assert formation is context-
+     conditioned. The substrate does not implement it: ChunkedPrimitive.initiation_set
+     defaults to frozenset() (policy_chunking.py:513), neither mint() call site
+     populates it (:1352 replay, :1926 formation), zero reads outside the module.
+     VERIFIED UNCHANGED 2026-08-28. No experiment can confirm or falsify this
+     component. Building it is UPSTREAM of MECH-324's renewal falsifier and is gated on
+     a prior MEASUREMENT, not a design choice: over the chunking regime's own context
+     stream, how many distinct centered-z_world buckets occur, and does one chunk's
+     real executions span more than one? The nearest existing implementation
+     (candidate_rule_field._context_bucket) COLLAPSES TO ONE BUCKET on real z_world
+     (~0.98-cosine common-mode cone, SD-008 under-differentiation); SD-078
+     cue_centering is the measured fix (1 -> 20 buckets) but is
+     candidate_substrate_landed and DEFAULT OFF. If the answer is 1,
+     context-conditioning is inexpressible whatever the gate does. Classification:
+     puzzle (known rules). Do NOT inherit the 20-bucket nursery number.
+    SHARED EXPERIMENT: C2/F1/F2 are scored by the SAME single chunking-lifecycle run
+    that scores MECH-324's F1. Do not mint a second experiment; cross-reference
+    MECH-324. LEG-3-style behavioural signatures belong to ARC-071's own
+    what_would_answer LEG 3 and have never been queued -- do not smuggle them in here.
 
 - id: MECH-324
   implementation_note: >-
@@ -59043,6 +59970,97 @@
         T_dissolve, N defaults via parametric sweep on the
         first validation experiment.
   location: docs/architecture/policy_primitive_granularity.md
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (four): (1) A CHUNK MUST ACTUALLY REACH DISSOLVED --
+    (i) MECH-323's formation precondition met upstream; (ii) use_chunk_maintenance ON
+    (with it OFF, chunks form and NEVER crystallise BY CONSTRUCTION, contract
+    test_c7_formation_only_arm_never_crystallises, so every maintenance DV is
+    identically null and the run measures the flag); (iii) outcome span S >
+    2*sqrt(F_high) = 1.342, S >= 2.0 recommended. AT THE REGISTERED F_high = 0.45 ON A
+    0-1 SCALE THE CRYSTALLISED -> DISSOLVING TRANSITION IS ARITHMETICALLY IMPOSSIBLE
+    (max population variance on span S is S^2/4 = 0.25), which takes DISSOLVED, and
+    with it ALL THREE RELAPSE FALSIFIERS, out of reach at the registered defaults.
+    Emit the reachability arithmetic as an explicit per-cell precondition.
+    (2) THE REVIVAL GATE MUST READ THE ISOLATED WINDOW
+    (use_reacquisition_window_isolation ON). With it OFF the revival gate reads
+    accumulator._tally[key] -- the whole-lifetime sliding window, BY CONSTRUCTION
+    saturated with the contaminating high-variance stream at the moment dissolution
+    completes. Report r_reacq/W per cell as the standing degeneracy check.
+    (3) OPERATOR-LEVEL, NOT AGENT-LEVEL -- AND SAY SO IN THE MANIFEST. V3-EXQ-810
+    measured the MECH-323 accumulator SILENT under agent control, so an agent-level run
+    measures that readiness gap rather than MECH-324. Evidence from a driver-level run
+    attaches to the OPERATOR and licenses nothing about chunk-driven behaviour; it must
+    not be read as evidence for ARC-071's LEG 3, which has never been queued.
+    (4) PERSISTENCE FLAGS SCOPED TO THE PROBE PHASE ONLY -- the V3-EXQ-871 guard.
+    CONFIRMING: target the ORDERINGS. F_high = 0.45, the ratio 0.45/0.15, C_min = 5,
+    W_maint = 100, T_dissolve = 50, N = 75 and f_reacq = 0.25 are UNCALIBRATED
+    ENGINEERING DEFAULTS. Barnes 2005 and Bouton 2012 establish the DIRECTION and
+    NEITHER quantifies any of them. A calibrated threshold quoted WITHOUT the outcome
+    span it was calibrated at is not interpretable.
+     (C1) DUAL-OPERATOR DISSOCIATION -- the load-bearing prediction, structurally
+     mirroring Smith & Graybiel 2013 IL optogenetic disruption. ARM_1 (MECH-323 on,
+     MECH-324 off) vs ARM_2 (both on): chunks form at COMPARABLE RATES in both arms,
+     but only ARM_2 yields crystallised, selectable chunks with the accompanying
+     rollout-cost / latency signature. The formation-rate equivalence is part of the
+     confirmation, not background.
+     (C2) RETENTION, NOT ERASURE -- PARTIALLY ANSWERED, supports. V3-EXQ-829's C3
+     discriminator held cleanly: with the dormant-state flag OFF, 12/12 dissolved cells
+     stayed dead; ON, they revived. Confirms the STRUCTURE, says nothing about the RATE.
+     (C3) HYSTERESIS ORDERING, measured as crossings rather than read off the config.
+     Dissolution requires a strictly larger outcome-variance excursion than formation
+     tolerated (F_high > F_low as MEASURED crossing points), AND takes strictly more
+     trials than formation took on the same sequence in the same run. The timescale
+     half is better-grounded -- Barnes 2005 is a timescale/retrievability result, not a
+     variance-threshold measurement, so F_high > F_low as a variance gate is supported
+     only by analogy across two constructs.
+     (C4) RECOVERABILITY FROM DISSOLVING (V3-EXQ-829's C5 mild-dissolution robustness
+     held).
+     (C5) REPLAY-ORIGIN ASYMMETRY (MECH-322 sub-mechanism C). A replay_origin=True
+     chunk uncorroborated by real waking execution retires DIRECTLY to DISSOLVED and is
+     NEVER revived at the reduced bar, while an otherwise identical
+     replay_origin=False chunk IS. Both halves in one run: the second half is the
+     MECH-094 posture the carve-out exists to preserve.
+    FALSIFYING:
+     (F1) RAPID REACQUISITION -- TESTABLE NOW, and the claim's own prediction has NOT
+     yet been tested on the corrected substrate. FALSIFIED IF re-formation of a dormant
+     chunk takes >= r_acq measured on the same run, OR if r_reacq does not order with
+     f_reacq, with use_reacquisition_window_isolation ON and r_reacq/W reported.
+     V3-EXQ-829 returned exactly this shape but is VOID as a verdict (DV tracked W).
+     V3-EXQ-829a confirms the FIX works; it is a bug-fix confirmation, NOT a falsifier
+     run. The claim's pending_retest_after_substrate flag points here.
+     (F2) DUAL-OPERATOR DISSOCIATION FAILS: ARM_1 and ARM_2 yield the same
+     selectable-chunk behaviour and the same rollout-cost / latency profile, OR ARM_1
+     crystallises without maintenance.
+     (F3) HYSTERESIS INVERTED OR ABSENT.
+     (F4) RENEWAL -- NOT TESTABLE; STRUCTURALLY BLOCKED, AND THE BLOCKER IS UPSTREAM OF
+     THIS CLAIM. Not expressible, and NOT for the registered reason. The registration
+     locates the asymmetry as "formation is context-conditioned, dissolution is
+     context-blind"; the substrate has NO asymmetry -- BOTH halves are context-blind,
+     because initiation_set is declared-but-never-populated. Two traps make "just scope
+     dissolution to initiation_set" a refusal rather than a deferral: Layer 1 -- scoping
+     to a universally-empty set is a SILENT NO-OP that READS as renewal-capable; Layer
+     2, load-bearing -- populating it from raw z_world does NOT fix it (one bucket,
+     ~0.98-cosine common-mode cone). A renewal run on that substrate HAS NO CONTEXT B,
+     would return FALSIFIED BY CONSTRUCTION OF THE INSTRUMENT, and that verdict would
+     land against Bouton 2012's biology rather than against REE's context
+     representation. Classification: puzzle (known rules).
+     (F5) RESURGENCE -- NOT TESTABLE; a STRUCTURAL GAP, not a prediction this operator
+     makes. Requires dissolution state SHARED ACROSS COMPETING library candidates;
+     MECH-324's gate is per-chunk on its own variance, and nothing in policy_chunking.py
+     implements a competition term (VERIFIED 2026-08-28). Classification: complicated
+     (buildable), zero evidence either way.
+    TRANSFER LIMIT ON F1 / F4 / F5 -- load-bearing, not boilerplate. The sources are
+    rodent T-maze procedural learning (Barnes 2005) and single-response operant
+    contingencies (Bouton 2012). In both, the extinguished object is a SINGLE RESPONSE;
+    a chunk is BY CONSTRUCTION multi-element, and REE's outcome dimension is an
+    E3-score-receipt over policy primitives rather than a food reward. Whether a
+    SEQUENCE extinguishes with the same asymmetry -- and whether context-dependence of
+    extinction survives COMPOSITION at all -- is EXTRAPOLATION, NOT EVIDENCE.
+    SHARED EXPERIMENT: F1 and C2/C3/C4 are scored by the SAME chunking-lifecycle run
+    that scores MECH-323's C2/F1/F2. C1/F2 (the ARM_1-vs-ARM_2 dissociation) is a
+    SEPARATE, agent-level design and inherits the LEG-3 readiness gap -- do not bundle
+    it into the lifecycle run.
 
 
 - id: MECH-325
@@ -63110,7 +64128,7 @@
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
-  epistemic_category: substrate_conditional
+  epistemic_category: substrate_ceiling
   registered_utc: "2026-06-03"
   depends_on:
     - ARC-018    # hippocampal rollouts -- the proposal-generation locus that widens
@@ -63169,6 +64187,55 @@
   literature_anchors:
     - "Increased neural variability / network flexibility during difficult cognitive work (controlled-entropy reading; working analogy, not a settled citation)."
   location: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: Apply SHARED-CONVERSION-PRECONDITION (G4) in full --
+    this claim is the one the precondition was written for. Additionally, and specific
+    to this claim: DECLARE WHICH TEMPERATURE the entropy DV reads. SD-061's regulator
+    lifts differentiable_cem_temperature on the ARC-018/CEM PROPOSAL layer; SD-069 and
+    MECH-313 act on the E3 select() softmax. These are different knobs and Q-056's
+    current design ("candidate-proposal entropy", "committed-action entropy") does not
+    name either. A run that conflates them cannot attribute its result. Third, the
+    stuck-state detector must be shown non-vacuous in the ECOLOGICAL regime, not only
+    under the induced impasse of V3-EXQ-694: detector_peak must exceed threshold and
+    then decay, on >= 2/3 seeds, from naturally-arising goal blockage. Note that one of
+    the detector's four declared inputs (SD-032b dACC choice_difficulty) is itself
+    epistemic_category substrate_ceiling -- report its contribution to stuck_score
+    separately so a null is attributable.
+    CONFIRMING: the Q-056 four-arm design (already registered, do not re-derive):
+    (1) entropy-gating OFF; (2) gating ON under stuck-state; (3) entropy ALWAYS high;
+    (4) entropy high with goal/harm constraints ablated, diagnostic only. Arm 2
+    STRICTLY beats BOTH arm 1 (proposal rigidity / stuck) AND arm 3 (disorganised
+    churn) on goal progress, with NO harm increase and NO action-churn increase, and
+    commitment latency that RISES during the hard phase then FALLS after solution
+    discovery. The asserted distinction that must survive: hard problem -> wider
+    INTERNAL proposals -> more candidate diversity -> LONGER arbitration -> selective
+    committed action, NOT hard problem -> random behaviour.
+    UPSTREAM PARTIAL CONFIRMATION, measured where absorption cannot reach and therefore
+    runnable even while the committed-behaviour leg is ceiling-bound: under stuck,
+    (a) candidate-set ENTROPY at the PROPOSAL layer rises (not merely candidate COUNT
+    -- 694 already established count-widening and is silent-to-adverse on entropy),
+    (b) the number of arbitration cycles before commitment rises, (c) both decay after
+    goal progress resumes. Arms 1/2/3 discriminate on (a)-(c) even if all three are
+    flat on goal progress. This is the version of the experiment that cannot be vacuous.
+    FALSIFYING: (1) Arm 3 (always-high) matches or beats arm 2 on goal progress with no
+    harm/churn penalty -- the difficulty-GATING buys nothing over constant high
+    temperature, which is the claim's own load-bearing distinction. (2) Arm 2 widens
+    proposals but shows increased harm or increased action churn -- "controlled
+    entropy" is indistinguishable from noise. (3) Proposal entropy rises under stuck and
+    NEVER narrows after solution discovery (the manic/disorganised-exploration
+    signature the claim's own notes name) -- falsifies the closed-loop decay half.
+    NOT FALSIFYING: arm 2 widening proposals while committed-action distribution stays
+    flat across all arms. That is entropy-up-behaviour-unchanged, which the claim's own
+    notes already name as "selection-authority failure", and which MECH-439 measures
+    independently (F holds 88-89% of committed-selection variance; the full diversity
+    stack moves it 0.886 -> 0.894). Under G4 precondition (iii) that outcome is
+    substrate_ceiling and must be routed to the conversion-ceiling line, NOT recorded as
+    a weakening of MECH-343.
+    PRIOR TO CARRY IN: V3-EXQ-694 already produced first-action-entropy data that points
+    AGAINST confirmation (i). ON arm entropy FELL on 3/3 seeds (-0.0812 / -0.0734 /
+    -0.0953) while OFF-arm drift was mixed in sign (-0.0224 / +0.0139 / +0.0914). The
+    694 script excluded entropy from its gate by design, deferring it here. Q-056 must
+    treat this as an existing prior and power against it, not rediscover it.
 - id: Q-054
   title: "What is the minimum trajectory-class diversity floor (Rung 1
     first_action_entropy threshold) required for the ARC-062 context
@@ -65856,6 +66923,79 @@
     to this umbrella -- DO NOT invent redundant substrate claims under ARC-088.
 
 # Registered 2026-06-09 -- spintronic-memristive cognifold-substrate intake (docs/thoughts/2026-06-06_spintronic_memristive_cognifold_substrate.md). POST-V5 / future physical-instantiation compass; NOT on the V3 path and NOT queueable for V3. The load-bearing near-term target is specifying the cognifold in SUBSTRATE-INDEPENDENT primitives (ARC-089); the spintronic-memristive hardware (MECH-374) is a post-V5 physical-substrate candidate the primitives let us later evaluate. See docs/architecture/spintronic_memristive_cognifold_substrate.md and the raw thought. External anchors: Shao et al. arXiv:2112.02879 (spintronic memristors survey); TDK spin-memristor neuromorphic element (industry); arXiv:2009.06594 (memristive control of spin-Hall nano-oscillator synchronisation).
+  what_would_answer: |
+    A UNIFYING MAP over already-owned claims. Answered by ARCHITECTURAL AUDIT plus one
+    coherence check, NOT by a new experiment, and it registers no substrate -- its own
+    notes are explicit that new affect work attaches to the relevant owned child rather
+    than to this umbrella. Do not invent redundant substrate claims under it.
+    OUT-OF-DOMAIN LEG: that emotion-like systems in biology are a set of
+    partially-independent, natively-integrated control systems rather than a scalar
+    appraisal bolted onto a rational optimiser is an affective-neuroscience position
+    with its own literature (Pessoa). REE cannot test it and no REE run bears on it. It
+    is the FRAMING that motivates the REE leg; per the lit/exp decoupling rule it must
+    not be counted as evidence for it.
+    REE LEG: (i) the DISTINCTNESS CONSTRAINT -- the affective streams may converge on
+    shared CONSUMERS (E3 score bias, commitment gating, residue, offline consolidation)
+    but their LEARNING TARGETS and GATING CONDITIONS must remain distinct, i.e. they
+    must NOT be merged into one value scalar; and (ii) the ANTI-COLLAPSE FUNCTION --
+    that this arrangement measurably prevents behaviour collapsing onto the currently
+    dominant gradient.
+    NON-DEGENERACY PRECONDITION: for (i), the audit must find at least TWO affect
+    evaluators simultaneously LIVE and CONSEQUENTIAL in the current step loop --
+    actually computed and actually consumed by a decision -- not merely present as
+    config fields, default-OFF flags or diagnostic-only counters. An architecture in
+    which only one affect stream is live trivially satisfies "distinct streams" while
+    exhibiting none of the structure the claim asserts. This bar is non-trivial here:
+    SD-086's default_off_scope_note records that both named E3 consumers of z_harm_a
+    default to 0.0. For (ii), the dominant-gradient channel must be measurably dominant
+    AND the substrate must be able to express the alternative -- V3-EXQ-785a recorded
+    z_world participation ratio ~1.06, which leaves "the substrate cannot express it"
+    live as a rival to "affect does not prevent it."
+    WHERE MEASURED / WHY NOT ABSORBED: at the CONVERGENCE POINTS, per channel, not at
+    the aggregate. The claim's own architectural consequence is that streams share
+    consumers, so the aggregate score bias is exactly where distinct channels become
+    indistinguishable -- measuring there guarantees absorption by construction. The
+    audit target is the per-channel decomposition immediately upstream of each shared
+    consumer, with channel-identity preserved: for E3 score bias, per-channel
+    cross-candidate range and channel-to-channel COVARIANCE (not the summed bias
+    tensor, and not reduced scalars -- MECH-463's instrumentation audit records that
+    agent.py stores per-channel decomposition as REDUCED SCALARS, losing exactly the
+    covariance this claim needs); for commitment gating, which channel's threshold
+    movement admits or refuses each commit; for residue and offline consolidation,
+    which channel's polarity determined each write.
+    CONFIRMING (i): the audit finds, at each shared convergence point, that the
+    converging channels have (a) DISTINCT learning targets -- no two trained toward the
+    same scalar -- and (b) DISTINCT gating conditions -- no two armed and disarmed by
+    the same predicate -- while sharing the consumer.
+    FALSIFYING (i): any shared convergence point is found where two or more
+    nominally-distinct affect streams have been collapsed to a common learning target
+    or a common gating predicate, such that the architecture is a single value scalar
+    wearing several names. Finding this ANYWHERE in the live consequential path
+    falsifies the distinctness constraint, independent of behavioural outcome.
+    CONFIRMING (ii): with the affect evaluators armed and non-degenerate, the
+    committed-selection variance share of the dominant channel is strictly LOWER than
+    with them disarmed, on >=2/3 seeds, by a margin scaled on the SD of the paired
+    delta plus an absolute floor.
+    FALSIFYING (ii), AND THE LIVE STATE OF THIS BRANCH: refuted if the dominant
+    channel's share is flat or RISES when the affect evaluators are armed. THIS BRANCH
+    CURRENTLY HAS A CONTRADICTING RESULT ON THE RECORD, WHICH ARC-088 DOES NOT CARRY
+    AND SHOULD. MECH-463 was registered as the sharpened version of exactly this
+    prediction, and its decisive test V3-EXQ-785a (2026-07-19; urgency set exogenously
+    over an 8.5x range, gate GREEN, non-degenerate, 1757 independent committed
+    selections, injection fidelity 5.6e-17, randomisation corr 0.0177,
+    effective_threshold genuinely moved 0.3761 -> 0.2570) found the incumbent share
+    moved 0.9375 -> 0.9411 (+0.0036 against a +0.02 threshold) and var_total fold
+    0.970. The 2026-07-20 autopsy filed does_not_support/standard. The null is TIGHT,
+    not underpowered: within-level share SE ~0.0044, so the measured gap sits under
+    1 SE. Reading: the global-scalar affective channels are neither de-concentrating
+    (ARC-088's prediction) nor amplifying (MECH-463's) but CAUSALLY INERT with respect
+    to the dominant channel -- and an inert channel prevents no collapse. TWO CAVEATS
+    MUST TRAVEL WITH THIS: single incumbent regime tested (harm-weighted), so
+    channel-agnosticism -- half of what is asserted -- is untested; and z_world
+    participation ratio ~1.06 leaves live the alternative that the substrate cannot
+    EXPRESS the effect. So this weakens the GLOBAL-SCALAR route to anti-collapse
+    specifically, and says nothing about the PER-CANDIDATE route (MECH-359, v4) or the
+    gated-evaluator route the claim's title actually names.
 - id: ARC-089
   title: "Substrate-independent cognifold primitives: REE specifies its single cognifold (one interacting state-space, not a modular stack) in a hardware-neutral primitive vocabulary -- persistent state, history-dependent deformation, multi-timescale field dynamics, oscillatory propagation, stochastic transition, attractor transitions, residue-as-deformation-of-the-future-action-landscape, commitment as a real boundary between simulated and released action, and offline reintegration -- so that any FUTURE physical substrate is evaluated by whether it can INSTANTIATE these dynamics, not merely execute modular software. The primitives remain software-expressible now while also being legible as future physical-substrate affordances."
   claim_type: architectural_commitment
@@ -67912,6 +69052,51 @@
     MECH-343 blocker part 2; MECH-343 stays candidate / substrate_conditional /
     v3_pending (this PROMOTES NOTHING).
   location: docs/architecture/sd_061_difficulty_gated_proposal_entropy.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the regulator must be shown load-bearing and the OFF
+    arm bit-identical in the SAME run -- ON widens the proposed candidate set under
+    stuck while OFF is exactly invariant. Already met by V3-EXQ-694 (3/3 seeds, 32 ->
+    40 ON, 32 -> 32 OFF, detector_peak 0.90058 -> detector_final 0.118). For any
+    successor, the further precondition is ECOLOGICAL non-vacuity: the detector must
+    reach is_stuck from naturally-arising goal blockage rather than an induced impasse
+    sequence, on >= 2/3 seeds. Report per-input contribution to stuck_score
+    (goal-progress stall / E3 first-action score margin / committed-action-class
+    lock-in / SD-032b dACC choice_difficulty) separately: one of the four inputs is
+    itself substrate_ceiling, and a null must be attributable to an input rather than to
+    the integrator.
+    CONFIRMING: this is an architectural design_decision, so what confirms it is that
+    the designed control law HOLDS, measured entirely at the PROPOSAL layer -- upstream
+    of the E3 committed-selection argmin, and therefore NOT subject to the G4
+    shared-conversion absorption. (1) Detector non-vacuity: stuck_score rises above
+    threshold under impasse and decays as the impasse clears, with the asymmetric EMA
+    producing fast rise / slow fall (the MECH-343 hysteresis). MET, V3-EXQ-694 C1, 3/3.
+    (2) Regulator load-bearing: ON adds exactly `extra` candidates and lifts
+    differentiable_cem_temperature transiently, restoring it afterward; OFF is
+    bit-identical. MET, V3-EXQ-694 C2, 3/3. (3) THE OPEN LEG: the count-widening plus
+    temperature lift must actually CONVERT into proposal-layer diversity --
+    candidate_first_action_entropy must RISE under stuck relative to a within-seed
+    pre-stuck baseline AND relative to the OFF arm's own drift, then decay. This is the
+    criterion SD-061's own evidence_quality_note names and it has NOT been met.
+    (4) Goal-salience guard holds: the detector does NOT fire on goal ABANDONMENT
+    (stuck-WITH-goal, not goal-gone) -- a negative control with salience withdrawn must
+    show no widening. (5) Scoring, commitment (MECH-090/342) and selection authority
+    remain untouched: no change to score-margin distribution or admission counters
+    attributable to the regulator.
+    FALSIFYING: (1) Criterion (3) resolves NEGATIVE -- widening the candidate pool does
+    not raise first-action entropy, i.e. the extra candidates are duplicates or the CEM
+    temperature lift is swamped. THIS IS THE LIVE RISK, and there is already data
+    pointing at it: V3-EXQ-694's ON arm shows first_action_entropy FALLING on 3/3 seeds
+    (-0.0812 / -0.0734 / -0.0953) against a mixed-sign OFF drift. The 694 script
+    explicitly excluded this from its gate as a "behavioural-conversion question for the
+    Q-056 governance falsifier", a defensible scoping call that leaves the design
+    decision's own stated success criterion unmet and pointing the wrong way. (2) The
+    asymmetric EMA does not produce hysteresis -- fall time matches rise time, so there
+    is no decay dynamic to gate on. (3) The regulator perturbs scoring or commitment
+    (score-margin distribution or mech090_n_elevation_admitted/_blocked shift
+    attributably) -- falsifies the design's core "widens proposals, not behaviour"
+    separation.
+    NOT FALSIFYING: flat committed-action diversity. SD-061 explicitly does not claim
+    conversion -- that is MECH-343's claim and it is ceiling-bound.
 
 - id: SD-062
   title: "Claims-index as a typed multi-axis structured-uncertainty graph: the REE claims registry is (and should be explicitly maintained as) a typed dependency-and-coherence graph carrying per-claim multi-axis state -- truth/evidence confidence, implementation-dependence, conflict burden, roadmap relevance, experiment status, ethical risk, v3-blocking status, dispatch -- with directed AND coherence edge types, so evidence/conflict/roadmap/ethics/implementation pressure can propagate without collapsing a claim into a single scalar confidence."
@@ -68834,6 +70019,56 @@
     Additive no-op default (existing experiments bit-identical); invalid source raises
     ValueError at construction. No status/confidence change (substrate only).
   validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
+  epistemic_category: standard
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the phasic lever must FIRE ON REAL EVENTS, with no
+    synthetic poke -- that is the whole point of SD-069's existence (MECH-063 sub-claim
+    ii cannot be tested with a synthetic signal). Two things must hold.
+    (a) phasic_burst_signal_source must be "instantaneous_pe", NOT the default
+    "running_variance": the smoothed running-variance source decays monotonically for an
+    untrained forward model and fires ZERO natural events even under env volatility
+    (validated 2026-07-17: burst_ticks up to 209/232 under instantaneous_pe vs 0/217
+    under running_variance). A run on the default source is vacuous by construction.
+    (b) Every cell must reach its sample floors. This is where the lineage has failed
+    TWICE and it is a BUDGET failure, not a capability failure -- burst_level_max is 1.00
+    in every PHASIC-ON cell ever run, including the cells that starved. Set
+    MAX_ENV_STEPS_PER_CELL above 2400 (779b's 15 starved cells were mostly
+    selections-bound: 794/800, 696/800, 667/800, 627/800, 623/800, 301/800) and keep
+    MAX_EPISODES_PER_CELL DERIVED from it so the step cap binds for every cell however
+    short its episodes. Keep the min-across-cells readiness aggregation: it did
+    legitimate work in 779a, where the largest single contributor to the criterion
+    (seed 23, dR_phasic -0.108) was the under-exposed cell, and excluding it leaves 3
+    dissociating seeds against min_seeds 4.
+    CONFIRMING: the double dissociation, measured on PRE-COMMIT SOFTMAX ENTROPY at the
+    E3 select() readout -- upstream of the committed-selection argmin, and therefore one
+    of only two measurement points in G4 that the F-dominance absorption cannot reach.
+    (1) TONIC signature: MECH-313 noise_floor ON produces a SUSTAINED entropy lift across
+    the whole window (dS_tonic > SUSTAINED_MARGIN). (2) PHASIC signature: SD-069 burst ON
+    produces an EVENT-LOCKED TRANSIENT on the same channel that decays over the tail
+    (dR_phasic < -TRANSIENT_MARGIN), with the pre-event stream bit-identical. (3) The two
+    are independently toggleable on the SAME effective-temperature readout, with the
+    tonic lift kept uncontaminated in the diagnostics so the dissociation is
+    manifest-readable. (4) Robustness across >= min_seeds seeds.
+    STATUS: (1)-(4) ALL MEASURED AND PASSING in V3-EXQ-779a -- mean_dS_tonic +0.265
+    (sd 0.072) vs margin 0.05; mean_dR_phasic -0.048 (sd 0.037) vs margin 0.02;
+    diss_seed_count 4 = min_seeds 4; criteria_non_degenerate true; robust true. The run
+    was withheld ONLY on the sampling floor above. This claim is ONE BUDGET INCREASE from
+    a governance-grade PASS.
+    FALSIFYING: (1) with sample floors met on every cell, the tonic and phasic levers
+    produce the SAME temporal signature on the entropy readout -- both sustained or both
+    transient -- collapsing MECH-063 sub-claim (ii)'s asserted orthogonality and
+    falsifying SD-069's reason for existing. (2) The phasic burst fires but produces no
+    measurable transient on the pre-commit softmax entropy -- the lever writes to a
+    channel with no readout authority even UPSTREAM of the argmin, which would be a
+    stronger negative than the F-dominance ceiling because it fails at an unabsorbed
+    measurement point. (3) The lever cannot fire on real events at adequate rate under
+    any budget with signal_source=instantaneous_pe -- i.e. genuine surprise spikes are
+    too rare in CausalGridWorldV2 for the phasic mode to be exercised ecologically.
+    NOT FALSIFYING: another sample_starvation_requeue. That is the third instance of the
+    same budget defect in this lineage (777/779 fixed-episode budget -> 779a
+    episode-cap-binds-before-step-cap -> 779b step-cap-too-small); it carries zero
+    information about the claim and must self-route with the OFFENDING CELL NAMED, never
+    to substrate_not_ready_requeue.
 
 - id: SD-076
   title: "Waking confidence inflation as an asymmetric precision EMA: good news about one's own accuracy is incorporated fast and bad news slowly, so the running-variance estimate settles below the true error mean. Supplies the daytime precision-drift source that MECH-204's corrective function presupposes but which V3 did not have. ree_core E3 selector change, bit-identical by default."
@@ -70061,6 +71296,67 @@
     Grounded by Kilgard & Merzenich 1998 (NB activity necessary for adult remapping) +
     Froemke 2007 (transient cholinergic disinhibition window):
     targeted_review_plasticity_neuromodulation_v4.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: two conditions, and NEITHER is currently met.
+     (1) A V4 plasticity-gain substrate must exist. VERIFIED 2026-08-28: no
+     state-conditional plasticity-gain scalar exists anywhere in ree-v3/ree_core. The
+     only plasticity_gain-named knobs are loop_segregation_ascending_plasticity_gain
+     and loop_segregation_parity_plasticity_gain (config.py:1335, 1365) -- FIXED
+     config constants in the E3 selector's loop-segregation spiral-maturation path,
+     unrelated to a novelty/attention/arousal-driven gate. The gate's own plan
+     (plasticity_neuromodulation_v4_plan.md) has PLW-3/PLW-4 blocked and the PLW-1
+     decision-to-build gate un-cleared. DO NOT BUILD IN V3 -- the claim carries
+     implementation_phase: v4, version_relevance: v4_v5, and this instruction
+     explicitly in its own notes.
+     (2) The content-signal-only control arm must be genuinely exercisable, not a
+     strawman. The comparison rests on gain-channel vs content-signal-only, so
+     MECH-313 / MECH-104 / MECH-203 / SD-037 must be live and wired. As of 2026-08-08:
+     MECH-104 active/PASS; MECH-313 a CONTESTED candidate (demoted 2026-07-09,
+     sub-threshold N=1 signal only); MECH-203 has NEVER had a valid behavioural test
+     (3 consecutive invalid runs, most recently V3-EXQ-843); SD-037 is
+     substrate_ceiling (wired, but consumer thresholds uncleared and the downstream
+     effect inert). A fair control arm must either accept these as the honest
+     content-only baseline AS INSTANTIATED and say so, or wait for them to clear their
+     own ceilings -- running against an inert content-only arm manufactures a
+     difference that is the control's defect, not the gate's contribution. Its DRIVERS
+     all live in V3 today (MECH-205 surprise EMA, SD-032a salience mode, drive_level);
+     DRIVER AVAILABILITY IS NOT SUBSTRATE READINESS and must not be mistaken for it.
+    CONFIRMING (REE leg, once built): a state-conditional gain scalar in [0,1] driven
+    by novelty/attention/arousal, multiplying cortical encoder learning rates and
+    residue write magnitudes, produces a DISCRIMINABLE improvement in
+    TARGETED-PLASTICITY SELECTIVITY -- it changes WHICH inputs are incorporated into
+    durable representation -- over the V3-conservative form (a scheduler-driven
+    open/closed flag toggle) and over an ungated uniform rate, on a task where the
+    toggle is demonstrably insufficient. Consistent with Bear & Singer 1986's
+    conjunctive ACh x NE gating result. The improvement must be in SELECTIVITY (and
+    the acquisition-vs-retention tradeoff), not merely in aggregate learning speed --
+    a faster uniform rate is not this claim.
+    FALSIFYING (REE leg): the gate is OTIOSE -- matched targeted-plasticity-selectivity
+    outcomes ARE achievable by gating on content signals alone, or by a
+    scheduler-driven flag toggle, with no separate plasticity-gain channel. Gating the
+    learning rate by state does not change WHICH inputs are incorporated versus an
+    ungated/uniform rate. This falsifies the separate-channel commitment and would
+    route MECH-398 to demotion, or to reframing as redundant with the MECH-313 /
+    ARC-075 content-signal machinery it currently depends on but is kept distinct from.
+    OUT-OF-DOMAIN LEG -- biological, tested outside REE, stated plainly and NOT
+    silently dropped. The grounding is neurophysiological and already settled in its
+    own domain independently of anything REE does: Kilgard & Merzenich 1998 (nucleus
+    basalis activity NECESSARY for adult cortical remapping); Froemke 2007 (transient
+    cholinergic disinhibition window gates receptive-field plasticity); Bear & Singer
+    1986 (paired ACh + NE gates whether cortex incorporates inputs into long-term
+    representations). Indexer state: 3 literature entries, lit_conf 0.826,
+    plausible_unproven, 0 experimental entries. A REE run can neither confirm nor
+    refute this leg, and a PASS on the REE leg is not evidence for it. What the REE leg
+    genuinely inherits is only the ARCHITECTURAL COMMITMENT that a plasticity-GAIN
+    channel is distinct from the LC-NE / 5-HT / orexin CONTENT channels (MECH-313) --
+    the REE-side proposition, and the only one this claim's falsifier can decide.
+    CROSS-REFERENCES: this is the OPENING-side analog of MECH-333's open phase, made
+    state-conditional rather than scheduler-driven; MECH-333's own what_would_answer
+    carries the pre-window F-attenuation precondition and the D1/D2 valid-negative-
+    control requirement, and MECH-398's control arm should reuse that design. ARC-093
+    is the state-conditional-gain commitment this realises and carries the same
+    two-condition precondition. MECH-205 is a DRIVER here, not a dependency to be
+    tested.
 
 - id: MECH-399
   title: "PV-interneuron inhibitory-maturation analog: a time-since-onset accumulator that monotonically lowers the plasticity-gain ceiling, replacing the current binary critical-period phase transition."
@@ -72832,6 +74128,76 @@
     + reports/2026-06-18_tonic_exploration_noise_synthesis.md; promotion packet
     CPKT-TONIC-EXPLORATION-NOISE-20260618. CANDIDATE only -- promotes nothing, blocks no V3 closure node;
     decide-whether-to-build is a later governance step.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the ARMED-CONVERSION PRECONDITION stated in full on
+    ARC-065, inherited verbatim. For this claim specifically, ONLY (P1) IS OUTSTANDING:
+    V3-EXQ-708a and 708b both already armed (P2) (USE_MODULATORY_SELECTION_AUTHORITY =
+    True at 708a:298, 708b:324), and both already satisfy the instrument-validity gates
+    the 708 lineage established -- 862 genuinely-fresh E3 select() calls against a floor
+    of 30 using the clear-before-select pattern, 4 divergent seeds, supra-floor noise
+    bias range (0.2216, 2.4% of raw score range), live dACC suppression, dissociable
+    finer channels. (P1) is one integer:
+    support_preserving_min_first_action_classes = action_dim, asserted from measured
+    mean_distinct_first_action_classes >= 0.9 * action_dim per arm.
+    The claim's own retained precondition also stands: noise injection must be
+    WITNESSED, not configured -- noisy_selection_bias_range supra-floor AND a
+    non-trivial fraction of e3_raw_score_range, so a perturbation too small to ever
+    compete cannot be scored as a null.
+    WHERE MEASURED / WHY NOT ABSORBED: MECH-440's whole content is the INJECTION SITE
+    -- weight noise built per-candidate and injected into _modulatory_accum BEFORE the
+    committed within-eligible argmin, versus MECH-313's post-softmax temperature which
+    the argmax discards. So the DV must be at the COMMITTED action and nowhere earlier
+    -- a pre-commit entropy DV cannot distinguish the two injection sites, which is
+    precisely the defect that cost the 708/708a/708b generation. Measure: (i) yoked
+    per-tick committed-action divergence against the matched-pre-commit-variance
+    TEMPERATURE arm (the V3-EXQ-687 non-propagating control) sharing a private RNG
+    stream; (ii) committed_class_entropy reported as a FRACTION of
+    ln(mean_distinct_first_action_classes), per arm; (iii)
+    mean_distinct_first_action_classes and authority_rel_deviation_mean as mandatory
+    per-arm covariates. The TEMPERATURE arm -- not a noise-magnitude arm -- is the
+    control that makes the injection-SITE axis the thing being tested.
+    CONFIRMING: with P1 armed, arming selection-head parametric weight noise produces
+    committed (argmax) selected_action_entropy -- reported as fraction-of-ceiling --
+    STRICTLY ABOVE the matched-pre-commit-variance post-softmax temperature control on
+    >=2/3 seeds, with the diversity reaching the COMMITTED action. Secondary
+    confirmation of the claim's two other properties, both asserted and NEITHER ever
+    measured: STATE-CONDITIONING -- per-state noise magnitude must covary with state,
+    not be uniform (weight noise x state-dependent activations, no hand-set schedule);
+    SELF-ANNEALING -- per-parameter sigma, or the local confidence EMA standing in for
+    it, must FALL where the policy is confident and stay up where exploration pays. A
+    run confirming only the entropy lift establishes propagation and leaves two thirds
+    of the claim untested.
+    FALSIFYING: either (a) it washes out at the argmax identically to the temperature
+    floor, reproducing the r1a_entropy_only_artefact -- but this is only a valid
+    refutation once the ceiling-headroom check passes, i.e. fraction-of-ceiling in the
+    OFF arm materially below 1.0; or (b) it raises pre-commit entropy without raising
+    committed-action diversity -- thrash, not carve; or (c) it raises committed
+    diversity but the noise is measurably state-INDEPENDENT and non-annealing, which
+    would support a plain stochastic floor (MECH-313's original framing) and refute
+    MECH-440's specific refinement while leaving the injection-site correction standing.
+    WHY THE PRIOR NULLS ARE NOT FALSIFICATIONS -- the correction this claim is owed:
+    V3-EXQ-708 was withdrawn for a driver instrumentation defect (pre-commit
+    probabilities read once per env step with no clear, replicating each vector by its
+    arousal-modulated hold duration, arm-dependently by up to +58%). V3-EXQ-708a
+    repaired the instrument and found neither lever moved the DV -- recorded as a
+    substantive measurement_gap, correctly NOT a substrate_ceiling. V3-EXQ-708b then
+    re-ran with a shape readout to discriminate two candidate explanations, REFUTED
+    BOTH, and filed precommit_shape_headroom_unexplained with its load-bearing D1
+    criterion failed. THE EXPLANATION IT DID NOT ENUMERATE IS A CLASS-ENTROPY CEILING.
+    Its own manifest carries it: precommit_n_distinct_classes_mean = 2.959 / 2.958 /
+    2.956 across A0_OFF / ARM_TEMP / ARM_NOISE_SINGLE -- arm-invariant, because
+    support_preserving_min_first_action_classes=2 is a config constant set in the
+    driver at line 507 -- against which the measured precommit_class_entropy of 1.061 /
+    1.019 / 1.059 sits at 97.8% / 93.9% / 97.6% of ln(2.959) = 1.0850. There was
+    abundant probability headroom over 32 CANDIDATES (max_prob 0.30-0.40, participation
+    ratio 15-20) and essentially none over the ~3 CLASSES those candidates collectively
+    realise. The discriminator asked the right question at the wrong quantisation. The
+    same fingerprint recurs across the lineage: committed-class entropy 0.84-0.97 nats
+    in every arm of every run -- V3-EXQ-707b A0_SINGLE_ARENA 0.914 / A1_LOOPS 0.838,
+    V3-EXQ-708b 0.962-0.969 -- a ceiling identical across ON, OFF and matched-noise arms
+    and across four different mechanisms, and therefore a property of none of them.
+    MECH-440 remains UNTESTED at the committed layer; the owed re-run is the 708b design
+    with one integer changed.
 
 - id: MECH-441
   title: "model_disagreement_directed_curiosity (RND / Plan2Explore analog). A mechanistic refinement of MECH-314's structured_curiosity_bonus: a PER-CANDIDATE, SELF-ANNEALING intrinsic curiosity signal derived from E2 FORWARD-MODEL DISAGREEMENT (an ensemble / dropout-variance proxy over E2 forward predictions) -- high where the forward model is uncertain, collapsing toward zero as a region is learned -- fed into E3 selection so it PROPAGATES per-candidate to the committed action, unlike the broadcast-novelty EMA channel found non-propagating in V3-EXQ-590a / EXQ-141b. The self-annealing-on-learning-progress property is the non-degeneracy guard against a cross-candidate-flat (degenerate) bonus. External analog: RND (Burda et al. 2018) predictor-error novelty; Plan2Explore (Sekar et al. 2020) ensemble model-disagreement. Maps to MECH-314c learning-progress / MECH-314b uncertainty-driven curiosity."
@@ -72847,7 +74213,7 @@
       from: "decision:MECH-441@2026-06-27T10:54:49.591342Z"
       as_of: 2026-06-27
       verdict: defer_pending_arc110/applied
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -72882,6 +74248,75 @@
     artifacts: REE_convergence/sources/rnd-plan2explore/ + reports/2026-06-18_tonic_exploration_noise_synthesis.md;
     promotion packet CPKT-TONIC-EXPLORATION-NOISE-20260618. CANDIDATE only -- promotes nothing, blocks no
     V3 closure node; decide-whether-to-build is a later governance step.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: three.
+     (P1)+(P2) The ARMED-CONVERSION PRECONDITION stated in full on ARC-065, inherited
+     verbatim, not restated. MECH-441's bonus is injected into _modulatory_accum, the
+     same site whose authority V3-EXQ-949 showed to be the difference between 0.000 and
+     0.3675 committed-action divergence. The ceiling_routing_note's existing requirement
+     (569i top-k + MECH-448 demotion) is retained and is NECESSARY BUT INSUFFICIENT:
+     every run on that stack ran at the shipped floor of 2.
+     (P3) THE DISAGREEMENT SIGNAL MUST BE NON-DEGENERATE AND SELF-ANNEALING, measured
+     not assumed: cross-head ensemble variance must carry cross-candidate RANGE above an
+     absolute floor (a cross-candidate-flat bonus cannot reorder anything, which the
+     claim's own text names as the degeneracy), the ensemble must have >= 2 heads
+     actually built (n_disagreement_heads defaults to 0 = not built), and the
+     disagreement must be shown to FALL in regions the agent has visited repeatedly --
+     the self-annealing property that distinguishes this from a static bonus. Absent P3
+     the run is a test of an inert channel.
+    ANTI-CONFLATION CLAUSE (mandatory; this claim is otherwise unfalsifiable against
+    MECH-458): MECH-458 establishes that REE's existing SD-025 curiosity drive is a
+    reward-conditional EXPLOITATION amplifier -- attracted to HIGH representational
+    density, contributing 0.00 diversity force at the decision point, outputting 0
+    directed behaviour on an unshaped map. MECH-441 asserts the OPPOSITE polarity --
+    high where the forward model is uncertain, i.e. where reward has NOT sculpted the
+    map. That difference is the claim's entire content and must be MEASURED, not
+    assumed from the mechanism's name: the run must record per-candidate disagreement
+    bonus against a visitation-density covariate and demonstrate the two are
+    uncorrelated or anti-correlated. If the disagreement bonus is POSITIVELY correlated
+    with visitation density, MECH-441 is an instance of what MECH-458 refutes and the
+    run has re-derived the exploitation amplifier under a new name, regardless of what
+    happens to the diversity DV.
+    WHERE MEASURED / WHY NOT ABSORBED: injection is per-candidate into
+    _modulatory_accum, arbitrating WITHIN the F-eligible set -- so F-dominance
+    (MECH-439) governs which candidates are ELIGIBLE and cannot absorb an ordering
+    effect INSIDE that set. Measure at two points: (i) yoked per-tick committed-action
+    divergence against a matched-magnitude CONSTANT-BONUS control sharing a private RNG
+    stream (the V3-EXQ-949 design), terminal and unabsorbable by construction; (ii)
+    committed_class_entropy over the episode reported as a FRACTION of
+    ln(mean_distinct_first_action_classes), so the combinatorial ceiling is visible
+    rather than silently binding. The CONSTANT-BONUS control -- not a noise control --
+    is what distinguishes DIRECTED from merely PRESENT: a constant bonus has the same
+    magnitude and no direction.
+    CONFIRMING: on an armed stack with P1-P3 witnessed and the anti-conflation clause
+    satisfied, the model-disagreement arm raises committed-action diversity (yoked
+    divergence AND fraction-of-ceiling class entropy) strictly above the
+    matched-magnitude constant-bonus control on >=2/3 seeds, with cross-candidate
+    disagreement range above the non-degeneracy floor. Secondary confirmation, and the
+    one that distinguishes this from a generic bonus: the divergence rate should
+    DECLINE over training within a region as disagreement anneals, and the annealing
+    rate should track a learning-progress covariate.
+    FALSIFYING: either (a) the disagreement signal is cross-candidate FLAT --
+    degenerate, no bonus to propagate; or (b) it carries range but does not reach the
+    committed action, reproducing the V3-EXQ-590a / EXQ-141b broadcast-EMA
+    non-propagation, now testable as a DISTINCT outcome from (a) because authority-ON
+    removes the magnitude excuse; or (c) it reaches the committed action and moves it,
+    but the committed-class entropy fraction-of-ceiling does not rise above the
+    constant-bonus control -- reordering without carving, the "range reaches but range
+    does not carve" distinction the 2026-06-12 governance note flagged as ARC-065
+    granularity debt. (c) is the informative refutation and this claim should be read
+    as predicting against it.
+    HOLD STATUS -- REWRITE OWED. The falsifier is currently HELD blocked_substrate
+    "gated on ARC-110 validation V3-EXQ-707 returning contributory," with routing "if it
+    reproduces the single-arena ceiling, route to ARC-110." THAT GATE HAS BEEN RESOLVED
+    IN THE NEGATIVE and can no longer clear as written: V3-EXQ-707b ran 2026-06-29 with
+    all six non-degeneracy gates passing (named_channel_routing_live 1.414 >> 0.001) and
+    returned weakens(NARROW) -- committed-class entropy A1_LOOPS 0.838 vs
+    A0_SINGLE_ARENA 0.914, C1 0/3 seeds -- establishing the conversion ceiling as
+    INTRINSIC rather than a single-arena artefact. There is no longer an ARC-110
+    clearance to wait for and no longer an ARC-110 destination to route to. The correct
+    replacement hold is the ARMED-CONVERSION PRECONDITION, a two-value config change
+    rather than an upstream architectural landing.
 - id: MECH-442
   title: "Committed-action diversity survives the selection/commit step via a behavioral-descriptor eligible-set ARCHIVE (Quality-Diversity / MAP-Elites analog): the committed E3 selection should draw from a structure that, UPSTREAM of the winner-take-all commit, partitions the eligible candidate set by a behavioral descriptor (first-action / committed-action class / e2.world_forward strategy signature, NOT F-rank) and retains the F-best candidate WITHIN each behavioral niche, then commits by a coverage-aware rule -- so a behaviorally-distinct action stays selectable at a moderate primary-score (F) gap, bounded by the per-niche-elite safety envelope, rather than collapsing to F's single global optimum. The validated V3-EXQ-569i top-k shortlist is the descriptor-free degenerate instance (eligible-set axis = F-rank, near-ties only); MAP-Elites generalizes it to a behavioral-descriptor-indexed eligible-set archive paired with an active variability generator (MECH-313), predicted to convert per-candidate diversity into committed-action diversity more robustly than the thin near-tie shortlist. The F-dominated committed argmax itself (MECH-439) is biologically faithful and is NOT changed -- only the eligible-set structure feeding it."
   claim_type: mechanism_hypothesis
@@ -85829,6 +87264,52 @@
     not resolved here. Compass / V4; epistemic_category substrate_conditional set EXPLICITLY --
     gated on the MECH-228/MECH-270/MECH-499 ephaptic-aggregation substrate, none of which is
     V3-landed. DO NOT build or queue a V3 experiment without an explicit version-routing decision.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (V4; do NOT queue a V3 experiment against this without
+    an explicit version-routing decision, per the claim's own notes): none of MECH-228 /
+    MECH-270 / MECH-499 is V3-landed, so no ephaptic/field-coherence substrate exists to
+    measure a coherence signal on. Any run purporting to test this claim before that
+    substrate lands is measuring something else. Independently, the claim's DISTINCTNESS
+    premise must survive an argument before any substrate spend is justified -- see the
+    derivational leg below, which is the load-bearing open question right now.
+    DERIVATIONAL LEG (answerable by argument, and it must be answered FIRST): the claim
+    asserts that temporal/readiness authority requires a mechanism distinct from (a)
+    MECH-434's evidence/posterior-driven epistemic commitment timing at the inference
+    layer and (b) MECH-090's commit-entry gate. Leg (b) currently rests on a STALE
+    reading: MECH-500's own distinct_from block describes MECH-090 as gating
+    "propagation of an ALREADY-DECIDED commit via margin/competence", which was true of
+    MECH-090's base claim but NOT after its R-c amendment (2026-05-28 within-tick
+    score-margin + 2026-05-29 across-tick nav-competence), which made MECH-090 an
+    entry-ADMISSION readiness conjunction -- structurally the same shape MECH-500
+    proposes, and already two-axis. Correct that text, then state what field coherence
+    adds that a margin-and-competence conjunction does not. Leg (a) faces a parsimony
+    challenge already sitting in this claim's own evidence at direction=weakens:
+    Schurger, Sitt & Dehaene 2012 explains the readiness potential -- the closest
+    biological analogue to "is this the moment commitment should be permitted to land"
+    -- with an ordinary leaky stochastic accumulator crossing a fixed threshold, no
+    cross-population synchrony term required. CONFIRMING the derivational leg: a stated
+    prediction on which a field-coherence readiness signal and an accumulator-threshold
+    readiness signal DISSOCIATE. FALSIFYING it: no such prediction can be constructed,
+    in which case MECH-500 reduces to MECH-434 (or to MECH-090's R-c conjunction) and
+    should be absorbed rather than built.
+    CONFIRMING (empirical, V4, conditional on the ephaptic substrate landing): (1) a
+    cross-system field-coherence readout over the MECH-499 aggregation substrate rises
+    as a previously-branching predicted future converges, and commitment admitted only
+    above a coherence floor produces better-timed commitment than commitment admitted on
+    MECH-434's evidence-sufficiency criterion alone -- with the two signals shown to
+    DISSOCIATE in at least some cells (otherwise this is MECH-434 under a new name).
+    (2) The two AND-compose rather than one subsuming the other -- the pattern
+    MECH-090's own R-c precedent set, and which this claim's notes flag as unresolved.
+    Measured at the ADMISSION boundary (elevation admitted vs blocked), upstream of the
+    committed-selection argmin and therefore not absorbed; if any downstream behavioural
+    DV is added, apply SHARED-CONVERSION-PRECONDITION (G4).
+    FALSIFYING: (1) the field-coherence readout and MECH-434's posterior-sufficiency
+    signal are shown to be monotone transforms of each other across the tested regime --
+    MECH-500 has no independent content and MECH-434 subsumes it. (2) A leaky-accumulator
+    readiness signal with no coherence term matches or beats the coherence-gated one on
+    commitment timing -- the Schurger parsimony result carried into REE. (3) The
+    coherence readout does not track the branching-to-converged transition it is posited
+    to locate.
 
 - id: ARC-129
   title: "The state REE's downstream proposal-generation and action-evaluation machinery consumes as 'the current state' may be more accurately modeled as a short-horizon, affordance-conditioned FORWARD-DISPLACED prediction s_hat(t+tau) rather than the literal current encoded latent, where tau is set by the causal-effect timescale of whichever action REE is presently committed to (or, absent commitment, by the shortest relevant affordance horizon among candidates). Displacement magnitude should scale with commitment quality -- larger when the committed trajectory is well-predicted and low-variance, collapsing toward the immediate encoded state when uncommitted or when prediction quality is poor -- so 'now', for any consumer that reads a single current-state latent, is itself a construction rather than a passthrough of the most recent sensory encoding."
