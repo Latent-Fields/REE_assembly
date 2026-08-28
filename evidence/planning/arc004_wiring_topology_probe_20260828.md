@@ -132,9 +132,13 @@ One filter, three times -- derived here rather than inferred.
 projection destroys some of the input's autocorrelation, so the deeper layer's
 *instantaneous* signal is less persistent, while the shared EMA adds the same
 fixed amount to each. Depth therefore makes persistence **shorter**, and
-increasingly so as the input becomes more autocorrelated. This explains the sign
-the predecessor probe measured on the real environment (-0.159, 0/5 seeds) and
-left unexplained.
+increasingly so as the input becomes more autocorrelated. **SUPERSEDED BY S8:**
+this section originally read that the inversion "explains the sign the
+predecessor probe measured on the real environment (-0.159, 0/5 seeds) and left
+unexplained". The real-stack follow-up in S8 shows the real stack does NOT
+invert, so the toy's inversion is an artefact of its own missing top-down and
+precision machinery and explains nothing about the predecessor's number. The
+arm-A/arm-B contrast is unaffected; only this attempted explanation is withdrawn.
 
 **(c) Training is neither necessary nor sufficient.** Arm B passes with random
 untrained encoders; arm A fails with them and would still fail with trained
@@ -238,3 +242,109 @@ runs the falsifiers" but "nobody checks that a falsifier's stated preconditions
 hold in source before the claim is treated as tested-in-principle". That is a
 cheaper check than running the falsifier, and it is the one that would have
 caught this.
+
+---
+
+## 8. REAL-STACK FOLLOW-UP (same session) -- the toy's central claim holds, its explanation of the predecessor's sign does not
+
+Everything above is a numpy topology toy, and S6 flagged "the toy is not the
+stack" as its first limit. That limit is now closed by running both arms on the
+**real `LatentStack`** with **canonical observation routing**, and the result
+both confirms the main finding and forces one withdrawal.
+
+**Probe:** [`arc004_realstack_probe_20260828.py`](arc004_realstack_probe_20260828.py).
+Both arms are built by calling the stack's own submodules -- real
+`SharedDepthEncoder`s, real `delta_to_theta` / `theta_to_beta` top-down maps,
+real precision gating, real `SplitEncoder` -- so they differ **only** in where
+the EMA sits. No substrate file is modified.
+
+**Fidelity, checked before anything was measured:**
+`max |arm-A manual - real stack.encode()| = 0.000e+00` over 40 ticks. Arm A is a
+bit-identical reimplementation of the shared-stack path, so the comparison is
+against the real thing rather than a model of it.
+
+**Canonical routing, and why the predecessor's was not.** `CausalGridWorld`
+declares `body_obs_dim = 10`, `world_obs_dim = 200`, and the flat observation
+tensor is verified equal to `cat(body_state, world_state)` -- so
+`_split_observation`'s `observation[:, :body_obs_dim]` is canonical at 10/200.
+The 2026-08-26 probe used `REEConfig.from_dims(body_obs_dim=OBS//2, ...)`, i.e.
+105/105, giving `z_self` 105 channels instead of 10.
+
+**Result, 10 seeds, T=1500, random policy:**
+
+| arm | beta | theta | delta | d-b | 0.8*SD | mono | verdict |
+|---|---|---|---|---|---|---|---|
+| A -- as-built | 5.00 | 5.05 | 5.10 | +0.102 | 0.354 | 4/10 | **FAIL** |
+| B -- serial smoothing | 5.00 | 7.71 | 9.34 | **+4.342** | 0.510 | **10/10** | **PASS** |
+
+**The headline survives, and is now measured rather than modelled: serial
+smoothing reaches ARC-004's own PASS criterion, on the real stack, with
+untrained encoders, at a margin 8.5x its bar and 10/10 seeds.**
+
+### 8.1 The correction: the FAIL is robust, the "wrong direction" is not
+
+Arm A was re-run across eight method variants -- routing (10/200 vs 105/105) x
+half-life estimator (this session's standardised form vs the predecessor's
+full-series-variance form) x action count (4 vs 5; `action_dim` is 5) x env
+seeding (seeded vs unseeded) -- 10 seeds each:
+
+| n_act | env seeded | routing | d-b | bar | mono |
+|---|---|---|---|---|---|
+| 4 | yes | canonical | +0.034 | 0.562 | 3/10 |
+| 4 | yes | half-split | +0.050 | 0.330 | 3/10 |
+| 4 | no | canonical | +0.036 | 0.521 | 4/10 |
+| 4 | no | half-split | +0.021 | 0.358 | 2/10 |
+| 5 | yes | canonical | +0.102 | 0.354 | 4/10 |
+| 5 | yes | half-split | +0.079 | 0.448 | 3/10 |
+| 5 | no | canonical | +0.073 | 0.340 | 2/10 |
+| 5 | no | half-split | -0.037 | 0.355 | 2/10 |
+
+Every variant is far below its own bar; monotone-ordering count is 2-4 of 10
+throughout; and the **sign flips** with choices that carry no theoretical
+weight. The two estimators agree to three decimals on identical trajectories
+(+0.102 vs +0.099 canonical, +0.079 vs +0.079 half-split), and
+`REEConfig.from_dims(...).latent` was checked field-by-field against a plain
+`LatentStackConfig` and is **identical**, so neither is the source of the
+difference.
+
+So the honest characterisation of the as-built stack is **"no ordering; the
+effect is indistinguishable from zero and its sign is unstable"** -- not "the
+margin points the wrong way".
+
+**The predecessor's script is also not deterministic.** Recovered from the
+originating session's transcript, it constructs `CausalGridWorld()` with **no
+seed** while seeding only torch and numpy, so the environment varies run to run.
+Re-running it as recovered gives `-0.125` and `-0.097` on successive runs
+against its reported `-0.159` -- same band, not reproducible to the digit.
+
+**What this changes, and what it does not.** ARC-004's FAIL verdict is
+*strengthened*: it now reproduces across routing, estimator, action count, env
+seeding and seed count, and at 10 seeds rather than 5. What does not survive is
+the rhetorically stronger reading -- "z_delta persists SHORTER than z_beta on
+every seed", which reads as active evidence against timescale stratification.
+It is a 5-seed reading of a zero-centred noise band. Anyone quoting the
+2026-08-26 result in a supersession review should quote the FAIL and not the
+direction.
+
+### 8.2 Withdrawal
+
+S3(b) above originally offered the toy's arm-A inversion as the explanation of
+that -0.159. Since the real stack does not invert, there is nothing to explain,
+and the toy's inversion is an artefact of the machinery the toy omits (top-down
+maps and precision gating, both of which the real stack has and the toy does
+not). That paragraph is marked superseded in place. The toy's arm-A/arm-B
+*contrast* is unaffected and is confirmed by the real-stack run above.
+
+### 8.3 What is still open
+
+- **Arm B is measured untrained and unfree.** A serial stack that is also
+  trained is untested, and MECH-520's predictive obligation would land exactly
+  there. Nothing here says what serial + trained does.
+- **Random policy.** Both arms use it. A trained agent's trajectory statistics
+  could differ.
+- **Arm B changes downstream behaviour.** Every consumer of z_beta / z_theta /
+  z_delta sees different values. Nothing here measures that, and it is the
+  reason any build must be flag-gated and bit-identical when OFF.
+- **The toy's rho=0.99 failure was not re-tested in vivo.** The real
+  environment's measured half-lives (~5) sit well inside the band where arm B
+  passes, so this is not currently load-bearing.
