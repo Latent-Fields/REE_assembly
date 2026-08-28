@@ -143,3 +143,61 @@ Deliberately not built here, and offered rather than proposed:
   the honest reading is "on the order of 100+, certainly dozens", not "121
   exactly".
 - No claim status is changed and nothing is queued here.
+
+---
+
+## 7. Addendum (same session, user-prompted): matching prerequisites to claims, and the orphans
+
+The user's extension: *"prerequisites could be matched to existing claims and where
+there are orphan prerequisites this may need further investigation as it could be
+enlightening."*
+
+Matching each of the 185 claims' precondition blocks against the registry -- does the
+precondition name any registered claim id?
+
+| | count |
+|---|---|
+| precondition names >= 1 registered claim (matched) | **155** |
+| precondition names **no** registered claim (orphan prerequisite) | **30** |
+
+The 30, phase in brackets: ARC-007(-), Q-007(-), ARC-018(-), MECH-035(-), MECH-037(-),
+MECH-048(-), INV-090(-), MECH-342(v3), Q-062(v4), Q-065(v4), Q-066(post_v5), Q-069(-),
+Q-072(v4), Q-073(v5), MECH-424(v6), MECH-425(v4), MECH-426(v3), MECH-427(v3),
+ARC-105(v4), MECH-453(v4), Q-083(v4), Q-086(v3), Q-089(v3), MECH-481(v3), MECH-489(v3),
+MECH-490(v3), Q-092(v3), SD-097(v3), Q-093(v3), MECH-521(v4).
+
+**The set is not homogeneous, and separating the kinds is the finding.** Three
+spot-checks show at least two kinds:
+
+- **Kind A -- runtime-state precondition, correctly claim-free.** `ARC-007` ("the
+  residue field must carry live non-flat structure in A0"; "the A0->A1 harm gap must
+  reproduce EXQ-114's magnitude") and `ARC-018` ("`e2_world_r2 >= 0.6` measured IN-RUN";
+  "rollout-derived scores must carry non-zero cross-candidate variance") assert what a
+  RUN must exhibit. They reference no claim because there is nothing to reference.
+  Not a finding.
+- **Kind B -- a genuine orphan: a named substrate that no claim owns.** `Q-007`
+  (status `active`) reads: *"Substrate-blocked on the candidate-differentiated
+  modulatory-variance substrate (per-candidate modulatory variance + range-not-magnitude
+  readiness gate seeded by the 643 autopsy)"*. That names a specific substrate, in
+  prose, with no claim id, no `substrate_queue` entry, and therefore no owner anywhere.
+
+Kind B is the enlightening case and the reason this is worth a pass of its own: **the
+registry's own falsifiers may collectively be pointing at substrate nobody has
+registered**, and if several orphans point at the *same* missing thing, that is a claim
+waiting to be written. Classifying all 30 and running that search is chipped as
+`chip-20260828-orphan-prerequisite-investigation` (`task_256fc89c`) rather than done
+here.
+
+**Minor, related.** Five ids are cited inside precondition blocks and are absent from
+`claims.yaml`: `GAP-2` (x4), `GAP-7` (x3), `GAP-1`, `GAP-14`, `GAP-3b`. These are
+almost certainly plan-namespaced pipeline gaps whose home is a `*_plan.md` status table
+rather than the claims registry, so they are **not** broken references -- but per
+CLAUDE.md a GAP id should be written qualified with its owning plan
+(`goal_pipeline:GAP-2`), and bare they are ambiguous across plans. Folded into the same
+chip as a hygiene note.
+
+**Limit:** "names a registered claim id" is a weak proxy for "has a matched
+prerequisite". A precondition can name a claim in passing without depending on it, and
+can depend on one without naming it -- MECH-522's undeclared ARC-004 dependency (S4
+instance 2) is exactly the second case. So 155/30 is a partition of *citation*, not of
+*dependency*, and the chip's manual classification is what turns it into the latter.
