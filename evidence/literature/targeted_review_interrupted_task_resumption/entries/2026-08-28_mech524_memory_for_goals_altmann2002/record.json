@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_memory_for_goals_altmann2002",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Memory for goals: an activation-based model",
+    "authors": ["Erik M. Altmann", "J. Gregory Trafton"],
+    "year": 2002,
+    "venue": "Cognitive Science",
+    "doi": "10.1207/s15516709cog2601_2",
+    "volume": "26",
+    "issue": "1",
+    "pages": "39-83"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "A formal, empirically-fit computational model of exactly the phenomenon MECH-524 needs to license: a suspended goal is not erased but decays in activation and is recoverable via priming, tested against latency/error data from a task (Tower of Hanoi) that is architecturally about suspension and resumption of subgoals. Directly grounds the preserve-don't-erase framing and the need for an explicit re-priming trigger rather than passive persistence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A suspended goal's activation decays with elapsed time and with interference from intervening goals -- so a parked goal left un-reprimed for long enough, or heavily interleaved with unrelated activity, becomes progressively harder to retrieve even though its representation was never deleted. Passive persistence alone (SD-039's trace surviving) is not sufficient for reliable resumption at arbitrary delay; an explicit reactivation/priming event is load-bearing.",
+    "The model's priming constraint predicts that resumption quality depends on the availability of the right retrieval cues at the moment capacity returns -- an interruption_snapshot with no cue-bearing content (or a re-seeding trigger that does not supply the snapshot as a cue) would fail to accelerate retrieval even if the trace is intact."
+  ],
+  "tags": ["mech-524", "goal_activation", "act_r", "priming", "interference", "goal_suspension", "tower_of_hanoi"],
+  "mapping": {
+    "source_claim_statement": "Suspended goals are represented via the general memory constructs of activation and associative priming rather than a specialized goal-stack structure. Three constraints govern behavior: (1) interference -- residual activation from old, already-resolved goals competes with and slows retrieval of the currently relevant one; (2) strengthening -- the more thoroughly a goal is encoded before suspension, the more durable its later retrieval; (3) priming -- appropriate retrieval cues at the moment of resumption reactivate a pending goal's activation, counteracting the decay it underwent while suspended. Fit against latency and error data from Tower of Hanoi, a puzzle that requires continual suspension and resumption of subgoals.",
+    "ree_translation": "Directly grounds two design choices in MECH-524. First, preserve-don't-erase: a parked goal's representation persists (paralleling SD-039's un-erased trace) but its retrievability decays with time and competing activity, so re-elevating a parked slot cannot be a bare presence check -- it needs a strength/decay term. Second, and more specifically, it grounds why the mechanism proposes an explicit re-seeding trigger (spare-compute signal or sleep entry pushing the interruption_snapshot into MECH-293/MECH-285) rather than relying on the parked goal to simply 'still be there': Altmann & Trafton's priming constraint says resumption is cue-driven, and the interruption_snapshot is precisely the cue payload the trigger delivers.",
+    "mapping_caveat": "ACT-R production-system / goal-stack cognitive architecture fit to a discrete symbolic puzzle domain (Tower of Hanoi), not a continuous world-model / latent-state RL substrate; 'activation' here is a scalar memory-strength construct, not literally z_world/z_self/z_goal. The three constraints are architecturally suggestive, not a mechanistic proof that REE's snapshot payload needs to include CEM stage or rule-arbitration weights specifically -- that richer payload is a REE-side design extension beyond what this paper tests.",
+    "source_context": "Formal computational model (ACT-R framework) fit to human latency and error data from Tower of Hanoi performance, a classic means-ends puzzle requiring repeated suspension and resumption of subgoals under working-memory load."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Strong source: a canonical, well-cited, empirically-fit computational model built for exactly this phenomenon class. Mapping fidelity good at the structural level (decay + cue-driven reactivation of a suspended goal) but the substrate (symbolic production system vs. REE's latent world-model) is different enough that specific numeric predictions do not transfer, only the qualitative architecture."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_sleep_inspires_insight_wagner2004",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Sleep inspires insight",
+    "authors": ["Ullrich Wagner", "Steffen Gais", "Hilde Haider", "Rolf Verleger", "Jan Born"],
+    "year": 2004,
+    "venue": "Nature",
+    "doi": "10.1038/nature02223",
+    "pmid": "14737168",
+    "volume": "427",
+    "issue": "6972",
+    "pages": "352-355"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct causal evidence (sleep vs. matched wake, controlled for time-of-day) that sleep actively restructures an unresolved problem representation and more than doubles the rate at which a hidden solution is discovered -- grounding the 'sleep entry' branch of MECH-524's trigger as more than a passive consolidation window. The hard precondition (sleep did not help without prior training) is a load-bearing constraint on the mechanism, not just a footnote.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep produced no insight benefit in the absence of initial training/exposure to the task -- an REE sleep-triggered resumption pass over a goal with no interruption_snapshot ever formed (because the goal was never actually engaged/attempted) should be expected to do nothing, not to spontaneously generate progress from nothing.",
+    "The effect required a full night (8h) of sleep in this design; a truncated or shallow sleep-analog state may not deliver the same restructuring benefit, so MECH-285's sleep-replay re-seeding is plausibly dose- or depth-dependent rather than triggered uniformly by any sleep-phase entry."
+  ],
+  "tags": ["mech-524", "sleep_replay", "insight", "memory_restructuring", "hidden_rule_discovery"],
+  "mapping": {
+    "source_claim_statement": "Subjects trained on a sequence-learning task containing a hidden abstract rule were retested after 8h of nocturnal sleep, nocturnal wakefulness, or daytime wakefulness. More than twice as many subjects gained explicit insight into the hidden rule after sleep as after either wakefulness condition, regardless of time of day, and sleep produced no benefit without prior initial training. A slowing of reaction times across the sleep period preceded the insight gain, consistent with active restructuring of the memory representation during sleep rather than passive time-based forgetting or simple consolidation.",
+    "ree_translation": "Grounds MECH-524's second trigger branch: sleep entry is proposed as licit alongside the awake spare-compute signal for re-seeding resumption processing (MECH-285 sleep replay, biased per MECH-284/MECH-285's existing staleness-priority mechanism) precisely because sleep here is shown to do active representational work on an unresolved problem, not merely protect it from decay. The hard precondition -- no benefit without prior training -- maps onto a design constraint: MECH-285 re-seeding toward an interruption_snapshot should require that a snapshot actually exists (the goal was genuinely attempted and interrupted), not fire generically on any dormant/unresolved goal in the MECH-292 bank.",
+    "mapping_caveat": "The task is declarative rule-extraction/insight into a hidden pattern in a sequence-response task, not goal-directed action resumption in a continuous-control embodied agent; 'insight' here is a discrete all-or-nothing discovery event, whereas MECH-524's resumption is a graded reorientation-and-continuation process. The paper does not distinguish sleep stages (REM vs. NREM contributions are not isolated here -- see the companion Cai et al. 2009 entry for that finer-grained claim).",
+    "source_context": "Controlled human experiment (three between-subjects conditions: nocturnal sleep, nocturnal wake, daytime wake) using a two-choice serial reaction-time sequence-learning task with an embedded hidden abstract rule that permits a qualitative performance jump if discovered explicitly."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.50,
+    "notes": "High source quality: controlled experimental design (not correlational), published in Nature, well-replicated finding in the sleep-and-cognition literature. Mapping fidelity moderate -- strong support for 'sleep actively works on unresolved problems' as a general principle, weaker for the specific claim that this generalizes from discrete rule-insight to REE's continuous goal-resumption mechanism."
+  }
+}

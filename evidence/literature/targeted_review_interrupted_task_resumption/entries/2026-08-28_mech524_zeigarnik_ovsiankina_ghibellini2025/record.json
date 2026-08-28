@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_zeigarnik_ovsiankina_ghibellini2025",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Interruption, recall and resumption: a meta-analysis of the Zeigarnik and Ovsiankina effects",
+    "authors": ["Romain Ghibellini", "Beat Meier"],
+    "year": 2025,
+    "venue": "Humanities and Social Sciences Communications",
+    "doi": "10.1057/s41599-025-05000-w",
+    "volume": "12",
+    "issue": "1",
+    "pages": "962"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Recent, open-access, pre-registered-style meta-analysis directly on point, and it forces a correction to the naive framing of the anchor task. It WEAKENS the Zeigarnik 1927 claim itself (no reliable recall advantage for interrupted tasks once the original 1927 data is excluded) but SUPPORTS the distinct, more behaviorally relevant Ovsiankina effect (a general, more reliably replicating tendency to resume interrupted tasks). MECH-524 is a resumption-behavior mechanism, not a recall-strength mechanism, so the paper's net effect on MECH-524 specifically is supportive once the correct effect is cited.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Grounding an REE resumption trigger in 'interrupted goals are simply remembered better' (naive Zeigarnik) reproduces an effect that does not reliably replicate once experimenter-authority / ego-involvement / voluntary-participation moderators are absent, as they are in most modern lab settings.",
+    "Historical moderators (ego-involvement, expectation of resuming, experimenter authority, emotional stakes) that inflated the original 1927 effect have no stated REE analogue yet -- a naive port risks smuggling in an unmodeled confound rather than an architectural principle."
+  ],
+  "tags": ["mech-524", "zeigarnik_effect", "ovsiankina_effect", "task_resumption", "interrupted_task_memory", "meta_analysis"],
+  "mapping": {
+    "source_claim_statement": "Across the literature reanalyzed here (Zeigarnik's own 1927 data set aside), interrupted tasks show essentially no recall advantage over completed tasks (interrupted:completed recall ratio near 0.99) -- the classic Zeigarnik memory effect does not reliably replicate. The distinct Ovsiankina effect (Ovsiankina 1928) -- the behavioral tendency to spontaneously resume an interrupted task rather than remember it better -- replicates more reliably across modern studies and functions as a general tendency rather than a narrow lab artifact.",
+    "ree_translation": "MECH-524 should be read as REE's analogue of the Ovsiankina effect, not the Zeigarnik effect: the mechanism is about whether spare capacity gets spontaneously reallocated toward an interrupted goal (behavioral resumption), not about whether the interrupted goal's trace is intrinsically 'stickier' in memory. This sharpens the interruption_snapshot's job -- it need not make the parked goal more memorable than an unresolved-but-never-attempted one (SD-039/MECH-292 already rank by staleness/wanting/recoverability); its job is to make resumption, when triggered, cheap and well-targeted rather than a restart.",
+    "mapping_caveat": "Human self-paced laboratory task-interruption paradigms (puzzles, arithmetic, craft tasks), not an embodied continuous-control agent with a world model; the Ovsiankina resumption tendency is measured as free-choice resumption during unstructured time, which is a looser analogue of a triggered awake-probe/sleep-replay re-seeding than a tight one. The historical moderators the authors discuss (ego-involvement, experimenter authority) have no proposed REE substrate correlate and should not be silently assumed away.",
+    "source_context": "Meta-analysis and systematic review synthesizing decades of interrupted-task studies (including replications and non-replications of Zeigarnik 1927), separating recall-based (Zeigarnik) from resumption-based (Ovsiankina) outcome measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "High source quality (recent meta-analysis, open access, reputable venue). Moderate mapping fidelity: the Ovsiankina/resumption framing maps well onto MECH-524's actual behavior, but free-choice human task resumption is a weak proxy for a triggered awake-probe-plus-sleep-replay re-seeding mechanism. Transfer risk elevated because the paper's main contribution is a correction (Zeigarnik doesn't hold) rather than direct positive evidence for REE's specific trigger/snapshot design."
+  }
+}

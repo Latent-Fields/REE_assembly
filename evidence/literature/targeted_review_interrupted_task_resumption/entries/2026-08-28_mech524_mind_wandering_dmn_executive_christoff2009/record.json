@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_mind_wandering_dmn_executive_christoff2009",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Experience sampling during fMRI reveals default network and executive system contributions to mind wandering",
+    "authors": ["Kalina Christoff", "Alan M. Gordon", "Jonathan Smallwood", "Rachelle Smith", "Jonathan W. Schooler"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0900234106",
+    "pmid": "19433790",
+    "volume": "106",
+    "issue": "21",
+    "pages": "8719-8724"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The sharpest available grounding for what a 'spare-compute' state should actually look like: mind-wandering here is not low-engagement idling but a co-activation of default-mode and executive-control networks, two systems normally treated as antagonistic, with the co-activation strongest precisely when the subject lacks meta-awareness of the wandering. This maps closely onto MECH-524's trigger design (reduced task-directed load, not zero cognitive resources) but the no-meta-awareness finding raises an honest, unresolved design question about how the trigger should be flagged.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If MECH-524's spare-compute trigger is designed as a pure low-engagement/idle detector, it will miss the state this paper actually characterizes -- executive resources are co-recruited during mind-wandering, not simply freed up and left unused, so a trigger keyed only on 'nothing else is happening' underspecifies the state it should be detecting.",
+    "Neural recruitment (both default and executive) was strongest when subjects lacked meta-awareness of their own mind-wandering -- a re-seeding trigger that requires an explicit, agent-legible 'I am now reallocating capacity to the parked goal' signal may be modeling a state that empirically co-occurs with the ABSENCE of exactly that kind of explicit self-monitoring."
+  ],
+  "tags": ["mech-524", "default_mode_network", "executive_network", "mind_wandering", "spare_compute", "meta_awareness"],
+  "mapping": {
+    "source_claim_statement": "Using experience-sampling probes during a concurrent task in the fMRI scanner, mind wandering was associated with activation in default-mode network regions, consistent with theoretical accounts of that network's function, and was further associated with concurrent executive-network recruitment -- two systems typically assumed to operate in opposition. Both default and executive network recruitment were strongest when subjects were unaware of their own mind-wandering, suggesting mind-wandering is most pronounced in the absence of meta-awareness, and that it may constitute a distinct mental state in which these normally antagonistic networks cooperate.",
+    "ree_translation": "This is the clearest available grounding for MECH-524's proposed trigger condition (low SD-037 broadcast-override + low z_harm_a + low dACC choice_difficulty): the intended state is reduced task-directed threat/harm arbitration load, not zero cognitive engagement. Christoff et al.'s finding that executive resources are actively co-recruited during mind-wandering, rather than simply released and idle, supports designing the trigger around 'freed-up but still-engaged' capacity, matching a state where SD-037/z_harm_a/dACC signals are low without the agent being fully disengaged or asleep. The dACC choice_difficulty component in particular is well-matched to the executive-network co-activation this paper reports, since dACC is canonically implicated in exactly this kind of executive/conflict monitoring.",
+    "mapping_caveat": "Human fMRI functional-network labels (default-mode network, executive-control network) have no established one-to-one substrate mapping onto REE's SD-037/z_harm_a/dACC signal set -- this is a conceptual/functional analogy, not a validated cross-mapping. The no-meta-awareness finding is flagged honestly rather than resolved: it raises, but does not answer, whether MECH-524's re-seeding trigger should fire as a covert background process (matching the empirical pattern here) or should be legible to the agent's own arbitration machinery -- that tension is left as an open design question, not pre-committed.",
+    "source_context": "fMRI experience-sampling study in healthy adults performing a sustained concurrent task with intermittent thought-probes asking whether attention had wandered and whether the subject was aware of the wandering at the time; analysis focused on brain activity in the interval preceding each probe."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.62,
+    "notes": "Solid, well-cited PNAS fMRI study with a genuinely useful online (experience-sampling) design rather than post-hoc retrospective report. Mapping fidelity moderate: the functional-network-to-REE-signal correspondence is conceptual, not measured or validated, and the no-meta-awareness finding actively complicates rather than simply supports a clean trigger design, which is honestly reflected in the confidence rather than smoothed over."
+  }
+}

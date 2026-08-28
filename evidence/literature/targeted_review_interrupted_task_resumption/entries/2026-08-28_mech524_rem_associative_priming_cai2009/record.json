@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_rem_associative_priming_cai2009",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "REM, not incubation, improves creativity by priming associative networks",
+    "authors": ["Denise J. Cai", "Sara C. Mednick", "Elizabeth M. Harrison", "Jennifer C. Kanady", "Sara C. Mednick"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0900271106",
+    "pmid": "19506253",
+    "volume": "106",
+    "issue": "25",
+    "pages": "10130-10134"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Sharpens the Wagner et al. 2004 finding to a specific sleep phase (REM, not NREM, not quiet-rest incubation), and shows the benefit is independent of item-specific memory retention -- i.e. the mechanism operates on generalized associative structure, not verbatim replay of the interrupted material. Both points are load-bearing, testable constraints for how MECH-285's re-seeding should be gated and what it should be expected to reproduce.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The associative-priming benefit was specific to REM sleep and did not appear after quiet rest or non-REM sleep of equivalent duration -- an REE sleep-replay resumption pass that fires on any sleep-phase entry, ungated by a REM-analogous state signal, is predicted to under-deliver relative to one gated on the correct phase (MECH-272 state-gated routing).",
+    "The creative benefit was independent of improved memory retention for the specific tested items -- if MECH-285's re-seeding toward the interruption_snapshot is evaluated only by whether the exact snapshot content is reproduced verbatim, it may miss the intended effect, which according to this paper operates at the level of generalized associative structure rather than item-specific recall."
+  ],
+  "tags": ["mech-524", "rem_sleep", "associative_priming", "creativity", "sleep_replay", "state_gating"],
+  "mapping": {
+    "source_claim_statement": "Using a nap paradigm and the Remote Associates Test, REM sleep -- compared with quiet rest and non-REM sleep -- selectively enhanced formation of associative networks and integration of previously unassociated information, improving creative problem-solving. This benefit was independent of enhanced memory retention for the specific items tested, and the authors attribute it to cholinergic and noradrenergic neuromodulatory changes characteristic of REM.",
+    "ree_translation": "Refines MECH-524's sleep-entry trigger branch beyond Wagner et al. 2004's coarser 'sleep vs. wake' finding: the active-restructuring benefit this claim family leans on is plausibly phase-specific, not a property of sleep generically. This argues that MECH-285's re-seeding of the interruption_snapshot into sleep replay should be gated by a REM-analogous internal state signal (via the existing MECH-272 state-gated routing substrate) rather than firing uniformly across all sleep phases. It also argues, more subtly, that the intended output of sleep-triggered resumption processing is generalized associative restructuring around the parked goal's content, not literal verbatim reproduction of the interruption_snapshot -- a distinction worth keeping explicit when specifying what a successful MECH-285 re-seed should look like.",
+    "mapping_caveat": "Remote Associates Test performance is a proxy for associative/creative cognition, not goal-directed task resumption; the REM/NREM distinction is a human polysomnographic sleep-stage category with no established one-to-one mapping onto REE's MECH-272 sleep-phase substrate -- treating 'REM-analogous' as a real REE state requires an explicit, currently unmade, mapping decision.",
+    "source_context": "Controlled nap study (REM sleep vs. non-REM sleep vs. quiet rest, matched intervals) with pre/post Remote Associates Test performance and separate recognition-memory testing for the specific study items, in healthy adult participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.55,
+    "notes": "Strong, well-controlled experimental design (PNAS, within-subject nap paradigm with matched conditions). Mapping fidelity moderate: the phase-specificity and dissociation-from-item-memory findings are conceptually sharp and useful design constraints, but the RAT/creativity domain and human sleep-stage taxonomy are both one further step removed from REE's actual substrate than Wagner et al. 2004's more directly analogous insight paradigm."
+  }
+}

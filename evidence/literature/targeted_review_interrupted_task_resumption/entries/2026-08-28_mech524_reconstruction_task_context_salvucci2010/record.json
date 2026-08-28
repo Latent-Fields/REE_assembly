@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_reconstruction_task_context_salvucci2010",
+  "timestamp_utc": "2026-08-28T20:29:10Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "On reconstruction of task context after interruption",
+    "authors": ["Dario D. Salvucci"],
+    "year": 2010,
+    "venue": "Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI 2010)",
+    "doi": "10.1145/1753326.1753341",
+    "pages": "89-92"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Directly measures and models the cost the interruption_snapshot exists to avoid: after an interruption, resuming a task requires re-encoding ('reconstructing') context to identify the next step, and this reconstruction cost (resumption lag) is what a preserved snapshot is architecturally meant to short-circuit. The finding that interruption timing relative to subtask boundaries changes the cost is a specific, actionable design input for MECH-524's trigger.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Interruptions landing mid-subtask (mid-CEM-rollout, in REE terms) cost more to reconstruct/resume from than interruptions landing at a natural subtask boundary; a re-seeding trigger that treats all interruption points as equivalent will under-predict resumption cost for mid-rollout interruptions and may need the snapshot to carry more of the in-progress CEM state precisely when the interruption is least boundary-aligned.",
+    "Without a preserved context, the reconstruction process itself consumes time and attention that could otherwise go toward resuming actual task progress -- an REE agent lacking an interruption_snapshot pays an analogous reconstruction tax even after MECH-293/MECH-285 correctly re-flag the parked goal as worth resuming."
+  ],
+  "tags": ["mech-524", "resumption_lag", "task_context_reconstruction", "interruption_timing", "threaded_cognition"],
+  "mapping": {
+    "source_claim_statement": "After an interruption, resuming a primary task requires re-encoding information necessary to identify what step comes next -- a reconstruction process that takes measurable time (resumption lag, the interval between finishing the secondary/interrupting task and resuming productive primary-task action). Reconstruction is faster, and resumption lag shorter, when the interruption occurs at a natural subtask boundary than when it lands mid-subtask, because subtask completion leaves less in-progress context that needs to be re-derived.",
+    "ree_translation": "This is the most direct grounding for why MECH-524 proposes a richer interruption_snapshot (z_world + z_self + z_goal + CEM stage + rule-arbitration weights + what-was-attempted) rather than relying on SD-039's simpler goal-snapshot payload: the snapshot's entire purpose is to make the reconstruction step Salvucci measures unnecessary, by having the in-progress context already captured rather than re-derived from scratch. The boundary-timing finding is a concrete, testable design input: the trigger and snapshot mechanism should be expected to matter MORE (produce a larger resumption-lag reduction) for interruptions that land mid-CEM-rollout than for ones that land at a clean rule-arbitration boundary, since the latter have less in-progress context to lose in the first place.",
+    "mapping_caveat": "Human office/procedural-editing task domain (a text/photo editing task interrupted by a secondary task) modeled via a production-system cognitive architecture, not an embodied agent with a continuous world model and CEM-based planning; 'reconstruction' here is re-deriving declarative task state (what step am I on), which is a looser analogue of re-priming a structured latent snapshot. The boundary-timing effect is measured in a domain with clean, human-recognizable subtask boundaries -- REE's CEM-stage boundaries may not be similarly clean, and that mapping is untested.",
+    "source_context": "Cognitive-architecture model plus behavioral timing data from a dual-task paradigm: a primary procedural task interrupted by a secondary task at controlled points, measuring resumption lag as a function of interruption timing relative to subtask structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.45,
+    "notes": "Short CHI paper (4 pages) rather than a full journal article, but from a well-established threaded-cognition research program with a track record of empirically validated cognitive models. Mapping fidelity is high at the design-rationale level (this is literally the cost the snapshot is built to avoid); transfer risk from the HCI/office-task domain to REE's embodied continuous-control setting is a real, stated caveat."
+  }
+}

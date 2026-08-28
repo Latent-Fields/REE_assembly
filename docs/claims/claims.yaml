@@ -90415,3 +90415,213 @@
     Full novelty analysis:
     evidence/planning/thought_intake_2026-08-27_developmental_integration_and_readiness_programme.md
   evidence: []
+
+# --- interrupted_task_resumption cluster (MECH-524, Q-098) ---
+- id: MECH-524
+  title: "Capacity-triggered resumption reseeding: at the moment a task is interrupted, REE captures an interruption_snapshot (z_world + z_self + z_goal + CEM planning stage + rule-arbitration weights + what-was-attempted) that is richer than, and distinct from, SD-039's existing dual-trace anchor goal-snapshot payload. When a spare-compute signal (low SD-037 broadcast-override + low z_harm_a + low dACC choice_difficulty) or sleep entry indicates freed processing capacity, the interruption_snapshot is re-seeded into MECH-293's awake ghost-goal probes and MECH-285's sleep-replay sampler, so that resumption is a reorient-from-snapshot rather than a restart-from-scratch. This is the backward-direction complement to REE's existing forward direction, in which world-change invalidates stale model content (MECH-269 anchor V_s + MECH-284 staleness -> MECH-287 broadcast -> anchors inactive): the forward direction discards stale content when the world moves on without the agent; MECH-524 is what lets the agent pick its own paused work back up once capacity to attend to it returns."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.capacity_triggered_resumption_reseeding
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: "2026-08-28"
+    needs_review: false
+  claim_level: mechanistic
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: "2026-08-28"
+  depends_on:
+    - SD-039    # the simpler existing dual-trace goal-snapshot payload the interruption_snapshot extends
+    - MECH-292  # ranked ghost-goal bank -- the entry structure the reseeded snapshot attaches to
+    - MECH-293  # awake ghost-goal probes -- one of the two reseeding targets
+    - MECH-285  # sleep-consolidation priority from V_s residuals -- the other reseeding target (sleep branch)
+    - SD-037    # broadcast override regulator -- supplies the low-override leg of the spare-compute trigger
+    - MECH-094  # hypothesis tag -- reseeded probe/replay content must be tagged simulated, never real
+    - MECH-269  # V_s computation -- supplies the interruption_snapshot's z_world component and is the substrate Q-098 asks how to reconcile
+    - MECH-272  # state-gated routing -- candidate sleep-phase gate for the sleep-entry trigger branch
+  distinct_from:
+    - MECH-389  # SAME topic (interrupted-task resumption), DIFFERENT plane -- see reconciliation note
+    - MECH-340  # ADJACENT mechanism (persistence/efficacy gate), ORTHOGONAL axis -- see reconciliation note
+  related_claims:
+    - Q-053     # licit persistence gate signal -- MECH-340's open question, whose hard negatives also bind this claim (see notes)
+    - Q-098     # V_s-reconciliation open question this claim's snapshot content raises
+    - ARC-079   # gated-persistence inversion this claim's trigger must respect
+  location: docs/architecture/ghost_goal_search.md
+  functional_restatement: >
+    REE has the beginning of the action arc (MECH-061 commitment) and the world-changed-so-discard
+    half of memory maintenance (MECH-269 V_s + MECH-284 staleness -> MECH-287 broadcast), plus a
+    passive persistence-eligibility gate for unresolved goals (MECH-340/ARC-079). What nothing yet
+    describes is the ACTIVE side of resumption: what gets captured at the moment of interruption, and
+    what causes the agent to actually spend freed-up cycles on it rather than merely leaving it
+    eligible in the MECH-292 bank until its normal re-probe cadence happens to reach it.
+
+    MECH-524 proposes two things. First, a richer captured payload than SD-039's existing trace: an
+    interruption_snapshot holding not just the goal itself but the world/self/goal latents, the CEM
+    planning stage in flight, the rule-arbitration weights that were active, and a record of what had
+    already been attempted -- the specific in-progress context that (per Salvucci 2010, this claim's
+    strongest lit anchor) is exactly what a resuming agent otherwise has to expensively reconstruct.
+    Second, an explicit trigger for spending capacity on it: either a spare-compute signal (broadcast
+    override, harm-anticipation, and executive choice-difficulty all low -- i.e. reduced task-directed
+    arbitration load, NOT zero engagement, per Christoff et al. 2009's finding that mind-wandering
+    co-recruits rather than idles executive resources) or entry into sleep (per Wagner et al. 2004 and
+    Cai et al. 2009, which show sleep actively restructures an unresolved representation rather than
+    merely protecting it, with the effect plausibly REM-phase-specific). Either trigger re-seeds the
+    snapshot into MECH-293 (awake) or MECH-285 (sleep), turning resumption into a reorientation from
+    preserved context rather than a cold restart.
+
+    The naming is deliberately NOT "Zeigarnik": per the Ghibellini & Meier 2025 meta-analysis (this
+    claim's master lit anchor), the classical Zeigarnik memory-advantage effect does not reliably
+    replicate once its own 1927 data are set aside, while the distinct Ovsiankina behavioral-resumption
+    tendency does. MECH-524 is an Ovsiankina-shaped claim -- about whether capacity gets spontaneously
+    reallocated to resume -- not a claim that parked goals become intrinsically more memorable.
+
+    Falsifiable, mirroring the confirming/failure-signature structure used elsewhere in this cluster:
+    (a) trigger fires but no interruption_snapshot exists (bare re-probe/replay boost with no cue
+    content) -> resumption ATTEMPTS should rise but resumption COST (Salvucci-style reconstruction
+    lag) should not fall, since there is nothing to prime against; (b) snapshot exists but no active
+    trigger (purely passive persistence) -> recently-interrupted entries resume no faster than merely
+    stale entries reached by MECH-292's ordinary cadence, i.e. no Ovsiankina-shaped differential; (c)
+    both present -> recently-interrupted entries show BOTH elevated re-engagement AND reduced
+    resumption cost relative to merely-stale entries, reproducing the Ovsiankina pattern without the
+    (non-replicating) Zeigarnik recall signature.
+  notes: >
+    Registered 2026-08-28 from a lit-pull chip (chip-20260827-litpull-task-resumption) surfacing a
+    gap first noticed by the user on 2026-05-10 and never registered at the time; the working name
+    "MECH-320" used in the original notes is BURNED (MECH-320 is the already-registered, unrelated
+    tonic_vigor_coupling claim) and this claim mints a fresh id rather than reusing it. Not
+    implemented: SD-039 / MECH-292 / MECH-293 / MECH-285 / SD-037 substrate exists (in varying stages
+    of validation -- see each claim's own implementation_note), but the interruption_snapshot payload
+    format and the spare-compute/sleep-entry trigger composite do not. DO NOT build in V3 on the
+    strength of this registration alone; substrate_conditional pending a dedicated design pass.
+
+    RECONCILIATION WITH MECH-389 (interrupted-task resumption / Zeigarnik, registered 2026-06-10,
+    reconciled with ARC-079/MECH-340/Q-053 on 2026-08-08). Same topic, different plane, same shape of
+    distinction MECH-389's own notes already draw against MECH-340: MECH-389 re-elevates a PARKED GOAL
+    SLOT in the V4 SD-046/MECH-265 goal-deliberation arbitrator on AGENT-CAPACITY return; MECH-524
+    re-seeds V3 hippocampal MECH-293/MECH-285 processing toward a preserved INTERRUPTION_SNAPSHOT, also
+    keyed on capacity return but operating on the bank-entry store (MECH-292/SD-039), not the V4
+    goal-slot store. The two share a trigger AXIS (capacity return) but act on different STORES with
+    different CONSUMERS, exactly the (1) SUBSTRATE/PLANE distinction MECH-389's reconciliation note
+    already uses to separate itself from MECH-340/ARC-079. MECH-524 is closer in shape to MECH-389 than
+    to MECH-340 -- both are about capacity-triggered re-engagement rather than appraisal-gated
+    eligibility -- but MECH-524 is grounded on the V3 substrate that already exists (SD-039/MECH-292/
+    MECH-293/MECH-285/SD-037), where MECH-389 is explicitly substrate_conditional on a V4 goal-slot
+    arbitrator NOT YET BUILT. If/when MECH-389's V4 substrate lands, the two mechanisms' relationship
+    (parallel instances of one principle at two planes, vs. one subsuming the other) becomes a real
+    design question; premature to resolve now, and NOT resolved here.
+
+    RECONCILIATION WITH MECH-340 / Q-053 / ARC-079. MECH-340 gates whether a MECH-292 bank entry stays
+    re-probe-ELIGIBLE at all (a passive appraisal-gated floor: control/efficacy positive keeps it
+    eligible, absence lets it decay in rank with the SD-039 trace preserved un-erased). MECH-524 governs
+    something MECH-340 does not touch: GIVEN an eligible entry, whether and when SPARE RESOURCES ARE
+    ACTIVELY CHANNELED toward it, and with what preserved content. Orthogonal, compatible axes -- an
+    entry can be eligible (MECH-340 ON) without ever being actively re-seeded (MECH-524 trigger never
+    fires), and the reverse combination is architecturally nonsensical (MECH-524 cannot re-seed an
+    entry MECH-340 has made ineligible, so MECH-524's trigger is implicitly gated by MECH-340's output).
+    MECH-340's hard negative constraints BIND MECH-524 for the same reason Q-053 sub-question (c)
+    already binds MECH-389: MECH-524's spare-compute trigger must not degenerate into a bare
+    time-since-interruption accumulator (the MECH-292 staleness signal MECH-340's own notes rule out,
+    Jasinska 2014 incubation sign-inversion) and must not key on the entry's own dropped value
+    (within-crisis devaluation is a symptom, not a licit trigger, per Brandstatter 2013).
+
+    CLINICAL FAILURE MODES (falsifiable design, cross-referencing the existing
+    targeted_review_goal_disengagement literature dir rather than re-pulling it). Trigger/gate stuck
+    too PERMISSIVE -> OCD/GAD-shaped over-intrusion: parked goals re-seed into MECH-293 probes and
+    MECH-285 replay too readily, at the expense of engagement with the live task -- the same
+    compulsivity-dimension and impaired-disengagement signature already grounded for MECH-340 (Gillan
+    2016/2021, Koster 2011 entries in targeted_review_goal_disengagement) transposed from "fails to
+    disengage" to "cannot stop reseeding." Trigger/gate stuck too RESTRICTIVE, or the interruption_
+    snapshot never captured in the first place -> dissociative-shaped loss-of-thread: interrupted work
+    never gets actively resumed even once capacity is abundant, indistinguishable from a MECH-292 entry
+    that was never worth resuming at all. This second pole is currently UNGROUNDED in this claim's own
+    literature dir -- flagged honestly as a gap for a future dedicated lit-pull (dissociative amnesia /
+    failure-to-integrate literature), not papered over with the disengagement-cluster citations that
+    only support the first pole.
+
+    Literature: targeted_review_interrupted_task_resumption (Ghibellini & Meier 2025 meta-analysis --
+    master anchor, Zeigarnik-vs-Ovsiankina correction; Altmann & Trafton 2002 -- activation-based
+    goal-suspension model grounding preserve-don't-erase-but-still-decays and cue-driven priming;
+    Salvucci 2010 -- resumption-lag/task-context-reconstruction cost the interruption_snapshot is built
+    to avoid; Wagner et al. 2004 and Cai et al. 2009 -- sleep, and specifically REM, actively
+    restructuring an unresolved representation, grounding the sleep-entry trigger branch and its
+    plausible phase-gating; Christoff et al. 2009 -- default-mode/executive co-activation during
+    mind-wandering, grounding "spare compute" as reduced task-directed load rather than idle capacity,
+    and flagging an open no-meta-awareness design tension rather than resolving it).
+  literature_anchors:
+    - targeted_review_interrupted_task_resumption
+  evidence: []
+
+- id: Q-098
+  title: "MECH-524's interruption_snapshot captures z_world at the moment of interruption. By the time a spare-compute or sleep-entry trigger re-seeds it into MECH-293/MECH-285, real time has passed during which the actual world may have changed (REE's forward direction: MECH-269 V_s + MECH-284 staleness -> MECH-287 broadcast -> anchors inactive). How should resumption reconcile the snapshot's SAVED V_s against V_s as CURRENTLY computed? Candidates: (a) current-only -- discard the saved V_s and let MECH-269 recompute cold, keeping only the snapshot's non-V_s content (CEM stage, rule-arbitration weights, what-was-attempted); (b) max(current, saved*decay) -- treat the saved V_s as a decaying floor rather than a fresh read, structurally transplanting MECH-284's spatial region-staleness decay logic onto this temporal/episodic case; (c) abort-on-divergence guard -- compare saved vs current V_s and refuse the snapshot-primed resumption path (fall back toward restart-from-scratch) if divergence exceeds a threshold, functioning as a targeted application of MECH-287's existing anchors-inactive broadcast rather than a new invalidation mechanism; (d) context-dependent -- the correct rule depends on interruption duration, interruption cause (hazard vs. voluntary capacity reallocation), or domain volatility, and no single rule suffices."
+  claim_type: question
+  subject: hippocampal.interruption_snapshot_v_s_reconciliation
+  polarity: open_question
+  status: open
+  live_status:
+    reading: open/substrate_conditional
+    as_of: "2026-08-28"
+    needs_review: false
+  confidence: 0.0
+  epistemic_category: substrate_conditional
+  registered_utc: "2026-08-28"
+  depends_on:
+    - MECH-524  # parent claim -- the interruption_snapshot whose V_s component this question asks how to reconcile
+    - MECH-269  # V_s computation -- both the saved and the current reads this question compares
+    - MECH-284  # region staleness -- candidate (b) is a direct structural transplant of this claim's decay-weighted logic onto the temporal/episodic case
+    - MECH-287  # broadcast -- candidate (c)'s abort path is a targeted application of this claim's existing anchors-inactive mechanism, not a new one
+  related_claims:
+    - MECH-285  # sleep-consolidation priority from V_s residuals -- its own notes already name a clinical failure mode (PTSD-rumination via staleness-tag lock) directly relevant to candidate (b) over-trusting a saved V_s
+  what_would_answer: |
+    Adjudicated empirically, by contrasting the four candidate reconciliation rules on a resumption
+    task where the world is manipulated to change (or not) during the interruption interval, at
+    controlled magnitude and rate. NOT pre-committed here -- registered as open per the chip brief
+    that surfaced it. Discriminating measurements: (i) resumption efficiency when the world has NOT
+    materially changed during the interval (candidates should differ mainly in overhead: (a) pays a
+    full V_s-recompute cost even when unneeded, (b)/(c) should approach (a)'s eventual accuracy at
+    lower cost); (ii) resumption SAFETY/appropriateness when the world HAS changed materially during
+    the interval (a) should be safest since it never acts on stale belief but forfeits the snapshot's
+    speed benefit for its V_s component specifically -- note this is a V_s-COLD-restart, not a full
+    restart, since the snapshot's CEM-stage/rule-arbitration/what-was-attempted content can still be
+    reused; (b) risks confidently acting on a stale-but-not-yet-decayed V_s floor, reproducing exactly
+    the failure MECH-287's broadcast exists to prevent, unless the decay term is calibrated against
+    real-world change rates; (c) risks two failure directions depending on threshold calibration -- a
+    threshold too loose reproduces (b)'s stale-confidence risk, a threshold too tight reproduces (a)'s
+    forfeited-benefit cost AND risks a dissociative-shaped "never trusts its own snapshot" pattern if
+    ordinary V_s measurement noise routinely exceeds it; (d) is the default null hypothesis until one
+    of (a)/(b)/(c) demonstrates uniform superiority across interruption-duration and volatility
+    conditions, at which point (d) is falsified in favour of that single rule.
+  notes: >
+    Registered 2026-08-28 alongside MECH-524, from the same lit-pull chip
+    (chip-20260827-litpull-task-resumption). This is the BACKWARD-DIRECTION mirror of the question
+    MECH-269/MECH-284/MECH-287 already answer in the forward direction: forward asks "the world
+    changed without me -- when do I stop trusting my anchors"; this asks "I am resuming work I paused
+    myself -- when do I stop trusting the V_s I paused it with." The forward machinery is not
+    automatically reusable off-the-shelf for the backward case without a decision, because the two
+    cases differ in a way that matters: forward staleness accrues CONTINUOUSLY while the agent is
+    awake and the anchor is merely inactive; backward staleness accrues over an interval during which
+    the agent may have been doing something else entirely (or asleep), with no monitoring of that
+    specific region at all during the gap. Candidate (b) is the closest structural reuse (transplanting
+    MECH-284's decay logic), candidate (c) is the closest functional reuse (invoking MECH-287's
+    broadcast as the abort mechanism), and candidate (a) is the position that the forward machinery
+    does NOT transfer and should not be reused at all for this case. Deliberately NOT adjudicated
+    here -- do not pre-commit an answer per the chip brief; this registration buys the vocabulary and
+    the four named candidates, nothing more.
+
+    CLINICAL ANCHOR, cross-referenced rather than freshly pulled: MECH-285's own notes already
+    describe a PTSD-rumination architecture ("MECH-285 priority loss co-occurring with MECH-094
+    hypothesis-tag dysfunction, locking the staleness tag from ever clearing"), which is a direct
+    instance of this question's candidate (b) failure mode -- a saved/stale signal that never gets
+    correctly reconciled against current state, in the sleep-replay pathway specifically. The
+    mirror-image failure -- discarding a saved snapshot so readily that resumption never benefits from
+    it (an overly strict reading of (a), or an overly tight threshold under (c)) -- is the
+    V_s-reconciliation-specific instance of MECH-524's own dissociative-loss-of-thread pole, and is
+    similarly ungrounded pending a dedicated future pull.
+
+    No dedicated literature_anchors directory for this Q-claim, matching Q-053's own registration
+    pattern (an open question adjudicated by a future falsifier design, not by literature grounding of
+    the candidates themselves). The MECH-524 literature pull (targeted_review_interrupted_task_
+    resumption) provides context but does not evidence any one of the four candidates over another.
+  evidence: []
