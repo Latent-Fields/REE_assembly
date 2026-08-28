@@ -632,6 +632,57 @@ closure_plan:
         stale canonical scripts/ had been silently keeping the coordinator
         branch inert. Soak evaluation + flag flip:
         chip-20260828-phase4-ws-soak-eval-flag-flip.
+        SOAK EVAL RUN 1, 2026-08-28T22:39Z (chip
+        chip-20260828-phase4-ws-soak-eval-flag-flip): RE-SCOPED, not flipped.
+        Soak window start = first coordinator restart after ree-v3
+        7bef34181b landed (commit committer date 18:05:16Z), confirmed via
+        `systemctl show ree-coordinator -p ExecMainStartTimestamp` =
+        2026-08-28T18:26:17Z. At eval time (22:39Z) the window was only
+        ~4h13m old -- well short of section 7's >=3 day windowed-soak
+        requirement -- so the flag was NOT flipped; this run is a
+        progress-so-far snapshot only, re-run needed no earlier than
+        2026-08-31T18:26Z. Progress against the section-7 criteria over the
+        partial window: (a) tick coverage 125/126.5 expected ticks (~98.8%)
+        on ree-task-claim-chip-git-writer, comfortably >= 0.9; (b) zero
+        "GUARD=" lines in the writer journal for the window; (c) zero
+        duplicate or missing file-matches among the 19 entries the
+        coordinator DB marked materialized (structural check: each DB
+        (ts, text) pair found exactly once in origin/master's
+        WORKSPACE_STATE.md). ANOMALY FOUND, relevant to (d): entry_id=4
+        (ts 2026-08-28T19:28:15Z, DLAPTOP-4.local, the /account-handover
+        close note) has sat in `awaiting_client` continuously since
+        submission -- still not marked carried/materialized as of this
+        eval, ~3h11m later, well past section 7(d)'s 10-minute expectation
+        (though short of (e)'s 24h stuck-pending threshold). Root cause
+        found on inspection, not yet fully diagnosed: the DB's stored
+        `text` for entry_id=4 carries a duplicate leading
+        "2026-08-28T19:27:56Z -- " timestamp prefix that is byte-for-byte
+        ABSENT from the header actually spliced into origin/master's
+        WORKSPACE_STATE.md (file line begins "## 2026-08-28T19:28:15Z --
+        /account-handover: switched Claude account..." with no duplicated
+        prefix), so the materializer's exact-substring (ts, text) match
+        can never find it and it will strand forever, not just past 10
+        minutes. append_workspace_state_entry.py's perform_append() calls
+        _coordinator_submit() and format_entry() with the identical `text`
+        variable in one invocation, so a single call cannot produce this
+        divergence -- either two separate append invocations were involved
+        for this entry (one whose git-written text differs from what
+        reached the coordinator) or the file was touched by another path
+        after the POST. This is exactly the DP-4 "stranded awaiting_client
+        row from a client that mutates its entry text between POST and git
+        write" shape that section 9/DP-4 asserted "the tool has no such
+        path" for -- that assumption needs re-checking before the next full
+        soak evaluation closes criterion (d); the eventual re-run should
+        also confirm whether entry_id=4 ever resolves or needs a manual
+        DB-side reap. Nothing else in this run is actionable: TASK_CLAIMS
+        arbitration and the /workspace_state/pending endpoint (currently
+        n_pending=1, n_awaiting_client=1, matching entry_id=4) were both
+        confirmed live and responsive. VERDICT: flag
+        workspace_state_suppress_git_write left OFF (absent) in
+        ~/.ree_coordinator_client.json on the Mac; not checked on
+        ree-cloud-5 since the flip did not proceed. Next eval should re-run
+        the full section-7 (a)-(e) checklist over the >=3-day window and
+        resolve the entry_id=4 anomaly first.
         FIRST SLICE SHIPPED + DESIGN DOC WRITTEN 2026-08-28 (session
         responsibility-epistemic-hygiene-d6f9d3). The WORKSPACE_STATE.md
         append intake is BUILT, TESTED and DEPLOYED: server ree-v3
