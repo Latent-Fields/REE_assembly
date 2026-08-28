@@ -1226,6 +1226,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0086",
+      "claim_ids": [
+        "MECH-121",
+        "MECH-092",
+        "MECH-209"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "merge proposal: fold MECH-092's CONSOLIDATION-BENEFIT HALF ONLY into MECH-121 (partial absorption -- do NOT supersede MECH-092). MECH-121 (NREM consolidation pipeline) already owns the 'E1 world model improves across a sleep cycle vs matched waking control' test, and MECH-209's own what_would_answer states verbatim that MECH-092's benefit half is the leg it defers to. Three claims currently point at one untested test. RESIDUAL THAT MUST SURVIVE IN MECH-092: the trigger-selectivity content (quiescent-cycle gating, e3_quiescent), which V3-EXQ-761 CONFIRMED and MECH-121 does not cover. Reverse-deps needing repointing: MECH-205 (depends_on MECH-092), MECH-209 (what_would_answer text), MECH-289, MECH-291, and closure node sleep_substrate:GAP-2.",
+      "raised_by_session": "thought-digestion-v3closure-20260828",
+      "raised_at": "2026-08-28T06:51:48Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
