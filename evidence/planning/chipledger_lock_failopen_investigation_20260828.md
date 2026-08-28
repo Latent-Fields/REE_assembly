@@ -333,3 +333,67 @@ cumulative.
    `scripts/run_scripts_tests.sh` from the MAIN CHECKOUT; a green script-exec
    run of that file is not a verdict. The one pytest failure needs attributing
    to pre-existing-vs-introduced before it is read either way.
+
+---
+
+## Second addendum, 2026-08-28T14:2xZ -- a DIFFERENT defect found while landing the above
+
+Recorded by the same session. This is **not** the fail-open bug; it is a second
+defect in the same file, found by accident while amending this investigation's
+own chips, and it is tracked and owned elsewhere. It is noted here because a
+reader of this document is exactly the person who needs to know it exists.
+
+**Observed.** `d4a867e5` (13:43:19Z) landed an `amend-prompt` to
+`chip-20260828-chipledger-failopen-loss-fix` -- that row's `prompt` 7961 ->
+11081 chars. `fbf03cb0f` (13:45:33Z), a
+`chips: recover orphaned working-tree write (crash recovery)` commit, silently
+reverted it to 7961. Both exited 0. Nothing was lost (the content was still in
+`d4a867e5`, restored structurally as `233c7332b2`), but the reverting commit
+came from `_recover_orphaned_ledger_write()` -- the function added 2026-08-18
+to *rescue* orphaned writes.
+
+**Mechanism, confirmed by direct test.** `--to-remote-tip` (the default since
+2026-08-23) cherry-picks the commit onto origin's tip in a throwaway worktree
+and deliberately leaves the local checkout untouched, so it leaves disk
+carrying content local HEAD lacks **by construction**:
+
+```
+DISK        prompt = 8725 chars   (carries the amendment)
+local HEAD  prompt = 4930 chars   (does not)
+git status --porcelain TASK_CHIPS.json  ->  " M TASK_CHIPS.json"
+```
+
+`_recover_orphaned_ledger_write()`'s stage-1 trigger *is* "disk differs from
+HEAD". So on every remote-tip landing it fires on an ordinary healthy checkout
+rather than on a crash, and hands the decision to stage 2's merge.
+
+**Note the trap this created for the investigation itself**, since it is the
+reusable lesson: an earlier hypothesis -- that `ree_commit.py`'s private-index
+commit leaves the working tree un-updated -- was **refuted** by measuring a
+blank `git status` after a mutation, and that refutation was correct *for the
+path it measured*. There are **two landing paths**: local-landing (the
+fallback) leaves `disk == HEAD`; remote-tip leaves `disk != HEAD`. Both
+measurements were right; generalising from the first to all mutations was not.
+**Anyone re-testing this must record which path the mutation took.**
+
+**Scale, stated so it is not overread:** 11 crash-recovery commits exist in
+`origin/master..master` (local-only, this wedged box); **1** of them reverted
+committed content; **0** crash-recovery commits have reached `origin/master`
+since 2026-08-18, so shared history is untouched. The framing that matters is
+**trigger common, misfire rare** -- 1-in-11 is the *misfire* rate, not the
+exposure, and the trigger is structural on every remote-tip write.
+
+**Dated risk worth checking before any rate comparison:** the remote-tip wedge
+gate (`f0eab5fc`, landed 2026-08-28T12:37Z) makes remote-tip the routine
+landing path on wedged boxes, i.e. it plausibly increased the population of
+`disk != HEAD` states fleet-wide about an hour before the observed misfire.
+That is **not** a causal claim about this instance, and it is **not** an
+argument for reverting that gate -- but do not compare misfire rates naively
+across the 12:37Z boundary.
+
+**Owner:** `chip-20260828-chipledger-noop-record-committed-destructive-delete`
+(agreed with `ree-working-7f`), whose prompt now carries the full evidence, the
+confirmed mechanism, the refuted hypothesis, and the two open questions --
+should stage 1 exclude the remote-tip case by asking whether the diverged
+content is already on origin, and why did stage 2's merge resolve toward the
+stale side in the one case it did.
