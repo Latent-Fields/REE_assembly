@@ -1328,6 +1328,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0093",
+      "claim_ids": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "chip-20260827-competence-final-discriminator (dispatched to queue the next MECH-457 competence-floor discriminating experiment) found the discrimination is ALREADY COMPLETE, not pending: hypothesis_space_registry.v1.json qid competence_floor has all 20 hypotheses (and every split child) terminally resolved as of V3-EXQ-821b (2026-08-08, eliminates H-consummation-binding, closing the 4-leg retention portfolio); the registry's own decision block already states the discrimination phase is complete and growth_restriction is CLOSED TO FURTHER FAN-OUT. Two derived documents still read the space as open with a stale '1 of 20 rivals standing' figure that traces to generate_current_front.py reading a hero.surviving/reduction_ratio/bits_removed field that no longer exists anywhere in the registry (grep returns zero hits) -- so CURRENT_FRONT.md (stamped regenerated 2026-08-25) and evidence/planning/work_graph_debt_classification_20260827.md's U1 entry (2026-08-27) both cite a number the current registry cannot produce. substrate_queue.json's mech457_competence_bootstrap_explorer entry (status/blocked_note) was corrected in place this session to state the discrimination outcome and re-point the real remaining blocker at the MECH-229 dependency (still provisional/v3_pending). No experiment was queued -- doing so would violate the re-derive brake and the qid's own growth_restriction. Recommend: (1) fix or retire generate_current_front.py's hero-question renderer (it silently prints a stale cached count instead of deriving surviving/eliminated/confirmed from hypotheses[].resolution.state, or failing loud when the expected fields are absent) and regenerate CURRENT_FRONT.md; (2) governance decide whether mech457's node_class ('complex (probe-gated)') should become something reflecting 'dependency-blocked, discrimination done' once MECH-229 clears -- not decided here.",
+      "raised_by_session": "metaworker-chip-20260827-competence-final-discriminator",
+      "raised_at": "2026-08-28T21:51:49Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
