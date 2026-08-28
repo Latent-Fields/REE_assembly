@@ -1315,6 +1315,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0092",
+      "claim_ids": [
+        "Q-040"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-862a crashed the manipulation, not the run: its ON/OFF arms were functionally identical for the z_harm_a-to-dACC PE readout (the borrowed 490b 0.85 gate threshold never crossed for z_harm_a's own V_s), confirmed by failure_autopsy_dacc-cluster-862a-870a_2026-08-03. /diagnose-errors 2026-08-28 root-caused this (per-stream threshold never calibrated against z_harm_a's own V_s distribution) and queued successor V3-EXQ-862b (supersedes V3-EXQ-862a) with an empirically-calibrated z_harm_a-specific gate threshold (0.995) plus a new PreflightVsGateZHarmANotHeld precondition. FOLLOW-ON OWED: once V3-EXQ-862b's run lands, set 862a manifest v3_exq_862a_q040c_dacc_pe_weight_delta_correlation_20260802T195935Z_v3's evidence_direction to 'superseded' with a note naming V3-EXQ-862b, and rebuild the index. Nothing else is owed.",
+      "raised_by_session": "metaworker-chip-20260827-diagnose-mech269b-q040c-nonengagement",
+      "raised_at": "2026-08-28T20:42:02Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
