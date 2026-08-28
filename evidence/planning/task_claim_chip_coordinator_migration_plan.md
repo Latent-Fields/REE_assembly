@@ -466,7 +466,15 @@ closure_plan:
         git path on any coordinator failure) -- NOT yet built, blocked
         2026-08-28 behind an active rival claim on those two files
         (rc-remotetip-gate-20260828); (d) client env wiring (mode flag +
-        URL + token) for Mac interactive sessions and ree-cloud-5.
+        URL + token) for the THREE machines that write these files: the
+        Mac (interactive sessions + launchd ticks), ree-cloud-5 (the
+        metaworker dispatcher), and ree-cloud-4 (the resident
+        metaworker-dispatch box -- its dispatched headless chip sessions
+        open/close claims when it is in that mode; user-confirmed
+        2026-08-28). All three verified reachable to 10.8.0.1:8787 with
+        tokens already in the coordinator roster. The
+        ~/.ree_coordinator_client.json config file (coordinator_transport
+        0d3dcc94b8) is the per-machine switch on each.
         (e) DEPLOYMENT of the endpoints IS DONE -- see below.
 
         DEPLOYED 2026-08-27, shortly after the build landed: the user
