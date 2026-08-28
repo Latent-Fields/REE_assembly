@@ -1087,6 +1087,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0076",
+      "claim_ids": [
+        "MECH-092",
+        "MECH-205"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "DIRECT CONTRADICTION, same code path. MECH-092 (via depends_on MECH-289, Gupta 2010) asserts anti-recency: under-sampled paths replayed MORE. MECH-205 Refinement D (Mattar and Daw 2018) asserts priority = PE x NEED: a high-PE episode in a region the agent will never revisit has zero need and is NOT prioritised. For a rare/high-PE/low-revisit region these predict OPPOSITE allocations, and both are instantiated on the SAME drive_state vector consumed by HippocampalModule.replay() start-selection, so at most one can be operative. Neither claim acknowledges the other. A single 3-cell probe (high-PE/high-need, high-PE/low-need, low-PE/high-need) adjudicates both.",
+      "raised_by_session": "thought-digestion-v3closure-20260828",
+      "raised_at": "2026-08-28T06:50:23Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
