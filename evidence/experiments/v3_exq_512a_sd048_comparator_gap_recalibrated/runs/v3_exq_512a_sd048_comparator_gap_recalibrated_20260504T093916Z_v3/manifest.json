@@ -23,10 +23,11 @@
     "SD-048"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-048": "supports"
+    "SD-048": "non_contributory"
   },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-09, failure-autopsy V3-EXQ-512a, confirmed re-adjudication per chip-20260809-v3exq512a-reexamination, following failure_autopsy_V3-EXQ-902_2026-08-09's flag): ARM_A (scale=3.0) has n_quiet_steps=0 in all 3 seeds, so residual_quiet=0.0 exactly and the C3/quiet_gap criterion reduces to residual_body_noise >= 0.005 verbatim -- the identical tautology V3-EXQ-902 found in its own ARM_3, not a real comparison against undisturbed-tick data. C1 alone (unaffected by the defect) is too thin to sustain supports: mean effect ~2% of residual magnitude, 2/3 seeds at the exact minimum required fraction, and a sign reversal on seed 43 (the seed with the most body-noise exposure). Reclassified supports -> non_contributory: this run is neither clean evidence for nor against SD-048. SD-048 now has no clean confirming experimental result (511 and 902 already non_contributory for the same instrument defect). No new routing owed -- V3-EXQ-902's autopsy already specified the fix (minimum-sample guard, restored matched-amplitude C2/C3). Applied /governance (GOV-APPLY-1, chip-20260828-govapply1-individual-rows).",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

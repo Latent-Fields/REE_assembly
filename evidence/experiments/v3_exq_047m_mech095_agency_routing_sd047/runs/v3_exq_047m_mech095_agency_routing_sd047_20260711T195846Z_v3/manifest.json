@@ -23,8 +23,9 @@
     "MECH-095"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-07-11, failure-autopsy V3-EXQ-047m, confirmed): probe-partition fix worked (non_degenerate=true, n_no_contact_min=8 >= floor 5) so the EVAL contrast was real, but the comparator was invalidly TRAINED -- training label is_world saturates to ~constant 1 at intensity 1.0 (env_events fold), so the routing head never saw a self-caused negative. BASELINE succeeds at 0.795; ROUTED corrupts it to 0.492 (improvement -0.302) -- corruption of a good representation, not evidence the comparator functions. Second consecutive non_contributory operationalisation-degeneracy read (after V3-EXQ-047l); re-derive brake fired, routing to a test-bed redesign (agency_comparator_testbed_sd047), not a third 047 letter. Governance-ratified narrative already in claims.yaml MECH-095 evidence_quality_note; this write applies it to the manifest the indexer actually scores (GOV-APPLY-1, chip-20260828-govapply1-individual-rows).",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

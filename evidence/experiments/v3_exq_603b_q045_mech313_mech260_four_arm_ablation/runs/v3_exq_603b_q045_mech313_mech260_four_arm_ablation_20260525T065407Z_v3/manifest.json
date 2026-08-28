@@ -25,12 +25,13 @@
     "MECH-260"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "Q-045": "mixed",
-    "MECH-313": "mixed",
-    "MECH-260": "mixed"
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
   },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-05-25, failure-autopsy V3-EXQ-603b, confirmed): third consecutive measurement_gap in the 603 chain. Substrate confirmed operative on all three claims (mech260_operative_all_seeds=true; dACC FIFO+suppression fire; NoiseFloor fires) but 2/3 seeds (42, 44) terminated at ~12-16 steps/episode on every arm -- FIFO_WARMUP_STEPS=75 never reached, measured_steps=0. Effective N=1 (seed 43 only): Q-045/MECH-313/MECH-260 deltas all sub-threshold vs entropy_margin=0.05 (ARM_1 +0.011, ARM_2 +0.041, ARM_3 +0.045). Reclassified mixed -> non_contributory for all three claims -- N=1 noise must not enter governance scoring. EXQ-445h remains the valid MECH-260 support. Pending retest: V3-EXQ-603c with P0/P1 training phase (user-confirmed at gate 2026-05-25). Already ratified in claims.yaml (see governance-applies entries 2026-05-26/27); this write applies it to the manifest the indexer actually scores (GOV-APPLY-1, chip-20260828-govapply1-individual-rows).",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
