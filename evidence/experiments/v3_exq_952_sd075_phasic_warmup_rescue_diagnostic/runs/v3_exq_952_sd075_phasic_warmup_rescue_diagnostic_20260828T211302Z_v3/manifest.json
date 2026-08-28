@@ -1,0 +1,95 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic",
+  "run_id": "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-28T21:13:02Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "phasic_warmup_rescue_confirmed",
+    "preconditions": [
+      {
+        "name": "regulator_fires_at_all",
+        "kind": "capability",
+        "control": "max burst_level_max across the whole grid (positive control)",
+        "measured": 1.0,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "phasic_warmup_rescues_event_convergence",
+        "load_bearing": true,
+        "passed": true,
+        "measured_min_warmed_n_events_converged": 12,
+        "threshold": 10,
+        "control_n_events_converged_range": [
+          0,
+          3
+        ],
+        "offending_cell": {
+          "seed": 23,
+          "warmup_episodes": 40,
+          "n_events_converged": 12
+        }
+      }
+    ],
+    "criteria_non_degenerate": {
+      "phasic_warmup_rescues_event_convergence": true
+    },
+    "summary": "DIAGNOSTIC (not a MECH-063/SD-069 claim test). Answers the retest-design question SD-075's own implementation note left open: does AGENT TRAINING let the SD-075 carry-continuity convergence gate clear MIN_EVENT_TICKS=10 on n_events_converged, where an untrained agent (SD-075's own live smoke, and this probe's warmup=0 control) gets 0 in both continuity modes? phasic_warmup_rescue_confirmed = yes (a new-number MECH-063(ii) retest using carry mode + this warmup exposure is now evidence-supported, still a governance decision to queue it -- see the module docstring). phasic_warmup_rescue_insufficient = no (training exposure alone does not rescue the gate at this budget -- route to further /implement-substrate work on SD-075, not another lettered probe of the 779 lineage, which the confirmed failure_autopsy_V3-EXQ-779b_2026-07-19 re-derive brake already REFUSES). Neither outcome is evidence for or against MECH-063 or SD-069 -- CLAIM_IDS is deliberately empty; this measures substrate readiness, not the claim."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3996121e429272602c563aebb0fd245a65024e7aa94f3657102f3d751b263df2",
+  "substrate_commit": {
+    "commit": "8891dad61bd6a564eea75a16cd0a2efb72bd4262",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 14556,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
