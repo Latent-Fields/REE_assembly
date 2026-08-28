@@ -508,6 +508,41 @@ closure_plan:
         call the coordinator first) still waits on: (a) soak evidence (N
         days of GET /task_claim/drift showing diverged_ticks=0), and (b) a
         separate go-live confirmation. Building/testing does not.
+    - id: PHASE-4
+      title: "Hub-serialised commit intake for the REMAINING coordination files (WORKSPACE_STATE.md, claims.yaml, ledgers): clients submit intents, the hub is the one committer"
+      status: registered
+      severity: high
+      last_updated: 2026-08-28
+      note: >
+        USER-DIRECTED PRIORITY (2026-08-28): the second half of the
+        strategic picture. PHASE-2 moves the two claim/chip registries'
+        AUTHORITY to the hub; PHASE-4 generalises the WRITE PATH -- a hub
+        commit-intake service where a client POSTs an intent (paths +
+        content or structural append + message + base ref for CAS) and
+        the hub applies intents ONE AT A TIME onto origin tip, commits,
+        pushes. One serialising writer removes the entire concurrent-git
+        failure class (pathspec races, ref wedges, rebase locks,
+        read-modify-write sweeps) for every file routed through it, not
+        just the two registries. Append-shaped files (WORKSPACE_STATE
+        entries, RECOMMENDATION_LOG.jsonl, igw ledgers) serialise
+        trivially; whole-file editorial files (claims.yaml) use
+        CAS-at-the-hub -- a rejected intent returns the current content
+        for a fast client rebase, which replaces today's wedge with a
+        clean retry. NOT STARTED and deliberately sequenced AFTER the
+        PHASE-2 cutover ships: the cutover both proves the hub-writer
+        pattern in production and removes 73% of the commit traffic,
+        which shrinks PHASE-4's blast radius. Design doc first; section 4
+        of this plan ("do not assume the mechanism trivially extends")
+        still applies to claims.yaml content semantics -- PHASE-4 moves
+        the COMMIT, not the editorial judgement.
+        THE PAYOFF THE USER NAMES, recorded so scope stays aimed at it:
+        once writes serialise through the hub, the defensive apparatus
+        built for concurrent git -- the Concurrency Rules bulk of root
+        CLAUDE.md, the commit/ref/push guard hooks, the claim/wedge
+        boilerplate in skills and .claude config -- can be retired or
+        drastically shrunk (PHASE-3's rewrite, now with a much larger
+        surface), directly reducing per-session and per-turn context
+        burn.
     - id: PHASE-3
       title: "Harden: monitoring, CLAUDE.md rewrite to reflect the new default, decommission what is safe to decommission"
       status: not-started
