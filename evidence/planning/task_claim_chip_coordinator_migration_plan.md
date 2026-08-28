@@ -651,11 +651,34 @@ closure_plan:
         burn.
     - id: PHASE-3
       title: "Harden: monitoring, CLAUDE.md rewrite to reflect the new default, decommission what is safe to decommission"
-      status: not-started
+      status: in-progress
       severity: medium
-      last_updated: 2026-08-26
+      last_updated: 2026-08-28
       note: >
-        Only after PHASE-2 has run in production long enough to trust it.
+        CLAUDE.md REWRITE LANDED 2026-08-28 (REE_Working 7914a203, session
+        elated-nobel-914234, chip
+        chip-20260828-phase3-claudemd-registry-doctrine-shrink): new
+        "coordinator-authoritative (cutover 2026-08-28)" section at the top of
+        Concurrency Rules; TASK_CLAIMS/TASK_CHIPS removed from the exposed-files
+        list and the shared-files re-read rule; arbitration re-stated as a lock
+        on coordinator-mode boxes (best-effort on the git fallback only);
+        open/close/dedupe/chip-record semantics conditioned on transport;
+        GOV-HELDOUT-1 run on 4 non-degenerate cases, all pass. Fallback doctrine
+        retained per this node, only conditioned. Settings-hook audit: the ONLY
+        registry-specific client hook (protect_task_claims_hand_edit.py) is
+        KEPT -- hand-edits are more wrong post-cutover, not less. Same commit
+        also removed the clinical-hours guard entirely (separate, explicit user
+        decision 2026-08-28 -- not a PHASE-3 decommission; recorded here because
+        it shared the commit). Found + contained live post-cutover defect: a
+        plain test_hygiene_routine_tick.py run on a suppression-armed box leaked
+        all 21 fixture chips into the production DB (fixtures redirect the chips
+        FILE but not the transport); chips withdrawn same hour, test file now
+        pins TASK_CLAIM_COORDINATION_MODE=git at import; corpus-wide sweep for
+        the same shape chipped. REMAINING for PHASE-3: monitoring hardening,
+        skill-text sweep for stale registry-write narration ((f)/(g) in the
+        PHASE-2 node), and any further decommissioning -- most of the standing
+        doctrine shrink is deliberately deferred to PHASE-4's larger surface.
+        Prior (unchanged): Only after PHASE-2 has run in production long enough to trust it.
         Update root CLAUDE.md's Concurrency Rules section to describe the new
         default transport (many of today's documented hazards -- pathspec
         races, ref-move skew, rebase-lock contention, read-modify-write
