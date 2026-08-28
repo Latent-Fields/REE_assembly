@@ -1115,9 +1115,9 @@
       "summary": "CLAIM-TAGGING GAP: claims with completed runs are invisible to governance. Verified absent from claim_evidence.v1.json: MECH-343, SD-061, MECH-235, SD-069, SD-050. Two of them HAVE completed runs -- V3-EXQ-694 (SD-061 readiness diagnostic, PASS 2026-06-19) declared claim_ids: [], and V3-EXQ-779/779a/779b (SD-069) all tag claim_ids ['MECH-063'] only. SD-050 has four runs (V3-EXQ-515/516/517c/517d) all tagged ['MECH-302'] only, filing DETECTOR evidence against the PIPELINE claim. This is a tagging gap, not an evidence gap; the join key is the driver script's module-level CLAIM_IDS constant, so the fix is a script edit via /queue-experiment.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:28Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-28T21:08:23Z",
+      "resolution_note": "ree-v3 8891dad6 (main): fixed the driver-level tagging gap by adding SD-069 to V3-EXQ-779/779a/779b CLAIM_IDS (alongside MECH-063) and SD-050 to V3-EXQ-515/516/517c/517d CLAIM_IDS (alongside MECH-302). MECH-343 and MECH-235 were confirmed to have no runs at all (out of scope -- not a tagging issue). validate_experiments.py --strict passed on 779/779a/779b; the 515/516/517c/517d non-conformance warnings (missing emit_outcome, missing degeneracy self-report) are pre-existing and unrelated to this edit (diff-confirmed, touched only the CLAIM_IDS line + a comment). Existing manifests were deliberately left un-retro-edited per the driver-fixes-forward convention. OPEN FOLLOW-ON for /governance: decide whether to re-attribute the historical manifests (V3-EXQ-694, 779/779a/779b, 515/516/517c/517d) so their already-completed evidence is visible in claim_evidence.v1.json for SD-050/SD-061/SD-069 now, rather than waiting for a future re-run."
     },
     {
       "flag_id": "GFLAG-0078",
