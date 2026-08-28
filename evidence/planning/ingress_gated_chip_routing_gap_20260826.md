@@ -246,3 +246,73 @@ WITHHELD branch to attempt a hand-off to the Mac via SSH when a chip is ingress-
 falling back to the existing WITHHELD-and-report behavior if the Mac is unreachable
 or its own memory floor is exceeded (do not let a cloud dispatcher pile work onto an
 already-constrained Mac blind to its load -- read `mac_dispatch_load.json` first).
+
+---
+
+## RESOLVED 2026-08-28 — none of (a)/(b)/(c) was needed; the premise was false
+
+**The 2026-08-26 decision above is SUPERSEDED and its pending action is now
+MOOT. Do NOT add the cloud fleet's SSH keys to the Mac's
+`~/.ssh/authorized_keys` on the strength of this document** — that grant was
+proposed to work around a limitation that does not exist. No security change
+is required, and none was made.
+
+**What this whole investigation missed.** Every option weighed above accepts
+the premise that a box without `REE_assembly/coordinator.env` "cannot finish"
+a `/queue-experiment` deliverable. `POST /queue/add` is only ONE of two
+supported ingresses. A **git commit that ADDS an item to
+`experiment_queue.json` is a first-class ingress**, reconciled into the
+coordinator DB by `sync_daemon.py` on its ~5-minute tick. That daemon's own
+docstring says so plainly:
+
+> "Operator hand-edits to the file MUST be additions only (use `POST
+> /queue/remove` to drop items via the coordinator)"
+
+and, of the V3-EXQ-728a incident:
+
+> "`POST /queue/add` already 409s on exactly this case — it did not fire
+> because **the ingress was a git commit reconciled in**, not the HTTP
+> endpoint."
+
+**Ground truth, measured the same night this was resolved.** `V3-EXQ-952` was
+authored and committed by a metaworker on `ree-cloud-4` — a box with no
+`coordinator.env` — reconciled into the DB, was claimed by `ree-cloud-2`, ran,
+and reached `status=completed`. Confirmed by direct query of
+`coordinator.db`. No token appeared anywhere in that path.
+
+**Why the git path was previously considered unsafe, and why it no longer
+is.** The stated objection was that a git commit "looks exactly like success"
+with no way to confirm the entry reached the DB. It can be confirmed without
+credentials: `phase3_queue_writer` re-materialises `experiment_queue.json`
+*from the DB* every ~5 minutes, so an entry that is still present after the
+next snapshot has reconciled, and one that has vanished was REFUSED and will
+not run. That is the hub's own terminal-row refusal observed from outside —
+confirmed firing live at 2026-08-28T21:16:33Z.
+
+**The corrected rule (landed `REE_Working` `5575aae6`)** splits capability by
+DELIVERABLE rather than by box:
+
+| deliverable | needs `coordinator.env`? |
+|---|---|
+| ADD a new queue entry | **No** — git commit reconciles in |
+| REMOVE / cancel an entry | **Yes** |
+| Re-use a queue_id holding a TERMINAL DB row | **Yes** (or `force_rerun: true`) |
+
+The Step 1 verdict was renamed `INGRESS-CAPABLE` -> `HTTP-INGRESS-CAPABLE`,
+because the old name is what made "this box cannot queue" sound like a fact
+about the box rather than about one transport.
+
+**Cost of the false premise**, from this document's own evidence appendix:
+`chip-20260814-queue-causal-sleep-matched-arm` withheld across 148 logged
+cycles / 12 days; `mech492-falsifier-queue` and `e1-rollout-horizon-sweep-probe`
+withheld from their first eligible cycle onward with no worktree ever created;
+2102 `INGRESS-INCAPABLE` lines in a single box's dispatch log. All of that
+work was dispatchable the entire time.
+
+**Method note worth keeping.** The investigation above is thorough and its
+per-option reasoning is sound; it went wrong at a single unexamined
+assumption inherited from the gate's own wording, and then evaluated three
+expensive remedies downstream of it. The check that would have caught it is
+cheap and general: *before accepting that a capability is absent, query the
+system for a case where it nonetheless succeeded.* One `SELECT ... FROM
+experiments` against the coordinator DB refuted twelve days of withholding.
