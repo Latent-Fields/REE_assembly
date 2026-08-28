@@ -1,48 +1,60 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-28T12:38:04Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-603v",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-937b",
-      "result": "PASS",
-      "completed_at": "2026-08-19T14:24:34.057795+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-946",
-      "result": "PASS",
-      "completed_at": "2026-08-23T07:50:19.926652+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-948",
-      "result": "PASS",
-      "completed_at": "2026-08-25T14:21:16.591042+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-944b",
-      "result": "PASS",
-      "completed_at": "2026-08-25T20:57:39.492972+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-950",
-      "result": "PASS",
-      "completed_at": "2026-08-26T12:25:27.039529+00:00"
-    }
+  "last_tick_utc": "2026-08-28T20:36:10Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-952",
+  "current_exq_started_utc": "2026-08-28T20:31:30.394638+00:00",
+  "current_title": "SD-075 phasic-warmup-rescue diagnostic (readiness probe for a future MECH-063(ii) retest)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 29 / warmup0",
+    "runs_done": 2,
+    "runs_total": 6,
+    "episodes_done": 100,
+    "episodes_total": 600,
+    "overall_pct": 36.1
+  },
+  "seconds_elapsed": 280,
+  "seconds_remaining": 763,
+  "recent_lines": [
+    "Seed 11 Condition warmup0",
+    "[warmup] seed=11 warmup_episodes=0 starting",
+    "[warmup] v3_exq_952 cell1/6 seed=11 MISS -- training 0 episodes",
+    "probe_warmup cache: 2 attr(s) are unpicklable and are NOT cached: e1.transition_rnn._flat_weight_refs, hippocampal._rng",
+    "[train] warmup0 seed=11 ep 1/600 env-steps (episode 1) event_ticks=0",
+    "[train] warmup0 seed=11 ep 100/600 env-steps (episode 2) event_ticks=65",
+    "[train] warmup0 seed=11 ep 200/600 env-steps (episode 4) event_ticks=75",
+    "[train] warmup0 seed=11 ep 300/600 env-steps (episode 5) event_ticks=79",
+    "[train] warmup0 seed=11 ep 400/600 env-steps (episode 6) event_ticks=79",
+    "[train] warmup0 seed=11 ep 500/600 env-steps (episode 7) event_ticks=97",
+    "[train] warmup0 seed=11 ep 600/600 env-steps (episode 8) event_ticks=97",
+    "verdict: FAIL",
+    "Seed 23 Condition warmup0",
+    "[warmup] seed=23 warmup_episodes=0 starting",
+    "[warmup] v3_exq_952 cell2/6 seed=23 MISS -- training 0 episodes",
+    "probe_warmup cache: 2 attr(s) are unpicklable and are NOT cached: e1.transition_rnn._flat_weight_refs, hippocampal._rng",
+    "[train] warmup0 seed=23 ep 1/600 env-steps (episode 1) event_ticks=0",
+    "[train] warmup0 seed=23 ep 100/600 env-steps (episode 15) event_ticks=19",
+    "[train] warmup0 seed=23 ep 200/600 env-steps (episode 29) event_ticks=19",
+    "[train] warmup0 seed=23 ep 300/600 env-steps (episode 43) event_ticks=19",
+    "[train] warmup0 seed=23 ep 400/600 env-steps (episode 58) event_ticks=19",
+    "[train] warmup0 seed=23 ep 500/600 env-steps (episode 72) event_ticks=19",
+    "[train] warmup0 seed=23 ep 600/600 env-steps (episode 87) event_ticks=19",
+    "verdict: FAIL",
+    "Seed 29 Condition warmup0",
+    "[warmup] seed=29 warmup_episodes=0 starting",
+    "[warmup] v3_exq_952 cell3/6 seed=29 MISS -- training 0 episodes",
+    "probe_warmup cache: 2 attr(s) are unpicklable and are NOT cached: e1.transition_rnn._flat_weight_refs, hippocampal._rng",
+    "[train] warmup0 seed=29 ep 1/600 env-steps (episode 1) event_ticks=0",
+    "[train] warmup0 seed=29 ep 100/600 env-steps (episode 1) event_ticks=86"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r5441 4cfe2f0 2026-08-28 (running r5432 8bfcf19)",
+  "runner_version": "r5450 899cd0c 2026-08-28 (running r5432 8bfcf19)",
   "gpu": {
     "available": false
   },
