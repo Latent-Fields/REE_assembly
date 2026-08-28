@@ -68815,6 +68815,12 @@
                       # prerequisite -- confirmed by all being independently
                       # testable/tested on V3 substrate without it. Set 2026-08-10 per
                       # chip chip-20260810-phase-consistency-reconciliation.
+                      # UPDATE 2026-08-28 (chip-20260827-litpull-imagination-licitness):
+                      # two more V3 claims now depend_on this, MECH-525/MECH-526 -- same
+                      # false-positive shape as above (and as MECH-487 -> ARC-085, see
+                      # that claim's own notes): both audit already-built V3 mechanisms
+                      # (MECH-272/273/094/439), using ARC-092 only as the conceptual
+                      # parent principle, not a build prerequisite. Not reclassified.
   version_relevance: v4_v5
   claim_level: architectural
   registered_utc: 2026-06-10
