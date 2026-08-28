@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_092_imagination_learning_constraint",
+  "entry_id": "2026-08-28_arc_092_rem_creativity_priming_cai2009",
+  "timestamp_utc": "2026-08-28T20:32:01Z",
+  "claim_ids_tested": ["ARC-092"],
+  "source": {
+    "title": "REM, not incubation, improves creativity by priming associative networks",
+    "authors": ["Denise J. Cai", "Sarnoff A. Mednick", "Elizabeth M. Harrison", "Jennifer C. Kanady", "Sara C. Mednick"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.0900271106",
+    "pmid": "19506253",
+    "pmc": "PMC2700890",
+    "volume": "106",
+    "issue": "25",
+    "pages": "10130-10134"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "A well-powered, well-cited within-subjects nap-paradigm study with a direct, specific dissociation (REM vs NREM vs quiet-rest) that maps cleanly onto the LICIT schema-integration claim's mechanism (offline restructuring of associative structure without new item-level knowledge). Confidence held below 0.8 because RAT priming is a laboratory analogue for 'schema integration', not a direct measurement of REE's internal representations, and the paper does not itself address the FORBIDDEN side of ARC-092 (durable world-model update).",
+  "failure_signatures": [
+    "If REM-dependent creative integration turned out to require conscious dream recall or explicit item-memory improvement, this would weaken the claim that the effect is a non-declarative associative-network change rather than ordinary memory strengthening -- the paper's own recognition-memory control rules this out for the reported effect, which is why it counts as support rather than a confound."
+  ],
+  "tags": ["arc-092", "imagination", "sleep", "rem", "schema-integration", "consolidation", "creativity"],
+  "mapping": {
+    "source_claim_statement": "Using a nap paradigm and the Compound Remote Associates Test (RAT), participants solved more previously-unsolvable RAT problems after a REM-sleep nap than after quiet wake or a non-REM nap, when the problem's answer words had been passively pre-exposed (primed) before the nap. The REM group's advantage was specific to primed items and was not explained by improved explicit memory for the primed words themselves (a separate recognition test showed no REM advantage there).",
+    "ree_translation": "This is a clean biological instance of ARC-092's LICIT category #3 (schema integration): sleep-dependent, imagination/dream-adjacent processing (REM is the sleep stage richest in dream-like internally generated content) restructures associative connections among ALREADY-ENCODED, waking-derived material (the primed words) to make a previously latent relation available -- it does not implant new facts or validate new world-model predictions, and explicit item memory (the closest behavioral proxy for 'durable knowledge update') is unaffected. This is the empirical shape MECH-272/MECH-273's offline self-model aggregation is meant to reproduce: schema-level recombination of waking-derived primitives, with no confabulated novel content and no smuggled-in memory-strength gain for the imagined/replayed material itself.",
+    "mapping_caveat": "The RAT is a laboratory proxy for 'schema integration'; it measures verbal associative restructuring in humans, not REE's specific schema/prototype substrate. The paper does not test or speak to the FORBIDDEN side of ARC-092 (whether REM-stage processing ever leaks into durable world-model or policy parameters) -- it is LICIT-side evidence only, and REE's own write-gate (MECH-094) rather than this paper is what would need to hold for the FORBIDDEN side to be respected during an analogous consolidation phase.",
+    "source_context": "Healthy young adult humans; controlled nap paradigm (60-90 min naps with polysomnography to confirm sleep stage) vs. equivalent-duration quiet rest; within- and between-subjects RAT problem-solving task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality, highly-cited PNAS study with polysomnographically-confirmed sleep staging and an explicit memory-strength control condition. Mapping fidelity is moderate: RAT associative priming is a plausible but indirect behavioral analogue for 'schema integration of waking-derived primitives', not a mechanistic measurement of a computational schema-update operation. Transfer risk reflects the human-verbal-associative-cognition -> artificial-agent-schema-substrate gap."
+  }
+}

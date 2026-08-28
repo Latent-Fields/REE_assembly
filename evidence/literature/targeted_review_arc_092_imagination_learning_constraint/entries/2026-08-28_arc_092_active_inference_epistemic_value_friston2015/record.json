@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_092_imagination_learning_constraint",
+  "entry_id": "2026-08-28_arc_092_active_inference_epistemic_value_friston2015",
+  "timestamp_utc": "2026-08-28T20:32:01Z",
+  "claim_ids_tested": ["ARC-092"],
+  "source": {
+    "title": "Active inference and epistemic value",
+    "authors": ["Karl Friston", "Francesco Rigoli", "Dimitri Ognibene", "Christoph Mathys", "Thomas Fitzgerald", "Giovanni Pezzulo"],
+    "year": 2015,
+    "venue": "Cognitive Neuroscience",
+    "doi": "10.1080/17588928.2015.1020053",
+    "pmid": "25689102",
+    "volume": "6",
+    "issue": "4",
+    "pages": "187-214"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The canonical formal derivation of why simulated/counterfactual rollouts can rationally drive POLICY SELECTION (choosing which action to take) without that use constituting a generative-model (world-model) update -- exactly the distinction ARC-092 draws between LICIT plan optimisation/counterfactual exploration and FORBIDDEN durable world-model update. Held below 0.8 because it is a normative/computational-level derivation, not an empirical demonstration that biological or artificial systems actually respect the boundary, and REE's own architecture is only loosely (not formally) an active-inference implementation.",
+  "failure_signatures": [
+    "The formal separation between policy-evaluation use of expected free energy and generative-model parameter updates only holds if the implementation actually keeps them as distinct operations -- a system that lets policy-selection rollouts write back into the same parameters used for perception/world-modeling would violate the theoretical distinction this paper relies on, which is precisely the FORBIDDEN-side failure mode ARC-092 is designed to catch."
+  ],
+  "tags": ["arc-092", "imagination", "active-inference", "epistemic-value", "expected-free-energy", "exploration", "counterfactual"],
+  "mapping": {
+    "source_claim_statement": "Under active inference, agents select policies (action sequences) to minimize EXPECTED free energy, a quantity evaluated over counterfactual (not-yet-enacted) futures. Expected free energy decomposes into an extrinsic (pragmatic/reward-seeking) term and an epistemic (intrinsic, information-seeking) term: the epistemic term quantifies the expected reduction in uncertainty about hidden states of the world that a policy's imagined outcomes would provide. Crucially, this evaluation is performed entirely within the agent's existing generative model -- imagining a policy's likely outcomes to score it does not itself change the model's parameters; the model is updated only afterward, from real (enacted, observed) outcomes, via ordinary perceptual/parameter inference.",
+    "ree_translation": "This is the formal grounding for ARC-092's claim that counterfactual exploration is LICIT when its output is a prior for future testing (a policy preference / value estimate) rather than knowledge (a world-model parameter change). REE's E3 candidate evaluation -- scoring differentiated imagined futures to select among them -- is architecturally the same move as expected-free-energy policy scoring: the imagined rollouts inform WHICH action to take (an epistemic/pragmatic value computation over hypotheses) without themselves being treated as observed data that updates the world model. MECH-094's write-gate is the architectural enforcement of exactly the separation this paper's math assumes: imagined-outcome evaluation feeds the policy-selection pathway, and only real post-action observations feed the generative-model-update pathway.",
+    "mapping_caveat": "This is a normative, computational-level theory paper, not an empirical test of any biological or artificial system actually respecting the separation -- it says what a free-energy-minimizing agent SHOULD do, not evidence that REE (which is not a strict active-inference implementation) does so correctly. Applying it to REE requires treating E3's candidate-scoring loop as functionally analogous to expected-free-energy policy evaluation, which is an architectural analogy rather than a formal equivalence.",
+    "source_context": "Theoretical/computational neuroscience; formal derivation with illustrative simulations of exploratory behavior (e.g. saccadic/visual foraging) under the active inference framework; not a REE-specific or biological-recording study."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Highly-cited, foundational formal treatment (Friston and colleagues) of exactly the distinction ARC-092 needs -- but it is a theory/derivation paper, not empirical, and REE's substrate is only architecturally analogous to active inference, not a literal implementation, which caps mapping fidelity and raises transfer risk somewhat."
+  }
+}

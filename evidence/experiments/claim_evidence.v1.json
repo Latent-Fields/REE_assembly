@@ -8019,6 +8019,97 @@
         "literature": 6
       }
     },
+    "ARC-092": {
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.745",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:theoretical_review": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "exp_posterior": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "ci_high": 0.975,
+        "ci_low": 0.025,
+        "mean": 0.5,
+        "n_entries": 0,
+        "n_support_w": 0.0,
+        "n_weaken_w": 0.0
+      },
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-08-28_arc_092_rem_creativity_priming_cai2009",
+      "latest_timestamp_utc": "2026-08-28T20:32:01Z",
+      "lit_posterior": {
+        "alpha": 2.38,
+        "beta": 1.0,
+        "ci_high": 0.9894,
+        "ci_low": 0.2123,
+        "mean": 0.7041,
+        "n_entries": 2,
+        "n_support_w": 1.38,
+        "n_weaken_w": 0.0
+      },
+      "literature_confidence": 0.745,
+      "literature_confidence_parallel": 0.745,
+      "overall_confidence": 0.745,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-092",
+          "confidence": 0.7,
+          "confidence_rationale": "The canonical formal derivation of why simulated/counterfactual rollouts can rationally drive POLICY SELECTION (choosing which action to take) without that use constituting a generative-model (world-model) update -- exactly the distinction ARC-092 draws between LICIT plan optimisation/counterfactual exploration and FORBIDDEN durable world-model update. Held below 0.8 because it is a normative/computational-level derivation, not an empirical demonstration that biological or artificial systems actually respect the boundary, and REE's own architecture is only loosely (not formally) an active-inference implementation.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_092_imagination_learning_constraint",
+          "failure_signatures": [
+            "The formal separation between policy-evaluation use of expected free energy and generative-model parameter updates only holds if the implementation actually keeps them as distinct operations -- a system that lets policy-selection rollouts write back into the same parameters used for perception/world-modeling would violate the theoretical distinction this paper relies on, which is precisely the FORBIDDEN-side failure mode ARC-092 is designed to catch."
+          ],
+          "run_id": "2026-08-28_arc_092_active_inference_epistemic_value_friston2015",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-08-28T20:32:01Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-092",
+          "confidence": 0.68,
+          "confidence_rationale": "A well-powered, well-cited within-subjects nap-paradigm study with a direct, specific dissociation (REM vs NREM vs quiet-rest) that maps cleanly onto the LICIT schema-integration claim's mechanism (offline restructuring of associative structure without new item-level knowledge). Confidence held below 0.8 because RAT priming is a laboratory analogue for 'schema integration', not a direct measurement of REE's internal representations, and the paper does not itself address the FORBIDDEN side of ARC-092 (durable world-model update).",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_arc_092_imagination_learning_constraint",
+          "failure_signatures": [
+            "If REM-dependent creative integration turned out to require conscious dream recall or explicit item-memory improvement, this would weaken the claim that the effect is a non-declarative associative-network change rather than ordinary memory strengthening -- the paper's own recognition-memory control rules this out for the reported effect, which is why it counts as support rather than a confound."
+          ],
+          "run_id": "2026-08-28_arc_092_rem_creativity_priming_cai2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-08-28T20:32:01Z"
+        }
+      ],
+      "runs_total": 2,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 2
+      }
+    },
     "ARC-093": {
       "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.765",
       "direction_counts": {
