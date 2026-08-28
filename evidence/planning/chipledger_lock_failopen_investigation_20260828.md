@@ -261,3 +261,75 @@ The harness landed here demonstrates the defect and is deliberately kept out of
 Not applicable: this document changes no standing rule, skill or workflow. It
 records a measurement and chips a code fix. The rule-facing consequence — if any
 — belongs to the fix chip, and should carry its own held-out check there.
+
+---
+
+## Addendum, 2026-08-28T06:35Z -- interaction with the remote-tip wedge gate
+
+Recorded after the fact by the same session, from a handover by
+`rc-remotetip-gate-20260828` (the session that owned `scripts/chip_ledger.py`
+at the time and shipped the gate change). It **corrects the emphasis of
+recommendation 4 above**, so read the two together.
+
+Recommendation 4 said "fix the wedge; not a substitute for 1 and 2". That is
+right but under-specified about *how much* of the exposure the wedge accounts
+for. The owner's mechanism-level answer, which agrees with finding 3 and then
+bounds it honestly:
+
+* **What the gate change does.** `remote_tip_is_default()` in both
+  `chip_ledger.py` and `task_claim.py` now gates on
+  `_local_branch_is_ahead() and not _checkout_is_wedged()` (new module-level
+  predicate, lazy-guarded `import ref_convergence`, reading the same
+  `wedge_report()` entry point `--check` exits 4 on, failing closed to `False`
+  on any "cannot tell"). On a wedged box every mutation currently takes
+  push-reject -> cherry-pick -> faithfulness proof; the gate removes exactly
+  that path, so hold times on a wedged box should collapse toward the unwedged
+  case. Confirmed live on DLAPTOP at the time of writing: master ahead 43,
+  8.3 h, `ref_convergence` reports wedged, and the new predicate returns True
+  in both modules -- so the latch this removes was real on this box.
+* **What it does NOT do, and this is the part not to lose.** It does not touch
+  the 180 s bound, the 10.0 MB / ~15 s-per-`record` cost, the ~30% clobberable
+  pre-write window, or the clobber mechanism itself. A busy *unwedged* box with
+  enough queued mutations still reaches the timeout, and the reproduction above
+  would still be 6/6. **It should cut the trigger RATE for one trigger. It
+  changes nothing about the loss being reachable.**
+
+**So the correct reading of finding 3 is now:** the wedge is very likely why all
+four observed fail-opens landed inside it, and removing the wedge-driven latch
+is worth having on its own -- but "no fail-opens observed" after this lands is
+evidence about **how much of the exposure was wedge-driven**, not evidence that
+the lock is safe. Recommendations 1 and 2 stand unchanged.
+
+### Re-measurement this licenses (owned by this investigation, not by the fix)
+
+Once the gate change is on `origin/master`, re-run the production half of the
+method above and compare against this document's baseline:
+
+```bash
+/usr/bin/grep -c "PROCEEDING UNLOCKED" ~/Library/Logs/ree_hygiene_tick.launchd.log
+```
+
+Baseline here: **4**, all on 2026-08-27, all inside the wedge. A later count
+that stays at 4 over a comparable busy period is the wedge-driven-exposure
+result; a count that keeps rising on an unwedged box is direct evidence for
+recommendation 2 (do not fail open against a live holder) and should be
+attached to that chip. Note the log is Mac-local and rotating, so record the
+observation window alongside the count rather than treating the number as
+cumulative.
+
+### Two testing notes handed over with it, both worth acting on
+
+1. **A machine-state-dependent test existed and passed by luck.**
+   `RemoteTipAheadGateTest` stubbed only `_local_branch_is_ahead`, so once a
+   second predicate was added the class read the **real umbrella repo** and
+   passed or failed depending on whether the box happened to be wedged. Now
+   stubbed. Generalises: **when adding a predicate to one of these resolution
+   paths, stub every predicate the path consults**, or the suite silently
+   becomes a function of the machine it runs on.
+2. **`python3 scripts/test_task_claim_remote_tip.py` reports "Ran 15 tests OK"
+   where pytest collects 24 and fails one.** This is exactly the first vacuity
+   trap CLAUDE.md documents for the umbrella corpus ("Do not build a runner on
+   `python3 <file>`"), met in the wild on a file nobody had flagged. Use
+   `scripts/run_scripts_tests.sh` from the MAIN CHECKOUT; a green script-exec
+   run of that file is not a verdict. The one pytest failure needs attributing
+   to pre-existing-vs-introduced before it is read either way.
