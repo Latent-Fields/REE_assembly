@@ -620,7 +620,38 @@ closure_plan:
       severity: high
       last_updated: 2026-08-28
       note: >
-        USER GO-AHEAD 2026-08-28 (session elated-nobel-914234): build PHASE-4.
+        FIRST SLICE SHIPPED + DESIGN DOC WRITTEN 2026-08-28 (session
+        responsibility-epistemic-hygiene-d6f9d3). The WORKSPACE_STATE.md
+        append intake is BUILT, TESTED and DEPLOYED: server ree-v3
+        7bef34181b (POST /workspace_state/append + GET
+        /workspace_state/pending, workspace_state_entries spool,
+        render_workspace_state splice-only materialization in the
+        registry writer tick with conservation/size/entry-count guards,
+        21 new contracts; full coordinator suite 767 passed on the hub),
+        client REE_Working b7da7e54 (coordinator-first branch in
+        append_workspace_state_entry.py + append_workspace_state /
+        suppress_workspace_state_git_write in coordinator_transport.py --
+        a SEPARATE cutover flag from the registry suppression, default
+        OFF = dual-write soak; 8 new contracts). Hub writer confirmed
+        ticking the new code live ("ws: pending=0 ... committed=False").
+        ACTIVATION IS ONE PENDING STEP: the running coordinator daemon
+        predates the commit, so the endpoints 404 until the next
+        USER-AUTHORISED restart (clients degrade to git on exactly that,
+        so nothing is waiting unsafely). The full-scope design the
+        withdrawn chip carried is now written:
+        evidence/planning/phase4_commit_intake_design.md -- intent model
+        (typed appends + one allowlisted CAS verb, no generic
+        byte-intake), ree_commit.py client lever with the
+        guarantees-moved table, per-file routing table, option C SETTLED
+        (queue = typed verbs only, file intents refused), hub-writer
+        serialisation (DP-6), scope-gating as hard requirement (DP-10,
+        coordinating with the cool-sutherland corpus sweep), windowed
+        soak criteria incl. total-ticks clause, decommission payoff
+        ledger, 11 design problems, and slice sequencing (next:
+        restart -> WS soak -> flag flip -> RECOMMENDATION_LOG append ->
+        ree_commit CAS branch for claims.yaml). Resume from that doc's
+        section 10.
+        Prior (unchanged): USER GO-AHEAD 2026-08-28 (session elated-nobel-914234): build PHASE-4.
         Work began the same hour -- session responsibility-epistemic-hygiene-d6f9d3
         is building the WORKSPACE_STATE append-endpoint slice (TASK_CLAIMS
         17:32Z). A full-scope design-doc chip
