@@ -454,28 +454,68 @@ closure_plan:
           fidelity, trailing-newline tolerance. 131 existing task_claim/
           chip coordinator tests green, zero regressions.
 
+        (c) CLIENT GIT-WRITE SUPPRESSION: BUILT AND LANDED 2026-08-28
+        (REE_Working 3f6cfa5dd7, committed 13:33:50Z, session
+        coordinator-suppression-20260828). task_claim.py + chip_ledger.py
+        gain coordinator_suppression_armed() (transport enabled AND
+        coordinator_transport.suppress_git_write()); each verb with a
+        coordinator transport skips its local write+commit+push ONLY on
+        its own per-verb ack allowlist -- open: ok/idempotent; close:
+        ok/already_closed; chip record: ok/idempotent; chip
+        claim/resolve/unclaim: ok -- and degrades byte-identically to the
+        git path on EVERY other outcome (transport down, HTTP error,
+        ambiguous, not_found, ref_collision, terminal_conflict). Verbs
+        with no transport (amend/renew/dedupe on claims; attach,
+        amend-prompt, declare/verify-handoff, archive on chips) are never
+        suppressed, nor is a resolve carrying a confirmer verdict or
+        --handoff-pending (no DB representation). Durability contract in
+        both docstrings: the coordinator 200 IS the ack; origin-reach
+        checks apply only to the fallback. Open's post-suppression
+        contention re-read of the GIT file is retained (catches rivals on
+        degraded git-path boxes; additive-refusal only). 29 new contracts
+        (scripts/test_task_claim_git_suppression.py) + 15 affected suites
+        re-run green (264 tests, incl. both coordinator-branch pin
+        suites and the remote-tip wedge-gate suite).
+
         STILL OPEN, and the ACTUAL CUTOVER still waits on all of it:
-        (a) soak evidence -- TWO soaks now: the PHASE-1 windowed drift
+        (a) soak evidence -- TWO soaks: the PHASE-1 windowed drift
         criterion (section 10 item 3) AND the materializer check-mode soak
         (journalctl -u ree-task-claim-chip-git-writer: chips_match=True
-        and claims_delta never showing +added is the healthy signature);
-        (b) a separate human go-live confirmation; (c) the CLIENT
-        git-write suppression branch in task_claim.py/chip_ledger.py
-        (skip the local write+commit+push when the coordinator write
-        succeeded AND a suppression flag is set; fall back to the full
-        git path on any coordinator failure) -- NOT yet built, blocked
-        2026-08-28 behind an active rival claim on those two files
-        (rc-remotetip-gate-20260828); (d) client env wiring (mode flag +
-        URL + token) for the THREE machines that write these files: the
-        Mac (interactive sessions + launchd ticks), ree-cloud-5 (the
-        metaworker dispatcher), and ree-cloud-4 (the resident
+        and claims_delta never showing +added is the healthy signature;
+        still clean as of 2026-08-28T13:19Z);
+        (b) a separate human go-live confirmation; (d) client env wiring
+        (mode flag + URL + token) for the THREE machines that write these
+        files: the Mac (interactive sessions + launchd ticks), ree-cloud-5
+        (the metaworker dispatcher), and ree-cloud-4 (the resident
         metaworker-dispatch box -- its dispatched headless chip sessions
         open/close claims when it is in that mode; user-confirmed
         2026-08-28). All three verified reachable to 10.8.0.1:8787 with
         tokens already in the coordinator roster. The
         ~/.ree_coordinator_client.json config file (coordinator_transport
-        0d3dcc94b8) is the per-machine switch on each.
+        0d3dcc94b8) is the per-machine switch on each -- add
+        "suppress_git_write": true to arm the (c) branch at flip time.
         (e) DEPLOYMENT of the endpoints IS DONE -- see below.
+
+        POST-CUTOVER FOLLOW-ONS registered from user direction 2026-08-28
+        (recorded here so the flip does not read as the finish line):
+        (f) MCP TIDY -- scripts/mcp_server.py wraps these CLIs, so it
+        inherits suppression for free, but its tool descriptions still
+        narrate the git-write semantics; update them to describe the
+        coordinator-ack semantics once the flip lands, and consider
+        direct-coordinator read tools (check/list) that skip subprocess
+        overhead entirely.
+        (g) CHIP-LEDGER END-STATE AUDIT -- once the new system is
+        established, sweep TASK_CHIPS.json's OPEN chips and update /
+        withdraw / re-point every task whose premise the migration
+        changed (git-wedge machinery chips, hook-gating chips,
+        commit-race chips, and any chip whose prompt hardcodes the
+        pre-cutover write path). User-directed 2026-08-28; do it as its
+        own session with a claim on TASK_CHIPS.json.
+        (h) FRICTION-REDUCTION PROPOSAL -- a consolidated
+        github-process-friction proposal (what PHASE-4 absorbs, what
+        CLAUDE.md/hook machinery it retires, what stays) was requested by
+        the user 2026-08-28 and is delivered in the takeover session's
+        report; PHASE-3/PHASE-4 nodes are its plan-side anchors.
 
         DEPLOYED 2026-08-27, shortly after the build landed: the user
         authorised the coordinator restart and the orchestrator session
