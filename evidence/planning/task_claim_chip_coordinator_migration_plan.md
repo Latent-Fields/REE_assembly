@@ -620,6 +620,18 @@ closure_plan:
       severity: high
       last_updated: 2026-08-28
       note: >
+        ACTIVATED + SOAKING 2026-08-28T18:26Z: the user authorised the
+        coordinator restart; /workspace_state/append and /pending answer 200.
+        End-to-end dual-write verified live within minutes: entry_id 1
+        (client_git_write=1) POSTed by the canonical append tool, git-appended
+        and pushed (REE_Working 986203eefc), and marked materialized by the
+        writer's next tick ~60s later. The umbrella shared checkout was also
+        reconverged to origin/master in the process (5 stranded
+        recommendation: commits content-audited and cherry-picked, 9
+        proven-false-negative shas acknowledged via safe_adopt_ref) -- the
+        stale canonical scripts/ had been silently keeping the coordinator
+        branch inert. Soak evaluation + flag flip:
+        chip-20260828-phase4-ws-soak-eval-flag-flip.
         FIRST SLICE SHIPPED + DESIGN DOC WRITTEN 2026-08-28 (session
         responsibility-epistemic-hygiene-d6f9d3). The WORKSPACE_STATE.md
         append intake is BUILT, TESTED and DEPLOYED: server ree-v3
