@@ -862,9 +862,9 @@
       "summary": "The 2026-06-06 cluster-autopsy reading ('world_dim=32 lacks discriminative granularity') is refuted, not merely retested, by its own prescribed retest V3-EXQ-783 (2026-07-18): training lifts contrast at both dim=32 and dim=128 while dimensionality lifts nothing at either training state. The real fault was an untrained encoder (fixed by SD-070, same day), not dimensionality. SD-031's evidence_quality_note still reflects the pre-783 dim=32 framing. Surfaced by thought-digestion 2026-08-27 (grouped mode, group A).",
       "raised_by_session": "responsibility-epistemic-hygiene-d6f9d3",
       "raised_at": "2026-08-27T19:27:25Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-28T17:57:21Z",
+      "resolution_note": "APPLIED by /governance cycle governance-cycle-20260828 (2026-08-28). SD-031's evidence_quality_note carried the pre-783 dim=32 framing as a CRITICAL GATE; appended a correction recording that V3-EXQ-783 (2026-07-18) refutes it -- training lifts contrast at both dim=32 and dim=128 while dimensionality lifts nothing at either training state, so the real fault was an untrained encoder (fixed by SD-070 the same day), not world_dim. Scoped the consequence precisely: the 'world_dim >= 128' requirement survives only where E2WorldForward's own hard assert demands it, and is NOT independently justified by a granularity deficit; the ARC-065 behavioural-diversity half of the gate is unaffected. ALSO moved epistemic_category substrate_ceiling -> standard. That was the root cause of a separate ACTIONABLE finding this cycle: check_substrate_ceiling_audit.py reported SD-031 as genuinely-orphaned (the only orphan of 34 ceilings), and it was orphaned precisely because nothing was ever queued to lift a ceiling whose basis was refuted. Status and v3_pending unchanged (still candidate / v3_pending true)."
     },
     {
       "flag_id": "GFLAG-0060",
