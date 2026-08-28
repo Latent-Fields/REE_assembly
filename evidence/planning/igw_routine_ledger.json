@@ -3140,7 +3140,11 @@
       "task_claim_session_id": "igw-auto-igw-236-confirm-evidence-mech-267-lit-0-20260828T214515Z",
       "task_claim_claimed_at": "2026-08-28T21:45:15Z",
       "assigned_at": "2026-08-28T21:40:11Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-28T23:04:10Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-08-28T23:05:20Z"
     }
   ],
   "dispositions": [
@@ -4284,6 +4288,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-27T06:25:37Z",
       "re_eligible_after": "2026-08-29T06:25:37Z"
+    },
+    {
+      "stable_hash": "e1ac0b83a08d",
+      "igw_id_at_disposition": "IGW-20260828-236",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-267"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: MECH-267 (lit 0.86, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-28T23:04:31Z",
+      "re_eligible_after": "2026-08-30T23:04:09Z"
     }
   ]
 }
