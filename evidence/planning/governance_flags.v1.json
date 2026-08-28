@@ -1029,6 +1029,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0072",
+      "claim_ids": [
+        "ARC-065",
+        "MECH-440",
+        "MECH-441",
+        "MECH-439"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "CLASS-ENTROPY CEILING: no committed-class-entropy null in the ARC-065/conversion-ceiling lineage is currently a non-degenerate test. support_preserving_min_first_action_classes defaults to 2 and is set to literally 2 at 273 driver call sites, capping committed-class entropy at ln(~3)~1.08 nats ARM-INVARIANTLY. V3-EXQ-708b's own manifest: precommit_n_distinct_classes_mean 2.959/2.958/2.956 across its three arms, mean_precommit_class_entropy 1.060873 in the OFF baseline = 97.8% of ln(2.959)=1.0850 BEFORE any lever is applied. 708b enumerated two explanations, refuted both, filed precommit_shape_headroom_unexplained; the third unenumerated reading is this ceiling. Fix is two config values already proven to fire (V3-EXQ-949: yoked divergence 0.000 P1-only / 0.000 P2-only / 0.3675 both -- a strict AND). Does NOT refute MECH-439 F-dominance or ARC-110 intrinsic ceiling; both may still hold at a raised floor.",
+      "raised_by_session": "thought-digestion-v3closure-20260828",
+      "raised_at": "2026-08-28T06:50:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
