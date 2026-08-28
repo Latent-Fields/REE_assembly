@@ -353,12 +353,26 @@ closure_plan:
         (a) soak evidence (N days of GET /task_claim/drift showing
         diverged_ticks=0); (b) a separate human go-live confirmation;
         (c) PHASE-2b, the DB->git materializer, before the client git write
-        can be suppressed; (d) deployment -- the endpoints are on origin/main
-        but ree-coordinator.service on the hub has not been restarted to pick
-        them up, so /task_claim/open et al still 404 in production, exactly
-        as PHASE-1's routes did before its own restart. Nothing depends on
-        them, so this is not urgent, but a future session should not read
-        "landed" as "reachable".
+        can be suppressed. (d) DEPLOYMENT IS NOW DONE -- see below.
+
+        DEPLOYED 2026-08-27, shortly after the build landed: the user
+        authorised the coordinator restart and the orchestrator session
+        (insights-7fd98a) performed it. `ree-coordinator.service` now serves
+        the PHASE-2 route table -- `/task_claim/*` and `/chip/*` answer 401
+        to an unauthenticated probe rather than 404, which is the correct
+        signal that the routes EXIST and are bearer-gated. phase3 writer
+        traffic resumed cleanly within seconds, no disruption, same as the
+        PHASE-1 restart on 2026-08-27T07:52:01Z.
+
+        So the endpoints are now REACHABLE, not merely landed on origin.
+        This does NOT change the cutover status in any way: the client flag
+        `TASK_CLAIM_COORDINATION_MODE` still defaults to `git`, so nothing
+        in the fleet calls these endpoints, and (a)/(b)/(c) above are all
+        still open. A reachable endpoint that no client is configured to
+        call is exactly the intended state for this phase -- it means the
+        soak and the go-live decision are the only things left gating the
+        flip, rather than an undeployed server being a hidden fifth
+        prerequisite.
 
         Prior (unchanged, retained for history):
         BUILD STARTED 2026-08-27 (user go-ahead, decoupled from the soak):
@@ -391,7 +405,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** SOAKING + PHASE-2a BUILT (v0.6, 2026-08-27). **PHASE-2a (the coordinator-first transport, DEFAULT OFF) is built, tested and landed** -- 11 mutating endpoints on `ree-v3` `528ce44fc5`, a new `scripts/coordinator_transport.py`, flag-gated branches in `task_claim.py`/`chip_ledger.py`, 110 new tests green, the full 707-test coordinator suite unregressed and all 43 existing `task_claim`/`chip_ledger` umbrella test files green with the flag off. Server on `ree-v3` `origin/main`, client on `REE_Working` `origin/master` (`ed1bcf7869`). Nothing in the fleet reaches any of it: `TASK_CLAIM_COORDINATION_MODE` defaults to `git` and the endpoints are not yet deployed to the running hub. See the PHASE-2 frontmatter node and section 10. **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** SOAKING + PHASE-2a BUILT (v0.6, 2026-08-27). **PHASE-2a (the coordinator-first transport, DEFAULT OFF) is built, tested and landed** -- 11 mutating endpoints on `ree-v3` `528ce44fc5`, a new `scripts/coordinator_transport.py`, flag-gated branches in `task_claim.py`/`chip_ledger.py`, 110 new tests green, the full 707-test coordinator suite unregressed and all 43 existing `task_claim`/`chip_ledger` umbrella test files green with the flag off. Server on `ree-v3` `origin/main`, client on `REE_Working` `origin/master` (`ed1bcf7869`). The endpoints were DEPLOYED to the running hub on 2026-08-27 (restart authorised by the user) and now answer 401 rather than 404 -- reachable, not merely landed. Nothing in the fleet calls them regardless: `TASK_CLAIM_COORDINATION_MODE` defaults to `git`. See the PHASE-2 frontmatter node and section 10. **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -823,14 +837,13 @@ them:
    and was deliberately retired), and this writer would be writing to the
    umbrella repo, whose trunk is already ~60-77% machine-written coordination
    data.
-2. **Deployment.** The endpoints are on `ree-v3` `origin/main` but
-   `ree-coordinator.service` on the hub has not been restarted to pick them
-   up, so `POST /task_claim/open` still 404s in production -- exactly the
-   state PHASE-1's own routes were in between 2026-08-26T19:00Z and the
-   2026-08-27T07:52Z restart. Nothing depends on them, so this is not urgent;
-   the point is that **"landed" must not be read as "reachable"**. Restarting
-   the live coordinator remains a human-with-eyes-on action, per this doc's
-   own standing framing.
+2. ~~**Deployment.**~~ **DONE 2026-08-27.** The user authorised the
+   coordinator restart and the orchestrator session (insights-7fd98a)
+   performed it; `/task_claim/*` and `/chip/*` now answer 401 rather than
+   404 (routes exist, bearer-gated), with phase3 writer traffic resuming
+   cleanly. The endpoints are reachable. **This changes nothing about the
+   cutover** -- the client flag still defaults to `git`, so no session calls
+   them.
 3. **Soak evidence.** Unchanged: N days of `GET /task_claim/drift` showing
    `diverged_ticks: 0`.
 4. **The go-live decision itself**, which is a human's and is separate from
