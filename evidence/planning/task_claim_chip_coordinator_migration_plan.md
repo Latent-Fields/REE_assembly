@@ -51,8 +51,83 @@ closure_plan:
       title: "Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; git stays authoritative"
       status: soaking
       severity: high
-      last_updated: 2026-08-27
+      last_updated: 2026-08-28
       note: >
+        SOAK EVIDENCE INVALIDATED AND THE DETECTOR FIXED, 2026-08-28 (session
+        coordinator-migration-phase2b). The zero-drift record this node
+        previously reported was real but SHORT, and everything after it was a
+        FALSE POSITIVE. Found while judging the soak for a cutover go/no-go
+        that the user had asked for -- not by any test or alarm.
+
+        MEASURED: GET /task_claim/drift showed 64 of 200 ticks diverged.
+        Clean from 2026-08-26T20:25:22Z, then diverged CONTINUOUSLY from
+        2026-08-27T19:03:25Z onward. Cause: `scripts/prune_task_claims_done.py`
+        commit b6907cce removed 127 `done` entries from TASK_CLAIMS.json at
+        19:02:07Z, and the next shadow-sync tick 78 SECONDS LATER went
+        diverged and never recovered. All 50 reported claim_orphans were
+        verified individually: every one was present in git with status
+        `done` immediately before that prune and absent after. ZERO
+        unexplained. chip_orphans stayed 0 throughout.
+
+        ROOT CAUSE: `db.reconcile_task_claims` treated any DB key absent from
+        git as an orphan, and its own docstring justified that with
+        "TASK_CLAIMS.json entries are never deleted (root CLAUDE.md)". THAT
+        PREMISE IS FALSE. `prune_task_claims_done.py` deletes done entries
+        older than 24h and runs at EVERY `/session-land` close (Phase 2b) --
+        routine, documented and correct. The mirror never deletes (also
+        correct), so every pruned entry became a permanent orphan.
+
+        WHY THIS WAS WORSE THAN A NOISY METRIC, and the reason it is recorded
+        at this length: (1) the exit criterion as written ("N days of
+        diverged_ticks staying at 0") became UNMEETABLE -- one routine prune
+        arms it forever, and the only reason ~22.6h of clean history existed
+        at all is that no prune happened to land in that window; and (2) a
+        REAL divergence would then have hidden behind an already-raised flag.
+        The detector was not merely wrong, it was saturated.
+
+        FIXED (ree-v3, same session): orphans are now split on the pruner's
+        own predicate -- `done` + absent from git = RETIRED (expected,
+        counted, reported in n_claims_retired and detail.claim_retired, never
+        raises diverged); `active` + absent = ORPHAN (real drift, and the
+        direction that actually loses work). Chips deliberately stay STRICT
+        and are NOT given the same softening: chips are never deleted
+        (archiving strips fields and keeps the row, D5; merge_origin_into_local
+        has no deletion path), so a missing chip has no benign explanation.
+        `task_claim_chip_drift_summary` also gained an optional `since=` window
+        -- the cumulative totals permanently carry these 64 rows, which are not
+        wrong and must not be deleted, so the criterion had to become windowed
+        rather than absolute.
+
+        DEPLOYED AND VERIFIED LIVE 2026-08-28T06:16:02Z (ree-v3 cacb5cb103,
+        already on the hub's checkout; the shadow-sync timer runs a fresh
+        process each tick, so NO coordinator restart was needed for the fix
+        itself). The tick immediately after deploy read
+        `diverged=0, n_claims_orphan=0, n_claims_retired=162, n_chips_orphan=0`
+        against `diverged=1, n_claims_orphan=162` on the tick three minutes
+        earlier -- same mirror, same git state, correct classification. The
+        additive migration applied on that tick's own `connect()`.
+
+        **THE SOAK CLOCK RESTARTS AT 2026-08-28T06:16:02Z.** Nothing before
+        that instant is admissible evidence: the pre-19:03Z window was clean
+        but only ~22.6h long, and everything after it was measured by a
+        detector now known to be wrong.
+
+        ONE CAVEAT ON READING IT: `GET /task_claim/drift?since=` needs a
+        coordinator restart to become available, because `app.py`/`db.py` are
+        loaded by the long-running service. The fix itself does not. Until
+        someone restarts it, read the window straight from
+        `task_claim_chip_drift_log` over SSH -- the rows are identical, only
+        the convenience of the HTTP filter is pending.
+
+        THE EXIT CRITERION IS THEREFORE RESTATED, and this is the operative
+        version: `GET /task_claim/drift?since=<T-24h>` must report
+        `window.diverged_ticks == 0` AND a `window.total_ticks` consistent
+        with the 10-minute cadence (~144/day). The second clause is not
+        decoration -- zero diverged out of two ticks is not evidence of
+        anything, and without it a STALLED TIMER reads as a clean soak.
+
+        Prior (retained for history; its zero-drift claim is superseded by the
+        measurement above):
         COORDINATOR RESTARTED 2026-08-27T07:52:01Z (session
         metaworker-chip-20260827-coordinator-phase1-restart-soak-start, chip
         chip-20260827-coordinator-phase1-restart-soak-start). SSH to the hub
@@ -405,7 +480,7 @@ closure_plan:
 ---
 # TASK_CLAIMS / TASK_CHIPS Coordinator Migration Plan
 
-**Status:** SOAKING + PHASE-2a BUILT (v0.6, 2026-08-27). **PHASE-2a (the coordinator-first transport, DEFAULT OFF) is built, tested and landed** -- 11 mutating endpoints on `ree-v3` `528ce44fc5`, a new `scripts/coordinator_transport.py`, flag-gated branches in `task_claim.py`/`chip_ledger.py`, 110 new tests green, the full 707-test coordinator suite unregressed and all 43 existing `task_claim`/`chip_ledger` umbrella test files green with the flag off. Server on `ree-v3` `origin/main`, client on `REE_Working` `origin/master` (`ed1bcf7869`). The endpoints were DEPLOYED to the running hub on 2026-08-27 (restart authorised by the user) and now answer 401 rather than 404 -- reachable, not merely landed. Nothing in the fleet calls them regardless: `TASK_CLAIM_COORDINATION_MODE` defaults to `git`. See the PHASE-2 frontmatter node and section 10. **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
+**Status:** PHASE-2a BUILT + DEPLOYED; SOAK RESTARTED ON A FIXED DETECTOR (v0.7, 2026-08-28). **The PHASE-1 soak evidence was invalidated on 2026-08-28**: 64 of 200 ticks had been reporting drift since 2026-08-27T19:03Z, every one a false positive caused by `prune_task_claims_done.py` legitimately removing `done` entries the mirror never deletes. The detector now separates RETIRED (pruned, expected) from ORPHAN (real loss), and the exit criterion is restated as a WINDOWED check because the cumulative counter can never return to zero. See the PHASE-1 node for the measurement and section 10 item 3 for the operative criterion. **PHASE-2a (the coordinator-first transport, DEFAULT OFF) is built, tested and landed** -- 11 mutating endpoints on `ree-v3` `528ce44fc5`, a new `scripts/coordinator_transport.py`, flag-gated branches in `task_claim.py`/`chip_ledger.py`, 110 new tests green, the full 707-test coordinator suite unregressed and all 43 existing `task_claim`/`chip_ledger` umbrella test files green with the flag off. Server on `ree-v3` `origin/main`, client on `REE_Working` `origin/master` (`ed1bcf7869`). The endpoints were DEPLOYED to the running hub on 2026-08-27 (restart authorised by the user) and now answer 401 rather than 404 -- reachable, not merely landed. Nothing in the fleet calls them regardless: `TASK_CLAIM_COORDINATION_MODE` defaults to `git`. See the PHASE-2 frontmatter node and section 10. **PHASE-0 is CLOSED** (all three prerequisites verified live -- see section 6). **PHASE-1 is DEPLOYED and SOAKING, and `ree-coordinator.service` has now been RESTARTED (2026-08-27T07:52:01Z) so `/task_claim/*` and `/chip/*` are LIVE**: the shadow-mirror schema, reconciler and read-only endpoints (landed on `ree-v3` `main` `f385e8bb24`) are installed on the coordinator hub, the shadow-sync timer has been running at its documented 10-minute cadence since 2026-08-26T20:26:52Z, and the restart (session `metaworker-chip-20260827-coordinator-phase1-restart-soak-start`) confirmed zero disruption to the phase3 writer plane and exposed the FULL pre-restart drift history via `GET /task_claim/drift` (`total_ticks: 70, diverged_ticks: 0` at restart time -- nothing was lost by deferring the restart). Soak evidence is now readable live via the API; no more `journalctl` workaround needed (see the PHASE-1 frontmatter node for full detail). No WireGuard mesh change has been made (none was needed, see section 6.1). This doc is the resume primitive across sessions -- read it before touching anything named in the phase table above.
 
 **Closes:** the same "no single enforcement chokepoint" class of gap the Phase 3 coordinator closed for `experiment_queue.json`/results/heartbeats (see `ree-v3/coordinator/PHASE3_CUTOVER.md`), applied to `TASK_CLAIMS.json` + `TASK_CHIPS.json` -- the two coordination files still edited by direct, independent, per-machine git commits, and therefore still exposed to the whole "Concurrency Rules" incident catalogue in root `CLAUDE.md` (pathspec races, HEAD/worktree skew, ref-move discard, rebase-lock contention, read-modify-write contamination, chip-ledger merge-origin-into-local dances).
 
@@ -844,8 +919,24 @@ them:
    cleanly. The endpoints are reachable. **This changes nothing about the
    cutover** -- the client flag still defaults to `git`, so no session calls
    them.
-3. **Soak evidence.** Unchanged: N days of `GET /task_claim/drift` showing
-   `diverged_ticks: 0`.
+3. **Soak evidence -- CRITERION RESTATED 2026-08-28, and the old one was
+   unmeetable.** The previous wording ("N days of `GET /task_claim/drift`
+   showing `diverged_ticks: 0`") cannot be satisfied: `diverged_ticks` is
+   cumulative and permanently carries the 64 false-positive rows produced
+   between 2026-08-27T19:03Z and the detector fix (full account in the PHASE-1
+   node). Those rows are not wrong and must not be deleted. Use the window:
+
+   ```bash
+   # on the hub, or any box with the bearer token over WireGuard
+   curl -s -H "Authorization: Bearer $TOK" \
+     "http://10.8.0.1:8787/task_claim/drift?since=<ISO-24h-ago>&limit=200"
+   ```
+
+   PASS requires BOTH: `window.diverged_ticks == 0`, and `window.total_ticks`
+   consistent with the 10-minute cadence (~144 per 24h). **Do not drop the
+   second clause.** Zero diverged out of two ticks is not evidence of
+   anything, and without a total a stalled timer reads as a clean soak --
+   which is precisely how a broken detector went unnoticed for 10.7 hours.
 4. **The go-live decision itself**, which is a human's and is separate from
    all three above.
 
