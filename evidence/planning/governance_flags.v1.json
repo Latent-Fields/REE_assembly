@@ -1118,6 +1118,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0078",
+      "claim_ids": [
+        "SD-069"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SD-069 is ONE STEP-CAP INCREASE from a governance-grade PASS and has been since 2026-07-18. V3-EXQ-779a's load-bearing double-dissociation criterion ALREADY PASSED: mean_dS_tonic +0.265 (sd 0.072) vs SUSTAINED_MARGIN 0.05, mean_dR_phasic -0.048 (sd 0.037) vs TRANSIENT_MARGIN 0.02, diss_seed_count 4 = min_seeds 4, criteria_non_degenerate true, robust true. It was withheld SOLELY on phasic_fires_real_events 6 vs threshold 10 -- a min-across-cells figure from ONE cell (seed 23/T1P1). Capability was explicitly ruled out (burst_level_max 1.00 in every PHASIC-ON cell). 779b applied a fix and still starved on selections (T0P0 seed 11 at 794 vs threshold 800 -- a six-sample miss).",
+      "raised_by_session": "thought-digestion-v3closure-20260828",
+      "raised_at": "2026-08-28T06:50:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
