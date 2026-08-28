@@ -12896,6 +12896,18 @@
     configuration with MECH-307 genuinely ON and confirm the G0 non-degeneracy precondition still
     clears (866a already failed G0 on a smaller deviation, so this is not a formality). Chipped
     (chip-20260808-arc030-mech307-readiness). pending_retest_after_substrate stays true.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828 -- ceiling audit note, no retest queued]:
+    check_substrate_ceiling_audit.py listed ARC-030 as ceiling-may-have-lifted this cycle because
+    its unblocking substrate MECH-307 is implemented (2026-05-11). Reviewed and NOT acted on: the
+    audit's predicate fires when ANY one unblocker lands, and ARC-030's unblocker set is only
+    partially satisfied. Still outstanding at this cycle: mech457_competence_bootstrap_explorer is
+    blocked_pending_discrimination, and scaffolded-curriculum-hazard-rebalance was closed
+    2026-08-08 as NO SUBSTRATE CHANGE WARRANTED (so it will never 'land' and should not be read as
+    a pending unblocker). SD-049 phase-1 and phase-2 are implemented.
+    A retest queued now would likely be premature against the unsatisfied half.
+    pending_retest_after_substrate deliberately LEFT true; expect this claim to re-flag each cycle
+    until mech457's discrimination resolves, at which point the retest becomes genuinely due.
   depends_on:
     - ARC-021
     - MECH-069
@@ -22510,6 +22522,18 @@
     [2026-08-16 governance apply | V3-EXQ-436f -> SD-017 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-SD-016-armed to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling
 
     [2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828 -- ceiling audit note, no retest queued]:
+    check_substrate_ceiling_audit.py listed SD-017 as ceiling-may-have-lifted this cycle because
+    its unblocking substrate SD-016 is implemented (2026-04-25). Reviewed and NOT acted on: the
+    remaining unblockers are not in a state that makes a retest meaningful yet --
+    MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION is implemented_validated_result_non_contributory
+    (i.e. it landed but its validation carried no evidence either way), and
+    contextmemory-write-path-addressing-degeneracy is implemented_pending_validation.
+    Flagged for a future cycle rather than dismissed: SD-016 landed over four months ago and this
+    claim is already status stable while still carrying substrate_ceiling and an open retest debt,
+    which is an unusual combination worth a deliberate look once the contextmemory write-path
+    validation lands. pending_retest_after_substrate deliberately LEFT true.
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
   claim_type: architectural_commitment
@@ -36498,6 +36522,22 @@
     confound. Activation smoke 2026-06-06 at world_dim=128: world_forward_r2
     0.969, single-pass comparator self-caused residual ~2.0 vs externally-caused
     ~22.6 (correct attribution gap).
+
+    [2026-08-28 governance, cycle governance-cycle-20260828, applying GFLAG-0059]:
+    CORRECTION -- the dim=32 framing above is SUPERSEDED and must not be relied on as a gate.
+    The 2026-06-06 cluster-autopsy reading ('z_world at world_dim=32 lacks discriminative
+    granularity') is REFUTED, not merely retested, by its own prescribed retest V3-EXQ-783
+    (2026-07-18): TRAINING lifts contrast at BOTH dim=32 and dim=128, while DIMENSIONALITY lifts
+    nothing at either training state. The real fault was an UNTRAINED ENCODER, fixed by SD-070 on
+    the same day -- not the world_dim setting.
+    Consequence for the CRITICAL GATE clause above: the 'world_dim >= 128' requirement stands only
+    where E2WorldForward's own hard assert demands it; it is NOT independently justified by a
+    granularity deficit at dim=32, and a dim=32 comparator is not vacuous for the reason the
+    earlier text gives. The ARC-065 behavioural-diversity half of the gate is unaffected.
+    epistemic_category moved substrate_ceiling -> standard: this claim was carrying a ceiling
+    whose BASIS is refuted, which is why check_substrate_ceiling_audit.py reported it as
+    genuinely-orphaned (no substrate_queue entry has ever unblocked it -- nothing was ever
+    queued, because there was no real ceiling to lift). Status and v3_pending unchanged.
   location: docs/architecture/self_attribution_per_stream.md
 
   what_would_answer: >
@@ -36537,7 +36577,7 @@
     dimensionality lifts nothing at either training state. The real fault was an
     untrained encoder (fixed by SD-070, same day), not dimensionality. See
     governance flag raised this session.
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
 - id: MECH-255
   title: "Template compilation is implemented by vmPFC value-content projection composed with dlPFC context-gated rule projection, integrated into a precision-space template vector that is the input to the SD-026 dan_feedback channel."
   claim_type: mechanism_hypothesis
