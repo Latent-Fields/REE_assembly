@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-28T20:41:53.993992Z`
+Generated: `2026-08-28T20:59:54.373395Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -216,7 +216,7 @@ Generated: `2026-08-28T20:41:53.993992Z`
 | `targeted_review_hpc_type_prototype_substrate` | [`2026-04-28_type_prototype_temporal_community_schapiro2016`](targeted_review_hpc_type_prototype_substrate/entries/2026-04-28_type_prototype_temporal_community_schapiro2016/record.json) | 5 | [`summary`](targeted_review_hpc_type_prototype_substrate/entries/2026-04-28_type_prototype_temporal_community_schapiro2016/summary.md) |
 | `targeted_review_infant_affordance_valence_map` | [`2026-05-16_mech189_wanting_liking_dissociation_berridge1998`](targeted_review_infant_affordance_valence_map/entries/2026-05-16_mech189_wanting_liking_dissociation_berridge1998/record.json) | 5 | [`summary`](targeted_review_infant_affordance_valence_map/entries/2026-05-16_mech189_wanting_liking_dissociation_berridge1998/summary.md) |
 | `targeted_review_infant_play_contingency` | [`2026-05-16_q035_arc049_striano2005_social_contingency_1to3months`](targeted_review_infant_play_contingency/entries/2026-05-16_q035_arc049_striano2005_social_contingency_1to3months/record.json) | 7 | [`summary`](targeted_review_infant_play_contingency/entries/2026-05-16_q035_arc049_striano2005_social_contingency_1to3months/summary.md) |
-| `targeted_review_interrupted_task_resumption` | [`2026-08-28_mech524_zeigarnik_ovsiankina_ghibellini2025`](targeted_review_interrupted_task_resumption/entries/2026-08-28_mech524_zeigarnik_ovsiankina_ghibellini2025/record.json) | 6 | [`summary`](targeted_review_interrupted_task_resumption/entries/2026-08-28_mech524_zeigarnik_ovsiankina_ghibellini2025/summary.md) |
+| `targeted_review_interrupted_task_resumption` | [`2026-08-28_mech524_structural_dissociation_ptsd_vanderhart2005`](targeted_review_interrupted_task_resumption/entries/2026-08-28_mech524_structural_dissociation_ptsd_vanderhart2005/record.json) | 10 | [`summary`](targeted_review_interrupted_task_resumption/entries/2026-08-28_mech524_structural_dissociation_ptsd_vanderhart2005/summary.md) |
 | `targeted_review_intrinsic_motivation_exploration` | [`2026-07-09_mech314c_learning_progress_typology_oudeyer2007`](targeted_review_intrinsic_motivation_exploration/entries/2026-07-09_mech314c_learning_progress_typology_oudeyer2007/record.json) | 9 | [`summary`](targeted_review_intrinsic_motivation_exploration/entries/2026-07-09_mech314c_learning_progress_typology_oudeyer2007/summary.md) |
 | `targeted_review_inv_013` | [`2026-08-22_inv_013_recurrent_object_recognition_kar2019`](targeted_review_inv_013/entries/2026-08-22_inv_013_recurrent_object_recognition_kar2019/record.json) | 3 | [`summary`](targeted_review_inv_013/entries/2026-08-22_inv_013_recurrent_object_recognition_kar2019/summary.md) |
 | `targeted_review_inv_029` | [`2026-03-29_inv_029_robust_concern_view_love_sep`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/record.json) | 2 | [`summary`](targeted_review_inv_029/entries/2026-03-29_inv_029_robust_concern_view_love_sep/summary.md) |

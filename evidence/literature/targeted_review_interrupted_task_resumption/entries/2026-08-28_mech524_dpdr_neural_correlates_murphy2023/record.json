@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_dpdr_neural_correlates_murphy2023",
+  "timestamp_utc": "2026-08-28T20:53:57Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Depersonalization/Derealization Disorder and Neural Correlates of Trauma-related Pathology",
+    "authors": ["Ryan J. Murphy"],
+    "year": 2023,
+    "venue": "Innovations in Clinical Neuroscience",
+    "pmid": "37122581",
+    "volume": "20",
+    "issue": "1-3",
+    "pages": "53-59",
+    "doi": null
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Closest available clinical existence-proof of MECH-524's restrictive pole read literally: a person whose stress-response capacity is intact or hyperactive, yet whose engagement with self/world content does not resume. Held at moderate-low confidence because depersonalization/derealization disorder is a tonic, global, trait-like detachment state, not the episodic per-goal reseeding failure MECH-524's trigger is specified as, and a narrative single-author review is weaker source quality than a meta-analysis.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DPDR's detachment is typically tonic and trait-like across the entire self-world relationship, not an episodic per-goal reseeding failure. If MECH-524's dissociative pole in REE were similarly tonic -- a general dampening of the spare-compute trigger across ALL parked entries rather than a per-entry mis-trigger -- that would be a different, and arguably more concerning, failure mode, and the falsifier design in MECH-524's own notes does not yet distinguish 'this one entry never got reseeded' from 'the trigger itself is globally suppressed.'",
+    "The review explicitly notes DPDR's precise neurocircuit-to-symptom mapping remains incompletely resolved even for the human clinical case. Citing it grounds the EXISTENCE and clinical plausibility of a capacity-present/engagement-absent phenotype, not a specific implementable trigger-failure mechanism."
+  ],
+  "tags": ["mech-524", "depersonalization_derealization_disorder", "trauma", "network_disintegration", "detachment", "clinical_review"],
+  "mapping": {
+    "source_claim_statement": "Depersonalization and derealization are estranged states of detachment from self and surroundings respectively, ranging from a transient normal reaction to trauma up to a persistent, highly debilitating disorder (DPDR). Involves adaptive stress-response circuitry (autonomic function, HPA axis, defense cascades) but recent evidence implicates more complex mechanisms including emotional dysregulation and disintegration of the body schema. DPDR is not merely a disruption of sensory integration but a disruption of several large-scale brain networks.",
+    "ree_translation": "DPDR is the closest available clinical instance of MECH-524's restrictive-trigger pole read literally: capacity is not absent (stress-response and autonomic systems are, if anything, engaged rather than incapacitated in many DPDR presentations), yet engagement with the self, world, and ongoing personally-relevant content the person would ordinarily be invested in does not resume. This is close to a direct clinical existence-proof of the specific failure mode MECH-524's notes describe -- 'indistinguishable from an entry that was never worth resuming': a DPDR patient is not unable to act, but the affective/motivational stamp that would normally trigger re-engagement is disconnected from otherwise-intact processing capacity.",
+    "mapping_caveat": "DPDR is a global, tonic, trait-like clinical state (detachment from self AND world, continuously), not an episodic, per-goal reseeding failure the way MECH-524's trigger is specified (spare-compute or sleep-entry gated re-seeding of ONE specific interruption_snapshot). Mapping a global disorder onto a per-entry mechanism risks over-claiming -- the honest reading is that DPDR shows the general phenomenon (capacity present, engagement absent) is a real, well-documented clinical category, not that DPDR patients specifically fail at the narrow reseeding operation MECH-524 proposes.",
+    "source_context": "Narrative/mechanistic clinical-neuroscience review synthesizing neurocircuit and large-scale-network findings specifically in depersonalization/derealization disorder, framed around trauma-related pathology rather than DPDR epidemiology or treatment."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Mid-tier clinical neuroscience journal, single-author narrative review rather than a meta-analysis or primary data -- chosen over the higher-circulation general DPDR reviews found in the same search (Wilkhoo et al. 2024 in a lower-tier journal; Salami et al. 2020, EEG-specific) because it is explicitly framed around neural-network disintegration rather than symptom epidemiology or treatment, which is the more mechanistically relevant framing for MECH-524. The tonic/global-vs-episodic/per-entry mismatch noted in mapping_caveat caps mapping_fidelity at moderate despite the phenomenon being a strong conceptual match. A systematic or meta-analytic DPDR neuroimaging review would improve on this entry if a dedicated future pull wants to strengthen it further."
+  }
+}

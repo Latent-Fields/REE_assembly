@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_dissociation_disorder_of_integration_scalabrini2020",
+  "timestamp_utc": "2026-08-28T20:53:57Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Dissociation as a disorder of integration - On the footsteps of Pierre Janet",
+    "authors": ["Andrea Scalabrini", "Clara Mucci", "Roberta Esposito", "Stefano Damiani", "Georg Northoff"],
+    "year": 2020,
+    "venue": "Progress in Neuro-Psychopharmacology & Biological Psychiatry",
+    "doi": "10.1016/j.pnpbp.2020.109928",
+    "pmid": "32194203",
+    "volume": "101",
+    "pages": "109928"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Master anchor for the dissociative pole: puts Janet's clinical account of dissociation as disrupted integration into a modern frame, and its own taxonomy (compartmentalization vs. detachment vs. structural dissociation) maps directly onto two structurally distinct ways MECH-524's restrictive trigger could fail, rather than the single undifferentiated 'stuck too restrictive' pole the claim's notes currently name. Confidence held at moderate because the paper's own three-level neuronal integration proposal is explicitly offered as hypothesis, not established mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A dissociative agent failure mode may not be a single unitary 'trigger too restrictive' phenomenon: Janet/Scalabrini's own clinical taxonomy separates compartmentalization (content never captured or made accessible -- amnesia-like) from detachment (content present but subjectively estranged and not engaged -- depersonalization-like). If the analogy holds, MECH-524's restrictive pole should itself split into a snapshot-never-captured failure and a snapshot-captured-but-never-reseeded failure, with potentially different falsifiers for each.",
+    "The paper explicitly states the exact neuronal mechanisms leading from disrupted integration to the different dissociative symptom clusters 'remain unclear.' Grounding MECH-524's dissociative pole in this literature borrows a clinical taxonomy and a hypothesis about levels of integration, not a validated neural mechanism -- premature to treat the three-level (regional/network/global) proposal as anything more than a structural analogy."
+  ],
+  "tags": ["mech-524", "dissociation", "disorder_of_integration", "janet", "depersonalization_derealization", "dissociative_amnesia", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Janet described dissociation as an altered state of consciousness manifested in disrupted integration of psychological functions. Clinically this disruption comprises compartmentalization symptoms (amnesia), detachment symptoms (depersonalization/derealization), and structural dissociation of personality with altered sense of self. The authors propose three neuronal mechanisms of dynamic integration operating at different brain levels -- temporo-spatial binding (regional), synchronization (network), and globalization (global level) -- and suggest these different levels of disrupted integration map onto the different symptomatic manifestations of dissociation.",
+    "ree_translation": "Grounds MECH-524's dissociative-loss-of-thread pole with a two-way split rather than treating it as one phenomenon. A regional/binding-level failure is REE's analogue of compartmentalization/amnesia: the interruption_snapshot's content (z_world/z_self/z_goal/CEM-stage/rule-arbitration-weights) is never captured or bound together at interruption time, so there is nothing to reseed even if the trigger later fires correctly. A network/synchronization-level failure is REE's analogue of detachment/depersonalization: the snapshot IS captured, and the spare-compute or sleep-entry trigger DOES fire, but the reseeding coupling into MECH-293's probes or MECH-285's replay never engages -- capacity is present and free, but disconnected from the specific content it should act on. MECH-524's own notes currently describe only the second shape ('never gets actively resumed... indistinguishable from an entry that was never worth resuming'); this literature suggests the first shape (capture failure) is a distinct, equally clinically-grounded failure mode worth naming separately in a future design pass.",
+    "mapping_caveat": "Human clinical-population theoretical synthesis with preliminary fMRI support for the authors' own dynamic-integration model, not a mechanistic claim about an artificial world-model agent. The three-level (regional/network/global) integration hierarchy is the authors' own proposal, not an independently established fact, and REE has no validated multi-level integration hierarchy to test the analogy against -- only the STRUCTURE of the failure taxonomy (capture failure vs. coupling failure) transfers, not any specific neural implementation claim.",
+    "source_context": "Theoretical/conceptual review putting Janet's 19th-century clinical account into a modern neuroscience frame, drawing on preliminary fMRI data supporting the authors' own dynamic temporo-spatial integration model; not a primary empirical study with an REE-relevant resumption task."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Peer-reviewed, reputable field-specific journal, theoretical review with preliminary empirical support behind its own proposed model. Mapping fidelity moderate: the abstract structure (integration failure producing distinguishable phenotypes) maps cleanly onto splitting MECH-524's restrictive pole into two sub-modes, but REE has no literal multi-level integration hierarchy to validate this against. Transfer risk moderate-high: human clinical psychopathology to artificial agent architecture is a substantial hop, compounded on top of the paper's own hop from psychology to neuroscience."
+  }
+}

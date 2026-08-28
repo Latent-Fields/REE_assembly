@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_dissociation_reconsidered_lynn2022",
+  "timestamp_utc": "2026-08-28T20:53:57Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Dissociation and Dissociative Disorders Reconsidered: Beyond Sociocognitive and Trauma Models Toward a Transtheoretical Framework",
+    "authors": ["Steven Jay Lynn", "Craig Polizzi", "Harald Merckelbach", "Cherie D. Chiu", "Reed Maxwell", "Daniel van Heugten", "Scott O. Lilienfeld"],
+    "year": 2022,
+    "venue": "Annual Review of Clinical Psychology",
+    "doi": "10.1146/annurev-clinpsy-081219-102424",
+    "pmid": "35226824",
+    "volume": "18",
+    "pages": "259-289"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Authoritative field-wide critical review that plays the same corrective role for MECH-524's dissociative pole that Ghibellini & Meier 2025 plays for its Zeigarnik framing (see that companion entry): it weakens a naive single-mechanism (trauma-fixation-only) reading of the restrictive pole and supports a broader, multi-factor reading. Confidence held at moderate because its contribution to MECH-524 is corrective/contextual rather than direct positive evidence for the mechanism's own design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Treating dissociative loss-of-thread as evidence the restrictive-trigger pole is a single identifiable failure mode risks the same error the field spent decades making about trauma-vs-sociocognitive causation generally: multiple distinct mechanisms can converge on the same behavioral phenotype (no resumption), and a falsifier that only tests one candidate mechanism could pass despite the pole being real for a different, unmodeled reason.",
+    "This review explicitly argues dissociation is transdiagnostic and multifactorial (sleep disturbance, impaired self-regulation/inhibition, hyperassociation and attentional set-shifting, deficits in reality testing/source monitoring/metacognition). MECH-524's notes currently ground the restrictive pole with none of these factors named -- the gap this lit-pull closes is narrower than 'is there clinical grounding' and closer to 'which of several plausible clinical mechanisms, if any, does MECH-524's own trigger design actually resemble.'"
+  ],
+  "tags": ["mech-524", "dissociation", "transdiagnostic", "self_regulation", "attentional_set_shifting", "critical_review"],
+  "mapping": {
+    "source_claim_statement": "Neither the posttraumatic model nor the sociocognitive model of dissociation provides a satisfactory standalone account. Dissociation and dissociative disorders (including depersonalization/derealization disorder and dissociative identity disorder) are better understood as failures of normally adaptive systems and functions, implicating multiple interacting factors: sleep disturbances, impaired self-regulation and inhibition of negative cognitions/affects, hyperassociation and attentional set-shifting anomalies, and deficits in reality testing, source attribution, and metacognition -- a transdiagnostic, transtheoretical framework rather than a single trauma-locked mechanism.",
+    "ree_translation": "Functions for MECH-524's dissociative pole the same corrective role Ghibellini & Meier 2025 plays for the claim's own naming choice (see that companion entry in this directory): it weakens a naive 'dissociative failure to resume is purely a trauma-fixation phenomenon' reading (the structural-dissociation framing in this directory's van der Hart et al. 2005 entry) and supports a broader reading in which the restrictive-trigger pole could plausibly arise from several distinct, unmodeled failure routes -- impaired self-regulation/inhibition (an REE analogue might be rule-arbitration-weight capture that is not trauma-specific), attentional set-shifting deficits (directly analogous to a spare-compute/trigger-detection failure), or metacognitive/source-monitoring deficits (a failure to recognize that capacity IS free, distinct from a failure to act on it once recognized). This sharpens the design implication already present in MECH-524's own notes: 'trigger/gate stuck too restrictive' is not necessarily one mechanism-shaped gap but a family, and fully grounding it would need to specify which of these routes -- or which REE-substrate analogue of each -- is actually being modeled.",
+    "mapping_caveat": "Broad clinical review across all dissociative disorders, not resumption-specific, and its transdiagnostic multi-factor framework is offered as a corrective synthesis rather than a set of new empirical findings. Treating 'attentional set-shifting' or 'self-regulation impairment' as REE substrate analogues is this claim's own extrapolation, not something the review itself proposes.",
+    "source_context": "Authoritative field-wide critical review in a high-impact review journal, synthesizing decades of the trauma-model-versus-sociocognitive-model debate in dissociation research."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "Source quality high on its own terms: top-tier review journal, senior authors well established in the dissociation-skepticism literature, comprehensive synthesis. Mapping fidelity moderate-low: valuable as a corrective against over-committing to any one mechanism, but the review does not itself propose anything resumption-specific or capacity-triggered -- the REE-substrate mapping onto its named factors is this entry's own extrapolation, not the paper's claim."
+  }
+}

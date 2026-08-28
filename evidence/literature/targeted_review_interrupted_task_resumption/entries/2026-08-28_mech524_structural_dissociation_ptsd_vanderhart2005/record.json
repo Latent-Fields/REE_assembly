@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_interrupted_task_resumption",
+  "entry_id": "2026-08-28_mech524_structural_dissociation_ptsd_vanderhart2005",
+  "timestamp_utc": "2026-08-28T20:53:57Z",
+  "claim_ids_tested": ["MECH-524"],
+  "source": {
+    "title": "Dissociation: An insufficiently recognized major feature of complex posttraumatic stress disorder",
+    "authors": ["Onno van der Hart", "Ellert R. S. Nijenhuis", "Kathy Steele"],
+    "year": 2005,
+    "venue": "Journal of Traumatic Stress",
+    "doi": "10.1002/jts.20049",
+    "pmid": "16281239",
+    "volume": "18",
+    "issue": "5",
+    "pages": "413-423"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational structural-dissociation-theory article grounding the clinical phenotype of chronically un-resumed goal-directed functioning under trauma. Held at moderate confidence because the proposed mechanism (capacity chronically captured by a rival fixated part) is a structurally different failure shape than the uniform under-triggering MECH-524's own notes currently describe, and because the theory itself is contested (see the Lynn et al. 2022 entry in this directory for the counter-perspective).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the dissociative-loss-of-thread pole is produced by a rival capacity-capturing entry rather than uniform under-triggering, MECH-524's own falsifier design (b) -- 'snapshot exists but no active trigger... recently-interrupted entries resume no faster than merely stale entries' -- would not detect it, since it assumes the trigger simply fails to fire for the entry in question, not that the trigger fires abundantly for a different entry while starving all others.",
+    "Structural dissociation theory's chronically fixated 'emotional part' has no MECH-292/MECH-524 substrate correlate. Importing the clinical phenotype without importing (or explicitly declining to import) a capacity-monopolization mechanism risks a mismatch between what this literature actually predicts and what MECH-524's falsifier is designed to test."
+  ],
+  "tags": ["mech-524", "structural_dissociation", "complex_ptsd", "trauma_fixation", "dissociative_parts", "theoretical_review"],
+  "mapping": {
+    "source_claim_statement": "Traumatization involves division (dissociation) of the psychobiological systems that constitute personality into dissociative parts: one or more 'apparently normal parts' (ANP) that avoid traumatic memories and carry out ordinary daily-life functions, and one or more 'emotional parts' (EP) that remain fixated in traumatic experience and its associated defensive action tendencies. Complex PTSD involves a more elaborated, multi-part structural dissociation than simple PTSD.",
+    "ree_translation": "Grounds the specific clinical phenotype MECH-524's notes describe -- 'interrupted work never gets actively resumed even once capacity is abundant, indistinguishable from an entry that was never worth resuming' -- but with a structural correction worth stating plainly rather than smoothing over. The clinical picture here is not simply 'capacity never returns to the parked content'; it is that capacity is chronically CAPTURED by a different, unresolved fixation (the EP's lock on the traumatic action tendency) at the expense of the ANP's ordinary goal-directed functioning, including whatever parked goals the ANP would otherwise resume. Translated into MECH-524's own vocabulary, this is not necessarily a case of the spare-compute trigger under-firing uniformly across parked entries -- it could instead be the trigger (or an unmodeled rival mechanism) chronically over-allocating reseeding capacity to one dominant interruption_snapshot at the expense of every other parked goal, which would show up experimentally as systematic capacity monopolization rather than a flat under-triggering rate.",
+    "mapping_caveat": "Clinical population (complex trauma/PTSD), a conceptual/theoretical article rather than an experimental study, and about dissociation BETWEEN personality-level systems, not about a single agent's per-entry task-resumption cadence. The 'fixation' concept is doing real theoretical work here and should not be read as evidence that REE's MECH-292 bank could spontaneously develop something structurally analogous (a capacity-monopolizing entry) without dedicated grounding specific to that possibility.",
+    "source_context": "Conceptual/theoretical clinical article by the originating authors of the Theory of Structural Dissociation of the Personality, published in the field's primary specialty journal for traumatic stress research."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Conceptual article by the theory's originating authors in a solid trauma-specialty journal, not a primary empirical study; the theory has both real influence and real critique in the field (see the Lynn et al. 2022 entry). Mapping fidelity capped at moderate because the mechanism this paper actually proposes -- rival capacity capture by a fixated part -- is a genuinely different failure shape than the uniform under-triggering MECH-524's notes currently describe, so applying it requires an explicit extension of the claim's notes rather than a direct 1:1 grounding."
+  }
+}
