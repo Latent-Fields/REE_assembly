@@ -74057,6 +74057,31 @@
 
     [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
     2026-07-09 (was substrate_ceiling)
+
+    [2026-08-28 governance, cycle governance-cycle-20260828, resolving GFLAG-0048; confirmed
+    failure_autopsy_V3-EXQ-925a_2026-08-28, which partially supersedes
+    failure_autopsy_V3-EXQ-925_2026-08-12]:
+    The MECH-439 note DRAFTED by the V3-EXQ-925 autopsy was never attached to this claim, and
+    must not be: its premise is refuted. That draft read V3-EXQ-925's committed_fraction=0.000
+    as a SUBSTRATE REGIME fact -- that at corpus-default config this substrate essentially never
+    engages committed (argmin) selection, so MECH-439's committed-selection variance-monopoly
+    framing presumes a regime the substrate does not occupy. It was instead a DRIVER
+    INSTRUMENTATION DEFECT: V3-EXQ-925's driver never called post_action_update, so
+    E3._running_variance stayed pinned at precision_init=0.5 against commit_threshold=0.4 and
+    commitment was arithmetically impossible before the run collected any data. Adding that one
+    standard call, at UNCHANGED default config, moves committed_fraction 0.000 -> ~1.0.
+    Red-team verified at the 925-era commit 9bcde4cb, not merely against today's tree.
+    V3-EXQ-925a is the corrected harness: committed regime restored (committed_fraction 1.0,
+    deterministic argmin, c0 match 1.0). What it found is that the discrimination is STILL OPEN,
+    not resolved -- scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble do flip
+    the committed winner on 9.7-30% of events, i.e. real argmin-level F authority, but
+    chance-directionally (frac_toward_safer 0.530 / 0.484), so there is no consistent
+    safety-axis alignment. The blocker is therefore RE-ATTRIBUTED from commitment to ABSOLUTE
+    SCORE SCALE (H5). 925a is claim-free (claim_ids: []) and carries no direct MECH-439
+    evidence; it is adjudicated non_contributory. Status and epistemic_category unchanged.
+    Next discriminating experiment must control absolute score scale via channel-scale
+    normalisation, NOT via temperature -- a temperature rescale is argmin-invariant and
+    therefore inert on the plain committed path.
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of
