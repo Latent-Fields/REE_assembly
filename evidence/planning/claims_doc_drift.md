@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-08-23T01:15:24Z
+Generated: 2026-08-28T19:28:24Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (129)
+## Unresolved with a hand status line -- INFO (135)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -40,11 +40,12 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `axiom_chain_adversarial_audit.md` -- "first pass (WS-13 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `bitter_lesson_position.md` -- "first pass (WS-6 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `canonical_profile_admission_criteria.md` -- "design doctrine, 2026-08-12. Derived verbatim from"
+- `causal_reach_and_installability.md` -- "candidate. Audit/interpretation framework only -- no new substrate, no runtime"
 - `claim_phase_provenance.md` -- "design proposal + landed checker, 2026-06-09"
 - `cognifold_signed_coupling.md` -- "candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09 from the competitive-interactions thought inta"
 - `cognitive_architecture_graveyard.md` -- "first pass (WS-8 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `compact_consolidation_principle.md` -- "candidate"
-- `contextmemory_write_address_selection.md` -- "IMPLEMENTED (two mechanisms) 2026-08-19 -- VALIDATION PENDING for both"
+- `contextmemory_write_address_selection.md` -- "IMPLEMENTED (THREE mechanisms) -- bias/refractory 2026-08-19, gumbel_learned 2026-08-27 -- VALIDATION PENDING for all th"
 - `control_plane.md` -- "stable"
 - `control_plane_heartbeat.md` -- "candidate"
 - `control_plane_signal_map.md` -- "candidate"
@@ -67,6 +68,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `efficiency_dimensionality_hypothesis.md` -- "Working hypothesis — Phase 2 ablations pending"
 - `effort_dissociation_env.md` -- "IMPLEMENTED 2026-07-09."
 - `entities_and_binding.md` -- "provisional"
+- `ephaptic_hippocampal_now_construction.md` -- "candidate (both claims)"
 - `established_ethical_systems.md` -- "architecture derivation note"
 - `ethical_agency_derivation.md` -- "architecture note"
 - `externalised_dmn_play_private_speech.md` -- "V4+ developmental-architecture cluster (candidate). Off the REE-v3 critical"
@@ -95,9 +97,11 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `natural_commit_occupancy_release.md` -- "IMPLEMENTED 2026-06-20 (substrate; PROMOTES NOTHING)"
 - `neuromodulatory_control_planes.md` -- "candidate"
 - `non_deficit_action_drives.md` -- "family slot registered 2026-05-10 (ARC-066 + ARC-067 + ARC-068 candidate / pending_design)."
+- `offline_representational_reindexing.md` -- "candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed."
 - `overview.md` -- "legacy"
 - `papez_circuit.md` -- "provisional"
 - `path_authority_and_interrupts.md` -- "provisional"
+- `persistent_process_termination_taxonomy.md` -- "candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed. Not a V3 build target."
 - `phased_rule_state_training_curriculum.md` -- "IMPLEMENTED 2026-05-17. Design questions O-1..O-5 RESOLVED"
 - `plasticity_write_authority_gating.md` -- "candidate-claim home doc. NOT a substrate-design memo, NOT a V3 critical-path item."
 - `play_substrate_design.md` -- "Draft — 2026-05-16"
@@ -112,6 +116,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `ree_v2_spec.md` -- "candidate"
 - `replay_development_analysis.md` -- "Analysis document — not a registered claim. Proposals feed into experiment design and register maintenance."
 - `residue_geometry.md` -- "stable"
+- `reusable_computational_motifs.md` -- "candidate, v3_pending, epistemic_category substrate_conditional. Compass registration only --"
 - `rule_apprehension_layer.md` -- "registered architectural slot. Weak reading (ARC-062) at implementation_phase=v3 candidate, **BLOCKED** (GAP-B status=bl"
 - `rule_distinguishability_maintenance.md` -- "architecture stub for candidate claims MECH-437 / MECH-438 (candidate / substrate_conditional / implementation_phase v4 "
 - `sd_085_e3_reality_cost_weight.md` -- "PENDING"
@@ -145,6 +150,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `spintronic_memristive_cognifold_substrate.md` -- "candidate compass — POST-V5 / future physical instantiation."
 - `sustained_drive_anticipatory_wanting.md` -- "goal_pipeline:GAP-3 **DONE** 2026-05-20. Option 1 (`drive_ema_alpha`)"
 - `temporal_dynamics.md` -- "provisional"
+- `temporally_displaced_actionable_present.md` -- "candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed. Not a V3 build target."
 - `three_loop_learning_channels.md` -- "candidate"
 - `tpj_agency_comparator.md` -- "candidate"
 - `trainable_relief_safety_affordance_learners.md` -- "candidate cluster, registered 2026-06-09. Home doc for the trainable"
