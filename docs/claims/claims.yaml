@@ -11429,6 +11429,20 @@
     oscillatory clock to phase-reset. Hold pending SD-006 phase 2.
 
     [2026-08-16 governance, GFLAG-0037 SPLIT decision, cycle cranky-driscoll-126a36] ROUTED TO V3 AS A SMALL BUILDABLE; the SD-006-phase-2 deferral that had parked this claim since 2026-05-08 is LIFTED as mis-scoped. The deferral rationale -- that there is no oscillatory clock phase to reset because the mechanism under test is absent -- is contradicted by direct measurement: phase_reset() is BUILT (ree_core/heartbeat/clock.py:182), WIRED (agent.py:9903), and was measured 2026-08-01 as the DOMINANT driver of E3 tick cadence in a real 53,063-step rollout (diagnostic_arc071_e3_reselection_probe_2026-08-01.md); nobody connected the two for four months. The real gap is small: of the three salient events this claim names (task completion, unexpected harm, commitment-boundary crossing) only harm_signal < 0 calls phase_reset() -- the other two are unwired, and both events already exist in the substrate (hippocampal completion drives BetaGate release; commitment entry/exit IS the MECH-090 beta-gate boundary). Registered as substrate_queue MECH091-SALIENT-EVENT-TRIGGER-WIRING; owning node commitment_closure:GAP-7 moved deferred -> blocked, so this claim re-enters the V3 denominator instead of being invisible to both it and the substrate queue. NOTE ON PRIOR EVIDENCE: both EXQ-133 runs (2026-03-28 and the 2026-04-21 rerun) were reclassified non_contributory for this substrate gap, twice and explicitly NOT as falsifications -- and EXQ-133 was in any case not the experiment this claim asks for, having measured latent divergence as a PROXY rather than the cycle-boundary DV named in what_would_answer. Once the wiring lands, the no-reset control this claim specifies is constructible on phase 1 today. ONE CHEAP PUZZLE-GRADE CHECK IS OWED FIRST (carried on the substrate entry, not on this claim): confirm the what_would_answer DV -- no partial-integration artefacts straddling a salient event -- is observable on phase 1 and not itself absorbed by the EXQ-131 E3-output-freeze staleness artifact. That is the honest counter-argument the brief states against its own recommendation. No status change on this basis: this is a ROUTING decision, not new evidence. Full reasoning: evidence/planning/sd006_phase2_generation_brief.md.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828]: V3-EXQ-944b
+    (v3_exq_944b_mech091_salient_event_cycle_boundary_20260825T205738Z_v3, PASS/supports).
+    Both prior attempts on this claim (EXQ-133 twice, then V3-EXQ-944) were ruled
+    non_contributory for the SAME reason: the manipulation fired but there was no real
+    oscillatory clock to phase-reset, so the test was vacuous by construction. GFLAG-0067
+    records that the salient-event trigger wiring landed (ree-v3 6293b2395248, 2026-08-17),
+    which is what makes 944b the first attempt where the mechanism under test actually exists.
+    CAVEAT, load-bearing -- do not cite the headline without it: the PASS rests on 5 of 6
+    seeds. Seed7 went red on its per-seed precondition gate (episode_admits_cycle_contrast,
+    rate_match_holds) and is UNSCORED, not refuting; seeds 42/13/100/200/45 passed the gate in
+    full and carry the result. Read the red seed as unscored per the precedent this manifest
+    cites (failure_autopsy_V3-EXQ-785_2026-07-19 sections 2a/8).
+    Status held at candidate this cycle -- recorded as supporting evidence, not promoted.
   what_would_answer: |
     SUBSTRATE PRECONDITION: requires SD-006 phase 2 (async multi-rate loop
     execution) to be built -- without an actual oscillatory/cycle-boundary
@@ -52526,7 +52540,6 @@
   subject: policy.curiosity.uncertainty_driven_frontopolar_analog
   polarity: asserts
   status: candidate_substrate_landed
-  ceiling_decision: deferred
   ceiling_routing_note: >
     2026-07-20 substrate-ceiling-lifted triage: FALSE POSITIVE, parked.
     check_substrate_ceiling_audit.py surfaced this claim as ceiling-may-have-lifted because
@@ -52549,6 +52562,14 @@
     any available token (e.g. MECH-314b itself) also matches the implemented non-binding entry.
     status and pending_retest_after_substrate deliberately UNCHANGED -- the retest is still owed,
     just not yet runnable.
+
+    2026-08-28 governance cycle governance-cycle-20260828: PARK LIFTED and ceiling LIFTED.
+    The 2026-07-20 park was correct at the time -- it recorded that the 2026-06-08 v3_pending
+    lift rested on V3-EXQ-604c, which failure_autopsy_V3-EXQ-604c_2026-07-20 showed was
+    structurally vacuous for this claim (uniform broadcast scalar vs an argmax-derived DV).
+    V3-EXQ-949 (2026-08-25) is the retest that park was waiting for: epistemic_category moved
+    substrate_ceiling -> standard, ceiling_decision removed, pending_retest_after_substrate
+    cleared. Resolves GFLAG-0065.
   live_status:
     reading: candidate_substrate_landed
     as_of: 2026-07-20
@@ -52558,7 +52579,7 @@
       as_of: 2026-07-20
       verdict: non_contributory/substrate_ceiling
   last_reviewed: 2026-07-20
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -52583,7 +52604,7 @@
     Falsifiable per MECH-314 functional_restatement: 314b-OFF
     agents show reduced uncertainty-resolution rollouts at
     familiar-but-uncertain states.
-  pending_retest_after_substrate: true # /governance 2026-07-20: REINSTATED -- the 2026-06-08 lift cited the V3-EXQ-604c PASS, which failure_autopsy_V3-EXQ-604c_2026-07-20 shows was structurally vacuous for this claim (broadcast scalar vs argmax-derived DV). Gated on the ARC-065 GAP-A Phase-2 per-candidate build.
+  pending_retest_after_substrate: false # /governance 2026-08-28: DISCHARGED -- V3-EXQ-949 is the ARC-065 GAP-A Phase-2 per-candidate retest this flag was gated on.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
       - Daw et al. 2006 (Nature) -- frontopolar exploration bonus
@@ -52657,6 +52678,26 @@
     gate r2 (curiosity_bias_range) is unknowingly a NOVELTY-ONLY gate -- the exact
     statistic in which broadcast terms vanish -- so it certifies readiness for
     MECH-314a alone.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828]: V3-EXQ-949
+    (v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3, PASS/supports)
+    is the first NON-VACUOUS test of this claim, and it passes. It exercises exactly the
+    mechanism this claim's own what_would_answer names as the un-park trigger -- the corrected
+    authority-rescale path with a genuinely per-candidate epistemic-value bonus, not the
+    Phase-1 uniform broadcast scalar that cannot move an argmax by construction.
+    Result: all four arms green (no red, no structurally-vacuous arm). Load-bearing
+    C1_b314_authority_on_moves_committed_action and
+    C2_effect_attributable_to_authority_not_314b_alone both measured 0.3675 against a 0.02
+    floor. The C3 DV-symmetry negative control (authority alone, without a per-candidate
+    signal, must not move the argmin) measured exactly 0.0 and passed.
+    C1 and C2 coincide at 0.3675 because yoked_divergence_frac_on_authoff = 0.0 and
+    yoked_divergence_frac_off_authon = 0.0 -- i.e. NEITHER single factor moves the argmin at
+    all and the entire effect is the interaction. That is a clean interaction result, not a
+    duplicated statistic; verified by reading the driver (C2 is computed as
+    div_on_authon - div_on_authoff).
+    Disposition: park lifted, epistemic_category substrate_ceiling -> standard,
+    pending_retest_after_substrate cleared. Status held at candidate_substrate_landed --
+    this cycle lifted the ceiling, it did not promote. Resolves GFLAG-0065.
   location: docs/architecture/rule_apprehension_layer.md
 
   what_would_answer: >
@@ -65133,6 +65174,23 @@
     [2026-08-16 governance apply | V3-EXQ-603u -> MECH-357 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped from after-a-discriminating-pressure to after-the-eligibility-trace-fix-AND-a-graded-scoring-window-scoped-DV; epistemic_category STANDS at standard (explicitly re-affirmed against a live substrate_ceiling alternative -- see recommended_epistemic_category_note) -> standard
 
     [2026-08-16 governance, V3-EXQ-603u, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-603s/603t]: sixth consecutive inconclusive Stage-H run (603h/k/r/s/t/u), fourth distinct pressure design, 19.2 h hub compute. Readiness 4/5 MET (PAG freeze on LESION 1.0; gate engages AND suppresses freeze on INTACT 1.0; Stage-0 z_goal 0.667 at floor; POSCTRL survivability 1.0). The load-bearing ABSOLUTE criterion G_H_INTACT_clears_2of3 PASSED (1.0); the load-bearing DISCRIMINATION criterion G_H_INTACT_beats_LESION FAILED because G_H_LESION_frac = 1.0 as well -- agent-directed hazard pursuit (hazard_agent_pursuit=0.9 on top of 603s's every-step drift at p=0.6) did NOT reintroduce the Pavlovian-instrumental conflict. This DISCHARGES, with a negative answer, the probe-gated question that substrate_queue mech357-freeze-incompatible-pressure-mechanism and closure node mech357_avoidance_efficacy:BUILD were opened to ask; that entry's status implemented_pending_validation is now stale. All four named pressure designs are exhausted. TWO INDEPENDENT vacuities, only one of which the self-route names. (1) DV SATURATION: hazard_stage_median_last_window = exactly 200.0 (the episode cap) in 7 of 9 arm-seeds, on a strongly bimodal (200 or 3-6) distribution, measured through a median-of-10 against a 75-step floor -- the ruler is pegged for all three arms. (2) GATE EXTINCTION IN THE SCORING WINDOW: mech357_avoidance_efficacy underflows to 5.7e-120 / 4.6e-118 / 2.1e-123 on the INTACT seeds, with decay:credit ratios of 86:1 / 188:1 / 120:1 and n_freeze_suppressed SATURATING mid-run, while mech357_scaffold_floor anneals 0.8 -> 0.0 and unmasks it -- so the INTACT arm was functionally LESIONED inside the very window the DV measures. The gate_engaged / gate_suppresses readiness checks are whole-run aggregates and cannot see this. epistemic_category STAYS standard (deliberately NOT substrate_ceiling: the unblocking eligibility-trace build is already in flight and the claim must keep its v3 experiment lane). non_contributory: neither confirmed nor falsified; the mechanism was extinct, the ruler saturated and the pressure absent, simultaneously. Failure-location MIXED across mechanism+measures+environment, NOT chargeable to REE. The manifest's own self-route ('re-calibrate UP') is REJECTED: a 7th same-question pressure recalibration is refused, since a pressure increase cannot fix the efficacy underflow and the cheapest live hypothesis (a graded re-read of the ALREADY-RECORDED 603s/603t/603u per-episode trajectories) costs zero compute. pending_retest_after_substrate stays true, scoped to after-the-eligibility-trace-fix AND a graded, scoring-window-scoped DV. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828, confirmed
+    failure_autopsy_V3-EXQ-603v_2026-08-28 (dry_run_checked: true)]:
+    V3-EXQ-603v validates the eligibility-trace repair (substrate entry
+    mech357-avoidance-efficacy-eligibility-trace-imbalance, ree-v3 93d5d98b80) against its own
+    pre-registered failure_record target. LEARNED avoidance_efficacy now holds a last-10-episode
+    Stage-H window median of 0.494 / 0.924 / 0.033 on 3/3 INTACT seeds -- pre-fix these were
+    1e-24..1e-29, numerical zero on the identical config -- independently replicated 3/3 on
+    POSCTRL. Decay:credit ratios improved to 2.3-5.9:1 (were 61-131:1).
+    ADJUDICATION: the manifest's top-level evidence_direction 'supports' is adjudicated DOWN to
+    non_contributory for MECH-357. This is an INSTRUMENT repair, not claim evidence -- it shows
+    the measuring apparatus now works, not that the mechanism holds. Written to BOTH the flat
+    manifest and the run pack this cycle, so the indexer sees it.
+    The eligibility-trace half of the re-scoped retest condition is now MET, and the live_status
+    verdict inherited from 603t ('4th consecutive inconclusive-by-design-defect') is therefore
+    STALE with respect to this half. Status stays candidate; v3_pending stays true.
+    Routing: /queue-experiment for the successor run.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: freeze must commit on LESION arm and the gate must
     engage+suppress on INTACT arm. ALREADY MET ONCE, cleanly: V3-EXQ-603h reported
@@ -86292,6 +86350,25 @@
     That bounds the current blast radius to zero in production while leaving the
     defect live for any driver that enables the flag -- which is why this is
     registered rather than merely noted.
+
+    [2026-08-28 governance, cycle governance-cycle-20260828]: V3-EXQ-950
+    (v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3,
+    PASS/supports) is the FIRST direct experimental evidence this claim has ever had. The
+    note above ('no run has ever correlated mech286_threat_ok against ground-truth hazard')
+    is now superseded on that point.
+    READ THIS RESULT CAREFULLY -- it must NOT be read off criteria[].passed, where all four
+    show false. The manifest carries an explicit combination_rule taking a 3-way routing
+    verbatim from this claim's own registered what_would_answer: (C1 and C2) -> REFUTED;
+    (C1 xor C2) -> confirms criterion (c); (neither) -> confirms criteria (a)/(b). Neither
+    discrimination criterion fired -- measured AUC 0.5016 (damage_sourced) and 0.4966
+    (proximity_ema_sourced) against a pre-registered 0.6 bar, i.e. chance under BOTH sourcing
+    modes. That is the CONFIRMING branch, criterion (a).
+    Non-degeneracy precondition met as the claim demands: the falsifier drove the agent
+    through real world positions with ground-truth hazard and read the gate's own emitted
+    diagnostics, rather than setting z_harm_a by hand (the V3-EXQ-891 degenerate form).
+    Positive control is the random walk itself; both hazard classes populated
+    (min class frac 0.219 vs a 0.1 floor); z_harm_a apparatus valid at 1.0 vs a 0.99 floor.
+    Status held at candidate this cycle -- recorded as supporting evidence, not promoted.
   location: evidence/literature/targeted_review_sleep_onset_multiinput_gap9/synthesis.md
 
 - id: GOV-PRESERVE-1
