@@ -517,6 +517,72 @@ closure_plan:
         the user 2026-08-28 and is delivered in the takeover session's
         report; PHASE-3/PHASE-4 nodes are its plan-side anchors.
 
+        INGEST AUTHORITY (3-WAY MERGE) + REMAINING VERB MIRRORS: BUILT,
+        DEPLOYED AND LIVE-VERIFIED 2026-08-28 (session
+        coordinator-ingest-clobber-fix-20260828, the takeover handoff's
+        continuation):
+        (i) INGEST-CLOBBER FIX (ree-v3 ce50a937b9). The materializer's
+        ingest-before-render adopted git unconditionally (upsert_*'s
+        PHASE-1 "git wins" semantics), so any DB-side close/resolve on a
+        row git still rendered active/open was reverted within one tick
+        -- the defect that made every suppressed close hollow. Fixed
+        with a 3-way merge against a recorded render base
+        (last_rendered_json on task_claims + chip_ledger, written by the
+        writer once a render PROVABLY reached git: push succeeded, or
+        the file already byte-matched the render). Merge rule:
+        git==base -> preserve the DB (the suppressed-mutation case);
+        DB==base -> adopt git (the fallback self-healing direction,
+        kept); base NULL (pre-migration) or both moved -> terminal
+        guard (done / done|withdrawn never downgraded to active/open),
+        else adopt git. Auto-migrating (connect() ALTERs), deployed by
+        hub `git pull` alone, both ingest callers covered (materializer
+        + shadow-sync). 12 new contracts
+        (coordinator/test_registry_ingest_authority.py); 150-test
+        registry suite green on Mac and hub. LIVE-VERIFIED: canary
+        claim ingest-clobber-livecheck-20260828 + chip
+        chip-20260828-ingest-clobber-livecheck were opened/recorded
+        suppressed, rendered active/open into git, then closed/withdrawn
+        DB-side at 15:25Z -- both SURVIVED 2+ write-mode ticks and
+        render done/withdrawn on origin/master;
+        probe-hollow-ack-20260828 also renders done.
+        (j) REGISTRY REPAIR SWEEP: the whole 2026-08-28 interim-protocol
+        repair list verified already repaired in the DB (every listed
+        claim done, incl. both coordinator-phase2b-takeover rows; all
+        listed chips done/withdrawn); renders match, nothing re-applied.
+        (k) renew/amend/dedupe COORDINATOR MIRRORS (REE_Working
+        c8738b2f: task_claim.py + coordinator_transport.py). Same
+        conservative allowlist + degrade-to-git pattern as open/close;
+        renew passes the CLI's own new stamp so a mirror-only box
+        re-keys identically on both sides; renew's DB re-key now
+        TOMBSTONE-CLOSES the old stamp instead of deleting it (a
+        deleted key cannot survive ingest -- it would resurrect as the
+        active phantom; a done "renewed: ..." row is preserved by the
+        merge and ages out of the render in 24h); dedupe is an accepted
+        no-op (composite PK; the render collapses file-level
+        duplicates). 15 new suppression contracts + a stale-git
+        re-ingest tombstone contract.
+        (l) chip_ledger SCOPE GATE + RESOLVE FALLBACK (same commit;
+        chip chip-20260828-chipledger-coordinator-scope-and-resolve-
+        fallback resolved). coordinator_enabled() gains the
+        in_scope(ROOT) leg -- without it a re-rooted corpus run posted
+        chip-20260809-guard-test into the PRODUCTION DB (withdrawn with
+        an explanatory note); cmd_resolve falls back to
+        coordinator_transport.fetch_chip() on a local miss (the
+        suppressed-record lag window) and refuses up-front when
+        suppression is not armed. Both coordinator-branch pin suites
+        repaired to supply their own transport config (the machine
+        config's scope_root was correctly disarming them).
+        KNOWN RESIDUE: a fully-degraded box (no transport at all) doing
+        a git-path renew still leaves its old-stamp DB row active until
+        the next ingest/render resurrects it into git -- converges as
+        boxes arm; the mirrors close it everywhere the transport
+        reaches. Follow-ons (f)/(g) plus PHASE-3 shrink and the PHASE-4
+        endpoint are chipped:
+        chip-20260828-phase3-claudemd-registry-doctrine-shrink,
+        chip-20260828-phase4-workspace-state-append-endpoint,
+        chip-20260828-mcp-tidy-coordinator-ack,
+        chip-20260828-taskchips-endstate-audit.
+
         DEPLOYED 2026-08-27, shortly after the build landed: the user
         authorised the coordinator restart and the orchestrator session
         (insights-7fd98a) performed it. `ree-coordinator.service` now serves
