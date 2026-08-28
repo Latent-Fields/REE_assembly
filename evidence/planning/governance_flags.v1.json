@@ -1384,6 +1384,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0097",
+      "claim_ids": [
+        "Q-007"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Q-007's HARD PRECONDITION ('z_beta must carry cross-context variance -- V3-EXQ-643's autopsy found the modulatory signal had magnitude but ZERO cross-candidate range') cites the same substrate that V3-EXQ-643a (PASS, 2026-06-06, readiness_met=true, modulatory_authority_range measured 0.22 > floor) validated as fixed post the float32-cancellation bug -- but that run carries claim_ids=[] and was never linked to Q-007, so the precondition was never re-checked. Uncertain whether 643a's E3-candidate-selection-authority range is the SAME substrate as Q-007's z_beta cross-CONTEXT clustering requirement (related but not obviously identical); recommend governance/an owning session re-examine whether Q-007's substrate_conditional gate should be lifted or the claim needs its own targeted check. Surfaced by orphan-prerequisite investigation (chip-20260828-orphan-prerequisite-investigation).",
+      "raised_by_session": "metaworker-chip-20260828-orphan-prerequisite-investigation",
+      "raised_at": "2026-08-28T22:24:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
