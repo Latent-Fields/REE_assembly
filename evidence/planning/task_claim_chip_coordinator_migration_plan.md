@@ -616,10 +616,22 @@ closure_plan:
         separate go-live confirmation. Building/testing does not.
     - id: PHASE-4
       title: "Hub-serialised commit intake for the REMAINING coordination files (WORKSPACE_STATE.md, claims.yaml, ledgers): clients submit intents, the hub is the one committer"
-      status: registered
+      status: in-progress
       severity: high
       last_updated: 2026-08-28
       note: >
+        USER GO-AHEAD 2026-08-28 (session elated-nobel-914234): build PHASE-4.
+        Work began the same hour -- session responsibility-epistemic-hygiene-d6f9d3
+        is building the WORKSPACE_STATE append-endpoint slice (TASK_CLAIMS
+        17:32Z). A full-scope design-doc chip
+        (chip-20260828-phase4-commit-intake-design) was spawned and withdrawn
+        minutes later on discovering that live session; the design brief was
+        messaged to it directly instead: intent schema + CAS semantics, the
+        ree_commit.py coordinator-branch client lever, per-file routing table,
+        the experiment-queue option-C decision, hub-writer serialisation,
+        transport scope-gating (the 2026-08-28 fixture-leak lesson), windowed
+        soak criteria with a total-ticks clause, and the decommission /
+        context-burn payoff ledger.
         USER-DIRECTED PRIORITY (2026-08-28): the second half of the
         strategic picture. PHASE-2 moves the two claim/chip registries'
         AUTHORITY to the hub; PHASE-4 generalises the WRITE PATH -- a hub
