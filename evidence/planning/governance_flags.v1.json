@@ -1371,6 +1371,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0096",
+      "claim_ids": [
+        "MECH-521"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-521's own owed 'derivational precondition' toy (a ~20-line 1-D lateral-inhibition settling probe, no REE substrate) was already run 2026-08-26 (evidence/planning/mech521_settling_signature_derivation_20260826.md, session insights-7fd98a) and found settling alone gives only the pure slot horn (fidelity pinned at 1.000, no graceful phase); a third ingredient (a shared normalisation budget) is required to reproduce MECH-521's claimed hybrid signature and is currently unnamed in the claim text. The doc's own recommendation (amend MECH-521 to name the shared-budget term as a required third ingredient and re-point the falsifier at it; do not retire -- leg 2 is derived) was never applied to claims.yaml and has no governance flag until now. Surfaced by orphan-prerequisite investigation (chip-20260828-orphan-prerequisite-investigation); MECH-521's substrate P0-P2 build gates remain separately unmet and untracked (see companion GFLAG on MECH-045/ARC-006).",
+      "raised_by_session": "metaworker-chip-20260828-orphan-prerequisite-investigation",
+      "raised_at": "2026-08-28T22:23:49Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
