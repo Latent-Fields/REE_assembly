@@ -3828,7 +3828,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
+              "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3"
             ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "measurement_test_design_defect",
@@ -3837,7 +3838,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-08-12T09:01:42Z",
-            "basis": "C1 (literal-F lesion) moved the selection distribution (total variation 0.0005177) but with NO consistent direction toward the independently-preferred (ground-truth-safer) candidate on disagreement events (delta_p_safer_mean=-0.0000016, frac_moved_toward_safer=0.376) -- the H1-supportive branch (delta_p_safer>0.01 and frac_toward>0.5) did not fire. Stays alive: committed_fraction=0.000 means the run mostly did not test the COMMITTED-selection regime H1 is actually about (MECH-439's own framing); this may not have been a fair test of H1 as posed."
+            "basis": "C1 (literal-F lesion) moved the selection distribution (total variation 0.0005177) but with NO consistent direction toward the independently-preferred (ground-truth-safer) candidate on disagreement events (delta_p_safer_mean=-0.0000016, frac_moved_toward_safer=0.376) -- the H1-supportive branch (delta_p_safer>0.01 and frac_toward>0.5) did not fire. Stays alive: committed_fraction=0.000 means the run mostly did not test the COMMITTED-selection regime H1 is actually about (MECH-439's own framing); this may not have been a fair test of H1 as posed. 2026-08-28 update (failure_autopsy_V3-EXQ-925a_2026-08-28, Mode B resolving-run append, state unchanged): V3-EXQ-925a restores the committed regime (committed_fraction 1.0, deterministic argmin, c0 match 1.0; the 925 uncommitted regime was a driver defect -- missing post_action_update). Scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble flip the ACTUAL committed winner on 9.7-30% of events but chance-directionally (frac_toward_safer 0.530/0.484) -- real argmin-level F authority with no consistent safety-axis alignment, so the discrimination remains open; the fair-test blocker is re-attributed from commitment to absolute score scale (H5)."
           }
         },
         {
@@ -3852,7 +3853,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
+              "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3"
             ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "measurement_test_design_defect",
@@ -3861,7 +3863,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-08-12T09:01:42Z",
-            "basis": "MECH-448 eligibility-envelope toggling (C4) changed the winner on 0.0% of events -- no evidence the eligibility mechanism itself is an independent locus of authority beyond literal F in this sample. Stays alive for the same regime-confound reason as H1: near-uniform, uncommitted selection (entropy 0.998) means the toggle had almost nothing to move regardless of whether H2 holds under committed selection."
+            "basis": "MECH-448 eligibility-envelope toggling (C4) changed the winner on 0.0% of events -- no evidence the eligibility mechanism itself is an independent locus of authority beyond literal F in this sample. Stays alive for the same regime-confound reason as H1: near-uniform, uncommitted selection (entropy 0.998) means the toggle had almost nothing to move regardless of whether H2 holds under committed selection. 2026-08-28 update (failure_autopsy_V3-EXQ-925a_2026-08-28, Mode B resolving-run append, state unchanged): V3-EXQ-925a restores the committed regime (committed_fraction 1.0, deterministic argmin, c0 match 1.0; the 925 uncommitted regime was a driver defect -- missing post_action_update). Scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble flip the ACTUAL committed winner on 9.7-30% of events but chance-directionally (frac_toward_safer 0.530/0.484) -- real argmin-level F authority with no consistent safety-axis alignment, so the discrimination remains open; the fair-test blocker is re-attributed from commitment to absolute score scale (H5)."
           }
         },
         {
@@ -3876,7 +3878,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
+              "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3"
             ],
             "evidence_direction": "mixed",
             "epistemic_category": "measurement_test_design_defect",
@@ -3885,7 +3888,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-08-12T09:01:42Z",
-            "basis": "NEAR-MISS: the driver's own H3-supportive threshold (competitor_tv<1e-9 AND competitor_influence_factual<0.05) did not fire -- competitor_had_influence_factual_f_rate=0.0858 narrowly exceeds 0.05; competitor_had_influence_lesioned_f_rate=0.0959 also exceeds it, so the 'near-zero in both conditions' branch also missed. Both sit in a weak, ambiguous middle zone. Qualitatively favoured by the biological-reference reading (accumulator/DDM low-SNR near-uniform selection is the expected signature of weak, only-partially-differentiated evidence -- SD-056 moved pairwise distance 0.0000->0.12-0.16, real but modest), but not confirmed by hard thresholds. Stays alive."
+            "basis": "NEAR-MISS: the driver's own H3-supportive threshold (competitor_tv<1e-9 AND competitor_influence_factual<0.05) did not fire -- competitor_had_influence_factual_f_rate=0.0858 narrowly exceeds 0.05; competitor_had_influence_lesioned_f_rate=0.0959 also exceeds it, so the 'near-zero in both conditions' branch also missed. Both sit in a weak, ambiguous middle zone. Qualitatively favoured by the biological-reference reading (accumulator/DDM low-SNR near-uniform selection is the expected signature of weak, only-partially-differentiated evidence -- SD-056 moved pairwise distance 0.0000->0.12-0.16, real but modest), but not confirmed by hard thresholds. Stays alive. 2026-08-28 update (failure_autopsy_V3-EXQ-925a_2026-08-28, Mode B resolving-run append, state unchanged): V3-EXQ-925a restores the committed regime (committed_fraction 1.0, deterministic argmin, c0 match 1.0; the 925 uncommitted regime was a driver defect -- missing post_action_update). Scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble flip the ACTUAL committed winner on 9.7-30% of events but chance-directionally (frac_toward_safer 0.530/0.484) -- real argmin-level F authority with no consistent safety-axis alignment, so the discrimination remains open; the fair-test blocker is re-attributed from commitment to absolute score scale (H5)."
           }
         },
         {
@@ -3900,7 +3903,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3"
+              "v3_exq_925_e3_fdominance_frozen_replay_causal_harness_20260812T090142Z_v3",
+              "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3"
             ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "measurement_test_design_defect",
@@ -3909,7 +3913,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-08-12T09:01:42Z",
-            "basis": "The H4-supportive branch (delta_p_safer<-0.01, i.e. lesioning F makes the independently-judged outcome WORSE) did not fire (delta_p_safer_mean=-0.0000016, effectively zero). Stays alive for the same regime-confound reason as H1/H2: this run mostly sampled from a near-uniform distribution, so it cannot distinguish 'F does no useful work' (contra H4) from 'F's useful work only shows up under committed selection, which barely engaged here'."
+            "basis": "The H4-supportive branch (delta_p_safer<-0.01, i.e. lesioning F makes the independently-judged outcome WORSE) did not fire (delta_p_safer_mean=-0.0000016, effectively zero). Stays alive for the same regime-confound reason as H1/H2: this run mostly sampled from a near-uniform distribution, so it cannot distinguish 'F does no useful work' (contra H4) from 'F's useful work only shows up under committed selection, which barely engaged here'. 2026-08-28 update (failure_autopsy_V3-EXQ-925a_2026-08-28, Mode B resolving-run append, state unchanged): V3-EXQ-925a restores the committed regime (committed_fraction 1.0, deterministic argmin, c0 match 1.0; the 925 uncommitted regime was a driver defect -- missing post_action_update). Scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble flip the ACTUAL committed winner on 9.7-30% of events but chance-directionally (frac_toward_safer 0.530/0.484) -- real argmin-level F authority with no consistent safety-axis alignment, so the discrimination remains open; the fair-test blocker is re-attributed from commitment to absolute score scale (H5)."
           }
         },
         {

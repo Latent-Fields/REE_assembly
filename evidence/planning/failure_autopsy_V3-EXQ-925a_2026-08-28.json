@@ -1,0 +1,93 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-28T17:11:55Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "readjudication_of": "failure_autopsy_V3-EXQ-925_2026-08-12 (partial supersession -- see re_derive_brake.supersedes_autopsy and the read-across section)",
+ "targets": [
+  {
+   "run_id": "v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3",
+   "queue_id": "V3-EXQ-925a",
+   "claim_ids": [],
+   "self_route_label": "committed_regime_engaged_h1_h4_readable",
+   "failed_criterion": null,
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free by design; classifies causal-hypothesis pattern for MECH-439's mechanism without adjudicating MECH-439/ARC-062/ARC-107/108/110",
+    "biological_reference": "partial -- the near-uniform-selection signature (entropy 0.998) PERSISTS in the committed regime; accumulator/DDM low-SNR reading (weak evidence -> near-uniform choice) survives the supersession of the 925 regime finding and still qualitatively favours H3",
+    "prerequisites": "present with one soft spot -- SD-056 candidate differentiation clears both arms (0.042/0.142 >= 0.02); seed 43's competitor-channel per-seed std is 7.45e-9 in BOTH arms (below the 1e-6 per-seed floor; the arm-level precondition uses the arm mean, which clears). 925 excluded seed 43 outright; 925a includes its 847/859 events",
+    "implementation": "complete -- the corrected instrument does what it claims: the single added post_action_update call restores the selector's own commit gate (committed_fraction 0.000 -> 1.000 at UNCHANGED default config), the GSCT lever is genuinely reachable for the first time (teff_spread 0.141, argmin-match 0.167 vs 1.0), and the recording debt (commit_gate_variance, commit_threshold_eff) is closed",
+    "environment": "adequate -- verbatim 643a/925 env; not implicated",
+    "measurement": "adequate -- replay reconstruction worst abs err 8.67e-9; committed-conditioned re-aggregation; criteria non-degenerate; the committed_fraction floor (0.05) is a deadlock detector by design, ~20x below the measured value",
+    "integration": "coupled -- with the caveat that committed_fraction = 1.000 in EVERY cell means the run contains zero uncommitted events, so it cannot contrast the two regimes within-run (stated in advance by the queue note; 925 + 925a together cover both regimes)",
+    "scale": "adequate (7047 fresh events, 3 seeds x 2 arms)"
+   },
+   "biological_reference": {
+    "closest_mechanism": "BG-style commit-on-confidence gate over competing channels feeding a common decision variable (running-variance threshold); softmax sampling as the uncommitted fallback",
+    "dependencies": [
+     "SD-056 candidate differentiation",
+     "competitor-channel (gated_policy) per-candidate signal"
+    ],
+    "is_formal_import": true,
+    "divergence": "the 925 autopsy's biological reading (near-uniform choice under weakly-differentiated evidence is the EXPECTED low-SNR signature, not a defect) is RETAINED: it persists unchanged in the committed regime, which strengthens rather than weakens it",
+    "lit_status": "absent"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "not applicable -- PASS, no failure to locate. Corollary carried forward from the 925 artifact, now sharpened: the near-uniform regime is a property of score SCALE (H5 territory), not of commitment, so H1-H4 remain untested-fairly for a score-scale reason, not a commitment reason"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "n/a -- claim-free; the MECH-439-bearing content routes through GFLAG-0048/GFLAG-0049, not through a claims.yaml note from this autopsy.",
+   "per_claim_recommendation": {},
+   "per_claim_recommendation_note": "claim_ids=[] by design. The claim-bearing dispositions are already registered as open governance flags by the authoring session (GFLAG-0048: do not attach the 925-drafted MECH-439 note, its premise is refuted; GFLAG-0049: re-scope or retire the H0-selector-regime-confound registry leg). This autopsy CONFIRMS both flags' factual basis against the landed run and adds (red-team-corrected wording): what survives of the 925 finding is SCORE FLATNESS, not near-uniform selection -- committed selection is deterministic argmin (c0 match 1.0), and F-lesion/scramble flip the actual winner on 9.7-30% of events, chance-directionally. So the correct H0 re-scope is 'V3-EXQ-925 driver instrumentation defect (commitment half) + genuine score-scale flatness with directionless argmin authority (H5's territory)' -- not a wholesale retirement of the underlying observation.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "note": "No substrate gap. The commit-gate deadlock was a DRIVER defect (925's missing post_action_update), not a substrate defect -- e3_selector.py already documents and fixes the same deadlock inside post_action_update, which 97 other drivers call."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "supersedes_autopsy": "failure_autopsy_V3-EXQ-925_2026-08-12",
+    "note": "n/a -- claim_ids=[]. supersedes_autopsy records the PARTIAL supersession: withdrawn -- the 925 artifact's Implementation-layer causal attribution ('use_gap_scaled_commit_temperature left False ... is mechanically why commitment never engaged'; the GSCT call sites were inside `elif committed:` -- a dead branch -- so that lever could never have engaged commitment, and the actual cause was the 925 driver's missing post_action_update), its H0-as-substrate-property reading, its learning point 2 ('this substrate at default config essentially never engages committed selection'), and the premise of its Section 7 candidate MECH-439 note (never applied; GFLAG-0048 blocks it). RETAINED -- its learning point 1 (temporal variance-share vs cross-candidate steering divergence), its biological H3-qualitative reading (near-uniform under weak evidence; persists committed), its H3-near-miss numbers, and its routing (the redesign it called for is 925a itself, correctly executed)."
+   },
+   "learning_extracted": [
+    "V3-EXQ-925's committed_fraction=0.000 was a driver instrumentation defect, not a substrate regime: one added post_action_update call per step (the standard update_residue path, ~14 direct callers / ~382 call references across the driver corpus) takes committed_fraction from 0.000 to 1.000 at unchanged default config. Red-team verified at the 925-ERA commit 9bcde4cb (not just today's tree): both GSCT call sites sat inside `elif committed:` then too, so the 925 autopsy's recommended lever was incapable of producing the regime it was recommended to produce, and its 'mechanically why commitment never engaged' attribution was wrong against the substrate as it stood at run time. Precision on the evidence: the cross-run 0.000 -> 1.000 spans two substrate commits and machines; the CONTROLLED demonstration is the authoring-time probe (same substrate, one added call, 0.000 -> 0.959).",
+    "The scientifically load-bearing residue, CORRECTED at the 7c red-team pass: what persists in the committed regime is SCORE FLATNESS, not near-uniform SELECTION. ARM_COMMIT's selection was exactly deterministic (c0_argmin_matches_factual_rate = 1.0); the entropy-0.9988 softmax is an explicitly-labelled diagnostic distribution (last_precommit_probs) that generated no behaviour, so the manifest's own 'NO channel is meaningfully steering the choice' prose absolute is refuted by the run's own deterministic-selector columns: the F-lesion flips the ACTUAL committed winner on 9.7% (ARM_COMMIT) / 19.2% (GSCT) of events, and the F-scramble on 19.2% / 30.4%. What makes the run uninformative for H1-H4 is that those winner-flips are chance-DIRECTIONAL (c1_frac_moved_toward_safer 0.530 / 0.484): F has real argmin-level authority over near-flat scores, exercised with no consistent alignment to the safety axis. The fair-test blocker for H1-H4 is absolute score SCALE/flatness (registry leg H5, confirmed from V3-EXQ-936), not commitment -- but the evidence shape is directionless winner-flips, not 'tiny deltas'. The manifest inherited the conflation (its note builder is regime-unconditioned and the driver carries a stale 'selector is running UNCOMMITTED' comment; its failure_localisation also points at a SELECTOR REGIME note this run suppresses) -- driver hygiene items for any successor.",
+    "925a cannot contrast committed vs uncommitted within-run (committed_fraction 1.000 everywhere, zero uncommitted events); 925 + 925a jointly cover the two regimes, as the queue note anticipated.",
+    "Seed 43's competitor channel carries ~7e-9 per-candidate signal in both arms across both runs -- a persistent per-seed training-reliability gap in gated_policy that bounds single-seed competitor-influence readings."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "routing_note": "Governance actions, in order: (1) apply GFLAG-0048 (do not attach the 925-drafted MECH-439 note; any MECH-439 note should now be weighed against 925a) and GFLAG-0049 (re-scope H0 -- recommended re-scope wording in per_claim_recommendation_note: instrumentation-defect half withdrawn, near-uniform half re-attributed to H5/score-scale); (2) registry maintenance per this artifact's Step 9b block (925a appended as a resolving run on H1-H4, all four stay alive -- an uninformative-for-discrimination run under the mapping table's last row; H0 edit left to governance per the flag); (3) the next discriminating experiment should control ABSOLUTE SCORE SCALE via channel-scale normalisation (H5's mechanism) -- NOT via temperature: red-team established that a temperature rescale is argmin-invariant and therefore inert on the plain committed path (it only reaches behaviour through GSCT's T_eff envelope), so 'calibrate temperature to score range' is not a live lever for the deterministic regime this run demonstrated. A genuinely different design axis, not another commitment-side letter. This autopsy spawns nothing itself.",
+ "cluster_pattern": null,
+ "interactive_gate": {
+  "gate_utc": "2026-08-28T17:11:55Z",
+  "session": "failure-autopsy-20260828-diagbatch",
+  "decisions": {
+   "V3-EXQ-945": "Flip the v3_exq_931 failure_record to resolved WITH the lever substitution, attenuate-only regime, marginal throughput and harm regression stated verbatim in the resolved_note (user-confirmed).",
+   "V3-EXQ-925a": "Confirm as revised: partial supersession of failure_autopsy_V3-EXQ-925_2026-08-12, red-team-corrected reading (score flatness + directionless argmin authority), Mode-B registry appends on H1-H4, H0 re-scope left to governance per GFLAG-0049 (user-confirmed).",
+   "V3-EXQ-933a": "Confirm + flip the v3_exq_933 failure_record to resolved with residuals named (user-confirmed).",
+   "V3-EXQ-603v": "Confirm as drafted: supports -> non_contributory, diagnostic_evidence_adjudicated true, 603u failure_record flip, graded-DV retest routing; reversed-sign survival finding flagged for governance, not adjudicated here (user-confirmed)."
+  },
+  "redteam_verdicts": {
+   "V3-EXQ-945": "CONTESTED (D1 lever substitution) -- disposed into resolved_note + learning_extracted",
+   "V3-EXQ-925a": "CONTESTED (score-flatness vs selection mirror-image) -- disposed into learning_extracted, per_claim_recommendation_note, registry basis, routing_note",
+   "V3-EXQ-933a": "CONFIRMED (hygiene folded in)",
+   "V3-EXQ-603v": "CONTESTED (single-variable premise false; graded-DV reanalysis omitted) -- disposed into environment layer, resolved_note, read-across item, routing_note"
+  },
+  "pre_routing_checks_7b": "0 fires on all four drafts; C1/C2/C3/C5 inapplicable on the three claim-free targets (checks are claim-keyed), C1-C3 evaluated without firing on 603v"
+ },
+ "hypothesis_space_ledger_applied": {
+  "qid": "e3_fdominance_causal_discrimination",
+  "mode": "B (resolving-run append only)",
+  "detail": "append v3_exq_925a_e3_fdominance_committed_regime_causal_harness_20260825T220607Z_v3 to resolving_runs of H1-literal-f-dominance, H2-primary-field-dominance, H3-upstream-insufficiency, H4-conditional-specialisation; all four states stay alive. Basis wording (red-team-corrected): 'committed regime restored (committed_fraction 1.0, deterministic argmin selection, c0 match 1.0); scores remain near-flat (diagnostic entropy 0.998); F-lesion/scramble flip the actual committed winner on 9.7-30% of events but chance-directionally (frac_toward_safer 0.530/0.484) -- real argmin-level F authority with no consistent safety-axis alignment, so the discrimination remains open; blocker re-attributed from commitment to absolute score scale (H5).' H0-selector-regime-confound NOT edited by this autopsy -- its re-scope is GFLAG-0049's governance decision; H5 untouched (reinforced, its resolving run 936 stands). Registry schema verified: resolving_runs is a list, in-file precedent exists for alive legs carrying resolving runs, no growth_restriction on the question.",
+  "applied_in_same_commit": true
+ }
+}

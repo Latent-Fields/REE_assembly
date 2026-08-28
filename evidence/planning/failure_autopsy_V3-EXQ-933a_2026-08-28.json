@@ -1,0 +1,94 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-28T17:11:55Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_933a_sleep_gap9_entry_pressure_fix_20260826T072405Z_v3",
+   "queue_id": "V3-EXQ-933a",
+   "claim_ids": [],
+   "self_route_label": "entry_pressure_fix_validated",
+   "failed_criterion": null,
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free consumer validation; GAP-9 is a plan node with no claims.yaml claim (per the confirmed 929/933 cluster autopsy and the plan's own traceability row)",
+    "biological_reference": "clear -- the fix implements exactly what the cluster autopsy's biological triage demanded: a Process-S-style time-INTEGRATING entry pressure (running sum, homeostatic discharge on cycle completion) replacing the level detector for the ENTRY role, plus a refractory floor bounding the fire rate. The Saper-switch stabiliser question (MECH-286, deliberately OFF here as in 933) remains separate and open",
+    "prerequisites": "present -- SD-SLEEP-ENTRY-PRESSURE build landed (ree-v3 63e70d6); v1 ceiling arm behaviour established by V3-EXQ-929",
+    "implementation": "complete for the within-life pressure arm; the boundary-path inheritance the cluster's human gate flagged (entry_permitted() still delegates to need_crossed(), the level detector) is deliberately NOT touched and NOT exercised here (no agent.reset(), use_mel_entry OFF)",
+    "environment": "adequate for consumer validation -- controlled injected demand at V3-EXQ-933's exact levels (the same method 933/718a used); the ecological producer remains parked per GAP-5b (env MEL is noise-level), a known scope limit, not a defect of this run",
+    "measurement": "adequate for the target's two clauses -- C1 (bounded-time crossing) and C2 (rate strictly < 1) are the informative criteria and both could have failed; C3 (OFF-arm inertness) is structurally unfailable in the same sense as 933's c4 (the OFF flag zeroes the accumulator), mirroring contract G17 -- a reproduction check, not a discrimination; per-seed values are identical (deterministic trigger arithmetic; the 3-seed replication adds no variance information about the trigger path)",
+    "integration": "partial by scope -- within-life pressure arm only; need arm (933's territory), boundary path, MECH-286 gate, and ecological producer all out of scope by design",
+    "scale": "adequate (120-step lives; the analytic bounds are exercised with margin)"
+   },
+   "biological_reference": {
+    "closest_mechanism": "Process S homeostatic sleep pressure (Borbely two-process model): integrated wake-time demand discharged by sleep, plus a refractory enforcing minimum inter-cycle interval",
+    "dependencies": [
+     "MEL consumer (GAP-5b duration statistic, untouched)",
+     "phase_manager within-life trigger arms",
+     "MECH-286 Saper bistable stabiliser (deliberately OFF, separate question)"
+    ],
+    "is_formal_import": false,
+    "divergence": "none introduced -- this run VALIDATES the correction of the previously-diagnosed divergence (level detector where Process S was specified)",
+    "lit_status": "present"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "partial",
+    "ree": false,
+    "net_classification": "not applicable -- PASS, no failure to locate. Corollary (carried from the cluster artifact): environment reads controlled-injection-only, so organism-level sleep-timing conclusions still cannot be drawn from this apparatus"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "n/a -- claim-free; no claims.yaml note to write.",
+   "per_claim_recommendation": {},
+   "per_claim_recommendation_note": "claim_ids=[] by design (GAP-9 is a plan node). The actionable output is the substrate_queue failure_record flip below; the sleep plan's follow-up row already records this run.",
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-SLEEP-ENTRY-PRESSURE",
+    "resolves_prior_failure_record": [
+     {
+      "run_id": "v3_exq_933_sleep_gap9_need_arm_20260814T155845Z_v3",
+      "resolved": "resolved",
+      "resolved_note": "V3-EXQ-933a (2026-08-26, diagnostic PASS, adjudicated by this autopsy) meets the failure_record target's two clauses at V3-EXQ-933's exact injected-demand levels, 3/3 seeds: (a) sustained sub-threshold demand (0.1/step vs threshold 0.5) crosses via the running sum at step 5 (analytic bound 8; 933's NEED_SUB had 0 need-arm fires in 120 steps); (b) sustained supra-threshold demand fires at rate 0.5 = exactly the refractory-implied cap, strictly < 1/step (933's NEED_HIGH: 120/120 chatter, no refractory). OFF baseline reproduces the pre-fix ceiling-only numeric signature exactly (4 fires, first fire 25, ceiling_frac 1.0; record schemas differ between the runs, so the identity is numeric, not byte-level). The entry's implementation_note_update explicitly reserved this flip for exactly this rerun. Residuals the flip does NOT close: boundary-path inheritance (entry_permitted() still delegates to the need_crossed() level detector -- untested), MECH-286 stabiliser re-shaping, GAP-5b ecological producer, and the 929a recording re-run (all already recorded as separate items)."
+     }
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "note": "n/a -- claim_ids=[]"
+   },
+   "learning_extracted": [
+    "The implement-substrate -> run-directly-per-GOV-REUSE-1 -> adjudicate loop closed in 10 days from defect diagnosis (929/933 cluster, 2026-08-16) to validated fix (2026-08-26) with a 1.3-second decisive readout -- the manifest-as-decisive-readout pattern worked as intended here.",
+    "C2's measured rate sits EXACTLY at the refractory-implied maximum (0.5 = 1/refractory_steps; 60 fires vs bound 61): under sustained supra-threshold demand the system fires as fast as the floor permits. The margin against chatter is supplied entirely by the refractory constant -- refractory_steps=1 would give rate 1.0 (the documented degenerate setting). Any future tuning of refractory_steps re-derives this bound.",
+    "Provenance note: the run executed the fix as UNCOMMITTED working-tree code (manifest dirty_paths = exactly the four fix files; fix commit 63e70d6 landed ~2.5 min after the manifest, one unrelated commit intervening on main). The committed fix's equivalence to what ran was re-verified during this autopsy by re-running the driver dry-run on today's committed substrate and reproducing the manifest's per-cell numbers exactly (deterministic trigger arithmetic).",
+    "The zero-cross-seed-variance pattern (all three seeds numerically identical) is expected -- seeds vary env/agent init, which the trigger DV does not read -- and means seed count is not a power lever for this family; arm design is.",
+    "Red-team (7c) coverage caveat, verified closed on the recorded numbers: C1's first-fire bound is ONE-SIDED, so a swallowed entry_pressure_threshold (config default 0.0 would give first fire at step 2) would still have PASSED the pre-registered rule -- only the recorded values prove the threshold threaded (first fire exactly at the analytic crossing step 5, min pressure at fire exactly 0.5 == the threshold). Both were verified against the manifest during this adjudication, so the conclusion stands; a future rerun of this family should add a two-sided first-fire band so the rule itself catches a swallowed threshold."
+   ],
+   "routing": "governance-amend"
+  }
+ ],
+ "routing_note": "Single governance action: apply the substrate_queue amend above (flip the v3_exq_933 failure_record to resolved with the quoted residuals). No new experiment and no new substrate work routed from this run: the open follow-ons (929a recording re-run, boundary-path level-detector inheritance, MECH-286 re-shaping, GAP-5b ecological producer) are all already recorded items with owners -- re-routing them here would create duplicate trackers. The sleep plan's GAP-9 follow-up row already cites this PASS as done; this adjudication confirms that row's basis.",
+ "cluster_pattern": null,
+ "interactive_gate": {
+  "gate_utc": "2026-08-28T17:11:55Z",
+  "session": "failure-autopsy-20260828-diagbatch",
+  "decisions": {
+   "V3-EXQ-945": "Flip the v3_exq_931 failure_record to resolved WITH the lever substitution, attenuate-only regime, marginal throughput and harm regression stated verbatim in the resolved_note (user-confirmed).",
+   "V3-EXQ-925a": "Confirm as revised: partial supersession of failure_autopsy_V3-EXQ-925_2026-08-12, red-team-corrected reading (score flatness + directionless argmin authority), Mode-B registry appends on H1-H4, H0 re-scope left to governance per GFLAG-0049 (user-confirmed).",
+   "V3-EXQ-933a": "Confirm + flip the v3_exq_933 failure_record to resolved with residuals named (user-confirmed).",
+   "V3-EXQ-603v": "Confirm as drafted: supports -> non_contributory, diagnostic_evidence_adjudicated true, 603u failure_record flip, graded-DV retest routing; reversed-sign survival finding flagged for governance, not adjudicated here (user-confirmed)."
+  },
+  "redteam_verdicts": {
+   "V3-EXQ-945": "CONTESTED (D1 lever substitution) -- disposed into resolved_note + learning_extracted",
+   "V3-EXQ-925a": "CONTESTED (score-flatness vs selection mirror-image) -- disposed into learning_extracted, per_claim_recommendation_note, registry basis, routing_note",
+   "V3-EXQ-933a": "CONFIRMED (hygiene folded in)",
+   "V3-EXQ-603v": "CONTESTED (single-variable premise false; graded-DV reanalysis omitted) -- disposed into environment layer, resolved_note, read-across item, routing_note"
+  },
+  "pre_routing_checks_7b": "0 fires on all four drafts; C1/C2/C3/C5 inapplicable on the three claim-free targets (checks are claim-keyed), C1-C3 evaluated without firing on 603v"
+ }
+}

@@ -1,0 +1,114 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-28T17:11:55Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
+   "queue_id": "V3-EXQ-603v",
+   "claim_ids": [
+    "MECH-357"
+   ],
+   "self_route_label": "eligibility_trace_repair_validated",
+   "failed_criterion": null,
+   "four_layer_diagnosis": {
+    "claim_alignment": "intact but untested -- the run repairs component (c) of MECH-357's own mechanism (the eligibility-trace learner) as an INSTRUMENT and explicitly does not attempt the claim's falsifier (INTACT-vs-LESION survival discrimination, structurally vacuous at this pressure: 603u measured G_H_LESION_frac=1.0 alongside G_H_INTACT_frac=1.0). Seventh consecutive run in which MECH-357 is neither confirmed nor falsified -- but the FIRST in which the Stage-H instrument is live where the DV is measured",
+    "biological_reference": "clear -- the repaired rule restores eligibility-trace credit semantics: decay now requires an EXPERIENCED failed directed attempt, not the mere absence of an attempt (freeze/no-op). The old rule extinguished learned avoidance by 24 orders of magnitude during freeze-heavy epochs, which contradicts the gradual-acquisition basis the claim cites (Debiec & Sullivan 2017); windowing removes that divergence",
+    "prerequisites": "present -- fix landed unconditionally (ree-v3 93d5d98b80, clean substrate 8bfcf198); all six readiness preconditions met, including the same-statistic positive control (the 643 rule) which 603u cleared PRE-fix, making it fix-independent",
+    "implementation": "complete -- the fix is unconditional (no flag), so no within-run OFF arm exists and none is needed; ARM_LESION deliberately dropped (gate OFF carries no trace, invariant under the fix, 603u values citable)",
+    "environment": "adequate for the trace validation -- config bit-for-bit 603u (verified: only the declared arms difference), but NOT single-variable: the substrate advanced 227 commits between 603u and 603v (9551274c..8bfcf198, 18 touching ree_core/, incl. the mode_partitioned_cem default flip and an e3 selection-path sign fix). The TRACE attribution itself stands (infralimbic_avoidance_gate.py is touched by exactly one commit in the range -- the fix -- and the n_freeze_noop accounting ties the trace recovery mechanistically to it), but CROSS-RUN BEHAVIOURAL deltas are not attributable to the fix alone. INADEQUATE for the claim discrimination -- the lesion arm has no headroom from below at this pressure, a separately-owed problem this run correctly did not fold in",
+    "measurement": "adequate -- C1 is scoring-window-scoped exactly as the failure_record target demands, with the floor ~22 orders of magnitude above the observed failure (no ambiguous band); DV-symmetry declared per the 604c rule; per-arm gate via precondition_gate.py (red POSCTRL cannot vacate green INTACT)",
+    "integration": "coupled -- gate engages, suppresses freeze, credits and decays under live Stage-H threat on all seeds",
+    "scale": "adequate (2 arms x 3 seeds x 40 Stage-H episodes, ~30.5h)"
+   },
+   "biological_reference": {
+    "closest_mechanism": "infralimbic-PFC freeze-suppression + instrumental avoidance with eligibility-trace efficacy learning (Debiec & Sullivan 2017 gradual acquisition; Moscarello 2020 vmPFC/reuniens learned suppression)",
+    "dependencies": [
+     "SD-058",
+     "MECH-279 PAG freeze",
+     "SD-035 CeA/BLA",
+     "protective scaffold annealing (Turchetta 2020)"
+    ],
+    "is_formal_import": false,
+    "divergence": "the REPAIRED divergence: decay-on-absence-of-attempt was a translation error relative to extinction learning (which requires experienced non-reinforced/failed trials); the tick-count asymmetry (decay:credit 61-131:1) was an artifact of that error, now 2.3-5.9:1",
+    "lit_status": "present"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "partial",
+    "ree": false,
+    "net_classification": "not applicable -- PASS, no failure to locate. Corollary: environment reads inadequate-for-discrimination (lesion ceiling), so no organism-level MECH-357 conclusion is licensed by this apparatus until the graded-DV retest runs"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_per_claim": {
+    "MECH-357": "standard"
+   },
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "MECH-357": "non_contributory"
+   },
+   "recommended_evidence_quality_note": "2026-08-28 (failure_autopsy_V3-EXQ-603v_2026-08-28, diagnostic adjudication): V3-EXQ-603v validates the eligibility-trace repair (substrate entry mech357-avoidance-efficacy-eligibility-trace-imbalance, ree-v3 93d5d98b80) against its own pre-registered failure_record target: the LEARNED avoidance_efficacy now holds a last-10-episode Stage-H window median of 0.494/0.924/0.033 on 3/3 INTACT seeds (pre-fix: 1e-24..1e-29 numerical zero on the identical config), independently replicated 3/3 on POSCTRL; decay:credit ratios 2.3-5.9:1 (were 61-131:1). The manifest's top-level evidence_direction 'supports' is adjudicated to non_contributory for MECH-357: this is an INSTRUMENT repair (the driver's own words: 'NOT a claim retest'), scoring-excluded as a diagnostic, and the claim's survival discrimination remains untested (lesion arm has no headroom at this pressure). CONSEQUENCE: the first half of pending_retest_after_substrate's re-scoped condition (from the 603t/603u dispositions: 'after the eligibility-trace fix AND a graded, scoring-window-scoped DV') is now MET, and the second half is proven workable by the completed graded-DV reanalysis (mech357_h2_graded_dv_reanalysis_2026-08-25.md) -- which ALSO reports an unadjudicated REVERSED-SIGN discrimination in the pre-fix 603s/t/u data (gated arms survive SHORTER than LESION, 16/18 cells), continuous with 603v's own post-fix G_H drop (3/3 -> 2/3, highest-trace seed collapsing); governance must adjudicate that finding (incl. whether 603s/t/u re-read weakens) alongside this note. The retest needs the one-line episode_lengths-for-all-arms persistence amendment and a restored LESION comparator. The 603u-cluster refusal of a bare pressure-up recalibration STANDS. Seed 44's window median (0.033, 24x below its own run peak, the one C2 miss at 0.042 vs the 0.1 ratio floor) shows the trace still sags where directed attempts fail often -- a magnitude observation for the retest's design, not a defect finding.",
+   "per_claim_recommendation": {
+    "MECH-357": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "direction: manifest's top-level 'supports' adjudicated DOWN to non_contributory (instrument repair, not claim evidence; scoring-excluded regardless); epistemic_category STANDS at standard; status stays candidate/v3_pending; evidence_quality_note APPEND (drafted above) recording that the eligibility-trace half of the re-scoped retest condition is now MET and the live_status verdict ('4th consecutive inconclusive-by-design-defect', from 603t) is stale; MECH-357 carries NO diagnostic_evidence_adjudicated field, so set one -> diagnostic_evidence_adjudicated: true",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "mech357-avoidance-efficacy-eligibility-trace-imbalance",
+    "resolves_prior_failure_record": [
+     {
+      "run_id": "v3_exq_603u_instrumental_avoidance_agent_pursuit_20260815T020607Z_v3",
+      "resolved": "resolved",
+      "resolved_note": "V3-EXQ-603v (2026-08-27, diagnostic PASS, adjudicated by this autopsy) is exactly the rerun the implementation_note_update reserved this flip for: scoring-window-scoped gate_live check, window medians 0.494/0.924/0.033 >= 0.01 on 3/3 INTACT seeds (target demanded >= 2/3), POSCTRL replication 3/3, trajectory-final decay:credit 2.3-5.9:1 (603u's trajectory-final figures were 61-131:1; the record's own 86-188:1 is the same defect on a different denominator window). Config is bit-for-bit 603u's, though the substrate advanced 227 commits in between (the gate file itself touched only by the fix, so the trace attribution is sound). The target's literal 'ideally within an order of magnitude of its early-episode range' clause is met on all 3 seeds (seed 44's window median 0.0331 sits inside its episodes-0-5 range 0.0-0.065); the driver's stricter peak-ratio operationalisation (C2, non-load-bearing) reads 2/3 with seed 44 at 4.2% of its run peak -- recorded so the retest's DV design can weigh trace magnitude. NOTE for the same entry: the flip closes the TRACE defect only; 603v also shows an unremarked cross-run behavioural delta (G_H survival 3/3 -> 2/3 in both gated arms, seed 43 -- the highest-trace seed -- collapsing to ~6-step episodes), continuous with the reversed-sign survival discrimination the 2026-08-25 graded-DV reanalysis found in pre-fix 603s/t/u data; that is a separate, unadjudicated finding, not grounds to hold this flip."
+     }
+    ]
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "R1-R3 recomputed this session: 0 substrate_ceiling hits for MECH-357 (603r measurement_test_design_defect; 603s/603t/603u standard). Granularity trigger does not fire (alignment: 3 unclear + 1 untested, zero weakened -- measurement/implementation debt, not granularity debt)."
+   },
+   "learning_extracted": [
+    "The eligibility-trace underflow was the SHARED proximate cause behind six consecutive MECH-357 non-adjudications: the INTACT arm was functionally lesioned exactly where the scoring window opened (scaffold floor annealed to 0 as the trace underflowed), while whole-run readiness aggregates kept reporting the gate engaged at 1.0. Scoring-window-scoped gate_live checks (this run's C1 shape) are the durable countermeasure and should be standard on any trace-consuming Stage-H DV.",
+    "mech357_n_freeze_noop makes the repair's mechanism legible: e.g. seed 42 INTACT logged 29446 freeze/no-op ticks the old rule would have charged as decay against 1091 genuine failed-attempt decays -- a 27:1 spurious-decay load removed without touching learn/leak rates.",
+    "Seed 44's window median (0.033; 24x below its own peak; decay:credit 5.9:1, the highest of the six cells) shows the repaired trace still sags substantially where directed attempts fail often. The C1 floor (0.01) was set ~22 orders above the failure mode, so this is comfortably a PASS, but the retest's graded DV should treat trace magnitude as informative, not binary.",
+    "The stage0_forced_feed_lights_zgoal readiness gate cleared exactly at threshold (2/3 seeds) in both arms -- one seed per arm never lit z_goal above 0.4 at Stage 0. Not load-bearing here, but a recurring soft spot in this scaffolded-onboarding family worth watching in the retest.",
+    "READ-ACROSS, NOT ADJUDICATED HERE (surfaced by the 7c red team; primary source mech357_h2_graded_dv_reanalysis_2026-08-25.md): the completed graded-DV reanalysis of pre-fix 603s/t/u REFUTES the 603u-cluster's declared null 'graded DVs also show INTACT ~= LESION' -- the gated arms survive SHORTER than the ungated LESION control in 16/18 (run,seed,arm) cells across three independently-designed pressure mechanisms (deficits 59-98 steps of a 200-step ceiling in 603u). 603v shows the same shape POST-fix (G_H 3/3 -> 2/3 both gated arms; seed 43, the HIGHEST-trace seed, collapsed to ~6-step episodes) -- which weighs AGAINST the reanalysis's candidate story (a) (early-cost-for-a-mechanism-extinct-by-scoring-time), since here the trace was live through scoring and the collapse still occurred. Governance owns: (i) whether 603s/t/u should be re-read weakens vs non_contributory in light of a real reversed-sign discrimination in already-closed data; (ii) the reanalysis's driver amendment (persist HazardAvoidanceResult.episode_lengths for ALL arms -- ARM_LESION currently has no per-episode record, a hard prerequisite for the graded-DV retest); (iii) chip-20260827-mech357-trajectory-reanalysis appears to be an open stale duplicate of the completed reanalysis."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "routing_note": "Governance actions: (1) apply the per_claim_recommendation (note append + diagnostic_evidence_adjudicated flag; direction non_contributory); (2) apply the substrate_queue amend (flip the 603u failure_record to resolved); (3) adjudicate the READ-ACROSS item: the completed graded-DV reanalysis (mech357_h2_graded_dv_reanalysis_2026-08-25.md) proves the graded DV workable AND reports an unadjudicated REVERSED-SIGN discrimination (LESION outlives the gated arms, 16/18 cells, pre-fix) that 603v's own G_H drop (3/3 -> 2/3, highest-trace seed collapsing post-fix) is continuous with -- including whether 603s/t/u re-read weakens vs non_contributory; (4) chip, once (3) is decided, the MECH-357 retest via /queue-experiment: NEW letter combining the validated trace fix + the graded scoring-window-scoped DV + the one-line episode_lengths-for-all-arms persistence amendment + a restored ARM_LESION comparator -- explicitly NOT a bare pressure-up (the 603u-cluster refusal of a 7th same-question pressure recalibration stands; the binary G_H gate saturates at the 200-step ceiling on 7/9 arm-seeds, so the graded DV is where discrimination headroom must come from first). This autopsy spawns nothing itself.",
+ "cluster_pattern": null,
+ "interactive_gate": {
+  "gate_utc": "2026-08-28T17:11:55Z",
+  "session": "failure-autopsy-20260828-diagbatch",
+  "decisions": {
+   "V3-EXQ-945": "Flip the v3_exq_931 failure_record to resolved WITH the lever substitution, attenuate-only regime, marginal throughput and harm regression stated verbatim in the resolved_note (user-confirmed).",
+   "V3-EXQ-925a": "Confirm as revised: partial supersession of failure_autopsy_V3-EXQ-925_2026-08-12, red-team-corrected reading (score flatness + directionless argmin authority), Mode-B registry appends on H1-H4, H0 re-scope left to governance per GFLAG-0049 (user-confirmed).",
+   "V3-EXQ-933a": "Confirm + flip the v3_exq_933 failure_record to resolved with residuals named (user-confirmed).",
+   "V3-EXQ-603v": "Confirm as drafted: supports -> non_contributory, diagnostic_evidence_adjudicated true, 603u failure_record flip, graded-DV retest routing; reversed-sign survival finding flagged for governance, not adjudicated here (user-confirmed)."
+  },
+  "redteam_verdicts": {
+   "V3-EXQ-945": "CONTESTED (D1 lever substitution) -- disposed into resolved_note + learning_extracted",
+   "V3-EXQ-925a": "CONTESTED (score-flatness vs selection mirror-image) -- disposed into learning_extracted, per_claim_recommendation_note, registry basis, routing_note",
+   "V3-EXQ-933a": "CONFIRMED (hygiene folded in)",
+   "V3-EXQ-603v": "CONTESTED (single-variable premise false; graded-DV reanalysis omitted) -- disposed into environment layer, resolved_note, read-across item, routing_note"
+  },
+  "pre_routing_checks_7b": "0 fires on all four drafts; C1/C2/C3/C5 inapplicable on the three claim-free targets (checks are claim-keyed), C1-C3 evaluated without firing on 603v"
+ }
+}
