@@ -23,7 +23,7 @@
     "MECH-075"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -78,5 +78,6 @@
     "commit": "9fc0b8dffa63c68cd8652359eb383e9248f4ed7d",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_mech075-vta-lc-cluster_2026-08-09. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
 }

@@ -25,7 +25,7 @@
     "SD-003"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -41,10 +41,10 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Phase 1 gate failure (reafference_r2=0.076 < 0.08): experiment terminated before any scientific criteria ran. No evidence for or against SD-008, SD-007, or SD-003. Engineering bottleneck in full-stack reafference quality. Does not falsify any component claim.",
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_zworld-integration-cluster_2026-06-06. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack.",
   "evidence_direction_per_claim": {
-    "SD-008": "mixed",
+    "SD-008": "non_contributory",
     "SD-007": "mixed",
-    "SD-003": "mixed"
+    "SD-003": "non_contributory"
   }
 }

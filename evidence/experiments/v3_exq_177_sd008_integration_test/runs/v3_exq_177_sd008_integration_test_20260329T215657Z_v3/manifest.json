@@ -23,7 +23,7 @@
     "SD-008"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -39,5 +39,5 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Integration context concern only: event_selectivity_margin~0 despite alpha_world=0.9 and excellent world_forward_r2=0.941. Isolated SD-008 tests (EXQ-023, EXQ-040) remain valid. Full-stack interference between SD-007/SD-008/SD-003 may cancel selectivity signal. Does not challenge SD-008 provisional status."
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_zworld-integration-cluster_2026-06-06. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
 }

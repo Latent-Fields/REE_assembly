@@ -23,9 +23,9 @@
     "MECH-457"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-457": "weakens"
+    "MECH-457": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -599,5 +599,6 @@
   },
   "machine": "ree-cloud-4",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "4374830357408fb0bf698c6deb58e13fe6a6224232e1c815ebaee7395cfc1982"
+  "substrate_hash": "4374830357408fb0bf698c6deb58e13fe6a6224232e1c815ebaee7395cfc1982",
+  "evidence_direction_note": "2026-08-28 governance cycle governance-cycle-20260828 (GOV-APPLY-1 ratification-evidenced slice): evidence_direction set to non_contributory per CONFIRMED failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22. The claim layer already cited this autopsy -- i.e. governance ratified the reading -- but the paired manifest write was never made, so the indexer kept scoring the direction the autopsy voided (the MECH-236 failure mode). Written to BOTH flat manifest and run pack."
 }
