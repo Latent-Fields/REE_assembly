@@ -287,3 +287,54 @@ own addendum commit -- no `/governance` apply cycle. All 12 flags still
 no-op sessions now (4th-11th).** Cadence observation stands as restated by
 the seventh through tenth sessions; not deciding to slow/stop it
 unilaterally -- one more resume chip spawned below.
+
+Addendum, 2026-08-29T06:24:39Z (twelfth session, headless): re-checked --
+still no change. `git log --since "2026-08-29T05:54:29Z"` on `REE_assembly`
+shows only two `phase3-heartbeats:` orchestrator ticks plus the eleventh
+session's own addendum commit -- no `/governance` apply cycle. All 12 flags
+(GFLAG-0054/0055/0088/0089/0090/0091/0094-0099) re-read directly from
+`evidence/planning/governance_flags.v1.json`: still `open`, unchanged.
+`claims.yaml`: ARC-133/134 and MECH-516..523 all still `candidate`, same
+`implementation_phase`/`v3_pending` values as every prior check.
+`chip_ledger.py list --status open` has no new follow-on tied to this
+thread's claims beyond what already existed. **Nine consecutive no-op
+sessions now (4th-12th).**
+
+**Decision, per the dispatch brief's own threshold at nine-plus consecutive
+no-ops ("seriously weigh materially slowing... rather than merely restating
+the observation again"): this session is PAUSING the automatic same-cadence
+resume, not merely restating it a ninth time.** No fresh
+`chip-2026082X...-repr-authority-selection-thread-resume` chip is spawned
+below. Rationale: nine consecutive sessions (roughly 30-35 minutes apart,
+~4.5 hours of wall-clock polling since the fourth session) have each found
+byte-identical state -- no governance apply cycle, no flag disposition, no
+claims.yaml change, no new relevant chip. The thing this thread is actually
+waiting on (a `/governance` apply cycle adjudicating GFLAG-0054/0055/0088-
+0091/0094-0099, or the user directly answering the two STILL OPEN items in
+section 4 below) is not a function of polling frequency -- polling faster or
+slower does not make governance run sooner. Continuing to spawn a same-
+cadence resume chip against a fixed external dependency has a real
+dispatch/compute cost with zero marginal information gain per cycle.
+
+**This is a pause, not a cancellation.** No claim or flag disposition was
+touched; nothing about the underlying research question is being abandoned.
+The thread resumes on either of two triggers, whichever comes first:
+1. **The user returns** and picks up either STILL OPEN item in section 4
+   (affect-persistence reading choice; ARC-134 P0 build commission
+   decision) -- highest-value path, unblocks real progress instead of more
+   verification.
+2. **A `/governance` apply cycle lands** and adjudicates one or more of the
+   12 open flags -- the next session to notice this (a `/governance` session
+   itself, a hygiene tick, or a manually-resumed thread session) should
+   re-open this thread rather than leave it dormant. There is no automated
+   watcher wired to re-arm the resume chip on that event; it relies on the
+   next person/process that reads this file or runs `/governance` noticing
+   the flags have moved and either re-triggering this thread or folding the
+   disposition in directly.
+
+No `chip_ledger.py record` call was made this session for a new resume
+chip. `chip_ledger.py list --status open` will show no
+`*-repr-authority-selection-thread-resume` entry after this chip resolves.
+If the user wants the fixed-cadence polling resumed instead of an
+event-triggered restart, say so and a session can re-spawn it at the prior
+~30-35min interval, or at a wider explicit interval.
