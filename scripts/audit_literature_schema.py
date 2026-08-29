@@ -29,10 +29,13 @@ switched on again while a backlog exists. Note the COMMIT gate is
 is scoped to the records a commit actually touches; this flag is the
 WHOLE-CORPUS gate, for a scheduled or manual sweep.
 
-jsonschema on the Mac and the cloud boxes is 3.2.0, which has no
-``Draft202012Validator``. The schema declares 2020-12 but uses no keyword that
-postdates draft-07, so Draft7Validator is a faithful checker here; prefer the
-2020-12 validator when the installed library has one.
+The installed jsonschema is not uniform across the fleet -- measured 2026-08-29,
+3.2.0 on the hub ree-cloud-1 but 4.26.0 on ree-cloud-4, where it arrived in
+~/.local user-site as a transitive dependency of the `mcp` package and shadows
+the system copy. ``get_validator_cls`` therefore PREFERS ``Draft202012Validator``
+and falls back to ``Draft7Validator``; do not re-assert one fleet-wide version.
+The fallback is faithful because the schema declares 2020-12 but uses no keyword
+that postdates draft-07.
 """
 
 import argparse

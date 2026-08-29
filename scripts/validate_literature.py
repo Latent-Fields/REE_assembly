@@ -70,16 +70,23 @@ it cannot catch the defects that actually cost evidence here:
                                 explicitly here rather than pretended at in the
                                 schema.
 
-JSONSCHEMA VERSION -- DELIBERATE DEGRADE, DO NOT "FIX" BY UPGRADING
--------------------------------------------------------------------
-jsonschema on the Mac and on the cloud boxes is 3.2.0, which has no
-Draft202012Validator even though the schema declares draft 2020-12. We fall back
-to Draft7Validator. That is faithful here, not a compromise: the schema uses only
+JSONSCHEMA VERSION -- MIXED ACROSS THE FLEET; THE FALLBACK IS DELIBERATE
+------------------------------------------------------------------------
+The installed jsonschema is NOT uniform across the fleet, so the validator class
+is chosen at runtime (Draft202012Validator when present, else Draft7Validator)
+rather than assuming either. Measured 2026-08-29: 3.2.0 on the hub ree-cloud-1
+(system dist-packages) but 4.26.0 on ree-cloud-4, pulled into ~/.local user-site
+as a transitive dependency of the `mcp` package (the ree-working MCP server) and
+shadowing the 3.2.0 system copy for every python3 run as `ree` on that box. Do
+not re-assert a single fleet-wide version here.
+
+Where 3.2.0 is the copy that gets imported, the Draft7Validator fallback is
+faithful rather than a compromise: the schema uses only
 type, required, properties, additionalProperties, const, enum, minimum/maximum,
 minLength, uniqueItems and format -- every one of which predates draft-07 and is
-unchanged in 2020-12. Bumping the dependency to get the 2020-12 class would change
-nothing about the verdict while adding an install step to every box in the fleet
-for zero coverage. If a future schema revision starts using a genuinely 2020-12
+unchanged in 2020-12. REQUIRING the 2020-12 class would change nothing
+about the verdict while adding an install step to every box in the fleet for
+zero coverage, which is why it stays a preference rather than a dependency. If a future schema revision starts using a genuinely 2020-12
 keyword (prefixItems, dependentSchemas, unevaluatedProperties), THAT is the moment
 to revisit -- and the fallback will silently ignore it, so add it to the
 `_POST_DRAFT7_KEYWORDS` guard below, which fails loudly instead.
