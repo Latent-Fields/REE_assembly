@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-29T18:55:19Z",
+  "last_tick_utc": "2026-08-29T22:11:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-951",
   "current_exq_started_utc": "2026-08-29T18:54:34.883912+00:00",
@@ -12,15 +12,18 @@
     "run_label": "Seed 42 / MECH320_TONIC_VIGOR_AUTHORITY_SD054",
     "runs_done": 0,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 130,
     "episodes_total": 265,
-    "overall_pct": 0.0
+    "overall_pct": 16.4
   },
-  "seconds_elapsed": 45,
-  "seconds_remaining": 15600,
+  "seconds_elapsed": 11804,
+  "seconds_remaining": 50023,
   "recent_lines": [
     "[v3_exq_951_mech320_tonic_vigor_authority_sd054] starting (dry_run=False)",
-    "Seed 42 Condition MECH320_TONIC_VIGOR_AUTHORITY_SD054"
+    "Seed 42 Condition MECH320_TONIC_VIGOR_AUTHORITY_SD054",
+    "[train] stage0_nursery seed=42 ep 20/265",
+    "[train] stage0b_consolidate seed=42 ep 30/265",
+    "[train] p0_guided seed=42 ep 130/265 mean_len=198.2"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
