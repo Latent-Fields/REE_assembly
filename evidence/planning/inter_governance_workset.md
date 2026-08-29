@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-29T13:34:40Z`
+Generated: `2026-08-29T14:31:26Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,9 +9,9 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **252** (ready 29, in_flight 0, blocked 168)
+- Items: **252** (ready 28, in_flight 0, blocked 168)
 - By generation: clinical 11, meta 4, process 13, v3 85, v4 76, v5 38, v6 25
-- Pending review: **9**
+- Pending review: **6**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-906c
@@ -20,19 +20,19 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260829-001 -- Complete governance review (9 pending)
+### IGW-20260829-001 -- Complete governance review (6 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 9 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 6 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260829-001
-Title: Complete governance review (9 pending)
+Title: Complete governance review (6 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 9 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 6 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -969,31 +969,6 @@ Why now: AWAITING V4-EXQ-003 RUN + REVIEW (DR-10 pilot). On PASS (a decisive per
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
 - Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260829-128 -- Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursui
-
-- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
-- **Gap(s):** mech357_avoidance_efficacy:BUILD
-- **Why now:** Plan gap open on mech357_avoidance_efficacy.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260829-128
-Title: Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursui
-Lane: plan | Skill: (plan reconcile)
-Status: ready
-Gap(s): mech357_avoidance_efficacy:BUILD
-Claims: MECH-357
-Why now: Plan gap open on mech357_avoidance_efficacy.
-
-Instructions:
-- Update plan-of-record doc and closure frontmatter when complete.
-- Plan doc: REE_assembly/evidence/planning/mech357_avoidance_efficacy_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
@@ -2547,6 +2522,31 @@ Why now: Plan gap in_progress on epistemic_overlay.
 Instructions:
 - Update plan-of-record doc and closure frontmatter when complete.
 - Plan doc: REE_assembly/evidence/planning/epistemic_overlay_plan.md
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260829-128 -- Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursui
+
+- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40 | **Generation:** v3
+- **Gap(s):** mech357_avoidance_efficacy:BUILD
+- **Why now:** Plan gap partial on mech357_avoidance_efficacy.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260829-128
+Title: Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursui
+Lane: plan | Skill: (plan reconcile)
+Status: partial
+Gap(s): mech357_avoidance_efficacy:BUILD
+Claims: MECH-357
+Why now: Plan gap partial on mech357_avoidance_efficacy.
+
+Instructions:
+- Update plan-of-record doc and closure frontmatter when complete.
+- Plan doc: REE_assembly/evidence/planning/mech357_avoidance_efficacy_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
