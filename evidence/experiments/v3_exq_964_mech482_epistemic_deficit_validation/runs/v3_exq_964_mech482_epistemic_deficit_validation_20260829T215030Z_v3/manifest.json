@@ -1,0 +1,123 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_964_mech482_epistemic_deficit_validation",
+  "run_id": "v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-29T21:50:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-482"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "accumulator_live_but_never_changes_committed_action",
+    "preconditions": [
+      {
+        "name": "ARM_LP_BROADCAST::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_LP_BROADCAST",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_LP_EPISTEMIC_DEFICIT::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_LP_EPISTEMIC_DEFICIT",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF diverges on 0 ticks. Non-zero means the two yoked agents differ in something other than the manipulation and the whole DV is void",
+        "control": "same arm vs same arm, identical seed and config",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_LP_EPISTEMIC_DEFICIT::vacuous_readout_rate_bounded",
+        "precondition": "vacuous_readout_rate_bounded",
+        "arm": "ARM_LP_EPISTEMIC_DEFICIT",
+        "kind": "readiness",
+        "description": "the readiness-gate refusal rate (self-reported vacuous READOUTs, e.g. before any target exists yet or a tick has < 2 candidates) stays below a generous ceiling across the rollout -- a near-100% rate would mean the accumulator never got a chance to matter",
+        "control": "live rollout with the SD-063 head trained identically to the reference",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_LP_EPISTEMIC_DEFICIT::accumulator_becomes_live",
+        "precondition": "accumulator_becomes_live",
+        "arm": "ARM_LP_EPISTEMIC_DEFICIT",
+        "kind": "readiness",
+        "description": "at least one persistent target exists and at least one UPDATE fired by the end of the rollout -- the substrate is genuinely accumulating, not sitting empty",
+        "control": "live rollout, epistemic_deficit source enabled",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_accumulator_becomes_live": true,
+      "C2_downstream_consumer_can_diverge": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "539409f5e9e6a5e1a8c45d022348aa0ae1672c3212b76223d70f3f9fc63ae749",
+  "substrate_commit": {
+    "commit": "ad5ad28b837d9d7753414ef8fde24d28ab7b6e4b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 1080,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
