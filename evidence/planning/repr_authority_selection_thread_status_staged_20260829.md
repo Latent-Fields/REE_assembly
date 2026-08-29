@@ -237,3 +237,10 @@ landing on the flags above, or the user returning) rather than continuing at
 the current cadence. Not stopping the resume chip over this without the
 user's say-so -- one more resume chip spawned below per standing
 instructions.
+
+Addendum, 2026-08-29T04:15:37Z (eighth session, headless): re-checked --
+still no change (no governance apply cycle since 03:43:07Z, all 12 flags
+open, claims.yaml unchanged since 2026-08-28T21:00:57Z, no new relevant
+chips). **Five consecutive no-op sessions now (4th-8th).** Same cadence
+observation as the seventh session stands, restated rather than
+re-litigated. One more resume chip spawned below per standing instructions.
