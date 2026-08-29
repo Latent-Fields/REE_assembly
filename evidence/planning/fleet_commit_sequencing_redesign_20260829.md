@@ -251,3 +251,73 @@ the W2 flip -- which argues for executing the phase4 soak-eval chip FIRST.
 W1 (verifier fix + to_remote_tip fallback) -> W5 -> W3 -> W4 last, behind
 its telemetry. Queue-starvation chip (956/957/958) is orthogonal and should
 dispatch immediately regardless.
+
+## 8. Review outcome + FINAL plan of record (user review, 2026-08-29)
+
+Reviewed interactively with the user 2026-08-29. Ratifications and amendments:
+
+**Ratified.** W4 (reconciler --repair for the three allowlisted files,
+telemetry-gated, LAST in sequence) -- explicit user yes, reversing the
+2026-08-19 check-only decision. The bundling rule for campaign dispatch
+(below) -- user: "the bundling feels right."
+
+**Execution mode -- run-through under halt.** The user has HALTED metaworker
+orchestration and chip dispatch for the duration. The plan executes as ONE
+directed campaign (this umbrella session + directly-run scoped sessions),
+each workstream landing and resolving as it completes -- no dispatched chips,
+no waiting on the machinery the plan modifies. The machinery RESTARTS only
+after W5b/c lands, so the orchestrator comes back up already running the
+curation policy instead of the behaviour this plan retires. The standing
+"leave metaworker orchestration to the orchestrator session" rule is
+consciously set aside here by direct user instruction for this campaign.
+
+**Corpus signals folded in** (relayed from the /insights session's 803-session
+2026-06-24..08-29 usage report; its prescriptions were mostly behind current
+practice and are discounted -- only the frequency/pattern data is used):
+(1) wedging confirmed as a top-3 corpus friction class -- independent
+corroboration of section 1's ranking by a second measurement method;
+(2) mid-task session death (usage limits / sleep) stranding open claims with
+unwritten deliverables, >=6 sessions -- becomes W6; (3) duplicate-dispatch
+races caught by STOP-CHECK only AFTER exploration cost, >=4 sessions --
+becomes the pre-dispatch landed-check in W5b; (4) built-but-not-enabled
+mitigations as a recurring class (the union driver's ten uninstalled days are
+the poster child) -- becomes W7. Its two anti-doctrine proposals (blocking
+Edit/Write PreToolUse hook; default worktree-isolated landing) are rejected
+per the 2026-08-15 hook incident and trunk-first policy.
+
+**New/restructured workstreams:**
+
+- **W6 -- incremental landing + resumable state (PRECONDITION for W5b).**
+  Skill-text changes: land deliverables as produced rather than batching at
+  close; on limit-approach write a resumable-state note; campaign briefs
+  require per-item resolve-as-you-go (today's clearance session is the
+  worked example). Standing-rule edits get the GOV-HELDOUT-1 held-out check.
+- **W5 restructured:** **W5a** minting collapse (one standing chip per
+  (class, subject), episode counter, episodes appended INTO the chip,
+  completion predicate, >=N episodes escalates to /metaworker-learning).
+  **W5b** orchestrator curation pass: each cycle, classify the open ledger
+  into science-dispatch / campaign-bundle / hold-with-reason /
+  absorbed-into-workstream; run ownership + already-landed checks ONCE per
+  bundle BEFORE dispatch. **Bundling rule (ratified):** bundle only within a
+  class or shared subject resource; cap campaign size; the campaign session
+  may re-scope or hand back items. A hold carries a stated reason + review
+  cadence. The curator must be a NET CHIP SINK -- open-chip count and
+  chips/week are its success metrics and are tracked. **W5c**
+  science-priority scheduling: science chips always dispatch first;
+  housekeeping dispatches only as campaigns under a budget cap; a starved
+  experiment queue preempts housekeeping dispatch entirely.
+- **W7 -- mitigation-enablement audit.** Fleet-wide, read-only: enumerate
+  built guards/drivers/hooks/flags and verify installed+armed state per box
+  (the audit_worktree_skills pattern generalised). Can run at any point in
+  the sequence; also the natural later home for W4's repair-rate telemetry.
+
+**FINAL SEQUENCE (run-through order):**
+W0 queue rearm (V3-EXQ-956/957/958 via /queue-experiment -- science first;
+runners/scaler are independent of the halted chip machinery) ->
+W2-flip -> W1 -> W6 -> W5a -> W5b -> W5c -> W3 -> W7 (or earlier, any idle
+moment) -> W4 -> restart orchestration + dispatch.
+
+**Restart criteria:** all of -- W5b/c landed (curation live in the orchestrate
+skill); W1 verified (no new chips:resolve fallback commits over an
+observation window); W7 first audit green or its findings chipped; wedge
+check clean (ref_convergence quiet on all boxes).
