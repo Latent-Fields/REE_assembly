@@ -1,0 +1,107 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_958_mech290_backward_credit_sweep_functional_signature",
+  "run_id": "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-29T11:35:55Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-290"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "backward_credit_sweep_functional_signature_confirmed",
+    "preconditions": [
+      {
+        "name": "backward_sweep_fires_on_positive_control",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "trajectory of 5 well-separated waypoints, outcome_quality=0.9 (supra-threshold)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "terminal_waypoint_credit_clears_floor",
+        "measured": 0.8999999761581421,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "terminal waypoint credit should equal outcome_quality exactly",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "flag_off_is_unconditional_noop",
+        "description": "use_backward_credit_sweep=False must make both record_committed_trajectory and backward_credit_sweep no-ops",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "separately-built OFF agent, identical trajectory",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "S1_geometric_discount_law",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S2_quality_gate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S3_gamma_dose_response",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "S1_geometric_discount_law": true,
+      "S2_quality_gate": true,
+      "S3_gamma_dose_response": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4d73c939028ad74a8e443f7bb7a65f452e1bc6a7382913f50ded7406b23ddfd8",
+  "substrate_commit": {
+    "commit": "ed7bd75cc2d22f97f44ac9ab5437bb499d7f99eb",
+    "dirty": false,
+    "branch": "main"
+  }
+}
