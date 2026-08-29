@@ -1,0 +1,144 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_956_contextmemory_write_gumbel_learned_validation",
+  "run_id": "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-29T01:45:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "gumbel_learned_occupancy_only_content_discrimination_not_confirmed",
+    "preconditions": [
+      {
+        "name": "writepath_engaged_every_cell",
+        "measured": 1432.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_GUMBEL_UNTRAINED_occupancy_floor": true,
+      "C1_GUMBEL_TRAINED_occupancy_floor": true,
+      "C2_content_discrimination_improves_with_training": true
+    },
+    "criteria": [
+      {
+        "name": "C1_GUMBEL_UNTRAINED_occupancy_floor",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_passed": 5,
+        "n_seeds_required": 3
+      },
+      {
+        "name": "C1_GUMBEL_TRAINED_occupancy_floor",
+        "load_bearing": true,
+        "passed": true,
+        "n_seeds_passed": 5,
+        "n_seeds_required": 3
+      },
+      {
+        "name": "C2_readiness_untrained_baseline_headroom",
+        "load_bearing": false,
+        "kind": "readiness",
+        "passed": true,
+        "measured": 0.4,
+        "threshold": 0.25,
+        "direction": "lower",
+        "note": "Precondition for C2's interpretability, not part of the manipulation itself: mean_jaccard(GUMBEL_UNTRAINED) must be >= 0.25 for 'materially lower' to be satisfiable at all. If unmet, C2 below reads precondition_unmet rather than a plain FAIL -- a floor effect is not evidence training failed."
+      },
+      {
+        "name": "C2_content_discrimination_improves_with_training",
+        "load_bearing": true,
+        "passed": false,
+        "precondition_unmet": false,
+        "directional_result": false,
+        "mean_jaccard_gumbel_untrained": 0.4,
+        "mean_jaccard_gumbel_trained": 0.6666666666666666,
+        "required_margin": 0.25,
+        "note": "PASS iff the C2 readiness precondition is met AND mean_jaccard(GUMBEL_TRAINED) <= mean_jaccard(GUMBEL_UNTRAINED) - 0.25. This is the genuinely open question; a FAIL here (precondition met, directional_result False) is a real, expected-possible scientific outcome (see module docstring), not a bug. A FAIL with precondition_unmet=True means the comparison could not be made at all, not that training was tried and failed."
+      },
+      {
+        "name": "LEGACY_reference_reproduces_known_degeneracy",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_clearing_floor": 2,
+        "note": "Descriptive only, matches V3-EXQ-943's own LEGACY reference convention."
+      },
+      {
+        "name": "GUMBEL_UNTRAINED_mean_jaccard_observed",
+        "load_bearing": false,
+        "passed": true,
+        "mean_jaccard": 0.4,
+        "note": "Purely descriptive report of the untrained baseline's mean Jaccard -- always 'passed' (this is a measurement, not a criterion). See the module docstring's 'CORRECTION TO AN EARLIER ASSUMPTION' for why no specific value (e.g. ~1.000) is expected a priori; C2_readiness_untrained_baseline_headroom above is the actual gate on this quantity."
+      },
+      {
+        "name": "GUMBEL_UNTRAINED_tagger_received_zero_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_frozen": 5,
+        "n_seeds_total": 5,
+        "note": "Mechanical negative control: weight=0.0 should leave write_addr_tagger's state_dict byte-identical to its random init across the whole real training run (the addressing loss term is gated on weight>0 in agent.py, so it is never added to the backward graph). Confirms the wiring at the REAL-AGENT level, not just the unit contract."
+      },
+      {
+        "name": "GUMBEL_TRAINED_tagger_received_gradient",
+        "load_bearing": false,
+        "passed": true,
+        "n_seeds_moved": 5,
+        "n_seeds_total": 5,
+        "note": "Mechanical positive control: weight=0.5 should move write_addr_tagger's parameters away from init over the real training run, regardless of whether that movement achieves content-discrimination (C2)."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7dffc2219214ffbaf3a9ee28ac37274359e69ca7114d250cd7036ef5b7cfd380",
+  "substrate_commit": {
+    "commit": "3e193452fcbafecef69029be3dd669ea6eb027c6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
