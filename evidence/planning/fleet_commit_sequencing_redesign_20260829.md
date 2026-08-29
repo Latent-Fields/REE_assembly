@@ -321,3 +321,49 @@ moment) -> W4 -> restart orchestration + dispatch.
 skill); W1 verified (no new chips:resolve fallback commits over an
 observation window); W7 first audit green or its findings chipped; wedge
 check clean (ref_convergence quiet on all boxes).
+
+## 9. Reconciliation with the other plans on this surface (user-requested verification, 2026-08-29)
+
+Surveyed before final acceptance: `phase4_commit_intake_design.md` (2026-08-28,
+user-ratified; parent `task_claim_chip_coordinator_migration_plan.md`),
+`docs/plans/union_merge_driver_design_20260819.md`,
+`docs/plans/coordination_db_offline_write_path_20260819.md`,
+`docs/plans/fleet_telemetry_consolidation_20260821.md`,
+`queue_authoring_contention_and_id_collision_20260829.md`,
+`refwedge_class_recurrence_investigation_20260826.md`.
+
+**Verdict: fold the commit-mechanics workstreams INTO phase-4; this document
+remains the campaign umbrella.** Phase-4 is the plan of record for how git
+commits happen (hub-serialised intake, per-file routing table, section-8
+decommission ledger whose stated payoff -- retire the concurrency defensive
+apparatus -- is this plan's own goal). Specifically:
+
+- **W2-flip** = phase-4 sequencing steps 1-2, unchanged (already its plan).
+- **W1** re-homed as a phase-4 **hardening slice before further slices**:
+  the ack-verify pattern it fixes is inherited by every future endpoint.
+- **W3** re-homed as two new rows in phase-4's section 5 routing table
+  (dispatcher_control.json; budget/cooldown tick appends), with the
+  degraded git fallback requirement carried over from RT3 -- which also
+  discharges the surviving requirement of the 2026-08-19 offline-write
+  scoping doc (its hub-SPOF argument against registry DB-authority was
+  overtaken by the PHASE-2b cutover; its unreachable-hub requirement lives
+  on in every fallback clause).
+- **Union merge driver plan**: absorbed -- installed fleet-wide 2026-08-29;
+  remains the interim mitigation while the phase-4 table goes live; W7
+  audits its installed state thereafter.
+- **Queue-authoring contention doc**: already landed (EXQ ID reservation),
+  sits on phase-4's option-C line; no fold needed.
+- **Telemetry consolidation + refwedge recurrence investigation**: adjacent
+  scope (liveness inference; recurrence measurement) -- cross-referenced,
+  not folded. The refwedge investigation's measurements feed W5a's class
+  definitions.
+
+**Amended run-through (both goals, one sweep):** W0 queue rearm ->
+W1 (phase-4 hardening slice) -> W2-flip (phase-4 steps 1-2) ->
+RECOMMENDATION_LOG slice (phase-4 step 3, smallest, strands confirmed today)
+-> W6 -> W5a -> W5b -> W5c -> igw-tick intake client (phase-4 step 5) +
+dispatcher-family rows (folded W3) -> W7 -> W4 -> restart machinery.
+Remaining phase-4 slices (claims.yaml CAS, review_tracker, typed queue
+verbs) run AFTER restart, dispatched through the new W5b curation pass --
+deliberately, as its first live test. Phase-4's section 10 carries the
+mirror of this note.

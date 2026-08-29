@@ -174,6 +174,8 @@ for routed commits:**
 | `evidence/planning/igw_routine_ledger.json` / `igw_assignments.json` | editorial (tick-rewritten) | CAS, submitted by `igw_routine_tick` itself | the tick becomes an intake client; its `_ree_commit()` helper is the single call site |
 | `evidence/experiments/review_tracker.json` | editorial (two append-ish arrays) | CAS first; consider a typed `/review/mark` verb if 409 churn is high | |
 | `ree-v3/experiment_queue.json` | DB-authoritative | **typed queue endpoints ONLY -- option C settled, see section 6** | |
+| `dispatcher_control.json` | control commands (lease grant/stop) | typed endpoints + DB state; git render stays as the DEGRADED FALLBACK dispatchers read when the hub is unreachable | added 2026-08-29 (fleet_commit_sequencing_redesign W3 fold-in): a STOP command stranded on DLAPTOP while the cloud dispatchers it addressed could not see it; emergency stop must survive a hub outage, hence the retained git fallback + documented direct-ssh stop |
+| `metaworker_dispatch_budget_log.json` / `metaworker_dispatch_cooldown.json` | append (tick telemetry) | typed append endpoints, same template as WS/RECOMMENDATION_LOG | added 2026-08-29: the cloud-4 healer identified the budget-tick writer local-committing while wedged as the wedge-grower |
 | work-repo code, experiment scripts, docs, evidence run packs | -- | stays git-direct | code plane has its own defence (integration branches); results already flow through the phase3 spool |
 
 ## 6. Option C settled: `experiment_queue.json` gets typed verbs, never file intents
@@ -306,6 +308,24 @@ is substantially live, per the parent plan's PHASE-3 node.
   and activation is a clean, separate, authorised event per deploy.
 
 ## 10. Sequencing (next slices, in order)
+
+> **2026-08-29 reconciliation (session `wedge-clear-20260829`):** the
+> fleet-wedge campaign plan
+> (`fleet_commit_sequencing_redesign_20260829.md` section 9) folds its
+> commit-mechanics workstreams INTO this document: its W2-flip IS steps 1-2
+> below; its W1 (fix `verify_resolve_coordinator_ack`'s false-positive
+> class + re-point the registry git fallback at the remote tip) is inserted
+> as a **hardening slice BEFORE further slices** -- every new endpoint
+> inherits the same ack-verify pattern, and the false positive is the
+> confirmed generator of 13+ redundant `chips: resolve` fallback commits
+> since the PHASE-2b cutover; its W3 is the two dispatcher-family rows added
+> to the section 5 table. During the current machinery halt the campaign
+> executes, under this doc's conventions, only the slices that kill the
+> 2026-08-29 confirmed stranding generators: W1 hardening, steps 1-2 (WS
+> flip), step 3 (RECOMMENDATION_LOG), step 5 (igw tick client -- would have
+> prevented 18 of the 23 commits stranded on REE_assembly that day), plus
+> the dispatcher rows. Steps 4, 6, 7 continue on this doc's own sequence
+> after the machinery restarts, dispatched through the new curation pass.
 
 1. **Coordinator restart** (user-authorised) -> WS endpoint live; WS
    dual-write soak begins passively (every closing session that uses the
