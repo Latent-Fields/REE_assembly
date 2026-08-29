@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-29T06:59:09Z",
+  "last_tick_utc": "2026-08-29T07:19:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-955",
   "current_exq_started_utc": "2026-08-28T22:58:00.455159+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 45 / yoked_p2_measurement",
     "runs_done": 15,
     "runs_total": 24,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 150,
-    "overall_pct": 62.5
+    "overall_pct": 62.8
   },
-  "seconds_elapsed": 28869,
-  "seconds_remaining": 19050,
+  "seconds_elapsed": 30081,
+  "seconds_remaining": 18909,
   "recent_lines": [
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 150/150",
     "verdict: PASS",
     "Seed 44 Condition matched_pre_commit_variance_temperature_control_687_non_propagating_p0p1",
     "[train] arm=ARM_TEMP seed=44 phase=P0 ep 10/150",
@@ -118,7 +117,8 @@
     "[train] arm=ARM_NOISE_SINGLE seed=45 phase=P1 ep 140/150",
     "[train] arm=ARM_NOISE_SINGLE seed=45 phase=P1 ep 150/150",
     "verdict: PASS",
-    "Seed 45 Condition yoked_p2_measurement"
+    "Seed 45 Condition yoked_p2_measurement",
+    "[train] yoked seed=45 ep 10/100 diverged(TEMP/NOISE)=0/13"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
