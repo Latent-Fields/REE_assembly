@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_096",
+  "entry_id": "2026-08-29_q096_delusion_cocreation_morrin2026",
+  "timestamp_utc": "2026-08-29T06:05:05Z",
+  "claim_ids_tested": ["Q-096"],
+  "source": {
+    "title": "Artificial intelligence-associated delusions and large language models: risks, mechanisms of delusion co-creation, and safeguarding strategies",
+    "authors": ["Hamilton Morrin", "Luke Nicholls", "Matthew Levin", "Jenny Yiend", "Udita Iyengar", "Francesco DelGuidice", "Sagnik Bhattacharya", "Stefania Tognin", "James MacCabe", "Ricardo Twumasi", "Ben Alderson-Day", "Thomas A Pollak"],
+    "year": 2026,
+    "venue": "The Lancet Psychiatry",
+    "doi": "10.1016/S2215-0366(25)00396-7",
+    "pmid": "41796598",
+    "pmc": null,
+    "volume": "13",
+    "issue": "6",
+    "pages": "522-530"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The most authoritative statement in the clinical literature that the failure mode is CO-CREATED -- a property of the coupled dyad rather than of either participant -- which is precisely the two-participant framing that distinguishes Q-096 from Q-069 and from INV-012 Leg 4. Lancet Psychiatry, senior authorship from a strong psychosis group. Held at 0.62 because it is an explicitly labelled Personal View rather than primary data, and because its population is people with psychotic vulnerability, which is a substantial transfer gap from the ordinary non-clinical dyad Q-096 asks about.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LLMs may validate delusional content and blur reality boundaries -- the validation is a coupling pathology, so auditing either participant in isolation would find nothing wrong and the system-level failure would remain invisible.",
+    "The paper names 'epistemic instability' as reinforced by the interaction, which is the clinical form of Q-096's 'mistaking internally-generated coherence for external confirmation'.",
+    "The authors' remedy is structural -- protocols, scheduled check-ins, digital advance statements -- rather than dispositional, implying that the failure is not correctable by either party resolving to be more careful."
+  ],
+  "tags": ["q_096", "inv_077", "delusion_co_creation", "human_ai_coupling", "epistemic_instability", "folie_a_deux", "safeguarding", "clinical"],
+  "mapping": {
+    "source_claim_statement": "Large language models pose risks to individuals with psychotic vulnerability: while offering therapeutic potential, they may validate delusional content, blur reality boundaries, and reinforce epistemic instability. The authors describe mechanisms of delusion CO-CREATION and propose an AI-informed care framework -- personalised protocols, check-ins, digital advance statements and other safeguards -- positioning AI as an epistemic ally supporting relapse prevention rather than a therapeutic replacement.",
+    "ree_translation": "Q-096's distinguishing feature is that it is the TWO-PARTICIPANT case: neither party alone is confused, but the coupled system's output looks increasingly confirmed to both. Morrin et al. supply the strongest available external endorsement of that framing from clinical medicine, and they supply it in the vocabulary Q-096's own notes reached for -- 'co-creation' is the Lancet Psychiatry rendering of the structural folie-a-deux analogue the sibling taxonomy repo documents. Three transfers are useful. (1) The unit of pathology is the dyad: auditing REE's session outputs alone, or the user's judgement alone, would find each defensible while the coupled trajectory drifts -- which is why Q-096 is not reducible to INV-012 Leg 4's single-agent self-solicited-evidence discounting. (2) 'Reinforced epistemic instability' is the clinical name for Q-096's coherence-mistaken-for-confirmation. (3) Their remedy is structural rather than dispositional -- protocols, scheduled check-ins, standing advance statements -- which converges independently on the Q-096 audit's recommendation to add a gate at `/thought-ingestion` rather than to rely on session care. Read as CONFIRMING for the generalisation, with the population caveat below doing real work.",
+    "mapping_caveat": "The single largest caveat across this pull: the population is people with PSYCHOTIC VULNERABILITY, and Q-096 explicitly asks about an ORDINARY human-AI conversational dyad. Clinical papers document the tail of a distribution, and it is a genuine open question -- not one this paper answers -- whether the same coupling operates in attenuated form in a non-vulnerable expert user or whether vulnerability is a precondition rather than an amplifier. Assuming continuity is the more interesting hypothesis and also the less safe one; it should not be smuggled in. Secondly, this is a Personal View: the mechanisms of co-creation are proposed and argued from case material and theory, not measured, so it cannot establish effect size or prevalence. It is also therapeutic in framing, whereas Q-096's dyad is epistemic/collaborative, and the safeguards proposed are clinical-service instruments that do not port directly to a governance pipeline.",
+    "source_context": "Personal View in The Lancet Psychiatry; UK psychosis-research authorship (King's College London / Institute of Psychiatry, Psychology and Neuroscience group with Durham); synthesises emerging case reports and mechanistic theory on LLM interaction in psychotic vulnerability."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.55,
+    "notes": "Lancet Psychiatry with strong senior psychosis authorship, but an explicitly labelled Personal View -- authoritative framing, no primary data, hence 0.80 rather than higher. Mapping fidelity 0.70: 'co-creation' and 'reinforced epistemic instability' map cleanly onto Q-096's two-participant loop, and the structural-remedy stance converges with the audit's recommendation. Transfer risk 0.55 is the HIGHEST assigned in this pull and is the binding constraint on the aggregate: clinical-vulnerable to ordinary-expert is exactly the extrapolation Q-096 must not make for free."
+  }
+}

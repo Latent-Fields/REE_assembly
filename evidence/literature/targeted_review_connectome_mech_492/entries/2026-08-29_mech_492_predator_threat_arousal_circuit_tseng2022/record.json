@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_492",
+  "entry_id": "2026-08-29_mech_492_predator_threat_arousal_circuit_tseng2022",
+  "timestamp_utc": "2026-08-29T06:05:05Z",
+  "claim_ids_tested": ["MECH-492"],
+  "source": {
+    "title": "Subthalamic neurons expressing corticotropin-releasing hormone mediate adaptive REM-sleep responses to threat",
+    "authors": ["Yu-Ting Tseng", "Binghao Zhao", "Shanping Chen", "Jialin Ye", "Jingjing Liu", "Lisha Liang", "Hong Ding", "Bernhard Schaefke", "Qin Yang", "Lei Wang", "Feng Wang", "Liping Wang"],
+    "year": 2022,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.12.033",
+    "pmid": "35065715",
+    "pmc": null,
+    "volume": "110",
+    "issue": "7",
+    "pages": "1223-1239.e8"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality circuit-dissection paper in Neuron combining in vivo recording with cell-type-specific gain- and loss-of-function manipulation, establishing a DEDICATED, multimodally-driven exteroceptive threat channel (mSTN CRH -> LGP) that gates sleep-state transitions. Source quality is high. It supports MECH-492 structurally rather than directly: it establishes that the biological analogue of the gate's threat conjunct is a purpose-built predator-sensing pathway, not a readout of tissue damage -- which is the architectural premise MECH-492 asserts REE's implementation violates. Confidence is held below 0.8 because the paper never addresses signal SOURCING as a design question and cannot speak to REE's specific z_harm_a wiring or its 0.4 threshold.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A sleep-permission threat term whose source is nociceptive/damage-derived cannot reproduce the demonstrated function of the mSTN CRH pathway, which responds to predator stimuli received through multiple sensory modalities in the ABSENCE of any tissue damage -- i.e. exactly the regime where an animal must refuse sleep.",
+    "The mSTN CRH population is shown to serve normal REM regulation AND acute threat response through the same cells; a threat term that is near-constant across the hazard gradient collapses both roles at once, so the defect is not confined to the safety function."
+  ],
+  "tags": ["mech_492", "mech_286", "mech_303", "sleep_onset", "threat_signal", "signal_sourcing", "predator", "subthalamic", "crh", "rem_sleep", "arousal"],
+  "mapping": {
+    "source_claim_statement": "Predator stimuli induce immediate arousal from REM sleep relative to NREM sleep. A population of corticotropin-releasing-hormone-expressing neurons in the medial subthalamic nucleus (mSTN) mediates arousal and defensive responses to acute predator threats received through MULTIPLE SENSORY MODALITIES, across both REM sleep and wakefulness. The same neurons participate in normal REM-sleep regulation and in the adaptive REM increase induced by sustained predator stress. Projections to the lateral globus pallidus are the effector pathway.",
+    "ree_translation": "MECH-492 asserts that MECH-286's sleep-permission threat conjunct reads z_harm_a.norm() -- a shared expression whose informativeness about PLACE SAFETY is set by whichever sourcing mode an unrelated driver config happens to select (damage_sourced vs proximity_ema_sourced) -- and that MECH-286 declares no sourcing mode of its own. This paper supplies the biological form of the architectural expectation MECH-492 says REE fails to meet: in the mammal, the signal that gates sleep against threat is carried by a DEDICATED, anatomically identified population driven by EXTEROCEPTIVE predator cues across several modalities, with its own downstream effector pathway. It is not a repurposed interoceptive damage readout. That distinction is precisely the one MECH-492 says is undeclared and unenforced in the REE implementation: a term named for tonic threat, reading an instantaneous norm that may be damage-sourced, cannot be the analogue of this circuit. The paper therefore supports MECH-492's premise that sourcing is architecturally load-bearing for a sleep-onset threat term, and independently supports the SD-MECH303-THRESHOLD-SOURCING direction of building a dedicated proximity-anticipatory safety signal rather than re-pointing the shared expression.",
+    "mapping_caveat": "This is an inference about ARCHITECTURE from biology, not evidence about REE's code. The paper says nothing about REE, about z_harm_a, about threshold calibration, or about conjunctive gate degradation -- MECH-492's sharpest legs (the uncalibrated 0.4 default, and the always-permit consequence of ANDing a near-constant term) receive no support here at all and must stand on V3-EXQ-950's measurement. Additionally the mSTN finding is a rodent circuit result and the mapping from 'predator cue across modalities' to REE's 'place safety' is looser than it first appears: predator presence and location hazard are correlated but not identical constructs. Finally, biology providing a dedicated channel does not by itself prove that a shared channel MUST fail -- that is an argument from design, and the empirical leg is V3-EXQ-950's measured AUC 0.50, not this paper.",
+    "source_context": "Mice; in vivo fiber photometry and electrophysiological recording with cell-type-specific optogenetic/chemogenetic manipulation and EEG/EMG sleep staging; acute predator stimuli (visual, auditory, olfactory) and sustained predator-stress paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Neuron; multimodal circuit dissection with causal manipulation and a defined projection target -- source quality is high. Mapping fidelity is moderate: the paper grounds the ARCHITECTURAL premise (a sleep-gating threat signal is a dedicated exteroceptive channel) but not the specific defect claim, and 'predator cue' maps only loosely onto 'place safety'. Transfer risk is moderate-to-high: rodent circuit -> artificial agent gate is a long transfer, and this claim is a substrate-defect claim whose real adjudication is experimental, with literature serving as architectural context rather than as evidence about the implementation."
+  }
+}

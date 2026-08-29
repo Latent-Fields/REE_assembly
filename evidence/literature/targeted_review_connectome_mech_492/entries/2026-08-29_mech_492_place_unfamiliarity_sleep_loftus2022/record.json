@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_492",
+  "entry_id": "2026-08-29_mech_492_place_unfamiliarity_sleep_loftus2022",
+  "timestamp_utc": "2026-08-29T06:05:05Z",
+  "claim_ids_tested": ["MECH-492"],
+  "source": {
+    "title": "Ecological and social pressures interfere with homeostatic sleep regulation in the wild",
+    "authors": ["J Carter Loftus", "Roi Harel", "Chase L Nunez", "Margaret C Crofoot"],
+    "year": 2022,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.73695",
+    "pmid": "35229719",
+    "pmc": "PMC8887896",
+    "volume": "11",
+    "pages": "e73695"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "High-quality field study using accelerometry on wild baboons, and the single most direct literature evidence available that PLACE -- specifically the unfamiliarity of the sleep site -- is an independent input to sleep expression that can override homeostatic pressure. That is the exact functional role MECH-286's threat conjunct is named for. Held below 0.75 because the paper is behavioural rather than mechanistic: it demonstrates that place modulates sleep without identifying the signal that carries place safety, so it establishes the FUNCTION MECH-492 says is unserved without speaking to the sourcing defect itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep expression varied with location novelty in the ABSENCE of any injury, so a place-safety gate sourced from tissue damage would be blind to the entire effect this study measures.",
+    "The reduced sleep near unfamiliar locations was NOT followed by compensatory recovery sleep, indicating the place term dominates rather than merely biasing the homeostatic drive -- consistent with MECH-492's framing of the threat conjunct as a hard AND term whose miscalibration is consequential rather than cosmetic."
+  ],
+  "tags": ["mech_492", "mech_286", "mech_303", "sleep_onset", "place_safety", "sleep_site", "homeostasis", "baboon", "field_accelerometry", "signal_sourcing"],
+  "mapping": {
+    "source_claim_statement": "Sleep in wild baboons, measured by accelerometry, is not governed by homeostatic pressure alone. Ecological and social pressures interfere with homeostatic sleep regulation: animals reduced sleep when at unfamiliar sleep locations, and did so WITHOUT subsequent compensatory recovery sleep.",
+    "ree_translation": "MECH-286's sleep-onset gate is a three-way conjunction in which one conjunct, threat_ok, is intended to withhold sleep permission when the agent's location is unsafe. Loftus et al. establish that this functional role is real and non-redundant in a biological sleeper: place -- operationalised as location unfamiliarity -- is an independent determinant of sleep expression that can override the homeostatic drive, in animals with no injury of any kind. That is the strongest available literature support for MECH-492's implicit premise that a sleep-permission gate NEEDS a genuine place-safety input, and correspondingly that a term which measures at chance against ground-truth hazard (V3-EXQ-950: AUC 0.5016 damage_sourced, 0.4966 proximity_ema_sourced) leaves the gate unable to perform the function it is named for. The absence of compensatory rebound also speaks to MECH-492's consequence leg: in biology the place term is a hard constraint on sleep, not a soft bias, which is the regime in which a degraded conjunct matters most.",
+    "mapping_caveat": "The paper measures location UNFAMILIARITY, not location HAZARD, and those are distinct constructs -- an unfamiliar site may be safer than a familiar one. MECH-492's falsifier is defined against ground-truth hazard, so this is an adjacent rather than identical operationalisation. More importantly, the study is purely behavioural: it demonstrates that place modulates sleep but says nothing about WHICH neural signal carries place safety, and therefore cannot arbitrate the sourcing question (damage_sourced vs proximity_ema_sourced) that is MECH-492's actual subject. It also cannot speak to the 0.4 threshold or to conjunctive degradation. Baboon-to-artificial-agent transfer is long, and the social pressures the study also identifies have no REE analogue at all, so only the ecological half of the finding maps.",
+    "source_context": "Wild olive baboons (Papio anubis), Mpala Research Centre, Kenya; tri-axial accelerometry collars with simultaneous GPS on a whole troop; naturalistic sleep-site use over multiple nights including familiar and unfamiliar roosting locations."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "eLife; well-powered field accelerometry on a wild troop with simultaneous positional data -- strong for an ecological study, though observational rather than manipulative, so the place-to-sleep link is correlational. Mapping fidelity moderate: the functional role maps cleanly, the operationalisation (unfamiliarity vs hazard) does not quite. Transfer risk moderate-to-high: primate field behaviour to an artificial sleep-onset gate, and only the ecological half of the paper's finding has any REE analogue."
+  }
+}

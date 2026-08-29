@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_492",
+  "entry_id": "2026-08-29_mech_492_motivational_sleep_gating_ebanrothschild2017",
+  "timestamp_utc": "2026-08-29T06:05:05Z",
+  "claim_ids_tested": ["MECH-492"],
+  "source": {
+    "title": "To sleep or not to sleep: neuronal and ecological insights",
+    "authors": ["Ada Eban-Rothschild", "William J Giardino", "Luis de Lecea"],
+    "year": 2017,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2017.04.010",
+    "pmid": "28500869",
+    "pmc": "PMC5519825",
+    "volume": "44",
+    "pages": "132-138"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Authoritative short review (de Lecea group) framing sleep onset as a decision arbitrated between circadian pressure, homeostatic pressure, and motivational processes including predator evasion -- the multi-input structure MECH-286's conjunctive gate is modelled on, which supports the design. It is scored MIXED rather than supports because the same review is the clearest literature statement of MECH-492's ALSO-FALSIFYING branch: when arbitration is competitive across several inputs, one weak or uninformative input need not change the decision if another is reliably binding. Confidence is the lowest of the three MECH-492 entries because a review cuts both ways here and supplies no measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep onset is described as arbitration among circadian, homeostatic and motivational inputs; a design in which one input is a near-constant boolean AND term is a degenerate case of that arbitration, and the review offers no evidence that biology implements the threat input as a hard veto.",
+    "Because arbitration is competitive rather than conjunctive, the review supports MECH-492's own weaker ALSO-FALSIFYING outcome -- the term may be near-constant while the gate's behaviour is unaffected because another conjunct is always binding -- so this entry does not license reading the claim as fully supported."
+  ],
+  "tags": ["mech_492", "mech_286", "sleep_onset", "motivational_gating", "predator_evasion", "arbitration", "review", "signal_sourcing"],
+  "mapping": {
+    "source_claim_statement": "Animals must daily decide when to disengage from environmental responding and sleep. Beyond circadian rhythms and homeostatic sleep pressure, MOTIVATIONAL processes -- among them food seeking and predator evasion -- modulate sleep/wake behaviour, implemented by identifiable neuronal populations controlling sleep/wake states.",
+    "ree_translation": "This review is the general frame within which MECH-286's gate is a reasonable design: sleep onset genuinely is a multi-input decision, and predator evasion genuinely is one of the inputs, so having a threat conjunct at all is well-motivated rather than gratuitous. For MECH-492 the review cuts two ways. It supports the claim's implicit premise that the threat input must carry real threat information to earn its place in the arbitration. But it also directly describes MECH-492's own registered ALSO-FALSIFYING outcome: biological sleep onset is described as competitive arbitration among inputs, not as a hard conjunction, and under competitive arbitration a weak input is simply outvoted rather than catastrophic. If REE's gate behaves that way -- the term near-constant, but another conjunct always binding -- MECH-492 says it should be NARROWED rather than supported. This entry is filed to keep that branch visible in the evidence record rather than to bolster the claim.",
+    "mapping_caveat": "A review, not primary data: it establishes the framing and cites others' measurements, so it can support an architectural premise but can never adjudicate a substrate defect. It predates V3-EXQ-917 and V3-EXQ-950 entirely and has no bearing on the 0.4 threshold. The arbitration-versus-conjunction reading is my inference from the review's language about modulation, not a claim the authors make about gate topology; they are not describing an implementation and should not be cited as endorsing either topology. Rodent-dominated evidence base, and the motivational processes reviewed (chiefly feeding and mating drives) are only partly the threat case MECH-286 concerns.",
+    "source_context": "Short invited review, primarily rodent optogenetic/chemogenetic circuit literature on hypothalamic and brainstem sleep/wake populations, framed around ecological decision-making."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.45,
+    "notes": "Current Opinion in Neurobiology, de Lecea group -- authoritative framing, but secondary literature with no measurement of its own. Mapping fidelity is the lowest of the three entries because the review supports the DESIGN and simultaneously supports the claim's falsifying branch, so it does not discriminate. Scored mixed deliberately: filing it as supports would overstate what a framing review can do for a substrate-defect claim, and would hide the competitive-arbitration reading that governance needs to see."
+  }
+}

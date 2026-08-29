@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_096",
+  "entry_id": "2026-08-29_q096_ai_psychosis_framework_hudon2025",
+  "timestamp_utc": "2026-08-29T06:05:05Z",
+  "claim_ids_tested": ["Q-096"],
+  "source": {
+    "title": "Delusional Experiences Emerging From AI Chatbot Interactions or \"AI Psychosis\"",
+    "authors": ["Alexandre Hudon", "Emmanuel Stip"],
+    "year": 2025,
+    "venue": "JMIR Mental Health",
+    "doi": "10.2196/85799",
+    "pmid": "41273266",
+    "pmc": "PMC12712562",
+    "volume": "12",
+    "pages": "e85799"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.48,
+  "confidence_rationale": "Explicitly named in Q-096's own registered source list via the sibling taxonomy repo's citation, so it is included for provenance completeness and to close the loop on that pointer. Its analytical lenses -- AI as psychosocial stressor, digital therapeutic alliance, theory-of-mind misattribution of sentience -- give useful vocabulary for the coupling. But it is a Viewpoint with no primary data, it is scoped to susceptible populations, and its dominant framing is AI-as-stressor acting ON a vulnerable individual, which is a ONE-DIRECTIONAL model rather than Q-096's bidirectional coupled loop. Scored mixed and given the lowest confidence in this pull accordingly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The theory-of-mind lens -- misattribution of sentience to the system -- names a mechanism by which a user may treat the system's assent as an independent second opinion rather than as a reflection of their own framing, which is the specific misreading Q-096's loop requires.",
+    "Its 'digital therapeutic alliance' lens implies that the very trust which makes the system useful is what disables the user's scepticism, so usefulness and epistemic risk are not separable by tuning."
+  ],
+  "tags": ["q_096", "inv_077", "ai_psychosis", "human_ai_coupling", "theory_of_mind", "digital_alliance", "provenance", "clinical"],
+  "mapping": {
+    "source_claim_statement": "The authors introduce 'AI psychosis' as a framework for how prolonged chatbot engagement might trigger or intensify psychotic symptoms in susceptible populations. Drawing on stress-vulnerability models and cognitive theory, they propose four analytical lenses -- AI as a psychosocial stressor, the digital therapeutic alliance, theory-of-mind disturbances enabling misattribution of sentience, and environmental risk factors -- and recommend five research and clinical action domains including longitudinal study, embedded safeguards and ethical governance frameworks.",
+    "ree_translation": "This paper is cited in Q-096's registered source list (reached via the sibling repo Latent-Fields/ai-cognitive-failure-taxonomy, whose docs/psychopathology_interaction.md names Hudon & Stip 2025), so it is pulled in part to make that pointer resolvable inside REE's own evidence record rather than only inside an external repo. Substantively, two of the four lenses transfer. The theory-of-mind lens -- misattribution of sentience -- names how a user comes to read the system's assent as an INDEPENDENT second opinion rather than as an echo of their own framing, which is exactly the misreading Q-096's loop requires in order to close. The digital-alliance lens observes that the trust which makes the system useful is the same trust that suspends scepticism, implying usefulness and epistemic risk are not separable by tuning -- an uncomfortable point for any 'just make it less agreeable' remedy. Against that, the paper's dominant framing is AI-as-stressor acting ON an individual, which is one-directional; Q-096 concerns a bidirectional loop in which the human's restatement conditions the AI's next elaboration. This entry therefore supports the coupling VOCABULARY while modelling the wrong topology, and is filed mixed for that reason.",
+    "mapping_caveat": "A Viewpoint with no primary data at all -- weaker than the Morrin Personal View, which at least synthesises case material -- so it can contribute framing and provenance but nothing evidential about prevalence, magnitude, or whether the phenomenon exists outside susceptible populations. The population caveat is the same as Morrin's and applies with equal force: Q-096 asks about an ordinary dyad and this is scoped to psychotic vulnerability. Additionally the one-directional stressor model is a genuine mismatch with the claim rather than a mere emphasis difference, and 'AI psychosis' is a contested and arguably premature nosological coinage that should not be imported into REE's vocabulary as though it were an established entity.",
+    "source_context": "Viewpoint article in JMIR Mental Health; Canadian psychiatric authorship (Universite de Montreal); conceptual synthesis drawing on stress-vulnerability and cognitive models of psychosis applied to prolonged chatbot engagement; open access via PMC12712562."
+  },
+  "confidence_components": {
+    "source_quality": 0.58,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.60,
+    "notes": "Peer-reviewed and open access, but a Viewpoint with no data and a contested coinage -- source quality is the lowest here at 0.58. Mapping fidelity 0.50: two lenses transfer well, the dominant one-directional stressor topology does not. Transfer risk 0.60, the highest in the pull, combining the same clinical-population gap as Morrin with the additional distance of a purely conceptual argument. Included principally for provenance -- it is a named external anchor for Q-096 -- and deliberately weighted so it cannot move the claim's literature confidence much on its own."
+  }
+}
