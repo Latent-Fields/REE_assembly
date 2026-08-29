@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_822c_sd082_candidate_summary_fallback_fix",
+  "run_id": "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-29T06:56:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-078",
+    "SD-082"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "SD-078": "unknown",
+    "SD-082": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "head_untrained_last_layer_static",
+    "preconditions": [
+      {
+        "name": "zworld_common_mode_cone_present",
+        "description": "min pairwise z_world cosine clears the cone floor (== 822a).",
+        "measured": 0.9601104259490967,
+        "threshold": 0.9,
+        "direction": "lower",
+        "offending_cell": "ARM_OFF/seed101",
+        "met": true
+      },
+      {
+        "name": "on_pool_differentiated",
+        "description": "ARM_ON differentiated / ARM_OFF pinned on majority seeds (== 822a).",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "on_rule_active_p2",
+        "description": "ARM_ON rule active on >= frac floor of P2 ticks (== 822a).",
+        "measured": 0.8743055555555556,
+        "threshold": 0.1,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "head_diagnostics_capture_active",
+        "description": "capture_head_diagnostics echoes True and the synthetic init positive-control returns finite, in-range values, for every cell.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "synthetic 3-candidate forward pass immediately post-construction",
+        "offending_cell": "none",
+        "met": true
+      },
+      {
+        "name": "head_diag_samples_sufficient",
+        "description": "worst-cell count of P2 per-tick head-diagnostic reads clears the floor.",
+        "measured": 145.0,
+        "threshold": 5,
+        "direction": "lower",
+        "offending_cell": "ARM_ON/seed303",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_head_diagnostics_interpretable",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_head_diagnostics_interpretable": true
+    },
+    "diagnostic_flags": {
+      "dead_relu_confirmed": false,
+      "dead_relu_partial_contributor": true,
+      "head_untrained_last_layer_static": true,
+      "magnitude_imbalance_confirmed_contributor": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "41e0d888905449efe90596711c87590ef71004584ef18f86688b09e8765793f6",
+  "substrate_commit": {
+    "commit": "38106020b4d14f87df182f2f07ab66927d59981a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}

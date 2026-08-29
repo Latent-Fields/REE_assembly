@@ -1,0 +1,35 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "on_rule_state_diff_mean": 0.580345869064331,
+    "off_rule_state_diff_mean": -3.115016763051888e-10,
+    "on_prop_delta_mean": 0.001661554841339867,
+    "off_prop_delta_mean": 0.0017608102464550435,
+    "readiness_cone_present": true,
+    "readiness_on_diff_pool": true,
+    "readiness_off_pinned_pool": true,
+    "readiness_on_active": true,
+    "readiness_capture_active": true,
+    "readiness_samples_sufficient": true,
+    "readiness_prop_nonvac_reported_only": false,
+    "zworld_cone_min_cosine_worst": 0.9601104259490967,
+    "zworld_cone_worst_cell": "ARM_OFF/seed101",
+    "n_head_diag_samples_worst": 145.0,
+    "n_head_diag_samples_worst_cell": "ARM_ON/seed303",
+    "on_hidden_dead_relu_frac_p2_mean": 0.5113009899940388,
+    "off_hidden_dead_relu_frac_p2_mean": 0.5171875,
+    "on_last_layer_weight_delta_init_to_p1_mean": -7.844964663187663e-05,
+    "on_rule_summary_magnitude_ratio_p2_median_values": [
+      4015450.6433183197,
+      4455402.569341324,
+      2848074.0484056287
+    ],
+    "diagnostic_flags": {
+      "dead_relu_confirmed": false,
+      "dead_relu_partial_contributor": true,
+      "head_untrained_last_layer_static": true,
+      "magnitude_imbalance_confirmed_contributor": true
+    },
+    "c1_pass": true
+  }
+}
