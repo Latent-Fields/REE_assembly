@@ -1,0 +1,159 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T09:41:48Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "readjudication_of": "failure_autopsy_2026-07-28-sweep.json (target index for v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3)",
+  "targets": [
+    {
+      "run_id": "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+      "queue_id": "V3-EXQ-822c",
+      "claim_ids": [
+        "SD-078",
+        "SD-082"
+      ],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "head_untrained_last_layer_static",
+      "self_route_verdict": "PARTIALLY CORRECT AS A FACT, WRONG AS A CAUSE, and it is the run's own label-priority ordering that makes it wrong. `head_untrained_last_layer_static` is true only in the threshold sense abs(mean signed last-layer NORM delta) = 7.845e-05 < LAST_LAYER_WEIGHT_DELTA_FLOOR = 1e-3. That is a materially different state from 822b, where the same flag was true at EXACTLY 0.0 because the optimiser never stepped. In 822c the optimiser does step and the weights do move. The driver's label ladder (lines 743-752) tests head_untrained BEFORE magnitude_imbalance, so it emits the marginal, proxy-measured symptom and suppresses the finding that is 4000x over its own ceiling in all six cells: rule_summary_magnitude_ratio 2.8e6-4.5e6 against MAGNITUDE_RATIO_HIGH = 1e3. The correct label for this run is magnitude_imbalance_confirmed_contributor, and the correct CAUSE is one level further up than any flag in the ladder (see four_layer_diagnosis.implementation).",
+      "failed_criterion": "none -- C1_head_diagnostics_interpretable passed. NOTE: C1 is literally `c1 = ready` (driver line 754), i.e. the conjunction of the six readiness preconditions, so this run's PASS asserts only that the diagnostics were interpretable. It asserts nothing about the scientific content, and must not be read as a finding-PASS.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- diagnostic-purpose, scoring_excluded; SD-078's downstream behavioural consequence remains untested. But this run does supply the FIRST non-vacuous measurement of SD-082's own stated acceptance criterion (see read_across_not_adjudicated).",
+        "biological_reference": "clear -- corticostriatal rule-to-action readout: a PFC rule bias modulating basal-ganglia action selection requires per-CANDIDATE evidence to discriminate candidates. Nothing here implicates the biology or the translation; the defect is that the substrate supplies the readout with a candidate channel that is constant across candidates.",
+        "prerequisites": "present -- the SD-078 upstream chain is healthy and measured healthy: on_rule_state_diff 0.440/0.650/0.651 on ARM_ON vs ~0 on ARM_OFF, zworld cone present (0.960), rule active on 87.4% of P2 ticks.",
+        "implementation": "partial (defective, and the defect is structural) -- SD-082's consumer is present and engaged in both arms, but the per-candidate summary it reads is `ws[0, 0, :]`, and e2_fast.py seeds `world_states = [initial_z_world]`, so index 0 is the rollout's SHARED initial world state, bit-identical across every candidate by construction. SD-082's centering step (`summaries - summaries.mean(dim=0)`) then annihilates it: centering a constant yields zero, leaving only float32 cancellation noise. Both agent.py paths (the gated_policy block ~7185-7204 and the fallback ~7412-7424) use the identical `ws[0, 0, :]`, so the defect is unconditional on the default config (candidate_summary_source='proposer').",
+        "environment": "adequate -- unchanged from 822a; not implicated.",
+        "measurement": "partial -- THREE distinct defects. (i) The headline flag is computed from a DIFFERENCE OF NORMS (post_p1.last_linear_weight_norm - init.last_linear_weight_norm), not a parameter distance ||W_p1 - W_init||, so it cannot distinguish 'the weights did not move' from 'the weights rotated at constant norm' -- and rotation is exactly what a REINFORCE readout would do. (ii) It averages SIGNED per-seed deltas (+1.162e-4, -4.233e-4, +7.178e-5), which permits cross-seed cancellation; latent here (all three per-seed magnitudes are also below 1e-3) but a real trap. (iii) RECORDING GAP: rule_state_norm is already exposed by LateralPFCAnalog.get_state() (lateral_pfc_analog.py:485) and the summary norm is computed inline, but neither is recorded, so the 4e6 ratio cannot be decomposed into 'rule huge' vs 'summaries annihilated' from the artifact alone.",
+        "integration": "coupled but unstable -- the defect sits exactly at the E2-rollout/PFC-readout interface. Each side is individually sound; the contract between them (what a 'per-candidate world summary' is) is what fails.",
+        "scale": "adequate for the primary finding (the magnitude imbalance is 2.8e6-4.5e6 in all 6 cells, both arms); INSUFFICIENT for the secondary ON-vs-OFF propagation read, where 3 seeds give a directionally INVERTING result -- seed 101 ON wins 7.9x, seed 202 is a tie, seed 303 OFF wins 3.1x."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM + MEASURES; NOT chargeable to REE. Implementation reads partial (defective) and Measurement reads partial, so the GOV-FAILLOC-1 precondition for a REE FAILED read (all three of implementation/measurement/environment independently adequate) is not met and is not close to met."
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action readout: lateral PFC rule representation biasing basal-ganglia action selection among competing candidate actions.",
+        "dependencies": [
+          "a per-candidate evidence channel the readout can actually discriminate on",
+          "a trained mapping from rule_state to action-bias"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- this is a wiring/representation-contract defect, not a translation error. The biology is not implicated and no lit-pull is owed.",
+        "lit_status": "n/a (implementation question)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "`standard` deliberately, for BOTH claims, and it is behaviour-preserving rather than a shrug. The finding is an implementation + measurement defect with a named, bounded fix, not an assertion that either claim's answer is gated on open-ended substrate work. The six suppress-set values (substrate_ceiling, substrate_conditional, substrate_coherence, derivational, out_of_domain, governance_rule) would remove these claims from GOV-GRAN-1 surfacing, and four of them would additionally mark them not-v3-testable, starving them of experiment lanes precisely when a concrete v3 experiment is what is owed. The failure-mode diagnosis lives in the note fields, per the skill's out-of-enum rule. Note that the two prior autopsies in this lineage stamped `competence_implementation_gap` and `precondition_unmet`, both OUTSIDE the eight-value claims.yaml enum.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-078": "non_contributory",
+        "SD-082": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-822c (2026-08-29, diagnostic, PASS, scoring_excluded) is the bug-fix re-run of 822b and it OVERTURNS the causal attribution this lineage has carried since 2026-07-28. Three things are now established. (1) THE LINEAGE'S HEADLINE NUMBER WAS NEVER MEASURED. `on_prop_delta_mean = off_prop_delta_mean = exactly 0.0` in V3-EXQ-822, 822a and 822b -- recorded in substrate_queue SD-082 failure_record [0] and [1] as a 'structural zero on both arms' -- is the empty-list default of `statistics.fmean(prop_deltas) if prop_deltas else 0.0`. n_prop_samples is 0 in ALL 18 cells across the three runs. The script's `_candidate_summaries()` called only `agent._candidate_world_summaries()`, which returns None on the default candidate_summary_source='proposer', so the P2 measurement and the P1 REINFORCE buffer were both starved on every tick of every cell. (2) THE 822b SUBSTRATE ATTRIBUTION WAS WRONG AT THE LAYER. failure_record [2] reads 'REINFORCE never updates rule_bias_head's last linear layer' and routed to tracing optimizer parameter registration / gradient flow through the tanh / ADV_MIN_THRESHOLD. The weight-norm read behind it was genuine (822b's post_p1 equalled init exactly, and a missing post_p1 would have yielded -0.148, not 0.0), but the CAUSE was that the driver's own REINFORCE loop never executed -- outcome_buf stayed empty, `_lpfc_reinforce_loss` hit its len<2 early return, and the optimiser step was skipped every episode. The substrate optimiser was never exercised at all. With the driver fixed, the head does train: last-layer norm delta moves from exactly 0.0 to 7.8e-05. (3) THE REAL DEFECT IS ONE LEVEL UPSTREAM AND IS STRUCTURAL. The per-candidate summary fed to compute_bias is `ws[0, 0, :]`, and e2_fast.py seeds `world_states = [initial_z_world]`, so index 0 is the rollout's shared initial world state -- bit-identical across all K candidates, because candidates differ only in the actions applied from t>=1. SD-082's centering (`summaries - summaries.mean(dim=0)`) then reduces it to float32 cancellation noise. The measured rule_summary_magnitude_ratio of 2.8e6-4.5e6 in all six cells (against a 1e3 ceiling) is exactly the scale float32 cancellation of near-identical O(1) vectors produces, and both agent.py paths use the same index, so this is unconditional on the default config. CONSEQUENCE: SD-082's stated acceptance criterion ('on_prop_delta_mean >= 0.001 with an ON>OFF contrast') is UNPASSABLE as currently wired -- the absolute floor is now cleared (0.001662) but it is cleared entirely by rule_state, which is candidate-invariant, so no ON>OFF contrast can exist. Both claims stay non_contributory: SD-078's downstream behaviour is still untested, and SD-082's centering mechanism is not falsified but UNTESTED, because its input never carried the cross-candidate variance it was designed to preserve. Route to /implement-substrate to amend SD-082 with a per-candidate summary source; the three existing failure_record entries should be marked superseded, not resolved, since nothing was fixed -- a later, better-instrumented run overturned the read.",
+      "per_claim_recommendation": {
+        "SD-078": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "SD-078 currently carries NO epistemic_category field at all, so set one -> standard",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate_substrate_landed"
+        },
+        "SD-082": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "SD-082 currently carries NO epistemic_category field at all, so set one -> standard",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "read_across_not_adjudicated": [
+        "SD-082's acceptance criterion, recorded in its own evidence_quality_note as 'on_prop_delta_mean >= 0.001 with an ON>OFF contrast', receives its FIRST non-vacuous measurement here: absolute floor MET (0.001662), ON>OFF contrast NOT met (off 0.001761 >= on 0.001662). This is explicitly NOT adjudicated as evidence -- the run is diagnostic-purpose and scoring_excluded, n=3, and the per-seed direction inverts (101 ON 7.9x, 202 tie, 303 OFF 3.1x). It is flagged because the criterion is, on this analysis, structurally unpassable rather than merely unmet, which is a governance-relevant difference and should be settled when SD-082 is amended.",
+        "The bug fixed in 822c is a DRIVER-LOCAL fix to one experiment script. The identical `_candidate_summaries()`-returns-None trap exists for any driver that calls `agent._candidate_world_summaries()` directly and treats None as 'no data' rather than taking the production fallback. Whether other drivers in the corpus do this is NOT checked by this autopsy and is not claimed either way; it is a cheap grep worth running before the next consumer-validation run."
+      ],
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/pfc/lateral_pfc_analog.py::compute_bias",
+          "ree_core/agent.py"
+        ],
+        "severity_rationale": "corrupting, not degrading: on the default config compute_bias returns a bias that LOOKS responsive and yields a prop_delta ABOVE the 1e-3 non-vacuity floor (0.001662), while carrying exactly zero candidate-discriminating information. Any experiment reading prop_delta, or any downstream consumer reading lpfc_bias, on candidate_summary_source='proposer' gets an authentic-looking but meaningless number. That is the definition of evidence that looks valid and is not.",
+        "implementation_hint": "Make the per-candidate world summary actually per-candidate. `ws[0, 0, :]` is the rollout's shared initial state (e2_fast.py: `world_states = [initial_z_world]`) and is bit-identical across candidates, so SD-082's centering annihilates it to float32 noise. Options, in rough order of directness: (a) take a POST-action index or a horizon aggregate (`ws[0, 1:, :].mean(0)` or `ws[0, -1, :]`) so the summary reflects the candidate's own action sequence; (b) make candidate_summary_source='e2_world_forward' the default for the consumer path (this is ARC-065 GAP-A's flag and already exists, but changing the default is a wider behavioural change and must be swept, not assumed); (c) guard compute_bias to refuse/flag when the post-centering summary norm is at float-noise scale, so this failure can never again present as a plausible number. Fix BOTH agent.py sites (the gated_policy block ~7185-7204 and the fallback ~7412-7424) -- they duplicate the same index. Also record rule_state_norm (already in get_state():485) and the pre/post-centering summary norms, so the ratio is decomposable next time.",
+        "unblocks_claims": [
+          "SD-078",
+          "SD-082"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+          "experiment_type": "v3_exq_822c_sd082_candidate_summary_fallback_fix",
+          "metric": "rule_summary_magnitude_ratio_p2_median = 2.8e6-4.5e6 in all 6 cells against MAGNITUDE_RATIO_HIGH=1e3; on_prop_delta_mean 0.001662 vs off 0.001761 (no ON>OFF contrast); hidden_dead_relu_frac 0.511 ON / 0.517 OFF. Root cause: candidate summary is ws[0,0,:], the rollout's SHARED initial z_world, bit-identical across candidates; SD-082's centering reduces it to float32 noise.",
+          "target": "post-centering per-candidate summary norm within [1e-3, 1e3] of rule_state norm, and on_prop_delta_mean >= 0.001 WITH a reproducible ON>OFF contrast across a majority of seeds",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "The cited 'propagation delta ... = 0.0 (structural zero on both arms)' is the empty-list default of statistics.fmean(prop_deltas) if prop_deltas else 0.0; n_prop_samples = 0 in all 6 cells. No propagation was ever measured in this run. Superseded by V3-EXQ-822c, which measures it for the first time. Nothing was fixed -- the read was wrong."
+          },
+          {
+            "run_id": "v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "Same empty-list default; n_prop_samples = 0 in all 6 cells. The 'SECOND consecutive identical failure of readiness gate (d)' was a second instance of the same no-data default, not a reproduction of a measured zero. Superseded by V3-EXQ-822c."
+          },
+          {
+            "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "The weight-norm measurement was genuine (post_p1 == init exactly; a missing post_p1 snapshot would have produced -0.148, not 0.0), but the causal attribution 'REINFORCE never updates rule_bias_head's last linear layer', which routed to an optimizer/gradient/ADV_MIN_THRESHOLD trace, is superseded: the driver's own REINFORCE loop never ran (outcome_buf empty -> len<2 early return -> optimiser step skipped every episode), so the substrate optimiser was never exercised. With the driver fixed the head does train (delta 0.0 -> 7.8e-05). Nothing in the substrate was fixed; the read was wrong at the layer."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": "failure_autopsy_2026-07-28-sweep.json",
+        "refused_requeue": false,
+        "not_fired_reason": "R1-R3 count over the confirmed corpus gives 0 substrate_ceiling hits for SD-078 (3 prior targets: precondition_unmet, competence_implementation_gap, competence_implementation_gap) and 0 for SD-082 (1 prior target: competence_implementation_gap). This target recommends `standard`, so the count stays 0. The brake does not fire and no re-queue is refused. Independently, the routing here is a single named build, not another letter circling the same ceiling."
+      },
+      "learning_extracted": [
+        "A no-data default that shares the numeric value of a meaningful result is the most expensive shape in this corpus. `statistics.fmean(xs) if xs else 0.0` produced an 'exactly 0.0' propagation delta that read as a strong structural finding, survived two confirmed autopsies, motivated a substrate landing and an amend, and stood for a month. The generic lesson is to make the empty case UNREPRESENTABLE in the manifest -- emit None/absent, or require the paired n_samples to be read alongside every aggregate -- rather than to remember to check n_samples.",
+        "The prior autopsy's discipline of separating gated from ungated readouts was CORRECT and is what makes this correction cheap. It explicitly reasoned that the precondition failure gated only the tick-sampled diagnostics and not the unconditional weight-norm snapshots, and it was right: the weight-norm zero was genuine. What it could not see is that BOTH the gated and ungated readouts shared a single upstream cause (the None short-circuit), so 'this readout is ungated' established that the number was real without establishing that its CAUSE was where the routing pointed. Ungated is not the same as unconfounded.",
+        "A diagnostic's label ladder is a design decision that can suppress its own best finding. 822c tests head_untrained (a threshold call at 7.8e-05 against 1e-3, on a proxy measure) BEFORE magnitude_imbalance (4000x over its ceiling, in all six cells, on a direct measure), and emits the former. Label ladders should be ordered by evidential strength or by causal depth, not by the order the hypotheses were written down.",
+        "`head_untrained_last_layer_static` is measured as a DIFFERENCE OF NORMS, which is not a movement measure: a weight matrix can rotate arbitrarily at constant norm and register zero. For a REINFORCE readout, rotation is the expected form of learning. Any future 'did this layer train' flag should use ||W_post - W_init|| against ||W_init||.",
+        "Centering is not a safe no-op on a degenerate input. SD-082's centering was designed to remove a common mode so that residual cross-candidate variance could survive; applied to an input that is constant across candidates by construction, it converts 'identical and O(1)' into 'float32 noise' and manufactures a 4e6 magnitude imbalance. A centering step should assert that its input has non-trivial cross-group variance before it is trusted."
+      ],
+      "routing": "implement-substrate",
+      "routing_debt_vocabulary": "complicated (buildable) -- the fix is a named build with no open question: supply compute_bias with a summary that varies across candidates. No spike is owed; do not queue a probe to re-confirm what is already structurally established."
+    }
+  ],
+  "cluster_pattern": null,
+  "mechanical_checks": {
+    "dry_run_gate": "check_dry_run_citations.py over 822c/822b/822a/822: 0 dry cited, 0 dry in named families, 0 ambiguous, 4 clean, 0 unknown.",
+    "dry_run_unreachable_criterion_lint": "validate_experiments.py --checks dry_run_unreachable_criterion: 11 warnings, ALL in the v3_exq_543 lineage (b-l). No 822x driver fires. 822c is not a dry run, so the class is moot for this target.",
+    "recording_always_core": "validate_recording.py: 1 complete, 0 always-core gaps. The recording gap identified in this autopsy (rule_state_norm / summary norms) is at the family-keyed optional layer, which validate_recording does not check.",
+    "granularity_debt_trigger": "DOES NOT FIRE. granularity_debt_cluster.py: SD-078 3 targets, SD-082 1 target, alignment distribution unclear=3 / unclear=1, NO target reads `weakened`. Per the reader's own rule this is measurement/implementation debt, not granularity debt, regardless of count.",
+    "re_derive_brake": "DOES NOT FIRE. 0 substrate_ceiling hits under R1-R3 for both claims.",
+    "hypothesis_space_step_9b": "SKIPPED CLEANLY. No fanout_recommendation is emitted (the bottleneck routes to one unambiguous build, which the skill exempts), and no question in hypothesis_space_registry.v1.json lists SD-078 or SD-082 (39 questions checked). Nothing to pre-register and no pre-registered leg to resolve. The registry was NOT modified."
+  },
+  "human_confirmation": {
+    "confirmed_utc": "2026-08-29T09:41:48Z",
+    "gate": "Step 8 AskUserQuestion, 3 questions, all answered as recommended",
+    "decisions": [
+      "Supersession: confirm all three SD-082 failure_record entries (822, 822a, 822b) as superseded.",
+      "SD-082 evidence direction: non_contributory (centering untested, not falsified).",
+      "Step 7c: proceed with the independent red-team gap documented in Section 7."
+    ]
+  }
+}
