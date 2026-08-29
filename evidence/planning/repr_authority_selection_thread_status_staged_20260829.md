@@ -263,3 +263,17 @@ cycle landing on these flags, or the user returning), not on further
 same-cadence polling. Continuing per standing instructions without
 unilaterally slowing or stopping the resume cadence -- one more resume chip
 spawned below.
+
+Addendum, 2026-08-29T05:19:52Z (tenth session, headless): re-checked --
+still no change. `git log --since "2026-08-29T04:46:28Z"` on `REE_assembly`
+shows only `phase3-heartbeats:` orchestrator ticks plus the ninth session's
+own addendum commit -- no `/governance` apply cycle. All 12 flags still
+`open`, unchanged; `claims.yaml` unchanged; no new relevant follow-on chip
+(only the same pre-existing stale-claim hygiene chip and this session's own
+resume chip). **Seven consecutive no-op sessions now (4th-10th).** Per the
+brief's own instruction at this threshold: restating rather than deciding --
+the resume cadence is still finding nothing to act on, and the wait is on an
+external trigger (a governance apply cycle landing on these flags, or the
+user returning), not on more polling at the current interval. Not
+unilaterally slowing or stopping the cadence without the user's say-so --
+one more resume chip spawned below.
