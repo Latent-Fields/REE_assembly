@@ -300,6 +300,21 @@ Four other targets are owed an autopsy, all uncontended and uncovered as of this
 
 ---
 
+## 10. Corpus read-across -- RESOLVED, clean
+
+Section 3's open question (does the `_candidate_world_summaries()`-returns-None trap exist in
+other drivers?) was swept after landing and the answer is **no**. Of **124** experiment drivers
+referencing the method: **111** set `candidate_summary_source` explicitly, so it never returns
+`None` for them; the rest either implement the production `ws[0, 0, :]` fallback (including
+`experiments/_lib/allon_training.py:187 _consumed_summaries`) or only *mention* the method in a
+docstring (`v3_exq_905`, `v3_exq_905a`, which use `E2Fast.cand_world_pairwise_dist` instead).
+
+The only affected drivers are `v3_exq_822`, `822a` and `822b` -- the known lineage, all landed
+with completed runs, all superseded by 822c. **No further driver fix is owed, and no chip was
+spawned for this.**
+
+---
+
 ## 9. Step 8 gate -- user disposition
 
 All three questions put to the user were answered as recommended:
