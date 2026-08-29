@@ -1,0 +1,149 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_642a_blocked_agency_zblock_discriminative",
+  "run_id": "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-29T18:54:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "z_block_integrator_no_rise",
+    "preconditions": [
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.6241106454497735,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2709798216819763,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.5322351089761082,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2695159316062927,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "world_forward_c0_margin_supra_floor",
+        "measured": 0.5077474766644832,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "5-episode blocked+free probe on the P0a+P0b-trained substrate (same statistic C0 routes on)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "measured": 0.2685176730155945,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0": true,
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "c0_seeds_pass": 3,
+    "c1_seeds_pass": 0,
+    "c2_seeds_pass": 0,
+    "c3_seeds_pass": 3,
+    "seeds_needed": 2,
+    "n_ready_seeds": 3,
+    "n_seeds_skipped_not_ready": 0
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6e12079ba5d1c5203867723386e5e4a5ca0947b7f464e64b7de6f74b4ff70761",
+  "substrate_commit": {
+    "commit": "1a0be594d59503f04cdc86dac54ad7c7198a7d11",
+    "dirty": true,
+    "dirty_count": 3,
+    "dirty_paths": [
+      "ree_core/agent.py",
+      "ree_core/pfc/lateral_pfc_analog.py",
+      "ree_core/utils/config.py"
+    ],
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 14400,
+    "ticks_active": 14400,
+    "writer_calls": 0,
+    "active_frac": 1.0,
+    "writer_defect": true,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}

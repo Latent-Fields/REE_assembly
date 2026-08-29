@@ -1,0 +1,144 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_962_mech219_sd019b_behavioural_temporal_controllability",
+  "run_id": "v3_exq_962_mech219_sd019b_behavioural_temporal_controllability_20260829T185419Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-29T18:54:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-019b",
+    "MECH-219"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-019b": "supports",
+    "MECH-219": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech219_sd019b_behavioural_confirmed",
+    "preconditions": [
+      {
+        "name": "lateral_head_proximity_probe_r2",
+        "measured": 0.8610485073727904,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "worst-seed held-out R2 of the MECH-099 lateral_head's OWN OUTPUT NORM against the hazard channel's own max (world_obs[:, HAZARD_INDICES].max(), the proximity summary), after P0 training -- the load-bearing test that the norm MECH-219 actually consumes (||z_harm|| -> z_harm_un via the SD-019a EMA) carries the proximity signal, not merely a linear-probe-decodable direction of z_harm that the norm itself might not track",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "un_drive_supra_floor_inescapable",
+        "measured": 0.9152803778648376,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "worst-seed z_harm_un norm over the bout-phase tail window, INESCAPABLE arm -- the drive_t = g_t*u_t input C1/C2/C2_CONTRAST route on",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "un_drive_supra_floor_escapable",
+        "measured": 0.8495617866516113,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "worst-seed z_harm_un norm over the bout-phase tail window, ESCAPABLE arm -- the C3 non-vacuity input",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_controllability_gate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_persistence",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_CONTRAST_asymmetric_decay",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_non_vacuity",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C4_sd021_parity_magnitude",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C5_consumer_wiring",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_controllability_gate": true,
+      "C2_persistence": true,
+      "C2_CONTRAST_asymmetric_decay": true,
+      "C3_non_vacuity": true,
+      "C4_sd021_parity_magnitude": true,
+      "C5_consumer_wiring": true
+    },
+    "combination_rule": "AND of six load-bearing criteria (C1 AND C2 AND C2_CONTRAST AND C3 AND C4 AND C5); no OR. claim attribution is per-criterion, not per the blanket AND -- see evidence_direction_per_claim and scope_note."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1658078b46d0f4a542050db9d3b8720349d80b844d529cc412b1883e7a8541aa",
+  "substrate_commit": {
+    "commit": "1a0be594d59503f04cdc86dac54ad7c7198a7d11",
+    "dirty": true,
+    "dirty_count": 3,
+    "dirty_paths": [
+      "ree_core/agent.py",
+      "ree_core/pfc/lateral_pfc_analog.py",
+      "ree_core/utils/config.py"
+    ],
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
