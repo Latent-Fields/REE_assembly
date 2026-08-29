@@ -246,3 +246,88 @@ explicitly **instrument-limited** diagnostic whose pre-registration states that 
 **uninterpretable** (rather than informative) until the write-path defect is fixed. That is a
 real option, but it forfeits the design's headline result and should be a deliberate user
 decision, not a default.
+
+---
+
+# ADDENDUM 2026-08-29T17:52Z -- gate re-checked, STILL BLOCKED (user-ratified hold)
+
+Chip `chip-20260814-queue-causal-sleep-matched-arm` was picked up again on 2026-08-29 and
+Section 5's resume condition re-tested. **The block holds. Nothing was queued; no driver was
+written.** Recording the re-check so the next session does not re-derive it a third time.
+
+## Verdict
+
+`contextmemory-write-path-addressing-degeneracy` is **still OPEN**: `status:
+implemented_pending_validation`, `severity: corrupting`. `/queue-experiment` Step 2.5c is
+explicit that this status is open, not closed -- *"A status of the form
+`implemented_pending_validation` (or any status containing `pending`) is still OPEN, never
+closed"* -- precisely because `implemented` is a text prefix of it. The entry now also
+declares `substrate_paths`, which it did not on 2026-08-18, and the overlap is mechanical
+rather than argued:
+
+```
+ree_core/predictors/e1_deep.py::ContextMemory.write          <-- the ARM_SLEEP write path
+ree_core/predictors/e1_deep.py::ContextMemory.compute_write_addressing_loss
+ree_core/agent.py::compute_prediction_loss
+```
+
+Section 1's call chain (`run_sws_schema_pass -> e1.context_memory.write ->
+ContextMemory.write`) is unchanged, so the defect is still on the write path of the single
+component whose causal effect this experiment exists to measure.
+
+## What changed since 2026-08-18 (none of it releases the gate)
+
+Three write-address mechanisms have landed, all **DEFAULT-OFF**:
+
+| mechanism | landed | knob |
+|---|---|---|
+| usage/conscience bias | ree-v3 `76cbf844` (2026-08-19) | `contextmemory_write_usage_balancing` |
+| refractory mask | ree-v3 `692f8526d0` (2026-08-19) | `contextmemory_write_selection=refractory` |
+| gumbel_learned tagger | ree-v3 `636d0e4fb2` (2026-08-27) | `contextmemory_write_addressing_loss_weight` |
+
+Each build's own resolution note states it does **not** unblock this chip. Validation
+experiments V3-EXQ-943 / 946 / 956 were queued; V3-EXQ-956 ran and **failed** the C2
+content-discrimination criterion (confirmed autopsy `failure_autopsy_V3-EXQ-956_2026-08-29`).
+
+**The still-live driver precondition** (from
+`chip-20260819-contextmemory-gated-exps-driver-preconditions`, and it is the trap): both
+flags default `False` and **no driver in `ree-v3/experiments/` sets any of them**, so a
+driver written today runs the **unfixed argmin path** regardless of what has landed. Any
+eventual driver must set one explicitly and assert it after construction -- the same
+`from_dims`-swallows-unknown-kwargs hazard as Section 3(a).
+
+## The new disposition question, and how it was resolved
+
+`contextmemory_write_c2_criterion_reposed_20260829.md` (chip
+`chip-20260829-contextmemory-c2-criterion-repose`, resolved 2026-08-29T17:13Z) found the C2
+criterion **mis-posed** -- 2-cluster occupied-slot-set Jaccard at n=5 is a known-aliasing,
+near-Bernoulli statistic -- and argued in its Section 4 that what actually blocked the
+436e/436f retest was **occupancy**, not addressing quality, and that occupancy is now met by
+all three mechanisms. Its recommendation 2 is to proceed with the SD-017/ARC-045/MECH-166
+retest on the occupancy floor, treating content-discrimination as a *descriptive* readout
+rather than a precondition gate.
+
+That recommendation is **not applied**. The spike says so itself: it is *"a disposition call
+for governance/a human, not something this spike unilaterally applies"*, and it left
+`unblocks_claims` and `status` untouched.
+
+**User decision 2026-08-29: HOLD THE BLOCK.** Put to the user as a three-way choice (hold /
+adopt recommendation 2 / queue as an explicitly instrument-limited diagnostic); the user
+chose to hold. Logged in `REE_assembly/evidence/decisions/RECOMMENDATION_LOG.jsonl`. The
+governing reason is unchanged from Section 0: the defect's own `severity_rationale` predicts
+this experiment's null almost verbatim, and running it now would manufacture that artefact a
+third time.
+
+## Resume condition (supersedes Section 5)
+
+Either of these, whichever comes first:
+
+1. `contextmemory-write-path-addressing-degeneracy` reaches a genuinely closed status
+   (`implemented` / `validated` -- **not** anything containing `pending`); **or**
+2. **governance ratifies the 2026-08-29 spike's recommendation 2**, i.e. records that
+   SD-017/ARC-045/MECH-166 are gated on the occupancy floor only, and amends the substrate
+   entry's `unblocks_claims` / disposition accordingly.
+
+Sections 2 and 3 remain directly consumable either way -- T = 250, the DV set, the corrected
+config field `within_life_sleep_step_ceiling`, and the three implementation findings. Re-run
+Step 2.5c first, re-derive the queue id, and set one write-address flag explicitly.
