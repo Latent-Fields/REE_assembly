@@ -6,7 +6,7 @@
   ],
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "outcome": "FAIL",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_class": "discriminative_pair",
   "criteria": {
     "C1_fine_harm_rate_not_worse_than_coarse": false,
@@ -82,5 +82,9 @@
     ]
   },
   "dry_run": false,
-  "timestamp_utc": "2026-03-29T21:38:12.629107+00:00"
+  "timestamp_utc": "2026-03-29T21:38:12.629107+00:00",
+  "evidence_direction_per_claim": {
+    "Q-002": "non_contributory"
+  },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08, confirmed): mixed -> non_contributory for Q-002 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

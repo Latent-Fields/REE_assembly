@@ -9,10 +9,10 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260420T155256Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-029": "does_not_support",
-    "MECH-256": "weakens"
+    "SD-029": "non_contributory",
+    "MECH-256": "non_contributory"
   },
   "supersedes": "v3_exq_433a_sd029_eventcond_comparator_scripted",
   "pass_criteria_summary": {
@@ -226,5 +226,6 @@
     "interventional_fraction": 0.7,
     "interventional_margin": 0.2,
     "eval_trials_per_type": 30
-  }
+  },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08, confirmed): weakens -> non_contributory for MECH-256, SD-029 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

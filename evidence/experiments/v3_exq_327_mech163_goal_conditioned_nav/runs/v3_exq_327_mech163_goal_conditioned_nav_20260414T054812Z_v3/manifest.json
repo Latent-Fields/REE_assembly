@@ -23,11 +23,11 @@
     "SD-015"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-015": "does_not_support"
+    "SD-015": "non_contributory"
   },
-  "evidence_direction_note": "MECH-163 dropped from claim_ids_tested 2026-04-27 (R1 governance fix, claim_ids accuracy rule REE_assembly/CLAUDE.md). EXQ-327 tests goal_weight in E3.score_trajectory() on value-flat HippocampalModule proposals -- this is the SD-015 (z_resource encoder + goal-term scoring) substrate, NOT the MECH-163 dual-system distinction. MECH-163 asserts a discrimination between habit and VTA/hippocampally-planned systems; EXQ-327 has only the habit arm in it, so it cannot discriminate and should not weight MECH-163's evidence record. The V3 full-completion gate (a paradigm where 1-step / habit-policy approach is insufficient AND goal-seeded multi-step trajectory generation by HippocampalModule produces a discriminable behavioural advantage) remains the still-pending discriminative test for MECH-163.",
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-goalseeding-cluster_2026-08-08, confirmed): weakens -> non_contributory for SD-015 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,

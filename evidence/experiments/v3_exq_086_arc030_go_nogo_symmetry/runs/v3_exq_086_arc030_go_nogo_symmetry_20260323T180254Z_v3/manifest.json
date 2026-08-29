@@ -23,7 +23,7 @@
     "ARC-030"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,9 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_per_claim": {
+    "ARC-030": "non_contributory"
+  },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-sd029-arc030-cluster_2026-08-08, confirmed): weakens -> non_contributory for ARC-030 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

@@ -444,5 +444,10 @@
   "evidence_direction": "weakens",
   "summary": "Outcome=FAIL. WITH_DECORRELATION vs NO_DECORRELATION (FULL_AXES, 2 seeds). C1 (corr gap): False  gaps=[0.0, 0.0]. C2 (drift): False  drifts=[-0.1814, -0.0192]. C3 (regime sep): True  diffs=[0.0, 0.0]. C4 (harm quality): True  diffs=[0.0, 0.0].",
   "dry_run": false,
-  "timestamp_utc": "2026-03-29T20:46:52Z"
+  "timestamp_utc": "2026-03-29T20:46:52Z",
+  "evidence_direction_per_claim": {
+    "MECH-063": "superseded",
+    "MECH-142": "non_contributory"
+  },
+  "evidence_direction_note": "GOV-APPLY-1 per-claim update (2026-08-29, failure_autopsy_20260329-legacy-cluster_2026-08-08, confirmed) [MECH-063: weakens -> superseded; MECH-142: weakens -> non_contributory] per grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

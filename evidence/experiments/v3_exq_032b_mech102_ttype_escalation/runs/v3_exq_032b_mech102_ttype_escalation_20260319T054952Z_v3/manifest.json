@@ -42,10 +42,10 @@
   },
   "failure_signatures": [],
   "evidence_direction_per_claim": {
-    "MECH-102": "supports",
-    "ARC-024": "supports",
-    "SD-003": "supports"
+    "MECH-102": "non_contributory",
+    "ARC-024": "non_contributory",
+    "SD-003": "non_contributory"
   },
-  "evidence_direction_note": "SUPERSEDED (2026-07-26, failure-autopsy V3-EXQ-032-family, confirmed): V3-EXQ-032b's standard_params optimizer (body_obs_encoder, world_obs_encoder, latent_stack, E1, most of E3) never received a gradient for the entire run -- agent.sense() was called instead of act*()/no _e1_tick() call, and record_transition() was never called, so compute_prediction_loss()/compute_e2_loss() were structurally pinned to their zero-gradient stubs (identical mechanism to the V3-EXQ-826 finding). Only world_forward and harm_eval_head trained, via separate script-local buffers, atop a perceptual embedding (z_world) frozen at random init. The measured causal_sig escalation ladder is real but reflects downstream-head discriminability on frozen random features, not the intended trained perception->attribution pipeline. Superseded by V3-EXQ-032d (2026-07-26), the corrected re-run, now supports MECH-102/ARC-024/SD-003 on the genuinely-trained substrate. Applied /governance 2026-07-29.",
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_V3-EXQ-032-family_2026-07-26, confirmed): supports -> non_contributory for ARC-024, MECH-102, SD-003 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
   "epistemic_category": "competence_implementation_gap"
 }

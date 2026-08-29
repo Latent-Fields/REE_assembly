@@ -25,7 +25,7 @@
     "MECH-089"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -42,8 +42,9 @@
   },
   "failure_signatures": [],
   "evidence_direction_per_claim": {
-    "SD-004": "weakens",
-    "ARC-007": "weakens",
-    "MECH-089": "weakens"
-  }
+    "SD-004": "non_contributory",
+    "ARC-007": "non_contributory",
+    "MECH-089": "non_contributory"
+  },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-arc024-hippo-tpj-cluster_2026-08-08, confirmed): weakens -> non_contributory for ARC-007, MECH-089, SD-004 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

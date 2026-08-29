@@ -25,12 +25,16 @@
     "MECH-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "failure_signatures": [
     "v2_verdict_fail:kernel_chaining_interface"
   ],
   "artifacts": {
     "metrics_path": "metrics.json",
     "summary_path": "summary.md"
-  }
+  },
+  "evidence_direction_per_claim": {
+    "MECH-033": "superseded"
+  },
+  "evidence_direction_note": "SUPERSEDED (2026-08-29, failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08, confirmed): weakens -> superseded for MECH-033 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

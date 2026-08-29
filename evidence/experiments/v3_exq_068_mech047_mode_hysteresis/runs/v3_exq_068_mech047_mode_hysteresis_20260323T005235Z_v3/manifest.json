@@ -23,8 +23,8 @@
     "MECH-047"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_note": "Design-inconclusive: both H and C agents show commit_rate=1.0 in eval (running_variance ~8.7e-7 and ~2.2e-6 respectively, both far below commit_threshold). Mode transition from Phase A to Phase B cannot be detected because the agent never escapes committed mode regardless of hazard level. hysteresis_decay_steps=20 is the minimum (not zero) due to rolling window mechanics, not real hysteresis signal. Does not constitute evidence for or against MECH-047. Fix direction: use pre-convergence checkpoints or forced variance injection to produce the mode transition the experiment is designed to measure.",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-29, failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08, confirmed): unknown -> non_contributory for MECH-047 per GOV-APPLY-1 grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log).",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -39,5 +39,8 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_per_claim": {
+    "MECH-047": "non_contributory"
+  }
 }

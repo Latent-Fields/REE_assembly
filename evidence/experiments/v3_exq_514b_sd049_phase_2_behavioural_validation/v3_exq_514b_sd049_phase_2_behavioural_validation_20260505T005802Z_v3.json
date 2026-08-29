@@ -15,7 +15,7 @@
   "evidence_direction": "weakens",
   "evidence_direction_per_claim": {
     "SD-049": "weakens",
-    "SD-015": "weakens",
+    "SD-015": "non_contributory",
     "MECH-229": "non_contributory",
     "MECH-230": "non_contributory"
   },
@@ -386,5 +386,6 @@
     "C2d_drive_peak_floor": 0.02
   },
   "verdict_provenance": "REE_assembly/evidence/literature/targeted_review_sd_049_encoder_identity_expansion/verdict.md",
-  "supersedes_note": "V3-EXQ-514a errored with exit code -15 (SIGTERM) on ree-cloud-1 after 108 minutes. Root cause: cloud provider process timeout. Estimated runtime was ~231 minutes (660 eps x 0.35 min/ep); timeout fired at ~108 minutes. No code error. Fix: routed to DLAPTOP-4.local (macbook, ~99 min estimated). Script unchanged."
+  "supersedes_note": "V3-EXQ-514a errored with exit code -15 (SIGTERM) on ree-cloud-1 after 108 minutes. Root cause: cloud provider process timeout. Estimated runtime was ~231 minutes (660 eps x 0.35 min/ep); timeout fired at ~108 minutes. No code error. Fix: routed to DLAPTOP-4.local (macbook, ~99 min estimated). Script unchanged.",
+  "evidence_direction_note": "GOV-APPLY-1 per-claim update (2026-08-29, failure_autopsy_grandfathered-goalseeding-cluster_2026-08-08, confirmed) [SD-015: weakens -> non_contributory] per grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }

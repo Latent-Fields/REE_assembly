@@ -28,7 +28,7 @@
   "evidence_direction": "weakens",
   "evidence_direction_per_claim": {
     "SD-032b": "does_not_support",
-    "MECH-258": "supports",
+    "MECH-258": "non_contributory",
     "MECH-260": "supports"
   },
   "experiment_purpose": "evidence",
@@ -55,5 +55,6 @@
     "MECH-260",
     "SD-032b"
   ],
-  "degeneracy_reason": "c2_sd032b (|entropy_ON-entropy_OFF|>=0.1) and c3_mech260 (entropy_ON>=entropy_OFF) are floor-locked by monostrategy: action_class_entropy=0.0 across every seed and arm (incl OFF control), so the entropy-differential criterion can never fire and the entropy>= criterion is vacuously true (0>=0). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied bias cannot move committed action under the F-dominance conversion ceiling (V3-EXQ-571; diversity must act at/after E3 scoring). Not a weakening of SD-032b nor genuine support for MECH-260; non-contributory pending the ARC-065/MECH-439 committed-action-diversity substrate. MECH-258 c1 (forward-model R2) is entropy-independent and remains contributory. Autopsy: failure_autopsy_V3-EXQ-445h_2026-06-19; corroborates failure_autopsy_V3-EXQ-455a_2026-05-25."
+  "degeneracy_reason": "c2_sd032b (|entropy_ON-entropy_OFF|>=0.1) and c3_mech260 (entropy_ON>=entropy_OFF) are floor-locked by monostrategy: action_class_entropy=0.0 across every seed and arm (incl OFF control), so the entropy-differential criterion can never fire and the entropy>= criterion is vacuously true (0>=0). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied bias cannot move committed action under the F-dominance conversion ceiling (V3-EXQ-571; diversity must act at/after E3 scoring). Not a weakening of SD-032b nor genuine support for MECH-260; non-contributory pending the ARC-065/MECH-439 committed-action-diversity substrate. MECH-258 c1 (forward-model R2) is entropy-independent and remains contributory. Autopsy: failure_autopsy_V3-EXQ-445h_2026-06-19; corroborates failure_autopsy_V3-EXQ-455a_2026-05-25.",
+  "evidence_direction_note": "GOV-APPLY-1 per-claim update (2026-08-29, failure_autopsy_f-dominance-conversion-cluster_2026-06-20, confirmed) [MECH-258: supports -> non_contributory] per grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
 }
