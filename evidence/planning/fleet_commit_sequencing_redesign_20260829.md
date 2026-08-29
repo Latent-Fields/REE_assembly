@@ -564,3 +564,30 @@ refwedge episode rate/cost (chip-20260904-refwedge-r1-rate-cost-remeasure);
 open-chip count + chips/week trending DOWN under curation (the net-chip-sink
 metric); wedge_repairs.jsonl rate staying near zero (a spike = a regressed
 generator, alerted at 3/day).
+
+## 12. Pause-cadence trial (2026-08-29, user-directed follow-on)
+
+The campaign's halt-campaign-restart shape is now a candidate STANDING
+CADENCE: work-progress phases punctuated by metric-triggered structural
+pauses, with the cadence decaying as generators die (a fixed calendar slot
+cannot do that). Adopted per the user's own sequencing -- prompt first,
+codify after evidence:
+
+- **`scripts/pause_pressure.py`** -- the five-signal gate (open-chip count +
+  7d minting rate; standing-chip generation >= 2; wedge auto-repair rate;
+  W7 enablement findings; manual inert-awaiting-activation count). On
+  PRESSURE, `--chip` mints/episodes ONE standing `kind=decision` chip
+  (`chip-pausepressure-<host>`) that the Orchestrator's decision lane
+  raises to the user -- deliberately NOT the morning digest (not always
+  fired or read, user 2026-08-29).
+- **`/governance` Step 1b (TRIAL)** runs it each cycle and records a
+  one-line outcome (fired/quiet, signals, useful/just-discharged/noise) in
+  the cycle's closing note. After ~3 recorded outcomes the user decides:
+  codify as its own skill (the skill body is essentially sections 10.4's
+  Phase A + curation lanes + restart criteria made repeatable), retune the
+  trial thresholds, or drop the gate.
+- First live reading (2026-08-29, minutes after the campaign): PRESSURE on
+  `recorded_7d 715 > 150` -- correct and expected, the backward-looking
+  window still carries the pre-campaign minting storm the campaign just
+  discharged. The Step 1b text names this case so the first governance
+  cycle records it as "just-discharged", not as a fresh recommendation.
