@@ -223,3 +223,17 @@ are unchanged and still need an interactive session. This session is closing
 as a no-op verification per its own dispatch brief's standing-work item 5
 ("if nothing changed and nothing new landed... stop there, do not manufacture
 busywork") rather than inventing unrequested substantive work.
+
+---
+
+Addendum, 2026-08-29T03:43:07Z (seventh session, `c918dfa4-...`, headless):
+re-checked at this timestamp -- still no change (no governance apply cycle,
+all 12 flags open, claims.yaml unchanged, no new relevant chips). This is now
+**four consecutive no-op sessions** (4th-7th). Per the brief's own
+instruction, surfacing rather than deciding: the same-cadence automatic
+resume no longer seems to be finding anything to act on, and may be better
+served waiting for an actual triggering event (a governance apply cycle
+landing on the flags above, or the user returning) rather than continuing at
+the current cadence. Not stopping the resume chip over this without the
+user's say-so -- one more resume chip spawned below per standing
+instructions.
