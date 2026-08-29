@@ -1412,6 +1412,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0099",
+      "claim_ids": [
+        "MECH-521",
+        "ARC-134",
+        "MECH-448"
+      ],
+      "flag_type": "stale_note",
+      "summary": "The repr-authority-selection resume brief's 'S9.9d grain-arbitration path still open' framing is stale: ARC-134 (registered 2026-08-26, same day) already states this architectural commitment, and its own digestion_note already closed the specific step-2 probe (arbitrate MECH-288's two scales) as non-viable for reasons unrelated to the ARC-004 bridge -- V3-EXQ-830 already ran an equivalent probe (non_contributory), MECH-288 has no arbitration point by design (consumers key on (scale, segment_id) in parallel), and its grain axis is temporal (event segments), not part-whole (scene carving). GFLAG-0090's 'unaffected: the S9.9d ordering' note is scoped to the ARC-004/frequency-bridge question specifically and should not be read as 'still open' more broadly. Separately, GFLAG-0096's MECH-521 shared-budget recommendation (available via MECH-448's divisive normalisation, e3_selector.py _loop_normalize) and the elated-nobel-914234 session's finding that MECH-448 normalises over the wrong population (E3 action candidates, not perceptual tokens) are the SAME gap: both trace to ARC-134's own P0 precondition (no endogenous merge/split operator exists in ree_core/entities/object_file_buffer.py), which equals MECH-521's own P0 (unit count must be endogenous) -- and both claims explicitly decline to commission that build now (v4/v5, 'DO NOT build in V3'). GFLAG-0096's desk-level amendment is correct and free to apply but does not unblock any actual test; no substrate work is warranted on this leg at present.",
+      "raised_by_session": "metaworker-chip-20260828-repr-authority-selection-thread-resume",
+      "raised_at": "2026-08-29T02:09:22Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
