@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T13:57:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "redteam_verdict": "CONFIRMED",
+  "pre_routing_checks": {"fire_count": 0, "fires": [], "note": "C5 inapplicable at check time (no .md sibling yet); C1/C2/C3 keyed on MECH-440 and quiet"},
+  "targets": [
+    {
+      "run_id": "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier_20260829T120510Z_v3",
+      "queue_id": "V3-EXQ-955",
+      "claim_ids": ["MECH-440"],
+      "failed_criterion": "none -- C1 (the only load-bearing criterion) PASSED; the FAIL is the arm-readiness gate: A0_OFF failed ceiling_headroom_below_saturation (max-across-seeds 0.973 vs 0.9), driven solely by seed 44",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- the armed-conversion preconditions (P1 diversity 4.78-4.89/5, P2 authority 0.85-0.87) were MET and MEASURED for the first time in the MECH-440 lineage, and under them the noise arm's committed-class entropy fraction beat the temperature control on 5/6 seeds and cleared the yoked committed-action divergence floor on 6/6 seeds. The claim's propagation leg expressed itself and passed.",
+        "biological_reference": "clear -- LC-NE tonic gain as state-conditioned exploration noise; this run tests only the propagation prerequisite of that translation (does injected variability reach committed action), which is upstream-neutral to the biology.",
+        "prerequisites": "present -- depends_on ARC-065 armed-conversion stack (569i top-k routing) armed as a matched constant; MECH-313/MECH-260 substrate present.",
+        "implementation": "complete for leg (i) propagation; legs (ii) state-conditioning and (iii) self-annealing of MECH-440 are implemented in the noisy head but NOT measured by this run (secondary_checks_measured=false, driver's declared honest gap).",
+        "environment": "adequate -- CausalGridWorldV2 with action_dim=5 and the raised class floor (support_preserving_min_first_action_classes=5) gives real headroom for the first time in the lineage (OFF mean 0.833 of ceiling vs 0.978 at the default floor in 708b).",
+        "measurement": "under-instrumented AT THE ADJUDICATION LAYER ONLY -- the DV, instrument controls (bit-identical self-yoke, private RNG streams, fresh-select denominators), and criteria are sound; the defect is the self-route logic: (a) ceiling_headroom_below_saturation is aggregated as MAX across seeds (driver line 1372), so one seed (44, OFF=0.973; second-max 0.886) reds the whole arm while the arm mean is 0.833; (b) the code folds the headroom check into armed_ok (lines 1414-1418) and orders it before C1 (1443-1450), so it vacates a POSITIVE C1, while the driver's own pre-registered docstring (lines 91-93, 101) scopes it to 'the falsifying branch specifically' (protecting a NULL from being read as weakens) and the VACUITY RULE's enumerated triggers do not include it.",
+        "integration": "coupled and stable -- 5/6 seeds show the pre-registered signature exactly (TEMP committed-action-identical to OFF, yoked divergence 0.0; NOISE diverges 0.68-0.88).",
+        "scale": "adequate -- 6 seeds, 1030-2129 genuine fresh E3 select fires per cell, 13.1h run on the hub."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES FAILED (adjudication-branch logic only) -- the mechanism under test performed; the environment was adequate; the self-route label is the artifact."
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic gain modulation expressed as parametric (weight-space) noise in action selection, state-conditioned by activation statistics",
+        "dependencies": ["armed conversion stack (ARC-065 top-k shortlist routing)", "candidate diversity above floor", "modulatory selection authority engaged"],
+        "is_formal_import": true,
+        "divergence": "NoisyNet (Fortunato et al.) is the formal import; the biological analog is asserted via state-conditioning and self-annealing, neither measured here -- the untested two-thirds of the claim",
+        "lit_status": "partial"
+      },
+      "self_route_label": "substrate_not_ready_requeue",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-955 (2026-08-29, autopsied failure_autopsy_V3-EXQ-955_2026-08-29, user-confirmed): first MET-AND-MEASURED armed-conversion test in the MECH-440 lineage. Manifest self-routed substrate_not_ready_requeue / evidence_direction unknown, OVERRIDDEN on autopsy: the only load-bearing criterion C1 PASSED (noise committed-class entropy fraction strictly above the temperature control on 5/6 seeds; yoked committed-action divergence 0.68-0.88 vs floor 0.02 on 6/6 seeds; all instrument controls green incl. bit-identical self-yoke). The FAIL label came from the A0_OFF ceiling-headroom precondition, which (a) is max-aggregated across seeds (one anomalous seed, 44, at 0.973 vs arm mean 0.833) and (b) was applied by the code to ALL branches although the driver's pre-registered docstring scopes it to the falsifying branch specifically -- a null-protection gate must not vacate a positive. Excluding seed 44 entirely, C1 is 5/5 on both sub-conditions (bar 4). SUPPORTS is NARROW: propagation leg (i) only; state-conditioning (ii) and self-annealing (iii) remain untested (secondary_checks_measured=false). Seed 44 recorded as a coupled anomaly (OFF near saturation, TEMP unexpectedly propagating with yoked divergence 0.686, noise<temp) -- consistent with near-tie score vectors at high entropy; excluded by C1's 2/3 majority by design.",
+      "per_claim_recommendation": {
+        "MECH-440": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "manifest evidence_direction unknown -> supports (propagation leg only, narrow; correct the manifest field + evidence_direction_note per the fallback workaround, rebuild index); clear the claim's standing pending_retest_after_substrate flag (the retest has now happened, armed and measured); MECH-440 currently carries NO explicit epistemic_category field, so set one -> standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A null-protection precondition (ceiling-headroom: 'a null in the OFF arm is uninformative') must be branch-scoped in code exactly as pre-registered in prose: applied to the supports branch it converts a positive into substrate_not_ready_requeue. The driver folded it into armed_ok; the docstring scoped it to the falsifying branch.",
+        "MAX-across-seeds aggregation of a per-seed readiness quantity turns one anomalous seed into an arm-level kill switch while the criterion it protects already handles seed heterogeneity with a 2/3 majority; per-seed gating (exclude the seed) or mean-aggregation matches the criterion's own granularity.",
+        "Seed 44's coupled anomaly (OFF at 0.973 of ceiling; the 'non-propagating' TEMP control diverging 0.686; noise<temp) is a recognisable state: near-uniform committed behaviour makes score vectors near-tie, so ANY perturbation flips argmins and lift comparisons compress. Worth a per-seed saturation exclusion rule in future conversion-lineage drivers.",
+        "The raised class floor (one integer, support_preserving_min_first_action_classes=action_dim) did exactly what 708b's third unenumerated reading predicted: OFF fraction-of-ceiling fell from 0.978 (708b, floor 2) to 0.833 mean (floor 5), giving the lineage its first non-degenerate conversion test -- confirming the class-floor ceiling explanation for 708b's precommit_shape_headroom_unexplained (GFLAG-0072 context).",
+        "Reanalysis, not re-run: every readout needed to overturn the self-route is already in the manifest per-seed; a 955a re-queue would spend ~13h of hub compute to re-derive data in hand (GOV-REUSE-1 spirit).",
+        "Hygiene (red-team, non-verdict-moving): manifest carries substrate_stable_across_run=false from the known driver-in-hash-toggle false-positive class (A0_OFF fingerprint hashes without the driver, lever arms with it) -- no real substrate drift, but it makes the banked A0_OFF baseline mint REFUSE_SUBSTRATE_UNSTABLE-ineligible for reuse; the driver's 'elif A0_OFF not in green' branch is unreachable given armed_ok's definition."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "routing_note": "queue-experiment routing is for the UNTESTED legs (ii) state-conditioning and (iii) self-annealing of MECH-440 -- a NEW question (new EXQ number), per the driver's own declared honest gap, NOT a re-run of the propagation question, which this autopsy resolves by reanalysis. Any future driver reusing the 955 design must fix the headroom gate: per-seed or mean aggregation, applied on the falsifying branch only. The manifest evidence_direction correction (unknown -> supports + evidence_direction_note) is a governance apply-step, not an autopsy write. Per the 2026-07-30 rule, this session spawns NO chip for this routing -- /governance chips it once ratified at its Step 2b."
+}
