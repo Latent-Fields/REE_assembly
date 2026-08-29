@@ -277,3 +277,13 @@ external trigger (a governance apply cycle landing on these flags, or the
 user returning), not on more polling at the current interval. Not
 unilaterally slowing or stopping the cadence without the user's say-so --
 one more resume chip spawned below.
+
+Addendum, 2026-08-29T05:54:29Z (eleventh session, headless): re-checked --
+still no change. `git log --since "2026-08-29T05:19:52Z"` on `REE_assembly`
+shows only `phase3-heartbeats:` orchestrator ticks plus the tenth session's
+own addendum commit -- no `/governance` apply cycle. All 12 flags still
+`open`, unchanged; `claims.yaml` unchanged since `aed9271e01`
+(2026-08-28T21:00:57Z); no new relevant follow-on chip. **Eight consecutive
+no-op sessions now (4th-11th).** Cadence observation stands as restated by
+the seventh through tenth sessions; not deciding to slow/stop it
+unilaterally -- one more resume chip spawned below.
