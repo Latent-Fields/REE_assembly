@@ -367,3 +367,138 @@ Remaining phase-4 slices (claims.yaml CAS, review_tracker, typed queue
 verbs) run AFTER restart, dispatched through the new W5b curation pass --
 deliberately, as its first live test. Phase-4's section 10 carries the
 mirror of this note.
+
+## 10. Final red-team + landing-sweep fold-in (user-requested, 2026-08-29) -- THE EXECUTABLE SEQUENCE
+
+Three independent review passes were run against the reconciled plan before
+acceptance: failure-modes/rollback (F1-F12), completeness-by-enumeration
+(C1-C12), and a landing sweep over all 43 open chips + residues. Verbatim
+reports in the session transcript; every accepted finding is folded below.
+This section SUPERSEDES the run-through orders in sections 8 and 9.
+
+### 10.1 Blockers found, and their resolutions
+
+- **F1: the WS soak has not started** -- the coordinator restart that
+  activates the WS endpoint has never happened, so a W2 "flip" mid-campaign
+  would flip with zero soak evidence, violating phase-4 section 7 on the one
+  file with three confirmed truncation incidents. RESOLVED: W2 splits into
+  **W2-restart** (one restart, soak begins passively, campaign continues)
+  and **W2-flip** (executes ONLY when section-7 criteria are met -- expected
+  AFTER machinery restart; no campaign step depends on it).
+- **F2: one restart, not four.** All server-side endpoint code (RECLOG,
+  governance-flag verbs, dispatcher family, igw intake, W5a episode verb,
+  archive verb) lands on the hub checkout BEFORE the single user-authorised
+  restart; clients stay on git until their flags flip.
+- **F4: dispatch is NOT fully halted.** `com.ree.dispatch-service` was
+  observed RUNNING (pid 3750) with `com.ree.dispatch-executor` loaded on
+  DLAPTOP despite the control-plane stop. Phase A below makes the halt real
+  and verified before anything else runs.
+- **C1: `governance_flags.v1.json`** -- busiest uncovered writer (88
+  commits/14d, confirmed stranding history) -- added to the phase-4 table
+  (typed raise/resolve verbs).
+- **C2: the steward ledger** (`scripts/steward/state/*`) -- named by this
+  very plan as today's wedge-keeper, then undispositioned. Interim rule
+  (lands with W6): the steward sweep COMMITS its append in the same step,
+  never leaves it dirty; phase-4 gets a later append-slice row. Until that
+  slice lands, R2's mechanism is explicitly NOT fully retired.
+- **C3: W5a's episode appends would ride mirror-less verbs** (chip
+  attach/amend have no coordinator representation -- always git path),
+  installing a new generator inside the workstream meant to end them.
+  RESOLVED: the coordinator-side episode verb is a stated PRECONDITION of
+  W5a, landed with the endpoint batch and live at W2-restart.
+
+### 10.2 Accepted serious/moderate revisions
+
+F3 W1 covers the IN-PROCESS tick callers (hand-built Namespace never takes
+the CLI's remote-tip default; the ticks are the R3 population) with a
+regression test on that route. F5 W1 semantics: cannot-verify != verified-
+present -> take the git path (redundant commit is the acceptable cost); test
+that a remote-tip fallback for a genuinely-DB-missing row survives two
+materializer ticks. F6 WS-flip rollback = unset flag PLUS drain pending
+entries to git, verified pending=0. F7 the restart is preceded by the
+operator-guide drift check + preflight and followed by /writer-health green
++ one observed phase3 commit. F8 WORKSPACE_STATE leaves W4's repair
+allowlist once the WS flip lands (pre-flip strands only). F9 pause
+`com.ree.workspacestaterotate` + the cloud-4 budget tick for the window; run
+`ref_convergence --dry-run` on all boxes after EACH workstream lands. F10
+unload `com.ree.chiparchive` for the window (idempotent; reload at restart).
+F11 the W1 restart criterion is restated falsifiably: no `chips: resolve`
+commit whose content is byte-identical to a coordinator-acked resolve
+(verdict/handoff resolves excluded), over a window with a minimum observed-
+resolve count. F12 W1's final sub-step is fleet deployment: pull umbrella on
+cloud-4/5 and confirm one post-W1 tick's verifier output. C4 the igw
+WORKSET regen + C6 `experiment_proposals.v1.json` join the igw intake slice
+(DP-3 whole-set rule -- without them the slice's headline estimate does not
+hold). C5 `worktree_session_registry.*` stays git-direct, justified:
+Mac-owned single-writer, machine-scoped regen. C7 the chip archiver gets a
+coordinator-side archive verb (strip the DB rows, not just the git render)
+-- landed with the endpoint batch; its absorbed proof-route chip moves from
+W4 to this item. C8 W5b's pre-dispatch bundle check is ADDITIVE: the
+START-TIME STOP-CHECK inside each session remains mandatory (the 2026-07-28
+84-second triple-claim is the held-out case). C9/C10 named GOV-HELDOUT-1
+target rules: W5a/b/c check against the chip-scope rule's closed four-
+revision history, the 2026-08-25 never-preclaim revert, and the
+spawn_task/record pairing rule; W6 checks against claim-first point 2's
+narrow-exposure-window doctrine, the session-land-must-be-invoked rule, and
+the multi-file-push rule. C11/C12 `decision_log.v1.jsonl` +
+`stash_dispositions.json` -> later append slices; governance-regen outputs +
+`morning_agenda.md` -> explicitly git-direct (single-session, claim-guarded).
+
+### 10.3 Landing-sweep additions (safe adds, ranked)
+
+Folded into the workstreams they ride: (1) amend-urgency post-commit
+self-verify -> W1's chip_ledger diff; (2) audit_stale_claims virtual
+ID-slot resource -> W1 batch (de-risks W0's own claim shape); (3) WS append
+shrink-guard compares against HEAD -> lands BEFORE W2-restart (the flip
+makes this path live); (4) the two statusregress chips become W4's
+verification fixtures; (5) session-land Phase-4 foreign-claimed-chip guard
+-> W6's skill edit; (6) staleclaim absent-path hardening -> W1 batch; (7)
+stash-fleet wall-clock de-flake -> quiets the false-chip manufacturer
+before restart; (8) re-run the scripts-corpus RED subset on the quiesced
+box -- this re-measurement IS W1's verification gate, and nobody budgets
+triage against the unre-measured 15+8 figure; (9) close the trivial stale
+`side-branch-session` test claim. CONTINGENT (10): the ree-cloud-4 stranded
+failopen-loss worktree + the untracked v3_exq_603s manifest -- cloud-4 IS
+reachable (91.99.68.94; the sweep agent probed a wrong address), so this is
+in scope if the window allows, else it stays with its owner chip.
+REJECTED adds, on the sweep's own caution: the `merge_origin_into_local`
+destructive-delete chip (three-incident function, needs its own session);
+full 15-file corpus triage before re-measurement. The converging
+chip_ledger.py edits land as ONE reviewed diff with the corpus subset green
+between steps.
+
+### 10.4 THE SEQUENCE (final, supersedes 8/9)
+
+- **Phase A -- make the halt real:** verify/effect stop of
+  dispatch-service/executor (Mac launchd + cloud-4/5 units); pause
+  workspacestaterotate, chiparchive, cloud-4 budget tick; baseline
+  `ref_convergence --dry-run` on all boxes.
+- **W0** queue rearm (V3-EXQ-956/957/958).
+- **W1** chip_ledger hardening as one reviewed diff (ack-verifier
+  false-positive class; remote-tip fallback incl. the in-process tick
+  route; amend-urgency self-verify; F5 semantics) + W1-batch safe adds
+  (2, 6, 7) + WS shrink-guard-vs-HEAD (3) + corpus-subset green + fleet
+  deploy to cloud-4/5 with one observed post-W1 tick.
+- **Endpoint batch (server-side only, no activation):** RECLOG append;
+  governance-flag verbs; dispatcher_control + budget/cooldown; igw intake
+  (ledgers + log + workset + experiment_proposals); W5a episode verb;
+  archiver verb.
+- **W2-restart:** drift check -> preflight -> ONE coordinator restart ->
+  /writer-health green + observed phase3 commit. WS soak begins.
+- **W6** skill-text batch (incremental landing; resumable-state note;
+  steward commit-immediately rule; session-land foreign-claimed guard) --
+  each edit with its named GOV-HELDOUT-1 cases.
+- **W5a/b/c** (episode verb live; additive STOP-CHECK declared; named
+  held-out cases run).
+- **Client flag flips** per-file as each soak meets its criteria (RECLOG
+  and dispatcher first; WS = W2-flip only at soak maturity, rollback =
+  unset + drain).
+- **W7** mitigation-enablement audit (also re-verifies W1 fleet deploy).
+- **W4** reconciler --repair (allowlist per F8; statusregress fixtures;
+  telemetry + digest surfacing + rate alert).
+- **Contingent add 10** if window allows.
+- **Restart:** criteria = F11-restated W1 quiet signature + curation live
+  + W7 first audit green-or-chipped + fleet ref_convergence quiet +
+  dispatcher-control state drained/consistent; then reload the paused
+  launchd agents and restart orchestration/dispatch. W2-flip follows at
+  soak maturity through the restarted machinery.
