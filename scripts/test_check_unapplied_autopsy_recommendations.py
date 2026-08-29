@@ -236,6 +236,163 @@ class ProseCitationTests(Base):
 
 
 # =========================================================================
+# NAMED-FIELD / CITATION-STAMP SHAPES -- the 2026-08-29 repair
+#
+# governance-cycle-20260828 measured 10 confirmed-applied recommendations
+# still reporting ACTIONABLE because `_target_state`'s derived value could
+# never match one of the three hardcoded fields the old `_reflects` checked.
+# Each class below is one of the shapes that produced a false positive on
+# the real corpus (MECH-357, MECH-489, MECH-180/INV-050), reproduced here as
+# a hermetic fixture, plus the negative controls that must still fire.
+# =========================================================================
+class NamedFieldAndCitationTests(Base):
+
+    def test_colon_field_value_fires_when_unapplied(self):
+        """MECH-357 shape: '... -> diagnostic_evidence_adjudicated: true'.
+        Field present but wrong value -- still ACTIONABLE."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": False}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "no diagnostic_evidence_adjudicated field, so set one "
+                          "-> diagnostic_evidence_adjudicated: true"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_colon_field_value_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half of the MECH-357 fix: the
+        claim's boolean field already matches -- nothing owed."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "no diagnostic_evidence_adjudicated field, so set one "
+                          "-> diagnostic_evidence_adjudicated: true"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_colon_field_value_with_unrecognised_field_stays_actionable(self):
+        """NEGATIVE CONTROL: a colon-shape clause naming a field the claim
+        schema does not carry must not certify -- the false-positive bias is
+        preserved for anything this cannot verify."""
+        self.fx.write_claims([{"id": CLAIM}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "-> some_unmodeled_field: true"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_bare_boolean_field_fires_when_unapplied(self):
+        """MECH-489 shape: 'pending_retest_after_substrate true -> false',
+        no colon. Claim still carries the old value -- ACTIONABLE."""
+        self.fx.write_claims([{"id": CLAIM, "pending_retest_after_substrate": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "pending_retest_after_substrate true -> false"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_bare_boolean_field_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half of the MECH-489 fix."""
+        self.fx.write_claims([{"id": CLAIM, "pending_retest_after_substrate": False}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "pending_retest_after_substrate true -> false"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_bare_boolean_shape_does_not_misattribute_to_the_first_word(self):
+        """NEGATIVE CONTROL pinning the REJECTED alternative from the module
+        docstring: 'status and epistemic_category unchanged -> standard'
+        must not be checked against `status` (the first word) alone --
+        `status` never holds a value like 'standard' and a single-field
+        guess would wrongly stay ACTIONABLE forever. The widened blind
+        field list must still find it via `epistemic_category`."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "epistemic_category": "standard"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "status and epistemic_category unchanged -> standard"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_citation_stamp_fires_when_unapplied(self):
+        """MECH-180/INV-050 shape: '... stamp this cluster artifact ->
+        failure_autopsy_X' naming a live_status.evidence.from target that
+        the claim does not yet cite."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "live_status": {"evidence": {"from": "failure_autopsy_OLDER_2026-08-01"}},
+        }])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "currently cites failure_autopsy_OLDER_2026-08-01, "
+                          "stamp this cluster artifact -> failure_autopsy_NEWER_2026-08-20"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_citation_stamp_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half of the MECH-180/INV-050
+        fix: live_status.evidence.from already cites the recommended slug."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "live_status": {"evidence": {"from": "failure_autopsy_NEWER_2026-08-20"}},
+        }])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "currently cites failure_autopsy_OLDER_2026-08-01, "
+                          "stamp this cluster artifact -> failure_autopsy_NEWER_2026-08-20"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_stale_citation_stamp_moves_to_superseded_once_the_latest_applies(self):
+        """THE EXACT MECH-180/INV-050 shape: three confirmed autopsies, each
+        recommending a citation stamp naming itself, chained across three
+        different runs. Only the latest is applied. The two older ones must
+        move to superseded_disposition (WARN), not stay unapplied_disposition
+        (ACTIONABLE) -- they are moot, not owed."""
+        self.fx.write_claims([{
+            "id": CLAIM,
+            "live_status": {"evidence": {"from": "failure_autopsy_LATEST_2026-08-25"}},
+        }])
+        self.fx.autopsy(
+            slug="failure_autopsy_OLDEST_2026-08-21", generated="2026-08-21T00:00:00Z",
+            targets=[self.fx.target(
+                run_id="run_a_v3", recommended=None,
+                per_claim_recommendation={CLAIM: {
+                    "change": "currently cites failure_autopsy_PRIOR_2026-08-01, "
+                              "stamp this artifact -> failure_autopsy_OLDEST_2026-08-21"}})])
+        self.fx.autopsy(
+            slug="failure_autopsy_MIDDLE_2026-08-23", generated="2026-08-23T00:00:00Z",
+            targets=[self.fx.target(
+                run_id="run_b_v3", recommended=None,
+                per_claim_recommendation={CLAIM: {
+                    "change": "currently cites failure_autopsy_OLDEST_2026-08-21, "
+                              "stamp this cluster artifact -> failure_autopsy_MIDDLE_2026-08-23"}})])
+        self.fx.autopsy(
+            slug="failure_autopsy_LATEST_2026-08-25", generated="2026-08-25T00:00:00Z",
+            targets=[self.fx.target(
+                run_id="run_c_v3", recommended=None,
+                per_claim_recommendation={CLAIM: {
+                    "change": "-> stamp failure_autopsy_LATEST_2026-08-25 as the final "
+                              "citation for this portfolio"}})])
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+        self.assertEqual(len(buckets["superseded_disposition"]), 2)
+        self.assertEqual(
+            {row["artifact"] for row in buckets["superseded_disposition"]},
+            {"failure_autopsy_OLDEST_2026-08-21", "failure_autopsy_MIDDLE_2026-08-23"})
+
+    def test_citation_stamp_with_no_live_status_stays_actionable(self):
+        """NEGATIVE CONTROL: no live_status at all -- cannot verify, so it
+        must not certify."""
+        self.fx.write_claims([{"id": CLAIM}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "stamp this artifact -> failure_autopsy_NEWER_2026-08-20"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+
+# =========================================================================
 # CROSS-RUN SUPERSESSION -- GOV-APPLY-1's own blind spot (2026-08-22)
 #
 # R2 (load_confirmed's `latest`) only dedups a re-adjudication of the SAME

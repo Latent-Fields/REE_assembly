@@ -173,6 +173,64 @@ category. A report of that size that is mostly wrong would be ignored, and an
 ignored report is the same failure as no report. Precision first; coverage grows
 as the convention spreads.
 
+THE 2026-08-29 REPAIR -- _reflects() could not name the field a change was about
+---------------------------------------------------------------------------------
+Until this date the non-direction branch of `_reflects()` checked a derived
+target state against exactly THREE things: `epistemic_category`, `status`,
+`live_status.reading`. Any recommendation whose `change` prose reduced (via
+the "text after the last `->`" rule) to a value that was never going to be
+one of those three -- because the disposition names a DIFFERENT field
+entirely, or names a `live_status.evidence.from` citation rather than a
+scalar -- could never certify as applied, regardless of whether it actually
+was. That is a structurally unmatchable row, not a hard-to-verify one, and
+governance-cycle-20260828 measured 10 of them, all confirmed applied by
+hand: MECH-357 (`diagnostic_evidence_adjudicated`), MECH-489
+(`pending_retest_after_substrate`), and 4 rows apiece for MECH-180/INV-050
+(a `live_status.evidence.from` citation-stamp chain, most of which were
+additionally cross-run-superseded per the 2026-08-22 repair above once their
+own citation state could be read at all).
+
+The fix recognises two UNAMBIGUOUS prose shapes as an explicit field
+reference, because each carries its own single-token marker:
+
+  * `<field>: <value>` as the clause after the last `->` (a literal colon)
+    -- `_target_state` returns `(field, value)` and `_reflects` compares
+    `claims[field]` directly, with bool coercion for a literal `true`/`false`
+    value (claims.yaml stores real booleans, not the strings the prose
+    writes).
+  * `stamp ... failure_autopsy_<slug>` anywhere in the `change` text (the
+    literal word "stamp") -- `_target_state` returns `("citation", slug)`
+    and `_reflects` compares it against `live_status.evidence.from`, which
+    is what a citation-stamp recommendation is actually asking to be set.
+
+Both are gated on the extracted field/marker being real: an unrecognised
+field name (not a key on the claim) or an empty `live_status.evidence.from`
+simply falls through to "not reflected" -- the existing false-positive bias
+is preserved, this only ever ADDS a route to certifying a genuine match, and
+a corpus sweep (`git log` message on the commit implementing this) confirmed
+no other confirmed target's `change` text matches either regex by accident.
+
+A THIRD shape -- `<field> <old> -> <new>` with no colon (MECH-489's
+`pending_retest_after_substrate true -> false`) -- deliberately does NOT get
+the same named-field extraction. There is no single-token marker to anchor
+on, so a "first word before the old value" heuristic was tried and rejected:
+on `failure_autopsy_V3-EXQ-937-937a-cluster_2026-08-18`'s MECH-151 entry,
+`"status and epistemic_category unchanged -> standard"` would misattribute
+the target to `status` (the first word), when the target `standard` is an
+`epistemic_category` value and `status` never takes it -- a field it was
+already, coincidentally, never going to match, silently reintroducing a
+false positive the OLD blind check did not have (the old check compared
+`target_state` against BOTH fields). Instead this shape stays on the blind
+compare, which is simply WIDENED from two fields to five --
+`epistemic_category`, `status`, `diagnostic_evidence_adjudicated`,
+`pending_retest_after_substrate`, `v3_pending` -- with bool coercion added
+so a bare `true`/`false` target can match the three boolean fields. Blind
+matching across more fields is safe here specifically because the value
+domains do not overlap (the two category/status fields are never
+`"true"`/`"false"`; the three boolean fields are never anything else), so
+widening the list cannot manufacture a cross-field false match the way
+guessing a single field name can.
+
 THE 2026-08-22 REPAIR -- unapplied_disposition had the MIRROR-IMAGE blind spot
 ------------------------------------------------------------------------------
 `superseded_citation`'s own KNOWN LIMIT (below) already names the general shape:
@@ -575,14 +633,65 @@ def load_live_pairs(root: Path):
     return live
 
 
+# See "THE 2026-08-29 REPAIR" in the module docstring for what these two
+# recognise and, just as importantly, what they deliberately do NOT.
+_FIELD_VALUE_RE = re.compile(r"^([a-z][a-z0-9_]*)\s*:\s*(.+)$", re.I)
+_STAMP_RE = re.compile(r"\bstamp\b.*?(failure_autopsy_[A-Za-z0-9_.\-]+)", re.I | re.S)
+
+# The blind fallback field list for a bare (non-colon, non-citation) target
+# state -- widened 2026-08-29 from (epistemic_category, status) to also
+# cover the boolean fields a disposition can name without a colon. Safe to
+# check ALL of them per row because the value domains never overlap: see
+# "THE 2026-08-29 REPAIR" for why that is exactly what makes blind-widening
+# safe here where guessing a single field name from prose is not.
+_GENERIC_CLAIM_FIELDS = (
+    "epistemic_category", "status",
+    "diagnostic_evidence_adjudicated", "pending_retest_after_substrate",
+    "v3_pending",
+)
+
+
 def _target_state(change, recommended_direction):
-    """The right-hand side of a disposition: "mixed -> non_contributory" -> the
-    second half, else the bare recommended direction."""
+    """The right-hand side of a disposition, as (field_hint, value).
+
+    field_hint is:
+      * None       -- value is a bare state: a direction-vocab word, or a
+                       value to blindly compare against `_GENERIC_CLAIM_FIELDS`
+                       (e.g. "mixed -> non_contributory" or "unset -> standard"
+                       or "pending_retest_after_substrate true -> false").
+      * "citation" -- value is an autopsy slug that `live_status.evidence.from`
+                       must cite verbatim (a "stamp <slug>" recommendation).
+      * <name>     -- value belongs to EXACTLY claims.yaml field <name>,
+                       stated explicitly as "<name>: <value>" in the prose
+                       (e.g. "-> diagnostic_evidence_adjudicated: true").
+    """
     if isinstance(change, str) and "->" in change:
-        return change.split("->")[-1].strip()
+        stamp = _STAMP_RE.search(change)
+        if stamp:
+            return "citation", stamp.group(1).rstrip(".")
+        tail = change.rsplit("->", 1)[-1].strip()
+        field_match = _FIELD_VALUE_RE.match(tail)
+        if field_match:
+            return field_match.group(1).strip().lower(), field_match.group(2).strip().rstrip(".")
+        return None, tail
     if isinstance(recommended_direction, str):
-        return recommended_direction.strip()
-    return None
+        return None, recommended_direction.strip()
+    return None, None
+
+
+def _field_value_matches(actual, target_state) -> bool:
+    """Compare one claims.yaml field's live value against a parsed target.
+
+    Bool-coerces ONLY when `actual` is itself a bool -- claims.yaml stores
+    real booleans, not the strings recommendation prose writes, and a target
+    that is not literally "true"/"false" can never match a boolean field.
+    """
+    if isinstance(actual, bool):
+        lowered = target_state.strip().lower()
+        if lowered not in ("true", "false"):
+            return False
+        return actual is (lowered == "true")
+    return str(actual or "").strip() == target_state.strip()
 
 
 def _reflects(claim, change, recommended_direction, slug,
@@ -621,14 +730,20 @@ def _reflects(claim, change, recommended_direction, slug,
         through the same pack/flat + `_is_annotated` overlay rule the indexer
         uses, honouring the per-claim override. Unverifiable (no manifest, no
         run_id, no resolver) reports as unapplied.
-      * anything else (epistemic_category, status) -> claims.yaml is genuinely
-        the authority, and those fields are compared directly.
+      * a CITATION STAMP ("stamp <slug>" in the prose) -> compared against
+        `live_status.evidence.from` directly (added 2026-08-29, see "THE
+        2026-08-29 REPAIR").
+      * a NAMED FIELD ("<field>: <value>" in the prose) -> compared against
+        that exact claims.yaml field (added 2026-08-29, ditto).
+      * anything else -> blindly compared against `_GENERIC_CLAIM_FIELDS`
+        (epistemic_category, status, diagnostic_evidence_adjudicated,
+        pending_retest_after_substrate, v3_pending) and `live_status.reading`.
     """
-    target_state = _target_state(change, recommended_direction)
+    field_hint, target_state = _target_state(change, recommended_direction)
     if not target_state:
         return False
 
-    if target_state.strip().lower() in _DIRECTION_VOCAB:
+    if field_hint is None and target_state.strip().lower() in _DIRECTION_VOCAB:
         if resolver is None or not run_id:
             return False  # cannot verify -> do not certify
         effective = resolver.effective_direction(run_id, claim_id)
@@ -638,8 +753,21 @@ def _reflects(claim, change, recommended_direction, slug,
 
     if not isinstance(claim, dict) or not claim:
         return False
-    for field in ("epistemic_category", "status"):
-        if str(claim.get(field) or "").strip() == target_state:
+
+    if field_hint == "citation":
+        live = claim.get("live_status")
+        evidence = live.get("evidence") if isinstance(live, dict) else None
+        cited = str(evidence.get("from") or "").split("#")[0].strip() \
+            if isinstance(evidence, dict) else ""
+        return bool(cited) and cited == target_state.strip()
+
+    if field_hint:
+        if field_hint not in claim:
+            return False  # unrecognised field name -> cannot certify
+        return _field_value_matches(claim.get(field_hint), target_state)
+
+    for field in _GENERIC_CLAIM_FIELDS:
+        if field in claim and _field_value_matches(claim.get(field), target_state):
             return True
     live = claim.get("live_status")
     if isinstance(live, dict) and str(live.get("reading") or "").strip() == target_state:
