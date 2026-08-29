@@ -244,3 +244,22 @@ open, claims.yaml unchanged since 2026-08-28T21:00:57Z, no new relevant
 chips). **Five consecutive no-op sessions now (4th-8th).** Same cadence
 observation as the seventh session stands, restated rather than
 re-litigated. One more resume chip spawned below per standing instructions.
+
+Addendum, 2026-08-29T04:46:28Z (ninth session, headless): re-checked --
+still no change. `git log --since "2026-08-29T04:15:37Z"` on `REE_assembly`
+shows only `phase3-heartbeats:` orchestrator ticks plus the eighth session's
+own addendum commit -- no `/governance` apply cycle. All 12 flags
+(GFLAG-0054/0055/0088/0089/0090/0091/0094-0099) re-read directly from
+`evidence/planning/governance_flags.v1.json`: still `open`, unchanged.
+`claims.yaml`: ARC-133/134 and MECH-516..523 all still `candidate`, same
+`implementation_phase`/`v3_pending` values. `chip_ledger.py list --status
+open` has no new follow-on tied to this thread's claims beyond what already
+existed (this session's own resume chip, a pre-existing stale-claim hygiene
+chip for an earlier dead-dispatch worktree, and unrelated chips). **Six
+consecutive no-op sessions now (4th-9th).** Same cadence observation as the
+seventh/eighth sessions stands, restated rather than re-litigated: the
+thread is currently waiting on an external trigger (a governance apply
+cycle landing on these flags, or the user returning), not on further
+same-cadence polling. Continuing per standing instructions without
+unilaterally slowing or stopping the resume cadence -- one more resume chip
+spawned below.
