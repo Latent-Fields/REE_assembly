@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
-  "runner_pid": 837,
-  "runner_started_at": "2026-08-29T09:36:14.701540+00:00",
-  "last_updated": "2026-08-29T09:37:05.898797+00:00",
+  "runner_pid": 839,
+  "runner_started_at": "2026-08-29T11:35:47.457869+00:00",
+  "last_updated": "2026-08-29T11:35:51.853837+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -14,6 +14,17 @@
       "description": "",
       "estimated_minutes": 480.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-958",
+      "backlog_id": "",
+      "claim_id": "MECH-290",
+      "title": "MECH-290 backward trajectory credit sweep functional-signature confirmer (wall-independent, no training)",
+      "description": "",
+      "estimated_minutes": 6.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3610,6 +3621,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 50.1
+    },
+    {
+      "queue_id": "V3-EXQ-957",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-219 controllability-dissociation substrate-readiness diagnostic (INESCAPABLE vs ESCAPABLE, pure-arithmetic regulator)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[smoke] outcome=PASS C1=True C2=True C3=True C4=True | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-957 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-957.json",
+      "started_at": "2026-08-29T11:35:47.472042+00:00",
+      "completed_at": "2026-08-29T11:35:51.851939+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4.4
     }
   ]
 }
