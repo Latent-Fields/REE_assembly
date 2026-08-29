@@ -13,6 +13,13 @@
 #
 # state/steward_ledger.jsonl IS tracked and that is not inconsistent: it is an
 # append-only audit time series, not a suppression-bearing whole-file rewrite.
+#
+# steward_ledger_pending.jsonl records a ledger append that a commit failure
+# stranded, for the NEXT run to retry landing (steward_sweep.py's never-exit-
+# dirty contract). It must never be committed: it is a per-run recovery
+# scratch file, not audit history -- the record it holds is only ever
+# meaningful until the next successful flush, and once flushed it is deleted.
 reports/
 steward_state.json
 steward_ref_pins.json
+steward_ledger_pending.jsonl

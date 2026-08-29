@@ -704,6 +704,27 @@ looks identical to a quiet week. The record lands *in* the commit it describes,
 so it cannot carry the resulting sha; it carries `base` instead, and the commit
 is that base's child.
 
+**The ledger append never stays dirty, even when the commit itself fails
+(2026-08-29, fleet-wedge campaign W6/C2).** Confirmed live: a sweep's ledger
+append sat as a raw uncommitted diff on this shared checkout for hours after
+its `ree_commit.py` call failed, blocking every OTHER session's push-retry
+against `REE_assembly` until a human hand-landed it (`07ec0b16b0`). The T0
+EDITS a failed commit leaves in place stay untouched on purpose (they are
+correct; a human should land them, not have them silently undone), but the
+ledger append has no such reason to linger. On a commit failure `sweep()`
+checks whether HEAD actually advanced: if a local commit landed anyway (the
+push was rejected and unretryable), the append is already safely inside it
+and nothing is touched; if nothing landed at all, the WHOLE ledger file is
+rolled back to its content from before this run started (not just this
+module's own summary line -- `run_detectors.py`'s apply pass writes its own
+"run" and per-fix "autofix" lines to the same file first) and this module's
+own summary is stashed to the gitignored, per-machine
+`state/steward_ledger_pending.jsonl`. The next run's `flush_pending()` retries
+landing that summary, before that run's own gates, using the identical
+committed-locally-or-revert-and-requeue logic -- so a run that still cannot
+push leaves no new dirty diff either, and the record survives untouched for
+the run after that.
+
 **Known stall mode, stated rather than discovered later.** The frontmatter gate
 is repo-wide: a pre-existing broken plan unrelated to the fixes will abort the
 sweep every day until it is repaired. That is deliberate -- an unattended writer
@@ -713,7 +734,7 @@ output and writes `aborted: "frontmatter_invalid"` to the ledger.
 
 Exit codes: `0` clean, `1` needs a human, `3` refused by a gate.
 Log: `~/Library/Logs/ree_steward_sweep.launchd.log`.
-Tests: `test_steward_sweep.py` (23, real git repos, time-independent), roughly
+Tests: `test_steward_sweep.py` (31, real git repos, time-independent), roughly
 half negative controls -- every gate is a refusal, so a bug in one is silent.
 
 **The `escalate` boolean is printed twice** -- once at Step 3m, and again from

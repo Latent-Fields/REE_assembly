@@ -52,6 +52,38 @@ WHAT IT DOES, AND THE FOUR GATES IT PASSES THROUGH
      any concurrent writer landing in that gap silently wins. ree_commit reads
      each path once, builds a private index, and compare-and-swaps the ref.
 
+THE LEDGER APPEND NEVER STAYS DIRTY, EVEN WHEN THE COMMIT FAILS
+=====================================================================
+Confirmed 2026-08-28/29 (fleet-wedge campaign W6/C2): a sweep's ledger append
+was left as a raw, uncommitted diff on this shared checkout for HOURS after
+its `ree_commit.py` call failed, blocking every OTHER session's push-retry
+against REE_assembly until a human hand-landed it (07ec0b16b0). The fixed
+D-006/D-008 EDITS a failed commit leaves in place are a deliberate, separate
+choice (they are correct and a human should land them, not have them
+silently undone) -- but the ledger append has no such reason to linger: it
+only describes this run, and nothing downstream needs it on disk *right now*.
+So on a commit failure the sweep checks whether HEAD actually advanced
+(`_head_sha` before/after `commit()`):
+  * HEAD moved -> a local commit landed even though `commit()` reported
+    failure (the push itself was rejected and could not be retried). The
+    ledger append is safely inside that commit, not a dirty diff -- only the
+    PUSH is outstanding, which is a human/fleet-convergence matter.
+  * HEAD did not move -> nothing committed at all, so the ledger IS a dirty
+    diff -- not only this module's own summary line but also, since
+    run_detectors.py's own apply pass writes a "run" line plus one "autofix"
+    line per fix it applies directly to the same file *before* this module's
+    summary and commit attempt, those too. The whole file is rolled back to
+    its settled state from the START of this run (restore the file's content
+    from before this run touched it, or delete it if it did not exist yet --
+    never `git checkout`, which would also discard any other uncommitted
+    content in the file), and this module's OWN summary record is stashed to
+    the gitignored `state/steward_ledger_pending.jsonl` (the finer-grained
+    detector-internal lines are not -- they are secondary observability, and
+    the summary already carries the substance: what was applied and why the
+    commit failed). The NEXT run's `flush_pending()` retries landing that
+    summary, before that run's own gates, using the identical
+    committed-locally-or-revert-and-requeue logic.
+
 AUTHORED AS THE BOT IDENTITY, ALWAYS. Not a convenience: `clinical_hours_guard`
 blocks personal-identity commits during HSE clinical hours because REE is
 developed outside that employment, and an unattended job asserting an off-duty
@@ -97,6 +129,7 @@ from detectors._common import repo_root_from_here  # noqa: E402
 from detectors.d102_moving_ref_guard import _pin_refs_for, guard  # noqa: E402
 
 LEDGER_REL = "scripts/steward/state/steward_ledger.jsonl"
+PENDING_LEDGER_REL = "scripts/steward/state/steward_ledger_pending.jsonl"
 COMMIT_PREFIX = "steward-sweep:"
 
 EXIT_OK = 0
@@ -213,6 +246,103 @@ def append_ledger(repo_root: Path, record: dict) -> None:
         fh.write(json.dumps(record, sort_keys=True) + "\n")
 
 
+def _restore_ledger(repo_root: Path, existed_before: bool, content_before: bytes) -> None:
+    """Undo an append_ledger() this run made and nothing committed.
+
+    Deleting an untracked-empty file (rather than leaving a 0-byte file
+    behind) matters: an empty file the ledger never had before still shows up
+    as `??` in `git status`, which is exactly the dirty-diff shape this
+    hardening exists to close.
+    """
+    path = repo_root / LEDGER_REL
+    if existed_before:
+        path.write_bytes(content_before)
+    elif path.exists():
+        path.unlink()
+
+
+def _head_sha(repo_root: Path) -> str:
+    """Current HEAD sha, or "" on any failure. Never raises."""
+    return G.git(repo_root, "rev-parse", "HEAD").strip()
+
+
+def pending_records(repo_root: Path) -> list[dict]:
+    """Ledger records an earlier run's commit failure stranded, oldest first.
+
+    A corrupt line is skipped rather than raising -- a mangled pending file
+    must never wedge every future flush attempt.
+    """
+    path = repo_root / PENDING_LEDGER_REL
+    if not path.exists():
+        return []
+    records = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            records.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return records
+
+
+def _write_pending(repo_root: Path, records: list[dict]) -> None:
+    path = repo_root / PENDING_LEDGER_REL
+    if not records:
+        if path.exists():
+            path.unlink()
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("".join(json.dumps(r, sort_keys=True) + "\n" for r in records),
+                    encoding="utf-8")
+
+
+def stash_pending(repo_root: Path, record: dict) -> None:
+    """Append one record to the pending file. Never overwrites a prior one."""
+    _write_pending(repo_root, pending_records(repo_root) + [record])
+
+
+def flush_pending(repo_root: Path, push: bool) -> None:
+    """Retry landing ledger record(s) an earlier run's commit failure stranded.
+
+    Called FIRST, before this run's own gates -- see the module docstring's
+    never-exit-dirty contract. Best-effort by design: on failure it restores
+    the ledger to its pre-flush content (so THIS call leaves no new dirty
+    diff) and leaves the pending file untouched for the next run to retry.
+    Must never raise -- a mangled pending file or an unreachable ree_commit.py
+    must not block this run's own sweep.
+    """
+    pending = pending_records(repo_root)
+    if not pending:
+        return
+    ledger_path = repo_root / LEDGER_REL
+    existed_before = ledger_path.exists()
+    before = ledger_path.read_bytes() if existed_before else b""
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    with ledger_path.open("a", encoding="utf-8") as fh:
+        for rec in pending:
+            fh.write(json.dumps(rec, sort_keys=True) + "\n")
+
+    head_before = _head_sha(repo_root)
+    message = ("%s land %d pending ledger record(s) stranded by an earlier "
+               "commit failure" % (COMMIT_PREFIX, len(pending)))
+    ok, detail = commit(repo_root, [LEDGER_REL], message, push)
+    if ok or _head_sha(repo_root) != head_before:
+        # Landed -- either fully (commit + push) or locally with the push left
+        # outstanding for a human/the fleet's own convergence machinery. Either
+        # way the content is now durably in git history, not a raw dirty diff.
+        _write_pending(repo_root, [])
+        _log("flushed %d pending ledger record(s)%s"
+             % (len(pending), "" if ok else " (committed locally; push failed)"))
+        return
+    # Nothing landed at all -- leave no new dirty diff, and leave the pending
+    # file untouched (unchanged order) for the next run to retry.
+    _restore_ledger(repo_root, existed_before, before)
+    _log("flush of %d pending ledger record(s) failed, retrying next run: %s"
+         % (len(pending), detail))
+
+
 def commit(repo_root: Path, paths: list[str], message: str,
            push: bool) -> tuple[bool, str]:
     """Commit `paths` through ree_commit.py. Never plain git -- see the header."""
@@ -234,16 +364,34 @@ def sweep(repo_root: Path, push: bool = True, dry_run: bool = False) -> int:
     base = {"action": "autofix", "source": "steward_sweep", "ts": now,
             "repo": str(repo_root), "dry_run": bool(dry_run)}
 
-    def finish(rc: int, **kw) -> int:
+    def finish(rc: int, ledger: bool = True, **kw) -> int:
         rec = dict(base)
         rec.update(kw)
         rec["duration_s"] = round(time.time() - t0, 3)
         rec["exit_code"] = rc
-        if not dry_run:
+        if not dry_run and ledger:
             append_ledger(repo_root, rec)
         _log(json.dumps({k: v for k, v in rec.items()
                          if k not in ("repo",)}, sort_keys=True))
         return rc
+
+    # --- gate 0: land anything a PRIOR run's commit failure stranded -------
+    # Before this run touches anything else -- see the module docstring's
+    # never-exit-dirty contract. Best-effort: flush_pending() never raises.
+    if not dry_run:
+        flush_pending(repo_root, push)
+
+    # Snapshot the ledger's SETTLED state -- after any flush above, before
+    # this run's own detector activity. run_detectors.py's own apply pass
+    # (gate 2, below) writes directly to this same file (a "run" line, plus
+    # one "autofix" line per fix it applies) *before* steward_sweep.py's own
+    # summary append and commit attempt ever happen. A total commit failure
+    # must roll all of that back, not just this module's own append, or the
+    # detector's own lines are exactly the dangling-dirty-diff shape this
+    # hardening exists to close, just written by a different caller.
+    ledger_path = repo_root / LEDGER_REL
+    ledger_settled_existed = ledger_path.exists()
+    ledger_settled = ledger_path.read_bytes() if ledger_settled_existed else b""
 
     # --- gate 1: pin ------------------------------------------------------
     if not G.is_git_repo(repo_root):
@@ -342,14 +490,43 @@ def sweep(repo_root: Path, push: bool = True, dry_run: bool = False) -> int:
                 "exit_code": EXIT_OK})
     append_ledger(repo_root, rec)
 
+    head_before = _head_sha(repo_root)
     ok, detail = commit(repo_root, paths + [LEDGER_REL], message, push)
     if not ok:
-        # Deliberately NOT reverted. A commit failure means CAS lost or the push
-        # was rejected in a way ree_commit could not resolve; the edits are
-        # correct and a human should land them, not have them silently undone.
-        _log("ERROR: commit failed, edits LEFT IN PLACE for a human. %s" % detail)
-        return finish(EXIT_ERROR, applied=len(applied), paths=paths,
-                      committed=False, error=detail[-1500:])
+        # apply_fixes' own EDITS are deliberately NOT reverted here -- a commit
+        # failure means CAS lost or the push was rejected in a way ree_commit
+        # could not resolve, the edits are correct, and a human should land
+        # them rather than have them silently undone. The LEDGER APPEND is
+        # different: see the module docstring's never-exit-dirty contract.
+        if _head_sha(repo_root) != head_before:
+            # A local commit landed even though `commit()` reported failure
+            # (push rejected and unretryable). The append is safely inside
+            # that commit -- not a dirty diff -- so there is nothing to revert.
+            _log("ERROR: commit landed locally but could not push; edits and "
+                 "ledger append are committed (unpushed). %s" % detail)
+        else:
+            # Nothing committed at all -- everything this run wrote to the
+            # ledger (run_detectors.py's own "run"/"autofix" lines as well as
+            # this summary) is a genuine uncommitted diff. Roll the whole file
+            # back to its settled pre-run content (never `git checkout`,
+            # which would also discard any other uncommitted content in the
+            # file) and stash this run's own summary for the next run to
+            # retry landing.
+            _restore_ledger(repo_root, ledger_settled_existed, ledger_settled)
+            rec["committed"] = False
+            rec["error"] = detail[-1500:]
+            stash_pending(repo_root, rec)
+            _log("ERROR: commit failed and nothing landed locally; ledger "
+                 "append reverted and stashed to %s for the next run to "
+                 "retry. Fix edits LEFT IN PLACE for a human. %s"
+                 % (PENDING_LEDGER_REL, detail))
+        # ledger=False: the outcome is already durably recorded above, either
+        # inside the landed commit or in the pending stash -- a further
+        # unconditional append here is exactly the dangling-record shape this
+        # hardening exists to close (it happens strictly AFTER the commit
+        # attempt, so it could never itself be part of that commit).
+        return finish(EXIT_ERROR, ledger=False, applied=len(applied),
+                      paths=paths, committed=False, error=detail[-1500:])
 
     _log("committed%s: %s" % (" and pushed" if push else "", ", ".join(paths)))
     for line in detail.splitlines():

@@ -401,6 +401,154 @@ def test_dry_run_writes_nothing_at_all(tmp_path, monkeypatch):
 
 
 # ---------------------------------------------------------------------------
+# the ledger never stays dirty, even when the commit fails (2026-08-29
+# fleet-wedge hardening, chip-20260829-steward-sweep-dirty-exit-hardening)
+# ---------------------------------------------------------------------------
+
+_BOGUS_REE_COMMIT = "/nonexistent/path/does_not_exist_ree_commit.py"
+
+
+def _fake_pending_record() -> dict:
+    """A record shaped like one `stash_pending` would actually write."""
+    return {"action": "autofix", "source": "steward_sweep",
+            "ts": "2026-01-01T00:00:00Z", "repo": "irrelevant",
+            "dry_run": False, "applied": 1, "committed": False,
+            "error": "simulated earlier commit failure"}
+
+
+def test_commit_failure_with_nothing_landed_reverts_ledger_and_stashes_pending(
+        tmp_path, monkeypatch):
+    """THE CORE CONTRACT: a commit failure that lands nothing locally must
+    leave the ledger byte-identical to before this run touched it, with the
+    record it would have carried moved to the pending file instead.
+    """
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", _BOGUS_REE_COMMIT)
+
+    assert sw.sweep(repo, push=False, dry_run=False) == sw.EXIT_ERROR
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == "", \
+        "the ledger append must not be left as a dirty diff"
+    assert not (repo / sw.LEDGER_REL).exists(), \
+        "the ledger never existed before this run -- it must not exist after either"
+
+    pending = sw.pending_records(repo)
+    assert len(pending) == 1
+    assert pending[0]["committed"] is False
+    assert pending[0]["applied"] == 1
+    assert "ree_commit.py not found" in pending[0]["error"]
+
+
+def test_commit_failure_that_lands_locally_leaves_the_ledger_alone(tmp_path, monkeypatch):
+    """Simulates a rejected-but-unretryable PUSH: ree_commit.py's update-ref
+    still lands a real local commit before the push fails, so `commit()`
+    reports failure even though HEAD advanced. The ledger append is already
+    safely inside that commit -- it must not be touched, and nothing goes
+    to the pending file (there is nothing left to recover).
+    """
+    repo = make_repo(tmp_path / "r")
+
+    def fake_commit(repo_root, paths, message, push):
+        git(repo_root, "add", "--", *paths)
+        git(repo_root, "-c", "user.name=Fixture", "-c",
+            "user.email=fixture@example.invalid", "commit", "-q", "-m", message)
+        return False, "push rejected (simulated)"
+
+    monkeypatch.setattr(sw, "commit", fake_commit)
+    before = head(repo)
+
+    assert sw.sweep(repo, push=True, dry_run=False) == sw.EXIT_ERROR
+    assert head(repo) != before, "the simulated local commit should have landed"
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == "", \
+        "content already committed locally is not a dirty diff"
+    assert sw.pending_records(repo) == [], \
+        "nothing should be pending -- the append already landed in git history"
+
+
+def test_flush_pending_lands_a_stranded_record_and_clears_the_file(tmp_path, monkeypatch):
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", str(_REE_COMMIT))
+    rec = _fake_pending_record()
+    sw.stash_pending(repo, rec)
+    before = head(repo)
+
+    sw.flush_pending(repo, push=False)
+
+    assert sw.pending_records(repo) == []
+    assert head(repo) != before, "the stranded record should now be committed"
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == ""
+    assert any(r.get("error") == rec["error"] for r in ledger_records(repo))
+
+
+def test_flush_pending_leaves_no_dirty_diff_when_it_fails_again(tmp_path, monkeypatch):
+    """NEGATIVE CONTROL: a flush that still cannot land must not itself create
+    a new dirty diff, and the stashed record must survive untouched for the
+    next retry -- never lost, never duplicated.
+    """
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", _BOGUS_REE_COMMIT)
+    rec = _fake_pending_record()
+    sw.stash_pending(repo, rec)
+    before = head(repo)
+
+    sw.flush_pending(repo, push=False)
+
+    assert head(repo) == before, "nothing should have committed"
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == "", \
+        "a failed flush must not leave the ledger dirty either"
+    assert sw.pending_records(repo) == [rec]
+
+
+def test_flush_pending_is_a_noop_with_nothing_pending(tmp_path, monkeypatch):
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", str(_REE_COMMIT))
+    before = head(repo)
+
+    sw.flush_pending(repo, push=False)
+
+    assert head(repo) == before
+    assert git(repo, "status", "--porcelain").strip() == ""
+
+
+def test_sweep_flushes_pending_before_its_own_gates(tmp_path, monkeypatch):
+    """Integration: an ordinary sweep run lands a PRIOR run's stranded record,
+    on top of doing its own work, with nothing left pending afterward.
+    """
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", str(_REE_COMMIT))
+    rec = _fake_pending_record()
+    sw.stash_pending(repo, rec)
+
+    assert sweep(repo, monkeypatch) == sw.EXIT_OK
+    assert sw.pending_records(repo) == []
+    assert any(r.get("error") == rec["error"] for r in ledger_records(repo))
+
+
+def test_dry_run_does_not_flush_pending(tmp_path, monkeypatch):
+    """A preview run must not mutate the pending file or commit anything,
+    exactly like it must not touch anything else (test_dry_run_writes_nothing_at_all).
+    """
+    repo = make_repo(tmp_path / "r")
+    monkeypatch.setenv("REE_COMMIT", str(_REE_COMMIT))
+    rec = _fake_pending_record()
+    sw.stash_pending(repo, rec)
+    before = head(repo)
+
+    assert sweep(repo, monkeypatch, dry_run=True) == sw.EXIT_OK
+    assert head(repo) == before
+    assert sw.pending_records(repo) == [rec]
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == ""
+
+
+def test_pending_records_skips_corrupt_lines(tmp_path):
+    """A mangled pending file must not wedge every future flush attempt."""
+    repo = tmp_path / "r"
+    path = repo / sw.PENDING_LEDGER_REL
+    path.parent.mkdir(parents=True)
+    path.write_text('not json\n{"a": 1}\n\n', encoding="utf-8")
+    assert sw.pending_records(repo) == [{"a": 1}]
+
+
+# ---------------------------------------------------------------------------
 # wiring -- the plist, the installer, and governance staying read-only
 # ---------------------------------------------------------------------------
 
