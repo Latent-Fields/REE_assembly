@@ -1,10 +1,38 @@
 # Pending Experiment Review
 
-Generated: `2026-08-28T19:25:26Z`  
+Generated: `2026-08-29T13:33:56Z`  
 Last review: `2026-08-28T17:27:33Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **9** item(s) -- 6 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 4 diagnostic run(s) with no confirmed autopsy
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_862b_q040c_dacc_pe_weight_delta_correlation_20260828T223750Z_v3` | 2026-08-28T22:37 | Q-040 | — |
+| `v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3` | 2026-08-29T01:45 | (no claim tags) | — |
+| `v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier_20260829T120510Z_v3` | 2026-08-29T12:05 | MECH-440 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3` | 2026-08-28T21:13 | (no claim tags) |
+| `v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3` | 2026-08-29T06:56 | SD-078, SD-082 |
+| `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` | 2026-08-29T07:15 | MECH-439 |
+| `v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3` | 2026-08-29T09:37 | INV-088, MECH-135 |
+| `v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3` | 2026-08-29T11:35 | (no claim tags) |
+| `v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3` | 2026-08-29T11:35 | MECH-290 |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3` | PASS | phasic_warmup_rescue_confirmed |
+| `v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3` | FAIL | gumbel_learned_occupancy_only_content_discrimination_not_confirmed |
+| `v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3` | PASS | action_blindness_confirmed |
+| `v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3` | PASS | mech219_controllability_dissociation_confirmed |
 
 ---
 

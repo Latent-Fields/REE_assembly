@@ -59,7 +59,7 @@
   },
   "ARC-007": {
     "assembly_state": "mature",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "provisional",
     "subject": "hippocampus.path_memory",
     "title": "Hippocampal systems store and replay paths through residue-field terrain.",
@@ -637,7 +637,7 @@
   },
   "ARC-070": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "policy.decomposition_on_prediction_failure",
     "title": "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'",
@@ -3565,7 +3565,7 @@
   },
   "MECH-072": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "residue.foreseeable_harm_gating_reduces_false_attribution",
     "title": "Foreseeable-harm gating on residue accumulation reduces false attribution without degrading harm avoidance.",
@@ -3747,7 +3747,7 @@
     "assembly_state": "mature",
     "assembly_status": "built",
     "awaiting": "theta-buffer-phase-aware-summary",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "active",
     "subject": "multirate.fast_to_slow_temporal_batching",
     "title": "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging).",
@@ -4027,7 +4027,7 @@
   },
   "MECH-120": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "sleep.sws_denoising_attractor_flattening",
     "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
@@ -4157,7 +4157,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "queued",
     "awaiting": "SD-e1-rollout-consistency-training",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "planning.e1_e2_parallel_rollout",
     "title": "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state.",
@@ -5227,7 +5227,7 @@
   },
   "MECH-258": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "cingulate.precision_weighted_pain_PE",
     "title": "z_harm_a enters action selection as a precision-weighted prediction error (harm_surprise_PE, SD-020) against an internal pain forward model (E2_harm_a), not as a raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b (dACC-analog).",
@@ -5247,7 +5247,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "in_progress",
     "awaiting": "ARC-107",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "cingulate.dacc_bias_suppression",
     "title": "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results.",
@@ -5541,7 +5541,7 @@
   },
   "MECH-290": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "hippocampal.backward_trajectory_credit_sweep",
     "title": "At trajectory completion, HippocampalModule performs a backward temporal credit sweep that propagates the terminal outcome (goal contact or failure) retroactively through preceding states, consistent with the reverse replay observed at reward endpoints in awake rats (Foster & Wilson 2006).",
@@ -6949,7 +6949,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "f_dominance_conversion_ceiling",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "selection.rank_preserving_f_to_eligibility_demotion",
     "title": "Residual conversion ceiling requiring rank-preserving F->eligibility demotion: near-tie levers (conflict-graded shortlist / commit-T, MECH-447) CAP committed-action-class entropy BELOW the proposer ceiling because they act only at near-ties while F still decides every non-tie; only REMOVING F from the final committed argmin -- demoting it to a graded ELIGIBILITY envelope (rank-preserving renormalisation against the competing field; divisive-normalisation analog) so a modulatory/diversity channel arbitrates within the F-eligible set -- lifts committed diversity to the proposer ceiling without disinhibiting harmful classes.",
@@ -7613,6 +7613,32 @@
     "title": "REE's designated compression sites are systematically UNTRAINED, so representational-ceiling results measured at them are uninterpretable as capacity findings. Verified 2026-08-26 at three independent sites: (a) E2.action_object_head, SD-004's action-object bottleneck that the hippocampal CEM searches inside, receives zero gradient from every REE training path and is a frozen random projection with ~99.5% of its variance explained by the action label (SD-080); (b) the ARC-004 higher-order latent stack -- beta_encoder, theta_encoder and delta_encoder appear ZERO times in agent.py, have no loss, no optimiser and no predictive head at any horizon, and are an untrained random-projection cascade smoothed by one hardcoded shared EMA (alpha_shared = 0.3); (c) no value-shaped objective reaches any encoder at all -- compute_benefit_eval_loss reads z_world.detach() and trains only E3.benefit_eval_head. The corollary is methodological: a null measured at an untrained compression site is evidence about the absence of a training signal, not about the representation's capacity or about the sufficiency of the architecture.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "This claim is VERIFIABLE BY INSPECTION rather than by experiment, and that is the point -- it is a statement about the substrate's training graph, not about behaviour. CONFIRMING (all three, each a direct source check on a named ref): (a) `grep action_object_head` across `ree_core/` returns only construction and the forward call, with no loss, optimiser or backward reference; corroborated behaviourally by V3-EXQ-809 (re-drawn heads reach the CEM proposals but behaviour is invariant to their content) and by the spike measurement that the head's parameters are bit-identical after 40 warmup episodes. (b) `grep -c beta_encoder|theta_encoder|delta_encoder` in `agent.py` returns 0 for each, and no optimiser anywhere in `ree_core/` holds their parameters. (c) every value-shaped loss either detaches its latent input or terminates in a head, so no gradient path exists from a value target to any encoder. FALSIFYING (any one): a training signal is found that reaches one of the three sites on the named ref -- e.g. an optimiser group holding `action_object_head` or the depth encoders, or a non-detached value loss reaching `world_encoder`. Since this is an inspection claim, a falsification is a code citation, not a run. THE METHODOLOGICAL COROLLARY, which is the part that needs testing rather than inspecting: for each site, a representational-ceiling result measured there should MOVE once a training signal is supplied. SD-070 is the one worked instance and it went the claim's way -- z_world was measured collapsing to participation ratio ~1.06 at world_dim=128, an anti-collapse training recipe was built, and V3-EXQ-783 then measured trained PR 5.261 vs untrained 9.121 (retained_fraction 0.577 against a 0.50 floor). If a comparable training signal is supplied at site (a) or (b) and the ceiling does NOT move, the corollary is refuted for that site and the ceiling is a genuine capacity finding after all.\n"
+  },
+  "MECH-524": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampal.capacity_triggered_resumption_reseeding",
+    "title": "Capacity-triggered resumption reseeding: at the moment a task is interrupted, REE captures an interruption_snapshot (z_world + z_self + z_goal + CEM planning stage + rule-arbitration weights + what-was-attempted) that is richer than, and distinct from, SD-039's existing dual-trace anchor goal-snapshot payload. When a spare-compute signal (low SD-037 broadcast-override + low z_harm_a + low dACC choice_difficulty) or sleep entry indicates freed processing capacity, the interruption_snapshot is re-seeded into MECH-293's awake ghost-goal probes and MECH-285's sleep-replay sampler, so that resumption is a reorient-from-snapshot rather than a restart-from-scratch. This is the backward-direction complement to REE's existing forward direction, in which world-change invalidates stale model content (MECH-269 anchor V_s + MECH-284 staleness -> MECH-287 broadcast -> anchors inactive): the forward direction discards stale content when the world moves on without the agent; MECH-524 is what lets the agent pick its own paused work back up once capacity to attend to it returns.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-525": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "memory.schema_integration_waking_primitives_only",
+    "title": "Schema integration during offline/imagination-adjacent consolidation (MECH-272 probe-channel routing, MECH-273 sleep-half self-model aggregation) is constrained to recombining waking-derived trace primitives: the material a schema-integration pass restructures must trace back to real, committed (hypothesis_tag=False) waking experience, and a schema update computed from one imagination/consolidation cycle's output must not itself become input material for a later cycle's schema integration without an intervening waking-encoded checkpoint. Without this constraint, successive offline cycles could compound self-amplification of imagined content into schema structure -- confabulation by accretion rather than by single-event failure.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires MECH-272/MECH-273's schema-integration pass to run over\nmore than one offline (sleep or equivalent) cycle without an intervening waking-encoding\ncheckpoint; a substrate that only ever runs a single consolidation pass before returning to\nwaking cannot exhibit the compounding failure mode this claim is about.\n\nCONFIRMING: an audit of MECH-272/273's actual input stream at each successive offline cycle\nshows that every item entering schema integration traces back to a hypothesis_tag=False\n(waking, committed) episode -- never to the SCHEMA OUTPUT of a prior offline cycle re-injected\nas if it were fresh waking material. Cai et al. 2009's dissociation (REM restructures\nassociative links among waking-encoded primed words, without gaining new item-level content)\nis the empirical LICIT-side shape this claim requires REE's own consolidation pass to match.\n\nFALSIFYING (VIOLATED BY): discovery that a schema update produced by one offline cycle is fed\nback into a LATER offline cycle's schema-integration input without having first been\nrepresented in, or corrected against, a subsequent waking (hypothesis_tag=False) episode --\ni.e. the substrate lets imagination bootstrap off its own prior imagination, cycle over cycle,\nwith no waking-reality checkpoint between them. This is the accretion-confabulation failure\nmode distinct from MECH-094's single-event failure mode (Schnider 2003): each individual write\nmight pass MECH-094's per-event gate while the SEQUENCE of writes still compounds unchecked\nimagined content into schema structure.\n\nPARTIAL AUDIT AVAILABLE TODAY: MECH-272/273 already exist in V3 (status: provisional /\nstable-adjacent); a code audit of their input construction is possible now, before MECH-365\nor ARC-085 exist, since the question is about what feeds today's offline consolidation pass,\nnot about a not-yet-built provenance schema.\n"
+  },
+  "MECH-526": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "memory.counterfactual_exploration_output_is_prior_not_knowledge",
+    "title": "Outputs of counterfactual exploration (imagined/simulated candidate rollouts scored during E3 selection or equivalent planning) are LICIT only as priors for future waking testing -- i.e. as inputs to policy/value preference (which action to prefer, which hypothesis to test next) -- and are FORBIDDEN from being treated as knowledge: they must not be written into the world-model's own predictive parameters, used to validate or score a REAL prediction's accuracy, or logged as an established fact. This is REE's architectural analogue of expected-free-energy policy scoring (Friston et al. 2015): imagining a candidate's likely outcome to choose among candidates is a distinct operation from updating the model that did the imagining, and the two must not be allowed to collapse into one write path.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires at least one code path where an E3 (or equivalent)\ncandidate's imagined-outcome evaluation could plausibly feed back into a durable store --\nworld-model parameters, a prediction-validation log, or a fact/schema entry -- rather than only\never informing the immediate action-selection decision. If no such path exists, this claim is\nvacuously satisfied and not yet meaningfully auditable (same caveat as ARC-092's own\nnon-degeneracy precondition).\n\nCONFIRMING: for every identified candidate-scoring site, the imagined outcome used to compute a\ncandidate's score is consumed ONLY by the selection/preference decision (which candidate wins,\nwhat prior it sets for a future waking test) and never appears as an input to a REAL prediction's\nvalidation, a world-model parameter update, or a new fact/schema-store write -- matching the\nformal separation Friston et al. 2015 derive between expected-free-energy policy evaluation and\ngenerative-model updating.\n\nFALSIFYING (VIOLATED BY): a code path where an imagined candidate's score, or the imagined\noutcome itself, is consumed by (a) a world-model or policy-parameter update, (b) scoring/\nvalidating a real prediction's accuracy, or (c) a fact/schema-store write -- without an\nintervening real, enacted observation. A single confirmed instance is a targeted MECH-094/E3\ngate fix, not a rejection of the principle (mirrors ARC-092's own falsification handling).\n"
   },
   "Q-001": {
     "assembly_state": "mature",
@@ -8486,6 +8512,33 @@
     "type": "open_question",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: unmet in V3. Requires a multi-agent substrate in\nwhich at least one agent can act deceptively -- emitting mind-signals (behavioural\ncues the observer's similarity/agency detector treats as evidence of\nmind-likeness) without the goal-structure that would normally accompany them --\nso mimicry is actually possible to attempt and to detect or fail to detect. No\nsuch substrate exists in V3; ARC-047's SocialGridWorld (multi-agent,\nunimplemented, v5-gated) is the nearest planned candidate, consistent with\nEXT-009's own notes that this failure mode is \"presently V5-load-bearing\n(multi-agent) and largely philosophical under the single-agent V3 substrate\".\nCONFIRMING (a dedicated mimicry-tightening mechanism is buildable and\nload-bearing): once a multi-agent adversarial substrate exists, an agent\nequipped with INV-102's evidential-discounting machinery (attributing an\nobserved mind-signal to a plausible strategic goal) can supply a mimicry-risk\nestimate that measurably tightens the care-gate's false-positive-cost term under\nadversarial pressure, while EXT-009's liberal criterion floor is preserved for\ngenuine-but-ambiguous minds -- i.e. the same provenance-discounting machinery\nthat answers the epistemic question also feeds the ethical one, without the two\nthresholds collapsing into one.\nFALSIFYING (the question dissolves / no dedicated mechanism is needed): EXT-009's\nexisting asymmetric cost structure already absorbs deception risk without a\nseparate mimicry-detection term -- e.g. because the cost of transiently extending\ncare to a successfully-mimicking adversary is bounded and low relative to the\ncost of wrongly excluding a real mind, so no machinery beyond EXT-009's existing\ncriterion placement is scientifically motivated.\nOut of scope for a V3 experiment; this is a design/architecture question pending\nthe v5 multi-agent substrate that would make mimicry attemptable at all.\n"
   },
+  "Q-098": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "open",
+    "subject": "hippocampal.interruption_snapshot_v_s_reconciliation",
+    "title": "MECH-524's interruption_snapshot captures z_world at the moment of interruption. By the time a spare-compute or sleep-entry trigger re-seeds it into MECH-293/MECH-285, real time has passed during which the actual world may have changed (REE's forward direction: MECH-269 V_s + MECH-284 staleness -> MECH-287 broadcast -> anchors inactive). How should resumption reconcile the snapshot's SAVED V_s against V_s as CURRENTLY computed? Candidates: (a) current-only -- discard the saved V_s and let MECH-269 recompute cold, keeping only the snapshot's non-V_s content (CEM stage, rule-arbitration weights, what-was-attempted); (b) max(current, saved*decay) -- treat the saved V_s as a decaying floor rather than a fresh read, structurally transplanting MECH-284's spatial region-staleness decay logic onto this temporal/episodic case; (c) abort-on-divergence guard -- compare saved vs current V_s and refuse the snapshot-primed resumption path (fall back toward restart-from-scratch) if divergence exceeds a threshold, functioning as a targeted application of MECH-287's existing anchors-inactive broadcast rather than a new invalidation mechanism; (d) context-dependent -- the correct rule depends on interruption duration, interruption cause (hazard vs. voluntary capacity reallocation), or domain volatility, and no single rule suffices.",
+    "type": "question",
+    "what_would_answer": "Adjudicated empirically, by contrasting the four candidate reconciliation rules on a resumption\ntask where the world is manipulated to change (or not) during the interruption interval, at\ncontrolled magnitude and rate. NOT pre-committed here -- registered as open per the chip brief\nthat surfaced it. Discriminating measurements: (i) resumption efficiency when the world has NOT\nmaterially changed during the interval (candidates should differ mainly in overhead: (a) pays a\nfull V_s-recompute cost even when unneeded, (b)/(c) should approach (a)'s eventual accuracy at\nlower cost); (ii) resumption SAFETY/appropriateness when the world HAS changed materially during\nthe interval (a) should be safest since it never acts on stale belief but forfeits the snapshot's\nspeed benefit for its V_s component specifically -- note this is a V_s-COLD-restart, not a full\nrestart, since the snapshot's CEM-stage/rule-arbitration/what-was-attempted content can still be\nreused; (b) risks confidently acting on a stale-but-not-yet-decayed V_s floor, reproducing exactly\nthe failure MECH-287's broadcast exists to prevent, unless the decay term is calibrated against\nreal-world change rates; (c) risks two failure directions depending on threshold calibration -- a\nthreshold too loose reproduces (b)'s stale-confidence risk, a threshold too tight reproduces (a)'s\nforfeited-benefit cost AND risks a dissociative-shaped \"never trusts its own snapshot\" pattern if\nordinary V_s measurement noise routinely exceeds it; (d) is the default null hypothesis until one\nof (a)/(b)/(c) demonstrates uniform superiority across interruption-duration and volatility\nconditions, at which point (d) is falsified in favour of that single rule.\n"
+  },
+  "Q-099": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "open",
+    "subject": "memory.plan_optimisation_world_model_update_boundary",
+    "title": "ARC-092 licenses plan optimisation (choosing among imagined candidate action sequences) as LICIT, while forbidding durable world-model updates driven by imagined content. But plan optimisation and world-model update are not always cleanly separable in a single learned system: if E3's candidate-scoring pathway shares parameters, representations, or a training signal with the world-model/predictor (E1/E2), then IMPROVING plan optimisation performance could, as a side effect, also shift world-model parameters -- exactly the FORBIDDEN path, smuggled in through a shared substrate rather than an explicit write. Where, mechanistically, does plan-optimisation's LICIT gradient/update signal stop and the world-model's FORBIDDEN one begin, in REE's actual (not merely intended) parameter-sharing architecture?",
+    "type": "question",
+    "what_would_answer": "Adjudicated empirically, by an ABLATION: run REE's E3 candidate-scoring pathway with an explicit\nstop-gradient (or equivalent hard separation) between plan-optimisation's own scoring/selection\nparameters and the world-model/predictor's (E1/E2) parameters, so that plan-optimisation can\nimprove (better candidate selection) while it is architecturally IMPOSSIBLE for that improvement\nto backpropagate into world-model parameters. Compare behavior and world-model drift against the\ncurrent (non-ablated) implementation over matched training:\n\nCONFIRMING (boundary already clean): no measurable difference in world-model parameter drift or\ndownstream prediction accuracy between the stop-gradient-ablated run and the current\nimplementation -- plan optimisation was never actually leaking into the world-model, so the\nablation costs nothing and the LICIT/FORBIDDEN separation ARC-092/MECH-526 assume already holds\nmechanistically, not merely by intent.\n\nFALSIFYING (VIOLATED BY / BOUNDARY UNCLEAR): the stop-gradient ablation measurably changes\ndownstream behavior (plan-optimisation quality degrades, or world-model prediction accuracy\nchanges) relative to the non-ablated run -- meaning the current implementation's plan-\noptimisation and world-model update were NOT cleanly separated, and REE has been running\nARC-092's FORBIDDEN path all along through a shared-parameter side channel. This would not be a\nsimple bug fix (unlike a single-event MECH-094 gate miss) -- it would mean the substrate's\nlearning objective itself needs restructuring to enforce the separation MECH-526 requires.\n\nNON-DEGENERACY PRECONDITION: requires E3 (or equivalent) to actually share representations or a\ntraining signal with E1/E2 in the current substrate; if the two are already fully parameter-\ndisjoint, this question is vacuously answered \"boundary already clean\" and the ablation is moot.\n"
+  },
+  "Q-100": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "open",
+    "subject": "rule_discovery.imagined_vs_waking_trajectory_extraction_equivalence",
+    "title": "ARC-064 extracts cross-episode behavioural regularities, compressed patterns, and rule-state abstractions from an observed-behaviour stream (hippocampal CLS bi-pathway / dorsolateral striatum chunking / OFC cognitive-map analog). Under ARC-092, that observed-behaviour stream could in principle be either real waking behaviour or imagined/simulated (e.g. E3 counterfactual) trajectories. Are rules extracted from IMAGINED trajectories architecturally EQUIVALENT to rules extracted from WAKING trajectories -- i.e. does ARC-064's extraction mechanism operate identically regardless of source, with licitness enforced only at a separate downstream commit/write-gate step (MECH-094-style) -- or does rule extraction ITSELF need a provenance-aware carve-out (e.g. imagined-trajectory-derived rules held as lower-confidence/provisional/prior-only until corroborated by real execution, per MECH-322's template), because letting an unvalidated imagined trajectory silently seed the same rule-state abstraction a validated waking trajectory would is itself a FORBIDDEN-adjacent risk (confabulated RULES, not merely confabulated episodic facts)?",
+    "type": "question",
+    "what_would_answer": "Adjudicated by an architectural/code audit of ARC-064's extraction pathway (hippocampal CLS\nbi-pathway, striatal chunking, OFC cognitive-map analog) asking whether it reads a\nhypothesis_tag / committed_vs_imagined field on its input stream at all, and if so, whether\nthat field changes extraction behavior (confidence, admission, or downstream write target) or\nis merely passed through unused.\n\nCONFIRMING (equivalent, carve-out unnecessary): ARC-064's extraction mechanism has no\nprovenance-sensitive branch, AND a downstream MECH-094-style write-gate already prevents any\nrule extracted purely from imagined content from reaching durable rule storage until\ncorroborated by real execution -- i.e. licitness is fully enforced downstream, so extraction\nitself can safely be source-agnostic (Botvinick & Plaut 2004's recurrent-connectionist schema\ncomputation is content-agnostic in exactly this way: the same mechanism processes any input\nsequence, with no privileged real/imagined channel).\n\nFALSIFYING (VIOLATED BY / NOT EQUIVALENT): a rule extracted primarily or solely from imagined/\nsimulated trajectories reaches the same durable rule-state abstraction store as waking-derived\nrules, with no distinguishing provenance tag and no corroboration requirement before it carries\nequal weight in later behaviour -- a confabulated-rule failure mode structurally analogous to\nSchnider's (2003) confabulated-fact failure mode, but one level up (at the rule/schema level\nrather than the episodic-fact level). This would mean ARC-064 needs its own MECH-322-style\ncarve-out, not merely inheriting MECH-094's existing gate.\n\nNON-DEGENERACY PRECONDITION: requires ARC-064's extraction pathway to actually receive imagined/\nsimulated trajectories as input at all (as opposed to only ever running over real waking\nbehaviour today); if V3's current ARC-064 instantiation never sees simulated input, the question\nis open but not yet auditable, mirroring ARC-092's own \"PARTIAL AUDIT AVAILABLE TODAY\" framing.\n"
+  },
   "RA-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "asked",
@@ -8576,7 +8629,7 @@
   },
   "SD-008": {
     "assembly_state": "mature",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "stable",
     "subject": "encoder.z_world_alpha_correction",
     "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness.",
@@ -9093,7 +9146,7 @@
   },
   "SD-050": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "relief.suffering_derivative_comparator",
     "title": "Suffering-derivative comparator: a non-trainable rolling-window descent detector on z_harm_a.norm() that fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold. Provides the substrate for MECH-302 by detecting when a period of suffering has cleanly ended, reusing the same downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release, MECH-094 VALENCE_LIKING write). Architecturally adjacent to MECH-091 (urgency interrupt) but opposite polarity: MECH-091 fires on upward z_harm_a spike; SD-050 fires on downward sustained drop.",

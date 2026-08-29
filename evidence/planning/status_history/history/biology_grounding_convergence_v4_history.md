@@ -118,6 +118,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-2`
 
@@ -233,6 +234,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-3`
 
@@ -348,6 +350,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-4`
 
@@ -463,6 +466,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-5`
 
@@ -578,6 +582,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-6`
 
@@ -693,6 +698,7 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 
 ## `biology_grounding_convergence_v4:BG-7`
 
@@ -808,4 +814,5 @@ Source plan: `evidence/planning/biology_grounding_convergence_v4_plan.md`
 - `2026-08-17T06:20Z` [manifest] `v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3` -> [`evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json`](../../../../evidence/experiments/v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3.json) :: PASS manifest non_contributory
 - `2026-08-18T14:09Z` [decision] `decision:MECH-439@2026-08-18T14:09:26.999025Z` -> [`evidence/decisions/decision_log.v1.jsonl#L443`](../../../../evidence/decisions/decision_log.v1.jsonl#L443) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-08-18T18:48Z` [autopsy] `failure_autopsy_V3-EXQ-936_2026-08-18#V3-EXQ-936` -> [`evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-936_2026-08-18.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-08-29T07:15Z` [manifest] `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` -> [`evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json`](../../../../evidence/experiments/v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3.json) :: PASS manifest weakens
 

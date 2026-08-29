@@ -1,14 +1,14 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-28T07:15:12Z
+Generated: 2026-08-29T13:35:03Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1064
+Claims in registry: 1070
 
-## Reading drift -- HARD (140)
+## Reading drift -- HARD (138)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -93,7 +93,6 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | SD-027 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | MECH-254 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | SD-029 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
-| SD-031 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
 | MECH-257 | `candidate/v3_pending` | `candidate/v3_pending/substrate_ceiling` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling' |
 | SD-032 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | SD-032c | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
@@ -108,7 +107,6 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | ARC-063 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-337 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
 | MECH-338 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
-| MECH-314b | `candidate_substrate_landed` | `candidate_substrate_landed/substrate_ceiling` | reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_ceiling' |
 | MECH-314c | `candidate_substrate_landed` | `candidate_substrate_landed/substrate_conditional` | reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_conditional' |
 | Q-044 | `open` | `open/substrate_ceiling` | reading: stored='open' derived='open/substrate_ceiling' |
 | ARC-064 | `candidate/v3_pending` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_conditional' |
@@ -200,7 +198,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 | SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (279)
+## Event-provenance drift -- SOFT (281)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -266,9 +264,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `failure_autopsy_grandfathered-superseded-batch1_2026-08-08` |
 | Q-021 | `failure_autopsy_V3-EXQ-866c_2026-08-08` | `failure_autopsy_V3-EXQ-899_2026-08-09` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08` |
-| ... | | (+219 more) |
+| ... | | (+221 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (1043 of 1064)
+## Never reviewed (no `last_reviewed`) -- INFO (1049 of 1070)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

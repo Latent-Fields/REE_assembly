@@ -389,6 +389,43 @@
         "with"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-603v_2026-08-28|0|3": {
+      "artifact": "failure_autopsy_V3-EXQ-603v_2026-08-28",
+      "claim_ids": [
+        "MECH-357"
+      ],
+      "embedded_ids": [],
+      "flags": [
+        "recurring"
+      ],
+      "item_index": 3,
+      "run_id": "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "The stage0_forced_feed_lights_zgoal readiness gate cleared exactly at threshold (2/3 seeds) in both arms -- one seed per arm never lit z_goal above 0.4 at Stage 0. Not load-bearing here, but a recurring soft spot in this scaffolded-onboarding family worth watching in the retest.",
+      "tokens": [
+        "arms",
+        "cleared",
+        "exactly",
+        "family",
+        "forced_feed_lights_zgoal",
+        "gate",
+        "load-bearing",
+        "readiness",
+        "retest",
+        "scaffolded-onboarding",
+        "seed",
+        "seeds",
+        "soft",
+        "spot",
+        "stage",
+        "threshold",
+        "watching",
+        "worth",
+        "z_goal"
+      ]
+    },
     "autopsy|failure_autopsy_V3-EXQ-614c_2026-06-01|0|4": {
       "artifact": "failure_autopsy_V3-EXQ-614c_2026-06-01",
       "claim_ids": [
@@ -2221,7 +2258,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-08-28T07:17:12Z",
+  "last_swept_at": "2026-08-29T13:35:40Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -2367,6 +2404,7 @@
     "failure_autopsy_V3-EXQ-603r_2026-08-09.json": 1786254409.1928585,
     "failure_autopsy_V3-EXQ-603s_2026-08-10.json": 1786343420.8447545,
     "failure_autopsy_V3-EXQ-603t_2026-08-13.json": 1786599656.1240237,
+    "failure_autopsy_V3-EXQ-603v_2026-08-28.json": 1787937134.1973596,
     "failure_autopsy_V3-EXQ-604c_2026-07-20.json": 1784532505.5273745,
     "failure_autopsy_V3-EXQ-606_2026-05-29.json": 1780078225.7251894,
     "failure_autopsy_V3-EXQ-608-611c_2026-06-06.json": 1780739710.2458544,
@@ -2518,6 +2556,7 @@
     "failure_autopsy_V3-EXQ-821_2026-07-25.json": 1785019398.0882268,
     "failure_autopsy_V3-EXQ-821b_2026-08-08.json": 1786207442.538904,
     "failure_autopsy_V3-EXQ-822b-834_2026-07-29.json": 1785355317.0051231,
+    "failure_autopsy_V3-EXQ-822c_2026-08-29.json": 1787999010.7318895,
     "failure_autopsy_V3-EXQ-824_2026-07-26.json": 1785089870.3345082,
     "failure_autopsy_V3-EXQ-828a_2026-08-01.json": 1785589219.3399549,
     "failure_autopsy_V3-EXQ-828b_2026-08-02.json": 1785665867.0011647,
@@ -2602,8 +2641,10 @@
     "failure_autopsy_V3-EXQ-923_2026-08-12.json": 1786516837.5521908,
     "failure_autopsy_V3-EXQ-924_2026-08-12.json": 1786516837.5529332,
     "failure_autopsy_V3-EXQ-925_2026-08-12.json": 1786553361.809859,
+    "failure_autopsy_V3-EXQ-925a_2026-08-28.json": 1787937134.1951675,
     "failure_autopsy_V3-EXQ-930_2026-08-16.json": 1786905670.8605366,
     "failure_autopsy_V3-EXQ-932a_2026-08-20.json": 1787194209.1993613,
+    "failure_autopsy_V3-EXQ-933a_2026-08-28.json": 1787937134.196091,
     "failure_autopsy_V3-EXQ-934_2026-08-16.json": 1786905670.862803,
     "failure_autopsy_V3-EXQ-935_2026-08-18.json": 1787017255.966248,
     "failure_autopsy_V3-EXQ-936_2026-08-18.json": 1787081111.7419338,
@@ -2614,6 +2655,7 @@
     "failure_autopsy_V3-EXQ-942_2026-08-21.json": 1787277531.0704894,
     "failure_autopsy_V3-EXQ-943_2026-08-21.json": 1787277531.0713904,
     "failure_autopsy_V3-EXQ-944_2026-08-22.json": 1787401277.9474025,
+    "failure_autopsy_V3-EXQ-945_2026-08-28.json": 1787937134.1940918,
     "failure_autopsy_V3-EXQ-946_2026-08-25.json": 1787682662.4259229,
     "failure_autopsy_V3-EXQ-948_2026-08-25.json": 1787682746.3374007,
     "failure_autopsy_backlog_2026-07-24.json": 1784969983.4732661,
@@ -2664,5 +2706,5 @@
     "failure_autopsy_v3exq665-cluster_2026-08-09.json": 1786259604.7569785,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1787686071.5919
+  "seen_review_tracker_mtime": 1787938053.8583221
 }
