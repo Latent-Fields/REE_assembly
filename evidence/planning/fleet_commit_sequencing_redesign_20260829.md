@@ -140,3 +140,114 @@ git path retained as degraded fallback). W4 lands last, once W1-W3 have
 shrunk its surface. Each workstream gets its own chip; none of them should be
 absorbed into "while I'm here" fixes -- that pattern is what this document
 exists to end.
+
+## 6. Absorption check against the durable chip ledger (user-requested, 2026-08-29)
+
+All 43 open chips on origin were checked against W1-W5. Absorptions below mean
+"this chip becomes a named work item of that workstream, withdrawn as a
+standalone dispatch when the workstream's owner picks it up" -- not silent
+withdrawal now.
+
+**Absorbed into W1 (registry write-path correctness):**
+`chip-20260828-chipledger-amendurgency-postcommit-selfverify`,
+`chip-20260828-cutover-durability-review` (becomes W1's adversarial test
+plan), `chip-20260828-chipledger-failopen-loss-fix`,
+`chip-20260828-chipledger-noop-record-committed-destructive-delete`,
+`chip-statusregress-f5f80d8d7d`, `chip-statusregress-e9142d4036`
+(materializer render regressions -- same write-path family),
+`chip-20260829-staleclaim-absent-path-stale-file-gap`,
+`chip-20260829-auditstaleclaims-virtual-slot-resource`.
+
+**Absorbed into W2 -- and W2 itself collapses into an EXISTING chip:**
+`chip-20260828-phase4-ws-soak-eval-flag-flip` reveals the WORKSPACE_STATE
+coordinator endpoint + dual-write soak is ALREADY BUILT and waiting on its
+>=3-day soak evaluation. W2 is therefore not new design work: it is
+executing that chip (evaluate section-7 criteria, flip suppression).
+`chip-20260829-wsappend-guard-blind-to-preexisting-loss` is interim
+hardening that the flip obsoletes -- do it only if the soak eval fails.
+
+**Absorbed into W4:** `chip-20260828-chiparchive-uncovered-by-every-proof-route`
+(proof-route coverage is exactly W4's precondition).
+
+**Absorbed into W5 (recurrence collapse):**
+`chip-20260829-queuefloor-kindreport-hysteresis` (already specifies W5 for
+the queuefloor class -- kind=report, non-dispatchable, hysteresis),
+`chip-20260828-metaworkerlearning-refwedge-rechip-gap`,
+`chip-20260829-metaworkerlearning-hookgating-recurrence`,
+`chip-20260829-repr-authority-selfcontinuation-loop` (the completion-
+predicate requirement below comes from it),
+`chip-20260829-sessionland-phase4-resolves-foreign-claimed-chip`,
+`chip-20260904-refwedge-r1-rate-cost-remeasure` (becomes the plan's own
+outcome measurement).
+
+**Discharged or part-discharged by today's clearance:**
+`chip-20260828-reecloud4-behind-divergent-manifests` -- the 117-commit lag
+half is discharged (cloud-4 REE_assembly fast-forwarded level today); the
+divergent-manifest half remains (an untracked flat manifest for v3_exq_603s
+sits on cloud-4, not on origin) and should be re-scoped to just that.
+`chip-strandedwt-ree-cloud-5-...repr-authority...` / `chip-unlandedwt-ree-cloud-4-...`
+remain real but shrink to single-worktree audits.
+
+**NOT absorbed -- science and standalone infra, the ledger's intended
+content (17):** sleep matched-arm, MECH-152 redesign, MECH-320 retest,
+INV-050 MEL env, MECH-482 accumulator, evidence-ladder dirsweep,
+capability-contract vocab, repr-authority research thread, thought-digestion
+wave grouping, UA claustrum scan, heartbeat hysteresis remeasure, bashgate
+quote defect, stash-fleet test de-flake, skill archaeology, step5c registry
+producer rule, IGW-236, scripts-corpus RED sweep -- plus
+`chip-20260829-queue-three-stranded-exq-drivers`, which is the single most
+urgent item on the board: the experiment queue is STARVED (depth 1) while
+three finished, smoke-tested drivers (956/957/958) sit unqueued -- the
+direct scientific cost of the coordination noise this plan removes.
+
+## 7. Red-team findings (user-requested), and the plan revisions they force
+
+**RT1 -- W1 as first drafted inverts fail-safety. REVISED.** Deleting the
+git fallback on an unverifiable ack assumes acks are never hollow; the
+2026-08-28 amend incident was a GENUINE hollow ack that silently dropped a
+completion note. Revised W1: (a) fix the verifier's false-positive class
+(concurrent duplicate resolve from two boxes' ticks must classify
+ok_unchanged); (b) keep the fallback, but land it on the REMOTE TIP
+(chip_ledger already has `to_remote_tip`) via throwaway worktree so a
+fallback commit can never strand on a wedged local ref; (c) verify-on-origin
+doctrine unchanged.
+
+**RT2 -- W2 was about to duplicate an existing build.** Caught in section 6:
+the endpoint and soak exist; the work is the evaluation + flip, owned by the
+existing phase4 chip. A redesign that re-specifies already-built work is
+itself the fix-on-fix pattern; this document defers to the built thing.
+
+**RT3 -- W3 makes the hub a SPOF for the emergency dispatcher STOP.** A
+stop command must reach a box whose coordinator link is down -- today's git
+path, for all its faults, is transport-independent of the hub. Revision:
+coordinator becomes primary, git file stays as the degraded fallback (read
+by dispatchers when the hub is unreachable), and the runbook documents
+direct ssh stop. Same shadow-first shape as every other cutover here.
+
+**RT4 -- W4 (auto-repair) can mask W1-W3 regressions.** A symptom cleaner
+that silently lands stranded bookkeeping hides the very generator telemetry
+the redesign needs. Revision: --repair logs every repair to a counter the
+morning digest surfaces, with an alert threshold (>N repairs/day = a
+generator regressed; raise a class chip, not more repairs). Non-allowlisted
+paths keep refusing to a human, unchanged. This flip reverses a deliberate
+2026-08-19 user decision and lands ONLY with explicit user ratification.
+
+**RT5 -- W5's standing chips risk becoming permanent furniture.** The
+repr-authority chain (9 self-continuations, empty notes, no done-condition)
+is the demonstrated failure mode of standing work without a completion
+predicate. Revision: every standing class chip carries (a) a done-condition
+("class rate < X/week for Y weeks"), (b) episodes appended INTO the chip
+(forensic detail preserved -- the since-<ts> chips' one virtue), (c) the
+>=N-episodes escalation to /metaworker-learning.
+
+**RT6 -- rollout window.** The wedge class stays live until W1-W2 land
+(demonstrated: a fresh chips:resolve fallback commit stranded DURING this
+session's own closeout). Interim regime, verified working today: union
+driver auto-merges registry rebases (observed resolving a TASK_CHIPS
+conflict unaided); WORKSPACE_STATE remains the one manual conflict until
+the W2 flip -- which argues for executing the phase4 soak-eval chip FIRST.
+
+**Revised sequencing:** W2-flip (existing chip, mostly evaluation) ->
+W1 (verifier fix + to_remote_tip fallback) -> W5 -> W3 -> W4 last, behind
+its telemetry. Queue-starvation chip (956/957/958) is orthogonal and should
+dispatch immediately regardless.
