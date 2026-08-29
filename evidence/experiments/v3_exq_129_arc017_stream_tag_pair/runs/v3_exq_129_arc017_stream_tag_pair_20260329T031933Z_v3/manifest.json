@@ -23,7 +23,11 @@
     "ARC-017"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-017": "non_contributory"
+  },
+  "evidence_direction_note": "NON_CONTRIBUTORY (2026-08-07, failure-autopsy ARC-017-EXQ-129-135, confirmed): both 2026-03-29 FAILs (V3-EXQ-129, V3-EXQ-135) are measurement/test-design defects, not evidence against ARC-017. Verified against driver source: both experiments train harm_eval_head on a .detach()ed z_world, so no arm of either experiment ever gave the world encoder training pressure to represent harm; V3-EXQ-129's TYPED_TAGS_ON arm additionally never implements typed routing despite its docstring's claim -- harm_obs is read from the environment and silently discarded, with no z_harm encoder anywhere in the script, which alone explains the wrong-direction C2 result. The two intact arms across both experiments are bit-identical to 15 significant figures, confirming both share one deterministic underlying measurement defect rather than being independent results. No ratification signal was found anywhere (claims.yaml, review_tracker.json, governance_flags.v1.json, git log) at GOV-APPLY-1 discovery (2026-08-28/29); the drift detector (claims_live_status_drift.md) independently flagged this as never-applied. Ratification given directly by the user via the Orchestrator on 2026-08-29 (not a /governance cycle) -- accepted rationale: the defect is concrete and verifiable in the drivers, the autopsy is status=confirmed and dry-run-citation-clean, and blast radius is small (2 runs; ARC-017 remains status=provisional with no live_status evidence key). Applied via chip-20260828-govapply1-individual-rows / decision chip chip-20260828-govapply1-arc017-ratification.",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
