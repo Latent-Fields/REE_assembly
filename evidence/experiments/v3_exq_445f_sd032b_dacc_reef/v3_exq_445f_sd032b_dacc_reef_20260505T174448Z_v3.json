@@ -11,11 +11,10 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260505T174448Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032b": "does_not_support",
-    "MECH-258": "supports",
-    "MECH-260": "supports"
+    "MECH-260": "non_contributory",
+    "SD-032b": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_mech258": {
@@ -112,5 +111,6 @@
     "num_resources": 7,
     "epsilon_train": 0.1,
     "epsilon_eval": 0.0
-  }
+  },
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac, GOV-APPLY-1 live-backlog apply, user-approved) from failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (confirmed): prior scoring direction voided -> non_contributory. Applied flat+pack per the manifest-write rule; index regen deferred to the next full governance regen."
 }

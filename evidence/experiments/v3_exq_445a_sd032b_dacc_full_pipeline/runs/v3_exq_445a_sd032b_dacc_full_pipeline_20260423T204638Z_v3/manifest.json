@@ -25,11 +25,10 @@
     "MECH-260"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-032b": "mixed",
-    "MECH-258": "non_contributory",
-    "MECH-260": "supports"
+    "MECH-260": "non_contributory",
+    "SD-032b": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -47,5 +46,5 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "GOV-APPLY-1 per-claim update (2026-08-29, failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08, confirmed) [MECH-258: supports -> non_contributory] per grandfathered-batch ratification (chip-20260828-govapply1-grandfathered-batch-ratification). applied via GOV-APPLY-1 batch ratification 2026-08-29 (user-ratified); citing artifact self-reports a Step-8/AskUserQuestion confirmation but carries no external governance-cycle trail (not in review_tracker/governance_flags/decision_log)."
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac, GOV-APPLY-1 live-backlog apply, user-approved) from failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (confirmed): prior scoring direction voided -> non_contributory. Applied flat+pack per the manifest-write rule; index regen deferred to the next full governance regen."
 }

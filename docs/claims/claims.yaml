@@ -47812,10 +47812,10 @@
     ~7.18-7.42 within an episode, no descent to detect). This is a readout precondition, not a defect in
     SD-050 on its own terms. See SD-086 (2026-06-10 z_harm_a saturation intake, candidate 4).'
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-08-29
     needs_review: false
   implementation_phase: v3
   v3_pending: false
@@ -70679,8 +70679,24 @@
     shows head_untrained across both runs). Both non_contributory, not weakening SD-078 -- the gap is in SD-082's
     consumer wiring, not SD-078's rule-pool differentiation. SD-082 substrate entry amended with both failure
     records; still candidate_substrate_landed, still pending_retest_after_substrate.
+
+    [2026-08-29 governance, V3-EXQ-822c non_contributory; failure_autopsy_V3-EXQ-822c_2026-08-29 confirmed]:
+    the bug-fix re-run OVERTURNS the 822b attribution above. (1) The lineage's headline number was never
+    measured: on/off_prop_delta_mean == 0.0 in 822/822a/822b is the empty-list fmean default -- n_prop_samples
+    is 0 in all 18 cells; _candidate_summaries() read agent._candidate_world_summaries(), which returns None on
+    the default candidate_summary_source='proposer', starving both the P2 measurement and the P1 REINFORCE
+    buffer. (2) The 822b head-untrained read was genuine but mis-attributed at the LAYER: the driver's own
+    REINFORCE loop never executed (empty outcome_buf -> len<2 early return); with the driver fixed the head
+    trains (last-layer delta 0.0 -> 7.8e-05). (3) The real defect is structural and upstream: the per-candidate
+    summary is ws[0,0,:], the rollout's SHARED initial world state, bit-identical across candidates, which
+    SD-082's centering annihilates to float32 noise (rule_summary_magnitude_ratio 2.8e6-4.5e6 vs 1e3 ceiling,
+    all 6 cells, both arms). Still not weakening SD-078 -- the gap remains SD-082's consumer wiring, now
+    correctly located one level upstream of the head. SD-082 substrate entry amended (822c failure record;
+    prior three records marked superseded -- 'nothing was fixed, the read was wrong'; severity corrupting).
+    822c non_contributory for both claims; still candidate_substrate_landed, still pending_retest_after_substrate.
   claim_level: architectural
   pending_retest_after_substrate: true
+  epistemic_category: standard
   registered_utc: "2026-07-22"
   depends_on: [SD-008, SD-066, SD-077, ARC-063]
   location: docs/architecture/sd_078_centered_candidate_rule_field_context_key.md
@@ -74415,7 +74431,8 @@
   v3_pending: true
   registered_utc: "2026-06-18"
   ceiling_routing_note: "BUILD APPROVED 2026-06-27 (user decision; packet CPKT-TONIC-EXPLORATION-NOISE-20260618 'hybridize' rec.; decision_due 2026-07-02 met early). The `ceiling_decision: deferred` park marker is REMOVED -- this claim is now routed to /implement-substrate (NoisyNet learned per-parameter factorised-Gaussian weight noise at the E3 selection head, no-op default sigma_init=0 / flag OFF = bit-identical), NOT parked. Biology-before-formal gate PASSED at adjudication: Aston-Jones&Cohen 2005 (supports 0.78) + Tervo et al 2014 (supports 0.82, CAUSAL LC-NE->ACC gating of stochastic choice under uncertainty) ground the state-conditioned + self-annealing shape; MECH-313's state-independent framing is biologically under-specified. KNOWN BUILD RISK (recorded, not a blocker): the SAME-DAY confirmed cluster autopsy failure_autopsy_704b-706b-conversion-ceiling_2026-06-27 re-rooted the committed-action-class conversion ceiling to the SINGLE-ARENA collapse (-> ARC-110 v4_loop_segregation), corroborated by two independent mechanisms (MECH-451 finer-channel + MECH-314 curiosity, both re-derive-braked). That is the packet's own pre-registered could_be_wrong_if #4 (F-dominance/arena subsumes the injection-locus fix). THEREFORE the MECH-440 falsifier MUST (i) run on the 569i top-k shortlist + MECH-448 use_f_eligibility_demotion conversion substrate, and (ii) disambiguate the injection-SITE axis (weight noise vs temperature) from the single-arena/ARC-110 axis -- if it reproduces the single-arena ceiling (thrash-not-carve), route to ARC-110, NOT a deeper noise build. Coordinate with -- do not duplicate -- the empirical 687-successor. PROMOTES NOTHING: stays candidate/substrate_ceiling/v3_pending until the substrate lands + the falsifier returns contributory."
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false  # cleared 2026-08-29 -- the owed armed falsifier ran and measured (V3-EXQ-955, autopsy-confirmed supports leg i); legs ii/iii owed a successor EXQ, not a retest of this design
+  epistemic_category: standard
   implementation_note: "SUBSTRATE IMPLEMENTED 2026-06-27 (/implement-substrate; decision-of-record evidence/decisions/cpkt_tonic_exploration_noise_build_decision_2026-06-27.md). Module ree-v3/ree_core/policy/noisy_selection_head.py (NoisySelectionHead): factorised-Gaussian weight noise built per-candidate from each candidate's first-action vector, injected into _modulatory_accum (+ the ARC-110 segregated `final`) BEFORE the committed within-eligible argmin so it PROPAGATES (the V3-EXQ-687 non-propagation fix). mu frozen at 0 (pure noise injector); self-anneals via a LOCAL confidence EMA on (1 - F-gap_norm). Config E3Config.use_noisy_selection_head (default False = bit-identical OFF) + noisy_selection_sigma_init (default 0.0 = exactly-zero output = bit-identical even ON). Smoke-tested: sigma=0 bit-identical; sigma>0 flips the committed argmin across resamples (propagation confirmed); finiteness/EMA guards block any nan injection. ARC-106 divergences logged: per-parameter sigma below the systems-level tonic/phasic gate; sigma annealed by LOCAL EMA not RL gradient (REE does not backprop selection). Falsifier QUEUED on the 569i top-k + MECH-448 demotion stack (loop-seg OFF vs ON disambiguation). PROMOTES NOTHING: stays candidate/substrate_ceiling/v3_pending until the falsifier returns contributory."
   evidence_quality_note: >-
     V3-EXQ-708 (MECH-440 NoisyNet propagation falsifier) was RE-ADJUDICATED 2026-07-19
@@ -74443,6 +74460,22 @@
     `measurement_test_design_defect` (where the instrument itself could not be trusted). MECH-440
     remains candidate / v3_pending; substrate stands as built, falsifier still owed a design that
     isolates the injection-site axis per the ceiling_routing_note above.
+
+    2026-08-29 governance (failure_autopsy_V3-EXQ-955_2026-08-29, confirmed, user-ratified):
+    V3-EXQ-955 (2026-08-29) is the first MET-AND-MEASURED armed-conversion test in the lineage --
+    the owed falsifier design ran, armed. The manifest self-routed substrate_not_ready_requeue /
+    direction unknown; OVERRIDDEN on autopsy to SUPPORTS, NARROW (propagation leg (i) only): the
+    single load-bearing criterion C1 PASSED (noise committed-class entropy fraction strictly above
+    the temperature control on 5/6 seeds, 5/5 excluding anomalous seed 44; yoked committed-action
+    divergence 0.68-0.88 vs floor 0.02 on 6/6 seeds; all instrument controls green incl.
+    bit-identical self-yoke). The FAIL label came from the A0_OFF ceiling-headroom precondition,
+    (a) max-aggregated across seeds (one anomalous seed 44 at 0.973 vs arm mean 0.833) and (b)
+    applied by the code to ALL branches although the pre-registered docstring scopes it to the
+    falsifying branch -- a null-protection gate must not vacate a positive. State-conditioning (ii)
+    and self-annealing (iii) remain untested (secondary_checks_measured=false); successor EXQ owed
+    (routing queue-experiment), no 955a re-run needed. pending_retest_after_substrate CLEARED --
+    the armed retest the flag was standing for has now happened and measured. Still candidate /
+    v3_pending until legs (ii)/(iii) return contributory.
   depends_on:
     - MECH-313   # parent: stochastic_noise_floor (LC-NE tonic analog), currently a STATE-INDEPENDENT floor; this refines it
     - MECH-260   # dACC anti-recency (the other tonic-noise leg in the GAP-C / Q-045 cluster)
@@ -82661,6 +82694,30 @@
     trainability. Substrate_queue.json amended with both failure records (already carried 822's original entry).
     SD-082 stays candidate_substrate_landed / ready=false pending a further fix to the head's last-layer update
     path; not itself falsified, still unvalidated.
+
+    [2026-08-29 governance, V3-EXQ-822c non_contributory; failure_autopsy_V3-EXQ-822c_2026-08-29 confirmed]:
+    822c (the bug-fix re-run) OVERTURNS the 822b attribution above, at three levels. (1) The acceptance
+    criterion was never actually measured in this lineage: on/off_prop_delta_mean == 0.0 in 822/822a/822b is
+    the empty-list default of fmean(prop_deltas) if prop_deltas else 0.0 -- n_prop_samples is 0 in ALL 18
+    cells; the drivers' _candidate_summaries() read agent._candidate_world_summaries(), which returns None on
+    the default candidate_summary_source='proposer', starving the P2 measurement AND the P1 REINFORCE buffer.
+    (2) The 822b 'REINFORCE never updates the last layer' read was genuine at the weight-norm level but wrong
+    at the LAYER: the DRIVER's REINFORCE loop never executed (outcome_buf empty -> len<2 early return ->
+    optimiser step skipped every episode); the substrate optimiser was never exercised. Driver fixed, the head
+    trains: last-layer norm delta 0.0 -> 7.8e-05. (3) The REAL defect is structural, one level upstream:
+    compute_bias's per-candidate summary is ws[0,0,:], and e2_fast.py seeds world_states=[initial_z_world], so
+    index 0 is the rollout's SHARED initial state -- bit-identical across candidates -- and SD-082's own
+    centering annihilates it to float32 noise (rule_summary_magnitude_ratio_p2_median 2.8e6-4.5e6, 4000x over
+    its 1e3 ceiling, all 6 cells, both arms). CONSEQUENCE: the stated acceptance criterion (prop_delta >= 0.001
+    WITH an ON>OFF contrast) is structurally unpassable as wired -- the floor now clears (0.001662) but
+    entirely on candidate-invariant rule_state. Severity CORRUPTING (an authentic-looking but meaningless
+    lpfc_bias/prop_delta on the default config); substrate_queue amended accordingly (822c failure record
+    added; the three prior records marked superseded -- nothing was fixed, the reads were wrong). Routing
+    implement-substrate: make the per-candidate summary actually per-candidate (post-action index or horizon
+    aggregate; or default candidate_summary_source='e2_world_forward' with a sweep; or a float-noise-scale
+    guard in compute_bias). 822c non_contributory for SD-082; stays candidate_substrate_landed / unvalidated.
+  pending_retest_after_substrate: true
+  epistemic_category: standard
 - id: SD-083
   title: "consolidation.offline_policy_consolidation_window: an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick 2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (Moncada 2007) policy-consolidation window in the mech457 retention TESTBED, run BETWEEN BC install and RL refinement. Unblocks MECH-476's two blocked_substrate falsifier arms: the A->B offline INTERVAL arm (V3-EXQ-836b) and the behavioural-tagging NOVELTY arm (V3-EXQ-836c). DISTINCT from the ONLINE global MECH-475 KL anchor -- offline vs online, trace-selective per-parameter vs global, interval-dependent vs constructed-at-entry, novelty-gated -- which is exactly the MECH-476 content (ii offline interval, iii trace selectivity) the global anchor cannot express (the Walker-2003 divergence). BUILDS PROTECTION without retraining, so post_bc is invariant to the interval and the INTERVAL axis is orthogonal to the DOSE axis."
   claim_type: design_decision

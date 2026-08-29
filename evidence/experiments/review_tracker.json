@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-28T17:27:33Z",
+  "last_review_utc": "2026-08-29T14:14:34Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1204,7 +1204,10 @@
     "v3_exq_949_mech314b_authority_rescale_validation",
     "v3_exq_933a_sleep_gap9_entry_pressure_fix",
     "v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing",
-    "v3_exq_603v_mech357_eligibility_trace_repair_validation"
+    "v3_exq_603v_mech357_eligibility_trace_repair_validation",
+    "v3_exq_822c_sd082_candidate_summary_fallback_fix",
+    "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier",
+    "v3_exq_958_mech290_backward_credit_sweep_functional_signature"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4067,7 +4070,10 @@
     "v3_exq_949_mech314b_authority_rescale_validation_20260825T223833Z_v3",
     "v3_exq_933a_sleep_gap9_entry_pressure_fix_20260826T072405Z_v3",
     "v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3",
-    "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3"
+    "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
+    "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+    "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier_20260829T120510Z_v3",
+    "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6531,6 +6537,25 @@
         "v3_exq_949_...": "SKIM DONE -- no defect. Apparent anomaly (C1 and C2 both measured 0.3675, looked like a duplicated statistic) resolved by reading the driver: C2 = div_on_authon - div_on_authoff, and both single-factor arms measure exactly 0.0, so the coincidence is a clean interaction. All 4 arms green; C3 DV-symmetry control 0.0."
       },
       "notes": "7 pending cleared (0 FAIL, 0 ERROR, 0 runner-only). 3 evidence PASSes applied as supports (944b/MECH-091 first non-vacuous test, 5-of-6 seeds; 949/MECH-314b un-park + ceiling lift, user-approved, resolves GFLAG-0065; 950/MECH-492 first-ever direct evidence, confirming branch). 4 diagnostics adjudicated non_contributory per confirmed same-day autopsies (603v/925a/933a/945), evidence_direction written to BOTH flat manifest and run pack with evidence_direction_note marker so the indexer overlay fires -- 603v's manifest 'supports' adjudicated DOWN (instrument repair, not claim evidence). substrate_queue amends applied for mech357-avoidance-efficacy-eligibility-trace-imbalance (603u resolved) and SD-SLEEP-ENTRY-PRESSURE (933 resolved). HELD, not applied: the modulatory-bias-selection-authority amend from 945 -- its own autopsy requires explicit governance ratification of a pre-registered lever substitution (mode_value for wanting_weight=0.5); referred to the user."
+    },
+    {
+      "date_utc": "2026-08-29T14:14:34Z",
+      "session": "governance-20260829-mac",
+      "reviewed_run_ids": [
+        "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+        "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier_20260829T120510Z_v3",
+        "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3"
+      ],
+      "discussed_experiment_dirs": [
+        "v3_exq_822c_sd082_candidate_summary_fallback_fix",
+        "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier",
+        "v3_exq_958_mech290_backward_credit_sweep_functional_signature"
+      ],
+      "pass_driver_skims": {
+        "v3_exq_958_...": "SKIM DONE -- nothing found. Strict AND combination (S1 and S2 and S3), tolerance-based checks, flag-off no-op negative control, sub/supra-threshold quality controls, degeneracy net over the S1 credit sweep and S3 gamma sweep. 5/5 seeds on all three signatures.",
+        "v3_exq_936a_...": "SKIM DONE -- DEFECT FOUND, run NOT marked reviewed: C2 direction-dispatching criterion demands an ABSOLUTE >=0.05 paired reduction of F variance share, but the measured OFF-arm share is 6.3e-6 (571 reference 0.886; comparability deliberately demoted to record-only in the driver) -- C2 is arithmetically unreachable at the measured scale, so weakens fires by construction whenever C1 converts. Routed to /failure-autopsy; no evidence_direction applied to MECH-439 this cycle."
+      },
+      "notes": "2026-08-29 governance cycle. Applied two confirmed autopsies: 822c (SD-078/SD-082 non_contributory flat+pack, notes overturning the 822b layer attribution, both claims epistemic_category standard, SD-082 pending_retest true, substrate SD-082 amend severity=corrupting priority=1 with 3 prior records superseded) and 955 (MECH-440 FAIL/unknown OVERRIDDEN -> supports narrow leg i, flat+pack, category standard, pending_retest CLEARED). 958 MECH-290 supports applied as-is (skim clean). SD-050 promoted candidate->provisional (user-approved; decision_log entry appended). GOV-APPLY-1 live backlog applied: 11 runs (445-lineage -> non_contributory MECH-260/SD-032b; 054 -> superseded MECH-072), flat+pack+note. STILL PENDING (need /failure-autopsy, none found on origin): 862b (evidence FAIL Q-040), 936a (skim defect above), 952/954/957 (diagnostic PASSes), 956 (diagnostic FAIL)."
     }
   ]
 }

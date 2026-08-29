@@ -23,8 +23,10 @@
     "MECH-440"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-440": "supports"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -209,5 +211,6 @@
     "writer_defect": false,
     "n_agents": 18,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac) from failure_autopsy_V3-EXQ-955_2026-08-29 (confirmed, landed REE_assembly 883762f1c6): self-routed substrate_not_ready_requeue / direction unknown OVERRIDDEN -> supports, NARROW (propagation leg i only). Load-bearing C1 passed 5/6 seeds (5/5 excluding anomalous seed 44, both sub-conditions); the FAIL label came from the A0_OFF ceiling-headroom null-protection gate, max-aggregated across seeds and mis-branched onto all paths against its own pre-registered falsifying-branch scope. Legs ii/iii (state-conditioning, self-annealing) remain untested; successor EXQ owed (routing queue-experiment). No 955a re-run needed."
 }

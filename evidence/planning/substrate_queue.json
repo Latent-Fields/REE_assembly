@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "chip-20260824-mech142-ach-gating-falsifier-scope",
-  "last_updated_utc": "2026-08-28T17:43:40Z",
+  "last_updated_utc": "2026-08-29T14:13:38Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -6974,8 +6974,8 @@
       "added_session": "gracious-villani-1d1ac4",
       "implemented_session": "gracious-villani-1d1ac4",
       "implemented_utc": "2026-07-26T13:27:50Z",
-      "last_seen_session": "sweet-williams-f30676",
-      "priority": 2,
+      "last_seen_session": "governance-20260829-mac",
+      "priority": 1,
       "ready": false,
       "design_doc": "docs/architecture/sd_082_rule_selection_action_consumer.md",
       "depends_on_unresolved": [],
@@ -6992,7 +6992,9 @@
           "metric": "propagation delta (rule_state -> action bias): on_prop_delta_mean = off_prop_delta_mean = 0.0 (structural zero on both arms) while on_rule_state_diff_mean = 0.644",
           "target": "on_prop_delta_mean >= 0.001 (readiness_prop_nonvac) with an ON>OFF propagation contrast",
           "run_role": "post_build",
-          "run_role_basis": "R3 run > entry.implementation_note_update:freetext (same_day -- audit)"
+          "run_role_basis": "R3 run > entry.implementation_note_update:freetext (same_day -- audit)",
+          "resolved": "superseded",
+          "resolved_note": "The cited 'propagation delta ... = 0.0 (structural zero on both arms)' is the empty-list default of statistics.fmean(prop_deltas) if prop_deltas else 0.0; n_prop_samples = 0 in all 6 cells. No propagation was ever measured in this run. Superseded by V3-EXQ-822c, which measures it for the first time. Nothing was fixed -- the read was wrong."
         },
         {
           "run_id": "v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3",
@@ -7000,7 +7002,9 @@
           "metric": "on_prop_delta_mean = off_prop_delta_mean = exactly 0.0 (readiness_prop_nonvac: false) with SD-082 correctly engaged (lateral_pfc_rule_readout_consumer=True, lateral_pfc_train_rule_bias_head=True) and a strong, non-degenerate upstream chain (on_rule_state_diff_mean 0.644, on_rule_active_p2 0.882, zworld_common_mode_cone_present 0.963, on_pool_differentiated 3.0) -- the SECOND consecutive identical failure of readiness gate (d) propagation_non_vacuity (V3-EXQ-822 failed the same gate before SD-082 existed). Autopsy: failure_autopsy_batch-822a-826-817a-827_2026-07-26.md Section 2 (confirmed, user-adjudicated).",
           "target": "on_prop_delta_mean >= 0.001 (readiness_prop_nonvac) with an ON>OFF propagation contrast",
           "run_role": "post_build",
-          "run_role_basis": "R3 run > entry.implementation_note_update:freetext (same_day -- audit)"
+          "run_role_basis": "R3 run > entry.implementation_note_update:freetext (same_day -- audit)",
+          "resolved": "superseded",
+          "resolved_note": "Same empty-list default; n_prop_samples = 0 in all 6 cells. The 'SECOND consecutive identical failure of readiness gate (d)' was a second instance of the same no-data default, not a reproduction of a measured zero. Superseded by V3-EXQ-822c."
         },
         {
           "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
@@ -7008,13 +7012,27 @@
           "metric": "on_last_layer_weight_delta_init_to_p1_mean = 0.0 (unconditional weight-norm read, both 822a and 822b) -- REINFORCE never updates rule_bias_head's last linear layer",
           "target": "non-zero last-layer weight delta from init to post-P1, sufficient to move on_prop_delta_mean above the 1e-3 propagation_non_vacuity floor",
           "run_role": "post_build",
-          "run_role_basis": "R3 run > entry.implementation_note_update:freetext"
+          "run_role_basis": "R3 run > entry.implementation_note_update:freetext",
+          "resolved": "superseded",
+          "resolved_note": "The weight-norm measurement was genuine (post_p1 == init exactly; a missing post_p1 snapshot would have produced -0.148, not 0.0), but the causal attribution 'REINFORCE never updates rule_bias_head's last linear layer', which routed to an optimizer/gradient/ADV_MIN_THRESHOLD trace, is superseded: the driver's own REINFORCE loop never ran (outcome_buf empty -> len<2 early return -> optimiser step skipped every episode), so the substrate optimiser was never exercised. With the driver fixed the head does train (delta 0.0 -> 7.8e-05). Nothing in the substrate was fixed; the read was wrong at the layer."
+        },
+        {
+          "run_id": "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+          "experiment_type": "v3_exq_822c_sd082_candidate_summary_fallback_fix",
+          "metric": "rule_summary_magnitude_ratio_p2_median = 2.8e6-4.5e6 in all 6 cells against MAGNITUDE_RATIO_HIGH=1e3; on_prop_delta_mean 0.001662 vs off 0.001761 (no ON>OFF contrast); hidden_dead_relu_frac 0.511 ON / 0.517 OFF. Root cause: candidate summary is ws[0,0,:], the rollout's SHARED initial z_world, bit-identical across candidates; SD-082's centering reduces it to float32 noise.",
+          "target": "post-centering per-candidate summary norm within [1e-3, 1e3] of rule_state norm, and on_prop_delta_mean >= 0.001 WITH a reproducible ON>OFF contrast across a majority of seeds",
+          "resolved": "open"
         }
       ],
       "amend_note_2026_07_27_head_internals_instrumentation": "Routed by the confirmed failure_autopsy_batch-822a-826-817a-827_2026-07-26 (Section 2, 'Routing -- implement-substrate, amend SD-082'). Root cause of the still-zero 822a propagation is UNVERIFIED (this was itself the recording gap): SD-082's fix touches compute_bias's candidate-summary centering + the scaled-tanh output bound + the last-Linear readout_init_scale rescale, but rule_bias_head's FIRST Linear+ReLU layer is untouched by SD-082 and always uses standard random init -- leading hypothesis is a dead-ReLU / magnitude-insensitivity point there absorbing the rule_state signal before it reaches the instrumented last layer, plausible if rule_state's raw magnitude is small relative to the (now-centered) world-summary component in the concatenated input, but the 822a manifest carried NO head-internals diagnostics to confirm or rule this out. Re-derive brake did NOT formally fire (R3 counts only substrate_ceiling readings; this is competence_implementation_gap), but two consecutive identical-gate failures argue for this substrate amend over a third blind re-queue letter, per the autopsy's own judgment.",
       "amend_implemented_utc": "2026-07-27T06:05:50Z",
       "amend_implemented_session": "xenodochial-cartwright-aaa6ff",
-      "amend_implementation_note": "IMPLEMENTED 2026-07-27 (ree-v3, session xenodochial-cartwright-aaa6ff). Added head-internals instrumentation to LateralPFCAnalog (ree_core/pfc/lateral_pfc_analog.py) behind a new no-op-default flag LateralPFCConfig.capture_head_diagnostics (+ REEConfig.lateral_pfc_capture_head_diagnostics, plumbed through all three from_dims sites + agent.py getattr-fallback, same 3-site pattern as rule_readout_consumer). When True, compute_bias() unrolls rule_bias_head's Sequential layer-by-layer (the identical op sequence nn.Sequential performs internally, so the returned bias stays bit-identical to OFF at every tick) and records: (a) hidden_dead_relu_frac -- fraction of hidden-layer activations <= 0 after the first ReLU, (b) rule_summary_magnitude_ratio -- mean(||rule_repeated||)/mean(||summaries||) over the concatenated input. Both read via get_state(), default 0.0 when the flag is off. get_state() also gains four weight-norm fields (first/last Linear weight+bias norm) reported UNCONDITIONALLY (cheap parameter reads) so an experiment calling get_state() at each P0/P1/P2 phase boundary gets per-phase weight-norm tracking with no flag needed. reset() clears the two capture-gated fields. Verified diagnostic-only: 8 new contracts in tests/contracts/test_sd082_rule_readout_consumer.py (14/14 pass, run via remote_pytest.sh) including a direct bit-identical-bias and identical-head-gradient check between capture ON and OFF. This instrumentation does NOT itself root-cause the dead-ReLU hypothesis -- it makes the diagnostic measurable for the NEXT consumer-validation run (a V3-EXQ-822b or similar), which is a separate follow-on queue-experiment session, not performed here. GOVERNANCE: promotes/demotes nothing; SD-082 stays implemented_pending_validation/ready=false; claims.yaml untouched. See ree-v3/CLAUDE.md 'SD-082 AMEND: head-internals instrumentation' entry (2026-07-27) for full detail."
+      "amend_implementation_note": "IMPLEMENTED 2026-07-27 (ree-v3, session xenodochial-cartwright-aaa6ff). Added head-internals instrumentation to LateralPFCAnalog (ree_core/pfc/lateral_pfc_analog.py) behind a new no-op-default flag LateralPFCConfig.capture_head_diagnostics (+ REEConfig.lateral_pfc_capture_head_diagnostics, plumbed through all three from_dims sites + agent.py getattr-fallback, same 3-site pattern as rule_readout_consumer). When True, compute_bias() unrolls rule_bias_head's Sequential layer-by-layer (the identical op sequence nn.Sequential performs internally, so the returned bias stays bit-identical to OFF at every tick) and records: (a) hidden_dead_relu_frac -- fraction of hidden-layer activations <= 0 after the first ReLU, (b) rule_summary_magnitude_ratio -- mean(||rule_repeated||)/mean(||summaries||) over the concatenated input. Both read via get_state(), default 0.0 when the flag is off. get_state() also gains four weight-norm fields (first/last Linear weight+bias norm) reported UNCONDITIONALLY (cheap parameter reads) so an experiment calling get_state() at each P0/P1/P2 phase boundary gets per-phase weight-norm tracking with no flag needed. reset() clears the two capture-gated fields. Verified diagnostic-only: 8 new contracts in tests/contracts/test_sd082_rule_readout_consumer.py (14/14 pass, run via remote_pytest.sh) including a direct bit-identical-bias and identical-head-gradient check between capture ON and OFF. This instrumentation does NOT itself root-cause the dead-ReLU hypothesis -- it makes the diagnostic measurable for the NEXT consumer-validation run (a V3-EXQ-822b or similar), which is a separate follow-on queue-experiment session, not performed here. GOVERNANCE: promotes/demotes nothing; SD-082 stays implemented_pending_validation/ready=false; claims.yaml untouched. See ree-v3/CLAUDE.md 'SD-082 AMEND: head-internals instrumentation' entry (2026-07-27) for full detail.",
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/pfc/lateral_pfc_analog.py::compute_bias",
+        "ree_core/agent.py"
+      ]
     },
     {
       "sd_id": "SD-083",

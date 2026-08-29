@@ -24,10 +24,10 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-078": "unknown",
-    "SD-082": "unknown"
+    "SD-078": "non_contributory",
+    "SD-082": "non_contributory"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -126,5 +126,6 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac) from failure_autopsy_V3-EXQ-822c_2026-08-29 (confirmed, landed REE_assembly f45de24f72): diagnostic PASS, scoring_excluded -- non_contributory for SD-078 and SD-082. The 822-lineage prop_delta was never measured (n_prop_samples=0 in all 18 cells; empty-list fmean default); the 822b head-untrained substrate attribution was wrong at the layer (driver REINFORCE loop never executed); real defect is structural -- per-candidate summary is ws[0,0,:], the shared initial world state, annihilated to float32 noise by SD-082 centering (magnitude ratio 2.8e6-4.5e6 vs 1e3 ceiling, all cells). See substrate_queue SD-082 amend, severity corrupting."
 }

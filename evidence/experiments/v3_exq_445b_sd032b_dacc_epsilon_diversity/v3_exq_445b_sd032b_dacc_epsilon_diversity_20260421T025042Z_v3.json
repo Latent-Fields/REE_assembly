@@ -12,11 +12,10 @@
   "outcome": "FAIL",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-258": "non_contributory",
     "MECH-260": "non_contributory",
     "SD-032b": "non_contributory"
   },
-  "evidence_direction_note": "2026-05-11 reclassification anchor: per-seed action_class_entropy=0.0 in every condition; per-seed harm_a_forward_r2 + mean_score_bias_abs floating-point-identical between ON_INDEPENDENT and ON_SHARED (seed=42 -> 0.9394131702960827 / 1523.1103575642903; seed=7 -> 0.9334850054284988 / 421.68686498006184; seed=13 -> 0.9372929059037282 / 38.133611341052585). Under V_s monostrategy the trajectory is deterministic given seed alone -- both forward-model architectures consume the same z_harm_a stream and trivially fit a near-degenerate target. claim_ids does not include ARC-033 / ARC-058 (correctly per the claim_ids accuracy rule: the test was non-discriminative for those claims), so no per-claim direction entries are added here. The within-arm MECH-258 / MECH-260 / SD-032b reads reflect what an untrained-policy monostrategy run fits trivially, not what the dACC bundle does when the policy actually exercises both event classes -- self_attribution_plan.md GAP-1 records the substrate-ceiling finding; resume condition is the same upstream substrate gates as GAP-2 (sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture).",
+  "evidence_direction_note": "Ratified by /governance 2026-08-29 (session governance-20260829-mac, GOV-APPLY-1 live-backlog apply, user-approved) from failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08 (confirmed): prior scoring direction voided -> non_contributory. Applied flat+pack per the manifest-write rule; index regen deferred to the next full governance regen.",
   "pass_criteria_summary": {
     "c1_mech258": {
       "indep_wins": 3,
@@ -143,6 +142,5 @@
     "steps_per_ep": 120,
     "epsilon_train": 0.1,
     "epsilon_eval": 0.0
-  },
-  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: epsilon-diversity intervention does not unlock monostrategy because the lock is upstream at V_s landing, not in action sampling."
+  }
 }

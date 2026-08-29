@@ -11,7 +11,21 @@ closure_plan:
   nodes:
     - id: "mech357_avoidance_efficacy:BUILD"
       title: "Wire agent-directed hazard pursuit into Stage-H onboarding curriculum; run the discrimination test agent-directed pursuit was held out as the last untried candidate for"
-      status: open
+      status: partial
+      governance_2026_08_29: >
+        Status flipped open -> partial by /governance 2026-08-29 (session
+        governance-20260829-mac), absorbing the events the reconcile_2026_08_27
+        field staged: the BUILD half is DONE (pursuit wiring landed 2026-08-14,
+        validated negative via V3-EXQ-603u -- G_H_LESION_frac 1.0, all four
+        pressure designs exhausted, substrate entry validated_negative) and the
+        sibling eligibility-trace repair is DONE and REVIEWED (V3-EXQ-603v
+        PASS, walked in the 2026-08-28 cycle; its 'supports' adjudicated down
+        to instrument-repair per failure_autopsy_V3-EXQ-603v_2026-08-28, which
+        also reclassified MECH-357). Remaining owed work is NOT a build: the
+        zero-compute reanalysis of the recorded 603s/603t/603u per-episode
+        trajectories (chip-20260827-mech357-trajectory-reanalysis, open) --
+        node_class mystery (known data). Resolves the closure-drift
+        stale-since-update hint and GFLAG-0052/GFLAG-0068.
       severity: high
       reconcile_2026_08_27: >
         NODE OVERTAKEN BY EVENTS (session f-dominance-regime-retest-ddbe10,
@@ -41,7 +55,7 @@ closure_plan:
       unblocks_claims: [MECH-357]
       depends_on: []
       cross_plan_link: ["sleep_substrate:GAP-9"]
-      last_updated: 2026-08-13
+      last_updated: 2026-08-29
       registered_note: "node_class complex (probe-gated), not buildable -- the wiring itself (thread hazard_agent_pursuit through scaffolded_sd054_onboarding.py's Stage-H _build_env, mirroring how scheduled_external_hazard/env_drift are already threaded) is ordinary implementation, but whether it produces G_H_INTACT_frac > G_H_LESION_frac discrimination with headroom (G_H_LESION_frac < 0.333, per 603t's readiness R4) is genuinely untested. A separate, not-yet-substrate-queued defect was flagged alongside this one: infralimbic_avoidance_gate.py's eligibility trace decays ~90-100x faster than it credits (leak_rate=0.02 vs learn_rate=0.05 on very different tick counts), underflowing to numerical zero in every run to date -- may need its own substrate_queue line item rather than folding into this build. Substrate paths: ree-v3/experiments/scaffolded_sd054_onboarding.py, ree-v3/ree_core/environment/causal_grid_world.py, ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py. Open chip: chip-20260813-implsub-mech357-hazard-pursuit."
 ---
 
@@ -66,7 +80,7 @@ attempts (603h/603k/603r/603s/603t).
 
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
-| `mech357_avoidance_efficacy:BUILD` | Wire hazard_agent_pursuit into Stage-H onboarding + run the discrimination test | open | high | none -- ready, last untried candidate, unbuilt |
+| `mech357_avoidance_efficacy:BUILD` | Wire hazard_agent_pursuit into Stage-H onboarding + run the discrimination test | partial | high | build DONE + validated negative (603u); trace repair DONE + reviewed (603v); remaining: trajectory reanalysis (chip-20260827-mech357-trajectory-reanalysis) |
 
 ## Decision log
 
