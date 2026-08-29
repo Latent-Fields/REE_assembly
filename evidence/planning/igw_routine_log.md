@@ -2215,3 +2215,4 @@ One line per hourly tick. ASCII only.
 2026-08-29T10:11:14Z skip IGW-20260829-239: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-29T11:25:08Z workset committed (regen -- 245 items, 24 ready, 0 in flight)
 2026-08-29T11:24:19Z skip IGW-20260829-239: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-29T12:26:16Z workset committed (regen -- 245 items, 24 ready, 0 in flight)
