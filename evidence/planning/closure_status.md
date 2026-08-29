@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-28T07:13:56Z
+Generated: 2026-08-29T03:02:48Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -190,7 +190,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 85.0% across 54 non-deferred nodes in 10 plan(s).
+- **PROCESS**: 84.9% across 55 non-deferred nodes in 10 plan(s).
 - **V4**: 32.4% across 96 non-deferred nodes in 14 plan(s).
 - **V5**: 16.8% across 38 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -457,6 +457,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (INV-064): self-stability must prec | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
 | process | task_claim_chip_coordinator_migration_plan.md | `PHASE-1` | Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; gi | soaking | high |  | 2026-08-28 |
 | process | task_claim_chip_coordinator_migration_plan.md | `PHASE-2` | Claim-authority cutover: task_claim.py/chip_ledger.py call the coordin | in_progress | high |  | 2026-08-27 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-4` | Hub-serialised commit intake for the REMAINING coordination files (WOR | in_progress | high |  | 2026-08-28 |
 | meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-2` | pack_writer field-coverage survey (step 2) | done | medium |  | 2026-07-12 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | done | medium |  | 2026-07-15 |
@@ -475,7 +476,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | ree_ai_design_critique_plan.md | `WS-11` | Early-gating vs late-judging demo (REE early commit-gating beats a Con | open | medium |  | 2026-07-09 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | in_progress | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-17 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
-| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-3` | Harden: monitoring, CLAUDE.md rewrite to reflect the new default, deco | not_started | medium |  | 2026-08-26 |
+| process | task_claim_chip_coordinator_migration_plan.md | `PHASE-3` | Harden: monitoring, CLAUDE.md rewrite to reflect the new default, deco | in_progress | medium |  | 2026-08-28 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | parked | low |  | 2026-07-15 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | parked_indefinite | low |  | 2026-07-15 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:NARCOLEPSY-CATAPLEXY` | Narcolepsy and cataplexy: bilateral orexin-loss failure | open | low |  | 2026-07-30 |
