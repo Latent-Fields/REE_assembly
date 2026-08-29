@@ -1,0 +1,93 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe",
+  "run_id": "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-29T09:37:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-135",
+    "INV-088"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-135": "non_contributory",
+    "INV-088": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "action_blindness_confirmed",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every seed. The underlying guard (zworld_encoder_guard.latent_stack_weight_delta) tests delta > 0.0 (strict), so the recomputable floor here MUST use an exclusive comparator -- a >= 0.0 floor on a manifestly non-negative abs-delta can never fail regardless of what actually happened (validate_experiments.py's precondition_recomputability check; V3-EXQ-108b carried this exact defect unfixed -- fixed here, not propagated).",
+        "measured": 0.22456669807434082,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_all_horizons",
+        "kind": "readiness",
+        "description": "CR_real(h) is a finite, positive number backed by at least 10 surviving real samples, at EVERY checkpoint horizon, every seed -- confirms sensing and the real-sample collection are not degenerate at any horizon before drawing a mechanism conclusion from the ratio.",
+        "measured": 11.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_MECHANISM_DISCRIMINATED",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 4.761509831531463e-07,
+        "threshold": 0.1,
+        "statement": "cr_ratio(h=1) and the one-step per-action divergence probe jointly discriminate action-blindness (already floored at h=1) from smooth horizon-compounding (floored only by h=rollout_horizon), per SYNTHESIS.md Section 4.3's decision rule."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_MECHANISM_DISCRIMINATED": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1d82b2be1010858a74f90e2897e287b293e0b792336e1593d905606e7da7cdad",
+  "substrate_commit": {
+    "commit": "1f72e21b3d293ff5ed2097129fbc2f5022bdb177",
+    "dirty": false,
+    "branch": "main"
+  }
+}
