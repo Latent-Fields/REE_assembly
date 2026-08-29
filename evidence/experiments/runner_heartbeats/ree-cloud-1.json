@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-29T07:34:27Z",
+  "last_tick_utc": "2026-08-29T07:59:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-955",
   "current_exq_started_utc": "2026-08-28T22:58:00.455159+00:00",
@@ -12,17 +12,13 @@
     "run_label": "Seed 45 / yoked_p2_measurement",
     "runs_done": 15,
     "runs_total": 24,
-    "episodes_done": 20,
+    "episodes_done": 60,
     "episodes_total": 150,
-    "overall_pct": 63.1
+    "overall_pct": 64.2
   },
-  "seconds_elapsed": 30987,
-  "seconds_remaining": 18768,
+  "seconds_elapsed": 32494,
+  "seconds_remaining": 18204,
   "recent_lines": [
-    "Seed 44 Condition matched_pre_commit_variance_temperature_control_687_non_propagating_p0p1",
-    "[train] arm=ARM_TEMP seed=44 phase=P0 ep 10/150",
-    "[train] arm=ARM_TEMP seed=44 phase=P0 ep 20/150",
-    "[train] arm=ARM_TEMP seed=44 phase=P0 ep 30/150",
     "[train] arm=ARM_TEMP seed=44 phase=P0 ep 40/150",
     "[train] arm=ARM_TEMP seed=44 phase=P0 ep 50/150",
     "[train] arm=ARM_TEMP seed=44 phase=P0 ep 60/150",
@@ -118,7 +114,11 @@
     "verdict: PASS",
     "Seed 45 Condition yoked_p2_measurement",
     "[train] yoked seed=45 ep 10/100 diverged(TEMP/NOISE)=0/13",
-    "[train] yoked seed=45 ep 20/100 diverged(TEMP/NOISE)=0/8"
+    "[train] yoked seed=45 ep 20/100 diverged(TEMP/NOISE)=0/8",
+    "[train] yoked seed=45 ep 30/100 diverged(TEMP/NOISE)=0/24",
+    "[train] yoked seed=45 ep 40/100 diverged(TEMP/NOISE)=0/9",
+    "[train] yoked seed=45 ep 50/100 diverged(TEMP/NOISE)=0/10",
+    "[train] yoked seed=45 ep 60/100 diverged(TEMP/NOISE)=0/15"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
