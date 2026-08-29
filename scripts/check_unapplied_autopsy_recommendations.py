@@ -286,6 +286,36 @@ the new bucket. That bucket runs an order of magnitude hotter than
 it into their exit code would silently convert a warn-only step into a failing
 one. `--strict-direction` is the opt-in.
 
+THE 2026-08-29 REPAIR (bare field name) -- a field mentioned with NO value at all
+-----------------------------------------------------------------------------
+The named-field repair above requires the colon form, "<field>: <value>". A
+disposition can also name a field with NO value at all: "and set the flag the
+claim does not yet carry -> diagnostic_evidence_adjudicated" (MECH-135 /
+INV-088, `failure_autopsy_V3-EXQ-954_2026-08-29`). `_FIELD_VALUE_RE` requires
+a colon, so this tail fell through to the bare-state branch, comparing the
+literal string "diagnostic_evidence_adjudicated" against `_GENERIC_CLAIM_FIELDS`
+values rather than treating it as the field's NAME -- which can never match,
+since the field's actual value is a bool, not that string. A structurally
+unmatchable row, exactly the same defect class as the two shapes above, just
+one token shorter. Confirmed both claims already carry
+`diagnostic_evidence_adjudicated: true` on `origin/master` (cdd772b0dd).
+
+The fix: when the tail after the last "->" has no colon AND is, verbatim,
+one of `_BOOLEAN_CLAIM_FIELDS` (the boolean subset of `_GENERIC_CLAIM_FIELDS`
+-- `diagnostic_evidence_adjudicated`, `pending_retest_after_substrate`,
+`v3_pending`), `_target_state` returns `(field, "true")` -- an implied
+truthy target -- instead of falling through to the blind bare-state compare.
+Deliberately restricted to the boolean subset, not all of
+`_GENERIC_CLAIM_FIELDS`: `epistemic_category` and `status` are never boolean,
+so "the claim does not yet carry -> status" has no sensible implied-true
+reading, and leaving them out of `_BOOLEAN_CLAIM_FIELDS` means this new branch
+cannot misfire on a category/status-shaped disposition. It also cannot
+collide with the direction-vocab branch above it -- none of the three
+boolean field names is a direction-vocab word, category value, or status
+value -- so this ADDS a route to certifying a genuine match without
+narrowing any existing one; an unrecognised bare word still falls through to
+"not reflected" exactly as before.
+
 Tests: scripts/test_check_unapplied_autopsy_recommendations.py
 """
 
@@ -650,6 +680,20 @@ _GENERIC_CLAIM_FIELDS = (
     "v3_pending",
 )
 
+# A bare FIELD NAME with no value at all -- "-> diagnostic_evidence_adjudicated",
+# no colon, no old/new pair -- means "set this flag", i.e. an implied `true`.
+# Restricted to these three (the boolean subset of _GENERIC_CLAIM_FIELDS, not
+# epistemic_category/status) because only a boolean flag has a sensible
+# "the claim does not yet carry -> <field>" reading; a category or status
+# field never takes an implied truthy value, and none of these three names
+# collides with a direction-vocab word or a category/status value, so there
+# is no ambiguity with the direction-word branch in `_reflects`. See "THE
+# 2026-08-29 REPAIR (bare field name)" in the module docstring.
+_BOOLEAN_CLAIM_FIELDS = (
+    "diagnostic_evidence_adjudicated", "pending_retest_after_substrate",
+    "v3_pending",
+)
+
 
 def _target_state(change, recommended_direction):
     """The right-hand side of a disposition, as (field_hint, value).
@@ -663,7 +707,10 @@ def _target_state(change, recommended_direction):
                        must cite verbatim (a "stamp <slug>" recommendation).
       * <name>     -- value belongs to EXACTLY claims.yaml field <name>,
                        stated explicitly as "<name>: <value>" in the prose
-                       (e.g. "-> diagnostic_evidence_adjudicated: true").
+                       (e.g. "-> diagnostic_evidence_adjudicated: true"), OR
+                       the tail is EXACTLY a bare boolean field name with no
+                       value at all (e.g. "-> diagnostic_evidence_adjudicated"),
+                       which is an implied "true" -- see _BOOLEAN_CLAIM_FIELDS.
     """
     if isinstance(change, str) and "->" in change:
         stamp = _STAMP_RE.search(change)
@@ -673,6 +720,9 @@ def _target_state(change, recommended_direction):
         field_match = _FIELD_VALUE_RE.match(tail)
         if field_match:
             return field_match.group(1).strip().lower(), field_match.group(2).strip().rstrip(".")
+        bare = tail.rstrip(".").strip().lower()
+        if bare in _BOOLEAN_CLAIM_FIELDS:
+            return bare, "true"
         return None, tail
     if isinstance(recommended_direction, str):
         return None, recommended_direction.strip()
@@ -735,6 +785,10 @@ def _reflects(claim, change, recommended_direction, slug,
         2026-08-29 REPAIR").
       * a NAMED FIELD ("<field>: <value>" in the prose) -> compared against
         that exact claims.yaml field (added 2026-08-29, ditto).
+      * a BARE BOOLEAN FIELD (the tail after the last "->" is exactly one of
+        `_BOOLEAN_CLAIM_FIELDS`, no colon, no value) -> treated as an implied
+        `true` and compared against that exact claims.yaml field (added
+        2026-08-29, see "THE 2026-08-29 REPAIR (bare field name)").
       * anything else -> blindly compared against `_GENERIC_CLAIM_FIELDS`
         (epistemic_category, status, diagnostic_evidence_adjudicated,
         pending_retest_after_substrate, v3_pending) and `live_status.reading`.

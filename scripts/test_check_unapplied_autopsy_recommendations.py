@@ -391,6 +391,65 @@ class NamedFieldAndCitationTests(Base):
                 "change": "stamp this artifact -> failure_autopsy_NEWER_2026-08-20"}})])
         self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
 
+    def test_bare_field_name_fires_when_unapplied(self):
+        """MECH-135/INV-088 shape (failure_autopsy_V3-EXQ-954_2026-08-29):
+        '... and set the flag the claim does not yet carry ->
+        diagnostic_evidence_adjudicated' -- a bare field NAME with no colon
+        and no value at all. Claim does not carry the flag -- ACTIONABLE."""
+        self.fx.write_claims([{"id": CLAIM}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_bare_field_name_does_not_fire_once_applied(self):
+        """NEGATIVE CONTROL, the load-bearing half of the bare-field-name fix
+        and the exact real-corpus case (MECH-135, INV-088 both carry
+        diagnostic_evidence_adjudicated: true on origin/master cdd772b0dd)."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": True}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag the claim does not yet carry -> "
+                          "diagnostic_evidence_adjudicated"}})])
+        self.assertEqual(self.scan()["unapplied_disposition"], [])
+
+    def test_bare_field_name_stays_actionable_when_field_still_false(self):
+        """NEGATIVE CONTROL: the field is present but still false -- must not
+        be conflated with 'field absent' (both fall through to not-reflected
+        the same way, but this pins the explicit-value case too)."""
+        self.fx.write_claims([{"id": CLAIM, "diagnostic_evidence_adjudicated": False}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "set the flag -> diagnostic_evidence_adjudicated"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_bare_unrecognised_word_does_not_get_treated_as_a_field_name(self):
+        """NEGATIVE CONTROL: a bare tail that is not one of the three boolean
+        fields must not be promoted to a named-field comparison -- it stays
+        on the pre-existing blind `_GENERIC_CLAIM_FIELDS` compare, which
+        cannot match a claim carrying none of those fields."""
+        self.fx.write_claims([{"id": CLAIM}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {
+                "change": "-> some_unmodeled_bare_field"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
+    def test_bare_epistemic_category_or_status_is_not_treated_as_implied_true(self):
+        """NEGATIVE CONTROL: `_BOOLEAN_CLAIM_FIELDS` deliberately excludes
+        epistemic_category/status -- a bare mention of either must not be
+        read as an implied `true` (neither is boolean), so it must fall
+        through to the blind compare exactly as before this fix."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate"}])
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=None,
+            per_claim_recommendation={CLAIM: {"change": "-> status"}})])
+        self.assertEqual(len(self.scan()["unapplied_disposition"]), 1)
+
 
 # =========================================================================
 # CROSS-RUN SUPERSESSION -- GOV-APPLY-1's own blind spot (2026-08-22)
