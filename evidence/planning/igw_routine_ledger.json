@@ -3190,6 +3190,30 @@
       "task_claim_session_id": "igw-auto-igw-239-proposal-for-mech-143-20260829T153812Z",
       "task_claim_claimed_at": "2026-08-29T15:38:12Z",
       "assigned_at": "2026-08-29T15:37:46Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-29T16:43:33Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit ref MECH-143 since 2026-08-29T15:37:46Z: 2b6d506 V3-EXQ-960: MECH-143 dCA1 value-free map probe (smoke PASS)"
+    },
+    {
+      "igw_id": "IGW-20260829-240",
+      "stable_hash": "2d110eddaf79",
+      "skill": "/lit-pull",
+      "lane": "lit",
+      "priority": 40,
+      "claim_ids": [
+        "SD-069"
+      ],
+      "owner_exq": null,
+      "title": "Literature proposal for SD-069",
+      "worktree": ".claude/worktrees/igw-240-literature-proposal-for-sd-069",
+      "branch": "claude/igw-240-literature-proposal-for-sd-069",
+      "session_uuid": "0fda3e6d-3cd4-46ce-a36f-036db8ceb42f",
+      "pid": 24895,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-240-literature-proposal-for-sd-069 && claude --resume 0fda3e6d-3cd4-46ce-a36f-036db8ceb42f",
+      "task_claim_session_id": "igw-auto-igw-240-literature-proposal-for-sd-069-20260829T164523Z",
+      "task_claim_claimed_at": "2026-08-29T16:45:23Z",
+      "assigned_at": "2026-08-29T16:39:57Z",
       "status": "spawned"
     }
   ],
@@ -4348,6 +4372,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-28T23:04:31Z",
       "re_eligible_after": "2026-08-30T23:04:09Z"
+    },
+    {
+      "stable_hash": "8407cf009a0e",
+      "igw_id_at_disposition": "IGW-20260829-239",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-143"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-143",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-29T16:45:15Z",
+      "re_eligible_after": "2026-08-31T16:43:33Z"
     }
   ]
 }

@@ -2224,3 +2224,8 @@ One line per hourly tick. ASCII only.
 2026-08-29T14:31:47Z workset committed (regen -- 252 items, 28 ready, 0 in flight)
 2026-08-29T14:31:25Z skip IGW-20260829-239: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-29T15:37:46Z SPAWN IGW-20260829-239 skill=/queue-experiment prio=40 uuid=c362688f-557c-438a-8e02-df66468e2eb2 pid=86566 worktree=igw-239-proposal-for-mech-143
+2026-08-29T16:43:33Z workset committed (regen -- 251 items, 26 ready, 0 in flight)
+2026-08-29T16:45:15Z retire-proposal EXP-0059 -> executed (IGW-20260829-239; outcome=USEFUL_LANDED)
+2026-08-29T16:45:15Z auto-defer IGW-20260829-239 hash=8407cf009a0e for 48h (reaped -> completed_resumable)
+2026-08-29T16:45:21Z reaped TASK_CLAIMS igw-auto-igw-239-proposal-for-mech-143-20260829T153812Z (ledger IGW-20260829-239 -> completed_resumable)
+2026-08-29T16:45:21Z GC keep igw-239-proposal-for-mech-143 (ledger IGW-20260829-239 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
