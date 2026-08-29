@@ -1,0 +1,119 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix",
+  "run_id": "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-29T07:15:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "conversion_without_f_share_reduction_falsifies_monopoly",
+    "preconditions": [
+      {
+        "name": "decomp_samples_sufficient",
+        "kind": "readiness",
+        "description": "Every cell banked at least MIN_FRESH_SELECT_PER_CELL GENUINE E3 selections (fresh-gated, never per-env-step) behind its variance decomposition. Guards the ~10x E3-cadence pseudo-replication.",
+        "control": "FreshSelectProbe-gated decomp reads; n_latched emitted per cell",
+        "measured": 201.0,
+        "threshold": 60.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "offending_cell": "ARM_DEMOTION/seed43",
+        "met": true
+      },
+      {
+        "name": "f_variance_nondegenerate",
+        "kind": "readiness",
+        "description": "The F components carry non-zero variance across committed selections in every cell -- the numerator of the share statistic.",
+        "control": "worst cell across all (arm, seed)",
+        "measured": 0.0001708363273548641,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "comparator": ">=",
+        "offending_cell": "ARM_DEMOTION/seed43",
+        "met": true
+      },
+      {
+        "name": "nonf_variance_nondegenerate",
+        "kind": "readiness",
+        "description": "The NON-F (modulatory) components carry non-zero variance in every cell. SAME STATISTIC (a variance) that the load-bearing C2 share routes on -- if these are flat, f_variance_share is ~1.0 by STARVATION and the falsifier is unmeasurable, not confirmed.",
+        "control": "worst cell across all (arm, seed)",
+        "measured": 914.861623778865,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "comparator": ">=",
+        "offending_cell": "ARM_OFF/seed45",
+        "met": true
+      },
+      {
+        "name": "demotion_lever_engaged",
+        "kind": "readiness",
+        "description": "MECH-448 f_eligibility demotion reports active on at least MIN_DEMOTION_ACTIVE_FRAC of genuine selections in every treatment cell.",
+        "control": "e3.last_score_diagnostics f_eligibility_demotion_active, fresh-gated; worst treatment cell",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "comparator": ">=",
+        "offending_cell": "ARM_DEMOTION/seed42",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_a_treatment_arm_converts": true,
+      "C2_converting_arm_reduces_f_variance_share": true
+    },
+    "combination_rule": "PASS requires C1 (a treatment arm lifts committed-class entropy above ARM_OFF on the pre-registered majority of seeds). The DIRECTION is then decided by C2, a PER-SEED PAIRED reduction of F's variance share vs ARM_OFF: C2 true -> supports (conversion required rebalancing F's share, as MECH-439 predicts); C2 false -> weakens (a lever converted WITHOUT reducing F's share, which is the claim's own registered falsifying signature). C1 false with F's share held above the monopoly bar -> supports (the confirming signature). C1 false otherwise, or any readiness precondition unmet -> the falsifier was NOT evaluated and the run is scored non_contributory / non_degenerate."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2151a1142cd963469c2679ad8386c00b2449919017836355f37bb3f87597022d",
+  "substrate_commit": {
+    "commit": "02f6832e106b2ffb90a4a16f1e27ad9d0876fe0f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 54320,
+    "ticks_active": 0,
+    "writer_calls": 54320,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 8,
+    "goal_state_present": true
+  }
+}
