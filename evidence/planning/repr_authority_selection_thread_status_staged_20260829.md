@@ -149,3 +149,44 @@ never saw. So rather than opening a blocking question, this session did the
 work above that does not depend on the user's answer, and leaves the open
 choice (which of the STILL OPEN items to pick up next -- item 2 above, or
 something else) for the next *interactive* session to actually ask.
+
+---
+
+## Addendum, 2026-08-29T02:35:14Z (fifth session, `633c57e0-...`, headless)
+
+Re-verified everything in this note against live state; nothing has changed
+since the fourth session wrote it roughly 25 minutes earlier:
+
+- **No `/governance` apply cycle has run** since the 18:26:14Z (2026-08-28)
+  wave cited above (`git log --since` on `REE_assembly` confirms the next
+  commits are all lit-pull/planning/heartbeat/GOV-APPLY-1-partial traffic,
+  no governance apply pass).
+- **All 12 open flags** (GFLAG-0054/0055/0088/0089/0090/0091/0094-0099)
+  re-read from `evidence/planning/governance_flags.v1.json`: still `open`,
+  unchanged targets. GFLAG-0096 in particular is still unratified, so the
+  MECH-521 `what_would_answer` amendment it recommends was correctly left
+  unapplied (per the brief's own conditional).
+- **claims.yaml unchanged**: ARC-133/134 and MECH-516..523 all still
+  `candidate`, same `implementation_phase`/`v3_pending` values as before.
+- **`chip_ledger.py list --status open`** has no new follow-on chip tied to
+  this thread's claims (MECH-521/ARC-134/MECH-448/GFLAG-0094-0099) beyond
+  what already existed. Two things worth naming for the record, neither
+  acted on because they are outside this chip's scope:
+  - `chip-20260826-representation-authority-selection-bottleneck` (the
+    thread's original, broader "develop the thought" chip) shows a claim by
+    session `c6a1254b-...` at `2026-08-29T00:59:57Z`, but `ps aux` on this
+    box (`ree-cloud-5`, the same host the claim names) shows no live
+    process for that session -- so that claim is very likely stale/dead,
+    not a live parallel session. Left alone; it is a hygiene-tick /
+    zombie-reaper concern, not this chip's.
+  - Two prior dead-dispatch worktrees for this exact resume chip
+    (`metaworker-chip-20260828-repr-authority-selection-thread-resume`) and
+    the litpull sibling (`metaworker-chip-20260826-litpull-repr-authority-
+    selection-family`) still exist on disk. Not touched here either --
+    worktree GC is a separate concern from this thread's research content.
+
+**Net effect of this session: verification only, no new substance.** The two
+STILL OPEN user-facing items (affect-persistence reading; whether to
+commission ARC-134's P0 build) remain exactly as the fourth session left
+them, and still require an interactive session to ask. No new `GFLAG` was
+raised and no claim was touched.
