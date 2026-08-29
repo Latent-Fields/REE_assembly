@@ -1,0 +1,80 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T15:36:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3",
+      "queue_id": "V3-EXQ-957",
+      "claim_ids": [],
+      "self_route_label": "mech219_controllability_dissociation_confirmed",
+      "failed_criterion": "none -- diagnostic PASS under adjudication",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- deliberately claim-free (design memo Sec 7, driver, and queue note all prescribe claim_ids=[] for the first-ever run against this substrate; MECH-219/MECH-305 scope split additionally forbids reading a controllability-only demonstration as MECH-219 evidence)",
+        "biological_reference": "clear -- controllability gating of suffering accumulation (Salomons 2004; Loffler 2018; learned-helplessness lineage). The g_t = 1 - escapability gate is a coarse but faithful translation, not a formal import.",
+        "prerequisites": "present -- SD-019a/SD-019b built; SD-058 soft dependency deliberately avoided via external escapability mode",
+        "implementation": "complete for the probed scope (pure-arithmetic HarmSufferingAccumulator; 11/11 unit contracts at build time)",
+        "environment": "adequate for a wiring probe -- matched-nociception design (identical seed, fixed position, stay-action) isolates the escapability manipulation",
+        "measurement": "adequate -- pre-registered thresholds (never fitted to this run), conjunctive per-seed criteria, explicit degeneracy scan over three series plus a separate C4 fired-at-least-once control",
+        "integration": "partially coupled -- untrained encoder (probe relies only on z_harm_un norm being non-trivial near a hazard); only external escapability mode exercised; goal pipeline not engaged (expected)",
+        "scale": "adequate for purpose -- 5 seeds x 2 conditions x 180 live sense() ticks; 3.06s elapsed is proportionate to a no-training no_grad arithmetic probe, not evidence of skipped computation"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "n/a -- no failure; PASS adjudicated as genuine (nothing chargeable to any bucket)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "controllability-gated aversive accumulation with asymmetric onset/offset dynamics (perceived-control modulation of pain/suffering: Salomons 2004; Loffler 2018; Maier & Seligman controllability circuit)",
+        "dependencies": [
+          "z_harm_un stream (SD-019a EMA)",
+          "escapability resolution (external mode here; SD-058 avoidance_efficacy later)",
+          "SD-021 descending modulation (parity checked, not depended on)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing at this scope; escapability binary 0/1 rather than graded is a simplification the follow-on evidence run can enrich",
+        "lit_status": "present"
+      },
+      "adjudication_verdict": "GENUINE PASS, scoped to the ACCUMULATION side of the substrate. The zero in the escapable arm is analytic (g_t=0 -> drive 0), but the probe's informative content is that the construction is actually wired into the live sense() path: over 180 live ticks the escapable arm accumulated exactly 0.0 suffering while carrying z_harm_un 0.54-0.70 (C3 non-vacuity), the external escapability lever demonstrably reaches the accumulator, and SD-021 attenuation fired 5/5 without touching the escapability scalar (C4 parity). A mis-wiring on the accumulation path (escapability not plumbed; drive using u_t alone; SD-021 leaking into the gate) would have failed these criteria. C2's half-life 69.0 is the EXACT discrete-EMA prediction (ceil(ln 0.5 / ln 0.99)) and the release arithmetic is seed-independent, so C2 verifies the-code-is-the-documented-code rather than anything behavioural -- real but deliberately weak. SCOPE LIMIT (red-team finding, recorded): the probe reads s_t from accumulator.get_state(), never from the latent, and every harm_suffering_redirect_* consumer flag is OFF in this config -- so the accumulator's OUTPUT path and all downstream consumers are UNVERIFIED by this run (the agent.py vector-build line could be deleted and all four criteria would still pass). 'Substrate readiness confirmed' therefore means accumulation-side readiness; the behavioural run must independently establish the output/consumer side. Degeneracy scan clean; the deliberately-constant escapable-suffering series is correctly excluded with its non-vacuity carried by C3. Self-route label accurate at its stated scope.",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic; 'standard' asserts no epistemic suppression, which is the verdict. The run is scoring-excluded by purpose + empty claim_ids; nothing to write into claims.yaml.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-957 (2026-08-29) adjudicated by confirmed autopsy: genuine substrate-readiness PASS for the MECH-219 HarmSufferingAccumulator (controllability gate wired in live sense() path; hysteresis release matches theory in 5/5 seeds; SD-021 parity holds). Clears the readiness precondition for the MECH-219/SD-019b behavioural evidence run (claim_ids=['MECH-219'], trained substrate, C3(b) MECH-353 cross-check). Not itself MECH-219 evidence (scoring-excluded by design).",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "The readiness-first, claim_ids=[] discipline (memo Sec 7, V3-EXQ-518 precedent) worked exactly as designed: first-ever run against a new substrate produced an adjudicable wiring verdict without contaminating MECH-219's evidence record.",
+        "An analytically-forced zero (g_t=0 -> drive 0) can still carry real information when the criterion set includes non-vacuity of the input (C3 un_floor) and live-path plumbing checks -- the vacuous-pass risk was pre-empted in the design rather than found at autopsy.",
+        "Rejected-design record in the driver (physical-relocation relief REJECTED because untrained-encoder z_harm_un rises after relocation, 0.55->1.45 over 200 ticks) is a caveat the follow-on behavioural run must inherit: on an untrained or lightly-trained encoder, relocation-based relief operationalisations are confounded."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Follow-on is the behavioural MECH-219/SD-019b evidence run the scope_note names: claim_ids=['MECH-219'], trained substrate, C3(b) anti-correlation with MECH-353 z_block_assert, full z_harm_s attenuation-magnitude C4, escapability from avoidance_efficacy once SD-058 clears (external mode remains valid fallback). Per the red-team pass, that run MUST additionally: (1) enable the harm_suffering_redirect_* consumer flags -- MECH-219's own what_would_answer requires redirect-flag enablement, and 957 leaves the entire output/consumer path unverified (dead-end register in this config); (2) test the memo-Sec-7 C2 CONTRAST half that 957 did not (z_harm_un releases FAST after offset while s_t releases slowly -- the temporal dissociation between input and accumulator, not just the accumulator's own decay constant). New EXQ number (different question: behavioural temporal signature vs wiring readiness). NOT spawned by this session -- /governance chips it after ratifying this disposition (2026-07-30 rule). No existing queue entry or chip covers this follow-on (checked at red-team time)."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-08-29T15:36:15Z",
+  "confirmed_by": "interactive Step 8 gate, session autopsy-batch-20260829",
+  "pre_routing_checks": {
+    "tool": "autopsy_pre_routing_checks.py",
+    "fire_count": 0,
+    "note": "0 fires on all applicable checks; C1/C2/C3 structurally inapplicable on claim-free targets (956/952/957) -- red-team pass carried the load there."
+  },
+  "red_team": {
+    "verdict_summary": "CONFIRMED on adjudication (all numbers recompute bit-exactly; half-life 69 is the exact discrete prediction); CONTESTED on routing note and ADOPTED: output side is a dead-end register in this config (all harm_suffering_redirect_* flags off) -- scope narrowed to accumulation-side readiness; follow-on requirements added (redirect flags + C2 contrast half).",
+    "gate_disposition": "User confirmed: as drafted (with amended scope + follow-on requirements)."
+  }
+}

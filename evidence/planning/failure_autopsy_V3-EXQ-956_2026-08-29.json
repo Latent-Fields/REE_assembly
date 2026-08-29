@@ -1,0 +1,125 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T15:36:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+      "queue_id": "V3-EXQ-956",
+      "claim_ids": [],
+      "self_route_label": "gumbel_learned_occupancy_only_content_discrimination_not_confirmed",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- deliberately claim-free (validates the substrate_queue contextmemory-write-path-addressing-degeneracy entry's THIRD mechanism, not SD-017/ARC-045/MECH-166, which it unblocks only once validated)",
+        "biological_reference": "partial -- content-addressed episodic slot allocation (hippocampal pattern separation / CA3 attractor assignment) is the reference class; a write-address tagger trained by an auxiliary pairwise-diversity loss is closer to a formal/engineering import than a biological translation (biological pattern separation is driven by the content code itself, DG sparsification, not by an addressing-diversity penalty)",
+        "prerequisites": "present -- the gradient path was genuinely wired for the first time (the driver's _e1_tick fix; without it compute_prediction_loss returned exactly 0.0 and the tagger never moved); both mechanical controls prove it (untrained tagger byte-frozen 5/5, trained tagger moved 1.14-1.37 5/5)",
+        "implementation": "complete -- write path, tagger, loss, and agent wiring all exercised under a real 100ep x 150-step schedule; substrate clean at 3e193452",
+        "environment": "adequate for the question asked -- real-agent latents with context switching every 5 episodes; the eval probe uses the contract test's own 2-cluster instrument with a headroom gate",
+        "measurement": "adequate with one recorded caveat -- the C2 readout is a mean over 5 seeds of a bimodal per-seed Jaccard (untrained per-seed 0/1/1/0/0), so the 0.25 margin on a 5-seed mean is a coarse instrument; but the observed move was DIRECTIONALLY OPPOSITE (+0.267, trained MORE collapsed), reproducing the author's independent 40-episode pre-check direction (0.4 -> 0.9), so instrument coarseness cannot rescue the mechanism",
+        "integration": "coupled -- training-time occupancy, eval-mode probe, and loss all ran against the same live ContextMemory",
+        "scale": "adequate at the operating point tested; ONLY weight=0.5 has ever been measured for this loss (chosen by 907-lineage precedent), and the schedule matches 907's proven-sufficient 15,000 steps"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MECHANISM FAILED -- implementation complete, measurement adequate (with the bimodal-mean caveat), environment adequate; the tested mechanism (pairwise-diversity write-addressing loss producing content-conditioned selection) failed to produce content discrimination under real training (required -0.25 Jaccard move clearly absent; the +0.267 wrong-direction point estimate is suggestive at n=5, p~0.25, not established). Not chargeable to REE as a whole: this is the second loss DESIGN to fail content-discrimination for one substrate component (first: the MoE importance loss, content-blind Jaccard 1.000, replaced pre-landing)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal pattern separation / content-addressed slot allocation (DG-CA3)",
+        "dependencies": [
+          "content code with usable cluster structure (present: probe headroom met)",
+          "a training signal that references content similarity (ABSENT in the tested loss -- it references only addressing-distribution diversity)"
+        ],
+        "is_formal_import": true,
+        "divergence": "load-bearing candidate: biological pattern separation is driven by the content representation itself (sparsification, orthogonalisation), not by a diversity penalty on the addressing policy; the tested loss can be satisfied -- or worsened -- content-blindly",
+        "lit_status": "partial"
+      },
+      "adjudication_verdict": "GENUINE, INFORMATIVE FAIL -- the self-route label is accurate. Exactly one load-bearing criterion failed, and it is the discrimination criterion (C2: mean probe Jaccard trained 0.667 vs required <= untrained 0.400 - 0.25 = 0.15). Its own readiness gate was met (headroom 0.400 >= 0.25), precondition_unmet=false, non-degenerate, and the FAIL is noise-proof in the direction that matters: no trained seed reached Jaccard 0, min trained Jaccard 1/3, so the required -0.25 move is clearly absent. Everything else passed: P0 writepath (min 1432 writes vs 200), C1 occupancy 5/5 in both gumbel arms (16/16 slots -- Gumbel-noise-driven, training-independent, as pre-registered), LEGACY reproduced the known 3-seed single-slot lock (seeds 7/13/100, the 436e/436f/943 operating point), both mechanical controls clean, and the entropy comparison is arm-matched (identical per-seed write counts -> identical tau anneal; the untrained arm's 3.97 entropy shows annealing alone does not concentrate). STRENGTH CALIBRATION (red-team finding): the WRONG-DIRECTION reading (+0.267 mean move, trained more collapsed) is SUGGESTIVE, not established -- by exact paired sign-flip / permutation on 5 bimodal per-seed Jaccards it is p ~ 0.24-0.28 (3 seeds up, 2 down), and the corroborating 40-episode pre-check (0.4 -> 0.9, same direction) is non-independent and non-load-bearing. So the robust conclusion is 'training the pairwise-diversity loss at w=0.5 did NOT produce content discrimination'; 'training actively worsens it' remains a live-but-unproven reading (its cheap confirmer: +10 seeds x 2 gumbel arms, ~26 min cloud, and/or probe_clusters > 2). Training DID concentrate training-time writes (entropy 3.97 -> 2.67-3.24; self-repeat 0.06 -> 0.35-0.51) and moved the tagger substantially (1.14-1.37) -- the tagger learns SOMETHING; whether that something is anti-discriminative or merely non-discriminative is exactly what the follow-on portfolio should separate.",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic; 'standard' asserts no epistemic suppression. Scoring-excluded by purpose + empty claim_ids; the run's own evidence_direction non_contributory stands.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-956 (2026-08-29) adjudicated by confirmed autopsy: genuine diagnostic FAIL on the discrimination criterion -- the gumbel_learned write-address tagger, trained for the first time with a genuinely-wired gradient path (loss weight 0.5, 15,000 real steps), did NOT produce content discrimination (mean probe Jaccard 0.400 untrained -> 0.667 trained vs required <= 0.15; the wrong-direction point estimate is suggestive, p~0.25 at n=5, not established). Occupancy floors pass but are Gumbel-noise-driven and training-independent. The corrupting substrate entry contextmemory-write-path-addressing-degeneracy stays implemented_pending_validation: none of the three mechanisms (BIAS, REFRACTORY, gumbel_learned@w=0.5) has demonstrated content-conditioned write selection.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py::ContextMemory.write",
+          "ree_core/predictors/e1_deep.py::ContextMemory.compute_write_addressing_loss",
+          "ree_core/agent.py::compute_prediction_loss"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+          "experiment_type": "v3_exq_956_contextmemory_write_gumbel_learned_validation",
+          "metric": "C2 content discrimination: mean 2-cluster probe Jaccard trained 0.667 vs untrained 0.400 (required <= 0.15; the +0.267 wrong-direction move is p~0.25 at n=5, suggestive not established); training concentrated writes (entropy 3.97 -> 2.67-3.24) -- second loss design to fail content-discrimination (first: MoE importance loss, Jaccard 1.000, replaced pre-landing)",
+          "target": "mean probe Jaccard(trained) <= Jaccard(untrained) - 0.25 under a real training schedule, i.e. demonstrably content-conditioned write-address selection",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1 loss-objective-mismatch: pairwise addressing-distribution diversity does not reference content similarity at all, so optimizing it need not (and at this operating point did not) produce content conditioning -- a content-referencing objective (e.g. contrastive: same-cluster states to same slots, cross-cluster to different) is required. Direct precedent: V3-EXQ-907's confirmed read-path result, where a context-referencing objective broke the saddle at the same 15,000-step schedule",
+          "H2 operating-point: weight 0.5 / 100-episode schedule is the wrong operating point for this loss (only value ever measured); some weight/anneal/duration yields discrimination -- NOT eliminated by this run (the wrong-direction move is p~0.25 at n=5, so 'longer/heavier training helps' remains live)",
+          "H3 task-pressure-required: no write-side auxiliary loss suffices -- content-conditioned addressing only emerges when the READ path's task gradient flows back through write selection (end-to-end pressure), i.e. the frame 'train the tagger with a standalone auxiliary loss' is wrong",
+          "H4 input-distribution: train-time z_world under-differentiation (the SD-008 ~0.98-cosine cone) leaves the tagger with no usable content structure DURING training, so no write-side objective can learn content conditioning from real-agent latents regardless of its form -- un-instrumented in this manifest (no train-time latent-differentiation readout), and a synthetic-stream probe of H1 would conflate objective with input distribution unless it also trains on the synthetic stream"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1",
+            "axis": "algorithm",
+            "sketch": "swap in a content-referencing loss (contrastive/cluster-supervised) at the same schedule; to avoid conflating with H4, run it both on real-agent latents and on the synthetic 2-cluster stream as training input; null: Jaccard does not drop by the margin in either regime"
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "process",
+            "sketch": "cheap seed/weight sweep first (+10 seeds x 2 gumbel arms ~26 min cloud settles the wrong-direction question; then weights {0.1, 2.0, 8.0} at moderate scale); null: no operating point moves Jaccard in the correct direction"
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "drive",
+            "sketch": "couple SD-016 read-path retrieval loss through write selection (straight-through) so task pressure reaches the tagger; null: coupled training still fails the margin"
+          },
+          {
+            "hypothesis": "H4",
+            "axis": "representation",
+            "sketch": "instrument train-time content structure: record pairwise cosine distribution / cluster separability of the actual write-stream latents during training alongside the tagger's selection; null: latents carry separable structure the tagger ignores (which would refocus on H1/H3)"
+          }
+        ],
+        "note": "GOV-FANOUT-1 shape without a fired brake: >= 2 live hypotheses about WHY content discrimination failed. H2's cheap seed-sweep leg is the first thing to run (it also settles whether the wrong-direction move is real); H1 is the most theory-grounded full leg (907 precedent). Each probe on a different design axis; design-audit for coverage + verdict-aliasing before queuing."
+      },
+      "learning_extracted": [
+        "'The tagger trains' and 'the tagger learns the right thing' are separate questions: the tagger moved substantially (1.14-1.37) and concentrated writes while content discrimination did not improve (and the point estimate worsened, p~0.25 at n=5) -- a diversity-shaped auxiliary loss does not reference content and so does not purchase content conditioning.",
+        "The driver's _e1_tick wiring fix (without which compute_prediction_loss returned exactly 0.0 on every step and the tagger stayed byte-frozen) is the load-bearing methodological find: any prior driver in this family that skipped act()/act_with_split_obs() silently trained NOTHING through compute_prediction_loss. The mechanical positive/negative controls (tagger moved vs byte-frozen) are what made this run's wiring trustworthy and should be standard for any auxiliary-loss validation.",
+        "Two independent loss designs (MoE importance; pairwise diversity) have now failed content-discrimination for write addressing -- the recurrence points FIRST at the objective family (H1: neither references content), though the operating point (H2) and input-distribution (H4) hypotheses are not eliminated by this run."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "The bottleneck is a DISCRIMINATION (H1/H2/H3 above), not a single unambiguous build -- route the fanout portfolio through /queue-experiment (H2 can start as unit/moderate-scale spikes). Also amend the substrate entry per recommended_substrate_queue_entry (append the 956 failure record; entry stays implemented_pending_validation, consistent with the 2026-08-26 human decision that occupancy workarounds do not close the corrupting defect). Step 9b: pre-register the three legs as a NEW hypothesis-space question (no existing qid covers the write-path content-discrimination question). Not spawned by this session (2026-07-30 rule)."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-08-29T15:36:15Z",
+  "confirmed_by": "interactive Step 8 gate, session autopsy-batch-20260829",
+  "pre_routing_checks": {
+    "tool": "autopsy_pre_routing_checks.py",
+    "fire_count": 0,
+    "note": "0 fires on all applicable checks; C1/C2/C3 structurally inapplicable on claim-free targets (956/952/957) -- red-team pass carried the load there."
+  },
+  "red_team": {
+    "verdict_summary": "CONFIRMED (core + routing); one sub-claim CONTESTED and ADOPTED: the wrong-direction move is p~0.24-0.28 at n=5 (suggestive, not established) -- verdict recalibrated to \"discrimination clearly absent\"; H4 (input-distribution) added to the portfolio per red-team. All numbers recomputed exactly; entropy comparison verified arm-matched.",
+    "gate_disposition": "User confirmed: full package (failure record amend + new hypothesis-space question with 4 legs + portfolio via /queue-experiment after governance ratifies)."
+  }
+}

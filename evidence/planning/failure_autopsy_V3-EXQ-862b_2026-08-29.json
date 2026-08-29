@@ -1,0 +1,99 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T15:36:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_862b_q040c_dacc_pe_weight_delta_correlation_20260828T223750Z_v3",
+      "queue_id": "V3-EXQ-862b",
+      "claim_ids": [
+        "Q-040"
+      ],
+      "self_route_label": null,
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the FAIL was scored weakens by the driver's pre-registered branch, but the test did not let the claim express itself: the C3 detect bar was arithmetically unreachable through the pre-registered mechanism (see measurement row), so the run weighs Q-040.c neither way. Per the driver's own DECLARED NULL it does not reopen Q-040.a/b in any case",
+        "biological_reference": "clear -- dACC PE/adjustment coupling is grounded (Hayden 2011 unsigned-RPE behavioural adjustment; Brown & Braver 2007; Treuting 2025; targeted_review_q_040, lit_conf 0.806); no new lit-pull owed (same verdict as the 862a cluster autopsy)",
+        "prerequisites": "present -- for the first time in the lineage: P1' z_harm_a-specific holds 3/3 ON seeds (14/2/32), P2 dACC engagement 3/3 both arms, preflight held 3+3, non-degenerate",
+        "implementation": "complete for the manipulation path (per-stream 0.995 threshold empirically calibrated, refresh dead-band 0.999, runtime wiring verified); the defect is in the TEST'S DV, not the substrate",
+        "environment": "adequate -- gap4-475a-conditions harness, same regime the 490 cohort validated",
+        "measurement": "MISLEADING -- the DV (||dACC bias||_2) is structurally insensitive to the quantity under test. Code + manifest recompute (verified independently in this session): bundle['pe'] reaches the bias through exactly one path, control_required = pe * dacc_effort_cost(0.1), times per-candidate effort (= horizon 10), times dacc_weight 0.5 -- a pe-attributable component of ~0.5*pe per candidate against payoff components of ~500-1800 (payoffs = -E3.last_scores). Upper-bound pe-driven std of ||bias|| = 0.5*0.1*10*sqrt(32)*std(pe) = 2.83*std(pe); over the manifest's own series every cell yields variance share <= 1e-6 and max direct-path |rho| ~ 0.0002-0.0010 vs the 0.3 detect bar. C3 could not have fired regardless of whether the coupling exists; the observed |rho| up to 0.134 is necessarily payoff<->pe covariance (E3 score dynamics), not dACC's weighting of PE. SECONDARY: realized manipulation dose was also tiny (z_harm_a holds 0.1-2.9% of eval steps vs the calibration's predicted 15-20%; ON-vs-OFF bias-magnitude series Pearson correlation 1.0000 in all three seeds -- the manipulation's realized reach into the DV was ~1e-5 relative)",
+        "integration": "coupled -- full agent loop, dACC firing on every eval step in every cell",
+        "scale": "adequate on eval-step counts (775-1962 per cell); scale was never the binding problem -- DV sensitivity was"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES FAILED -- the fourth consecutive instrumentation failure in the 475b/862/862a/862b lineage, displaced one level deeper each time: stream not wired (475b), consumer gain zero (862), gate threshold never crossed (862a), and now a DV arithmetically incapable of expressing the coupling (862b). The substrate and environment are not established as failing; the claim was never fairly tested."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC unsigned-PE-driven behavioural adjustment (Hayden 2011); expected-value-of-control (Shenhav 2013/2016)",
+        "dependencies": [
+          "credible upstream precision estimates (MECH-269b V_s gating)",
+          "affective harm stream (z_harm_a)",
+          "DACCtoE3Adapter consumer gain"
+        ],
+        "is_formal_import": false,
+        "divergence": "none new; the biology supports coupling at the class level -- this run could not test it",
+        "lit_status": "present"
+      },
+      "adjudication_verdict": "INSTRUMENTATION FAILURE (fourth in the lineage), NOT a contributory negative -- recommend NON_CONTRIBUTORY, overriding the driver's pre-registered FAIL->weakens branch. What the run genuinely established: the 862a cluster autopsy's prescription worked (P1' 3/3, P2 3/3+3/3, preflight, non-degenerate; the manipulation touched the targeted stream for the first time). What the red-team pass established and this session independently re-verified: the C3 discrimination bar (|rho| >= 0.3 between pe and ||bias||) was ARITHMETICALLY UNREACHABLE via the pre-registered mechanism -- pe's maximum attainable variance share of ||bias|| is <= 1e-6 in every cell (max direct-path |rho| ~ 0.001), because the pe-scaled EVC effort term (0.5*0.1*pe*10 per candidate) is drowned by E3-score payoff components ~500-1800. A pre-registered branch cannot rescue a criterion incapable of firing; that is exactly the precedent this lineage set at 862a, where the same FAIL->weakens branch was overridden to non_contributory by the confirmed cluster autopsy. Secondary, independently sufficient concern: the realized manipulation dose was ~10x below the calibration's predicted 15-20% sub-threshold minority (holds 0.1-2.9% of steps; eval-phase V_s sat almost entirely inside the 0.995-0.999 dead band -- a warmup-vs-eval distribution shift the calibration probe, run on pooled ticks, could not see), and ON-vs-OFF bias series correlate at 1.0000. The declared null ('coupling not detectable at this harness's scale/design') is literally true -- but because the DV is structurally insensitive, it carries no evidential weight against the coupling. Q-040.c remains untested.",
+      "recommended_epistemic_category": "answer_state",
+      "recommended_epistemic_category_per_claim": {
+        "Q-040": "answer_state"
+      },
+      "recommended_epistemic_category_note": "Q-040 is an open_question; answer_state is its already-inferred category, made explicit for the stamp requirement. The failure-mode diagnosis (measurement_test_design_defect) goes here in the note, not in the category field. No suppression change (answer_state is outside _EPI_SUPPRESS_PROPOSAL).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "Q-040": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-862b (2026-08-28) adjudicated by confirmed autopsy: FOURTH instrumentation failure of the Q-040.c lineage, one level deeper than 862a's -- the manipulation finally engaged (P1' z_harm_a holds 3/3: 14/2/32; P2 3/3; non-degenerate) but the DV itself is structurally insensitive: pe's maximum attainable variance share of ||dACC bias|| is <= 1e-6 (max direct-path |rho| ~ 0.001 vs the 0.3 bar; pe enters only via control_required = pe*0.1 times effort 10 times dacc_weight 0.5, against E3-score payoff components ~500-1800). Direction set non_contributory per autopsy, overriding the driver's pre-registered weakens (same override the lineage applied at 862a); the manifest evidence_direction must be corrected the same way 862a's was, or the indexer keeps scoring the voided direction (the MECH-236 failure mode) -- as of this autopsy 862b stands as Q-040's SOLE genuine experimental entry, scored weakens, which this disposition voids. Any 862c must (a) use a pe-isolated readout (the bundle already exposes control_required / the effort term at dacc.py:460-461) or payoff-normalise the DV, (b) re-calibrate the V_s threshold on eval-phase ticks under agent.eval() (not pooled warmup+eval -- the dead-band distribution shift is what collapsed the realized dose to 0.1-2.9%), and (c) control the z_beta confound (the ON arm's dominant realized manipulation was z_beta holds 190/1962, 190/1088 via the legacy 0.85 global threshold, feeding E3 scores -> payoffs -> the DV's dominant component).",
+      "per_claim_recommendation": {
+        "Q-040": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "answer_state",
+          "change": "862b's manifest evidence_direction weakens is VOIDED by this autopsy -- governance must write the manifest correction (weakens -> non_contributory) + rebuild the index, and set the explicit category the claim does not yet carry -> answer_state",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays open"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "0 substrate_ceiling autopsies tag Q-040 (now 6 targets across the lineage, all measurement/instrumentation categories, none weakened). Brake does not fire (R3: instrumentation defects do not count); granularity-debt trigger does not fire (no target reads weakened). The recurrence signal here is an AUTHORING-CONVENTION gap, not claim coarseness: four letters, four instrument failures, each one level deeper."
+      },
+      "learning_extracted": [
+        "The 862a cluster autopsy's prescription worked exactly as written (calibrated per-stream threshold + stream-specific P1' converted a self-deceiving manipulation into a demonstrably-engaged one) -- and the next-level lesson is its own generalisation: a discrimination criterion needs an ARITHMETIC REACHABILITY check on its DV at authoring time. Twenty lines of python over any pilot manifest (bound the pe-attributable variance share of the DV) would have shown |rho| >= 0.3 was unreachable before spending 110 minutes x 6 cells. Same family as 862a's lesson (preconditions must assert engagement of the specific slice the DV consumes), one level up: the DV must be shown CAPABLE of expressing the effect, e.g. via the pe-isolated bundle readouts that already exist (dacc.py:460-461).",
+        "A calibration probe must sample the phase it calibrates for: the 0.995 threshold was calibrated on pooled warmup+eval ticks, but eval-phase V_s(z_harm_a) sat almost entirely inside the 0.995-0.999 dead band (refresh counters 1/133/120 over 775/1962/1088 steps), collapsing realized dose to 0.1-2.9% against a predicted 15-20%. Future gating experiments should calibrate on eval-phase ticks under agent.eval() AND assert a minimum realized-dose precondition (holds as a fraction of steps), not just holds > 0.",
+        "A pre-registered FAIL->weakens branch cannot rescue a criterion that was arithmetically incapable of firing -- pre-registration fidelity governs interpretation of a FAIR test, not the fairness of the test itself (the lineage's own 862a precedent, reapplied).",
+        "The ON arm's dominant realized manipulation was z_beta holds (190/1962, 190/1088 via the retained 0.85 global threshold), not z_harm_a -- empirically immaterial here (bias series ON/OFF correlation 1.0000) but a live confound for any dose-corrected successor, since z_beta feeds E3 commitment dynamics -> payoffs -> the DV's dominant component.",
+        "Manifest gap: no config block (driver passes config=None to write_flat_manifest) -- advisory recording gap to fix in any future letter."
+      ],
+      "routing": "governance",
+      "routing_note": "Hand to /governance: (1) write the 862b manifest evidence_direction correction weakens -> non_contributory + evidence_direction_note citing this autopsy, rebuild the index (without this, Q-040's sole genuine experimental entry stays a voided weakens -- the exact MECH-236 failure mode 862a hit); (2) apply the evidence_quality_note + explicit answer_state category to Q-040; (3) resolve GFLAG-0092 as OVERTAKEN with a note (its literal instruction -- mark 862a superseded -- was mooted by the 2026-08-28 governance action setting 862a non_contributory, which the indexer scoring-excludes identically; the flag is still open and will keep surfacing in audits until formally resolved); (4) mark 862b reviewed. OPTIONAL follow-on, user's call at the gate: an 862c redesigned per the three requirements in the evidence_quality_note (pe-isolated readout or payoff-normalised DV; eval-phase calibration; z_beta confound control) -- not mandated: Q-040.c has consumed 4 runs and its parent's practical content (a/b) is settled. Not spawned by this session (2026-07-30 rule)."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-08-29T15:36:15Z",
+  "confirmed_by": "interactive Step 8 gate, session autopsy-batch-20260829",
+  "pre_routing_checks": {
+    "tool": "autopsy_pre_routing_checks.py",
+    "fire_count": 0,
+    "note": "0 fires on all applicable checks; C1/C2/C3 structurally inapplicable on claim-free targets (956/952/957) -- red-team pass carried the load there."
+  },
+  "red_team": {
+    "verdict_summary": "CONTESTED -> upheld: central facts CONFIRMED (all six rho recomputed to <3e-17; gates verified); the contest (C3 arithmetically unreachable, variance share <= 1e-6) was independently re-verified by the adjudicating session and ADOPTED -- direction flipped weakens -> non_contributory. User confirmed at gate 2026-08-29.",
+    "gate_disposition": "User confirmed: non_contributory; no 862c mandated (redesign requirements recorded for any future letter)."
+  }
+}

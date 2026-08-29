@@ -2595,12 +2595,26 @@
    "registered_utc": "2026-08-02T10:50:16Z",
    "fanout_sources": [
     "failure_autopsy_V3-EXQ-108a_2026-08-02.json",
-    "failure_autopsy_V3-EXQ-108b_2026-08-03.json"
+    "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
+    "failure_autopsy_V3-EXQ-954_2026-08-29.json"
    ],
    "is_hero": false,
-   "initial_frozen_count": 3,
+   "initial_frozen_count": 5,
    "initial_frozen_count_at_registration": 2,
-   "fanout_growth_events": [],
+   "fanout_growth_events": [
+    {
+     "recorded_utc": "2026-08-29T15:36:15Z",
+     "pre_registered_utc": "2026-08-03T14:32:53Z",
+     "fanout_source": "failure_autopsy_V3-EXQ-954_2026-08-29.json",
+     "pre_registration_witness": "evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md (committed fb581f136e, 2026-08-03T14:32:53Z)",
+     "added_hids": [
+      "H-horizon-compounding",
+      "H-action-blindness"
+     ],
+     "delta": 2,
+     "note": "Sub-mechanism discrimination WITHIN the confirmed H-dynamics-collapse leg, enumerated verbatim (with the exact decision rule and re-scope branch) by the git-witnessed lit-pull SYNTHESIS on 2026-08-03, 26 days before the adjudicating run. The ELIMINATED child (H-horizon-compounding) is the parent's own recorded basis mechanism ('compounding error') -- this growth corrects the confirmed leg's basis wording without withdrawing the leg (the training-signal-family confirmation stands)."
+    }
+   ],
    "discovery_growth_events": [
     {
      "recorded_utc": "2026-08-03T12:20:39Z",
@@ -2685,6 +2699,56 @@
       "resolved_utc": "2026-08-02T12:16:43Z",
       "basis": "Both antecedent checks (encoder_trained, real_zworld_nondegenerate) passed and both alternative hypotheses were eliminated by the same run's own decision tree (branch 3 hit exactly, code-verified in v3_exq_108b_mech135_inv088_zworld_disambiguation.py lines 846-853); confirmed in both seeds (cr_ratio 2.57e-6 / 3.18e-6)."
      }
+    },
+    {
+     "hid": "H-horizon-compounding",
+     "label": "Within H-dynamics-collapse: the dominant sub-mechanism is horizon mismatch / autoregressive compounding error (E1 trained at horizon=1, rolled out at 30)",
+     "desc": "Predicts SMOOTH degradation with depth: cr_ratio(1) healthy (>= 0.1), cr_ratio(rollout_horizon) collapsed -- the SYNTHESIS Section 4.3 signature for mechanism (a).",
+     "axis": "learning-signal",
+     "pre_registered_utc": "2026-08-03T14:32:53Z",
+     "pre_registration_source": "evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md (committed fb581f136e, 2026-08-03T14:32:53Z)",
+     "adjudicating_runs": [
+      "V3-EXQ-954"
+     ],
+     "resolution": {
+      "state": "eliminated",
+      "resolving_runs": [
+       "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "action_blindness_confirmed",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-08-29T09:37:05Z",
+      "basis": "Signature absent on both seeds: cr_ratio already floored at h=1 (4.8e-07/5.4e-07 vs 0.1) with a flat-to-mildly-RISING profile to h=30 -- compounding cannot explain a floor that exists before composition begins. Horizon-matched denominator healthy at every h (CR_real 0.17-0.24). Discriminating non_contributory: eliminates this leg as the DOMINANT mechanism; compounding may still contribute second-order (the mild rise is float32-noise-level and not interpreted)."
+     }
+    },
+    {
+     "hid": "H-action-blindness",
+     "label": "Within H-dynamics-collapse: the dominant sub-mechanism is E1's action-blind interface (no action input; z_self LSTM slot zeroed)",
+     "desc": "Predicts the ratio ALREADY near-floor at h=1, before compounding could occur, AND the direct one-step per-action probe near-zero -- SYNTHESIS Section 4.3 signature for mechanism (b).",
+     "axis": "intrinsic-architecture",
+     "pre_registered_utc": "2026-08-03T14:32:53Z",
+     "pre_registration_source": "evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md (committed fb581f136e, 2026-08-03T14:32:53Z)",
+     "adjudicating_runs": [
+      "V3-EXQ-954"
+     ],
+     "resolution": {
+      "state": "confirmed",
+      "resolving_runs": [
+       "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "action_blindness_confirmed",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": false,
+      "resolved_utc": "2026-08-29T09:37:05Z",
+      "basis": "Both disjuncts on both seeds by 5+ orders: cr_ratio(h=1) = 4.8e-07/5.4e-07; ratio_action_vs_real_h1 = 1.2e-06/8.8e-07; cr_action_h1 < the 1e-4 real floor independently. Structural case code-verified (e1_deep.py:758/1126 no action param; :783-784 z_self zeroed; forward delegates through the zeroed path). Attribution closed by the autopsy's red-team measurement: trained E2 per-action z_self divergence 2.8e-2 vs 5.6e-6 at E1 output -- ~5000x attenuation localised inside E1 (prior_generator ~7x, LSTM+output_proj ~675x). Consequence applied to SD-e1-rollout-consistency-training: action-conditioning E1 is work item 1; multi-step objective item 2."
+     }
     }
    ],
    "synthesis": {
@@ -2693,12 +2757,13 @@
    },
    "decision": {
     "decision_question": "Does swapping 108a's bespoke-trained z_world for the sanctioned sd_zworld_warmup_optimizer_group-trained stack resolve the near-total evaluator-degeneracy (var ~1.5e-14 vs 0.002 threshold), and does the antecedent contrast-ratio characterisation on 108a's own rollout endpoints match the 2026-07-18 zworld_near_static_characterisation low-and-untrainable signature?",
-    "live_gate": null,
+    "live_gate": "Evidence sufficient to decide the mechanism question (action-blindness dominant); the human decision to log is adopting the re-scoped build ordering (action-conditioning first). decision_log entry remains a human write.",
     "decidable": true,
     "observation_bottleneck": null,
     "decision_log_ref": null,
-    "distance_phrase": "Answered by V3-EXQ-108b: neither undertraining nor a dimension ceiling -- E1's forward-rollout dynamics collapse trajectory diversity over the 30-step horizon. Next step is a /lit-pull on multi-step/rollout-consistency training objectives before committing to a substrate fix."
-   }
+    "distance_phrase": "4 of 5 legs resolved (2 eliminated at registration-era, 1 confirmed, 1 sub-eliminated); dominant sub-mechanism measured (action-blindness); remedy routed to SD-e1-rollout-consistency-training with re-scoped ordering."
+   },
+   "fanout_growth_note": "2026-08-29: one labelled fan-out event (sub-mechanism discrimination inside the confirmed leg, both new legs resolved by the same probe that motivated them). Not a non-convergence signal in the usual sense -- the question's denominator grew 3->5 with 4/5 legs now resolved and a build routed; convergence class should read refining, not circling (both new legs are constitution-family, where the confirmed parent already lives)."
   },
   {
    "qid": "arc071-commit-latch-postfix-persistence",
@@ -4751,6 +4816,108 @@
     "decidable": true,
     "decision_log_ref": null,
     "distance_phrase": "V3-EXQ-955 C1 passed under met-and-measured armed-conversion preconditions; propagation decidable now. Full MECH-440 needs legs ii/iii (new EXQ routed)."
+   }
+  },
+  {
+   "qid": "contextmemory_write_content_discrimination",
+   "title": "Why does trained gumbel_learned write-address selection fail to become content-conditioned (V3-EXQ-956: mean probe Jaccard 0.400 untrained -> 0.667 trained vs required <= 0.15), and what mechanism would achieve content-conditioned ContextMemory write addressing?",
+   "short_title": "ContextMemory write-address content discrimination",
+   "claims": [
+    "SD-017",
+    "ARC-045",
+    "MECH-166"
+   ],
+   "registered_utc": "2026-08-29T15:36:15Z",
+   "fanout_sources": [
+    "failure_autopsy_V3-EXQ-956_2026-08-29.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 4,
+   "initial_frozen_count_at_registration": 4,
+   "fanout_growth_events": [],
+   "fanout_growth_note": null,
+   "hypotheses": [
+    {
+     "hid": "H1-loss-objective-mismatch",
+     "label": "Pairwise addressing-distribution diversity references no content; a content-referencing (contrastive) objective is required",
+     "desc": "Swap in a contrastive/cluster-supervised loss at the same schedule, on BOTH real-agent latents and the synthetic 2-cluster stream as training input (the dual regime avoids conflation with H4). Null: Jaccard does not drop by the 0.25 margin in either regime. Precedent: V3-EXQ-907's confirmed read-path result (context-referencing objective broke the saddle at the same 15,000-step schedule); both failed write-side losses (MoE importance; pairwise diversity) are content-blind objectives.",
+     "axis": "algorithm",
+     "pre_registered_utc": "2026-08-29T15:36:15Z",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "basis": "Live: two content-blind objectives have failed; no content-referencing objective has been tried on the write path."
+     }
+    },
+    {
+     "hid": "H2-operating-point",
+     "label": "w=0.5 / 100-episode schedule is the wrong operating point; some weight/anneal/duration yields discrimination",
+     "desc": "First leg: cheap +10-seed x 2-gumbel-arm sweep (~26 min cloud) -- also settles whether 956's +0.267 wrong-direction move (p~0.25 at n=5) is real. Then weights {0.1, 2.0, 8.0} x anneal schedules at moderate scale. Null: no operating point moves Jaccard in the correct direction. NOT eliminated by 956 (only w=0.5 ever measured).",
+     "axis": "process",
+     "pre_registered_utc": "2026-08-29T15:36:15Z",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "basis": "Live: single operating point measured; direction-of-movement question unresolved at n=5."
+     }
+    },
+    {
+     "hid": "H3-task-pressure-required",
+     "label": "No standalone write-side auxiliary loss suffices; content conditioning needs the READ path's task gradient through write selection",
+     "desc": "Couple the SD-016 read-path retrieval loss through write selection (straight-through) so end-task pressure reaches the tagger. Null: coupled training still fails the margin. If confirmed, the frame 'train the tagger with a standalone auxiliary loss' is wrong.",
+     "axis": "drive",
+     "pre_registered_utc": "2026-08-29T15:36:15Z",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "basis": "Live: untested; motivated by the two standalone-loss failures."
+     }
+    },
+    {
+     "hid": "H4-input-distribution",
+     "label": "Train-time z_world under-differentiation (SD-008 ~0.98-cosine cone) leaves no usable content structure for ANY write-side objective",
+     "desc": "Instrument train-time content structure: record pairwise-cosine distribution / cluster separability of the actual write-stream latents during training alongside the tagger's selections (un-instrumented in the 956 manifest). Null: latents carry separable structure the tagger ignores (which refocuses on H1/H3).",
+     "axis": "representation",
+     "pre_registered_utc": "2026-08-29T15:36:15Z",
+     "adjudicating_runs": [],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "resolved_utc": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "basis": "Live: red-team-surfaced; the probe's synthetic-stream instrument cannot see the training input distribution."
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
+    "live_gate": "Portfolio not yet queued: governance ratifies the 956 autopsy routing, then /queue-experiment designs the legs (H2's seed-sweep first; design-audit for coverage + verdict-aliasing).",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "0 of 4 legs adjudicated; the corrupting substrate entry stays implemented_pending_validation until one mechanism demonstrates content-conditioned selection.",
+    "observation_bottleneck": "Train-time latent content structure is un-instrumented (H4); the C2 probe instrument is coarse at n=5 seeds (bimodal Jaccard lattice)."
    }
   }
  ]

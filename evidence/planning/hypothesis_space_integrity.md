@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-29T14:00:09Z
+Generated: 2026-08-29T15:40:51Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **40** open question(s) across **35** time-series snapshot(s). **0** flag(s) raised, **41** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **3** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
+Audited **41** open question(s) across **35** time-series snapshot(s). **0** flag(s) raised, **42** advisory note(s), **16** git-witnessed pre-registration(s), **2** unverifiable, **0** fan-out recurrence overlay(s), **3** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -30,7 +30,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (41, NOT violations)
+## Advisory -- labelled fan-out growth (42, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -51,7 +51,8 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `arousal-variance-amplifier`: denominator grew 3 -> 4 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `policy_decomposition_discrimination`: +2 leg(s) (H-representation-axis, H-algorithm-axis) added by labelled fan-out from `failure_autopsy_2026-07-28-sweep.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `policy_decomposition_discrimination`: denominator grew 4 -> 6 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
-- `inv088_evaluator_degeneracy_cause`: denominator grew 2 -> 3 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
+- `inv088_evaluator_degeneracy_cause`: +2 leg(s) (H-horizon-compounding, H-action-blindness) added by labelled fan-out from `failure_autopsy_V3-EXQ-954_2026-08-29.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `inv088_evaluator_degeneracy_cause`: denominator grew 2 -> 5 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `e3_fdominance_causal_discrimination`: denominator grew 4 -> 6 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `mech266_mode_arbitration_saturation`: +1 leg(s) (H4-clip-not-normalisation) added by labelled fan-out from `failure_autopsy_V3-EXQ-935_2026-08-18.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `mech266_mode_arbitration_saturation`: denominator grew 3 -> 4 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
@@ -76,7 +77,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-08-16 -> 2026-08-17: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
 - time series 2026-08-17 -> 2026-08-18: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
 - time series 2026-08-20 -> 2026-08-21: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
-- time series 2026-08-28 -> 2026-08-29: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
+- time series 2026-08-28 -> 2026-08-29: total_initial grew by 9, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 9 leg(s)) -- advisory, not a violation.
 
 ## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 
@@ -137,7 +138,7 @@ _Mirrors the fan-out recurrence overlay above, for the discovery-growth path. Ev
 
 _None._
 
-## Pre-registration provenance (16 witnessed, 0 unverifiable)
+## Pre-registration provenance (16 witnessed, 2 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -159,6 +160,11 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `conversion_ceiling_root`/`H-objective-misspecification`: `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json` committed 2026-07-22 <= resolution 2026-07-24
 - `conversion_ceiling_root`/`H-observation-interface`: `failure_autopsy_backlog_2026-07-24.json` committed 2026-07-24 <= resolution 2026-08-25
 - `arousal-variance-amplifier`/`H-arousal-channel-agnostic`: `failure_autopsy_V3-EXQ-785_2026-07-19.json` committed 2026-07-19 <= resolution 2026-07-19
+
+**Unverifiable (quiet -- not a violation, but not evidence either).** No git history was available to check these (uncommitted leg, wholesale file rewrite, or git unavailable). Commit the leg and name a `pre_registration_source` so it self-clears next cycle:
+
+- `inv088_evaluator_degeneracy_cause`/`H-horizon-compounding`: pre-registration could not be checked against git (no git history for this leg). Not a violation -- but it is also not evidence. Commit the leg (and name a `pre_registration_source`) so it self-clears.
+- `inv088_evaluator_degeneracy_cause`/`H-action-blindness`: pre-registration could not be checked against git (no git history for this leg). Not a violation -- but it is also not evidence. Commit the leg (and name a `pre_registration_source`) so it self-clears.
 
 ---
 

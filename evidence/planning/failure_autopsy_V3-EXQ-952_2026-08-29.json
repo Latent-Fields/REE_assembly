@@ -1,0 +1,89 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-29T15:36:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3",
+      "queue_id": "V3-EXQ-952",
+      "claim_ids": [],
+      "self_route_label": "phasic_warmup_rescue_confirmed",
+      "failed_criterion": "none -- diagnostic PASS under adjudication",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- deliberately claim-free (tagging MECH-063/SD-069 here would repeat the GFLAG-0077 claim-tagging-integrity violation of 779/779a/779b); the run answers SD-075's own deferred retest-design question, not a claim",
+        "biological_reference": "partial -- phasic surprise/burst regulation (LC-NE-like phasic signalling) is the parent mechanism; this probe is about a measurement/exposure gate on it, not the biology itself",
+        "prerequisites": "present -- SD-075 (carry-continuity) implemented 2026-07-19; SD-074 warmup recipe landed; all cells cache-miss so warmup genuinely ran",
+        "implementation": "complete -- DV is the regulator's own internal counter (phasic_surprise_burst.py:327-361), not driver-computed; SD-075 config held fixed grid-wide",
+        "environment": "adequate -- byte-identical to 779b's env except the two SD-075 fields; the three 779b starvation-category seeds (11 mild / 23 event-starved / 29 severe) deliberately chosen",
+        "measurement": "adequate -- threshold MIN_EVENT_TICKS=10 inherited verbatim from 779b R1 (not retuned); criteria_non_degenerate pre-registered; controls genuinely exposed (control seed 23: 570 converged ticks, 0 events)",
+        "integration": "coupled -- real REEAgent + warmup training + regulator in the live loop",
+        "scale": "adequate for a min-over-seeds conjunctive read on 3 deliberately-hard seeds; not a population estimate and does not claim to be"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "n/a -- no failure; PASS adjudicated as genuine"
+      },
+      "biological_reference": {
+        "closest_mechanism": "phasic catecholaminergic burst signalling gated on a converged baseline (LC-NE phasic vs tonic); the probe tests an instrumentation precondition (baseline convergence under episode continuity), not the mechanism's biology",
+        "dependencies": [
+          "SD-075 carry-continuity",
+          "SD-074 warmup recipe",
+          "trained-enough PE stream"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at this scope",
+        "lit_status": "partial"
+      },
+      "adjudication_verdict": "GENUINE PASS with one recorded mediation caveat. The rescue is real on every guard the vacuous-pass families require: (a) arms differ (warmed {16,12,42} vs control {3,0,0}, per-seed variance real); (b) controls were genuinely exposed past the gate (control seed 23: 570 converged ticks, 0 events -- so the control zero is not starvation of the denominator); (c) direction survives rate normalization (12/67 = 0.179 events/converged-tick treated vs 0/570 control on the canonical failing seed 23); (d) threshold inherited from 779b, not fitted; (e) the pre-warmup event count INVERTS (controls 17-19, warmed 4-8), matching the stated hypothesis that the untrained PE stream is early-lifetime transient noise. Caveat (recorded, does not overturn): warmup training also drastically restructures episode length (control seed 23 = 87 episodes of ~6.9 steps, the exact 779b binding-axis signature; warmed = 3-14 long episodes), and the criterion is an absolute count. Since SD-075's own diagnosis named episode length as the binding axis, training's effect on episode structure is PART of the rescue mechanism, not a confound against the diagnostic's question -- the future retest would run under the same joint conditions. ISOLATION GAP (red-team finding, stated explicitly): the regulator's 30-tick convergence gate is LIFETIME-denominated and does not re-arm per episode under reset mode, so carry mode's MARGINAL contribution over reset was not isolated by this design -- an identical rescue might have occurred with continuity=reset once episodes are long. This does not touch the pre-registered JOINT question (training + carry) or the recommended retest, which inherits both conditions; a 3-cell reset+warmup arm is the cheap confirmer if the isolation ever matters. The label is accurate at its stated scope: a new-number MECH-063(ii) retest using carry mode + warmup exposure is now evidence-supported.",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic; 'standard' asserts no epistemic suppression. Scoring-excluded by purpose + empty claim_ids.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-952 (2026-08-28) adjudicated by confirmed autopsy: genuine diagnostic PASS -- warmup=40 training lets the SD-075 carry-continuity convergence gate clear MIN_EVENT_TICKS=10 on n_events_converged on all three 779b starvation-category seeds (min 12, control range [0,3]; rate-normalized direction holds; threshold inherited from 779b). The MECH-063(ii) retest design question SD-075's implementation note deferred is answered: carry mode + warmup exposure. Not itself MECH-063/SD-069 evidence (claim-free by design).",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "sd_phasic_ema_episode_continuity",
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_779b_mech063_tonic_phasic_dissociation_20260718T233554Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "SD-075 carry mode + warmup=40 training clears the 779b failure mode: n_events_converged min 12 vs bar 10 on all three starvation-category seeds incl. canonical seed 23 (V3-EXQ-952, 2026-08-28). Retest-design question closed: carry + warmup exposure (JOINT conditions -- see isolation caveat in the verdict). Governance may also flip the entry's ready flag."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "MECH-063's brake (count 3) fired at 779b and refused a V3-EXQ-779c; this run is not the braked retest (diagnostic, claim-free, new manipulation) and its own recommendation is the NEW-NUMBER redesign the brake explicitly permits, now that SD-075 is built and this probe confirms the gate clears."
+      },
+      "learning_extracted": [
+        "The re-derive brake worked end to end: 779b's brake refused the cheap 779c step-cap re-run, routed to /implement-substrate (SD-075, built 2026-07-19), and this probe then converted the build into an evidence-supported retest design at diagnostic cost instead of burning another lettered evidence run.",
+        "When a treatment (training) jointly moves the DV's mechanism and a structural covariate (episode length), and the covariate is itself the diagnosed binding axis, the joint effect is the answer to a retest-design question -- record the mediation honestly rather than calling it a confound.",
+        "Formalising a never-run scratch spike into a queue-visible diagnostic (952 from sd075_warmup_rescue_spike.py) is the correct path -- the spike alone would have answered nothing durably."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Follow-on: NEW-NUMBER MECH-063(ii) retest (claim_ids per governance -- plausibly [MECH-063, SD-069] with per-claim directions), carry continuity + warmup=40 exposure per this probe, MIN_EVENT_TICKS=10 unchanged. Governance decision to queue (interpretation.summary says so explicitly); NOT spawned by this session (2026-07-30 rule). Also amend SD-075 substrate_queue entry per recommended_substrate_queue_entry (mark 779b failure_record resolved; consider ready flip)."
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-08-29T15:36:15Z",
+  "confirmed_by": "interactive Step 8 gate, session autopsy-batch-20260829",
+  "pre_routing_checks": {
+    "tool": "autopsy_pre_routing_checks.py",
+    "fire_count": 0,
+    "note": "0 fires on all applicable checks; C1/C2/C3 structurally inapplicable on claim-free targets (956/952/957) -- red-team pass carried the load there."
+  },
+  "red_team": {
+    "verdict_summary": "CONFIRMED. All load-bearing numbers recomputed from manifest cells; control-exposure attack fails on all three seeds (thinnest control seed 29: P(0 events)~1e-5 at treated rate); carry-vs-reset isolation gap identified and recorded (lifetime-denominated gate does not re-arm per episode under reset); 779b brake permits the recommended new-number retest.",
+    "gate_disposition": "User confirmed: as drafted."
+  }
+}

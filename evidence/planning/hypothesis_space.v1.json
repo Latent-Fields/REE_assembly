@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-29T13:59:59Z",
+  "generated_at": "2026-08-29T15:40:46Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -23,194 +23,194 @@
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 71.1,
+      "closure_pct": 71.7,
       "node_total": 97,
-      "node_done_weighted": 69.0,
+      "node_done_weighted": 69.5,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 68,
-      "total_initial": 130,
-      "total_initial_at_registration": 108,
-      "total_fanout_added": 22,
-      "total_resolved_out": 51,
-      "total_confirmed": 32,
+      "total_surviving": 72,
+      "total_initial": 136,
+      "total_initial_at_registration": 112,
+      "total_fanout_added": 24,
+      "total_resolved_out": 52,
+      "total_confirmed": 33,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 39.2,
-      "net_narrowing_pct": 37.0,
+      "reduction_pct_vs_current": 38.2,
+      "net_narrowing_pct": 35.7,
       "convergence_classes": {
-        "narrowing": 19,
-        "static": 16,
+        "narrowing": 18,
+        "static": 17,
         "circling": 4,
-        "refining": 1
+        "refining": 2
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "68 alive against 108 originally enumerated, and against 130 including 22 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 40
+      "honest_pair_note": "72 alive against 112 originally enumerated, and against 136 including 24 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 41
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 18,
-      "open_questions": 40
+      "open_questions": 41
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 129,
-      "closure_pct": 71.1,
+      "surviving": 135,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-11",
-      "surviving": 128,
-      "closure_pct": 71.1,
+      "surviving": 134,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-13",
-      "surviving": 126,
-      "closure_pct": 71.1,
+      "surviving": 132,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-15",
-      "surviving": 122,
-      "closure_pct": 71.1,
+      "surviving": 128,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-16",
-      "surviving": 121,
-      "closure_pct": 71.1,
+      "surviving": 127,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-17",
-      "surviving": 118,
-      "closure_pct": 71.1,
+      "surviving": 124,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-18",
-      "surviving": 112,
-      "closure_pct": 71.1,
+      "surviving": 118,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-19",
-      "surviving": 108,
-      "closure_pct": 71.1,
+      "surviving": 114,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-20",
-      "surviving": 107,
-      "closure_pct": 71.1,
+      "surviving": 113,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-24",
-      "surviving": 106,
-      "closure_pct": 71.1,
+      "surviving": 112,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-27",
-      "surviving": 104,
-      "closure_pct": 71.1,
+      "surviving": 110,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-29",
-      "surviving": 103,
-      "closure_pct": 71.1,
+      "surviving": 109,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-07-31",
-      "surviving": 102,
-      "closure_pct": 71.1,
+      "surviving": 108,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-01",
-      "surviving": 100,
-      "closure_pct": 71.1,
+      "surviving": 106,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-02",
-      "surviving": 94,
-      "closure_pct": 71.1,
+      "surviving": 100,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-04",
-      "surviving": 93,
-      "closure_pct": 71.1,
+      "surviving": 99,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-06",
-      "surviving": 92,
-      "closure_pct": 71.1,
+      "surviving": 98,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-08",
-      "surviving": 90,
-      "closure_pct": 71.1,
+      "surviving": 96,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-09",
-      "surviving": 88,
-      "closure_pct": 71.1,
+      "surviving": 94,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-10",
-      "surviving": 87,
-      "closure_pct": 71.1,
+      "surviving": 93,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-11",
-      "surviving": 86,
-      "closure_pct": 71.1,
+      "surviving": 92,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-12",
-      "surviving": 85,
-      "closure_pct": 71.1,
+      "surviving": 91,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-14",
-      "surviving": 83,
-      "closure_pct": 71.1,
+      "surviving": 89,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-17",
-      "surviving": 82,
-      "closure_pct": 71.1,
+      "surviving": 88,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-20",
-      "surviving": 81,
-      "closure_pct": 71.1,
+      "surviving": 87,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     },
     {
       "date": "2026-08-29",
-      "surviving": 68,
-      "closure_pct": 71.1,
+      "surviving": 72,
+      "closure_pct": 71.7,
       "build_pct": 83.3
     }
   ],
@@ -2451,37 +2451,72 @@
         "MECH-135"
       ],
       "is_hero": false,
-      "initial_frozen_count": 3,
+      "initial_frozen_count": 5,
       "initial_frozen_count_at_registration": 2,
-      "fanout_added": 1,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
+      "fanout_added": 3,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-08-29T15:36:15Z",
+          "pre_registered_utc": "2026-08-03T14:32:53Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-954_2026-08-29.json",
+          "pre_registration_witness": "evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md (committed fb581f136e, 2026-08-03T14:32:53Z)",
+          "added_hids": [
+            "H-horizon-compounding",
+            "H-action-blindness"
+          ],
+          "delta": 2,
+          "note": "Sub-mechanism discrimination WITHIN the confirmed H-dynamics-collapse leg, enumerated verbatim (with the exact decision rule and re-scope branch) by the git-witnessed lit-pull SYNTHESIS on 2026-08-03, 26 days before the adjudicating run. The ELIMINATED child (H-horizon-compounding) is the parent's own recorded basis mechanism ('compounding error') -- this growth corrects the confirmed leg's basis wording without withdrawing the leg (the training-signal-family confirmation stands)."
+        }
+      ],
+      "fanout_growth_note": "2026-08-29: one labelled fan-out event (sub-mechanism discrimination inside the confirmed leg, both new legs resolved by the same probe that motivated them). Not a non-convergence signal in the usual sense -- the question's denominator grew 3->5 with 4/5 legs now resolved and a build routed; convergence class should read refining, not circling (both new legs are constitution-family, where the confirmed parent already lives).",
       "net_narrowing_ratio": 0.5,
       "bits_removed_vs_registration": 1.0,
       "convergence": {
-        "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 2 families, 3 fully closed",
+        "convergence_class": "refining",
+        "reason": "3 families closed out; the latest growth opened fresh territory",
         "families_closed": [
           "constitution",
           "instrumentation",
           "representation"
         ],
         "families_touched": [
+          "constitution",
           "instrumentation",
           "representation"
         ],
         "families_fresh": [],
         "unclassified_axes": [],
-        "growth_events": []
+        "growth_events": [
+          {
+            "recorded_utc": "2026-08-29T15:36:15Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-954_2026-08-29.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-horizon-compounding",
+                "family": "constitution"
+              },
+              {
+                "hid": "H-action-blindness",
+                "family": "constitution"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": [
+              "instrumentation",
+              "representation"
+            ]
+          }
+        ]
       },
       "surviving": 1,
       "alive": 0,
-      "resolved_out": 2,
-      "confirmed": 1,
+      "resolved_out": 3,
+      "confirmed": 2,
       "superseded": 0,
-      "reduction_numerator": 2,
-      "reduction_ratio": 0.6667,
-      "bits_removed": 1.58,
+      "reduction_numerator": 3,
+      "reduction_ratio": 0.6,
+      "bits_removed": 2.32,
       "synthesis": {
         "surviving_label": "E1 forward-rollout dynamics collapse (new, third mechanism) -- neither pre-registered hypothesis; a single-step-trained dynamics model rolled out 30 steps beyond its training horizon at eval",
         "text": "Both pre-registered hypotheses eliminated by V3-EXQ-108b (2026-08-02): the sanctioned-trained z_world encoder differentiates real states fine, ruling out both undertraining and a dimension ceiling. The actual bottleneck is E1's forward-rollout dynamics collapsing over the 30-step horizon -- a single-step-trained dynamics model applied far beyond its training horizon (a learning-signal/training-objective gap, not a representational-capacity one). Routed to /lit-pull (targeted_review_e1_forward_model_rollout_consistency) given no existing biology/ML lit entry covers this specific multi-step-rollout-consistency axis (the sibling targeted_review_e2_forward_model_action_divergence covers a related but distinct single-step action-divergence failure)."
@@ -2525,14 +2560,40 @@
           "basis": "Both antecedent checks (encoder_trained, real_zworld_nondegenerate) passed and both alternative hypotheses were eliminated by the same run's own decision tree (branch 3 hit exactly, code-verified in v3_exq_108b_mech135_inv088_zworld_disambiguation.py lines 846-853); confirmed in both seeds (cr_ratio 2.57e-6 / 3.18e-6).",
           "children": [],
           "met_elimination_bar": false
+        },
+        {
+          "hid": "H-horizon-compounding",
+          "label": "Within H-dynamics-collapse: the dominant sub-mechanism is horizon mismatch / autoregressive compounding error (E1 trained at horizon=1, rolled out at 30)",
+          "desc": "Predicts SMOOTH degradation with depth: cr_ratio(1) healthy (>= 0.1), cr_ratio(rollout_horizon) collapsed -- the SYNTHESIS Section 4.3 signature for mechanism (a).",
+          "axis": "learning-signal",
+          "state": "eliminated",
+          "evidence_runs": [
+            "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3"
+          ],
+          "basis": "Signature absent on both seeds: cr_ratio already floored at h=1 (4.8e-07/5.4e-07 vs 0.1) with a flat-to-mildly-RISING profile to h=30 -- compounding cannot explain a floor that exists before composition begins. Horizon-matched denominator healthy at every h (CR_real 0.17-0.24). Discriminating non_contributory: eliminates this leg as the DOMINANT mechanism; compounding may still contribute second-order (the mild rise is float32-noise-level and not interpreted).",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-action-blindness",
+          "label": "Within H-dynamics-collapse: the dominant sub-mechanism is E1's action-blind interface (no action input; z_self LSTM slot zeroed)",
+          "desc": "Predicts the ratio ALREADY near-floor at h=1, before compounding could occur, AND the direct one-step per-action probe near-zero -- SYNTHESIS Section 4.3 signature for mechanism (b).",
+          "axis": "intrinsic-architecture",
+          "state": "confirmed",
+          "evidence_runs": [
+            "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3"
+          ],
+          "basis": "Both disjuncts on both seeds by 5+ orders: cr_ratio(h=1) = 4.8e-07/5.4e-07; ratio_action_vs_real_h1 = 1.2e-06/8.8e-07; cr_action_h1 < the 1e-4 real floor independently. Structural case code-verified (e1_deep.py:758/1126 no action param; :783-784 z_self zeroed; forward delegates through the zeroed path). Attribution closed by the autopsy's red-team measurement: trained E2 per-action z_self divergence 2.8e-2 vs 5.6e-6 at E1 output -- ~5000x attenuation localised inside E1 (prior_generator ~7x, LSTM+output_proj ~675x). Consequence applied to SD-e1-rollout-consistency-training: action-conditioning E1 is work item 1; multi-step objective item 2.",
+          "children": [],
+          "met_elimination_bar": false
         }
       ],
       "decision": {
         "readiness_state": "decidable_now",
         "evidence_decile": 9,
         "decision_question": "Does swapping 108a's bespoke-trained z_world for the sanctioned sd_zworld_warmup_optimizer_group-trained stack resolve the near-total evaluator-degeneracy (var ~1.5e-14 vs 0.002 threshold), and does the antecedent contrast-ratio characterisation on 108a's own rollout endpoints match the 2026-07-18 zworld_near_static_characterisation low-and-untrainable signature?",
-        "distance_phrase": "Answered by V3-EXQ-108b: neither undertraining nor a dimension ceiling -- E1's forward-rollout dynamics collapse trajectory diversity over the 30-step horizon. Next step is a /lit-pull on multi-step/rollout-consistency training objectives before committing to a substrate fix.",
-        "live_gate": null,
+        "distance_phrase": "4 of 5 legs resolved (2 eliminated at registration-era, 1 confirmed, 1 sub-eliminated); dominant sub-mechanism measured (action-blindness); remedy routed to SD-e1-rollout-consistency-training with re-scoped ordering.",
+        "live_gate": "Evidence sufficient to decide the mechanism question (action-blindness dominant); the human decision to log is adopting the re-scoped build ordering (action-conditioning first). decision_log entry remains a human write.",
         "observation_bottleneck": null
       }
     },
@@ -4381,6 +4442,99 @@
         "live_gate": null,
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "contextmemory_write_content_discrimination",
+      "title": "Why does trained gumbel_learned write-address selection fail to become content-conditioned (V3-EXQ-956: mean probe Jaccard 0.400 untrained -> 0.667 trained vs required <= 0.15), and what mechanism would achieve content-conditioned ContextMemory write addressing?",
+      "short_title": "ContextMemory write-address content discrimination",
+      "claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 4,
+      "alive": 4,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-loss-objective-mismatch",
+          "label": "Pairwise addressing-distribution diversity references no content; a content-referencing (contrastive) objective is required",
+          "desc": "Swap in a contrastive/cluster-supervised loss at the same schedule, on BOTH real-agent latents and the synthetic 2-cluster stream as training input (the dual regime avoids conflation with H4). Null: Jaccard does not drop by the 0.25 margin in either regime. Precedent: V3-EXQ-907's confirmed read-path result (context-referencing objective broke the saddle at the same 15,000-step schedule); both failed write-side losses (MoE importance; pairwise diversity) are content-blind objectives.",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Live: two content-blind objectives have failed; no content-referencing objective has been tried on the write path.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-operating-point",
+          "label": "w=0.5 / 100-episode schedule is the wrong operating point; some weight/anneal/duration yields discrimination",
+          "desc": "First leg: cheap +10-seed x 2-gumbel-arm sweep (~26 min cloud) -- also settles whether 956's +0.267 wrong-direction move (p~0.25 at n=5) is real. Then weights {0.1, 2.0, 8.0} x anneal schedules at moderate scale. Null: no operating point moves Jaccard in the correct direction. NOT eliminated by 956 (only w=0.5 ever measured).",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Live: single operating point measured; direction-of-movement question unresolved at n=5.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-task-pressure-required",
+          "label": "No standalone write-side auxiliary loss suffices; content conditioning needs the READ path's task gradient through write selection",
+          "desc": "Couple the SD-016 read-path retrieval loss through write selection (straight-through) so end-task pressure reaches the tagger. Null: coupled training still fails the margin. If confirmed, the frame 'train the tagger with a standalone auxiliary loss' is wrong.",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Live: untested; motivated by the two standalone-loss failures.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H4-input-distribution",
+          "label": "Train-time z_world under-differentiation (SD-008 ~0.98-cosine cone) leaves no usable content structure for ANY write-side objective",
+          "desc": "Instrument train-time content structure: record pairwise-cosine distribution / cluster separability of the actual write-stream latents during training alongside the tagger's selections (un-instrumented in the 956 manifest). Null: latents carry separable structure the tagger ignores (which refocuses on H1/H3).",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Live: red-team-surfaced; the probe's synthetic-stream instrument cannot see the training input distribution.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
+        "distance_phrase": "0 of 4 legs adjudicated; the corrupting substrate entry stays implemented_pending_validation until one mechanism demonstrates content-conditioned selection.",
+        "live_gate": "Portfolio not yet queued: governance ratifies the 956 autopsy routing, then /queue-experiment designs the legs (H2's seed-sweep first; design-audit for coverage + verdict-aliasing).",
+        "observation_bottleneck": "Train-time latent content structure is un-instrumented (H4); the C2 probe instrument is coarse at n=5 seeds (bimodal Jaccard lattice)."
+      }
     }
   ],
   "momentum": [
@@ -4397,6 +4551,21 @@
       "moved": "C1 passed: entropy-fraction lift over temp 5/6 seeds (5/5 excluding anomalous seed 44) AND yoked committed divergence 0.68-0.88 vs 0.02 floor on 6/6 seeds; self-yoke bit-identical; autopsy overrode the mis-branched headroom-gate FAIL (user-confirmed 2026-08-29).",
       "resolved_utc": "2026-08-29T12:05:10Z",
       "evidence_direction": "supports"
+    },
+    {
+      "run": "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3",
+      "all_runs": [
+        "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "inv088_evaluator_degeneracy_cause",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "moved": "Signature absent on both seeds: cr_ratio already floored at h=1 (4.8e-07/5.4e-07 vs 0.1) with a flat-to-mildly-RISING profile to h=30 -- compounding cannot explain a floor that exists before composition begins. Horizon-matched denominator healthy at every h (CR_real 0.17-0.24). Discriminating non_contributory: eliminates this leg as the DOMINANT mechanism; compounding may still contribute second-order (the mild rise is float32-noise-level and not interpreted).",
+      "resolved_utc": "2026-08-29T09:37:05Z",
+      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-948",
