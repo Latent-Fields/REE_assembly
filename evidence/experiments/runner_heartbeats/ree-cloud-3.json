@@ -1,48 +1,41 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-29T16:08:57Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-961",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-926a",
-      "result": "PASS",
-      "completed_at": "2026-08-14T17:10:53.236220+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-922a",
-      "result": "PASS",
-      "completed_at": "2026-08-14T18:37:08.758895+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-934",
-      "result": "PASS",
-      "completed_at": "2026-08-15T01:52:16.800323+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-822c",
-      "result": "PASS",
-      "completed_at": "2026-08-29T06:56:46.486819+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-958",
-      "result": "PASS",
-      "completed_at": "2026-08-29T11:35:56.156888+00:00"
-    }
+  "last_tick_utc": "2026-08-29T18:40:07Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-960",
+  "current_exq_started_utc": "2026-08-29T16:25:13.841252+00:00",
+  "current_title": "MECH-143: dorsal CA1 value-free map probe (goal-value-change vs goal-location-change discriminative pair)",
+  "current_claim_id": "MECH-143",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / LOCATION_CHANGE",
+    "runs_done": 1,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 180,
+    "overall_pct": 16.7
+  },
+  "seconds_elapsed": 8094,
+  "seconds_remaining": 35787,
+  "recent_lines": [
+    "V3-EXQ-960 start: v3_exq_960_mech143_dca1_value_free_map_probe_20260829T162515Z_v3",
+    "--- seed 42 ---",
+    "Seed 42 Condition VALUE_CHANGE",
+    "[train] seed=42 VALUE_CHANGE ep 30/180 phase=P0",
+    "[train] seed=42 VALUE_CHANGE ep 60/180 phase=P0",
+    "[train] seed=42 VALUE_CHANGE ep 90/180 phase=P1A",
+    "[train] seed=42 VALUE_CHANGE ep 120/180 phase=P1A",
+    "[train] seed=42 VALUE_CHANGE ep 150/180 phase=P1B",
+    "[train] seed=42 VALUE_CHANGE ep 180/180 phase=P1B",
+    "verdict: FAIL (map_drift=0.0689 pre_dispersion=0.0096)",
+    "Seed 42 Condition LOCATION_CHANGE"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 921,
-  "runner_version": "r5486 f461163 2026-08-29",
+  "runner_version": "r5491 9317519 2026-08-29 (running r5486 f461163)",
   "gpu": {
     "available": false
   },

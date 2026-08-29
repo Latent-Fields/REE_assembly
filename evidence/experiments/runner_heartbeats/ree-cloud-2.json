@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-29T16:09:17Z",
+  "last_tick_utc": "2026-08-29T18:40:05Z",
   "state": "running",
   "current_exq": "V3-EXQ-961",
   "current_exq_started_utc": "2026-08-29T16:00:45.327687+00:00",
@@ -9,19 +9,29 @@
   "current_claim_id": "MECH-144",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 101 / ARM_GEOM",
-    "runs_done": 0,
+    "run_label": "Seed 101 / ARM_ABLATED",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 120,
     "episodes_total": 200,
-    "overall_pct": 0.0
+    "overall_pct": 26.7
   },
-  "seconds_elapsed": 511,
-  "seconds_remaining": 5400,
+  "seconds_elapsed": 9559,
+  "seconds_remaining": 30528,
   "recent_lines": [
     "EXQ-961 start: v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3",
     "--- seed 101 ---",
-    "Seed 101 Condition ARM_GEOM"
+    "Seed 101 Condition ARM_GEOM",
+    "[train] seed=101 ARM_GEOM ep 40/200 phase=P0 benefit=0.592 harm=0.582",
+    "[train] seed=101 ARM_GEOM ep 80/200 phase=P0 benefit=0.000 harm=1.018",
+    "[train] seed=101 ARM_GEOM ep 120/200 phase=P1 benefit=0.000 harm=0.415",
+    "[train] seed=101 ARM_GEOM ep 160/200 phase=P1 benefit=0.581 harm=0.901",
+    "[train] seed=101 ARM_GEOM ep 200/200 phase=P2 benefit=0.600 harm=1.007",
+    "verdict: r=-0.1937 centers=32 dist_std=1.2100 n=7516",
+    "Seed 101 Condition ARM_ABLATED",
+    "[train] seed=101 ARM_ABLATED ep 40/200 phase=P0 benefit=0.529 harm=1.586",
+    "[train] seed=101 ARM_ABLATED ep 80/200 phase=P0 benefit=0.000 harm=1.036",
+    "[train] seed=101 ARM_ABLATED ep 120/200 phase=P1 benefit=1.184 harm=1.188"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

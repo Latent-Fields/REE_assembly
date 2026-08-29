@@ -1,48 +1,56 @@
 {
   "machine": "DLAPTOP",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-08-29T16:07:06Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-961",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-830",
-      "result": "PASS",
-      "completed_at": "2026-07-27T20:49:33.440086+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-832",
-      "result": "PASS",
-      "completed_at": "2026-07-27T21:45:50.756813+00:00"
-    }
+  "last_tick_utc": "2026-08-29T18:40:04Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-963",
+  "current_exq_started_utc": "2026-08-29T17:52:55.898013+00:00",
+  "current_title": "MECH-063 (ii) tonic/phasic dissociation RETEST -- SD-075 carry+warmup (new number, not 779-lettered)",
+  "current_claim_id": "MECH-063",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / T0P0",
+    "runs_done": 0,
+    "runs_total": 20,
+    "episodes_done": 1700,
+    "episodes_total": 2400,
+    "overall_pct": 3.5
+  },
+  "seconds_elapsed": 2829,
+  "seconds_remaining": 24680,
+  "recent_lines": [
+    "Seed 11 Condition T0P0",
+    "[warmup] T0P0 seed=11 warmup_episodes=40 starting",
+    "[warmup] v3_exq_963 T0P0 seed=11 seed=11 MISS -- training 40 episodes",
+    "[train] v3_exq_963 T0P0 seed=11 warmup seed=11 ep 10/40",
+    "[train] v3_exq_963 T0P0 seed=11 warmup seed=11 ep 20/40",
+    "[train] v3_exq_963 T0P0 seed=11 warmup seed=11 ep 30/40",
+    "[train] v3_exq_963 T0P0 seed=11 warmup seed=11 ep 40/40",
+    "probe_warmup cache: 2 attr(s) are unpicklable and are NOT cached: e1.transition_rnn._flat_weight_refs, hippocampal._rng",
+    "[train] T0P0 seed=11 ep 1/2400 env-steps (episode 1) e3_selects=0/800 event_ticks=0 quiescent_ticks=0",
+    "[train] T0P0 seed=11 ep 100/2400 env-steps (episode 2) e3_selects=28/800 event_ticks=0 quiescent_ticks=28",
+    "[train] T0P0 seed=11 ep 200/2400 env-steps (episode 2) e3_selects=41/800 event_ticks=0 quiescent_ticks=41",
+    "[train] T0P0 seed=11 ep 300/2400 env-steps (episode 2) e3_selects=53/800 event_ticks=0 quiescent_ticks=53",
+    "[train] T0P0 seed=11 ep 400/2400 env-steps (episode 3) e3_selects=69/800 event_ticks=0 quiescent_ticks=69",
+    "[train] T0P0 seed=11 ep 500/2400 env-steps (episode 3) e3_selects=82/800 event_ticks=0 quiescent_ticks=82",
+    "[train] T0P0 seed=11 ep 600/2400 env-steps (episode 3) e3_selects=94/800 event_ticks=0 quiescent_ticks=94",
+    "[train] T0P0 seed=11 ep 700/2400 env-steps (episode 5) e3_selects=116/800 event_ticks=0 quiescent_ticks=116",
+    "[train] T0P0 seed=11 ep 800/2400 env-steps (episode 5) e3_selects=140/800 event_ticks=0 quiescent_ticks=140",
+    "[train] T0P0 seed=11 ep 900/2400 env-steps (episode 5) e3_selects=153/800 event_ticks=0 quiescent_ticks=153",
+    "[train] T0P0 seed=11 ep 1000/2400 env-steps (episode 6) e3_selects=165/800 event_ticks=0 quiescent_ticks=165",
+    "[train] T0P0 seed=11 ep 1100/2400 env-steps (episode 8) e3_selects=207/800 event_ticks=0 quiescent_ticks=207",
+    "[train] T0P0 seed=11 ep 1200/2400 env-steps (episode 9) e3_selects=234/800 event_ticks=0 quiescent_ticks=234",
+    "[train] T0P0 seed=11 ep 1300/2400 env-steps (episode 9) e3_selects=260/800 event_ticks=0 quiescent_ticks=260",
+    "[train] T0P0 seed=11 ep 1400/2400 env-steps (episode 10) e3_selects=275/800 event_ticks=0 quiescent_ticks=275",
+    "[train] T0P0 seed=11 ep 1500/2400 env-steps (episode 10) e3_selects=288/800 event_ticks=0 quiescent_ticks=288",
+    "[train] T0P0 seed=11 ep 1600/2400 env-steps (episode 10) e3_selects=302/800 event_ticks=0 quiescent_ticks=302",
+    "[train] T0P0 seed=11 ep 1700/2400 env-steps (episode 13) e3_selects=339/800 event_ticks=0 quiescent_ticks=339"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 4148,
-  "runner_version": "f461163 2026-08-29 (running r5485 ef12e99)",
+  "runner_version": "r5495 1cf55ac 2026-08-29 (running r5485 ef12e99)",
   "gpu": {
     "available": false
   },
