@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-29T17:46:44Z`
+Generated: `2026-08-29T18:47:40Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,9 +12,11 @@ UI: http://localhost:8000/workset
 - Items: **251** (ready 26, in_flight 0, blocked 169)
 - By generation: clinical 11, meta 4, process 13, v3 84, v4 76, v5 38, v6 25
 - Pending review: **1**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **2**
 
-- Live EXQs: V3-EXQ-906c, V3-EXQ-961
+- Live EXQs: V3-EXQ-642a, V3-EXQ-906c, V3-EXQ-959, V3-EXQ-960, V3-EXQ-961, V3-EXQ-963
+
+- Auto-absorbed retests (queued, suppressed from workset): MECH-320 -> V3-EXQ-951
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-074d -> v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3, MECH-152 -> v3_exq_922a_sd016_mech152_softsel_ablation_20260814T183708Z_v3, Q-081 -> v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3
 
@@ -360,7 +362,7 @@ Instructions:
 ### IGW-20260829-221 -- Substrate ready: SD-e1-rollout-consistency-training
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
-- **Why now:** RE-SCOPE per V3-EXQ-954's pre-registered branch: the FIRST work item is action-conditioning E1's transition (forward()/predict_long_horizon take no action parameter, e1_deep.py:758/1126; z_self LSTM s
+- **Why now:** ITEM 1 IMPLEMENTED 2026-08-29 (E1 action-conditioned transition). e1_deep.py: forward() and predict_long_horizon() take an `actions` parameter; under E1Config.action_conditioned_transition (default Fa
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -370,7 +372,7 @@ Title: Substrate ready: SD-e1-rollout-consistency-training
 Lane: substrate | Skill: /implement-substrate
 Status: ready
 Claims: INV-088, MECH-135
-Why now: RE-SCOPE per V3-EXQ-954's pre-registered branch: the FIRST work item is action-conditioning E1's transition (forward()/predict_long_horizon take no action parameter, e1_deep.py:758/1126; z_self LSTM s
+Why now: ITEM 1 IMPLEMENTED 2026-08-29 (E1 action-conditioned transition). e1_deep.py: forward() and predict_long_horizon() take an `actions` parameter; under E1Config.action_conditioned_transition (default Fa
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -1121,7 +1123,7 @@ Instructions:
 
 </details>
 
-### IGW-20260829-223 -- Queue depth low (1 pending)
+### IGW-20260829-223 -- Queue depth low (2 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1130,7 +1132,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260829-223
-Title: Queue depth low (1 pending)
+Title: Queue depth low (2 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
