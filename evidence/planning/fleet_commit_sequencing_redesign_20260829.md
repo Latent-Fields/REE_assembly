@@ -502,3 +502,65 @@ between steps.
   dispatcher-control state drained/consistent; then reload the paused
   launchd agents and restart orchestration/dispatch. W2-flip follows at
   soak maturity through the restarted machinery.
+
+## 11. EXECUTED (2026-08-29, session wedge-clear-20260829 -- the campaign ran to completion in one day)
+
+Every section-10.4 step ran and landed, in order, under the halt; the
+machinery restarted at ~13:00Z with all restart criteria met. Landing record
+(all on origin; umbrella shas unless noted):
+
+- **Phase A**: halt made real (dispatch-service was live at pid 3750 despite
+  the control-plane stop -- unloaded + verified, with workspacestaterotate,
+  chiparchive, and both cloud healer timers); fleet ref_convergence baseline
+  all-level.
+- **W0**: V3-EXQ-957 + 958 queued (ree-v3 c5a982a193 + POST) and BOTH PASSED
+  within minutes; 956 had already run (FAIL diagnostic, 01:45Z). Three
+  results to pending review.
+- **W1**: bf5fb21f -- ack-verifier Class B fix (target-status, not stale
+  local pre-read), Class A logged, remote-tip default extended to the
+  in-process tick callers (the R3 population), amend-urgency self-verify,
+  audit_stale_claims virtual ID-slot, staleclaim origin-confirmation, WS
+  append set-membership loss guard, stash-fleet de-flake. Deployed to
+  cloud-4/5. F11 signature quiet from deploy through restart (short window,
+  stated honestly; the criterion continues to be monitored by the same
+  check).
+- **Endpoint batch** (ree-v3, all INERT until the restart): RECLOG append
+  intake ca1369bf98; dispatcher lease intake 9de55a91c3 (ingest-before-
+  render, git file kept as degraded fallback); chip episode verb ef12e99adb.
+- **W2-restart**: ONE coordinator restart (user-authorised, preflight +
+  drift-checked, nothing in flight); /writer-health green, all new endpoints
+  live, WS soak accumulating (2 dual-write entries pending at first check).
+  **W2-flip remains OPEN** pending its >=3-day soak
+  (chip-20260828-phase4-ws-soak-eval-flag-flip owns it; WORKSPACE_STATE.md
+  leaves W4's repair allowlist at that flip, F8).
+- **W6**: 1534080bae -- CLAUDE.md incremental-landing + resumable-trail rule
+  (GOV-HELDOUT-1 cases on the edit), session-land Phase 4 foreign-claimed
+  guard, steward never-exit-dirty rule (live stranded append landed,
+  07ec0b16b0 REE_assembly; sweep hardening chipped:
+  chip-20260829-steward-sweep-dirty-exit-hardening).
+- **W5a**: 1a192ab6e4 -- standing episodic chips (refwedge + queuefloor),
+  coordinator episodes, generation minting, 6h hysteresis, queuefloor
+  kind=report.  **W5b/c**: 9d5726f0 -- orchestrate Step 1b curation pass
+  with the ratified bundling rule and the net-chip-sink metric.
+- **W4**: 5683ae9b50 -- telemetry-gated auto-repair (3/day withhold + rate
+  alert).  **W7**: b5b95b9feb -- audit_mitigation_enablement.py; first live
+  audit 0 findings / 36 rows.
+- **Restart**: Mac agents reloaded, cloud healer timers active, dispatchers
+  idling against the standing stop leases until the Orchestrator grants new
+  ones (by design). The hub ree-runner's 27-day code drift in
+  ~/REE_Working_runner was OBSERVED and left for an operator window (its
+  restart kills in-flight runs; nothing was in flight at ours, but the user
+  had not answered the offer).
+
+**Deferred to post-restart phase-4 slices, deliberately** (section 9's own
+sequencing; one planned future restart batches their activation):
+/intent/replace CAS + ree_commit transport branch, igw tick intake client,
+governance-flag verbs, chip-archive DB-strip verb, review_tracker, typed
+queue verbs -- to be dispatched through the new W5b curation pass as its
+first live test.
+
+**Outcome measures to watch** (the plan's own falsifiable predictions):
+refwedge episode rate/cost (chip-20260904-refwedge-r1-rate-cost-remeasure);
+open-chip count + chips/week trending DOWN under curation (the net-chip-sink
+metric); wedge_repairs.jsonl rate staying near zero (a spike = a regressed
+generator, alerted at 3/day).
