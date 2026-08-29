@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-29T14:14:44Z`  
+Generated: `2026-08-29T15:54:47Z`  
 Last review: `2026-08-29T14:14:34Z`  
-Pending: **6** item(s) -- 4 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 4 diagnostic run(s) with no confirmed autopsy
+Pending: **6** item(s) -- 4 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -19,17 +19,6 @@ Pending: **6** item(s) -- 4 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 | `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` | 2026-08-29T07:15 | MECH-439 |
 | `v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3` | 2026-08-29T09:37 | INV-088, MECH-135 |
 | `v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3` | 2026-08-29T11:35 | (no claim tags) |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3` | PASS | phasic_warmup_rescue_confirmed |
-| `v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3` | FAIL | gumbel_learned_occupancy_only_content_discrimination_not_confirmed |
-| `v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3` | PASS | action_blindness_confirmed |
-| `v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3` | PASS | mech219_controllability_dissociation_confirmed |
 
 ---
 
