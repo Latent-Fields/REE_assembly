@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-29T07:57:44Z`
+Generated: `2026-08-29T11:24:27Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,7 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **0**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-862b, V3-EXQ-906c, V3-EXQ-952
+- Live EXQs: V3-EXQ-906c, V3-EXQ-955
 
 - Auto-absorbed retests (queued, suppressed from workset): MECH-440 -> V3-EXQ-955
 
@@ -74,7 +74,7 @@ Instructions:
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
-- **Why now:** substrate_queue entry status=blocked_pending_discrimination with 2 unresolved prerequisite(s); blocks retest of ARC-030. See blocked_by.
+- **Why now:** substrate_queue entry status=blocked_pending_dependency (discrimination complete 2026-08-08; MECH-229 outstanding) with 2 unresolved prerequisite(s); blocks retest of ARC-030. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -85,7 +85,7 @@ Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: ARC-030, INV-034, INV-088, MECH-457, Q-021
 Blocked by: ready=false (no ready_blocked_by detail); MECH-229 [no-substrate-entry]: MECH-229
-Why now: substrate_queue entry status=blocked_pending_discrimination with 2 unresolved prerequisite(s); blocks retest of ARC-030. See blocked_by.
+Why now: substrate_queue entry status=blocked_pending_dependency (discrimination complete 2026-08-08; MECH-229 outstanding) with 2 unresolved prerequisite(s); blocks retest of ARC-030. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -340,7 +340,7 @@ Instructions:
 ### IGW-20260829-220 -- Retest after substrate: ARC-030
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; MECH-307 [implemented]; scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); mech457_competence_bootstrap_explorer [blocked_pending_discrimination]; MECH-229 [no-substrate-entry] (transitive via mech457_competence_bootstrap_explorer): MECH-229
+- **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; MECH-307 [implemented]; scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); mech457_competence_bootstrap_explorer [blocked_pending_dependency (discrimination complete 2026-08-08; MECH-229 outstanding)]; MECH-229 [no-substrate-entry] (transitive via mech457_competence_bootstrap_explorer): MECH-229
 - **Why now:** substrate_ceiling -- awaiting substrate enrichment; blocked by 9 unresolved prerequisite(s). See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -351,7 +351,7 @@ Title: Retest after substrate: ARC-030
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-030
-Blocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; MECH-307 [implemented]; scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); mech457_competence_bootstrap_explorer [blocked_pending_discrimination]; MECH-229 [no-substrate-entry] (transitive via mech457_competence_bootstrap_explorer): MECH-229
+Blocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec; MECH-307 [implemented]; scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); mech457_competence_bootstrap_explorer [blocked_pending_dependency (discrimination complete 2026-08-08; MECH-229 outstanding)]; MECH-229 [no-substrate-entry] (transitive via mech457_competence_bootstrap_explorer): MECH-229
 Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 9 unresolved prerequisite(s). See blocked_by.
 
 Instructions:
