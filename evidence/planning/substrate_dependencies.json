@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-20T03:54:53Z",
+  "last_updated_utc": "2026-08-29T18:16:36Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -817,6 +817,38 @@
       "mechanism_changing_note": "Recorded TRUE conservatively, but with no live blast radius. It does change what the mechanism does when enabled (a decision can no longer latch indefinitely), so it is not a no-op-default param or a pure robustness fix. However the entire SD-099 gate is use_defensive_orienting=False by default and the amend sits inside the same 'if self.defensive_orienting is not None:' guard, so behaviour is bit-identical for every run that did not opt in -- pinned by tests/contracts/test_orienting_decision_window_expiry.py::test_gate_off_leaves_decision_state_untouched. Happy-path behaviour with the gate ON is also unchanged: with the bias gate open every tick, the bias still applies on exactly orienting_post_override_bias_ticks block executions, identical to the old decrement-after-applying placement.",
       "candidate_stale": [],
       "candidate_stale_note": "No candidate-stale evidence, and no new MARK or REVALIDATE is owed. Exactly two runs ever enabled use_defensive_orienting -- V3-EXQ-910 and V3-EXQ-910a -- and both are ALREADY excluded from weighting on this exact ground: failure_autopsy_V3-EXQ-910a_2026-08-11 found their decision_counts measurement independently broken and 'not usable as evidence either way', and claims.yaml MECH-489 already carries pending_retest_after_substrate: true naming this amend. Every other MECH-489 evidence entry was measured with the gate OFF, i.e. under behaviour bit-identical to the new default. This landing ENABLES the owed retest rather than changing what any prior run measured. NOTE the retest is not yet queueable: only the SUBSTRATE half landed here; the DRIVER half (count the decision at the override tick only, emit n_latched_ticks) is still owed via /queue-experiment, so EVB-0610 / EXP-0033 stays blocked_substrate. Chipped as chip-20260820-mech489-retest-driver-decision-at-override-tick."
+    },
+    {
+      "substrate": "SD-e1-rollout-consistency-training ITEM 1",
+      "code_landed_commit": "ree-v3 (this landing; parent 6f85c8fe3f)",
+      "code_landed_utc": "2026-08-29T18:16:36Z",
+      "landed_utc": "2026-08-29T18:16:36Z",
+      "dependent_claims": [
+        "MECH-135",
+        "INV-088"
+      ],
+      "description": "E1 action-conditioned transition -- ITEM 1 of SD-e1-rollout-consistency-training, the work item V3-EXQ-954 re-scoped to FIRST. e1_deep.py: forward() and predict_long_horizon() gain an `actions` parameter; under E1Config.action_conditioned_transition the transition_rnn is built with input_size = total_dim + action_dim (a DEDICATED action channel, not a projection back down to total_dim) and each rollout step is fed cat([state_i, action_encoder(a_i)]); under the separate sub-flag action_cond_unzero_self_slot the LSTM seed's zeroed z_self half carries the real z_self. agent.py: new _action_experience_buffer index-aligned with the self/world buffers, wired into compute_prediction_loss (slice [start+1:end]), the online _e1_tick call (efference copy of the action just executed), and offline integrate_experience; plus record_executed_action() and e1_action_buffer_stats() for drivers that step the env directly. ITEM 2 (the multi-step / rollout-consistency training objective) is NOT in this landing and remains pending_implementation -- the ~675x LSTM+output_proj crush V3-EXQ-954's red-team pass localised is untouched here.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "TRUE when enabled -- it changes what E1's transition IS (action-conditioned rather than action-blind), which is the mechanism MECH-135 and INV-088 measure. But the master switch defaults False and no existing experiment sets it, so no prior run's substrate differs in any way: with the flag off no action_encoder is constructed, transition_rnn.input_size is unchanged, no construction-time RNG is consumed for the new path, and predict_long_horizon takes the pre-existing branch verbatim. Confirmed by re-running the V3-EXQ-954 driver --dry-run after the change: it reproduces the action-blindness signature unchanged (cr_ratio ~1e-07 at h=1). Blast radius on landed evidence is therefore nil until an experiment opts in.",
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_103_e2_training_horizon_ablation_20260329T215416Z_v3",
+          "claim_id": "MECH-135",
+          "entry_ts": "2026-03-29",
+          "recommendation": "KEEP",
+          "rationale": "Two independent grounds. (1) The landing is default-OFF, so this run's substrate is byte-for-byte what it was. (2) It is an E2 training-horizon ablation and does not exercise E1's transition interface at all, so it is orthogonal to what changed.",
+          "disposition": "KEPT -- no de-weighting applied; KEEP needs no governance approval."
+        },
+        {
+          "run_id": "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712",
+          "claim_id": "INV-088",
+          "entry_ts": "2026-07-12",
+          "recommendation": "KEEP",
+          "rationale": "Same two grounds: default-OFF landing, and this run measures world-goal evaluator dV coupling rather than E1's rollout transition.",
+          "disposition": "KEPT -- no de-weighting applied."
+        }
+      ],
+      "candidate_stale_note": "The two entries above are the ONLY experimental scoring entries for these claims (MECH-135: 16 scoring entries, 15 of them literature; INV-088: 7 scoring, 6 literature). No MARK and no REVALIDATE, so nothing here needed the governance approval Step 8.5(4) requires for de-weighting, and no index rebuild was needed to propagate a relabel. Separately: both claims already carry pending_retest_after_substrate: true (left unchanged by the V3-EXQ-954 disposition), so their retest is already owed and tracked -- that flag is what this landing makes ACTIONABLE, and the retest itself is /queue-experiment work for a later session."
     }
   ]
 }

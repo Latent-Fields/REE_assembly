@@ -18448,6 +18448,18 @@
     Backward compatible. Validation: V3-EXQ-322 queued.
 
 - id: MECH-135
+  implementation_note: >
+    SD-e1-rollout-consistency-training ITEM 1 (E1 action-conditioned transition) LANDED
+    2026-08-29. This claim's pending_retest_after_substrate is therefore now ACTIONABLE --
+    it is deliberately left TRUE, because the retest is owed and has not been run. ITEM 2
+    (the multi-step / rollout-consistency training objective) is still
+    pending_implementation, and V3-EXQ-954's red-team pass localised the dominant ~675x
+    per-action divergence crush at the LSTM + output_proj stage, which the interface change
+    does not reach -- so the item-1 landing must NOT be read as evidence that the
+    V3-EXQ-108b evaluator collapse is fixed. No confidence, status, or direction change is
+    made here; that is governance work requiring the validation experiment's evidence.
+    See REE_assembly/docs/architecture/sd_e1_rollout_consistency_training.md and
+    evidence/planning/substrate_queue.json (sd_id SD-e1-rollout-consistency-training).
   diagnostic_evidence_adjudicated: true
   evidence_quality_note: |
     [multi_sense_audit_2026_05_08] EXQ-108 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (latent_prev / latent_next pattern at lines 129 and 139); substrate-tick rate during training was 2x the env-step rate, while eval was clean single-sense. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation.
@@ -29638,6 +29650,18 @@
     evidence/planning/claim_synthesis_INV-064_2026-07-12.md.
 
 - id: INV-088
+  implementation_note: >
+    SD-e1-rollout-consistency-training ITEM 1 (E1 action-conditioned transition) LANDED
+    2026-08-29. This claim's pending_retest_after_substrate is therefore now ACTIONABLE --
+    it is deliberately left TRUE, because the retest is owed and has not been run. ITEM 2
+    (the multi-step / rollout-consistency training objective) is still
+    pending_implementation, and V3-EXQ-954's red-team pass localised the dominant ~675x
+    per-action divergence crush at the LSTM + output_proj stage, which the interface change
+    does not reach -- so the item-1 landing must NOT be read as evidence that the
+    V3-EXQ-108b evaluator collapse is fixed. No confidence, status, or direction change is
+    made here; that is governance work requiring the validation experiment's evidence.
+    See REE_assembly/docs/architecture/sd_e1_rollout_consistency_training.md and
+    evidence/planning/substrate_queue.json (sd_id SD-e1-rollout-consistency-training).
   diagnostic_evidence_adjudicated: true
   title: world_goal_evaluator_bounded_by_z_world_differentiation
   claim_type: invariant

@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build."
     }
   },
-  "last_seen_session": "metaworker-chip-20260829-contextmemory-c2-criterion-repose",
-  "last_updated_utc": "2026-08-29T17:12:57Z",
+  "last_seen_session": "sd-e1-rollout-action-cond-20260829",
+  "last_updated_utc": "2026-08-29T18:17:10Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -7681,9 +7681,9 @@
       "sd_id": "SD-e1-rollout-consistency-training",
       "title": "E1 forward-model multi-step rollout-consistency training objective",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "item1_implemented_item2_pending",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_e1_rollout_consistency_training.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "INV-088",
@@ -7699,12 +7699,32 @@
           "run_role_basis": "R5 entry claims a build but nothing dates it"
         }
       ],
-      "implementation_hint": "RE-SCOPE per V3-EXQ-954's pre-registered branch: the FIRST work item is action-conditioning E1's transition (forward()/predict_long_horizon take no action parameter, e1_deep.py:758/1126; z_self LSTM slot zeroed at :783-784, leaving the action signal squeezed through the world_dim-wide prior_generator projection); the multi-step/rollout-consistency training objective is SECOND -- all five lit-pull training-objective fixes presuppose an action-conditioned transition and are misdirected without it. (The objective change stays a real second item: the red-team measurement localises the dominant ~675x crush at the LSTM+output_proj stage, which interface conditioning alone may not fix.) Also clear the now-discharged probe-gating: this probe IS the spike the entry's depends_on_unresolved / complex (probe-gated) node_class was waiting on -- reclassify the node complicated (buildable).",
+      "implementation_hint": "ITEM 1 IMPLEMENTED 2026-08-29 (E1 action-conditioned transition). e1_deep.py: forward() and predict_long_horizon() take an `actions` parameter; under E1Config.action_conditioned_transition (default False) transition_rnn is built with input_size = total_dim + action_dim -- a DEDICATED action channel, deliberately NOT a projection back down to total_dim, which would re-impose the very width bottleneck this fixes (the file's own EXQ-449a comment records that failure mode once already). The zeroed z_self LSTM slot is carried by a SEPARATE sub-flag action_cond_unzero_self_slot so the two defects V3-EXQ-954 named stay independently ablatable. agent.py: _action_experience_buffer aligned with the self/world buffers; compute_prediction_loss slices [start+1:end] (the action carrying state_i -> state_{i+1} is the entry recorded ALONGSIDE state_{i+1}); online _e1_tick conditions on the efference copy of the action just executed. Contracts: ree-v3/tests/contracts/test_e1_action_conditioned_transition.py (23). ITEM 2 STILL PENDING: the multi-step / rollout-consistency training objective. It is a REAL second item, not bookkeeping -- V3-EXQ-954's red-team pass localised the dominant ~675x crush at the LSTM + output_proj stage, which the interface change does not reach. Measured at untrained init (eval mode, h=1): mean per-action pairwise L2 is EXACTLY 0 with the flag off and 2.6e-04 with it on -- signal where there was none, but still ~100x under E2's trained 2.8e-2. Lit-pull candidate ranking for item 2 (SYNTHESIS.md Section 3, all presupposing item 1): (1) TD-MPC-style multi-step latent consistency, additive not replacing; (2) DaD scheduled unrolling, cheapest; (3) Asadi sequence-conditioned endpoint head; (4) PlaNet latent overshooting -- NOT endorsed by its own ablation for deterministic-RNN classes, do not adopt by default; (5) contrastive next-state, de-prioritised. A further suspect surfaced while building item 1 and recorded rather than acted on: output_proj predicts the ABSOLUTE next state where E2 uses a residual z + delta(z, a) parameterisation. NEXT: a validation experiment for item 1 (ON vs OFF ablation on the 954 recipe) before item 2 is designed -- do not read item 1's landing as evidence the collapse is fixed.",
       "priority": 2,
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
-      "last_seen_session": "governance-20260829-1546",
-      "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency). RESOLVED 2026-08-25 (chip-20260825-e1-rollout-consistency-litpull): the lit-pull was actually commissioned and completed 2026-08-03 (session metaworker-chip-20260803-litpull-e1-rollout-consistency) but that session's own substrate_queue.json update was deferred at authoring time due to a TASK_CLAIMS conflict on this file (two other sessions held active claims on it then) -- see the review's own 'What this synthesis does NOT do' closing section. This entry's depends_on_unresolved and implementation_hint are updated here to reflect the review's findings; see evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md."
+      "last_seen_session": "sd-e1-rollout-action-cond-20260829",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency). RESOLVED 2026-08-25 (chip-20260825-e1-rollout-consistency-litpull): the lit-pull was actually commissioned and completed 2026-08-03 (session metaworker-chip-20260803-litpull-e1-rollout-consistency) but that session's own substrate_queue.json update was deferred at authoring time due to a TASK_CLAIMS conflict on this file (two other sessions held active claims on it then) -- see the review's own 'What this synthesis does NOT do' closing section. This entry's depends_on_unresolved and implementation_hint are updated here to reflect the review's findings; see evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md.",
+      "status_phase": "validation_pending",
+      "implementation_log": [
+        {
+          "item": 1,
+          "title": "action-condition E1's transition",
+          "landed_utc": "2026-08-29T18:17:10Z",
+          "repo": "ree-v3",
+          "paths": [
+            "ree_core/predictors/e1_deep.py",
+            "ree_core/agent.py",
+            "ree_core/utils/config.py",
+            "tests/contracts/test_e1_action_conditioned_transition.py"
+          ],
+          "session": "sd-e1-rollout-action-cond-20260829",
+          "chip_ref": "chip-20260829-sd-e1-rollout-action-conditioning-build",
+          "backward_compatible": true,
+          "backward_compat_evidence": "V3-EXQ-954 driver --dry-run re-run after the change reproduces the action-blindness signature unchanged (cr_ratio ~1e-07 at h=1); contract asserts OFF constructs no action_encoder, leaves transition_rnn.input_size at total_dim, and ignores any actions argument bit-identically.",
+          "validation_status": "BUILT, not yet validated -- validation experiment owed"
+        }
+      ]
     },
     {
       "sd_id": "sd014-decouple-wanting-liking-writepath",
