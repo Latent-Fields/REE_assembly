@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -107,5 +107,6 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Diagnostic-purpose, claim_ids=[]: this is a SUBSTRATE-READINESS check per the MECH-219 design memo Section 7 (mech_219_hysteretic_integrator_design.md), not the behavioural MECH-219/SD-019b evidence run. evidence_direction is recorded for human/governance reading only -- excluded from confidence/conflict scoring by EXPERIMENT_PURPOSE + empty claim_ids. CORRECTED supports -> non_contributory by confirmed autopsy failure_autopsy_V3-EXQ-957_2026-08-29 (landed REE_assembly f3a2aa2aa6), ratified at the /governance walk 2026-08-29T15:46Z: a readiness PASS is not evidence for the claim it clears the way for, and 'supports' misreads as such to a human reader even where it is inert to scoring."
 }

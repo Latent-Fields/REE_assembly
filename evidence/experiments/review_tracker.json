@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-29T14:14:34Z",
+  "last_review_utc": "2026-08-29T16:16:28Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1207,7 +1207,12 @@
     "v3_exq_603v_mech357_eligibility_trace_repair_validation",
     "v3_exq_822c_sd082_candidate_summary_fallback_fix",
     "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier",
-    "v3_exq_958_mech290_backward_credit_sweep_functional_signature"
+    "v3_exq_958_mech290_backward_credit_sweep_functional_signature",
+    "v3_exq_862b_q040c_dacc_pe_weight_delta_correlation",
+    "v3_exq_956_contextmemory_write_gumbel_learned_validation",
+    "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic",
+    "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe",
+    "v3_exq_957_mech219_controllability_dissociation_substrate_readiness"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4073,7 +4078,12 @@
     "v3_exq_603v_mech357_eligibility_trace_repair_validation_20260827T184708Z_v3",
     "v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
     "v3_exq_955_mech440_armed_stack_raised_class_floor_falsifier_20260829T120510Z_v3",
-    "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3"
+    "v3_exq_958_mech290_backward_credit_sweep_functional_signature_20260829T113555Z_v3",
+    "v3_exq_862b_q040c_dacc_pe_weight_delta_correlation_20260828T223750Z_v3",
+    "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+    "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3",
+    "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3",
+    "v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6556,6 +6566,18 @@
         "v3_exq_936a_...": "SKIM DONE -- DEFECT FOUND, run NOT marked reviewed: C2 direction-dispatching criterion demands an ABSOLUTE >=0.05 paired reduction of F variance share, but the measured OFF-arm share is 6.3e-6 (571 reference 0.886; comparability deliberately demoted to record-only in the driver) -- C2 is arithmetically unreachable at the measured scale, so weakens fires by construction whenever C1 converts. Routed to /failure-autopsy; no evidence_direction applied to MECH-439 this cycle."
       },
       "notes": "2026-08-29 governance cycle. Applied two confirmed autopsies: 822c (SD-078/SD-082 non_contributory flat+pack, notes overturning the 822b layer attribution, both claims epistemic_category standard, SD-082 pending_retest true, substrate SD-082 amend severity=corrupting priority=1 with 3 prior records superseded) and 955 (MECH-440 FAIL/unknown OVERRIDDEN -> supports narrow leg i, flat+pack, category standard, pending_retest CLEARED). 958 MECH-290 supports applied as-is (skim clean). SD-050 promoted candidate->provisional (user-approved; decision_log entry appended). GOV-APPLY-1 live backlog applied: 11 runs (445-lineage -> non_contributory MECH-260/SD-032b; 054 -> superseded MECH-072), flat+pack+note. STILL PENDING (need /failure-autopsy, none found on origin): 862b (evidence FAIL Q-040), 936a (skim defect above), 952/954/957 (diagnostic PASSes), 956 (diagnostic FAIL)."
+    },
+    {
+      "date": "2026-08-29T16:16:28Z",
+      "session": "governance-20260829-1546",
+      "runs_reviewed": [
+        "v3_exq_862b_q040c_dacc_pe_weight_delta_correlation_20260828T223750Z_v3",
+        "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+        "v3_exq_952_sd075_phasic_warmup_rescue_diagnostic_20260828T211302Z_v3",
+        "v3_exq_954_mech135_inv088_e1_horizon_sweep_action_divergence_probe_20260829T093705Z_v3",
+        "v3_exq_957_mech219_controllability_dissociation_substrate_readiness_20260829T113551Z_v3"
+      ],
+      "notes": "2026-08-29 governance cycle (governance-20260829-1546, second cycle of the day). Applied FIVE confirmed autopsies from the autopsy-batch-20260829 landing (REE_assembly f3a2aa2aa6). 862b: manifest weakens -> non_contributory flat+pack with note (DV structurally insensitive, pe variance share <= 1e-6 vs a 0.3 bar; fourth Q-040.c instrumentation failure, manipulation DID engage this time), Q-040 epistemic_category unset -> answer_state, GFLAG-0092 resolved as overtaken. 957: manifest supports -> non_contributory flat+pack (a readiness PASS is not evidence for the claim it unblocks; inert to scoring via claim_ids=[] but misleading to a human reader) -- NOT surfaced by GOV-APPLY-1's ACTIONABLE bucket, found by direct manifest inspection. 956/952/954 manifests already non_contributory, no write needed. MECH-135 + INV-088: 954 action-blindness-dominant notes appended, diagnostic_evidence_adjudicated set true, no status/category move. substrate_queue: contextmemory-write-path-addressing-degeneracy +1 failure_record, severity corrupting, 3 substrate_paths; sd_phasic_ema_episode_continuity 779b record resolved + ready true; SD-e1-rollout-consistency-training re-scoped action-conditioning-first, node_class complex (probe-gated) -> complicated (buildable), probe-gating discharged (954 IS the spike), ready true. STILL PENDING, autopsy-owed: 936a (MECH-439 falsifier PASS; C2 absolute-0.05 F-share bar arithmetically unreachable at the measured OFF-share 6.3e-06, so weakens fires by construction) -- carried a second cycle, user-ratified to leave pending rather than autopsy inline."
     }
   ]
 }

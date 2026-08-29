@@ -18448,6 +18448,7 @@
     Backward compatible. Validation: V3-EXQ-322 queued.
 
 - id: MECH-135
+  diagnostic_evidence_adjudicated: true
   evidence_quality_note: |
     [multi_sense_audit_2026_05_08] EXQ-108 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (latent_prev / latent_next pattern at lines 129 and 139); substrate-tick rate during training was 2x the env-step rate, while eval was clean single-sense. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation.
 
@@ -18523,6 +18524,22 @@
     [2026-08-02 governance, V3-EXQ-108a, confirmed failure_autopsy_V3-EXQ-108a_2026-08-02, StepHarness single-sense() training-time confound fixed]: C1 (mean_prox_delta 0.00219 << 0.05) and C3 (e1coe_score_var ~1.49e-14/9.47e-15 << 0.002) both FAIL, nearly exactly replicating V3-EXQ-108's own real full-production FAIL. Fixing the training-time confound did NOT change the result, ruling it out and strengthening the reading that this is a genuine, reproducible collapse: E1_COE's rollout-based goal_proximity scoring assigns functionally-identical scores (var ~13 orders of magnitude below discrimination threshold) to 40 different 30-step candidate action sequences from the same starting state. weakens MECH-135 (E1_COE co-evolution provides no measurable advantage over FROZEN selection). substrate_ceiling. Cross-claim significance: a starker, more direct confirmation of INV-088's coupling-leg prediction than V3-EXQ-744a or 819/819a -- this run's E1 IS trained (unlike the untrained zworld_near_static_characterisation cells), so it is a genuinely new data point along the confound-breaking axis, though it does not cleanly resolve it (bespoke loss vs SANCTIONED training route still confounded). Separately: V3-EXQ-108's own original run is mischaracterised in claims.yaml history as "empty metrics -- runner artifact" -- the manifest is in fact complete; flagged for correction independent of this disposition.
 
     [2026-08-03 governance, V3-EXQ-108b, confirmed failure_autopsy_V3-EXQ-108b_2026-08-03, the disambiguating diagnostic 108a's own park marker named]: ELIMINATES both pre-registered hypotheses (H-undertrained-instrument, H-dimension-ceiling) via a sanctioned-trained z_world encoder swapped into the same rollout harness -- it differentiates REAL states fine (CR_real 0.19-0.20, both seeds) but the 30-step ROLLOUT still collapses distinct imagined trajectories toward near-identical endpoints (CR_rollout/CR_real ~2.6e-6 to 3.2e-6), reproducing 108a's collapse even with the confound-breaking encoder in place. Root cause: E1 is trained ONLY via single-step MSE yet applied autoregressively for a 30-step rollout at eval time -- the classic single-step-trained-dynamics-model long-horizon-rollout collapse (compounding error), orthogonal to representation capacity. non_contributory/competence_implementation_gap (deliberately NOT substrate_ceiling -- this explains away the apparent ceiling rather than confirming a second one; MECH-135's ceiling-hit count for re-derive-brake purposes stays at 1, from 108a alone). Park marker below (ceiling_decision/ceiling_routing_note) is RESOLVED by this run and removed; epistemic_category updated accordingly. Routed /lit-pull (targeted_review_e1_forward_model_rollout_consistency) then /implement-substrate (create SD-e1-rollout-consistency-training) once the lit-pull confirms direction. pending_retest_after_substrate=true.
+
+    [2026-08-29 governance, V3-EXQ-954, confirmed failure_autopsy_V3-EXQ-954_2026-08-29
+    (REE_assembly f3a2aa2aa6), ratified at the walk] Genuine diagnostic PASS discriminating the 108b
+    evaluator-collapse mechanism. ACTION-BLINDNESS IS DOMINANT, NOT COMPOUNDING -- this refines the
+    108b 'compounding error' wording rather than supporting it: cr_ratio is already floored at h=1
+    (4.8e-07 / 5.4e-07 against a 0.1 bar), per-action one-step divergence sits at float32-ULP scale,
+    and the smooth-compounding signature is absent. Root: E1's transition takes no action
+    (forward()/predict_long_horizon lack an action parameter, e1_deep.py:758/1126) and the z_self
+    LSTM slot is zeroed (:783-784), leaving the action signal squeezed through the world_dim-wide
+    prior_generator projection. CONSEQUENCE for the owed retest: SD-e1-rollout-consistency-training
+    is RE-SCOPED action-conditioning-first -- action-conditioning E1's transition is work item one,
+    the multi-step/rollout-consistency objective is item two, because all five lit-pull training-
+    objective fixes presuppose an action-conditioned transition and are misdirected without it. This
+    probe IS the spike that entry was probe-gated on, so the node moves complex (probe-gated) ->
+    complicated (buildable). No status/category/direction move: stays candidate, standard,
+    v3_pending, pending_retest_after_substrate true. diagnostic_evidence_adjudicated set true.
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
   claim_type: mechanism_hypothesis
   subject: planning.e1_e2_parallel_rollout
@@ -29621,6 +29638,7 @@
     evidence/planning/claim_synthesis_INV-064_2026-07-12.md.
 
 - id: INV-088
+  diagnostic_evidence_adjudicated: true
   title: world_goal_evaluator_bounded_by_z_world_differentiation
   claim_type: invariant
   invariant_type: emergent
@@ -29748,6 +29766,18 @@
     [2026-08-02 governance, cross-reference from failure_autopsy_V3-EXQ-108a_2026-08-02, per that autopsy's recommended_bears_on]: V3-EXQ-108a (MECH-135 discriminative-pair FAIL, world_dim=32) is a starker, more direct confirmation of this claim's coupling-leg prediction than V3-EXQ-744a (real-but-weak, rho=0.69 near-miss) or V3-EXQ-819/819a (AUC 0.90 vs ~48-57 achievable ceiling on a SANCTIONED-trained z_world). 108a's E1 IS trained (bespoke single-step MSE loss, 100 episodes) -- unlike the untrained zworld_near_static_characterisation cells where (a1) undertrained-vs-(a2) dimension-ceiling were perfectly confounded -- so it is a genuinely new data point along the confound-breaking axis, though it does not cleanly resolve it (bespoke loss is not the SANCTIONED training route 819/819a used). Pre-registered against MECH-135 only; recorded here as a cross-reference per the autopsy's own flag, not a new adjudicated target for this claim.
 
     [2026-08-03 governance, V3-EXQ-108b, confirmed failure_autopsy_V3-EXQ-108b_2026-08-03, user-confirmed override of the manifest's own self-routed non_contributory]: 108b directly dissociates evaluator degeneracy from z_world's own differentiation-capacity -- the literal coupling this claim predicts. A sanctioned-trained z_world encoder (confound-breaking relative to 108a's bespoke loss) differentiates REAL states fine (CR_real 0.19-0.20) but the 30-step ROLLOUT still collapses distinct imagined trajectories toward near-identical endpoints (CR_rollout/CR_real ~2.6e-6 to 3.2e-6). The evaluator degeneracy 108/108a observed therefore persists even when z_world's real-state differentiation is confirmed healthy, pointing instead at E1's single-step-training/multi-step-rollout-at-eval mismatch (compounding rollout error), orthogonal to z_world representational capacity. weakens INV-088's coupling leg specifically. epistemic_category=competence_implementation_gap (not substrate_ceiling; this claim stays at 0 prior ceiling hits, re-derive brake does not fire). Routed /lit-pull then /implement-substrate (create SD-e1-rollout-consistency-training). pending_retest_after_substrate=true.
+
+    [2026-08-29 governance, V3-EXQ-954, confirmed failure_autopsy_V3-EXQ-954_2026-08-29
+    (REE_assembly f3a2aa2aa6), ratified at the walk] Genuine diagnostic PASS: evaluator degeneracy's
+    dominant cause is E1 ACTION-BLINDNESS, refining the 108b 'compounding error' wording. cr_ratio
+    already floored at h=1 (4.8e-07 / 5.4e-07 vs the 0.1 bar); per-action one-step divergence at
+    float32-ULP scale; the smooth-compounding signature is absent, so the degeneracy is not
+    accumulated rollout drift but a transition that never sees the action at all. The red-team
+    measurement localises the dominant ~675x crush at the LSTM+output_proj stage, so interface
+    conditioning alone may not fully fix it and the objective change stays a real second work item.
+    No status/category/direction move (stays candidate, pending_retest_after_substrate true); the
+    retest remains gated on SD-e1-rollout-consistency-training, now re-scoped action-conditioning-
+    first and no longer probe-gated. diagnostic_evidence_adjudicated set true.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -33593,6 +33623,7 @@
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
 - id: Q-040
+  epistemic_category: answer_state
   evidence_quality_note: |
     [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
 
@@ -33624,6 +33655,20 @@
     non-engagement finding in this lineage, each a different bug. non_contributory/
     measurement_test_design_defect. Route: /queue-experiment with a z_harm_a-calibrated threshold
     (not the borrowed 490b one) and a preflight assertion that the gate actually opens at least once.
+
+    [2026-08-29 governance, V3-EXQ-862b, confirmed failure_autopsy_V3-EXQ-862b_2026-08-29
+    (REE_assembly f3a2aa2aa6), ratified at the walk] FOURTH instrumentation failure of the Q-040.c
+    lineage, one level deeper than 862a's. The manipulation finally ENGAGED (P1' z_harm_a holds 3/3
+    at 14/2/32; P2 3/3; non-degenerate) -- so this is not another gate-never-opened defect -- but
+    the DV itself is structurally insensitive: pe's maximum attainable variance share of ||dACC
+    bias|| is <= 1e-6 (max direct-path |rho| ~0.001 against the 0.3 bar), because pe enters only via
+    control_required = pe*0.1 * effort 10 * dacc_weight 0.5 while E3-score payoff components run
+    ~500-1800. The driver's pre-registered weakens is VOIDED: manifest evidence_direction corrected
+    weakens -> non_contributory in BOTH the flat manifest and the runs/ pack, with
+    evidence_direction_note. epistemic_category set answer_state (the claim carried none). Status
+    unchanged -- Q-040 stays open; the lineage has produced four measurement/test-design defects and
+    zero readings on the question. GFLAG-0092 (which recorded the 862a-level version of this
+    diagnosis) is OVERTAKEN by this entry and resolved.
   title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
   claim_type: open_question
   subject: control.vs_generalisation_unblocks_dacc

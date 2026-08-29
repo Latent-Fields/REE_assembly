@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "chip-20260824-mech142-ach-gating-falsifier-scope",
-  "last_updated_utc": "2026-08-29T14:13:38Z",
+  "last_updated_utc": "2026-08-29T16:16:03Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -1297,10 +1297,10 @@
         {
           "date_utc": "2026-06-01",
           "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
-          "metric_notes": "Plan \u00a73.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to \u00a75.2 (shorten interval / lift prob) or \u00a75.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc \u00a710 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
+          "metric_notes": "Plan §3.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to §5.2 (shorten interval / lift prob) or §5.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc §10 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
           "metric_value": "C1 curriculum_firing PASS 3/3 (external_hazard_event_count 10/45/6); C2 z_harm_a_nonzero PASS 3/3 (zero_fraction=0.0); C3 sustained_window FAIL 1/3 (seed 42=0 runs, seed 7=1 run, seed 19=0 runs; threshold z>=0.4 for run_len>=10). Pooled z_harm_a_norm p70=0.43, p80=0.44, p90=0.44; upper tail clears BLA arousal_threshold_on=0.4 but does not sustain. Affective stream confirmed wired (post-625 stream-off fix).",
           "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
-          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan \u00a75.2 / \u00a75.4.",
+          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan §5.2 / §5.4.",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implemented_utc"
         }
@@ -1341,9 +1341,9 @@
         {
           "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
           "date_utc": "2026-06-01",
-          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in \u00a75: harm magnitude lift (\u00a75.1) -> sustained-window lengthening via env_drift_interval/prob (\u00a75.2) -> stochasticity for dACC PE (\u00a75.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (\u00a75.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
+          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in §5: harm magnitude lift (§5.1) -> sustained-window lengthening via env_drift_interval/prob (§5.2) -> stochasticity for dACC PE (§5.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (§5.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
           "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
-          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
+          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md §3. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
         }
       ],
       "implementation_status": "implemented",
@@ -1354,7 +1354,7 @@
       "metric_trajectory": {
         "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
-        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan \u00a73.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
+        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan §3.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -6645,7 +6645,7 @@
       "title": "Phasic surprise-EMA baseline continuity + convergence-gated event counting",
       "node_class": "complicated (buildable)",
       "status": "implemented",
-      "ready": false,
+      "ready": true,
       "design_doc": "docs/architecture/sd_075_phasic_ema_episode_continuity.md",
       "depends_on_unresolved": [
         "SD-069 (IMPLEMENTED -- capability present, this is a baseline-continuity defect on top of it)"
@@ -6660,13 +6660,15 @@
           "metric": "phasic_fires_real_events (MIN n_event_ticks across PHASIC-ON cells) = 6 on seed 23 / T0P1, unchanged from 779a despite exposure rising 843 -> 2400 env steps; seed 23 mean episode length 6.9 steps vs a ~10-tick EMA time constant",
           "target": "a working implementation must let a short-episode seed reach MIN_EVENT_TICKS = 10 on a converged baseline, or declare the cell uninformative rather than reporting a near-zero count",
           "run_role": "pre_build",
-          "run_role_basis": "R3 run < entry.implementation_note:freetext"
+          "run_role_basis": "R3 run < entry.implementation_note:freetext",
+          "resolved": "resolved",
+          "resolved_note": "SD-075 carry mode + warmup=40 training clears the 779b failure mode: n_events_converged min 12 vs bar 10 on all three starvation-category seeds incl. canonical seed 23 (V3-EXQ-952, 2026-08-28). Retest-design question closed: carry + warmup exposure (JOINT conditions -- see isolation caveat in the verdict). Governance may also flip the entry's ready flag."
         }
       ],
       "implementation_hint": "PhasicSurpriseBurst.reset() clears the surprise-EMA at every episode boundary, giving a ~10-tick warmup (PHASIC_EMA_DECAY 0.1) against episodes as short as 7 steps, so short-episode seeds structurally under-report n_event_ticks and no step-budget increase can compensate. Build BOTH legs: (a) carry or warm the EMA baseline across episode boundaries so the baseline reflects the agent's surprise distribution rather than the current episode's first tick; (b) gate event-tick counting until the baseline has converged, so a cell reports honestly (or declares itself uninformative) instead of returning a near-zero count that a MIN-across-cells precondition then treats as a real measurement.",
       "priority": 1,
       "added_session": "silly-jepsen-926d36",
-      "last_seen_session": "silly-jepsen-926d36",
+      "last_seen_session": "governance-20260829-1546",
       "source_autopsy": "failure_autopsy_V3-EXQ-779b_2026-07-19.json",
       "blast_radius_note": "affects every consumer of phasic_surprise_burst, not only the MECH-063 probe family; the RolloutBudget audit (ree-v3 6ac2a0d) already flagged _lib/probe_warmup.py WarmupRecipe (probe_max_episodes 40 vs probe_max_env_steps 4000) as the worst live short-episode exposure, consumed by V3-EXQ-784",
       "sd_claim_id": "SD-075",
@@ -7678,13 +7680,11 @@
     {
       "sd_id": "SD-e1-rollout-consistency-training",
       "title": "E1 forward-model multi-step rollout-consistency training objective",
-      "node_class": "complex (probe-gated)",
+      "node_class": "complicated (buildable)",
       "status": "pending_implementation",
-      "ready": false,
+      "ready": true,
       "design_doc": null,
-      "depends_on_unresolved": [
-        "diagnostic probe (horizon sweep of CR_rollout(h) for h=1,2,3,5,10,20,30 on the existing trained E1, plus one-step per-action divergence across the K candidate actions) per targeted_review_e1_forward_model_rollout_consistency Section 4 -- distinguishes horizon-mismatch (a: trained at 1, used at 30) from action-blindness (b: E1's transition takes no action input) before a training-objective candidate is chosen; not yet queued"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "INV-088",
         "MECH-135"
@@ -7699,11 +7699,11 @@
           "run_role_basis": "R5 entry claims a build but nothing dates it"
         }
       ],
-      "implementation_hint": "Lit-pull targeted_review_e1_forward_model_rollout_consistency (complete 2026-08-03) confirmed the collapse as a named, theorised failure family (anchors: PlaNet latent overshooting, DaD scheduled multi-step unrolling, TD-MPC multi-step latent consistency, Asadi direct sequence-conditioned model) but found a structural complication the original hint did not anticipate, verified in code: E1's transition is action-blind -- ree_core/predictors/e1_deep.py's forward() and predict_long_horizon() take no action parameter, and predict_long_horizon zeroes the z_self half of its LSTM input, so the action signal reaches z_world only through a squeezed second-order path via E2. All four literature fixes presuppose an action-conditioned transition and constrain how the predicted trajectory differs ACROSS actions -- exactly what C3's e1coe_score_var measures -- so 'add a multi-step/rollout-consistency term' alone would make E1's single trajectory more self-consistent without making the forty candidate action sequences any more distinguishable. The fix is likely an interface change (action-conditioning) plus an objective change, not an objective change alone. Review's provisional candidate ranking (Section 3): (1) TD-MPC-style multi-step latent consistency over an action-conditioned transition -- strongest template, additive to E1's existing training signal; (2) DaD scheduled multi-step unrolling -- cheapest, no architecture change, good first intervention but unlikely to fix C3 alone; (3) Asadi direct (state, action-sequence)->endpoint model -- best fit to what the evaluator actually consumes, held at 3 for the |A|^H generalisation question at horizon 30; (4) PlaNet latent overshooting -- grounded but NOT endorsed by its own ablation for a deterministic-LSTM architecture class like E1's, do not adopt by default; (5) contrastive next-state -- de-prioritised, no long-horizon anchor found, and the E2 review's contrastive recommendation does not transfer (it addresses single-step action identifiability, a different problem). This ranking is PROVISIONAL: node_class complex (probe-gated) is not yet discharged -- the review's Section 4 recommends a diagnostic probe (see depends_on_unresolved) to determine whether horizon-mismatch or action-blindness dominates the observed collapse before committing to an objective, since every ranked fix targets the former and presupposes the latter is solved.",
+      "implementation_hint": "RE-SCOPE per V3-EXQ-954's pre-registered branch: the FIRST work item is action-conditioning E1's transition (forward()/predict_long_horizon take no action parameter, e1_deep.py:758/1126; z_self LSTM slot zeroed at :783-784, leaving the action signal squeezed through the world_dim-wide prior_generator projection); the multi-step/rollout-consistency training objective is SECOND -- all five lit-pull training-objective fixes presuppose an action-conditioned transition and are misdirected without it. (The objective change stays a real second item: the red-team measurement localises the dominant ~675x crush at the LSTM+output_proj stage, which interface conditioning alone may not fix.) Also clear the now-discharged probe-gating: this probe IS the spike the entry's depends_on_unresolved / complex (probe-gated) node_class was waiting on -- reclassify the node complicated (buildable).",
       "priority": 2,
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
-      "last_seen_session": "metaworker-chip-20260825-e1-rollout-consistency-litpull",
+      "last_seen_session": "governance-20260829-1546",
       "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency). RESOLVED 2026-08-25 (chip-20260825-e1-rollout-consistency-litpull): the lit-pull was actually commissioned and completed 2026-08-03 (session metaworker-chip-20260803-litpull-e1-rollout-consistency) but that session's own substrate_queue.json update was deferred at authoring time due to a TASK_CLAIMS conflict on this file (two other sessions held active claims on it then) -- see the review's own 'What this synthesis does NOT do' closing section. This entry's depends_on_unresolved and implementation_hint are updated here to reflect the review's findings; see evidence/literature/targeted_review_e1_forward_model_rollout_consistency/SYNTHESIS.md."
     },
     {
@@ -8319,17 +8319,26 @@
           "target": ">= 2 occupied slots in both fix arms on >= 3/5 seeds (registered). Occupancy half MET. Addressing-non-degeneracy still a human call (BIAS counter-driven; REFRACTORY structural k+1).",
           "resolved": "open",
           "run_role": "validation"
+        },
+        {
+          "run_id": "v3_exq_956_contextmemory_write_gumbel_learned_validation_20260829T014524Z_v3",
+          "experiment_type": "v3_exq_956_contextmemory_write_gumbel_learned_validation",
+          "metric": "C2 content discrimination: mean 2-cluster probe Jaccard trained 0.667 vs untrained 0.400 (required <= 0.15; the +0.267 wrong-direction move is p~0.25 at n=5, suggestive not established); training concentrated writes (entropy 3.97 -> 2.67-3.24) -- second loss design to fail content-discrimination (first: MoE importance loss, Jaccard 1.000, replaced pre-landing)",
+          "target": "mean probe Jaccard(trained) <= Jaccard(untrained) - 0.25 under a real training schedule, i.e. demonstrably content-conditioned write-address selection",
+          "resolved": "open"
         }
       ],
       "implementation_hint": "ContextMemory.read() (ree_core/predictors/e1_deep.py:124-133) addresses by softmax over query_proj(query) @ key_proj(memory).T, but ContextMemory.write() (lines 135-147) addresses by a hard scores.mean(0).argmin(), which under a near-constant query stream is a deterministic single-slot fixed point -- established at 436e by a closed-form sign discriminator q . (write_signal - memory[argmin]) that predicted lock-vs-rotate 5/5. Primary build: apply the annealed Gumbel-softmax selection that V3-EXQ-908 ALREADY CONFIRMED works (3/3, genuine context-conditioned sparsification) to the WRITE address, or add an occupancy/usage-balancing term so the fixed point cannot form. Note compute_diversification_loss() already acts on self.memory but the write update runs under torch.no_grad() and is unaffected by it. Secondary/complementary lever (NOT this entry): raise z_world entropy via the SD-070 encoder recipe so the query stream stops being near-constant. This is the WRITE-side sibling of substrate_queue SD-016, which is scoped to cue-indexed RETRIEVAL and is already `implemented`; an amend there would misfile it.",
       "priority": 1,
       "added_session": "cranky-driscoll-126a36",
-      "last_seen_session": "gov-20260821-0203",
+      "last_seen_session": "governance-20260829-1546",
       "added_utc": "2026-08-16T19:11:21Z",
       "created_by": "governance 2026-08-16T19:11:21Z (cranky-driscoll-126a36) from confirmed failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16 / V3-EXQ-436f",
       "severity": "corrupting",
       "substrate_paths": [
-        "ree_core/predictors/e1_deep.py"
+        "ree_core/predictors/e1_deep.py::ContextMemory.write",
+        "ree_core/predictors/e1_deep.py::ContextMemory.compute_write_addressing_loss",
+        "ree_core/agent.py::compute_prediction_loss"
       ],
       "severity_rationale": "Every ContextMemory consumer writing under a low-variance query stream silently gets a 1-slot bank while write() returns normally and thousands of calls are logged. Nothing errors, the readout is well-formed, and the resulting null looks like a genuine 'sleep has no effect' finding. That is the definition of `corrupting` -- evidence that LOOKS valid but is not -- and it has now produced exactly that artefact twice (436e, 436f). Classified by what the defect does to evidence quality, not by fix difficulty.",
       "priority_rationale": "One fresh failure record (V3-EXQ-436f), and it blocks 3 claims -- either arm of the governance Step 6a-ii.6 rule gives priority 1.",
