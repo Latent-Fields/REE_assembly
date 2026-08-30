@@ -84,6 +84,13 @@ Run `scripts/run_scripts_tests.sh --changed` before landing anything here.
 
 Dated, keep out of the session until due: `chip-20260904-refwedge-r1-rate-cost-remeasure` (≥ 2026-09-04).
 
+Added 2026-08-30 by the cutover durability review (coordinator_cutover_durability_review_20260828.md):
+7. **C.7** — `renew` is the one suppressed verb with no coordinator-ack verification
+   (task_claim.py:4893); add `verify_renew_coordinator_ack` per the hollow-ack pattern.
+8. **C.8** — the `task_claim_chip_drift_log` has no programmatic reader; add a hygiene-tick
+   source that chips on `diverged=1` (this is also the compensating channel the statusregress
+   fix's accepted blind spot relies on).
+
 ## Campaign D — Metawork lifecycle + fleet deploy hygiene (P1)
 
 1. `chip-20260829-rc-metawork-session-lifecycle` — the root cause of the Mac lockup (12 finished RC sessions running a day past done). Design the termination path; coordinate with the standing `/metaworker-orchestrate` owner (memory: leave orchestration machinery to it — this is a design handoff, not a unilateral build).
@@ -92,6 +99,10 @@ Dated, keep out of the session until due: `chip-20260904-refwedge-r1-rate-cost-r
 4. `chip-20260830-stray-git-sync-repair-untracked` — vendor `/usr/local/bin/ree_git_sync_repair.sh` into a repo (follow the committed-template convention used by the launchd plists).
 5. `chip-20260821-heartbeat-hysteresis-remeasure` — measurement only.
 6. `chip-20260826-fleet-idle-watcher-validation-candidate-false-negative` — audit the 37 exclusions.
+7. **D.7 (from the durability review, awaiting the user's go)** — retire the hub from the
+   experiment pool: graceful runner stop after V3-EXQ-959 completes, then disable ree-runner on
+   cloud-1. The review ties hub load directly to render-visibility durability (F4), and the
+   user proposed exactly this on 2026-08-30.
 
 ## Campaign E — Worktree GC (P2, Mac, careful)
 
