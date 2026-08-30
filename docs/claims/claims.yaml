@@ -19306,6 +19306,22 @@
     MECH-144 consequently reads conflict_ratio 0.5 (supports=3 lit, weakens=1 exp) and stays candidate
     pending conflict resolution. The driver fix (singleton-group call plus an arity guard in
     metric_groups_are_degenerate) is still owed. epistemic_category set to standard (none before).
+
+    [2026-08-30 governance Step 3 agenda, cycle governance-20260830-0630] DECISION (user, at the interactive
+    agenda walk): KEEP CANDIDATE and resolve the conflict by a properly-powered RETEST, not by re-weighting
+    the existing evidence. Standing state: conflict_ratio 0.5 from 3 literature supports (Jimenez 2018
+    valence geography, Knudsen & Wallis 2021 abstract value maps, Wu 2024 cholinergic dorsoventral valence)
+    plus 1 literature mixed (Silva 2026), against exactly ONE scoring experimental datum -- V3-EXQ-961's
+    weakens, which this same cycle restored to scoring and which its own autopsy calls genuine but LOW-
+    POWERED. The two V3-EXQ-165 runs are excluded (superseded / inconclusive), so there is currently no
+    other experimental evidence either way. SEQUENCING, and it is load-bearing: the successor must be queued
+    AFTER chip-20260830-singleton-group-degeneracy-guard lands, because 961's driver passed SINGLETON groups
+    to the non-degeneracy checker and a successor inheriting that idiom would carry the same false-
+    degeneracy risk into its own readiness gate. The dormant V3-EXQ-165 driver (already covered by
+    chip-20260830-exq165-dormant-driver-decision) covers MECH-143/144 and is the natural vehicle. No third
+    overlapping experiment chip was spawned for this on purpose. Node class: complex (probe-gated) -- the
+    next move is a better-powered probe, not a build. Expect this claim to keep re-flagging
+    hold_candidate_resolve_conflict until that retest lands; that is correct, not drift.
   live_status:
     reading: candidate
     as_of: 2026-07-11
