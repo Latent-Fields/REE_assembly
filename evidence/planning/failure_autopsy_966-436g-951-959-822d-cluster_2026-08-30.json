@@ -1,0 +1,517 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-30T14:48:30Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal_20260830T115037Z_v3",
+      "queue_id": "V3-EXQ-966",
+      "claim_ids": [
+        "MECH-143",
+        "MECH-144"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- neither claim was tested; the C2 manipulation was inert",
+        "biological_reference": "clear -- hippocampal value-sensitive trajectory scoring; no translation error implicated",
+        "prerequisites": "missing -- IncentiveTokenBank base values empty in all 8 cells",
+        "implementation": "partial -- the residue route is open but SIGN-GATED (benefit magnitude has no consumer); the energy route is open and unexplained",
+        "environment": "unknown -- the mechanism for the zero contrast is UNRESOLVED; the agent_energy channel is open and amp-scaled in most of each episode, so the earlier clamp-based explanation is withdrawn",
+        "measurement": "misleading -- equivalence bound derived from the noise it must exclude; 2 of 3 verdict branches map to supports",
+        "integration": "isolated",
+        "scale": "likely insufficient -- 3-8 type-tagged contacts per scored block"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES + ENVIRONMENT; not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ventral/intermediate hippocampal value-sensitive place coding feeding trajectory evaluation",
+        "dependencies": [
+          "a depletable interoceptive state that benefit magnitude can move",
+          "an incentive-value store that accumulates per-type experience"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified -- the failure is an environment-configuration artefact, not a biology mismatch",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-30 governance, V3-EXQ-966, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30] The C2 manipulation was INERT: block_contacts are bit-identical between ARM_FIXED_VALUE and ARM_SHUFFLED_VALUE on 4/4 seeds across 4/4 blocks, including blocks 3-4 where the arms' amplitude assignment differs, so frac_high_SHUFFLED = 1 - frac_high_FIXED by construction and fixed_post+shuffled_post sums to exactly 1.000 on every seed. The recorded delta is a RELABELLING of which resource type counts as 'high', not a behavioural contrast. Mechanism: resource_type_benefit_amplitudes scales contact_benefit, which reaches the agent by three routes, all closed at this config. (1) RESIDUE, open but SIGN-GATED: _consume_resource_at sets harm_signal = contact_benefit (causal_grid_world.py:2174) and StepHarness passes it into agent.update_residue every tick (_harness.py:361), but every consumer of the value inside update_residue is gated on the sign -- harm_occurred=(harm_signal<0) at agent.py:10354, and the magnitude-reading branches at L10463/10477/10500, with harm_magnitude=abs(harm_signal) at L10501 reachable only inside 'if harm_signal < 0'. A contact benefit is POSITIVE, so 0.30 and 0.045 are both simply 'not harm' and are discarded identically: the residue field records harm magnitude and has NO consumer for benefit magnitude. (2) agent_health, min(1.0,...) ceiling clamp, decremented only by hazard/contaminated contact -- and the driver sets NUM_HAZARDS=0, so health is pinned at 1.0. (3) agent_energy, floor-clamped at 0.0 under a 0.01/step decay that dominates ~0.8 contacts/episode. use_proxy_fields defaults to False, so body[11] benefit_exposure -- the one unclamped benefit-magnitude channel -- does not exist, and the on_post_step hook is not set by this driver. NUM_HAZARDS=0 closes routes (1) and (2) at once. Two corroborating symptoms: incentive_bank_base_values is {} in all 8 cells (the nominated re-tracking pathway recorded nothing), and P0's ResourceEncoder warmup trained against a constant 0.0 target because resource_field_view is also a proxy-field channel. Separately, C2's verdict logic could not have discriminated even on live arms: margin = max(2*pstdev(delta), 0.10) = 0.640 on a DV bounded in [0,1] (an equivalence bound set by the noise it exists to exclude), and 2 of its 3 branches map to 'supports'. The recorded MECH-144 supports is WITHDRAWN. The recorded MECH-143 weakens is also withdrawn: c1_pass conjoins the substantive repeat-identity check (passed 4/4) with flip_differs, which the driver's own docstring declares a POSITIVE CONTROL, so seed 61's flip failure is an instrument-not-established finding, not claim evidence. non_contributory on both claims. Retest owed on an env config where the amplitude reaches an unclamped channel; a substrate guard against this class is recommended (severity corrupting). PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "MECH-143": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "C1's flip_differs sub-check is the driver's own declared POSITIVE CONTROL; its failure on seed 61 was mapped to weakens for MECH-143. Withdraw that mapping; the run establishes nothing about MECH-143. epistemic_category already standard and status already candidate, so nothing storable moves -- apply the corrected evidence_quality_note",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-144": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "manifest records supports off an equivalence test whose two arms were bit-identical; withdraw. Nothing storable moves (category already standard, status already candidate) -- apply the corrected evidence_quality_note naming the inert manipulation",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "WITHDRAWN. An earlier revision proposed creating sd_sd049_amplitude_observability_guard (severity corrupting) with a lint on 'amplitude non-uniform while every channel it can reach is clamped'. That predicate is FALSE: agent_energy resets to 1.0 each episode and decays 0.01/step, so it spends most of a 120-step episode strictly between the clamps and a contact's +contact_benefit*0.5 bump lands unclamped and amp-scaled (+0.15 HIGH vs +0.0225 LOW) into body[3], an observed channel; the min(1.0,...) clamp only absorbs contacts in roughly the first 15 steps after a reset. No substrate entry is proposed until the confirmer below separates H-inert-in-fact from H-insensitive-policy."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "WITHDRAWN: an earlier revision asserted the absolute 'the amplitude has no observable consequence at this env config', resting on agent_health being ceiling-clamped (NUM_HAZARDS=0) and agent_energy floor-clamped. The agent_energy half is FALSE -- the floor clamp saturates the DECAY, not the benefit, and energy sits strictly between the clamps for most of each episode. The mechanism for the zero contrast is therefore UNRESOLVED.",
+        "ALSO WITHDRAWN as a phrase: 'the two arms are the same run'. Identical block_contacts are identical COUNTS, not proven identical trajectories. 32 exact integer matches remain overwhelming evidence of no measurable behavioural difference, and that is what the direction withdrawals rest on.",
+        "What survives and is newly established: the residue route is open but SIGN-GATED -- harm_signal = contact_benefit reaches agent.update_residue every tick (_harness.py:361) and every consumer there is gated on harm_signal < 0 (agent.py:10354, and the magnitude branches at 10463/10477/10500-10501), so a POSITIVE benefit's magnitude is discarded. The residue field has a consumer for harm magnitude and none for benefit magnitude.",
+        "An equivalence test whose bound is max(k*pstdev(delta), floor) inflates its own bound with the noise it is meant to exclude; here margin=0.640 on a DV bounded in [0,1].",
+        "A verdict ladder in which 2 of 3 branches map to the same direction is not a discrimination.",
+        "Perfect complementarity of two arms' proportions (summing to exactly 1.0 on every seed) is the fingerprint of a relabelling; check it before reading any delta."
+      ],
+      "routing": "queue-experiment",
+      "prior_asset_checks": {
+        "v3_exq_165_mech143_hippocampal_value_sensitivity": "Step 7b C1 fired. DISMISSED with reason: V3-EXQ-165 was RETIRED on 2026-08-30 (REE_assembly/evidence/planning/v3_exq_165_retirement_2026-08-30.md, ree-v3 a083cf5f7f) as a tautological, value-blind hand-rolled navigator, and V3-EXQ-966 is its governance-ratified replacement vehicle (recorded in this run's own vehicle_substitution_record). The check is correct that the file has never scored; it is stale by one day.",
+        "C7:n_contacts_post": "Step 7b C7 fired: n_contacts_post varies across seeds but is BIT-IDENTICAL across arms in every seed (8/8, 3/3, 4/4, 12/12). ACTED ON as CORROBORATION, not dismissed: this is precisely the finding this target makes central -- the two arms are the same run. Verified: observed_mean_contacts_per_block 6.875 reproduces exactly from the 16 pre/post cells (110/16), and the self-calibrating floor max(3, int(6.875*0.5)) = 3 admitted the n=3 cells."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-inert-in-fact: something prevents the amplitude difference from reaching behaviour despite the open energy channel; the run measured nothing and the fix is environmental",
+          "H-insensitive-policy: the amplitude IS applied, agent_energy genuinely differs between arms, and E3 selection is nonetheless unmoved by it -- a substantive and more troubling finding about the selection pathway's sensitivity to body state"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "both",
+            "axis": "instrumentation",
+            "sketch": "one seed, blocks 3-4, both arms: log env.resource_type_benefit_amplitudes and agent_energy at every contact plus the per-step action index. Minutes of compute; separates the two decisively."
+          }
+        ],
+        "note": "This is a two-hypothesis discrimination with one shared, near-decisive confirmer, so it is a puzzle (known rules) rather than a portfolio. Established by code reading and NOT in dispute: _consume_resource_at is on the live path (causal_grid_world.py:2436, consummatory_act_enabled defaults False), and resource_type_benefit_amplitudes is a plain attribute with no property or __slots__, so the driver's _set_high_idx live mutation does reach the L2133 read."
+      }
+    },
+    {
+      "run_id": "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3",
+      "queue_id": "V3-EXQ-436g",
+      "claim_ids": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened for ARC-045's absolute prediction, but under a total upstream confound; unclear for SD-017/MECH-166",
+        "biological_reference": "clear -- SWS/REM-analog consolidation differentiating hippocampal context representations",
+        "prerequisites": "present -- all 7 P0 gates met, occupancy 16/16",
+        "implementation": "partial -- the BIAS repair fixed write ADDRESSING; write CONTENT still homogenises the bank",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- untouched-bank null sd 0.00779 is ~36x the observed sleep effect",
+        "integration": "coupled but unstable",
+        "scale": "adequate (5 seeds)"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM (substrate ceiling) + MEASURES; not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS sharp-wave-ripple replay consolidating hippocampal context codes; REM attribution replay",
+        "dependencies": [
+          "a write path that preserves content distinctions between contexts"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- the gap is substrate, not translation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-30 governance, V3-EXQ-436g, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30, successor to V3-EXQ-436f] Seventh generation, and the first to run on a repaired write path. All SEVEN P0 gates MET, including the new bias_occupancy_confirms_fix: BIAS write-usage balancing cleared occupancy to 16/16 slots in every non-NO_WRITES cell on 5/5 seeds, so the write-path ADDRESSING degeneracy diagnosed at 436e/436f is CONFIRMED FIXED and the brake release was correctly earned. C1(a) sign test PASS 3/5; C1(b) effect-size margin FAIL (mean_signed_delta -2.162e-4 vs a required <= -0.02). The decisive datum is in the NO_WRITES calibration arm, which the driver reads only as an Adam-drift check: with 0 write calls its per-seed whole-bank mean pairwise slot cosine is ~0.000 [0.000966, 0.002224, -0.012985, -0.005960, -0.002195], while WAKING_ONLY and SWS_THEN_REM both sit at ~0.9992. Writing to the bank AT ALL collapses it to near-rank-1; the sleep-vs-waking contrast is a rounding error on top of a collapse that precedes it and is not sleep-specific. Bank homogenisation was already on record from 436c (MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION failure_record); what is new here is the untouched-bank reference proving WRITES are the cause, the WAKING_ONLY parity, and that it survives the addressing fix. Consequences: SD-017's own stated prediction ('undifferentiated WITHOUT the phases, slot_cosine_sim -> 1.0') is CONFIRMED by WAKING_ONLY = 0.9993, so its recorded weakens is withdrawn; ARC-045's absolute prediction (<0.95 after sleep) is missed at 0.9991 but under a total upstream confound, so it too is withdrawn to non_contributory; MECH-166 likewise. Measurement note: the re-derived untouched-bank null has sd 0.007789, ~36x the observed sleep effect, so within the collapsed regime the instrument cannot resolve a sleep effect regardless of the 0.02 floor; and with 16/16 occupancy slot_cosine_sim_occupied_only equals raw_whole_bank exactly, making 436e's occupied-only correction a no-op. C4 passed 4/5 but is an absolute threshold on the SWS arm with no contrast (WAKING_ONLY exceeds 0.3 on 5/5 seeds), so it is not ARC-045 support either. epistemic_category STAYS substrate_ceiling. pending_retest_after_substrate stays true, re-scoped a FOURTH time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD -> after-WRITE-CONTENT-DIFFERENTIATION. Re-derive brake FIRES again (SD-017 3->4, ARC-045 1->2, MECH-166 1->2): a V3-EXQ-436h re-posing sleep-differentiation on the same bank is REFUSED. The permitted next move is already frozen -- hypothesis_space_registry qid contextmemory_write_content_discrimination, H1-H4 all alive and none queued; this run is a measurement bearing on H4-input-distribution. v3_exq_242_sd017_sleep_phase_ablation (on disk 2026-07-12, never scored, two-context design) is surfaced for a queue-or-retire decision as a possible leg of that portfolio. SD-017's own note flags the stable + substrate_ceiling + open-retest combination for a deliberate review 'once the contextmemory write-path validation lands' -- it has landed; that review is now DUE. PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "SD-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "SD-017's own stated prediction (undifferentiated WITHOUT the phases, slot_cosine_sim -> 1.0) is CONFIRMED by WAKING_ONLY = 0.9993; the manifest's weakens is withdrawn. Category already substrate_ceiling and status already stable, so nothing storable moves -- apply the corrected note AND action the review this claim's own note already flagged as due once the write-path validation landed (it has)",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays stable, but the flagged stable+substrate_ceiling+open-retest review is now DUE"
+        },
+        "ARC-045": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "ARC-045's absolute prediction (cosine_sim < 0.95 after sleep) is missed at 0.9991, but the bank is collapsed to 0.999 by the ONLINE write path alone (NO_WRITES calibration arm = 0.000), so offline flow had no differentiable structure to act on. Withdraw weakens -> non_contributory. Nothing storable moves -- apply the corrected note",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-166": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "change": "same upstream confound as ARC-045; the SWS-analog consolidation comparison cannot be scored on a bank the write path has already homogenised. Nothing storable moves -- apply the corrected note",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "contextmemory-write-path-addressing-degeneracy",
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e1_deep.py::ContextMemory.write"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3",
+          "experiment_type": "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest",
+          "metric": "Downstream validation of the BIAS write-usage-balancing build. ADDRESSING half CONFIRMED FIXED: 16/16 occupied slots in every non-NO_WRITES cell on 5/5 seeds, transfer to this driver's own config confirmed by the new bias_occupancy_confirms_fix P0 gate. CONTENT half UNTOUCHED: NO_WRITES calibration arm mean pairwise slot cosine 0.000 (0 write calls, 5 seeds) vs WAKING_ONLY 0.9993 and SWS_THEN_REM 0.9991 -- the ONLINE write path alone collapses the bank to near-rank-1, and the sleep contrast (-2.16e-4) is a rounding error on an untouched-bank null of sd 7.79e-3.",
+          "target": "written slots must retain measurable pairwise separation; the entry's own secondary lever (z_world entropy / write content) is what remains",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_436f_sd017_mech166_sd016_armed_retest_20260814T194313Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "436f's record was write-path ADDRESSING degeneracy (occupancy 1 of 16 on 3/5 seeds under a deterministic argmin fixed point). The BIAS write-usage-balancing build closes it: 436g measures 16/16 occupancy on 5/5 seeds with the transfer gate confirming it in this driver's own env/training-loop config. Status implemented_pending_validation -> the addressing half is now VALIDATED by 436g. The content half is NOT closed and is this entry's own declared secondary lever."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16",
+          "failure_autopsy_V3-EXQ-538a_2026-07-10",
+          "failure_autopsy_grandfathered-sleep-cluster_2026-08-08"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "contextmemory-write-path-addressing-degeneracy -- ADDRESSING half implemented and now validated by this run; CONTENT half has NO named build, so the node is complex (probe-gated), not complicated (buildable). The discrimination is ALREADY pre-registered as hypothesis_space qid contextmemory_write_content_discrimination (H1 loss-objective-mismatch / H2 operating-point / H3 task-pressure-required / H4 input-distribution), all four alive and none queued. That portfolio, not a 436h, is the permitted next move.",
+        "refused_requeue_detail": "A V3-EXQ-436h re-posing sleep-differentiation on the same bank is REFUSED. The pre-registered H1-H4 content-discrimination portfolio is a DIFFERENT mechanism (why write addressing fails to become content-conditioned) and is permitted; so is v3_exq_242's two-context design as a leg of it."
+      },
+      "learning_extracted": [
+        "A calibration arm can carry the run's decisive datum. 436g's NO_WRITES arm was read only as an Adam-drift check; the same numbers are the differentiation-headroom reference that reframes the whole lineage.",
+        "Fixing a diagnosed defect and still failing FOR A NEW REASON is progress, and the new reason was only visible because the old one was fixed: with occupancy 1/16 there was no pairwise cosine to compute.",
+        "An occupied-slots-only correction becomes a no-op the moment occupancy is complete -- 436g's occupied_only and raw_whole_bank cosines are exactly equal on every seed.",
+        "A brake release predicated on 'the named substrate build landed' does not guarantee the build addressed the failure; the release condition should name the MEASUREMENT that would show it worked.",
+        "This autopsy's own first draft called the homogenisation a new finding; MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION's failure_record already carried it from 436c. Step 7b's C2 check caught that. The genuinely new element is the NO_WRITES reference and the WAKING_ONLY parity, not the collapse itself."
+      ],
+      "routing": "queue-experiment",
+      "prior_asset_checks": {
+        "v3_exq_242_sd017_sleep_phase_ablation": "Step 7b C1 fired. ACTED ON, and the check's premise is FALSE -- as it also was for V3-EXQ-547, which this autopsy challenged while accepting the same premise here. V3-EXQ-242 DID run: evidence/experiments/v3_exq_242_sd017_sleep_phase_ablation/ holds a full run pack (run_id v3_exq_242_sd017_sleep_phase_ablation_1775394244_v3, outcome FAIL) and claim_evidence.v1.json carries 6 entries on exactly these three claims. It is a PRIOR NEGATIVE RESULT to re-read, not a dormant asset to queue. Its two-context design (SAFE vs hazardous CausalGridWorldV2) is still the nearest existing instrument to H4-input-distribution in hypothesis_space qid contextmemory_write_content_discrimination and is worth revisiting as a leg of that portfolio. HYGIENE, out of scope: its flat manifest records evidence_direction 'weakens' while its run-pack manifest records 'non_contributory' for the same run_id.",
+        "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION": "Step 7b C2 fired. ACTED ON, and it CORRECTED THIS AUTOPSY. This prio-1 / severity=corrupting entry already unblocks SD-017/ARC-045/MECH-166 and its FIRST failure_record item is v3_exq_436c: 'SWS_THEN_REM collapses whole-bank cosine similarity to ~0.9999-1.0 in 4/5 seeds (homogenization, opposite predicted direction)'. So bank homogenisation was ALREADY on record and this autopsy must not present it as new. What 436g genuinely adds, and 436c could not supply, is (a) the NO_WRITES calibration arm at mean pairwise cosine 0.000 with 0 write calls, which establishes that WRITING is the cause rather than sleep, (b) that WAKING_ONLY homogenises identically (0.9993), so the effect is not SWS-specific as 436c's framing implied, and (c) that it survives the BIAS addressing fix at full 16/16 occupancy. The MECH122 entry is scoped to the SWS spindle content-selection half and does not cover the online write path, so it is not the right amend target; see recommended_substrate_queue_entry.",
+        "contextmemory-write-path-addressing-degeneracy": "Not flagged by 7b, checked anyway because it is the entry whose landing released this run's brake. status=implemented_pending_validation, ready=true, and its own implementation_hint already names the content lever as explicitly out of scope ('Secondary/complementary lever (NOT this entry): raise z_world entropy ... so the query stream stops being near-constant'). 436g is the first downstream measurement of what the BIAS build bought: addressing fixed, content untouched. That makes 436g this entry's validation result, which is why the recommendation below is an AMEND on it rather than a create."
+      }
+    },
+    {
+      "run_id": "v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3",
+      "queue_id": "V3-EXQ-951",
+      "claim_ids": [
+        "MECH-320"
+      ],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- C1 scored on zero seeds",
+        "biological_reference": "clear -- tonic dopaminergic vigor biasing response rate",
+        "prerequisites": "present -- P1 survival 3/3, bias channel silenced correctly in ARM_0",
+        "implementation": "complete -- the vigor bias is live (bias_max_abs 0.005-0.092 in ARM_1)",
+        "environment": "wrong pressures -- nothing makes withholding an action attractive",
+        "measurement": "misleading -- action_density is identically 1.0 in all 9 cells; zero variance",
+        "integration": "partially coupled",
+        "scale": "likely insufficient (3 seeds, one of them the cautioned seed 44)"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES + ENVIRONMENT; not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "tonic DA setting response vigor / opportunity cost of time (Niv); distinct from Salamone effort cost",
+        "dependencies": [
+          "a behavioural repertoire in which not-acting is sometimes selected"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-30 governance, V3-EXQ-951, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30, successor to V3-EXQ-624c] The pre-registered baseline_no_op_opportunity readiness gate measured 0.0 against a 0.667 threshold and correctly REFUSED to score: valid_seed_frac 0.0, per_seed_c1_lift empty, C1 scored on zero seeds. The emitted non_contributory STANDS -- this is the one target in the cycle needing no direction correction. The gate's framing understates the problem: action_density is EXACTLY 1.0000 in all 9 cells (3 seeds x 3 arms), as is gate_product_mean; the no-op action was never selected in ~17,800 instrumented ticks. NOOP_CLASS=4 is correct (CausalGridWorldV2.ACTIONS[4]==(0,0), action_dim 5), so this is a DV with zero variance, not a graded DV running near a 0.95 ceiling. The manipulation is live (ARM_1 bias_max_abs_mean 0.005-0.092; n_ticks differs across arms within a seed). LEADING EXPLANATION, from the substrate-readiness diagnostic this experiment was licensed by: V3-EXQ-547's governance-reviewed evidence_direction_note (2026-05-11) pre-specifies that the behavioural 3-arm discriminative pair -- which 951 IS -- run 'on a well-fed-safe-familiar substrate'; 951 instead ran the scaffolded SD-054 onboarding curriculum including a 40-episode hazard stage, and ARC-066's own substrate_queue entry names ARC-067 idle aversion and ARC-068 opportunity cost as required companions, neither enabled. Well-fed-safe-familiar is exactly the condition under which no-op becomes selectable. SECOND FINDING: 547's UC6 recorded bias_multiplicative [-0.004995, -0.044956] at the API level, while 951's ARM_2 bias_max_abs_mean is 1.66e-3 / 3.30e-3 / 5.35e-9 -- one to seven orders of magnitude weaker in vivo, so ARM_2 was effectively inert and the additive-vs-multiplicative discrimination was never powered either. epistemic_category substrate_ceiling -> standard: the modulatory-bias-selection-authority substrate is landed and was ARMED in this run (use_modulatory_selection_authority=True, gain 0.5), so the ceiling stamp no longer describes the blocker, which is the test bed and the DV; this also restores the claim's v3-testable lane. Re-derive brake does NOT fire from this autopsy (the reading is not substrate_ceiling); MECH-320 carries 2 prior ceiling hits. pending_retest_after_substrate stays true. PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "MECH-320": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "the readiness gate correctly refused to score; the failure is the DV, not the substrate. The modulatory-bias-selection-authority substrate is landed and was ARMED in this run (use_modulatory_selection_authority=True, authority gain 0.5), so the ceiling stamp no longer describes the blocker -- substrate_ceiling -> standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "ARC-066 and modulatory-bias-selection-authority both already exist and neither needs correcting from this run. The gap is the test bed and the DV, not ree_core substrate."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_EXQ-572-573_2026-05-17"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-actor-cannot-select-stay: the learned actor's stay/no-op logit is structurally dominated in this env, so action_density is 1.0 independently of any vigor manipulation",
+          "H2b-wrong-test-bed-vs-pre-registration: V3-EXQ-547's governance-reviewed note pre-specifies the 3-arm pair on a WELL-FED-SAFE-FAMILIAR substrate; 951 ran the scaffolded SD-054 curriculum including a hazard stage, and ARC-066's own entry names ARC-067 idle-aversion and ARC-068 opportunity-cost as required companions, neither of which was enabled",
+          "H2-environment-has-no-reason-to-withhold: stay is selectable but never advantageous at this env config (no cost of acting, no satiation, no waiting payoff), so it is never argmax",
+          "H3-wrong-dv: vigor authority expresses itself in a graded quantity (latency, commitment persistence, episode-length dynamics) rather than in whether an action is emitted at all",
+          "H4-multiplicative-form-collapses-in-vivo: the multiplicative arm's bias magnitude is 1-7 orders of magnitude smaller in the live pipeline than at the API level, so ARM_2 was effectively inert and the additive-vs-multiplicative discrimination was never powered either"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1-actor-cannot-select-stay",
+            "axis": "measurement",
+            "sketch": "instrument the FULL per-tick action distribution (all 5 classes, logits and argmax counts) on a single seed, no vigor manipulation -- one short run answers whether stay is ever within reach of the argmax"
+          },
+          {
+            "hypothesis": "H2-environment-has-no-reason-to-withhold",
+            "axis": "world",
+            "sketch": "add an explicit per-action energy cost or a waiting payoff so no-op is sometimes optimal, then re-measure ARM_0 action_density for headroom before scoring any lift"
+          },
+          {
+            "hypothesis": "H3-wrong-dv",
+            "axis": "representation",
+            "sketch": "re-pose the vigor DV as a graded readout already recorded (n_ticks per arm differ 1431-2219 across arms within a seed) rather than a binary act/no-act rate"
+          },
+          {
+            "hypothesis": "H4-multiplicative-form-collapses-in-vivo",
+            "axis": "instrumentation",
+            "sketch": "compare TonicVigor.compute_score_bias magnitudes in vivo against V3-EXQ-547's UC6 reference (bias_multiplicative [-0.004995, -0.044956] vs 951's ARM_2 bias_max_abs_mean 1.66e-3 / 3.30e-3 / 5.35e-9); if the live magnitude tracks v_t or the score scale, the multiplicative form needs re-scaling before it can be compared to additive at all"
+          }
+        ],
+        "note": "GOV-FANOUT-1: the bottleneck is a discrimination among three live explanations of a zero-variance DV, not one named build. H1's probe is cheap and near-decisive and should run first; it is a puzzle (known rules), one missing fact. IMPORTANT after Step 7b: H2b is now the leading hypothesis and it is CHEAPER than H1 -- it needs no new instrument, only running the already-designed comparison on the environment its own pre-registration named. Run H2b first, H1's action-distribution probe alongside it as the readiness check."
+      },
+      "learning_extracted": [
+        "A saturation gate calibrated as a THRESHOLD (< 0.95) reports 'saturated' for a DV that is in fact identically constant; those have different fixes and the threshold framing hides the difference.",
+        "951's readiness gate is the counter-example in this cluster: it was the one criterion that compared the DV against its own structural ceiling and correctly refused to score.",
+        "Two of the three per-tick statistics this run records (action_density, gate_product_mean) are exactly 1.0 in all 9 cells -- a run should notice when its own instrumentation has no variance anywhere.",
+        "A re-derive brake released because a named build landed can still meet a WORSE version of the original blocker: headroom went from 2/5 valid seeds in 624c to 0/3 here.",
+        "The pre-registered TEST BED can be lost between a substrate-readiness diagnostic and the behavioural experiment it licenses. V3-EXQ-547's note named 'well-fed-safe-familiar'; 951 ran a hazard-containing scaffolded curriculum. Nothing checks that a successor honours its predecessor's environment specification.",
+        "A PASSing diagnostic can be invisible to governance: V3-EXQ-547's run_id does not end in '_v3', so it has 0 entries in claim_evidence.v1.json despite being on disk since 2026-05-10."
+      ],
+      "routing": "queue-experiment",
+      "prior_asset_checks": {
+        "v3_exq_547_mech320_tonic_vigor_substrate_readiness": "Step 7b C1 fired. ACTED ON, and it produced two findings. (1) The check's premise is WRONG in a way that is itself a defect: V3-EXQ-547 DID run on 2026-05-10 and PASSed (evidence/experiments/v3_exq_547_mech320_tonic_vigor_substrate_readiness_v3_20260510T205612Z.json, result PASS, purpose diagnostic, claim_ids MECH-320 + ARC-066). Its run_id is '..._substrate_readiness_v3_20260510T205612Z' -- the '_v3' sits in the MIDDLE, so it violates CLAUDE.md's 'run_id must end in _v3' convention, and consequently it has ZERO mentions in claim_evidence.v1.json. A real, PASSing diagnostic is invisible to the index because of a naming convention violation. Chipped separately; out of this autopsy's target scope. (2) Its own governance-reviewed evidence_direction_note (2026-05-11) specifies that the behavioural 3-arm discriminative pair -- which V3-EXQ-951 IS -- should run 'on a well-fed-safe-familiar substrate'. 951 instead ran the scaffolded SD-054 onboarding curriculum, which includes a 40-episode hazard stage. Well-fed-safe-familiar is precisely the condition under which an agent has no pressure to act and no-op becomes selectable, i.e. exactly the headroom 951 lacked. This is a pre-registered environment specification that the run did not meet, and it is the single most likely explanation of action_density == 1.0.",
+        "ARC-066": "Step 7b C2 fired on the recommendation action='none'. ACTED ON. The ARC-066 substrate_queue entry (prio 3, ready=false, unblocks MECH-320) records validation_experiment = 'V3-EXQ-547 (MECH-320 child substrate-readiness PASS)'. That statement is TRUE -- see above -- so the entry needs no correction on its own terms, and action stays 'none'. It is named here so the check goes quiet with a reason rather than a silence. Its stated blocker ('behavioural validation requires multi-mechanism pipeline: MECH-320 additive vs multiplicative + ARC-067 idle aversion + ARC-068 opportunity cost') is directly relevant: ARC-067 IDLE AVERSION and ARC-068 OPPORTUNITY COST are the two companions that would make no-op a live option, and neither was enabled in 951."
+      }
+    },
+    {
+      "run_id": "v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3",
+      "queue_id": "V3-EXQ-959",
+      "claim_ids": [
+        "MECH-440"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- both legs missed their pre-registered bars on a fair test",
+        "biological_reference": "partial -- LC-NE tonic noise floor; NoisyNet is a formal import and the biological analog is carried by exactly the two legs this run tested",
+        "prerequisites": "present -- all arms green on all readiness gates; self-yoke bit-identical",
+        "implementation": "complete -- anneal live (sigma_scale 0.786 vs 1.0), noise live, dACC live",
+        "environment": "adequate -- candidate diversity 4.78/5, ceiling headroom 0.829",
+        "measurement": "adequate for the finding -- state_stratification IS recorded on every ARM_ANNEAL/ARM_NO_ANNEAL row and both criteria reproduce exactly from it; the skewed median split limits leg (iii)'s sharpness but the whole-arm divergence null does not depend on it",
+        "integration": "coupled and stable",
+        "scale": "adequate (6 seeds)"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM. The closest any target in this cycle comes to a clean single-bucket read. REE FAILED is still NOT asserted: the median-split stratifier means Measurement is not INDEPENDENTLY established as adequate across BOTH legs, and leg (ii)'s miss is a weak trend rather than a reversal."
+      },
+      "biological_reference": {
+        "closest_mechanism": "locus coeruleus tonic NE setting a state-conditioned exploration floor that anneals with confidence",
+        "dependencies": [
+          "a confidence signal the anneal can track",
+          "states that genuinely differ in decision decisiveness"
+        ],
+        "is_formal_import": true,
+        "divergence": "undetermined -- legs (ii)/(iii) are exactly where the NoisyNet import and the LC-NE analog would diverge, and they remain unmeasured in the record",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "[2026-08-30 governance, V3-EXQ-959, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30, successor to V3-EXQ-955] The best-instrumented run in this cycle: all three arms green on every readiness gate, and the paired self-yoke instrument control diverges on exactly 0 ticks against a 1e-9 threshold, so RNG isolation is proven. Candidate diversity 4.784/5, fresh selects 1060, dACC live, ceiling headroom 0.829 (mean-aggregated per 955's autopsy fix), 6 seeds. Both load-bearing legs fail: C_STATE (leg ii) 2/6 seeds and C_ANNEAL (leg iii) 1/6, against a 4/6 bar. The manipulation is live but its effect is null -- sigma_scale_mean 0.7861 (ANNEAL) vs 1.0 (NO_ANNEAL), a real ~21% reduction, while yoked_divergence_frac is 0.76299 vs 0.76390, a difference of 9.1e-4, with ANNEAL higher on 3 seeds and lower on 3. The recorded weakens is WITHDRAWN to non_contributory on three grounds. (1) RECORDING GAP, the blocker: the driver COMPUTES median_rsr, n_decisive, n_near_tie, divergence_rate_decisive, divergence_rate_near_tie and the diverged/non-diverged raw_score_range means at L1284-1315 -- the direct inputs to both load-bearing criteria -- and writes NONE of them to the manifest, so which seeds passed and by how much is unrecoverable without re-running 22 hours of compute. This is recording-debt, not measurement-debt; fix per experimental_recording_standard_2026-07-12.md section 3c. (2) The decisive/near-tie strata are a per-seed MEDIAN SPLIT, 50/50 by construction, with nothing asserting the upper half is a genuinely confident regime -- and median_rsr is one of the discarded quantities, so this cannot be checked from the artifact. (3) There is no manipulation-ENGAGEMENT gate on the ON arm: sigma_scale_mean ranges 0.662-0.961 across seeds, so seed 43's anneal engaged 3.9% and was still counted as a full ARM_ANNEAL observation; nor does anything gate that a ~0.76 baseline divergence rate is in a regime where a 21% sigma reduction could produce the 5-percentage-point drop the criterion demands. Legs (ii)/(iii) are NOT confirmed, but the artifact cannot support the stronger claim that they are refuted. epistemic_category stays standard. Routing is a same-question re-run (959a) whose ONLY change is to RECORD the per-stratum statistics and add an engagement gate -- re-running blind reproduces the same blind spot at the same cost. pending_retest_after_substrate stays false (955 already cleared it). PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "MECH-440": {
+          "recommended_evidence_direction": "weakens",
+          "recommended_epistemic_category": "standard",
+          "change": "legs (ii) and (iii) both missed their pre-registered bars (2/6 and 1/6 against 4/6) on the best-instrumented run in the cycle. Direction STANDS as weakens. Nothing storable moves (category already standard, status already candidate) -- the governance action is to apply a NARROWED evidence_quality_note recording that leg (i) is supported (V3-EXQ-955) while legs (ii)/(iii) are weakened, and to commission the targeted_review_mech_440 lit-pull that is now owed",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate / v3_pending; NARROWING, not demotion"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "WITHDRAWN IN FULL: an earlier revision of this target claimed a RECORDING GAP and routed a 959a re-run whose 'only change' was to record the per-stratum statistics. The manifest carries arm_results[*].state_stratification on every ARM_ANNEAL/ARM_NO_ANNEAL row -- median_rsr, strata counts, both divergence rates and the diverged/non-diverged raw_score_range means -- in all 12 relevant cells, and both criteria reproduce exactly (C_STATE seeds 46+48, C_ANNEAL seed 43). The error: inspecting arm_results[0].keys(), which is the A0_OFF yoked reference that legitimately has no stratification, and generalising one row to the schema. Reusable lesson: on a heterogeneous arm schema, check the UNION of keys across arm ids, never the first row.",
+        "The strata ARE a per-seed median split and it IS skewed -- median_rsr sits 1-2 orders below the mean in 4/6 seeds (42: 3.013 vs ~15; 46: 2.436 vs ~20-24; 47: 5.937 vs 54-82; 48: 9.669 vs 40-62) -- so the 'decisive' half runs from just-above-median into the extreme tail and is not a confident REGIME. This limits leg (iii)'s sharpness; it does not touch the whole-arm null.",
+        "Divergence rate depends only weakly on the stratum: |decisive - near_tie| is under 0.03 in 7 of 12 cells and never exceeds 0.1031 (seed 47 NO_ANNEAL), against base rates of 0.68-0.91.",
+        "There is no manipulation-ENGAGEMENT gate on the ON arm (sigma_scale_mean 0.662-0.961). Its effect here is to make the SINGLE C_ANNEAL pass less credible, not to rescue the leg: seed 43 is both the sole pass and the seed where the anneal engaged just 3.9%.",
+        "Leg (ii)'s miss is a WEAK INCONSISTENT TREND, not a reversal: the diverged/non-diverged mean-RSR ratio is 0.955 / 1.001 / 1.102 / 0.842 / 0.946 / 0.728 -- the predicted direction in 4 of 6 seeds, reversed in 2, clearing the 10% margin in 2. An earlier revision asserted '4 of 6 in the wrong direction', which inverts the count."
+      ],
+      "routing": "lit-pull"
+    },
+    {
+      "run_id": "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+      "queue_id": "V3-EXQ-822d",
+      "claim_ids": [
+        "SD-078",
+        "SD-082"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear for SD-078 (co-tag, per the driver's own note); unclear for SD-082 -- C1 cannot support it and C2's DV is a magnitude proxy for a spread question",
+        "biological_reference": "clear -- corticostriatal rule-to-action readout; a wiring/contract question, no translation error",
+        "prerequisites": "present -- 11/11 readiness gates met; the SD-082 amend is confirmed engaged (spread ratio 2.7e-3 vs legacy 2.2e-9, zero fallbacks)",
+        "implementation": "complete for the amended path -- the 822c structural defect is genuinely fixed",
+        "environment": "adequate",
+        "measurement": "misleading -- C1 is an ON-only absolute floor that the OFF arm clears more strongly; the cross-candidate SPREAD of the propagated bias is never computed",
+        "integration": "coupled but unstable",
+        "scale": "adequate (5 seeds)"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES; not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "lateral PFC rule representation biasing striatal action selection",
+        "dependencies": [
+          "a per-candidate channel carrying candidate-discriminating information"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- contract defect, already diagnosed and fixed at 822c",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-30 governance, V3-EXQ-822d, failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30, successor to V3-EXQ-822c] The designated validation of the SD-082 per-candidate-summary amend, and it DOES validate the amend: 11/11 readiness gates met, worst-cell n_prop_samples 145 (against 0 in all 18 cells of 822/822a/822b), summary_spread_ratio 2.70e-3 against a legacy path at ~2.2e-9, zero manual-fallback reads and zero degenerate centering ticks. The 822c structural defect (ws[0,0,:] bit-identical across candidates) is genuinely fixed, and the manipulation is unambiguous: on_rule_state_diff_mean 0.6502 vs off 3.24e-10, ARM_ON minting 16 rules at max pairwise distance 1.711 against ARM_OFF's 1. Both emitted per-claim directions are nonetheless WITHDRAWN. SD-082's recorded supports rests on C1, an ON-arm-only ABSOLUTE floor (on_prop_delta_mean 0.0015558 >= 1e-3) that the negative control clears MORE strongly (off_prop_delta_mean 0.0019120) and that was never applied to it. That is structural, not incidental: prop_delta is 'mean over K candidates of |bias(rule_state) - bias(0)|', an ablation MAGNITUDE, and ARM_OFF's single always-active rule gives a non-zero but candidate-UNIFORM rule_state whose ablation still moves the bias -- so prop_delta cannot distinguish candidate-DISCRIMINATING coupling, which is SD-082's whole substance, from candidate-uniform coupling. C2, the criterion that does discriminate, FAILED: 1/5 seeds, contrast_mean_on_minus_off -3.56e-4 (negative), with ON lower than OFF on 4 of 5 seeds. The decisive DV was never computed -- the driver records the cross-candidate SPREAD of the rule state (rule_state_diff) but only the MAGNITUDE of the propagated bias, never the matching spread of the bias. SD-078's recorded weakens is withdrawn on the driver's OWN instruction: its criteria_to_claims note states 'a later autopsy must NOT read C2's failure as evidence against SD-078 ... SD-078 is a co-tag, not the subject', while its code at L865 emits exactly that reading; SD-078's own rule-pool differentiation was verified here as a precondition and passed decisively. Carried-forward defect: 822c's documented measurement defect #1 (last_layer_weight_delta computed as a difference of NORMS, so rotation at constant norm reads as zero) is unfixed -- the ARM_OFF seed-101 value is -0.003772, which a movement measure cannot be. hidden_dead_relu_frac_p2_mean is 0.514/0.513, over half the consumer head dead in both arms. non_contributory on both claims; epistemic_category stays standard on both. The 822d retest both claims were waiting on HAS now run, so pending_retest_after_substrate -> false on both, with the open question re-posed rather than closed: routing is 822e, same question, DV re-posed as the cross-candidate SPREAD of the propagated bias. PROMOTES/DEMOTES NOTHING this cycle.",
+      "per_claim_recommendation": {
+        "SD-078": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "WITHDRAWN GROUND, replaced: an earlier revision claimed the driver's docstring forbids the reading its code emits. That was a misquote by truncation -- the criteria_to_claims note says SD-078's 'evidence_direction is driven only by C2' and forbids only reading A BLANKET VERDICT on the run as a direct SD-078 test. There is no docstring/code contradiction. The withdrawal stands on the note's OWN conditional -- 'if SD-082's consumer is the thing that fails, SD-078 is a co-tag, not the subject' -- whose antecedent this analysis satisfies (C1 cannot discriminate; C2's DV is a magnitude proxy for a spread question). SD-078's own differentiation was verified as a readiness precondition and passed decisively (16 rules, max pairwise dist 1.711, rule_state_diff 0.650 vs 3.24e-10). The 822d retest this claim was waiting on has now run -> set pending_retest_after_substrate false",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        },
+        "SD-082": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "the manifest records supports off C1, an ON-arm-only absolute floor (on_prop_delta_mean 0.001556 >= 1e-3) that the negative control clears MORE strongly (off_prop_delta_mean 0.001912) and that was never applied to it. prop_delta is an ablation MAGNITUDE and cannot distinguish candidate-DISCRIMINATING coupling from candidate-UNIFORM coupling, which is SD-082's whole substance. Withdraw supports. The 822d retest this claim was waiting on has now run -> set pending_retest_after_substrate false",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate_substrate_landed"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "failure_record_entry": {
+          "run_id": "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+          "experiment_type": "v3_exq_822d_sd082_post_action_summary_validation",
+          "metric": "per-candidate summary amend CONFIRMED engaged (spread ratio 2.70e-3 vs legacy 2.2e-9; 0 fallbacks; 0 degenerate ticks). With the fix live, ON-over-OFF contrast on prop_delta is 1/5 seeds and the mean contrast is NEGATIVE (-3.56e-4); C1's absolute floor is cleared by the OFF arm (1.912e-3) more strongly than by ON (1.556e-3)",
+          "target": "cross-candidate SPREAD of the propagated bias, ON > OFF -- the magnitude-based prop_delta cannot answer this",
+          "resolved": "open"
+        }
+      },
+      "learning_extracted": [
+        "An ON-arm-only absolute criterion with a measured OFF arm sitting in the same manifest is a discrimination waiting to be run and not run. Apply the criterion to the control before reading its pass as support.",
+        "prop_delta measures the MAGNITUDE of an ablation; SD-082's substance is candidate-DISCRIMINATION. The driver records the cross-candidate spread of the rule STATE (rule_state_diff) and never the matching spread of the propagated BIAS.",
+        "822c's documented measurement defect #1 (last_layer_weight_delta computed as a difference of NORMS, so rotation at constant norm reads as zero) is carried forward unfixed into 822d -- the seed-101 OFF value is NEGATIVE, which a movement measure cannot be.",
+        "A driver note read by truncation can be inverted. The 822d note ENDORSES the C2 -> dir_078 mapping and forbids only a blanket-verdict reading; quoting from '...must NOT read' onward manufactured a contradiction that is not there. Quote conditionals whole."
+      ],
+      "routing": "queue-experiment",
+      "prior_asset_checks": {
+        "C7:zworld_cone_min_cosine": "Step 7b C7 fired: zworld_cone_min_cosine is bit-identical across arms within every seed. DISMISSED with reason: it varies ACROSS seeds (0.9601 / 0.9641 / 0.9781 / 0.9615 / 0.9642, with matching n_zworld_sampled) and is a per-seed SHARED readiness statistic recorded into both arm rows, not a per-arm measurement. It was never a discriminating metric and no criterion treats it as one. The .md cites only the worst-cell value (0.9601, seed 101) as a readiness figure."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "In 3 of the 5 runs the negative control WAS measured, sits in the manifest, and was never applied to the criterion it bears on: 966 (the two arms are bit-identical, so the equivalence 'pass' is a relabelling), 822d (the OFF arm clears C1's absolute floor more strongly than the ON arm), 436g (the NO_WRITES arm's 0.000 mean pairwise cosine is read only as an Adam-drift check, not as the differentiation-headroom reference that reframes the lineage).",
+    "is_independent_bugs": false,
+    "structural_property": "These drivers have become excellent at PRE-REGISTERING readiness gates and poor at CLOSING THE LOOP between a measured control and the criterion the control invalidates. 951 is the counter-example that proves the shape is fixable: its baseline_no_op_opportunity gate compared the DV against its own ceiling and correctly refused to score. 959 is the second counter-example: its paired self-control is used correctly and bit-identical -- its failure is that the criteria's own per-stratum inputs are never recorded.",
+    "readings": [
+      "negative_control_measured_but_not_applied_to_the_criterion",
+      "readiness_gate_discipline_is_working_where_it_is_written"
+    ]
+  },
+  "red_team": {
+    "ran": true,
+    "step": "7c",
+    "model": "fable (different model from the drafting session)",
+    "reasoning_withheld": true,
+    "verdict": "CONTESTED",
+    "survived_independent_recomputation": [
+      "966 margin chain: mean_delta -0.125, pstdev 0.32005, margin 0.640 -- exact",
+      "966 arm bit-identity 4/4 seeds; incentive bank empty 8/8 cells",
+      "436g per-seed deltas and mean -2.162e-4; sign test 3/5; occupied_only == whole_bank on 10/10 cells",
+      "436g NO_WRITES 0.000 vs written 0.999 is the SAME statistic over the SAME 16-slot bank (the assigned attack; 436g survived it end to end)",
+      "822d per-seed contrasts, OFF-clears-C1-harder, C2 1/5",
+      "951 nine 1.0000 cells, 17,799 ticks, NOOP_CLASS correctness, the EXQ-547 naming-violation finding",
+      "re-derive brake recount over 456 confirmed autopsy files: SD-017 3->4, ARC-045 1->2, MECH-166 1->2, MECH-320 at 2, all others 0 -- exact match",
+      "epistemic_category enum check passes on all recommendations"
+    ],
+    "contested_and_upheld_against_this_autopsy": [
+      "959 recording gap was FALSE (state_stratification is recorded) -- direction reversed to weakens, 959a routing void",
+      "966 'no observable consequence' was FALSE (agent_energy is open and amp-scaled) -- mechanism now UNRESOLVED, substrate create WITHDRAWN",
+      "822d docstring/code contradiction was a MISQUOTE -- withdrawal re-grounded on the note's own conditional",
+      "436g v3_exq_242 'never scored' was FALSE -- it ran, FAILed and is indexed with 6 entries"
+    ],
+    "self_caught_after_the_pass": [
+      "959 leg (ii) direction count was inverted ('4 of 6 in the wrong direction' -> the predicted direction holds in 4 of 6, reversed in 2, clearing the margin in 2)",
+      "959 stratum-gap max was quoted ARM_ANNEAL-only (0.047); across all 12 cells it is 0.1031",
+      "966 n_contacts_post was mis-transcribed as ...14,14 -> corrected to ...12,12",
+      "granularity alignment counts: ARC-045 and MECH-166 have ONE weakened target each, not two"
+    ],
+    "note": "Four contested findings, all four verified against this autopsy and all four upheld. Consistent with the documented corpus pattern -- the science reproduced under independent recomputation in every case; every defect was in an unchecked premise or a routing consequence. Recorded in full at scratchpad/autopsy/redteam.md for this session."
+  },
+  "human_gate": {
+    "run_utc": "2026-08-30T15:41:56Z",
+    "mode": "interactive (user present)",
+    "all_four_recommendations_accepted": true,
+    "decisions": [
+      "MECH-440 (V3-EXQ-959): NARROW, do not demote. weakens STANDS; leg (i) supported (V3-EXQ-955), legs (ii)/(iii) weakened. Claim stays candidate / v3_pending. The targeted_review_mech_440 lit-pull is COMMISSIONED.",
+      "SD-017 / ARC-045 / MECH-166 (V3-EXQ-436g): re-derive brake CONFIRMED. A V3-EXQ-436h re-posing sleep-differentiation on the same bank is REFUSED. Routed to the already-frozen hypothesis_space portfolio contextmemory_write_content_discrimination (H1-H4). SD-017's own flagged stable+substrate_ceiling+open-retest review is ACTIONED as due.",
+      "MECH-143 / MECH-144 (V3-EXQ-966): substrate proposal WITHDRAWN (false predicate). The cheap confirmer runs FIRST -- one seed, blocks 3-4, both arms, logging amplitudes, agent_energy and per-step actions -- before any substrate work is specified or 966a is queued.",
+      "MECH-320 (V3-EXQ-951): epistemic_category substrate_ceiling -> standard, restoring the claim's v3-testable lane."
+    ],
+    "recommendation_ledger": "4 entries recorded via record_recommendation_outcome.py; all four matched the recommendation."
+  }
+}
