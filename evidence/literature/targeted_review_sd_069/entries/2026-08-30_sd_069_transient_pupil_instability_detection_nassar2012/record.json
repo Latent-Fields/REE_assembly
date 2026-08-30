@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_069",
+  "entry_id": "2026-08-30_sd_069_transient_pupil_instability_detection_nassar2012",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-069"
+  ],
+  "source": {
+    "title": "Rational regulation of learning dynamics by pupil-linked arousal systems",
+    "authors": [
+      "Matthew R. Nassar",
+      "Katherine M. Rumsey",
+      "Robert C. Wilson",
+      "Kinjan Parikh",
+      "Benjamin Heasly",
+      "Joshua I. Gold"
+    ],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3130",
+    "pmid": "22660479",
+    "pmc": "PMC3386464",
+    "volume": "15",
+    "issue": "7",
+    "pages": "1040-1046"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Bears on SD-069's TRIGGER RULE rather than its effect, and does so with a causal manipulation. Transient pupil changes tracked model-derived detection of instability in a noisy stream -- i.e. surprise assessed RELATIVE to a running expectation, which is the form of SD-069's 'surprise >= trigger_ratio x max(ema, floor)' predicate -- while SUSTAINED pupil size indexed confidence in recent observations, giving the same transient/sustained split on one system. Critically, experimentally inducing pupil changes independently of task or luminance systematically modified how new data influenced existing beliefs, so the arousal transient is not merely a readout. Held below 0.8 because the model-fit surprise quantity is a normative belief-update term, not a raw prediction-error magnitude.",
+  "failure_signatures": [
+    "The transient pupil signal in this study tracks CHANGE-POINT probability -- a normative quantity computed against a generative model -- not raw prediction-error magnitude. SD-069's instantaneous_pe source is a raw per-tick PE-MSE compared to its own EMA, which will fire on high-variance-but-stationary streams where the normative quantity would not.",
+    "Sustained pupil indexed CONFIDENCE (expected uncertainty) whereas transient pupil indexed detected INSTABILITY (unexpected uncertainty). REE's MECH-313 tonic lever is a fixed noise floor with no confidence semantics, so the tonic half of the correspondence is weaker than the phasic half.",
+    "The demonstrated causal effect of induced arousal was on LEARNING RATE (how much new data shifts belief), not on action-selection stochasticity; a phasic lever wired to the selection softmax rather than to belief updating is not the mechanism validated here."
+  ],
+  "tags": [
+    "sd-069",
+    "mech-063",
+    "surprise",
+    "unexpected_uncertainty",
+    "trigger_rule",
+    "instantaneous_pe",
+    "pupillometry",
+    "causal_manipulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Transient pupil changes reflected detected instabilities in noisy data streams while sustained pupil size indicated confidence in recent observations; both metrics forecast how new information would shape future judgments, and experimentally inducing pupil changes independently of task or lighting systematically modified the influence of new data on existing beliefs.",
+    "ree_translation": "SD-069 fires a burst when instantaneous prediction error exceeds a multiple of its own EMA baseline -- a relative-surprise predicate. This study is the human evidence that the phasic arousal system's natural trigger is precisely relative surprise (instability detected against an expectation) rather than absolute error magnitude, and that the resulting transient has causal downstream consequences. It also independently supports the 2026-07-17 signal-source amendment: the sharp, instantaneous component is the one that carries event structure, which is why phasic_burst_signal_source must be instantaneous_pe and not the monotonically-decaying running_variance.",
+    "mapping_caveat": "The source's transient quantity is change-point probability under a normative model, not raw PE magnitude over an EMA; SD-069's predicate is the cheap approximation of it and will diverge on stationary high-variance streams. The validated causal effect is on belief-updating learning rate, whereas SD-069 routes to the action-selection softmax -- an adjacent but distinct target. Human discrete-trial prediction task with pupil as a peripheral LC-NE proxy; no direct LC recording.",
+    "source_context": "Human participants performing predictive-inference tasks over noisy streams with occasional change points; pupillometry plus model-based analysis, with an independent pupil-induction manipulation as the causal arm."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.38,
+    "notes": "High source quality (Nat Neurosci, model-based, includes a causal manipulation rather than correlation alone). Mapping fidelity discounted for the normative-versus-raw surprise mismatch and for the learning-rate-versus-selection-softmax target mismatch, both stated explicitly in the caveat."
+  },
+  "summary_path": "summary.md"
+}

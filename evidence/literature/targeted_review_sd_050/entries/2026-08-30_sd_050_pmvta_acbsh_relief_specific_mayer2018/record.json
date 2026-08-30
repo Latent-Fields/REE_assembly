@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_050",
+  "entry_id": "2026-08-30_sd_050_pmvta_acbsh_relief_specific_mayer2018",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-050"
+  ],
+  "source": {
+    "title": "Role of the mesolimbic dopamine system in relief learning",
+    "authors": [
+      "Dana Mayer",
+      "Evelyn Kahl",
+      "Taygun C. Uzuneser",
+      "Markus Fendt"
+    ],
+    "year": 2018,
+    "venue": "Neuropsychopharmacology",
+    "doi": "10.1038/s41386-018-0020-1",
+    "pmid": "29453443",
+    "pmc": "PMC6006155",
+    "volume": "43",
+    "issue": "8",
+    "pages": "1651-1659"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "Causal, multi-method (6-OHDA lesion, DREADD silencing, intra-accumbens raclopride) rodent evidence that a specific mesolimbic projection is necessary for relief learning. Supports SD-050's shared-machinery premise at the transmitter level -- the same VTA-to-accumbens dopaminergic substrate that carries appetitive reward is required for relief -- and thereby corroborates the Navratilova 2012 grounding already in the claim with a stronger causal design. Simultaneously weakens the strong reuse reading: the required projection is ANATOMICALLY SPECIFIC (posterior medial VTA to accumbens shell) and the manipulations spared fear learning and safety learning, so relief has a dedicated route rather than being a generic call into the reward pathway. 0.71 reflects convergent causal methods against a mapping that is about substrate identity rather than detector form.",
+  "failure_signatures": [
+    "Relief learning was blocked while fear learning and safety learning were unaffected by the same manipulations -- a specificity SD-050 does not implement, since its comparator writes through the generic MECH-094 VALENCE_LIKING path shared with goal-achievement.",
+    "The necessary projection is a narrow anatomical subdivision (pmVTA to AcbSh), not the mesolimbic system as a whole; a REE implementation that treats 'dopaminergic reward machinery' as one undifferentiated resource cannot express the distinction this result depends on."
+  ],
+  "tags": [
+    "sd-050",
+    "relief_learning",
+    "mesolimbic_dopamine",
+    "pmvta",
+    "accumbens_shell",
+    "causal_manipulation",
+    "mech-094"
+  ],
+  "mapping": {
+    "source_claim_statement": "The dopaminergic projection from posterior medial VTA to nucleus accumbens shell is activated by aversive electric stimuli and is critical for relief learning: 6-OHDA lesions of pmVTA blocked relief learning while sparing fear and safety learning, and both DREADD silencing of the pmVTA-AcbSh projection and intra-AcbSh raclopride inhibited relief learning.",
+    "ree_translation": "Supports SD-050's premise that the end of a suffering period is registered by the same dopaminergic valence machinery that registers appetitive outcomes -- the biological warrant for routing relief-completion into MECH-094's VALENCE_LIKING write rather than inventing a separate valence channel. Qualifies it by showing that the route is a dedicated sub-projection dissociable from neighbouring learning types, which argues REE should be able to ablate relief-completion independently of goal-achievement tagging even while both write to the same field.",
+    "mapping_caveat": "This is evidence about the SUBSTRATE that carries a relief signal, not about how the relief EVENT is detected -- it says nothing about descent detection, window length, or threshold, which are SD-050's actual content. The aversive event is again an experimenter-delivered electric stimulus with a clean offset, so the range-degeneracy problem that currently makes SD-050's falsifier uninterpretable is not addressed. Rodent-to-REE transfer of an anatomical specificity finding is weak: REE has no pmVTA/AcbSh distinction to preserve.",
+    "source_context": "Sprague Dawley rats, relief-learning conditioning procedure; anatomical tracing, c-Fos immunohistochemistry, 6-OHDA lesions, chemogenetic (DREADD) silencing, and local D2/3 antagonism."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.48,
+    "notes": "Three converging causal manipulations plus anatomical and immunohistochemical localisation put source quality high. Mapping fidelity is capped because the result concerns substrate identity while SD-050's content is detector form; transfer risk is moderate-to-high because the finding's force lies in an anatomical distinction REE does not represent."
+  },
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_050",
+  "entry_id": "2026-08-30_sd_050_tonic_pain_relief_associability_zhang2018",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-050"
+  ],
+  "source": {
+    "title": "The control of tonic pain by active relief learning",
+    "authors": [
+      "Suyi Zhang",
+      "Hiroaki Mano",
+      "Michael Lee",
+      "Wako Yoshida",
+      "Mitsuo Kawato",
+      "Trevor W. Robbins",
+      "Ben Seymour"
+    ],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.31949",
+    "pmid": "29482716",
+    "pmc": "PMC5843408",
+    "volume": "7",
+    "pages": "e31949"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "The only entry in this pull that engages SD-050's TONIC regime -- a sustained, slowly-varying aversive state rather than a shock step -- which is the regime REE is actually in given z_harm_a's measured near-constancy. It supports SD-050's premise that relief is an actively learned, separately-signalled event even under tonic pain, but weakens the NON-TRAINABLE and NORM-BASED specifics: the quantity that governs relief learning here is a LEARNED associability/uncertainty signal in pregenual ACC, not a fixed threshold on signal magnitude. Confidence 0.66 reflects strong method (two experiments, computational modelling on behavioural + physiological + fMRI data) against a mapping that is analogical rather than mechanism-for-mechanism.",
+  "failure_signatures": [
+    "A non-trainable rolling-window descent detector has no analogue of an associability signal: it cannot modulate its own sensitivity as a function of how predictable the relief has become, which is the mechanism this study identifies as controlling relief learning rate.",
+    "The pgACC associability signal also parametrically modulates the LEVEL of ongoing tonic pain -- a bidirectional coupling between the relief-learning readout and the aversive signal it reads. SD-050's comparator is strictly feed-forward off z_harm_a and cannot produce this, so if REE's harm channel requires endogenous down-modulation to become non-degenerate, the comparator cannot supply it.",
+    "If relief detection genuinely requires a trained readout rather than a magnitude threshold, SD-050's falsifier branch (c) fires: a trained scalar head off z_harm_a would detect relief episodes the fixed FIFO misses."
+  ],
+  "tags": [
+    "sd-050",
+    "tonic_pain",
+    "relief_learning",
+    "associability",
+    "sd-086",
+    "trained_readout",
+    "falsifier_c"
+  ],
+  "mapping": {
+    "source_claim_statement": "Active relief-seeking under tonic pain is a reinforcement-learning process with prediction-error signals in dorsal putamen, governed by an uncertainty ('associability') signal in pregenual anterior cingulate cortex that both sets the relief learning rate and endogenously, parametrically modulates the level of ongoing tonic pain.",
+    "ree_translation": "For SD-050 this cuts two ways. Supporting: relief remains a discrete, separately-signalled, learnable event even when the aversive background is TONIC rather than phasic -- so the near-constancy of REE's z_harm_a is not by itself grounds to abandon a relief-completion event. Weakening: the biological controller of that event is an adaptive, learned quantity, which is a direct argument for SD-086's proposed trained scalar head over SD-050's non-trainable fixed-threshold FIFO -- i.e. for falsifier branch (c).",
+    "mapping_caveat": "The study measures relief LEARNING (acquisition of escape behaviour and its RL signals), not relief DETECTION (deciding that a period of suffering has ended). SD-050's comparator sits upstream of anything this study models, so the two are adjacent rather than commensurable, and the entry's weakening force is an argument about detector form, not a measurement of SD-050's detector. Human fMRI with thermal/tonic pain also cannot speak to whether an artificial latent norm carries analogous structure; the association between a pgACC associability signal and a trainable head on z_harm_a is a conceptual mapping only.",
+    "source_context": "Human fMRI, two experiments, static and dynamic escape-learning paradigms under experimentally induced tonic pain; computational modelling of behavioural, physiological and neuroimaging data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high (eLife, two experiments, model-based fMRI). Mapping fidelity is the limiting term -- the study models relief LEARNING while SD-050 specifies relief DETECTION, and the entry is scored as mixed precisely because the supporting and weakening readings attach to different halves of SD-050. Direction deliberately not forced to 'weakens': the tonic-regime survival of relief events is genuine support for the claim's premise."
+  },
+  "summary_path": "summary.md"
+}

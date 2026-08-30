@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_050",
+  "entry_id": "2026-08-30_sd_050_relief_reward_neurogenetic_dissociation_yarali2010",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-050"
+  ],
+  "source": {
+    "title": "A Neurogenetic Dissociation between Punishment-, Reward-, and Relief-Learning in Drosophila",
+    "authors": [
+      "Ayse Yarali",
+      "Bertram Gerber"
+    ],
+    "year": 2010,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2010.00189",
+    "pmid": "21206762",
+    "pmc": "PMC3013555",
+    "volume": "4",
+    "pages": "189"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "Directly bears on the half of SD-050 that is architecturally load-bearing and least argued for -- that relief-completion should REUSE the goal-achievement tag-and-release pipeline. Yarali & Gerber show relief learning is neurogenetically dissociable from BOTH punishment and reward learning in Drosophila: the tbh(M18) octopamine-biosynthesis mutation partially impairs sugar-REWARD learning while leaving relief learning intact. Confidence held at 0.62 rather than higher because the dissociation is invertebrate, uses blocking/mutation tools whose partial penetrance the authors themselves flag, and a shared DOWNSTREAM effector pipeline is not logically excluded by distinct UPSTREAM teaching signals -- which is the reading under which SD-050 survives.",
+  "failure_signatures": [
+    "If REE routes relief-completion through the identical MECH-057a beta-gate release and MECH-094 VALENCE_LIKING write used by goal-achievement, then any manipulation that ablates goal-achievement tagging must also ablate relief tagging -- a coupling this paper's octopamine result says does not hold in the one organism where it has been tested with genetic precision.",
+    "Relief learning survived the tbh(M18) manipulation that impaired reward learning; a REE implementation in which relief-completion is literally a call into the reward pathway cannot reproduce that dissociation and would predict co-impairment."
+  ],
+  "tags": [
+    "sd-050",
+    "relief_learning",
+    "reward_learning",
+    "dissociation",
+    "pipeline_reuse",
+    "mech-057a",
+    "mech-094"
+  ],
+  "mapping": {
+    "source_claim_statement": "Blocking output from TH-Gal4 dopaminergic neurons partially impaired punishment learning but left relief learning intact; the tbh(M18) mutation compromising octopamine biosynthesis partially impaired sugar-reward learning but not relief learning. Relief learning is therefore neurogenetically dissociated from both punishment and reward learning with respect to the genetic tools used.",
+    "ree_translation": "SD-050 asserts that relief-completion should reuse the SAME downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release plus MECH-094 VALENCE_LIKING write). This paper is the strongest available biological evidence against a naive identity between relief and reward machinery: in the one system where the two have been separated genetically, they came apart. It argues for relief-completion having at minimum its own teaching-signal path, even if it converges on shared effectors.",
+    "mapping_caveat": "This is a dissociation of TEACHING SIGNALS (which neuromodulatory populations are required to establish the memory), not of EFFECTORS (what the memory then writes to). SD-050's reuse assertion is about effectors -- the beta-gate release and the valence write -- so the paper does not refute SD-050 as stated; it removes the presumption that reuse is the default and shifts the burden onto REE to show the shared write is behaviourally correct rather than merely convenient. Drosophila-to-REE transfer is also the longest hop in this pull: no mesolimbic homologue, and the octopamine/dopamine division of labour in flies does not map onto REE's single valence channel.",
+    "source_context": "Drosophila melanogaster olfactory conditioning; UAS-shibire(ts1) output blocking under TH-Gal4, DDC-Gal4 and TDC2-Gal4 drivers, plus the tbh(M18) octopamine-synthesis mutant."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.62,
+    "notes": "Mapping fidelity is deliberately low: the paper separates teaching signals while SD-050's reuse claim concerns effector sites, so the entry weakens a PRESUMPTION rather than the literal claim. Transfer risk is high (invertebrate, no mesolimbic homologue) and is the dominant cap on confidence. Several results are 'partial' impairments, which the authors do not over-read and neither should this entry."
+  },
+  "summary_path": "summary.md"
+}

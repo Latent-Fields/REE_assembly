@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_069",
+  "entry_id": "2026-08-30_sd_069_network_reset_phasic_ne_bouret2005",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-069"
+  ],
+  "source": {
+    "title": "Network reset: a simplified overarching theory of locus coeruleus noradrenaline function",
+    "authors": [
+      "Sebastien Bouret",
+      "Susan J. Sara"
+    ],
+    "year": 2005,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2005.09.002",
+    "pmid": "16165227",
+    "volume": "28",
+    "issue": "11",
+    "pages": "574-582"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Included as the standing ALTERNATIVE to the Aston-Jones & Cohen adaptive-gain account SD-069 inherits, and it is the entry that most directly challenges a design default. Network reset supports the event-triggered, transient character of the phasic burst -- SD-069's timing architecture -- but reads its functional consequence as circuit RECONFIGURATION enabling a behavioural shift, which argues for a burst that loosens the current selection rather than sharpens it. That is the opposite polarity to SD-069's default phasic_burst_temp_delta of -0.5. Confidence 0.58 because this is a theoretical review synthesising others' electrophysiology, not a measurement, and because 'reset' does not translate uniquely into a temperature sign.",
+  "failure_signatures": [
+    "If phasic NE resets and reconfigures the target network to permit rapid behavioural adaptation, the expected softmax signature is a transient BROADENING (entropy increase) at the event, not the sharpening SD-069 ships by default; V3-EXQ-779a's confirming criterion is stated as dR_phasic < -TRANSIENT_MARGIN, so the sign of the predicted effect is a live design choice this account puts under question.",
+    "Network reset predicts the phasic burst should act as an INTERRUPT on ongoing commitment -- functionally closer to the ARC-016 commit/de-commit gate that SD-069 explicitly declines to route to -- so if the selection-softmax routing produces no effect while a commit-gate routing does, that outcome is anticipated by this account rather than by the adaptive-gain one.",
+    "The account is deliberately agnostic about whether reset raises or lowers selection stochasticity; it therefore cannot by itself falsify SD-069's polarity, only remove the presumption that sharpening is the default reading of phasic NE."
+  ],
+  "tags": [
+    "sd-069",
+    "mech-063",
+    "locus_coeruleus",
+    "network_reset",
+    "phasic",
+    "polarity",
+    "arc-016",
+    "alternative_account"
+  ],
+  "mapping": {
+    "source_claim_statement": "Noradrenergic neurons of the locus coeruleus, when phasically activated by salient events, provoke or facilitate dynamic reorganisation of target neural networks -- interrupting ongoing activity and reconfiguring circuits into new functional arrangements that permit rapid behavioural adaptation to changing environmental imperatives.",
+    "ree_translation": "SD-069 defaults to a NEGATIVE temperature delta -- the phasic burst sharpens the selection softmax. Network reset is the competing reading of the same phasic event: it should transiently release the current configuration so a different action can win, which in softmax terms is a transient entropy INCREASE. The claim's own confirming criterion pins the sign (dR_phasic < -TRANSIENT_MARGIN), so this entry marks that sign as a design decision inherited from adaptive gain rather than an established fact, and worth ablating rather than assuming.",
+    "mapping_caveat": "'Network reset' is a description of circuit dynamics, not of a selection-distribution parameter; translating it to a softmax temperature sign is an interpretive step this review does not take and cannot license. It is a 2005 theoretical synthesis, substantially predating the pupillometric and chemogenetic work in this pull, and the adaptive-gain and network-reset accounts are not cleanly mutually exclusive -- both predict an event-locked transient, which is the part SD-069 actually depends on. The entry is scored mixed for exactly that reason: it supports SD-069's timing architecture while contesting its polarity default.",
+    "source_context": "Theoretical review synthesising primate and rodent locus coeruleus electrophysiology, with framing borrowed from invertebrate neuromodulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.5,
+    "notes": "Highly cited but a theoretical synthesis rather than primary data, and 20 years old relative to the rest of this pull. Mapping fidelity is low by construction: the entry's value is in flagging a polarity assumption, and the step from 'network reconfiguration' to 'softmax temperature sign' is explicitly an interpretation, not a reading of the source."
+  },
+  "summary_path": "summary.md"
+}

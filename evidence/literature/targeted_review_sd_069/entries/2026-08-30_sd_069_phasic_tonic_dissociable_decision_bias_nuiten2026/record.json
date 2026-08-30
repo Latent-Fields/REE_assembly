@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_069",
+  "entry_id": "2026-08-30_sd_069_phasic_tonic_dissociable_decision_bias_nuiten2026",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-069"
+  ],
+  "source": {
+    "title": "Phasic and tonic arousal distinctly shape human decision bias",
+    "authors": [
+      "Stijn A. Nuiten",
+      "Jan Willem De Gee",
+      "Jasper B. Zantvoord",
+      "Philipp Sterzer",
+      "Johannes J. Fahrenfort",
+      "Simon van Gaal"
+    ],
+    "year": 2026,
+    "venue": "Communications Biology",
+    "doi": "10.1038/s42003-026-09776-8",
+    "pmid": "41803490",
+    "pmc": "PMC13100154",
+    "volume": "9",
+    "issue": "1",
+    "pages": "553"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The closest available empirical analogue of SD-069's central architectural assertion: that a TONIC and a PHASIC arousal lever are independently expressible on the SAME decision readout with DIFFERENT temporal signatures. Tonic pupil (500 ms pre-stimulus) related to task-independent inherent criterion; phasic pupil (response-locked, -590 to -270 ms) related to task-dependent strategic bias shifts, with a significant task-by-phasic-bin interaction on the DDM starting point (pd > 0.999). Strong design (within-subject, pharmacological arms, drift-diffusion modelling, EEG). Held at 0.74 because the shared readout is decision BIAS, not decision NOISE, and the study is correlational for the pupil measures -- the authors say so explicitly.",
+  "failure_signatures": [
+    "The dissociation reported is tonic-to-inherent-bias versus phasic-to-strategic-bias-shift. Neither maps onto a temperature/entropy channel, so if SD-069's dissociation must be read on softmax entropy specifically, this study cannot confirm it and a null there would not be contradicted by this result.",
+    "Tonic arousal effects on behaviour were monotonic here (negative relation to criterion) whereas the adaptive-gain framework SD-069 inherits predicts an inverted-U; the authors report the non-monotonic pattern for tonic arousal against phasic monotonicity, so a REE implementation assuming a single monotone tonic lever is not straightforwardly matched to the biology.",
+    "The pupil measures are correlational; the pharmacological arm (atomoxetine) produced only a trend toward liberal bias (93% of posterior mass below zero), so the catecholaminergic attribution of the phasic effect is not causally established."
+  ],
+  "tags": [
+    "sd-069",
+    "mech-063",
+    "mech-313",
+    "phasic",
+    "tonic",
+    "pupillometry",
+    "locus_coeruleus",
+    "double_dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Tonic (pre-stimulus baseline) pupil-linked arousal is associated with inherent, task-independent decision bias, whereas phasic (task-evoked, response-locked) pupil-linked arousal is associated with context-dependent strategic shifts in decision bias; the two make dissociable contributions to the same signal-detection criterion and to the drift-diffusion starting point.",
+    "ree_translation": "SD-069 exists to supply a PHASIC lever on the E3 selection softmax that is independently toggleable from MECH-313's TONIC noise floor on the same effective-temperature readout, so that MECH-063 sub-claim (ii) becomes behaviourally testable. This study is the human evidence that such a tonic/phasic split is real and separately measurable on a single decision readout, with the phasic component event-locked rather than sustained -- which is exactly the temporal-signature contrast (sustained dS_tonic versus transient dR_phasic) that V3-EXQ-779a scores.",
+    "mapping_caveat": "The shared readout in the source is decision BIAS (criterion, DDM starting point), whereas SD-069's readout is pre-commit softmax ENTROPY -- decision stochasticity, not decision preference. These are different parameters of the same choice distribution, and evidence that tonic and phasic separate on one does not entail they separate on the other. The source's phasic window is also defined relative to a behavioural response in a discrete-trial task, with no counterpart in REE's continuous tick loop; and pupil diameter is a peripheral proxy for LC-NE, not a recording of it.",
+    "source_context": "28 healthy human males, yes/no visual detection of Gabor patches in dynamic noise; strategic bias manipulated via aversive tones following misses versus false alarms; within-subject atomoxetine / donepezil / placebo arms with concurrent pupillometry and EEG."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Design quality is high but N=28 male-only limits generality, and the key pupil results are correlational. Mapping fidelity is the main discount: bias-versus-noise is a genuine parameter mismatch with SD-069's entropy readout, and it is stated in the caveat rather than smoothed over."
+  },
+  "summary_path": "summary.md"
+}

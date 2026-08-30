@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_050",
+  "entry_id": "2026-08-30_sd_050_offset_relief_opposite_valence_gerber2014",
+  "timestamp_utc": "2026-08-30T06:06:03Z",
+  "claim_ids_tested": [
+    "SD-050"
+  ],
+  "source": {
+    "title": "Pain-relief learning in flies, rats, and man: basic research and applied perspectives",
+    "authors": [
+      "Bertram Gerber",
+      "Ayse Yarali",
+      "S\u00f6ren Diegelmann",
+      "Carsten T. Wotjak",
+      "Paul Pauli",
+      "Markus Fendt"
+    ],
+    "year": 2014,
+    "venue": "Learning & Memory",
+    "doi": "10.1101/lm.032995.113",
+    "pmid": "24643725",
+    "pmc": "PMC3966540",
+    "volume": "21",
+    "issue": "4",
+    "pages": "232-252"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Cross-species review (Drosophila, rat, human) converging on the specific architectural point SD-050 asserts: the onset and the offset of an aversive episode are two SEPARATE learnable events carrying OPPOSITE valence. High source quality (canonical review, Learn Mem, six-lab authorship) and unusually high mapping fidelity because the source's own framing -- 'what made it happen and what made it cease' -- is structurally the MECH-091/SD-050 polarity pair. Held below 0.85 because the review establishes that an offset event exists and is separately encoded, not that a peak-to-trough descent detector on a latent norm is the right DETECTOR FORM for it.",
+  "failure_signatures": [
+    "The review's relief events are all produced by an EXPERIMENTER-CONTROLLED shock offset -- a step change to baseline. It offers no evidence that a relief event is recoverable from a naturally-driven, slowly-varying aversive signal, which is precisely SD-050's live range-degeneracy precondition (z_harm_a.norm spans only ~7.18-7.42 on V3-EXQ-664).",
+    "Relief valence in these paradigms is established by CONDITIONING a cue presented at offset, not by detecting the offset itself; a system that never pairs a cue with the descent would show none of the reviewed effects."
+  ],
+  "tags": [
+    "sd-050",
+    "relief_learning",
+    "pain_offset",
+    "opposite_valence",
+    "mech-091",
+    "mech-302"
+  ],
+  "mapping": {
+    "source_claim_statement": "Painful negative events are 'Janus-faced': stimuli experienced BEFORE an electric shock acquire negative valence as signals of upcoming punishment, whereas stimuli experienced AFTER the shock acquire positive valence through association with the relieving cessation of pain; these two memories are distinct and oppositely valenced.",
+    "ree_translation": "REE's architecture must carry two separate events on the same harm channel with opposite polarity -- MECH-091's urgency interrupt on an upward z_harm_a spike (onset, aversive) and SD-050's relief-completion event on a sustained downward drop (offset, appetitive). The review supplies the biological warrant for treating these as two mechanisms rather than one signed readout, which is exactly SD-050's stated relationship to MECH-091.",
+    "mapping_caveat": "The review licenses the EXISTENCE and opposite valence of an offset event. It does not license SD-050's detector specifics -- non-trainable, FIFO, norm-based, rolling-window -- nor does it speak to whether the offset event should reuse the goal-achievement release pipeline (MECH-057a/MECH-094) or run its own. In the source paradigms the shock offset is exogenous and near-instantaneous; REE's z_harm_a descent is endogenous and slow, so the detection problem is materially harder than anything the review's organisms faced.",
+    "source_context": "Review across Drosophila olfactory conditioning, rat fear/relief conditioning, and human pain-offset paradigms; electric shock as the aversive event throughout."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk is moderate rather than low: the onset/offset asymmetry is highly conserved across three phyla, which is unusually strong grounds for transfer, but every source paradigm uses a step-change aversive stimulus whereas REE's harm channel is continuous and currently near-degenerate."
+  },
+  "summary_path": "summary.md"
+}
