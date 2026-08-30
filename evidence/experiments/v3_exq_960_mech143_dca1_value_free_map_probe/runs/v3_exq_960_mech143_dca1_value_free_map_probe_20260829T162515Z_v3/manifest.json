@@ -23,8 +23,10 @@
     "MECH-143"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-143": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -60,5 +62,6 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-960-961-cluster_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-960 does NOT bear on MECH-143 and its recorded does_not_support is corrected to non_contributory. The driver pre-registers MIN_DISPERSION=0.02 on cross-position z_world dispersion and states that below it the 8 probe positions are not distinguishable, so any low map_drift is a representation-collapse artifact rather than evidence of value-invariance. Measured pre_dispersion was 0.009649 / 0.007550 / 0.000256 -- every cell 2x to 78x BELOW its own pre-registered floor -- so NEITHER criterion is interpretable and the run must not weigh in either direction."
 }

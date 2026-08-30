@@ -23,8 +23,10 @@
     "MECH-482"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-482": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -119,5 +121,6 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-964_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-964's C2 was STRUCTURALLY UNSATISFIABLE, so the run is not a negative result for MECH-482 and its recorded mixed is corrected to non_contributory. EpistemicDeficitAccumulator.reset() clears all persistent targets every episode, so in 60-step episodes n_targets never exceeds 1; with all 32 candidates matched the epistemic-deficit readout is a CONSTANT vector, and a constant cannot move an argmax. C1's PASS bar sits exactly where C2 must fail."
 }

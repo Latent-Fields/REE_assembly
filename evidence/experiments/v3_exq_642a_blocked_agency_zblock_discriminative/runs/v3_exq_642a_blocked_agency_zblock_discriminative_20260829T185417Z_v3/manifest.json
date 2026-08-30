@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -145,5 +145,6 @@
     "writer_defect": true,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance governance-20260830-0630 ratified failure_autopsy_V3-EXQ-642a_2026-08-30.json (confirmed at 28d14475a5): V3-EXQ-642a's C1 was UNSATISFIABLE, so its recorded weakens is corrected to non_contributory. z_block_peak is pinned at z_block_cap=1.5 in both arms and all 3 seeds because outcome_mismatch_floor=0.1 sits below the ~0.4 free-step mismatch baseline, so the integrator saturates on ordinary world-model error with no block present. C0 readiness PASSED and z_block_mean does separate 3/3, so the DV is not dead -- the threshold is miscalibrated. The z_goal writer_defect flag on this run is a detector FALSE POSITIVE: the driver deliberately pins a constant z_goal as an experimental control."
 }

@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "sd-e1-rollout-action-cond-20260829",
-  "last_updated_utc": "2026-08-29T18:17:10Z",
+  "last_updated_utc": "2026-08-30T07:25:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -6615,12 +6615,14 @@
       "sd_id": "SD-PROBE-WARMUP",
       "title": "Trained-enough agent substrate for read-only control-plane telemetry probes",
       "node_class": "complicated (buildable)",
-      "status": "duplicate_superseded_by_SD-074_implemented_validated_v3_exq_784",
+      "status": "pending_implementation",
       "ready": true,
       "design_doc": "docs/architecture/sd_074_probe_warmup_trained_enough_agent.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
-        "MECH-063"
+        "MECH-063",
+        "MECH-313",
+        "SD-069"
       ],
       "failure_record": [
         {
@@ -6630,15 +6632,36 @@
           "target": "majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95), i.e. informative yield sufficient to reach ~51 informative seeds at feasible compute",
           "run_role": "unknown",
           "run_role_basis": "R5 entry claims a build but nothing dates it"
+        },
+        {
+          "run_id": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
+          "experiment_type": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest",
+          "metric": "noise_floor_temp_lift_mean = 0.0 on all 20 cells with use_noise_floor=True on 10 of them and alpha=1.0; tonic_axis_live 0.0 vs floor 0.5; 779a recorded 1.0 on all 10 TONIC-ON cells. Cause: cache-restore overwrites agent.noise_floor with the mint arm's None; _fresh_regulator reinstalls only phasic_burst, so phasic survived (R_transient non-zero 10/10 PHASIC-ON) and tonic did not.",
+          "target": "TONIC-ON cells must record noise_floor_temp_lift_mean ~= alpha (1.0), as V3-EXQ-779a did",
+          "resolved": "open"
         }
       ],
-      "implementation_hint": "The 2x2 read-only telemetry-probe family measures gain/bias regulators on the E3 softmax while running an UNTRAINED agent, whose action-value distribution is degenerate on ~64% of seeds (D_action_mass pinned at 0 or 1). A regulator that modulates a distribution is unobservable when that distribution has no dynamic range: corr(D-saturation-distance, norm_v_score) = 0.884, capping informative-seed yield at 28.6% and making the load-bearing criterion unreachable at feasible compute. Build a warmup/checkpoint stage that brings the agent to a non-degenerate action-value landscape (target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95)) before telemetry collection begins, and record the realised per-seed saturation distribution so the yield is auditable. This is training-regime substrate enrichment for the probe harness -- the same class as the V3-EXQ-603c precedent -- not a ree_core mechanism change.",
+      "implementation_hint": "The 2x2 read-only telemetry-probe family measures gain/bias regulators on the E3 softmax while running an UNTRAINED agent, whose action-value distribution is degenerate on ~64% of seeds (D_action_mass pinned at 0 or 1). A regulator that modulates a distribution is unobservable when that distribution has no dynamic range: corr(D-saturation-distance, norm_v_score) = 0.884, capping informative-seed yield at 28.6% and making the load-bearing criterion unreachable at feasible compute. Build a warmup/checkpoint stage that brings the agent to a non-degenerate action-value landscape (target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95)) before telemetry collection begins, and record the realised per-seed saturation distribution so the yield is auditable. This is training-regime substrate enrichment for the probe harness -- the same class as the V3-EXQ-603c precedent -- not a ree_core mechanism change.\n\n[2026-08-30 AMENDMENT, failure_autopsy_V3-EXQ-963_2026-08-30.json] The warmup cache key (_warmup_key) excludes the arm's runtime flags, so one blob is shared across a 2x2 whose arms construct DIFFERENT root-level regulators. _restore_cached_surface then object.__setattr__s the mint arm's surface onto every HIT agent, silently replacing a live arm-conditional regulator (agent.noise_floor, constructed only when use_noise_floor=True) with the mint arm's None. Nothing raises and nothing logs it: assert_state_dict_shareable passes because these regulators are zero-parameter and non-nn.Module, and the restore's missing-module logging only covers cached paths ABSENT here, never the reverse. Fix options: include arm-conditional flags in the cache key; or exclude arm-constructed regulator attributes from the restored surface; or have the driver reinstall ALL arm regulators post-warmup rather than only phasic_burst. Add an assertion that every arm-conditional regulator is non-None after restore when its flag is set.",
       "priority": 1,
       "added_session": "silly-jepsen-926d36",
-      "last_seen_session": "igw-189-substrate-ready-sd-probe-warmup",
+      "last_seen_session": "governance-20260830-0630",
       "source_autopsy": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json",
       "duplicate_of": "SD-074",
-      "duplicate_note": "NO BUILD OWED -- stale duplicate of SD-074, resolved 2026-07-20 by IGW-20260719-189 (/implement-substrate). Both rows were reaped from the SAME autopsy (failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18) by two different sessions: confident-tesla-badc6b minted it as SD-074 and BUILT it 2026-07-18T18:53:16Z; the 2026-07-19a governance cycle (silly-jepsen-926d36, REE_assembly 2c87d9a580) independently re-reaped the same row under this placeholder sd_id. The rows are field-for-field duplicates: identical failure_record (V3-EXQ-777a, yield 4/14), node_class, priority, ready, depends_on_unresolved and unblocks_claims=[MECH-063]; this title is a prefix of SD-074's and the implementation_hint differs only by SD-074's added '~51 informative seeds => ~177 raw seeds, ~31 h' compute clause. VERIFIED LANDED (not inferred): ree-v3/experiments/_lib/probe_warmup.py present on origin/main (with autopsy-followup commits 2e3fb6b/67f50c5/a23f189), design doc present on origin/master, and SD-074 validated 2026-07-19 by V3-EXQ-784 (56/56 cells readable; informative yield 0.357 -> 0.786; load-bearing paired within-seed asymmetry 6 rescued / 0 lost, sign test p=0.031). WHY THE STATUS STRING AND NOT ready=false: generate_inter_governance_workset.py:_substrate_resolved treats `ready` as the AUTHORITY and status as a hint -- ready=true + a NON-terminal status ('pending_implementation') is exactly what made this the only pending_implementation row in the queue and what re-spawned it as an IGW substrate item. _status_terminal resolves it via the 'superseded'/'validated' tokens while excluding any status containing 'pending'. ready STAYS true because the substrate genuinely IS ready; ready=false would falsely read as blocked and would ALSO suppress the row, but for the wrong reason. OUT OF SCOPE (still owed, unchanged): SD-074's blocked_note consumer-side repair of V3-EXQ-777a's c1_robust bar (mean_sin - pstdev_sin) > MARGIN -- a population dispersion unreachable at any n -- plus the fired re-derive brake on the 777 lineage. Track those on SD-074, not here."
+      "duplicate_note": "[SUPERSEDED 2026-08-30 by governance cycle governance-20260830-0630 -- READ status_history FIRST. A BUILD IS NOW OWED. The 'NO BUILD OWED / stale duplicate of SD-074' reading below is retained verbatim for audit but no longer holds: confirmed failure_autopsy_V3-EXQ-963_2026-08-30 found a live CORRUPTING defect in this entry's own probe_warmup machinery (cache key excludes arm-conditional flags; the surface restore overwrites a live arm-conditional regulator with the mint arm's None), and the SD-074 v3_exq_784 validation that the supersession rested on was itself downgraded to PROVISIONAL by 2026-08-16 governance (GFLAG-0036) when its non-destructiveness premise measured false. ORIGINAL 2026-07-20 NOTE FOLLOWS:] NO BUILD OWED -- stale duplicate of SD-074, resolved 2026-07-20 by IGW-20260719-189 (/implement-substrate). Both rows were reaped from the SAME autopsy (failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18) by two different sessions: confident-tesla-badc6b minted it as SD-074 and BUILT it 2026-07-18T18:53:16Z; the 2026-07-19a governance cycle (silly-jepsen-926d36, REE_assembly 2c87d9a580) independently re-reaped the same row under this placeholder sd_id. The rows are field-for-field duplicates: identical failure_record (V3-EXQ-777a, yield 4/14), node_class, priority, ready, depends_on_unresolved and unblocks_claims=[MECH-063]; this title is a prefix of SD-074's and the implementation_hint differs only by SD-074's added '~51 informative seeds => ~177 raw seeds, ~31 h' compute clause. VERIFIED LANDED (not inferred): ree-v3/experiments/_lib/probe_warmup.py present on origin/main (with autopsy-followup commits 2e3fb6b/67f50c5/a23f189), design doc present on origin/master, and SD-074 validated 2026-07-19 by V3-EXQ-784 (56/56 cells readable; informative yield 0.357 -> 0.786; load-bearing paired within-seed asymmetry 6 rescued / 0 lost, sign test p=0.031). WHY THE STATUS STRING AND NOT ready=false: generate_inter_governance_workset.py:_substrate_resolved treats `ready` as the AUTHORITY and status as a hint -- ready=true + a NON-terminal status ('pending_implementation') is exactly what made this the only pending_implementation row in the queue and what re-spawned it as an IGW substrate item. _status_terminal resolves it via the 'superseded'/'validated' tokens while excluding any status containing 'pending'. ready STAYS true because the substrate genuinely IS ready; ready=false would falsely read as blocked and would ALSO suppress the row, but for the wrong reason. OUT OF SCOPE (still owed, unchanged): SD-074's blocked_note consumer-side repair of V3-EXQ-777a's c1_robust bar (mean_sin - pstdev_sin) > MARGIN -- a population dispersion unreachable at any n -- plus the fired re-derive brake on the 777 lineage. Track those on SD-074, not here.",
+      "status_history": [
+        {
+          "utc": "2026-08-30T07:25:00Z",
+          "session": "governance-20260830-0630",
+          "from": "duplicate_superseded_by_SD-074_implemented_validated_v3_exq_784",
+          "to": "pending_implementation",
+          "reason": "REOPENED. Confirmed failure_autopsy_V3-EXQ-963_2026-08-30.json proves this entry's OWN machinery carries a live CORRUPTING defect: the _warmup_key cache key excludes arm-conditional runtime flags, so one warmup blob is shared across a 2x2 whose arms construct different root-level regulators, and _restore_cached_surface object.__setattr__s the mint arm's surface (noise_floor=None) over a live arm-conditional regulator. Nothing raises and nothing logs it. This silently zeroed V3-EXQ-963's entire TONIC axis (noise_floor_temp_lift_mean 0.0 on all 20 cells). The prior status closed this entry as superseded by SD-074 'implemented_validated' via v3_exq_784 -- but MECH-063's own evidence_quality_note (2026-08-16 governance, GFLAG-0036) already downgraded that 784 validation to PROVISIONAL because its non-destructiveness premise measured FALSE. So the supersession rested on a validation that is itself provisional, and the entry must not stay closed."
+        }
+      ],
+      "severity": "corrupting",
+      "substrate_paths": [
+        "experiments/_lib/probe_warmup.py",
+        "experiments/v3_exq_963_mech063ii_tonic_phasic_dissociation_retest.py"
+      ]
     },
     {
       "sd_id": "sd_phasic_ema_episode_continuity",
@@ -8508,6 +8531,73 @@
       ],
       "implementation_hint": "SCOPING FINDING, not a ready build lever (chip-20260824-mech142-ach-gating-falsifier-scope, 2026-08-25). MECH-142's claim text (claims.yaml id: MECH-142) presupposes two things absent from ree_core: (1) a genuine two-axis orthogonal valence/arousal representation, and (2) a cholinergic/ACh-analog gating or decorrelation mechanism. Neither exists, and (1) is not merely missing -- the substrate's actual design deliberately does the opposite. \n\n(1) No independent valence/arousal axes: what exists is a 6-component 'valence' vector (WANTING/LIKING/HARM_DISCRIMINATIVE/SURPRISE splits, ree_core/residue/field.py:58-64, written by ResidueField.update_valence()) with no arousal counterpart, PLUS two amygdala readouts -- CeA's valence signal and BLA's arousal_tag -- that are BOTH nonlinear functions of the SAME underlying z_harm_a (SD-011 affective stream) magnitude, by explicit design. ree_core/amygdala/cea.py:77-82 states outright: 'CeA must fire on harm-affective valence, NOT generic arousal ... because z_harm_a is the SD-011 affective stream, magnitude there IS affective valence load. A BLAAnalog-style retrieval of arousal from a richer latent would re-introduce content specificity and double-count what BLA already does.' BLA's arousal_tag (ree_core/amygdala/bla.py:440-453) is likewise a clamped/scaled function of z_harm_a magnitude (||z_harm_a|| vs arousal_threshold_on/arousal_peak). So valence and arousal are CORRELATED BY CONSTRUCTION in the current substrate, with no independent degrees of freedom -- there is nothing to 'drift toward correlation', because decorrelation was never a design goal; the opposite was. MECH-063's real orthogonal-axis set (REE_assembly/docs/architecture/control_plane.md:260-298) is a different, non-isomorphic 8-channel neuromodulator-analog set (dopamine/serotonin/noradrenaline/stress/oxytocin/vasopressin/acetylcholine-curiosity/adenosine), of which only axis 1's (precision/vigor) tonic/phasic split is substrate-landed (ree_core/policy/noise_floor.py, ree_core/regulators/phasic_surprise_burst.py); it does not supply valence/arousal either. \n\n(2) No cholinergic/ACh-analog gating mechanism at all: grep across ree_core for cholinerg|acetylchol|axis_orthogonality|orthogonality_maintenance|decorrelat returns zero hits (2026-08-25). Checked all three reeconfig wiring sites (ree_core/utils/config.py: REEConfig dataclass at line 2885, from_dims constructor at line 6299) -- no dataclass field, no from_dims/from_kwargs parameter, no consumption site. This is not a half-wired knob (contrast use_orthogonal_cem_seeding, which IS correctly wired at all three sites: field 2136, from_dims param 7179, consumption hippocampal/module.py:2020-2090) -- it is a complete absence. The only built neuromodulation subsystems are serotonin (ree_core/neuromodulation/serotonin.py, learning-rate/rigidity scaling) and a GABAergic tonic-inhibitory regulator (ree_core/regulators/gabaergic_decay.py); neither does cross-channel decorrelation. MECH-063's proposed axis 7 (acetylcholine-like curiosity/information-gain drive) is unbuilt and is a different function (curiosity drive, not interference-prevention) even if it existed. \n\nWHAT WOULD NEED TO BE DECIDED BEFORE BUILDING (this is the actual residual, hence node_class mystery (known data) rather than complicated (buildable)): the amygdala module's selectivity constraint (cea.py:77-82) is a documented, deliberate architecture decision to prevent CeA and BLA from being independent signals. Building genuine orthogonal valence/arousal axes for MECH-142 would either (A) contradict that design intent, or (B) require MECH-142 to be reframed onto a DIFFERENT pair of control-plane channels than 'valence/arousal' as literally named (e.g. two of MECH-063's 8 axes, if a plausible valence-like/arousal-like pair can be identified there) -- a claims-scoping decision, not a build task. Only after that is resolved does 'add an ACh-analog gating mechanism' become a concrete, buildable three-site reeconfig addition. \n\nALSO RELEVANT: REE_assembly/evidence/planning/experiment_proposals.v1.json has a second, not-yet-run MECH-142 proposal queued (EXP-0043 / backlog EVB-0604, discriminative_pair, priority high, status proposed). Queuing that proposal against the current substrate without first resolving the reframing question above will very likely reproduce V3-EXQ-164a's pattern -- a bespoke, non-ree_core proxy script -- since there is nothing in ree_core itself for a discriminative-pair design to instrument. Flagging this so a future /governance or /queue-experiment pass does not queue EXP-0043 as-is without reading this entry first.",
       "status_phase": "probe_gated"
+    },
+    {
+      "sd_id": "sd_blocked_agency_mismatch_floor_calibration",
+      "title": "Calibrate blocked-agency outcome_mismatch_floor against the achievable free-step mismatch baseline",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-353",
+        "SD-029",
+        "MECH-112",
+        "SD-011",
+        "SD-019b"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+          "experiment_type": "v3_exq_642a_blocked_agency_zblock_discriminative",
+          "metric": "z_block_peak pinned at cap 1.5 in BOTH arms, all 3 seeds; z_block_separation exactly 0.0; CONTROL-arm z_block_mean already 1.26-1.35 of a 1.5 cap with no block applied",
+          "target": "a working calibration must leave CONTROL-arm z_block well below cap so a BLOCK-vs-CONTROL peak difference >= C1_MARGIN (0.2) is expressible",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "outcome_mismatch_floor is a fixed absolute (0.1) compared against a raw normalised mismatch whose free-step baseline is model-dependent and currently ~0.38-0.50, so z_block accumulates on ordinary world-model error and pins at z_block_cap in every condition. Make the attribution threshold relative to a running free-step mismatch baseline (or standardise the mismatch before thresholding) so the floor selects genuinely blocked steps. Until then no blocked-agency DV has dynamic range.",
+      "priority": 1,
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/affect/blocked_agency.py"
+      ],
+      "source_autopsy": "failure_autopsy_V3-EXQ-642a_2026-08-30.json",
+      "added_session": "governance-20260830-0630",
+      "last_seen_session": "governance-20260830-0630",
+      "added_utc": "2026-08-30T07:25:00Z"
+    },
+    {
+      "sd_id": "sd_epistemic_deficit_multitarget_readiness",
+      "title": "Give the epistemic-deficit accumulator a reachable multi-target regime, and gate its validation on per-candidate differentiation",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-482"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3",
+          "experiment_type": "v3_exq_964_mech482_epistemic_deficit_validation",
+          "metric": "n_targets==1 on all 3 seeds with all 32 candidates matching it; per-candidate readout constant; yoked_divergence_frac exactly 0.0",
+          "target": "a validation run must reach n_targets>=2 AND candidates matching >=2 distinct targets (equivalently _last_lp_dev_range > 0) before C2 is interpretable",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "EpistemicDeficitAccumulator.reset() clears all persistent targets every episode (deliberately, mirroring StructuredCuriosity's per-episode LP-EMA clear), so in 60-step episodes it never exceeds one target and readout() returns a constant vector that cannot move an argmax. Either lengthen the accumulation window / relax the per-episode clear for this sub-flavour, or run the validation in an environment that produces >=2 distinct uncertainty loci per episode. Separately, record StructuredCuriosity._last_lp_dev_range (max-min of lp_contrib) in the manifest -- it is already computed and is exactly the number that decides whether the per-candidate read can differentiate.",
+      "priority": 2,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/policy/epistemic_deficit.py",
+        "ree_core/policy/structured_curiosity.py"
+      ],
+      "source_autopsy": "failure_autopsy_V3-EXQ-964_2026-08-30.json",
+      "added_session": "governance-20260830-0630",
+      "last_seen_session": "governance-20260830-0630",
+      "added_utc": "2026-08-30T07:25:00Z"
     }
   ],
   "schema_version": "substrate_queue/v2"

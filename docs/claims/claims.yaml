@@ -6494,8 +6494,22 @@
   subject: control_plane.orthogonal_axes_tonic_phasic
   polarity: asserts
   status: provisional
+  epistemic_category: standard
+  pending_retest_after_substrate: true
   evidence_quality_note: >
     [2026-08-16 governance, GFLAG-0036, cycle cranky-driscoll-126a36] V3-EXQ-784 (SD-074 probe_warmup de-saturation sweep, PASS 2026-07-18) is downgraded to PROVISIONAL: its headline informative_yield / target_met rest on a premise the manifest itself states and which is FALSE. sd074_note asserts that measure_action_mass is non-destructive, so reading at one checkpoint leaves the agent bit-identical for continued training. Measured on ree-cloud-5 2026-08-15: a probe read leaves 21 non-state_dict attributes changed, 17 of which SURVIVE agent.reset(). The load-bearing ones are agent._self_experience_buffer / _world_experience_buffer, which warmup_train samples via agent.compute_prediction_loss() -- so eval-rollout data enters the E1 training pool. Those buffers cap at 1000 while 784 reads 1081-1401 env steps, i.e. FULL DISPLACEMENT of the training pool by evaluation data. A controlled 2-seed replication of 784 ladder at its real config (budget-0 control cells bit-identical, as required) shows all six post-first-read cells differing by 0.011-0.146 on D_action_mass and TWO OF SIX FLIPPING THE SATURATION REGIME -- exactly the classification 784 informative_yield headline counts. No status change and no evidence_direction change is applied on this basis alone: the defect is in the measurement premise, not in the claim, and re-deriving the corrected yield needs the fix plus a re-run. Treat any downstream citation of 784 informative_yield / target_met as provisional until then. Full write-up and recommended fix: evidence/planning/probe_warmup_nonbuffer_audit_2026-08-15.md.
+
+    [2026-08-30 governance, cycle governance-20260830-0630] Confirmed failure_autopsy_V3-EXQ-963_2026-08-30
+    (confirmed at REE_assembly 28d14475a5): V3-EXQ-963's TONIC axis was INERT, so the run is NOT a negative
+    for the tonic/phasic dissociation. noise_floor_temp_lift_mean was 0.0 on all 20 cells against
+    V3-EXQ-779a's 1.0 (== alpha), and the lift is computed unconditionally, so the regulator was never
+    called at all. Root cause is a probe_warmup cache defect, not the claim: the warmup cache key excludes
+    arm-conditional flags, so one blob is shared across a 2x2 whose arms build different root-level
+    regulators, and _restore_cached_surface object.__setattr__s the mint arm's noise_floor=None over the
+    live regulator. Sampling starvation was REFUTED by matched comparison against 779a. The manifest's
+    non_contributory stands; the self-routed label substrate_not_ready_requeue is corrected. Retest owed
+    after the probe_warmup repair (substrate_queue SD-PROBE-WARMUP). epistemic_category set to standard (the
+    claim carried none).
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -19237,6 +19251,18 @@
   subject: hippocampus.dorsal_ca1_value_free_map
   polarity: asserts
   status: candidate
+  epistemic_category: standard
+  pending_retest_after_substrate: true
+  evidence_quality_note: >
+    [2026-08-30 governance, cycle governance-20260830-0630] Confirmed
+    failure_autopsy_V3-EXQ-960-961-cluster_2026-08-30 (confirmed at REE_assembly 28d14475a5): V3-EXQ-960 is
+    NON-CONTRIBUTORY for MECH-143, not a negative. The run's own pre-registered MIN_DISPERSION=0.02
+    readiness floor on cross-position z_world dispersion was missed in every cell (0.009649 / 0.007550 /
+    0.000256 -- 2x to 78x below the floor), so the 8 probe positions were not mutually distinguishable and
+    NEITHER criterion is interpretable; a low map_drift under those conditions is a representation-collapse
+    artifact, not evidence of value-invariance. The manifest's recorded does_not_support was corrected to
+    non_contributory in this same cycle (flat + run pack). Retest owed once the probe can resolve positions.
+    epistemic_category set to standard (the claim carried none).
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -19264,6 +19290,22 @@
   subject: hippocampus.ventral_ca1_valence_encoding
   polarity: asserts
   status: candidate
+  epistemic_category: standard
+  pending_retest_after_substrate: false
+  evidence_quality_note: >
+    [2026-08-30 governance, cycle governance-20260830-0630] Confirmed
+    failure_autopsy_V3-EXQ-960-961-cluster_2026-08-30 (confirmed at REE_assembly 28d14475a5): V3-EXQ-961 is
+    a GENUINE BUT LOW-POWERED NEGATIVE for MECH-144 and now SCORES. It had been silently excluded as
+    degenerate: the driver passes SINGLETON groups to the non-degeneracy check (geom_dist_groups =
+    [[r['distance_std']] for ...]), and a one-element group always reports zero spread, so
+    c3_geom_distance_spread was pinned by construction rather than by the data. The recorded constants
+    1.20998 / 1.09383 / 1.04082 all sit far above both the 0.5 criterion floor and the 1e-6 degeneracy
+    floor, and readiness is sound at 32 active centers. Per the user-ratified Step 8 decision the manifest's
+    non_degenerate flag was amended false -> true (the original finding preserved under
+    non_degenerate_amended) and the index rebuilt, so evidence_direction does_not_support now weighs.
+    MECH-144 consequently reads conflict_ratio 0.5 (supports=3 lit, weakens=1 exp) and stays candidate
+    pending conflict resolution. The driver fix (singleton-group call plus an arity guard in
+    metric_groups_are_degenerate) is still owed. epistemic_category set to standard (none before).
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -70361,6 +70403,16 @@
   subject: control_plane.phasic_surprise_burst
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
+  evidence_quality_note: >
+    [2026-08-30 governance, cycle governance-20260830-0630] Confirmed failure_autopsy_V3-EXQ-963_2026-08-30
+    (confirmed at REE_assembly 28d14475a5): V3-EXQ-963's tonic axis was inert (noise_floor_temp_lift_mean
+    0.0 on all 20 cells), so the run does NOT count as a negative result for the SD-069 phasic/tonic
+    dissociation readout. The PHASIC side did fire (R_transient nonzero on 10/10 PHASIC-ON cells) while the
+    tonic lift was zero everywhere -- the signature of the probe_warmup cache clobbering the arm-conditional
+    noise_floor regulator, not of the lever failing. Manifest direction non_contributory stands.
+    epistemic_category stays standard and must NOT move. Retest owed after the probe_warmup repair
+    (substrate_queue SD-PROBE-WARMUP).
   live_status:
     reading: candidate
     as_of: 2026-07-17
@@ -83973,6 +84025,17 @@
   subject: drive.epistemic_deficit_accumulator
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
+  evidence_quality_note: >
+    [2026-08-30 governance, cycle governance-20260830-0630] Confirmed failure_autopsy_V3-EXQ-964_2026-08-30
+    (confirmed at REE_assembly 28d14475a5): V3-EXQ-964's C2 was STRUCTURALLY UNSATISFIABLE, so the run is
+    NOT a negative result for MECH-482. EpistemicDeficitAccumulator.reset() clears all persistent targets
+    every episode, so across 60-step episodes n_targets never exceeded 1; with all 32 candidates matched the
+    epistemic-deficit readout is a CONSTANT vector, and a constant cannot move an argmax. C1's PASS bar sits
+    exactly where C2 must fail. The manifest's recorded mixed was corrected to non_contributory in this same
+    cycle (flat + run pack). epistemic_category stays substrate_conditional (SD-102 is implemented but its
+    selection-relevance is unvalidated) and status stays candidate; retest owed once a reachable multi-
+    target regime exists (substrate_queue sd_epistemic_deficit_multitarget_readiness).
   live_status:
     reading: candidate/v3_pending/substrate_conditional
     as_of: '2026-08-07'
