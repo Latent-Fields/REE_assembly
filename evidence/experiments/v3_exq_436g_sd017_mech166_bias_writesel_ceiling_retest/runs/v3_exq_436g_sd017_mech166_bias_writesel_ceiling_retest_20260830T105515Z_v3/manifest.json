@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest",
+  "run_id": "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-30T10:55:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-017",
+    "ARC-045",
+    "MECH-166"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-017": "weakens",
+    "ARC-045": "weakens",
+    "MECH-166": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sws_then_rem_direction_consistent_but_below_effect_size_floor",
+    "preconditions": [
+      {
+        "name": "sws_context_memory_writes_occur",
+        "measured": 800.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of ContextMemory.write() calls (sws_n_writes) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds. Unchanged from 436c-436f.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "rem_attribution_rollouts_occur",
+        "measured": 600.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of hippocampal replay rollouts (rem_n_rollouts) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds. Unchanged from 436c-436f.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "waking_writepath_engaged",
+        "measured": 15428.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of ContextMemory.write() calls fired by the per-tick sense_only hook across all WAKING_ONLY seeds, pooled across all 5 seeds. Unchanged from 436e/436f.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sufficient_occupancy_for_c1",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "control": "count of seeds (of 5) where BOTH WAKING_ONLY and SWS_THEN_REM have >=2 occupied slots (the minimum for an off-diagonal pairwise mean to exist). Unchanged from 436e/436f -- expected to clear decisively under BIAS write-selection per V3-EXQ-943's substrate-validation reading (16/16 occupied slots on 5/5 seeds).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "adam_drift_neutralized",
+        "measured": 1.6695832377215252,
+        "threshold": 4.0,
+        "direction": "upper",
+        "control": "max |z-score| of the NO_WRITES calibration arm's raw whole-bank cosine against the freshly-derived untouched-bank null (mean=0.000019, sd=0.007789, n_draws=500), across all 5 seeds. Unchanged from 436e/436f.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "bias_occupancy_confirms_fix",
+        "measured": 16.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "min per-seed n_occupied_slots across ALL non-NO_WRITES cells (WAKING_ONLY + SWS_THEN_REM, 5 seeds each) -- NEW in 436g, the direct empirical confirmation that BIAS write-selection (contextmemory_write_usage_balancing=True) actually cleared the occupancy floor in THIS driver's own env/training-loop configuration, not merely in V3-EXQ-943's substrate-validation harness.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2aa0634fa96e6ada8fe08d8c8bf33b5c49e535672ee59b7128838774ace63907",
+  "substrate_commit": {
+    "commit": "d614a9c8183071edab117a08223fbb082fd065c3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
