@@ -1,7 +1,11 @@
-# Behavioural Evidence Ladder v0
+# Behavioural Evidence Ladder v1
 
-**Status:** v0, curated 2026-08-27. Derived from the reviewed evidence record, not from claim
-status fields or from memory.
+**Status:** v1, 2026-08-30 — v0 (curated 2026-08-27) plus the directory-manifest sweep its
+"Known omissions" section owed (chip-20260827-evidence-ladder-v1-dirsweep). **The sweep changed
+no rung**: every rung reported empty in v0 is still empty, and the claim now rests on the full
+corpus (flat manifests AND per-experiment directories) rather than a subset — see "v1
+directory-manifest sweep" below for method, nearest-misses and named rejections. Derived from
+the reviewed evidence record, not from claim status fields or from memory.
 **Source of truth used:** `evidence/experiments/review_tracker.json` (2854 reviewed run ids,
 last review 2026-08-25T18:42:08Z) + the flat run manifests in `evidence/experiments/`.
 `claim_evidence.v1.json` (generated 2026-08-26T19:46:18Z; 5668 entries over 565 claims) was used
@@ -726,11 +730,70 @@ this from a list of separately-defensible results into a claim about one animal.
 **Scope of this document.** Curation only. No experiment was run or queued, nothing was marked
 reviewed, and no claim's status, confidence or `evidence_direction` was changed in producing it.
 
-**Known omissions.** This is v0. It reads **17 runs in detail** — 7 placed on rungs (948, 926a,
-614a, 832, 757, 603q, 829a), 1 rejected with reasons (691), and 9 read as negative or contextual
-evidence (485k, 485l, 485m, 875a, 882a, 728b, 096a, 727, 734) — drawn from 195 reviewed PASS
-candidates and ~945 flat manifests. Runs held in per-experiment directories without a flat
-manifest (e.g. `v3_exq_455_sd032a_salience_behavioral`, `v3_exq_326a_wanting_gradient_nav_fix`)
-were not opened; a v1 pass should sweep those, since older lineages are where the remaining
-behavioural candidates would be. The literature corpus is deliberately excluded — this ladder is
-experimental evidence only.
+**Known omissions (v0 wording, superseded by the v1 sweep below).** v0 read **17 runs in
+detail** — 7 placed on rungs (948, 926a, 614a, 832, 757, 603q, 829a), 1 rejected with reasons
+(691), and 9 read as negative or contextual evidence (485k, 485l, 485m, 875a, 882a, 728b, 096a,
+727, 734) — drawn from 195 reviewed PASS candidates and ~945 flat manifests. Runs held in
+per-experiment directories without a flat manifest were not opened by v0; the v1 sweep below
+opened them. The literature corpus is deliberately excluded — this ladder is experimental
+evidence only.
+
+---
+
+## v1 directory-manifest sweep (2026-08-30) — no rung changes
+
+**Method.** Every per-experiment directory under `evidence/experiments/` with no corresponding
+top-level flat manifest and a reviewed run (per `review_tracker.json`) was enumerated: **530
+directories**. Each was screened programmatically over its manifests (including the flat-style
+result JSON these directories carry *inside* them, and `runs/<run_id>/` packs) for the rung-2+
+structural bar: an environment-observable behavioural DV, a control/matched arm, >=3 seeds, and
+pre-registered criteria. 44 PASS directories matched behavioural keywords anywhere in their
+manifests; **15 carried an environment-observable numeric result key** (`resource_rate`,
+`n_resources`, `long_n_resources`, ...); the 7 strongest candidates plus every
+env-DV carrier were then read from their own result manifests. The same bar as v0 was applied,
+unlowered, including GOV-PATHVALID-1 and the corpus-wide caveats C1-C3.
+
+**Result: no run clears any empty rung, and rung 2's single provisional entry stands alone.**
+The empty rungs 3, 4, 6, 7 are now established against the full corpus, not a subset.
+
+**Nearest-misses recorded (rung 2), in v0's format-lite:**
+- `v3_exq_354_mech112_wanting_liking_confirmation` (2026-04-12, PASS 3/3 seeds, registered
+  thresholds): wanting-vs-liking dissociation ON a behavioural DV (`resource_rate` 0.148 vs
+  0.371) — structurally the strongest sweep candidate. Fails rung 2 because the comparison is a
+  **variant pair, not a competence baseline** (both arms are REE configurations), its C1 floor
+  is 0.05 (a liveness floor, not competence), and both absolute rates sit at or below the 0.40
+  random-walk floor the later capability yardstick establishes (§ "Why nothing else reached
+  rung 2").
+- `v3_exq_326a_wanting_gradient_nav_fix` (2026-04-13, PASS, WITH_WANTING vs ABLATED, 3 seeds) —
+  one of the two directories v0 named as exactly-the-shape-that-would-populate-rung-2.
+  `resource_rate` is environment-observable and the ablation is matched, but the control is an
+  **ablation, not a competence floor**; absolute rates 0.22-0.24 are below the random-walk
+  floor; and the effect is seed-inconsistent (seed 7: 0.22 vs 0.20).
+- `v3_exq_252_mech187_zgoal_seeding_gain` (2026-04, PASS): environment-type-differentiated
+  resource counts across arms with pre-registered legs — but the load-bearing legs pass at 2/3
+  seeds and every comparison is REE-variant-relative. Same class as 326a.
+
+**Named rejections, with reasons:**
+- `v3_exq_455_sd032a_salience_behavioral` — the other directory v0 named. Despite the name,
+  every DV is internal (natural trigger counts, operating-mode entropy, write-gate std); no
+  environment-observable DV exists in the run. Mechanism-level only.
+- `v3_exq_881_mech293_ghost_probe_seed_efficacy` (7 seeds, effect-size bar 2.0) — E-space
+  ghost-cluster geometry probe; DV internal, and the target-alignment leg is weak
+  (mean alignment 0.027, non-load-bearing).
+- `v3_exq_589_isef003_microhabitat_latent_diversity` — DV is trajectory pairwise cosine
+  (latent diversity), internal.
+- `v3_exq_258b_mech205_surprise_gated_replay` — `p2_pe_collected` counts prediction errors
+  collected, not resources; the behavioural keyword was a false friend.
+- `v3_exq_328b_mech112_zgoal_structured_latent` — latest real run is FAIL.
+- INV-053 depression-attractor family (`v3_exq_249/268/406/434`, 5 seeds, `n_resources`) —
+  genuine environment-observable collapse phenotype, but it demonstrates a *deficit* under
+  manipulation, not competence above a baseline; wrong direction for rung 2 by construction.
+- `v3_exq_559/559a` (goal-stream), `v3_exq_557/558` (agent seed sweeps) — 2 seeds and/or no
+  pre-registered criteria; below the structural bar before content is reached.
+
+**What the sweep establishes.** v0's central claim — empty rungs 3/4/6/7 and one provisional
+rung-2 entry — previously rested on flat manifests only. It now rests on the full corpus. The
+directory-only lineages (mostly 2026-02 through 2026-05) contain mechanism results on
+behavioural DVs, but every one is variant-relative or floor-free; none demonstrates task
+competence above an appropriate baseline. This is consistent with, and strengthens, the
+capability-yardstick finding that no REE-driven arm clears the random-walk floor on foraging.
