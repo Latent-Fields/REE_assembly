@@ -1,6 +1,32 @@
 # Consolidated Update Plan — 2026-08-30
 
 **Status:** plan-of-record (user-requested). **Author:** session `cycle-review-20260830`.
+
+## Progress ledger (updated 2026-08-30T09:25Z, same session + science-front peer)
+
+**DONE by the ops session (`cycle-review-20260830`):** C.0 corpus pins re-pinned (ree-v3
+`aeb3a566b8` — commit gate unblocked fleet-wide); C.2 chip_ledger fail-open loss fix, consumer
+half + docs (`68fd89a41b`-adjacent, `e8288a2872`); C.4 task_claim stale-arbitration fix
+(`68fd89a41b`); D.3 cloud-5 healer deployed (IN-SYNC); D.4 ree-git-sync-repair vendored (ree-v3
+`172eb13665`); D.5 hysteresis re-measured (CONFIRMED, flap pairs −85%, no retune); D.6
+fleet-idle watcher predicate fixed + vendored (`c6ff439f26`; SD-018 surfaced as refill
+backlog); F.1 lit-schema 0-failing restored (`b8e5b62593`); F.2 30 stale IGW manual
+assignments audited + released (`0bf1d7da55`); F.3 evidence ladder v1 — sweep found no rung
+changes, empty rungs strengthened (`9acaf6d104`); F.4 Step 5c prose escape hatch, GOV-HELDOUT-1
+run and recorded (`5ad32f754f`); F.5 UA graph claustrum+preservation coverage (ree-v3
+`56f41525e4`).
+
+**DONE by the science-front session (reported via coordination channel):** 936a autopsy
+confirmed+landed (`b0c0b8df72`); A.1 singleton-degeneracy guard (`bad6467722` — MECH-144 gate
+open); A.2 963 manifest queue_id repaired; SD-018 adopted into A.6.
+
+**REMAINING (my lanes):** C.1 push-default adjudication (kind=decision — needs the user);
+C.3 noop-record investigation (deep; partly gated on the Sep-4 refwedge re-measure);
+C.5 chip-archive proof-route decision (analysis can be prepared, decision is the user's);
+C.6 bashgate characterisation (possibly-don't-ship); D.1 RC-session termination path (design
+handoff to the orchestrate lane); D.2 detector-FP /metaworker-learning campaign (now FIVE
+classes; user-ratified but interactive — run user-present); E worktree GC (careful Mac
+session); G user-present reviews. Science lane continues per its own programme.
 **Purpose:** replace one-session-per-chip dispatch with a small number of **campaign sessions**, each of which claims a batch of related open chips at start and resolves each at close. Chips remain the durable index (nothing here retires the ledger or changes the chip-spawning rules); this document is the **router** that batches them, so token spend goes to the work instead of to 40 separate session-startup/land cycles.
 
 **How to use:** pick a campaign, open ONE claim covering its resource set, `chip_ledger.py claim` every chip in the batch, work them in the stated order, resolve each chip individually with its own note as it completes, close with one `/session-land`. A campaign that can only get through part of its list resolves what it finished and leaves the rest claimed-released — the plan is re-entrant.
