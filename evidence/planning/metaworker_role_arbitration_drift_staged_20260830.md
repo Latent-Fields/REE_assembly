@@ -1,6 +1,6 @@
 # Metaworker role-arbitration drift: monitoring does not follow the restructure
 
-**Status: AWAITING USER REVIEW**
+**Status: APPROVED (option A, all three parts) AND BUILT 2026-08-30**
 
 Raised by `/metaworker-learning`, session `metaworker-learning-rolearbiter-20260830`,
 2026-08-30T06:16Z (Mac, `DLAPTOP`). Sister-skill handoff point:
@@ -207,3 +207,76 @@ by hand when it happens a fourth time.
 - **C -- Parts 2+3 only.** Enumeration + routing, no new invariant; cheapest, catches
   deploy drift but not "arbitration is alive and consistent".
 - **D -- hold.** Record the finding, do not build. Defensible: nothing is currently broken.
+
+
+---
+
+## 6. Build record (2026-08-30)
+
+Approved by the user as **option A, all three parts**, via `AskUserQuestion`
+(logged to the recommendation-agreement ledger, `matched_recommendation=True`)
+alongside the decision chip `chip-20260830-role-arbitration-monitoring-drift`.
+
+| Part | Landed | Verified on origin |
+|---|---|---|
+| 2 -- wrapper enumeration + strays scan | `REE_Working 3b32be1ac` (`scripts/check_metaworker_wrapper_deploy.py` + tests, 51 tests) | yes |
+| 1a -- arbiter publishes its verdict | `ree-v3 6f4d0786e4` (`coordinator/deploy/ree-role-arbiter.sh`) | yes |
+| 1b -- the invariant checker | `REE_Working 9f3ddf179` (`scripts/check_role_arbitration.py` + tests, 29 tests) | yes |
+| 3 -- hygiene tick source 26 | `REE_Working ccdcbaac9` (+ 22 tests; 590 in `test_hygiene_routine_tick.py` green) | yes |
+
+Deployed to `ree-cloud-4` 2026-08-30T06:37Z (backup retained at
+`/usr/local/bin/ree_role_arbiter.sh.bak-20260830`); installed hash matches
+tracked `origin/main`. First published verdict observed at 06:37:18Z, and the
+checker reports `CONSISTENT` end-to-end. Source 26 run live against the fleet:
+`scan_ok=True, machines=2, findings=0`.
+
+### Three corrections made at build time, against the design above
+
+1. **The verdict record is a local file, not a heartbeat field.** Section 3
+   stated a preference for folding it into the orchestrator heartbeat "so it
+   reaches origin and needs no ssh". That preference was wrong on its own
+   terms: clause (a) compares against **live systemd state**, which cannot be
+   read from origin at all, so an ssh is required regardless and the stated
+   advantage does not exist. Folding it in would additionally have bounded the
+   verdict's freshness by the heartbeat's commit cadence (state-change or a
+   30-minute floor) -- re-creating the exact cadence mismatch behind the
+   2026-08-19..22 STALE storm.
+2. **Compare against the RECORDED endorsement, not a recomputed verdict.**
+   Not specified in the design. Recomputing would race (a surge between tick
+   and probe legitimately changes a fresh verdict but cannot change what the
+   tick endorsed and acted on) and, worse, would be blind to the failure that
+   matters most: a `sudo -n systemctl start` that FAILED is endorsed=1/live=0
+   under the recorded comparison and simply self-consistent under a
+   recomputation.
+3. **`ARBITER-OLD` added as a status distinct from `NO-VERDICT`.** The first
+   live run reported the transitional case (installed arbiter predating verdict
+   publication) as `NO-VERDICT`, whose detail text names the wrong cause
+   ("REE_DUAL_ROLE unset, or the verdict script is missing"). Both mean "no
+   verdict file"; the remedies are completely different, and a check that names
+   the wrong cause sends the next session down the wrong path -- which is the
+   failure mode this whole change exists to stop repeating.
+
+### Two live findings surfaced by Part 2 on its first fleet run
+
+Both invisible to the pre-existing single-wrapper check, and both raised as
+their own chips rather than fixed here:
+
+- **`ree-cloud-5` was running a 4-day-stale `ree_metaworker_healer.sh`**
+  (installed 2026-08-26T05:09Z, 146 diff lines). The 2026-08-29
+  arbitration-extraction fix -- the remediation for occurrence 2 -- was deployed
+  to `ree-cloud-4` only. The healer's arbitration block is inert on a
+  single-role box, so this may be harmless; the point is that nothing knew.
+- **`/usr/local/bin/ree_git_sync_repair.sh` on `ree-cloud-4` (and the hub) is
+  untracked in any repo.** It is a genuinely different script from the
+  umbrella-tracked `scripts/ree_git_sync_repair.sh` (systemd cloud variant vs
+  launchd Mac variant), so this is a real stray, not a drift.
+
+### What would falsify the value of this work
+
+The claim is that the class is closed, i.e. that the NEXT restructure of the
+role machinery is caught by a check rather than by the failsafe's fire counter.
+The honest test is the next time arbitration moves: if source 26 mints the chip
+before `~/.ree_metaworker/runner_failsafe_fires` increments past 4, the
+invariant held; if the counter moves first again, the invariant was still
+component-coupled somewhere and this was another point fix wearing a general
+shape. Record which, on the occasion.
