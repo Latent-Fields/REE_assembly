@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-08-30T06:12:25.039574Z`
+Generated: `2026-08-30T07:12:15.560148Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -52,6 +52,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-130` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-08-07_mech_130_social_motivation_proximity_nguyen2023` | 5 |
 | `MECH-135` | directional, mixed_evidence | 10 | 1 | 0.182 | `2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025` | 16 |
 | `MECH-143` | directional, mixed_evidence | 1 | 2 | 0.667 | `2026-08-09_mech_143_reward_tethered_place_cells_masala2026` | 5 |
+| `MECH-144` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3` | 5 |
 | `MECH-150` | directional | 4 | 1 | 0.4 | `2026-08-16_mech_151_ofc_task_space_state_label_wilson2014` | 5 |
 | `MECH-152` | directional, source_disagreement | 2 | 1 | 0.667 | `v3_exq_922_sd016_mech151_152_arc041_production_combo_20260812T035119Z_v3` | 3 |
 | `MECH-153` | directional, mixed_evidence | 8 | 1 | 0.222 | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` | 10 |
@@ -505,7 +506,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-087
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.714, lit_conf=0.64, overall_confidence_legacy=0.658
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.713, lit_conf=0.64, overall_confidence_legacy=0.658
 - Recent entries:
   - `2026-06-12T16:12:47Z` `literature` `targeted_review_proxy_progress_goal_maintenance` direction=`mixed` confidence=0.75
   - `2026-06-12T16:12:47Z` `literature` `targeted_review_proxy_progress_goal_maintenance` direction=`mixed` confidence=0.62
@@ -663,7 +664,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-075
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, exp_conf=0.417, lit_conf=0.672, overall_confidence_legacy=0.544
+- Evidence breakdown: supports=4, weakens=5, conflict_ratio=0.889, exp_conf=0.416, lit_conf=0.672, overall_confidence_legacy=0.544
 - Recent entries:
   - `2026-08-11T17:02:14Z` `literature` `targeted_review_connectome_mech_075` direction=`weakens` confidence=0.65
   - `2026-08-11T17:02:14Z` `literature` `targeted_review_connectome_mech_075` direction=`weakens` confidence=0.75
@@ -723,7 +724,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-094
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=25, weakens=1, conflict_ratio=0.077, exp_conf=0.62, lit_conf=0.845, overall_confidence_legacy=0.755
+- Evidence breakdown: supports=25, weakens=1, conflict_ratio=0.077, exp_conf=0.619, lit_conf=0.845, overall_confidence_legacy=0.755
 - Recent entries:
   - `2026-06-03T07:20:42Z` `experimental` `v3_exq_633_mech094_simulation_real_writegate_discriminative` direction=`supports` confidence=0.75
   - `2026-06-04T03:55:11.887825Z` `experimental` `v3_exq_466b_sd034_satisficing_residue_discharge_behavioural` direction=`non_contributory` confidence=0
@@ -803,7 +804,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-102
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=8, weakens=11, conflict_ratio=0.842, exp_conf=0.511, lit_conf=0.816, overall_confidence_legacy=0.663
+- Evidence breakdown: supports=8, weakens=11, conflict_ratio=0.842, exp_conf=0.51, lit_conf=0.816, overall_confidence_legacy=0.663
 - Recent entries:
   - `2026-04-18T16:48:57Z` `literature` `targeted_review_sd003_successor_evaluator` direction=`supports` confidence=0.72
   - `2026-04-18T16:48:57Z` `literature` `targeted_review_sd003_successor_evaluator` direction=`supports` confidence=0.78
@@ -996,6 +997,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Place fields concentrate around emotionally salient regions (both appetitive and aversive), described in the review as goal-directed remapping.` (1)
   - `A subset of dorsal neurons is selectively activated at reward sites regardless of spatial position ('reward cells'), encoding positive valence independently of spatial context within the dorsal compartment itself.` (1)
   - `CA1 place fields cluster toward rewarded locations, and the degree of clustering correlates with the animal's behavioural navigation preference -- the dorsal map's geometry is not independent of experienced value.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### MECH-144
+- Conflict types: directional, source_disagreement, mixed_evidence
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.324, lit_conf=0.806, overall_confidence_legacy=0.685
+- Recent entries:
+  - `2026-08-09T06:05:15Z` `literature` `targeted_review_connectome_mech_144` direction=`supports` confidence=0.45
+  - `2026-08-09T06:05:15Z` `literature` `targeted_review_connectome_mech_144` direction=`mixed` confidence=0.62
+  - `2026-08-09T07:47:51Z` `literature` `targeted_review_mech_144` direction=`supports` confidence=0.7
+  - `2026-08-09T07:47:51Z` `literature` `targeted_review_mech_144` direction=`supports` confidence=0.72
+  - `2026-08-29T16:00:46Z` `experimental` `v3_exq_961_mech144_ventral_valence_spatial_gradient_probe` direction=`weakens` confidence=0.75
+- Recurring failure signatures:
+  - `The dorsoventral valence dissociation demonstrated here is carried by differential cholinergic INPUT to the two poles, not by any intrinsic property of hippocampal map geometry -- so this evidence is equally compatible with valence being externally tagged onto the ventral map, which is the reading MECH-144 rejects.` (1)
+  - `No spatial coding is measured anywhere in the study, so it cannot discriminate 'spatially organized valence encoding' from valence encoding that is merely located in a spatial structure.` (1)
+  - `Ventral anxiety-related neurons show minimal overlap with classical place cells, and the review reads this as the ventral hippocampus generalising across anxiogenic situations INDEPENDENTLY of their specific locations -- which is valence carried by a separate population, not valence embedded in map geometry.` (1)
+  - `The review cites recent work showing ventral populations maintain stable representations of a stimulus even when its associated valence is REVERSED, explicitly described as challenging the valence-centric view of ventral coding in favour of identity-and-salience coding.` (1)
+  - `Ventral valence effects are substantially carried by projection-defined pathways (lateral hypothalamus, medial prefrontal cortex, nucleus accumbens shell, basolateral amygdala) rather than by intrinsic map structure, so the locus of valence may be the output routing rather than the map.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1296,7 +1317,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-323
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0.751, lit_conf=0.776, overall_confidence_legacy=0.766
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0.75, lit_conf=0.776, overall_confidence_legacy=0.766
 - Recent entries:
   - `2026-07-28T20:45:35Z` `experimental` `v3_exq_810a_arc071_chunk_accumulator_readiness` direction=`supports` confidence=0.75
   - `2026-07-29T00:23:36Z` `experimental` `v3_exq_834_arc071_mech323_budget_coupled_ceilings` direction=`unknown` confidence=0.45
@@ -1990,7 +2011,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-024
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.727, lit_conf=0.696, overall_confidence_legacy=0.704
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.726, lit_conf=0.696, overall_confidence_legacy=0.704
 - Recent entries:
   - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`supports` confidence=0.75
   - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`weakens` confidence=0.7
