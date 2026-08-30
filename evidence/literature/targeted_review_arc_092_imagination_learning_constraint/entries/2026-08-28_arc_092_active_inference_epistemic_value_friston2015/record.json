@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_arc_092_imagination_learning_constraint",
   "entry_id": "2026-08-28_arc_092_active_inference_epistemic_value_friston2015",
   "timestamp_utc": "2026-08-28T20:32:01Z",
-  "claim_ids_tested": ["ARC-092"],
+  "claim_ids_tested": [
+    "ARC-092"
+  ],
   "source": {
     "title": "Active inference and epistemic value",
-    "authors": ["Karl Friston", "Francesco Rigoli", "Dimitri Ognibene", "Christoph Mathys", "Thomas Fitzgerald", "Giovanni Pezzulo"],
+    "authors": [
+      "Karl Friston",
+      "Francesco Rigoli",
+      "Dimitri Ognibene",
+      "Christoph Mathys",
+      "Thomas Fitzgerald",
+      "Giovanni Pezzulo"
+    ],
     "year": 2015,
     "venue": "Cognitive Neuroscience",
     "doi": "10.1080/17588928.2015.1020053",
@@ -22,7 +31,15 @@
   "failure_signatures": [
     "The formal separation between policy-evaluation use of expected free energy and generative-model parameter updates only holds if the implementation actually keeps them as distinct operations -- a system that lets policy-selection rollouts write back into the same parameters used for perception/world-modeling would violate the theoretical distinction this paper relies on, which is precisely the FORBIDDEN-side failure mode ARC-092 is designed to catch."
   ],
-  "tags": ["arc-092", "imagination", "active-inference", "epistemic-value", "expected-free-energy", "exploration", "counterfactual"],
+  "tags": [
+    "arc-092",
+    "imagination",
+    "active-inference",
+    "epistemic-value",
+    "expected-free-energy",
+    "exploration",
+    "counterfactual"
+  ],
   "mapping": {
     "source_claim_statement": "Under active inference, agents select policies (action sequences) to minimize EXPECTED free energy, a quantity evaluated over counterfactual (not-yet-enacted) futures. Expected free energy decomposes into an extrinsic (pragmatic/reward-seeking) term and an epistemic (intrinsic, information-seeking) term: the epistemic term quantifies the expected reduction in uncertainty about hidden states of the world that a policy's imagined outcomes would provide. Crucially, this evaluation is performed entirely within the agent's existing generative model -- imagining a policy's likely outcomes to score it does not itself change the model's parameters; the model is updated only afterward, from real (enacted, observed) outcomes, via ordinary perceptual/parameter inference.",
     "ree_translation": "This is the formal grounding for ARC-092's claim that counterfactual exploration is LICIT when its output is a prior for future testing (a policy preference / value estimate) rather than knowledge (a world-model parameter change). REE's E3 candidate evaluation -- scoring differentiated imagined futures to select among them -- is architecturally the same move as expected-free-energy policy scoring: the imagined rollouts inform WHICH action to take (an epistemic/pragmatic value computation over hypotheses) without themselves being treated as observed data that updates the world model. MECH-094's write-gate is the architectural enforcement of exactly the separation this paper's math assumes: imagined-outcome evaluation feeds the policy-selection pathway, and only real post-action observations feed the generative-model-update pathway.",
@@ -34,5 +51,6 @@
     "mapping_fidelity": 0.55,
     "transfer_risk": 0.5,
     "notes": "Highly-cited, foundational formal treatment (Friston and colleagues) of exactly the distinction ARC-092 needs -- but it is a theory/derivation paper, not empirical, and REE's substrate is only architecturally analogous to active inference, not a literal implementation, which caps mapping fidelity and raises transfer risk somewhat."
-  }
+  },
+  "summary_path": "summary.md"
 }
