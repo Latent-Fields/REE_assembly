@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-08-30T12:20:09Z",
+  "last_tick_utc": "2026-08-30T12:50:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-951",
   "current_exq_started_utc": "2026-08-29T18:54:34.883912+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / MECH320_TONIC_VIGOR_AUTHORITY_SD054",
     "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 250,
     "episodes_total": 265,
-    "overall_pct": 88.1
+    "overall_pct": 98.1
   },
-  "seconds_elapsed": 62734,
-  "seconds_remaining": 7721,
+  "seconds_elapsed": 64547,
+  "seconds_remaining": 1219,
   "recent_lines": [
     "[v3_exq_951_mech320_tonic_vigor_authority_sd054] starting (dry_run=False)",
     "Seed 42 Condition MECH320_TONIC_VIGOR_AUTHORITY_SD054",
@@ -50,7 +50,12 @@
     "[train] stage0_nursery seed=44 ep 20/265",
     "[train] stage0b_consolidate seed=44 ep 30/265",
     "[train] p0_guided seed=44 ep 130/265 mean_len=200.0",
-    "[train] hazard_avoidance seed=44 ep 170/265 survival_gate=pass"
+    "[train] hazard_avoidance seed=44 ep 170/265 survival_gate=pass",
+    "[train] p1_foraging seed=44 ep 220/265 survival_gate=pass",
+    "[p2_arm] seed=44 arm=ARM_0_baseline w_action=0.00 w_passive=0.00 form=additive action_density=1.0000 v_t_mean=0.0500 bias_max_abs_mean=0.0000",
+    "[train] p2_arm0 seed=44 ep 235/265",
+    "[p2_arm] seed=44 arm=ARM_1_vigor_additive w_action=0.10 w_passive=0.10 form=additive action_density=1.0000 v_t_mean=0.0500 bias_max_abs_mean=0.0050",
+    "[train] p2_arm1 seed=44 ep 250/265"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
