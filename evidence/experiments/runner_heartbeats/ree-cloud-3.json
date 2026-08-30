@@ -1,48 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-30T13:25:46Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-966",
-  "current_exq_started_utc": "2026-08-30T11:50:36.629942+00:00",
-  "current_title": "MECH-143/MECH-144 causal hippocampal value-sensitivity retest (real HippocampalModule/E3TrajectorySelector, FIXED vs SHUFFLED resource value)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "starting...",
-    "runs_done": 0,
-    "runs_total": 1,
-    "episodes_done": 0,
-    "episodes_total": 130,
-    "overall_pct": 39.7
-  },
-  "seconds_elapsed": 5710,
-  "seconds_remaining": 8673,
-  "recent_lines": [
-    "V3-EXQ-966 start: v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal_20260830T115037Z_v3",
-    "--- seed 42 ---",
-    "arm ARM_FIXED_VALUE ...",
-    "frac_high pre=0.250 (n=8) post=0.250 (n=8) c1_pass=True",
-    "arm ARM_SHUFFLED_VALUE ...",
-    "frac_high pre=0.250 (n=8) post=0.750 (n=8) c1_pass=True",
-    "--- seed 47 ---",
-    "arm ARM_FIXED_VALUE ...",
-    "frac_high pre=0.800 (n=5) post=0.333 (n=3) c1_pass=True",
-    "arm ARM_SHUFFLED_VALUE ...",
-    "frac_high pre=0.800 (n=5) post=0.667 (n=3) c1_pass=True",
-    "--- seed 53 ---",
-    "arm ARM_FIXED_VALUE ...",
-    "frac_high pre=0.250 (n=4) post=0.500 (n=4) c1_pass=True",
-    "arm ARM_SHUFFLED_VALUE ...",
-    "frac_high pre=0.250 (n=4) post=0.500 (n=4) c1_pass=True",
-    "--- seed 61 ---",
-    "arm ARM_FIXED_VALUE ..."
+  "last_tick_utc": "2026-08-30T14:04:43Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-959",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-926a",
+      "result": "PASS",
+      "completed_at": "2026-08-14T17:10:53.236220+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-922a",
+      "result": "PASS",
+      "completed_at": "2026-08-14T18:37:08.758895+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-934",
+      "result": "PASS",
+      "completed_at": "2026-08-15T01:52:16.800323+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-822c",
+      "result": "PASS",
+      "completed_at": "2026-08-29T06:56:46.486819+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-958",
+      "result": "PASS",
+      "completed_at": "2026-08-29T11:35:56.156888+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 959,
-  "runner_version": "r5530 af20427 2026-08-30",
+  "runner_version": "r5542 a1dabac 2026-08-30 (running r5541 fb47698)",
   "gpu": {
     "available": false
   },
