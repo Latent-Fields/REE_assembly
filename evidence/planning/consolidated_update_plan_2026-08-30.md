@@ -99,13 +99,20 @@ Added 2026-08-30 by the cutover durability review (coordinator_cutover_durabilit
 4. `chip-20260830-stray-git-sync-repair-untracked` — vendor `/usr/local/bin/ree_git_sync_repair.sh` into a repo (follow the committed-template convention used by the launchd plists).
 5. `chip-20260821-heartbeat-hysteresis-remeasure` — measurement only.
 6. `chip-20260826-fleet-idle-watcher-validation-candidate-false-negative` — audit the 37 exclusions.
-7. **D.7 — IN EXECUTION (user go given 2026-08-30 ~10:18Z)**: retire the hub from the
-   experiment pool. Done so far: `Restart=no` drop-in installed on cloud-1
-   (`zz-retire.conf` — the `zz-` prefix matters, shadow.conf sets Restart=always and drop-ins
-   apply alphabetically); graceful `stop` (drain) enqueued via the runner-commands channel and
-   verified on origin (`b3c79dc14f`); V3-EXQ-959 draining (~60m ETA at issue). Remaining:
-   `systemctl disable ree-runner` after the drain exit + verify the 959 manifest/claim closed
-   cleanly. CLAUDE.md retirement note landed alongside.
+7. **D.7 — DONE (mechanically complete 2026-08-30T11:50Z; drain in progress)**: hub retired
+   from the experiment pool. `Restart=no` drop-in on cloud-1 (`zz-retire.conf` — the `zz-`
+   prefix matters, shadow.conf sets Restart=always and drop-ins apply alphabetically);
+   `systemctl disable ree-runner` run (boot-start removed; disable does not touch the running
+   process, so the drain is undisturbed). **Stop-command channel correction:** the first stop
+   went to the git command file (`b3c79dc14f`) which cloud-1's runner NEVER reads —
+   `PHASE3_COMMANDS_OFF_GIT=1` in shadow.conf routes commands through the coordinator only.
+   Re-issued via `POST /commands/issue` (coordinator cmd id 166, 11:49:11Z); the git-file
+   entry is marked `superseded` in place so no later reader waits on it. V3-EXQ-959 still
+   training at disable time (ARM_ANNEAL seed 48 P0 ep 100/150 at 11:39Z — the 60m ETA was
+   optimistic); on its completion the runner drain-exits and nothing restarts it. Manifest
+   landing needs no session babysitting (coordinator spool → phase3 writer); 959 will surface
+   in `pending_review.md` for the next governance cycle as normal. CLAUDE.md retirement note
+   landed (`668a4b3f3`).
 
 ## Campaign E — Worktree GC (P2, Mac, careful)
 
