@@ -454,7 +454,7 @@ depends on both clusters plus MECH-279/MECH-205.
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
 | `ORNT-1` | MECH-395 pre-approach orienting (moved from DRV-4) | blocked | high | shared E3 selection-authority / cue-authority ceiling (V3-EXQ-812 successor) |
-| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | both 2026-08-22 gates CLEARED (doc reviewed; SD-063 training landed ree-v3 88287f11c6). Readiness criterion falsified -- use `_last_pvar_relative_spread`, not `dev_range`. Owed: 2x2 diversity validation (chip-20260823-mech314bc-2x2-diversity-validation); accumulator itself still unbuilt |
+| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | both 2026-08-22 gates CLEARED (doc reviewed; SD-063 training landed ree-v3 88287f11c6). Readiness criterion falsified -- use `_last_pvar_relative_spread`, not `dev_range`. Owed: 2x2 diversity validation (chip-20260823-mech314bc-2x2-diversity-validation). ACCUMULATOR BUILT 2026-08-29 (ree-v3 b69a1b8, SD-102, chip-20260827-mech482-accumulator-build) -- status stays `open` pending /governance's flip to `in_progress`. Validation V3-EXQ-964 FAIL/non_contributory (C2 structurally unsatisfiable; autopsy confirmed + governance-ratified 28d14475a5); follow-on substrate entry sd_epistemic_deficit_multitarget_readiness created, not yet chipped |
 | `ORNT-3` | MECH-483 orient/survey regime | open | medium | depends on ORNT-2 |
 | `ORNT-4` | Q-089 cold-start-split question | open | medium | depends on ORNT-2 + ORNT-3 |
 | `ORNT-6` | MECH-489 defensive-orienting validation | in_progress | high | 910a retest owed (substrate fix landed 2026-08-10) |
