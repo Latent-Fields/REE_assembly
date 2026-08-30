@@ -1,0 +1,108 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-30T06:34:18Z",
+ "scope": "single",
+ "status": "awaiting_human_confirmation",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3",
+   "queue_id": "V3-EXQ-964",
+   "claim_ids": [
+    "MECH-482"
+   ],
+   "self_route_label": "accumulator_live_but_never_changes_committed_action",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the run could not express the claim. C2, the only criterion bearing on selection-relevance, was mathematically unsatisfiable given the substrate state reached (n_targets==1).",
+    "biological_reference": "partial -- an epistemic-deficit / learning-progress accumulator over persistent targets has a defensible intrinsic-motivation reference, but this run did not reach a test of it.",
+    "prerequisites": "missing -- the accumulator must hold >=2 distinguishable targets, and candidates must match DIFFERENT targets, before a per-candidate read can differentiate anything. Neither held.",
+    "implementation": "partial -- the accumulator populates and the consumer is wired, but epistemic_deficit.reset() clears all targets every episode, so across 3 x 60-step episodes it never exceeded ONE target.",
+    "environment": "too sparse -- 60-step episodes in CausalGridWorldV2 do not generate enough distinct high-uncertainty regions for a second persistent target to form before the per-episode reset.",
+    "measurement": "misleading -- C1's PASS bar (>=1 target AND >=1 update) is satisfied at exactly the value (n_targets==1) at which C2 cannot succeed. The two criteria are not independent; C1 passing structurally guarantees C2 failing.",
+    "integration": "partially coupled -- readout reaches compute_score_bias, but delivers a constant vector.",
+    "scale": "likely insufficient -- 180 candidate ticks/seed, only 12-20 readouts."
+   },
+   "biological_reference": {
+    "closest_mechanism": "learning-progress / epistemic-deficit driven directed exploration over a map of persistent uncertainty loci",
+    "dependencies": [
+     "a persistent multi-target uncertainty map",
+     "candidate trajectories reaching distinct loci"
+    ],
+    "is_formal_import": true,
+    "divergence": "not reached -- the run did not test the mechanism",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "substrate_conditional",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-964 (2026-08-29, diagnostic) does NOT bear on MECH-482. Its load-bearing C2 ('the downstream consumer can change the committed action') was unsatisfiable by construction given the substrate state the run reached. All three seeds ended with n_targets == 1 and last_n_targets_matched_at_readout == 32 == K, i.e. every candidate matched the single target. EpistemicDeficitAccumulator.readout returns torch.where(matched, deficits[nearest_idx], 0), which with one target yields the SAME value for every candidate; StructuredCuriosity then applies total = total - weight * lp_vec (structured_curiosity.py:541-543), and subtracting a constant from every candidate score cannot move an argmax. yoked_divergence_frac == 0.0 was therefore mathematically forced and carries zero information about the mechanism. Note also that C1's PASS bar (>=1 persistent target AND >=1 update) is met at exactly n_targets == 1, the value at which C2 must fail -- the two criteria are not independent. The instrument itself is sound: the self-yoked control C3 was bit-identical as required, and n_readouts was 13/20/12 (non-zero), so the readout path really was exercised. The self-routed label 'accumulator_live_but_never_changes_committed_action' is literally true but reads as a fair test of selection-relevance, which this was not.",
+   "per_claim_recommendation": {
+    "MECH-482": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "substrate_conditional",
+     "change": "epistemic_category STAYS substrate_conditional (SD-102 is implemented but its selection-relevance is unvalidated) and status STAYS candidate; what changes is the evidence_quality_note, which must record that V3-EXQ-964's C2 was structurally unsatisfiable at n_targets==1 and therefore does not count as a negative result for MECH-482",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "create",
+    "sd_id_suggested": "sd_epistemic_deficit_multitarget_readiness",
+    "title": "Give the epistemic-deficit accumulator a reachable multi-target regime, and gate its validation on per-candidate differentiation",
+    "implementation_hint": "EpistemicDeficitAccumulator.reset() clears all persistent targets every episode (deliberately, mirroring StructuredCuriosity's per-episode LP-EMA clear), so in 60-step episodes it never exceeds one target and readout() returns a constant vector that cannot move an argmax. Either lengthen the accumulation window / relax the per-episode clear for this sub-flavour, or run the validation in an environment that produces >=2 distinct uncertainty loci per episode. Separately, record StructuredCuriosity._last_lp_dev_range (max-min of lp_contrib) in the manifest -- it is already computed and is exactly the number that decides whether the per-candidate read can differentiate.",
+    "unblocks_claims": [
+     "MECH-482"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 2,
+    "severity": "degrading",
+    "substrate_paths": [
+     "ree_core/policy/epistemic_deficit.py",
+     "ree_core/policy/structured_curiosity.py"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3",
+     "experiment_type": "v3_exq_964_mech482_epistemic_deficit_validation",
+     "metric": "n_targets==1 on all 3 seeds with all 32 candidates matching it; per-candidate readout constant; yoked_divergence_frac exactly 0.0",
+     "target": "a validation run must reach n_targets>=2 AND candidates matching >=2 distinct targets (equivalently _last_lp_dev_range > 0) before C2 is interpretable",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "MECH-482 has 0 prior substrate_ceiling autopsy hits under the R1-R3 convention. This reading is not substrate_ceiling."
+   },
+   "arguments_withdrawn": [
+    {
+     "argument": "The vacuous_readout_rate gate is blind: driver lines 223-227 return 0.0 when n_readouts==0, identical to 'never refused', so the readiness gate would pass on an accumulator whose readout was never invoked at all.",
+     "withdrawn_because": "NOT the cause here -- n_readouts is 13/20/12, non-zero on every seed, so the readout path was genuinely exercised. The gate defect is real but unexercised by this run; recorded as a latent instrument finding rather than a diagnosis."
+    }
+   ],
+   "learning_extracted": [
+    "Two criteria are not independent evidence when one's PASS threshold is set at the exact value that makes the other unsatisfiable. C1 ('>=1 target') and C2 ('the read can change selection') stand in precisely that relation: at n_targets==1 the readout is constant and no argmax can move. A readiness gate for C2 must require per-candidate DIFFERENTIATION (>=2 matched targets, or a non-zero lp deviation range), not mere non-emptiness.",
+    "A negative control establishes specificity, not sensitivity. C3 (self-yoked, bit-identical) proves the divergence detector does not fire spuriously; nothing in this design proves it CAN fire. A positive control -- inject a synthetic two-target deficit and confirm the argmax flips -- would have made the zero interpretable in one cheap step.",
+    "RECORDING GAP: StructuredCuriosity already computes _last_lp_dev_range = lp_contrib.max() - lp_contrib.min(), the exact quantity that settles whether the per-candidate read can differentiate candidates. It was not recorded. Recording it costs nothing and would have made this diagnosis self-evident from the manifest.",
+    "The driver imports assert_no_structurally_unsatisfiable_gate, but that guard is static over pre-registered specs and cannot see a degeneracy that emerges from the runtime state reached (n_targets==1). Structural unsatisfiability needs a runtime check too."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "cluster_pattern": null,
+ "hypothesis_space_ledger_pending": {
+  "note": "Staging mode: no fanout_recommendation emitted (the bottleneck is a single named readiness/recording fix, not a discrimination among rival hypotheses). No registry append owed."
+ },
+ "red_team_pass": {
+  "independent_pass_run": false,
+  "verdict": "NOT OBTAINED -- no independent verifier ran",
+  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
+  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
+  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+ }
+}

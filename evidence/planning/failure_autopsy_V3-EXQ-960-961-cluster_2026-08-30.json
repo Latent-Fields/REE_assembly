@@ -1,0 +1,181 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-30T06:34:18Z",
+ "scope": "cluster",
+ "status": "awaiting_human_confirmation",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_960_mech143_dca1_value_free_map_probe_20260829T162515Z_v3",
+   "queue_id": "V3-EXQ-960",
+   "claim_ids": [
+    "MECH-143"
+   ],
+   "self_route_label": "does_not_support (manifest evidence_direction)",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the probe's own pre-registered readiness floor was breached on every cell, so neither criterion is interpretable.",
+    "biological_reference": "partial -- dCA1 value-free allocentric map is well-anchored; not reached.",
+    "prerequisites": "missing -- z_world must distinguish the 8 probe positions before any map-drift statistic means anything.",
+    "implementation": "partial -- the probe is correctly written and its guard correctly computed; the guard simply does not gate the emitted direction.",
+    "environment": "unknown -- not reached.",
+    "measurement": "misleading -- C1 (low value-drift) PASSES trivially on a collapsed representation, because a frozen latent cannot drift under ANY manipulation. The pass is an artifact of the same collapse that fails C2.",
+    "integration": "isolated",
+    "scale": "unknown -- not reached."
+   },
+   "biological_reference": {
+    "closest_mechanism": "dorsal CA1 allocentric place map, value-invariant",
+    "dependencies": [
+     "a spatially differentiated world latent"
+    ],
+    "is_formal_import": false,
+    "divergence": "not reached",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-960 (2026-08-29) does NOT bear on MECH-143 and its recorded evidence_direction of does_not_support should be corrected to non_contributory. The driver pre-registers MIN_DISPERSION = 0.02 on the cross-position z_world dispersion and states its meaning explicitly: below it, 'the 8 probe positions are not even distinguishable from one another and any low map_drift reading would be a representation-collapse artifact, not evidence of value-invariance.' Measured pre_dispersion was 0.009649 / 0.007550 / 0.000256 -- every cell 2x to 78x BELOW the floor, and the manifest duly records non_degenerate: false. C1 (value-stability) therefore PASSES vacuously, because a collapsed latent cannot drift under any manipulation, and C2 (location-sensitivity) FAILS for the same reason rather than for want of a value-free map. Seed 13, the most collapsed cell (0.000256), produced the run's only negative pairwise delta (-0.0805) and its only C1-failing value drift (0.2269) -- noise on a degenerate representation. The per-cell guard cell_ok = pre_dispersion >= MIN_DISPERSION is computed at driver line 384 but is neither recorded in the manifest nor used to gate the emitted direction.",
+   "per_claim_recommendation": {
+    "MECH-143": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-143 currently carries NO epistemic_category field at all, so set one -> standard",
+     "pending_retest_after_substrate": true,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "sd_nondegeneracy_net_gates_evidence_direction",
+    "failure_record_entry": {
+     "run_id": "v3_exq_960_mech143_dca1_value_free_map_probe_20260829T162515Z_v3",
+     "experiment_type": "v3_exq_960_mech143_dca1_value_free_map_probe",
+     "metric": "non_degenerate=false (pre_dispersion 0.0096/0.0075/0.00026 vs pre-registered floor 0.02) yet evidence_direction emitted as does_not_support",
+     "target": "a run whose own pre-registered readiness floor is breached on every cell must emit non_contributory, not a claim-weakening direction",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "MECH-143 has 0 prior substrate_ceiling hits (R1-R3). This reading is not substrate_ceiling."
+   },
+   "learning_extracted": [
+    "A stability criterion and a sensitivity criterion measured on the same representation are not independent: a collapsed latent passes the stability half and fails the sensitivity half simultaneously, which is exactly the pattern observed. Reading the stability PASS as partial support would invert the finding.",
+    "The driver pre-registered the correct guard, computed it correctly, recorded it correctly -- and still emitted a claim-weakening direction, because nothing wires non_degenerate to evidence_direction.",
+    "RECORDING GAP: cell_ok is computed per cell (driver line 384) and never written to the manifest."
+   ],
+   "routing": "queue-experiment",
+   "existing_unrun_driver_note": "v3_exq_165_mech143_hippocampal_value_sensitivity (on disk 2026-07-12, unqueued, never scored) covers MECH-143 and MECH-144 via a standalone inline analog with no ree_core imports. Not a substitute for this re-run; surfaced for an explicit queue-or-retire decision."
+  },
+  {
+   "run_id": "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3",
+   "queue_id": "V3-EXQ-961",
+   "claim_ids": [
+    "MECH-144"
+   ],
+   "self_route_label": "does_not_support (manifest evidence_direction)",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened -- C1 is a genuine, adequately-instrumented miss on a live substrate, though at only 3 seeds.",
+    "biological_reference": "partial -- graded ventral-striatal/amygdalar valence gradients over space are well-anchored; the run tested a simplified analogue.",
+    "prerequisites": "present -- 32 active residue centers and probe-position distance_std 1.04-1.21, both well clear of their floors.",
+    "implementation": "complete for what was tested.",
+    "environment": "adequate -- probe positions genuinely spatially spread.",
+    "measurement": "adequate for C1; the run's non_degenerate flag is a FALSE POSITIVE from a driver bug and must not be used to discount it.",
+    "integration": "coupled",
+    "scale": "likely insufficient -- 3 seeds, r spread -0.19 to +0.21."
+   },
+   "biological_reference": {
+    "closest_mechanism": "graded spatial valence gradient in ventral-stream affective mapping",
+    "dependencies": [
+     "an active residue field",
+     "spatially spread probe sampling"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "does_not_support",
+   "recommended_evidence_quality_note": "V3-EXQ-961 (2026-08-29) is a genuine but low-powered negative for MECH-144 and SHOULD be scored, despite carrying non_degenerate: false. That flag is a FALSE POSITIVE caused by a driver bug: at line 596 the driver builds geom_dist_groups = [[r['distance_std']] for ...], i.e. a list of SINGLETON groups, and passes it to metric_groups_are_degenerate, the WITHIN-group variant intended for multi-value groups such as [arm_on, arm_off] per seed. A singleton list has spread = max - min = 0 <= eps (1e-9) by definition, so every group is 'pinned' unconditionally and the check would fire identically on a perfect run. The readiness it purports to test is in fact sound: 32 active centers (floor 4) and distance_std 1.2100 / 1.0938 / 1.0408 (floor 0.5), all far above the 1e-6 degeneracy floor. On the substance, C1 (Pearson r of harm-discriminative valence against hazard proximity) measured -0.1937 / 0.1523 / 0.2150 against a pre-registered 0.35, passing 0/3 seeds with one negative. C2 (ablated null) carries no discriminative weight and the driver says so: ARM_ABLATED's evaluate_valence 'returns identically zero by construction', r is defined as 0.0 by the guarded helper, and C2 is 'recorded as a sanity check on the harness rather than a novel discriminative claim'. C1 is therefore the sole load-bearing criterion, and at 3 seeds this is a weak negative -- does_not_support at this scale and design, not a refutation.",
+   "per_claim_recommendation": {
+    "MECH-144": {
+     "recommended_evidence_direction": "does_not_support",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-144 currently carries NO epistemic_category field at all, so set one -> standard",
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "sd_nondegeneracy_net_gates_evidence_direction",
+    "failure_record_entry": {
+     "run_id": "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3",
+     "experiment_type": "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe",
+     "metric": "metric_groups_are_degenerate fed SINGLETON groups (driver line 596) returns degenerate unconditionally; stamped non_degenerate=false on a run whose readiness (32 centers, distance_std 1.04-1.21) is sound",
+     "target": "metric_groups_are_degenerate must refuse or warn on a singleton group rather than reporting it as pinned",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": true,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "MECH-144 has 0 prior substrate_ceiling hits (R1-R3). This reading is not substrate_ceiling."
+   },
+   "arguments_withdrawn": [
+    {
+     "argument": "C2's ablated Pearson r of exactly 0.0 on all three seeds is a structurally forced zero, so C2 is a vacuous negative control that could never have failed.",
+     "withdrawn_because": "The observation is correct but the driver declares it openly (docstring lines 125-134): ARM_ABLATED returns identically zero by construction, r is defined as 0.0 by the guarded helper, and C2 is explicitly 'recorded as a sanity check on the harness rather than a novel discriminative claim'. It is honestly scoped, not a concealed vacuity. The consequence for adjudication -- C2 carries no discriminative weight, so C1 alone is load-bearing -- is retained."
+    }
+   ],
+   "learning_extracted": [
+    "A within-group degeneracy helper fed SINGLETON groups always reports degenerate. Any caller of metric_groups_are_degenerate must pass genuinely multi-valued groups; a per-seed scalar belongs in the flat metric_is_degenerate variant.",
+    "A false-positive degeneracy stamp is as damaging as a missed one, in the opposite direction: it invites governance to discard a sound negative result.",
+    "The degeneracy net is recorded but not wired to evidence_direction in either direction -- see the cluster read."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "Both runs carry non_degenerate: false AND emit a claim-weighting evidence_direction of does_not_support. The two underlying causes are OPPOSITE: V3-EXQ-960's degeneracy flag is true and correct (a real representation collapse, 2x-78x below its own pre-registered floor) and its direction should therefore be non_contributory; V3-EXQ-961's flag is a false positive from a singleton-group driver bug, and its does_not_support direction is defensible and should be SCORED.",
+  "is_independent_bugs": false,
+  "structural_property": "The non-degeneracy scoring net is COMPUTED and RECORDED but NOT WIRED to evidence_direction. Nothing in either driver, and nothing downstream, prevents a run flagged non_degenerate: false from weighing against a claim; and nothing checks that the flag itself was computed on a well-formed input. Two independently authored drivers landed on the same day exhibit the two opposite failure directions of that single missing coupling -- one degenerate run credited as evidence, one sound run stamped degenerate.",
+  "readings": [
+   "harness_wiring_gap (evidence_direction not gated on non_degenerate)",
+   "degeneracy_helper_input_validation (singleton groups always report pinned)"
+  ]
+ },
+ "hypothesis_space_ledger_pending": {
+  "note": "Staging mode: no fanout_recommendation emitted (both routes are single named fixes). No registry append owed."
+ },
+ "pre_routing_checks": {
+  "run_utc": "2026-08-30T06:34:18Z",
+  "fire_count": 1,
+  "fires": [
+   {
+    "check": "C1",
+    "message": "routing recommends queue-experiment for MECH-143, but driver v3_exq_165_mech143_hippocampal_value_sensitivity is already on disk and has NEVER scored a run.",
+    "disposition": "ACTED ON -- named below; it is NOT a substitute for the 960 re-run, and is separately surfaced as an unqueued stale asset.",
+    "reasoning": "V3-EXQ-165 covers MECH-143 AND MECH-144, but its own docstring declares it a standalone analog: 'Inline 8x8 grid world (no ree_core agent imports). All terrain navigation is implemented as a lightweight hippocampal analog operating on a residue field.' It therefore does not probe the live ree_core z_world / residue field that V3-EXQ-960 and 961 measure, and running it would not answer either run's question -- in particular it cannot address 960's z_world dispersion collapse, which is a property of the real substrate. It is nonetheless a real unqueued asset (on disk since 2026-07-12, absent from experiment_queue.json, never scored) covering both cluster claims, and governance should decide explicitly whether to queue or retire it rather than leaving it dormant."
+   }
+  ]
+ },
+ "red_team_pass": {
+  "independent_pass_run": false,
+  "verdict": "NOT OBTAINED -- no independent verifier ran",
+  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
+  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
+  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+ }
+}

@@ -1,0 +1,217 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-30T06:34:18Z",
+ "scope": "single",
+ "status": "awaiting_human_confirmation",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
+   "queue_id": "V3-EXQ-963",
+   "claim_ids": [
+    "MECH-063",
+    "SD-069"
+   ],
+   "self_route_label": "substrate_not_ready_requeue",
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the tonic manipulation was inert, so the tonic half of the dissociation was never applied. MECH-063 sub-claim (ii) is untouched.",
+    "biological_reference": "partial -- tonic/phasic neuromodulatory dissociation is well-anchored; not reached by this run.",
+    "prerequisites": "present -- SD-075 is IMPLEMENTED (ree-v3 4a5139838b) and V3-EXQ-952 confirmed the warmup+continuity configuration. The 779b re-derive brake was legitimately released and a NEW NUMBER correctly used.",
+    "implementation": "partial -- NoiseFloor.compute_effective_temperature is unconditional (lifted = baseline + alpha, alpha=1.0 configured), so a lift of exactly 0.0 on every cell means the regulator was never called on the waking path. A wiring/plumbing fault, not a tuning fault.",
+    "environment": "adequate -- same env as V3-EXQ-779a, which produced a large clean effect.",
+    "measurement": "under-instrumented -- NoiseFloor.get_state() already exposes n_waking_calls and last_n_simulation_skips, the two counters that would identify WHY the lift is zero. Neither was recorded.",
+    "integration": "isolated -- the tonic axis is configured on (use_noise_floor=True on T1P0/T1P1) but produces no effect downstream.",
+    "scale": "adequate for the comparison -- starvation is matched to 779a (see below) and therefore cannot be the discriminating variable."
+   },
+   "biological_reference": {
+    "closest_mechanism": "tonic vs phasic neuromodulatory gain control (LC-NE tonic/phasic modes) driving exploration temperature",
+    "dependencies": [
+     "a live tonic gain channel",
+     "event-locked phasic transient"
+    ],
+    "is_formal_import": false,
+    "divergence": "not reached",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-963 (2026-08-30) does NOT bear on MECH-063 sub-claim (ii) or SD-069: its tonic axis was inert. noise_floor_temp_lift_mean is exactly 0.0 on all 20 cells, including the use_noise_floor=True arms (T1P0/T1P1), against a tonic_axis_live floor of 0.5 -- the manifest correctly self-reports non_contributory and names tonic_axis_live as the unmet capability. NoiseFloor.compute_effective_temperature is UNCONDITIONAL (lifted = baseline + alpha; alpha = 1.0 in this run's config) with no state gate, so a zero lift means the regulator was never called on the waking path -- a wiring fault, not a tuning or ceiling result. The predecessor V3-EXQ-779a, whose C1/C2 computation this run states is UNCHANGED, recorded noise_floor_temp_lift_mean = 1.0 (== alpha) on its TONIC-ON cells and mean_dS_tonic = +0.2654 (robust, 4/5 seeds); this run recorded 0.0053, a 50x collapse. Sampling starvation is REFUTED as the explanation: 779a met its sample floors on 3/20 cells and this run on 4/20 -- essentially identical starvation with a 50x different outcome. Do NOT record substrate_ceiling from this run: MECH-063 already carries 3 prior substrate_ceiling autopsy hits under the R1-R3 convention, and this failure is an instrument-wiring fault, not a ceiling.",
+   "per_claim_recommendation": {
+    "MECH-063": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "MECH-063 currently carries NO epistemic_category field at all, so set one -> standard",
+     "pending_retest_after_substrate": true,
+     "status_change": "none -- stays provisional"
+    },
+    "SD-069": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "epistemic_category already reads standard and must NOT move; what changes is the evidence_quality_note, which must record that V3-EXQ-963's tonic axis was inert (noise_floor_temp_lift_mean 0.0 on all 20 cells) so the run is not a negative result for the tonic/phasic dissociation readout",
+     "pending_retest_after_substrate": true,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "create",
+    "sd_id_suggested": "sd_tonic_noise_floor_call_path_integrity",
+    "title": "Restore and instrument the tonic noise-floor call path (lift is 0.0 on every cell while configured on)",
+    "implementation_hint": "NoiseFloor.compute_effective_temperature adds alpha unconditionally, so noise_floor_temp_lift_mean == 0.0 with use_noise_floor=True and alpha=1.0 proves the regulator is not being called on the waking selection path (or is being called with simulation_mode=True, which returns baseline unchanged by contract). V3-EXQ-779a on the same design measured 1.0. Identify and repair the call site, and record NoiseFloor.get_state()'s n_waking_calls and last_n_simulation_skips in the manifest so the two failure modes are separable without a re-run.",
+    "unblocks_claims": [
+     "MECH-063",
+     "SD-069",
+     "MECH-313"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/policy/noise_floor.py",
+     "ree_core/agent.py::_curiosity_noise_floor_temperature"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
+     "experiment_type": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest",
+     "metric": "noise_floor_temp_lift_mean = 0.0 on all 20 cells with use_noise_floor=True and alpha=1.0; tonic_axis_live 0.0 vs floor 0.5; mean_dS_tonic 0.0053 vs 779a's 0.2654",
+     "target": "TONIC-ON cells must record noise_floor_temp_lift_mean ~= alpha (1.0), as V3-EXQ-779a did",
+     "resolved": "open"
+    },
+    "related_existing_entries": [
+     {
+      "sd_id": "sd_phasic_ema_episode_continuity",
+      "relation": "IMPLEMENTED; released the 779b brake that licensed this run. Does not cover the noise-floor call path."
+     },
+     {
+      "sd_id": "SD-PROBE-WARMUP",
+      "relation": "covers the SD-074 warmup this run consumed. Implicated by fan-out H2 as a possible route to the fault; if H2 is confirmed the repair may belong here instead of in a new entry."
+     }
+    ]
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_20260329-legacy-cluster_2026-08-08.json",
+     "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json",
+     "failure_autopsy_V3-EXQ-779b_2026-07-19.json"
+    ],
+    "refused_requeue": false,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "sd_tonic_noise_floor_call_path_integrity",
+    "note": "MECH-063 carries 3 prior substrate_ceiling hits (R1-R3), above the threshold of 2. This autopsy does NOT add a 4th: the reading is standard (instrument-wiring fault), not substrate_ceiling. The brake therefore does not fire on this autopsy, and a same-question re-test is NOT refused -- but it is gated on the wiring repair plus the recording addition below, NOT permitted as another blind letter."
+   },
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+     "H2 (wiring): the noise-floor call site is not reached on the tonic path in this configuration; the only change touching ALL cells vs 779a is the SD-074 shared cached warmup (T0P0 is always the cache MISS, every other arm a HIT).",
+     "H3 (simulation_mode): the scored E3 selections ran with simulation_mode=True, which returns baseline_temperature unchanged by contract (noise_floor.py:187-189), yielding lift 0.0 with the regulator nominally 'called'.",
+     "H5 (substrate drift): the tonic call path changed independently between 2026-07-18 (779a) and 2026-08-30, unrelated to the warmup."
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H2",
+      "axis": "instrumentation",
+      "sketch": "record NoiseFloor.get_state() n_waking_calls per cell; n_waking_calls==0 confirms the regulator is never invoked. Zero extra compute -- the counter already exists."
+     },
+     {
+      "hypothesis": "H3",
+      "axis": "instrumentation",
+      "sketch": "record last_n_simulation_skips per cell; skips>0 with n_waking_calls==0 confirms every call took the simulation_mode branch."
+     },
+     {
+      "hypothesis": "H2",
+      "axis": "process",
+      "sketch": "run one cell of the 2x2 with the SD-074 warmup DISABLED and read lift_mean; a restored 1.0 isolates the warmup as the cause."
+     },
+     {
+      "hypothesis": "H5",
+      "axis": "representation",
+      "sketch": "replay the 779a driver unchanged against today's substrate and read lift_mean; 0.0 isolates substrate drift independent of the warmup."
+     }
+    ],
+    "note": "GOV-FANOUT-1: three live explanations for an inert tonic axis, on different axes. The first two probes are pure instrumentation and cost nothing -- run them before spending any behavioural budget."
+   },
+   "arguments_withdrawn": [
+    {
+     "argument": "Sampling starvation (16/20 cells hit the step cap at ~60% of target selections) explains the collapsed effect.",
+     "withdrawn_because": "REFUTED by the 779a comparison. 779a met its sample floors on 3/20 cells (step_cap 15, episode_cap 2); this run on 4/20 (step_cap 16). Starvation is essentially IDENTICAL across the two runs, yet mean_dS_tonic differs 50-fold (0.2654 vs 0.0053). Starvation is real and worth fixing, but it is not the discriminating variable. The manifest's own sampling_shortfall block already warns against routing on it."
+    },
+    {
+     "argument": "The SD-074 warmup cache fails to restore the NoiseFloor regulator's warmed state, leaving the tonic axis cold and unable to lift.",
+     "withdrawn_because": "REFUTED by code read. NoiseFloor is documented 'stateless across ticks' and compute_effective_temperature computes lifted = baseline + alpha unconditionally, with no dependence on _n_waking_calls or any accumulated state. A cold regulator lifts identically to a warmed one. NOTE the underlying blind spot is nonetheless REAL and worth reporting separately: NoiseFloor is zero-parameter and non-nn.Module, so it is invisible BOTH to assert_state_dict_shareable (which checks state_dict key/shape parity, and whose docstring cites exactly this zero-parameter property as what licenses cache sharing) AND to _restore_cached_surface (which walks agent.named_modules()). It is simply not the cause of this failure."
+    },
+    {
+     "argument": "noise_floor_alpha is configured to 0.0, so the lift is trivially zero.",
+     "withdrawn_because": "REFUTED: config records tonic_noise_floor.alpha = 1.0. Notably 779a's measured lift_mean was exactly 1.0 == alpha, confirming the regulator fired on every tick there and on zero ticks here."
+    }
+   ],
+   "learning_extracted": [
+    "The decisive move on this run was comparing against the predecessor's per-cell instrument reading, not its headline result. noise_floor_temp_lift_mean 1.0 -> 0.0 identified an inert manipulation immediately, where the headline (mean_dS_tonic 0.265 -> 0.005) alone would have read as a weak or negative result.",
+    "A matched confound is a free control. 779a and 963 are almost equally sample-starved, which converts starvation from a candidate explanation into a held-constant nuisance variable and refutes it in one line.",
+    "RECORDING GAP: NoiseFloor.get_state() already exposes n_waking_calls and last_n_simulation_skips, which together separate 'regulator never called' from 'called under simulation_mode'. Neither was recorded, so a re-run is currently needed to answer a question the substrate was already computing.",
+    "The baseline_entropy_headroom precondition passed (met=True) while ALL FOUR arms appear in saturating_arms with worst_margin 0.0037 against a warn_margin of 0.15. The gate tests membership of the band [0.02, 0.98], not the margin to its edge, so it admits a run with effectively no headroom.",
+    "A capability precondition evaluated on a worst-cell basis (tonic_axis_live) correctly refused this run. That gate worked; it is the reason the manifest's evidence_direction is already right."
+   ],
+   "routing": "implement-substrate"
+  }
+ ],
+ "cluster_pattern": null,
+ "hypothesis_space_ledger_pending": {
+  "mode": "A (pre-register)",
+  "target_question": "NEW question -- no existing qid covers 'why is the tonic noise-floor axis inert'",
+  "growth_restriction_checked": "n/a -- new question, cannot carry a restriction",
+  "proposed_question": {
+   "qid": "tonic-noise-floor-inert",
+   "title": "Why does the tonic noise-floor axis produce zero temperature lift while configured on?",
+   "claims": [
+    "MECH-063",
+    "SD-069",
+    "MECH-313"
+   ],
+   "registered_utc": "2026-08-30T06:34:18Z",
+   "fanout_sources": [
+    "failure_autopsy_V3-EXQ-963_2026-08-30.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "hypotheses": [
+    {
+     "hid": "H2-wiring",
+     "axis": "instrumentation"
+    },
+    {
+     "hid": "H3-simulation-mode",
+     "axis": "process"
+    },
+    {
+     "hid": "H5-substrate-drift",
+     "axis": "representation"
+    }
+   ]
+  },
+  "note": "Staging mode: registry NOT written. The confirming interactive session (or the next /governance walk) applies this."
+ },
+ "pre_routing_checks": {
+  "run_utc": "2026-08-30T06:34:18Z",
+  "fire_count": 1,
+  "fires": [
+   {
+    "check": "C2",
+    "message": "recommended_substrate_queue_entry.action='create' for MECH-063/SD-069, but SD-PROBE-WARMUP and sd_phasic_ema_episode_continuity already unblocked those claims and are not mentioned.",
+    "disposition": "ACTED ON -- both acknowledged below; the new entry is retained because neither covers the noise-floor call path.",
+    "reasoning": "sd_phasic_ema_episode_continuity (SD-075) is the entry the V3-EXQ-779b re-derive brake routed to; it is IMPLEMENTED (ree-v3 4a5139838b) and V3-EXQ-952 confirmed it, which is precisely what licensed this run. SD-PROBE-WARMUP covers the SD-074 warmup this run consumed. NEITHER concerns the tonic noise-floor call path, which is the defect diagnosed here: noise_floor_temp_lift_mean == 0.0 on every cell with use_noise_floor=True and alpha=1.0. A separate entry is therefore correct, not a duplicate. Note the fan-out's H2 does implicate the SD-074 shared cached warmup as a possible ROUTE to the fault, so if H2 is confirmed the repair may land against SD-PROBE-WARMUP instead -- flagged for governance to decide at apply time."
+   }
+  ]
+ },
+ "red_team_pass": {
+  "independent_pass_run": false,
+  "verdict": "NOT OBTAINED -- no independent verifier ran",
+  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
+  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
+  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+ }
+}

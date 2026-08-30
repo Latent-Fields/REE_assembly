@@ -1,0 +1,105 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-30T06:34:18Z",
+ "scope": "single",
+ "status": "awaiting_human_confirmation",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+   "queue_id": "V3-EXQ-642a",
+   "claim_ids": [],
+   "self_route_label": "z_block_integrator_no_rise",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim-free diagnostic (claim_ids: []); bears_on 10 claims, none tagged",
+    "biological_reference": "partial -- z_block as a frustrative-non-reward / RAGE-analog integrator has a clear mammalian reference (MECH-353 lit anchor: Davis & Montag 2019; Papini et al. 2024). The failure signature is NOT a missing biological dependency; it is a regulator calibration fault.",
+    "prerequisites": "present -- SD-070 encoder warmup and SD-056 contrastive both ran; the C0 readiness gate (the fix V3-EXQ-642's autopsy demanded) PASSED on all 3 seeds with margins 0.62/0.53/0.51 vs floor 0.10.",
+    "implementation": "partial -- the comparator is discriminative (C0 pass) but its consumer, the z_block integrator, cannot use that discrimination: outcome_mismatch_floor=0.1 sits BELOW the free-step baseline mismatch (~0.38-0.50), so the integrator accumulates on ordinary world-model error every free step.",
+    "environment": "adequate -- static landmark env, harm held at zero, goal pinned; all three controls behaved as designed.",
+    "measurement": "under-instrumented -- the C1 statistic is a difference of z_block_PEAK, and z_block_peak is pinned at its hard cap (z_block_cap=1.5) in BOTH arms on ALL 3 seeds, so the C1 numerator is 0.0 by construction. z_block_mean, which is recorded, does separate in the predicted direction on 3/3 seeds.",
+    "integration": "coupled but unstable -- comparator and integrator are wired but mis-scaled relative to one another.",
+    "scale": "adequate -- 2400 policy steps/arm/seed, 3 seeds, ~1179 blocked steps per BLOCK arm."
+   },
+   "biological_reference": {
+    "closest_mechanism": "frustrative non-reward / RAGE-system blocked-goal integrator (periaqueductal-hypothalamic-amygdala axis)",
+    "dependencies": [
+     "action-outcome comparator",
+     "motor efference copy (agency attribution)",
+     "goal-value maintenance"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified at the mechanism level; this run did not reach a test of the biology",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-642a (2026-08-29, diagnostic, claim-free) did NOT test whether z_block rises under blocked agency. Its C1 statistic is a difference of z_block_PEAK, and z_block_peak saturated at its hard cap (z_block_cap=1.5, ree_core/affect/blocked_agency.py:114) in BOTH the BLOCK and CONTROL arms on all 3 seeds, making the C1 numerator 0.0 by construction; C2 inherits that zero and additionally compares against z_harm_a, which is a constant 0.0 in both arms by design (num_hazards=0). The C0 readiness gate that V3-EXQ-642's autopsy required DID pass (margins 0.62/0.53/0.51 vs 0.10), so the encoder/comparator fix worked. Root cause of the saturation: blocked_agency outcome_mismatch_floor=0.1 sits below the trained model's free-step mismatch baseline (~0.38-0.50), so the integrator accumulates on ordinary prediction error every free step. The recorded z_block_MEAN does separate in the predicted direction on 3/3 seeds (+0.165/+0.121/+0.083) under saturation, i.e. a lower bound on a real effect. The self-routed label 'z_block_integrator_no_rise' is incorrect -- the integrator rises maximally in both arms; it has no headroom. MECH-353's v3_pending gate is NOT cleared and NOT contradicted.",
+   "per_claim_recommendation": {},
+   "recommended_substrate_queue_entry": {
+    "action": "create",
+    "sd_id_suggested": "sd_blocked_agency_mismatch_floor_calibration",
+    "title": "Calibrate blocked-agency outcome_mismatch_floor against the achievable free-step mismatch baseline",
+    "implementation_hint": "outcome_mismatch_floor is a fixed absolute (0.1) compared against a raw normalised mismatch whose free-step baseline is model-dependent and currently ~0.38-0.50, so z_block accumulates on ordinary world-model error and pins at z_block_cap in every condition. Make the attribution threshold relative to a running free-step mismatch baseline (or standardise the mismatch before thresholding) so the floor selects genuinely blocked steps. Until then no blocked-agency DV has dynamic range.",
+    "unblocks_claims": [
+     "MECH-353",
+     "SD-029",
+     "MECH-112",
+     "SD-011",
+     "SD-019b"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "severity": "corrupting",
+    "substrate_paths": [
+     "ree_core/affect/blocked_agency.py"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+     "experiment_type": "v3_exq_642a_blocked_agency_zblock_discriminative",
+     "metric": "z_block_peak pinned at cap 1.5 in BOTH arms, all 3 seeds; z_block_separation exactly 0.0; CONTROL-arm z_block_mean already 1.26-1.35 of a 1.5 cap with no block applied",
+     "target": "a working calibration must leave CONTROL-arm z_block well below cap so a BLOCK-vs-CONTROL peak difference >= C1_MARGIN (0.2) is expressible",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "claim-free diagnostic; no claim_ids to count against. This reading is NOT substrate_ceiling and adds no ceiling hit to any claim."
+   },
+   "arguments_withdrawn": [
+    {
+     "argument": "The SD-070 P0a warmup was vacuous: its grounding-head holdout reports balanced_accuracy 1.0 with chance 1.0, lift 0.0, n_classes_scored 1, on single-class labels (hazard_present [1.0, 0.0]).",
+     "withdrawn_because": "The driver docstring anticipates this explicitly: on a num_hazards=num_resources=0 warmup env the grounding heads 'degrade gracefully to a trivial single-class fit ... without corrupting the reconstruction/anti-collapse terms, which do not depend on either entity type.' The functional test is the C0 readiness gate, which passed on all 3 seeds."
+    },
+    {
+     "argument": "z_goal_stream.writer_defect: true means this run's z_goal was dead, so every z_goal consumer silently no-opped.",
+     "withdrawn_because": "FALSE POSITIVE for this run. The driver deliberately pins a constant goal (lines 225-227 assign agent.goal_state._z_goal directly) because goal-value is a held-constant control in this design; active_frac is 1.0 and goal_state_present is true. writer_calls==0 is the CORRECT behaviour here, not an omission. Reported to the detector owners as a distinct finding below."
+    }
+   ],
+   "learning_extracted": [
+    "A readiness gate on the COMPARATOR does not license conclusions about the CONSUMER of that comparator. C0 verified that blocked and free steps are distinguishable (margin 0.62); the z_block integrator still could not use that distinction because its own attribution floor sits below both conditions' mismatch. Future readiness gates should be placed on the statistic the load-bearing criterion actually consumes.",
+    "A criterion built on a PEAK of a hard-clamped integrator is degenerate whenever the integrator can reach its clamp. z_block_cap=1.5 is reached in both arms; the difference-of-peaks is then 0.0 regardless of behaviour. Prefer a DV with headroom (mean, time-to-threshold, area under the accumulation curve) or record the saturation fraction alongside the peak.",
+    "The manifest's degeneracy net did not fire on this run even though the load-bearing DV was fully saturated in both arms. A ceiling rail keyed to z_block_cap on the z_block_peak metric would have caught it.",
+    "The z_goal writer_defect detector cannot distinguish a driver that omitted update_z_goal from one that deliberately pins a constant z_goal as an experimental control. Both give writer_calls==0 with goal_state_present true."
+   ],
+   "routing": "implement-substrate"
+  }
+ ],
+ "cluster_pattern": null,
+ "hypothesis_space_ledger_pending": {
+  "note": "Staging mode: no fanout_recommendation emitted (the bottleneck routes to a single unambiguous build -- calibrate the attribution floor). No registry append owed."
+ },
+ "red_team_pass": {
+  "independent_pass_run": false,
+  "verdict": "NOT OBTAINED -- no independent verifier ran",
+  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
+  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
+  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+ }
+}
