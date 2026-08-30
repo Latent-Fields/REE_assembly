@@ -1,0 +1,61 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe",
+  "run_id": "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-144"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6786330d2519e6557505c60c8a7469c859f7ca96ab5a6001173ecd65c6c29ba9",
+  "substrate_commit": {
+    "commit": "19e54fbd024e4074e41b558a2753faee6f639a63",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 1400524321,
+    "ticks_active": 345811087,
+    "writer_calls": 488686353,
+    "active_frac": 0.24691544574755014,
+    "writer_defect": false,
+    "n_agents": 152833,
+    "goal_state_present": true
+  }
+}
