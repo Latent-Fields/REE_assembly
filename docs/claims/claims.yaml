@@ -84153,6 +84153,57 @@
     DO NOT build YET (the GAP-A extension itself is unbuilt) and v3_pending
     stays true.
 
+    [2026-08-29 implementation_note, session metaworker-chip-20260827-mech482-
+    accumulator-build, chip-20260827-mech482-accumulator-build, user-directed
+    routing per work_graph_debt_classification_20260827.md addendum v1.1]:
+    SD-102 LANDED (ree-v3, ree_core/policy/epistemic_deficit.py --
+    EpistemicDeficitAccumulator / EpistemicDeficitConfig; full design
+    REE_assembly/docs/architecture/sd_102_epistemic_deficit_accumulator.md).
+    Fills the target-bound, per-candidate/per-region uncertainty substrate
+    this claim's non-degeneracy precondition names -- a persistent, spatially-
+    indexed accumulator (two-phase UPDATE/READOUT, mirroring ResidueField's
+    RBF-center precedent) fed by candidate-specific predictive uncertainty
+    (SD-063 head), persistent realized prediction error, and predictive-
+    system disagreement (E2FastPredictor point vs E2WorldUncertaintyHead
+    median -- two independently-parameterized predictors). Conservative
+    scope, per this claim's own notes above: implements 3 of the 5 candidate
+    inputs listed (uncertainty, persistent PE, disagreement -- NOT failed-
+    replay-resolution or competence-blocking-uncertainty, both requiring
+    memory/replay visibility this integration point lacks) and a
+    persistence-weighted ADDITIVE combination, NOT the full multiplicative
+    "importance x uncertainty x expected_resolvability x persistence"
+    formula in this claim's title (no importance / expected_resolvability
+    signal exists anywhere in the V3 substrate; manufacturing one would be
+    exactly the vacuous-channel risk the parent 314bc design doc warns
+    against). Bit-identical OFF (curiosity_learning_progress_source stays
+    "broadcast" by default); wired behind the reserved enum value
+    "epistemic_deficit" that config.py already carried. 18 new contracts
+    green + 75 existing MECH-314/SD-063 contracts re-run green (no
+    regression).
+    NON-DEGENERACY PRECONDITION STATUS: only the SUBSTRATE-EXISTENCE half is
+    now met (target-bound, per-candidate/per-region tracking, no longer a
+    global scalar). The EMPIRICAL half -- cross-seed/cross-condition
+    variance in the accumulator is non-zero, not floor-pinned -- is NOT yet
+    established; that is exactly what the queued diagnostic validation
+    experiment (V3-EXQ-964, EXPERIMENT_PURPOSE=diagnostic, 2-arm yoked
+    broadcast-vs-epistemic_deficit ablation) is designed to measure. Smoke
+    (--dry-run) already confirms the accumulator becomes live (populates
+    persistent targets, updates fire) but has NOT yet demonstrated a non-
+    zero yoked-divergence effect at smoke scale -- a real run at full
+    seed/episode budget is the open question, not assumed here.
+    v3_pending STAYS true (only the substrate half of the precondition is
+    met; the confirming/falsifying signature in what_would_answer above is
+    unaddressed pending V3-EXQ-964's actual result) -- this is a substrate
+    landing, not evidence, and does not itself change status or confidence
+    (governance work, per CLAUDE.md Session Land / implement-substrate
+    Step 7). Downstream claims naming MECH-482 in depends_on (MECH-483,
+    Q-089, ARC-121, MECH-485, MECH-487, MECH-493) each still carry OTHER
+    unmet dependencies (MECH-483 additionally needs MECH-395/MECH-320/ARC-065
+    completion; Q-089 additionally needs MECH-457; etc.) -- none had
+    v3_pending flipped by this landing. The ORNT-2 closure-node status flip
+    (open -> in_progress) is reported to /governance to apply, per this
+    chip's brief, and is not applied here.
+
 - id: MECH-483
   title: "orient/survey: a third primitive behavioural regime (alongside approach and avoid) -- a temporary, diffuse reduction in commitment during which the agent widens behavioural sampling and gathers situational information before committing to approach/avoidance, driven by accumulated epistemic_deficit (MECH-482) rather than a specific cue. Distinct from MECH-395 (cue-triggered, need-gated orienting that resolves a SPECIFIC directional/affordance vector for an already-identified cue): orient/survey is diffuse and precedes cue identification, MECH-395 is narrow and follows it."
   claim_type: mechanism_hypothesis

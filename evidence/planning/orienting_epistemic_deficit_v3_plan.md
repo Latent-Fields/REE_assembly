@@ -261,6 +261,46 @@ closure_plan:
         accumulator build starts. NOT re-chipped here: the validation and the
         section-5 correction are both already owned by the chip named above.
 
+        2026-08-29 UPDATE (chip-20260827-mech482-accumulator-build,
+        /implement-substrate, user-directed routing per
+        work_graph_debt_classification_20260827.md addendum v1.1, which
+        found both this node's gates cleared and chipped the accumulator
+        build with a STOP-CHECK on the residual 2x2 validation state --
+        confirmed cleared, V3-EXQ-949 PASS/supports 2026-08-25). THE
+        ACCUMULATOR IS NOW BUILT: SD-102, ree-v3
+        ree_core/policy/epistemic_deficit.py (EpistemicDeficitAccumulator),
+        landed and pushed to origin/main. Fills the per_candidate_
+        learning_progress slot; bit-identical OFF (curiosity_learning_
+        progress_source stays "broadcast" by default); readiness-gated on
+        e2_world_uncertainty_last_pvar_relative_spread > 0 per this node's
+        own 2026-08-23 correction. Conservative scope: 3 of MECH-482's 5
+        claims.yaml-listed candidate inputs (candidate-specific predictive
+        uncertainty, persistent prediction error, predictive-system
+        disagreement -- NOT failed-replay-resolution or competence-blocking-
+        uncertainty), additive combination (NOT the full multiplicative
+        importance x uncertainty x resolvability x persistence formula in
+        the claim's title -- no importance/resolvability signal exists in
+        the V3 substrate to combine multiplicatively). Full design + scoping
+        rationale: REE_assembly/docs/architecture/sd_102_epistemic_deficit_
+        accumulator.md. 18 new contracts green + 75 existing MECH-314/SD-063
+        contracts re-run green (no regression). Validation experiment
+        V3-EXQ-964 queued (EXPERIMENT_PURPOSE=diagnostic -- substrate
+        readiness: does the accumulator populate and can it change candidate
+        selection -- NOT MECH-482's own claim hypothesis, which needs a
+        later evidence-purpose experiment once the substrate question is
+        answered). claims.yaml MECH-482 gets an implementation_note only;
+        v3_pending STAYS true (only the substrate-existence half of the
+        non-degeneracy precondition is met -- the empirical half,
+        cross-seed/cross-condition variance non-zero, awaits V3-EXQ-964).
+        STATUS FLIP LEFT TO GOVERNANCE, per this chip's own brief: this note
+        records the landing but does NOT flip ORNT-2's status field from
+        `open` to `in_progress` -- that is /governance's call to make (next
+        cycle should apply it, now that the accumulator build has genuinely
+        started/landed, distinguishing this from the still-correct
+        2026-08-23 "flip when the build starts" instruction above, which
+        this update satisfies the precondition for without itself pulling
+        the trigger).
+
     - id: "orienting_epistemic_deficit_v3:ORNT-3"
       title: "orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-driven)"
       phase: 2
