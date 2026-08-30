@@ -2,7 +2,7 @@
  "schema_version": "failure_autopsy/v1",
  "generated_utc": "2026-08-30T06:34:18Z",
  "scope": "single",
- "status": "awaiting_human_confirmation",
+ "status": "confirmed",
  "dry_run_checked": true,
  "excluded_dry_run_ids": [],
  "targets": [
@@ -177,5 +177,12 @@
    }
   ],
   "status_decision": "User directed all four artifacts REMAIN awaiting_human_confirmation; a CONFIRMED red-team verdict is not itself proof an artifact is clean, and governance Step 2b is the designed second look."
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-08-30T07:20:00Z",
+  "confirmed_by": "user, at the /governance Step 2b interactive walk",
+  "cycle": "governance-20260830-0630",
+  "decision": "Confirm all four artifacts and apply their dispositions this cycle.",
+  "note": "All four had been left awaiting_human_confirmation by the 2026-08-30 failure-autopsy session on the principle that a CONFIRMED red-team verdict is not proof an artifact is clean. The user confirmed all four at this cycle's walk after being shown the red-team split (642a/964 CONFIRMED; 963 and 960-961 CONTESTED-then-corrected)."
  }
 }

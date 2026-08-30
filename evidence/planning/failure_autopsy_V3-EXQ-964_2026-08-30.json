@@ -2,7 +2,7 @@
  "schema_version": "failure_autopsy/v1",
  "generated_utc": "2026-08-30T06:34:18Z",
  "scope": "single",
- "status": "awaiting_human_confirmation",
+ "status": "confirmed",
  "dry_run_checked": true,
  "excluded_dry_run_ids": [],
  "targets": [
@@ -106,5 +106,12 @@
   "summary": "Independent verifier RE-EXECUTED the driver's yoked loop with readout()/reset() instrumented, closing the one gap in this session's argument (the manifest counters are per-episode snapshots): every episode ended n_targets=1, all 69 readouts K=32 all-matched, zero non-constant vectors, 0/180 divergence. Verified K=32 empirically and confirmed the score clamp decomposes offset from deviation, so a uniform subtraction stays argmin-inert. Hygiene: the 'every tick' claim now states its inferential step; a false general statement in four_layer_diagnosis.measurement corrected; n_readouts marked as last-episode counters.",
   "corrections_applied": true,
   "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-08-30T07:20:00Z",
+  "confirmed_by": "user, at the /governance Step 2b interactive walk",
+  "cycle": "governance-20260830-0630",
+  "decision": "Confirm all four artifacts and apply their dispositions this cycle.",
+  "note": "All four had been left awaiting_human_confirmation by the 2026-08-30 failure-autopsy session on the principle that a CONFIRMED red-team verdict is not proof an artifact is clean. The user confirmed all four at this cycle's walk after being shown the red-team split (642a/964 CONFIRMED; 963 and 960-961 CONTESTED-then-corrected)."
  }
 }

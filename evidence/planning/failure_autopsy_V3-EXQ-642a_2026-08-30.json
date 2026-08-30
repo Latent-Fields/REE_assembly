@@ -2,7 +2,7 @@
  "schema_version": "failure_autopsy/v1",
  "generated_utc": "2026-08-30T06:34:18Z",
  "scope": "single",
- "status": "awaiting_human_confirmation",
+ "status": "confirmed",
  "dry_run_checked": true,
  "excluded_dry_run_ids": [],
  "targets": [
@@ -103,5 +103,12 @@
   "summary": "Independent verifier (different model) reproduced the saturation, the mean separations, and the clamp code path; refuted the motor-agency counter-hypothesis this session could not test, using the control arm's own cells; judged both withdrawals correct and the routing right. Hygiene only: a CONTROL/BLOCK free-step attribution error (corrected), an overstatement (softened), and a note that C3's PASS is differentially uninformative.",
   "corrections_applied": true,
   "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
+ },
+ "human_confirmation": {
+  "confirmed_utc": "2026-08-30T07:20:00Z",
+  "confirmed_by": "user, at the /governance Step 2b interactive walk",
+  "cycle": "governance-20260830-0630",
+  "decision": "Confirm all four artifacts and apply their dispositions this cycle.",
+  "note": "All four had been left awaiting_human_confirmation by the 2026-08-30 failure-autopsy session on the principle that a CONFIRMED red-team verdict is not proof an artifact is clean. The user confirmed all four at this cycle's walk after being shown the red-team split (642a/964 CONFIRMED; 963 and 960-961 CONTESTED-then-corrected)."
  }
 }
