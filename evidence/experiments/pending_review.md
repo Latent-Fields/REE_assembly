@@ -1,48 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-08-30T07:12:26Z`  
-Last review: `2026-08-29T16:16:28Z`  
-Pending: **7** item(s) -- 2 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy; 1 run(s) with a DEAD z_goal stream
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3` | 2026-08-29T16:00 | MECH-144 | — |
-| `v3_exq_960_mech143_dca1_value_free_map_probe_20260829T162515Z_v3` | 2026-08-29T16:25 | MECH-143 | — |
-| `v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3` | 2026-08-29T18:54 | (no claim tags) | — |
-| `v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3` | 2026-08-29T21:50 | MECH-482 | — |
-| `v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3` | 2026-08-30T02:30 | MECH-063, SD-069 | — |
+Generated: `2026-08-30T07:29:30Z`  
+Last review: `2026-08-30T07:27:59Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` | 2026-08-29T07:15 | MECH-439 |
-| `v3_exq_962_mech219_sd019b_behavioural_temporal_controllability_20260829T185419Z_v3` | 2026-08-29T18:54 | MECH-219, SD-019b |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3` | FAIL | z_block_integrator_no_rise |
-| `v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3` | FAIL | accumulator_live_but_never_changes_committed_action |
-
-## Dead z_goal stream (interpret before trusting a z_goal readout)
-
-**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
-
-Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
-
-**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
-
-**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
-
-| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
-|--------|--------|-------|--------------|-------------|-----------|
-| `v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3` | FAIL | 14400 | **0** | 1.000 | live |
 
 ---
 
