@@ -1,0 +1,116 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_951_mech320_tonic_vigor_authority_sd054",
+  "run_id": "v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-30T12:55:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-320"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "baseline_action_density_saturated_insufficient_headroom",
+    "preconditions": [
+      {
+        "name": "reached_p2_alive",
+        "kind": "readiness",
+        "description": "P1 survival >= 2/3 seeds so the agent reaches P2 alive (same precondition shape 603n/812 already validated on this exact curriculum).",
+        "control": "P1 survival gate (median episode length last window >= scaffold_p1_survival_gate_steps).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "baseline_no_op_opportunity",
+        "kind": "readiness",
+        "description": "ARM_0 P2 action_density stays below the saturation ceiling on a majority of seeds -- the exact headroom condition that starved 3/5 seeds in V3-EXQ-624c.",
+        "control": "measured directly from ARM_0's own P2 pass (vigor bias forced to zero via w_action=w_passive=0.0).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "arm0_bias_channel_silenced",
+        "kind": "sanity",
+        "description": "ARM_0's tonic-vigor bias_max_abs reads exactly 0.0 on every seed that reached P2 -- confirms the w_action=w_passive=0.0 toggle actually zeroed the channel (the V3-EXQ-643 lesson, applied to the reference arm).",
+        "control": "TonicVigor.get_state()['last_bias_max_abs'], accumulated over every P2 tick in ARM_0.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_selection_authority_lift": false
+    },
+    "criteria": [
+      {
+        "name": "C1_selection_authority_lift",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "per_seed_c1_lift": [],
+    "per_seed_c1_pass": [],
+    "mean_c1_lift_additive": 0.0,
+    "c2_informative_form_discrimination": {
+      "note": "EXPLORATORY / NOT GATING -- n<=3 seeds cannot power a real regression against a pre-existing-action-preference axis. Reported as raw per-seed lifts only; a genuine additive-vs-multiplicative discrimination needs the parametric sweep the original MECH-320 registration (claims.yaml, R3) describes and this run does not attempt.",
+      "per_seed_multiplicative_lift": [],
+      "per_seed_additive_lift": [],
+      "mean_multiplicative_lift": 0.0,
+      "mean_additive_lift": 0.0
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "82336da713c4d5d34e8dd72f7996eb07bb3dc4381c6291f450b7963d6d574ccb",
+  "substrate_commit": {
+    "commit": "1b910c1a2c441cd974349572d96f7735480905be",
+    "dirty": false,
+    "branch": "integration/sd082-percandidate-summary"
+  },
+  "z_goal_stream": {
+    "ticks_total": 126555,
+    "ticks_active": 126552,
+    "writer_calls": 5824,
+    "active_frac": 0.9999762948915492,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
