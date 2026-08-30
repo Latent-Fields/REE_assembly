@@ -19263,6 +19263,20 @@
     artifact, not evidence of value-invariance. The manifest's recorded does_not_support was corrected to
     non_contributory in this same cycle (flat + run pack). Retest owed once the probe can resolve positions.
     epistemic_category set to standard (the claim carried none).
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-966's per-claim weakens for MECH-143 is WITHDRAWN ->
+    non_contributory (flat + run pack both corrected this cycle). The sub-check that failed is C1
+    flip_differs, which is the driver's OWN declared POSITIVE CONTROL: its failure on seed 61 says the
+    instrument did not behave, not that the claim is wrong, so the run establishes nothing about MECH-143.
+    Status stays candidate and epistemic_category stays standard -- nothing storable moves. RED-TEAM UPHELD
+    AGAINST THE AUTOPSY: the ARM_SHUFFLED manipulation is NOT observably inert (agent_energy is open and
+    amplitude-scaled for most of each 120-step episode, and a contact's +contact_benefit*0.5 bump lands
+    unclamped into body[3]), so the mechanism by which the two arms came out bit-identical on block_contacts
+    is UNRESOLVED. The autopsy's substrate proposal was WITHDRAWN on that finding; a cheap one-seed
+    confirmer (blocks 3-4, both arms, logging amplitudes, agent_energy and per-step actions) runs BEFORE any
+    substrate work is specified or a 966a is queued.
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -19322,6 +19336,17 @@
     overlapping experiment chip was spawned for this on purpose. Node class: complex (probe-gated) -- the
     next move is a better-powered probe, not a build. Expect this claim to keep re-flagging
     hold_candidate_resolve_conflict until that retest lands; that is correct, not drift.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-966's per-claim supports for MECH-144 is WITHDRAWN ->
+    non_contributory (flat + run pack both corrected this cycle). block_contacts is BIT-IDENTICAL between
+    ARM_FIXED and ARM_SHUFFLED on 4/4 seeds x 4/4 blocks, so frac_high_SHUFFLED = 1 - frac_high_FIXED BY
+    CONSTRUCTION and the equivalence test read a pure relabelling as evidence. C2's bound is max(2*pstdev,
+    0.10) = 0.640 on a [0,1] DV and 2 of its 3 branches map to supports, so the criterion could hardly have
+    returned anything else. Status stays candidate, epistemic_category stays standard -- nothing storable
+    moves. The manipulation is not observably inert (see MECH-143's parallel entry); the mechanism is
+    unresolved and a cheap confirmer runs first.
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -22438,16 +22463,16 @@
   subject: sleep_phase.minimal_sleep_infrastructure_v3
   polarity: asserts
   status: stable
-  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  pending_retest_after_substrate: true  # re-scoped 2026-08-30: SD-016/addressing complete and validated (V3-EXQ-436g, 16/16 occupancy); now blocked on the contextmemory write-path CONTENT gap (e1_deep.py::ContextMemory.write)
   epistemic_category: substrate_ceiling  # 2026-08-16 governance: set per confirmed autopsy
   live_status:
     reading: stable
     as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
-      as_of: "2026-08-13"
-      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
+      from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30"
+      as_of: "2026-08-30"
+      verdict: "non_contributory -- SD-017's OWN prediction CONFIRMED (WAKING_ONLY slot_cosine_sim 0.9993); addressing fixed, CONTENT gap in ContextMemory.write is the live ceiling"
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -22621,22 +22646,40 @@
     claim is already status stable while still carrying substrate_ceiling and an open retest debt,
     which is an unusual combination worth a deliberate look once the contextmemory write-path
     validation lands. pending_retest_after_substrate deliberately LEFT true.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-436g's weakens is WITHDRAWN -> non_contributory (flat + run
+    pack corrected this cycle), and SD-017's OWN stated prediction is CONFIRMED rather than weakened: the
+    claim predicts an undifferentiated bank WITHOUT the sleep phases (slot_cosine_sim -> 1.0), and the
+    WAKING_ONLY arm measures 0.9993. The NO_WRITES calibration arm (0 write calls) sits at mean pairwise
+    slot cosine 0.000 against 0.9992 once written, so the ONLINE write path alone collapses the bank to
+    near-rank-1. The BIAS write-usage-balancing build fixed ADDRESSING (16/16 occupancy, confirmed) and left
+    CONTENT untouched. THE FLAGGED REVIEW IS NOW ACTIONED: this claim's own note had flagged the stable +
+    substrate_ceiling + open-retest combination for a deliberate look once the contextmemory write-path
+    validation landed -- it has (V3-EXQ-436g), and the review verdict is that all three fields stand
+    unchanged, because the write-path CONTENT gap is a genuine, newly-localised substrate ceiling
+    (ree_core/predictors/e1_deep.py::ContextMemory.write) rather than a stale stamp. Re-derive brake FIRES
+    (3 -> 4 substrate_ceiling hits): a V3-EXQ-436h re-posing sleep-differentiation on the same bank is
+    REFUSED. Routed instead to the already-frozen hypothesis_space portfolio
+    contextmemory_write_content_discrimination (H1-H4, none yet queued). pending_retest_after_substrate
+    stays true, re-scoped to after-WRITE-PATH-CONTENT.
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
   claim_type: architectural_commitment
   subject: hippocampus.bidirectional_information_flow
   polarity: asserts
   status: candidate
-  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  pending_retest_after_substrate: true  # re-scoped 2026-08-30: SD-016/addressing complete and validated (V3-EXQ-436g, 16/16 occupancy); now blocked on the contextmemory write-path CONTENT gap (e1_deep.py::ContextMemory.write)
   epistemic_category: substrate_ceiling  # 2026-08-16 governance: set per confirmed autopsy
   live_status:
     reading: candidate
     as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
-      as_of: "2026-08-13"
-      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
+      from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30"
+      as_of: "2026-08-30"
+      verdict: "non_contributory -- absolute prediction missed at 0.9991, but the ONLINE write path alone collapses the bank (NO_WRITES arm 0.000); no differentiable structure for offline flow to act on"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -22758,6 +22801,18 @@
     [2026-08-16 governance apply | V3-EXQ-436f -> ARC-045 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling
 
     [2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-436g's weakens is WITHDRAWN -> non_contributory (flat + run
+    pack corrected this cycle). ARC-045's absolute prediction (slot cosine_sim < 0.95 after sleep) is missed
+    at 0.9991, but the bank was already collapsed to 0.999 by the ONLINE write path alone -- the NO_WRITES
+    calibration arm measures 0.000 -- so offline consolidation had no differentiable structure to act on and
+    the prediction was never actually put at risk. Status stays candidate, epistemic_category stays
+    substrate_ceiling (set 2026-08-16; the older 2026-08-13 V3-EXQ-436e recommendation of unset -> standard
+    is SUPERSEDED and was deliberately NOT applied). pending_retest_after_substrate stays true, re-scoped
+    from after-SD-016-armed to after-WRITE-PATH-CONTENT. Re-derive brake fires; routed to the frozen
+    contextmemory_write_content_discrimination portfolio (H1-H4).
   what_would_answer: >
     ARC-045 is falsified if disabling the SWS-direction (hippocampus->cortex)
     offline consolidation pass produces context-attribution structure of the
@@ -22802,16 +22857,16 @@
   subject: hippocampus.slot_formation_filling_temporal_separation
   polarity: asserts
   status: candidate
-  pending_retest_after_substrate: true  # re-scoped 2026-08-13: DV repair complete (V3-EXQ-436e); now blocked on SD-016 being armed
+  pending_retest_after_substrate: true  # re-scoped 2026-08-30: SD-016/addressing complete and validated (V3-EXQ-436g, 16/16 occupancy); now blocked on the contextmemory write-path CONTENT gap (e1_deep.py::ContextMemory.write)
   epistemic_category: substrate_ceiling  # 2026-08-16 governance: set per confirmed autopsy
   live_status:
     reading: candidate
     as_of: "2026-08-13"
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436e_2026-08-13"
-      as_of: "2026-08-13"
-      verdict: "non_contributory -- P0 readiness failure (SD-016 not yet armed), not a claim-layer result; the occupied-slots-only DV repair itself is confirmed sound"
+      from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30"
+      as_of: "2026-08-30"
+      verdict: "non_contributory -- SWS-analog consolidation comparison unscoreable on a bank the write path already homogenised to 0.9992 (NO_WRITES arm 0.000)"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -22928,6 +22983,16 @@
     [2026-08-16 governance apply | V3-EXQ-436f -> MECH-166 | failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16] DISPOSITION: evidence_direction non_contributory. evidence_direction STANDS at non_contributory; evidence_quality_note APPEND; pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-ADDRESSING-BUILD; epistemic_category standard -> substrate_ceiling
 
     [2026-08-16 governance, V3-EXQ-436f, failure_autopsy_436f-603u-precondition-blocked-cluster_2026-08-16, successor to V3-EXQ-436e]: sixth generation. The 436e instrument is re-confirmed sound (P0 5/6 gates MET: SWS writes 800, REM rollouts 600, waking writepath 15,078 calls, NO_WRITES Adam-drift max |z| = 1.67 against a 4.0-sigma tolerance on a run-time-derived null). Recording standard complete, 0 dry runs, non_degenerate true. The single change vs 436e -- arming the full SD-016 production combination (cue_slot_tagger + gumbel selection + context_divergence_weight 0.5 + 922's ctxdiv training-loop wiring) -- ENGAGED, confirmed by the new sd016_arming_engaged gate (pooled applied ctxdiv loss 25,796 against a 1e-9 floor), and moved write-path slot occupancy by EXACTLY ZERO seeds: 2/5 scoreable in 436e, 2/5 in 436f, with the same seeds 7/13/100 occupying exactly 1 of 16 slots in BOTH arms despite 2,837-4,903 write() calls each. C1 was therefore never computed on 3/5 seeds and is scored:false; C4 (4/5) is non-gating and also scored:false. This is the joint reading the 436f driver PRE-REGISTERED in its own interpretation grid as the signal to route to a WRITE-path successor -- so 436f is a successful read/write discrimination, not a bare precondition failure. Root cause (established at 436e by a closed-form discriminator that predicted 5/5): ContextMemory.write() addresses by a hard scores.mean(0).argmin() (ree_core/predictors/e1_deep.py:144) with a deterministic single-slot fixed point under a near-constant query stream, while read() addresses by softmax -- every SD-016 remedy shipped to date (908 gumbel selection, 907 ctxdiv) lives on the read side or a separate tagger and does not touch the write address. epistemic_category standard -> substrate_ceiling: the 436e stamp of `standard` was explicitly conditioned on the substrate having 'shipped and merely needing switching on', and V3-EXQ-436f is the run that tested that condition and falsified it -- the write-path selection mechanism does not exist and must be built. non_contributory: a P0 readiness failure upstream of the comparison, weighing on the claims in NEITHER direction. CAUTION: 436e's '2/2 directional on the scoreable seeds' did NOT survive this single config change (now 1/2 -- seed 200 reversed from 0.96795->0.83109 to 0.95391->0.98744); do not carry that n=2 read forward as partial support. pending_retest_after_substrate stays true, re-scoped a THIRD time: after-DV-repair -> after-SD-016-armed -> after-WRITE-PATH-ADDRESSING-BUILD. Re-derive brake FIRES for SD-017 (3rd substrate_ceiling hit, threshold 2): a same-question V3-EXQ-436g re-queue is REFUSED until the write-path build lands. PROMOTES/DEMOTES NOTHING this cycle.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-436g's weakens is WITHDRAWN -> non_contributory (flat + run
+    pack corrected this cycle). Same upstream confound as ARC-045: the SWS-analog consolidation comparison
+    cannot be scored on a bank the ONLINE write path has already homogenised to 0.9992 (NO_WRITES
+    calibration arm 0.000). Status stays candidate, epistemic_category stays substrate_ceiling (the older
+    2026-08-13 436e unset -> standard recommendation is SUPERSEDED and was NOT applied).
+    pending_retest_after_substrate stays true, re-scoped to after-WRITE-PATH-CONTENT. Routed to the frozen
+    contextmemory_write_content_discrimination portfolio (H1-H4).
   what_would_answer: >
     MECH-166 is falsified if slot-formation and slot-filling, co-computed
     within a single ONLINE pass (no SWS-analog/REM-analog temporal
@@ -57129,6 +57194,19 @@
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-624a re-tagged non_contributory: C3 PASS (gate_product 1.0, v_t 0.05 fires) but action_density byte-identical between vigor-ON and vigor-OFF arms (ARM_1==ARM_0==0.865 per-seed) -- the vigor no-op penalty fires but does not change argmax. NOT a falsification of MECH-320/ARC-068 nor an ARC-068 supersession trigger. substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- same substrate_queue entry as 604a (AMEND 'modulatory-bias-selection-authority'). Supersedes the 624 crash.
 
     [2026-06-03 substrate landing] modulatory-bias-selection-authority IMPLEMENTED (ree-v3 e3_selector.select gap-relative rescale of the combined modulatory contribution to modulatory_authority_gain*raw_score_range + e3_score_diversity.stratified_select across-class unit-range normalization; config use_modulatory_selection_authority default OFF/bit-identical). Gives this claim's score-bias lever genuine BOUNDED authority at E3 committed selection (the 604a/624a/614d cluster showed the lever fired but never changed the committed argmin). 624a vigor fired (v_t=0.05) but action_density was byte-identical ON==OFF -- pure drowning, fixed directly by the gap-relative rescale. Claim STAYS candidate/v3_pending -- substrate-readiness validation EXQ pending (claim_ids=[]); a per-claim EVIDENCE retest on the authority-ON substrate is the governance-weighting signal. Design doc docs/architecture/modulatory_bias_selection_authority.md; substrate_queue modulatory-bias-selection-authority status implemented_pending_validation.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: epistemic_category substrate_ceiling -> STANDARD, restoring this
+    claim's v3-testable lane. V3-EXQ-951's readiness gate correctly refused to score (action_density
+    identically 1.0000 in 9/9 cells), but the failure is the DEPENDENT VARIABLE, not the substrate: the
+    modulatory-bias-selection-authority substrate is landed AND was ARMED in this run
+    (use_modulatory_selection_authority=True, authority gain 0.5), so the ceiling stamp no longer describes
+    the blocker. Two concrete gaps, both test-bed rather than substrate: the run missed the well-fed / safe
+    / familiar test bed its own predecessor diagnostic V3-EXQ-547 pre-specified, and ARC-067/ARC-068 were
+    not enabled. evidence_direction non_contributory (already correct on both manifest copies; no manifest
+    write owed). Status stays candidate_substrate_landed and v3_pending stays true -- what is owed is a re-
+    posed successor with a DV that can move, not a promotion.
   notes: >
     Companion-claim cross-reference: MECH-320 is the child mechanism
     for both ARC-066 and ARC-068 (collapsed implementation).
@@ -57213,7 +57291,7 @@
     use_modulatory_selection_authority=True -- the single most concretely
     ready-to-queue item across this wave. Chip spawned separately for
     /queue-experiment.
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
 - id: MECH-321
   implementation_note: >-
     SUBSTRATE BUILT 2026-07-24 in ree-v3, default OFF and bit-identical when OFF.
@@ -70843,8 +70921,22 @@
     engaged. SD-078 itself unchanged by this landing (its own rule-pool differentiation was
     never in question); still candidate_substrate_landed, still pending_retest_after_substrate
     pending 822d.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-822d's per-claim weakens is WITHDRAWN -> non_contributory
+    (flat + run pack corrected this cycle) and pending_retest_after_substrate is CLEARED to false -- the
+    822d retest this claim was standing on has now run and measured. SD-078 is a CO-TAG on 822d, not its
+    subject: the driver's own criteria_to_claims note conditions that 'if SD-082's consumer is the thing
+    that fails, SD-078 is a co-tag', and that antecedent is satisfied here (C1 cannot discriminate, C2's DV
+    is a magnitude proxy for a spread question). SD-078's own rule-pool differentiation was verified as a
+    readiness precondition and passed decisively: 16 rules, max pairwise distance 1.711, rule_state_diff
+    0.650 against a 3.24e-10 control. CORRECTION OF GROUND, recorded because an earlier autopsy revision
+    asserted it: the claim that the driver's docstring forbids the reading its code emits was a MISQUOTE BY
+    TRUNCATION -- the note ENDORSES the C2 -> dir_078 mapping and forbids only reading a blanket run-level
+    verdict as a direct SD-078 test. There is no docstring/code contradiction.
   claim_level: architectural
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false  # cleared 2026-08-30 governance -- the 822d retest this flag stood on has run (V3-EXQ-822d, confirmed cluster autopsy); SD-078 was a co-tag there, not the subject
   epistemic_category: standard
   registered_utc: "2026-07-22"
   depends_on: [SD-008, SD-066, SD-077, ARC-063]
@@ -74338,9 +74430,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-936_2026-08-18"
-      as_of: "2026-08-21"
-      verdict: "non_contributory -- C2 arithmetically unreachable (f_variance_share ~1.0); self-stamp weakens withdrawn"
+      from: "failure_autopsy_V3-EXQ-936a_2026-08-30"
+      as_of: "2026-08-30"
+      verdict: "non_contributory -- C2 arithmetically unreachable in the MIRROR direction from 936: clamp armed, OFF-arm F share 6.33e-06, bar 0.05 (~7,900x); self-stamp weakens withdrawn"
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -74501,6 +74593,20 @@
     Next discriminating experiment must control absolute score scale via channel-scale
     normalisation, NOT via temperature -- a temperature rescale is argmin-invariant and
     therefore inert on the plain committed path.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_V3-EXQ-936a_2026-08-30 (REE_assembly
+    b0c0b8df72)]: V3-EXQ-936a's manifest weakens is WITHDRAWN -> non_contributory (flat + run pack corrected
+    this cycle; live_status.evidence re-stamped to this artifact). This is the MIRROR IMAGE of 936's defect,
+    not a repeat of it: with the rollout clamp armed the OFF-arm F variance share is 6.33e-06, so C2's 0.05
+    paired-reduction bar sits ~7,900x above the maximum attainable reduction (per-seed best case 1.236e-05,
+    still ~4,044x short) and n_reducing = 0 is guaranteed for ANY behaviour. The paired deltas actually
+    REDUCE F's share on 3 of 4 seeds, directionally as MECH-439 predicts, at 1e-06 scale. Two live findings
+    carried forward: residue_weighted occupies the variance monopoly (~99.999% of committed variance, all 8
+    cells, both share methods -- the un-normalised score sum makes the largest-scale channel the
+    monopolist); and the 0.886 monopoly baseline (V3-EXQ-571, diagnostic) PREDATES the clamp entirely (ran
+    2026-05-15/16 against a clamp landing 2026-05-31), so the monopoly premise has never been measured by
+    the fixed instrument. Further 936-family falsifiers are REFUSED until a monopoly-present regime is
+    established by a clamped 571b-shape presence audit. Status and epistemic_category unchanged.
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of
@@ -74625,6 +74731,20 @@
     (routing queue-experiment), no 955a re-run needed. pending_retest_after_substrate CLEARED --
     the armed retest the flag was standing for has now happened and measured. Still candidate /
     v3_pending until legs (ii)/(iii) return contributory.
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-959's weakens STANDS -- this is the best-instrumented run in
+    the cycle and both tested legs missed their pre-registered bars (2/6 and 1/6 against a 4/6 requirement).
+    The governance action is a NARROWING, not a demotion: leg (i) is SUPPORTED (V3-EXQ-955, autopsy-
+    confirmed), while legs (ii) state-conditioning and (iii) self-annealing are WEAKENED. Claim stays
+    candidate and v3_pending stays true; pending_retest_after_substrate stays false (the armed falsifier has
+    run). PROCESS NOTE, recorded because it reversed a verdict: the autopsy's adversarial pass claimed a
+    'recording gap' in this run and that claim was FALSE -- arm_results[*].state_stratification IS recorded;
+    the analysis had inspected arm_results[0], the A0_OFF row that legitimately lacks it, and generalised
+    one row to the schema. Catching that REVERSED this target's direction back to weakens and voided its
+    959a routing. The targeted_review_mech_440 lit-pull is COMMISSIONED (user decision at the Step 8 gate);
+    no 955a re-run is owed.
   depends_on:
     - MECH-313   # parent: stochastic_noise_floor (LC-NE tonic analog), currently a STATE-INDEPENDENT floor; this refines it
     - MECH-260   # dACC anti-recency (the other tonic-noise leg in the GAP-C / Q-045 cluster)
@@ -82897,7 +83017,22 @@
     stays true. Per the autopsy: SD-082's centering mechanism is not falsified by this history --
     it was untested, because its input never carried the cross-candidate variance it was designed
     to preserve.
-  pending_retest_after_substrate: true
+
+    [2026-08-30 governance, PM cycle, confirmed failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30
+    (REE_assembly 40dd17331e), ratified at its Step 8 gate 2026-08-30T15:41:56Z user-present and re-
+    confirmed at this cycle's Step 2b]: V3-EXQ-822d's per-claim supports is WITHDRAWN -> non_contributory
+    (flat + run pack corrected this cycle) and pending_retest_after_substrate is CLEARED to false -- the
+    822d retest this claim was standing on has now run and measured. The supports came off C1, an ON-arm-
+    ONLY absolute floor (on_prop_delta_mean 0.001556 >= 1e-3) that the negative control clears MORE STRONGLY
+    (off_prop_delta_mean 0.001912) and that was never applied to it -- the cluster's shared defect shape,
+    present in 3 of its 5 members: the negative control was measured, sits in the manifest, and was never
+    applied to the criterion it bears on. Substantively, prop_delta is an ablation MAGNITUDE and cannot
+    distinguish candidate-DISCRIMINATING coupling from candidate-UNIFORM coupling, which is SD-082's whole
+    substance; C2 shows an ON-over-OFF contrast on 1/5 seeds with a NEGATIVE mean contrast (-3.56e-4). The
+    per-candidate-summary AMEND itself is CONFIRMED ENGAGED (post-centering spread ratio 2.70e-3 vs 2.2e-9
+    legacy; 0 fallbacks, 0 degenerate ticks), so what is owed is an 822e with a spread-valued DV, not
+    another magnitude test.
+  pending_retest_after_substrate: false  # cleared 2026-08-30 governance -- the 822d retest this flag stood on has run (V3-EXQ-822d); the per-candidate-summary amend is confirmed engaged, what is owed is an 822e spread-valued DV, not a retest of this design
   epistemic_category: standard
 - id: SD-083
   title: "consolidation.offline_policy_consolidation_window: an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick 2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (Moncada 2007) policy-consolidation window in the mech457 retention TESTBED, run BETWEEN BC install and RL refinement. Unblocks MECH-476's two blocked_substrate falsifier arms: the A->B offline INTERVAL arm (V3-EXQ-836b) and the behavioural-tagging NOVELTY arm (V3-EXQ-836c). DISTINCT from the ONLINE global MECH-475 KL anchor -- offline vs online, trace-selective per-parameter vs global, interval-dependent vs constructed-at-entry, novelty-gated -- which is exactly the MECH-476 content (ii offline interval, iii trace selectivity) the global anchor cannot express (the Walker-2003 divergence). BUILDS PROTECTION without retraining, so post_bc is invariant to the interval and the INTERVAL axis is orthogonal to the DOSE axis."

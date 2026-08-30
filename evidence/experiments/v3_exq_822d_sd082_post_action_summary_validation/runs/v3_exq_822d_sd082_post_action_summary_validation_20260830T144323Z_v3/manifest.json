@@ -24,10 +24,10 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-078": "weakens",
-    "SD-082": "supports"
+    "SD-078": "non_contributory",
+    "SD-082": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -197,5 +197,6 @@
     "writer_defect": null,
     "n_agents": 10,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). mixed WITHDRAWN -> non_contributory for both claims. SD-082's recorded supports came off C1, an ON-arm-only absolute floor (on_prop_delta_mean 0.001556 >= 1e-3) that the negative control clears MORE strongly (off_prop_delta_mean 0.001912) and that was never applied to it; prop_delta is an ablation MAGNITUDE and cannot distinguish candidate-DISCRIMINATING from candidate-UNIFORM coupling, which is SD-082's whole substance. C2 shows an ON-over-OFF contrast on 1/5 seeds with a NEGATIVE mean contrast (-3.56e-4). SD-078 is a co-tag here, not the subject (the criteria_to_claims note's own conditional): its rule-pool differentiation passed decisively as a readiness precondition (16 rules, max pairwise dist 1.711, rule_state_diff 0.650 vs 3.24e-10). Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
 }

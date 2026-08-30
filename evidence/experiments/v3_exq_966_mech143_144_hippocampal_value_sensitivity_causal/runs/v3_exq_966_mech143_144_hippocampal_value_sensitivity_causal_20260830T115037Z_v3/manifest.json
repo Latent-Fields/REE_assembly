@@ -24,10 +24,10 @@
     "MECH-144"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "MECH-143": "weakens",
-    "MECH-144": "supports"
+    "MECH-143": "non_contributory",
+    "MECH-144": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -52,5 +52,6 @@
     "commit": "fb4769820e37002f326e494a2426e7163a9bdd03",
     "dirty": false,
     "branch": "main"
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). Both per-claim readings WITHDRAWN -> non_contributory. block_contacts is BIT-IDENTICAL between ARM_FIXED and ARM_SHUFFLED on 4/4 seeds x 4/4 blocks, so frac_high_SHUFFLED = 1 - frac_high_FIXED by construction and MECH-144's equivalence test read a pure relabelling as supports; C2's bound is max(2*pstdev, 0.10) = 0.640 on a [0,1] DV, and 2 of its 3 branches map to supports. MECH-143's weakens came from failing the driver's OWN declared POSITIVE CONTROL (C1 flip_differs) on 1 seed, which establishes nothing about the claim. NOTE (red-team upheld): the manipulation is NOT observably inert -- agent_energy is open and amp-scaled for most of each episode -- so the mechanism is UNRESOLVED and the substrate proposal was withdrawn; a cheap confirmer runs first. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
 }

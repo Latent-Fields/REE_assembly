@@ -3,7 +3,7 @@ closure_plan:
   id: orienting_epistemic_deficit_v3
   title: "Orienting & Epistemic-Deficit Cluster (V3 closure)"
   registered: 2026-08-13
-  last_updated: 2026-08-25
+  last_updated: 2026-08-30
   scope_claims: [MECH-395, MECH-482, MECH-483, Q-089, MECH-489, SD-099]
   sibling_plans: [drives_motivation_v4, goal_pipeline]
   registered_note: >
@@ -78,7 +78,7 @@ closure_plan:
     - id: "orienting_epistemic_deficit_v3:ORNT-2"
       title: "epistemic_deficit: persistent target-bound model-inadequacy accumulator"
       phase: 1
-      status: open
+      status: in_progress
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-482"]
@@ -146,7 +146,27 @@ closure_plan:
         legitimately startable; flip to in_progress at that point. Until
         then status stays `open`, and the correct next action is clearing
         gate (1) -- a governance/user decision, NOT a build.
-      last_updated: 2026-08-23
+      last_updated: 2026-08-30
+      governance_2026_08_30: >
+        STATUS FLIP OPEN -> IN_PROGRESS (governance cycle 2026-08-30 PM, session
+        governance-20260830-1549) -- the flip this node's own status-table row had been
+        explicitly holding for /governance. The MECH-482 EpistemicDeficitAccumulator LANDED
+        2026-08-29 (ree-v3 b69a1b8, SD-102, chip-20260827-mech482-accumulator-build): wired in
+        agent.py behind curiosity_learning_progress_source == "epistemic_deficit" (default
+        broadcast, bit-identical OFF), readiness-gated on the CORRECTED
+        e2_world_uncertainty_last_pvar_relative_spread > 0 with mark_vacuous_readout(); 18/18
+        MECH-482 contracts green on the hub. Both 2026-08-22 gates in resume_condition below are
+        therefore DISCHARGED and that text is superseded by reconcile_2026_08_27 plus this entry
+        -- read those two, not the resume_condition, for current state.
+        VALIDATION STATE: V3-EXQ-964 ran FAIL / non_contributory (C2 structurally unsatisfiable --
+        n_targets never exceeds 1, so the readout is a constant vector); confirmed
+        failure_autopsy_V3-EXQ-964_2026-08-30, governance-ratified 28d14475a5. So the BUILD is done
+        and the VALIDATION is not: the node is in_progress, not done. What is owed is the
+        multi-target readiness follow-on, substrate_queue entry
+        sd_epistemic_deficit_multitarget_readiness (p2, degrading, created by that same cycle) --
+        which as of this cycle has NO chip and NO IGW ledger entry, i.e. is currently UNOWNED.
+        Chipped by this cycle. MECH-482 stays substrate_conditional / candidate; no claims.yaml
+        change from this reconcile.
       completion_note: >
         Registered in claims.yaml 2026-08-05 (thought-digestion, "Epistemic
         Deficit and Orienting" intake), no owning closure node until this
@@ -454,7 +474,7 @@ depends on both clusters plus MECH-279/MECH-205.
 | node | title | status | severity | active blocker |
 |------|-------|--------|----------|-----------------|
 | `ORNT-1` | MECH-395 pre-approach orienting (moved from DRV-4) | blocked | high | shared E3 selection-authority / cue-authority ceiling (V3-EXQ-812 successor) |
-| `ORNT-2` | MECH-482 epistemic_deficit accumulator | open | high | both 2026-08-22 gates CLEARED (doc reviewed; SD-063 training landed ree-v3 88287f11c6). Readiness criterion falsified -- use `_last_pvar_relative_spread`, not `dev_range`. Owed: 2x2 diversity validation (chip-20260823-mech314bc-2x2-diversity-validation). ACCUMULATOR BUILT 2026-08-29 (ree-v3 b69a1b8, SD-102, chip-20260827-mech482-accumulator-build) -- status stays `open` pending /governance's flip to `in_progress`. Validation V3-EXQ-964 FAIL/non_contributory (C2 structurally unsatisfiable; autopsy confirmed + governance-ratified 28d14475a5); follow-on substrate entry sd_epistemic_deficit_multitarget_readiness created, not yet chipped |
+| `ORNT-2` | MECH-482 epistemic_deficit accumulator | in_progress | high | both 2026-08-22 gates CLEARED (doc reviewed; SD-063 training landed ree-v3 88287f11c6). Readiness criterion falsified -- use `_last_pvar_relative_spread`, not `dev_range`. Owed: 2x2 diversity validation (chip-20260823-mech314bc-2x2-diversity-validation). ACCUMULATOR BUILT 2026-08-29 (ree-v3 b69a1b8, SD-102, chip-20260827-mech482-accumulator-build) -- status FLIPPED to `in_progress` by /governance 2026-08-30 PM. Validation V3-EXQ-964 FAIL/non_contributory (C2 structurally unsatisfiable; autopsy confirmed + governance-ratified 28d14475a5); follow-on substrate entry sd_epistemic_deficit_multitarget_readiness created and CHIPPED 2026-08-30 PM |
 | `ORNT-3` | MECH-483 orient/survey regime | open | medium | depends on ORNT-2 |
 | `ORNT-4` | Q-089 cold-start-split question | open | medium | depends on ORNT-2 + ORNT-3 |
 | `ORNT-6` | MECH-489 defensive-orienting validation | in_progress | high | 910a retest owed (substrate fix landed 2026-08-10) |

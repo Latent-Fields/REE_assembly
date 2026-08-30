@@ -25,11 +25,11 @@
     "MECH-166"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "weakens",
-    "ARC-045": "weakens",
-    "MECH-166": "weakens"
+    "SD-017": "non_contributory",
+    "ARC-045": "non_contributory",
+    "MECH-166": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -125,5 +125,6 @@
     "writer_defect": null,
     "n_agents": 15,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "Governance 2026-08-30 (PM cycle): ratified confirmed autopsy failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (REE_assembly 40dd17331e). weakens WITHDRAWN -> non_contributory for all three claims. The NO_WRITES calibration arm (0 write calls) sits at mean pairwise slot cosine 0.000 vs 0.9992 once written, so the ONLINE write path alone collapses the bank to near-rank-1: the BIAS build fixed ADDRESSING (16/16 occupancy, confirmed) and left CONTENT untouched, and offline consolidation had no differentiable structure to act on. ARC-045's absolute prediction (cosine_sim < 0.95 after sleep) and MECH-166's SWS-analog comparison are both unscoreable on a bank the write path has already homogenised. SD-017's OWN stated prediction (undifferentiated without the phases, slot_cosine_sim -> 1.0) is CONFIRMED by WAKING_ONLY = 0.9993. Ratified at the autopsy's Step 8 gate 2026-08-30T15:41:56Z (user present) and re-confirmed at this cycle's Step 2b."
 }

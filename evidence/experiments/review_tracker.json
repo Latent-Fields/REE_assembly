@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-30T07:27:59Z",
+  "last_review_utc": "2026-08-30T16:31:22Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1218,7 +1218,14 @@
     "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe",
     "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest",
     "v3_exq_964_mech482_epistemic_deficit_validation",
-    "v3_exq_642a_blocked_agency_zblock_discriminative"
+    "v3_exq_642a_blocked_agency_zblock_discriminative",
+    "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix",
+    "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest",
+    "v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal",
+    "v3_exq_951_mech320_tonic_vigor_authority_sd054",
+    "v3_exq_959_mech440_state_conditioning_self_annealing",
+    "v3_exq_822d_sd082_post_action_summary_validation",
+    "v3_exq_965_sd_e1_item1_action_conditioning_validation"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4095,7 +4102,14 @@
     "v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3",
     "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
     "v3_exq_964_mech482_epistemic_deficit_validation_20260829T215030Z_v3",
-    "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3"
+    "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3",
+    "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3",
+    "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3",
+    "v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal_20260830T115037Z_v3",
+    "v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3",
+    "v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3",
+    "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+    "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -6603,6 +6617,20 @@
         "v3_exq_642a_blocked_agency_zblock_discriminative_20260829T185417Z_v3"
       ],
       "notes": "2026-08-30 governance cycle (governance-20260830-0630). User CONFIRMED all four 2026-08-30 failure-autopsy artifacts at the Step 2b walk (they had been left awaiting_human_confirmation); confirmations committed at REE_assembly 28d14475a5, dispositions applied here. MANIFEST WRITES (flat + run pack, each with an evidence_direction_note): 960 does_not_support -> non_contributory (own MIN_DISPERSION=0.02 readiness floor missed 2x-78x in every cell, so neither criterion is interpretable); 964 mixed -> non_contributory (C2 structurally unsatisfiable, n_targets never exceeds 1 so the readout is a constant vector); 642a weakens -> non_contributory (C1 unsatisfiable, z_block_peak pinned at cap in both arms/all seeds because outcome_mismatch_floor=0.1 sits below the ~0.4 free-step baseline). 963 and 961 needed no direction write. RATIFIED 961 EVIDENCE RESCUE EXECUTED (handed to this cycle by the autopsy's Step 8 gate): manifest non_degenerate false -> true, original finding preserved under non_degenerate_amended; the c3_geom_distance_spread degeneracy was a FALSE POSITIVE from a singleton-group call (a one-element group always reports zero spread) with constants 1.04-1.21 far above the 0.5 floor. Verified after rebuild: scoring_excluded now absent for MECH-144, so the does_not_support negative weighs and MECH-144 reads conflict_ratio 0.5. claims.yaml: MECH-143/MECH-144/MECH-063 epistemic_category set to standard (none before), SD-069 stays standard, MECH-482 stays substrate_conditional; notes + pending_retest_after_substrate applied; NO status moved. substrate_queue: SD-PROBE-WARMUP REOPENED (duplicate_superseded -> pending_implementation, severity corrupting, +963 failure_record, status_history + superseding banner) per the user's ratified Step 8 choice to amend rather than create -- justified because the supersession rested on SD-074's v3_exq_784 validation, which 2026-08-16 governance (GFLAG-0036) had already downgraded to PROVISIONAL; created sd_blocked_agency_mismatch_floor_calibration (p1, corrupting) and sd_epistemic_deficit_multitarget_readiness (p2, degrading). PASS SKIMS (mandatory, logged): 962 -- nothing found, all 6 criteria non-degenerate, explicit combination_rule, real precondition R2=0.861 vs 0.5. 936a -- DEFECT FOUND, NOT marked reviewed, carried a third cycle as autopsy-owed: C2's MIN_F_SHARE_REDUCTION=0.05 is an ABSOLUTE bar while the maximum attainable paired reduction is off_arm_mean_f_variance_share=6.33e-06, ~7900x smaller, so reduced_f_share is false by arithmetic and the driver's falsifier branch (weakens) fires BY CONSTRUCTION; F's share ~6e-06 against a 0.85 monopoly bar also means the run cannot bear on an F-dominance claim in either direction. Its manifest still carries a SCORING weakens against MECH-439 -- left untouched because governance does not stamp a direction without a confirmed autopsy, and the prior cycle user-ratified leaving it pending. This cycle's first-pass skim initially read 936a as clean by reading only the routing logic; the defect was recovered from the 2026-08-29 review_log note and then re-derived from the manifest arithmetic."
+    },
+    {
+      "utc": "2026-08-30T16:31:22Z",
+      "session": "governance-20260830-1549",
+      "runs_reviewed": [
+        "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3",
+        "v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3",
+        "v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal_20260830T115037Z_v3",
+        "v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3",
+        "v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3",
+        "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+        "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3"
+      ],
+      "notes": "2026-08-30 governance cycle, PM (governance-20260830-1549). SEVEN runs adjudicated, all against CONFIRMED autopsies -- zero un-adjudicated items left. MANIFEST WRITES (flat AND run pack, each with the evidence_direction_note that is the indexer's _is_annotated marker): 936a weakens -> non_contributory (C2's 0.05 paired-reduction bar sits ~7,900x above the max attainable reduction at OFF-arm F share 6.33e-06; n_reducing=0 guaranteed for any behaviour -- the MIRROR of 936's defect, carried three cycles and now closed); 436g weakens -> non_contributory on all three claims (NO_WRITES calibration arm 0.000 vs 0.9992 written: the ONLINE write path alone collapses the bank, so the BIAS build fixed ADDRESSING and left CONTENT untouched); 822d mixed -> non_contributory on both (C1 is an ON-arm-only absolute floor the negative control clears MORE strongly, 0.001912 vs 0.001556); 966 -> non_contributory on both (block_contacts BIT-IDENTICAL across arms on 4/4 seeds x 4/4 blocks, so the equivalence test read a pure relabelling as supports; MECH-143's weakens came from failing the driver's own declared POSITIVE CONTROL). 951, 959 and 965 manifests already read correctly -- no write owed. CLAIMS.YAML: MECH-320 epistemic_category substrate_ceiling -> STANDARD (the authority substrate is landed AND was armed in 951; the blocker is the DV and the missing well-fed/safe/familiar test bed 547 pre-specified, not the substrate); SD-078 + SD-082 pending_retest_after_substrate cleared to false (the 822d retest they stood on has run); SD-017/ARC-045/MECH-166 pending_retest re-scoped from after-SD-016-armed to after-WRITE-PATH-CONTENT; live_status.evidence re-stamped on MECH-439 (-> 936a artifact) and SD-017/ARC-045/MECH-166 (-> cluster artifact); ten evidence_quality_notes appended. MECH-440 weakens STANDS -- narrowed, not demoted: leg (i) supported (V3-EXQ-955), legs (ii)/(iii) weakened; targeted_review_mech_440 lit-pull commissioned. DELIBERATELY NOT APPLIED: GOV-APPLY-1's three 2026-08-13 V3-EXQ-436e rows recommending epistemic_category unset -> standard for SD-017/ARC-045/MECH-166 are SUPERSEDED -- the 2026-08-16 436f-603u cluster set substrate_ceiling and the 2026-08-30 cluster re-affirms it; applying the older row would have been a regression. GOV-APPLY-1's superseded_disposition bucket did not catch these (it keys on same-claim/different-run pairs where the later recommendation is applied), so this was caught by reading current claims.yaml state before editing. PASS SKIMS (mandatory, logged): 936a -- DEFECT CONFIRMED (the threshold-arithmetic class the 2026-08-30 skim rule was written from), now discharged by its confirmed autopsy. 965 -- diagnostic PASS, autopsy landed mid-cycle (REE_assembly 7e9cf906f9) while this walk was in progress; genuine PASS validating SD-e1 ITEM 1 (cr_ratio(h=1) up 6455x-9775x) but its OWN C1 criterion divides by an analytically-zero control and is uninterpretable -- do NOT cite the 57809x figure; ITEM 2 remains required and the MECH-135/INV-088 retest is NOT unblocked."
     }
   ]
 }
