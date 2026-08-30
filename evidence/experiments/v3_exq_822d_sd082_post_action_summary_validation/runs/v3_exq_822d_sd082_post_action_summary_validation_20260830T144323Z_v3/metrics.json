@@ -1,0 +1,99 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "on_prop_delta_mean": 0.0015558402169990008,
+    "off_prop_delta_mean": 0.0019119908982755032,
+    "on_rule_state_diff_mean": 0.6501736760139465,
+    "off_rule_state_diff_mean": 3.242093704614035e-10,
+    "n_contrast_seeds_passing": 1,
+    "n_contrast_seeds_total": 5,
+    "contrast_mean_on_minus_off": -0.00035615068127650235,
+    "contrast_sd_on_minus_off": 0.001003548726867733,
+    "contrast_t_like_diagnostic_only": -0.7935610023170133,
+    "per_seed_contrast": [
+      {
+        "seed": 101,
+        "on_prop_delta_mean": 0.001928435474031878,
+        "off_prop_delta_mean": 0.0005488468118710443,
+        "on_minus_off": 0.0013795886621608337,
+        "passes_margin": true
+      },
+      {
+        "seed": 202,
+        "on_prop_delta_mean": 0.0024438666533844093,
+        "off_prop_delta_mean": 0.0028683488669160465,
+        "on_minus_off": -0.00042448221353163715,
+        "passes_margin": false
+      },
+      {
+        "seed": 303,
+        "on_prop_delta_mean": 0.0013424880923061022,
+        "off_prop_delta_mean": 0.0021166531972994563,
+        "on_minus_off": -0.0007741651049933541,
+        "passes_margin": false
+      },
+      {
+        "seed": 404,
+        "on_prop_delta_mean": 0.0009412887022424512,
+        "off_prop_delta_mean": 0.0020890970687711765,
+        "on_minus_off": -0.0011478083665287253,
+        "passes_margin": false
+      },
+      {
+        "seed": 505,
+        "on_prop_delta_mean": 0.0011231221630301628,
+        "off_prop_delta_mean": 0.0019370085465197917,
+        "on_minus_off": -0.0008138863834896289,
+        "passes_margin": false
+      }
+    ],
+    "readiness_cone_present": true,
+    "readiness_on_diff_pool": true,
+    "readiness_off_pinned_pool": true,
+    "readiness_on_active": true,
+    "readiness_prop_samples_sufficient": true,
+    "readiness_fix_engaged": true,
+    "readiness_spread_ok": true,
+    "readiness_no_degenerate_tick": true,
+    "readiness_dispatch_engaged": true,
+    "readiness_capture_active": true,
+    "readiness_head_diag_sufficient": true,
+    "zworld_cone_min_cosine_worst": 0.9601104259490967,
+    "zworld_cone_worst_cell": "ARM_OFF/seed101",
+    "n_prop_samples_worst": 145.0,
+    "n_prop_samples_worst_cell": "ARM_ON/seed303",
+    "summary_spread_ratio_worst": 0.002702012104637506,
+    "summary_spread_ratio_worst_cell": "ARM_OFF/seed505",
+    "n_summary_fallback_worst": 0.0,
+    "n_summary_degenerate_ticks_worst": 0.0,
+    "on_rule_state_norm_p2_median_values": [
+      0.18923285603523254,
+      0.2226785570383072,
+      0.16922606527805328,
+      0.20609141886234283,
+      0.16767430305480957
+    ],
+    "on_rule_summary_magnitude_ratio_p2_median_values": [
+      0.4437986308602768,
+      0.8153671570118269,
+      0.8876180553020776,
+      0.4955723323782052,
+      0.6068602652953504
+    ],
+    "on_hidden_dead_relu_frac_p2_mean": 0.5139535221585085,
+    "off_hidden_dead_relu_frac_p2_mean": 0.5126686417017228,
+    "on_last_layer_weight_delta_init_to_p1_mean": 0.004044961929321289,
+    "on_rule_flip_frac_mean": 0.05459365366687637,
+    "off_rule_flip_frac_mean": 0.0638301282051282,
+    "c1_pass": true,
+    "c2_pass": false,
+    "diagnostic_flags": {
+      "candidate_summary_fix_engaged": true,
+      "magnitude_ratio_in_band": true,
+      "rule_flip_observed": true,
+      "dead_relu_confirmed": false,
+      "dead_relu_partial_contributor": true,
+      "head_untrained_last_layer_static": false
+    }
+  }
+}

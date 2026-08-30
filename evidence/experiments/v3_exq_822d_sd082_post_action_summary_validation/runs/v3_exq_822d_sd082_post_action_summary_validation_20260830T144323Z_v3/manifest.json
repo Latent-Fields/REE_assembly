@@ -1,0 +1,201 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_822d_sd082_post_action_summary_validation",
+  "run_id": "v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-30T14:43:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-078",
+    "SD-082"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-078": "weakens",
+    "SD-082": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "propagation_non_vacuous_without_rule_state_contrast",
+    "preconditions": [
+      {
+        "name": "zworld_common_mode_cone_present",
+        "description": "min pairwise z_world cosine clears the cone floor (== 822a/822c).",
+        "measured": 0.9601104259490967,
+        "threshold": 0.9,
+        "direction": "lower",
+        "offending_cell": "ARM_OFF/seed101",
+        "met": true
+      },
+      {
+        "name": "on_pool_differentiated",
+        "description": "ARM_ON differentiated on >= majority of seeds (== 822a/822c).",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "off_pool_pinned",
+        "description": "ARM_OFF pool pinned on >= majority of seeds (== 822a/822c).",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "on_rule_active_p2",
+        "description": "count of ARM_ON seeds whose P2 rule-active fraction clears FRAC_ACTIVE_FLOOR, over a majority of seeds (== 822a/822c in substance). `measured` is the SEED COUNT, not the mean fraction: `met` quantifies over seeds, and a mean clearing the floor can coexist with a minority of seeds clearing it, which the indexer's recompute would silently pass. Per-seed fractions are in per_seed_rows[].crf_frac_active_p2.",
+        "measured": 5.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "prop_samples_sufficient",
+        "description": "worst-cell n_prop_samples clears the floor -- the gate 822/822a/822b lacked, where n_prop_samples was 0 in all 18 cells and fmean's empty-list default of 0.0 was read as a measured structural zero for a month.",
+        "measured": 145.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "offending_cell": "ARM_ON/seed303",
+        "met": true
+      },
+      {
+        "name": "candidate_summary_spread_survives_centering",
+        "description": "worst-cell MINIMUM over P2 ticks of post_centering_norm / pre_centering_norm -- the cross-candidate SPREAD the load-bearing prop_delta criteria depend on, not a magnitude. Legacy ws[0,0,:] measures ~2.2e-9 here; proposer_post_action ~1.8e-2.",
+        "measured": 0.002702012104637506,
+        "threshold": 0.001,
+        "direction": "lower",
+        "offending_cell": "ARM_OFF/seed505",
+        "control": "Step 2.5a probe, 40 real ticks at seed 101: legacy post-centering norm 5.66e-08 vs proposer_post_action 4.01e-01 on the same candidates",
+        "met": true
+      },
+      {
+        "name": "no_degenerate_centering_tick",
+        "description": "the substrate's own candidate_summary_degenerate guard never fired on any P2 tick in any cell.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "offending_cell": "ARM_OFF/seed101",
+        "met": true
+      },
+      {
+        "name": "summary_dispatch_engaged",
+        "description": "_candidate_world_summaries() returned non-None on every read; the manual ws[0,0,:] fallback (the 822c path) was taken zero times.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "offending_cell": "ARM_OFF/seed101",
+        "met": true
+      },
+      {
+        "name": "head_diagnostics_capture_active",
+        "description": "capture_head_diagnostics echoes True and the synthetic init positive control returns finite, in-range values in every cell (== 822c).",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "synthetic differentiated 3-candidate forward pass immediately post-construction, pre-training",
+        "offending_cell": "none",
+        "met": true
+      },
+      {
+        "name": "head_diag_samples_sufficient",
+        "description": "worst-cell count of P2 head-diagnostic reads clears the floor (== 822c).",
+        "measured": 145.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "offending_cell": "ARM_ON/seed303",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_propagation_non_vacuous",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_on_over_off_contrast_majority_seeds",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "combination_rule": "overall PASS = readiness AND C1 AND C2 (plain conjunction of both load-bearing criteria; C1 is SD-082's absolute propagation floor, C2 is SD-078's ON-over-OFF contrast on a majority of seeds). Not an OR and not a weighted rule.",
+    "criteria_non_degenerate": {
+      "C1_propagation_non_vacuous": true,
+      "C2_on_over_off_contrast_majority_seeds": true
+    },
+    "claim_criterion_map": {
+      "SD-082": {
+        "criteria": [
+          "C1_propagation_non_vacuous",
+          "C2_on_over_off_contrast_majority_seeds"
+        ],
+        "role": "primary",
+        "note": "SD-082's own pre-registered acceptance is BOTH halves: on_prop_delta_mean >= 1e-3 WITH an ON>OFF contrast. The run's evidence_direction_per_claim entry for SD-082 is driven by C1 (does the consumer couple rule_state to the bias at all); C2 is reported against it as well."
+      },
+      "SD-078": {
+        "criteria": [
+          "C2_on_over_off_contrast_majority_seeds"
+        ],
+        "role": "secondary_mediated",
+        "note": "SD-078's own differentiation is verified here as a READINESS PRECONDITION (on_pool_differentiated / off_pool_pinned / rule_state_diff), not as a DV. Its evidence_direction is driven only by C2 -- whether that differentiation makes a downstream difference, mediated entirely by SD-082's consumer. A later autopsy must NOT read a blanket verdict on this run as a direct test of SD-078: if SD-082's consumer is the thing that fails, SD-078 is a co-tag, not the subject."
+      }
+    },
+    "diagnostic_flags": {
+      "candidate_summary_fix_engaged": true,
+      "magnitude_ratio_in_band": true,
+      "rule_flip_observed": true,
+      "dead_relu_confirmed": false,
+      "dead_relu_partial_contributor": true,
+      "head_untrained_last_layer_static": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "0944cbbe1e75b68c4c46faf9fc530799371095163bf55542ee823dee26e5f4e8",
+  "substrate_commit": {
+    "commit": "2c195d0b0cb30c3a7242c9d69b642ba761f58679",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
