@@ -177,7 +177,20 @@
      "Re-run build_experiment_indexes.py so claim_evidence.v1.json drops scoring_excluded for MECH-144 and the run actually weighs.",
      "Separately, fix the driver's singleton-group call (line 596) and add an arity guard to metric_groups_are_degenerate so the class cannot recur."
     ],
-    "verify": "/opt/local/bin/python3 -c \"import json; d=json.load(open('REE_assembly/evidence/experiments/claim_evidence.v1.json')); print([e for e in ... if e.get('claim_id')=='MECH-144'])\" -- confirm scoring_excluded is absent for the 961 run after the rebuild."
+    "verify": "/opt/local/bin/python3 -c \"import json; d=json.load(open('REE_assembly/evidence/experiments/claim_evidence.v1.json')); print([e for e in ... if e.get('claim_id')=='MECH-144'])\" -- confirm scoring_excluded is absent for the 961 run after the rebuild.",
+    "ratified": {
+     "by": "user, at the Step 8 interactive gate",
+     "utc": "2026-08-30T07:05:44Z",
+     "decision": "AMEND the flag and REBUILD the index -- do not settle for a driver-only fix.",
+     "executor": "/governance",
+     "note": "This autopsy does NOT perform the amendment or the rebuild. Per this skill's standing boundary it never edits manifests or the index, this session holds no claim on either, and a full build_experiment_indexes.py run is exactly the wide-regen hazard CLAUDE.md's Narrow-Edits rule warns about (~1200 files). Recorded here as a RATIFIED disposition so governance executes it without re-deriving the decision.",
+     "steps": [
+      "Amend v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_20260829T160046Z_v3.json: non_degenerate false -> true, preserving the original degeneracy finding and the reason for amendment in the manifest for audit.",
+      "Re-run build_experiment_indexes.py so claim_evidence.v1.json drops scoring_excluded for MECH-144.",
+      "Verify: MECH-144's entry for this run no longer carries scoring_excluded='degenerate'.",
+      "Separately fix driver line 596's singleton-group call and add an arity guard to metric_groups_are_degenerate."
+     ]
+    }
    }
   }
  ],
@@ -214,5 +227,18 @@
   "summary": "Science held (singleton bug, 960 collapse, seed-13 triple all independently reproduced). CONTESTED on the ROUTING: the central structural premise was FALSE -- build_experiment_indexes.py:3431-3436 does gate on non_degenerate and has already excluded BOTH runs from scoring. So (1) 961's 'should be scored' recommendation was INERT and now names the operative steps (amend the manifest flag, rebuild the index), (2) 960's asserted harm never materialised and the direction fix is hygiene, (3) the proposed flag->direction remedy would have made 961 worse. Also corrected: the 'collapse forces low drift' mechanism is refuted by the cluster's own seed-13 cell, so 960 rests on the pre-registration argument; the 'ONE structural property' framing is overstated; and p0_readiness_gate/P0NotReady is named as the existing producer-side remedy 960 never called.",
   "corrections_applied": true,
   "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
+ },
+ "step8_gate": {
+  "run": true,
+  "utc": "2026-08-30T07:05:44Z",
+  "mode": "interactive (user present; the earlier staging-mode framing was wrong)",
+  "decisions": [
+   {
+    "question": "Rescue the 961 run's evidence, or fix the driver only?",
+    "answer": "Amend the manifest flag AND rebuild the index",
+    "applied": "RATIFIED, not executed -- handed to /governance; see targets[961].operative_action.ratified"
+   }
+  ],
+  "status_decision": "User directed all four artifacts REMAIN awaiting_human_confirmation."
  }
 }

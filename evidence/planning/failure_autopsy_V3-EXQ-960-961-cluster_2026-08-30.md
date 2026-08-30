@@ -146,3 +146,18 @@ An independent verifier (different model, reasoning withheld until it had recomp
 **Also flagged:** `_metrics.py` already ships `p0_readiness_gate` / `P0NotReady` -- the designed producer-side remedy for 960's exact shape -- and the 960 driver never calls it. Now named in that target's routing.
 
 **Not checked by either party:** raw per-step data (absent from the manifests), `claims.yaml` alignment for MECH-143/144, and the V3-EXQ-165 disposition beyond confirming the file exists.
+
+## 9. Step 8 interactive gate -- RUN 2026-08-30T07:05:44Z
+
+An earlier revision treated this session as staging mode and exited without the gate. That was wrong: the user was present. The gate was run.
+
+**Decision on V3-EXQ-961: rescue the evidence -- amend the flag AND rebuild the index.** A driver-only fix was explicitly rejected, on the grounds that it would permanently discard a sound (if low-powered) negative for MECH-144 while only protecting future runs.
+
+**This autopsy does not execute it.** The skill's standing boundary is that an autopsy never edits manifests or the index; this session holds no claim on either; and a full `build_experiment_indexes.py` run is exactly the wide-regen hazard CLAUDE.md's Narrow-Edits rule warns about (~1200 files). The decision is recorded as a **ratified disposition** in `targets[961].operative_action.ratified` so `/governance` executes it without re-deriving the reasoning:
+
+1. Amend the 961 manifest `non_degenerate` false -> true, preserving the original degeneracy finding and the reason for amendment for audit.
+2. Re-run `build_experiment_indexes.py` so `claim_evidence.v1.json` drops `scoring_excluded` for MECH-144.
+3. Verify MECH-144's entry for this run no longer carries `scoring_excluded: "degenerate"`.
+4. Separately, fix driver line 596's singleton-group call and add an arity guard to `metric_groups_are_degenerate`.
+
+**Status decision: all four artifacts stay `awaiting_human_confirmation`.**

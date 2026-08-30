@@ -136,3 +136,11 @@ An independent verifier (different model, reasoning withheld until it had recomp
 **Hygiene corrections applied:** the 779a `S_sustained_entropy` range was quoted as 0.29-0.76; the actual range is **0.146-0.849**. And the headline "50x" collapse is contaminated by a ~5x warmup-driven compression of the entropy scale -- the clean, scale-free statement is the lift, 1.0 -> 0.0.
 
 **Not checked by either party:** no real-experiment re-run (the confirmation is a synthetic reproduction plus source reads); the prior ceiling-autopsy files were taken at face value.
+
+## 10. Step 8 interactive gate -- RUN 2026-08-30T07:05:44Z
+
+An earlier revision treated this session as staging mode and exited without the gate. That was wrong: the user was present. The gate was run.
+
+**Decision: amend `SD-PROBE-WARMUP`, do not create a new SD.** The fault is in that entry's own machinery -- the cache key excluding arm flags, and the surface restore -- which is also the contingency this artifact pre-registered before the cause was confirmed. `recommended_substrate_queue_entry.action` is now `amend` with `target_sd_id: SD-PROBE-WARMUP`; the `title` / `implementation_hint` describe the work for governance to append to that entry's record rather than minting a duplicate.
+
+**Status decision: this artifact stays `awaiting_human_confirmation`**, alongside the other three. A CONFIRMED red-team verdict is not itself proof an artifact is clean, and governance Step 2b is the designed second look.

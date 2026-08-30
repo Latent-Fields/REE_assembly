@@ -55,7 +55,7 @@
     }
    },
    "recommended_substrate_queue_entry": {
-    "action": "create",
+    "action": "amend",
     "sd_id_suggested": "sd_probe_warmup_cache_clobbers_arm_regulators",
     "title": "probe_warmup cache restore overwrites arm-conditional regulators with the mint arm's None",
     "implementation_hint": "The warmup cache key (_warmup_key) excludes the arm's runtime flags, so one blob is shared across a 2x2 whose arms construct DIFFERENT root-level regulators. _restore_cached_surface then object.__setattr__s the mint arm's surface onto every HIT agent, silently replacing a live arm-conditional regulator (agent.noise_floor, constructed only when use_noise_floor=True) with the mint arm's None. Nothing raises and nothing logs it: assert_state_dict_shareable passes because these regulators are zero-parameter and non-nn.Module, and the restore's missing-module logging only covers cached paths ABSENT here, never the reverse. Fix options: include arm-conditional flags in the cache key; or exclude arm-constructed regulator attributes from the restored surface; or have the driver reinstall ALL arm regulators post-warmup rather than only phasic_burst. Add an assertion that every arm-conditional regulator is non-None after restore when its flag is set.",
@@ -87,7 +87,9 @@
       "sd_id": "sd_phasic_ema_episode_continuity",
       "relation": "IMPLEMENTED; released the 779b brake that licensed this run. Not implicated -- the phasic axis worked correctly throughout."
      }
-    ]
+    ],
+    "target_sd_id": "SD-PROBE-WARMUP",
+    "action_rationale": "USER DECISION at the Step 8 gate, 2026-08-30T07:05:44Z: amend SD-PROBE-WARMUP rather than create a new SD. The fault is in that entry's OWN machinery (the cache key excluding arm flags, and the surface restore), which is also the contingency this artifact pre-registered before the cause was confirmed. Avoids a duplicate substrate entry. The sd_id_suggested/title/implementation_hint below describe the WORK; governance appends them to SD-PROBE-WARMUP's record rather than minting a new entry."
    },
    "pending_retest_after_substrate": true,
    "narrow_supports_flag": false,
@@ -162,5 +164,18 @@
   "summary": "Conclusion survived every attack (all 20 cells verified at lift 0.0, all 10 of 779a's TONIC-ON cells at 1.0, dS_tonic recomputed to <1e-9, _seed_effects line-for-line identical, starvation refutation upheld and strengthened). CONTESTED on the REPAIR: the verifier confirmed fan-out H2 in source and reproduced it, so (1) section 6 asserted the opposite of the truth and was rewritten, (2) substrate_paths cited a nonexistent symbol and pointed a priority-1 corrupting repair at healthy ree_core -- retargeted to experiments/_lib/probe_warmup.py + the driver, with SD-PROBE-WARMUP named as the preferred host, (3) the fan-out and its ledger append are withdrawn as resolved-before-queuing, (4) a withdrawn argument's reasoning was locally valid but incomplete. Hygiene: 779a S-range corrected to 0.146-0.849; the 50x ratio noted as scale-contaminated, with the scale-free lift 1.0->0.0 as the clean statement.",
   "corrections_applied": true,
   "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
+ },
+ "step8_gate": {
+  "run": true,
+  "utc": "2026-08-30T07:05:44Z",
+  "mode": "interactive (user present; the earlier staging-mode framing was wrong)",
+  "decisions": [
+   {
+    "question": "Where should the 963 repair land?",
+    "answer": "Amend SD-PROBE-WARMUP",
+    "applied": true
+   }
+  ],
+  "status_decision": "User directed all four artifacts REMAIN awaiting_human_confirmation; a CONFIRMED red-team verdict is not itself proof an artifact is clean, and governance Step 2b is the designed second look."
  }
 }
