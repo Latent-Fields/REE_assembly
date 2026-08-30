@@ -1,0 +1,121 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-08-30T08:42:14Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3",
+   "queue_id": "V3-EXQ-936a",
+   "claim_ids": [
+    "MECH-439"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "partial",
+    "prerequisites": "present",
+    "implementation": "partial",
+    "environment": "adequate",
+    "measurement": "misleading",
+    "integration": "adequate",
+    "scale": "adequate"
+   },
+   "failure_location": {
+    "mechanism": "established",
+    "measures": "not_established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES FAILED -- not chargeable to REE. The clamp worked, the demotion lever engaged (1.0), readiness floors passed non-degenerately, the environment is the validated 689i GAP-A stack; the C2 criterion alone could not evaluate the claim."
+   },
+   "biological_reference": {
+    "closest_mechanism": "divisive normalisation / gain control over competing value channels (Carandini-Heeger canonical computation); striatal gain bounding (targeted_review_striatal_gain_control_bounding, partial coverage)",
+    "dependencies": [
+     "bounded rollout magnitudes (SD-056 clamp)",
+     "cross-channel scale calibration"
+    ],
+    "is_formal_import": true,
+    "divergence": "The E3 score sum has no normalisation across channels, so whichever channel has the largest scale monopolises selection variance. 936 showed this as F-monopoly (unclamped divergence); 936a shows the SAME structural divergence with a different occupant: residue_weighted carries ~99.9998% of committed-selection variance in all 8 cells.",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-936a (clamp-fixed successor to 936): non_contributory for MECH-439 -- the manifest's weakens is vacuous. C2's paired-reduction falsifier was arithmetically unevaluable in the MIRROR direction from 936: with the rollout clamp armed, the OFF-arm F variance share is 6.33e-06, so the maximum attainable paired reduction is ~7,900x below the pre-registered 0.05 bar (per-seed best case 1.236e-05, still ~4,044x short) and the weakens branch fires by construction (n_reducing=0 is guaranteed for ANY behaviour). The paired deltas actually REDUCE F's share on 3/4 seeds, directionally as MECH-439 predicts, at 1e-06 scale. The run is informative despite the vacuous falsifier: (1) in the clamped 689i/GAP-A regime the F-monopoly premise is ABSENT (share 6.33e-06 vs the 0.85 monopoly bar), so MECH-439 cannot be tested by any F-share falsifier in this configuration; (2) the variance monopoly persists with a DIFFERENT occupant -- residue_weighted at ~99.9998% of committed-selection variance in all 8 cells, corroborating the uncontrolled-score-scale reading (H5, e3_fdominance_causal_discrimination); (3) the 571 baseline (0.886) grounding the claim's quantitative premise was itself measured with the clamp OFF (v3_exq_571 ran 2026-05-15/16, predating the clamp's 2026-05-31 landing entirely) and is a DIAGNOSTIC run, so whether an F-monopoly regime exists at all under the fixed instrument is now the open question. Audit monopoly presence under clamped rollouts (571-family re-measure) before any further 936-family falsifier.",
+   "per_claim_recommendation": {
+    "MECH-439": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "Manifest weakens is vacuous (C2 unreachable: max attainable paired reduction 6.33e-06 vs 0.05 bar) -> set manifest evidence_direction non_contributory with evidence_direction_note, and update live_status.evidence verdict to cite this artifact",
+     "pending_retest_after_substrate": true,
+     "status_change": "none -- stays candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+     "689a",
+     "700",
+     "700a",
+     "700b",
+     "700c",
+     "700d",
+     "709",
+     "711",
+     "713"
+    ],
+    "refused_requeue": false,
+    "route_to": "queue-experiment",
+    "upstream_substrate": null,
+    "note": "MECH-439 carries 9 counted ceiling hits (R1-R3, matching the 2026-08-10 GOV-APPLY-1 correction). This autopsy adds NO ceiling hit (standard/non_contributory -- instrument defect, mirror image of 936's). The recommended successor is NOT another 936-family falsifier letter: it is a measurement-axis DIAGNOSTIC (571-family re-measure under the clamp) that audits whether the claim's monopoly premise exists at all under the fixed instrument. A further 936-family falsifier is REFUSED until that audit establishes a monopoly-present regime."
+   },
+   "learning_extracted": [
+    "A paired-REDUCTION bar needs a premise-presence precondition: C2's 0.05 reduction is only evaluable when the OFF-arm share is at least bar+margin. 936 guarded the share~1.0 starvation tail (nonf variance floor); nobody guarded the share~0 tail, and it bit on the very next run. Both tails of a ratio DV need floors.",
+    "An instrument-fix successor must re-derive its criterion's reachability from the FIXED regime's expected values, not carry the broken regime's bar: 0.05 was calibrated against 571's 0.886 world and is 7,900x above anything reachable in the clamped world.",
+    "The driver computed the discriminating quantity (mean_share_above_monopoly_bar=false) and did not route on it in the C1-true branch -- the guard existed as a readout and not as a gate.",
+    "The 2026-08-18 prescriptions were PARTIALLY implemented: clamp parity yes; absolute f/nonf variance floors instead of the prescribed RELATIVE floor; no ||z_world|| / raw-score-range scale anchor and no clamp-hit-rate readout recorded, so natural sub-ceiling rollouts cannot be distinguished from clamp-pinned rollouts from the manifest alone.",
+    "MECH-439's quantitative basis (571's 0.886) was measured in the unclamped regime by a diagnostic run; the claim's premise has never been measured under the fixed instrument."
+   ],
+   "routing": "queue-experiment"
+  }
+ ],
+ "routing_note": "Successor spec (diagnostic, new run of the 571 family under the clamp, e.g. v3_exq_571b): re-run the E3 score-variance decomposition in 571's own configuration with e2_rollout_output_norm_clamp_enabled=True, ratio=2.0, recording per-cell scale anchors (mean/max ||z_world|| step norm, raw E3 score range, clamp-hit fraction) and the same dual-method share readouts as 936a. Two pre-registered hypotheses it discriminates: (Ha) 571's 0.886 was inflated by unclamped rollout divergence -> no F-monopoly regime exists under the fixed instrument and MECH-439's quantitative premise collapses (route to governance re-wording/narrowing); (Hb) 571's config genuinely exhibits F-monopoly under the clamp (its channel scales differ; residue channel inactive or small there) -> MECH-439 is regime-scoped; re-pose the 936-family falsifier IN THAT REGIME with a monopoly-presence precondition (off_arm_share >= F_MONOPOLY_THRESHOLD) and a relative reduction bar. Consumer gates: /queue-experiment Step 2.5 (brake) and 2.5c (substrate defect gate). Config-slice note from the 2026-08-30 C0 adjudication: declare ALL readout-affecting module constants in the successor's config_slice.",
+ "step8_gate": {
+  "cleared_utc": "2026-08-30",
+  "user_decision": "Non-contributory + monopoly audit (Recommended option taken; logged in RECOMMENDATION_LOG via record_recommendation_outcome.py)",
+  "rejected_alternatives": [
+   "non_contributory with no successor",
+   "keep weakens",
+   "immediate claim-synthesis reframe"
+  ]
+ },
+ "red_team": {
+  "verdict": "CONFIRMED",
+  "model": "claude-fable-5 (same-model as drafter -- drafting session is Fable, cross-model pass unavailable; stated per skill Step 7c)",
+  "findings_file": "redteam_936a_findings.md (session scratchpad)",
+  "recomputations": [
+   "off-arm mean F share recomputed to exactly 6.328e-06; 0.05 bar is 7,901x above the MEAN share; per-seed max attainable reduction 1.236e-05 (best seed) is still ~4,044x short, so n_reducing=0 is guaranteed for any behaviour",
+   "driver line ~1060: red = off - dem, positive = reduction; seeds 43/45/46 positive -- 3/4-directional claim confirmed",
+   "committed residue fractions 0.9999876-0.9999998 in all 8 cells on the clean sum-of-variances method; the >1.0 wrinkle lives only in the covariance-retained per-step method; both methods agree on the monopoly",
+   "STRENGTHENED: v3_exq_571 ran 2026-05-15/16, PREDATING the clamp's landing (ree-v3 d327b89, 2026-05-31) entirely -- no flag existed to set",
+   "recommended 571-family re-measure is not redundant: no 571b driver, no queue entry, no clamp-enabled variance-share manifest anywhere; routing is brake-compliant per the 936a driver's own recorded release"
+  ],
+  "hygiene_notes": [
+   "quote the per-seed 4,044x figure alongside the mean-based 7,900x",
+   "brake-count discrepancy: this artifact counts 9 ceiling hits (R1-R3, matches claims.yaml 2026-08-10 correction); the 936a driver's inherited custom_information says 12/13 -- for governance/GOV-APPLY-1 to reconcile; the discrepancy does not affect this autopsy's reading (no ceiling hit added either way)"
+  ]
+ },
+ "hypothesis_space_ledger_applied": {
+  "qid": "e3_fdominance_causal_discrimination",
+  "action": "append v3_exq_936a run_id to H5-score-scale-uncontrolled resolution.resolving_runs with extended basis (residue_weighted ~99.9998% of committed variance in all 8 clamped cells -- monopoly occupant is channel-scale-dependent); NO state change, NO denominator change, H1-H4 stay alive (936a does not discriminate them: its C2 was unevaluable).",
+  "applied_utc": "2026-08-30",
+  "integrity_audit": "flags a=0 b=0 c=0 d=0 after append; derive rollups rebuilt"
+ }
+}
