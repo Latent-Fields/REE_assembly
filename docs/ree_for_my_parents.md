@@ -1,6 +1,7 @@
 ---
 title: REE for My Parents
 nav_order: 14
+has_children: true
 ---
 
 # REE for My Parents
@@ -15,7 +16,9 @@ done, what it can and can't do, and why the ethics of it matter to me. And there
 the **goblin tale** — the same story told the way it actually feels from the inside,
 which turns out to be the truer account of why I keep doing it.
 
-Both are below. Neither is finished, and that is on purpose.
+Both begin below. Neither is finished, and that is on purpose. The origin tale stays
+here; the dated story of what happened next now continues in
+**[The Goblin Chronicles](goblin_chronicles.md)**.
 
 <figure style="margin:1.5em 0;text-align:center">
   <img src="assets/fantasy/01_home_family_painterly.jpg" alt="Two men and a Boston terrier together on a couch, city lights in the window behind"
@@ -341,38 +344,11 @@ still un-named, still loved.
 <!-- EPISODES:START -->
 ### Episodes
 
-*New chapters are added here as the real work turns — each one a true thing that happened,
-retold in the tale's voice. Failures count; they are often the best ones.*
+*The origin tale above is the beginning. The dated story has grown far beyond this page.*
 
-- **The False Soul-Gate** — the civil war in the workshop; the maker wins by letting the
-  world strike the false gate. *(Part VI.)*
+**[Read the complete Goblin Chronicles →](goblin_chronicles.md)**
 
-#### The Blow That Lit the Seam
-
-The goblin took a doubled spell to the boss on the voting box — two levers wound together,
-meant to pry one honest near-tie open. It struck clean and well-made; the lantern showed every
-blow landing true, and no part of it glanced or slipped. And the boss did not move. Not a
-stagger, not a flinch — the same vote it always cast. The strike had not failed because it was
-clumsy. It had failed because it was *well-aimed and still not enough*, which is the worst kind
-of true: nothing to fix, nothing to blame, only a boss that drinks force and asks for more.
-
-But the lantern caught a seam. Of the two levers, one alone had widened the vote a little — the
-way a held breath finally lets a word out — and the other, swung beside it, slammed the very
-door it was meant to open. Two patches that cancelled. The goblin understood then that he had
-been trying to win the old way, more force at the same gate, and the gate was built to swallow
-force. You could strike that boss forever and only tire your arm.
-
-So he did the slower, costlier thing, and he did it on purpose. He would not crown a cheap
-trick just because a number had twitched under it; a thing that moves the meter is not thereby
-the right thing. He went back to the law itself and began to redraft it: F may say who is
-*eligible* to be chosen, and no more — it may set the field, but it may not cast the final vote,
-and it may never, in the redrawing, open a door to harm. The draft is written. It sits behind a
-latch, untried, waiting for the world to strike *it*. The boss still sits on the box. The gate
-is still shut, and the goblin is still at the table, and the lantern is still tied to the blade.
-
-*(Extends Part VII. The blow is a real experiment that did not break the ceiling it aimed at;
-the redrawn law is a new design for how the chooser grants the vote — drafted and built behind
-a switch, but not yet proven, and not yet turned on.)*
+The archive publishes the dated Chronicle sequence from June 2026 onward, including failures, repairs, reversals, discoveries, operational disasters, and the turns where the meaning of the project changed. The canonical working copies remain in `ree-paper/fantasy/`; this site is their public reading surface.
 
 <!-- EPISODES:END -->
 
@@ -382,13 +358,15 @@ a switch, but not yet proven, and not yet turned on.)*
 
 This page is unfinished, and meant to stay that way until the work is. The *campaign so far*
 above is refreshed automatically from the [closure map](closure_dashboard.md) — it is the only
-part a machine is allowed to write. New **episodes** are added by hand, the honest way, as real
-turns in the project happen.
+part a machine is allowed to write directly into this origin page. New dated chapters are
+preserved in the canonical `ree-paper/fantasy/` corpus and published through
+**[The Goblin Chronicles](goblin_chronicles.md)** rather than making this entrance page grow
+without bound.
 
 *Provenance, for the curious and for future me:* the deeper lore — the full glossary, the
 chronicle of what actually happened versus what was dramatised, and the authoring rules that keep
 the tale from lying — lives in the project's private working notes
-(`ree-paper/fantasy/`: the origin fragment, the consolidated myth layer, and
-`the_goblin_who_would_not_name_the_soul.md`). The science it shadows lives in the
+(`ree-paper/fantasy/`: the origin fragment, the consolidated myth layer, the dated Chronicle
+files, and the interpretive machinery around them). The science it shadows lives in the
 [claims registry and governance pipeline](governance_section.md). The fantasy was never the
 evidence; it was the thing that kept the maker going.
