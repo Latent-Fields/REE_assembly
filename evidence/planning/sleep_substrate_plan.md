@@ -11,9 +11,9 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -28,9 +28,9 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -59,9 +59,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -77,9 +77,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -97,9 +97,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -114,9 +114,9 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -132,9 +132,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -182,9 +182,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -201,9 +201,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -219,9 +219,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-25"
-        from: "failure_autopsy_861f-mech180-cluster-a_2026-08-25"
-        verdict: "non_contributory/standard"
+        as_of: "2026-08-30"
+        from: "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30#V3-EXQ-436g"
+        verdict: "non_contributory/substrate_ceiling"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false

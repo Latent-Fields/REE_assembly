@@ -1,6 +1,6 @@
 # Citation Staleness Report
 
-Generated: 2026-08-30T07:13:19Z
+Generated: 2026-08-30T15:52:02Z
 
 Warn-only (see check_citation_staleness.py's module docstring for what this does and does not detect). Citations checked: 120.
 

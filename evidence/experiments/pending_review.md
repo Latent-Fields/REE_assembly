@@ -1,14 +1,33 @@
 # Pending Experiment Review
 
-Generated: `2026-08-30T07:29:30Z`  
+Generated: `2026-08-30T15:50:56Z`  
 Last review: `2026-08-30T07:27:59Z`  
-Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **7** item(s) -- 2 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest_20260830T105515Z_v3` | 2026-08-30T10:55 | ARC-045, MECH-166, SD-017 | — |
+| `v3_exq_966_mech143_144_hippocampal_value_sensitivity_causal_20260830T115037Z_v3` | 2026-08-30T11:50 | MECH-143, MECH-144 | — |
+| `v3_exq_951_mech320_tonic_vigor_authority_sd054_20260830T125526Z_v3` | 2026-08-30T12:55 | MECH-320 | — |
+| `v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3` | 2026-08-30T14:34 | MECH-440 | — |
+| `v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3` | 2026-08-30T14:43 | SD-078, SD-082 | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3` | 2026-08-29T07:15 | MECH-439 |
+| `v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3` | 2026-08-30T14:59 | (no claim tags) |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3` | PASS | action_conditioning_converts_both_arms |
 
 ---
 
