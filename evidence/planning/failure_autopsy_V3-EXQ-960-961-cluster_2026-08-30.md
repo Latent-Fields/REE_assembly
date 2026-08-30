@@ -10,13 +10,24 @@
 | `v3_exq_960_mech143_dca1_value_free_map_probe_...` | MECH-143 | evidence | **false** | `does_not_support` |
 | `v3_exq_961_mech144_ventral_valence_spatial_gradient_probe_...` | MECH-144 | evidence | **false** | `does_not_support` |
 
-## 1. Why these are one cluster
+## 1. Why these are grouped -- CORRECTED after red-team
 
-They share a surface shape -- *a run flagged degenerate that nevertheless weighs against its claim* -- and, underneath, **one structural property**. But their causes point in **opposite directions**, and that is the interesting part: they are the two failure modes of a single missing coupling.
+> **This section was substantially wrong in the first revision and has been rewritten.** The red-team verdict was **CONTESTED**; the science held, the routing did not. Details in the red-team section at the end.
 
-**Structural property: the non-degeneracy scoring net is computed and recorded, but not wired to `evidence_direction`** -- and nothing checks that the flag was computed on a well-formed input. Two independently authored drivers, landing the same day, exhibit the two opposite consequences: one *degenerate* run credited as evidence against a claim, one *sound* run stamped degenerate.
+They share a surface shape -- *a run flagged degenerate that nevertheless emits a claim-weakening direction*.
 
-This is **not** N independent bugs, and it is **not** a substrate ceiling.
+**What the first revision claimed, and why it was false.** It asserted that "the non-degeneracy net is computed and recorded but **not wired** to `evidence_direction`", and that nothing downstream prevents a degenerate run from weighing against a claim. That is **not true**. `build_experiment_indexes.py:3431-3436` implements the documented 2026-06-11 non-degeneracy gate (`scoring_excluded = "degenerate"`), and it has **already fired on both runs**:
+
+```
+MECH-143   scoring_excluded=degenerate   reason=zworld_probe_dispersion: floor-pinned (max=0.00964888<=floor=0.02)
+MECH-144   scoring_excluded=degenerate   reason=c3_geom_distance_spread: every group pinned -- ...
+```
+
+(live `claim_evidence.v1.json`). The gate exists; it sits one layer downstream -- at the indexer -- of where the first revision looked, which was the drivers.
+
+**What they actually share.** Because the gate is purely mechanical and trusts `non_degenerate` unconditionally, **the flag's correctness is load-bearing** -- and neither driver validates the input it computes that flag from. 960 sets it correctly and is correctly excluded. 961 sets it wrongly and is wrongly excluded. That is a common *consequence* of a working gate fed by an unvalidated flag, not one missing coupling.
+
+**So calling this "ONE structural property" overstates it**, and the first revision's own `readings` list already named two distinct defects. These are two genuinely independent bugs -- a real representation collapse, and a bad argument passed to a helper -- that meet only at a shared downstream consumer. They are reported together because that consumer is what makes both consequential, not because they have one cause.
 
 ## 2. V3-EXQ-960 -- the degeneracy flag is TRUE and CORRECT
 
@@ -30,9 +41,9 @@ The driver pre-registers `MIN_DISPERSION = 0.02` on cross-position `z_world` dis
 
 Every cell breaches the floor. Consequently:
 
-- **C1 (value-stability) passes vacuously** -- a collapsed latent cannot drift under *any* manipulation, so a low value-drift is forced, not observed.
-- **C2 (location-sensitivity) fails for the same reason**, not for want of a value-free map.
-- The two criteria are **not independent**: one collapse produces the C1 pass and the C2 fail simultaneously. Reading the C1 pass as partial support would invert the finding.
+- **Neither criterion is interpretable.** With the 8 probe positions mutually indistinguishable, no map-drift statistic computed over them carries the meaning the design assigns it -- in *either* direction. C1's 2/3 pass and C2's 0/3 fail are both computed over a representation that cannot express the distinction required.
+- **CORRECTED after red-team:** the first revision argued C1 passed *vacuously* because "a collapsed latent cannot drift under any manipulation". **That mechanism is wrong, and this run's own cells refute it** -- seed 13, the *most* collapsed cell (78x below floor), produced the *largest* value drift (0.2269) and the only C1 failure. Cross-position dispersion and PRE->POST `map_drift` are independent quantities: a collapsed vector can still rotate freely. C1 also passed only 2/3 seeds, so nothing was "forced" at all. The right word is **uninterpretable**, not vacuous, and the surviving argument is the pre-registered one, not a mechanical one.
+- Reading the C1 pass as partial support would still invert the finding.
 - **Seed 13, the most collapsed cell, produced the run's only negative pairwise delta and its only C1-failing value drift** -- noise on a degenerate representation.
 
 `cell_ok = pre_dispersion >= MIN_DISPERSION` is computed at driver line 384, but is **neither recorded in the manifest nor used to gate the emitted direction**.
@@ -61,7 +72,15 @@ On the substance, **C1** (Pearson r of harm-discriminative valence vs hazard pro
 
 **C2 carries no discriminative weight, and the driver says so.** Argument raised and withdrawn: the ablated arm's r of exactly `0.0` on all three seeds looked like a concealed vacuity, but the docstring (lines 125-134) declares it openly -- `ARM_ABLATED`'s `evaluate_valence` "returns identically zero by construction", r is *defined* as 0.0 by the guarded helper, and C2 is "recorded as a sanity check on the harness rather than a novel discriminative claim". Honestly scoped. The adjudication consequence is retained: **C1 alone is load-bearing** (C3 is readiness).
 
-**=> `does_not_support` STANDS and the run SHOULD be scored. The `non_degenerate: false` stamp must not be used to discount it.** At 3 seeds with r spanning -0.19 to +0.21 this is a *weak* negative -- a miss at this scale and design, not a refutation.
+**=> `does_not_support` STANDS -- but the run is NOT scored today, and saying "it should be scored" does not make it so.** CORRECTED after red-team: `build_experiment_indexes.py:3431` currently excludes it, and `claim_evidence.v1.json` shows MECH-144 `scoring_excluded="degenerate"`. **Fixing the driver bug only fixes future runs.** Making *this* run count requires three steps, in order:
+
+1. **Amend this run's manifest `non_degenerate` flag** false -> true (preserving the original finding and the reason for amendment, for audit).
+2. **Re-run `build_experiment_indexes.py`** so `claim_evidence.v1.json` drops `scoring_excluded` for MECH-144.
+3. **Separately** fix the driver's singleton-group call (line 596) and add an arity guard to `metric_groups_are_degenerate`.
+
+Applied as first written -- without steps 1 and 2 -- this autopsy would have left MECH-144 with **zero** evidence from this run, the exact opposite of its own assertion.
+
+At 3 seeds with r spanning -0.19 to +0.21 this remains a *weak* negative -- a miss at this scale and design, not a refutation.
 
 ## 4. Four-layer summary
 
@@ -110,10 +129,20 @@ Checked. V3-EXQ-165 covers **both** MECH-143 and MECH-144, but its own docstring
 
 It is nonetheless a genuine unqueued asset (on disk since 2026-07-12, absent from `experiment_queue.json`, never scored) covering both cluster claims. **Surfaced for an explicit queue-or-retire decision** rather than left dormant.
 
-## Adversarial red-team pass (Step 7c) -- NOT RUN
+## Adversarial red-team pass (Step 7c) -- VERDICT: CONTESTED
 
-**No independent verifier ran, and no CONFIRMED verdict is claimed.** Step 7c calls for spawning a separate agent (preferably on a different model) to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not.
+An independent verifier (different model, reasoning withheld until it had recomputed from the raw cells) attacked this cluster. **The science held; the routing did not** -- the documented failure family for this corpus.
 
-The adversarial discipline was applied in-context instead, and it did change conclusions rather than rubber-stamping them -- six arguments were raised and withdrawn on direct code or docstring reads, each recorded under `arguments_withdrawn`. That is explicitly **weaker** than an independent pass: it shares the drafter's priors by construction, which is the exact property the pass exists to break.
+**Independently reproduced:** the singleton claim is TRUE -- `metric_is_degenerate` returns on `spread <= eps` *before* the floor check, so `floor=1e-6` cannot rescue a singleton; a live replay of driver lines 596-598's exact input reproduces the manifest's `degeneracy_reason` byte-for-byte, and a perfect-run singleton fires identically. Fed correctly (flat, or per-seed `[geom, ablated]` pairs) the same data returns non-degenerate. 960's flag is likewise correct -- replay reproduces `floor-pinned (max=0.00964888<=floor=0.02)`, ratios 2.1x / 2.6x / 78.0x verified, and every driver line citation checked verbatim. The seed-13 triple was verified exhaustively. 961's `does_not_support` at 3 seeds is defensible against the pre-registered bar.
 
-**For governance:** treat every routing recommendation here as unverified by a second reader. The two highest-value targets for an independent check are V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and V3-EXQ-964's claim that C2 was mathematically unsatisfiable at `n_targets == 1`.
+**The verdict-moving defect.** The first revision's central structural premise -- *"the non-degeneracy net is computed and recorded but not wired to `evidence_direction`"* -- is **false**. The gate exists at `build_experiment_indexes.py:3431-3436` and **has already fired on both runs**. Three consequences, all applied above:
+
+1. **961's headline recommendation was inert as written.** "Should be scored" named no mechanism, while the false-positive flag is excluding it *today*. The operative steps (amend the manifest flag, rebuild the index) are now stated. Applied verbatim, the first revision would have left MECH-144 with **zero** evidence -- the opposite of its own assertion.
+2. **960's asserted harm never materialised.** The run weighs nothing already; the direction correction is hygiene, not a rescue.
+3. **The proposed remedy would have made 961 worse.** Wiring flag -> direction, on a false-positive flag, deepens the exclusion. The first revision never resolved that tension because it did not know the gate existed.
+
+**Also corrected:** the absolute *"a collapsed latent cannot drift under any manipulation"* is contradicted by this cluster's own seed-13 cell -- the most collapsed cell produced the **largest** drift. The `non_contributory` recommendation for 960 survives, but on the **pre-registration** argument, not a mechanical one. And the "ONE structural property" framing is overstated: these are two independent defects meeting at a shared consumer.
+
+**Also flagged:** `_metrics.py` already ships `p0_readiness_gate` / `P0NotReady` -- the designed producer-side remedy for 960's exact shape -- and the 960 driver never calls it. Now named in that target's routing.
+
+**Not checked by either party:** raw per-step data (absent from the manifests), `claims.yaml` alignment for MECH-143/144, and the V3-EXQ-165 disposition beyond confirming the file exists.

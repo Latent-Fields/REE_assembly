@@ -96,10 +96,12 @@
   "note": "Staging mode: no fanout_recommendation emitted (the bottleneck routes to a single unambiguous build -- calibrate the attribution floor). No registry append owed."
  },
  "red_team_pass": {
-  "independent_pass_run": false,
-  "verdict": "NOT OBTAINED -- no independent verifier ran",
-  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
-  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
-  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+  "independent_pass_run": true,
+  "verifier_model": "fable (different model from the drafting session)",
+  "method": "Given the JSON conclusion and raw evidence with the drafting session's reasoning WITHHELD until it had recomputed at least one load-bearing number from the manifest's own cells; only then permitted to read the .md, specifically to test its absolutes.",
+  "verdict": "CONFIRMED",
+  "summary": "Independent verifier (different model) reproduced the saturation, the mean separations, and the clamp code path; refuted the motor-agency counter-hypothesis this session could not test, using the control arm's own cells; judged both withdrawals correct and the routing right. Hygiene only: a CONTROL/BLOCK free-step attribution error (corrected), an overstatement (softened), and a note that C3's PASS is differentially uninformative.",
+  "corrections_applied": true,
+  "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
  }
 }

@@ -18,9 +18,11 @@ Accumulator state, all three seeds:
 
 | Seed | `n_targets` | `n_updates` | `n_readouts` | `n_vacuous_readouts` | `last_n_targets_matched_at_readout` | `yoked_divergence_frac` |
 |---|---|---|---|---|---|---|
-| 71 | **1** | 59 | 13 | 0 | **32** | 0.0 |
-| 101 | **1** | 59 | 20 | 0 | **32** | 0.0 |
-| 202 | **1** | 59 | 12 | 0 | **32** | 0.0 |
+| 71 | **1** | 59 | 13* | 0 | **32** | 0.0 |
+| 101 | **1** | 59 | 20* | 0 | **32** | 0.0 |
+| 202 | **1** | 59 | 12* | 0 | **32** | 0.0 |
+
+\* `n_readouts` / `n_updates` are **last-episode** counters -- `reset()` clears them every episode -- so run totals are nearer 33-36 readouts per seed. `n_targets` is likewise the end-of-final-episode value.
 
 ## 2. The decisive finding -- C2 was unsatisfiable by construction
 
@@ -39,7 +41,9 @@ lp_contrib = cfg.curiosity_learning_progress_weight * lp_vec
 total = total - lp_contrib
 ```
 
-**Subtracting a constant from every candidate's score cannot move an argmax.** `yoked_divergence_frac == 0.0` was mathematically forced on every tick of every seed. The run carries **zero information** about whether MECH-482's mechanism is selection-relevant.
+**Subtracting a constant from every candidate's score cannot move an argmax.** `yoked_divergence_frac == 0.0` was therefore mathematically forced, and the run carries **zero information** about whether MECH-482's mechanism is selection-relevant.
+
+**One inferential step, stated rather than glossed.** The manifest's counters are *per-episode snapshots taken after the final `reset()`*, so strictly they constrain only the last episode and last readout -- they do not by themselves prove the constant-vector regime held on *every* tick. That gap was closed by the red-team pass (section below), which re-executed the driver's own yoked loop with `readout()`/`reset()` instrumented and found every episode ending at `n_targets=1`, all 69 logged readouts at K=32 with all 32 candidates matched, zero partial matches and zero non-constant vectors. Read the "every tick" claim as resting on that replication, not on the cells alone.
 
 **C1 and C2 are not independent.** C1's PASS bar is "at least one persistent target AND at least one update" -- satisfied at exactly `n_targets == 1`, the value at which C2 *must* fail. The criterion that certifies readiness is met precisely where the criterion it gates becomes unanswerable.
 
@@ -90,10 +94,22 @@ Supporting substrate entry `sd_epistemic_deficit_multitarget_readiness` (priorit
 
 **MECH-482** -- direction `non_contributory`; `epistemic_category` **stays** `substrate_conditional`; status **stays** `candidate`; `recommended_diagnostic_evidence_adjudicated: true`. What changes is the `evidence_quality_note`, which must record that C2 was structurally unsatisfiable at `n_targets == 1` and so does **not** count as a negative result for the claim.
 
-## Adversarial red-team pass (Step 7c) -- NOT RUN
+## Adversarial red-team pass (Step 7c) -- VERDICT: CONFIRMED
 
-**No independent verifier ran, and no CONFIRMED verdict is claimed.** Step 7c calls for spawning a separate agent (preferably on a different model) to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not.
+An independent verifier (different model, reasoning withheld until it had recomputed from the raw cells) attacked this diagnosis and could not refute it. It went further than this autopsy could: it **re-executed the driver's own yoked loop** for seeds 71 and 202 with `readout()` / `reset()` instrumented.
 
-The adversarial discipline was applied in-context instead, and it did change conclusions rather than rubber-stamping them -- six arguments were raised and withdrawn on direct code or docstring reads, each recorded under `arguments_withdrawn`. That is explicitly **weaker** than an independent pass: it shares the drafter's priors by construction, which is the exact property the pass exists to break.
+**Result of that replication:** every episode ended at `n_targets = 1`; all 69 logged readouts had K = 32 with **all 32** candidates matched; zero partial matches, zero non-constant vectors, 0/180 divergence on both seeds. The constant-vector regime holds throughout the run, not merely at the recorded snapshot -- which is what licenses the "every tick" claim in section 2.
 
-**For governance:** treat every routing recommendation here as unverified by a second reader. The two highest-value targets for an independent check are V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and V3-EXQ-964's claim that C2 was mathematically unsatisfiable at `n_targets == 1`.
+**Three attacks that would have refuted the core claim, all failed:**
+
+1. **Does the score clamp rescue a constant vector?** No. `structured_curiosity.py:542-543` subtracts `lp_contrib`, and the clamp (2026-07-21) decomposes the total into mean-offset and deviation, clamping them **separately** -- a uniform subtraction moves only the argmin-inert offset, leaving the deviation bit-unchanged. The one nonlinearity that would have broken the argument (clamping the *sum*) had already been removed by design.
+2. **Is `last_n_targets_matched_at_readout == 32` really K?** Verified empirically, not assumed -- the manifest never records K, and `SELF_DIM = 32` made this a genuine ambiguity. The probe logged `cand.shape[0] = 32` at every readout.
+3. **Could the accumulator have held >= 2 targets mid-episode?** No. Within an episode `_targets` is monotone (eviction only at capacity 16), so the final-episode value proves that episode; episodes 0-1 were confirmed by the replication above.
+
+**The withdrawal was independently judged correct** (the `vacuous_readout_rate` gate is blind at `n_readouts == 0`, but `n_readouts` was 13/20/12, non-zero).
+
+**Routing independently confirmed.** The verifier noted it had to reconstruct by hand exactly the per-readout log this autopsy recommends recording -- which is the recording gap, demonstrated rather than asserted.
+
+**Corrections the verifier forced (applied above):** (a) the "forced on every tick" claim now states its inferential step instead of implying it is read off the cells; (b) `four_layer_diagnosis.measurement` said "C1 passing structurally guarantees C2 failing", which is false in general -- C1 also passes at `n_targets >= 2` -- now restated precisely; (c) the `n_readouts` figures are last-episode counters, not run totals (~33-36/seed), now marked as such.
+
+**Not checked by either party:** bit-level cross-machine-class replay, and seed 101.

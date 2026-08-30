@@ -34,7 +34,7 @@ Recording core present: `substrate_hash`, `config`, `seeds`, `machine_class`, `r
 
 C2 is doubly vacuous: it subtracts a `z_harm_a` separation that is a constant `0.0` from a `z_block` separation that is a saturated `0.0`.
 
-**Why the control arm saturates.** `blocked_agency` accumulates whenever `outcome_mismatch >= outcome_mismatch_floor` (0.1) and motor agency clears its own floor (`:238-244`). The CONTROL arm's *free-step* mismatch is 0.396 / 0.449 / 0.500 -- four to five times the attribution floor. So the integrator treats ordinary world-model prediction error as blocked agency, accumulates on essentially every free step, and pins at the cap with no block applied at all (`z_block_mean` 1.26-1.35 out of 1.5).
+**Why the control arm saturates.** `blocked_agency` accumulates whenever `outcome_mismatch >= outcome_mismatch_floor` (0.1) and motor agency clears its own floor (`:238-244`). The CONTROL arm's *free-step* mismatch is 0.384 / 0.462 / 0.493 -- four to five times the attribution floor. (The BLOCK arm's free-step values are 0.396 / 0.449 / 0.500; an earlier revision of this line quoted those by mistake while attributing them to CONTROL. The argument is unaffected -- both arms' free steps sit far above the 0.1 floor, which is the point -- but the attribution was wrong.) So the integrator treats ordinary world-model prediction error as blocked agency, accumulates on essentially every free step, and pins at the cap with no block applied at all (`z_block_mean` 1.26-1.35 out of 1.5).
 
 This is the sharp part: **C0 passed.** The comparator genuinely discriminates (blocked-step mismatch 0.997 vs free-step 0.40, margin 0.62). The integrator then throws that discrimination away, because its threshold sits below *both* conditions.
 
@@ -76,7 +76,7 @@ The `z_goal_stream` writer-defect detector cannot distinguish *"the driver omitt
 
 **`implement-substrate`**, new substrate entry `sd_blocked_agency_mismatch_floor_calibration`, priority 1, severity **`corrupting`**, path `ree_core/affect/blocked_agency.py`.
 
-Make the attribution threshold relative to a running free-step mismatch baseline (or standardise the mismatch before thresholding), so the floor selects genuinely blocked steps. **Until that lands, no blocked-agency DV has dynamic range**, and re-running any z_block discrimination test is wasted compute.
+Make the attribution threshold relative to a running free-step mismatch baseline (or standardise the mismatch before thresholding), so the floor selects genuinely blocked steps. **Until that lands, every blocked-agency DV is compressed below its own pre-registered margin** -- note this is deliberately weaker than "no dynamic range": `z_block_mean` demonstrably does separate, 3/3 seeds, even under saturation. Re-running any z_block discrimination test before the floor is recalibrated is wasted compute.
 
 Secondary, for whoever re-poses the test afterwards: replace the C1 peak statistic with a non-saturating DV, and add a ceiling rail on `z_block_peak`.
 
@@ -88,10 +88,20 @@ Secondary, for whoever re-poses the test afterwards: replace the C1 peak statist
 
 `non_contributory`. MECH-353's `v3_pending` gate is **not cleared and not contradicted** -- the question was not reached.
 
-## Adversarial red-team pass (Step 7c) -- NOT RUN
+## Adversarial red-team pass (Step 7c) -- VERDICT: CONFIRMED
 
-**No independent verifier ran, and no CONFIRMED verdict is claimed.** Step 7c calls for spawning a separate agent (preferably on a different model) to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not.
+An independent verifier (different model, given the JSON conclusion and raw evidence with this session's reasoning withheld until it had recomputed from the cells) attacked this diagnosis and could not refute it.
 
-The adversarial discipline was applied in-context instead, and it did change conclusions rather than rubber-stamping them -- six arguments were raised and withdrawn on direct code or docstring reads, each recorded under `arguments_withdrawn`. That is explicitly **weaker** than an independent pass: it shares the drafter's priors by construction, which is the exact property the pass exists to break.
+**Independently reproduced:** `z_block_peak` = 1.5 in both arms on all 3 seeds, separation 0.0000 per seed recomputed by hand; the clamp is a hard `min(c.z_block_cap, ...)` at `ree_core/affect/blocked_agency.py:257` (cap 1.5 at `:114`, confirmed at the run's own commit `1a0be594`), applied to exactly the value the driver's peak statistic reads (driver `:387-388`, `:403`). `z_block_mean` separations +0.165 / +0.121 / +0.083 confirmed.
 
-**For governance:** treat every routing recommendation here as unverified by a second reader. The two highest-value targets for an independent check are V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and V3-EXQ-964's claim that C2 was mathematically unsatisfiable at `n_targets == 1`.
+**The counter-hypothesis this autopsy could not test was refuted by the verifier, using the control arm's own cells.** The attribution gate has a *second* condition (`motor_agency >= attribution_motor_floor`, 0.5) which could in principle have been the real driver. But CONTROL reached `z_block_mean` 1.26-1.35 with **zero** blocked steps, which is arithmetically possible only if all three gate conditions held on the bulk of free steps. The mismatch floor is the gate meant to discriminate blocked from free, and it discriminated nothing.
+
+**Both withdrawals were independently judged correct.** The SD-070 withdrawal rests on the functional C0 pass rather than on trusting the docstring; the z_goal withdrawal is clinched empirically -- with `require_goal_active=True`, z_block could not have accumulated at all had the pinned goal been inactive.
+
+**Routing independently checked:** no existing `substrate_queue` entry covers floor calibration (SD-031 covers the comparator and is implemented), no 642b is queued, and a measurement-only redesign would leave a regulator asserting blocked-agency 1.26 in a zero-block condition -- semantically broken for every consumer, including decommit (bound 1.0, continuously exceeded in both arms).
+
+**Correction the verifier forced (applied above):** section 2 previously quoted 0.396 / 0.449 / 0.500 as CONTROL's free-step mismatch; those are the BLOCK arm's. CONTROL is 0.384 / 0.462 / 0.493.
+
+**Also flagged, and worth a successor's attention:** C3's PASS is *differentially uninformative* -- its no-suffering conjunct is vacuous by environment construction (`num_hazards=0`) and both arms carried identical cap-saturated assert bias. This autopsy does not lean on C3, but a successor must not cite it as evidence.
+
+**Not checkable by either party:** per-step `motor_agency` is unrecorded and was inferred arithmetically; the run's tree was dirty in `agent.py`/`config.py`, though `blocked_agency.py` was clean against the run commit and the conclusion is insensitive to whichever floor value actually executed (CONTROL saturation proves it sat below the ~0.38 free baseline).

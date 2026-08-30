@@ -19,10 +19,10 @@
     "claim_alignment": "unclear -- the tonic manipulation was inert, so the tonic half of the dissociation was never applied. MECH-063 sub-claim (ii) is untouched.",
     "biological_reference": "partial -- tonic/phasic neuromodulatory dissociation is well-anchored; not reached by this run.",
     "prerequisites": "present -- SD-075 is IMPLEMENTED (ree-v3 4a5139838b) and V3-EXQ-952 confirmed the warmup+continuity configuration. The 779b re-derive brake was legitimately released and a NEW NUMBER correctly used.",
-    "implementation": "partial -- NoiseFloor.compute_effective_temperature is unconditional (lifted = baseline + alpha, alpha=1.0 configured), so a lift of exactly 0.0 on every cell means the regulator was never called on the waking path. A wiring/plumbing fault, not a tuning fault.",
+    "implementation": "CORRECTED after red-team -- the fault is in the EXPERIMENT HARNESS, not ree_core. NoiseFloor.compute_effective_temperature is unconditional (lifted = baseline + alpha, alpha=1.0), so lift 0.0 means the regulator was never consulted. Mechanism now CONFIRMED: the probe_warmup cache key excludes the arm flags, so all four arms share the blob minted by T0P0 (use_noise_floor=False, always the cache MISS); _restore_cached_surface object.__setattr__s the mint arm's root surface onto every HIT agent, OVERWRITING the live NoiseFloor with the mint arm's None (agent.py:1159 declares self.noise_floor: Optional[NoiseFloor] = None); the guarded call site at agent.py:3444 (if self.noise_floor is not None) is then skipped. ree_core is healthy.",
     "environment": "adequate -- same env as V3-EXQ-779a, which produced a large clean effect.",
     "measurement": "under-instrumented -- NoiseFloor.get_state() already exposes n_waking_calls and last_n_simulation_skips, the two counters that would identify WHY the lift is zero. Neither was recorded.",
-    "integration": "isolated -- the tonic axis is configured on (use_noise_floor=True on T1P0/T1P1) but produces no effect downstream.",
+    "integration": "isolated -- and the ASYMMETRY is the clincher: the driver's _fresh_regulator (line 502) reinstalls ONLY agent.phasic_burst after warmup, never agent.noise_floor. So phasic survived the cache restore and tonic did not. Confirmed in the cells: R_transient is non-zero on 10/10 PHASIC-ON cells and exactly 0.0 on all 10 PHASIC-OFF cells, while the tonic lift is 0.0 everywhere. No other hypothesis explains that pattern.",
     "scale": "adequate for the comparison -- starvation is matched to 779a (see below) and therefore cannot be the discriminating variable."
    },
    "biological_reference": {
@@ -37,7 +37,7 @@
    },
    "recommended_epistemic_category": "standard",
    "recommended_evidence_direction": "non_contributory",
-   "recommended_evidence_quality_note": "V3-EXQ-963 (2026-08-30) does NOT bear on MECH-063 sub-claim (ii) or SD-069: its tonic axis was inert. noise_floor_temp_lift_mean is exactly 0.0 on all 20 cells, including the use_noise_floor=True arms (T1P0/T1P1), against a tonic_axis_live floor of 0.5 -- the manifest correctly self-reports non_contributory and names tonic_axis_live as the unmet capability. NoiseFloor.compute_effective_temperature is UNCONDITIONAL (lifted = baseline + alpha; alpha = 1.0 in this run's config) with no state gate, so a zero lift means the regulator was never called on the waking path -- a wiring fault, not a tuning or ceiling result. The predecessor V3-EXQ-779a, whose C1/C2 computation this run states is UNCHANGED, recorded noise_floor_temp_lift_mean = 1.0 (== alpha) on its TONIC-ON cells and mean_dS_tonic = +0.2654 (robust, 4/5 seeds); this run recorded 0.0053, a 50x collapse. Sampling starvation is REFUTED as the explanation: 779a met its sample floors on 3/20 cells and this run on 4/20 -- essentially identical starvation with a 50x different outcome. Do NOT record substrate_ceiling from this run: MECH-063 already carries 3 prior substrate_ceiling autopsy hits under the R1-R3 convention, and this failure is an instrument-wiring fault, not a ceiling.",
+   "recommended_evidence_quality_note": "V3-EXQ-963 (2026-08-30) does NOT bear on MECH-063 sub-claim (ii) or SD-069: its tonic axis was inert. noise_floor_temp_lift_mean is exactly 0.0 on all 20 cells, including the 10 use_noise_floor=True cells, against a tonic_axis_live floor of 0.5 -- the manifest correctly self-reports non_contributory and names tonic_axis_live as the unmet capability. The predecessor V3-EXQ-779a, whose C1/C2 computation is line-for-line identical (verified), recorded noise_floor_temp_lift_mean = 1.0 (== alpha) on all 10 of its TONIC-ON cells. CAUSE CONFIRMED (red-team, reproduced with the real functions): the probe_warmup cache key excludes the arm flags, so all four arms share the blob minted by T0P0 (use_noise_floor=False, always the cache MISS); _restore_cached_surface object.__setattr__s the mint arm's root attribute surface onto each cache-HIT agent, overwriting the live NoiseFloor instance with the mint arm's None, after which the guarded call site (agent.py:3444) is skipped and no lift is ever computed. The driver's _fresh_regulator (line 502) reinstalls only agent.phasic_burst, never agent.noise_floor -- which is exactly why the phasic axis survived and the tonic axis did not (R_transient non-zero on 10/10 PHASIC-ON cells, 0.0 on all PHASIC-OFF cells). This is an EXPERIMENT-HARNESS defect; ree_core's noise-floor code is healthy. Sampling starvation is REFUTED as the explanation, and more strongly than first stated: 963's per-cell sampling is equal-or-better than 779a's (min n_e3_selects 334 vs 280; min phasic event ticks 95 vs 6; comparable totals), and the 120-vs-2400 episode-cap difference is inert because the 2400-env-step cap binds in both. Do NOT record substrate_ceiling from this run: MECH-063 already carries 3 prior substrate_ceiling autopsy hits under the R1-R3 convention, and this is a harness-wiring fault, not a ceiling.",
    "per_claim_recommendation": {
     "MECH-063": {
      "recommended_evidence_direction": "non_contributory",
@@ -56,9 +56,9 @@
    },
    "recommended_substrate_queue_entry": {
     "action": "create",
-    "sd_id_suggested": "sd_tonic_noise_floor_call_path_integrity",
-    "title": "Restore and instrument the tonic noise-floor call path (lift is 0.0 on every cell while configured on)",
-    "implementation_hint": "NoiseFloor.compute_effective_temperature adds alpha unconditionally, so noise_floor_temp_lift_mean == 0.0 with use_noise_floor=True and alpha=1.0 proves the regulator is not being called on the waking selection path (or is being called with simulation_mode=True, which returns baseline unchanged by contract). V3-EXQ-779a on the same design measured 1.0. Identify and repair the call site, and record NoiseFloor.get_state()'s n_waking_calls and last_n_simulation_skips in the manifest so the two failure modes are separable without a re-run.",
+    "sd_id_suggested": "sd_probe_warmup_cache_clobbers_arm_regulators",
+    "title": "probe_warmup cache restore overwrites arm-conditional regulators with the mint arm's None",
+    "implementation_hint": "The warmup cache key (_warmup_key) excludes the arm's runtime flags, so one blob is shared across a 2x2 whose arms construct DIFFERENT root-level regulators. _restore_cached_surface then object.__setattr__s the mint arm's surface onto every HIT agent, silently replacing a live arm-conditional regulator (agent.noise_floor, constructed only when use_noise_floor=True) with the mint arm's None. Nothing raises and nothing logs it: assert_state_dict_shareable passes because these regulators are zero-parameter and non-nn.Module, and the restore's missing-module logging only covers cached paths ABSENT here, never the reverse. Fix options: include arm-conditional flags in the cache key; or exclude arm-constructed regulator attributes from the restored surface; or have the driver reinstall ALL arm regulators post-warmup rather than only phasic_burst. Add an assertion that every arm-conditional regulator is non-None after restore when its flag is set.",
     "unblocks_claims": [
      "MECH-063",
      "SD-069",
@@ -68,24 +68,24 @@
     "priority_suggested": 1,
     "severity": "corrupting",
     "substrate_paths": [
-     "ree_core/policy/noise_floor.py",
-     "ree_core/agent.py::_curiosity_noise_floor_temperature"
+     "experiments/_lib/probe_warmup.py",
+     "experiments/v3_exq_963_mech063ii_tonic_phasic_dissociation_retest.py"
     ],
     "failure_record_entry": {
      "run_id": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest_20260830T023012Z_v3",
      "experiment_type": "v3_exq_963_mech063ii_tonic_phasic_dissociation_retest",
-     "metric": "noise_floor_temp_lift_mean = 0.0 on all 20 cells with use_noise_floor=True and alpha=1.0; tonic_axis_live 0.0 vs floor 0.5; mean_dS_tonic 0.0053 vs 779a's 0.2654",
+     "metric": "noise_floor_temp_lift_mean = 0.0 on all 20 cells with use_noise_floor=True on 10 of them and alpha=1.0; tonic_axis_live 0.0 vs floor 0.5; 779a recorded 1.0 on all 10 TONIC-ON cells. Cause: cache-restore overwrites agent.noise_floor with the mint arm's None; _fresh_regulator reinstalls only phasic_burst, so phasic survived (R_transient non-zero 10/10 PHASIC-ON) and tonic did not.",
      "target": "TONIC-ON cells must record noise_floor_temp_lift_mean ~= alpha (1.0), as V3-EXQ-779a did",
      "resolved": "open"
     },
     "related_existing_entries": [
      {
-      "sd_id": "sd_phasic_ema_episode_continuity",
-      "relation": "IMPLEMENTED; released the 779b brake that licensed this run. Does not cover the noise-floor call path."
+      "sd_id": "SD-PROBE-WARMUP",
+      "relation": "THE REPAIR BELONGS HERE. Red-team confirmed the fault is in this entry's own machinery (the cache key + surface restore), matching this artifact's own pre-registered contingency that if H2 were confirmed the repair would land against SD-PROBE-WARMUP rather than a new entry. Governance should prefer amending SD-PROBE-WARMUP over creating a new SD."
      },
      {
-      "sd_id": "SD-PROBE-WARMUP",
-      "relation": "covers the SD-074 warmup this run consumed. Implicated by fan-out H2 as a possible route to the fault; if H2 is confirmed the repair may belong here instead of in a new entry."
+      "sd_id": "sd_phasic_ema_episode_continuity",
+      "relation": "IMPLEMENTED; released the 779b brake that licensed this run. Not implicated -- the phasic axis worked correctly throughout."
      }
     ]
    },
@@ -105,35 +105,10 @@
     "note": "MECH-063 carries 3 prior substrate_ceiling hits (R1-R3), above the threshold of 2. This autopsy does NOT add a 4th: the reading is standard (instrument-wiring fault), not substrate_ceiling. The brake therefore does not fire on this autopsy, and a same-question re-test is NOT refused -- but it is gated on the wiring repair plus the recording addition below, NOT permitted as another blind letter."
    },
    "fanout_recommendation": {
-    "is_discrimination": true,
-    "live_hypotheses": [
-     "H2 (wiring): the noise-floor call site is not reached on the tonic path in this configuration; the only change touching ALL cells vs 779a is the SD-074 shared cached warmup (T0P0 is always the cache MISS, every other arm a HIT).",
-     "H3 (simulation_mode): the scored E3 selections ran with simulation_mode=True, which returns baseline_temperature unchanged by contract (noise_floor.py:187-189), yielding lift 0.0 with the regulator nominally 'called'.",
-     "H5 (substrate drift): the tonic call path changed independently between 2026-07-18 (779a) and 2026-08-30, unrelated to the warmup."
-    ],
-    "suggested_probes": [
-     {
-      "hypothesis": "H2",
-      "axis": "instrumentation",
-      "sketch": "record NoiseFloor.get_state() n_waking_calls per cell; n_waking_calls==0 confirms the regulator is never invoked. Zero extra compute -- the counter already exists."
-     },
-     {
-      "hypothesis": "H3",
-      "axis": "instrumentation",
-      "sketch": "record last_n_simulation_skips per cell; skips>0 with n_waking_calls==0 confirms every call took the simulation_mode branch."
-     },
-     {
-      "hypothesis": "H2",
-      "axis": "process",
-      "sketch": "run one cell of the 2x2 with the SD-074 warmup DISABLED and read lift_mean; a restored 1.0 isolates the warmup as the cause."
-     },
-     {
-      "hypothesis": "H5",
-      "axis": "representation",
-      "sketch": "replay the 779a driver unchanged against today's substrate and read lift_mean; 0.0 isolates substrate drift independent of the warmup."
-     }
-    ],
-    "note": "GOV-FANOUT-1: three live explanations for an inert tonic axis, on different axes. The first two probes are pure instrumentation and cost nothing -- run them before spending any behavioural budget."
+    "is_discrimination": false,
+    "status": "RESOLVED BEFORE QUEUING -- do not fan out.",
+    "resolution": "The red-team pass confirmed H2 in source and reproduced it with the real functions at zero behavioural cost. H3 (simulation_mode) and H5 (substrate drift) are refuted/unnecessary: the same-quantity check holds (both drivers read the identical _last_control_vector['G_vigor']['noise_floor_temp_lift'] field, and T1P0 alone carries the 1.0->0.0 contrast even under a worst-case SD-069 recording-semantics change), and no drift hypothesis explains phasic surviving while tonic died.",
+    "note": "Recorded rather than deleted: this is what a GOV-FANOUT-1 portfolio is FOR -- the two instrumentation probes were free, and running them (as source reads) collapsed a 3-way discrimination to a confirmed single cause before any compute was spent. The hypothesis-space ledger append is withdrawn accordingly (see hypothesis_space_ledger_pending)."
    },
    "arguments_withdrawn": [
     {
@@ -142,7 +117,8 @@
     },
     {
      "argument": "The SD-074 warmup cache fails to restore the NoiseFloor regulator's warmed state, leaving the tonic axis cold and unable to lift.",
-     "withdrawn_because": "REFUTED by code read. NoiseFloor is documented 'stateless across ticks' and compute_effective_temperature computes lifted = baseline + alpha unconditionally, with no dependence on _n_waking_calls or any accumulated state. A cold regulator lifts identically to a warmed one. NOTE the underlying blind spot is nonetheless REAL and worth reporting separately: NoiseFloor is zero-parameter and non-nn.Module, so it is invisible BOTH to assert_state_dict_shareable (which checks state_dict key/shape parity, and whose docstring cites exactly this zero-parameter property as what licenses cache sharing) AND to _restore_cached_surface (which walks agent.named_modules()). It is simply not the cause of this failure."
+     "withdrawn_because": "REFUTED by code read. NoiseFloor is documented 'stateless across ticks' and compute_effective_temperature computes lifted = baseline + alpha unconditionally, with no dependence on _n_waking_calls or any accumulated state. A cold regulator lifts identically to a warmed one. NOTE the underlying blind spot is nonetheless REAL and worth reporting separately: NoiseFloor is zero-parameter and non-nn.Module, so it is invisible BOTH to assert_state_dict_shareable (which checks state_dict key/shape parity, and whose docstring cites exactly this zero-parameter property as what licenses cache sharing) AND to _restore_cached_surface (which walks agent.named_modules()). It is simply not the cause of this failure.",
+     "withdrawal_CORRECTED_after_red_team": "This withdrawal was RIGHT IN ITS REASONING BUT STOPPED ONE STEP SHORT, and the conclusion it drew was wrong. Correct: NoiseFloor is stateless with respect to the lift, so a COLD regulator lifts identically to a warmed one -- restoring warmed state was never the issue. Missed: the restore does not leave the regulator COLD, it overwrites it with NONE (the mint arm T0P0 has use_noise_floor=False, so its captured root surface carries noise_floor=None). So the warmup machinery IS the cause after all, by a different mechanism than the one withdrawn. The blind-spot observation recorded here was therefore not merely 'real but not the cause' -- it was adjacent to the actual cause and should have prompted a check of WHAT the restore writes, not only whether the regulator needs warmed state."
     },
     {
      "argument": "noise_floor_alpha is configured to 0.0, so the lift is trivially zero.",
@@ -154,46 +130,17 @@
     "A matched confound is a free control. 779a and 963 are almost equally sample-starved, which converts starvation from a candidate explanation into a held-constant nuisance variable and refutes it in one line.",
     "RECORDING GAP: NoiseFloor.get_state() already exposes n_waking_calls and last_n_simulation_skips, which together separate 'regulator never called' from 'called under simulation_mode'. Neither was recorded, so a re-run is currently needed to answer a question the substrate was already computing.",
     "The baseline_entropy_headroom precondition passed (met=True) while ALL FOUR arms appear in saturating_arms with worst_margin 0.0037 against a warn_margin of 0.15. The gate tests membership of the band [0.02, 0.98], not the margin to its edge, so it admits a run with effectively no headroom.",
-    "A capability precondition evaluated on a worst-cell basis (tonic_axis_live) correctly refused this run. That gate worked; it is the reason the manifest's evidence_direction is already right."
+    "A capability precondition evaluated on a worst-cell basis (tonic_axis_live) correctly refused this run. That gate worked; it is the reason the manifest's evidence_direction is already right.",
+    "A withdrawal can be locally valid and still wrong: 'NoiseFloor is stateless, so a cold regulator lifts identically' is TRUE and refutes the stated hypothesis, yet the real fault was in the same machinery -- the restore writes None over the live regulator. When withdrawing a hypothesis about a mechanism, check what the mechanism WRITES, not only whether the target needs the state it fails to carry.",
+    "The asymmetry was the discriminating evidence and was sitting in the cells the whole time: phasic live (R_transient non-zero on 10/10 PHASIC-ON cells), tonic dead (lift 0.0 on all 20). Only a cause that distinguishes the two regulators explains it -- and _fresh_regulator reinstalls exactly one of them. Look for the asymmetry a hypothesis must explain before enumerating hypotheses."
    ],
    "routing": "implement-substrate"
   }
  ],
  "cluster_pattern": null,
  "hypothesis_space_ledger_pending": {
-  "mode": "A (pre-register)",
-  "target_question": "NEW question -- no existing qid covers 'why is the tonic noise-floor axis inert'",
-  "growth_restriction_checked": "n/a -- new question, cannot carry a restriction",
-  "proposed_question": {
-   "qid": "tonic-noise-floor-inert",
-   "title": "Why does the tonic noise-floor axis produce zero temperature lift while configured on?",
-   "claims": [
-    "MECH-063",
-    "SD-069",
-    "MECH-313"
-   ],
-   "registered_utc": "2026-08-30T06:34:18Z",
-   "fanout_sources": [
-    "failure_autopsy_V3-EXQ-963_2026-08-30.json"
-   ],
-   "is_hero": false,
-   "initial_frozen_count": 3,
-   "hypotheses": [
-    {
-     "hid": "H2-wiring",
-     "axis": "instrumentation"
-    },
-    {
-     "hid": "H3-simulation-mode",
-     "axis": "process"
-    },
-    {
-     "hid": "H5-substrate-drift",
-     "axis": "representation"
-    }
-   ]
-  },
-  "note": "Staging mode: registry NOT written. The confirming interactive session (or the next /governance walk) applies this."
+  "mode": "WITHDRAWN",
+  "reason": "The fan-out that motivated the proposed question 'tonic-noise-floor-inert' was resolved by the red-team pass before queuing (H2 confirmed in source and reproduced; H3/H5 refuted). Registering a 3-hypothesis frozen set for a question already answered would inflate the denominator with legs that were never live at registration time -- precisely the retro-padding the ledger invariants forbid. No registry append is owed."
  },
  "pre_routing_checks": {
   "run_utc": "2026-08-30T06:34:18Z",
@@ -208,10 +155,12 @@
   ]
  },
  "red_team_pass": {
-  "independent_pass_run": false,
-  "verdict": "NOT OBTAINED -- no independent verifier ran",
-  "reason": "Step 7c requires spawning a separate (preferably Fable) agent to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not. No independent cross-model verification was performed and none is claimed.",
-  "compensating_measure": "The adversarial discipline was applied in-context by the drafting session against the raw evidence, and it did change conclusions rather than rubber-stamping them: six arguments were raised and then withdrawn on direct code or docstring reads, recorded per-target under arguments_withdrawn. This is explicitly WEAKER than an independent pass -- it shares the drafter's priors by construction, which is the exact property the pass exists to break.",
-  "consequence_for_governance": "Treat every routing recommendation in these artifacts as unverified by a second reader. The highest-value targets for an independent check are: (a) V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and (b) V3-EXQ-964's claim that C2 was mathematically unsatisfiable at n_targets==1 -- both are load-bearing single-session inferences."
+  "independent_pass_run": true,
+  "verifier_model": "fable (different model from the drafting session)",
+  "method": "Given the JSON conclusion and raw evidence with the drafting session's reasoning WITHHELD until it had recomputed at least one load-bearing number from the manifest's own cells; only then permitted to read the .md, specifically to test its absolutes.",
+  "verdict": "CONTESTED",
+  "summary": "Conclusion survived every attack (all 20 cells verified at lift 0.0, all 10 of 779a's TONIC-ON cells at 1.0, dS_tonic recomputed to <1e-9, _seed_effects line-for-line identical, starvation refutation upheld and strengthened). CONTESTED on the REPAIR: the verifier confirmed fan-out H2 in source and reproduced it, so (1) section 6 asserted the opposite of the truth and was rewritten, (2) substrate_paths cited a nonexistent symbol and pointed a priority-1 corrupting repair at healthy ree_core -- retargeted to experiments/_lib/probe_warmup.py + the driver, with SD-PROBE-WARMUP named as the preferred host, (3) the fan-out and its ledger append are withdrawn as resolved-before-queuing, (4) a withdrawn argument's reasoning was locally valid but incomplete. Hygiene: 779a S-range corrected to 0.146-0.849; the 50x ratio noted as scale-contaminated, with the scale-free lift 1.0->0.0 as the clean statement.",
+  "corrections_applied": true,
+  "note": "An earlier revision of this artifact recorded that no independent pass had been run, because this session was operating under a standing instruction not to invoke the Agent tool unless the user requested it. The user then requested it explicitly, and this block replaces that record."
  }
 }

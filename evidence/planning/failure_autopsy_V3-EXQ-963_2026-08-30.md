@@ -31,10 +31,12 @@ There is no gate. `tonic_noise_floor.alpha = 1.0` in this run's config. So **a l
 |---|---|---|
 | `noise_floor_temp_lift_mean`, TONIC-ON cells | **1.0** (== alpha) | **0.0** |
 | `mean_dS_tonic` | **+0.2654** (robust, 4/5 seeds) | **+0.0053** |
-| `S_sustained_entropy` range | 0.29 - 0.76 | 0.023 - 0.166 |
+| `S_sustained_entropy` range | 0.146 - 0.849 | 0.023 - 0.166 |
 | cells meeting sample floors | **3 / 20** | **4 / 20** |
 
-**Sampling starvation is refuted as the explanation.** The two runs are essentially *equally* starved (3/20 vs 4/20 cells meeting floors), yet the outcome differs 50-fold. A confound held constant across both arms of the comparison cannot be the discriminating variable. The starvation is real and worth fixing on its own account; it does not explain this.
+**Sampling starvation is refuted as the explanation -- and more strongly than first stated.** The two runs are not merely equally starved: 963's per-cell sampling is **equal-or-better** than 779a's (min `n_e3_selects` 334 vs 280; min phasic event ticks 95 vs 6; comparable totals ~11.2k). The 120-vs-2400 `max_episodes_per_cell` difference is inert, because the 2400-env-step cap binds in both. A confound held constant -- here, held *favourably* -- cannot be the discriminating variable.
+
+**One caveat on the headline ratio, added after red-team.** The 50x `mean_dS_tonic` collapse is contaminated by a roughly 5x warmup-driven compression of the entropy scale itself, so it overstates the effect size. **The clean, scale-free statement is the lift: 1.0 -> 0.0**, which is what this diagnosis actually leans on.
 
 ## 3. Four-layer diagnosis
 
@@ -65,9 +67,22 @@ There is no gate. `tonic_noise_floor.alpha = 1.0` in this run's config. So **a l
 - `baseline_entropy_headroom` passed (`met: True`) while **all four arms** appear in `saturating_arms` with `worst_margin` 0.0037 against a `warn_margin` of 0.15. The gate tests membership of the band `[0.02, 0.98]`, not the margin to its edge, so it admits a run with effectively no headroom.
 - The `tonic_axis_live` capability gate, evaluated worst-cell, **worked** -- it is why this manifest's `evidence_direction` is already correct.
 
-## 6. Cross-cutting finding (bears on, not adjudicated here)
+## 6. CAUSE CONFIRMED -- and this section previously asserted the opposite
 
-`NoiseFloor` is zero-parameter and **not** an `nn.Module`. That places it in a double blind spot of the warmup cache: invisible to `assert_state_dict_shareable` (which compares `state_dict` key/shape parity, and whose docstring cites exactly this zero-parameter property as *what licenses* cache sharing across the 2x2), and invisible to `_restore_cached_surface` (which walks `agent.named_modules()`). The guard also logs cached module paths *absent on this substrate* but not the reverse -- a module present here and absent from the cache passes silently. Harmless for this failure; worth closing before a stateful non-Module regulator is added.
+> **The first revision of this section was wrong.** It described the warmup-cache blind spot as *"Harmless for this failure"* and said `NoiseFloor` is *"invisible to `_restore_cached_surface`"*. Both are false: that machinery **is the cause**, and the restore does not fail to see the regulator -- it **overwrites** it.
+
+The chain, verified in source and reproduced with the real functions:
+
+1. `_warmup_key` excludes the arm's runtime flags, so one warmup blob is shared across the whole 2x2 within a seed.
+2. **`T0P0` is always the cache MISS** and therefore always mints the blob -- and `T0P0` has `use_noise_floor=False`, so `agent.noise_floor` is `None` in the captured surface (`agent.py:1159` declares `self.noise_floor: Optional[NoiseFloor] = None`; it is constructed only when the flag is set, `:1166`).
+3. On every cache HIT, `_restore_cached_surface` does `object.__setattr__(module, name, value)` across that surface, **writing the mint arm's `None` over the live `NoiseFloor` instance** the TONIC-ON arm had just constructed.
+4. The guarded call site `if self.noise_floor is not None` (`agent.py:3444`) is then skipped. No lift is ever computed, so `noise_floor_temp_lift = tonic_T - baseline = 0.0`.
+
+Nothing raises and nothing logs it: `assert_state_dict_shareable` passes because these regulators are zero-parameter and non-`nn.Module` (its docstring cites exactly that property as *what licenses* the sharing), and the restore's missing-module logging covers only cached paths **absent here**, never the reverse.
+
+**The clincher is the asymmetry, and it was in the cells all along.** The driver's `_fresh_regulator` (line 502) reinstalls **only** `agent.phasic_burst` after warmup -- never `agent.noise_floor`. So the phasic axis survived the restore and the tonic axis did not. Confirmed: `R_transient` is non-zero on **10/10** PHASIC-ON cells and exactly `0.0` on all 10 PHASIC-OFF cells, while the tonic lift is `0.0` everywhere. **No other hypothesis explains that split.**
+
+**`ree_core` is healthy.** This is an experiment-harness defect.
 
 ## 7. Routing (proposed -- awaiting confirmation)
 
@@ -75,16 +90,11 @@ There is no gate. `tonic_noise_floor.alpha = 1.0` in this run's config. So **a l
 
 **Re-derive brake -- read carefully.** MECH-063 carries **3** prior `substrate_ceiling` hits under the R1-R3 convention (`20260329-legacy-cluster`, `MECH-063-777a-779a-cluster`, `V3-EXQ-779b`), above the threshold of 2. **This autopsy does not add a fourth** -- the reading is `standard` (instrument wiring), not `substrate_ceiling`. The brake therefore does not fire here and a same-question re-test is *not* refused. But it is **gated on the wiring repair plus the recording addition** below -- not permitted as another blind letter.
 
-### Fan-out (GOV-FANOUT-1) -- three live explanations, different axes
+### Fan-out (GOV-FANOUT-1) -- RESOLVED BEFORE QUEUING, do not fan out
 
-| # | Hypothesis | Axis | Probe |
-|---|---|---|---|
-| H2 | The noise-floor call site is not reached on the tonic path (only all-cell change vs 779a is the SD-074 shared cached warmup) | instrumentation | record `n_waking_calls` per cell; `0` confirms |
-| H3 | Scored selections ran with `simulation_mode=True`, which returns baseline unchanged by contract | instrumentation | record `last_n_simulation_skips`; `>0` with `n_waking_calls==0` confirms |
-| H2 | (behavioural check) | process | run one cell with SD-074 warmup DISABLED; restored `lift_mean 1.0` isolates the warmup |
-| H5 | Substrate drift 2026-07-18 -> 2026-08-30 changed the call path independently | representation | replay the 779a driver unchanged against today's substrate |
+The first revision proposed a three-hypothesis portfolio (H2 wiring / H3 `simulation_mode` / H5 substrate drift) and noted that the first two probes were pure instrumentation and free. **The red-team pass ran them, as source reads, and H2 is confirmed** (section 6). H3 and H5 are refuted or unnecessary: both drivers read the identical `_last_control_vector["G_vigor"]["noise_floor_temp_lift"]` field, and `T1P0` alone carries the 1.0 -> 0.0 contrast even under a worst-case SD-069 recording-semantics change; and no drift hypothesis explains phasic surviving while tonic died.
 
-**The first two probes are pure instrumentation and cost nothing. Run them before spending any behavioural budget.**
+This is recorded rather than deleted, because it is what a GOV-FANOUT-1 portfolio is *for*: enumerating the rivals and noticing two probes cost nothing is what collapsed a three-way discrimination to a confirmed single cause **before any compute was spent**. The hypothesis-space ledger append is withdrawn accordingly -- registering a frozen 3-hypothesis set for an already-answered question would inflate the denominator with legs that were not live at registration time, which the ledger invariants forbid.
 
 ## 8. Recommended per-claim disposition
 
@@ -105,10 +115,24 @@ Both are now named in the artifact. The new entry is **retained**: `sd_phasic_em
 
 One consequence worth flagging at apply time: fan-out **H2 implicates the SD-074 shared cached warmup as a possible route to the fault**. If H2 is confirmed, the repair may belong against `SD-PROBE-WARMUP` rather than in a new entry -- governance's call.
 
-## Adversarial red-team pass (Step 7c) -- NOT RUN
+## Adversarial red-team pass (Step 7c) -- VERDICT: CONTESTED
 
-**No independent verifier ran, and no CONFIRMED verdict is claimed.** Step 7c calls for spawning a separate agent (preferably on a different model) to attack the conclusion. This session operates under a standing instruction not to invoke the Agent tool unless the user requests it, and the user did not.
+An independent verifier (different model, reasoning withheld until it had recomputed from the raw cells) attacked this diagnosis. **The conclusion survived every attack. The repair did not.**
 
-The adversarial discipline was applied in-context instead, and it did change conclusions rather than rubber-stamping them -- six arguments were raised and withdrawn on direct code or docstring reads, each recorded under `arguments_withdrawn`. That is explicitly **weaker** than an independent pass: it shares the drafter's priors by construction, which is the exact property the pass exists to break.
+**Verified exhaustively, not sampled:** all 20 cells of 963 at lift exactly 0.0 (including all 10 `use_noise_floor=True` cells); all 10 TONIC-ON cells of 779a at exactly 1.0 (== alpha). No dissenting cell in either run. Per-seed and mean `dS_tonic` recomputed from the raw `S_sustained_entropy` cells, matching both manifests to <1e-9.
 
-**For governance:** treat every routing recommendation here as unverified by a second reader. The two highest-value targets for an independent check are V3-EXQ-963's claim that sampling starvation is refuted by the 779a comparison, and V3-EXQ-964's claim that C2 was mathematically unsatisfiable at `n_targets == 1`.
+**Attacks that failed:**
+- *Is it the same quantity in both runs?* Yes -- both drivers read the identical `_last_control_vector["G_vigor"]["noise_floor_temp_lift"]` field, and even under a worst-case SD-069 recording-semantics change, `T1P0` (phasic-off) alone carries the 1.0 -> 0.0 contrast. The recording-artifact hypothesis is refuted.
+- *Is "C1/C2 unchanged from 779a" actually true?* Yes -- `_seed_effects` is **line-for-line identical** across the two drivers.
+- *Is the starvation refutation fair?* Yes, and understated -- see section 2.
+
+**What was contested, and it changes the repair.** The verifier confirmed fan-out **H2** in source and reproduced it with the real functions, at zero behavioural cost. Consequences, all applied above:
+
+1. **Section 6 asserted the opposite of the truth** -- "harmless for this failure", "invisible to `_restore_cached_surface`". The warmup machinery *is* the cause, and the restore *overwrites* the regulator rather than failing to see it. Rewritten.
+2. **`substrate_paths` cited a symbol that does not exist** (`agent.py::_curiosity_noise_floor_temperature` -- `grep` exit 1) and pointed a priority-1 `corrupting` repair at **healthy `ree_core` code**. The fault is in `experiments/_lib/probe_warmup.py` plus the driver, which is where the entry now points -- and, per this artifact's own pre-registered contingency, governance should prefer **amending SD-PROBE-WARMUP** over creating a new SD.
+3. **The fan-out is withdrawn** as resolved-before-queuing, and with it the hypothesis-ledger append.
+4. **A withdrawn argument was withdrawn for a locally-correct but incomplete reason** -- see `arguments_withdrawn[1].withdrawal_CORRECTED_after_red_team`. "NoiseFloor is stateless, so a cold regulator lifts identically" is true and does refute the stated hypothesis; what it missed is that the restore does not leave the regulator cold, it writes `None` over it.
+
+**Hygiene corrections applied:** the 779a `S_sustained_entropy` range was quoted as 0.29-0.76; the actual range is **0.146-0.849**. And the headline "50x" collapse is contaminated by a ~5x warmup-driven compression of the entropy scale -- the clean, scale-free statement is the lift, 1.0 -> 0.0.
+
+**Not checked by either party:** no real-experiment re-run (the confirmation is a synthetic reproduction plus source reads); the prior ceiling-autopsy files were taken at face value.
