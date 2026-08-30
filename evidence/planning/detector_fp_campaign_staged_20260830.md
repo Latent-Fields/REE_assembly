@@ -1,6 +1,17 @@
 # Detector False-Positive Campaign — staged design
 
-**Status: AWAITING USER REVIEW** (presented live in session cycle-review-20260830-d2, user present)
+**Status: APPROVED AND BUILT** — user approved "Build all four" live (AskUserQuestion,
+2026-08-30T09:45Z; recommendation ledger updated; consent chip
+chip-20260830-detector-fp-campaign-decision). All four fixes landed and verified on
+origin/master the same session: fix 5 (test hermeticity) `e21fd84d0`; fixes 3+4
+(staleclaim hoist + scratch exclusion; statusregress materializer declaration)
+`015a5254e`; fix 1 (hookgating --confirm-live + wedge retry) `2d9dab102`; fix 2
+(strandedwt row-subsumption + dispatcher scratch set) `d82e75808`. Build-time
+correction worth recording: the first draft of fix 3's scratch exclusion removed
+mac_dispatch_load.json from `missing` too, which made bucket A EASIER and re-armed the
+2026-08-27 mis-close — caught before landing by the retroclose incident-replay test;
+the shipped version keeps scratch as an A-disqualifier (see
+MACHINE_LOCAL_SCRATCH_BASENAMES' comment).
 **Skill:** /metaworker-learning · **Campaign chip:** chip-20260829-metaworkerlearning-detector-falsepositive-campaign
 **Research:** three parallel subagents (full reports in the session transcript), 2026-08-30.
 
