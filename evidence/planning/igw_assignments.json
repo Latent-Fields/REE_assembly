@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-29T17:47:03Z",
+  "generated_at": "2026-08-30T08:57:42Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -7723,6 +7723,703 @@
         "claim_ids": [
           "SD-069"
         ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-853859e2-claude_local",
+      "stable_hash": "853859e252d4",
+      "igw_id_at_assign": "IGW-20260525-015",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-26, never released",
+      "released_event_for": "asn-20260526T054527Z-853859e2-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(monitor -- do not re-queue)",
+        "title": "EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)",
+        "lane": "experiment",
+        "priority": 53,
+        "claim_ids": [
+          "DEV-NEED-008",
+          "ARC-046"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-6c3d37d0-claude_local",
+      "stable_hash": "6c3d37d0e560",
+      "igw_id_at_assign": "IGW-20260526-021",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-26, never released",
+      "released_event_for": "asn-20260526T172527Z-6c3d37d0-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/diagnose-errors",
+        "title": "Diagnose ERROR: V3-EXQ-455a",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-03c17d7e-claude_local",
+      "stable_hash": "03c17d7e9e4f",
+      "igw_id_at_assign": "IGW-20260528-013",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-28, never released",
+      "released_event_for": "asn-20260528T164309Z-03c17d7e-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "OCD battery completeness (V3-EXQ-460..468)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "SD-034",
+          "MECH-266",
+          "MECH-267",
+          "MECH-268"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-f7bf31b6-claude_local",
+      "stable_hash": "f7bf31b623ce",
+      "igw_id_at_assign": "IGW-20260528-009",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-28, never released",
+      "released_event_for": "asn-20260528T164440Z-f7bf31b6-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": [
+          "MECH-341",
+          "ARC-062",
+          "ARC-065"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-fdfa887d-claude_local",
+      "stable_hash": "fdfa887ddc54",
+      "igw_id_at_assign": "IGW-20260528-010",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-28, never released",
+      "released_event_for": "asn-20260528T164511Z-fdfa887d-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)",
+        "lane": "experiment",
+        "priority": 50,
+        "claim_ids": [
+          "MECH-313",
+          "MECH-260",
+          "Q-045"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-8ae56bba-claude_local",
+      "stable_hash": "8ae56bba676e",
+      "igw_id_at_assign": "IGW-20260528-011",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-28, never released",
+      "released_event_for": "asn-20260528T164540Z-8ae56bba-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)",
+        "lane": "experiment",
+        "priority": 50,
+        "claim_ids": [
+          "MECH-269",
+          "MECH-269b",
+          "Q-040"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-108a9708-claude_local",
+      "stable_hash": "108a97083443",
+      "igw_id_at_assign": "IGW-20260528-025",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-28, never released",
+      "released_event_for": "asn-20260528T164707Z-108a9708-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-341",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-341"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-9db01363-claude_local",
+      "stable_hash": "9db013638524",
+      "igw_id_at_assign": "IGW-20260529-026",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-29, never released",
+      "released_event_for": "asn-20260529T061207Z-9db01363-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-090",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-090",
+          "SD-034",
+          "MECH-266",
+          "MECH-267",
+          "MECH-268"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-1233895f-claude_local",
+      "stable_hash": "1233895f3a19",
+      "igw_id_at_assign": "IGW-20260529-029",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-29, never released",
+      "released_event_for": "asn-20260529T061330Z-1233895f-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/diagnose-errors",
+        "title": "Diagnose ERROR: V3-EXQ-544",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-994434ce-claude_local",
+      "stable_hash": "994434ce5e5b",
+      "igw_id_at_assign": "IGW-20260530-020",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-05-30, never released",
+      "released_event_for": "asn-20260530T183247Z-994434ce-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: MECH-302",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-302",
+          "MECH-303"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-b6acef83-claude_local",
+      "stable_hash": "b6acef83aea5",
+      "igw_id_at_assign": "IGW-20260607-045",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-06-07, never released",
+      "released_event_for": "asn-20260607T103808Z-b6acef83-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0083 (ARC-049)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-049"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-062f5151-claude_local",
+      "stable_hash": "062f51511bd7",
+      "igw_id_at_assign": "IGW-20260607-048",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-06-07, never released",
+      "released_event_for": "asn-20260607T103936Z-062f5151-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0114 (MECH-197)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-197"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-5fc09888-claude_local",
+      "stable_hash": "5fc09888a480",
+      "igw_id_at_assign": "IGW-20260607-049",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-06-07, never released",
+      "released_event_for": "asn-20260607T103950Z-5fc09888-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal EXP-0115 (ARC-078)",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "ARC-078"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-c993034c-claude_local",
+      "stable_hash": "c993034c4a03",
+      "igw_id_at_assign": "IGW-20260609-004",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-06-09, never released",
+      "released_event_for": "asn-20260609T045820Z-c993034c-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness",
+        "lane": "plan",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-309",
+          "ARC-062"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-e82451e1-claude_local",
+      "stable_hash": "e82451e10ba8",
+      "igw_id_at_assign": "IGW-20260701-165",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "design item (DR-10 z_self into E3 viability); no commit or ledger activity signal since assignment 2026-07-01 (8+ weeks); releasing unblocks fresh assignment, item stays in workset",
+      "released_event_for": "asn-20260701T060557Z-e82451e1-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability",
+        "lane": "plan",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-215",
+          "ARC-081"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-70655316-claude_local",
+      "stable_hash": "706553162f6a",
+      "igw_id_at_assign": "IGW-20260701-046",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "decision item (Q-068 fork vocabulary); no commit or ledger activity signal since assignment 2026-07-01 (8+ weeks); releasing unblocks fresh assignment, item stays in workset",
+      "released_event_for": "asn-20260701T060637Z-70655316-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)",
+        "lane": "plan",
+        "priority": 25,
+        "claim_ids": [
+          "Q-068"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-d5585a0c-claude_local",
+      "stable_hash": "d5585a0c1a82",
+      "igw_id_at_assign": "IGW-20260707-035",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-07, never released",
+      "released_event_for": "asn-20260707T181205Z-d5585a0c-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "Drive / incentive salience grounding L2 -> L3",
+        "lane": "plan",
+        "priority": 45,
+        "claim_ids": [
+          "MECH-436"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-f0f3baf6-claude_local",
+      "stable_hash": "f0f3baf66192",
+      "igw_id_at_assign": "IGW-20260707-036",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "grounding item (goal/wanting L1->L2); no commit or ledger activity signal since assignment 2026-07-07 (7+ weeks); releasing unblocks fresh assignment, item stays in workset",
+      "released_event_for": "asn-20260707T181210Z-f0f3baf6-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(plan reconcile)",
+        "title": "Goal / wanting layer grounding L1 -> L2",
+        "lane": "plan",
+        "priority": 45,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-293b3a6c-claude_local",
+      "stable_hash": "293b3a6c8105",
+      "igw_id_at_assign": "IGW-20260717-201",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-17, never released",
+      "released_event_for": "asn-20260717T144732Z-293b3a6c-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-089",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-089"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-b6d793ee-claude_local",
+      "stable_hash": "b6d793ee9cca",
+      "igw_id_at_assign": "IGW-20260717-206",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-17, never released",
+      "released_event_for": "asn-20260717T144825Z-b6d793ee-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-169",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-169"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-e2d1608e-claude_local",
+      "stable_hash": "e2d1608e6b2b",
+      "igw_id_at_assign": "IGW-20260717-207",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-17, never released",
+      "released_event_for": "asn-20260717T144841Z-e2d1608e-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-173",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-173"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-128546f5-claude_local",
+      "stable_hash": "128546f59aa9",
+      "igw_id_at_assign": "IGW-20260717-208",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-17, never released",
+      "released_event_for": "asn-20260717T144857Z-128546f5-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-279 (lit 0.90, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-279"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-113ac9fb-claude_local",
+      "stable_hash": "113ac9fbd6c5",
+      "igw_id_at_assign": "IGW-20260726-218",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-26, never released",
+      "released_event_for": "asn-20260726T144708Z-113ac9fb-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for Q-081",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "Q-081"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-841ba0b0-claude_local",
+      "stable_hash": "841ba0b01622",
+      "igw_id_at_assign": "IGW-20260726-219",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-26, never released",
+      "released_event_for": "asn-20260726T144732Z-841ba0b0-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for INV-091",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "INV-091"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-de6667b7-claude_local",
+      "stable_hash": "de6667b7bf34",
+      "igw_id_at_assign": "IGW-20260726-221",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-26, never released",
+      "released_event_for": "asn-20260726T144749Z-de6667b7-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-244",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-244"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-1de56968-claude_local",
+      "stable_hash": "1de569685e18",
+      "igw_id_at_assign": "IGW-20260726-222",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-07-26, never released",
+      "released_event_for": "asn-20260726T144818Z-1de56968-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-245",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-245"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-085c3522-claude_local",
+      "stable_hash": "085c3522a523",
+      "igw_id_at_assign": "IGW-20260731-001",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "standing-condition item ('Complete governance review'); assigned 2026-07-31, governance cycles completed many times since (latest 2026-08-30, 6 reviewed) with no release -- assignment is not a live human session",
+      "released_event_for": "asn-20260731T202500Z-085c3522-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/governance",
+        "title": "Complete governance review (1 pending)",
+        "lane": "governance",
+        "priority": 1,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-eeb84c94-claude_local",
+      "stable_hash": "eeb84c9421c0",
+      "igw_id_at_assign": "IGW-20260808-226",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-08-08, never released",
+      "released_event_for": "asn-20260808T093302Z-eeb84c94-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-322 (lit 0.76, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-322"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-5931f925-claude_local",
+      "stable_hash": "5931f9257d6e",
+      "igw_id_at_assign": "IGW-20260808-229",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "item absent from current workset build (2026-08-30 regen, 252 items) -- the assigned item no longer exists under this stable_hash; assigned 2026-08-08, never released",
+      "released_event_for": "asn-20260808T093650Z-5931f925-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: SD-009 (lit 0.72, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "SD-009"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260830T085742Z-571b8d72-claude_local",
+      "stable_hash": "571b8d72f017",
+      "igw_id_at_assign": "IGW-20260808-201",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-08-30T08:57:42Z",
+      "released_at": "2026-08-30T08:57:42Z",
+      "released_by": "reconcile_manual_audit",
+      "released_reason": "standing-condition item ('Queue depth low'); assigned 2026-08-08, queue state has cycled dozens of times since and the condition is re-tracked by chip-queuefloor-fleet -- assignment is not a live human session",
+      "released_event_for": "asn-20260808T093727Z-571b8d72-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "(manual)",
+        "title": "Queue depth low (0 pending)",
+        "lane": "ops",
+        "priority": 35,
+        "claim_ids": []
       }
     }
   ]
