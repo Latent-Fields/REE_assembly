@@ -53,6 +53,7 @@ The origin tale is told on [REE for My Parents](ree_for_my_parents.md). The date
 - 29 August — [The Day Refresh Goblin Stopped Asking for Progress](goblin_chronicles/2026-08-29-the-day-refresh-goblin-stopped-asking-for-progress.md)
 - 29 August — [Just About Measurably Intelligent](goblin_chronicles/2026-08-29-just-about-measurably-intelligent.md)
 - 30 August — [One More Progreth](goblin_chronicles/2026-08-30-one-more-progreth.md)
+- 30 August — [The Forge That Learned to Digest](goblin_chronicles/2026-08-30-the-forge-that-learned-to-digest.md)
 
 ---
 
