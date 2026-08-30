@@ -29786,6 +29786,7 @@
     See REE_assembly/docs/architecture/sd_e1_rollout_consistency_training.md and
     evidence/planning/substrate_queue.json (sd_id SD-e1-rollout-consistency-training).
   diagnostic_evidence_adjudicated: true
+  epistemic_category: standard
   title: world_goal_evaluator_bounded_by_z_world_differentiation
   claim_type: invariant
   invariant_type: emergent
@@ -29925,6 +29926,19 @@
     No status/category/direction move (stays candidate, pending_retest_after_substrate true); the
     retest remains gated on SD-e1-rollout-consistency-training, now re-scoped action-conditioning-
     first and no longer probe-gated. diagnostic_evidence_adjudicated set true.
+
+    [2026-08-30 governance, PM cycle]: epistemic_category BACKFILLED to standard. This was recommended by
+    confirmed failure_autopsy_V3-EXQ-954_2026-08-29 for BOTH its targets (MECH-135 and INV-088); MECH-135
+    received it and INV-088 did not -- a half-applied disposition. It was structurally INVISIBLE to GOV-
+    APPLY-1: that audit's row self-cleared against an already-true change tail, so no cycle would ever have
+    re-surfaced it. Found only because the V3-EXQ-965 autopsy session (REE_assembly 7e9cf906f9) hand-
+    verified the 954 handover and named it in its closing note. Recorded because the detection gap is the
+    reusable part, not the one-field edit: a per-claim disposition whose recommendation text resolves to a
+    field that is ALREADY at the target value on ONE of several co-tagged claims can clear the audit for ALL
+    of them. No status, confidence, or direction change -- INV-088 stays candidate, and its
+    pending_retest_after_substrate stays TRUE (SD-e1 ITEM 2 is still required; V3-EXQ-965 validated ITEM 1
+    but left cr_ratio(h=1) 25-37x short of the 0.1 evaluator bar, so the V3-EXQ-108b evaluator collapse is
+    NOT fixed).
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
