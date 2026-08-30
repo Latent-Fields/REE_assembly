@@ -1,0 +1,292 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_959_mech440_state_conditioning_self_annealing",
+  "run_id": "v3_exq_959_mech440_state_conditioning_self_annealing_20260830T143421Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-30T14:34:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech440_legs_ii_iii_neither_confirmed_at_raised_floor",
+    "preconditions": [
+      {
+        "name": "A0_OFF::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "A0_OFF",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF (freshly, identically trained) diverges on 0 ticks. Non-zero means the runner's RNG isolation is broken and the whole DV is void.",
+        "control": "same arm vs same arm, identical seed and config, short fresh training",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "A0_OFF::armed_conversion_p1_candidate_diversity",
+        "precondition": "armed_conversion_p1_candidate_diversity",
+        "arm": "A0_OFF",
+        "kind": "readiness",
+        "description": "ARC-065 ARMED-CONVERSION P1: mean_distinct_first_action_classes >= 0.9 * action_dim, MEASURED not assumed, in EVERY arm.",
+        "control": "raised support_preserving_min_first_action_classes=action_dim, live P2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.78373,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "A0_OFF::fresh_selects_sufficient",
+        "precondition": "fresh_selects_sufficient",
+        "arm": "A0_OFF",
+        "kind": "readiness",
+        "description": "at least MIN_FRESH_SELECTS genuinely-fresh E3 select() calls per cell.",
+        "control": "708a/955's repaired sample-size-integrity instrument",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1060.0,
+        "threshold": 30.0,
+        "met": true
+      },
+      {
+        "name": "A0_OFF::dacc_live",
+        "precondition": "dacc_live",
+        "arm": "A0_OFF",
+        "kind": "readiness",
+        "description": "the Go/No-Go perseveration axis (dACC) is live (max suppression > 0).",
+        "control": "live _dacc_last_bundle suppression tensor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "A0_OFF::ceiling_headroom_below_saturation",
+        "precondition": "ceiling_headroom_below_saturation",
+        "arm": "A0_OFF",
+        "kind": "readiness",
+        "description": "A0_OFF's committed_class_entropy_fraction_of_ceiling sits materially below 1.0 (MEAN-aggregated across seeds -- the 955 driver-fix: max-aggregation let one anomalous seed void an otherwise-informative arm).",
+        "control": "A0_OFF's own yoked-pass committed-action distribution, MEAN across seeds",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.8290781666666667,
+        "threshold": 0.9,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF (freshly, identically trained) diverges on 0 ticks. Non-zero means the runner's RNG isolation is broken and the whole DV is void.",
+        "control": "same arm vs same arm, identical seed and config, short fresh training",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::armed_conversion_p1_candidate_diversity",
+        "precondition": "armed_conversion_p1_candidate_diversity",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "ARC-065 ARMED-CONVERSION P1: mean_distinct_first_action_classes >= 0.9 * action_dim, MEASURED not assumed, in EVERY arm.",
+        "control": "raised support_preserving_min_first_action_classes=action_dim, live P2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.890212,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::armed_conversion_p2_authority_engaged",
+        "precondition": "armed_conversion_p2_authority_engaged",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "ARC-065 ARMED-CONVERSION P2: authority_rel_deviation_mean > 0.05 on the lever-bearing arms.",
+        "control": "live E3 select() fires, last_raw_scores vs last_scores",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.854642,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::fresh_selects_sufficient",
+        "precondition": "fresh_selects_sufficient",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "at least MIN_FRESH_SELECTS genuinely-fresh E3 select() calls per cell.",
+        "control": "708a/955's repaired sample-size-integrity instrument",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1060.0,
+        "threshold": 30.0,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::noise_bias_supra_floor",
+        "precondition": "noise_bias_supra_floor",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "The lever arms' per-candidate bias range clears NOISE_BIAS_RANGE_FLOOR.",
+        "control": "live noisy_selection_head diagnostics",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.66841676,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_ANNEAL::dacc_live",
+        "precondition": "dacc_live",
+        "arm": "ARM_ANNEAL",
+        "kind": "readiness",
+        "description": "the Go/No-Go perseveration axis (dACC) is live (max suppression > 0).",
+        "control": "live _dacc_last_bundle suppression tensor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::paired_control_is_bit_identical",
+        "precondition": "paired_control_is_bit_identical",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "INSTRUMENT CONTROL: an arm yoked against ITSELF (freshly, identically trained) diverges on 0 ticks. Non-zero means the runner's RNG isolation is broken and the whole DV is void.",
+        "control": "same arm vs same arm, identical seed and config, short fresh training",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::armed_conversion_p1_candidate_diversity",
+        "precondition": "armed_conversion_p1_candidate_diversity",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "ARC-065 ARMED-CONVERSION P1: mean_distinct_first_action_classes >= 0.9 * action_dim, MEASURED not assumed, in EVERY arm.",
+        "control": "raised support_preserving_min_first_action_classes=action_dim, live P2 rollout",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.861772,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::armed_conversion_p2_authority_engaged",
+        "precondition": "armed_conversion_p2_authority_engaged",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "ARC-065 ARMED-CONVERSION P2: authority_rel_deviation_mean > 0.05 on the lever-bearing arms.",
+        "control": "live E3 select() fires, last_raw_scores vs last_scores",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.785691,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::fresh_selects_sufficient",
+        "precondition": "fresh_selects_sufficient",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "at least MIN_FRESH_SELECTS genuinely-fresh E3 select() calls per cell.",
+        "control": "708a/955's repaired sample-size-integrity instrument",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1060.0,
+        "threshold": 30.0,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::noise_bias_supra_floor",
+        "precondition": "noise_bias_supra_floor",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "The lever arms' per-candidate bias range clears NOISE_BIAS_RANGE_FLOOR.",
+        "control": "live noisy_selection_head diagnostics",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.78693155,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_NO_ANNEAL::dacc_live",
+        "precondition": "dacc_live",
+        "arm": "ARM_NO_ANNEAL",
+        "kind": "readiness",
+        "description": "the Go/No-Go perseveration axis (dACC) is live (max suppression > 0).",
+        "control": "live _dacc_last_bundle suppression tensor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C_STATE_leg_ii_state_conditioning_impact_concentration": true,
+      "C_ANNEAL_leg_iii_self_annealing_selective_suppression": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2151a1142cd963469c2679ad8386c00b2449919017836355f37bb3f87597022d",
+  "substrate_commit": {
+    "commit": "a1dabac9622d722855c098f528c1c43db0ba4bbc",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 93601,
+    "ticks_active": 23380,
+    "writer_calls": 93601,
+    "active_frac": 0.24978365615751968,
+    "writer_defect": false,
+    "n_agents": 18,
+    "goal_state_present": true
+  }
+}
