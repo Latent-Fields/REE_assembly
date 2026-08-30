@@ -1,0 +1,131 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_965_sd_e1_item1_action_conditioning_validation",
+  "run_id": "v3_exq_965_sd_e1_item1_action_conditioning_validation_20260830T145908Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-30T14:59:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "action_conditioning_converts_both_arms",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every (seed, arm) cell.",
+        "measured": 0.22577542066574097,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate_h1",
+        "kind": "readiness",
+        "description": "CR_real(h=1) is finite, positive, and backed by at least 10 surviving real samples, every cell -- the same statistic the ratio_action_vs_real_h1 criterion's denominator uses (same-statistic discipline).",
+        "measured": 40.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "no_missing_action_calls",
+        "kind": "readiness",
+        "description": "Vacuity trap (1): agent.e1_action_buffer_stats()['missing_action_calls'] (E1DeepPredictor._action_cond_missing_calls) is 0 on every ON-arm cell -- confirms every actions= call this script made on an action-conditioned E1 supplied a real action, never a silent zero-fallback.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "direct_action_supply_fraction",
+        "kind": "readiness",
+        "description": "Vacuity trap (2)/(3) analogue for this script's buffer-free design: the fraction of agent.e1(...) calls on ON-arm cells that received a genuine, verified non-None exactly-one-hot actions= argument, minimum across cells.",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "off_arm_reproduces_954",
+        "kind": "readiness",
+        "control": "V3-EXQ-954's own A_off-equivalent measurement (cr_ratio(h=1) 4.76e-07/5.39e-07)",
+        "description": "A_off's ratio_action_vs_real_h1 at h=1 stays below 1e-03 on every seed -- confirms this run's OFF arm reproduces the known action-blindness signature before any ON-vs-OFF comparison is trusted.",
+        "measured": 1.4965776756880433e-07,
+        "threshold": 0.001,
+        "direction": "upper",
+        "comparator": "<",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_material_lift",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 57809.12164050228,
+        "threshold": 6.101027755524315,
+        "statement": "At least one action-conditioned arm (B_action or C_both) shows a relative lift in one-step per-action divergence >= LIFT_FACTOR over its seed-matched A_off cell on every seed, AND clears the absolute floor/lift-multiple tails, per SD-e1-rollout-consistency-training ITEM 1's own acceptance criterion (material lift toward E2's trained per-action reference, NOT the C3/cr_ratio bars)."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_material_lift": true
+    },
+    "non_gating_reference": {
+      "note": "cr_ratio(h) / e1coe_score_var(h) / C3_VAR_THRESHOLD are recorded per (seed, arm) below for ITEM 2's future baseline ONLY -- they do NOT gate this run's PASS/FAIL. See the module docstring's 'THE SINGLE MOST IMPORTANT INSTRUCTION' section.",
+      "registered_cr_rollout_collapse_ratio": 0.1,
+      "registered_c3_var_threshold": 0.002
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8fd1e95dfe0ae80357afe206cf4e034055b33bebd4fe77484ad6f08576585740",
+  "substrate_commit": {
+    "commit": "072d9b0b33b5a7a356acfb0453faaa8cc48d816e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
