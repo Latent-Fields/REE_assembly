@@ -99,10 +99,13 @@ Added 2026-08-30 by the cutover durability review (coordinator_cutover_durabilit
 4. `chip-20260830-stray-git-sync-repair-untracked` — vendor `/usr/local/bin/ree_git_sync_repair.sh` into a repo (follow the committed-template convention used by the launchd plists).
 5. `chip-20260821-heartbeat-hysteresis-remeasure` — measurement only.
 6. `chip-20260826-fleet-idle-watcher-validation-candidate-false-negative` — audit the 37 exclusions.
-7. **D.7 (from the durability review, awaiting the user's go)** — retire the hub from the
-   experiment pool: graceful runner stop after V3-EXQ-959 completes, then disable ree-runner on
-   cloud-1. The review ties hub load directly to render-visibility durability (F4), and the
-   user proposed exactly this on 2026-08-30.
+7. **D.7 — IN EXECUTION (user go given 2026-08-30 ~10:18Z)**: retire the hub from the
+   experiment pool. Done so far: `Restart=no` drop-in installed on cloud-1
+   (`zz-retire.conf` — the `zz-` prefix matters, shadow.conf sets Restart=always and drop-ins
+   apply alphabetically); graceful `stop` (drain) enqueued via the runner-commands channel and
+   verified on origin (`b3c79dc14f`); V3-EXQ-959 draining (~60m ETA at issue). Remaining:
+   `systemctl disable ree-runner` after the drain exit + verify the 959 manifest/claim closed
+   cleanly. CLAUDE.md retirement note landed alongside.
 
 ## Campaign E — Worktree GC (P2, Mac, careful)
 
