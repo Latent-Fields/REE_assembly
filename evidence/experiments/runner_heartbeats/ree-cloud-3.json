@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-30T10:19:13Z",
+  "last_tick_utc": "2026-08-30T10:24:16Z",
   "state": "running",
   "current_exq": "V3-EXQ-436g",
   "current_exq_started_utc": "2026-08-30T10:15:30.711958+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / WAKING_ONLY",
-    "runs_done": 1,
+    "run_label": "Seed 7 / NO_WRITES",
+    "runs_done": 3,
     "runs_total": 15,
     "episodes_done": 50,
     "episodes_total": 200,
-    "overall_pct": 8.3
+    "overall_pct": 21.7
   },
-  "seconds_elapsed": 222,
-  "seconds_remaining": 2182,
+  "seconds_elapsed": 526,
+  "seconds_remaining": 1864,
   "recent_lines": [
     "V3-EXQ-436g v3_exq_436g_sd017_mech166_bias_writesel_ceiling_retest",
     "Seed 42",
@@ -29,7 +29,22 @@
     "[seed=42 NO_WRITES] slot_sim_occupied=None slot_sim_raw=0.0010 n_occupied=0 n_write_calls=0 slot_sep=0.000 harm_safe=0.0083 harm_dang=0.0080 discrim=0.0016 action_entropy_mean=1.2322 sleep_passes=0 sws_n_writes_total=0.0 rem_n_rollouts_total=0.0",
     "verdict: PASS",
     "Seed 42 Condition WAKING_ONLY",
-    "[train] label seed=42 cond=WAKING_ONLY ep 50/200 harm_safe_ema=0.0080 harm_dang_ema=0.0084 action_entropy_ema=1.4065"
+    "[train] label seed=42 cond=WAKING_ONLY ep 50/200 harm_safe_ema=0.0080 harm_dang_ema=0.0084 action_entropy_ema=1.4065",
+    "[train] label seed=42 cond=WAKING_ONLY ep 100/200 harm_safe_ema=0.0084 harm_dang_ema=0.0081 action_entropy_ema=1.3010",
+    "[train] label seed=42 cond=WAKING_ONLY ep 150/200 harm_safe_ema=0.0082 harm_dang_ema=0.0082 action_entropy_ema=1.2168",
+    "[train] label seed=42 cond=WAKING_ONLY ep 200/200 harm_safe_ema=0.0081 harm_dang_ema=0.0080 action_entropy_ema=1.1746",
+    "[seed=42 WAKING_ONLY] slot_sim_occupied=0.9991227388381958 slot_sim_raw=0.9991 n_occupied=16 n_write_calls=3022 slot_sep=0.401 harm_safe=0.0083 harm_dang=0.0080 discrim=0.0016 action_entropy_mean=1.2322 sleep_passes=0 sws_n_writes_total=0.0 rem_n_rollouts_total=0.0",
+    "verdict: PASS",
+    "Seed 42 Condition SWS_THEN_REM",
+    "[train] label seed=42 cond=SWS_THEN_REM ep 50/200 harm_safe_ema=0.0080 harm_dang_ema=0.0078 action_entropy_ema=1.2925",
+    "[train] label seed=42 cond=SWS_THEN_REM ep 100/200 harm_safe_ema=0.0076 harm_dang_ema=0.0080 action_entropy_ema=1.1865",
+    "[train] label seed=42 cond=SWS_THEN_REM ep 150/200 harm_safe_ema=0.0084 harm_dang_ema=0.0082 action_entropy_ema=1.2260",
+    "[train] label seed=42 cond=SWS_THEN_REM ep 200/200 harm_safe_ema=0.0081 harm_dang_ema=0.0083 action_entropy_ema=1.3004",
+    "[seed=42 SWS_THEN_REM] slot_sim_occupied=0.999174952507019 slot_sim_raw=0.9992 n_occupied=16 n_write_calls=4692 slot_sep=0.499 harm_safe=0.0082 harm_dang=0.0082 discrim=0.0013 action_entropy_mean=1.2358 sleep_passes=20 sws_n_writes_total=160.0 rem_n_rollouts_total=120.0",
+    "verdict: PASS",
+    "Seed 7",
+    "Seed 7 Condition NO_WRITES",
+    "[train] label seed=7 cond=NO_WRITES ep 50/200 harm_safe_ema=0.0078 harm_dang_ema=0.0087 action_entropy_ema=1.1965"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
