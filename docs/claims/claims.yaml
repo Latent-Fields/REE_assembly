@@ -70831,6 +70831,18 @@
     correctly located one level upstream of the head. SD-082 substrate entry amended (822c failure record;
     prior three records marked superseded -- 'nothing was fixed, the read was wrong'; severity corrupting).
     822c non_contributory for both claims; still candidate_substrate_landed, still pending_retest_after_substrate.
+
+    [2026-08-30 implement-substrate AMEND landed (SD-082's own substrate; session
+    chip-20260829-sd082-percandidate-summary-fix verify-and-land, ree-v3 merge ef88faa),
+    failure_autopsy_V3-EXQ-822c_2026-08-29 Section 6 routing]: the corrupting defect the
+    autopsy found (per-candidate summary ws[0,0,:] bit-identical across candidates by
+    construction) is fixed one level upstream of SD-078's own consumer path -- see SD-082's
+    entry and sd_082_rule_selection_action_consumer.md Amendment section for the fix detail.
+    Validation experiment V3-EXQ-822d planned but not yet queued (needs a /queue-experiment
+    follow-on session) to re-exercise SD-078's downstream-consumer propagation with the fix
+    engaged. SD-078 itself unchanged by this landing (its own rule-pool differentiation was
+    never in question); still candidate_substrate_landed, still pending_retest_after_substrate
+    pending 822d.
   claim_level: architectural
   pending_retest_after_substrate: true
   epistemic_category: standard
@@ -82853,6 +82865,38 @@
     implement-substrate: make the per-candidate summary actually per-candidate (post-action index or horizon
     aggregate; or default candidate_summary_source='e2_world_forward' with a sweep; or a float-noise-scale
     guard in compute_bias). 822c non_contributory for SD-082; stays candidate_substrate_landed / unvalidated.
+
+    [2026-08-30 implement-substrate AMEND landed, session
+    chip-20260829-sd082-percandidate-summary-fix verify-and-land, ree-v3 merge ef88faa]: fixed
+    per failure_autopsy_V3-EXQ-822c_2026-08-29 Section 6 routing, option (a) (post-action
+    aggregate) plus (c) (degeneracy guard); did NOT change the candidate_summary_source
+    default (option (b)), which the autopsy flagged as needing a dedicated sweep, out of scope
+    here. `ree_core/utils/config.py` / `ree_core/agent.py`: candidate_summary_source gains a
+    third value "proposer_post_action" (default stays "proposer", bit-identical) --
+    agent._proposer_post_action_summaries() reads world_states[:, 1:, :].mean(0) (post-action
+    states) instead of world_states[:, 0, :] (the shared initial seed, the root cause), at zero
+    extra model calls; falls back to the t=0 state only for a degenerate zero-horizon rollout.
+    Fixes the SAME structural defect uniformly for every consumer of the shared
+    cand_world_summaries (lateral_pfc / ofc / mech295 / gated_policy / tonic_vigor) when opted
+    in, exactly as "e2_world_forward" already does. `ree_core/pfc/lateral_pfc_analog.py::compute_bias`:
+    new LateralPFCConfig.candidate_summary_degeneracy_floor (default 1e-4) -- whenever
+    rule_readout_consumer centers a >=2-candidate summary, unconditionally records
+    candidate_summary_norm_pre/post_centering and flags (never raises) candidate_summary_degenerate
+    when centering collapses the summary to float-noise scale; diagnostic-only, never changes
+    the returned bias. Contract: ree-v3/tests/contracts/test_sd082_candidate_summary_post_action_amend.py
+    (22 tests, authored during this verify-and-land pass since the original build session died
+    mid-verification before committing them; run alongside the existing 14-test
+    test_sd082_rule_readout_consumer.py, both green on the full contract suite). Failure record:
+    822c marked resolved (this fix); 822/822a/822b stay superseded per the autopsy's own routing
+    (nothing was fixed there, the reads were wrong). Validation experiment V3-EXQ-822d planned
+    but NOT YET queued (a /queue-experiment follow-on session is needed): would set
+    candidate_summary_source="proposer_post_action" + rule_readout_consumer=True on both arms,
+    asserting n_prop_samples > 0 as a readiness gate before trusting any prop_delta aggregate --
+    the exact measurement-starvation gap 822/822a/822b fell into. SD-082 stays
+    candidate_substrate_landed / ready=false pending 822d's result; pending_retest_after_substrate
+    stays true. Per the autopsy: SD-082's centering mechanism is not falsified by this history --
+    it was untested, because its input never carried the cross-candidate variance it was designed
+    to preserve.
   pending_retest_after_substrate: true
   epistemic_category: standard
 - id: SD-083

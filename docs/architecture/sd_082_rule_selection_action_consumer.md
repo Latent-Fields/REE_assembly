@@ -1,6 +1,6 @@
 ---
 status: candidate_substrate_landed
-status_asof: 2026-07-26
+status_asof: 2026-08-30
 status_claim: SD-082
 ---
 
@@ -169,3 +169,59 @@ GAP-B/GAP-D), SD-008 (z_world under-differentiation, the common-mode source), SD
   `on_prop_delta_mean = off_prop_delta_mean = 0.0` (structural zero, both arms) while
   `on_rule_state_diff_mean = 0.644`. **Acceptance for V3-EXQ-822a:**
   `on_prop_delta_mean >= 0.001` (readiness_prop_nonvac) with an ON>OFF propagation contrast.
+
+## Amendment (2026-08-29 / landed 2026-08-30): the "structural zero" was never measured; the real defect
+
+`failure_autopsy_V3-EXQ-822c_2026-08-29.md` (confirmed) overturned the 822b attribution.
+`n_prop_samples` was `0` in **all 18 cells** across V3-EXQ-822/822a/822b: the drivers'
+`_candidate_summaries()` called only `agent._candidate_world_summaries(candidates)`, which
+returns `None` on the default `candidate_summary_source="proposer"` -- so the reported
+"structural zero" was the empty-list default of `statistics.fmean(prop_deltas) if
+prop_deltas else 0.0`, never a real measurement, in every prior run of this lineage.
+
+With the measurement gap fixed (822c), the REAL defect is one level upstream of
+`compute_bias` and is structural: the per-candidate summary every "proposer"-default caller
+builds is `trajectory.world_states[:, 0, :]`, but `E2FastPredictor.rollout_with_world` seeds
+`world_states = [initial_z_world]` -- index 0 is the rollout's **shared initial world
+state**, bit-identical across all K candidates by construction. SD-082's own centering step
+then annihilates this constant to float32 cancellation noise
+(`rule_summary_magnitude_ratio` 2.8e6-4.5e6, ~4000x the 1e3 in-range ceiling, in every
+822c cell, both arms). Severity **corrupting**: on the default config, `prop_delta` clears
+the 1e-3 non-vacuity floor (0.001662) while carrying zero candidate-discriminating
+information -- an authentic-looking but meaningless number.
+
+**Fix landed (this amendment).** Two independent, both no-op-default, changes:
+
+1. **`ree_core/utils/config.py` / `ree_core/agent.py`**: `candidate_summary_source` gains a
+   third value, `"proposer_post_action"` (default stays `"proposer"`, bit-identical). Still
+   proposer-rollout-based (not `"e2_world_forward"`, which is a different fix for a different
+   problem -- see the field's own docstring), but
+   `agent._proposer_post_action_summaries()` reads `world_states[:, 1:, :].mean(0)` (the
+   POST-ACTION states, reflecting each candidate's own action sequence) instead of
+   `world_states[:, 0, :]`, at zero extra model calls. Falls back to the t=0 state only for a
+   degenerate zero-horizon rollout. Because `_candidate_world_summaries()` is the single
+   shared source for every E3-side bias channel (lateral_pfc / ofc / mech295 / gated_policy /
+   tonic_vigor), this fixes the same structural defect for all of them uniformly when opted
+   in, exactly as `"e2_world_forward"` already does -- not just for lateral_pfc.
+2. **`ree_core/pfc/lateral_pfc_analog.py::compute_bias`**: a centering-degeneracy guard
+   (`LateralPFCConfig.candidate_summary_degeneracy_floor`, default `1e-4`). Whenever
+   `rule_readout_consumer` centers a >=2-candidate summary, it now always records
+   `candidate_summary_norm_pre_centering` / `_post_centering` and flags (never raises)
+   `candidate_summary_degenerate` when the post-centering norm collapses to float-noise
+   scale relative to the pre-centering norm -- purely diagnostic, never changes the returned
+   bias value. This makes the exact 822c failure mode directly measurable going forward
+   instead of only inferable from `rule_summary_magnitude_ratio` post hoc.
+
+Contract: `ree-v3/tests/contracts/test_sd082_candidate_summary_post_action_amend.py` (22
+tests -- authored during the verify-and-land pass that landed this branch, since the
+substrate build died mid-verification before committing them; run alongside the existing
+14-test `test_sd082_rule_readout_consumer.py`, both green on the full contract suite).
+Validation experiment: V3-EXQ-822d **planned but not yet queued** (a `/queue-experiment`
+follow-on session is needed -- see `substrate_queue.json`'s SD-082 entry), which would set
+`candidate_summary_source="proposer_post_action"` (never rely on the None-returning
+default) and assert `n_prop_samples > 0` as a readiness gate -- the exact measurement
+starvation that let three prior runs silently measure nothing for a month.
+
+Per the autopsy: SD-082's centering mechanism is **not falsified by this history -- it was
+untested**, because its input never carried the cross-candidate variance it was designed to
+preserve.
